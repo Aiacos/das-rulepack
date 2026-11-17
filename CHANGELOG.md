@@ -1,6 +1,11 @@
 # 📝 Changelog
 
-## 0.3.0 — unreleased
+## 0.4.0 — unreleased
+
+- Booming Blade and Green-Flame Blade (TCE p.106–107): cast as one melee attack with a held weapon, extra dice from 5th
+  level, booming energy that answers a willing move, green fire leaping to a chosen neighbour. Played live.
+
+## 0.3.0
 
 - Rules for Earth Tremor, Pyrotechnics, Snare, Watery Sphere, Power Word Pain and Wall of Light, each checked against the
   text of Xanathar's Guide to Everything. Validated by the engine, not yet played.

@@ -22,10 +22,11 @@ Declarative, waiting on the engine:
       both of its 2d6 parts at once in the imported data.
 - [ ] Enemies Abound: repeat the save when damaged — the imported item has no effect to carry the rule.
 
-Need code, like Shadow Blade (a weapon attack made as part of the spell):
+Need code, like Shadow Blade:
 
-- [ ] Booming Blade (TCE p.106): weapon attack; thunder dice from 5th level; 1d8 thunder if the target moves willingly.
-- [ ] Green-Flame Blade (TCE p.107): weapon attack; fire damage to a second creature within 5 ft.
+- [x] Booming Blade and Green-Flame Blade (0.4.0).
+- [ ] Booming Blade, Green-Flame Blade: have the engine count the cast as a spell that takes the action (no Extra Attack
+      after it). Needs a way to tell the engine, to ask upstream.
 - [ ] Zephyr Strike and Holy Weapon: bonus damage on a hit.
 
 Zones and recurring damage, to study against the engine's zone rules:

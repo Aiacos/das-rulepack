@@ -6,12 +6,15 @@
 import { MODULE_ID, DAS_ID } from "./constants.mjs";
 import { SPELLS } from "./rules/spells.mjs";
 import { registerShadowBlade } from "./shadow-blade.mjs";
+import { registerBladeCantrips, registerBladeCantripsInit } from "./blade-cantrips.mjs";
 
 /** The engine calls this hook once, at setup, with its `register(source, table)` function. */
 Hooks.once(`${DAS_ID}.registerContent`, register => {
   try { register(MODULE_ID, SPELLS); }
   catch(err) { console.error(`${MODULE_ID} | rules refused by DAS · Core:`, err); }
 });
+
+Hooks.once("init", () => registerBladeCantripsInit());
 
 Hooks.once("ready", () => {
   const das = game.modules.get(DAS_ID);
@@ -20,4 +23,5 @@ Hooks.once("ready", () => {
     return;
   }
   registerShadowBlade();
+  registerBladeCantrips();
 });

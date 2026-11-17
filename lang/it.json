@@ -1,5 +1,13 @@
 {
   "DASRULEPACK.ShadowBlade.Name": "Lama d'Ombra",
   "DASRULEPACK.ShadowBlade.Advantage": "Lama d'Ombra: Vantaggio, il bersaglio è in luce fioca o oscurità.",
-  "DASRULEPACK.ShadowBlade.Dissipated": "La Lama d'Ombra di {name} si dissolve. Un'Azione Bonus (rilanciando l'incantesimo) la fa riapparire."
+  "DASRULEPACK.ShadowBlade.Dissipated": "La Lama d'Ombra di {name} si dissolve. Un'Azione Bonus (rilanciando l'incantesimo) la fa riapparire.",
+  "DASRULEPACK.Blade.WhichWeapon": "Con quale arma fai l'attacco?",
+  "DASRULEPACK.Blade.NoWeapon": "{spell}: serve un'arma da mischia impugnata (equipaggiata) per lanciarlo.",
+  "DASRULEPACK.Blade.Sheathed": "Lama Tonante: avvolto da energia tonante",
+  "DASRULEPACK.Blade.SheathedHint": "Fino all'inizio del prossimo turno dell'incantatore: se questa creatura si muove volontariamente di 1,5 m o più, subisce {dice}d8 danni da tuono e l'incantesimo termina.",
+  "DASRULEPACK.Blade.LeapTo": "L'attacco ha colpito {target}. Su quale creatura entro 1,5 m da lui salta il fuoco verde?",
+  "DASRULEPACK.Blade.NoLeap": "Nessuno",
+  "DASRULEPACK.Blade.LeapFlavor": "{spell}: il fuoco verde salta su {target}",
+  "DASRULEPACK.Blade.BoomFlavor": "Lama Tonante: {target} si è mosso"
 }

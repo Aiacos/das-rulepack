@@ -22,6 +22,8 @@ shipped by DAS · Core, but has not been played yet.
 | Spell | Book | What the module adds | Status |
 |---|---|---|---|
 | Shadow Blade | XGE p.164 | The blade is in the caster's hand as soon as the spell is cast (created on the spot, or adopted when the item's own data conjures it), sized by the slot (2d8 / 3d8 / 4d8 / 5d8), and leaves with the concentration. Advantage against a target in dim light or darkness. A thrown blade dissipates at the end of the turn; casting the spell again while concentrating brings it back without a slot. | Played |
+| Booming Blade | TCE p.106 | Casting it makes one melee attack with a weapon you hold (you choose if you hold several). From 5th level the attack adds 1d8 thunder on a hit (2d8 at 11th, 3d8 at 17th). A target that is hit is sheathed until the start of your next turn: if it moves 5 feet or more of its own will, it takes 1d8 thunder (one more die at 5th, 11th and 17th) and the spell ends. Pushes and pulls by the engine do not set it off. | Played |
+| Green-Flame Blade | TCE p.107 | Casting it makes one melee attack with a weapon you hold. From 5th level the attack adds 1d8 fire on a hit (2d8 at 11th, 3d8 at 17th). On a hit you choose a creature within 5 feet of the target: it takes fire damage equal to your spellcasting modifier, plus the same dice. | Played |
 | Frostbite | XGE p.156 | Disadvantage on the target's next weapon attack before the end of its next turn, then the effect is spent. | Validated |
 | Lightning Lure | TCE p.107 | On a failed save the target is pulled up to 10 ft toward the caster. | Validated |
 | Tasha's Mind Whip | TCE p.115 | No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both. | Validated |
@@ -42,7 +44,27 @@ shipped by DAS · Core, but has not been played yet.
 The rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell brought in
 by another tool keeps the engine's general rules only.
 
+Shadow Blade, Booming Blade and Green-Flame Blade are handled in code and recognised by their dnd5e identifier alone, so they
+work whatever tool imported the spell.
+
+## 🔒 What the GM's client does on a player's behalf
+
+A player cannot write on a creature they do not own, so the booming energy, its damage and the leaping fire are applied by the
+active GM's client. It works from the chat card of the attack the engine settled, and checks again what it reads there: the
+card's author must own the caster, the caster must have the cantrip, the level is read from the caster, the creature the fire
+leaps to must stand within 5 feet of the creature that was hit, and each card is used once. The damage is rolled on the GM's
+client. The only thing a player's client sends is which neighbouring creature the fire leaps to.
+
 ## ⚠️ Known limitations
+
+- Booming Blade, Green-Flame Blade: the cast is counted by the engine as an attack with the weapon, not as a spell. A caster
+  with Extra Attack is therefore still offered the other attacks of the Attack action, which the spell does not give; a
+  Counterspell or a silence does not stop it; the components are not checked.
+- Booming Blade, Green-Flame Blade: the first activity of the spell is replaced by the attack; the other activities of the
+  imported item (its hand-rolled damage) stay as they are and are not needed.
+- Booming Blade: a teleport is not counted as moving. Outside combat the energy lasts 6 seconds of world time.
+- Green-Flame Blade: the second creature is chosen among the tokens within 5 feet of the target, the caster excepted; whether
+  the caster can see it is left to the table.
 
 - Lightning Lure: the damage is applied wherever the target ends, not only "if it is within 5 feet".
 - Tasha's Mind Whip: the choice to move instead of acting is left to the table.
