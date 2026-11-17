@@ -81,5 +81,21 @@ export const SPELLS = Object.freeze({
 
   // Wall of Light (XGE p.170): "A blinded creature can make a Constitution saving throw at the end of each of its turns,
   // ending the effect on itself on a success."
-  "wall-of-light": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "VGU8pflgbBnWKJ7E", do: [{ type: "resave" }] }] }
+  "wall-of-light": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "VGU8pflgbBnWKJ7E", do: [{ type: "resave" }] }] },
+
+  // Otto's Irresistible Dance, 2014 version (PHB 2014 p.264; identifier `irresistible-dance`, where the 2024 spell is
+  // `ottos-irresistible-dance` and has its rule in DAS · Core): the dancer "has disadvantage on ... attack rolls", "other
+  // creatures have advantage on attack rolls against it", and "as an action, a dancing creature makes a Wisdom saving throw
+  // to regain control of itself".
+  "irresistible-dance": {
+    actionEnds: { aWuXl9NADX7vOCOC: { by: "bearer", roll: "save" } },
+    triggers: [
+      { on: "preAttackRoll", via: "effect", if: { "source.hasEffect": "irresistible-dance" }, do: [{ type: "disadvantage" }] },
+      { on: "preAttackRoll", via: "effect", if: { "target.hasEffect": "irresistible-dance" }, do: [{ type: "advantage" }] }
+    ]
+  },
+
+  // Incite Greed (AI p.76): "At the end of each of its turns, an affected target can make a Wisdom saving throw. If it
+  // succeeds, this effect ends for that target."
+  "incite-greed": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "4Hi47QCDFVz6m9gd", do: [{ type: "resave" }] }] }
 });

@@ -4,6 +4,7 @@
 
 - Rules for Earth Tremor, Pyrotechnics, Snare, Watery Sphere, Power Word Pain and Wall of Light, each checked against the
   text of Xanathar's Guide to Everything. Validated by the engine, not yet played.
+- Rules for Otto's Irresistible Dance in its 2014 version (identifier `irresistible-dance`) and Incite Greed.
 
 ## 0.2.0
 

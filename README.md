@@ -36,6 +36,8 @@ shipped by DAS · Core, but has not been played yet.
 | Watery Sphere | XGE p.170 | A restrained creature repeats the save at the end of each of its turns. | Validated |
 | Power Word Pain | XGE p.163 | The target repeats the Constitution save at the end of each of its turns. | Validated |
 | Wall of Light | XGE p.170 | A blinded creature repeats the save at the end of each of its turns. | Validated |
+| Otto's Irresistible Dance (2014) | PHB 2014 p.264 | Disadvantage on the dancer's attacks, Advantage on attacks against it, and an action to repeat the Wisdom save. The 2024 spell is covered by DAS · Core. | Validated |
+| Incite Greed | AI p.76 | A charmed target repeats the save at the end of each of its turns. | Validated |
 
 The rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell brought in
 by another tool keeps the engine's general rules only.
@@ -49,6 +51,7 @@ by another tool keeps the engine's general rules only.
 - Power Word Pain: the imported item asks for a saving throw when the spell is cast; the text has none (the spell works on a
   target with 100 hit points or fewer). The speed cap and the Disadvantage are not automated.
 - Snare: the Intelligence (Arcana) check to free the creature is not automated.
+- Otto's Irresistible Dance (2014): the Disadvantage on Dexterity saving throws is not automated.
 - Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: no rule yet. Their "use an action to make a
   check" needs the engine to read a check written without a DC, which it does not do today.
 
