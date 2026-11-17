@@ -22,7 +22,14 @@ export const SPELLS = Object.freeze({
 
   // Lightning Lure (TCE p.107, SCAG): on a failed Strength save the target "is pulled up to 10 feet in a straight line toward
   // you". The damage "if it is within 5 feet of you" is left as rolled: the engine applies it wherever the target ends.
+  // The imported item gives the save a "0-foot emanation" as its area, so no creature is ever in it: the spell targets "one
+  // creature of your choice that you can see within 15 feet of you". Corrected in the item's data (by the active GM when the
+  // item is created, and by the world diagnostic for items already on a sheet).
   "lightning-lure": {
+    dataFixes: [
+      { path: "system.target.template.type", from: "radius", value: "" },
+      { path: "system.target.affects.type", from: "", value: "creature" }
+    ],
     triggers: [{ on: "failedSave", do: [{ type: "move", mode: "pull", distance: 10, units: "ft", upTo: true }] }]
   },
 
@@ -90,8 +97,11 @@ export const SPELLS = Object.freeze({
   "irresistible-dance": {
     actionEnds: { aWuXl9NADX7vOCOC: { by: "bearer", roll: "save" } },
     triggers: [
-      { on: "preAttackRoll", via: "effect", if: { "source.hasEffect": "irresistible-dance" }, do: [{ type: "disadvantage" }] },
-      { on: "preAttackRoll", via: "effect", if: { "target.hasEffect": "irresistible-dance" }, do: [{ type: "advantage" }] }
+      // The effect is named: the caster carries one too (the spell's concentration), and must not count as dancing.
+      { on: "preAttackRoll", via: "effect", if: { "source.hasEffect": { item: "irresistible-dance", effect: "aWuXl9NADX7vOCOC" } },
+        do: [{ type: "disadvantage" }] },
+      { on: "preAttackRoll", via: "effect", if: { "target.hasEffect": { item: "irresistible-dance", effect: "aWuXl9NADX7vOCOC" } },
+        do: [{ type: "advantage" }] }
     ]
   },
 

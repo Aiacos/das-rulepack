@@ -16,29 +16,30 @@ Requires Foundry VTT V14, dnd5e 6.0 or later, and DAS · Core 0.283.0 or later.
 ## ✨ What it covers
 
 "Played" means the rule was exercised in a running world (Foundry 14.370, dnd5e 6.1.0, DAS · Core 0.283.0, items imported by
-DDB Importer 7.6.0). "Validated" means the rule passes the engine's validator and follows the pattern of an equivalent rule
-shipped by DAS · Core, but has not been played yet.
+DDB Importer 7.6.0), on the GM's client, through the engine's own testing interface. "Validated" means the rule passes the
+engine's validator and uses the same building block as a rule that was played (the repeated save at the end of a turn is the
+one played with Psychic Scream), but has not been played itself. Nothing was played from a player's client.
 
 | Spell | Book | What the module adds | Status |
 |---|---|---|---|
 | Shadow Blade | XGE p.164 | The blade is in the caster's hand as soon as the spell is cast (created on the spot, or adopted when the item's own data conjures it), sized by the slot (2d8 / 3d8 / 4d8 / 5d8), and leaves with the concentration. Advantage against a target in dim light or darkness. A thrown blade dissipates at the end of the turn; casting the spell again while concentrating brings it back without a slot. | Played |
 | Booming Blade | TCE p.106 | Casting it makes one melee attack with a weapon you hold (you choose if you hold several). From 5th level the attack adds 1d8 thunder on a hit (2d8 at 11th, 3d8 at 17th). A target that is hit is sheathed until the start of your next turn: if it moves 5 feet or more of its own will, it takes 1d8 thunder (one more die at 5th, 11th and 17th) and the spell ends. Pushes and pulls by the engine do not set it off. | Played |
 | Green-Flame Blade | TCE p.107 | Casting it makes one melee attack with a weapon you hold. From 5th level the attack adds 1d8 fire on a hit (2d8 at 11th, 3d8 at 17th). On a hit you choose a creature within 5 feet of the target: it takes fire damage equal to your spellcasting modifier, plus the same dice. | Played |
-| Frostbite | XGE p.156 | Disadvantage on the target's next weapon attack before the end of its next turn, then the effect is spent. | Validated |
-| Lightning Lure | TCE p.107 | On a failed save the target is pulled up to 10 ft toward the caster. | Validated |
-| Tasha's Mind Whip | TCE p.115 | No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both. | Validated |
-| Tasha's Caustic Brew | TCE p.115 | No damage on the cast; 2d4 acid at the start of each of the target's turns; an action ends it. | Validated |
+| Frostbite | XGE p.156 | Disadvantage on the target's next weapon attack before the end of its next turn, then the effect is spent. | Played |
+| Lightning Lure | TCE p.107 | On a failed save the target is pulled up to 10 ft toward the caster. The imported item's target (a "0-foot emanation" that never contains anyone) is corrected to one creature. | Played |
+| Tasha's Mind Whip | TCE p.115 | No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both. | Played |
+| Tasha's Caustic Brew | TCE p.115 | No damage on the cast; 2d4 acid at the start of each of the target's turns; an action ends it. | Played |
 | Zephyr Strike | XGE p.171 | The caster's movement provokes no opportunity attacks while the spell lasts. | Validated |
-| Raulothim's Psychic Lance | FTD p.21 | Incapacitated ends at the start of the caster's next turn. | Validated |
-| Psychic Scream | XGE p.163 | A stunned target repeats the save at the end of each of its turns. | Validated |
+| Raulothim's Psychic Lance | FTD p.21 | Incapacitated ends at the start of the caster's next turn. | Played |
+| Psychic Scream | XGE p.163 | A stunned target repeats the save at the end of each of its turns. | Played |
 | Holy Weapon | XGE p.157 | A creature blinded by the burst repeats the save at the end of each of its turns. | Validated |
-| Earth Tremor | XGE p.155 | No damage on a successful save (the imported data gives half). | Validated |
+| Earth Tremor | XGE p.155 | No damage on a successful save (the imported data gives half). | Played |
 | Pyrotechnics | XGE p.163 | Blinded by the fireworks ends at the end of the caster's next turn. | Validated |
 | Snare | XGE p.165 | A restrained creature repeats the save at the end of each of its turns. | Validated |
 | Watery Sphere | XGE p.170 | A restrained creature repeats the save at the end of each of its turns. | Validated |
 | Power Word Pain | XGE p.163 | The target repeats the Constitution save at the end of each of its turns. | Validated |
 | Wall of Light | XGE p.170 | A blinded creature repeats the save at the end of each of its turns. | Validated |
-| Otto's Irresistible Dance (2014) | PHB 2014 p.264 | Disadvantage on the dancer's attacks, Advantage on attacks against it, and an action to repeat the Wisdom save. The 2024 spell is covered by DAS · Core. | Validated |
+| Otto's Irresistible Dance (2014) | PHB 2014 p.264 | Disadvantage on the dancer's attacks, Advantage on attacks against it, and an action to repeat the Wisdom save. The 2024 spell is covered by DAS · Core. | Played |
 | Incite Greed | AI p.76 | A charmed target repeats the save at the end of each of its turns. | Validated |
 
 The rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell brought in
@@ -67,7 +68,10 @@ client. The only thing a player's client sends is which neighbouring creature th
   the caster can see it is left to the table.
 
 - Lightning Lure: the damage is applied wherever the target ends, not only "if it is within 5 feet".
-- Tasha's Mind Whip: the choice to move instead of acting is left to the table.
+- Tasha's Mind Whip: the choice to move instead of acting is left to the table. Played: no reactions, and the effect ending
+  at the end of the target's turn; "an action or a bonus action, not both" is declared to the engine but was not observed.
+- Lightning Lure: the correction of the imported item is written when the item is created on a sheet; for a spell already on
+  a sheet, run the world diagnostic of DAS · Core (or drag the spell onto the sheet again).
 - Zephyr Strike: the one-time Advantage, bonus 1d8 force and extra speed are not automated.
 - Holy Weapon: the extra 2d8 radiant on each hit is not automated.
 - Power Word Pain: the imported item asks for a saving throw when the spell is cast; the text has none (the spell works on a

@@ -1,6 +1,15 @@
 # 📝 Changelog
 
-## 0.4.0 — unreleased
+## 0.5.0 — unreleased
+
+- Played live and confirmed: Frostbite, Earth Tremor, Tasha's Mind Whip, Tasha's Caustic Brew, Raulothim's Psychic Lance,
+  Psychic Scream, Lightning Lure, Otto's Irresistible Dance (2014).
+- Fixed: Otto's Irresistible Dance (2014) gave both Advantage and Disadvantage to every attack between the caster and the
+  dancer (the caster's concentration counted as dancing); the rule now names the dancing effect.
+- Fixed: Lightning Lure did nothing with the imported item, whose target is a "0-foot emanation"; the item's data is
+  corrected to one creature.
+
+## 0.4.0
 
 - Booming Blade and Green-Flame Blade (TCE p.106–107): cast as one melee attack with a held weapon, extra dice from 5th
   level, booming energy that answers a willing move, green fire leaping to a chosen neighbour. Played live.

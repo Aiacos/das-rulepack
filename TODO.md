@@ -10,8 +10,9 @@ Data for every non-official spell imported by DDB Importer (activity and effect 
 
 ## Rules written, to play
 
-- [ ] Play the rules marked "Validated" in the README in a lit scene with a real mouse (the test scene is dark, and aiming
-      an area cannot be driven from a headless browser).
+- [ ] Still only validated: Zephyr Strike, Holy Weapon, Pyrotechnics, Snare, Watery Sphere, Power Word Pain, Wall of Light,
+      Incite Greed. How to play a rule without a mouse: `../darshyne-das/audit/live-helpers.js` (scene "DAS Test Arena").
+- [ ] Everything from a player's client (so far the GM's client only).
 
 ## Next rules
 
