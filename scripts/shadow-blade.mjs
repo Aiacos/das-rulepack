@@ -46,11 +46,13 @@ async function ensureBlade(activity, level) {
 
   let blades = bladesOf(actor);
   if ( !blades.length ) {
+    // The blade lasts as long as the spell: dnd5e removes a document when the effect named by `dependentOn` goes.
+    const concentration = concentrationOf(actor, spell);
+    if ( !concentration && spell.system.properties?.has?.("concentration") ) return null;   // the spell already ended
     const data = bladeData({ level, name: loc("ShadowBlade.Name"), img: spell.img, moduleId: MODULE_ID, spellUuid: spell.uuid,
       activityId: foundry.utils.randomID() });
+    if ( concentration ) foundry.utils.setProperty(data, "flags.dnd5e.dependentOn", concentration.uuid);
     const [created] = await actor.createEmbeddedDocuments("Item", [data]);
-    const concentration = concentrationOf(actor, spell);
-    if ( created && concentration ) await concentration.addDependent(created);
     blades = created ? [created] : [];
   }
 
@@ -111,7 +113,18 @@ function onTurnChange(combat, prior, current) {
   }
 }
 
+/**
+ * createItem, on the client that created it: a blade that arrives when the caster already holds one replaces it (a source
+ * that conjures its own blade may deliver it after ours).
+ */
+function onCreateItem(item, options, userId) {
+  if ( (userId !== game.user.id) || !isBlade(item) || !item.actor ) return;
+  const older = bladesOf(item.actor).filter(i => i.id !== item.id).map(i => i.id);
+  if ( older.length ) item.actor.deleteEmbeddedDocuments("Item", older).catch(() => null);
+}
+
 export function registerShadowBlade() {
+  Hooks.on("createItem", onCreateItem);
   Hooks.on("dnd5e.postUseActivity", onPostUseActivity);
   Hooks.on("dnd5e.preRollAttackV2", onPreRollAttack);
   Hooks.on("dnd5e.rollAttackV2", onRollAttack);
