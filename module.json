@@ -1,0 +1,19 @@
+{
+  "id": "das-rulepack",
+  "title": "DAS · Rule Pack",
+  "description": "Rules for Darshyne's Automation Suite (DAS) covering spells and items from books that have no official Foundry module (Xanathar's Guide to Everything, Tasha's Cauldron of Everything…), such as Shadow Blade.",
+  "version": "0.1.0",
+  "authors": [{ "name": "Aiacos" }],
+  "compatibility": { "minimum": "14", "verified": "14.370" },
+  "esmodules": ["scripts/main.mjs"],
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" },
+    { "lang": "it", "name": "Italiano", "path": "lang/it.json" }
+  ],
+  "relationships": {
+    "systems": [{ "id": "dnd5e", "type": "system", "compatibility": { "minimum": "6.0.0" } }],
+    "requires": [{ "id": "dnd5e-combat", "type": "module", "compatibility": { "minimum": "0.283.0" } }]
+  },
+  "url": "https://github.com/Aiacos/das-rulepack",
+  "license": "MIT"
+}
