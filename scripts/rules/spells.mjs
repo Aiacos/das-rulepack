@@ -58,5 +58,28 @@ export const SPELLS = Object.freeze({
 
   // Holy Weapon (XGE p.157), the burst that ends the spell: a creature that fails is Blinded for 1 minute and "can make a
   // Constitution saving throw at the end of each of its turns, ending the effect on itself on a success".
-  "holy-weapon": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "AVAqMpoVU6J5tDTM", do: [{ type: "resave" }] }] }
+  "holy-weapon": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "AVAqMpoVU6J5tDTM", do: [{ type: "resave" }] }] },
+
+  // Earth Tremor (XGE p.155): "On a failed save, a creature takes 1d6 bludgeoning damage and is knocked prone" — nothing on a
+  // success; the item's data gives half damage.
+  "earth-tremor": { saveDamage: { saveEarthTremorI: "none" } },
+
+  // Pyrotechnics (XGE p.163), fireworks: Blinded "until the end of your next turn".
+  "pyrotechnics": { effectEnds: { ZjHJQ7woRp98O6cT: "casterTurnEnd" } },
+
+  // Snare (XGE p.165): "A restrained creature can make a Dexterity saving throw at the end of each of its turns, ending the
+  // effect on itself on a success."
+  "snare": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "e9NG1SwNcR4UZAXY", do: [{ type: "resave" }] }] },
+
+  // Watery Sphere (XGE p.170): "At the end of each of its turns, a restrained target can repeat the saving throw, ending the
+  // effect on itself on a success."
+  "watery-sphere": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "b4gGKWLyZdmGqgrO", do: [{ type: "resave" }] }] },
+
+  // Power Word Pain (XGE p.163): "A target suffering this pain can make a Constitution saving throw at the end of each of its
+  // turns. On a successful save, the pain ends."
+  "power-word-pain": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "zZ96n2pATqQe1y8v", do: [{ type: "resave" }] }] },
+
+  // Wall of Light (XGE p.170): "A blinded creature can make a Constitution saving throw at the end of each of its turns,
+  // ending the effect on itself on a success."
+  "wall-of-light": { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "VGU8pflgbBnWKJ7E", do: [{ type: "resave" }] }] }
 });
