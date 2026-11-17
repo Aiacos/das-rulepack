@@ -15,11 +15,31 @@ Requires Foundry VTT V14, dnd5e 6.0 or later, and DAS · Core 0.283.0 or later.
 
 ## ✨ What it covers
 
-| Spell | Book | What the module adds |
-|---|---|---|
-| Shadow Blade | XGE p.164 | The blade is in the caster's hand as soon as the spell is cast (created on the spot, or adopted when the item's own data conjures it), sized by the slot (2d8 / 3d8 / 4d8 / 5d8), and leaves with the concentration. Advantage against a target in dim light or darkness. A thrown blade dissipates at the end of the turn; casting the spell again while concentrating brings it back for a Bonus Action and no slot. |
+"Played" means the rule was exercised in a running world (Foundry 14.370, dnd5e 6.1.0, DAS · Core 0.283.0, items imported by
+DDB Importer 7.6.0). "Validated" means the rule passes the engine's validator and follows the pattern of an equivalent rule
+shipped by DAS · Core, but has not been played yet.
+
+| Spell | Book | What the module adds | Status |
+|---|---|---|---|
+| Shadow Blade | XGE p.164 | The blade is in the caster's hand as soon as the spell is cast (created on the spot, or adopted when the item's own data conjures it), sized by the slot (2d8 / 3d8 / 4d8 / 5d8), and leaves with the concentration. Advantage against a target in dim light or darkness. A thrown blade dissipates at the end of the turn; casting the spell again while concentrating brings it back without a slot. | Played |
+| Frostbite | XGE p.156 | Disadvantage on the target's next weapon attack before the end of its next turn, then the effect is spent. | Validated |
+| Lightning Lure | TCE p.107 | On a failed save the target is pulled up to 10 ft toward the caster. | Validated |
+| Tasha's Mind Whip | TCE p.115 | No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both. | Validated |
+| Tasha's Caustic Brew | TCE p.115 | No damage on the cast; 2d4 acid at the start of each of the target's turns; an action ends it. | Validated |
+| Zephyr Strike | XGE p.171 | The caster's movement provokes no opportunity attacks while the spell lasts. | Validated |
+| Raulothim's Psychic Lance | FTD p.21 | Incapacitated ends at the start of the caster's next turn. | Validated |
+| Psychic Scream | XGE p.163 | A stunned target repeats the save at the end of each of its turns. | Validated |
+| Holy Weapon | XGE p.157 | A creature blinded by the burst repeats the save at the end of each of its turns. | Validated |
+
+The rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell brought in
+by another tool keeps the engine's general rules only.
 
 ## ⚠️ Known limitations
+
+- Lightning Lure: the damage is applied wherever the target ends, not only "if it is within 5 feet".
+- Tasha's Mind Whip: the choice to move instead of acting is left to the table.
+- Zephyr Strike: the one-time Advantage, bonus 1d8 force and extra speed are not automated.
+- Holy Weapon: the extra 2d8 radiant on each hit is not automated.
 
 - Shadow Blade: *dropping* the blade is not detected (only throwing it). Outside combat a thrown blade dissipates after
   20 seconds.
