@@ -19,7 +19,8 @@ Data for every non-official spell imported by DDB Importer (activity and effect 
 Declarative, waiting on the engine:
 
 - [ ] Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: "use an action to make a check" to get free.
-      Needs the engine to read a check written without a DC (pull request sent to DAS · Core). Maximilian's also rolls
+      The engine reads a check written without a DC from DAS · Core 0.284.0 (pull request #57, merged): the rules can
+      now be written. Maximilian's also rolls
       both of its 2d6 parts at once in the imported data.
 - [ ] Enemies Abound: repeat the save when damaged — the imported item has no effect to carry the rule.
 
@@ -27,7 +28,7 @@ Need code, like Shadow Blade:
 
 - [x] Booming Blade and Green-Flame Blade (0.4.0).
 - [ ] Booming Blade, Green-Flame Blade: have the engine count the cast as a spell that takes the action (no Extra Attack
-      after it). Needs a way to tell the engine, to ask upstream.
+      after it). Asked upstream: DAS · Core issue #69 (generic building blocks).
 - [ ] Zephyr Strike and Holy Weapon: bonus damage on a hit.
 
 Zones and recurring damage, to study against the engine's zone rules:

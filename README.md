@@ -11,6 +11,12 @@ adds them through the engine's public content API (`dnd5e-combat.registerContent
 It ships no rulebook text: each rule names its book and page, and acts on the item you already own, recognised by its
 dnd5e identifier.
 
+This is where such rules are meant to live: the DAS repositories carry nothing from books outside the SRD, so its author
+asked that rules for these spells stay in a companion module (DAS · Core
+[issue #63](https://github.com/Darshyne/dnd5e-combat/issues/63)). The generic building blocks this module had to write in
+code are proposed to the engine, with no spell named, in
+[issue #69](https://github.com/Darshyne/dnd5e-combat/issues/69).
+
 Requires Foundry VTT V14, dnd5e 6.0 or later, and DAS · Core 0.283.0 or later.
 
 ## ✨ What it covers
@@ -60,7 +66,8 @@ client. The only thing a player's client sends is which neighbouring creature th
 
 - Booming Blade, Green-Flame Blade: the cast is counted by the engine as an attack with the weapon, not as a spell. A caster
   with Extra Attack is therefore still offered the other attacks of the Attack action, which the spell does not give; a
-  Counterspell or a silence does not stop it; the components are not checked.
+  Counterspell or a silence does not stop it; the components are not checked. A way to tell the engine that such a cast
+  takes the Magic action is one of the blocks asked for in issue #69.
 - Booming Blade, Green-Flame Blade: the first activity of the spell is replaced by the attack; the other activities of the
   imported item (its hand-rolled damage) stay as they are and are not needed.
 - Booming Blade: a teleport is not counted as moving. Outside combat the energy lasts 6 seconds of world time.
@@ -79,7 +86,8 @@ client. The only thing a player's client sends is which neighbouring creature th
 - Snare: the Intelligence (Arcana) check to free the creature is not automated.
 - Otto's Irresistible Dance (2014): the Disadvantage on Dexterity saving throws is not automated.
 - Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: no rule yet. Their "use an action to make a
-  check" needs the engine to read a check written without a DC, which it does not do today.
+  check" needs the engine to read a check written without a DC, which DAS · Core does from 0.284.0; the rules themselves
+  are still to be written and played.
 
 - Shadow Blade: *dropping* the blade is not detected (only throwing it). Outside combat a thrown blade dissipates after
   20 seconds.
