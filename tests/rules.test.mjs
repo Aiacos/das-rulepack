@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { SPELLS } from "../scripts/rules/spells.mjs";
 import { SENSES } from "../scripts/rules/senses.mjs";
+import { FEATURES } from "../scripts/rules/features.mjs";
 
 // The rules are validated by DAS · Core's own validator, from a clone of the engine: DAS_CORE, or the sibling folders used in
 // this workspace. Without a clone the contract tests are skipped locally and fail in CI.
@@ -52,7 +53,7 @@ describe("senses table", () => {
     expect(Object.keys(SENSES).filter(id => id in SPELLS)).toEqual([]);
     const { readFileSync } = await import("node:fs");
     const main = readFileSync(resolve(import.meta.dirname, "../scripts/main.mjs"), "utf8");
-    expect(main).toContain("register(MODULE_ID, { ...SPELLS, ...SENSES })");
+    expect(main).toContain("register(MODULE_ID, { ...SPELLS, ...SENSES, ...FEATURES })");
   });
 });
 
@@ -63,5 +64,32 @@ describe.skipIf(!CORE && !process.env.CI)("senses: contract with DAS · Core", (
     const facts = new Proxy({}, { has: () => true, get: () => true });
     const errors = Object.entries(SENSES).flatMap(([id, entry]) => validateEntry(entry, { facts }).map(e => `${id}: ${e}`));
     expect(errors).toEqual([]);
+  });
+});
+
+describe("feature overrides", () => {
+  it("identifiers are dnd5e identifiers and share none with the other tables", () => {
+    for ( const id of Object.keys(FEATURES) ) {
+      expect(id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      expect(id in SPELLS, id).toBe(false);
+      expect(id in SENSES, id).toBe(false);
+    }
+  });
+
+  it("Psychic Veil no longer ends on an attack roll; Inspiring Smite lets the paladin divide; Dreadful Strikes hands over to the script", () => {
+    expect(FEATURES["psychic-veil"].breaksOn).toEqual(["damage", "forcesSave"]);
+    expect(FEATURES["inspiring-smite"].healPool.choose).toBe(true);
+    expect(FEATURES["dreadful-strikes"].triggers).toEqual([]);
+  });
+});
+
+describe.skipIf(!CORE && !process.env.CI)("feature overrides: contract with DAS · Core", () => {
+  it("every entry passes the engine's validator, and overrides an entry the engine ships", async () => {
+    const { validateEntry } = await import(pathToFileURL(resolve(CORE, "module/scripts/core/content.mjs")).href);
+    const { CONTENT } = await import(pathToFileURL(resolve(CORE, "module/scripts/content/index.mjs")).href);
+    const facts = new Proxy({}, { has: () => true, get: () => true });
+    const errors = Object.entries(FEATURES).flatMap(([id, entry]) => validateEntry(entry, { facts }).map(e => `${id}: ${e}`));
+    expect(errors).toEqual([]);
+    for ( const [id, entry] of Object.entries(FEATURES) ) for ( const key of Object.keys(entry) ) expect(CONTENT[id]?.[key], `${id}.${key}`).toBeDefined();
   });
 });

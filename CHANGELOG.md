@@ -2,6 +2,13 @@
 
 ## 0.5.0 — unreleased
 
+- Subclass features where DAS · Core plays the rule only in part (`scripts/rules/features.mjs`), from the Player's Handbook 2024:
+  - Psychic Veil (Soulknife 13, p.135): a missed attack no longer drops the invisibility; an attack that hits and deals damage
+    still does (`scripts/psychic-veil.mjs`). Played live.
+  - Dreadful Strikes (Fey Wanderer 3, p.124): the extra Psychic die is once per turn for each target, not once per turn for the
+    ranger (`scripts/dreadful-strikes.mjs`). Played live.
+  - Inspiring Smite (Oath of Glory 3, p.114): the Temporary Hit Points are divided as the paladin likes (`choose`). Registered and
+    read back from the engine; the distribution window itself was **not** seen in play yet.
 - World diagnostic: Plutonium is declared to DAS · Core as an item importer (`scripts/importers.mjs`), so the diagnostic
   lists Plutonium items whose rule cites ids they do not have and can replace them with the official item. Needs a DAS · Core
   with `api.diagnostic.registerImporter` (dnd5e-combat pull request 133, not released yet); nothing happens on an older one.
