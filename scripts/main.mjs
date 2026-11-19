@@ -5,12 +5,15 @@
 
 import { MODULE_ID, DAS_ID } from "./constants.mjs";
 import { SPELLS } from "./rules/spells.mjs";
+import { SENSES } from "./rules/senses.mjs";
 import { registerShadowBlade } from "./shadow-blade.mjs";
 import { registerBladeCantrips, registerBladeCantripsInit } from "./blade-cantrips.mjs";
 
 /** The engine calls this hook once, at setup, with its `register(source, table)` function. */
 Hooks.once(`${DAS_ID}.registerContent`, register => {
-  try { register(MODULE_ID, SPELLS); }
+  // One table: the engine validates entry by entry and keeps the valid ones. On a DAS · Core that does not know the `sense`
+  // key yet, the entries of SENSES are rejected (the engine logs them) and the spell rules are registered all the same.
+  try { register(MODULE_ID, { ...SPELLS, ...SENSES }); }
   catch(err) { console.error(`${MODULE_ID} | rules refused by DAS · Core:`, err); }
 });
 

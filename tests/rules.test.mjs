@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { SPELLS } from "../scripts/rules/spells.mjs";
+import { SENSES } from "../scripts/rules/senses.mjs";
 
 // The rules are validated by DAS · Core's own validator, from a clone of the engine: DAS_CORE, or the sibling folders used in
 // this workspace. Without a clone the contract tests are skipped locally and fail in CI.
@@ -35,5 +36,32 @@ describe.skipIf(!CORE && !process.env.CI)("contract with DAS · Core", () => {
     const { validateEntry } = await import(pathToFileURL(resolve(CORE, "module/scripts/core/content.mjs")).href);
     const facts = new Proxy({}, { has: () => true, get: () => true });
     expect(validateEntry({ recastt: true }, { facts }).length).toBeGreaterThan(0);
+  });
+});
+
+describe("senses table", () => {
+  it("identifiers are dnd5e identifiers, and every entry declares a sense with a kind and a range", () => {
+    for ( const [id, entry] of Object.entries(SENSES) ) {
+      expect(id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      expect(["locate", "sight"], id).toContain(entry.sense?.kind);
+      expect(entry.sense.range, id).toBeGreaterThan(0);
+    }
+  });
+
+  it("shares no identifier with the spell rules, and both are registered in one table", async () => {
+    expect(Object.keys(SENSES).filter(id => id in SPELLS)).toEqual([]);
+    const { readFileSync } = await import("node:fs");
+    const main = readFileSync(resolve(import.meta.dirname, "../scripts/main.mjs"), "utf8");
+    expect(main).toContain("register(MODULE_ID, { ...SPELLS, ...SENSES })");
+  });
+});
+
+describe.skipIf(!CORE && !process.env.CI)("senses: contract with DAS · Core", () => {
+  it("every entry passes the validator of an engine that knows the `sense` key (skipped on one that does not)", async ctx => {
+    const { validateEntry, ENTRY_KEYS } = await import(pathToFileURL(resolve(CORE, "module/scripts/core/content.mjs")).href);
+    if ( !ENTRY_KEYS?.includes("sense") ) return ctx.skip();
+    const facts = new Proxy({}, { has: () => true, get: () => true });
+    const errors = Object.entries(SENSES).flatMap(([id, entry]) => validateEntry(entry, { facts }).map(e => `${id}: ${e}`));
+    expect(errors).toEqual([]);
   });
 });

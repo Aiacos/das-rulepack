@@ -2,6 +2,11 @@
 
 ## 0.5.0 — unreleased
 
+- Senses from other books, on the engine's generic `sense` block (`scripts/rules/senses.mjs`): Life Sense (MPMM p.250,
+  MTF p.246) and Ghostly Gaze (XGE p.56). They need a DAS · Core that knows the `sense` key (dnd5e-combat pull requests 119
+  and 122, not released yet); on an older engine the two entries are rejected at registration and nothing else changes.
+  Moved here from dnd5e-combat pull request 128, which the maintainer closed: nothing from non-SRD books goes in the
+  engine's public repositories.
 - Played live and confirmed: Frostbite, Earth Tremor, Tasha's Mind Whip, Tasha's Caustic Brew, Raulothim's Psychic Lance,
   Psychic Scream, Lightning Lure, Otto's Irresistible Dance (2014).
 - Fixed: Otto's Irresistible Dance (2014) gave both Advantage and Disadvantage to every attack between the caster and the
