@@ -2,6 +2,9 @@
 
 ## 0.5.0 — unreleased
 
+- World diagnostic: Plutonium is declared to DAS · Core as an item importer (`scripts/importers.mjs`), so the diagnostic
+  lists Plutonium items whose rule cites ids they do not have and can replace them with the official item. Needs a DAS · Core
+  with `api.diagnostic.registerImporter` (dnd5e-combat pull request 133, not released yet); nothing happens on an older one.
 - Senses from other books, on the engine's generic `sense` block (`scripts/rules/senses.mjs`): Life Sense (MPMM p.250,
   MTF p.246) and Ghostly Gaze (XGE p.56). They need a DAS · Core that knows the `sense` key (dnd5e-combat pull requests 119
   and 122, not released yet); on an older engine the two entries are rejected at registration and nothing else changes.

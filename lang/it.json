@@ -9,5 +9,7 @@
   "DASRULEPACK.Blade.LeapTo": "L'attacco ha colpito {target}. Su quale creatura entro 1,5 m da lui salta il fuoco verde?",
   "DASRULEPACK.Blade.NoLeap": "Nessuno",
   "DASRULEPACK.Blade.LeapFlavor": "{spell}: il fuoco verde salta su {target}",
-  "DASRULEPACK.Blade.BoomFlavor": "Lama Tonante: {target} si è mosso"
+  "DASRULEPACK.Blade.BoomFlavor": "Lama Tonante: {target} si è mosso",
+  "DASRULEPACK.Importer.Plutonium.Name": "Oggetti importati da Plutonium",
+  "DASRULEPACK.Importer.Plutonium.Hint": "Questi oggetti portano le loro attività e i loro effetti sotto id diversi da quelli dell'oggetto ufficiale: l'automazione che DAS ha per loro può non fare nulla, o farne solo una parte. La riparazione sostituisce ciascuno con l'oggetto ufficiale (stesso id; utilizzi spesi, preparazione, equipaggiamento e quantità conservati; flag di Plutonium conservati). Classi, sottoclassi, origini e oggetti con avanzamenti vengono solo elencati: le loro scelte non possono essere trasferite, sostituiscili a mano."
 }

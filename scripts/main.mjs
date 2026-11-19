@@ -8,6 +8,7 @@ import { SPELLS } from "./rules/spells.mjs";
 import { SENSES } from "./rules/senses.mjs";
 import { registerShadowBlade } from "./shadow-blade.mjs";
 import { registerBladeCantrips, registerBladeCantripsInit } from "./blade-cantrips.mjs";
+import { registerImporters } from "./importers.mjs";
 
 /** The engine calls this hook once, at setup, with its `register(source, table)` function. */
 Hooks.once(`${DAS_ID}.registerContent`, register => {
@@ -27,4 +28,5 @@ Hooks.once("ready", () => {
   }
   registerShadowBlade();
   registerBladeCantrips();
+  registerImporters(das.api);
 });

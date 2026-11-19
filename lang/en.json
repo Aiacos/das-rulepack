@@ -9,5 +9,7 @@
   "DASRULEPACK.Blade.LeapTo": "The attack hit {target}. Which creature within 5 feet of it does the green fire leap to?",
   "DASRULEPACK.Blade.NoLeap": "No one",
   "DASRULEPACK.Blade.LeapFlavor": "{spell}: green fire leaps to {target}",
-  "DASRULEPACK.Blade.BoomFlavor": "Booming Blade: {target} moved"
+  "DASRULEPACK.Blade.BoomFlavor": "Booming Blade: {target} moved",
+  "DASRULEPACK.Importer.Plutonium.Name": "Items imported by Plutonium",
+  "DASRULEPACK.Importer.Plutonium.Hint": "These items carry their activities and effects under other ids than the official item, so the automation DAS has for them may do nothing, or only part of it. The repair replaces each one with the official item (same id; uses spent, preparation, equipment and quantity kept; Plutonium's flags kept). Classes, subclasses, origins and items with advancements are only listed: their choices can't be carried over, replace them by hand."
 }
