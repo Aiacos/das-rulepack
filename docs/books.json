@@ -12,6 +12,52 @@
     "copied": "2026-11-20",
     "source": "monsters.features.json of the DAS workspace audit (not part of this repository)"
   },
+  "outsideCatalogue": {
+    "about": "Official Foundry VTT sourcebooks that the rulebook catalogue does not contain. A measured one is in `books`, with `group` null, counted like any other book; its `trait` kind is the species traits, which the catalogue books do not have. The others are in `unmeasured`: only the publisher's declared figures, in no total.",
+    "measured": [
+      {
+        "code": "RHW",
+        "package": "dnd-ravenloft-horrors-within",
+        "version": "2.0.0",
+        "measured": "2026-11-20",
+        "source": "The module's own compendia, read from the test world."
+      }
+    ],
+    "copied": "2026-11-20",
+    "source": "foundry-extra.json of the DAS workspace audit (not part of this repository)"
+  },
+  "unmeasured": [
+    {
+      "code": "AU",
+      "name": "Arcana Unleashed",
+      "year": 2026,
+      "foundry": "dnd-arcana-unleashed",
+      "declared": {
+        "subclasses": 8,
+        "spells": 33,
+        "feats": 29,
+        "magic items": 47,
+        "creatures": 20
+      },
+      "source": "The module's page on foundryvtt.com, read on 2026-11-20 (module not installed, book absent from the catalogue)."
+    },
+    {
+      "code": "WOW",
+      "name": "Dungeons & Dragons: World of Warcraft",
+      "year": 2026,
+      "foundry": "dnd-world-warcraft",
+      "declared": {
+        "classes": 13,
+        "subclasses": 9,
+        "species": 16,
+        "spells": 60,
+        "feats": 11,
+        "magic items": 25,
+        "monsters": 80
+      },
+      "source": "The module's page on foundryvtt.com, read on 2026-11-20 (released a few days earlier, not installed, absent from the catalogue)."
+    }
+  ],
   "books": [
     {
       "code": "AAG", "name": "Astral Adventurer's Guide", "year": 2022, "group": "setting", "foundry": null,
@@ -321,6 +367,17 @@
         "item": { "total": 123, "core": 16, "rulepack": 0 },
         "feature": { "total": 456, "core": 153, "rulepack": 0 },
         "monster": { "total": 15, "core": 7, "pack": 0, "features": 62, "featuresResolved": 53 }
+      }
+    },
+    {
+      "code": "RHW", "name": "Ravenloft: The Horrors Within", "year": 2026, "group": null, "foundry": "dnd-ravenloft-horrors-within",
+      "kinds": {
+        "spell": { "total": 1, "core": 1, "rulepack": 0 },
+        "feat": { "total": 16, "core": 12, "rulepack": 0 },
+        "feature": { "total": 37, "core": 16, "rulepack": 0 },
+        "trait": { "total": 6, "core": 3, "rulepack": 0 },
+        "item": { "total": 3, "core": 2, "rulepack": 0 },
+        "monster": { "total": 69, "core": 37, "pack": 0, "features": 467, "featuresResolved": 403 }
       }
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "about": "Official Dungeons & Dragons packages published for Foundry VTT, and the book of docs/books.json each one corresponds to. A package is mapped to a book code only when the titles match without doubt; otherwise `book` is null.",
+  "about": "Official Dungeons & Dragons packages published for Foundry VTT, and the book of docs/books.json each one corresponds to. A package is mapped to a book code only when the titles match without doubt. An adventure has `book` null and `kind` \"adventure\": adventures are outside the scope of the tables.",
   "source": "https://foundryvtt.com/creators/wizards-of-the-coast/",
   "read": "2026-11-20",
   "system": {
@@ -15,12 +15,12 @@
     { "id": "dnd-forge-artificer", "title": "Eberron: Forge of the Artificer", "book": "EFA" },
     { "id": "dnd-heroes-faerun", "title": "Forgotten Realms: Heroes of Faerûn", "book": "FRHOF" },
     { "id": "dnd-adventures-faerun", "title": "Forgotten Realms: Adventures in Faerûn", "book": "FRAIF" },
-    { "id": "dnd-ravenloft-horrors-within", "title": "Ravenloft: The Horrors Within", "book": null },
-    { "id": "dnd-arcana-unleashed", "title": "Arcana Unleashed", "book": null },
-    { "id": "dnd-deadfall", "title": "Arcana Unleashed: Deadfall", "book": null },
-    { "id": "dnd-tomb-annihilation", "title": "Tomb of Annihilation", "book": null },
-    { "id": "dnd-phandelver-below", "title": "Phandelver and Below: The Shattered Obelisk", "book": null },
-    { "id": "dnd-heroes-borderlands", "title": "Heroes of the Borderlands", "book": null },
-    { "id": "dnd-world-warcraft", "title": "Dungeons & Dragons: World of Warcraft", "book": null }
+    { "id": "dnd-ravenloft-horrors-within", "title": "Ravenloft: The Horrors Within", "book": "RHW" },
+    { "id": "dnd-arcana-unleashed", "title": "Arcana Unleashed", "book": "AU" },
+    { "id": "dnd-deadfall", "title": "Arcana Unleashed: Deadfall", "book": null, "kind": "adventure" },
+    { "id": "dnd-tomb-annihilation", "title": "Tomb of Annihilation", "book": null, "kind": "adventure" },
+    { "id": "dnd-phandelver-below", "title": "Phandelver and Below: The Shattered Obelisk", "book": null, "kind": "adventure" },
+    { "id": "dnd-heroes-borderlands", "title": "Heroes of the Borderlands", "book": null, "kind": "adventure" },
+    { "id": "dnd-world-warcraft", "title": "Dungeons & Dragons: World of Warcraft", "book": "WOW" }
   ]
 }

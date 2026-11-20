@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- README: three official Foundry sourcebooks the rulebook catalogue does not contain are in the table of official modules.
+  Ravenloft: The Horrors Within (RHW) is measured from the module's own compendia and counted like any other book, with
+  its species traits as a part of their own; Arcana Unleashed (AU) and Dungeons & Dragons: World of Warcraft (WOW) are
+  shown as not measured, with the publisher's figures, and are in no total. The four official adventures are named as
+  outside the scope of the tables (`docs/foundry-modules.json`).
 - Life Sense and Ghostly Gaze are no longer "pending": DAS · Core 0.287.0 knows the `sense` key, the contract tests pass
   against Core 0.288.0, and both had been played on hand-made features (GM client). The README says which Core they need.
 - README: monsters are in the progress bars again, measured feature by feature (a monster counts when DAS · Core leaves
