@@ -70,8 +70,8 @@ The counts and their methods are in `docs/books.json`; the "This pack" column is
 
 | | Books | Entries | DAS · Core | This pack | Core + pack | Monsters resolved |
 |---|---:|---:|---:|---:|---|---:|
-| **All rulebooks** | **41** | **7379** | **2372** | **19 (+4)** | `██████░░░░░░░░░░░░░░` 32% | **1143 / 2457** |
-| A. Official Foundry module | 8 | 3111 | 1173 | 5 (+3) | `████████░░░░░░░░░░░░` 38% | 457 / 678 |
+| **All rulebooks** | **43** | **8022** | **2465** | **19 (+4)** | `██████░░░░░░░░░░░░░░` 31% | **1232 / 2620** |
+| A. Official Foundry module | 10 | 3754 | 1266 | 5 (+3) | `███████░░░░░░░░░░░░░` 34% | 546 / 841 |
 | B. Not on Foundry | 33 | 4268 | 1199 | 14 (+1) | `██████░░░░░░░░░░░░░░` 28% | 686 / 1779 |
 
 Entries are spells, class and subclass features, feats, species traits, options, items and monsters. A monster is one entry, counted under DAS · Core when it is fully resolved (no feature of its stat block left open); the last column repeats that share, which is already in the totals and the bars.
@@ -89,14 +89,12 @@ DAS · Core itself automates the official modules it was written against (see th
 | FRAIF | Forgotten Realms: Adventures in Faerûn | 2025 | setting | `dnd-adventures-faerun` | 60 | 23 | 0 | `████░░░░░░` 38% | 23 / 42 |
 | FRHOF | Forgotten Realms: Heroes of Faerûn | 2025 | setting | `dnd-heroes-faerun` | 133 | 0 | 0 | `░░░░░░░░░░` 0% | — |
 | XMM | Monster Manual (2025) | 2025 | core | `dnd-monster-manual` | 504 | 369 | 0 | `███████░░░` 73% | 369 / 503 |
+| AU | Arcana Unleashed | 2026 | — | `dnd-arcana-unleashed` | 238 | 20 | 0 | `█░░░░░░░░░` 8% | 20 / 38 |
 | RHW | Ravenloft: The Horrors Within | 2026 | — | `dnd-ravenloft-horrors-within` | 132 | 71 | 0 | `█████░░░░░` 54% | 37 / 69 |
-| AU | Arcana Unleashed | 2026 | — | `dnd-arcana-unleashed` | not measured | — | — | — | — |
-| WOW | Dungeons & Dragons: World of Warcraft | 2026 | — | `dnd-world-warcraft` | not measured | — | — | — | — |
-| **Total** | 8 books measured |  |  |  | **3111** | **1173** | **5 (+3)** | `████░░░░░░` 38% | **457 / 678** |
+| WOW | Dungeons & Dragons: World of Warcraft | 2026 | — | `dnd-world-warcraft` | 405 | 73 | 0 | `██░░░░░░░░` 18% | 69 / 125 |
+| **Total** | 10 books |  |  |  | **3754** | **1266** | **5 (+3)** | `███░░░░░░░` 34% | **546 / 841** |
 
-Ravenloft: The Horrors Within (RHW) is not in the rulebook catalogue: it was measured on 2026-11-20 from the module's own compendia (version 2.0.0), read from the test world, and is counted like any other book.
-
-**Not measured** — in no total and no bar; only the publisher's figures are known: Arcana Unleashed (AU) declares 8 subclasses, 33 spells, 29 feats, 47 magic items, 20 creatures; Dungeons & Dragons: World of Warcraft (WOW) declares 13 classes, 9 subclasses, 16 species, 60 spells, 11 feats, 25 magic items, 80 monsters. Source: AU — The module's page on foundryvtt.com, read on 2026-11-20 (module not installed, book absent from the catalogue). WOW — The module's page on foundryvtt.com, read on 2026-11-20 (released a few days earlier, not installed, absent from the catalogue).
+Not in the rulebook catalogue, measured from the module itself and counted like any other book: Ravenloft: The Horrors Within (RHW; version 2.0.0, the module's own compendia, read from the test world, 2026-11-20); Arcana Unleashed (AU; version 1.0.2, the module's own compendia, read from the files of the installed package, 2026-11-20); Dungeons & Dragons: World of Warcraft (WOW; version 1.1.0, the module's own compendia, read from the files of the installed package, 2026-11-20).
 
 Arcana Unleashed: Deadfall (`dnd-deadfall`), Tomb of Annihilation (`dnd-tomb-annihilation`), Phandelver and Below: The Shattered Obelisk (`dnd-phandelver-below`), Heroes of the Borderlands (`dnd-heroes-borderlands`): these 4 official packages are adventures, outside the scope of the tables. The game system (`dnd5e`) carries the SRD in its own compendia.
 
@@ -143,7 +141,7 @@ The content of these books reaches the table through importers, with no rules at
 
 ### Each rulebook, part by part
 
-One block per measured rulebook, to open: its spells, class and subclass features, feats, species traits, options, items and monsters, each with its own bar. A part the book has no entry for is left out. Under the monsters, a second row counts their features one by one.
+One block per rulebook, to open: its spells, class and subclass features, feats, species traits, options, items and monsters, each with its own bar. A part the book has no entry for is left out. Under the monsters, a second row counts their features one by one.
 
 **A. Published as an official Foundry VTT module**
 
@@ -238,6 +236,20 @@ One block per measured rulebook, to open: its spells, class and subclass feature
 </details>
 
 <details>
+<summary><b>AU</b> · Arcana Unleashed — <code>█░░░░░░░░░</code> 8%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 33 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Class and subclass features | 61 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 37 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 69 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters (fully resolved) | 38 | 20 | 0 | `█████░░░░░` 53% |
+| ↳ their features | 172 | 148 | — | `█████████░` 86% |
+
+</details>
+
+<details>
 <summary><b>RHW</b> · Ravenloft: The Horrors Within — <code>█████░░░░░</code> 54%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
@@ -249,6 +261,21 @@ One block per measured rulebook, to open: its spells, class and subclass feature
 | Items | 3 | 2 | 0 | `███████░░░` 67% |
 | Monsters (fully resolved) | 69 | 37 | 0 | `█████░░░░░` 54% |
 | ↳ their features | 467 | 403 | — | `█████████░` 86% |
+
+</details>
+
+<details>
+<summary><b>WOW</b> · Dungeons & Dragons: World of Warcraft — <code>██░░░░░░░░</code> 18%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 70 | 1 | 0 | `░░░░░░░░░░` 1% |
+| Class and subclass features | 78 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 39 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Species traits | 53 | 3 | 0 | `█░░░░░░░░░` 6% |
+| Items | 40 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters (fully resolved) | 125 | 69 | 0 | `██████░░░░` 55% |
+| ↳ their features | 696 | 609 | — | `█████████░` 88% |
 
 </details>
 

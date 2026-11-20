@@ -13,51 +13,33 @@
     "source": "monsters.features.json of the DAS workspace audit (not part of this repository)"
   },
   "outsideCatalogue": {
-    "about": "Official Foundry VTT sourcebooks that the rulebook catalogue does not contain. A measured one is in `books`, with `group` null, counted like any other book; its `trait` kind is the species traits, which the catalogue books do not have. The others are in `unmeasured`: only the publisher's declared figures, in no total.",
+    "about": "Official Foundry VTT sourcebooks that the rulebook catalogue does not contain. Each is measured from its module and is in `books`, with `group` null, counted like any other book. Their `trait` kind is the species traits, which the catalogue books do not have.",
     "measured": [
       {
         "code": "RHW",
         "package": "dnd-ravenloft-horrors-within",
         "version": "2.0.0",
         "measured": "2026-11-20",
-        "source": "The module's own compendia, read from the test world."
+        "source": "the module's own compendia, read from the test world"
+      },
+      {
+        "code": "AU",
+        "package": "dnd-arcana-unleashed",
+        "version": "1.0.2",
+        "measured": "2026-11-20",
+        "source": "the module's own compendia, read from the files of the installed package"
+      },
+      {
+        "code": "WOW",
+        "package": "dnd-world-warcraft",
+        "version": "1.1.0",
+        "measured": "2026-11-20",
+        "source": "the module's own compendia, read from the files of the installed package"
       }
     ],
     "copied": "2026-11-20",
     "source": "foundry-extra.json of the DAS workspace audit (not part of this repository)"
   },
-  "unmeasured": [
-    {
-      "code": "AU",
-      "name": "Arcana Unleashed",
-      "year": 2026,
-      "foundry": "dnd-arcana-unleashed",
-      "declared": {
-        "subclasses": 8,
-        "spells": 33,
-        "feats": 29,
-        "magic items": 47,
-        "creatures": 20
-      },
-      "source": "The module's page on foundryvtt.com, read on 2026-11-20 (module not installed, book absent from the catalogue)."
-    },
-    {
-      "code": "WOW",
-      "name": "Dungeons & Dragons: World of Warcraft",
-      "year": 2026,
-      "foundry": "dnd-world-warcraft",
-      "declared": {
-        "classes": 13,
-        "subclasses": 9,
-        "species": 16,
-        "spells": 60,
-        "feats": 11,
-        "magic items": 25,
-        "monsters": 80
-      },
-      "source": "The module's page on foundryvtt.com, read on 2026-11-20 (released a few days earlier, not installed, absent from the catalogue)."
-    }
-  ],
   "books": [
     {
       "code": "AAG", "name": "Astral Adventurer's Guide", "year": 2022, "group": "setting", "foundry": null,
@@ -374,10 +356,31 @@
       "kinds": {
         "spell": { "total": 1, "core": 1, "rulepack": 0 },
         "feat": { "total": 16, "core": 12, "rulepack": 0 },
+        "item": { "total": 3, "core": 2, "rulepack": 0 },
         "feature": { "total": 37, "core": 16, "rulepack": 0 },
         "trait": { "total": 6, "core": 3, "rulepack": 0 },
-        "item": { "total": 3, "core": 2, "rulepack": 0 },
         "monster": { "total": 69, "core": 37, "pack": 0, "features": 467, "featuresResolved": 403 }
+      }
+    },
+    {
+      "code": "AU", "name": "Arcana Unleashed", "year": 2026, "group": null, "foundry": "dnd-arcana-unleashed",
+      "kinds": {
+        "spell": { "total": 33, "core": 0, "rulepack": 0 },
+        "feat": { "total": 37, "core": 0, "rulepack": 0 },
+        "item": { "total": 69, "core": 0, "rulepack": 0 },
+        "feature": { "total": 61, "core": 0, "rulepack": 0 },
+        "monster": { "total": 38, "core": 20, "pack": 0, "features": 172, "featuresResolved": 148 }
+      }
+    },
+    {
+      "code": "WOW", "name": "Dungeons & Dragons: World of Warcraft", "year": 2026, "group": null, "foundry": "dnd-world-warcraft",
+      "kinds": {
+        "spell": { "total": 70, "core": 1, "rulepack": 0 },
+        "feat": { "total": 39, "core": 0, "rulepack": 0 },
+        "item": { "total": 40, "core": 0, "rulepack": 0 },
+        "feature": { "total": 78, "core": 0, "rulepack": 0 },
+        "trait": { "total": 53, "core": 3, "rulepack": 0 },
+        "monster": { "total": 125, "core": 69, "pack": 0, "features": 696, "featuresResolved": 609 }
       }
     }
   ]

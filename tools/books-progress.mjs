@@ -27,9 +27,6 @@ export const DOCS_URL = "https://github.com/Aiacos/das-rulepack/blob/master/docs
 export const CATALOG = read("docs/books.json");
 export const FOUNDRY = read("docs/foundry-modules.json");
 
-/** Official Foundry sourcebooks that were not measured: a row of their own, the publisher's figures, in no total and no bar. */
-export const UNMEASURED = Object.freeze(CATALOG.unmeasured ?? []);
-
 /** Kind under which the catalogue counts a rule, or null when it has no such entry. */
 const catalogKind = rule => (rule.catalog === undefined) ? rule.kind : rule.catalog;
 
@@ -73,11 +70,6 @@ export function figures(book) {
 export function differences() {
   const out = [];
   const codes = new Set(CATALOG.books.map(book => book.code));
-  const known = new Set([...codes, ...UNMEASURED.map(book => book.code)]);
-  for ( const book of UNMEASURED ) {
-    if ( codes.has(book.code) ) out.push(`${book.code}: both measured and unmeasured in docs/books.json`);
-    if ( book.foundry !== foundryPackage(book.code) ) out.push(`${book.code}: "foundry" in docs/books.json is ${book.foundry}, docs/foundry-modules.json says ${foundryPackage(book.code)}`);
-  }
   for ( const rule of RULES ) {
     if ( !codes.has(rule.book) ) { out.push(`${rule.identifier}: book ${rule.book} is not in docs/books.json`); continue; }
     const kind = catalogKind(rule);
@@ -90,7 +82,7 @@ export function differences() {
     if ( book.foundry !== foundryPackage(book.code) ) out.push(`${book.code}: "foundry" in docs/books.json is ${book.foundry}, docs/foundry-modules.json says ${foundryPackage(book.code)}`);
   }
   for ( const pkg of FOUNDRY.packages ) {
-    if ( pkg.book && !known.has(pkg.book) ) out.push(`${pkg.id}: book ${pkg.book} is not in docs/books.json`);
+    if ( pkg.book && !codes.has(pkg.book) ) out.push(`${pkg.id}: book ${pkg.book} is not in docs/books.json`);
     if ( !pkg.book && (pkg.kind !== "adventure") ) out.push(`${pkg.id}: neither a book nor an adventure in docs/foundry-modules.json`);
   }
   return out;
@@ -152,7 +144,7 @@ const monstersCell = f => f.monsters ? `${f.resolved} / ${f.monsters}` : "—";
 const sum = (rows, key) => rows.reduce((n, row) => n + row.f[key], 0);
 
 /** One of the two tables: its books sorted by year, then its total. */
-function table(books, { withPackage, unmeasured=[] }) {
+function table(books, { withPackage }) {
   const rows = books.slice().sort(byYear).map(book => ({ book, f: figures(book) }));
   const total = { total: sum(rows, "total"), core: sum(rows, "core"), pack: sum(rows, "pack"), refined: sum(rows, "refined"),
     monsters: sum(rows, "monsters"), resolved: sum(rows, "resolved") };
@@ -163,10 +155,7 @@ function table(books, { withPackage, unmeasured=[] }) {
     lines.push(`| ${[book.code, book.name, book.year, book.group ?? "—", ...(withPackage ? [`\`${book.foundry}\``] : []),
       f.total, f.core, packCell(f), bar(f.core + f.pack, f.total), monstersCell(f)].join(" | ")} |`);
   }
-  for ( const book of unmeasured.slice().sort(byYear) ) {
-    lines.push(`| ${[book.code, book.name, book.year, "—", `\`${book.foundry}\``, "not measured", "—", "—", "—", "—"].join(" | ")} |`);
-  }
-  lines.push(`| ${["**Total**", `${rows.length} books${unmeasured.length ? " measured" : ""}`, "", "", ...(withPackage ? [""] : []),
+  lines.push(`| ${["**Total**", `${rows.length} books`, "", "", ...(withPackage ? [""] : []),
     `**${total.total}**`, `**${total.core}**`, `**${packCell(total)}**`, bar(total.core + total.pack, total.total),
     `**${monstersCell(total)}**`].join(" | ")} |`);
   return { lines, total, count: rows.length };
@@ -176,7 +165,7 @@ function table(books, { withPackage, unmeasured=[] }) {
 export function renderBooks() {
   const published = CATALOG.books.filter(book => foundryPackage(book.code));
   const others = CATALOG.books.filter(book => !foundryPackage(book.code));
-  const a = table(published, { withPackage: true, unmeasured: UNMEASURED });
+  const a = table(published, { withPackage: true });
   const b = table(others, { withPackage: false });
   const all = { total: a.total.total + b.total.total, core: a.total.core + b.total.core, pack: a.total.pack + b.total.pack,
     refined: a.total.refined + b.total.refined, monsters: a.total.monsters + b.total.monsters,
@@ -197,15 +186,10 @@ export function renderBooks() {
   out.push("DAS · Core itself automates the official modules it was written against (see the \"DAS · Core\" column), and it accepts "
     + "nothing outside the SRD in its public repositories, so the non-SRD rules of these books still belong in this pack.", "");
   out.push(...a.lines, "");
-  for ( const extra of outside ) {
-    const book = CATALOG.books.find(b => b.code === extra.code);
-    out.push(`${book.name} (${extra.code}) is not in the rulebook catalogue: it was measured on ${extra.measured} from the module's own `
-      + `compendia (version ${extra.version}), read from the test world, and is counted like any other book.`, "");
-  }
-  if ( UNMEASURED.length ) {
-    out.push(`**Not measured** — in no total and no bar; only the publisher's figures are known: `
-      + UNMEASURED.map(book => `${book.name} (${book.code}) declares ${Object.entries(book.declared).map(([what, n]) => `${n} ${what}`).join(", ")}`).join("; ")
-      + `. Source: ${[...new Set(UNMEASURED.map(book => `${book.code} — ${book.source}`))].join(" ")}`, "");
+  if ( outside.length ) {
+    out.push(`Not in the rulebook catalogue, measured from the module itself and counted like any other book: `
+      + outside.map(extra => `${CATALOG.books.find(b => b.code === extra.code).name} (${extra.code}; version ${extra.version}, ${extra.source}, ${extra.measured})`).join("; ")
+      + ".", "");
   }
   if ( adventures.length ) {
     out.push(`${adventures.map(pkg => `${pkg.title} (\`${pkg.id}\`)`).join(", ")}: these ${adventures.length} official packages are adventures, outside the scope of the tables. `
@@ -215,7 +199,7 @@ export function renderBooks() {
   out.push("The content of these books reaches the table through importers, with no rules attached: this is where the pack matters most.", "");
   out.push(...b.lines, "");
   out.push("### Each rulebook, part by part", "");
-  out.push("One block per measured rulebook, to open: its spells, class and subclass features, feats, species traits, options, items and monsters, each "
+  out.push("One block per rulebook, to open: its spells, class and subclass features, feats, species traits, options, items and monsters, each "
     + "with its own bar. A part the book has no entry for is left out. "
     + "Under the monsters, a second row counts their features one by one.", "");
   out.push("**A. Published as an official Foundry VTT module**", "");

@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
-import { README, RULES_DOC, DOCS_URL, GENERATED, CATALOG, FOUNDRY, UNMEASURED, bar, differences, figures, foundryPackage, parts, PARTS, renderBooks,
+import { README, RULES_DOC, DOCS_URL, GENERATED, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, parts, PARTS, renderBooks,
   renderRules, renderSummary }
   from "../tools/books-progress.mjs";
 import { RULES } from "../scripts/rules/index.mjs";
@@ -35,7 +35,7 @@ describe("docs/books.json and docs/foundry-modules.json", () => {
   });
 
   it("agree on which book is published as an official Foundry module, each package mapped to a known book or to none", () => {
-    const codes = [...CATALOG.books, ...UNMEASURED].map(b => b.code);
+    const codes = CATALOG.books.map(b => b.code);
     for ( const pkg of FOUNDRY.packages ) if ( pkg.book !== null ) expect(codes, pkg.id).toContain(pkg.book);
     const mapped = FOUNDRY.packages.filter(pkg => pkg.book).map(pkg => pkg.book);
     expect(new Set(mapped).size).toBe(mapped.length);
@@ -81,11 +81,11 @@ describe("progress by rulebook", () => {
     expect(all).toBeGreaterThan(b);
     const rows = (from, to) => block.slice(from, to).split("\n").filter(line => /^\| [A-Z]/.test(line)).map(line => line.split(" | ")[0].slice(2));
     const published = CATALOG.books.filter(x => x.foundry), others = CATALOG.books.filter(x => !x.foundry);
-    expect(rows(a, b).slice(1).sort()).toEqual([...published, ...UNMEASURED].map(x => x.code).sort());
+    expect(rows(a, b).slice(1).sort()).toEqual(published.map(x => x.code).sort());
     expect(rows(b, all).slice(1).sort()).toEqual(others.map(x => x.code).sort());
     const years = (from, to) => block.slice(from, to).split("\n").filter(line => /^\| [A-Z]/.test(line)).slice(1).map(line => Number(line.split(" | ")[2]));
     for ( const list of [years(a, b), years(b, all)] ) expect(list).toEqual(list.slice().sort((x, y) => x - y));
-    expect(block.slice(a, b)).toContain(`| **Total** | ${published.length} books measured |`);
+    expect(block.slice(a, b)).toContain(`| **Total** | ${published.length} books |`);
     expect(block.slice(b, all)).toContain(`| **Total** | ${others.length} books |`);
     const total = CATALOG.books.reduce((n, x) => n + figures(x).total, 0);
     expect(block.slice(0, a)).toContain(`| **All rulebooks** | **${CATALOG.books.length}** | **${total}** |`);
@@ -103,20 +103,24 @@ describe("progress by rulebook", () => {
     expect(block.slice(0, a)).toContain("| B. Not on Foundry |");
   });
 
-  it("shows the official Foundry books that were not measured as rows without figures, out of every total", () => {
+  it("counts the official Foundry books that the catalogue does not contain like any other book, from their own module", () => {
     const block = renderBooks();
-    expect(UNMEASURED.map(x => x.code)).toEqual(["AU", "WOW"]);
-    for ( const x of UNMEASURED ) {
-      expect(CATALOG.books.some(b => b.code === x.code), x.code).toBe(false);
-      expect(foundryPackage(x.code), x.code).toBe(x.foundry);
-      expect(block).toContain(`| ${x.code} | ${x.name} | ${x.year} | — | \`${x.foundry}\` | not measured | — | — | — | — |`);
-      expect(block).not.toContain(`<summary><b>${x.code}</b>`);
-      for ( const [what, n] of Object.entries(x.declared) ) expect(block).toContain(`${n} ${what}`);
-      expect(block).toContain(x.source);
+    const extra = CATALOG.outsideCatalogue.measured;
+    expect(extra.map(x => x.code)).toEqual(["RHW", "AU", "WOW"]);
+    expect(CATALOG.unmeasured).toBeUndefined();
+    for ( const x of extra ) {
+      expect(book(x.code), x.code).toMatchObject({ group: null, foundry: x.package });
+      expect(foundryPackage(x.code), x.code).toBe(x.package);
+      expect(x.version && x.source && /^\d{4}-\d{2}-\d{2}$/.test(x.measured), x.code).toBeTruthy();
+      expect(block).toContain(`<summary><b>${x.code}</b>`);
+      expect(block).toContain(`${x.code}; version ${x.version}, ${x.source}, ${x.measured}`);
     }
-    // Ravenloft: The Horrors Within is measured from the module itself and counted like a book of the catalogue.
     expect(figures(book("RHW"))).toMatchObject({ total: 132, core: 71, pack: 0, monsters: 69, resolved: 37 });
-    expect(block).toContain("| Species traits | 6 | 3 | 0 |");
+    expect(figures(book("AU"))).toMatchObject({ total: 238, core: 20, pack: 0, monsters: 38, resolved: 20 });
+    expect(figures(book("WOW"))).toMatchObject({ total: 405, core: 73, pack: 0, monsters: 125, resolved: 69 });
+    expect(parts(book("WOW")).map(part => part.kind)).toContain("trait");
+    expect(parts(book("AU")).map(part => part.kind)).not.toContain("trait");
+    expect(block).not.toMatch(/not measured|declares/);
     const adventures = FOUNDRY.packages.filter(pkg => !pkg.book);
     expect(adventures.every(pkg => pkg.kind === "adventure")).toBe(true);
     expect(block).toContain(`these ${adventures.length} official packages are adventures, outside the scope of the tables`);
