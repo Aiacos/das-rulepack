@@ -2,7 +2,19 @@
 
 ## 0.5.0 — unreleased
 
-- Subclass features where DAS · Core plays the rule only in part (`scripts/rules/features.mjs`), from the Player's Handbook 2024:
+- Reorganization by source book, with no change to what is registered with DAS · Core (same identifiers, same entries:
+  `tests/registration.test.mjs`):
+  - one module per book in `scripts/rules/books/<code>.mjs` (XGE, TCE, FTD, AI, PHB, XPHB, MPMM), each rule with its book,
+    page, kind, status and where it is handled; `scripts/rules/index.mjs` builds the registered table from them. The former
+    `scripts/rules/spells.mjs`, `senses.mjs` and `features.mjs` are gone. The scripts of the rules handled in code did not move.
+  - `docs/books.json` (entries per official rulebook and what DAS · Core covers: counts only) and
+    `docs/foundry-modules.json` (official Foundry VTT packages); `npm run books` (`tools/books-progress.mjs`) writes the
+    README's "Progress by rulebook" — books published as an official Foundry module, then the others — and its list of
+    rules by book. A test fails when the README is stale.
+  - README: the list of rules now also shows the class features and the senses, which were registered but not listed. A
+    third status, "pending", for the two senses: written, not validated by the tests here, not played.
+  - Book codes are those of the catalogue: PHB is the Player's Handbook of 2014, XPHB that of 2024.
+- Subclass features where DAS · Core plays the rule only in part (`scripts/rules/books/xphb.mjs`), from the Player's Handbook 2024:
   - Psychic Veil (Soulknife 13, p.135): a missed attack no longer drops the invisibility; an attack that hits and deals damage
     still does (`scripts/psychic-veil.mjs`). Played live.
   - Dreadful Strikes (Fey Wanderer 3, p.124): the extra Psychic die is once per turn for each target, not once per turn for the
@@ -12,7 +24,7 @@
 - World diagnostic: Plutonium is declared to DAS · Core as an item importer (`scripts/importers.mjs`), so the diagnostic
   lists Plutonium items whose rule cites ids they do not have and can replace them with the official item. Needs a DAS · Core
   with `api.diagnostic.registerImporter` (dnd5e-combat pull request 133, not released yet); nothing happens on an older one.
-- Senses from other books, on the engine's generic `sense` block (`scripts/rules/senses.mjs`): Life Sense (MPMM p.250,
+- Senses from other books, on the engine's generic `sense` block (`scripts/rules/books/mpmm.mjs`, `xge.mjs`): Life Sense (MPMM p.250,
   MTF p.246) and Ghostly Gaze (XGE p.56). They need a DAS · Core that knows the `sense` key (dnd5e-combat pull requests 119
   and 122, not released yet); on an older engine the two entries are rejected at registration and nothing else changes.
   Moved here from dnd5e-combat pull request 128, which the maintainer closed: nothing from non-SRD books goes in the

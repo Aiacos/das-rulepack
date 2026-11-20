@@ -8,10 +8,25 @@ Data for every non-official spell imported by DDB Importer (activity and effect 
 - [ ] Propose `target.inDimLight` / `target.inDarkness` facts upstream, so the Advantage becomes a declarative rule with its
       reason on the chat card.
 
+## Books
+
+Progress by rulebook: README, "Progress by rulebook" (`npm run books`). One module per book in `scripts/rules/books/`.
+
+- [ ] Tasha's Cauldron of Everything has an official Foundry module (`dnd-tashas-cauldron`, read on 2026-11-20). The pack's
+      TCE rules were written against items imported by DDB Importer: re-check Lightning Lure, Tasha's Mind Whip and Tasha's
+      Caustic Brew against the official module's activity and effect ids (and the Lightning Lure data fix against its
+      data), and Booming Blade / Green-Flame Blade against its items. Rules unchanged until then.
+- [ ] `docs/books.json` is a copy of the audit's counts of 2026-11-19: copy it again when the audit is recomputed. The
+      audit's own list of the pack's identifiers misses the rules handled in code alone (Booming Blade, Green-Flame Blade).
+- [ ] Official Foundry packages with no book in the catalogue (`docs/foundry-modules.json`, `"book": null`): decide whether
+      the catalogue should list them.
+
 ## Rules written, to play
 
 - [ ] Still only validated: Zephyr Strike, Holy Weapon, Pyrotechnics, Snare, Watery Sphere, Power Word Pain, Wall of Light,
       Incite Greed. How to play a rule without a mouse: `../darshyne-das/audit/live-helpers.js` (scene "DAS Test Arena").
+- [ ] Pending: Life Sense and Ghostly Gaze, to validate and play on a DAS · Core that knows the `sense` key (the contract
+      test for senses is skipped on the engine clone used here).
 - [ ] Everything from a player's client (so far the GM's client only).
 
 ## Next rules
