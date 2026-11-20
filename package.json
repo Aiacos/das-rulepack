@@ -1,5 +1,6 @@
 {
   "name": "das-rulepack",
+  "version": "0.6.0",
   "private": true,
   "type": "module",
   "scripts": { "test": "vitest run", "books": "node tools/books-progress.mjs" },

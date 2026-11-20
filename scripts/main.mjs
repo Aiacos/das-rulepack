@@ -1,6 +1,7 @@
 /**
- * DAS · Rule Pack — rules for content that DAS · Core does not cover (Xanathar's, Tasha's and other books that have no
- * official Foundry module), registered through the engine's public content API.
+ * DAS · Rule Pack — rules for content of the official rulebooks outside the SRD (Xanathar's, Tasha's and others, with or
+ * without an official Foundry module), which DAS · Core does not cover or covers in part, registered through the engine's
+ * public content API.
  */
 
 import { MODULE_ID, DAS_ID } from "./constants.mjs";

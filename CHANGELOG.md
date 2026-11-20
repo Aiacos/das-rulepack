@@ -1,7 +1,20 @@
 # 📝 Changelog
 
-## 0.5.0 — unreleased
+## 0.6.0 — 2026-11-20 (beta)
 
+First version with an installable manifest. 0.5.0 was never released: what was written under that number is here.
+
+What was played and what was not, as in the README: 14 rules were played in a running world, on the GM's client only
+(Shadow Blade, Booming Blade, Green-Flame Blade, Frostbite, Lightning Lure, Tasha's Mind Whip, Tasha's Caustic Brew,
+Raulothim's Psychic Lance, Psychic Scream, Earth Tremor, Otto's Irresistible Dance (2014), Psychic Veil, Inspiring Smite,
+Dreadful Strikes); 8 are only validated by the engine's validator (Zephyr Strike, Holy Weapon, Pyrotechnics, Snare, Watery
+Sphere, Power Word Pain, Wall of Light, Incite Greed); 2 are pending, neither validated nor played, and need a DAS · Core
+that is not released yet (Life Sense, Ghostly Gaze). Nothing was played from a player's client.
+
+- Installation by manifest URL: `module.json` carries `manifest` and `download`; `./build.sh` leaves the zip and the
+  manifest to upload in `releases/` (GitHub issue #1).
+- No rulebook text: the comments and the hint of the Booming Blade effect describe what the module does, in its own words.
+- README: overall progress bars, and for each rulebook one bar per part (spells, features, feats, options, items, monsters).
 - Reorganization by source book, with no change to what is registered with DAS · Core (same identifiers, same entries:
   `tests/registration.test.mjs`):
   - one module per book in `scripts/rules/books/<code>.mjs` (XGE, TCE, FTD, AI, PHB, XPHB, MPMM), each rule with its book,

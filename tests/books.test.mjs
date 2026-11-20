@@ -69,6 +69,18 @@ describe("per-book rule modules", () => {
 });
 
 describe("what the manifest and the build point at", () => {
+  it("module.json: the manifest and download URLs are those of the release build.sh names, for this version", async () => {
+    const { readFileSync } = await import("node:fs");
+    const manifest = JSON.parse(readFileSync(resolve(root, "module.json"), "utf8"));
+    const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8"));
+    expect(pkg.version).toBe(manifest.version);
+    expect(manifest.manifest).toBe(`${manifest.url}/releases/latest/download/module.json`);
+    expect(manifest.download).toBe(`${manifest.url}/releases/download/v${manifest.version}/${manifest.id}-v${manifest.version}.zip`);
+    expect(readFileSync(resolve(root, "build.sh"), "utf8")).toContain('OUTPUT_FILE="${MODULE_ID}-v${VERSION}.zip"');
+    expect(readFileSync(resolve(root, "CHANGELOG.md"), "utf8")).toContain(`## ${manifest.version} — `);
+    expect(readFileSync(resolve(root, "README.md"), "utf8")).toContain(manifest.manifest);
+  });
+
   it("module.json: every script and language file exists", async () => {
     const { readFileSync } = await import("node:fs");
     const manifest = JSON.parse(readFileSync(resolve(root, "module.json"), "utf8"));

@@ -145,6 +145,11 @@ if [ -n "$GITHUB_URL" ] && [ "$GITHUB_URL" != "null" ]; then
     rm -f "$TEMP_DIR/module.json.bak"
 
     echo -e "  ${GREEN}${NEW_DOWNLOAD_URL}${NC}"
+
+    if ! grep -q "\"download\"[[:space:]]*:[[:space:]]*\"${NEW_DOWNLOAD_URL}\"" "$TEMP_DIR/module.json"; then
+        echo -e "${RED}ERROR: module.json has no \"download\" key to point at the zip${NC}"
+        exit 1
+    fi
 else
     echo -e "  ${YELLOW}Skipped (no GitHub url in module.json)${NC}"
 fi
@@ -161,6 +166,9 @@ fi
 OUTPUT_PATH="$SCRIPT_DIR/releases/${OUTPUT_FILE}"
 (cd "$TEMP_DIR" && zip -r -q "$OUTPUT_PATH" .)
 
+# The standalone manifest to upload next to the zip: the very file that is inside it.
+cp "$TEMP_DIR/module.json" "releases/module.json"
+
 # ─── Verify and report ───────────────────────────────────────────────
 
 if [ ! -f "releases/${OUTPUT_FILE}" ]; then
@@ -176,6 +184,7 @@ echo -e "${GREEN}  Build Successful!${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
 echo -e "  Output:  ${BLUE}releases/${OUTPUT_FILE}${NC}"
+echo -e "           ${BLUE}releases/module.json${NC} (the manifest to upload with it)"
 echo -e "  Size:    ${BLUE}${ZIP_SIZE}${NC}"
 echo ""
 echo -e "  ZIP Contents:"
@@ -183,5 +192,5 @@ unzip -l "releases/${OUTPUT_FILE}" | tail -n +4 | head -n -2 | while IFS= read -
     echo -e "    $line"
 done
 echo ""
-echo -e "  ${GREEN}Publishing:${NC} releases are built and published by GitHub Actions → Release."
+echo -e "  ${GREEN}Publishing:${NC} upload both files to the GitHub release v${VERSION} (tag v${VERSION})."
 echo ""

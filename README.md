@@ -19,7 +19,22 @@ asked that rules for these spells stay in a companion module (DAS · Core
 code are proposed to the engine, with no spell named, in
 [issue #69](https://github.com/Darshyne/dnd5e-combat/issues/69).
 
-Requires Foundry VTT V14, dnd5e 6.0 or later, and DAS · Core 0.283.0 or later.
+Requires Foundry VTT V14, dnd5e 6.0 or later, and DAS · Core 0.283.0 or later. Two things need more than that: the senses
+(Life Sense, Ghostly Gaze) need a DAS · Core that knows the `sense` key, and the declaration of Plutonium as an importer
+needs one with `api.diagnostic.registerImporter`; neither is in a released version yet. On 0.283.0 the two senses are
+rejected when the pack registers, the importer is not declared, and every other rule works.
+
+This is a **beta**: see below what was played and what was only validated.
+
+## 📦 Installation
+
+In Foundry VTT, *Add-on Modules → Install Module*, paste this manifest URL:
+
+```
+https://github.com/Aiacos/das-rulepack/releases/latest/download/module.json
+```
+
+Install and enable DAS · Core (`dnd5e-combat`) first: the pack only adds rules to it.
 
 ## ✨ What it covers
 
@@ -727,8 +742,8 @@ npm run books
 
 Pure rules live in `scripts/core/` and are tested with Vitest; Foundry glue lives next to them in `scripts/`; declarative
 rules are in `scripts/rules/books/`. `npm run books` rewrites the generated blocks of this README (a test fails when they
-are stale). `./build.sh` builds the release zip (`scripts/`, `lang/` and the top-level documents; `docs/`, `tools/` and
-`tests/` are not shipped).
+are stale). `./build.sh` builds the two release files in `releases/`: the zip (`scripts/`, `lang/` and the top-level documents;
+`docs/`, `tools/` and `tests/` are not shipped) and the `module.json` to upload next to it.
 
 ## 📄 License
 
