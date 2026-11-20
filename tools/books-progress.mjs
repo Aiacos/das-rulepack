@@ -77,13 +77,46 @@ export function differences() {
 
 const BAR = 10;
 
-/** A text progress bar for done / total. */
-export function bar(done, total) {
+/** A text progress bar for done / total; `html` for a place where Markdown is not read (a `<summary>`). */
+export function bar(done, total, { html=false, cells: width=BAR }={}) {
   const share = total ? Math.min(1, done / total) : 0;
-  const cells = Math.round(share * BAR);
+  const cells = Math.round(share * width);
   const percent = Math.round(share * 100);
-  const label = (done > 0 && percent === 0) ? "<1%" : `${percent}%`;
-  return `\`${"█".repeat(cells)}${"░".repeat(BAR - cells)}\` ${label}`;
+  const label = (done > 0 && percent === 0) ? (html ? "&lt;1%" : "<1%") : `${percent}%`;
+  const drawn = `${"█".repeat(cells)}${"░".repeat(width - cells)}`;
+  return html ? `<code>${drawn}</code> ${label}` : `\`${drawn}\` ${label}`;
+}
+
+/** The parts of a book, in the order they are shown, with the name of each. */
+export const PARTS = Object.freeze({
+  spell: "Spells",
+  feature: "Class and subclass features",
+  feat: "Feats",
+  option: "Options (invocations, metamagic, manoeuvres…)",
+  item: "Items",
+  monster: "Monsters"
+});
+
+/** The figures of one book, part by part: only the parts the book has entries for. */
+export function parts(book) {
+  const rules = RULES.filter(rule => rule.book === book.code);
+  return Object.keys(PARTS).filter(kind => book.kinds[kind]?.total > 0).map(kind => {
+    const mine = rules.filter(rule => catalogKind(rule) === kind);
+    return { kind, label: PARTS[kind], total: book.kinds[kind].total, core: book.kinds[kind].core,
+      pack: mine.filter(rule => !rule.inCore).length, refined: mine.filter(rule => rule.inCore).length };
+  });
+}
+
+/** The `<details>` of one book: its overall bar, then one row per part. */
+function details(book) {
+  const f = figures(book);
+  const out = [`<details>`, `<summary><b>${book.code}</b> · ${book.name} — ${bar(f.core + f.pack, f.total, { html: true })}</summary>`, "",
+    "| Part | Entries | DAS · Core | This pack | Core + pack |", "|---|---:|---:|---:|---|"];
+  for ( const part of parts(book) ) {
+    out.push(`| ${part.label} | ${part.total} | ${part.core} | ${packCell(part)} | ${bar(part.core + part.pack, part.total)} |`);
+  }
+  out.push("", "</details>");
+  return out;
 }
 
 const byYear = (a, b) => (a.year - b.year) || a.code.localeCompare(b.code);
@@ -116,6 +149,11 @@ export function renderBooks() {
   const unmapped = FOUNDRY.packages.filter(pkg => !pkg.book);
   const uncounted = CATALOG.books.flatMap(book => figures(book).uncounted);
   const out = [];
+  out.push("### Overall", "");
+  out.push("| | Books | Entries | DAS · Core | This pack | Core + pack |", "|---|---:|---:|---:|---:|---|");
+  out.push(`| **All rulebooks** | **${a.count + b.count}** | **${all.total}** | **${all.core}** | **${packCell(all)}** | ${bar(all.core + all.pack, all.total, { cells: 20 })} |`);
+  out.push(`| A. Official Foundry module | ${a.count} | ${a.total.total} | ${a.total.core} | ${packCell(a.total)} | ${bar(a.total.core + a.total.pack, a.total.total, { cells: 20 })} |`);
+  out.push(`| B. Not on Foundry | ${b.count} | ${b.total.total} | ${b.total.core} | ${packCell(b.total)} | ${bar(b.total.core + b.total.pack, b.total.total, { cells: 20 })} |`, "");
   out.push("### A. Published as an official Foundry VTT module", "");
   out.push("DAS · Core itself automates the official modules it was written against (see the \"DAS · Core\" column), and it accepts "
     + "nothing outside the SRD in its public repositories, so the non-SRD rules of these books still belong in this pack.", "");
@@ -127,11 +165,15 @@ export function renderBooks() {
   out.push("### B. Not published on Foundry — rules still to implement", "");
   out.push("The content of these books reaches the table through importers, with no rules attached: this is where the pack matters most.", "");
   out.push(...b.lines, "");
-  out.push("### All books", "");
-  out.push("| | Books | Entries | DAS · Core | This pack | Core + pack |", "|---|---:|---:|---:|---:|---|");
-  out.push(`| A. Official Foundry module | ${a.count} | ${a.total.total} | ${a.total.core} | ${packCell(a.total)} | ${bar(a.total.core + a.total.pack, a.total.total)} |`);
-  out.push(`| B. Not on Foundry | ${b.count} | ${b.total.total} | ${b.total.core} | ${packCell(b.total)} | ${bar(b.total.core + b.total.pack, b.total.total)} |`);
-  out.push(`| **Grand total** | **${a.count + b.count}** | **${all.total}** | **${all.core}** | **${packCell(all)}** | ${bar(all.core + all.pack, all.total)} |`, "");
+  out.push("### Each rulebook, part by part", "");
+  out.push("One block per rulebook, to open: its spells, class and subclass features, feats, options, items and monsters, each "
+    + "with its own bar. A part the book has no entry for is left out. "
+    + "Monsters are counted like the rest, one entry per creature looked up by the creature's own name: the count says "
+    + "nothing of a creature's traits and actions, which is where an engine entry for a creature would sit.", "");
+  out.push("**A. Published as an official Foundry VTT module**", "");
+  for ( const book of published.slice().sort(byYear) ) out.push(...details(book), "");
+  out.push("**B. Not published on Foundry**", "");
+  for ( const book of others.slice().sort(byYear) ) out.push(...details(book), "");
   const notes = [`Counts of ${CATALOG.computed} (docs/books.json); packages read on ${FOUNDRY.read} (docs/foundry-modules.json).`];
   if ( all.refined ) notes.push("\"(+n)\": rules of this pack on an entry already counted under DAS · Core (the pack completes the engine's entry, or serves another identifier of the same name); they are not added to the bar.");
   if ( uncounted.length ) notes.push(`Not counted, the catalogue having no such entry: ${uncounted.map(rule => `${rule.name} (${rule.book})`).join(", ")}.`);

@@ -124,8 +124,9 @@ engine that has `api.diagnostic.registerImporter`.
 
 ## 📚 Progress by rulebook
 
-One row per official rulebook of the catalogue, in two groups: the books published as an official Foundry VTT module, and
-the books that are not, where content reaches the table through importers.
+First the overall progress — all rulebooks, then each of the two groups: the books published as an official Foundry VTT
+module, and the books that are not, where content reaches the table through importers. Then one row per rulebook, and
+below the tables one block per rulebook with a bar for each of its parts.
 
 How to read it: this is a **static comparison by name** — each entry of a book (spell, feat, optional feature, item, class
 or subclass feature, monster) is looked up among the identifiers of DAS · Core and of this pack. "Covered" means a dedicated
@@ -134,6 +135,14 @@ enough. The SRD itself is covered by DAS · Core, not by this pack. The counts a
 the "This pack" column is recomputed from the pack's own rules.
 
 <!-- auto:books -->
+### Overall
+
+| | Books | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---:|---|
+| **All rulebooks** | **40** | **7247** | **1200** | **19 (+4)** | `███░░░░░░░░░░░░░░░░░` 17% |
+| A. Official Foundry module | 7 | 2979 | 684 | 5 (+3) | `█████░░░░░░░░░░░░░░░` 23% |
+| B. Not on Foundry | 33 | 4268 | 516 | 14 (+1) | `██░░░░░░░░░░░░░░░░░░` 12% |
+
 ### A. Published as an official Foundry VTT module
 
 DAS · Core itself automates the official modules it was written against (see the "DAS · Core" column), and it accepts nothing outside the SRD in its public repositories, so the non-SRD rules of these books still belong in this pack.
@@ -192,13 +201,443 @@ The content of these books reaches the table through importers, with no rules at
 | NF | Netheril's Fall | 2025 | setting-alt | 14 | 0 | 0 | `░░░░░░░░░░` 0% |
 | **Total** | 33 books |  |  | **4268** | **516** | **14 (+1)** | `█░░░░░░░░░` 12% |
 
-### All books
+### Each rulebook, part by part
 
-| | Books | Entries | DAS · Core | This pack | Core + pack |
-|---|---:|---:|---:|---:|---|
-| A. Official Foundry module | 7 | 2979 | 684 | 5 (+3) | `██░░░░░░░░` 23% |
-| B. Not on Foundry | 33 | 4268 | 516 | 14 (+1) | `█░░░░░░░░░` 12% |
-| **Grand total** | **40** | **7247** | **1200** | **19 (+4)** | `██░░░░░░░░` 17% |
+One block per rulebook, to open: its spells, class and subclass features, feats, options, items and monsters, each with its own bar. A part the book has no entry for is left out. Monsters are counted like the rest, one entry per creature looked up by the creature's own name: the count says nothing of a creature's traits and actions, which is where an engine entry for a creature would sit.
+
+**A. Published as an official Foundry VTT module**
+
+<details>
+<summary><b>TCE</b> · Tasha's Cauldron of Everything — <code>█░░░░░░░░░</code> 13%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 21 | 10 | 5 | `███████░░░` 71% |
+| Class and subclass features | 276 | 30 | 0 | `█░░░░░░░░░` 11% |
+| Feats | 15 | 5 | 0 | `███░░░░░░░` 33% |
+| Options (invocations, metamagic, manoeuvres…) | 47 | 8 | 0 | `██░░░░░░░░` 17% |
+| Items | 84 | 1 | 0 | `░░░░░░░░░░` 1% |
+| Monsters | 20 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>XDMG</b> · Dungeon Master's Guide (2024) — <code>██░░░░░░░░</code> 20%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 584 | 116 | 0 | `██░░░░░░░░` 20% |
+| Monsters | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>XPHB</b> · Player's Handbook (2024) — <code>█████░░░░░</code> 46%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 391 | 265 | 0 | `███████░░░` 68% |
+| Class and subclass features | 456 | 153 | 0 (+3) | `███░░░░░░░` 34% |
+| Feats | 76 | 46 | 0 | `██████░░░░` 61% |
+| Options (invocations, metamagic, manoeuvres…) | 58 | 32 | 0 | `██████░░░░` 55% |
+| Items | 123 | 16 | 0 | `█░░░░░░░░░` 13% |
+| Monsters | 15 | 1 | 0 | `█░░░░░░░░░` 7% |
+
+</details>
+
+<details>
+<summary><b>EFA</b> · Eberron: Forge of the Artificer — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Class and subclass features | 48 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 28 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Options (invocations, metamagic, manoeuvres…) | 4 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 27 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>FRAIF</b> · Forgotten Realms: Adventures in Faerûn — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 18 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 42 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>FRHOF</b> · Forgotten Realms: Heroes of Faerûn — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 19 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Class and subclass features | 56 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 34 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 24 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>XMM</b> · Monster Manual (2025) — <code>░░░░░░░░░░</code> &lt;1%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 503 | 1 | 0 | `░░░░░░░░░░` <1% |
+
+</details>
+
+**B. Not published on Foundry**
+
+<details>
+<summary><b>DMG</b> · Dungeon Master's Guide (2014) — <code>██░░░░░░░░</code> 21%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Class and subclass features | 15 | 1 | 0 | `█░░░░░░░░░` 7% |
+| Items | 500 | 107 | 0 | `██░░░░░░░░` 21% |
+| Monsters | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MM</b> · Monster Manual (2014) — <code>░░░░░░░░░░</code> &lt;1%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 4 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 450 | 1 | 0 | `░░░░░░░░░░` <1% |
+
+</details>
+
+<details>
+<summary><b>PHB</b> · Player's Handbook (2014) — <code>████░░░░░░</code> 36%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 361 | 237 | 0 (+1) | `███████░░░` 66% |
+| Class and subclass features | 380 | 74 | 0 | `██░░░░░░░░` 19% |
+| Feats | 42 | 23 | 0 | `█████░░░░░` 55% |
+| Options (invocations, metamagic, manoeuvres…) | 82 | 31 | 0 | `████░░░░░░` 38% |
+| Items | 168 | 8 | 0 | `░░░░░░░░░░` 5% |
+| Monsters | 5 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>SCAG</b> · Sword Coast Adventurer's Guide — <code>█░░░░░░░░░</code> 5%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Class and subclass features | 39 | 2 | 0 | `█░░░░░░░░░` 5% |
+
+</details>
+
+<details>
+<summary><b>VGM</b> · Volo's Guide to Monsters — <code>░░░░░░░░░░</code> 1%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 7 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 143 | 1 | 0 | `░░░░░░░░░░` 1% |
+
+</details>
+
+<details>
+<summary><b>OGA</b> · One Grung Above — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>XGE</b> · Xanathar's Guide to Everything — <code>█░░░░░░░░░</code> 10%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 95 | 11 | 11 | `██░░░░░░░░` 23% |
+| Class and subclass features | 202 | 13 | 0 | `█░░░░░░░░░` 6% |
+| Feats | 15 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Options (invocations, metamagic, manoeuvres…) | 22 | 1 | 1 | `█░░░░░░░░░` 9% |
+| Items | 43 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>GGR</b> · Guildmasters' Guide to Ravnica — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 41 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 79 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MTF</b> · Mordenkainen's Tome of Foes — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Feats | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 4 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 140 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>AI</b> · Acquisitions Incorporated — <code>░░░░░░░░░░</code> 4%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 7 | 0 | 1 | `█░░░░░░░░░` 14% |
+| Items | 23 | 1 | 0 | `░░░░░░░░░░` 4% |
+| Monsters | 22 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>AWM</b> · Adventure with Muk — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 11 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>ERLW</b> · Eberron: Rising from the Last War — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Feats | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 30 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 41 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>EGW</b> · Explorer's Guide to Wildemount — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 15 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Class and subclass features | 18 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 85 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 48 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MGELFT</b> · Muk's Guide to Everything He Learned From Tasha — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MOT</b> · Mythic Odysseys of Theros — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 12 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 51 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>DOD</b> · Domains of Delight — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>FTD</b> · Fizban's Treasury of Dragons — <code>░░░░░░░░░░</code> 1%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 7 | 0 | 1 | `█░░░░░░░░░` 14% |
+| Class and subclass features | 12 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 24 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 85 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MABJOV</b> · Minsc and Boo's Journal of Villainy — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 56 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>SCC</b> · Strixhaven: A Curriculum of Chaos — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 5 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 18 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 47 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>VRGR</b> · Van Richten's Guide to Ravenloft — <code>█░░░░░░░░░</code> 8%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Class and subclass features | 11 | 3 | 0 | `███░░░░░░░` 27% |
+| Items | 5 | 1 | 0 | `██░░░░░░░░` 20% |
+| Monsters | 35 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>AAG</b> · Astral Adventurer's Guide — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 20 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>BAM</b> · Boo's Astral Menagerie — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 72 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MPMM</b> · Mordenkainen Presents: Monsters of the Multiverse — <code>░░░░░░░░░░</code> &lt;1%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 261 | 1 | 0 | `░░░░░░░░░░` <1% |
+
+</details>
+
+<details>
+<summary><b>AATM</b> · Adventure Atlas: The Mortuary — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>BGG</b> · Bigby Presents: Glory of the Giants — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Class and subclass features | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 8 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 31 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 72 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>BMT</b> · The Book of Many Things — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 73 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 41 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>HAT-TG</b> · Thieves' Gallery — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 7 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MCV4EC</b> · Monstrous Compendium Volume 4: Eldraine Creatures — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 25 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>MPP</b> · Morte's Planar Parade — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Monsters | 54 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>SATO</b> · Sigil and the Outlands — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Spells | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 7 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 5 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>ABH</b> · Astarion's Book of Hungers — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Feats | 16 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 5 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>LFL</b> · Lorwyn: First Light — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Feats | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Items | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 8 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
+
+<details>
+<summary><b>NF</b> · Netheril's Fall — <code>░░░░░░░░░░</code> 0%</summary>
+
+| Part | Entries | DAS · Core | This pack | Core + pack |
+|---|---:|---:|---:|---|
+| Items | 8 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
+
+</details>
 
 Counts of 2026-11-19 (docs/books.json); packages read on 2026-11-20 (docs/foundry-modules.json). "(+n)": rules of this pack on an entry already counted under DAS · Core (the pack completes the engine's entry, or serves another identifier of the same name); they are not added to the bar. Not counted, the catalogue having no such entry: Life Sense (MPMM).
 <!-- /auto:books -->

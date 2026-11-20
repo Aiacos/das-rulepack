@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { README, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, refresh, renderBooks, renderRules }
+import { README, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, parts, PARTS, refresh, renderBooks, renderRules }
   from "../tools/books-progress.mjs";
 import { RULES } from "../scripts/rules/index.mjs";
 
@@ -57,14 +57,17 @@ describe("progress by rulebook", () => {
     expect(bar(10, 10)).toBe("`██████████` 100%");
     expect(bar(1, 500)).toBe("`░░░░░░░░░░` <1%");
     expect(bar(0, 0)).toBe("`░░░░░░░░░░` 0%");
+    expect(bar(1, 500, { html: true })).toBe("<code>░░░░░░░░░░</code> &lt;1%");
+    expect(bar(1, 4, { cells: 20 })).toBe("`█████░░░░░░░░░░░░░░░` 25%");
   });
 
   it("splits the books in two tables, each with its total, and a grand total", () => {
     const block = renderBooks();
     const a = block.indexOf("### A. Published as an official Foundry VTT module");
     const b = block.indexOf("### B. Not published on Foundry — rules still to implement");
-    const all = block.indexOf("### All books");
-    expect(a).toBe(0);
+    const all = block.indexOf("### Each rulebook, part by part");
+    expect(block.indexOf("### Overall")).toBe(0);
+    expect(a).toBeGreaterThan(0);
     expect(b).toBeGreaterThan(a);
     expect(all).toBeGreaterThan(b);
     const rows = (from, to) => block.slice(from, to).split("\n").filter(line => /^\| [A-Z]/.test(line)).map(line => line.split(" | ")[0].slice(2));
@@ -76,7 +79,29 @@ describe("progress by rulebook", () => {
     expect(block.slice(a, b)).toContain(`| **Total** | ${published.length} books |`);
     expect(block.slice(b, all)).toContain(`| **Total** | ${others.length} books |`);
     const total = CATALOG.books.reduce((n, x) => n + figures(x).total, 0);
-    expect(block.slice(all)).toContain(`| **Grand total** | **${CATALOG.books.length}** | **${total}** |`);
+    expect(block.slice(0, a)).toContain(`| **All rulebooks** | **${CATALOG.books.length}** | **${total}** |`);
+    expect(block.slice(0, a)).toContain("| A. Official Foundry module |");
+    expect(block.slice(0, a)).toContain("| B. Not on Foundry |");
+  });
+
+  it("gives every rulebook a block with one bar per part it has entries for, the pack's share taken from its own rules", () => {
+    const block = renderBooks();
+    expect(block.split("<details>").length - 1).toBe(CATALOG.books.length);
+    expect(block.split("</details>").length - 1).toBe(CATALOG.books.length);
+    for ( const b of CATALOG.books ) {
+      const list = parts(b);
+      expect(list.map(part => part.kind)).toEqual(Object.keys(PARTS).filter(kind => b.kinds[kind]?.total > 0));
+      expect(Object.keys(b.kinds).filter(kind => !(kind in PARTS)), b.code).toEqual([]);
+      const f = figures(b);
+      expect(list.reduce((n, part) => n + part.total, 0), b.code).toBe(f.total);
+      expect(list.reduce((n, part) => n + part.core, 0), b.code).toBe(f.core);
+      expect(list.reduce((n, part) => n + part.pack, 0), b.code).toBe(f.pack);
+      expect(list.reduce((n, part) => n + part.refined, 0), b.code).toBe(f.refined);
+      expect(block, b.code).toContain(`<summary><b>${b.code}</b> · ${b.name} — `);
+    }
+    const xge = Object.fromEntries(parts(book("XGE")).map(part => [part.kind, part.pack]));
+    expect(xge).toMatchObject({ spell: 11, option: 1, feature: 0 });   // Ghostly Gaze is counted with the options
+    expect(block).toContain("| Spells | 95 | 11 | 11 | `██░░░░░░░░` 23% |");
   });
 
   it("lists every rule of the pack once in the table of rules", () => {
