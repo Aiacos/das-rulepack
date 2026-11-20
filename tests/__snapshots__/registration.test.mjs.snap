@@ -1,0 +1,293 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`what is registered with DAS · Core > with exactly these entries 1`] = `
+{
+  "dreadful-strikes": {
+    "triggers": [],
+  },
+  "earth-tremor": {
+    "saveDamage": {
+      "saveEarthTremorI": "none",
+    },
+  },
+  "frostbite": {
+    "effectEnds": {
+      "ZNq8opE3LPDQFXup": "bearerTurnEnd",
+    },
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "disadvantage",
+          },
+          {
+            "side": "source",
+            "type": "consume",
+          },
+        ],
+        "if": {
+          "activity.isWeapon": true,
+          "source.hasEffect": "frostbite",
+        },
+        "on": "preAttackRoll",
+        "via": "effect",
+      },
+    ],
+  },
+  "ghostly-gaze": {
+    "sense": {
+      "kind": "sight",
+      "needs": "sight",
+      "range": 30,
+      "units": "ft",
+      "via": "effect",
+      "walls": false,
+    },
+  },
+  "holy-weapon": {
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "resave",
+          },
+        ],
+        "fromEffect": "AVAqMpoVU6J5tDTM",
+        "on": "endOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "incite-greed": {
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "resave",
+          },
+        ],
+        "fromEffect": "4Hi47QCDFVz6m9gd",
+        "on": "endOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "inspiring-smite": {
+    "healPool": {
+      "activities": [
+        "oBkPCmC2KsH2WUJp",
+      ],
+      "choose": true,
+      "temp": true,
+    },
+  },
+  "irresistible-dance": {
+    "actionEnds": {
+      "aWuXl9NADX7vOCOC": {
+        "by": "bearer",
+        "roll": "save",
+      },
+    },
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "disadvantage",
+          },
+        ],
+        "if": {
+          "source.hasEffect": {
+            "effect": "aWuXl9NADX7vOCOC",
+            "item": "irresistible-dance",
+          },
+        },
+        "on": "preAttackRoll",
+        "via": "effect",
+      },
+      {
+        "do": [
+          {
+            "type": "advantage",
+          },
+        ],
+        "if": {
+          "target.hasEffect": {
+            "effect": "aWuXl9NADX7vOCOC",
+            "item": "irresistible-dance",
+          },
+        },
+        "on": "preAttackRoll",
+        "via": "effect",
+      },
+    ],
+  },
+  "life-sense": {
+    "sense": {
+      "detects": {
+        "not": {
+          "target.creatureType": [
+            "construct",
+            "undead",
+          ],
+        },
+      },
+      "kind": "locate",
+      "range": 60,
+      "units": "ft",
+      "walls": false,
+    },
+  },
+  "lightning-lure": {
+    "dataFixes": [
+      {
+        "from": "radius",
+        "path": "system.target.template.type",
+        "value": "",
+      },
+      {
+        "from": "",
+        "path": "system.target.affects.type",
+        "value": "creature",
+      },
+    ],
+    "triggers": [
+      {
+        "do": [
+          {
+            "distance": 10,
+            "mode": "pull",
+            "type": "move",
+            "units": "ft",
+            "upTo": true,
+          },
+        ],
+        "on": "failedSave",
+      },
+    ],
+  },
+  "power-word-pain": {
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "resave",
+          },
+        ],
+        "fromEffect": "zZ96n2pATqQe1y8v",
+        "on": "endOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "psychic-scream": {
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "resave",
+          },
+        ],
+        "fromEffect": "DkdkPXVGU9anSsuT",
+        "on": "endOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "psychic-veil": {
+    "breaksOn": [
+      "damage",
+      "forcesSave",
+    ],
+  },
+  "pyrotechnics": {
+    "effectEnds": {
+      "ZjHJQ7woRp98O6cT": "casterTurnEnd",
+    },
+  },
+  "raulothims-psychic-lance": {
+    "effectEnds": {
+      "31jOzP6HwmGO6HHd": "casterTurnStart",
+    },
+  },
+  "shadow-blade": {
+    "recast": true,
+    "recastCost": "bonus",
+  },
+  "snare": {
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "resave",
+          },
+        ],
+        "fromEffect": "e9NG1SwNcR4UZAXY",
+        "on": "endOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "tashas-caustic-brew": {
+    "actionEnds": {
+      "2LQhIQp9u4KZrcSj": {
+        "by": "bearer",
+      },
+    },
+    "noDamage": [
+      "saveTashCausBrew",
+    ],
+    "triggers": [
+      {
+        "do": [
+          {
+            "activity": "saveTashCausBrew",
+            "to": "bearer",
+            "type": "damage",
+          },
+        ],
+        "fromEffect": "2LQhIQp9u4KZrcSj",
+        "on": "startOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "tashas-mind-whip": {
+    "actionOrBonus": true,
+    "effectEnds": {
+      "cX99599Nv7wRWKFn": "bearerTurnEnd",
+    },
+    "noReactions": true,
+  },
+  "wall-of-light": {
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "resave",
+          },
+        ],
+        "fromEffect": "VGU8pflgbBnWKJ7E",
+        "on": "endOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "watery-sphere": {
+    "triggers": [
+      {
+        "do": [
+          {
+            "type": "resave",
+          },
+        ],
+        "fromEffect": "b4gGKWLyZdmGqgrO",
+        "on": "endOfTurn",
+        "via": "effect",
+      },
+    ],
+  },
+  "zephyr-strike": {
+    "noOpportunity": "whileEffect",
+  },
+}
+`;
