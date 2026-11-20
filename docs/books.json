@@ -1,10 +1,17 @@
 {
-  "about": "Counts per official rulebook: entries in the book, entries DAS · Core covers with a dedicated entry (`core`), entries das-rulepack covers (`rulepack`). Counts only: no names of entries, no text.",
+  "about": "Counts per official rulebook: entries in the book, entries DAS · Core covers (`core`), entries das-rulepack covers (`rulepack`). Counts only: no names of entries, no text.",
   "method": "Static comparison by name. Each entry of a book's catalogue (spells, feats, optional features, items, class and subclass features, monsters) is counted once, under the book the catalogue files it in; its name, turned into a dnd5e-style identifier, is looked up among the identifiers of DAS · Core, then among those of das-rulepack (an entry found in both is counted under `core`). A dedicated entry is not proof that the rule works, and no entry does not mean it does not: much is resolved from the item's own data.",
   "computed": "2026-11-19",
   "copied": "2026-11-20",
   "source": "books.coverage.json of the DAS workspace audit (not part of this repository)",
-  "note": "`computed` is the date of the audit file. `rulepack` is the audit's count on that date. tools/books-progress.mjs recomputes it from scripts/rules/books/ and uses its own figure. `foundry` is the id of the official Foundry VTT package of the book, from docs/foundry-modules.json, or null.",
+  "note": "`computed` is the date of the audit file. `rulepack` is the audit's count on that date. tools/books-progress.mjs recomputes it from scripts/rules/books/ and uses its own figure. `foundry` is the id of the official Foundry VTT package of the book, from docs/foundry-modules.json, or null. The `monster` kind is measured differently: see `monsters`.",
+  "monsters": {
+    "method": "A monster has no dedicated entry: DAS · Core plays its features one by one. Every feature of the stat block (traits, actions, bonus actions, reactions, legendary and mythic actions, spellcasting) gets one verdict: an entry of DAS · Core under the feature's identifier; a rule the engine reads from the text (computed with the engine's own pure function); resolved by the item's data (an attack, a save, spellcasting); no combat mechanic in the text; or open. A monster is resolved when none of its features is open. In the `monster` kind: `total` = monsters, `core` = monsters resolved, `pack` = 0, `features` = their features, `featuresResolved` = features that are not open.",
+    "limits": "Static reading of the dataset's text, not of the Foundry data, and not proof of play. \"Resolved by data\" does not check what follows an attack (its riders); \"no combat mechanic\" is a heuristic on the words of the text; a variant copied from another creature inherits its features without the changes applied.",
+    "computed": "2026-11-20",
+    "copied": "2026-11-20",
+    "source": "monsters.features.json of the DAS workspace audit (not part of this repository)"
+  },
   "books": [
     {
       "code": "AAG", "name": "Astral Adventurer's Guide", "year": 2022, "group": "setting", "foundry": null,
@@ -16,14 +23,14 @@
     {
       "code": "AATM", "name": "Adventure Atlas: The Mortuary", "year": 2023, "group": "supplement-alt", "foundry": null,
       "kinds": {
-        "monster": { "total": 3, "core": 0, "rulepack": 0 }
+        "monster": { "total": 3, "core": 1, "pack": 0, "features": 22, "featuresResolved": 16 }
       }
     },
     {
       "code": "ABH", "name": "Astarion's Book of Hungers", "year": 2025, "group": "supplement-alt", "foundry": null,
       "kinds": {
         "feat": { "total": 16, "core": 0, "rulepack": 0 },
-        "monster": { "total": 5, "core": 0, "rulepack": 0 }
+        "monster": { "total": 5, "core": 2, "pack": 0, "features": 36, "featuresResolved": 32 }
       }
     },
     {
@@ -31,20 +38,20 @@
       "kinds": {
         "spell": { "total": 7, "core": 0, "rulepack": 1 },
         "item": { "total": 23, "core": 1, "rulepack": 0 },
-        "monster": { "total": 22, "core": 0, "rulepack": 0 }
+        "monster": { "total": 22, "core": 13, "pack": 0, "features": 120, "featuresResolved": 107 }
       }
     },
     {
       "code": "AWM", "name": "Adventure with Muk", "year": 2019, "group": "supplement-alt", "foundry": null,
       "kinds": {
-        "monster": { "total": 11, "core": 0, "rulepack": 0 }
+        "monster": { "total": 11, "core": 8, "pack": 0, "features": 42, "featuresResolved": 39 }
       }
     },
     {
       "code": "BAM", "name": "Boo's Astral Menagerie", "year": 2022, "group": "setting", "foundry": null,
       "kinds": {
         "item": { "total": 1, "core": 0, "rulepack": 0 },
-        "monster": { "total": 72, "core": 0, "rulepack": 0 }
+        "monster": { "total": 72, "core": 36, "pack": 0, "features": 401, "featuresResolved": 350 }
       }
     },
     {
@@ -53,7 +60,7 @@
         "feat": { "total": 8, "core": 0, "rulepack": 0 },
         "item": { "total": 31, "core": 0, "rulepack": 0 },
         "feature": { "total": 6, "core": 0, "rulepack": 0 },
-        "monster": { "total": 72, "core": 0, "rulepack": 0 }
+        "monster": { "total": 72, "core": 33, "pack": 0, "features": 432, "featuresResolved": 358 }
       }
     },
     {
@@ -62,7 +69,7 @@
         "spell": { "total": 3, "core": 0, "rulepack": 0 },
         "feat": { "total": 1, "core": 0, "rulepack": 0 },
         "item": { "total": 73, "core": 0, "rulepack": 0 },
-        "monster": { "total": 41, "core": 0, "rulepack": 0 }
+        "monster": { "total": 41, "core": 5, "pack": 0, "features": 292, "featuresResolved": 222 }
       }
     },
     {
@@ -70,13 +77,13 @@
       "kinds": {
         "item": { "total": 500, "core": 107, "rulepack": 0 },
         "feature": { "total": 15, "core": 1, "rulepack": 0 },
-        "monster": { "total": 3, "core": 0, "rulepack": 0 }
+        "monster": { "total": 3, "core": 2, "pack": 0, "features": 4, "featuresResolved": 2 }
       }
     },
     {
       "code": "DOD", "name": "Domains of Delight", "year": 2021, "group": "supplement-alt", "foundry": null,
       "kinds": {
-        "monster": { "total": 1, "core": 0, "rulepack": 0 }
+        "monster": { "total": 1, "core": 0, "pack": 0, "features": 9, "featuresResolved": 6 }
       }
     },
     {
@@ -87,7 +94,7 @@
         "option": { "total": 4, "core": 0, "rulepack": 0 },
         "item": { "total": 6, "core": 0, "rulepack": 0 },
         "feature": { "total": 48, "core": 0, "rulepack": 0 },
-        "monster": { "total": 27, "core": 0, "rulepack": 0 }
+        "monster": { "total": 27, "core": 15, "pack": 0, "features": 118, "featuresResolved": 103 }
       }
     },
     {
@@ -96,7 +103,7 @@
         "spell": { "total": 15, "core": 0, "rulepack": 0 },
         "item": { "total": 85, "core": 0, "rulepack": 0 },
         "feature": { "total": 18, "core": 0, "rulepack": 0 },
-        "monster": { "total": 48, "core": 0, "rulepack": 0 }
+        "monster": { "total": 48, "core": 20, "pack": 0, "features": 258, "featuresResolved": 219 }
       }
     },
     {
@@ -104,14 +111,14 @@
       "kinds": {
         "feat": { "total": 2, "core": 0, "rulepack": 0 },
         "item": { "total": 30, "core": 0, "rulepack": 0 },
-        "monster": { "total": 41, "core": 0, "rulepack": 0 }
+        "monster": { "total": 41, "core": 14, "pack": 0, "features": 244, "featuresResolved": 200 }
       }
     },
     {
       "code": "FRAIF", "name": "Forgotten Realms: Adventures in Faerûn", "year": 2025, "group": "setting", "foundry": "dnd-adventures-faerun",
       "kinds": {
         "item": { "total": 18, "core": 0, "rulepack": 0 },
-        "monster": { "total": 42, "core": 0, "rulepack": 0 }
+        "monster": { "total": 42, "core": 23, "pack": 0, "features": 259, "featuresResolved": 223 }
       }
     },
     {
@@ -130,7 +137,7 @@
         "feat": { "total": 3, "core": 0, "rulepack": 0 },
         "item": { "total": 24, "core": 0, "rulepack": 0 },
         "feature": { "total": 12, "core": 0, "rulepack": 0 },
-        "monster": { "total": 85, "core": 0, "rulepack": 0 }
+        "monster": { "total": 85, "core": 26, "pack": 0, "features": 677, "featuresResolved": 547 }
       }
     },
     {
@@ -138,13 +145,13 @@
       "kinds": {
         "spell": { "total": 1, "core": 0, "rulepack": 0 },
         "item": { "total": 41, "core": 0, "rulepack": 0 },
-        "monster": { "total": 79, "core": 0, "rulepack": 0 }
+        "monster": { "total": 79, "core": 25, "pack": 0, "features": 430, "featuresResolved": 334 }
       }
     },
     {
       "code": "HAT-TG", "name": "Thieves' Gallery", "year": 2023, "group": "supplement-alt", "foundry": null,
       "kinds": {
-        "monster": { "total": 7, "core": 0, "rulepack": 0 }
+        "monster": { "total": 7, "core": 0, "pack": 0, "features": 51, "featuresResolved": 39 }
       }
     },
     {
@@ -152,51 +159,51 @@
       "kinds": {
         "feat": { "total": 2, "core": 0, "rulepack": 0 },
         "item": { "total": 2, "core": 0, "rulepack": 0 },
-        "monster": { "total": 8, "core": 0, "rulepack": 0 }
+        "monster": { "total": 8, "core": 5, "pack": 0, "features": 39, "featuresResolved": 36 }
       }
     },
     {
       "code": "MABJOV", "name": "Minsc and Boo's Journal of Villainy", "year": 2021, "group": "supplement-alt", "foundry": null,
       "kinds": {
-        "monster": { "total": 56, "core": 0, "rulepack": 0 }
+        "monster": { "total": 56, "core": 11, "pack": 0, "features": 473, "featuresResolved": 364 }
       }
     },
     {
       "code": "MCV4EC", "name": "Monstrous Compendium Volume 4: Eldraine Creatures", "year": 2023, "group": "supplement-alt", "foundry": null,
       "kinds": {
-        "monster": { "total": 25, "core": 0, "rulepack": 0 }
+        "monster": { "total": 25, "core": 5, "pack": 0, "features": 150, "featuresResolved": 118 }
       }
     },
     {
       "code": "MGELFT", "name": "Muk's Guide to Everything He Learned From Tasha", "year": 2020, "group": "supplement-alt", "foundry": null,
       "kinds": {
-        "monster": { "total": 6, "core": 0, "rulepack": 0 }
+        "monster": { "total": 6, "core": 4, "pack": 0, "features": 27, "featuresResolved": 24 }
       }
     },
     {
       "code": "MM", "name": "Monster Manual (2014)", "year": 2014, "group": "core", "foundry": null,
       "kinds": {
         "item": { "total": 4, "core": 0, "rulepack": 0 },
-        "monster": { "total": 450, "core": 1, "rulepack": 0 }
+        "monster": { "total": 450, "core": 211, "pack": 0, "features": 2141, "featuresResolved": 1825 }
       }
     },
     {
       "code": "MOT", "name": "Mythic Odysseys of Theros", "year": 2020, "group": "setting", "foundry": null,
       "kinds": {
         "item": { "total": 12, "core": 0, "rulepack": 0 },
-        "monster": { "total": 51, "core": 0, "rulepack": 0 }
+        "monster": { "total": 51, "core": 11, "pack": 0, "features": 324, "featuresResolved": 249 }
       }
     },
     {
       "code": "MPMM", "name": "Mordenkainen Presents: Monsters of the Multiverse", "year": 2022, "group": "supplement", "foundry": null,
       "kinds": {
-        "monster": { "total": 261, "core": 1, "rulepack": 0 }
+        "monster": { "total": 261, "core": 99, "pack": 0, "features": 1552, "featuresResolved": 1304 }
       }
     },
     {
       "code": "MPP", "name": "Morte's Planar Parade", "year": 2023, "group": "setting", "foundry": null,
       "kinds": {
-        "monster": { "total": 54, "core": 0, "rulepack": 0 }
+        "monster": { "total": 54, "core": 20, "pack": 0, "features": 323, "featuresResolved": 256 }
       }
     },
     {
@@ -204,14 +211,14 @@
       "kinds": {
         "feat": { "total": 1, "core": 0, "rulepack": 0 },
         "item": { "total": 4, "core": 0, "rulepack": 0 },
-        "monster": { "total": 140, "core": 0, "rulepack": 0 }
+        "monster": { "total": 140, "core": 40, "pack": 0, "features": 941, "featuresResolved": 768 }
       }
     },
     {
       "code": "NF", "name": "Netheril's Fall", "year": 2025, "group": "setting-alt", "foundry": null,
       "kinds": {
         "item": { "total": 8, "core": 0, "rulepack": 0 },
-        "monster": { "total": 6, "core": 0, "rulepack": 0 }
+        "monster": { "total": 6, "core": 6, "pack": 0, "features": 35, "featuresResolved": 35 }
       }
     },
     {
@@ -228,7 +235,7 @@
         "option": { "total": 82, "core": 31, "rulepack": 0 },
         "item": { "total": 168, "core": 8, "rulepack": 0 },
         "feature": { "total": 380, "core": 74, "rulepack": 0 },
-        "monster": { "total": 5, "core": 0, "rulepack": 0 }
+        "monster": { "total": 5, "core": 0, "pack": 0, "features": 10, "featuresResolved": 5 }
       }
     },
     {
@@ -251,7 +258,7 @@
         "spell": { "total": 5, "core": 0, "rulepack": 0 },
         "feat": { "total": 2, "core": 0, "rulepack": 0 },
         "item": { "total": 18, "core": 0, "rulepack": 0 },
-        "monster": { "total": 47, "core": 0, "rulepack": 0 }
+        "monster": { "total": 47, "core": 16, "pack": 0, "features": 254, "featuresResolved": 202 }
       }
     },
     {
@@ -262,14 +269,14 @@
         "option": { "total": 47, "core": 8, "rulepack": 0 },
         "item": { "total": 84, "core": 1, "rulepack": 0 },
         "feature": { "total": 276, "core": 30, "rulepack": 0 },
-        "monster": { "total": 20, "core": 0, "rulepack": 0 }
+        "monster": { "total": 20, "core": 5, "pack": 0, "features": 91, "featuresResolved": 68 }
       }
     },
     {
       "code": "VGM", "name": "Volo's Guide to Monsters", "year": 2016, "group": "supplement", "foundry": null,
       "kinds": {
         "item": { "total": 7, "core": 0, "rulepack": 0 },
-        "monster": { "total": 143, "core": 1, "rulepack": 0 }
+        "monster": { "total": 143, "core": 57, "pack": 0, "features": 690, "featuresResolved": 560 }
       }
     },
     {
@@ -277,14 +284,14 @@
       "kinds": {
         "item": { "total": 5, "core": 1, "rulepack": 0 },
         "feature": { "total": 11, "core": 3, "rulepack": 0 },
-        "monster": { "total": 35, "core": 0, "rulepack": 0 }
+        "monster": { "total": 35, "core": 15, "pack": 0, "features": 212, "featuresResolved": 180 }
       }
     },
     {
       "code": "XDMG", "name": "Dungeon Master's Guide (2024)", "year": 2024, "group": "core", "foundry": "dnd-dungeon-masters-guide",
       "kinds": {
         "item": { "total": 584, "core": 116, "rulepack": 0 },
-        "monster": { "total": 2, "core": 0, "rulepack": 0 }
+        "monster": { "total": 2, "core": 1, "pack": 0, "features": 3, "featuresResolved": 2 }
       }
     },
     {
@@ -295,14 +302,14 @@
         "option": { "total": 22, "core": 1, "rulepack": 1 },
         "item": { "total": 43, "core": 0, "rulepack": 0 },
         "feature": { "total": 202, "core": 13, "rulepack": 0 },
-        "monster": { "total": 2, "core": 0, "rulepack": 0 }
+        "monster": { "total": 2, "core": 1, "pack": 0, "features": 4, "featuresResolved": 3 }
       }
     },
     {
       "code": "XMM", "name": "Monster Manual (2025)", "year": 2025, "group": "core", "foundry": "dnd-monster-manual",
       "kinds": {
         "item": { "total": 1, "core": 0, "rulepack": 0 },
-        "monster": { "total": 503, "core": 1, "rulepack": 0 }
+        "monster": { "total": 503, "core": 369, "pack": 0, "features": 2146, "featuresResolved": 1923 }
       }
     },
     {
@@ -313,7 +320,7 @@
         "option": { "total": 58, "core": 32, "rulepack": 0 },
         "item": { "total": 123, "core": 16, "rulepack": 0 },
         "feature": { "total": 456, "core": 153, "rulepack": 0 },
-        "monster": { "total": 15, "core": 1, "rulepack": 0 }
+        "monster": { "total": 15, "core": 7, "pack": 0, "features": 62, "featuresResolved": 53 }
       }
     }
   ]
