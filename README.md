@@ -13,6 +13,8 @@ It ships no rulebook text: each rule names its book and page, and acts on the it
 dnd5e identifier. It is laid out to take in every official rulebook, one file per book: see
 [Progress by rulebook](#-progress-by-rulebook) and [Layout](#️-layout).
 
+**Every rule, book by book, with what it adds and how far it was checked: [docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md).**
+
 This is where such rules are meant to live: the DAS repositories carry nothing from books outside the SRD, so its author
 asked that rules for these spells stay in a companion module (DAS · Core
 [issue #63](https://github.com/Darshyne/dnd5e-combat/issues/63)). The generic building blocks this module had to write in
@@ -24,7 +26,8 @@ Requires Foundry VTT V14, dnd5e 6.0 or later, and DAS · Core 0.283.0 or later. 
 needs one with `api.diagnostic.registerImporter`; neither is in a released version yet. On 0.283.0 the two senses are
 rejected when the pack registers, the importer is not declared, and every other rule works.
 
-This is a **beta**: see below what was played and what was only validated.
+This is a **beta**: [docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md) says, rule by rule,
+what was played and what was only validated.
 
 ## 📦 Installation
 
@@ -38,104 +41,11 @@ Install and enable DAS · Core (`dnd5e-combat`) first: the pack only adds rules 
 
 ## ✨ What it covers
 
-"Played" means the rule was exercised in a running world (Foundry 14.370, dnd5e 6.1.0, DAS · Core 0.283.0, items imported by
-DDB Importer 7.6.0), on the GM's client, through the engine's own testing interface. "Validated" means the rule passes the
-engine's validator and uses the same building block as a rule that was played (the repeated save at the end of a turn is the
-one played with Psychic Scream), but has not been played itself. Nothing was played from a player's client.
-
-"Pending" means the rule is written for a key that no released DAS · Core knows yet (the `sense` block): it is registered,
-and rejected by an older engine without harm, but was neither validated by this repository's tests nor played.
-
-The tables below are generated from the rules themselves (`scripts/rules/books/`, `npm run books`), book by book: first the
-books published as an official Foundry VTT module, then the others, by year.
-
-<!-- auto:rules -->
-### TCE · Tasha's Cauldron of Everything (2020)
-
-Published as an official Foundry VTT module (`dnd-tashas-cauldron`).
-
-| Rule | Kind | Page | What the module adds | Handled in | Status |
-|---|---|---|---|---|---|
-| Booming Blade | Spell | p.106 | Casting it makes one melee attack with a weapon you hold (you choose if you hold several). From 5th level the attack adds 1d8 thunder on a hit (2d8 at 11th, 3d8 at 17th). A target that is hit is sheathed until the start of your next turn: if it moves 5 feet or more of its own will, it takes 1d8 thunder (one more die at 5th, 11th and 17th) and the spell ends. Pushes and pulls by the engine do not set it off. | code | Played |
-| Green-Flame Blade | Spell | p.107 | Casting it makes one melee attack with a weapon you hold. From 5th level the attack adds 1d8 fire on a hit (2d8 at 11th, 3d8 at 17th). On a hit you choose a creature within 5 feet of the target: it takes fire damage equal to your spellcasting modifier, plus the same dice. | code | Played |
-| Lightning Lure | Spell | p.107 | On a failed save the target is pulled up to 10 ft toward the caster. The imported item's target (a "0-foot emanation" that never contains anyone) is corrected to one creature. | table | Played |
-| Tasha's Mind Whip | Spell | p.115 | No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both. | table | Played |
-| Tasha's Caustic Brew | Spell | p.115 | No damage on the cast; 2d4 acid at the start of each of the target's turns; an action ends it. | table | Played |
-
-### XPHB · Player's Handbook (2024)
-
-Published as an official Foundry VTT module (`dnd-players-handbook`).
-
-| Rule | Kind | Page | What the module adds | Handled in | Status |
-|---|---|---|---|---|---|
-| Psychic Veil (Soulknife 13) | Feature | p.135 | A missed attack no longer drops the invisibility; an attack that hits and deals damage still does. | code + table | Played |
-| Inspiring Smite (Oath of Glory 3) | Feature | p.114 | The Temporary Hit Points are divided among the chosen creatures as the paladin likes, where the engine splits them evenly. | table | Played |
-| Dreadful Strikes (Fey Wanderer 3) | Feature | p.124 | The extra Psychic die is once per turn for each target, not once per turn for the ranger. | code + table | Played |
-
-### PHB · Player's Handbook (2014)
-
-Not published on Foundry.
-
-| Rule | Kind | Page | What the module adds | Handled in | Status |
-|---|---|---|---|---|---|
-| Otto's Irresistible Dance (2014) | Spell | p.264 | Disadvantage on the dancer's attacks, Advantage on attacks against it, and an action to repeat the Wisdom save. The 2024 spell is covered by DAS · Core. | table | Played |
-
-### XGE · Xanathar's Guide to Everything (2017)
-
-Not published on Foundry.
-
-| Rule | Kind | Page | What the module adds | Handled in | Status |
-|---|---|---|---|---|---|
-| Shadow Blade | Spell | p.164 | The blade is in the caster's hand as soon as the spell is cast (created on the spot, or adopted when the item's own data conjures it), sized by the slot (2d8 / 3d8 / 4d8 / 5d8), and leaves with the concentration. Advantage against a target in dim light or darkness. A thrown blade dissipates at the end of the turn; casting the spell again while concentrating brings it back without a slot. | code + table | Played |
-| Frostbite | Spell | p.156 | Disadvantage on the target's next weapon attack before the end of its next turn, then the effect is spent. | table | Played |
-| Zephyr Strike | Spell | p.171 | The caster's movement provokes no opportunity attacks while the spell lasts. | table | Validated |
-| Psychic Scream | Spell | p.163 | A stunned target repeats the save at the end of each of its turns. | table | Played |
-| Holy Weapon | Spell | p.157 | A creature blinded by the burst repeats the save at the end of each of its turns. | table | Validated |
-| Earth Tremor | Spell | p.155 | No damage on a successful save (the imported data gives half). | table | Played |
-| Pyrotechnics | Spell | p.163 | Blinded by the fireworks ends at the end of the caster's next turn. | table | Validated |
-| Snare | Spell | p.165 | A restrained creature repeats the save at the end of each of its turns. | table | Validated |
-| Watery Sphere | Spell | p.170 | A restrained creature repeats the save at the end of each of its turns. | table | Validated |
-| Power Word Pain | Spell | p.163 | The target repeats the Constitution save at the end of each of its turns. | table | Validated |
-| Wall of Light | Spell | p.170 | A blinded creature repeats the save at the end of each of its turns. | table | Validated |
-| Ghostly Gaze (Eldritch Invocation) | Sense | p.56 | A sight that walls do not stop within 30 ft, carried by the effect the invocation places on its user; off while the user is Blinded. | table | Pending |
-
-### AI · Acquisitions Incorporated (2019)
-
-Not published on Foundry.
-
-| Rule | Kind | Page | What the module adds | Handled in | Status |
-|---|---|---|---|---|---|
-| Incite Greed | Spell | p.76 | A charmed target repeats the save at the end of each of its turns. | table | Validated |
-
-### FTD · Fizban's Treasury of Dragons (2021)
-
-Not published on Foundry.
-
-| Rule | Kind | Page | What the module adds | Handled in | Status |
-|---|---|---|---|---|---|
-| Raulothim's Psychic Lance | Spell | p.21 | Incapacitated ends at the start of the caster's next turn. | table | Played |
-
-### MPMM · Mordenkainen Presents: Monsters of the Multiverse (2022)
-
-Not published on Foundry.
-
-| Rule | Kind | Page | What the module adds | Handled in | Status |
-|---|---|---|---|---|---|
-| Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Pending |
-
-24 rules: 14 played, 8 validated, 2 pending.
-<!-- /auto:rules -->
-
-The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell
-brought in by another tool keeps the engine's general rules only. The class features of the Player's Handbook (2024) use the
-ids of the official module, the same ids DAS · Core's own entries cite: there the pack completes an entry the engine already
-has.
-
-Shadow Blade, Booming Blade and Green-Flame Blade are handled in code and recognised by their dnd5e identifier alone, so they
-work whatever tool imported the spell. Psychic Veil and Dreadful Strikes are completed in code too, on top of their entry.
-
-The module also declares Plutonium to DAS · Core's world diagnostic as an item importer (`scripts/importers.mjs`), on an
-engine that has `api.diagnostic.registerImporter`.
+<!-- auto:summary -->
+**24 rules** from **7 rulebooks**: 14 played in a running world, 8 validated by the engine's
+validator but not played, 2 pending (written for a DAS · Core that is not released yet).
+The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md)**.
+<!-- /auto:summary -->
 
 ## 📚 Progress by rulebook
 
@@ -700,15 +610,10 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 Counts of 2026-11-19, monsters of 2026-11-20 (docs/books.json); packages read on 2026-11-20 (docs/foundry-modules.json). "(+n)": rules of this pack on an entry already counted under DAS · Core (the pack completes the engine's entry, or serves another identifier of the same name); they are not added to the bar. Not counted, the catalogue having no such entry: Life Sense (MPMM).
 <!-- /auto:books -->
 
-## 🔒 What the GM's client does on a player's behalf
-
-A player cannot write on a creature they do not own, so the booming energy, its damage and the leaping fire are applied by the
-active GM's client. It works from the chat card of the attack the engine settled, and checks again what it reads there: the
-card's author must own the caster, the caster must have the cantrip, the level is read from the caster, the creature the fire
-leaps to must stand within 5 feet of the creature that was hit, and each card is used once. The damage is rolled on the GM's
-client. The only thing a player's client sends is which neighbouring creature the fire leaps to.
-
 ## ⚠️ Known limitations
+
+Booming Blade and Green-Flame Blade act on creatures the player does not own, so part of them runs on the active GM's
+client, which checks again what it reads: see [What the GM's client does on a player's behalf](https://github.com/Aiacos/das-rulepack/blob/master/docs/GM-CLIENT.md).
 
 - Booming Blade, Green-Flame Blade: the cast is counted by the engine as an attack with the weapon, not as a spell. A caster
   with Extra Attack is therefore still offered the other attacks of the Attack action, which the spell does not give; a
@@ -757,7 +662,9 @@ scripts/
 docs/
   books.json               entries per official rulebook, what DAS · Core covers (counts only, method and date)
   foundry-modules.json     official Foundry VTT packages and the book each corresponds to (source and date)
-tools/books-progress.mjs   writes the generated blocks of this README (`npm run books`)
+  RULES.md                 every rule, book by book (generated)
+  GM-CLIENT.md             what the GM's client does on a player's behalf
+tools/books-progress.mjs   writes the generated blocks of this README and of docs/RULES.md (`npm run books`)
 tests/
 ```
 
@@ -784,9 +691,9 @@ npm run books
 ```
 
 Pure rules live in `scripts/core/` and are tested with Vitest; Foundry glue lives next to them in `scripts/`; declarative
-rules are in `scripts/rules/books/`. `npm run books` rewrites the generated blocks of this README (a test fails when they
-are stale). `./build.sh` builds the two release files in `releases/`: the zip (`scripts/`, `lang/` and the top-level documents;
-`docs/`, `tools/` and `tests/` are not shipped) and the `module.json` to upload next to it.
+rules are in `scripts/rules/books/`. `npm run books` rewrites the generated blocks of this README and of `docs/RULES.md` (a test fails when
+they are stale). `./build.sh` builds the two release files in `releases/`: the zip (`scripts/`, `lang/` and the top-level documents;
+`docs/`, `tools/` and `tests/` are not shipped, which is why this README links to `docs/` on GitHub) and the `module.json` to upload next to it.
 
 ## 📄 License
 

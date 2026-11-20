@@ -1,5 +1,12 @@
 # 📝 Changelog
 
+## Unreleased
+
+- README: monsters are in the progress bars again, measured feature by feature (a monster counts when DAS · Core leaves
+  none of its features open); the counts are in `docs/books.json`.
+- README made lighter: the list of every rule, book by book, is now `docs/RULES.md` (generated), and what the GM's client
+  does on a player's behalf is `docs/GM-CLIENT.md`. Nothing was removed.
+
 ## 0.6.0 — 2026-11-20 (beta)
 
 First version with an installable manifest. 0.5.0 was never released: what was written under that number is here.

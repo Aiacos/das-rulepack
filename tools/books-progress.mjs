@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Progress by rulebook, and the list of rules by book, written into README.md.
+ * Progress by rulebook and the summary of the rules, written into README.md; the list of rules by book, into docs/RULES.md.
  *
- *   node tools/books-progress.mjs          rewrites the two generated blocks of README.md
- *   node tools/books-progress.mjs --check  changes nothing; exit code 1 when README.md is stale
+ *   node tools/books-progress.mjs          rewrites the generated blocks of both files
+ *   node tools/books-progress.mjs --check  changes nothing; exit code 1 when one of them is stale
  *
  * Sources:
  *  - scripts/rules/index.mjs      the pack's own rules, per book — the source of truth for what this pack covers;
@@ -21,6 +21,9 @@ const ROOT = resolve(fileURLToPath(import.meta.url), "../..");
 const read = file => JSON.parse(readFileSync(resolve(ROOT, file), "utf8"));
 
 export const README = resolve(ROOT, "README.md");
+export const RULES_DOC = resolve(ROOT, "docs/RULES.md");
+/** docs/ is not in the release zip, and the README is: its links to docs/ are absolute. */
+export const DOCS_URL = "https://github.com/Aiacos/das-rulepack/blob/master/docs/";
 export const CATALOG = read("docs/books.json");
 export const FOUNDRY = read("docs/foundry-modules.json");
 
@@ -228,28 +231,41 @@ export function renderRules() {
   return out.join("\n");
 }
 
+/** The block between `<!-- auto:summary -->` and `<!-- /auto:summary -->` of the README: three lines, and the link. */
+export function renderSummary() {
+  const count = status => RULES.filter(rule => rule.status === status).length;
+  const books = new Set(RULES.map(rule => rule.book)).size;
+  return [
+    `**${RULES.length} rules** from **${books} rulebooks**: ${count("played")} played in a running world, ${count("validated")} validated by the engine's`,
+    `validator but not played, ${count("pending")} pending (written for a DAS · Core that is not released yet).`,
+    `The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](${DOCS_URL}RULES.md)**.`
+  ].join("\n");
+}
+
 /** Replaces what stands between the two markers of a block. */
 function replaceBlock(text, name, body) {
   const open = `<!-- auto:${name} -->`, close = `<!-- /auto:${name} -->`;
   const start = text.indexOf(open), end = text.indexOf(close);
-  if ( (start < 0) || (end < start) ) throw new Error(`README.md: markers ${open} … ${close} not found`);
+  if ( (start < 0) || (end < start) ) throw new Error(`markers ${open} … ${close} not found`);
   return `${text.slice(0, start + open.length)}\n${body}\n${text.slice(end)}`;
 }
 
-/** The README with its generated blocks brought up to date. */
-export function refresh(text) {
-  return replaceBlock(replaceBlock(text, "books", renderBooks()), "rules", renderRules());
-}
+/** The generated files: each with the function that brings its blocks up to date. */
+export const GENERATED = Object.freeze([
+  { file: README, name: "README.md", refresh: text => replaceBlock(replaceBlock(text, "summary", renderSummary()), "books", renderBooks()) },
+  { file: RULES_DOC, name: "docs/RULES.md", refresh: text => replaceBlock(text, "rules", renderRules()) }
+]);
 
 if ( process.argv[1] && (import.meta.url === pathToFileURL(process.argv[1]).href) ) {
-  const before = readFileSync(README, "utf8");
-  const after = refresh(before);
+  const check = process.argv.includes("--check");
   for ( const line of differences() ) console.log(`note: ${line}`);
-  if ( process.argv.includes("--check") ) {
-    if ( after !== before ) { console.error("README.md is stale: run `npm run books`."); process.exit(1); }
-    console.log("README.md is up to date.");
-  } else if ( after !== before ) {
-    writeFileSync(README, after);
-    console.log("README.md updated.");
-  } else console.log("README.md already up to date.");
+  let stale = 0;
+  for ( const { file, name, refresh } of GENERATED ) {
+    const before = readFileSync(file, "utf8");
+    const after = refresh(before);
+    if ( after === before ) console.log(`${name} is up to date.`);
+    else if ( check ) { stale++; console.error(`${name} is stale: run \`npm run books\`.`); }
+    else { writeFileSync(file, after); console.log(`${name} updated.`); }
+  }
+  if ( stale ) process.exit(1);
 }

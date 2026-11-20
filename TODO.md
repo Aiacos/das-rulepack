@@ -10,7 +10,7 @@ Data for every non-official spell imported by DDB Importer (activity and effect 
 
 ## Books
 
-Progress by rulebook: README, "Progress by rulebook" (`npm run books`). One module per book in `scripts/rules/books/`.
+Progress by rulebook: README, "Progress by rulebook"; every rule by book: `docs/RULES.md` (both written by `npm run books`). One module per book in `scripts/rules/books/`.
 
 - [ ] Tasha's Cauldron of Everything has an official Foundry module (`dnd-tashas-cauldron`, read on 2026-11-20). The pack's
       TCE rules were written against items imported by DDB Importer: re-check Lightning Lure, Tasha's Mind Whip and Tasha's

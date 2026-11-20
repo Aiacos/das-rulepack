@@ -1,6 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { README, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, parts, PARTS, refresh, renderBooks, renderRules }
+import { resolve } from "node:path";
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+import { README, RULES_DOC, DOCS_URL, GENERATED, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, parts, PARTS, renderBooks,
+  renderRules, renderSummary }
   from "../tools/books-progress.mjs";
 import { RULES } from "../scripts/rules/index.mjs";
 
@@ -128,10 +132,40 @@ describe("progress by rulebook", () => {
     for ( const rule of RULES ) expect(block.split(`| ${rule.name}`).length - 1, rule.identifier).toBe(1);
   });
 
-  it("README.md is up to date (otherwise: npm run books)", () => {
-    const text = readFileSync(README, "utf8");
-    expect(refresh(text)).toBe(text);
-    expect(text).toContain("## 📚 Progress by rulebook");
-    expect(text).toContain("## 🗂️ Layout");
+  it("README.md and docs/RULES.md are up to date (otherwise: npm run books)", () => {
+    expect(GENERATED.map(g => g.file)).toEqual([README, RULES_DOC]);
+    for ( const { file, name, refresh } of GENERATED ) {
+      const text = readFileSync(file, "utf8");
+      expect(refresh(text) === text, `${name} is stale`).toBe(true);
+    }
+    const readme = readFileSync(README, "utf8");
+    expect(readme).toContain("## 📚 Progress by rulebook");
+    expect(readme).toContain("## 🗂️ Layout");
+    expect(readme).toContain(renderSummary());
+    expect(readFileSync(RULES_DOC, "utf8")).toContain(renderRules());
+  });
+
+  it("the README sums the rules up in three lines and sends to docs/RULES.md near its top", () => {
+    const summary = renderSummary();
+    expect(summary.split("\n").length).toBe(3);
+    expect(summary).toContain(`**${RULES.length} rules** from **${new Set(RULES.map(rule => rule.book)).size} rulebooks**`);
+    const readme = readFileSync(README, "utf8");
+    expect(readme.split("\n").findIndex(line => line.includes(`${DOCS_URL}RULES.md`))).toBeLessThan(20);
+    expect(readme).not.toContain("<!-- auto:rules -->");
+  });
+
+  it("every link of README, CHANGELOG, TODO and docs/*.md resolves: a file of the repository, or a heading of the same file", () => {
+    const { existsSync } = require("node:fs");
+    const anchor = heading => heading.trim().toLowerCase().replace(/[^\p{L}\p{N}\p{M}\uFE0F _-]/gu, "").replaceAll(" ", "-");
+    for ( const file of ["README.md", "CHANGELOG.md", "TODO.md", "docs/RULES.md", "docs/GM-CLIENT.md"] ) {
+      const path = resolve(import.meta.dirname, "..", file);
+      const text = readFileSync(path, "utf8");
+      const anchors = [...text.matchAll(/^#{1,6} (.+)$/gm)].map(([, heading]) => anchor(heading));
+      for ( const [, target] of text.matchAll(/\]\(([^)\s]+)\)/g) ) {
+        if ( target.startsWith("#") ) expect(anchors, `${file}: ${target}`).toContain(decodeURIComponent(target.slice(1)));
+        else if ( target.startsWith(DOCS_URL) ) expect(existsSync(resolve(import.meta.dirname, "../docs", target.slice(DOCS_URL.length))), `${file}: ${target}`).toBe(true);
+        else if ( !/^https?:/.test(target) ) expect(existsSync(resolve(path, "..", target)), `${file}: ${target}`).toBe(true);
+      }
+    }
   });
 });
