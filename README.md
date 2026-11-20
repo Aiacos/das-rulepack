@@ -144,34 +144,37 @@ module, and the books that are not, where content reaches the table through impo
 below the tables one block per rulebook with a bar for each of its parts.
 
 How to read it: this is a **static comparison by name** — each entry of a book (spell, feat, optional feature, item, class
-or subclass feature, monster) is looked up among the identifiers of DAS · Core and of this pack. "Covered" means a dedicated
+or subclass feature) is looked up among the identifiers of DAS · Core and of this pack. "Covered" means a dedicated
 entry exists, not that the rule was played; and many entries need no dedicated rule at all, because the item's own data is
-enough. The SRD itself is covered by DAS · Core, not by this pack. The counts and their method are in `docs/books.json`;
+enough. Monsters are in no total and no bar: the engine reads a creature's traits and actions
+from its sheet text, so only their number is given. The SRD itself is covered by DAS · Core, not by this pack. The counts and their method are in `docs/books.json`;
 the "This pack" column is recomputed from the pack's own rules.
 
 <!-- auto:books -->
 ### Overall
 
-| | Books | Entries | DAS · Core | This pack | Core + pack |
-|---|---:|---:|---:|---:|---|
-| **All rulebooks** | **40** | **7247** | **1200** | **19 (+4)** | `███░░░░░░░░░░░░░░░░░` 17% |
-| A. Official Foundry module | 7 | 2979 | 684 | 5 (+3) | `█████░░░░░░░░░░░░░░░` 23% |
-| B. Not on Foundry | 33 | 4268 | 516 | 14 (+1) | `██░░░░░░░░░░░░░░░░░░` 12% |
+| | Books | Entries | DAS · Core | This pack | Core + pack | Monsters |
+|---|---:|---:|---:|---:|---|---:|
+| **All rulebooks** | **40** | **4859** | **1195** | **19 (+4)** | `█████░░░░░░░░░░░░░░░` 25% | **2388** |
+| A. Official Foundry module | 7 | 2370 | 682 | 5 (+3) | `██████░░░░░░░░░░░░░░` 29% | 609 |
+| B. Not on Foundry | 33 | 2489 | 513 | 14 (+1) | `████░░░░░░░░░░░░░░░░` 21% | 1779 |
+
+Entries are spells, class and subclass features, feats, options and items. Monsters are in no total and no bar: the engine has no entry per creature, it reads a creature's traits and actions from its sheet text, so only their number is given.
 
 ### A. Published as an official Foundry VTT module
 
 DAS · Core itself automates the official modules it was written against (see the "DAS · Core" column), and it accepts nothing outside the SRD in its public repositories, so the non-SRD rules of these books still belong in this pack.
 
-| Code | Title | Year | Group | Foundry module | Entries | DAS · Core | This pack | Core + pack |
-|---|---|---|---|---|---:|---:|---:|---|
-| TCE | Tasha's Cauldron of Everything | 2020 | supplement | `dnd-tashas-cauldron` | 463 | 54 | 5 | `█░░░░░░░░░` 13% |
-| XDMG | Dungeon Master's Guide (2024) | 2024 | core | `dnd-dungeon-masters-guide` | 586 | 116 | 0 | `██░░░░░░░░` 20% |
-| XPHB | Player's Handbook (2024) | 2024 | core | `dnd-players-handbook` | 1119 | 513 | 0 (+3) | `█████░░░░░` 46% |
-| EFA | Eberron: Forge of the Artificer | 2025 | setting | `dnd-forge-artificer` | 114 | 0 | 0 | `░░░░░░░░░░` 0% |
-| FRAIF | Forgotten Realms: Adventures in Faerûn | 2025 | setting | `dnd-adventures-faerun` | 60 | 0 | 0 | `░░░░░░░░░░` 0% |
-| FRHOF | Forgotten Realms: Heroes of Faerûn | 2025 | setting | `dnd-heroes-faerun` | 133 | 0 | 0 | `░░░░░░░░░░` 0% |
-| XMM | Monster Manual (2025) | 2025 | core | `dnd-monster-manual` | 504 | 1 | 0 | `░░░░░░░░░░` <1% |
-| **Total** | 7 books |  |  |  | **2979** | **684** | **5 (+3)** | `██░░░░░░░░` 23% |
+| Code | Title | Year | Group | Foundry module | Entries | DAS · Core | This pack | Core + pack | Monsters |
+|---|---|---|---|---|---:|---:|---:|---|---:|
+| TCE | Tasha's Cauldron of Everything | 2020 | supplement | `dnd-tashas-cauldron` | 443 | 54 | 5 | `█░░░░░░░░░` 13% | 20 |
+| XDMG | Dungeon Master's Guide (2024) | 2024 | core | `dnd-dungeon-masters-guide` | 584 | 116 | 0 | `██░░░░░░░░` 20% | 2 |
+| XPHB | Player's Handbook (2024) | 2024 | core | `dnd-players-handbook` | 1104 | 512 | 0 (+3) | `█████░░░░░` 46% | 15 |
+| EFA | Eberron: Forge of the Artificer | 2025 | setting | `dnd-forge-artificer` | 87 | 0 | 0 | `░░░░░░░░░░` 0% | 27 |
+| FRAIF | Forgotten Realms: Adventures in Faerûn | 2025 | setting | `dnd-adventures-faerun` | 18 | 0 | 0 | `░░░░░░░░░░` 0% | 42 |
+| FRHOF | Forgotten Realms: Heroes of Faerûn | 2025 | setting | `dnd-heroes-faerun` | 133 | 0 | 0 | `░░░░░░░░░░` 0% | 0 |
+| XMM | Monster Manual (2025) | 2025 | core | `dnd-monster-manual` | 1 | 0 | 0 | `░░░░░░░░░░` 0% | 503 |
+| **Total** | 7 books |  |  |  | **2370** | **682** | **5 (+3)** | `███░░░░░░░` 29% | **609** |
 
 Official packages with no book in this catalogue (not counted): Ravenloft: The Horrors Within (`dnd-ravenloft-horrors-within`), Arcana Unleashed (`dnd-arcana-unleashed`), Arcana Unleashed: Deadfall (`dnd-deadfall`), Tomb of Annihilation (`dnd-tomb-annihilation`), Phandelver and Below: The Shattered Obelisk (`dnd-phandelver-below`), Heroes of the Borderlands (`dnd-heroes-borderlands`), Dungeons & Dragons: World of Warcraft (`dnd-world-warcraft`). The game system (`dnd5e`) carries the SRD in its own compendia.
 
@@ -179,46 +182,46 @@ Official packages with no book in this catalogue (not counted): Ravenloft: The H
 
 The content of these books reaches the table through importers, with no rules attached: this is where the pack matters most.
 
-| Code | Title | Year | Group | Entries | DAS · Core | This pack | Core + pack |
-|---|---|---|---|---:|---:|---:|---|
-| DMG | Dungeon Master's Guide (2014) | 2014 | core | 518 | 108 | 0 | `██░░░░░░░░` 21% |
-| MM | Monster Manual (2014) | 2014 | core | 454 | 1 | 0 | `░░░░░░░░░░` <1% |
-| PHB | Player's Handbook (2014) | 2014 | core | 1038 | 373 | 0 (+1) | `████░░░░░░` 36% |
-| SCAG | Sword Coast Adventurer's Guide | 2015 | setting | 39 | 2 | 0 | `█░░░░░░░░░` 5% |
-| VGM | Volo's Guide to Monsters | 2016 | supplement | 150 | 1 | 0 | `░░░░░░░░░░` 1% |
-| OGA | One Grung Above | 2017 | supplement-alt | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
-| XGE | Xanathar's Guide to Everything | 2017 | supplement | 379 | 25 | 12 | `█░░░░░░░░░` 10% |
-| GGR | Guildmasters' Guide to Ravnica | 2018 | setting | 121 | 0 | 0 | `░░░░░░░░░░` 0% |
-| MTF | Mordenkainen's Tome of Foes | 2018 | supplement | 145 | 0 | 0 | `░░░░░░░░░░` 0% |
-| AI | Acquisitions Incorporated | 2019 | supplement | 52 | 1 | 1 | `░░░░░░░░░░` 4% |
-| AWM | Adventure with Muk | 2019 | supplement-alt | 11 | 0 | 0 | `░░░░░░░░░░` 0% |
-| ERLW | Eberron: Rising from the Last War | 2019 | setting | 73 | 0 | 0 | `░░░░░░░░░░` 0% |
-| EGW | Explorer's Guide to Wildemount | 2020 | setting | 166 | 0 | 0 | `░░░░░░░░░░` 0% |
-| MGELFT | Muk's Guide to Everything He Learned From Tasha | 2020 | supplement-alt | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
-| MOT | Mythic Odysseys of Theros | 2020 | setting | 63 | 0 | 0 | `░░░░░░░░░░` 0% |
-| DOD | Domains of Delight | 2021 | supplement-alt | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
-| FTD | Fizban's Treasury of Dragons | 2021 | supplement | 131 | 0 | 1 | `░░░░░░░░░░` 1% |
-| MABJOV | Minsc and Boo's Journal of Villainy | 2021 | supplement-alt | 56 | 0 | 0 | `░░░░░░░░░░` 0% |
-| SCC | Strixhaven: A Curriculum of Chaos | 2021 | setting | 72 | 0 | 0 | `░░░░░░░░░░` 0% |
-| VRGR | Van Richten's Guide to Ravenloft | 2021 | setting | 51 | 4 | 0 | `█░░░░░░░░░` 8% |
-| AAG | Astral Adventurer's Guide | 2022 | setting | 22 | 0 | 0 | `░░░░░░░░░░` 0% |
-| BAM | Boo's Astral Menagerie | 2022 | setting | 73 | 0 | 0 | `░░░░░░░░░░` 0% |
-| MPMM | Mordenkainen Presents: Monsters of the Multiverse | 2022 | supplement | 261 | 1 | 0 | `░░░░░░░░░░` <1% |
-| AATM | Adventure Atlas: The Mortuary | 2023 | supplement-alt | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
-| BGG | Bigby Presents: Glory of the Giants | 2023 | supplement | 117 | 0 | 0 | `░░░░░░░░░░` 0% |
-| BMT | The Book of Many Things | 2023 | supplement | 118 | 0 | 0 | `░░░░░░░░░░` 0% |
-| HAT-TG | Thieves' Gallery | 2023 | supplement-alt | 7 | 0 | 0 | `░░░░░░░░░░` 0% |
-| MCV4EC | Monstrous Compendium Volume 4: Eldraine Creatures | 2023 | supplement-alt | 25 | 0 | 0 | `░░░░░░░░░░` 0% |
-| MPP | Morte's Planar Parade | 2023 | setting | 54 | 0 | 0 | `░░░░░░░░░░` 0% |
-| SATO | Sigil and the Outlands | 2023 | setting | 14 | 0 | 0 | `░░░░░░░░░░` 0% |
-| ABH | Astarion's Book of Hungers | 2025 | supplement-alt | 21 | 0 | 0 | `░░░░░░░░░░` 0% |
-| LFL | Lorwyn: First Light | 2025 | setting-alt | 12 | 0 | 0 | `░░░░░░░░░░` 0% |
-| NF | Netheril's Fall | 2025 | setting-alt | 14 | 0 | 0 | `░░░░░░░░░░` 0% |
-| **Total** | 33 books |  |  | **4268** | **516** | **14 (+1)** | `█░░░░░░░░░` 12% |
+| Code | Title | Year | Group | Entries | DAS · Core | This pack | Core + pack | Monsters |
+|---|---|---|---|---:|---:|---:|---|---:|
+| DMG | Dungeon Master's Guide (2014) | 2014 | core | 515 | 108 | 0 | `██░░░░░░░░` 21% | 3 |
+| MM | Monster Manual (2014) | 2014 | core | 4 | 0 | 0 | `░░░░░░░░░░` 0% | 450 |
+| PHB | Player's Handbook (2014) | 2014 | core | 1033 | 373 | 0 (+1) | `████░░░░░░` 36% | 5 |
+| SCAG | Sword Coast Adventurer's Guide | 2015 | setting | 39 | 2 | 0 | `█░░░░░░░░░` 5% | 0 |
+| VGM | Volo's Guide to Monsters | 2016 | supplement | 7 | 0 | 0 | `░░░░░░░░░░` 0% | 143 |
+| OGA | One Grung Above | 2017 | supplement-alt | 1 | 0 | 0 | `░░░░░░░░░░` 0% | 0 |
+| XGE | Xanathar's Guide to Everything | 2017 | supplement | 377 | 25 | 12 | `█░░░░░░░░░` 10% | 2 |
+| GGR | Guildmasters' Guide to Ravnica | 2018 | setting | 42 | 0 | 0 | `░░░░░░░░░░` 0% | 79 |
+| MTF | Mordenkainen's Tome of Foes | 2018 | supplement | 5 | 0 | 0 | `░░░░░░░░░░` 0% | 140 |
+| AI | Acquisitions Incorporated | 2019 | supplement | 30 | 1 | 1 | `█░░░░░░░░░` 7% | 22 |
+| AWM | Adventure with Muk | 2019 | supplement-alt | 0 | 0 | 0 | — | 11 |
+| ERLW | Eberron: Rising from the Last War | 2019 | setting | 32 | 0 | 0 | `░░░░░░░░░░` 0% | 41 |
+| EGW | Explorer's Guide to Wildemount | 2020 | setting | 118 | 0 | 0 | `░░░░░░░░░░` 0% | 48 |
+| MGELFT | Muk's Guide to Everything He Learned From Tasha | 2020 | supplement-alt | 0 | 0 | 0 | — | 6 |
+| MOT | Mythic Odysseys of Theros | 2020 | setting | 12 | 0 | 0 | `░░░░░░░░░░` 0% | 51 |
+| DOD | Domains of Delight | 2021 | supplement-alt | 0 | 0 | 0 | — | 1 |
+| FTD | Fizban's Treasury of Dragons | 2021 | supplement | 46 | 0 | 1 | `░░░░░░░░░░` 2% | 85 |
+| MABJOV | Minsc and Boo's Journal of Villainy | 2021 | supplement-alt | 0 | 0 | 0 | — | 56 |
+| SCC | Strixhaven: A Curriculum of Chaos | 2021 | setting | 25 | 0 | 0 | `░░░░░░░░░░` 0% | 47 |
+| VRGR | Van Richten's Guide to Ravenloft | 2021 | setting | 16 | 4 | 0 | `███░░░░░░░` 25% | 35 |
+| AAG | Astral Adventurer's Guide | 2022 | setting | 22 | 0 | 0 | `░░░░░░░░░░` 0% | 0 |
+| BAM | Boo's Astral Menagerie | 2022 | setting | 1 | 0 | 0 | `░░░░░░░░░░` 0% | 72 |
+| MPMM | Mordenkainen Presents: Monsters of the Multiverse | 2022 | supplement | 0 | 0 | 0 | — | 261 |
+| AATM | Adventure Atlas: The Mortuary | 2023 | supplement-alt | 0 | 0 | 0 | — | 3 |
+| BGG | Bigby Presents: Glory of the Giants | 2023 | supplement | 45 | 0 | 0 | `░░░░░░░░░░` 0% | 72 |
+| BMT | The Book of Many Things | 2023 | supplement | 77 | 0 | 0 | `░░░░░░░░░░` 0% | 41 |
+| HAT-TG | Thieves' Gallery | 2023 | supplement-alt | 0 | 0 | 0 | — | 7 |
+| MCV4EC | Monstrous Compendium Volume 4: Eldraine Creatures | 2023 | supplement-alt | 0 | 0 | 0 | — | 25 |
+| MPP | Morte's Planar Parade | 2023 | setting | 0 | 0 | 0 | — | 54 |
+| SATO | Sigil and the Outlands | 2023 | setting | 14 | 0 | 0 | `░░░░░░░░░░` 0% | 0 |
+| ABH | Astarion's Book of Hungers | 2025 | supplement-alt | 16 | 0 | 0 | `░░░░░░░░░░` 0% | 5 |
+| LFL | Lorwyn: First Light | 2025 | setting-alt | 4 | 0 | 0 | `░░░░░░░░░░` 0% | 8 |
+| NF | Netheril's Fall | 2025 | setting-alt | 8 | 0 | 0 | `░░░░░░░░░░` 0% | 6 |
+| **Total** | 33 books |  |  | **2489** | **513** | **14 (+1)** | `██░░░░░░░░` 21% | **1779** |
 
 ### Each rulebook, part by part
 
-One block per rulebook, to open: its spells, class and subclass features, feats, options, items and monsters, each with its own bar. A part the book has no entry for is left out. Monsters are counted like the rest, one entry per creature looked up by the creature's own name: the count says nothing of a creature's traits and actions, which is where an engine entry for a creature would sit.
+One block per rulebook, to open: its spells, class and subclass features, feats, options, items and monsters, each with its own bar. A part the book has no entry for is left out. Monsters are given as a number only, with no bar: they are read from the sheet text, not measured by entry.
 
 **A. Published as an official Foundry VTT module**
 
@@ -232,7 +235,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Feats | 15 | 5 | 0 | `███░░░░░░░` 33% |
 | Options (invocations, metamagic, manoeuvres…) | 47 | 8 | 0 | `██░░░░░░░░` 17% |
 | Items | 84 | 1 | 0 | `░░░░░░░░░░` 1% |
-| Monsters | 20 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 20 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -242,7 +245,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 584 | 116 | 0 | `██░░░░░░░░` 20% |
-| Monsters | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 2 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -256,7 +259,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Feats | 76 | 46 | 0 | `██████░░░░` 61% |
 | Options (invocations, metamagic, manoeuvres…) | 58 | 32 | 0 | `██████░░░░` 55% |
 | Items | 123 | 16 | 0 | `█░░░░░░░░░` 13% |
-| Monsters | 15 | 1 | 0 | `█░░░░░░░░░` 7% |
+| Monsters | 15 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -270,7 +273,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Feats | 28 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Options (invocations, metamagic, manoeuvres…) | 4 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 27 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 27 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -280,7 +283,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 18 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 42 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 42 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -297,12 +300,12 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 </details>
 
 <details>
-<summary><b>XMM</b> · Monster Manual (2025) — <code>░░░░░░░░░░</code> &lt;1%</summary>
+<summary><b>XMM</b> · Monster Manual (2025) — <code>░░░░░░░░░░</code> 0%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 503 | 1 | 0 | `░░░░░░░░░░` <1% |
+| Monsters | 503 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -315,17 +318,17 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 |---|---:|---:|---:|---|
 | Class and subclass features | 15 | 1 | 0 | `█░░░░░░░░░` 7% |
 | Items | 500 | 107 | 0 | `██░░░░░░░░` 21% |
-| Monsters | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 3 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>MM</b> · Monster Manual (2014) — <code>░░░░░░░░░░</code> &lt;1%</summary>
+<summary><b>MM</b> · Monster Manual (2014) — <code>░░░░░░░░░░</code> 0%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 4 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 450 | 1 | 0 | `░░░░░░░░░░` <1% |
+| Monsters | 450 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -339,7 +342,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Feats | 42 | 23 | 0 | `█████░░░░░` 55% |
 | Options (invocations, metamagic, manoeuvres…) | 82 | 31 | 0 | `████░░░░░░` 38% |
 | Items | 168 | 8 | 0 | `░░░░░░░░░░` 5% |
-| Monsters | 5 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 5 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -353,12 +356,12 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 </details>
 
 <details>
-<summary><b>VGM</b> · Volo's Guide to Monsters — <code>░░░░░░░░░░</code> 1%</summary>
+<summary><b>VGM</b> · Volo's Guide to Monsters — <code>░░░░░░░░░░</code> 0%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 7 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 143 | 1 | 0 | `░░░░░░░░░░` 1% |
+| Monsters | 143 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -381,7 +384,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Feats | 15 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Options (invocations, metamagic, manoeuvres…) | 22 | 1 | 1 | `█░░░░░░░░░` 9% |
 | Items | 43 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 2 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -392,7 +395,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 |---|---:|---:|---:|---|
 | Spells | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 41 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 79 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 79 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -403,27 +406,27 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 |---|---:|---:|---:|---|
 | Feats | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 4 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 140 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 140 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>AI</b> · Acquisitions Incorporated — <code>░░░░░░░░░░</code> 4%</summary>
+<summary><b>AI</b> · Acquisitions Incorporated — <code>█░░░░░░░░░</code> 7%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Spells | 7 | 0 | 1 | `█░░░░░░░░░` 14% |
 | Items | 23 | 1 | 0 | `░░░░░░░░░░` 4% |
-| Monsters | 22 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 22 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>AWM</b> · Adventure with Muk — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>AWM</b> · Adventure with Muk — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 11 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 11 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -434,7 +437,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 |---|---:|---:|---:|---|
 | Feats | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 30 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 41 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 41 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -446,16 +449,16 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Spells | 15 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Class and subclass features | 18 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 85 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 48 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 48 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>MGELFT</b> · Muk's Guide to Everything He Learned From Tasha — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>MGELFT</b> · Muk's Guide to Everything He Learned From Tasha — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 6 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -465,21 +468,21 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 12 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 51 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 51 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>DOD</b> · Domains of Delight — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>DOD</b> · Domains of Delight — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 1 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>FTD</b> · Fizban's Treasury of Dragons — <code>░░░░░░░░░░</code> 1%</summary>
+<summary><b>FTD</b> · Fizban's Treasury of Dragons — <code>░░░░░░░░░░</code> 2%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
@@ -487,16 +490,16 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Class and subclass features | 12 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Feats | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 24 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 85 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 85 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>MABJOV</b> · Minsc and Boo's Journal of Villainy — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>MABJOV</b> · Minsc and Boo's Journal of Villainy — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 56 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 56 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -508,18 +511,18 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Spells | 5 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Feats | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 18 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 47 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 47 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>VRGR</b> · Van Richten's Guide to Ravenloft — <code>█░░░░░░░░░</code> 8%</summary>
+<summary><b>VRGR</b> · Van Richten's Guide to Ravenloft — <code>███░░░░░░░</code> 25%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Class and subclass features | 11 | 3 | 0 | `███░░░░░░░` 27% |
 | Items | 5 | 1 | 0 | `██░░░░░░░░` 20% |
-| Monsters | 35 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 35 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -539,25 +542,25 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 72 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 72 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>MPMM</b> · Mordenkainen Presents: Monsters of the Multiverse — <code>░░░░░░░░░░</code> &lt;1%</summary>
+<summary><b>MPMM</b> · Mordenkainen Presents: Monsters of the Multiverse — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 261 | 1 | 0 | `░░░░░░░░░░` <1% |
+| Monsters | 261 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>AATM</b> · Adventure Atlas: The Mortuary — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>AATM</b> · Adventure Atlas: The Mortuary — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 3 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -569,7 +572,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Class and subclass features | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Feats | 8 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 31 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 72 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 72 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -581,34 +584,34 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Spells | 3 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Feats | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 73 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 41 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 41 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>HAT-TG</b> · Thieves' Gallery — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>HAT-TG</b> · Thieves' Gallery — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 7 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 7 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>MCV4EC</b> · Monstrous Compendium Volume 4: Eldraine Creatures — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>MCV4EC</b> · Monstrous Compendium Volume 4: Eldraine Creatures — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 25 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 25 | — | — | read from the sheet text — not measured |
 
 </details>
 
 <details>
-<summary><b>MPP</b> · Morte's Planar Parade — <code>░░░░░░░░░░</code> 0%</summary>
+<summary><b>MPP</b> · Morte's Planar Parade — monsters only, not measured</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
-| Monsters | 54 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 54 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -629,7 +632,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Feats | 16 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 5 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 5 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -640,7 +643,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 |---|---:|---:|---:|---|
 | Feats | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 2 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 8 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 8 | — | — | read from the sheet text — not measured |
 
 </details>
 
@@ -650,7 +653,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 8 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters | 6 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Monsters | 6 | — | — | read from the sheet text — not measured |
 
 </details>
 

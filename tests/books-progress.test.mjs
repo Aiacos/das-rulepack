@@ -56,7 +56,7 @@ describe("progress by rulebook", () => {
     expect(bar(5, 10)).toBe("`█████░░░░░` 50%");
     expect(bar(10, 10)).toBe("`██████████` 100%");
     expect(bar(1, 500)).toBe("`░░░░░░░░░░` <1%");
-    expect(bar(0, 0)).toBe("`░░░░░░░░░░` 0%");
+    expect(bar(0, 0)).toBe("—");   // nothing to measure: a book that has only monsters
     expect(bar(1, 500, { html: true })).toBe("<code>░░░░░░░░░░</code> &lt;1%");
     expect(bar(1, 4, { cells: 20 })).toBe("`█████░░░░░░░░░░░░░░░` 25%");
   });
@@ -80,6 +80,14 @@ describe("progress by rulebook", () => {
     expect(block.slice(b, all)).toContain(`| **Total** | ${others.length} books |`);
     const total = CATALOG.books.reduce((n, x) => n + figures(x).total, 0);
     expect(block.slice(0, a)).toContain(`| **All rulebooks** | **${CATALOG.books.length}** | **${total}** |`);
+    // Monsters are in no total: every total is the sum of the five measured kinds, and the creatures are a column apart.
+    const measured = CATALOG.books.reduce((n, x) => n + Object.entries(x.kinds).filter(([kind]) => kind !== "monster").reduce((m, [, c]) => m + c.total, 0), 0);
+    const core = CATALOG.books.reduce((n, x) => n + Object.entries(x.kinds).filter(([kind]) => kind !== "monster").reduce((m, [, c]) => m + c.core, 0), 0);
+    const monsters = CATALOG.books.reduce((n, x) => n + (x.kinds.monster?.total ?? 0), 0);
+    expect(total).toBe(measured);
+    expect(block.slice(0, a)).toMatch(new RegExp(`\\| \\*\\*All rulebooks\\*\\* \\| \\*\\*40\\*\\* \\| \\*\\*${measured}\\*\\* \\| \\*\\*${core}\\*\\* \\| .* \\| \\*\\*${monsters}\\*\\* \\|$`, "m"));
+    expect(figures(book("MPMM"))).toMatchObject({ total: 0, core: 0, monsters: 261 });
+    expect(block).toContain("| MPMM | Mordenkainen Presents: Monsters of the Multiverse | 2022 | supplement | 0 | 0 | 0 | — | 261 |");
     expect(block.slice(0, a)).toContain("| A. Official Foundry module |");
     expect(block.slice(0, a)).toContain("| B. Not on Foundry |");
   });
@@ -93,8 +101,10 @@ describe("progress by rulebook", () => {
       expect(list.map(part => part.kind)).toEqual(Object.keys(PARTS).filter(kind => b.kinds[kind]?.total > 0));
       expect(Object.keys(b.kinds).filter(kind => !(kind in PARTS)), b.code).toEqual([]);
       const f = figures(b);
-      expect(list.reduce((n, part) => n + part.total, 0), b.code).toBe(f.total);
-      expect(list.reduce((n, part) => n + part.core, 0), b.code).toBe(f.core);
+      const counted = list.filter(part => part.measured);
+      expect(list.filter(part => !part.measured).map(part => part.kind)).toEqual(b.kinds.monster ? ["monster"] : []);
+      expect(counted.reduce((n, part) => n + part.total, 0), b.code).toBe(f.total);
+      expect(counted.reduce((n, part) => n + part.core, 0), b.code).toBe(f.core);
       expect(list.reduce((n, part) => n + part.pack, 0), b.code).toBe(f.pack);
       expect(list.reduce((n, part) => n + part.refined, 0), b.code).toBe(f.refined);
       expect(block, b.code).toContain(`<summary><b>${b.code}</b> · ${b.name} — `);
@@ -102,6 +112,8 @@ describe("progress by rulebook", () => {
     const xge = Object.fromEntries(parts(book("XGE")).map(part => [part.kind, part.pack]));
     expect(xge).toMatchObject({ spell: 11, option: 1, feature: 0 });   // Ghostly Gaze is counted with the options
     expect(block).toContain("| Spells | 95 | 11 | 11 | `██░░░░░░░░` 23% |");
+    expect(block).toContain("| Monsters | 2 | — | — | read from the sheet text — not measured |");
+    expect(block).not.toMatch(/\| Monsters \|.*%/);
   });
 
   it("lists every rule of the pack once in the table of rules", () => {

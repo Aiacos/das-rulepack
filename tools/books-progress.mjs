@@ -33,7 +33,13 @@ export function foundryPackage(code) {
 }
 
 /**
- * The figures of one book.
+ * Monsters are kept out of every total and every bar: DAS · Core has no entry per creature, it reads a creature's traits and
+ * actions from its sheet text, so looking a creature's name up among identifiers measures nothing. Only their number is shown.
+ */
+export const UNMEASURED = "monster";
+
+/**
+ * The figures of one book. Monsters apart (`monsters`: how many creatures the book has).
  *  - total, core: from the catalogue.
  *  - pack: rules of this pack for an entry of the catalogue that DAS · Core has no entry for.
  *  - refined: rules of this pack on an entry the catalogue already counts under DAS · Core (`inCore`).
@@ -41,7 +47,7 @@ export function foundryPackage(code) {
  *  - audit: the `rulepack` count written in docs/books.json.
  */
 export function figures(book) {
-  const kinds = Object.values(book.kinds);
+  const kinds = Object.entries(book.kinds).filter(([kind]) => kind !== UNMEASURED).map(([, counts]) => counts);
   const rules = RULES.filter(rule => rule.book === book.code);
   const counted = rules.filter(rule => catalogKind(rule) !== null);
   return {
@@ -50,7 +56,8 @@ export function figures(book) {
     pack: counted.filter(rule => !rule.inCore).length,
     refined: counted.filter(rule => rule.inCore).length,
     uncounted: rules.filter(rule => catalogKind(rule) === null),
-    audit: kinds.reduce((n, kind) => n + kind.rulepack, 0)
+    audit: kinds.reduce((n, kind) => n + kind.rulepack, 0),
+    monsters: book.kinds[UNMEASURED]?.total ?? 0
   };
 }
 
@@ -79,7 +86,8 @@ const BAR = 10;
 
 /** A text progress bar for done / total; `html` for a place where Markdown is not read (a `<summary>`). */
 export function bar(done, total, { html=false, cells: width=BAR }={}) {
-  const share = total ? Math.min(1, done / total) : 0;
+  if ( !total ) return "—";
+  const share = Math.min(1, done / total);
   const cells = Math.round(share * width);
   const percent = Math.round(share * 100);
   const label = (done > 0 && percent === 0) ? (html ? "&lt;1%" : "<1%") : `${percent}%`;
@@ -103,17 +111,21 @@ export function parts(book) {
   return Object.keys(PARTS).filter(kind => book.kinds[kind]?.total > 0).map(kind => {
     const mine = rules.filter(rule => catalogKind(rule) === kind);
     return { kind, label: PARTS[kind], total: book.kinds[kind].total, core: book.kinds[kind].core,
-      pack: mine.filter(rule => !rule.inCore).length, refined: mine.filter(rule => rule.inCore).length };
+      pack: mine.filter(rule => !rule.inCore).length, refined: mine.filter(rule => rule.inCore).length,
+      measured: kind !== UNMEASURED };
   });
 }
+
+const NOT_MEASURED = "read from the sheet text — not measured";
 
 /** The `<details>` of one book: its overall bar, then one row per part. */
 function details(book) {
   const f = figures(book);
-  const out = [`<details>`, `<summary><b>${book.code}</b> · ${book.name} — ${bar(f.core + f.pack, f.total, { html: true })}</summary>`, "",
+  const out = [`<details>`, `<summary><b>${book.code}</b> · ${book.name} — ${f.total ? bar(f.core + f.pack, f.total, { html: true }) : "monsters only, not measured"}</summary>`, "",
     "| Part | Entries | DAS · Core | This pack | Core + pack |", "|---|---:|---:|---:|---|"];
   for ( const part of parts(book) ) {
-    out.push(`| ${part.label} | ${part.total} | ${part.core} | ${packCell(part)} | ${bar(part.core + part.pack, part.total)} |`);
+    if ( part.measured ) out.push(`| ${part.label} | ${part.total} | ${part.core} | ${packCell(part)} | ${bar(part.core + part.pack, part.total)} |`);
+    else out.push(`| ${part.label} | ${part.total} | — | — | ${NOT_MEASURED} |`);
   }
   out.push("", "</details>");
   return out;
@@ -126,15 +138,18 @@ const sum = (rows, key) => rows.reduce((n, row) => n + row.f[key], 0);
 /** One of the two tables: its books sorted by year, then its total. */
 function table(books, { withPackage }) {
   const rows = books.slice().sort(byYear).map(book => ({ book, f: figures(book) }));
-  const total = { total: sum(rows, "total"), core: sum(rows, "core"), pack: sum(rows, "pack"), refined: sum(rows, "refined") };
-  const head = ["Code", "Title", "Year", "Group", ...(withPackage ? ["Foundry module"] : []), "Entries", "DAS · Core", "This pack", "Core + pack"];
-  const lines = [`| ${head.join(" | ")} |`, `|${head.map((h, i) => (i >= head.length - 4 && i < head.length - 1) ? "---:" : "---").join("|")}|`];
+  const total = { total: sum(rows, "total"), core: sum(rows, "core"), pack: sum(rows, "pack"), refined: sum(rows, "refined"),
+    monsters: sum(rows, "monsters") };
+  const head = ["Code", "Title", "Year", "Group", ...(withPackage ? ["Foundry module"] : []), "Entries", "DAS · Core", "This pack", "Core + pack", "Monsters"];
+  const right = ["Entries", "DAS · Core", "This pack", "Monsters"];
+  const lines = [`| ${head.join(" | ")} |`, `|${head.map(h => right.includes(h) ? "---:" : "---").join("|")}|`];
   for ( const { book, f } of rows ) {
     lines.push(`| ${[book.code, book.name, book.year, book.group, ...(withPackage ? [`\`${book.foundry}\``] : []),
-      f.total, f.core, packCell(f), bar(f.core + f.pack, f.total)].join(" | ")} |`);
+      f.total, f.core, packCell(f), bar(f.core + f.pack, f.total), f.monsters].join(" | ")} |`);
   }
   lines.push(`| ${["**Total**", `${rows.length} books`, "", "", ...(withPackage ? [""] : []),
-    `**${total.total}**`, `**${total.core}**`, `**${packCell(total)}**`, bar(total.core + total.pack, total.total)].join(" | ")} |`);
+    `**${total.total}**`, `**${total.core}**`, `**${packCell(total)}**`, bar(total.core + total.pack, total.total),
+    `**${total.monsters}**`].join(" | ")} |`);
   return { lines, total, count: rows.length };
 }
 
@@ -145,15 +160,17 @@ export function renderBooks() {
   const a = table(published, { withPackage: true });
   const b = table(others, { withPackage: false });
   const all = { total: a.total.total + b.total.total, core: a.total.core + b.total.core, pack: a.total.pack + b.total.pack,
-    refined: a.total.refined + b.total.refined };
+    refined: a.total.refined + b.total.refined, monsters: a.total.monsters + b.total.monsters };
   const unmapped = FOUNDRY.packages.filter(pkg => !pkg.book);
   const uncounted = CATALOG.books.flatMap(book => figures(book).uncounted);
   const out = [];
   out.push("### Overall", "");
-  out.push("| | Books | Entries | DAS · Core | This pack | Core + pack |", "|---|---:|---:|---:|---:|---|");
-  out.push(`| **All rulebooks** | **${a.count + b.count}** | **${all.total}** | **${all.core}** | **${packCell(all)}** | ${bar(all.core + all.pack, all.total, { cells: 20 })} |`);
-  out.push(`| A. Official Foundry module | ${a.count} | ${a.total.total} | ${a.total.core} | ${packCell(a.total)} | ${bar(a.total.core + a.total.pack, a.total.total, { cells: 20 })} |`);
-  out.push(`| B. Not on Foundry | ${b.count} | ${b.total.total} | ${b.total.core} | ${packCell(b.total)} | ${bar(b.total.core + b.total.pack, b.total.total, { cells: 20 })} |`, "");
+  out.push("| | Books | Entries | DAS · Core | This pack | Core + pack | Monsters |", "|---|---:|---:|---:|---:|---|---:|");
+  out.push(`| **All rulebooks** | **${a.count + b.count}** | **${all.total}** | **${all.core}** | **${packCell(all)}** | ${bar(all.core + all.pack, all.total, { cells: 20 })} | **${all.monsters}** |`);
+  out.push(`| A. Official Foundry module | ${a.count} | ${a.total.total} | ${a.total.core} | ${packCell(a.total)} | ${bar(a.total.core + a.total.pack, a.total.total, { cells: 20 })} | ${a.total.monsters} |`);
+  out.push(`| B. Not on Foundry | ${b.count} | ${b.total.total} | ${b.total.core} | ${packCell(b.total)} | ${bar(b.total.core + b.total.pack, b.total.total, { cells: 20 })} | ${b.total.monsters} |`, "");
+  out.push("Entries are spells, class and subclass features, feats, options and items. Monsters are in no total and no bar: the "
+    + "engine has no entry per creature, it reads a creature's traits and actions from its sheet text, so only their number is given.", "");
   out.push("### A. Published as an official Foundry VTT module", "");
   out.push("DAS · Core itself automates the official modules it was written against (see the \"DAS · Core\" column), and it accepts "
     + "nothing outside the SRD in its public repositories, so the non-SRD rules of these books still belong in this pack.", "");
@@ -168,8 +185,7 @@ export function renderBooks() {
   out.push("### Each rulebook, part by part", "");
   out.push("One block per rulebook, to open: its spells, class and subclass features, feats, options, items and monsters, each "
     + "with its own bar. A part the book has no entry for is left out. "
-    + "Monsters are counted like the rest, one entry per creature looked up by the creature's own name: the count says "
-    + "nothing of a creature's traits and actions, which is where an engine entry for a creature would sit.", "");
+    + "Monsters are given as a number only, with no bar: they are read from the sheet text, not measured by entry.", "");
   out.push("**A. Published as an official Foundry VTT module**", "");
   for ( const book of published.slice().sort(byYear) ) out.push(...details(book), "");
   out.push("**B. Not published on Foundry**", "");
