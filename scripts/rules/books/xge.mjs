@@ -104,7 +104,7 @@ export const RULES = book(BOOK, [
   // at the time of writing). On an older engine the entry is rejected when the pack registers (the engine logs it); the other
   // rules are registered all the same.
   {
-    identifier: "ghostly-gaze", name: "Ghostly Gaze", page: 56, kind: "sense", status: "pending", handledIn: "table",
+    identifier: "ghostly-gaze", name: "Ghostly Gaze", page: 56, kind: "sense", status: "played", handledIn: "table",
     origin: "Eldritch Invocation", catalog: "option",
     adds: "A sight that walls do not stop within 30 ft, carried by the effect the invocation places on its user; off while the user is Blinded.",
     // Ghostly Gaze (eldritch invocation, XGE p.56): declared as a sight that walls do not stop, with a range of 30

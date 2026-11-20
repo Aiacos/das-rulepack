@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Life Sense and Ghostly Gaze are no longer "pending": DAS · Core 0.287.0 knows the `sense` key, the contract tests pass
+  against Core 0.288.0, and both had been played on hand-made features (GM client). The README says which Core they need.
 - README: monsters are in the progress bars again, measured feature by feature (a monster counts when DAS · Core leaves
   none of its features open); the counts are in `docs/books.json`.
 - README made lighter: the list of every rule, book by book, is now `docs/RULES.md` (generated), and what the GM's client

@@ -22,9 +22,9 @@ code are proposed to the engine, with no spell named, in
 [issue #69](https://github.com/Darshyne/dnd5e-combat/issues/69).
 
 Requires Foundry VTT V14, dnd5e 6.0 or later, and DAS · Core 0.283.0 or later. Two things need more than that: the senses
-(Life Sense, Ghostly Gaze) need a DAS · Core that knows the `sense` key, and the declaration of Plutonium as an importer
-needs one with `api.diagnostic.registerImporter`; neither is in a released version yet. On 0.283.0 the two senses are
-rejected when the pack registers, the importer is not declared, and every other rule works.
+(Life Sense, Ghostly Gaze) need DAS · Core **0.287.0** or later, the first release that knows the `sense` key — on an older
+engine they are rejected when the pack registers, and every other rule works; and the declaration of Plutonium as an
+importer needs `api.diagnostic.registerImporter`, which is in no released version yet — until then it is skipped.
 
 This is a **beta**: [docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md) says, rule by rule,
 what was played and what was only validated.
@@ -42,8 +42,8 @@ Install and enable DAS · Core (`dnd5e-combat`) first: the pack only adds rules 
 ## ✨ What it covers
 
 <!-- auto:summary -->
-**24 rules** from **7 rulebooks**: 14 played in a running world, 8 validated by the engine's
-validator but not played, 2 pending (written for a DAS · Core that is not released yet).
+**24 rules** from **7 rulebooks**: 16 played in a running world, 8 validated by the engine's
+validator but not played.
 The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md)**.
 <!-- /auto:summary -->
 
@@ -638,7 +638,8 @@ client, which checks again what it reads: see [What the GM's client does on a pl
 - Tasha's Cauldron of Everything now has an official Foundry module. The pack's rules for its spells were written against
   the items imported by DDB Importer and were not checked against the official module's items: the rules that name an
   activity or an effect id may do nothing on them (Booming Blade and Green-Flame Blade go by identifier alone).
-- Life Sense, Ghostly Gaze: they need a DAS · Core that knows the `sense` key, which is in no release yet.
+- Life Sense, Ghostly Gaze: they need DAS · Core 0.287.0 or later (the `sense` key). They were played on features made by
+  hand that carry the identifier, not on an imported creature or an imported invocation.
 - Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: no rule yet. Getting free of them takes an action and an
   ability check, which needs the engine to read a check written without a DC, which DAS · Core does from 0.284.0; the rules themselves
   are still to be written and played.

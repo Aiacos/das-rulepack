@@ -227,7 +227,8 @@ export function renderRules() {
     out.push("");
   }
   const count = status => RULES.filter(rule => rule.status === status).length;
-  out.push(`${RULES.length} rules: ${count("played")} played, ${count("validated")} validated, ${count("pending")} pending.`);
+  const waiting = count("pending") ? `, ${count("pending")} pending` : "";
+  out.push(`${RULES.length} rules: ${count("played")} played, ${count("validated")} validated${waiting}.`);
   return out.join("\n");
 }
 
@@ -237,7 +238,7 @@ export function renderSummary() {
   const books = new Set(RULES.map(rule => rule.book)).size;
   return [
     `**${RULES.length} rules** from **${books} rulebooks**: ${count("played")} played in a running world, ${count("validated")} validated by the engine's`,
-    `validator but not played, ${count("pending")} pending (written for a DAS · Core that is not released yet).`,
+    `validator but not played${count("pending") ? `, ${count("pending")} pending (written for a key no released DAS · Core knows yet)` : ""}.`,
     `The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](${DOCS_URL}RULES.md)**.`
   ].join("\n");
 }

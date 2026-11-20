@@ -61,7 +61,7 @@ Not published on Foundry.
 | Watery Sphere | Spell | p.170 | A restrained creature repeats the save at the end of each of its turns. | table | Validated |
 | Power Word Pain | Spell | p.163 | The target repeats the Constitution save at the end of each of its turns. | table | Validated |
 | Wall of Light | Spell | p.170 | A blinded creature repeats the save at the end of each of its turns. | table | Validated |
-| Ghostly Gaze (Eldritch Invocation) | Sense | p.56 | A sight that walls do not stop within 30 ft, carried by the effect the invocation places on its user; off while the user is Blinded. | table | Pending |
+| Ghostly Gaze (Eldritch Invocation) | Sense | p.56 | A sight that walls do not stop within 30 ft, carried by the effect the invocation places on its user; off while the user is Blinded. | table | Played |
 
 ### AI · Acquisitions Incorporated (2019)
 
@@ -85,9 +85,9 @@ Not published on Foundry.
 
 | Rule | Kind | Page | What the module adds | Handled in | Status |
 |---|---|---|---|---|---|
-| Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Pending |
+| Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-24 rules: 14 played, 8 validated, 2 pending.
+24 rules: 16 played, 8 validated.
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

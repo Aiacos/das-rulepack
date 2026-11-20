@@ -25,8 +25,8 @@ Progress by rulebook: README, "Progress by rulebook"; every rule by book: `docs/
 
 - [ ] Still only validated: Zephyr Strike, Holy Weapon, Pyrotechnics, Snare, Watery Sphere, Power Word Pain, Wall of Light,
       Incite Greed. How to play a rule without a mouse: `../darshyne-das/audit/live-helpers.js` (scene "DAS Test Arena").
-- [ ] Pending: Life Sense and Ghostly Gaze, to validate and play on a DAS · Core that knows the `sense` key (the contract
-      test for senses is skipped on the engine clone used here).
+- [x] Life Sense and Ghostly Gaze: validated by the contract tests against DAS · Core 0.288.0 (`DAS_CORE=<clone of main> npm test`: 59
+  passed, none skipped); played earlier on hand-made features (12 cases, GM client). Still to play on an imported creature.
 - [ ] Everything from a player's client (so far the GM's client only).
 
 ## Next rules

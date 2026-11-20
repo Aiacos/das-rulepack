@@ -15,7 +15,7 @@ export const BOOK = "MPMM";
 
 export const RULES = book(BOOK, [
   {
-    identifier: "life-sense", name: "Life Sense", page: 250, kind: "sense", status: "pending", handledIn: "table",
+    identifier: "life-sense", name: "Life Sense", page: 250, kind: "sense", status: "played", handledIn: "table",
     origin: "Vampiric Mist", alsoIn: [{ book: "MTF", page: 246 }], catalog: null,
     adds: "The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it.",
     // Life Sense (Vampiric Mist, MPMM p.250; MTF p.246): declared as a sense that locates creatures within 60 ft,
