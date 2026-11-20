@@ -1,0 +1,320 @@
+{
+  "about": "Counts per official rulebook: entries in the book, entries DAS · Core covers with a dedicated entry (`core`), entries das-rulepack covers (`rulepack`). Counts only: no names of entries, no text.",
+  "method": "Static comparison by name. Each entry of a book's catalogue (spells, feats, optional features, items, class and subclass features, monsters) is counted once, under the book the catalogue files it in; its name, turned into a dnd5e-style identifier, is looked up among the identifiers of DAS · Core, then among those of das-rulepack (an entry found in both is counted under `core`). A dedicated entry is not proof that the rule works, and no entry does not mean it does not: much is resolved from the item's own data.",
+  "computed": "2026-11-19",
+  "copied": "2026-11-20",
+  "source": "books.coverage.json of the DAS workspace audit (not part of this repository)",
+  "note": "`computed` is the date of the audit file. `rulepack` is the audit's count on that date. tools/books-progress.mjs recomputes it from scripts/rules/books/ and uses its own figure. `foundry` is the id of the official Foundry VTT package of the book, from docs/foundry-modules.json, or null.",
+  "books": [
+    {
+      "code": "AAG", "name": "Astral Adventurer's Guide", "year": 2022, "group": "setting", "foundry": null,
+      "kinds": {
+        "spell": { "total": 2, "core": 0, "rulepack": 0 },
+        "item": { "total": 20, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "AATM", "name": "Adventure Atlas: The Mortuary", "year": 2023, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "monster": { "total": 3, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "ABH", "name": "Astarion's Book of Hungers", "year": 2025, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "feat": { "total": 16, "core": 0, "rulepack": 0 },
+        "monster": { "total": 5, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "AI", "name": "Acquisitions Incorporated", "year": 2019, "group": "supplement", "foundry": null,
+      "kinds": {
+        "spell": { "total": 7, "core": 0, "rulepack": 1 },
+        "item": { "total": 23, "core": 1, "rulepack": 0 },
+        "monster": { "total": 22, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "AWM", "name": "Adventure with Muk", "year": 2019, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "monster": { "total": 11, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "BAM", "name": "Boo's Astral Menagerie", "year": 2022, "group": "setting", "foundry": null,
+      "kinds": {
+        "item": { "total": 1, "core": 0, "rulepack": 0 },
+        "monster": { "total": 72, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "BGG", "name": "Bigby Presents: Glory of the Giants", "year": 2023, "group": "supplement", "foundry": null,
+      "kinds": {
+        "feat": { "total": 8, "core": 0, "rulepack": 0 },
+        "item": { "total": 31, "core": 0, "rulepack": 0 },
+        "feature": { "total": 6, "core": 0, "rulepack": 0 },
+        "monster": { "total": 72, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "BMT", "name": "The Book of Many Things", "year": 2023, "group": "supplement", "foundry": null,
+      "kinds": {
+        "spell": { "total": 3, "core": 0, "rulepack": 0 },
+        "feat": { "total": 1, "core": 0, "rulepack": 0 },
+        "item": { "total": 73, "core": 0, "rulepack": 0 },
+        "monster": { "total": 41, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "DMG", "name": "Dungeon Master's Guide (2014)", "year": 2014, "group": "core", "foundry": null,
+      "kinds": {
+        "item": { "total": 500, "core": 107, "rulepack": 0 },
+        "feature": { "total": 15, "core": 1, "rulepack": 0 },
+        "monster": { "total": 3, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "DOD", "name": "Domains of Delight", "year": 2021, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "monster": { "total": 1, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "EFA", "name": "Eberron: Forge of the Artificer", "year": 2025, "group": "setting", "foundry": "dnd-forge-artificer",
+      "kinds": {
+        "spell": { "total": 1, "core": 0, "rulepack": 0 },
+        "feat": { "total": 28, "core": 0, "rulepack": 0 },
+        "option": { "total": 4, "core": 0, "rulepack": 0 },
+        "item": { "total": 6, "core": 0, "rulepack": 0 },
+        "feature": { "total": 48, "core": 0, "rulepack": 0 },
+        "monster": { "total": 27, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "EGW", "name": "Explorer's Guide to Wildemount", "year": 2020, "group": "setting", "foundry": null,
+      "kinds": {
+        "spell": { "total": 15, "core": 0, "rulepack": 0 },
+        "item": { "total": 85, "core": 0, "rulepack": 0 },
+        "feature": { "total": 18, "core": 0, "rulepack": 0 },
+        "monster": { "total": 48, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "ERLW", "name": "Eberron: Rising from the Last War", "year": 2019, "group": "setting", "foundry": null,
+      "kinds": {
+        "feat": { "total": 2, "core": 0, "rulepack": 0 },
+        "item": { "total": 30, "core": 0, "rulepack": 0 },
+        "monster": { "total": 41, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "FRAIF", "name": "Forgotten Realms: Adventures in Faerûn", "year": 2025, "group": "setting", "foundry": "dnd-adventures-faerun",
+      "kinds": {
+        "item": { "total": 18, "core": 0, "rulepack": 0 },
+        "monster": { "total": 42, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "FRHOF", "name": "Forgotten Realms: Heroes of Faerûn", "year": 2025, "group": "setting", "foundry": "dnd-heroes-faerun",
+      "kinds": {
+        "spell": { "total": 19, "core": 0, "rulepack": 0 },
+        "feat": { "total": 34, "core": 0, "rulepack": 0 },
+        "item": { "total": 24, "core": 0, "rulepack": 0 },
+        "feature": { "total": 56, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "FTD", "name": "Fizban's Treasury of Dragons", "year": 2021, "group": "supplement", "foundry": null,
+      "kinds": {
+        "spell": { "total": 7, "core": 0, "rulepack": 1 },
+        "feat": { "total": 3, "core": 0, "rulepack": 0 },
+        "item": { "total": 24, "core": 0, "rulepack": 0 },
+        "feature": { "total": 12, "core": 0, "rulepack": 0 },
+        "monster": { "total": 85, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "GGR", "name": "Guildmasters' Guide to Ravnica", "year": 2018, "group": "setting", "foundry": null,
+      "kinds": {
+        "spell": { "total": 1, "core": 0, "rulepack": 0 },
+        "item": { "total": 41, "core": 0, "rulepack": 0 },
+        "monster": { "total": 79, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "HAT-TG", "name": "Thieves' Gallery", "year": 2023, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "monster": { "total": 7, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "LFL", "name": "Lorwyn: First Light", "year": 2025, "group": "setting-alt", "foundry": null,
+      "kinds": {
+        "feat": { "total": 2, "core": 0, "rulepack": 0 },
+        "item": { "total": 2, "core": 0, "rulepack": 0 },
+        "monster": { "total": 8, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MABJOV", "name": "Minsc and Boo's Journal of Villainy", "year": 2021, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "monster": { "total": 56, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MCV4EC", "name": "Monstrous Compendium Volume 4: Eldraine Creatures", "year": 2023, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "monster": { "total": 25, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MGELFT", "name": "Muk's Guide to Everything He Learned From Tasha", "year": 2020, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "monster": { "total": 6, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MM", "name": "Monster Manual (2014)", "year": 2014, "group": "core", "foundry": null,
+      "kinds": {
+        "item": { "total": 4, "core": 0, "rulepack": 0 },
+        "monster": { "total": 450, "core": 1, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MOT", "name": "Mythic Odysseys of Theros", "year": 2020, "group": "setting", "foundry": null,
+      "kinds": {
+        "item": { "total": 12, "core": 0, "rulepack": 0 },
+        "monster": { "total": 51, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MPMM", "name": "Mordenkainen Presents: Monsters of the Multiverse", "year": 2022, "group": "supplement", "foundry": null,
+      "kinds": {
+        "monster": { "total": 261, "core": 1, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MPP", "name": "Morte's Planar Parade", "year": 2023, "group": "setting", "foundry": null,
+      "kinds": {
+        "monster": { "total": 54, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "MTF", "name": "Mordenkainen's Tome of Foes", "year": 2018, "group": "supplement", "foundry": null,
+      "kinds": {
+        "feat": { "total": 1, "core": 0, "rulepack": 0 },
+        "item": { "total": 4, "core": 0, "rulepack": 0 },
+        "monster": { "total": 140, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "NF", "name": "Netheril's Fall", "year": 2025, "group": "setting-alt", "foundry": null,
+      "kinds": {
+        "item": { "total": 8, "core": 0, "rulepack": 0 },
+        "monster": { "total": 6, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "OGA", "name": "One Grung Above", "year": 2017, "group": "supplement-alt", "foundry": null,
+      "kinds": {
+        "item": { "total": 1, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "PHB", "name": "Player's Handbook (2014)", "year": 2014, "group": "core", "foundry": null,
+      "kinds": {
+        "spell": { "total": 361, "core": 237, "rulepack": 0 },
+        "feat": { "total": 42, "core": 23, "rulepack": 0 },
+        "option": { "total": 82, "core": 31, "rulepack": 0 },
+        "item": { "total": 168, "core": 8, "rulepack": 0 },
+        "feature": { "total": 380, "core": 74, "rulepack": 0 },
+        "monster": { "total": 5, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "SATO", "name": "Sigil and the Outlands", "year": 2023, "group": "setting", "foundry": null,
+      "kinds": {
+        "spell": { "total": 2, "core": 0, "rulepack": 0 },
+        "feat": { "total": 7, "core": 0, "rulepack": 0 },
+        "item": { "total": 5, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "SCAG", "name": "Sword Coast Adventurer's Guide", "year": 2015, "group": "setting", "foundry": null,
+      "kinds": {
+        "feature": { "total": 39, "core": 2, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "SCC", "name": "Strixhaven: A Curriculum of Chaos", "year": 2021, "group": "setting", "foundry": null,
+      "kinds": {
+        "spell": { "total": 5, "core": 0, "rulepack": 0 },
+        "feat": { "total": 2, "core": 0, "rulepack": 0 },
+        "item": { "total": 18, "core": 0, "rulepack": 0 },
+        "monster": { "total": 47, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "TCE", "name": "Tasha's Cauldron of Everything", "year": 2020, "group": "supplement", "foundry": "dnd-tashas-cauldron",
+      "kinds": {
+        "spell": { "total": 21, "core": 10, "rulepack": 3 },
+        "feat": { "total": 15, "core": 5, "rulepack": 0 },
+        "option": { "total": 47, "core": 8, "rulepack": 0 },
+        "item": { "total": 84, "core": 1, "rulepack": 0 },
+        "feature": { "total": 276, "core": 30, "rulepack": 0 },
+        "monster": { "total": 20, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "VGM", "name": "Volo's Guide to Monsters", "year": 2016, "group": "supplement", "foundry": null,
+      "kinds": {
+        "item": { "total": 7, "core": 0, "rulepack": 0 },
+        "monster": { "total": 143, "core": 1, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "VRGR", "name": "Van Richten's Guide to Ravenloft", "year": 2021, "group": "setting", "foundry": null,
+      "kinds": {
+        "item": { "total": 5, "core": 1, "rulepack": 0 },
+        "feature": { "total": 11, "core": 3, "rulepack": 0 },
+        "monster": { "total": 35, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "XDMG", "name": "Dungeon Master's Guide (2024)", "year": 2024, "group": "core", "foundry": "dnd-dungeon-masters-guide",
+      "kinds": {
+        "item": { "total": 584, "core": 116, "rulepack": 0 },
+        "monster": { "total": 2, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "XGE", "name": "Xanathar's Guide to Everything", "year": 2017, "group": "supplement", "foundry": null,
+      "kinds": {
+        "spell": { "total": 95, "core": 11, "rulepack": 11 },
+        "feat": { "total": 15, "core": 0, "rulepack": 0 },
+        "option": { "total": 22, "core": 1, "rulepack": 1 },
+        "item": { "total": 43, "core": 0, "rulepack": 0 },
+        "feature": { "total": 202, "core": 13, "rulepack": 0 },
+        "monster": { "total": 2, "core": 0, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "XMM", "name": "Monster Manual (2025)", "year": 2025, "group": "core", "foundry": "dnd-monster-manual",
+      "kinds": {
+        "item": { "total": 1, "core": 0, "rulepack": 0 },
+        "monster": { "total": 503, "core": 1, "rulepack": 0 }
+      }
+    },
+    {
+      "code": "XPHB", "name": "Player's Handbook (2024)", "year": 2024, "group": "core", "foundry": "dnd-players-handbook",
+      "kinds": {
+        "spell": { "total": 391, "core": 265, "rulepack": 0 },
+        "feat": { "total": 76, "core": 46, "rulepack": 0 },
+        "option": { "total": 58, "core": 32, "rulepack": 0 },
+        "item": { "total": 123, "core": 16, "rulepack": 0 },
+        "feature": { "total": 456, "core": 153, "rulepack": 0 },
+        "monster": { "total": 15, "core": 1, "rulepack": 0 }
+      }
+    }
+  ]
+}

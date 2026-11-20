@@ -1,0 +1,26 @@
+{
+  "about": "Official Dungeons & Dragons packages published for Foundry VTT, and the book of docs/books.json each one corresponds to. A package is mapped to a book code only when the titles match without doubt; otherwise `book` is null.",
+  "source": "https://foundryvtt.com/creators/wizards-of-the-coast/",
+  "read": "2026-11-20",
+  "system": {
+    "id": "dnd5e",
+    "title": "Dungeons & Dragons Fifth Edition (the game system)",
+    "note": "Its compendia carry SRD 5.1 and SRD 5.2. The SRD is not a book of docs/books.json."
+  },
+  "packages": [
+    { "id": "dnd-players-handbook", "title": "Player's Handbook (2024)", "book": "XPHB" },
+    { "id": "dnd-dungeon-masters-guide", "title": "Dungeon Master's Guide (2024)", "book": "XDMG" },
+    { "id": "dnd-monster-manual", "title": "Monster Manual (2025)", "book": "XMM" },
+    { "id": "dnd-tashas-cauldron", "title": "Tasha's Cauldron of Everything", "book": "TCE" },
+    { "id": "dnd-forge-artificer", "title": "Eberron: Forge of the Artificer", "book": "EFA" },
+    { "id": "dnd-heroes-faerun", "title": "Forgotten Realms: Heroes of Faerûn", "book": "FRHOF" },
+    { "id": "dnd-adventures-faerun", "title": "Forgotten Realms: Adventures in Faerûn", "book": "FRAIF" },
+    { "id": "dnd-ravenloft-horrors-within", "title": "Ravenloft: The Horrors Within", "book": null },
+    { "id": "dnd-arcana-unleashed", "title": "Arcana Unleashed", "book": null },
+    { "id": "dnd-deadfall", "title": "Arcana Unleashed: Deadfall", "book": null },
+    { "id": "dnd-tomb-annihilation", "title": "Tomb of Annihilation", "book": null },
+    { "id": "dnd-phandelver-below", "title": "Phandelver and Below: The Shattered Obelisk", "book": null },
+    { "id": "dnd-heroes-borderlands", "title": "Heroes of the Borderlands", "book": null },
+    { "id": "dnd-world-warcraft", "title": "Dungeons & Dragons: World of Warcraft", "book": null }
+  ]
+}
