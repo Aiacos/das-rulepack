@@ -1,8 +1,8 @@
 /**
- * Dreadful Strikes (Fey Wanderer 3, PHB 2024 p.124) — pure rules, no Foundry access.
+ * Dreadful Strikes (Fey Wanderer 3, PHB 2024 p.124) — pure computations, no Foundry access.
  *
- * A weapon hit deals an extra die of Psychic damage to the target, which can take it only once per turn: the limit is per target,
- * so a ranger who hits two creatures on one turn adds the die to each. The die grows at ranger level 11.
+ * The extra die is counted once per turn for each target, not once per turn for the ranger: this file keeps that count and
+ * gives the size of the die by ranger level.
  */
 
 /** The feature, by dnd5e identifier. */

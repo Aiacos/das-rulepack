@@ -223,23 +223,22 @@ client. The only thing a player's client sends is which neighbouring creature th
 - Green-Flame Blade: the second creature is chosen among the tokens within 5 feet of the target, the caster excepted; whether
   the caster can see it is left to the table.
 
-- Lightning Lure: the damage is applied wherever the target ends, not only "if it is within 5 feet".
+- Lightning Lure: the damage is applied wherever the target ends, whatever its distance to the caster.
 - Tasha's Mind Whip: the choice to move instead of acting is left to the table. Played: no reactions, and the effect ending
-  at the end of the target's turn; "an action or a bonus action, not both" is declared to the engine but was not observed.
+  at the end of the target's turn; the limit to an action or a bonus action is declared to the engine but was not observed.
 - Lightning Lure: the correction of the imported item is written when the item is created on a sheet; for a spell already on
   a sheet, run the world diagnostic of DAS · Core (or drag the spell onto the sheet again).
 - Zephyr Strike: the one-time Advantage, bonus 1d8 force and extra speed are not automated.
 - Holy Weapon: the extra 2d8 radiant on each hit is not automated.
-- Power Word Pain: the imported item asks for a saving throw when the spell is cast; the text has none (the spell works on a
-  target with 100 hit points or fewer). The speed cap and the Disadvantage are not automated.
+- Power Word Pain: the imported item asks for a saving throw when the spell is cast; the text has none. The speed cap and the Disadvantage are not automated.
 - Snare: the Intelligence (Arcana) check to free the creature is not automated.
 - Otto's Irresistible Dance (2014): the Disadvantage on Dexterity saving throws is not automated.
 - Tasha's Cauldron of Everything now has an official Foundry module. The pack's rules for its spells were written against
   the items imported by DDB Importer and were not checked against the official module's items: the rules that name an
   activity or an effect id may do nothing on them (Booming Blade and Green-Flame Blade go by identifier alone).
 - Life Sense, Ghostly Gaze: they need a DAS · Core that knows the `sense` key, which is in no release yet.
-- Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: no rule yet. Their "use an action to make a
-  check" needs the engine to read a check written without a DC, which DAS · Core does from 0.284.0; the rules themselves
+- Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: no rule yet. Getting free of them takes an action and an
+  ability check, which needs the engine to read a check written without a DC, which DAS · Core does from 0.284.0; the rules themselves
   are still to be written and played.
 
 - Shadow Blade: *dropping* the blade is not detected (only throwing it). Outside combat a thrown blade dissipates after

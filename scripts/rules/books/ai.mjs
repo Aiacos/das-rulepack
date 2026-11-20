@@ -12,8 +12,7 @@ export const RULES = book(BOOK, [
   {
     identifier: "incite-greed", name: "Incite Greed", page: 76, kind: "spell", status: "validated", handledIn: "table",
     adds: "A charmed target repeats the save at the end of each of its turns.",
-    // Incite Greed (AI p.76): "At the end of each of its turns, an affected target can make a Wisdom saving throw. If it
-    // succeeds, this effect ends for that target."
+    // Incite Greed (AI p.76): the effect lets its bearer repeat the save at the end of each of its turns.
     entry: { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: "4Hi47QCDFVz6m9gd", do: [{ type: "resave" }] }] }
   }
 ]);

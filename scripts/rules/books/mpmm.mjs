@@ -18,8 +18,8 @@ export const RULES = book(BOOK, [
     identifier: "life-sense", name: "Life Sense", page: 250, kind: "sense", status: "pending", handledIn: "table",
     origin: "Vampiric Mist", alsoIn: [{ book: "MTF", page: 246 }], catalog: null,
     adds: "The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it.",
-    // Life Sense (Vampiric Mist, MPMM p.250; MTF p.246): the location of every creature within 60 ft, except Constructs and
-    // Undead. The rule says nothing of cover: walls do not stop it. A natural sense: nothing wards against it.
+    // Life Sense (Vampiric Mist, MPMM p.250; MTF p.246): declared as a sense that locates creatures within 60 ft,
+    // two creature types excepted, and that walls do not stop. A natural sense: nothing wards against it.
     entry: { sense: { kind: "locate", range: 60, units: "ft", walls: false,
       detects: { not: { "target.creatureType": ["construct", "undead"] } } } }
   }

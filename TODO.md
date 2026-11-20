@@ -33,7 +33,7 @@ Progress by rulebook: README, "Progress by rulebook" (`npm run books`). One modu
 
 Declarative, waiting on the engine:
 
-- [ ] Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: "use an action to make a check" to get free.
+- [ ] Maximilian's Earthen Grasp, Whirlwind, Wrath of Nature, Bones of the Earth: an action and an ability check to get free.
       The engine reads a check written without a DC from DAS · Core 0.284.0 (pull request #57, merged): the rules can
       now be written. Maximilian's also rolls
       both of its 2d6 parts at once in the imported data.

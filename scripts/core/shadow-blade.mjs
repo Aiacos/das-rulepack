@@ -1,10 +1,8 @@
 /**
- * Shadow Blade (Xanathar's Guide to Everything, p. 164) — pure rules, no Foundry access.
+ * Shadow Blade (Xanathar's Guide to Everything, p. 164) — pure computations, no Foundry access.
  *
- *  - The blade is a simple melee weapon the caster is proficient with: psychic damage, finesse, light, thrown (20/60 ft).
- *  - Damage: 2d8 with a 2nd-level slot, 3d8 at 3rd–4th, 4d8 at 5th–6th, 5d8 at 7th or higher.
- *  - Advantage on the attack roll against a target that is in dim light or darkness.
- *  - Thrown (or dropped), it dissipates at the end of the turn; a bonus action makes it reappear while the spell lasts.
+ * What the glue in scripts/shadow-blade.mjs needs: the data of the weapon item it creates, its number of dice by slot level,
+ * which light on a target gives advantage, which attack modes are throws, and whether a turn has ended.
  */
 
 /** dnd5e identifier of the spell. */

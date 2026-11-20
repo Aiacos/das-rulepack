@@ -13,7 +13,7 @@ export const RULES = book(BOOK, [
     identifier: "raulothims-psychic-lance", name: "Raulothim's Psychic Lance", page: 21, kind: "spell", status: "played",
     handledIn: "table",
     adds: "Incapacitated ends at the start of the caster's next turn.",
-    // Raulothim's Psychic Lance (FTD p.21): on a failed save the target is Incapacitated "until the start of your next turn".
+    // Raulothim's Psychic Lance (FTD p.21): the Incapacitated effect ends at the start of the caster's next turn.
     entry: { effectEnds: { "31jOzP6HwmGO6HHd": "casterTurnStart" } }
   }
 ]);

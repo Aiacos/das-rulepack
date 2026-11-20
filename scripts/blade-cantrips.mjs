@@ -1,8 +1,8 @@
 /**
  * Booming Blade and Green-Flame Blade — Foundry glue. The rules are in core/blade-cantrips.mjs.
  *
- * The imported items carry "damage" activities meant to be clicked by hand after an attack. Here the spell is cast the way the
- * book writes it: using it makes one melee attack with a weapon the caster holds.
+ * The imported items carry "damage" activities meant to be clicked by hand after an attack. Here using the spell
+ * makes one melee attack with a weapon the caster holds.
  *
  *  - Caster's client: the use of the spell is replaced by the weapon's attack, whose chat card is marked; from 5th level the
  *    extra dice are added to the weapon's damage roll.

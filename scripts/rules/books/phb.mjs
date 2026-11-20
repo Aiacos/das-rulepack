@@ -14,10 +14,10 @@ export const RULES = book(BOOK, [
     identifier: "irresistible-dance", name: "Otto's Irresistible Dance (2014)", page: 264, kind: "spell", status: "played",
     handledIn: "table", inCore: true,
     adds: "Disadvantage on the dancer's attacks, Advantage on attacks against it, and an action to repeat the Wisdom save. The 2024 spell is covered by DAS · Core.",
-    // Otto's Irresistible Dance, 2014 version (PHB 2014 p.264; identifier `irresistible-dance`, where the 2024 spell is
-    // `ottos-irresistible-dance` and has its rule in DAS · Core): the dancer "has disadvantage on ... attack rolls", "other
-    // creatures have advantage on attack rolls against it", and "as an action, a dancing creature makes a Wisdom saving throw
-    // to regain control of itself".
+    // Otto's Irresistible Dance, 2014 version (PHB 2014 p.264; identifier `irresistible-dance`, where the 2024 spell
+    // is `ottos-irresistible-dance` and has its rule in DAS · Core): disadvantage on the attacks of a creature that
+    // carries the dancing effect, advantage on the attacks against it, and an action of the bearer to roll the save
+    // that ends the effect.
     entry: {
       actionEnds: { aWuXl9NADX7vOCOC: { by: "bearer", roll: "save" } },
       triggers: [

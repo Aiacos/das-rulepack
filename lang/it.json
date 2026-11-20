@@ -5,7 +5,7 @@
   "DASRULEPACK.Blade.WhichWeapon": "Con quale arma fai l'attacco?",
   "DASRULEPACK.Blade.NoWeapon": "{spell}: serve un'arma da mischia impugnata (equipaggiata) per lanciarlo.",
   "DASRULEPACK.Blade.Sheathed": "Lama Tonante: avvolto da energia tonante",
-  "DASRULEPACK.Blade.SheathedHint": "Fino all'inizio del prossimo turno dell'incantatore: se questa creatura si muove volontariamente di 1,5 m o più, subisce {dice}d8 danni da tuono e l'incantesimo termina.",
+  "DASRULEPACK.Blade.SheathedHint": "Lama Tonante è su questa creatura. Uno spostamento di 1,5 m o più fatto per scelta la fa scattare ({dice}d8 da tuono) e la rimuove; lo stesso fa l'inizio del prossimo turno dell'incantatore.",
   "DASRULEPACK.Blade.LeapTo": "L'attacco ha colpito {target}. Su quale creatura entro 1,5 m da lui salta il fuoco verde?",
   "DASRULEPACK.Blade.NoLeap": "Nessuno",
   "DASRULEPACK.Blade.LeapFlavor": "{spell}: il fuoco verde salta su {target}",

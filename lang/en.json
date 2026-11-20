@@ -5,7 +5,7 @@
   "DASRULEPACK.Blade.WhichWeapon": "Which weapon do you make the attack with?",
   "DASRULEPACK.Blade.NoWeapon": "{spell}: you need a melee weapon in hand (equipped) to cast it.",
   "DASRULEPACK.Blade.Sheathed": "Booming Blade: sheathed in booming energy",
-  "DASRULEPACK.Blade.SheathedHint": "Until the start of the caster's next turn: if this creature willingly moves 5 feet or more, it takes {dice}d8 thunder damage and the spell ends.",
+  "DASRULEPACK.Blade.SheathedHint": "Booming Blade is on this creature. A move of 5 ft or more made by choice sets it off ({dice}d8 thunder) and removes it; so does the start of the caster's next turn.",
   "DASRULEPACK.Blade.LeapTo": "The attack hit {target}. Which creature within 5 feet of it does the green fire leap to?",
   "DASRULEPACK.Blade.NoLeap": "No one",
   "DASRULEPACK.Blade.LeapFlavor": "{spell}: green fire leaps to {target}",

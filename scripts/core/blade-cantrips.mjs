@@ -1,13 +1,9 @@
 /**
- * Booming Blade and Green-Flame Blade (Tasha's Cauldron of Everything p.106–107; Sword Coast Adventurer's Guide) — pure rules,
- * no Foundry access.
+ * Booming Blade and Green-Flame Blade (Tasha's Cauldron of Everything p.106–107; Sword Coast Adventurer's Guide) — pure
+ * computations, no Foundry access.
  *
- * Both are cast by making one melee attack with a weapon. On a hit the target suffers the weapon attack's normal effects, then:
- *  - Booming Blade: the target is sheathed in booming energy until the start of the caster's next turn; if it willingly moves
- *    5 feet or more before then, it takes thunder damage and the spell ends.
- *  - Green-Flame Blade: fire leaps to a different creature of the caster's choice within 5 feet of the target, which takes fire
- *    damage equal to the caster's spellcasting ability modifier.
- * From 5th level the attack deals extra dice on a hit, and the secondary damage gains the same dice; one more at 11th and 17th.
+ * What the glue in scripts/blade-cantrips.mjs needs: the number of extra dice by caster level (on the hit, and on the secondary
+ * damage), their formulas, distances on a square grid, and the hit targets of an attack the engine has settled.
  */
 
 /** The two cantrips, by dnd5e identifier. */
