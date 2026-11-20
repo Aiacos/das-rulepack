@@ -2,9 +2,7 @@ import { describe, it, expect } from "vitest";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
-import { SPELLS } from "../scripts/rules/spells.mjs";
-import { SENSES } from "../scripts/rules/senses.mjs";
-import { FEATURES } from "../scripts/rules/features.mjs";
+import { SPELLS, SENSES, FEATURES, TABLE } from "../scripts/rules/index.mjs";
 
 // The rules are validated by DAS · Core's own validator, from a clone of the engine: DAS_CORE, or the sibling folders used in
 // this workspace. Without a clone the contract tests are skipped locally and fail in CI.
@@ -49,11 +47,9 @@ describe("senses table", () => {
     }
   });
 
-  it("shares no identifier with the spell rules, and both are registered in one table", async () => {
+  it("shares no identifier with the spell rules, and both are in the one table that is registered", () => {
     expect(Object.keys(SENSES).filter(id => id in SPELLS)).toEqual([]);
-    const { readFileSync } = await import("node:fs");
-    const main = readFileSync(resolve(import.meta.dirname, "../scripts/main.mjs"), "utf8");
-    expect(main).toContain("register(MODULE_ID, { ...SPELLS, ...SENSES, ...FEATURES })");
+    expect(TABLE).toEqual({ ...SPELLS, ...SENSES, ...FEATURES });
   });
 });
 

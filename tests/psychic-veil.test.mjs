@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { damageEndsVeil } from "../scripts/core/psychic-veil.mjs";
-import { FEATURES } from "../scripts/rules/features.mjs";
+import { FEATURES } from "../scripts/rules/index.mjs";
 
 describe("Psychic Veil", () => {
   it("the damage of an attack ends the veil; a miss rolls no damage, so nothing ends it", () => {

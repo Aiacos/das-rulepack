@@ -1,7 +1,7 @@
 /**
  * Dreadful Strikes (Fey Wanderer 3, PHB 2024 p.124): the extra Psychic die on a weapon hit, once per turn for each target. The
  * rule is in scripts/core/dreadful-strikes.mjs; DAS · Core's own once-per-turn-per-ranger trigger is switched off by the entry in
- * scripts/rules/features.mjs.
+ * scripts/rules/books/xphb.mjs.
  *
  * The target is the creature the attacker's client has targeted when the damage is rolled. With several creatures targeted
  * (a weapon attack has one target) nothing is added, since the die belongs to one of them.
