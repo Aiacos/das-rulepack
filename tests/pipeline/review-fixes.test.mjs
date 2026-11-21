@@ -164,7 +164,8 @@ describe("I2: batch carries the hint and skips queued records", () => {
   const sha = (n) => String(n).padStart(64, "0");
   const rec = (n, over = {}) => ({
     key: `tst:spell:s${n}`, name: `S ${n}`, kind: "spell", book: "TST", page: 1, edition: "2024", identifier: `s${n}`,
-    text: { sha256: sha(n), source: "5etools", chars: 5 }, items: [], verdict: null, evidence: {}, ...over
+    text: { sha256: sha(n), source: "5etools", chars: 5 }, items: [{ origin: "official", match: "matched" }], verdict: null,
+    evidence: {}, ...over
   });
   it("puts the hint on the entry", () => {
     const [b] = cutBatches([rec(1, { hint: "core-generic" })], {});
@@ -237,7 +238,7 @@ describe("I2: triage --redo-rule and batch on the command line", () => {
     writeFileSync(join(registry, "queue.json"), JSON.stringify([{ key: "tst:item:a", verdict: "none", why: "w",
       confidence: 0.5, by: "reader-1", reason: "low-confidence" }]));
     const out = join(tmp, "out");
-    expect(run(["batch", "triage", "TST", "--out", out]).status).toBe(0);
+    expect(run(["batch", "triage", "TST", "--out", out, "--without-items"]).status).toBe(0);
     const b = JSON.parse(readFileSync(join(out, "tst-triage-001.json"), "utf8"));
     expect(b.entries.map((e) => e.key)).toEqual(["tst:item:b"]);
   });
