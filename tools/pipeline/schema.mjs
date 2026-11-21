@@ -20,6 +20,11 @@ export const HINTS = Object.freeze(["core-generic"]);
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const DOTTED = /^[a-z0-9]+([.-][a-z0-9]+)*$/;
+export const ORIGIN_MAX = 60;
+export const CODE_MAX = 96;
+const CODE_PATH = /^scripts\/[a-z0-9][a-z0-9-]*(\/[a-z0-9][a-z0-9-]*)*\.mjs$/;
+/** A `rule.code` path (Ruling R18): a repository-relative script under scripts/, kebab parts, `.mjs`. */
+export const isCodePath = (v) => typeof v === "string" && v.length <= CODE_MAX && CODE_PATH.test(v);
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isString = (v) => typeof v === "string" && v !== "";
 const isPage = (v) => Number.isInteger(v) && v > 0;
@@ -131,15 +136,18 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
   if ("catalog" in rule && rule.catalog !== null && typeof rule.catalog !== "string") {
     errors.push("rule.catalog: must be a string or null");
   }
-  // From this milestone on (a legacy rule's predate it: a script path, a display label): identifiers, not prose.
+  // From this milestone on (a legacy rule's predate it): `catalog` an identifier; `origin` a display label of where the rule
+  // comes from in the book (Ruling R17); `code` the repository script of a code verdict (Ruling R18; the schema gate also
+  // checks that the file exists).
   if (!legacy) {
-    for (const f of ["code", "catalog"]) {
-      if (typeof rule[f] === "string" && !(rule[f].length <= 64 && DOTTED.test(rule[f]))) {
-        errors.push(`rule.${f}: must be a kebab/dot identifier of at most 64 characters`);
-      }
+    if (typeof rule.catalog === "string" && !(rule.catalog.length <= 64 && DOTTED.test(rule.catalog))) {
+      errors.push("rule.catalog: must be a kebab/dot identifier of at most 64 characters");
     }
-    if (typeof rule.origin === "string" && !ORIGINS.includes(rule.origin)) {
-      errors.push(`rule.origin: must be one of ${ORIGINS.join(", ")}`);
+    if ("origin" in rule && !isPlainLine(rule.origin, ORIGIN_MAX)) {
+      errors.push(`rule.origin: one line of printable ASCII, at most ${ORIGIN_MAX} characters`);
+    }
+    if ("code" in rule && !isCodePath(rule.code)) {
+      errors.push(`rule.code: a script path scripts/<kebab>(/<kebab>)*.mjs of at most ${CODE_MAX} characters`);
     }
   }
   if ("entry" in rule && !isObject(rule.entry)) errors.push("rule.entry: must be an object");

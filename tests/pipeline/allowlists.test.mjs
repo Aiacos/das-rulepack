@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -9,7 +9,7 @@ import { assertProblems, isPlainLine } from "../../tools/pipeline/assert.mjs";
 import { validateRecord } from "../../tools/pipeline/schema.mjs";
 import { checkFixes, checkText, runGates } from "../../tools/pipeline/gates.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
-import { validateTriageQueueEntry } from "../../tools/pipeline/registry.mjs";
+import { NOT_BOOKS, validateTriageQueueEntry } from "../../tools/pipeline/registry.mjs";
 import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented ids and invented text. Fix round 2 of Task 3: allowlists instead of blacklists, and the
@@ -163,15 +163,47 @@ describe("text fields: printable ASCII; code, catalog and origin", () => {
     expect(validateRecord(rec({ uncovered })).join("; ")).toMatch(/uncovered\[0\]\.because/);
   });
 
-  it("code and catalog are kebab/dot identifiers of at most 64 characters; origin a known origin (non-legacy)", () => {
-    expect(validateRecord(rec({ code: "blade-cantrips.booming", catalog: "option", origin: "official" }))).toEqual([]);
+  it("catalog is a kebab/dot identifier; origin a display label; code a script of the repository (non-legacy, R17, R18)", () => {
+    expect(validateRecord(rec({ catalog: "option", origin: "Fey Wanderer 3", code: "scripts/shadow-blade.mjs" }))).toEqual([]);
     expect(validateRecord(rec({ catalog: null }))).toEqual([]);
-    for (const code of ["scripts/blade.mjs", "Run this", "x".repeat(65)]) {
+    expect(validateRecord(rec({ catalog: "Eldritch Invocation" })).join("; ")).toMatch(/rule\.catalog/);
+    for (const origin of ["x".repeat(61), "Fey Wanderer\u00a03", "Line\nbreak", ""]) {
+      expect(validateRecord(rec({ origin })).join("; "), JSON.stringify(origin)).toMatch(/rule\.origin/);
+    }
+    expect(validateRecord(rec({ origin: "x".repeat(60) }))).toEqual([]);
+    for (const code of ["scripts/Blade.mjs", "scripts/../x.mjs", "/scripts/x.mjs", "scripts/x.js", "tools/x.mjs", "blade",
+      `scripts/${"x".repeat(85)}.mjs`, "scripts/a//b.mjs", "scripts/-x.mjs"]) {
       expect(validateRecord(rec({ code })).join("; "), code).toMatch(/rule\.code/);
     }
-    expect(validateRecord(rec({ catalog: "Eldritch Invocation" })).join("; ")).toMatch(/rule\.catalog/);
-    expect(validateRecord(rec({ origin: "Fey Wanderer 3" })).join("; ")).toMatch(/rule\.origin/);
+    expect(validateRecord(rec({ code: "scripts/rules/book.mjs" }))).toEqual([]);
   });
+
+  it("the schema gate fails a code script that is not in the repository, under --ci too", () => {
+    const core = { version: "1", facts: [], vocabulary: new Set(), identifiers: new Set(), validateEntry: () => [] };
+    const schema = (code) => runGates([rec({ code })], { core, documents: {}, ci: true, legacy: new Map() })
+      .failures["tst:spell:x"]?.schema ?? [];
+    expect(schema("scripts/shadow-blade.mjs")).toEqual([]);
+    expect(schema("scripts/no-such-script.mjs").join("; ")).toMatch(/schema: rule\.code: scripts\/no-such-script\.mjs is not/);
+  });
+
+  it("the legacy rules' code and origin values pass these formats anyway", () => {
+    const dir = join(ROOT, "registry");
+    const ruled = readdirSync(dir).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f))
+      .flatMap((f) => JSON.parse(readFileSync(join(dir, f), "utf8")).records).filter((r) => r.rule);
+    const values = ruled.flatMap((r) => ["code", "origin"].filter((f) => f in r.rule).map((f) => [r.key, f, r.rule[f]]));
+    expect(values).toHaveLength(10);
+    for (const [key, f, v] of values) {
+      const { legacy, legacyStatus, ...plain } = { ...r0(), rule: { ...r0().rule, [f]: v } };
+      expect(validateRecord(plain), `${key} ${f}`).toEqual([]);
+      if (f === "code") expect(existsSync(join(ROOT, v)), v).toBe(true);
+    }
+  });
+});
+
+const r0 = () => ({
+  key: "tst:spell:x", identifier: "x", name: "X", kind: "spell", book: "TST", page: 1, edition: "2024", text: null,
+  items: [], verdict: "entry", evidence: {}, rule: { handledIn: "table", adds: "x", entry: {}, origins: ["official"],
+    assert: ASSERT }
 });
 
 describe("the quotation check normalises both sides", () => {
@@ -199,6 +231,9 @@ describe("the quotation check normalises both sides", () => {
       .toMatch(/text: the rule's prose together quotes 8 or more/);
     const uncovered = [{ origin: "ddb-importer", because: EIGHT.join(" ") }];
     expect(quoted({ uncovered })).toMatch(/text: rule\.uncovered\[0\]\.because quotes/);
+    expect(quoted({ origin: EIGHT.join(" ") })).toMatch(/text: rule\.origin quotes/);
+    expect(quoted({ origin: EIGHT.slice(0, 4).join(" "), adds: EIGHT.slice(4).join(" ") }))
+      .toMatch(/text: the rule's prose together quotes/);
   });
 });
 

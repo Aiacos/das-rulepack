@@ -6,6 +6,9 @@
 //   legacy    legacy.json as a Map of record key to the fingerprint of its rule at migration (registry.mjs loadLegacy)
 // A gate returns its failures as a string[]; the gates that can also say something that must not fail a run (a note) expose it
 // through the matching check function, and runGates collects both.
+import { existsSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   canonical, emittedFingerprint, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
 } from "./registry.mjs";
@@ -73,9 +76,18 @@ export const gateSchema = (record, context) => {
   return [
     ...errors.map((e) => `schema: ${e}`), ...sourceProblems(record),
     ...(errors.length ? [] : identifierProblems(record).map((e) => `schema: ${e}`)),
-    ...(errors.length ? [] : draftProblems(record, context).map((e) => `schema: ${e}`))
+    ...(errors.length ? [] : draftProblems(record, context).map((e) => `schema: ${e}`)),
+    ...(errors.length ? [] : codeProblems(record, context))
   ];
 };
+
+// Ruling R18: the script a non-legacy code rule names is a file of the repository (`context.root`, default this checkout).
+const REPO = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
+function codeProblems(record, context) {
+  const code = record.rule?.code;
+  if (typeof code !== "string" || isLegacy(record, context)) return [];
+  return existsSync(join(context?.root ?? REPO, code)) ? [] : [`schema: rule.code: ${code} is not a file of the repository`];
+}
 
 // The drafter limits of a ruled record's entry, or []: a legacy record with standing predates them, and a person may write
 // any key once they sign `evidence.person` (schema-checked, visible to review).
@@ -256,9 +268,9 @@ export function checkText(record, context = {}) {
     out.failures.push(`text: ${record.text.sha256} is not in the text cache`);
     return out;
   }
-  // The prose of a rule (`adds`, the `free` of its assertions, the `because` of its uncovered origins) never quotes its source,
-  // field by field nor all of it together (a quote split across fields). A legacy rule with standing predates the check (its
-  // `adds` is held by its legacy fingerprint, and checking it would change its evidence): it is not held to it.
+  // The prose of a rule (`origin`, `adds`, the `free` of its assertions, the `because` of its uncovered origins) never quotes
+  // its source, field by field nor all of it together (a quote split across fields). A legacy rule with standing predates the
+  // check (its `adds` is held by its legacy fingerprint, and checking it would change its evidence): it is not held to it.
   if (!record.rule || isLegacy(record, context)) return out;
   const source = new Set(nGrams(wordsOf(readText(textDir, record.text.sha256)), RULE_QUOTE_WORDS));
   const quotes = (prose) => nGrams(wordsOf(prose), RULE_QUOTE_WORDS).some((g) => source.has(g));
@@ -284,7 +296,7 @@ const nGrams = (words, n) => {
 };
 function ruleProse(rule) {
   if (!isObject(rule)) return [];
-  const out = typeof rule.adds === "string" ? [["rule.adds", rule.adds]] : [];
+  const out = [["rule.origin", rule.origin], ["rule.adds", rule.adds]].filter(([, v]) => typeof v === "string");
   (Array.isArray(rule.assert) ? rule.assert : []).forEach((a, i) => {
     for (const part of ["given", "expect"]) {
       if (typeof a?.[part]?.free === "string") out.push([`rule.assert[${i}].${part}.free`, a[part].free]);

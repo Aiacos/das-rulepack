@@ -194,15 +194,18 @@ review or a play written before the stamp existed (no `rule`): it counts as it d
   `+ - * / ( ) .` and the references `@mod`, `@prof`, `@item.…`, `@abilities.…`, `@attributes.…`, `@details.…`, `@scale.…`,
   `@flags.…` (no other word). Every text of a rule (`adds` ≤ 200, `free` ≤ 120, `uncovered[].because` ≤ 200,
   `evidence.person.because` ≤ 120) is one line of printable ASCII (0x20–0x7E): no control, format or look-alike character.
-  From this milestone on `rule.code` and `rule.catalog` are kebab/dot identifiers of at most 64 characters and `rule.origin`
-  one of the origins (the 24 legacy rules predate both: script paths, display labels). The schema
+  From this milestone on `rule.catalog` is a kebab/dot identifier of at most 64 characters, `rule.origin` a display label
+  of where the rule comes from in the book (owner and level, "Fey Wanderer 3"; one line of printable ASCII, at most 60
+  characters; Ruling R17), and `rule.code` the script of a `code` verdict, `scripts/<kebab>(/<kebab>)*.mjs`, at most 96
+  characters, which the schema gate (also under `--ci`) requires to be a file of the repository (Ruling R18). The legacy
+  rules are exempt; their values pass these formats anyway. The schema
   checks the shape; the validator gate checks `moment` (MOMENTS), `targetType` (CREATURE_TYPES), the statuses of `condition`
   (the conditions `core/monster-text.mjs` names), `ends` (EFFECT_ENDS or a moment), `move.mode` (MOVE_MODES) and
   `damage.type` (DAMAGE_TYPES) against the clone (`loadCore`). `normaliseAssert` gives the sorted canonical forms of a list
   (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry)` what an entry says by itself:
   `saveDamage` (a saved save: half or no damage), `halfOnMiss`, `noDamage`, and a `triggers` declaration on `failedSave` with a
   `status` or `move` step (Rulings R15, R16: `noReactions` implies nothing, so such a rule always goes to a person at review).
-- **Quotations.** The text gate reads the record's cached text and fails a rule whose `adds`, any `assert[].given.free` /
+- **Quotations.** The text gate reads the record's cached text and fails a rule whose `origin`, `adds`, any `assert[].given.free` /
   `assert[].expect.free` or any `uncovered[].because` repeats 8 or more consecutive words of it, each field alone and all of
   them together in order (a quote split across fields). Both sides are normalised: NFKC, lower case, and every run of
   characters that are not letters or digits separates words (hyphens, slashes, zero-width characters). A text not in the

@@ -104,6 +104,15 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   Damage that comes later from a trigger (Ensnaring Strike style) is a separate assertion of its own. Wrong: a reviewer who
   reads "the spell deals damage" as one assertion disagrees with the draft and the record goes to a person.
 
+- **R17 — `rule.origin` is a display label** of where the rule comes from in the book (owner and level: "Fey Wanderer 3"),
+  not a source origin. For a non-legacy rule: one line of printable ASCII, at most 60 characters, and part of the prose the
+  quotation check covers (alone and with the rest). Wrong: a label could carry a few words of the book (8 consecutive words
+  are caught; shorter fragments are not), and readers of `docs/RULES.md` see whatever label was written.
+- **R18 — `rule.code` names the script of a `code` verdict**: a repository-relative path `scripts/<kebab>(/<kebab>)*.mjs`
+  of at most 96 characters, and the schema gate (also under `--ci`) fails when the file is not in the repository. Wrong:
+  the gate checks that a file exists, not that it implements the rule (review and play do); a script moved without its
+  rules being updated fails every gate run until they are.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
@@ -257,8 +266,10 @@ identifier equal to a Core identifier merges into Core's entry for every item of
   `core.validateEntry` with the real fact list, `checkIds` (R4,
   R5), prose rules (Global Constraints), `assert` invalid or empty. `person`, `code`, `engine` outcomes and any rule with
   confidence < 0.7 go to `drafts-queue.json` (reason = outcome or `low-confidence`); the verdict is not changed.
-- An applied rule: `rule` written with `alsoAs` and (for monsters) `identifier` filled by Task 2's functions, `origin` derived
-  from owner/level for features, `evidence.drafted = { by, at, core, rule }`; state `drafted`. Books and the queue are written in
+- An applied rule: `rule` written with `alsoAs` and (for monsters) `identifier` filled by Task 2's functions, `origin`
+  (R17: a display label, ≤ 60 printable ASCII) derived from owner/level for features, no `code` (a `code` outcome is
+  queued; a person writes the script and names it in `rule.code`, R18), `evidence.drafted = { by, at, core, rule }`; state
+  `drafted`. Books and the queue are written in
   one step (both files to temporary names, then renamed), closing the TODO item about two-step saves.
 - Prints `{ applied, queued, rejected }`; exit 1 when anything was rejected.
 
