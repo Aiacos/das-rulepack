@@ -1,0 +1,65 @@
+// The record format of the rulebook registry: the closed vocabularies and the structural validator.
+export const VERDICTS = Object.freeze(["core", "data", "none", "entry", "code", "engine", "unverifiable"]);
+export const STATES = Object.freeze(["inventoried", "triaged", "drafted", "gated", "reviewed", "played"]);
+export const ORIGINS = Object.freeze(["official", "ddb-importer", "plutonium"]);
+export const MATCHES = Object.freeze(["matched", "absent", "ambiguous", "unchecked"]);
+export const LEGACY_STATUSES = Object.freeze(["played", "validated", "pending"]);
+export const EDITIONS = Object.freeze(["2014", "2024"]);
+
+const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const isString = (v) => typeof v === "string" && v !== "";
+const isPage = (v) => Number.isInteger(v) && v > 0;
+
+function checkItem(item, at, errors) {
+  if (!isObject(item)) return errors.push(`${at}: must be an object`);
+  if (!ORIGINS.includes(item.origin)) errors.push(`${at}.origin: unknown origin ${JSON.stringify(item.origin)}`);
+  if (!MATCHES.includes(item.match)) errors.push(`${at}.match: unknown match ${JSON.stringify(item.match)}`);
+  for (const f of ["identifier", "docId"]) {
+    if (f in item && typeof item[f] !== "string") errors.push(`${at}.${f}: must be a string`);
+  }
+  for (const f of ["activities", "effects"]) if (f in item && !Array.isArray(item[f])) errors.push(`${at}.${f}: must be an array`);
+  if ("data" in item && !isObject(item.data)) errors.push(`${at}.data: must be an object`);
+}
+
+function checkRule(rule, verdict, errors) {
+  if (!isObject(rule)) return errors.push("rule: must be an object");
+  if (!isString(rule.handledIn)) errors.push("rule.handledIn: must be a non-empty string");
+  if (!Array.isArray(rule.adds)) errors.push("rule.adds: must be an array");
+  for (const f of ["entry", "code", "origin", "catalog"]) {
+    if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
+  }
+  if ("inCore" in rule && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
+  if ("assert" in rule && !isObject(rule.assert)) errors.push("rule.assert: must be an object");
+  if (!Array.isArray(rule.origins)) errors.push("rule.origins: must be an array");
+  else for (const o of rule.origins) if (!ORIGINS.includes(o)) errors.push(`rule.origins: unknown origin ${JSON.stringify(o)}`);
+  if (verdict === "entry" && !isString(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
+}
+
+export function validateRecord(record) {
+  if (!isObject(record)) return ["record: must be an object"];
+  const errors = [];
+  for (const f of ["key", "name", "kind", "book"]) if (!isString(record[f])) errors.push(`${f}: must be a non-empty string`);
+  if (!isPage(record.page)) errors.push("page: must be a positive integer");
+  if (!EDITIONS.includes(record.edition)) errors.push(`edition: must be one of ${EDITIONS.join(", ")}`);
+  if (record.text !== null && typeof record.text !== "string") errors.push("text: must be null or a string");
+  if (!Array.isArray(record.items)) errors.push("items: must be an array");
+  else record.items.forEach((item, i) => checkItem(item, `items[${i}]`, errors));
+  if (record.verdict !== null && !VERDICTS.includes(record.verdict)) {
+    errors.push(`verdict: unknown verdict ${JSON.stringify(record.verdict)}`);
+  }
+  if (!isObject(record.evidence)) errors.push("evidence: must be an object");
+  if ("rule" in record) checkRule(record.rule, record.verdict, errors);
+  else if (record.verdict === "entry") errors.push("rule.entry: required when the verdict is entry");
+  if ("legacy" in record && typeof record.legacy !== "boolean") errors.push("legacy: must be a boolean");
+  if ("legacyStatus" in record && !LEGACY_STATUSES.includes(record.legacyStatus)) {
+    errors.push(`legacyStatus: must be one of ${LEGACY_STATUSES.join(", ")}`);
+  }
+  if ("alsoIn" in record) {
+    if (!Array.isArray(record.alsoIn)) errors.push("alsoIn: must be an array");
+    else record.alsoIn.forEach((a, i) => {
+      if (!isObject(a) || !isString(a.book) || !isPage(a.page)) errors.push(`alsoIn[${i}]: must be { book, page }`);
+    });
+  }
+  for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
+  return errors;
+}
