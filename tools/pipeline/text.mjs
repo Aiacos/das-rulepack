@@ -25,16 +25,23 @@ const first = (args) => args.split("|")[0];
 export const TAG_RENDER = {
   atk: (a) => attackHeader(a, false),
   atkr: (a) => attackHeader(a, true),
-  hit: (a) => { const n = first(a).trim(); return /^[+-]/.test(n) ? n : `+${n}`; },
+  hit: (a) => { const n = first(a).trim(); return !n ? "" : /^[+-]/.test(n) ? n : `+${n}`; },
   h: () => "Hit:",
   m: () => "Miss:",
-  dc: (a) => `DC ${first(a).trim()}`,
-  recharge: (a) => { const n = Number(first(a)) || 6; return n >= 6 ? "(Recharge 6)" : `(Recharge ${n}\u20136)`; },
+  dc: (a) => (first(a).trim() ? `DC ${first(a).trim()}` : ""),
+  recharge: (a) => {
+    const arg = first(a).trim();
+    if (!arg) return "(Recharge 6)";
+    const n = Number(arg);
+    if (!Number.isInteger(n) || n < 2) return "(Recharge)";
+    return n >= 6 ? "(Recharge 6)" : `(Recharge ${n}\u20136)`;
+  },
   actSave: (a) => {
     const ability = ABILITY[first(a).trim().toLowerCase().slice(0, 3)];
     return ability ? `${ability} Saving Throw:` : null;
   },
   actSaveFail: (a) => { const n = first(a).trim(); return n ? `Failure by ${n} or More:` : "Failure:"; },
+  actSaveFailBy: (a) => { const n = first(a).trim(); return n ? `Failure by ${n} or More:` : "Failure:"; },
   actSaveSuccess: () => "Success:",
   actSaveSuccessOrFail: () => "Failure or Success:",
   actTrigger: () => "Trigger:",

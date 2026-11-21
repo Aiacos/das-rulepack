@@ -32,6 +32,12 @@ describe("plainText renders attack and save tags", () => {
     expect(plainText(["{@actTrigger} a {@actResponse} b"])).toBe("Trigger: a Response: b");
   });
 
+  it("renders {@actSaveFailBy N} and guards empty or odd arguments", () => {
+    expect(plainText(["{@actSaveFailBy 5} x"])).toBe("Failure by 5 or More: x");
+    expect(plainText(["{@recharge oops}"])).toBe("(Recharge)");
+    expect(plainText(["a {@hit} b {@dc} c"])).toBe("a b c");
+  });
+
   it("leaves unknown tags as their first argument", () => {
     expect(plainText(["{@condition Prone|XPHB} and {@spell fire bolt|XYZ|bolt}"])).toBe("Prone and fire bolt");
     expect(plainText(["{@atkr q}"])).toBe("q");
@@ -87,5 +93,22 @@ describe("inventory and a renderer-only change", () => {
     expect(report.rerendered).toEqual([]);
     expect(records[0].textChangedAt).toBeTypeOf("string");
     expect(records[0].evidence.gates).toBeUndefined();
+  });
+
+  it("keeps textV1 out of the records", () => {
+    writeBestiary(["{@atkr m} {@hit 7}, reach 5 ft."]);
+    const { records } = run([]);
+    expect(JSON.stringify(records)).not.toContain("textV1");
+  });
+
+  it("dates a change of words made together with a renderer change", () => {
+    writeBestiary(["{@atkr m} {@hit 7}, reach 10 ft. {@h}6 piercing."]);
+    const first = run([]).records;
+    // Stored: the old rendering of the OLD words (reach 5 ft.).
+    const stored = verdicted(first).map((r) => ({ ...r, text: { ...r.text, sha256: textFingerprint(oldText) } }));
+    const { records, report } = run(stored);
+    expect(report.textChanged).toEqual([records[0].key]);
+    expect(report.rerendered).toEqual([]);
+    expect(records[0].textChangedAt).toBeTypeOf("string");
   });
 });
