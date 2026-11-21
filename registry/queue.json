@@ -1,5 +1,253 @@
 [
   {
+    "key": "xphb:feat:fey-touched",
+    "verdict": "none",
+    "why": "Spell choice and free casts granted through spell selection; no data of its own and nothing beyond cast rules.",
+    "confidence": 0.65,
+    "by": "reader-xphb-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feat:shadow-touched",
+    "verdict": "none",
+    "why": "Spell choice and free casts via spell grants; no combat rule beyond normal casting.",
+    "confidence": 0.65,
+    "by": "reader-xphb-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:druid/18/beast-spells",
+    "verdict": "entry",
+    "why": "Spellcasting is allowed while shape-shifted, which the data does not express; needs a rule to lift the form restriction.",
+    "confidence": 0.65,
+    "by": "reader-xphb-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:fighter/11/two-extra-attacks",
+    "verdict": "entry",
+    "why": "Data lacks any activity or effect; raises the attack count of the Attack action to three.",
+    "confidence": 0.65,
+    "by": "reader-xphb-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:fighter/20/three-extra-attacks",
+    "verdict": "entry",
+    "why": "Data lacks any activity or effect; raises the attack count of the Attack action to four.",
+    "confidence": 0.65,
+    "by": "reader-xphb-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:fighter/5/extra-attack",
+    "verdict": "entry",
+    "why": "Data lacks any activity or effect; raises the attack count of the Attack action to two.",
+    "confidence": 0.65,
+    "by": "reader-xphb-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:fighter/battle-master/10/improved-combat-superiority",
+    "verdict": "entry",
+    "why": "Data lacks the Superiority Die size increase; a scaling value for the maneuver dice.",
+    "confidence": 0.65,
+    "by": "reader-xphb-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:fighter/battle-master/18/ultimate-combat-superiority",
+    "verdict": "entry",
+    "why": "Data lacks the Superiority Die size increase; a scaling value for the maneuver dice.",
+    "confidence": 0.65,
+    "by": "reader-xphb-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:fighter/eldritch-knight/3/war-bond",
+    "verdict": "data",
+    "why": "Bonus-action summon activity and two-bond limit are in data; the anti-disarm rider is minor.",
+    "confidence": 0.65,
+    "by": "reader-xphb-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:fighter/psi-warrior/3/telekinetic-movement",
+    "verdict": "entry",
+    "why": "Magic action to move a target, restorable by die; no item data.",
+    "confidence": 0.65,
+    "by": "reader-xphb-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:monk/1/dexterous-attacks",
+    "verdict": "entry",
+    "why": "Ability swap for unarmed and monk weapon attacks and grapple DC; no item data.",
+    "confidence": 0.65,
+    "by": "reader-xphb-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:monk/1/martial-arts-die",
+    "verdict": "entry",
+    "why": "Damage die replacement for monk attacks scaling by level; no item data.",
+    "confidence": 0.65,
+    "by": "reader-xphb-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:monk/13/deflect-energy",
+    "verdict": "entry",
+    "why": "Extends the deflect feature to all damage types; data lacks that widening.",
+    "confidence": 0.6,
+    "by": "reader-xphb-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:monk/5/extra-attack",
+    "verdict": "entry",
+    "why": "data lacks any activity or effect; two attacks per Attack action needs an engine rule.",
+    "confidence": 0.65,
+    "by": "reader-xphb-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:monk/shadow/3/darkvision",
+    "verdict": "entry",
+    "why": "No item data; sense range increase for vision needs an effect.",
+    "confidence": 0.65,
+    "by": "reader-xphb-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:monk/shadow/3/shadow-arts",
+    "verdict": "data",
+    "why": "Cast activity and darkvision effect exist; text shown is only an intro so spell details uncertain.",
+    "confidence": 0.6,
+    "by": "reader-xphb-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:paladin/1/weapon-mastery",
+    "verdict": "none",
+    "why": "Out of combat choice of weapon kinds; mastery effects belong to the weapons.",
+    "confidence": 0.6,
+    "by": "reader-xphb-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:paladin/5/extra-attack",
+    "verdict": "entry",
+    "why": "Data lacks an extra-attack count; the Attack action needs to allow a second attack.",
+    "confidence": 0.6,
+    "by": "reader-xphb-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:paladin/5/faithful-steed",
+    "verdict": "none",
+    "why": "Grants an always-prepared spell and one free cast per long rest; not a combat rule beyond the spell itself.",
+    "confidence": 0.6,
+    "by": "reader-xphb-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:ranger/1/weapon-mastery",
+    "verdict": "none",
+    "why": "Choice of weapon kinds whose mastery applies; selection is character-building, mastery handled elsewhere.",
+    "confidence": 0.6,
+    "by": "reader-xphb-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:ranger/5/extra-attack",
+    "verdict": "entry",
+    "why": "Data lacks an extra-attack count; the Attack action needs to allow a second attack.",
+    "confidence": 0.6,
+    "by": "reader-xphb-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:ranger/6/roving",
+    "verdict": "entry",
+    "why": "Speed bonus conditional on not wearing heavy armor plus climb and swim speeds; effect changes speeds but the armor condition is not in the data.",
+    "confidence": 0.65,
+    "by": "reader-xphb-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:rogue/assassin/9/infiltration-expertise",
+    "verdict": "entry",
+    "why": "Mimicry is non-combat; Roving Aim lets Steady Aim keep speed; data lacks it",
+    "confidence": 0.6,
+    "by": "reader-xphb-011",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:sorcerer/wild-magic/14/controlled-chaos",
+    "verdict": "entry",
+    "why": "Roll twice and pick on surge table results; data has nothing",
+    "confidence": 0.65,
+    "by": "reader-xphb-012",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:feature:sorcerer/wild-magic/18/tamed-surge",
+    "verdict": "entry",
+    "why": "Choose a surge effect after a slot cast, once per rest; data has uses but no activity",
+    "confidence": 0.65,
+    "by": "reader-xphb-012",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:item:chain",
+    "verdict": "entry",
+    "why": "Utility restrains a creature until it escapes; escape and burst checks with set DCs; check activities exist but not the restrained state or its end.",
+    "confidence": 0.65,
+    "by": "reader-xphb-015",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:item:rope",
+    "verdict": "entry",
+    "why": "Binding a grappled or incapacitated creature yields Restrained until an escape check passes; data lacks the condition gate and bound state.",
+    "confidence": 0.6,
+    "by": "reader-xphb-017",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:option:gaze-of-two-minds",
+    "verdict": "none",
+    "why": "Sensory sharing utility with upkeep each turn; no attack, save or damage effect in combat.",
+    "confidence": 0.65,
+    "by": "reader-xphb-020",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:species:elf/elven-lineage",
+    "verdict": "none",
+    "why": "Lineage choice granting spells and a casting ability; the spells carry their own combat data.",
+    "confidence": 0.65,
+    "by": "reader-xphb-021",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:species:gnome/gnomish-lineage",
+    "verdict": "none",
+    "why": "Lineage choice granting cantrips and a spell; out-of-combat device option; spells carry own data.",
+    "confidence": 0.65,
+    "by": "reader-xphb-021",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:species:tiefling/fiendish-legacy",
+    "verdict": "none",
+    "why": "Legacy choice granting spells and a casting ability; the spells carry their own combat data.",
+    "confidence": 0.65,
+    "by": "reader-xphb-021",
+    "reason": "low-confidence"
+  },
+  {
     "key": "xphb:spell:animal-shapes",
     "verdict": "data",
     "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Native transform activities; Temp HP equal to the first form's HP and Bonus Action to revert depend on the transform settings, not visi",
@@ -21,6 +269,14 @@
     "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. lancio di 24 ore, effetti scelti e arbitrati dal GM; nessuna attività con effetto nel dato",
     "confidence": 0.5,
     "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:leomunds-tiny-hut",
+    "verdict": "none",
+    "why": "Stationary barrier with comfort and lighting control; blocking by creature and spell level is not resolvable by data, little combat use. Borderline.",
+    "confidence": 0.55,
+    "by": "reader-xphb-022",
     "reason": "low-confidence"
   },
   {
@@ -70,6 +326,14 @@
     "confidence": 0.6,
     "by": "reader-sonnet-1",
     "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:time-stop",
+    "verdict": "engine",
+    "why": "Needs extra consecutive turns for the caster and early end when an action affects others or distance exceeded; no activity expresses turn manipulation.",
+    "confidence": 0.6,
+    "by": "reader-xphb-022",
+    "reason": "engine"
   },
   {
     "key": "xphb:spell:tree-stride",
