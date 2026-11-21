@@ -1,0 +1,313 @@
+{
+  "book": "OGA",
+  "records": [
+    {
+      "key": "oga:item:whistle-stick",
+      "name": "Whistle-Stick",
+      "kind": "item",
+      "book": "OGA",
+      "edition": "2014",
+      "rarity": "unknown",
+      "identifier": "whistle-stick",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "fe4ec0823d8f00b5149b322bdea99431982b77c58808dcd87fd608b859466030",
+        "source": "5etools",
+        "chars": 460
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "whistle-stick",
+              "docId": "MxMAUPcJeQepDKMz"
+            }
+          ],
+          "differences": [
+            "edition"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung",
+      "name": "Grung",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "identifier": "grung",
+      "page": 4,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/age",
+      "name": "Age",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "age",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "2367200fb540b4e30ed53395b2a9a23881864ed77461684f2422ac861abdb137",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/alignment",
+      "name": "Alignment",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "alignment",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "4cc57e4c7da9486c04d43186c8e27766ddd2661de13a510d1ffc35c1fc0dd7f1",
+        "source": "5etools",
+        "chars": 281
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/amphibious",
+      "name": "Amphibious",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "amphibious",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "63d1cc85c9b01a1b95a9140b2210793766cae3c4bb351b98e82fe70c377d8228",
+        "source": "5etools",
+        "chars": 30
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/arboreal-alertness",
+      "name": "Arboreal Alertness",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "arboreal-alertness",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "12982e37c572d47f3d1770eb9187364a4a09a70d59360362cf8e6d955de1b8a8",
+        "source": "5etools",
+        "chars": 45
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/languages",
+      "name": "Languages",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "languages",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "2e455b43105a864f5f0276c0388e81eddb92672a82b738901025dd793127a97f",
+        "source": "5etools",
+        "chars": 37
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/poison-immunity",
+      "name": "Poison Immunity",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "poison-immunity",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "950b56376902b402273c40129982ee4edc79c5ae699e76a807039649b1614060",
+        "source": "5etools",
+        "chars": 58
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/poisonous-skin",
+      "name": "Poisonous Skin",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "poisonous-skin",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "2b26a6dd519e974588bce8a2fb286b7da4ef40e218aeb2808633b3e9cb71ecbf",
+        "source": "5etools",
+        "chars": 553
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "size",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "f5d0f2968595c5e86b8f99666b80eeb7e1146483874cad2cef4eb3af391e9b2e",
+        "source": "5etools",
+        "chars": 89
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/standing-leap",
+      "name": "Standing Leap",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "standing-leap",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "5ba1a03ffe02efb8aaf48669e1a487cc7646f066d15db220581bde3419ad00f5",
+        "source": "5etools",
+        "chars": 101
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "oga:species:grung/water-dependency",
+      "name": "Water Dependency",
+      "kind": "species",
+      "book": "OGA",
+      "edition": "2014",
+      "owner": "Grung",
+      "identifier": "water-dependency",
+      "page": 4,
+      "srd": false,
+      "text": {
+        "sha256": "b17b5345eda1a7771a075701fb23220e79eeabd4e6d9d2d83df901d09dab4145",
+        "source": "5etools",
+        "chars": 244
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
