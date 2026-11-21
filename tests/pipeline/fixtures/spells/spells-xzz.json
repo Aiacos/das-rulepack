@@ -1,0 +1,14 @@
+{
+  "spell": [
+    {
+      "name": "Glimmer Lance", "source": "XZZ", "page": 12, "level": 2, "school": "V", "srd52": true,
+      "entries": [
+        "A shard of light deals {@damage 2d6} radiant damage and the target is {@condition Prone|XZZ}.",
+        { "type": "entries", "name": "Echo", "entries": ["Repeat with {@spell Glimmer Lance|XZZ|the lance}."] },
+        { "type": "list", "items": ["First   item", { "type": "item", "name": "Second", "entry": "has {@dice 1d4}" }] }
+      ]
+    },
+    { "name": "Quiet Ember", "source": "XZZ", "page": 13, "level": 0, "school": "E", "entries": ["Warms a stone."] },
+    { "name": "Hollow Step", "source": "XZZ", "page": 14, "level": 1, "school": "C", "basicRules2024": true, "entries": ["Slip away."] }
+  ]
+}
