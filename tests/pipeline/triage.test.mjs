@@ -33,6 +33,17 @@ const core = new Set(["in-core"]);
 const ENTRY_KEYS = new Set(["triggers", "aura", "noDamage"]);
 const AT = "2026-01-01T00:00:00.000Z";
 
+describe("textChangedAt", () => {
+  it("is cleared when ingest writes a verdict", () => {
+    const r = record("Old Glow", { verdict: "data", why: "w", textChangedAt: "2026-01-01", evidence: {} });
+    const out = ingest([r], [{ key: r.key, verdict: "none", why: "again", confidence: 0.9 }], {
+      textDir, by: "agent-1", at: AT, entryKeys: ENTRY_KEYS, overwrite: true,
+    });
+    expect(out.applied).toEqual([r.key]);
+    expect("textChangedAt" in out.records[0]).toBe(false);
+  });
+});
+
 describe("autoTriage", () => {
   it("returns core when the engine has an entry, whatever the text", () => {
     expect(autoTriage(record("In Core"), { coreIdentifiers: core, textDir }))

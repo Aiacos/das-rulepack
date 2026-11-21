@@ -247,12 +247,16 @@ Notes on what inventory does with each kind:
   the features found in them `ambiguous`; no actor of the name makes every feature `absent`. DDB Importer has no monster
   dump. The report adds `creatures`, `copies` (`_copy` creatures) and `noActor` (creatures with no actor), all counts.
 - Repeat numbers (`#2`) are re-derived against the registry on every run, not by position: among the same-name features of one
-  creature and section, the record whose stored text fingerprint equals the feature's keeps its key; then, when as many
-  records as features remain, they pair in order (a text edit), else the lowest number no existing record uses is taken.
-  A record of the book and kind that a run no longer produces is never deleted or rewritten: its key is listed in `vanished`.
-  A monster feature matches only an embedded item whose activation (action, bonus, reaction, legendary, mythic; trait when
-  passive or without activity) agrees with its section, one that states none being neutral (a spellcasting block ignores the section); an item still claimed by two
-  features of one creature makes both `ambiguous` (`differences: ["section"]`). A creature's identity includes its book.
+  creature and section, the record whose stored text fingerprint equals the feature's keeps its key; only a lone feature
+  with a lone record and no fingerprint match is a text edit and keeps that record; every other feature takes the lowest
+  number no existing record uses, and the unmatched records stay untouched (never given to another feature).
+  A record of the book and kind that a run no longer produces is never deleted or rewritten: its key is listed in `vanished`
+  (legacy records and `sense` records never are). A monster feature matches only an embedded item whose activation (action,
+  bonus, reaction, legendary, mythic; trait when passive) agrees with its section; an item that states none, or has no
+  activity, is neutral (a spellcasting block ignores the section). An item still claimed by two features of one creature
+  makes both `ambiguous` (`differences: ["duplicate"]` within one section, `["section"]` across sections).
+  Whenever a record that has a verdict gets another text, inventory dates it in `textChangedAt` (cleared when a verdict is
+  written again). A creature's identity includes its book.
 - A re-run keeps every key; a record that has a `rule` keeps its `identifier` (the official one stays on the official item).
 
 ## 🤝 Settling matches, sources and reprints

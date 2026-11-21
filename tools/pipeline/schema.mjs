@@ -185,6 +185,10 @@ export function validateRecord(record) {
   for (const f of ["rarity", "section", "copyOf"]) {
     if (f in record && !isString(record[f])) errors.push(`${f}: must be a non-empty string`);
   }
+  const isDate = (v) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}(T.*)?$/.test(v);
+  if ("textChangedAt" in record && !isDate(record.textChangedAt)) {
+    errors.push("textChangedAt: must be an ISO date string");
+  }
   if ("note" in record && typeof record.note !== "string") errors.push("note: must be a string");
   for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
   return errors;

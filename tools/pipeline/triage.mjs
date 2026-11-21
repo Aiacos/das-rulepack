@@ -120,8 +120,9 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
       });
       continue;
     }
+    const { textChangedAt, ...settled } = record;
     const next = {
-      ...record, verdict: result.verdict, why: result.why,
+      ...settled, verdict: result.verdict, why: result.why,
       evidence: {
         ...record.evidence,
         triaged: {
@@ -137,6 +138,7 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
       continue;
     }
     Object.assign(record, next);
+    delete record.textChangedAt;
     applied.push(result.key);
   }
   return { records: out, applied, queued, rejected };

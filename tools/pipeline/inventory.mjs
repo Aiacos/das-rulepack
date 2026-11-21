@@ -182,7 +182,7 @@ export const canonicalIdentifier = (items, name) =>
   ?? slug(name);
 
 // The official outcome of every monster feature, with one more rule: an embedded item claimed by two features of one creature
-// cannot be told which of them it is, so both are ambiguous (section).
+// cannot be told which of them it is, so both are ambiguous: `duplicate` when they share a section, else `section`.
 function monsterOutcomes(dataset, actorsFor) {
   const outcomes = dataset.map((e) => monsterOfficial(e, actorsFor(e.owner)));
   const claimOf = (e, i) => `${e.creatureIndex ?? e.owner}|${outcomes[i].item.docId}`;
@@ -193,7 +193,10 @@ function monsterOutcomes(dataset, actorsFor) {
   for (const claimants of claims.values()) {
     if (claimants.length < 2) continue;
     for (const [, i] of claimants) {
-      outcomes[i] = { match: "ambiguous", candidates: [outcomes[i].item], differences: ["section"] };
+      const sameSection = claimants.every(([, j]) => dataset[j].section === dataset[claimants[0][1]].section);
+      outcomes[i] = {
+        match: "ambiguous", candidates: [outcomes[i].item], differences: [sameSection ? "duplicate" : "section"]
+      };
     }
   }
   // A feature whose section disagrees with the only same-name item takes it, visibly, when no other feature claims it.
@@ -213,8 +216,9 @@ function monsterOutcomes(dataset, actorsFor) {
 const numberOf = (r) => r.occurrence ?? 1;
 
 // The repeat number of every monster feature of the run. Among the same-name features of one creature and section, the
-// record whose stored text fingerprint equals the feature's keeps its number whatever its position; then, when as many
-// records as features remain, they pair in order (a text edit); otherwise the lowest number no existing record uses is taken.
+// record whose stored text fingerprint equals the feature's keeps its number whatever its position. A lone feature that has
+// a lone record and no fingerprint match is a plain text edit: it keeps that record. Every other feature takes the lowest
+// number no existing record uses; the records left unmatched stay as they are (listed as vanished).
 function numberOccurrences(dataset, records, book) {
   const groups = groupBy(dataset.map((e, i) => [e, i]), ([e]) => `${e.creatureIndex ?? e.owner}|${e.section}|${slug(e.name)}`);
   const numbers = dataset.map((e) => e.occurrence ?? 1);
@@ -233,7 +237,7 @@ function numberOccurrences(dataset, records, book) {
       if (at >= 0) assigned.set(i, numberOf(free.splice(at, 1)[0]));
     }
     const rest = members.filter(([, i]) => !assigned.has(i));
-    if (rest.length === free.length) rest.forEach(([, i], k) => assigned.set(i, numberOf(free[k])));
+    if (members.length === 1 && existing.length === 1 && rest.length === 1) assigned.set(rest[0][1], numberOf(existing[0]));
     const used = new Set([...existing.map(numberOf), ...assigned.values()]);
     for (const [, i] of rest) {
       if (assigned.has(i)) continue;
@@ -252,7 +256,9 @@ function numberOccurrences(dataset, records, book) {
 // A record is found by its identity; if its key is not the one the entry would get now, that is a bug and it throws.
 // Two entries of one book with one key are a collision: the first gets the record, both are reported, the second gets none.
 // A record of the book and kind that the run no longer produces is never deleted or rewritten: its key is listed in `vanished`.
-export function inventory({ book, kind, dataset, creatures, dumps, textDir, previous }) {
+export function inventory({
+  book, kind, dataset, creatures, dumps, textDir, previous, at = new Date().toISOString().slice(0, 10)
+}) {
   if (!INVENTORY_KINDS.includes(kind) || !KIND_TABLE[kind]) {
     throw new Error(`Kind ${JSON.stringify(kind)} cannot be inventoried (${INVENTORY_KINDS.join(", ")})`);
   }
@@ -281,14 +287,19 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
   const monsters = kind === "monster";
   const outcomes = monsters ? monsterOutcomes(dataset, actorsFor) : [];
   const numbers = monsters ? numberOccurrences(dataset, records, book) : [];
-  if (monsters) report.skipped += (creatures ?? []).filter((c) => !slug(c.name)).length;
+  // A creature whose name slugs to nothing is one skip, however many features it has.
+  if (monsters) {
+    const names = creatures ? creatures.map((c) => c.name) : [...new Set(dataset.map((e) => e.owner))];
+    report.skipped += names.filter((n) => !slug(n)).length;
+  }
 
   for (const [index, listed] of dataset.entries()) {
     const entry = monsters ? { ...listed, occurrence: numbers[index] > 1 ? numbers[index] : undefined } : listed;
     // An entry that cannot be keyed (a feature whose owner cannot be named, a monster whose creature or feature name slugs to
     // nothing) is counted, never keyed under a guess.
     if (kind === "feature" && !entry.owner) { report.skipped += 1; continue; }
-    if (monsters && (!slug(entry.name) || !slug(entry.owner))) { report.skipped += 1; continue; }
+    if (monsters && !slug(entry.owner)) continue;
+    if (monsters && !slug(entry.name)) { report.skipped += 1; continue; }
     const key = keyOf({
       book, kind, name: entry.name, owner: entry.owner, section: entry.section, level: entry.level, occurrence: entry.occurrence
     });
@@ -361,6 +372,8 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
       }
       Object.assign(existing, fresh);
       if (textChanged) report.textChanged.push(existing.key);
+      // A verdict stands on a text that is no longer the one it was given on: dated until a new verdict is written.
+      if (textChanged && existing.verdict) existing.textChangedAt = at;
       if (dataChanged) report.dataChanged.push(existing.key);
       if ((textChanged || dataChanged) && existing.evidence?.gates) delete existing.evidence.gates;
     } else {
@@ -383,6 +396,9 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
     if (items.some((i) => i.match === "matched" && i.differences)) report.differing.push(record.key);
     if (!items.some((i) => i.origin === "official" && i.match === "matched")) report.noOfficial.push(record.key);
   }
-  report.vanished = records.filter((r) => r.book === book && r.kind === kind && !produced.has(r.key)).map((r) => r.key);
+  // Legacy records and the kinds that are never inventoried are not this run's to produce.
+  report.vanished = records
+    .filter((r) => r.book === book && r.kind === kind && r.kind !== "sense" && r.legacy !== true && !produced.has(r.key))
+    .map((r) => r.key);
   return { records, report };
 }

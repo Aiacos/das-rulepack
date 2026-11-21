@@ -242,7 +242,8 @@ async function triageCommand([book, ...rest]) {
     const t = autoTriage(r, { coreIdentifiers: identifiers, textDir });
     if (!t) return r;
     counts[t.verdict] = (counts[t.verdict] ?? 0) + 1;
-    return { ...r, verdict: t.verdict, why: t.why, evidence: { ...r.evidence, triaged: { by: t.by, at } } };
+    const { textChangedAt, ...rest } = r;
+    return { ...rest, verdict: t.verdict, why: t.why, evidence: { ...r.evidence, triaged: { by: t.by, at } } };
   });
   saveBook(REGISTRY, { book: found.book, note: found.note, records });
   for (const [verdict, n] of Object.entries(counts)) console.log(`${verdict}: ${n}`);

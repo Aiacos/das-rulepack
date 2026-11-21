@@ -339,7 +339,7 @@ describe("itemSummary activations", () => {
     const act = (type) => ({ type: "attack", activation: { type } });
     expect(itemSummary(doc({ a: act("action"), b: act("legendary") }), "official").activations).toEqual(["action", "legendary"]);
     expect(itemSummary(doc({ a: act("") }), "official").activations).toEqual(["trait"]);
-    expect(itemSummary(doc({}), "official").activations).toEqual(["trait"]);
+    expect(itemSummary(doc({}), "official").activations).toEqual([]);
     expect(itemSummary(doc({ a: { type: "attack" } }), "official").activations).toEqual([]);
     expect(itemSummary(doc({ a: act("special") }), "official").activations).toEqual([]);
   });
@@ -357,6 +357,15 @@ describe("monster features and the activation of the embedded item", () => {
     const { records } = runWith([claw("action"), claw("legendary")], [acting("a", "Bite", ["action"])]);
     expect(officialOf(records[0])).toMatchObject({ match: "matched", docId: "w1.a" });
     expect(officialOf(records[1])).toBeUndefined();
+  });
+  it("treats an embedded item with no activity as neutral, not as a trait", () => {
+    const { records } = runWith([claw("action")], [acting("a", "Bite", [])]);
+    expect(officialOf(records[0])).toMatchObject({ match: "matched" });
+    expect(officialOf(records[0]).differences).toBeUndefined();
+  });
+  it("calls the difference of two same-section features sharing one item duplicate", () => {
+    const { records } = runWith([claw("action"), claw("action")], [acting("a", "Bite", ["action"])]);
+    for (const r of records) expect(officialOf(r)).toMatchObject({ match: "ambiguous", differences: ["duplicate"] });
   });
   it("makes both features ambiguous (section) when one neutral item is claimed by two", () => {
     const { records, report } = runWith([claw("action"), claw("legendary")], [acting("a", "Bite", [])]);
@@ -406,6 +415,56 @@ describe("keys of repeated features across runs", () => {
     const again = runWith([feat("changed")], [], { previous: [one] });
     expect(again.report).toMatchObject({ added: 0, kept: 1, textChanged: ["xzz:monster:wolf/action/claw"], vanished: [] });
   });
+  it("pairs in order only for a plain text edit of one feature: A, B then two and three leaves A vanished, verdict intact", () => {
+    const [a, b] = first();
+    const decided = [{ ...a, verdict: "data", why: "kept" }, b];
+    const again = runWith([feat("two"), feat("three")], [], { previous: decided, at: "2026-02-03" });
+    expect(again.report.vanished).toEqual(["xzz:monster:wolf/action/claw"]);
+    const keep = again.records.find((r) => r.key === "xzz:monster:wolf/action/claw");
+    expect(keep).toMatchObject({ verdict: "data", why: "kept" });
+    expect(keep.text.sha256).toBe(sha("one"));
+    const three = again.records.find((r) => r.key === "xzz:monster:wolf/action/claw#3");
+    expect(three.verdict).toBeNull();
+    expect(three.text.sha256).toBe(sha("three"));
+    expect(byText(again.records)["xzz:monster:wolf/action/claw#2"]).toBe(sha("two"));
+  });
+  it("vanishes both records and takes new numbers when two same-name features are reordered and both edited", () => {
+    const again = runWith([feat("four"), feat("three")], [], { previous: first() });
+    expect(again.report.vanished).toEqual(["xzz:monster:wolf/action/claw", "xzz:monster:wolf/action/claw#2"]);
+    const t = byText(again.records);
+    expect(t["xzz:monster:wolf/action/claw#3"]).toBe(sha("four"));
+    expect(t["xzz:monster:wolf/action/claw#4"]).toBe(sha("three"));
+  });
+  it("keeps key and verdict when a single feature's text is edited, and dates the change", () => {
+    const [one] = runWith([feat("one")], []).records;
+    const again = runWith([feat("changed")], [], { previous: [{ ...one, verdict: "data", why: "w" }], at: "2026-02-03" });
+    expect(again.report.vanished).toEqual([]);
+    expect(again.records).toHaveLength(1);
+    expect(again.records[0]).toMatchObject({
+      key: "xzz:monster:wolf/action/claw", verdict: "data", textChangedAt: "2026-02-03",
+    });
+    expect(validateRecord(again.records[0])).toEqual([]);
+    const same = runWith([feat("changed")], [], { previous: again.records, at: "2026-03-04" });
+    expect(same.records[0].textChangedAt).toBe("2026-02-03");
+    const undecided = runWith([feat("other")], [], { previous: [one], at: "2026-02-03" });
+    expect("textChangedAt" in undecided.records[0]).toBe(false);
+  });
+  it("never lists legacy records or records of kinds that are not inventoried as vanished", () => {
+    const base = { book: "XZZ", edition: "2024", page: 1, text: null, items: [], verdict: null, evidence: {} };
+    const previous = [
+      { ...base, key: "xzz:spell:old-legacy", name: "Old Legacy", kind: "spell", legacy: true },
+      { ...base, key: "xzz:sense:keen", name: "Keen", kind: "sense" },
+      { ...base, key: "xzz:spell:plain", name: "Plain", kind: "spell" },
+    ];
+    const out = inventory({
+      book: "XZZ", kind: "spell", dataset: [], dumps: { official: [], "ddb-importer": [] }, textDir: tmpdir(), previous,
+    });
+    expect(out.report.vanished).toEqual(["xzz:spell:plain"]);
+    const sense = inventory({
+      book: "XZZ", kind: "monster", dataset: [], dumps: { official: [], "ddb-importer": [] }, textDir: tmpdir(), previous,
+    });
+    expect(sense.report.vanished).toEqual([]);
+  });
   it("lists the records of other kinds a run no longer produces as vanished, never deleting them", () => {
     const { records } = inventory({
       book: "XZZ", kind: "spell",
@@ -434,6 +493,6 @@ describe("monster identity, skipped names", () => {
     const dataset = [claw("action"), { ...claw("action"), name: "!!!" }, { ...claw("action"), owner: "???", name: "Ok" }];
     const { records, report } = runWith(dataset, [], { creatures: [{ name: "Wolf", features: 2 }, { name: "???", features: 1 }] });
     expect(records).toHaveLength(1);
-    expect(report.skipped).toBe(3);
+    expect(report.skipped).toBe(2);
   });
 });
