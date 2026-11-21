@@ -2112,9 +2112,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s45",
+            "confidence": 0.62
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feat:grappler",
@@ -3344,9 +3362,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s45",
+            "confidence": 0.62
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feat:sharpshooter",
@@ -10657,9 +10693,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xphb-005",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Lifts the Wild Shape spellcasting limit in beast form except costly material spells; data has nothing, a rule must gate casting by form.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:druid/19/epic-boon",
@@ -13641,9 +13693,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xphb-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Superiority die size grows; data lacks it, though a class scale value may carry the die. Needs a data fix or rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:fighter/battle-master/15/relentless",
@@ -13724,9 +13792,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xphb-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Superiority die size grows again; data lacks it, though a class scale value may carry the die.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:fighter/battle-master/3/battle-master",
@@ -14595,9 +14679,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Bond lasts until broken, two weapons max, summon one at a time, no disarm unless Incapacitated; uses lack recovery. Entry: restriction missing.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:fighter/eldritch-knight/7/war-magic",
@@ -15550,9 +15652,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xphb-007",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Widens Deflect Attacks to every damage type; data lacks any change, the reaction's damage-type limit must be lifted by a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:monk/14/disciplined-survivor",
@@ -17911,9 +18029,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xphb-008",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Choice of two weapon kinds whose mastery properties apply, changeable on long rest; the chosen properties live on weapons, not here.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:paladin/10/aura-of-courage",
@@ -18685,9 +18819,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-009",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Data lacks the once-per-long-rest free cast of Find Steed (no uses, no cast activity); always-prepared part alone would be none. Entry: restriction missing.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:paladin/6/aura-of-protection",
@@ -20178,9 +20330,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xphb-009",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Choice of two weapon kinds whose mastery properties apply, changeable on long rest; the chosen properties live on weapons, not here.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:ranger/10/tireless",
@@ -20957,9 +21125,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xphb-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Speed bonus and climb/swim speeds are carried by an effect, but the heavy-armor condition cannot be expressed in the data.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:ranger/7/subclass-feature",
@@ -24278,9 +24462,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xphb-011",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Mimicry is out of combat; Steady Aim no longer zeroes Speed, and the effect only touches an activity, so a rule must lift the speed drop.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:rogue/soulknife/13/psychic-veil",
@@ -26755,9 +26955,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xphb-012",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s46",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Roll twice on the surge table and pick; a choice at roll time, data has nothing.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:sorcerer/wild-magic/18/tamed-surge",
@@ -49964,9 +50180,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-021",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s49",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Lineage choice and always-prepared spells; each spell is resolved by its own item (none #6)",
+      "state": "triaged"
     },
     {
       "key": "xphb:species:elf/fey-ancestry",
@@ -50248,9 +50482,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-021",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s49",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Lineage choice, cantrips and prepared spell; clockwork device is out of combat (none #5/#6)",
+      "state": "triaged"
     },
     {
       "key": "xphb:species:goliath",
@@ -51058,9 +51310,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-021",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s49",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Legacy choice and always-prepared spells; spells resolved by own items (none #6)",
+      "state": "triaged"
     },
     {
       "key": "xphb:species:tiefling/otherworldly-presence",
@@ -51541,9 +51811,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: temp HP equal to first form HP, ends early on a bonus action; transform activities carry no effects for these",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:animate-dead",
@@ -61043,9 +61331,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "data: ddb has uses and a heal activity consuming a use; official lacks them but item data suffices; eating is a manual choice",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:grasping-vine",
@@ -61719,9 +62025,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: ward by creature type, fear, resistance, vulnerability and other options chosen at casting; utility activity has nothing",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:hallucinatory-terrain",
@@ -63585,9 +63909,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-022",
+            "confidence": 0.55
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.55
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: ends early if caster leaves or recasts, and blocks low-level spells; utility activity has no effect or end event",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:lesser-restoration",
@@ -64346,9 +64688,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: possession save, soul trapping, incapacitated host, ending on death and return rules need timing beyond the activities",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:magic-missile",
@@ -69364,9 +69724,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: temp HP from first form, retained stats and re-shift by action; transform activities carry no effects for these",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:shatter",
@@ -72013,9 +72391,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-sonnet-1",
+            "confidence": 0.5
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "data: official item has uses with recovery and activities consuming uses for create and withdraw; choice of potion is by hand",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:tashas-hideous-laughter",
@@ -72543,9 +72939,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-sonnet-1",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "data: save activity with 1d6 thunder; official lacks save ability but ddb has con, so data fix not an entry",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:thunderous-smite",
@@ -73003,9 +73417,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          },
+          "second": {
+            "by": "second-s50",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: save plus transform, temp HP from new form, ends on death, becomes permanent with full concentration; data lacks these",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:true-resurrection",

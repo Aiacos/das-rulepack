@@ -454,9 +454,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s25",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.66,
+          "first": {
+            "by": "reader-old-005",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s25",
+            "confidence": 0.66
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Save activity has an area and half-on-save that do not match the curse; text needs once-per-rest benefit, bless, 24h immunity on success and a table roll on opening. Data fix and rule.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:siren-song-lyre",
@@ -2545,9 +2561,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s26",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-d53",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s26",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "No activity or effect; data lacks ignoring web movement restrictions. Needs a rule, though its table impact is narrow.",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:archon-of-falling-stars/action/multiattack",
@@ -7183,10 +7215,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d55",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s26",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves only against spells and magical effects; effect has a bare save-advantage key, no circumstance limit visible",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:nightmare-shepherd/action/claws",

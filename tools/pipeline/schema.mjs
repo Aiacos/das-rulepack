@@ -155,17 +155,28 @@ const isGateList = (v) => Array.isArray(v) && v.every((g) => GATE_NAMES.includes
 export const BY = /^[a-z0-9][a-z0-9._-]{0,63}$/i;
 export const isReaderHandle = (by) => typeof by === "string" && BY.test(by) && by.toLowerCase() !== "rule";
 
+export const VIA = Object.freeze(["third-reading", "bulk-unsure"]);
+
 // The shapes of evidence.gates, .drafted, .reviewed and .played, when present (the tools write them; nobody types them).
 // Evidence about the rule carries its fingerprint (`rule`, 64 hex): editing the rule makes it stale (registry.mjs stateOf). A
 // legacy record may keep a review or a play written before the stamp existed.
 function checkEvidence(evidence, errors, legacy) {
   const { gates, triaged } = evidence;
-  // A verdict settled by two readers carries the first one: { by, confidence } (triage.mjs ingestSecond).
-  if (isObject(triaged) && "first" in triaged) {
-    const first = triaged.first;
-    const ok = isObject(first) && Object.keys(first).every((k) => k === "by" || k === "confidence")
-      && isReaderHandle(first.by) && typeof first.confidence === "number" && first.confidence >= 0 && first.confidence <= 1;
-    if (!ok) errors.push("evidence.triaged.first: must be { by: reader handle, confidence: number from 0 to 1 }");
+  // A verdict settled by several readings carries them: `first` and `second` are { by, confidence } (triage.mjs); `via` says
+  // how it was settled when not by two agreeing readers: a third reading, or the owner's bulk rule for two unsure ones.
+  if (isObject(triaged) && ["first", "second", "via"].some((k) => k in triaged)) {
+    const reading = (r) => isObject(r) && Object.keys(r).every((k) => k === "by" || k === "confidence")
+      && isReaderHandle(r.by) && typeof r.confidence === "number" && r.confidence >= 0 && r.confidence <= 1;
+    for (const k of ["first", "second"]) {
+      if (k in triaged && !reading(triaged[k])) {
+        errors.push(`evidence.triaged.${k}: must be { by: reader handle, confidence: number from 0 to 1 }`);
+      }
+    }
+    if ("via" in triaged && !VIA.includes(triaged.via)) errors.push(`evidence.triaged.via: must be one of ${VIA.join(", ")}`);
+    if ("second" in triaged && !("first" in triaged)) errors.push("evidence.triaged.second: needs evidence.triaged.first");
+    if ("via" in triaged && !("first" in triaged && "second" in triaged)) {
+      errors.push("evidence.triaged.via: needs evidence.triaged.first and evidence.triaged.second");
+    }
   }
   if ("gates" in evidence) {
     if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, emits?, passed, noted?, items? }");

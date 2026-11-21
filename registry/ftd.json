@@ -968,9 +968,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s18",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-ftd-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s18",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data lacks the shapechange: only a bare utility activity with no effect. Needs a transform into an adult dragon chosen at use, 1 hour, gear choice, and barred actions; unsure if rule or script.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:ruby-weave-gem",
@@ -3749,9 +3765,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d43",
+            "confidence": 0.68
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity with no cast links; the text needs a choice of one listed spell at use time with fixed ability and DC.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/trait/tunneler",
@@ -4227,9 +4259,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d43",
+            "confidence": 0.68
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity with no cast links; the text needs a choice of one listed spell at use time with fixed ability and DC.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/action/bite",
@@ -4461,9 +4509,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d43",
+            "confidence": 0.68
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/bonus/psychic-step",
@@ -4740,9 +4804,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d43",
+            "confidence": 0.68
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity with no cast links; the text needs a choice of one listed spell at use time with fixed ability and DC.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/trait/spider-climb",
@@ -5065,9 +5145,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d43",
+            "confidence": 0.68
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/bonus/psychic-step",
@@ -5904,9 +6000,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d44",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/bonus/psychic-step",
@@ -6523,9 +6635,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d44",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/bonus/psychic-step",
@@ -7091,9 +7219,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d44",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/bonus/psychic-step",
@@ -8240,9 +8384,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d45",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data lacks the movement; the text adds no opportunity attacks while swimming, a conditional rider the item cannot express.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/mythic/armor-of-storms",
@@ -9571,9 +9731,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d46",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity with no cast links; the text needs a choice of one listed spell at use time with fixed ability and DC.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/action/bite",
@@ -9805,9 +9981,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d46",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/bonus/psychic-step",
@@ -10075,9 +10267,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d46",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity with no cast links; the text needs a choice of one listed spell at use time with fixed ability and DC.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/trait/spider-climb",
@@ -10887,9 +11095,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d46",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/bonus/psychic-step",
@@ -11251,9 +11475,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d47",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity with no cast links; the text needs a choice of one listed spell at use time with fixed ability and DC.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:animated-breath/action/multiattack",
@@ -14075,9 +14315,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d48",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/action/claw",
@@ -14702,9 +14958,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d48",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s19",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data is a bare utility activity; the transformation into a smaller creature and its end on 0 hp or on a stated action are not carried.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/action/claw",

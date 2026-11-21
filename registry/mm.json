@@ -1245,9 +1245,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d1",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Spell list and casting stats; spells are separate cast items, nothing extra to automate in combat from this trait.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:adult-black-dragon/action/acid-breath",
@@ -3518,9 +3534,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d2",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Shape change left to the game master, no roll or effect to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:adult-bronze-dragon/action/claw",
@@ -6333,9 +6367,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d4",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Shape change left to the game master, no roll or effect to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:adult-silver-dragon/action/claw",
@@ -8864,9 +8916,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d5",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Polymorph into humanoid or beast with stat replacement; too open-ended and non-combat-resolution to carry a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-brass-dragon/action/claw",
@@ -9010,9 +9078,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d5",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Frightful Presence then a bite and two claws; descriptive attack sequence the generic multiattack handling covers.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-brass-dragon/action/tail",
@@ -9412,9 +9496,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d5",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Polymorph into humanoid or beast with stat replacement; too open-ended and non-combat-resolution to carry a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-bronze-dragon/action/claw",
@@ -9558,9 +9658,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d5",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Frightful Presence then a bite and two claws; descriptive attack sequence the generic multiattack handling covers.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-bronze-dragon/action/tail",
@@ -10009,9 +10125,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d5",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Polymorph into humanoid or beast with stat replacement; too open-ended and non-combat-resolution to carry a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-copper-dragon/action/claw",
@@ -10155,9 +10287,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d5",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Frightful Presence then a bite and two claws; descriptive attack sequence the generic multiattack handling covers.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-copper-dragon/action/tail",
@@ -10557,9 +10705,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d6b",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Shape change left to the game master, no roll or effect to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-gold-dragon/action/claw",
@@ -12242,9 +12408,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d6b",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Shape change left to the game master, no roll or effect to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ancient-silver-dragon/action/claw",
@@ -25069,9 +25253,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d12",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Plain attack activity with base damage and both damage types present (data: plain attack)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:crawling-claw/trait/turn-immunity",
@@ -25106,9 +25308,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d12",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Immunity limited to turn undead effects, a creature-specific rule; data has no effect for it",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:crocodile/action/bite",
@@ -25683,9 +25903,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d12",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Prone rider on a hit via a Strength check with a size limit; data models it as a save activity with half-on-save, not tied to hit.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:dao/action/multiattack",
@@ -26432,10 +26668,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d12",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.85
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Aura granting advantage on saves against turning to chosen undead nearby, unless incapacitated; data lacks it",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:death-knight/trait/spellcasting",
@@ -26898,9 +27152,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d12",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Shape change by action with stats unchanged; no combat resolution to automate beyond the form itself.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:death-tyrant/action/bite",
@@ -30745,9 +31015,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d14",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Shillelagh variant attack has zero damage die and versatile grip alternatives; data lacks correct values.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:druid/trait/spellcasting",
@@ -32482,9 +32768,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d14",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Legendary action reminding of one attack; uses are already consumed by the activity (none #2)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:empyrean/legendary/bolster",
@@ -35345,9 +35649,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d15",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Light emission only, scenery effect outside combat resolution (none #5)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:flameskull/trait/magic-resistance",
@@ -37637,10 +37959,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d16",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plane shifting to the Ethereal Plane; no table combat resolution to automate.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ghost/action/horrifying-visage",
@@ -41761,9 +42099,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d17",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Innate spell list and DC; each spell has its own item (none #1)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:githyanki-warrior/action/greatsword",
@@ -41894,9 +42250,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d17",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Innate spell list and ability; each spell has its own item (none #1)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:githzerai-monk/action/multiattack",
@@ -42133,9 +42507,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d17",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Innate spell list; each spell has its own item (none #1)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:githzerai-zerth/trait/psychic-defense",
@@ -42170,9 +42562,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d17",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "AC bonus only while unarmored and without shield; conditional passive, data lacks any effect",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:glabrezu/action/fist",
@@ -44725,9 +45135,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d18",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Innate spell list and DC; each spell has its own item (none #1)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:gray-slaad/trait/magic-resistance",
@@ -45479,9 +45907,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d18",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Innate spell list and DC; each spell has its own item (none #1)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:green-slaad/trait/magic-resistance",
@@ -45858,9 +46304,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d18",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Extra beak attack conditional on a tentacle hit against same target, variable attack count (entry: multiattack)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:grick-alpha/action/tail",
@@ -50262,9 +50726,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d19",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Shape change by action with stats unchanged; no combat resolution to automate beyond the form itself.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:incubus/action/charm",
@@ -51715,9 +52195,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d20",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Shape change by action with stats unchanged; no combat resolution to automate beyond the form itself.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:kenku/action/shortbow",
@@ -58484,9 +58980,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d22",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Shape change by action with stats unchanged; no combat resolution to automate beyond the form itself.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:mind-flayer-arcanist/action/extract-brain",
@@ -62215,10 +62727,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d24",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s23",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Contested check yielding information only, no change to rolls, hp or conditions (none #5)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:nothic/trait/keen-sight",
@@ -62502,9 +63032,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d24",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Innate spell list with no item data; casting is done through the spells themselves, nothing extra to automate. No activities in the data.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:nycaloth/trait/magic-resistance",
@@ -66629,10 +67175,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-d25",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Contested Charisma vs Strength check, size and weight limits, forced movement and distance-based damage; the single damage activity cannot express it.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:poltergeist/trait/incorporeal-movement",
@@ -73385,9 +73947,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d27",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.62
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Stored spell cast on command, one at a time, replaced by new one; data lacks it (restriction missing)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:shrieker/reaction/shriek",
@@ -73664,10 +74244,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d27",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Effect already sets save advantage via the conditions flag; whether it is limited to spells and magical effects is not visible in the structure.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:smoke-mephit/action/cinder-breath",
@@ -74970,9 +75566,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d28",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Magical darkness does not block darkvision; the effect carries no changes, so a vision rule is needed.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:spined-devil/trait/flyby",
@@ -77278,9 +77890,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t4",
+          "at": "2026-11-21T23:14:40.847Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d28",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Two attack activities already carry full and bloodied damage; choosing by hand (data)",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:swarm-of-ravens/trait/swarm",
@@ -82636,9 +83266,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d30",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Form change alters speed, flight, save advantage and damage immunity; data has no activity or effect (data lacks it). entry: statistics change",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:vampire/trait/spider-climb",
@@ -85308,9 +85956,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-d30",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Action to change between three forms keeping stats except AC; data lacks any activity or effect for the change.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:white-dragon-wyrmling/action/bite",
@@ -90333,9 +90997,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d32",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.68
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:yuan-ti-malison-type-2/trait/magic-resistance",
@@ -90372,10 +91054,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d32",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves only against spells and magical effects; effect has a bare save-advantage key, no circumstance limit visible",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:yuan-ti-malison-type-2/trait/malison-type",
@@ -90745,9 +91445,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d32",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.68
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:yuan-ti-malison-type-3/trait/magic-resistance",
@@ -90784,10 +91502,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d32",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves only against spells and magical effects; effect has a bare save-advantage key, no circumstance limit visible",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:yuan-ti-malison-type-3/trait/malison-type",
@@ -91058,9 +91794,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d32",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:yuan-ti-pureblood/trait/magic-resistance",
@@ -91097,10 +91851,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d32",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s24",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves only against spells and magical effects; effect has a bare save-advantage key, no circumstance limit visible",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:zombie/action/slam",

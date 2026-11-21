@@ -10472,9 +10472,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: movement tied to an attack (move half Speed then Rend attack as a legendary action); data has only a bare utility",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-copper-dragon/trait/legendary-resistance",
@@ -11034,9 +11052,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: movement tied to an attack (move half Speed then Rend attack as a legendary action); data has only a bare utility",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-gold-dragon/trait/amphibious",
@@ -11586,9 +11622,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: movement tied to an attack (move half Speed then Rend attack as a legendary action); data has only a bare utility",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-green-dragon/trait/amphibious",
@@ -12130,9 +12184,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: movement tied to an attack (move half Speed then Rend attack as a legendary action); data has only a bare utility",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-red-dragon/trait/legendary-resistance",
@@ -12685,9 +12757,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: movement tied to an attack (move half Speed then Rend attack as a legendary action); data has only a bare utility",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-silver-dragon/trait/legendary-resistance",
@@ -13122,9 +13212,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: movement tied to an attack (move half Speed then Rend attack as a legendary action); data has only a bare utility",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-white-dragon/trait/frightful-presence",
@@ -13485,9 +13593,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Attack activity with matching radiant damage and a prone effect linked; plain attack and condition, data suffices",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:animal-lord/action/rend",
@@ -13606,10 +13732,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "none #4: shape change with statistics unchanged other than size, nothing to resolve",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:animal-lord/legendary/feral-strike",
@@ -13733,9 +13877,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #2: reminder to make one fixed attack with an existing action; no extra roll or effect",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:animal-lord/trait/animal-lordship",
@@ -17978,9 +18140,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-005",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #5: light emission, scenery effect only",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:azer-pyromancer/trait/spellcasting",
@@ -18220,9 +18400,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-005",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #5: light emission, scenery effect only",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:baboon/action/bite",
@@ -20888,9 +21086,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Movement only (a jump), no roll or effect to resolve; none #3.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:barlgura/trait/demonic-restoration",
@@ -22333,10 +22549,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-006",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Cone that suppresses magic until next turn; data has only a template, no suppression effect.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:beholder/legendary/chomp",
@@ -24272,9 +24504,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Death-triggered implosion that ejects engulfed creatures; data has no activity or effect.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:blob-of-annihilation/trait/legendary-resistance",
@@ -24455,9 +24703,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Plain piercing attack; the bloodied variant exists as its own attack activity chosen by hand; data #1.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:blood-hawk/trait/pack-tactics",
@@ -26957,9 +27223,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-007",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Grapple movement exception; data has no activity or effect to express it.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:bugbear-warrior/action/grab",
@@ -27133,9 +27415,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-007",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Grapple movement exception; data has no activity or effect to express it.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:bulette-pup/action/bite",
@@ -27247,9 +27545,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:bulette/action/bite",
@@ -27487,9 +27801,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:bullywug-bog-sage/action/bog-staff",
@@ -27661,9 +27991,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:bullywug-bog-sage/trait/amphibious",
@@ -27957,9 +28303,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:bullywug-warrior/trait/amphibious",
@@ -30051,10 +30413,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.82,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain bite attack; an advantage variant with bigger damage exists as a separate activity; data.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:chimera/action/claw",
@@ -30663,9 +31043,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-008",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Attack count depends on whether another feature was used this turn; data is a bare use.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:clay-golem/action/slam",
@@ -30777,9 +31173,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-008",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Grants Dash and Disengage; recharge use is in data but no effect for the two actions.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:clay-golem/trait/acid-absorption",
@@ -33242,9 +33654,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-008",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Cast activities for each listed spell with limited uses; choosing the spell is by hand; data. Only ddb origin present.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:couatl/trait/shielded-mind",
@@ -37806,9 +38236,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Plain bludgeoning attack; activity carries the damage, official also carries a prone effect; data.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:deer/trait/agile",
@@ -39056,9 +39504,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Teleport of self plus a willing nearby creature; data lacks the teleport handling.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:dire-worg/trait/magic-resistance",
@@ -40485,9 +40949,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-010",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Legendary move tied to a Rend attack; data has only a use-expending utility; entry (movement tied to attack).",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:dracolich/legendary/sickening-ray",
@@ -42325,9 +42807,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-010",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s42",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Teleport between trees, movement only; none #3.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:dryad/trait/magic-resistance",
@@ -43859,9 +44359,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-010",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Legendary action that just makes one fixed attack, a reminder like a fixed multiattack; none #2.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:elemental-cataclysm/legendary/rumbling-movement",
@@ -45747,9 +46265,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-011",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Death-triggered revival elsewhere outside the encounter; data has no activity or effect for it.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:erinyes/trait/magic-resistance",
@@ -45855,9 +46389,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-011",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Grants access to another action and describes a rope object stat line; nothing resolvable in combat by itself.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ettercap/action/bite",
@@ -46160,9 +46710,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-011",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Forced pull up to 25 ft limited to a target Restrained by a specific effect; data is only an empty utility.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ettercap/trait/spider-climb",
@@ -51994,9 +52560,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-012",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Bonus jump whose cost is deducted from movement; data lacks the movement exchange.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:giant-axe-beak/action/multiattack",
@@ -63190,9 +63772,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-014",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Movement-cost exemption while grappling; no data present for it. Fairly niche.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:grick-ancient/action/beak",
@@ -64823,10 +65421,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-015",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Breath damage type chosen via another trait with recharge; data carries save, recharge and cone but not the choice.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:half-dragon/action/multiattack",
@@ -68490,9 +69104,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-015",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Number of attacks depends on a variable count of heads; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:hydra/trait/hold-breath",
@@ -70232,9 +70862,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-016",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Save-gated possession with cover, host death, forced exit and body dying; data lacks the end events and stat adoption; entry.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:intellect-devourer/trait/detect-intelligence",
@@ -76564,9 +77212,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-017",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Bonus movement straight toward a visible enemy; data is only an empty utility.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:mage-apprentice/action/arcane-burst",
@@ -85070,9 +85734,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-019",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Death outside the home plane revives it elsewhere; no activity, not resolved at the table; none #5.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:nalfeshnee/trait/magic-resistance",
@@ -85487,9 +86169,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-019",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Cast activities per spell consuming activity uses; proximity condition is checked by hand; data (choosing spell).",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:night-hag/trait/magic-resistance",
@@ -85985,9 +86685,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-019",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Light emission only; scenery effect; none #5.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:noble-prodigy/action/beguiling-strike",
@@ -86819,9 +87537,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-019",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Revival in another plane after death; no combat resolution; none #5.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:nycaloth/trait/magic-resistance",
@@ -96345,9 +97081,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-021",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Attack with both damage parts and a cursed effect; the rest denial is not a combat roll; data.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:rakshasa/action/multiattack",
@@ -98937,9 +99691,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-022",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Destroys an unattended nonmagical metal object; nothing meaningful to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:rust-monster/action/multiattack",
@@ -100502,10 +101272,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-022",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "End-of-turn damage in an emanation to creatures of its choice; an aura needing turn timing.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:salamander-inferno-master/action/flame-trident",
@@ -100738,10 +101524,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-022",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "End-of-turn damage in an emanation to creatures of its choice; an aura needing turn timing.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:salamander-inferno-master/trait/magic-resistance",
@@ -102791,9 +103593,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Revival in another plane after death; no combat resolution; none #5.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:shadow-demon/trait/incorporeal-movement",
@@ -103148,9 +103968,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Legendary move tied to a Rend attack; data has only a use-expending utility; entry (movement tied to attack).",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:shadow-dragon/legendary/veil-of-shadow",
@@ -104198,9 +105036,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Storing a received spell, replacement of the stored one and casting once; data lacks all of it; entry.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:shrieker-fungus/reaction/shriek",
@@ -105444,9 +106300,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Revival in another plane after death; no combat resolution; none #5.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:solar/trait/legendary-resistance",
@@ -106324,9 +107198,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:sphinx-of-lore/legendary/weight-of-years",
@@ -107139,9 +108031,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:sphinx-of-valor/legendary/weight-of-years",
@@ -114191,10 +115101,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-025",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon with end conditions (distance from treant, death, one day) and turn-order tie; data lacks these (entry: summon end conditions)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:treant/action/hail-of-bark",
@@ -116047,9 +116975,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-025",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Death-triggered revival elsewhere outside the encounter; data has no activity or effect for it.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ultroloth/trait/magic-resistance",
@@ -117143,10 +118087,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-026",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Choice of Dash or Disengage at use time; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:vampire-familiar/trait/vampiric-connection",
@@ -117761,10 +118721,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xmm-026",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Choice of Dash or Disengage at use time; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:vampire-spawn/trait/spider-climb",
@@ -118200,9 +119176,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-026",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Move then attack as a legendary action, with a choice of attack; movement tied to attack (entry: move+attack)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:vampire-umbral-lord/trait/beguile",
@@ -118841,9 +119835,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-026",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Move then attack as a legendary action; movement tied to an attack (entry: move+attack)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:vampire/trait/beguile",
@@ -124118,10 +125130,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-027",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Restriction missing: target must be at 0 HP, and healing only when the target dies; heal activity is not tied to the failed save (entry: restriction missing)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:will-o-wisp/bonus/vanish",
@@ -125657,9 +126687,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s44",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-xmm-027",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s44",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Bonus-action move toward a sensed enemy; no roll, damage or effect to resolve, the DM just moves the token. Utility activity is enough.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:xorn/trait/earth-glide",
@@ -129416,10 +130462,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-028",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s44",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Change of shape with unchanged statistics; nothing to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yuan-ti-abomination/trait/magic-resistance",
@@ -130008,10 +131072,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-028",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s44",
+            "confidence": 0.62
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Change of shape with unchanged statistics; nothing to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yuan-ti-malison-type-1/trait/magic-resistance",
@@ -130282,10 +131364,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-028",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s44",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Change of shape with unchanged statistics; nothing to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yuan-ti-malison-type-2/trait/magic-resistance",
@@ -130639,10 +131739,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-028",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s44",
+            "confidence": 0.62
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Change of shape with unchanged statistics; nothing to resolve (none #4)",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yuan-ti-malison-type-3/trait/magic-resistance",

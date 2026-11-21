@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSyn
 import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  BOOK_CODE, NOT_BOOKS, QUEUE_FILES, canonical, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue, saveBook
+  BOOK_CODE, NOT_BOOKS, QUEUE_FILES, canonical, checkBook, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue, saveBook
 } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
@@ -17,7 +17,9 @@ import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
-import { autoTriage, clip, ingest, ingestSecond, isReaderHandle, setByRule, triageContext, BY } from "./triage.mjs";
+import {
+  autoTriage, clip, ingest, ingestSecond, ingestThird, isReaderHandle, setByRule, settleUnsure, triageContext, BY
+} from "./triage.mjs";
 import { cutBatches, DEFAULT_BATCH_SIZE, highestBatches } from "./batch.mjs";
 import { structureOf } from "./structure.mjs";
 
@@ -430,27 +432,82 @@ function readJson(file, what) {
 }
 
 // registry/queue.json: results that wait for a person. Merged by key; a key that was applied now leaves the queue.
-function mergeQueue(dir, queued, applied) {
+// Returns the new content, or null when there is nothing to write.
+function nextQueue(dir, queued, applied) {
   const file = join(dir, "queue.json");
   const current = existsSync(file) ? readJson(file, "queue") : [];
   if (!Array.isArray(current)) throw new UsageError(`${file}: must be an array`);
   const byKey = new Map(current.filter((q) => !applied.includes(q.key)).map((q) => [q.key, q]));
   for (const q of queued) byKey.set(q.key, q);
   const next = [...byKey.values()].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
-  if (next.length || existsSync(file)) {
-    mkdirSync(dir, { recursive: true });
-    writeFileSync(file, `${JSON.stringify(next, null, 2)}\n`);
+  return next.length || existsSync(file) ? `${JSON.stringify(next, null, 2)}\n` : null;
+}
+
+// Saves what an ingest changed: the books that hold `changed` keys, then registry/queue.json. Everything is checked before
+// anything is written (every book as `saveBook` does, the new queue); when something is invalid nothing is written, the reason
+// is printed and the exit code is 1. A write that fails is reported with what was and was not written. Returns true when saved.
+function commitIngest(books, all, changed, queued, applied) {
+  const touched = new Set(all.filter((r) => changed.includes(r.key)).map((r) => r.book));
+  const pending = books.filter((b) => touched.has(b.book))
+    .map((b) => ({ book: b.book, note: b.note, records: all.filter((r) => r.book === b.book) }));
+  let queue;
+  try {
+    for (const b of pending) {
+      const invalid = checkBook(b);
+      if (invalid) throw new Error(`book ${b.book}: ${invalid}`);
+    }
+    queue = (queued.length || applied.length) ? nextQueue(REGISTRY, queued, applied) : null;
+  } catch (e) {
+    if (e instanceof UsageError) throw e;
+    console.error(`Nothing was written: ${e.message}`);
+    process.exitCode = 1;
+    return false;
   }
+  const done = [];
+  const steps = [...pending.map((b) => [`book ${b.book}`, () => saveBook(REGISTRY, b)])];
+  if (queue !== null) {
+    steps.push(["queue.json", () => {
+      mkdirSync(REGISTRY, { recursive: true });
+      writeFileSync(join(REGISTRY, "queue.json"), queue);
+    }]);
+  }
+  for (const [name, write] of steps) {
+    try { write(); done.push(name); } catch (e) {
+      const left = steps.map(([n]) => n).filter((n) => !done.includes(n));
+      const written = done.join(", ") || "nothing";
+      console.error(`Write failed at ${name}: ${e.message}\nWritten: ${written}\nNot written: ${left.join(", ")}`);
+      process.exitCode = 1;
+      return false;
+    }
+  }
+  return true;
 }
 
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
-  const usage = "Usage: ingest <results-file> [--overwrite | --second]";
-  const overwrite = args.includes("--overwrite");
-  const second = args.includes("--second");
-  const [file, ...rest] = args.filter((a) => a !== "--overwrite" && a !== "--second");
-  if (!file || rest.length) throw new UsageError(usage);
-  if (second && overwrite) throw new UsageError("--second and --overwrite cannot be used together");
+  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third] | ingest --settle-unsure [--min <n>]";
+  const modes = ["--third", "--second", "--overwrite", "--settle-unsure"].filter((m) => args.includes(m));
+  if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
+  const [mode] = modes;
+  const rest = [];
+  let min = null;
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i] === "--min") { min = args[(i += 1)] ?? ""; continue; }
+    if (!modes.includes(args[i])) rest.push(args[i]);
+  }
+  if (min !== null && mode !== "--settle-unsure") throw new UsageError("--min goes with --settle-unsure only");
+  if (mode === "--settle-unsure") {
+    const n = min === null ? 0.6 : (min.trim() === "" || min !== min.trim() ? NaN : Number(min));
+    if (rest.length || !(n >= 0.5 && n < 0.7)) {
+      throw new UsageError(`${usage}\n--min must be a number from 0.5 up to (not including) 0.7`);
+    }
+    return settleUnsureCommand(n);
+  }
+  const [file, ...extraArgs] = rest;
+  if (!file || extraArgs.length) throw new UsageError(usage);
+  const overwrite = mode === "--overwrite";
+  const second = mode === "--second";
+  const third = mode === "--third";
   const textDir = need("RULEPACK_TEXT");
   const coreDir = need("DAS_CORE");
   const input = readJson(file, "results file");
@@ -464,15 +521,11 @@ async function ingestCommand(args) {
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
   if (second) return ingestSecondCommand(books, input, { textDir, entryKeys });
+  if (third) return ingestThirdCommand(books, input, { textDir, entryKeys });
   const out = ingest(books.flatMap((b) => b.records), input.results, {
     textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY)
   });
-  const touched = new Set(out.records.filter((r) => out.applied.includes(r.key)).map((r) => r.book));
-  for (const b of books) {
-    if (!touched.has(b.book)) continue;
-    saveBook(REGISTRY, { book: b.book, note: b.note, records: out.records.filter((r) => r.book === b.book) });
-  }
-  if (out.queued.length || out.applied.length) mergeQueue(REGISTRY, out.queued, out.applied);
+  if (!commitIngest(books, out.records, out.applied, out.queued, out.applied)) return;
   console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
   if (out.rejected.length) process.exitCode = 1;
 }
@@ -482,16 +535,32 @@ async function ingestCommand(args) {
 function ingestSecondCommand(books, input, { textDir, entryKeys }) {
   const queue = queueEntries(REGISTRY);
   const out = ingestSecond(books.flatMap((b) => b.records), input.results, { textDir, by: input.by, entryKeys, queue });
-  const touched = new Set(out.records.filter((r) => out.agreed.includes(r.key)).map((r) => r.book));
-  for (const b of books) {
-    if (!touched.has(b.book)) continue;
-    saveBook(REGISTRY, { book: b.book, note: b.note, records: out.records.filter((r) => r.book === b.book) });
-  }
-  const parked = [...out.disagreed, ...out.unsure];
-  if (parked.length || out.agreed.length) mergeQueue(REGISTRY, parked, out.agreed);
+  if (!commitIngest(books, out.records, out.agreed, [...out.disagreed, ...out.unsure], out.agreed)) return;
   const counts = { agreed: out.agreed.length, disagreed: out.disagreed.length, unsure: out.unsure.length, rejected: out.rejected };
   console.log(JSON.stringify(counts, null, 2));
   if (out.rejected.length) process.exitCode = 1;
+}
+
+// `ingest <results-file> --third`: the third reading of the disagreements. Settled entries leave the queue; the others stay,
+// with the third reading beside the first two, and are final for agents.
+function ingestThirdCommand(books, input, { textDir, entryKeys }) {
+  const out = ingestThird(books.flatMap((b) => b.records), input.results, {
+    textDir, by: input.by, entryKeys, queue: queueEntries(REGISTRY)
+  });
+  if (!commitIngest(books, out.records, out.settled, out.unsettled, out.settled)) return;
+  console.log(JSON.stringify({ settled: out.settled.length, unsettled: out.unsettled.length, rejected: out.rejected }, null, 2));
+  if (out.rejected.length) process.exitCode = 1;
+}
+
+// `ingest --settle-unsure [--min <n>]`: the owner's bulk rule for the entries two readers were both unsure about.
+function settleUnsureCommand(min) {
+  const textDir = need("RULEPACK_TEXT");
+  const books = loadRegistry(REGISTRY);
+  const out = settleUnsure(books.flatMap((b) => b.records), { textDir, queue: queueEntries(REGISTRY), min });
+  if (!commitIngest(books, out.records, out.applied, [], out.applied)) return;
+  console.log(JSON.stringify({ applied: out.applied.length, kept: out.kept.length }, null, 2));
+  for (const p of out.problems) console.error(`${p.key}: ${p.reason}`);
+  if (out.problems.length) process.exitCode = 1;
 }
 
 // `resolve <key> <origin> --doc <docId> | --absent | --exclude-reprint <package>  --because "<one line>" [--by <handle>] [--force]`

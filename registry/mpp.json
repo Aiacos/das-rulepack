@@ -2197,9 +2197,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s28",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-d60",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s28",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Innate-style list with fixed DC and no components; data has only a utility action, lacking cast links to the listed spells, so casting choice is not expressed.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bariaur-wanderer/action/barbed-javelin",
@@ -2550,9 +2566,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s28",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d60",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s28",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Innate-style spell list, no DC; data has just a utility action with no cast activities for the listed spells. Mostly utility spells, little combat weight.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bleak-cabal-void-soother/action/mace",
@@ -2796,9 +2828,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s28",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-d60",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s28",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Innate-style spell list with a stated DC; data has only a utility action and no cast activities for the spells; choice of spell is made at use time.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:cranium-rat-squeaker-swarm/action/bites",

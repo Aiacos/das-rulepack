@@ -4883,9 +4883,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s6",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d57",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s6",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Bonus-action form swap with changed speed; data lacks any effect or form change (utility activity is empty), so something must apply the new form and revert on death.",
+      "state": "triaged"
     },
     {
       "key": "bmt:monster:boss-augustus/bonus/cunning-action",
@@ -5261,9 +5277,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s6",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d58",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s6",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Bonus-action form swap with changed size and speed; data lacks any effect or form change (empty utility activity), and reverting on death is not expressed.",
+      "state": "triaged"
     },
     {
       "key": "bmt:monster:boss-delour/bonus/cunning-action",

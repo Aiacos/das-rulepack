@@ -1945,9 +1945,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.68,
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s14",
+            "confidence": 0.68
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Cast activities exist, but Shapechange carries altered terms (no temp HP, no concentration upkeep) and Legend Lore is limited; the data does not express these riders.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/action/multiattack",
@@ -2959,9 +2975,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.68,
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s14",
+            "confidence": 0.68
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Cast activities exist, but Shapechange carries altered terms, Thunderwave is a raised-level version and some spells are limited; data does not express these riders.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/action/bite-hybrid-or-spider-form-only",
@@ -3432,9 +3464,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s14",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Ignoring web movement restrictions is a circumstance-limited movement rule; no activity or effect in the data carries it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/action/bite",
@@ -5555,9 +5603,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s14",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #2: legendary action making one attack of two, no variable count",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/trait/command",
@@ -7315,9 +7381,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s14",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: advantage on a next check until start of next turn, ally chosen at use; data carries no effect or duration",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:flying-wonder/bonus/sprint",
@@ -8034,9 +8118,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s14",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: Multiattack lets two attacks be replaced by Spellcasting (swap), per the criteria",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:manshoon/trait/magic-resistance",
@@ -9109,9 +9211,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s14",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #3: movement only (teleport), no roll or effect to resolve",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-agent/trait/magic-resistance",

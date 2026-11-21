@@ -37,7 +37,7 @@ excepted.
 | 2a | Triage by rule | `npm run triage -- <BOOK> [--redo-rule]` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
-| 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
+| 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
@@ -255,6 +255,9 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 > moment of use; a data fix, when the item's data lacks what the text needs (an activity, an effect or a value that is missing
 > or wrong in every origin).
 >
+> **The two hard boundaries** (`none` or `entry`, `data` or `entry`): decide them with the criteria in the section "Written
+> criteria for the two boundaries" of this document; a third reading is made with those criteria and nothing else.
+>
 > **What you decide.** For each entry, one verdict:
 > `data` (the item's own activities and effects already do what the text says), `none` (nothing in the text acts in
 > combat), `entry` (a declarative rule can express it), `code` (it needs a script), `engine` (it needs something DAS · Core
@@ -366,6 +369,71 @@ An independent, blind second reading keeps only the real disagreements for a per
 - What stays for a person: the queue entries with a `second` (`reason` `"disagreement"`, `"unsure-twice"` or `"engine"`: the
   two readings side by side) and every `engine`
   verdict, as before. Entries that nobody has read twice yet keep their original reason.
+
+### Third reading and the bulk rule
+
+The project owner approved written criteria for the hard cases (section "Written criteria for the two boundaries" below) and
+two bulk rules. Both are options of `ingest`; `--third`, `--second`, `--overwrite` and `--settle-unsure` exclude one another
+(a usage error, exit code 2, nothing written).
+
+- `ingest <results-file> --third` reads a blind third reading, made with the written criteria, of the queue entries with
+  `reason: "disagreement"` and a `second`, and no `third` yet. Every check of `ingest` applies (`core` is refused, no
+  overwrite) and `engine` never settles. A result is rejected, and nothing of it applied, when its key is not such an entry
+  (not in the queue, no `second`, another reason, already a `third`), when its handle is the first or the second reader's
+  (case aside), or when its key already appeared in the file. For the others:
+  - confidence at least 0.7 (the queue threshold) and a verdict equal to the first or the second reading's, not `engine`:
+    **settled**. The verdict is applied with the third reader's `why`; `evidence.triaged` is written as for any ingest (by the
+    third reader) plus `first: { by, confidence }`, `second: { by, confidence }` and `via: "third-reading"`; the entry leaves
+    the queue;
+  - anything else: **unsettled**. Nothing is applied; the entry stays with `third: { verdict, why, confidence, by }` and
+    `reason` still `"disagreement"`. It is final for agents: a further `--third` result is rejected, and so is a normal
+    `ingest` result ("two readers disagree: it waits for a person"). Only a person settles it.
+  - it prints `{ settled, unsettled, rejected }` and exits with 1 when anything was rejected.
+- `ingest --settle-unsure [--min <n>]` (no results file) is the owner's bulk rule for the entries two readers were both unsure
+  about. For every queue entry with `reason: "unsure-twice"` whose first and second confidence are both at least `n` (default
+  0.6; `n` must be a number from 0.5 up to, not including, 0.7: anything else is a usage error), the common verdict is applied
+  with the second reader's `why`. `evidence.triaged` is signed by the second reader (so `by` stays a valid reader handle),
+  carries `first` and `second` as above and `via: "bulk-unsure"`, which marks a verdict applied by the bulk rule and not read
+  by anyone a third time. The entry leaves the queue; entries below `n` stay untouched; `engine` is never applied. It prints
+  `{ applied, kept }` (`kept`: the `unsure-twice` entries still in the queue); a record that cannot take its verdict is kept
+  and reported on stderr, with exit code 1.
+- `evidence.triaged.second` and `evidence.triaged.via` are validated by the schema: `second` is `{ by, confidence }` like
+  `first` and needs it; `via` is `"third-reading"` or `"bulk-unsure"` and needs both.
+
+### Written criteria for the two boundaries
+
+These are our own words, approved by the project owner; they are not rulebook text.
+
+#### `none` or `entry`
+`none` when:
+1. A monster's "Spellcasting" / "Innate Spellcasting" trait: the spell list and the DC are not a rule, each spell is resolved by
+   its own item.
+2. A Multiattack with a fixed sequence: a reminder of how many attacks to make.
+3. Movement only (a leap, a dash, dragging a grappled creature): no roll and no effect to resolve.
+4. A change of shape with no change to the statistics, or left to the game master.
+5. Effects outside combat, or on objects and scenery only: raising the dead, building, destroying an unattended object, lights,
+   decorative smoke.
+6. Character-building choices: which weapons have mastery, always-prepared spells.
+
+`entry` instead, even in one of the cases above, when:
+- the Multiattack has a variable number of attacks or lets attacks be swapped for something else;
+- the movement is tied to an attack or a saving throw (move, then attack, as a legendary action);
+- the effect removes or imposes a condition the engine tracks (a restoration that ends a condition, an invisibility that ends on
+  the first damage).
+
+#### `data` or `entry`
+`data` when the item already has the right activity (attack, save, damage, healing, cast, summon) and what is missing is only a
+choice the player makes by hand anyway: using the activity again each turn, upcasting by spending more charges, choosing which
+spell of a list to cast.
+
+`entry` when the text gives a mechanical effect that would by itself change a roll, hit points, a condition or a duration, and the
+data does not carry it:
+- a piece is missing: no damage or healing part, no consumption of uses or charges, no template, no save ability;
+- the end of the effect is missing: a duration, or an event that ends it;
+- a restriction is missing: "only for spells of one class", "one at a time", "once per rest";
+- a summon with end conditions, a limit of one creature, or a command economy.
+
+An attack activity whose damage list shows the item's base damage is a plain attack: `data`.
 
 ## 🏛️ Legacy rules
 

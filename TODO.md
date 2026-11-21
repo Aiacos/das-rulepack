@@ -11,6 +11,8 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] `registry/queue.json`: 553 entries wait for a person (low-confidence readings and `engine` verdicts).
 - [x] Second reading of the queue (`batch ... --queued`, `ingest --second`): tooling done, see `docs/PIPELINE.md`.
 - [ ] Run the second reading over the queue; only the disagreements (`reason: "disagreement"`) are left for a person.
+- [x] Third reading of the disagreements (`ingest --third`) and the owner's bulk rule for two unsure readings
+      (`ingest --settle-unsure`): tooling done, with the written criteria, see `docs/PIPELINE.md`. Still to do: run them.
 - [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
       Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
       uses — to be checked in play, then reported upstream).
@@ -131,4 +133,7 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       those 352 with both readings, and 85 that have no item or no text to read. Most disagreements are `none`/`entry`
       and `entry`/`data`: the line between "nothing to automate", "the data does it" and "needs a rule" is where a
       written criterion per kind would help more than a third reader.
+- [x] Owner-approved written criteria for the two boundaries applied in bulk (2026-11-22): a blind third reading of the 178
+      disagreements settled 152 (26 stay, each with three readings); the common verdict of two unsure readings was applied
+      to 166 (8 stay). The queue holds 119 entries for a person: 85 with no item or no text, 26 + 8 with their readings.
 
