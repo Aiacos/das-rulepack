@@ -1,0 +1,61 @@
+{
+  "book": "AI",
+  "note": "Acquisitions Incorporated (2019).\n\nThe effect ids are those of the items imported by DDB Importer; an item from another source keeps the general rules of the\nengine, and the parts of a rule that name an id do nothing on it.",
+  "records": [
+    {
+      "key": "ai:spell:incite-greed",
+      "identifier": "incite-greed",
+      "name": "Incite Greed",
+      "kind": "spell",
+      "book": "AI",
+      "page": 76,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "A charmed target repeats the save at the end of each of its turns.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "4Hi47QCDFVz6m9gd",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.622Z",
+          "core": "0.289.0",
+          "rule": "3ab9a63fb57af2329d35d36333482b51dad700e5dacb083fe25d3d24b094869a",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
+      "order": 0,
+      "note": "Incite Greed (AI p.76): the effect lets its bearer repeat the save at the end of each of its turns.",
+      "state": "drafted"
+    }
+  ]
+}

@@ -705,8 +705,8 @@ scripts/
   main.mjs                 registers the table with DAS · Core, starts the scripts
   rules/
     book.mjs               the shape of a rule (identifier, name, book, page, kind, status, handledIn, entry…)
-    index.mjs              every rule, from the book modules; builds the registered table
-    books/<code>.mjs       one module per source book: xge.mjs, tce.mjs, ftd.mjs, ai.mjs, phb.mjs, xphb.mjs, mpmm.mjs
+    index.mjs              every rule, from the book modules; builds the registered table (generated)
+    books/<code>.mjs       one module per source book, generated from registry/<code>.json: xge.mjs, tce.mjs, ftd.mjs, …
   core/                    pure rules of the code-handled rules, no Foundry access (tested)
   *.mjs                    Foundry glue of the code-handled rules, importers
 docs/
@@ -714,21 +714,36 @@ docs/
   foundry-modules.json     official Foundry VTT packages and the book each corresponds to (source and date)
   RULES.md                 every rule, book by book (generated)
   GM-CLIENT.md             what the GM's client does on a player's behalf
+  PIPELINE.md              how to run the rulebook pipeline
+registry/
+  <code>.json              one record per rulebook entry, rules included: the source of the book modules
+  legacy.json              the 24 rules that predate the pipeline, with a fingerprint of each as migrated
 tools/books-progress.mjs   writes the generated blocks of this README and of docs/RULES.md (`npm run books`)
+tools/pipeline/            the rulebook pipeline: inventory, triage, gates, generation of the book modules
 tests/
 ```
 
-`scripts/rules/books/<code>.mjs` is the single source of truth for "which book does this rule come from, and what is its
-status": each rule is declared there once, with its metadata and, when it has one, the entry registered with DAS · Core.
+**The registry is the source.** `registry/<code>.json` (one file per book, named after its code in `docs/books.json`,
+lowercase) holds one record per rulebook entry: names, pages, identifiers and fingerprints, no rulebook text, and for
+the entries that have one, the rule with its metadata and the entry registered with DAS · Core. The book modules under
+`scripts/rules/books/` and `scripts/rules/index.mjs` are generated from it by `npm run build:rules` and are never edited
+by hand: CI and `./build.sh` refuse modules that differ from the registry. The pipeline that fills the registry runs from
+`tools/pipeline/`; how to run it is in [docs/PIPELINE.md](docs/PIPELINE.md).
 
-**Adding a rule to a new book**: create `scripts/rules/books/<code>.mjs`, named after the book's code in `docs/books.json`
-(lowercase), exporting `BOOK` and `RULES`; add it to the list in `scripts/rules/index.mjs` (a browser cannot list a folder);
-add the identifier to `tests/registration.test.mjs`; run `npm run books` and `npx vitest run -u`. A book of group A or B is
-laid out the same way; the group comes from `docs/foundry-modules.json` alone.
+**Editing or adding a rule**: edit its record in `registry/<code>.json`; run `npm run gates` (with the variables of
+[docs/PIPELINE.md](docs/PIPELINE.md)) until it passes, `npm run build:rules` to regenerate the modules and `npm run books`
+for the generated documents; add a new identifier to `tests/registration.test.mjs` and run `npx vitest run -u`. A new
+record of a book comes from the inventory (`npm run inventory -- <BOOK> spell`), which supports **spells only** for now:
+a new feature or sense rule cannot yet be added through the pipeline. The 24 rules that predate the pipeline are
+*legacy* (`registry/legacy.json`): editing in place anything the module emits for one (its rule, identifier, name, book,
+page, kind, verdict, status or `alsoIn`) makes the gates fail and `build:rules` refuse, until it is redone through the
+pipeline (docs/PIPELINE.md, "Legacy rules"). A book of group A or B is laid out the same way; the
+group comes from `docs/foundry-modules.json` alone.
 
 **Rules handled in code** (Shadow Blade, the blade cantrips, Psychic Veil, Dreadful Strikes) keep their code where it was:
 `scripts/<rule>.mjs` for the Foundry hooks and `scripts/core/<rule>.mjs` for the pure rules. Only their metadata (and their
-entry, when they have one) sits in the book module, which names the script in `code`. Moving the scripts under a per-book
+entry, when they have one) sits in the registry and the generated book module, which names the script in `code`. Moving
+the scripts under a per-book
 folder would have changed every import and test path for no gain: a script is found from its book through `code`, and
 `tests/books.test.mjs` checks that the identifiers the scripts recognise are the ones declared as handled in code.
 
@@ -741,7 +756,8 @@ npm run books
 ```
 
 Pure rules live in `scripts/core/` and are tested with Vitest; Foundry glue lives next to them in `scripts/`; declarative
-rules are in `scripts/rules/books/`. `npm run books` rewrites the generated blocks of this README and of `docs/RULES.md` (a test fails when
+rules are in `registry/`, generated into `scripts/rules/books/`. `npm run books` rewrites the generated blocks of this README
+and of `docs/RULES.md` (a test fails when
 they are stale). `./build.sh` builds the two release files in `releases/`: the zip (`scripts/`, `lang/` and the top-level documents;
 `docs/`, `tools/` and `tests/` are not shipped, which is why this README links to `docs/` on GitHub) and the `module.json` to upload next to it.
 

@@ -1,0 +1,48 @@
+name: test
+
+on:
+  # Pushes to the default branch only: a same-repository pull request runs once, as a pull request.
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+  # Weekly, against the latest release of DAS · Core: an engine release can break the pack without a commit here.
+  schedule:
+    - cron: "17 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # DAS · Core is public: its latest release is the engine the pack is checked against. The tests and the gates read the
+      # clone through DAS_CORE.
+      - name: Clone DAS · Core at its latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="$(gh api repos/Darshyne/dnd5e-combat/releases/latest -q .tag_name)"
+          test -n "$tag"
+          echo "DAS · Core $tag"
+          git clone --depth 1 --branch "$tag" https://github.com/Darshyne/dnd5e-combat "$RUNNER_TEMP/core"
+          echo "DAS_CORE=$RUNNER_TEMP/core" >> "$GITHUB_ENV"
+
+      # CI is set by the runner: the tests that need the engine are mandatory here.
+      - run: npm test
+      - run: npm run gates -- --ci
+      - run: npm run build:rules -- --check
+      - run: npm run books -- --check

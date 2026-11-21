@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { existsSync, readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { BOOKS, RULES, TABLE } from "../scripts/rules/index.mjs";
 import { KINDS, STATUSES, HANDLED_IN } from "../scripts/rules/book.mjs";
 import { BLADE_CANTRIPS } from "../scripts/core/blade-cantrips.mjs";
@@ -8,7 +9,9 @@ import { SPELL_IDENTIFIER } from "../scripts/core/shadow-blade.mjs";
 import { DREADFUL_STRIKES } from "../scripts/core/dreadful-strikes.mjs";
 import { PSYCHIC_VEIL } from "../scripts/core/psychic-veil.mjs";
 
-const root = resolve(import.meta.dirname, "..");
+const HERE = dirname(fileURLToPath(import.meta.url));
+
+const root = resolve(HERE, "..");
 const byId = id => RULES.find(rule => rule.identifier === id);
 
 describe("per-book rule modules", () => {

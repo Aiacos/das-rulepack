@@ -1,0 +1,71 @@
+{
+  "book": "MPMM",
+  "note": "Mordenkainen Presents: Monsters of the Multiverse (2022).\n\nSenses are declared with the engine's generic `sense` block (DAS · Core, `module/scripts/core/senses.mjs`), keyed by the dnd5e\nidentifier the imported items carry. They were first proposed to DAS · Core (dnd5e-combat pull request 128) and belong here:\nthe engine's public repositories carry nothing from non-SRD books.\n\nThey need a DAS · Core that knows the `sense` key (pull requests 119 and 122 of dnd5e-combat, not in a release at the time\nof writing). On an older engine these entries are rejected one by one when the pack registers (the engine logs them); the\nother rules are registered all the same.",
+  "records": [
+    {
+      "key": "mpmm:sense:life-sense",
+      "identifier": "life-sense",
+      "name": "Life Sense",
+      "kind": "sense",
+      "book": "MPMM",
+      "page": 250,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it.",
+        "entry": {
+          "sense": {
+            "kind": "locate",
+            "range": 60,
+            "units": "ft",
+            "walls": false,
+            "detects": {
+              "not": {
+                "target.creatureType": [
+                  "construct",
+                  "undead"
+                ]
+              }
+            }
+          }
+        },
+        "origin": "Vampiric Mist",
+        "catalog": null,
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.622Z",
+          "core": "0.289.0",
+          "rule": "ec6f383f80cf9fa4b6e19a1cb8f75b2fb0dd7c19ab3b963076e71c95247b060c",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
+      "alsoIn": [
+        {
+          "book": "MTF",
+          "page": 246
+        }
+      ],
+      "order": 0,
+      "note": "Life Sense (Vampiric Mist, MPMM p.250; MTF p.246): declared as a sense that locates creatures within 60 ft,\ntwo creature types excepted, and that walls do not stop. A natural sense: nothing wards against it.",
+      "state": "drafted"
+    }
+  ]
+}

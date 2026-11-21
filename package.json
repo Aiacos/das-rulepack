@@ -3,6 +3,16 @@
   "version": "0.6.0",
   "private": true,
   "type": "module",
-  "scripts": { "test": "vitest run", "books": "node tools/books-progress.mjs" },
+  "scripts": {
+    "test": "vitest run",
+    "books": "node tools/books-progress.mjs",
+    "pipeline": "node tools/pipeline/cli.mjs",
+    "inventory": "node tools/pipeline/cli.mjs inventory",
+    "triage": "node tools/pipeline/cli.mjs triage",
+    "batch": "node tools/pipeline/cli.mjs batch",
+    "ingest": "node tools/pipeline/cli.mjs ingest",
+    "gates": "node tools/pipeline/cli.mjs gates",
+    "build:rules": "node tools/pipeline/cli.mjs generate"
+  },
   "devDependencies": { "vitest": "^3.0.0" }
 }

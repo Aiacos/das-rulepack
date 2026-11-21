@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Rulebook pipeline (`docs/PIPELINE.md`): one registry record per rulebook entry in `registry/<book>.json`, with commands for
+  inventory, triage (by rule, in batches for reader agents, ingest of their results), gates and generation of the book
+  modules; no rulebook text is stored, only names, pages, identifiers and SHA-256 fingerprints. CI runs the tests, the gates and
+  the generated-file checks against the latest DAS · Core release. First run: the 391 spells of the 2024 Player's Handbook
+  (`docs/pilot-xphb-spells.md`); the 24 shipped rules register exactly what they did.
 - README: three official Foundry sourcebooks the rulebook catalogue does not contain are in the table of official modules:
   Ravenloft: The Horrors Within (RHW), Arcana Unleashed (AU) and Dungeons & Dragons: World of Warcraft (WOW). Each is
   measured from the module's own compendia and counted like any other book; species traits are a part of their own (RHW,
