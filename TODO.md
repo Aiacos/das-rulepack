@@ -17,8 +17,8 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       school, DDB Importer's item has another one — same entry, importer data to be reported; settle it with `resolve`.
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
 - [ ] 1,272 entries have the verdict `entry` and no rule yet: drafting is the next stage to build.
-- [ ] A reader's verdict is one reading: before drafting, a second independent reader on a sample of each kind, to measure how
-      often two readers disagree.
+- [x] Second-reader sample (200 entries, three kinds): same verdict on 88%, same answer to "needs a rule or not" on 96.5% —
+      `docs/reader-agreement.md`. Spells, species and older books are not sampled yet.
 - [ ] `plainText` drops the attack header of monster attacks (`{@atkr m}`, `{@hit 7}` become "m 7"): fix the conversion, then
       re-fingerprint (every affected record will report `textChanged`).
 - [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
