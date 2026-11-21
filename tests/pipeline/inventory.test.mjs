@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { mkdtempSync, rmSync, readFileSync, existsSync } from "node:fs";
+import { mkdtempSync, rmSync, readFileSync, existsSync, mkdirSync, writeFileSync, statSync, utimesSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -168,5 +168,91 @@ describe("pipeline CLI", () => {
     expect(partial.status).toBe(2);
     expect(partial.stderr).toContain("RULEPACK_TEXT");
     expect(existsSync(join(process.cwd(), "registry", "tst.json"))).toBe(false);
+  });
+});
+
+describe("pipeline CLI inventory on temporary folders", () => {
+  let tmp, env;
+  const write = (rel, data) => {
+    const file = join(tmp, rel);
+    mkdirSync(join(file, ".."), { recursive: true });
+    writeFileSync(file, JSON.stringify(data));
+  };
+  const book = (code) => write(`data/spells/spells-${code.toLowerCase()}.json`, {
+    spell: [{ name: "Glimmer Bolt", page: code === "TST" ? 10 : 44, level: 2, school: "V", entries: ["Invented light."] }]
+  });
+  const run = (args) => spawnSync("node", ["tools/pipeline/cli.mjs", ...args], { encoding: "utf8", env });
+  const registryFile = (code) => join(tmp, "registry", `${code.toLowerCase()}.json`);
+  const read = (code) => JSON.parse(readFileSync(registryFile(code), "utf8"));
+
+  beforeEach(() => {
+    tmp = mkdtempSync(join(tmpdir(), "cli-"));
+    env = {
+      PATH: process.env.PATH, RULEPACK_DATASET: join(tmp, "data"), RULEPACK_DUMPS: join(tmp, "dumps"),
+      RULEPACK_TEXT: join(tmp, "text"), RULEPACK_REGISTRY: join(tmp, "registry")
+    };
+    book("TST");
+    write("dumps/pack.spells.json", [{
+      _id: "doc1", name: "Glimmer Bolt", type: "spell",
+      system: { identifier: "glimmer-bolt", source: { rules: "2014" }, level: 2, school: "evo", activities: {} }
+    }]);
+  });
+  afterEach(() => rmSync(tmp, { recursive: true, force: true }));
+
+  it("writes the book file on the first run", () => {
+    const r = run(["inventory", "TST", "spell"]);
+    expect(r.status).toBe(0);
+    expect(JSON.parse(r.stdout)).toMatchObject({ added: 1, kept: 0 });
+    const { records } = read("TST");
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({
+      key: "tst:spell:glimmer-bolt", page: 10, edition: "2014", identifier: "glimmer-bolt", state: "inventoried"
+    });
+    expect(records[0].items.map((i) => [i.origin, i.match])).toEqual([["official", "matched"], ["plutonium", "unchecked"]]);
+    expect(existsSync(registryFile("TST"))).toBe(true);
+    expect(existsSync(join(process.cwd(), "registry"))).toBe(false);
+  });
+
+  it("rewrites nothing on a second identical run", () => {
+    run(["inventory", "TST", "spell"]);
+    const old = new Date(2020, 0, 1);
+    utimesSync(registryFile("TST"), old, old);
+    const bytes = readFileSync(registryFile("TST"), "utf8");
+    const r = run(["inventory", "TST", "spell"]);
+    expect(r.status).toBe(0);
+    expect(JSON.parse(r.stdout)).toMatchObject({ added: 0, kept: 1 });
+    expect(readFileSync(registryFile("TST"), "utf8")).toBe(bytes);
+    expect(statSync(registryFile("TST")).mtimeMs).toBe(old.getTime());
+  });
+
+  it("records a reprint in the first book's file and writes no second file", () => {
+    run(["inventory", "TST", "spell"]);
+    book("TS2");
+    const r = run(["inventory", "TS2", "spell"]);
+    expect(r.status).toBe(0);
+    expect(JSON.parse(r.stdout)).toMatchObject({ added: 0 });
+    expect(read("TST").records[0].alsoIn).toEqual([{ book: "TS2", page: 44 }]);
+    expect(existsSync(registryFile("TS2"))).toBe(false);
+  });
+
+  it("exits 2 for a dataset or dumps folder that does not exist", () => {
+    for (const name of ["RULEPACK_DATASET", "RULEPACK_DUMPS"]) {
+      const r = spawnSync("node", ["tools/pipeline/cli.mjs", "inventory", "TST", "spell"], {
+        encoding: "utf8", env: { ...env, [name]: join(tmp, "missing") }
+      });
+      expect(r.status).toBe(2);
+      expect(r.stderr.trim().split("\n")).toHaveLength(1);
+      expect(r.stderr).toContain(name);
+    }
+  });
+
+  it("exits 2 for a book without entries in the dataset", () => {
+    const r = run(["inventory", "NOPE", "spell"]);
+    expect(r.status).toBe(2);
+    expect(r.stderr.trim().split("\n")).toHaveLength(1);
+    expect(r.stderr).toContain("NOPE");
+    write("data/spells/spells-emp.json", { spell: [] });
+    expect(run(["inventory", "EMP", "spell"]).status).toBe(2);
+    expect(existsSync(join(tmp, "registry"))).toBe(false);
   });
 });

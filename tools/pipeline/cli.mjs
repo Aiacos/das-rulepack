@@ -30,6 +30,18 @@ function loadDumps(dir) {
   return { official: read("official"), "ddb-importer": read("ddb-importer") };
 }
 
+function readBookSpells(datasetDir, book) {
+  let spells;
+  try {
+    spells = readSpells(datasetDir, book);
+  } catch (e) {
+    if (e.code !== "ENOENT") throw e;
+    spells = [];
+  }
+  if (!spells.length) throw new UsageError(`The dataset has no spell entries for book ${book}`);
+  return spells;
+}
+
 function inventoryCommand([book, kind]) {
   if (!book || !kind) throw new UsageError("Usage: inventory <BOOK> <kind>");
   if (kind !== "spell") throw new UsageError(`Kind "${kind}" is not supported yet: only "spell" is`);
@@ -37,11 +49,14 @@ function inventoryCommand([book, kind]) {
   const dumpsDir = need("RULEPACK_DUMPS");
   const textDir = need("RULEPACK_TEXT");
 
+  for (const [name, dir] of [["RULEPACK_DATASET", datasetDir], ["RULEPACK_DUMPS", dumpsDir]]) {
+    if (!existsSync(dir)) throw new UsageError(`${name} points at a folder that does not exist: ${dir}`);
+  }
+  const dataset = readBookSpells(datasetDir, book);
+
   const books = loadRegistry(REGISTRY);
   const previous = books.flatMap((b) => b.records);
-  const { records, report } = inventory({
-    book, kind, dataset: readSpells(datasetDir, book), dumps: loadDumps(dumpsDir), textDir, previous
-  });
+  const { records, report } = inventory({ book, kind, dataset, dumps: loadDumps(dumpsDir), textDir, previous });
 
   const touched = new Set();
   const before = new Map(previous.map((r) => [r.key, canonical(r)]));
