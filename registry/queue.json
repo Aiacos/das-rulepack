@@ -1,0 +1,90 @@
+[
+  {
+    "key": "xphb:spell:animal-shapes",
+    "verdict": "data",
+    "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Native transform activities; Temp HP equal to the first form's HP and Bonus Action to revert depend on the transform settings, not visi",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:goodberry",
+    "verdict": "data",
+    "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Healing is carried by the separate Magical Berries item; creating the berries is manual.",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:hallow",
+    "verdict": "none",
+    "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. lancio di 24 ore, effetti scelti e arbitrati dal GM; nessuna attività con effetto nel dato",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:magic-jar",
+    "verdict": "data",
+    "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. riletto 2026-11-20: il dato porta Catatonic sul lanciatore, il TS di Carisma «Possess Humanoid» con Trapped Soul (Incapacitato, velocit",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:nystuls-magic-aura",
+    "verdict": "none",
+    "why": "SRD 5.2 reading of 2026-11 (under the SRD name arcanists-magic-aura): nothing to automate in combat.",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:shapechange",
+    "verdict": "data",
+    "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Native transform activities; Temp HP equal to the first form's HP depend on the transform settings, not visible in the summary.",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:speak-with-plants",
+    "verdict": "none",
+    "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Communication; may toggle plant Difficult Terrain in the emanation (difficultTerrain key exists) but the effect is DM-chosen.",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:tashas-bubbling-cauldron",
+    "verdict": "engine",
+    "why": "Conjures a potion dispenser: choice of potion kind, bonus-action withdrawals capped by casting modifier, spell ending at the last one, leftovers vanishing on recast; no item-creation capability.",
+    "confidence": 0.5,
+    "by": "reader-sonnet-1",
+    "reason": "engine"
+  },
+  {
+    "key": "xphb:spell:thunderclap",
+    "verdict": "entry",
+    "why": "Save and damage are carried, but both origins lack the self-origin 5 ft emanation template and target, so the area must be added by a data fix.",
+    "confidence": 0.6,
+    "by": "reader-sonnet-1",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:tree-stride",
+    "verdict": "data",
+    "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. riletto 2026-11-20: l'attività è un teletrasporto; quali alberi esistano e dove (stesso tipo, entro 150 m, 1,5 m di movimento) lo decid",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xphb:spell:true-polymorph",
+    "verdict": "data",
+    "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Save and native transform activity; text cut inside the form rules (Temp HP of the new form, reverting). Optional parity: endsWhen unaf",
+    "confidence": 0.5,
+    "by": "srd-classification-2026-11",
+    "reason": "low-confidence"
+  }
+]

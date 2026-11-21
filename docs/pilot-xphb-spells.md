@@ -55,3 +55,26 @@ is noted. Counted from `evidence.gates` in the committed registry: `schema`, `va
 - The 114 entries without a verdict wait for readers.
 - The one ambiguous match waits for a human.
 - Only spells of one book: the other kinds and books are not inventoried.
+
+## Triage after the pilot (2026-11-21, later the same day)
+
+How each number was obtained: `npm run ingest` on three results files, then a recount of `registry/xphb.json` and
+`registry/queue.json`.
+
+| Verdict of the 391 spells | Count | Set by |
+|---|---|---|
+| `core` | 277 | rule (`npm run triage`) |
+| `none` | 62 | 60 from the SRD 5.2 reading of November 2026, 2 by a reader agent |
+| `data` | 35 | the SRD 5.2 reading of November 2026 |
+| no verdict yet | 17 | — |
+
+Of the 17 without a verdict, 11 wait in `registry/queue.json` for a person (9 low-confidence readings, 1 `engine` verdict,
+1 `entry` verdict below 0.7), 4 are SRD spells with a fix already proposed to DAS · Core, and 2 are spells the official
+module names differently from the SRD (the engine's entry is under the SRD name).
+
+The SRD 5.2 reading was made on the system's SRD compendium, not on the official module's items: for the 95 verdicts taken
+from it, "the item's data is enough" was judged on the SRD copy of the item. Nothing here was played.
+
+Reprints: 131 documents appear with the same id in two official packages (a rulebook module and an adventure). Their
+data differs in 129, their activity and effect ids are the same in 130; the one exception is listed in `TODO.md`.
+

@@ -6,10 +6,17 @@ Data for every non-official spell imported by DDB Importer (activity and effect 
 
 After the pilot (`docs/pilot-xphb-spells.md`):
 
-- [ ] Reader batches for the 114 XPHB spells left without a verdict (`npm run batch -- triage XPHB --out <dir>`, then
-      `npm run ingest`); 110 of them are SRD entries with no dedicated DAS · Core entry — most need none (the item's data is
-      enough); those a reader finds lacking are findings for upstream, not rules for this pack.
-- [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`, difference: school) waits for a person.
+- [x] Triage of the 114 XPHB spells left by the rule: 97 verdicts applied (95 from the SRD 5.2 reading of November 2026, 2
+      by a reader agent), see `docs/pilot-xphb-spells.md`.
+- [ ] `registry/queue.json`: 11 spells wait for a person (9 low-confidence, Tasha's Bubbling Cauldron `engine`, Thunderclap
+      `entry` with a template data fix proposed).
+- [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
+      Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
+      uses — to be checked in play, then reported upstream).
+- [ ] A command to settle an ambiguous match by hand (`resolve`), and reprints as a checked origin: Thaumaturgy has one
+      more effect in the adventure's copy than in the rulebook's.
+- [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`): the official module and the dataset agree on the
+      school, DDB Importer's item has another one — same entry, importer data to be reported; settle it with `resolve`.
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
 - [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
 - [ ] The other kinds (features, feats, options, items, monsters) and the other books: inventory supports spells only.

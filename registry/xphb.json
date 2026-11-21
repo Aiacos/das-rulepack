@@ -197,9 +197,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:aid",
@@ -322,9 +329,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Alert on intrusion, cast in a minute: exploration.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:alter-self",
@@ -512,9 +526,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Message delivery by a Tiny Beast: narrative.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:animal-shapes",
@@ -1019,9 +1040,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:arcane-vigor",
@@ -1262,9 +1290,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Unconscious body carried by the effect; the rest is planar travel (text cut, not decisive).",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:augury",
@@ -1312,9 +1347,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:aura-of-life",
@@ -1545,9 +1587,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Out-of-combat, 8-hour casting; Charmed for 30 days until damaged has no effect in the data.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:bane",
@@ -1599,9 +1648,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Save, -1d4 effect and concentration carried. Optional parity: endsWhen unaffected:failedSave as for hold-person (not stated in the text",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:banishing-smite",
@@ -1781,9 +1837,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:beacon-of-hope",
@@ -1891,9 +1954,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-sonnet-1",
+          "at": "2026-11-21T18:19:27.612Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Perceiving through a touched willing beast's senses is a narrative/exploration effect with no combat resolution; the utility activity and concentration already suffice.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:befuddlement",
@@ -2264,9 +2336,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:blight",
@@ -2609,9 +2688,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Flammable unattended objects start burning: DM.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:call-lightning",
@@ -3074,9 +3160,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:circle-of-power",
@@ -3238,9 +3331,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:cloud-of-daggers",
@@ -3406,9 +3506,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. stesso dato di durata (turns/sourceEnd) di Ray of Sickness, giocato; Color Spray in sé non giocato",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:command",
@@ -3514,9 +3621,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:commune-with-nature",
@@ -3564,9 +3678,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:compelled-duel",
@@ -3678,9 +3799,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Language change carried by the effect; nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:compulsion",
@@ -3788,9 +3916,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:confusion",
@@ -4503,9 +4638,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Trigger described by the caster and judged by the DM; data only tracks the stored spell.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:continual-flame",
@@ -4667,9 +4809,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:cordon-of-arrows",
@@ -4831,9 +4980,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:create-or-destroy-water",
@@ -4881,9 +5037,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:create-undead",
@@ -4992,9 +5155,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:crown-of-madness",
@@ -5160,9 +5330,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:dancing-lights",
@@ -5333,9 +5510,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:daylight",
@@ -5984,9 +6168,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Illusion; Study action check present as a check activity.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:disintegrate",
@@ -6264,9 +6455,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:divine-favor",
@@ -6318,9 +6516,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Extra 1d4 on weapon hits carried by the mwak/rwak damage bonuses.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:divine-smite",
@@ -6748,9 +6953,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:31.921Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11 (under the SRD name instant-summons): nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:dream",
@@ -6861,9 +7073,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:earthquake",
@@ -7125,9 +7344,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:enhance-ability",
@@ -7737,9 +7963,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:faerie-fire",
@@ -7853,9 +8086,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:fear",
@@ -8195,9 +8435,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:find-traps",
@@ -8245,9 +8492,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:finger-of-death",
@@ -8353,9 +8607,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Flammable object starts burning: DM.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:fire-shield",
@@ -8468,9 +8729,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Ten contiguous 10-ft cubes rely on the template count/contiguous fields, which the engine reads (adapter/self-area.mjs); not visible in",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:fireball",
@@ -8518,9 +8786,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:flame-blade",
@@ -8639,9 +8914,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:flaming-sphere",
@@ -8817,9 +9099,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Falling when the spell ends is left to the DM.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:fog-cloud",
@@ -9478,9 +9767,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:giant-insect",
@@ -9586,9 +9882,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Charisma checks treated as 15 and truth-detection immunity: social. The effect carries no change (a check roll minimum of 15 could).",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:globe-of-invulnerability",
@@ -9931,9 +10234,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:greater-restoration",
@@ -10099,9 +10409,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Long-lasting building ward (text cut): DM adjudication.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:guidance",
@@ -10468,9 +10785,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:harm",
@@ -10518,9 +10842,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. HP maximum reduction equal to Necrotic damage taken (floor 1) is absent from the data; the engine reads it from the item text (core/dra",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:haste",
@@ -10688,9 +11019,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:heat-metal",
@@ -11552,9 +11890,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:illusory-script",
@@ -11602,9 +11947,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:imprisonment",
@@ -11777,9 +12129,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:insect-plague",
@@ -12064,9 +12423,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:legend-lore",
@@ -12114,9 +12480,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:leomunds-secret-chest",
@@ -12505,9 +12878,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:locate-animals-or-plants",
@@ -12555,9 +12935,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:locate-creature",
@@ -12605,9 +12992,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:locate-object",
@@ -12655,9 +13049,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:longstrider",
@@ -12709,9 +13110,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:mage-armor",
@@ -13050,9 +13458,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:magic-weapon",
@@ -13334,9 +13749,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:mass-suggestion",
@@ -13514,9 +13936,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Expulsion damage carried by the two damage activities; the rest is DM adjudication.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:melfs-acid-arrow",
@@ -13626,9 +14055,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:message",
@@ -13676,9 +14112,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:meteor-swarm",
@@ -13726,9 +14169,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Four spheres, each creature affected once: relies on the template count field, which the engine reads (adapter/self-area.mjs); not visi",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:mind-blank",
@@ -14012,9 +14462,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:mirror-image",
@@ -14477,9 +14934,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:31.921Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11 (under the SRD name private-sanctum): nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:mordenkainens-sword",
@@ -14585,9 +15049,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:nondetection",
@@ -14992,9 +15463,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:phantasmal-force",
@@ -15225,9 +15703,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:planar-binding",
@@ -15277,9 +15762,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. One-hour casting; save and Bound effect carried by the data.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:plane-shift",
@@ -15327,9 +15819,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Off-scene transport.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:plant-growth",
@@ -15435,9 +15934,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:polymorph",
@@ -15838,9 +16344,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:prismatic-spray",
@@ -16392,9 +16905,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:raise-dead",
@@ -16512,9 +17032,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:31.921Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11 (under the SRD name telepathic-bond): nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:ray-of-enfeeblement",
@@ -16689,9 +17216,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. giocato 2026-11-20: Poisoned (durata turns/sourceEnd nel dato) cade alla fine del turno successivo dell'incantatore",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:regenerate",
@@ -16800,9 +17334,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:remove-curse",
@@ -17174,9 +17715,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:sacred-flame",
@@ -17605,9 +18153,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Illusory appearance; save and effect carried by the data.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:sending",
@@ -17655,9 +18210,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:sequester",
@@ -17941,9 +18503,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:shillelagh",
@@ -18299,9 +18868,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. 12-hour casting; the duplicate is a DM-built actor.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:sleep",
@@ -18537,9 +19113,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. giocato 2026-11-20 con dadi forzati: la formula del dato (1d8x@mod=8) fa esplodere gli 8 fino al modificatore; scelta del tipo proposta",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:spare-the-dying",
@@ -18651,9 +19234,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:speak-with-dead",
@@ -18701,9 +19291,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:speak-with-plants",
@@ -19289,9 +19886,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:stoneskin",
@@ -19343,9 +19947,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:storm-of-vengeance",
@@ -20530,9 +21141,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-sonnet-1",
+          "at": "2026-11-21T18:19:27.612Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Telepathic link at unlimited range on the same plane is communication only, no combat effect; ending on a plane change is not worth automating.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:teleport",
@@ -20636,9 +21256,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Off-scene transport.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:tensers-floating-disk",
@@ -20746,9 +21373,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics. Advantage on Intimidation carried by the effect; other options are cosmetic.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:thorn-whip",
@@ -21132,9 +21766,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:transport-via-plants",
@@ -21182,9 +21823,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Off-scene transport.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:tree-stride",
@@ -21398,9 +22046,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: the item data carries the mechanics.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:true-strike",
@@ -22166,9 +22821,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Effect has no change; nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:water-walk",
@@ -22218,9 +22880,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Effect has no change; movement over liquid is DM adjudication.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:web",
@@ -22515,9 +23184,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.75
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Duplicates a spell or DM-adjudicated effects (text cut); Wish Stress effect carried by the data.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:witch-bolt",
@@ -22685,9 +23361,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "srd-classification-2026-11",
+          "at": "2026-11-21T18:18:08.402Z",
+          "confidence": 0.9
+        }
+      },
+      "why": "SRD 5.2 reading of 2026-11: nothing to automate in combat. Off-scene transport.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:wrathful-smite",
