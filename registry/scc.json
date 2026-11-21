@@ -929,9 +929,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack is carried by data; the pull or push of the target at the attacker's choice is a choice at use time that data lacks.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/action/gravity-shift",
@@ -968,9 +977,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save is carried; the upward fall, striking objects, hovering until next turn then falling needs a dedicated rule.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/action/multiattack",
@@ -1046,10 +1064,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Teleport activity with range template already expresses the self teleport.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/legendary/strike",
@@ -1086,9 +1113,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary activity with cost consumption exists; the attack itself is the other item.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/legendary/teleport",
@@ -1125,10 +1161,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Teleport activity with legendary cost consumption matches the text.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/legendary/unravel-magic",
@@ -1165,9 +1210,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save and force damage are carried; ending spells of limited level on the target is a rider data lacks.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/reaction/spell-mimicry",
@@ -1204,9 +1258,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction triggered by another creature casting a spell, with a save and casting the same spell; needs a trigger rule.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/trait/enigmatic-mind",
@@ -1241,9 +1304,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Mind-reading and telepathy protection has no combat automation.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/trait/legendary-resistance",
@@ -1280,9 +1352,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choosing to succeed after a failed save is a prompt at use time; data only tracks the resource.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/trait/spellcasting",
@@ -1356,9 +1437,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No need for air, food or sleep; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:art-elemental-mascot/action/captivating-artistry",
@@ -1397,9 +1487,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charm applied by data, but the repeated save at the end of each turn needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:art-elemental-mascot/action/joyful-flare",
@@ -1436,9 +1535,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with fire damage carried by the item's attack activity.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:art-elemental-mascot/action/melancholic-bolt",
@@ -1475,9 +1583,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain ranged attack with cold damage carried by the item's attack activity.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:art-elemental-mascot/trait/death-burst",
@@ -1516,10 +1633,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Triggered on death, area save with blinded; the repeated save each turn and death trigger need a rule.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/action/bite",
@@ -1556,10 +1682,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Melee attack with two damage types; attack activity with extra necrotic damage is present.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/action/claw",
@@ -1596,9 +1731,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone applies only to creatures up to a size limit; data lacks the effect and the size condition.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/action/decaying-breath",
@@ -1635,9 +1779,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save with two damage types is carried; the healing block until the next turn is a rider that data lacks.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/action/miasmal-flow",
@@ -1676,9 +1829,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Movement through creatures, poison on pass-through, force damage if ending in an object; needs a dedicated rule.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/action/multiattack",
@@ -1754,9 +1916,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary claw attack with cost consumption; same attack as the main item.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/legendary/miasmal-flow",
@@ -1793,9 +1964,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary activity with cost consumption that refers to another action.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/legendary/teeming-with-life",
@@ -1834,9 +2014,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon of pests plus start-of-turn aura damage and healing when pests drop; data has only a stray damage and heal.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/trait/legendary-resistance",
@@ -1873,9 +2062,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choosing to succeed after a failed save is a prompt at use time; data only tracks the resource.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/trait/spellcasting",
@@ -1949,9 +2147,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No need for air, food or drink; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:brackish-trudge/action/tusk",
@@ -1991,9 +2198,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with extra poison, plus a save that knocks prone with an effect present in the data.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:brackish-trudge/trait/fungal-fortitude",
@@ -2028,9 +2244,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d64",
+          "at": "2026-11-21T21:39:48.074Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggered at 0 hit points with a DC based on damage, with exceptions; data lacks any activity or effect.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:cogwork-archivist/action/grasping-limb",

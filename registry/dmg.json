@@ -21707,9 +21707,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d70",
+          "at": "2026-11-21T21:39:53.114Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain damage action; the activity already carries both slashing and necrotic dice against one creature.",
+      "state": "triaged"
     },
     {
       "key": "dmg:monster:avatar-of-death/trait/incorporeal-movement",
@@ -21746,9 +21755,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d70",
+          "at": "2026-11-21T21:39:53.114Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Needs movement through creatures/objects as difficult terrain plus force damage when its turn ends inside an object; data only has a bare special damage activity.",
+      "state": "triaged"
     },
     {
       "key": "dmg:monster:avatar-of-death/trait/turn-immunity",

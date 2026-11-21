@@ -16,6 +16,30 @@
     "reason": "low-confidence"
   },
   {
+    "key": "ai:monster:ancient-deep-crow/legendary/shadow-caw",
+    "verdict": "entry",
+    "why": "Legendary option that must trigger another action of the creature; data only has a utility activity with cost.",
+    "confidence": 0.65,
+    "by": "reader-d66",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ai:monster:auspicia-dran/trait/innate-spellcasting-psionics",
+    "verdict": "none",
+    "why": "Innate spell list; spells are cast through their own items. No item data, no combat rider in the text.",
+    "confidence": 0.65,
+    "by": "reader-d66",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ai:monster:brahma-lutier/trait/spellcasting",
+    "verdict": "none",
+    "why": "Spell list and casting ability; spells come from their own items, no combat rider here.",
+    "confidence": 0.65,
+    "by": "reader-d66",
+    "reason": "low-confidence"
+  },
+  {
     "key": "bgg:item:bigbys-beneficent-bracelet",
     "verdict": "data",
     "why": "Cast activities cover mage hand and the hand spell; the no-concentration clause and copies are out of combat or minor.",
@@ -56,6 +80,30 @@
     "reason": "low-confidence"
   },
   {
+    "key": "bgg:monster:firbolg-wanderer/bonus/duplicitous-movement",
+    "verdict": "entry",
+    "why": "illusion double with swap, ends on events, later bonus-action movement; data only a utility",
+    "confidence": 0.65,
+    "by": "reader-d61",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bgg:monster:firbolg-wanderer/trait/spellcasting",
+    "verdict": "data",
+    "why": "spell list cast through a utility activity; casting handled by spell items",
+    "confidence": 0.6,
+    "by": "reader-d61",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bgg:monster:fire-giant-forgecaller/trait/fire-rune",
+    "verdict": "entry",
+    "why": "gates two actions on holding the rune item; rune object has HP and is destroyable; data empty",
+    "confidence": 0.6,
+    "by": "reader-d61",
+    "reason": "low-confidence"
+  },
+  {
     "key": "bmt:item:boomerang-shield",
     "verdict": "entry",
     "why": "Data has only a damage activity, no thrown attack; Str or Dex choice and the return to hand are missing",
@@ -85,6 +133,38 @@
     "why": "Many random card effects with timed bonuses, penalties and a death-save of hp; data holds only one save and a poison status",
     "confidence": 0.6,
     "by": "reader-bmt-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:monster:boss-augustus/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Choice of form at use time with stats changing and revert on death; data has a bare utility.",
+    "confidence": 0.65,
+    "by": "reader-d57",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:monster:boss-delour/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shape change keeps stats but alters size and speed, reverts on death; a choice at use time the data cannot express.",
+    "confidence": 0.65,
+    "by": "reader-d58",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:monster:brusipha/trait/spellcasting",
+    "verdict": "data",
+    "why": "Spell list with a stated save DC; casting is covered by the spell items and a utility activity.",
+    "confidence": 0.6,
+    "by": "reader-d58",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:spell:spray-of-cards",
+    "verdict": "data",
+    "why": "Dex save, damage with half on success, blinded on fail; effect carries the status but no visible duration for the end-of-next-turn limit, so a data check may be needed.",
+    "confidence": 0.65,
+    "by": "reader-d56",
     "reason": "low-confidence"
   },
   {
@@ -253,6 +333,14 @@
     "why": "Random d100 table of effects on a chosen target; data holds an unrelated save and a few casts. Needs a rule for the table.",
     "confidence": 0.65,
     "by": "reader-old-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:monster:larva/action/bite",
+    "verdict": "entry",
+    "why": "Text is garbled but is an attack with piercing damage; the data activity has an attack but no damage part, so data lacks the damage. Low confidence.",
+    "confidence": 0.6,
+    "by": "reader-d70",
     "reason": "low-confidence"
   },
   {
@@ -640,11 +728,747 @@
     "reason": "low-confidence"
   },
   {
+    "key": "ftd:monster:adult-emerald-dragon/trait/spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Spell choice list; data has only a generic utility activity, lacking cast activities.",
+    "confidence": 0.68,
+    "by": "reader-d43",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:adult-moonstone-dragon/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spell choice list; data has only a generic utility activity, lacking cast activities.",
+    "confidence": 0.68,
+    "by": "reader-d43",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:adult-sapphire-dragon/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shapechange that ends on stated events; data has no effect for it.",
+    "confidence": 0.68,
+    "by": "reader-d43",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:adult-sapphire-dragon/trait/spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Spell choice list; data has only a generic utility activity, lacking cast activities.",
+    "confidence": 0.68,
+    "by": "reader-d43",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:adult-topaz-dragon/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shapechange that ends on stated events; data has no effect for it.",
+    "confidence": 0.68,
+    "by": "reader-d43",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:amethyst-greatwyrm/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shape change that ends on stated events (0 HP or bonus action); a choice at use time.",
+    "confidence": 0.65,
+    "by": "reader-d44",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-amethyst-dragon/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shape change that ends on stated events (0 HP or bonus action); a choice at use time.",
+    "confidence": 0.65,
+    "by": "reader-d44",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-crystal-dragon/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shape change that ends on stated events (0 HP or bonus action); a choice at use time.",
+    "confidence": 0.65,
+    "by": "reader-d44",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-crystal-dragon/trait/spellcasting-psionics",
+    "verdict": "data",
+    "why": "Spell list cast via a utility activity; the spells themselves live on their own items, nothing extra needed in combat.",
+    "confidence": 0.65,
+    "by": "reader-d45",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-dragon-turtle/legendary/move",
+    "verdict": "entry",
+    "why": "Free move that avoids opportunity attacks only while swimming; data has a bare utility activity.",
+    "confidence": 0.65,
+    "by": "reader-d45",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-emerald-dragon/trait/spellcasting-psionics",
+    "verdict": "data",
+    "why": "Spell list cast via a utility activity; the spells themselves live on their own items, nothing extra needed in combat.",
+    "confidence": 0.65,
+    "by": "reader-d45",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-moonstone-dragon/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Data has a bare utility with no spell activities; data lacks the listed spells and the spell DC",
+    "confidence": 0.65,
+    "by": "reader-d46",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-sapphire-dragon/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shapechange with chosen form and ending on 0 hp or bonus action; data is an empty utility",
+    "confidence": 0.65,
+    "by": "reader-d46",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-sapphire-dragon/legendary/psionics",
+    "verdict": "data",
+    "why": "Pointer to two other actions at legendary cost 2; choice made at use time, utility only",
+    "confidence": 0.65,
+    "by": "reader-d46",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-sapphire-dragon/trait/spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Data has a bare utility with no spell activities; data lacks the listed spells and the spell DC",
+    "confidence": 0.65,
+    "by": "reader-d46",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-topaz-dragon/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Shapechange with chosen form and ending on 0 hp or bonus action; data is an empty utility",
+    "confidence": 0.65,
+    "by": "reader-d46",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-topaz-dragon/legendary/psionics",
+    "verdict": "data",
+    "why": "Pointer to two other actions at legendary cost 2; choice made at use time, utility only",
+    "confidence": 0.65,
+    "by": "reader-d46",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:ancient-topaz-dragon/trait/spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Data lacks cast activities for the listed at-will spells; combat spells need to be granted by a rule.",
+    "confidence": 0.65,
+    "by": "reader-d47",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:blue-greatwyrm/legendary/arcane-spear",
+    "verdict": "entry",
+    "why": "Four spears with targets chosen at use time, each damaging a creature; data has one single-target damage activity with no bonus.",
+    "confidence": 0.65,
+    "by": "reader-d48",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:brass-greatwyrm/action/change-shape",
+    "verdict": "entry",
+    "why": "Shape change into a Medium or Small creature that ends at 0 hp or by choice; data has an empty utility activity.",
+    "confidence": 0.6,
+    "by": "reader-d48",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:monster:bronze-greatwyrm/action/change-shape",
+    "verdict": "entry",
+    "why": "Shape change into a Medium or Small creature that ends at 0 hp or by choice; data has an empty utility activity.",
+    "confidence": 0.6,
+    "by": "reader-d48",
+    "reason": "low-confidence"
+  },
+  {
     "key": "ggr:item:mizzium-apparatus",
     "verdict": "entry",
     "why": "Casting unprepared spells with an Arcana check against a slot-based DC and a random spell on failure; needs a rule.",
     "confidence": 0.65,
     "by": "reader-old-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:anarch/trait/aggressive",
+    "verdict": "entry",
+    "why": "Bonus-action move toward a hostile it sees; data has only a bare utility activity, no movement rule.",
+    "confidence": 0.65,
+    "by": "reader-d50",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:archon-of-the-triumvirate/legendary/rejoin-mount",
+    "verdict": "entry",
+    "why": "Teleport to its steed, conditional on being unmounted and same plane; data has only a legendary utility.",
+    "confidence": 0.6,
+    "by": "reader-d50",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:archon-of-the-triumvirate/trait/innate-spellcasting",
+    "verdict": "entry",
+    "why": "Innate spellcasting; data lacks cast activities, so spells and the save DC are missing. No spell data.",
+    "confidence": 0.6,
+    "by": "reader-d50",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:aurelia/action/warleaders-helix",
+    "verdict": "entry",
+    "why": "Ranged attack plus healing a chosen second creature near the target; choice at use time.",
+    "confidence": 0.65,
+    "by": "reader-d50",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:biomancer/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spellcasting; data lacks cast activities, so spells and the save DC are missing. No spell data.",
+    "confidence": 0.6,
+    "by": "reader-d50",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:blood-drinker-vampire/action/multiattack",
+    "verdict": "data",
+    "why": "Multiattack utility activity present; only one of the attacks may be the bite, a minor limit the GM applies when using it.",
+    "confidence": 0.65,
+    "by": "reader-d51",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:blood-witch/trait/innate-spellcasting",
+    "verdict": "none",
+    "why": "Innate spellcasting list; the data has no activities, and casting is handled by the spells themselves or the sheet, nothing extra for combat.",
+    "confidence": 0.65,
+    "by": "reader-d51",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:borborygmos/action/maul",
+    "verdict": "entry",
+    "why": "Attack plus strength save for prone exists in data; the rider applies only to creatures but this is mostly covered, needs only the attack-then-save chaining.",
+    "confidence": 0.65,
+    "by": "reader-d51",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:cackler/trait/innate-spellcasting",
+    "verdict": "none",
+    "why": "Innate spellcasting list; no item data, and spells are cast from their own items, nothing extra in combat.",
+    "confidence": 0.65,
+    "by": "reader-d51",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:monster:category-3-krasis/action/multiattack",
+    "verdict": "entry",
+    "why": "Multiattack sequence of three named attacks; data only has an empty utility activity, so something must drive the three attacks. Could be none if the engine ignores it.",
+    "confidence": 0.6,
+    "by": "reader-d52",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mcv4ec:monster:archon-of-boundaries/trait/magic-resistance",
+    "verdict": "data",
+    "why": "Passive effect sets save advantage flag; whether it is restricted to spells and magical effects is not visible in the structure, so unsure.",
+    "confidence": 0.6,
+    "by": "reader-d67",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mcv4ec:monster:archon-of-boundaries/trait/spellcasting",
+    "verdict": "entry",
+    "why": "At-will innate spells; data has only an empty utility activity with no cast activities, so data lacks the spells.",
+    "confidence": 0.6,
+    "by": "reader-d67",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:abominable-yeti/trait/keen-smell",
+    "verdict": "entry",
+    "why": "Advantage on Perception limited to smell; the data effect would give it broadly, and the circumstance is not expressed. Mostly out of combat.",
+    "confidence": 0.65,
+    "by": "reader-d1",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:abominable-yeti/trait/snow-camouflage",
+    "verdict": "entry",
+    "why": "Stealth advantage limited to snowy terrain; data effect is unconditional. Mostly out of combat.",
+    "confidence": 0.65,
+    "by": "reader-d1",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:acolyte/trait/spellcasting",
+    "verdict": "none",
+    "why": "Spellcasting trait with a spell list; no activities in data, spells cast as their own items.",
+    "confidence": 0.65,
+    "by": "reader-d1",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:adult-bronze-dragon/action/change-shape",
+    "verdict": "entry",
+    "why": "Data lacks polymorph with retained traits; a choice at use time. Only an empty utility activity exists.",
+    "confidence": 0.65,
+    "by": "reader-d2",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:adult-silver-dragon/action/change-shape",
+    "verdict": "entry",
+    "why": "Polymorph into another form and back, with retained traits; data has only a bare utility activity, so a rule must handle the transformation.",
+    "confidence": 0.65,
+    "by": "reader-d4",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-brass-dragon/action/change-shape",
+    "verdict": "none",
+    "why": "Polymorph into another form with retained traits; narrative/manual transform, no combat rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-d5",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-brass-dragon/action/multiattack",
+    "verdict": "none",
+    "why": "Describes which attacks to make; sequencing is played by hand and each attack has its own activity.",
+    "confidence": 0.65,
+    "by": "reader-d5",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-bronze-dragon/action/change-shape",
+    "verdict": "none",
+    "why": "Polymorph into another form with retained traits; narrative/manual transform, no combat rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-d5",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-bronze-dragon/action/multiattack",
+    "verdict": "none",
+    "why": "Describes which attacks to make; sequencing is played by hand and each attack has its own activity.",
+    "confidence": 0.65,
+    "by": "reader-d5",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-copper-dragon/action/change-shape",
+    "verdict": "none",
+    "why": "Polymorph into another form with retained traits; narrative/manual transform, no combat rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-d5",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-copper-dragon/action/multiattack",
+    "verdict": "none",
+    "why": "Describes which attacks to make; sequencing is played by hand and each attack has its own activity.",
+    "confidence": 0.65,
+    "by": "reader-d5",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-gold-dragon/action/change-shape",
+    "verdict": "entry",
+    "why": "Shape change with retained traits; data has an empty utility activity only. Little combat value, a person should decide.",
+    "confidence": 0.6,
+    "by": "reader-d6b",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ancient-silver-dragon/action/change-shape",
+    "verdict": "entry",
+    "why": "Shape change with retained traits; data has an empty utility activity only. Little combat value, a person should decide.",
+    "confidence": 0.6,
+    "by": "reader-d6b",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:androsphinx/trait/magic-weapons",
+    "verdict": "entry",
+    "why": "Attacks count as magical; data lacks any flag or effect for it (matters against nonmagical resistance).",
+    "confidence": 0.6,
+    "by": "reader-d7",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:arcanaloth/trait/magic-weapons",
+    "verdict": "entry",
+    "why": "Attacks count as magical; data lacks any flag or effect for it (matters against nonmagical resistance).",
+    "confidence": 0.6,
+    "by": "reader-d7",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:bearded-devil/trait/devils-sight",
+    "verdict": "entry",
+    "why": "Vision rule about magical darkness; data has an empty transferred effect, no changes.",
+    "confidence": 0.65,
+    "by": "reader-d9",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:chain-devil/trait/devils-sight",
+    "verdict": "entry",
+    "why": "magical darkness ignored by darkvision; effect carries no changes, needs a vision rule",
+    "confidence": 0.6,
+    "by": "reader-d11",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:crawling-claw/action/claw",
+    "verdict": "entry",
+    "why": "Attack where the damage type (bludgeoning or slashing) is picked at use time; data has one fixed profile.",
+    "confidence": 0.65,
+    "by": "reader-d12",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:crawling-claw/trait/turn-immunity",
+    "verdict": "none",
+    "why": "Immunity to turn undead effects; nothing acts in combat unless turning is automated.",
+    "confidence": 0.65,
+    "by": "reader-d12",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:dao/action/maul",
+    "verdict": "entry",
+    "why": "Hit rider: a strength check against a size limit or fall prone; data has a save activity but not the size restriction.",
+    "confidence": 0.65,
+    "by": "reader-d12",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:death-knight/trait/marshal-undead",
+    "verdict": "none",
+    "why": "Advantage versus turn undead for itself and allies; only relevant if turning is automated; no data.",
+    "confidence": 0.65,
+    "by": "reader-d12",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:death-slaad/trait/shapechanger",
+    "verdict": "none",
+    "why": "Polymorph into a humanoid form via action; no stat change to automate in combat.",
+    "confidence": 0.65,
+    "by": "reader-d12",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:demilich/trait/turn-immunity",
+    "verdict": "entry",
+    "why": "Immunity to turn undead effects; needs a rule keyed on that effect source.",
+    "confidence": 0.65,
+    "by": "reader-d13",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:draft-horse/action/hooves",
+    "verdict": "data",
+    "why": "Plain melee attack; the structure shows no damage part in the activity, so this needs a person to check.",
+    "confidence": 0.6,
+    "by": "reader-d13",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:druid/action/quarterstaff",
+    "verdict": "entry",
+    "why": "Shillelagh variant activity has zero damage dice and no attack bonus change; data lacks the alternate damage and to-hit.",
+    "confidence": 0.65,
+    "by": "reader-d14",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:empyrean/legendary/attack",
+    "verdict": "none",
+    "why": "Legendary action that just triggers an ordinary attack; legendary cost is already consumed by data.",
+    "confidence": 0.65,
+    "by": "reader-d14",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:flameskull/trait/illumination",
+    "verdict": "none",
+    "why": "Switchable light radius only; no combat mechanic beyond lighting.",
+    "confidence": 0.65,
+    "by": "reader-d15",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:flesh-golem/trait/immutable-form",
+    "verdict": "none",
+    "why": "Immunity to form-altering effects; rarely a combat step and data has nothing; low impact.",
+    "confidence": 0.65,
+    "by": "reader-d15",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:ghost/action/etherealness",
+    "verdict": "none",
+    "why": "Plane shifting has no combat resolution in the engine; data has a bare utility activity.",
+    "confidence": 0.6,
+    "by": "reader-d16",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:githyanki-knight/trait/innate-spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Data lacks the innate spell list and at-will casting; no activity or effect present.",
+    "confidence": 0.6,
+    "by": "reader-d17",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:githyanki-warrior/trait/innate-spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Data lacks the innate spell list and at-will casting; no activity or effect present.",
+    "confidence": 0.6,
+    "by": "reader-d17",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:githzerai-zerth/trait/innate-spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Data lacks the innate spell list and at-will casting; no activity or effect present.",
+    "confidence": 0.6,
+    "by": "reader-d17",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:githzerai-zerth/trait/psychic-defense",
+    "verdict": "none",
+    "why": "Armor class formula with Wisdom is an actor stat, not a combat-time rule; no item data.",
+    "confidence": 0.65,
+    "by": "reader-d17",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:gray-slaad/trait/innate-spellcasting",
+    "verdict": "data",
+    "why": "spell list; innate casting is handled by spell items, no extra combat rule",
+    "confidence": 0.65,
+    "by": "reader-d18",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:green-slaad/trait/innate-spellcasting",
+    "verdict": "data",
+    "why": "spell list; innate casting is handled by spell items, no extra combat rule",
+    "confidence": 0.65,
+    "by": "reader-d18",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:grick-alpha/action/multiattack",
+    "verdict": "none",
+    "why": "multiattack with a conditional beak follow-up on a tentacle hit is table sequencing; low value",
+    "confidence": 0.6,
+    "by": "reader-d18",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:imp/trait/shapechanger",
+    "verdict": "none",
+    "why": "Form change between beast shapes; no activity in the data and mainly a narrative or token swap, little combat automation.",
+    "confidence": 0.6,
+    "by": "reader-d19",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:jackalwere/trait/shapechanger",
+    "verdict": "none",
+    "why": "Form change by action; data lacks it but stats mostly same and handled by hand.",
+    "confidence": 0.65,
+    "by": "reader-d20",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:mimic/trait/shapechanger",
+    "verdict": "none",
+    "why": "Form change by action, same stats; no combat automation needed beyond manual change.",
+    "confidence": 0.65,
+    "by": "reader-d22",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:nothic/action/weird-insight",
+    "verdict": "entry",
+    "why": "Contested check with a fact learned and an immunity override; data is only a utility activity with no contest",
+    "confidence": 0.6,
+    "by": "reader-d24",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:nothic/trait/keen-sight",
+    "verdict": "entry",
+    "why": "Advantage on Perception limited to sight-based checks; effect sets skill roll mode without that restriction",
+    "confidence": 0.65,
+    "by": "reader-d24",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:nycaloth/trait/innate-spellcasting",
+    "verdict": "none",
+    "why": "no item data; innate spell list, spells are separate items",
+    "confidence": 0.6,
+    "by": "reader-d24",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:nycaloth/trait/magic-weapons",
+    "verdict": "entry",
+    "why": "no item data; attacks count as magical, matters for resistance bypass",
+    "confidence": 0.65,
+    "by": "reader-d24",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:orc-eye-of-gruumsh/trait/spellcasting",
+    "verdict": "none",
+    "why": "no item data; prepared spells are separate items",
+    "confidence": 0.6,
+    "by": "reader-d24",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:panther/trait/keen-smell",
+    "verdict": "entry",
+    "why": "Advantage on Perception limited to smell-based checks; effect sets roll mode without that restriction",
+    "confidence": 0.65,
+    "by": "reader-d24",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:poltergeist/action/telekinetic-thrust",
+    "verdict": "entry",
+    "why": "Contested Charisma vs Strength check, forced movement and distance-scaled damage; data has a bare damage activity.",
+    "confidence": 0.65,
+    "by": "reader-d25",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:revenant/trait/turn-immunity",
+    "verdict": "entry",
+    "why": "Immunity to a specific feature (turn undead effects); no data carries it, so a rule would be needed.",
+    "confidence": 0.65,
+    "by": "reader-d26",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:shield-guardian/trait/spell-storing",
+    "verdict": "entry",
+    "why": "Stores a spell cast on it and casts it on command; choice at use time, data lacks it. Unsure how much combat automation applies.",
+    "confidence": 0.6,
+    "by": "reader-d27",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:slaad-tadpole/trait/magic-resistance",
+    "verdict": "data",
+    "why": "Advantage on saves against magic is carried by a transferring effect flag; unsure it restricts to magical sources.",
+    "confidence": 0.65,
+    "by": "reader-d27",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:spined-devil/trait/devils-sight",
+    "verdict": "entry",
+    "why": "Ignoring magical darkness for darkvision is a vision rule; the effect has no changes, so data lacks it.",
+    "confidence": 0.65,
+    "by": "reader-d28",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:swarm-of-ravens/action/beaks",
+    "verdict": "entry",
+    "why": "Damage switches to a lower die at half hit points or fewer; two activities exist but the selection by HP state is not expressed.",
+    "confidence": 0.65,
+    "by": "reader-d28",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:vampire/trait/shapechanger",
+    "verdict": "entry",
+    "why": "Form change at use time with stat and speed changes plus conditional saves and damage immunity; data lacks it",
+    "confidence": 0.65,
+    "by": "reader-d30",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:werewolf/trait/shapechanger",
+    "verdict": "entry",
+    "why": "Form choice at use time with AC change and revert on death; data lacks any activity",
+    "confidence": 0.65,
+    "by": "reader-d30",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:yuan-ti-malison-type-2/trait/innate-spellcasting-yuan-ti-form-only",
+    "verdict": "entry",
+    "why": "Data lacks the innate spell activities and their castings; no activity or effect present.",
+    "confidence": 0.65,
+    "by": "reader-d32",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:yuan-ti-malison-type-2/trait/magic-resistance",
+    "verdict": "entry",
+    "why": "Advantage only against spells and magical effects; data has a generic save-advantage flag but no visible magic-only condition.",
+    "confidence": 0.65,
+    "by": "reader-d32",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:yuan-ti-malison-type-3/trait/innate-spellcasting-yuan-ti-form-only",
+    "verdict": "entry",
+    "why": "Data lacks the innate spell activities and their castings; no activity or effect present.",
+    "confidence": 0.65,
+    "by": "reader-d32",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:yuan-ti-malison-type-3/trait/magic-resistance",
+    "verdict": "entry",
+    "why": "Advantage only against spells and magical effects; data has a generic save-advantage flag but no visible magic-only condition.",
+    "confidence": 0.65,
+    "by": "reader-d32",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:yuan-ti-pureblood/trait/innate-spellcasting",
+    "verdict": "entry",
+    "why": "Data lacks the innate spell activities and their castings; no activity or effect present.",
+    "confidence": 0.65,
+    "by": "reader-d32",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mm:monster:yuan-ti-pureblood/trait/magic-resistance",
+    "verdict": "entry",
+    "why": "Advantage only against spells and magical effects; data has a generic save-advantage flag but no visible magic-only condition.",
+    "confidence": 0.65,
+    "by": "reader-d32",
     "reason": "low-confidence"
   },
   {
@@ -672,6 +1496,310 @@
     "reason": "low-confidence"
   },
   {
+    "key": "mot:monster:arasta/legendary/swarm",
+    "verdict": "entry",
+    "why": "Summons two swarms in nearby spaces; data has only a plain utility, lacks a summon activity.",
+    "confidence": 0.65,
+    "by": "reader-d53",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:monster:arasta/trait/web-walker",
+    "verdict": "entry",
+    "why": "Ignores web movement limits; data lacks any exemption from web terrain and restraint.",
+    "confidence": 0.6,
+    "by": "reader-d53",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:monster:archon-of-falling-stars/legendary/coordinated-assault",
+    "verdict": "entry",
+    "why": "Grants an ally mount a reaction attack after the strike; data has only a resource cost",
+    "confidence": 0.65,
+    "by": "reader-d54",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:monster:archon-of-falling-stars/trait/innate-spellcasting",
+    "verdict": "entry",
+    "why": "Innate casting list; data lacks any cast activities for the listed spells",
+    "confidence": 0.65,
+    "by": "reader-d54",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:monster:ashen-rider/legendary/coordinated-assault",
+    "verdict": "entry",
+    "why": "Mount gets a reaction attack after the strike; data has only a resource cost",
+    "confidence": 0.65,
+    "by": "reader-d54",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:monster:ashen-rider/trait/innate-spellcasting",
+    "verdict": "entry",
+    "why": "Innate casting list; data lacks any cast activities for the listed spells",
+    "confidence": 0.65,
+    "by": "reader-d54",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:monster:naiad/trait/magic-resistance",
+    "verdict": "entry",
+    "why": "Save advantage limited to spells and magical effects; effect carries only a generic save-advantage flag, so the condition likely needs a rule.",
+    "confidence": 0.65,
+    "by": "reader-d55",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:amnizu/trait/devils-sight",
+    "verdict": "entry",
+    "why": "Magical darkness ignored by darkvision; the effect exists but changes nothing, so data lacks the vision rule.",
+    "confidence": 0.65,
+    "by": "reader-d34",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:amnizu/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Innate spellcasting with a choice of spell at use time; data has only a utility activity and no cast activities.",
+    "confidence": 0.6,
+    "by": "reader-d34",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:annis-hag/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Innate spellcasting with a choice of spell at use time; data has only a utility activity.",
+    "confidence": 0.6,
+    "by": "reader-d34",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:apprentice-wizard/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spellcasting with spell choice at use time; data has only a utility activity.",
+    "confidence": 0.6,
+    "by": "reader-d34",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:archdruid/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Transformation into another stat block with kept traits, duration and revert choices; no data covers this.",
+    "confidence": 0.6,
+    "by": "reader-d34",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:archdruid/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spellcasting with spell choice at use time; data has only a utility activity.",
+    "confidence": 0.6,
+    "by": "reader-d34",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:astral-dreadnought/trait/sever-silver-cord",
+    "verdict": "entry",
+    "why": "Optional rider on a critical hit against astral travelers; data lacks it. Very niche.",
+    "confidence": 0.65,
+    "by": "reader-d35",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:banderhobb/action/tongue",
+    "verdict": "entry",
+    "why": "Attack followed by a save that pulls the target; the save chained to the hit and forced movement are not in the data.",
+    "confidence": 0.65,
+    "by": "reader-d36",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:banderhobb/bonus/shadow-stealth",
+    "verdict": "entry",
+    "why": "Hide action tied to dim light or darkness; circumstance-limited, data only has a bonus utility and effect.",
+    "confidence": 0.65,
+    "by": "reader-d36",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:barghest/bonus/change-shape",
+    "verdict": "entry",
+    "why": "Choice of form at use time with stat carry-over and revert on death; data has only a bare utility.",
+    "confidence": 0.6,
+    "by": "reader-d36",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:berbalang/bonus/spectral-duplicate",
+    "verdict": "entry",
+    "why": "Creates a duplicate with linked lifetime and unconscious original; data has only a utility with consumption.",
+    "confidence": 0.65,
+    "by": "reader-d36",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:bheur-hag/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Casts one chosen spell from a list per use; data lacks spell cast activities for the listed spells.",
+    "confidence": 0.65,
+    "by": "reader-d37",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:black-abishai/trait/devils-sight",
+    "verdict": "entry",
+    "why": "Darkvision unaffected by magical darkness; effect carries no change, so a vision rule is missing.",
+    "confidence": 0.6,
+    "by": "reader-d37",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:black-abishai/trait/magic-resistance",
+    "verdict": "entry",
+    "why": "Advantage on saves limited to spells and magical effects; data shows a generic save advantage flag only.",
+    "confidence": 0.65,
+    "by": "reader-d37",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:blackguard/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Casts one chosen spell from a list per use; data lacks spell cast activities for the listed spells.",
+    "confidence": 0.65,
+    "by": "reader-d37",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:blue-abishai/trait/devils-sight",
+    "verdict": "entry",
+    "why": "Darkvision unaffected by magical darkness; effect carries no change, so a vision rule is missing.",
+    "confidence": 0.6,
+    "by": "reader-d37",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:blue-abishai/trait/magic-resistance",
+    "verdict": "entry",
+    "why": "Advantage on saves limited to spells and magical effects; data shows a generic save advantage flag only.",
+    "confidence": 0.65,
+    "by": "reader-d37",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:blue-abishai/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Casts one chosen spell from a list per use; data lacks spell cast activities for the listed spells.",
+    "confidence": 0.65,
+    "by": "reader-d37",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:canoloth/trait/dimensional-lock",
+    "verdict": "engine",
+    "why": "Blocks teleportation to or from spaces within 60 ft of the creature; no aura or teleport hook known, and data has nothing.",
+    "confidence": 0.65,
+    "by": "reader-d38",
+    "reason": "engine"
+  },
+  {
+    "key": "mpmm:monster:darkling-elder/trait/darkness",
+    "verdict": "data",
+    "why": "At-will style darkness cast once per short rest; uses and a utility activity exist, spell resolves from its own item.",
+    "confidence": 0.65,
+    "by": "reader-d39",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:gazer/bonus/aggressive",
+    "verdict": "entry",
+    "why": "Bonus-action move toward a hostile creature; data has only a utility activity, movement needs a rule.",
+    "confidence": 0.6,
+    "by": "reader-d39",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:giff/trait/firearms-knowledge",
+    "verdict": "entry",
+    "why": "Ignores the loading property of firearms so repeated shots are allowed; data lacks any such flag.",
+    "confidence": 0.65,
+    "by": "reader-d39",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:githyanki-gish/trait/spellcasting-psionics",
+    "verdict": "entry",
+    "why": "Spell choice at use time with listed spells and DC; data has only an empty utility activity.",
+    "confidence": 0.65,
+    "by": "reader-d40",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:green-abishai/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spell choice at use time with listed spells and DC; data has only an empty utility activity.",
+    "confidence": 0.65,
+    "by": "reader-d40",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:korred/action/greatclub",
+    "verdict": "entry",
+    "why": "Bigger damage only when the attacker is on the ground; a circumstance choice, split in two activities.",
+    "confidence": 0.65,
+    "by": "reader-d40",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:korred/action/rock",
+    "verdict": "entry",
+    "why": "Bigger damage only when the attacker is on the ground; a circumstance choice, split in two activities.",
+    "confidence": 0.65,
+    "by": "reader-d40",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:korred/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spell choice at use time with listed spells and DC; data has only an empty utility activity.",
+    "confidence": 0.65,
+    "by": "reader-d40",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpmm:monster:necromancer-wizard/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spell choice at use time with listed spells and DC; data has only an empty utility activity.",
+    "confidence": 0.65,
+    "by": "reader-d40",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpp:monster:baernaloth/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Innate spell choices and save DC; data has only a generic utility activity, no cast of the listed spells.",
+    "confidence": 0.6,
+    "by": "reader-d60",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpp:monster:bariaur-wanderer/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Innate spell choices; data has only a generic utility activity, no cast of the listed spells.",
+    "confidence": 0.6,
+    "by": "reader-d60",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mpp:monster:bleak-cabal-void-soother/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Innate spell choices and save DC; data has only a generic utility activity, no cast of the listed spells.",
+    "confidence": 0.6,
+    "by": "reader-d60",
+    "reason": "low-confidence"
+  },
+  {
     "key": "mtf:item:infernal-tack",
     "verdict": "entry",
     "why": "Summon of an allied nightmare acting on rider initiative; data has only a utility with no summon.",
@@ -685,6 +1813,46 @@
     "why": "Save when moving across the area (not if at half speed), prone on failure; area-entry trigger is not expressed by the data.",
     "confidence": 0.65,
     "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:monster:animated-object-huge/action/slam",
+    "verdict": "data",
+    "why": "Plain melee attack with one target; attack activity exists, but its damage list is empty so damage may sit on the item base. A person should confirm.",
+    "confidence": 0.65,
+    "by": "reader-d69",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:monster:animated-object-large/action/slam",
+    "verdict": "data",
+    "why": "Plain melee attack with one target; attack activity exists, but its damage list is empty so damage may sit on the item base. A person should confirm.",
+    "confidence": 0.65,
+    "by": "reader-d69",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:monster:animated-object-medium/action/slam",
+    "verdict": "data",
+    "why": "Plain melee attack with one target; attack activity exists, but its damage list is empty so damage may sit on the item base. A person should confirm.",
+    "confidence": 0.65,
+    "by": "reader-d69",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:monster:animated-object-small/action/slam",
+    "verdict": "data",
+    "why": "Plain melee attack with one target; attack activity exists, but its damage list is empty so damage may sit on the item base. A person should confirm.",
+    "confidence": 0.65,
+    "by": "reader-d69",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:monster:animated-object-tiny/action/slam",
+    "verdict": "data",
+    "why": "Plain melee attack with one target; attack activity exists, but its damage list is empty so damage may sit on the item base. A person should confirm.",
+    "confidence": 0.65,
+    "by": "reader-d69",
     "reason": "low-confidence"
   },
   {
@@ -1021,6 +2189,38 @@
     "why": "Waved pennant sheds light; no damage, save or combat rule, and no effect in the data",
     "confidence": 0.65,
     "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "scc:monster:archaic/action/multiattack",
+    "verdict": "none",
+    "why": "Descriptive multiattack; the attacks are separate items and the utility activity only marks the action.",
+    "confidence": 0.65,
+    "by": "reader-d64",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "scc:monster:archaic/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Data lacks the spell list and casting activities; only a bare utility activity exists. Fixed spells with a given save DC.",
+    "confidence": 0.65,
+    "by": "reader-d64",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "scc:monster:beledros-witherbloom/action/multiattack",
+    "verdict": "none",
+    "why": "Descriptive multiattack; the attacks are separate items and the utility activity only marks the action.",
+    "confidence": 0.65,
+    "by": "reader-d64",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "scc:monster:beledros-witherbloom/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Data lacks the spell list and casting activities; only a bare utility activity exists. Fixed spells.",
+    "confidence": 0.65,
+    "by": "reader-d64",
     "reason": "low-confidence"
   },
   {

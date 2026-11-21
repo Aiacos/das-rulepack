@@ -40,9 +40,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d68",
+          "at": "2026-11-21T21:39:51.412Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple rider: restrained and turn-start damage only if target not undead, single grapple limit; data has grapple and ongoing damage but not the creature-type or one-target limits.",
+      "state": "triaged"
     },
     {
       "key": "aatm:monster:animated-coffin/action/multiattack",
@@ -79,9 +88,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d68",
+          "at": "2026-11-21T21:39:51.412Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain multiattack of two slams; the utility activity carries it and nothing needs timing or conditions.",
+      "state": "triaged"
     },
     {
       "key": "aatm:monster:animated-coffin/action/slam",
@@ -118,10 +136,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d68",
+          "at": "2026-11-21T21:39:51.412Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Simple melee attack with bludgeoning damage; the attack activity covers it, though its damage list looks empty in the structure.",
+      "state": "triaged"
     },
     {
       "key": "aatm:monster:animated-coffin/trait/false-appearance",
@@ -156,9 +183,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d68",
+          "at": "2026-11-21T21:39:51.412Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on initiative when motionless at combat start; data has no effect or activity for it. The Investigation check part is out-of-combat flavor.",
+      "state": "triaged"
     },
     {
       "key": "aatm:monster:animated-coffin/trait/spider-climb",
@@ -193,10 +229,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d68",
+          "at": "2026-11-21T21:39:51.412Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Climbing ceilings without ability checks; nothing for combat automation to resolve beyond a climb speed.",
+      "state": "triaged"
     },
     {
       "key": "aatm:monster:factol-skall/action/death-knell",

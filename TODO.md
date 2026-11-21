@@ -114,3 +114,7 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       a reader's verdict made on the older structure. Re-read first the 104 whose activity or effect ids changed.
 - [ ] Rule-based `core` is now counted per edition and given to 2024 records only: 44 records of 2014 books went from `core`
       to no verdict with `hint: "core-generic"` and wait for a reader.
+- [x] Monster features with a DDB Importer item and no official one are read (2026-11-21): 70 batches, 2,370 results —
+      2,220 applied, 150 queued for a person (queue now 553). One batch whose reader had judged by name was read again.
+- [ ] `structure.mjs` lists an activity's own damage parts only: an attack that takes its damage from the item
+      (`system.damage.base`, as DDB Importer's monster weapons do) shows no damage to the reader. Add the base damage.

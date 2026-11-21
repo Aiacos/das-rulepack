@@ -12,11 +12,11 @@ what an entry needs, not that it is done, and only the last column counts rules 
 | Entries | 19,143 |
 | Joined to an item of the official Foundry module | 4,708 |
 | Joined to an item imported by DDB Importer (spells and items only) | 6,507 |
-| Verdict `core` · `none` · `data` | 680 · 2,084 · 1,501 |
-| Verdict `entry` (a rule is needed and not written yet) | 2,209 |
+| Verdict `core` · `none` · `data` | 680 · 2,576 · 2,382 |
+| Verdict `entry` (a rule is needed and not written yet) | 3,055 |
 | Verdict `unverifiable` (no text) | 272 |
-| Waiting for a person in `registry/queue.json` | 403 |
-| No verdict yet | 11,989 |
+| Waiting for a person in `registry/queue.json` | 553 |
+| No verdict yet | 9,619 |
 | Rules the module registers | 24 |
 
 Books published in or after 2024, and Tasha's and Xanathar's, were read entry by entry by reader agents
@@ -44,36 +44,36 @@ for spells and items only. How far one reading can be trusted: `docs/reader-agre
 
 | Book | Year | Entries | Official item | DDB item | `core` | `none` | `data` | `entry` | no text | Queued | No verdict | Rules shipped |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Adventure Atlas: The Mortuary (`AATM`) | 2023 | 22 | 0 | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 22 | 0 |
-| Bigby Presents: Glory of the Giants (`BGG`) | 2023 | 479 | 0 | 74 | 0 | 1 | 5 | 18 | 0 | 5 | 450 | 0 |
-| The Book of Many Things (`BMT`) | 2023 | 352 | 0 | 118 | 0 | 7 | 10 | 30 | 0 | 4 | 301 | 0 |
-| Monstrous Compendium Volume 4: Eldraine Creatures (`MCV4EC`) | 2023 | 150 | 0 | 14 | 0 | 0 | 0 | 0 | 0 | 0 | 150 | 0 |
-| Morte's Planar Parade (`MPP`) | 2023 | 323 | 0 | 55 | 0 | 0 | 0 | 0 | 0 | 0 | 323 | 0 |
+| Adventure Atlas: The Mortuary (`AATM`) | 2023 | 22 | 0 | 5 | 0 | 1 | 2 | 2 | 0 | 0 | 17 | 0 |
+| Bigby Presents: Glory of the Giants (`BGG`) | 2023 | 479 | 0 | 74 | 0 | 12 | 20 | 34 | 0 | 8 | 405 | 0 |
+| The Book of Many Things (`BMT`) | 2023 | 352 | 0 | 118 | 0 | 29 | 25 | 57 | 0 | 8 | 233 | 0 |
+| Monstrous Compendium Volume 4: Eldraine Creatures (`MCV4EC`) | 2023 | 150 | 0 | 14 | 0 | 3 | 0 | 9 | 0 | 2 | 136 | 0 |
+| Morte's Planar Parade (`MPP`) | 2023 | 323 | 0 | 55 | 0 | 15 | 9 | 28 | 0 | 3 | 268 | 0 |
 | Sigil and the Outlands (`SATO`) | 2023 | 16 | 0 | 5 | 0 | 6 | 0 | 1 | 0 | 0 | 9 | 0 |
 | Astral Adventurer's Guide (`AAG`) | 2022 | 65 | 0 | 22 | 0 | 21 | 1 | 0 | 0 | 0 | 43 | 0 |
 | Boo's Astral Menagerie (`BAM`) | 2022 | 402 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 401 | 0 |
-| Mordenkainen Presents: Monsters of the Multiverse (`MPMM`) | 2022 | 1,739 | 0 | 339 | 0 | 0 | 0 | 1 | 0 | 0 | 1,738 | 1 |
+| Mordenkainen Presents: Monsters of the Multiverse (`MPMM`) | 2022 | 1,739 | 0 | 339 | 0 | 67 | 123 | 122 | 0 | 28 | 1,399 | 1 |
 | Domains of Delight (`DOD`) | 2021 | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 9 | 0 |
-| Fizban's Treasury of Dragons (`FTD`) | 2021 | 739 | 0 | 319 | 0 | 6 | 3 | 21 | 0 | 1 | 708 | 1 |
+| Fizban's Treasury of Dragons (`FTD`) | 2021 | 739 | 0 | 319 | 0 | 62 | 109 | 126 | 0 | 22 | 420 | 1 |
 | Minsc and Boo's Journal of Villainy (`MABJOV`) | 2021 | 473 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 473 | 0 |
-| Strixhaven: A Curriculum of Chaos (`SCC`) | 2021 | 289 | 0 | 47 | 0 | 2 | 0 | 13 | 0 | 3 | 271 | 0 |
-| Van Richten's Guide to Ravenloft (`VRGR`) | 2021 | 245 | 0 | 40 | 0 | 2 | 0 | 1 | 0 | 0 | 242 | 0 |
+| Strixhaven: A Curriculum of Chaos (`SCC`) | 2021 | 289 | 0 | 47 | 0 | 5 | 9 | 26 | 0 | 7 | 242 | 0 |
+| Van Richten's Guide to Ravenloft (`VRGR`) | 2021 | 245 | 0 | 40 | 0 | 11 | 7 | 22 | 0 | 0 | 205 | 0 |
 | Explorer's Guide to Wildemount (`EGW`) | 2020 | 305 | 0 | 0 | 0 | 38 | 0 | 0 | 0 | 0 | 267 | 0 |
 | Muk's Guide to Everything He Learned From Tasha (`MGELFT`) | 2020 | 27 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 27 | 0 |
-| Mythic Odysseys of Theros (`MOT`) | 2020 | 346 | 0 | 98 | 0 | 0 | 1 | 8 | 0 | 3 | 334 | 0 |
+| Mythic Odysseys of Theros (`MOT`) | 2020 | 346 | 0 | 98 | 0 | 20 | 24 | 44 | 0 | 10 | 248 | 0 |
 | Tasha's Cauldron of Everything (`TCE`) | 2020 | 608 | 404 | 120 | 0 | 159 | 51 | 318 | 9 | 63 | 6 | 5 |
-| Acquisitions Incorporated (`AI`) | 2019 | 164 | 0 | 51 | 0 | 12 | 1 | 13 | 0 | 2 | 136 | 1 |
+| Acquisitions Incorporated (`AI`) | 2019 | 164 | 0 | 51 | 0 | 15 | 8 | 22 | 0 | 5 | 114 | 1 |
 | Adventure with Muk (`AWM`) | 2019 | 43 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 43 | 0 |
-| Eberron: Rising from the Last War (`ERLW`) | 2019 | 371 | 0 | 48 | 0 | 19 | 4 | 5 | 0 | 0 | 343 | 0 |
-| Guildmasters' Guide to Ravnica (`GGR`) | 2018 | 509 | 0 | 120 | 0 | 11 | 13 | 17 | 0 | 1 | 467 | 0 |
+| Eberron: Rising from the Last War (`ERLW`) | 2019 | 371 | 0 | 48 | 0 | 26 | 13 | 16 | 0 | 0 | 316 | 0 |
+| Guildmasters' Guide to Ravnica (`GGR`) | 2018 | 509 | 0 | 120 | 0 | 16 | 47 | 54 | 0 | 11 | 381 | 0 |
 | Mordenkainen's Tome of Foes (`MTF`) | 2018 | 999 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 1 | 997 | 0 |
 | One Grung Above (`OGA`) | 2017 | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 0 |
 | Xanathar's Guide to Everything (`XGE`) | 2017 | 405 | 0 | 118 | 0 | 140 | 15 | 217 | 0 | 26 | 6 | 12 |
 | Volo's Guide to Monsters (`VGM`) | 2016 | 738 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 738 | 0 |
 | Sword Coast Adventurer's Guide (`SCAG`) | 2015 | 101 | 0 | 12 | 0 | 15 | 0 | 0 | 0 | 0 | 86 | 0 |
-| Dungeon Master's Guide (2014) (`DMG`) | 2014 | 588 | 0 | 274 | 0 | 139 | 71 | 88 | 16 | 21 | 253 | 0 |
-| Monster Manual (2014) (`MM`) | 2014 | 2,145 | 0 | 1,261 | 0 | 0 | 0 | 0 | 0 | 0 | 2,145 | 0 |
-| Player's Handbook (2014) (`PHB`) | 2014 | 1,423 | 0 | 505 | 0 | 207 | 74 | 158 | 129 | 40 | 815 | 1 |
+| Dungeon Master's Guide (2014) (`DMG`) | 2014 | 588 | 0 | 274 | 0 | 139 | 72 | 89 | 16 | 22 | 250 | 0 |
+| Monster Manual (2014) (`MM`) | 2014 | 2,145 | 0 | 1,261 | 0 | 270 | 521 | 410 | 0 | 59 | 884 | 0 |
+| Player's Handbook (2014) (`PHB`) | 2014 | 1,423 | 0 | 505 | 0 | 207 | 74 | 158 | 129 | 45 | 810 | 1 |
 
 ## Not in the registry
 

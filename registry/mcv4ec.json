@@ -39,9 +39,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone rider is limited by target size; data has the save and prone status but nothing restricting it to Medium or smaller targets.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/action/multiattack",
@@ -78,9 +87,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only lists the attacks to make; the data utility activity needs nothing more in combat.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/action/radiant-lance",
@@ -117,9 +135,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the mark: until the archon's next turn, the target suffers disadvantage on attacks against anyone else. Needs an effect with a duration and a condition.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/reaction/archons-pursuit",
@@ -156,9 +183,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction teleport triggered when a marked creature ends its turn within range; data has only an empty reaction utility.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/reaction/haunting-radiance",
@@ -197,9 +233,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.82,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction triggered right after a creature forces a save; blinded duration is until end of its next turn. Data has the save and status but not the trigger or timing.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/reaction/parry",
@@ -238,10 +283,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction AC bonus applies to one melee attack that would hit, only when the attacker is seen; data has a bonus effect but no trigger or visibility limit.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/trait/legendary-resistance",
@@ -278,9 +332,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; data only has a resource-spending utility activity.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/trait/magic-resistance",
@@ -399,10 +462,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Swallow rider: restrained, cover, ongoing start-of-turn damage, capacity, regurgitation on damage threshold, escape on death. Data lacks the swallow state and has no effects.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:beanstalk-wurm/action/multiattack",
@@ -439,9 +511,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only lists the attacks to make; nothing further to automate.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:beanstalk-wurm/trait/false-appearance",
@@ -476,9 +557,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on initiative when motionless at combat start plus an investigation check gate; data has no effect or activity.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:beanstalk-wurm/trait/leafy-handholds",
@@ -513,9 +603,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only grants others advantage on climb checks on the creature; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:beanstalk-wurm/trait/legendary-resistance",
@@ -578,10 +677,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d67",
+          "at": "2026-11-21T21:39:50.560Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Start-of-turn healing that is suppressed by fire or lightning damage taken; data heal activity has zero amount and no suppression condition.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:deathless-rider/action/axe",

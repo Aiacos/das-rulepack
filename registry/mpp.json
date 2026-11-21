@@ -39,9 +39,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only points to other attacks the creature already has; no rider.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:adult-time-dragon/action/rend",
@@ -81,9 +90,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack; slashing plus force damage carried by attack activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:adult-time-dragon/action/time-breath",
@@ -125,9 +143,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save breath with recharge is in data, but weakened state needs repeating save, 3 successes to end, advantage against it; data has only poisoned.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:adult-time-dragon/reaction/reactive-rend",
@@ -167,9 +194,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction making a free attack after legendary resistance or when hit; trigger-based, data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:adult-time-dragon/reaction/slow-time",
@@ -211,9 +247,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction after a creature ends turn, sets speed to 0 on a target weakened by breath until effect ends; needs trigger and link to the breath effect.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:adult-time-dragon/reaction/time-slip",
@@ -253,9 +298,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction halving damage from a visible attacker then teleporting; trigger-based damage reduction, data only teleports.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:adult-time-dragon/trait/legendary-resistance",
@@ -295,9 +349,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary resistance: chosen success on failed save; data only spends a resource, save override needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/action/multiattack",
@@ -337,9 +400,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only points to other attacks the creature already has; no rider.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/action/rend",
@@ -379,9 +451,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack; slashing plus force damage carried by attack activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/action/time-breath",
@@ -423,9 +504,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save breath with recharge is in data, but weakened state needs repeating save, 3 successes, advantage against it, others resist its damage; data has only poisoned.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/action/time-gate",
@@ -465,9 +555,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat portal conjuring with concentration; nothing tactical to automate in a fight.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/reaction/reactive-rend",
@@ -507,9 +606,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction making a free attack after legendary resistance or when hit; trigger-based, data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/reaction/slow-time",
@@ -551,9 +659,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction after a creature ends turn, sets speed to 0 on a target weakened by breath until effect ends; needs trigger and link to the breath effect.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/reaction/time-slip",
@@ -593,9 +710,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction halving damage from a visible attacker then teleporting; trigger-based damage reduction, data only teleports.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/trait/cycle-of-rebirth",
@@ -633,9 +759,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Rebirth after death into an egg; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:ancient-time-dragon/trait/legendary-resistance",
@@ -675,9 +810,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary resistance: chosen success on failed save; data only spends a resource, save override needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:athar-null/action/force-dagger",
@@ -717,9 +861,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee or thrown attack with extra force damage; the return-to-hand is flavor with no combat effect. Attack activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:athar-null/action/multiattack",
@@ -759,9 +912,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only points to other attacks the creature already has; no rider.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:athar-null/bonus/defiers-whim",
@@ -801,9 +963,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus action granting standard Dash, Disengage or Use an Object; the engine already covers these actions.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:athar-null/reaction/nullify-spell",
@@ -843,9 +1014,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction interrupting a spell: auto-fails low levels, ability check for higher; trigger plus conditional check, data only spends uses.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:athar-null/trait/avoidance",
@@ -883,10 +1063,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Save-for-half becomes none on success and half on failure; evasion-like change to save damage not in the data (no activity or effect).",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:aurumach-rilmani/action/gleaming-ray",
@@ -926,9 +1115,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged attack but data lacks the damage (no damage part in activity); data lacks force damage.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:aurumach-rilmani/action/manifested-blade",
@@ -968,9 +1166,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack but data lacks the damage (no damage part in activity); data lacks force damage.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:aurumach-rilmani/action/multiattack",
@@ -1010,9 +1217,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only points to other attacks the creature already has; no rider.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:aurumach-rilmani/bonus/aura-of-blades",
@@ -1055,9 +1271,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura damaging creatures starting turn nearby, lasting 1 minute, ending on incapacitation or death or by choice; data has an ongoing save but aura ending conditions need a rule.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:aurumach-rilmani/bonus/invoke-weakness",
@@ -1099,9 +1324,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save to be cursed until end of next turn, then bonus damage on the next hit with specific attacks; rider consumed on hit, data only applies a cursed status.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:aurumach-rilmani/trait/spellcasting",
@@ -1141,9 +1375,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spellcasting list; spells are cast through their own items, nothing extra for combat here.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:avoral-guardinal/action/multiattack",
@@ -1183,9 +1426,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only points to other attacks; swapping an attack for spellcasting is a choice at use time with no engine effect.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:avoral-guardinal/action/talon",
@@ -1225,9 +1477,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack; piercing plus radiant damage carried by attack activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:avoral-guardinal/trait/dive-attack",
@@ -1269,9 +1530,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Conditional on flying a straight dive of 30 feet toward a size-limited target; save, damage, prone exist but the trigger and size limit need a rule.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:avoral-guardinal/trait/flyby",
@@ -1309,10 +1579,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "No opportunity attack provoked when flying out of reach; data lacks any effect for it.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:avoral-guardinal/trait/spellcasting",
@@ -1352,9 +1631,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spellcasting list; spells are cast through their own items, nothing extra for combat here.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/action/anguishing-bite",
@@ -1394,9 +1682,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack rider: a creature hit cannot regain hit points until the start of the monster's next turn; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/action/claw",
@@ -1436,9 +1733,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack; slashing plus necrotic damage carried by attack activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/action/miasma-of-discord",
@@ -1480,9 +1786,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge sphere save with non-yugoloth exclusion and charmed treating allies as foes until end of next turn; target type limit and charm behavior need a rule.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/action/multiattack",
@@ -1522,9 +1837,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only points to other attacks and Teleport; no rider.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/action/summon-yugoloth",
@@ -1565,9 +1889,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon with 50 percent chance, random choice of creatures, no further summoning by them, dismissal; data has a chance utility and summon but rider rules need an entry.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/action/teleport",
@@ -1607,10 +1940,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Teleport up to a set distance, carried by the teleport activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/reaction/afflict-despair",
@@ -1650,9 +1992,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction forcing a creature to reroll a successful save or attack hit and take the new result; trigger-based, data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/reaction/inescapable-pain",
@@ -1692,9 +2043,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d59",
+          "at": "2026-11-21T21:39:43.877Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction save-for-damage triggered when damaged by another creature; trigger needs a rule, data has the save and damage.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/trait/legendary-resistance",
@@ -1734,9 +2094,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose to succeed on a failed save: a prompt at save time; data only spends a use.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/trait/magic-resistance",
@@ -1776,10 +2145,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves only against spells/magical effects; a condition the data's flag may not limit.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:baernaloth/trait/spellcasting",
@@ -1863,9 +2241,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Speed reduction ends at start of its next turn; the data has an effect but not that expiry event.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bariaur-wanderer/action/multiattack",
@@ -1905,9 +2292,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a description of attack count; nothing resolvable on its own.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bariaur-wanderer/action/ram",
@@ -1951,9 +2347,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra damage and prone save only if it moved 20 ft in a line first; data lacks the movement condition.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bariaur-wanderer/action/shortbow",
@@ -1994,9 +2399,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra damage only if target is missing hit points; data has an unconditional second attack activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bariaur-wanderer/bonus/mighty-leap",
@@ -2036,9 +2450,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "A free jump up to walking speed; movement with nothing to resolve in combat.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bariaur-wanderer/trait/portal-sense",
@@ -2076,9 +2499,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat sensing of portals; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bariaur-wanderer/trait/spellcasting",
@@ -2160,9 +2592,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with extra force damage carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bleak-cabal-void-soother/action/multiattack",
@@ -2202,9 +2643,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a description of attack count; nothing resolvable on its own.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bleak-cabal-void-soother/action/void-bolt",
@@ -2244,9 +2694,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged spell attack with force damage carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bleak-cabal-void-soother/bonus/soothing-word",
@@ -2286,9 +2745,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d60",
+          "at": "2026-11-21T21:39:44.709Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Heal activity with 3 uses per day and consumption already in the data.",
+      "state": "triaged"
     },
     {
       "key": "mpp:monster:bleak-cabal-void-soother/trait/spellcasting",

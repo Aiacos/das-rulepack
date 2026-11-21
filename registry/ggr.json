@@ -2063,9 +2063,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with a two-handed variant, both carried by attack activities.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:anarch/trait/aggressive",
@@ -2142,9 +2151,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Doubled damage against objects and structures is a target-type condition; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/action/hammer-of-justice",
@@ -2184,9 +2202,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity plus a save activity for prone; data covers hit, damage and knockdown.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/action/multiattack",
@@ -2223,9 +2250,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a utility activity that sequences existing attack activities.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/action/pacifying-presence",
@@ -2264,9 +2300,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charm needs a save repeated each turn, a drop-and-end-concentration rider and a 24h immunity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/legendary/detention",
@@ -2303,9 +2348,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save-or-banished to a demiplane until the end of its next turn, then return to the space; timed event.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/legendary/rejoin-mount",
@@ -2381,9 +2435,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action chaining a hammer attack with a mount reaction attack; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/trait/eye-of-the-law",
@@ -2423,9 +2486,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Information-only bonus action about past lawbreaking; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/trait/innate-spellcasting",
@@ -2497,9 +2569,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Mounted state: teleport on, unsurprisable, Dex save advantage for both, mount dies with rider; data empty.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:arclight-phoenix/action/arclight-touch",
@@ -2537,9 +2618,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity plus a save activity for the chosen second target's lightning damage.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:arclight-phoenix/trait/crackling-death",
@@ -2576,9 +2666,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "On-death explosion trigger with half-on-save area damage and an egg; the death trigger needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:arclight-phoenix/trait/flyby",
@@ -2613,10 +2712,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "No opportunity attack when leaving reach: a movement-triggered exemption; data has nothing.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:arclight-phoenix/trait/grounded-lightning",
@@ -2653,9 +2761,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage the first time it touches the ground each turn: once-per-turn event rider.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:arclight-phoenix/trait/illumination",
@@ -2692,9 +2809,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Light emission carried by a transfer effect changing token light keys.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:arclight-phoenix/trait/lightning-form",
@@ -2731,9 +2857,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage on touch or melee hit, and on first entry to a space each turn; event riders, squeezing.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/action/leadership",
@@ -2770,9 +2905,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grants a d10 to one attack or save until next turn; data has no effect for it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/action/longsword",
@@ -2809,9 +2953,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with versatile variant and the extra radiant damage in the activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/action/multiattack",
@@ -2848,9 +3001,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack utility activity sequencing attack and leadership activities.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/action/warleaders-helix",
@@ -2927,9 +3089,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grants allies a reaction weapon attack with advantage; data lacks any effect.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/legendary/frighten-foes",
@@ -2968,9 +3139,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for frightened until end of next turn, with disadvantage on the save when adjacent; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/legendary/longsword-attack",
@@ -3007,9 +3187,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary activity consuming resources, referring to an existing attack.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/reaction/parry",
@@ -3048,10 +3237,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction AC bonus limited to one melee attack, needs seen attacker and melee weapon; trigger and condition.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/reaction/unyielding",
@@ -3088,9 +3286,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to negate forced movement or prone; trigger-based choice, data has a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/trait/legendary-resistance",
@@ -3127,9 +3334,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose to succeed after a failed save: a prompt on the roll; data only consumes the resource.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/trait/magic-resistance",
@@ -3166,10 +3382,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Transfer effect already sets save advantage via the automated conditions flag.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:battleforce-angel/action/battlefield-inspiration",
@@ -3206,9 +3431,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grants a d4 to attack rolls and saves for up to three creatures; data lacks any effect.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:battleforce-angel/action/longsword",
@@ -3246,9 +3480,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with extra damage only if the target is near an ally; conditional rider, needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:battleforce-angel/action/multiattack",
@@ -3285,9 +3528,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack utility activity sequencing existing activities.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:battleforce-angel/trait/flyby",
@@ -3322,10 +3574,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "No opportunity attack when leaving reach: a movement-triggered exemption; data has nothing.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:battleforce-angel/trait/magic-resistance",
@@ -3362,10 +3623,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Transfer effect already sets save advantage via the automated conditions flag.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:biomancer/action/scimitar",
@@ -3402,9 +3672,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Single attack activity with fixed damage.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:biomancer/trait/bolstering-presence",
@@ -3441,9 +3720,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Start-of-turn aura healing allies within 30 feet; data has a heal activity but no trigger or aura.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:biomancer/trait/magic-resistance",
@@ -3480,10 +3768,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Transfer effect already sets save advantage via the automated conditions flag.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:biomancer/trait/spellcasting",
@@ -3558,10 +3855,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Two attack activities, one for the size-dependent larger damage.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blistercoil-weird/trait/feed-on-fire",
@@ -3598,9 +3904,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d50",
+          "at": "2026-11-21T21:39:36.283Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Size growth on magical fire, advantage while large, explosion at Gargantuan start of turn; triggers.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blistercoil-weird/trait/form-of-fire-and-water",
@@ -3638,9 +3953,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has start-of-turn damage activities but no ongoing-burn effect; first-entry-per-turn trigger, movement through spaces and douse action need a rule.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blistercoil-weird/trait/heated-body",
@@ -3677,9 +4001,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage when touched or hit in melee within 5 ft is a reactive trigger; data has only a special-activation damage activity with no trigger.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blistercoil-weird/trait/illumination",
@@ -3716,9 +4049,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Passive light emission; the item has a transferring effect that changes the token light keys.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-drinker-vampire/action/bite",
@@ -3758,10 +4100,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack and charm save exist, but the willing/grappled target limit, humanoid-only charm, max HP reduction with healing and death at 0 are missing from data.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-drinker-vampire/action/multiattack",
@@ -3837,9 +4188,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-drinker-vampire/action/unarmed-strike",
@@ -3877,10 +4237,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack exists with an escape check activity, but the grapple rider (needs free hand, escape DC) has no grappled effect in data.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-drinker-vampire/reaction/parry",
@@ -3919,10 +4288,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction AC bonus conditioned on one melee attack, seeing the attacker and wielding a weapon; data has the AC effect but not the trigger or conditions.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-witch/action/longsword",
@@ -3959,9 +4337,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-witch/action/multiattack",
@@ -3998,9 +4385,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack utility activity; two named attacks, nothing beyond the sequence.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-witch/action/shortsword",
@@ -4037,9 +4433,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-witch/trait/blood-witch-dance",
@@ -4076,9 +4481,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus action to force a save against a hexed creature within range; data has the save but not the hex condition or the forced reaction movement.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-witch/trait/devils-sight",
@@ -4115,9 +4529,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Darkvision ignoring magical darkness; the effect in data changes no keys, so the vision rule is missing.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blood-witch/trait/innate-spellcasting",
@@ -4194,9 +4617,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack and escape check exist, but the grapple/restrained status with one-target limit while grappling is not carried by the activity; needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:bloodfray-giant/action/rock",
@@ -4233,9 +4665,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain ranged attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:bloodfray-giant/reaction/furious-defense",
@@ -4272,9 +4713,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction triggered by an ally taking damage from a foe within 20 ft, causing a chain attack; data has only an empty utility activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/action/frightful-presence",
@@ -4313,9 +4763,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save with frightened status exists, but repeated save each turn, caster's choice of targets, line of sight/hearing and 24-hour immunity are not expressed.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/action/maul",
@@ -4394,9 +4853,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack utility activity; includes using the fear action plus two attacks.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/action/rock",
@@ -4433,9 +4901,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain ranged attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/action/stomp",
@@ -4472,10 +4949,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/legendary/attack",
@@ -4512,9 +4998,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action granting a weapon attack; data has a utility activity consuming one legendary charge but no attack choice.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/legendary/bellow",
@@ -4553,9 +5048,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for frightened exists at the legendary cost, but upgrade to stunned if already frightened, repeat saves and 24-hour immunity are missing.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/legendary/wide-berth",
@@ -4594,9 +5098,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Movement through spaces with a dex save, push or prone and a free stomp attack; data has the save and prone but not the movement, push or follow-up attack.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/trait/legendary-resistance",
@@ -4633,9 +5146,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to succeed a failed save; data has an expend-use activity but nothing that converts the failure.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/trait/poor-depth-perception",
@@ -4670,9 +5192,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attacks against targets beyond a distance; data has no effect for it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/trait/siege-monster",
@@ -4707,9 +5238,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Double damage against objects and structures; data has no activity or effect for it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:cackler/action/bite",
@@ -4746,10 +5286,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:cackler/action/spiked-chain",
@@ -4786,9 +5335,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:cackler/trait/innate-spellcasting",
@@ -4862,9 +5420,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggered on death, area save for psychic damage exists in data but nothing fires it when the creature dies.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:cackler/trait/mimicry",
@@ -4901,9 +5468,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Mimicking sounds with an insight check to detect it has no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-1-krasis/action/bite",
@@ -4940,10 +5516,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-1-krasis/action/claws",
@@ -4980,9 +5565,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-1-krasis/action/multiattack",
@@ -5019,9 +5613,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack utility activity; two named attacks, nothing beyond the sequence.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-1-krasis/trait/amphibious",
@@ -5056,9 +5659,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing air and water has no combat effect at the table.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-2-krasis/action/bite",
@@ -5095,10 +5707,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-2-krasis/action/claws",
@@ -5135,9 +5756,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-2-krasis/action/multiattack",
@@ -5174,9 +5804,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d51",
+          "at": "2026-11-21T21:39:37.172Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack utility activity; two named attacks, nothing beyond the sequence.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-2-krasis/trait/amphibious",
@@ -5211,9 +5850,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d52",
+          "at": "2026-11-21T21:39:38.031Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing air and water has no combat effect; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-3-krasis/action/bite",
@@ -5250,10 +5898,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d52",
+          "at": "2026-11-21T21:39:38.031Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack; the matched item carries an attack activity, so the data resolves it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-3-krasis/action/claws",
@@ -5290,9 +5947,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d52",
+          "at": "2026-11-21T21:39:38.031Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack; the matched item carries an attack activity, so the data resolves it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-3-krasis/action/multiattack",
@@ -5371,9 +6037,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d52",
+          "at": "2026-11-21T21:39:38.031Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack plus a strength save for prone; data has the attack, the save activity and a prone status effect.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:category-3-krasis/trait/amphibious",
@@ -5408,9 +6083,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d52",
+          "at": "2026-11-21T21:39:38.031Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing air and water has no combat effect; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:conclave-dryad/action/longbow",

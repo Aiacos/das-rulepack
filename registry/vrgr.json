@@ -603,9 +603,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple-gated hit, pull-in enveloping, cover, stun until removed, exhaustion, escape check; data has only attack/save/check and a stun status.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:bodytaker-plant/action/multiattack",
@@ -642,9 +651,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain multiattack of three lash attacks; utility activity is enough.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:bodytaker-plant/action/vine-lash",
@@ -684,9 +702,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple on hit with escape DC, restrained until it ends, four-target cap; data only has a status effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:bodytaker-plant/trait/podling-link",
@@ -721,9 +748,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat telepathic sight through podlings; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:bodytaker-plant/trait/rejuvenation",
@@ -758,9 +794,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Returns to life months after death; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:bodytaker-plant/trait/unusual-nature",
@@ -795,9 +840,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Needs no sleep; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:boneless/action/crushing-embrace",
@@ -834,9 +888,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attached state, blinded, start-of-turn save for damage, detach rules; data lacks the recurring save and attachment.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:boneless/action/multiattack",
@@ -876,9 +939,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Conditional grapple only if both attacks hit, then enables another feature; data has a plain grapple status.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:boneless/action/slam",
@@ -915,10 +987,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with damage.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:boneless/trait/compression",
@@ -953,9 +1034,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Squeezing and movement flexibility; negligible combat effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:boneless/trait/unusual-nature",
@@ -990,9 +1080,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Needs no sleep; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:brain-in-a-jar/action/chill-touch-cantrip",
@@ -1266,9 +1365,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Repeated save each turn, start-of-turn damage, ends on cure effects; data has only the initial save and poisoned status.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:carrion-stalker/action/multiattack",
@@ -1305,9 +1413,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Replaces one attack with another feature only while attached; conditional, data has just a utility activity.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:carrion-stalker/action/tentacle",
@@ -1345,9 +1462,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attach on hit, advantage on attacks vs the attached target, detach conditions; data lacks the attached state.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:carrionette/action/silver-needle",
@@ -1387,10 +1513,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Curse rider with speed cut and a d4 penalty to checks and attacks; data effect only changes movement bonus.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:carrionette/action/soul-swap",
@@ -1427,9 +1562,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Swap consciousness on failed save with protective spell exception and undo conditions; data has only the save.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:carrionette/trait/false-object",
@@ -1464,9 +1608,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on initiative if motionless at start of combat; situational, nothing in data.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:carrionette/trait/unusual-nature",
@@ -1501,9 +1654,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Needs no air, food, drink or sleep; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:deaths-head/action/gnashing-bite-gnashing-head-only",
@@ -2843,9 +3005,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Optional push of up to 10 feet on a size-limited target; choice at use time, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:inquisitor-of-the-tome/action/implode",
@@ -2884,9 +3055,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save with force damage, prone, and repositioning to the center; recharge present but movement rider missing.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:inquisitor-of-the-tome/action/multiattack",
@@ -2923,9 +3103,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain multiattack of two attacks.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:inquisitor-of-the-tome/action/silver-longsword",
@@ -2962,9 +3151,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with weapon damage plus extra force damage already in the activity; two-hand variant is a minor choice.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:inquisitor-of-the-tome/reaction/telekinetic-deflection",
@@ -3001,9 +3199,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to being hit: AC bonus that may turn the hit into a miss and redirect it to the attacker; data has only an empty reaction.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:inquisitor-of-the-tome/trait/innate-spellcasting-psionics",
@@ -3040,9 +3247,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Innate spell list with no component needs; spells are cast through their own items.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:isolde/action/fiendish-charm",
@@ -4006,9 +4222,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attach with half damage redirection, mind control limits, repeated save at end of turns; data has only the initial save and recharge.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:necrichor/action/multiattack",
@@ -4045,9 +4270,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain multiattack of two attacks.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:necrichor/action/necrotic-bolt",
@@ -4084,9 +4318,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus rider blocking healing until the start of its next turn; data lacks the rider.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:necrichor/action/pseudopod",
@@ -4126,9 +4369,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus save or paralyzed until the start of the attacker's next turn; timed end, data has a paralyzed status only.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:necrichor/trait/legendary-resistance",
@@ -4165,9 +4417,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose to succeed on a failed save; prompt on failure, data only has a special utility.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:necrichor/trait/rejuvenation",
@@ -4202,9 +4463,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Re-forms days after death; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:necrichor/trait/spider-climb",
@@ -4239,10 +4509,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Climb without checks; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:necrichor/trait/unusual-nature",
@@ -4277,9 +4556,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Needs no air, food, drink or sleep; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:nosferatu/action/bite",
@@ -4606,9 +4894,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain multiattack of two attacks.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:priest-of-osybus/action/necrotic-bolt",
@@ -4645,9 +4942,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus rider blocking healing until the start of its next turn; data lacks the rider.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:priest-of-osybus/action/soul-blade",
@@ -4684,9 +4990,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Paralysis on hit lasting until its next turn, plus a kill-and-trap-soul rider at 0 hp; data has only the attack.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:priest-of-osybus/bonus/soul-tattoo",
@@ -4726,9 +5041,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summons a shadow from a tattoo, controlled, recharge; data has only a utility activity with uses and no summon.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:priest-of-osybus/trait/tattoo-of-osybus",
@@ -4763,9 +5087,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d63",
+          "at": "2026-11-21T21:39:47.233Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "On dropping to 0 hp roll a table, revive as undead, tattoo object rules; data has nothing.",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:relentless-juggernaut/action/deadly-shaping",

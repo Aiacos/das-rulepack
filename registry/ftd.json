@@ -1621,10 +1621,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack activity carries the extra damage; plain melee hit, nothing conditional.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/action/claw",
@@ -1661,9 +1670,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, handled by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/action/multiattack",
@@ -1700,9 +1718,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a sequence note; the engine has no automation need and attacks are separate items.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/action/singularity-breath",
@@ -1741,9 +1768,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save with speed 0 until start of its next turn; data effect only has a movement multiplier with no expiry, and cone size is 60 vs text 90.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/bonus/change-shape",
@@ -1780,9 +1816,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shape change ends on 0 HP or by bonus action, and size limit is a choice at use; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/bonus/psychic-step",
@@ -1819,9 +1864,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity with 60 ft range matches the text.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/legendary/claw",
@@ -1858,9 +1912,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary single claw attack, carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/legendary/explosive-crystal",
@@ -1899,9 +1962,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dex save, force damage, prone status and sphere template all present in the data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/legendary/psionics",
@@ -1938,9 +2010,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only picks another action to use; nothing to resolve in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/trait/amphibious",
@@ -1975,9 +2056,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing both air and water, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/trait/legendary-resistance",
@@ -2014,9 +2104,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose to succeed on a failed save: needs a prompt hooked to the failed save.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/trait/spellcasting-psionics",
@@ -2053,9 +2152,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data is a bare utility; spell list with no components and save DC needs cast activities or a rule.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/action/bite",
@@ -2092,10 +2200,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with extra radiant damage in the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/action/claw",
@@ -2132,9 +2249,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, handled by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/action/multiattack",
@@ -2171,9 +2297,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a sequence note; nothing to resolve itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/action/scintillating-breath",
@@ -2210,9 +2345,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breath save is in the data, but the temporary hit points the dragon gains afterwards are missing; data lacks them.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/bonus/change-shape",
@@ -2249,9 +2393,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shape change ends on 0 HP or by bonus action, and size limit is a choice at use; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/bonus/psychic-step",
@@ -2288,9 +2441,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity with 60 ft range matches the text.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/legendary/claw",
@@ -2327,9 +2489,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary single claw attack, carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/legendary/psionics",
@@ -2366,9 +2537,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only picks another action to use; nothing to resolve in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/legendary/starlight-strike",
@@ -2405,9 +2585,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Single-target Dex save for radiant damage, fully in the save activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/trait/legendary-resistance",
@@ -2444,9 +2633,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose to succeed on a failed save: needs a prompt hooked to the failed save.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-crystal-dragon/trait/spellcasting-psionics",
@@ -2483,9 +2681,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data is a bare utility; spell list with no components and save DC needs cast activities or a rule.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/action/bite",
@@ -2522,10 +2729,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with extra poison damage in the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/action/change-shape",
@@ -2562,9 +2778,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shape change ends on 0 HP or by action, and size limit is a choice at use; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/action/claw",
@@ -2601,9 +2826,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, handled by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/action/multiattack",
@@ -2640,9 +2874,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a sequence note; nothing to resolve itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/action/nightmare-breath",
@@ -2681,9 +2924,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Frightened for a minute with a repeated save at the end of each turn; data has only the plain status with no repeat save.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/action/tail",
@@ -2723,9 +2975,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a Str save for prone, both present as activities with the status effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/legendary/commanding-spores",
@@ -2762,9 +3023,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Failed save forces a random melee attack by reaction, with damage fallback; data has only the damage, lacks the forced attack.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/legendary/spore-salvo",
@@ -2803,9 +3073,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poisoned for a minute with a repeated save each turn; data has the damage and status but no repeat save.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/legendary/tail",
@@ -2845,9 +3124,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary tail attack with the same prone save, carried by the activities.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-deep-dragon/trait/legendary-resistance",
@@ -2884,9 +3172,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose to succeed on a failed save: needs a prompt hooked to the failed save.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/action/bite",
@@ -2923,10 +3220,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with extra psychic damage in the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/action/claw",
@@ -2963,9 +3269,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, handled by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/action/disorienting-breath",
@@ -3002,9 +3317,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Failed save imposes a d6 penalty on attacks and checks until end of next turn; data has damage only, lacks the roll penalty.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/action/multiattack",
@@ -3041,9 +3365,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a sequence note; nothing to resolve itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/bonus/change-shape",
@@ -3080,9 +3413,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shape change ends on 0 HP or by bonus action, and size limit is a choice at use; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/bonus/psychic-step",
@@ -3119,9 +3461,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity with 60 ft range matches the text.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/legendary/claw",
@@ -3158,9 +3509,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d42",
+          "at": "2026-11-21T21:39:29.356Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary single claw attack, carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/legendary/emerald-embers",
@@ -3197,9 +3557,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save-for-damage legendary action; activity carries the save, damage and cost.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/legendary/psionics",
@@ -3236,9 +3605,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only lets the dragon pick other actions to use; nothing of its own to resolve.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/trait/legendary-resistance",
@@ -3275,9 +3653,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; activity only expends a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/trait/shift-perception",
@@ -3314,9 +3701,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once-per-day out-of-combat illusion spell; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-emerald-dragon/trait/spellcasting-psionics",
@@ -3390,9 +3786,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Burrowing and tunnel width; nothing to resolve in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/action/bite",
@@ -3429,10 +3834,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Melee attack with extra radiant damage; attack activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/action/breath-weapon",
@@ -3470,10 +3884,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.82,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Two breath options; data lacks the sleep effect and its end on damage or waking; recharge present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/action/claw",
@@ -3510,9 +3933,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/action/multiattack",
@@ -3549,9 +3981,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reminder of which attacks to make; each attack has its own activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/action/tail",
@@ -3591,9 +4032,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack plus save for prone; attack, save and prone effect all present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/legendary/cast-a-spell",
@@ -3630,9 +4080,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only uses another action as a legendary action; nothing of its own.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/legendary/tail",
@@ -3672,9 +4131,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary use of the tail attack; activities and cost present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/trait/legendary-resistance",
@@ -3711,9 +4179,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; activity only expends a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-moonstone-dragon/trait/spellcasting",
@@ -3789,10 +4266,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Melee attack with extra thunder damage; attack activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/action/claw",
@@ -3829,9 +4315,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/action/debilitating-breath",
@@ -3870,9 +4365,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breath save with damage; incapacitated until end of its next turn needs a timed duration; data effect has none.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/action/multiattack",
@@ -3909,9 +4413,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reminder of which attacks to make; each attack has its own activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/bonus/change-shape",
@@ -3987,9 +4500,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Short teleport as a bonus action; teleport activity present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/legendary/claw",
@@ -4026,9 +4548,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary use of the claw attack; activity and cost present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/legendary/psionics",
@@ -4065,9 +4596,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only uses other actions; nothing of its own.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/legendary/telekinetic-fling",
@@ -4104,9 +4644,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save-for-damage legendary action; activity carries save, damage and cost.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/trait/legendary-resistance",
@@ -4143,9 +4692,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; activity only expends a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/trait/spellcasting-psionics",
@@ -4219,10 +4777,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Climbing ability without checks; nothing in combat to resolve.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-sapphire-dragon/trait/tunneler",
@@ -4257,9 +4824,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Burrowing and tunnel width; nothing to resolve in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/action/bite",
@@ -4296,10 +4872,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Melee attack with extra necrotic damage; attack activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/action/claw",
@@ -4336,9 +4921,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/action/desiccating-breath",
@@ -4375,9 +4969,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.82,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breath save with damage; weakened rider with timed end and special penalties missing from data (no effect).",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/action/multiattack",
@@ -4414,9 +5017,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reminder of which attacks to make; each attack has its own activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/bonus/change-shape",
@@ -4492,9 +5104,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Short teleport as a bonus action; teleport activity present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/legendary/claw",
@@ -4531,9 +5152,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary use of the claw attack; activity and cost present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/legendary/essential-reduction",
@@ -4570,9 +5200,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for necrotic damage is in data, but the crumble-to-dust rider at 0 hit points is missing.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/legendary/psionics",
@@ -4609,9 +5248,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only uses other actions; nothing of its own.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/trait/amphibious",
@@ -4646,9 +5294,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing medium; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/trait/fabricate",
@@ -4685,9 +5342,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.78,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once-per-day out-of-combat crafting spell; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/trait/legendary-resistance",
@@ -4724,9 +5390,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d43",
+          "at": "2026-11-21T21:39:30.201Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; activity only expends a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-topaz-dragon/trait/spellcasting-psionics",
@@ -4763,9 +5438,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell choice made at use time; activity is a bare utility with no cast of listed spells.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-dragon-wyrmling/action/bite",
@@ -4802,10 +5486,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack activity carries the extra force damage; plain melee attack needs no entry.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-dragon-wyrmling/action/singularity-breath",
@@ -4844,9 +5537,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks half damage on success and the speed 0 ending at the start of its next turn; effect is only a multiplier.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-dragon-wyrmling/trait/amphibious",
@@ -4881,9 +5583,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Environmental breathing, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-dragon-wyrmling/trait/spellcasting-psionics",
@@ -4920,9 +5631,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell choice made at use time; activity is a bare utility with no cast of listed spells.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/action/bite",
@@ -4959,10 +5679,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack activity carries the extra force damage; plain melee attack needs no entry.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/action/breath-weapon",
@@ -5001,10 +5730,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Data lacks half damage on success, prone only on failure, and speed 0 on any result until its next turn end.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/action/claw",
@@ -5044,9 +5782,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple rider needs size limit Huge or smaller, escape DC and only one grappled creature; data has just the status.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/action/mass-telekinesis-gem-awakening-only-recharges-after-a-short-or-long-rest",
@@ -5109,9 +5856,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive routine; nothing to resolve beyond the individual attacks.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/bonus/change-shape",
@@ -5187,9 +5943,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity with matching range already expresses the move.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/legendary/claw",
@@ -5229,9 +5994,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary claw needs the same grapple rider (size limit, escape DC, one creature) as the main claw.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/legendary/psionics",
@@ -5268,9 +6042,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose one of two other actions at use time; data only spends legendary actions.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/legendary/psychic-beam",
@@ -5307,9 +6090,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Line save for half psychic damage fully carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/trait/gem-awakening",
@@ -5346,9 +6138,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Trigger on dropping to 0 HP resetting HP, recharging breath, restoring resistance, once only; data has only a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/trait/legendary-resistance",
@@ -5385,9 +6186,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose-to-succeed after a failed save needs a prompt; data only spends a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/trait/spellcasting-psionics",
@@ -5424,9 +6234,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell choice made at use time; activity is a bare utility with no cast of listed spells.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:amethyst-greatwyrm/trait/unusual-nature",
@@ -5461,9 +6280,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No food or drink need, irrelevant in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/action/bite",
@@ -5500,10 +6328,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack activity carries the extra force damage; plain melee attack needs no entry.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/action/claw",
@@ -5540,9 +6377,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, nothing beyond the attack and damage.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/action/multiattack",
@@ -5579,9 +6425,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive routine; nothing to resolve beyond the individual attacks.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/action/singularity-breath",
@@ -5620,9 +6475,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks half damage on success and the speed 0 ending at the start of its next turn; effect is only a multiplier.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/bonus/change-shape",
@@ -5698,9 +6562,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity with matching range already expresses the move.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/legendary/claw",
@@ -5737,9 +6610,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, nothing beyond the attack and damage.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/legendary/explosive-crystal",
@@ -5778,9 +6660,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sphere save with prone on failure is carried by the save activity and status effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/legendary/psionics",
@@ -5817,9 +6708,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose one of two other actions at use time; data only spends legendary actions.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/trait/amphibious",
@@ -5854,9 +6754,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Environmental breathing, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/trait/legendary-resistance",
@@ -5893,9 +6802,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose-to-succeed after a failed save needs a prompt; data only spends a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-amethyst-dragon/trait/spellcasting-psionics",
@@ -5932,9 +6850,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell choice made at use time; activity is a bare utility with no cast of listed spells.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/action/bite",
@@ -5971,10 +6898,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack activity carries the extra force damage; plain melee attack needs no entry.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/action/claw",
@@ -6011,9 +6947,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, nothing beyond the attack and damage.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/action/multiattack",
@@ -6050,9 +6995,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive routine; nothing to resolve beyond the individual attacks.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/action/scintillating-breath",
@@ -6089,9 +7043,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the temporary hit points the dragon gains after the breath; save and half damage are present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/bonus/change-shape",
@@ -6167,9 +7130,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity with matching range already expresses the move.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/legendary/claw",
@@ -6206,9 +7178,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack, nothing beyond the attack and damage.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/legendary/psionics",
@@ -6245,9 +7226,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose one of two other actions at use time; data only spends legendary actions.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/legendary/starlight-strike",
@@ -6284,9 +7274,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Single target save with damage on failure is fully carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/trait/legendary-resistance",
@@ -6323,9 +7322,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d44",
+          "at": "2026-11-21T21:39:31.036Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose-to-succeed after a failed save needs a prompt; data only spends a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-crystal-dragon/trait/spellcasting-psionics",
@@ -6401,10 +7409,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack with bonus damage of a second type; the activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/action/change-shape",
@@ -6441,9 +7458,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shape change ends on 0 HP or by choice; data has a bare utility and no effect, so ending condition needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/action/claw",
@@ -6480,9 +7506,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the attack activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/action/multiattack",
@@ -6519,9 +7554,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a plain sequence of listed attacks; nothing beyond the attack activities.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/action/nightmare-breath",
@@ -6560,9 +7604,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save with frightened; data lacks the repeat save at end of each turn that ends the fear.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/action/tail",
@@ -6602,9 +7655,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus strength save for prone, both carried by activities and a prone status effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/legendary/commanding-spores",
@@ -6641,9 +7703,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Failed save forces a reaction weapon attack on a random creature; data has only psychic damage, lacks the forced attack.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/legendary/spore-salvo",
@@ -6682,9 +7753,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for damage and poisoned, but data lacks the repeated save at the end of each turn.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/legendary/tail",
@@ -6724,9 +7804,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action reusing the tail attack and prone save; carried by activities.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-deep-dragon/trait/legendary-resistance",
@@ -6763,9 +7852,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary resistance needs a prompt to turn a failed save into a success; data only spends the use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/action/bite",
@@ -6802,10 +7900,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack with extra lightning damage carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/action/claw",
@@ -6842,9 +7949,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/action/multiattack",
@@ -6881,9 +7997,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack sequence of listed attacks, nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/action/steam-breath",
@@ -6920,9 +8045,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save for half damage with recharge; data has both. Underwater clause is a minor note.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/action/tail",
@@ -6962,9 +8096,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus strength save for prone, carried by activities.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/legendary/attack",
@@ -7001,9 +8144,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action that triggers one of two existing attacks; resource cost carried by data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/legendary/boiling-aura",
@@ -7040,9 +8192,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura damaging creatures that start a turn nearby until the dragons next turn; data has a one-off save only.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/legendary/move",
@@ -7118,9 +8279,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temp HP plus retaliation damage to touchers and melee attackers while they last; data has only damage.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/mythic/bite",
@@ -7157,10 +8327,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Mythic action that triggers the existing bite attack; cost carried by data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/trait/amphibious",
@@ -7195,9 +8374,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing medium, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/trait/blessing-of-the-sea",
@@ -7234,9 +8422,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggered at 0 HP: reset HP, recharge breath, unlock mythic actions; data only has a use counter.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/trait/legendary-resistance",
@@ -7273,9 +8470,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary resistance needs a prompt to turn a failed save into a success; data only spends the use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-dragon-turtle/trait/unusual-nature",
@@ -7310,9 +8516,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No food or drink need; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/action/bite",
@@ -7349,10 +8564,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack with extra psychic damage carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/action/claw",
@@ -7389,9 +8613,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/action/disorienting-breath",
@@ -7428,9 +8661,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Failed save also gives a d8 penalty to attack rolls and checks until end of next turn; data lacks that effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/action/multiattack",
@@ -7467,9 +8709,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack sequence of listed attacks, nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/bonus/change-shape",
@@ -7506,9 +8757,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shape change ends on 0 HP or by choice; data has a bare utility and no effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/bonus/psychic-step",
@@ -7545,9 +8805,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport to a visible space within range, carried by the teleport activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/legendary/claw",
@@ -7584,9 +8853,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action reusing the claw attack; cost carried by data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/legendary/emerald-embers",
@@ -7623,9 +8901,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for fire damage with legendary cost, carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/legendary/psionics",
@@ -7662,9 +8949,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action picking one of two existing options; nothing more.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/trait/legendary-resistance",
@@ -7701,9 +8997,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary resistance needs a prompt to turn a failed save into a success; data only spends the use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/trait/spellcasting-psionics",
@@ -7777,9 +9082,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Burrowing speed and tunnel width; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-emerald-dragon/trait/warp-perception",
@@ -7816,9 +9130,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once per day casting of a spell tracked by a use counter and utility activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/action/bite",
@@ -7855,10 +9178,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack with extra radiant damage carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/action/breath-weapon",
@@ -7896,10 +9228,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d45",
+          "at": "2026-11-21T21:39:31.914Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Two breath options; sleep effect ends on damage or being woken, data lacks it and the first option has no effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/action/claw",
@@ -7936,9 +9277,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity carries the to-hit and reach; plain slashing hit, nothing extra",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/action/multiattack",
@@ -7975,9 +9325,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a bare utility; data lacks the attack sequence the text names",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/action/tail",
@@ -8017,9 +9376,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a strength save applying prone on failure is carried by the activities and effect",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/legendary/cast-a-spell",
@@ -8056,9 +9424,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Utility activity with legendary cost 2 already pointing at spellcasting; text adds nothing else",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/legendary/tail",
@@ -8098,9 +9475,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary attack and prone save activities with legendary action cost are present",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/trait/legendary-resistance",
@@ -8137,9 +9523,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice to turn a failed save into a success at the moment of failure; data only expends a use",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-moonstone-dragon/trait/spellcasting",
@@ -8215,10 +9610,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack with the extra thunder damage already in the activity",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/action/claw",
@@ -8255,9 +9659,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain claw attack activity carries it",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/action/debilitating-breath",
@@ -8296,9 +9709,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge cone save with damage is data, but incapacitation lasting until end of its next turn needs an end-on-event rule",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/action/multiattack",
@@ -8335,9 +9757,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a bare utility; data lacks the bite plus two claws sequence",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/bonus/change-shape",
@@ -8413,9 +9844,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity on self within range is carried by the data",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/legendary/claw",
@@ -8452,9 +9892,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary claw attack activity with legendary cost 1",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/legendary/psionics",
@@ -8530,9 +9979,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dex save for bludgeoning damage with legendary cost 3 is carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/trait/legendary-resistance",
@@ -8569,9 +10027,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice to turn a failed save into a success at the moment of failure; data only expends a use",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/trait/spellcasting-psionics",
@@ -8645,10 +10112,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Climbing ability with no check needed; nothing acts in combat resolution",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sapphire-dragon/trait/tunneler",
@@ -8683,9 +10159,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Burrowing through rock and leaving a tunnel; no combat roll or effect",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/action/bite",
@@ -8722,10 +10207,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack with the extra cold damage already in the activity",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/action/constrict",
@@ -8765,9 +10259,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple on hit with escape DC, restrained, and limit of one constricted target; data has status and a check but not the limit",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/action/multiattack",
@@ -8804,9 +10307,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a bare utility; data lacks the attack sequence with its alternative",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/action/rime-breath",
@@ -8843,9 +10355,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge cone save for half damage fully carried by the activity and uses",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/action/tail",
@@ -8885,9 +10406,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack and prone save are present, but the forced push of up to 30 feet is missing from the data",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/legendary/bite",
@@ -8924,10 +10454,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Utility with legendary cost 2 naming a single bite attack; nothing more",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/legendary/tail",
@@ -8967,9 +10506,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary attack and save with prone present; data lacks the forced push of up to 30 feet",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/trait/amphibious",
@@ -9004,9 +10552,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing in both media; nothing acts in combat",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/trait/legendary-resistance",
@@ -9043,9 +10600,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice to turn a failed save into a success at the moment of failure; data only expends a use",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-sea-serpent/trait/siege-monster",
@@ -9080,9 +10646,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Double damage against objects and structures is a target-limited modifier; data has nothing",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/action/bite",
@@ -9119,10 +10694,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack with the extra necrotic damage already in the activity",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/action/claw",
@@ -9159,9 +10743,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain claw attack activity carries it",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/action/desiccating-breath",
@@ -9198,9 +10791,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge breath is data, but the weakened rider (disadvantage on strength checks/saves, halved strength weapon damage until next turn end) is missing",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/action/multiattack",
@@ -9237,9 +10839,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a bare utility; data lacks the bite plus two claws sequence",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/bonus/change-shape",
@@ -9315,9 +10926,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport activity on self within range is carried by the data",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/legendary/claw",
@@ -9354,9 +10974,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary claw attack activity with legendary cost 1",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/legendary/essential-reduction",
@@ -9393,9 +11022,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Con save damage is data, but turning to dust when reduced to 0 hp by it is a conditional rider; data lacks it",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/legendary/psionics",
@@ -9469,9 +11107,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d46",
+          "at": "2026-11-21T21:39:32.795Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing in both media; nothing acts in combat",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/trait/fabricate",
@@ -9508,9 +11155,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell cast without components; the spell itself is not combat and the daily use is carried by the item's uses.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/trait/legendary-resistance",
@@ -9547,9 +11203,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt, data only has a use spender.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:ancient-topaz-dragon/trait/spellcasting-psionics",
@@ -9625,9 +11290,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Descriptive multiattack; the engine resolves the named attacks themselves.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:animated-breath/action/slam",
@@ -9664,10 +11338,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Extra damage type depends on the creature's form chosen at use time; data leaves that type empty.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:animated-breath/bonus/lightning-burst-lightning-form-only",
@@ -9704,9 +11387,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport then damage to nearby creatures without a save; needs movement plus area targeting rule.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:animated-breath/trait/chromatic-form",
@@ -9741,9 +11433,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Form chosen at creation; sets stats outside combat, no activity needed.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:animated-breath/trait/fire-aura-fire-form-only",
@@ -9782,9 +11483,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Start-of-turn aura damage plus damage to touchers; data only has loose damage activities.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:animated-breath/trait/putrid-aura-acid-and-poison-forms-only",
@@ -9824,9 +11534,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Start-of-turn aura save for poisoned until next turn, plus retaliation damage to melee hitters.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/action/bite",
@@ -9863,10 +11582,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with a second damage part; the activity carries both.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/action/breath-weapon",
@@ -9904,10 +11632,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Choice between two breaths at use time, one healing with revival, one save damage; recharge gated.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/action/claw",
@@ -9947,9 +11684,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple rider with escape DC, size limit and one creature at a time; data only applies statuses.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/action/multiattack",
@@ -9986,9 +11732,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Descriptive multiattack over named attacks; nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/action/tail",
@@ -10028,9 +11783,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus strength save for prone, both carried by the activities and effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/bonus/change-shape",
@@ -10067,9 +11831,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shapechange that ends on a stated event or bonus action; needs a rule for the end condition.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/legendary/attack",
@@ -10106,9 +11879,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action that just invokes other attacks by choice; no own mechanics.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/legendary/furious-bite",
@@ -10147,9 +11929,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bite attack then save on hit for frightened until end of next turn; data lacks the attack chain.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/mythic/celestial-lances",
@@ -10186,9 +11977,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Four areas with a per-creature once-only rule across overlaps; data has one save only.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/mythic/celestial-shield",
@@ -10225,9 +12025,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temporary hit points until start of next turn; data lacks the effect and the duration.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/trait/legendary-resistance",
@@ -10264,9 +12073,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-bahamut/trait/platinum-brilliance",
@@ -10303,9 +12121,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Replaces dropping to 0 hp with a reset, recharges breath and legendary resistance; data lacks all of it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/action/bite",
@@ -10342,10 +12169,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with a second damage part; the activity carries both.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/action/chromatic-flames",
@@ -10382,9 +12218,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage type chosen at use time among five; data leaves the type empty.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/action/claw",
@@ -10424,9 +12269,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple rider with escape DC, size limit and one creature at a time; data only applies statuses.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/action/multiattack",
@@ -10463,9 +12317,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Descriptive multiattack over named attacks; nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/action/tail",
@@ -10505,9 +12368,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus strength save for prone, both carried by the activities and effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/legendary/attack",
@@ -10544,9 +12416,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action that just invokes other attacks by choice; no own mechanics.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/legendary/furious-bite",
@@ -10585,9 +12466,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bite attack then save on hit for frightened until end of next turn; data lacks the attack chain.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/mythic/chromatic-flare",
@@ -10624,9 +12514,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save with damage type chosen at use time and affected creatures chosen; needs a choice step.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/mythic/hurl-through-avernus",
@@ -10663,9 +12562,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Requires a grappled target; banishes it then returns it at the start of the next turn; needs event rule.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/trait/chromatic-wrath",
@@ -10702,9 +12610,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Replaces dropping to 0 hp with a reset, recharges breath and legendary resistance; data lacks all of it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:aspect-of-tiamat/trait/legendary-resistance",
@@ -10741,9 +12658,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/action/bite",
@@ -10780,10 +12706,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with a second damage part; the activity carries both.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/action/breath-weapon",
@@ -10820,10 +12755,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Cone save for damage with half on success and recharge uses; the activity carries all of it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/action/claw",
@@ -10863,9 +12807,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple rider with escape DC, size limit and one creature at a time; data only applies statuses.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/action/multiattack",
@@ -10902,9 +12855,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Descriptive multiattack over named attacks; nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/action/tail",
@@ -10944,9 +12906,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus strength save for prone, both carried by the activities and effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/legendary/arcane-spear",
@@ -10983,9 +12954,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Automatic force damage to chosen targets; the damage activity carries the roll, targets picked by hand.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/legendary/attack",
@@ -11022,9 +13002,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary action that just invokes other attacks by choice; no own mechanics.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/legendary/wing-attack",
@@ -11063,9 +13052,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d47",
+          "at": "2026-11-21T21:39:33.727Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area dex save with damage and prone carried by the activity; the follow-up flight is movement only.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/mythic/bite",
@@ -11102,10 +13100,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Mythic action only says to use another attack; nothing to automate beyond the Bite item itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/mythic/chromatic-flare",
@@ -11142,9 +13149,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save for damage; the activity has save, sphere template and damage already.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/trait/chromatic-awakening",
@@ -11181,9 +13197,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Drop-to-0 replacement with HP reset, breath recharge, legendary resistance refill and mythic window; data only has a use counter.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/trait/legendary-resistance",
@@ -11220,9 +13245,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; data only spends the resistance counter, no prompt or save override.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:black-greatwyrm/trait/unusual-nature",
@@ -11257,9 +13291,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No need for food or drink; nothing happens in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/action/bite",
@@ -11296,10 +13339,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Melee attack with extra force damage; the activity carries the force damage and the weapon covers the rest.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/action/breath-weapon",
@@ -11336,10 +13388,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Text gives half damage on a success but data says none on success; data fix needed. Recharge and cone already present.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/action/claw",
@@ -11379,9 +13440,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple on hit limited to Huge or smaller, escape DC 20, only one grappled at a time; data only applies a status.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/action/multiattack",
@@ -11418,9 +13488,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only sequences other attacks; nothing for the engine to resolve.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/action/tail",
@@ -11460,9 +13539,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a separate Strength save that applies prone; both present in the data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/legendary/arcane-spear",
@@ -11538,9 +13626,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary option that just allows one Claw or Tail attack; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/legendary/wing-attack",
@@ -11579,9 +13676,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area Dex save for damage with prone on failure is present; the following half-speed flight is not automatable.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/mythic/bite",
@@ -11618,10 +13724,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Mythic action only says to use another attack; nothing to automate beyond the Bite item itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/mythic/chromatic-flare",
@@ -11658,9 +13773,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save for damage; the activity has save, sphere template and damage already.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/trait/chromatic-awakening",
@@ -11697,9 +13821,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Drop-to-0 replacement with HP reset, breath recharge, legendary resistance refill and mythic window; data only has a use counter.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/trait/legendary-resistance",
@@ -11736,9 +13869,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; data only spends the resistance counter, no prompt or save override.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/trait/unusual-nature",
@@ -11773,9 +13915,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No need for food or drink; nothing happens in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/action/bite",
@@ -11812,10 +13963,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Melee attack with extra force damage; the activity carries the force damage and the weapon covers the rest.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/action/breath-weapon",
@@ -11853,10 +14013,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Two breath options; the second needs unconscious for a minute, repeat save each turn, and a conditional disadvantage on success; data lacks effects.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/action/change-shape",
@@ -11935,9 +14104,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple on hit limited to Huge or smaller, escape DC 20, only one grappled at a time; data only applies a status.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/action/multiattack",
@@ -11974,9 +14152,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only sequences other attacks; nothing for the engine to resolve.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/action/tail",
@@ -12016,9 +14203,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a separate Strength save that applies prone; both present in the data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/legendary/attack",
@@ -12055,9 +14251,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary option that just allows one Claw or Tail attack; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/legendary/wing-attack",
@@ -12096,9 +14301,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area Dex save for damage with prone on failure is present; the following half-speed flight is not automatable.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/mythic/bite",
@@ -12135,10 +14349,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Mythic action only says to use another attack; nothing to automate beyond the Bite item itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/mythic/shattering-roar",
@@ -12177,9 +14400,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area Con save with thunder damage and incapacitated; duration to the end of next turn must be on the effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/trait/legendary-resistance",
@@ -12216,9 +14448,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time to turn a failed save into a success; data only spends the resistance counter, no prompt or save override.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/trait/metallic-awakening",
@@ -12255,9 +14496,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Drop-to-0 replacement with HP reset, breath recharge, legendary resistance refill and mythic window; data only has a use counter.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:brass-greatwyrm/trait/unusual-nature",
@@ -12292,9 +14542,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No need for food or drink; nothing happens in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/action/bite",
@@ -12331,10 +14590,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Melee attack with extra force damage; the activity carries the force damage and the weapon covers the rest.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/action/breath-weapon",
@@ -12372,10 +14640,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Two breath options; the second needs unconscious for a minute, repeat save each turn, and a conditional disadvantage on success; data lacks effects.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/action/change-shape",
@@ -12454,9 +14731,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple on hit limited to Huge or smaller, escape DC 20, only one grappled at a time; data only applies a status.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/action/multiattack",
@@ -12493,9 +14779,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only sequences other attacks; nothing for the engine to resolve.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/action/tail",
@@ -12535,9 +14830,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a separate Strength save that applies prone; both present in the data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/legendary/attack",
@@ -12574,9 +14878,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary option that just allows one Claw or Tail attack; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/legendary/wing-attack",
@@ -12615,9 +14928,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area Dex save for damage with prone on failure is present; the following half-speed flight is not automatable.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/mythic/bite",
@@ -12654,10 +14976,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d48",
+          "at": "2026-11-21T21:39:34.615Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Mythic action only says to use another attack; nothing to automate beyond the Bite item itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/mythic/shattering-roar",
@@ -12696,9 +15027,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity with sphere template, thunder damage and an incapacitated effect; end-of-next-turn duration not visible in data, but engine handles durations.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/trait/legendary-resistance",
@@ -12735,9 +15075,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice to turn a failed save into a success needs a prompt on the save; data only has a use-expending activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/trait/metallic-awakening",
@@ -12774,9 +15123,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggered at 0 hp: hp reset, breath recharge, legendary resistance refill, mythic mode for an hour; data lacks the trigger and effects, only a use.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:bronze-greatwyrm/trait/unusual-nature",
@@ -12811,9 +15169,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Flavor about needing no food or drink; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:copper-greatwyrm/action/bite",
@@ -14869,10 +17236,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Damage type is chosen at use time among the dragon's resistances; data has a save and cone but no damage type.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:draconic-spirit/action/multiattack",
@@ -14912,9 +17288,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Number of Rend attacks scales with the summoning spell level, then breath; data lacks the count and sequence.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:draconic-spirit/action/rend",
@@ -14954,9 +17339,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with piercing damage; the spell-level scaling bonus is handled by summon scaling data.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:draconic-spirit/trait/shared-resistances",
@@ -14994,9 +17388,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d49",
+          "at": "2026-11-21T21:39:35.424Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summoner picks a resistance at summon time and gains it until the spell ends; data lacks any effect or choice.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:dragon-blessed/action/mace",

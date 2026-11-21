@@ -1847,10 +1847,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "grapple with escape DC, restrained, and one-target limit on its own attack are riders beyond the data",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:aerosaur/action/multiattack",
@@ -1887,9 +1896,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack only sequences other attacks",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:aerosaur/action/talons",
@@ -1926,9 +1944,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain melee attack with damage in the attack activity",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:aerosaur/action/wing-gusts",
@@ -1967,9 +1994,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "save for damage with push distance differing on success and failure, plus prone; forced movement rider",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:aerosaur/trait/magic-resistance",
@@ -2006,10 +2042,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "passive save advantage vs magic carried by effect key",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:altisaur/action/multiattack",
@@ -2046,9 +2091,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack sequencing with a different-target restriction; nothing resolved at the table",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:altisaur/action/stomp",
@@ -2088,10 +2142,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "attack plus size-limited prone save, both in activities and effect",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:altisaur/action/tail",
@@ -2128,9 +2191,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "data lacks the push of up to 20 feet on a hit",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:altisaur/trait/magic-resistance",
@@ -2167,10 +2239,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "passive save advantage vs magic carried by effect key",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:bag-jelly/action/multiattack",
@@ -2207,9 +2288,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack only sequences other attacks",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:bag-jelly/action/pseudopod",
@@ -2249,9 +2339,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "grapple with escape DC and disadvantage on escape checks; size-limited rider",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:bag-jelly/trait/amorphous",
@@ -2286,9 +2385,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "movement through narrow space; nothing to resolve in combat",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:barrowghast/action/life-drain",
@@ -2326,10 +2434,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "max HP reduction on failed save until long rest, death at zero, zombie rises; beyond data",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:barrowghast/action/multiattack",
@@ -2366,9 +2483,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack sequencing with attack replacement option",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:barrowghast/action/slam",
@@ -2405,10 +2531,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "plain melee attack with damage in the attack activity",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:barrowghast/reaction/noxious-wound",
@@ -2445,9 +2580,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "reaction triggered by piercing or slashing damage taken, area save for damage",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:barrowghast/trait/stench",
@@ -2487,10 +2631,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "start-of-turn aura save, poisoned with no healing, 24-hour immunity on success",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cairnwight/action/multiattack",
@@ -2527,9 +2680,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack sequencing with a recharge-gated power",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cairnwight/action/petrifying-touch",
@@ -2569,9 +2731,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "repeated save at end of next turn, restrained turning into petrified; data lacks the repeat",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cairnwight/action/rock",
@@ -2611,9 +2782,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "ranged attack with prone save in activities and effect",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cairnwight/action/slam",
@@ -2650,10 +2830,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "plain melee attack with damage in the attack activity",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:ceratops/action/gore",
@@ -2694,9 +2883,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "extra damage and push only if it moved 20 feet straight first; conditional rider",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:ceratops/action/multiattack",
@@ -2733,9 +2931,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack only sequences other attacks",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:ceratops/action/stomp",
@@ -2772,10 +2979,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "plain melee attack with damage in the attack activity",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:ceratops/trait/magic-resistance",
@@ -2812,10 +3028,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "passive save advantage vs magic carried by effect key",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cinder-hulk/action/multiattack",
@@ -2852,9 +3077,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack only sequences other attacks",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cinder-hulk/action/slam",
@@ -2891,10 +3125,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "attack with bonus fire damage present in the activity",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cinder-hulk/action/wave-of-cinders",
@@ -2933,9 +3176,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "cone save for damage with blinded effect and recharge use present; duration handled by engine",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cinder-hulk/trait/death-burst",
@@ -2973,10 +3225,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "on-death cloud zone, damage on first entry or turn start, heavy obscurement, 1 minute",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:cloud-giant-destiny-gambler/action/flying-staff",
@@ -5951,9 +6212,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "ranged attack plus charm save, with effect; short duration handled by engine",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:firbolg-wanderer/action/longsword",
@@ -5990,9 +6260,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "melee attack with extra psychic damage in activity; two-hand variant minor",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:firbolg-wanderer/action/multiattack",
@@ -6029,9 +6308,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack only sequences other attacks",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:firbolg-wanderer/bonus/duplicitous-movement",
@@ -6147,9 +6435,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "once-per-turn heat burst, start-of-turn save for creatures in contact, disadvantage on attacks",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-forgecaller/action/heated-rock",
@@ -6189,9 +6486,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "ranged attack with fire damage and prone save; rock-supply roll is table flavor",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-forgecaller/action/magma-wave-requires-fire-rune",
@@ -6231,9 +6537,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "cone save with restrained, escape check against rock with its own AC and HP; gated by rune",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-forgecaller/action/multiattack",
@@ -6270,9 +6585,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "multiattack only sequences other attacks",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-forgecaller/bonus/furnace-armor-requires-fire-rune",
@@ -6309,9 +6633,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d61",
+          "at": "2026-11-21T21:39:45.532Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "cover while smoke lasts, ends on stated events, tied to the rune; data has only a utility",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-forgecaller/trait/fire-rune",
@@ -6385,9 +6718,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d62",
+          "at": "2026-11-21T21:39:46.379Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt and a limited-use hook, data has only a utility activity.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-of-evil-fire/action/bolt-of-imix",
@@ -6427,9 +6769,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d62",
+          "at": "2026-11-21T21:39:46.379Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged attack plus Wisdom save for frightened until end of next turn; the attack and save activities and an effect cover it.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-of-evil-fire/action/multiattack",
@@ -6466,9 +6817,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d62",
+          "at": "2026-11-21T21:39:46.379Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive routine of two attacks; nothing for the engine to resolve beyond the attack actions themselves.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-of-evil-fire/action/searing-scepter",
@@ -6505,9 +6865,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d62",
+          "at": "2026-11-21T21:39:46.379Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the brand rider (forced visibility, no invisibility, dim light, 24h duration, curse removal); only the attack is there.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-of-evil-fire/trait/shrapnel-explosion",
@@ -6544,9 +6913,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d62",
+          "at": "2026-11-21T21:39:46.379Z",
+          "confidence": 0.78,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggers when the creature drops to 0 hp and hits creatures nearby with a Dex save; the save activity exists but the death trigger is missing.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-hellion/action/infernal-orb",

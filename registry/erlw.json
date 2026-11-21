@@ -1419,9 +1419,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity present; plain melee hit and damage, nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/action/eye-ray",
@@ -1464,9 +1473,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice of four rays at use time, repeated saves, charm ends on damage, death-to-spectator rider; data has only basic saves.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/action/multiattack",
@@ -1503,9 +1521,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack sequencing is descriptive; no resolvable combat effect in data.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/legendary/claw",
@@ -1542,9 +1569,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with legendary cost consumption covers a plain claw attack.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/legendary/implant-fear",
@@ -1581,9 +1617,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Failed save also forces a reaction move away; data has only save and damage.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/legendary/rend-reality",
@@ -1622,9 +1667,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for damage with exhaustion status in a 10 ft radius is carried by the activity and effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/trait/alien-mind",
@@ -1663,9 +1717,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggered by reading thoughts or psychic damage, with a repeated save each turn to end stun; data lacks both.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/trait/eye-thief",
@@ -1700,9 +1763,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sight through others' eyes and relayed ray origin; no resolvable combat rule in data.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/trait/legendary-resistance",
@@ -1739,9 +1811,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose to succeed on a failed save: use-time prompt, data only consumes a resource.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/trait/magic-resistance",
@@ -1778,10 +1859,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves only against magic; effect carries a save advantage key but not the circumstance clearly.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/trait/regeneration",
@@ -1818,10 +1908,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Heals at turn start but radiant damage suppresses it next turn and death rule changes; heal formula looks empty.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:belashyrra/trait/teleport",
@@ -1861,10 +1960,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Teleport activity as a bonus action with self target matches the text.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:bone-knight/action/greatsword",
@@ -1901,9 +2009,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity covers a plain melee hit.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:bone-knight/action/longbow",
@@ -1940,9 +2057,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity covers a plain ranged hit.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:bone-knight/action/multiattack",
@@ -1979,9 +2105,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack sequencing is descriptive; no resolvable combat effect in data.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:bone-knight/trait/commander-of-bones",
@@ -2021,9 +2156,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus action control of limited undead of a type, ends on events or release; data has only a bare save.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:bone-knight/trait/master-of-the-pallid-banner",
@@ -2058,9 +2202,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura-like advantage on saves for undead allies against turning within range; data has nothing.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:bone-knight/trait/spellcasting",
@@ -2095,9 +2248,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell list and casting stats; spells themselves are separate items, nothing to add here.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:changeling/action/dagger",
@@ -2134,9 +2296,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity covers melee or thrown dagger attack.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:changeling/action/multiattack",
@@ -2173,9 +2344,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack sequencing is descriptive; no resolvable combat effect in data.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:changeling/action/unsettling-visage",
@@ -2214,9 +2394,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area fear save with a repeated save each turn to end it; data lacks the repeat.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:changeling/trait/change-appearance",
@@ -2251,9 +2440,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shapechange with no combat numbers; no item data effect needed.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:clawfoot/action/bite",
@@ -2290,10 +2488,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack activity covers a plain bite.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:clawfoot/action/claws",
@@ -2330,9 +2537,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity covers a plain claw hit.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:clawfoot/action/multiattack",
@@ -2369,9 +2585,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack sequencing is descriptive; no resolvable combat effect in data.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:clawfoot/trait/pack-tactics",
@@ -2408,10 +2633,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage only when an ally is near the target and not incapacitated; effect key has no such condition shown.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:clawfoot/trait/pounce",
@@ -2453,9 +2687,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d65",
+          "at": "2026-11-21T21:39:48.899Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Conditional on moving straight 20 ft then hitting with claw, plus follow-up bonus bite on prone target; data has a bare save.",
+      "state": "triaged"
     },
     {
       "key": "erlw:monster:dolgaunt/action/multiattack",

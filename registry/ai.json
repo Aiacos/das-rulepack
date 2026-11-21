@@ -1218,9 +1218,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity exists; plain melee hit with damage, nothing conditional in the text.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/action/mandibles",
@@ -1260,9 +1269,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple rider needs escape DC and a limit of one grappled target for this attack; data has only status effect.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/action/multiattack",
@@ -1299,9 +1317,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a description of attack count; nothing for the engine to resolve beyond the attacks themselves.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/action/shadow-caw",
@@ -1338,9 +1365,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity with radius template, psychic damage and no-effect-on-save already carries the text.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/legendary/detect",
@@ -1377,9 +1413,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Utility legendary activity consuming one legendary action; the text is a plain perception check.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/legendary/shadow-caw",
@@ -1457,9 +1502,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save with radius, damage, prone effect and legendary cost are present; the free flight move is minor.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/trait/magic-resistance",
@@ -1496,10 +1550,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage only vs spells and magic; data flag is generic save advantage, so it needs the magic condition.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/trait/shadow-stealth",
@@ -1541,10 +1604,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Hide as bonus action only in dim light or darkness; data has the bonus activity but not the lighting limit.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:auspicia-dran/action/light-crossbow",
@@ -1581,9 +1653,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged attack activity present; plain damage with no riders.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:auspicia-dran/action/longsword",
@@ -1620,9 +1701,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack activity present; versatile damage is covered by weapon data.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:auspicia-dran/action/multiattack",
@@ -1659,9 +1749,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack count description; nothing to resolve beyond the individual attacks.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:auspicia-dran/trait/innate-spellcasting-psionics",
@@ -1737,9 +1836,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charm save repeated at end of each turn with conditional disadvantage and a lingering contest penalty; data has only charmed.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:brahma-lutier/action/war-lute",
@@ -1776,9 +1884,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack activity with slashing damage.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:brahma-lutier/trait/fey-ancestry",
@@ -1815,10 +1932,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage only on saves against charm plus sleep immunity; data flag is generic save advantage.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:brahma-lutier/trait/spellcasting",
@@ -1892,9 +2018,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on checks, attacks and saves until the start of her next turn; data has save and uses but no effect.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:chaos-quadrapod/action/chaos-cloud",
@@ -1933,9 +2068,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Stun lasts until end of its next turn; data has the status but the timed end needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:chaos-quadrapod/action/multiattack",
@@ -1972,9 +2116,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack count description; nothing to resolve beyond the tentacle attacks.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:chaos-quadrapod/action/tentacle",
@@ -2014,9 +2167,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple rider with escape DC and a limit of two grappled targets at a time; data has only the status effect.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:chaos-quadrapod/trait/magic-resistance",
@@ -2053,10 +2215,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-d66",
+          "at": "2026-11-21T21:39:49.737Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage only vs spells and magic; data flag is generic save advantage, so it needs the magic condition.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:clockwork-dragon/action/bite",
