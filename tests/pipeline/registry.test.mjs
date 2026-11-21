@@ -11,7 +11,7 @@ const minimal = () => ({
   key: "xphb:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "XPHB", page: 12, edition: "2024",
   text: null, items: [], verdict: null, evidence: {}
 });
-const rule = () => ({ handledIn: "das-rulepack", adds: ["glimmer-bolt"], entry: "glimmer-bolt", origins: ["official"] });
+const rule = () => ({ handledIn: "table", adds: "Glimmer Bolt", entry: "glimmer-bolt", origins: ["official"] });
 const GATES = ["schema", "validator", "ids", "fixes", "text"];
 const gated = (r) => ({
   ...r, evidence: { gates: { at: "2026-11-21", core: "abc", rule: ruleFingerprint(r.rule), passed: GATES } }
@@ -45,6 +45,20 @@ describe("keyOf", () => {
 
 describe("validateRecord", () => {
   it("accepts a minimal record", () => expect(validateRecord(minimal())).toEqual([]));
+  it("accepts a text fingerprint object and rejects malformed ones", () => {
+    const text = { sha256: "a".repeat(64), source: "cache", chars: 0 };
+    expect(validateRecord({ ...minimal(), text })).toEqual([]);
+    const bads = ["plain string", { ...text, sha256: "xyz" }, { ...text, source: 1 }, { ...text, chars: -1 }, { ...text, chars: 1.5 }];
+    for (const bad of bads) {
+      expect(validateRecord({ ...minimal(), text: bad }).join()).toMatch(/text/);
+    }
+  });
+  it("checks rule.handledIn and rule.adds", () => {
+    const v = (r) => validateRecord({ ...minimal(), verdict: "code", rule: { ...rule(), ...r } }).join();
+    expect(v({ handledIn: "code" })).toBe("");
+    expect(v({ handledIn: "das-rulepack" })).toMatch(/handledIn/);
+    expect(v({ adds: ["x"] })).toMatch(/adds/);
+  });
   it("rejects a non-object", () => expect(validateRecord(null)).not.toEqual([]));
   it("rejects an unknown verdict", () => expect(validateRecord({ ...minimal(), verdict: "maybe" }).join()).toMatch(/verdict/));
   it("accepts every known verdict except entry-without-rule", () => {

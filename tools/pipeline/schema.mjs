@@ -4,6 +4,7 @@ export const STATES = Object.freeze(["inventoried", "triaged", "drafted", "gated
 export const ORIGINS = Object.freeze(["official", "ddb-importer", "plutonium"]);
 export const MATCHES = Object.freeze(["matched", "absent", "ambiguous", "unchecked"]);
 export const LEGACY_STATUSES = Object.freeze(["played", "validated", "pending"]);
+export const HANDLED_IN = Object.freeze(["table", "code"]);
 export const EDITIONS = Object.freeze(["2014", "2024"]);
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
@@ -21,10 +22,17 @@ function checkItem(item, at, errors) {
   if ("data" in item && !isObject(item.data)) errors.push(`${at}.data: must be an object`);
 }
 
+function checkText(text, errors) {
+  if (!isObject(text)) return errors.push("text: must be null or { sha256, source, chars }");
+  if (typeof text.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(text.sha256)) errors.push("text.sha256: must be 64 hex characters");
+  if (typeof text.source !== "string") errors.push("text.source: must be a string");
+  if (!Number.isInteger(text.chars) || text.chars < 0) errors.push("text.chars: must be a non-negative integer");
+}
+
 function checkRule(rule, verdict, errors) {
   if (!isObject(rule)) return errors.push("rule: must be an object");
-  if (!isString(rule.handledIn)) errors.push("rule.handledIn: must be a non-empty string");
-  if (!Array.isArray(rule.adds)) errors.push("rule.adds: must be an array");
+  if (!HANDLED_IN.includes(rule.handledIn)) errors.push(`rule.handledIn: must be one of ${HANDLED_IN.join(", ")}`);
+  if (typeof rule.adds !== "string") errors.push("rule.adds: must be a string");
   for (const f of ["entry", "code", "origin", "catalog"]) {
     if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
   }
@@ -41,7 +49,7 @@ export function validateRecord(record) {
   for (const f of ["key", "name", "kind", "book"]) if (!isString(record[f])) errors.push(`${f}: must be a non-empty string`);
   if (!isPage(record.page)) errors.push("page: must be a positive integer");
   if (!EDITIONS.includes(record.edition)) errors.push(`edition: must be one of ${EDITIONS.join(", ")}`);
-  if (record.text !== null && typeof record.text !== "string") errors.push("text: must be null or a string");
+  if (record.text !== null) checkText(record.text, errors);
   if (!Array.isArray(record.items)) errors.push("items: must be an array");
   else record.items.forEach((item, i) => checkItem(item, `items[${i}]`, errors));
   if (record.verdict !== null && !VERDICTS.includes(record.verdict)) {
