@@ -2,6 +2,7 @@
 // in other official packages, and the identifiers the engine will meet.
 import { slug } from "./registry.mjs";
 import { matchName } from "./match.mjs";
+import { ddbItemsOf } from "./monsters.mjs";
 
 export function itemOf(origin, outcome) {
   if (outcome.match === "matched") {
@@ -33,7 +34,7 @@ export const poolOf = (dumps, origin, kind, owner) => {
   if (origin === "ddb-importer" && kind === "monster") {
     const wanted = owner === undefined ? null : matchName(owner).full;
     return (dumps.ddbActors ?? []).filter((a) => wanted === null || matchName(a.name).full === wanted)
-      .flatMap((a) => a.items.map((i) => ({ ...i, rules: a.edition })));
+      .flatMap(ddbItemsOf);
   }
   return dumps[origin] ?? [];
 };

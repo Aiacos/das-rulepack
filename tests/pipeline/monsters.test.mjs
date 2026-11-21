@@ -80,10 +80,10 @@ describe("readMonsterFeatures", () => {
   it("reports the creatures, with the copies among them", () => {
     const { creatures } = readMonsters(dir, "XZZ", {});
     expect(creatures).toEqual([
-      { name: "Glimmer Hound", features: 10 },
-      { name: "Glimmer Hound Alpha", features: 1, copyOf: "Glimmer Hound|XZZ" },
-      { name: "Glimmer Pup", features: 0, copyOf: "Glimmer Hound|XZZ" },
-      { name: "Ghost Cart", features: 2 },
+      { name: "Glimmer Hound", features: 10, edition: "2024" },
+      { name: "Glimmer Hound Alpha", features: 1, edition: "2024", copyOf: "Glimmer Hound|XZZ" },
+      { name: "Glimmer Pup", features: 0, edition: "2024", copyOf: "Glimmer Hound|XZZ" },
+      { name: "Ghost Cart", features: 2, edition: "2024" },
     ]);
   });
 

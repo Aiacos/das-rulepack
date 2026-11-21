@@ -69,7 +69,7 @@ function loadDumps(dir, book, { actors = false, reprints = false } = {}) {
     "ddb-importer": read("ddb-importer", dumpsFor(dir, "ddb-importer")),
     ...(actors ? {
       actors: official.filter(isActorFile).flatMap((f) => actorSummaries(readDump(join(dir, f)), "official")),
-      ddbActors: ddbActors()
+      ddbActors: ddbActors(), ddbBooks: JSON.parse(readFileSync(join(ROOT, "docs", "ddb-books.json"), "utf8"))
     } : {}),
     // The other official packages: a document id they share with the book's package is a reprint.
     ...(reprints ? { reprints: reprintIndex(dir, dumpsFor(dir, "official").filter((f) => !official.includes(f))) } : {})

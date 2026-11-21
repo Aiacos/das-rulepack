@@ -81,13 +81,16 @@ function monsterOfficial(entry, actors, reference) {
   };
 }
 
-// A creature that DDB Importer has only in the other edition: its features that have an item of the name there are ambiguous
-// (edition) for a person to settle, never joined and never silently absent.
+// A creature that DDB has only in the other edition, or only in other books: its features that have an item of the name there
+// are ambiguous (edition, book) for a person to settle, never joined. A feature with no such item stays absent (there is no
+// candidate to list); the report counts the creature (`ddbOtherEditionOnly`, `ddbOtherBookOnly`).
 function monsterDdb(entry, actors, reference) {
   if (actors.found) return monsterOfficial(entry, actors, reference);
   const subject = { name: entry.name, kind: "monster", edition: entry.edition };
-  const outcome = matchFeature(subject, actors.otherEdition);
-  return outcome.match === "ambiguous" ? outcome : { match: "absent" };
+  const [items, why] = actors.status === "otherBook" ? [actors.otherBook, "book"] : [actors.otherEdition, "edition"];
+  const outcome = matchFeature(subject, items);
+  if (outcome.match === "absent") return { match: "absent" };
+  return { match: "ambiguous", candidates: outcome.candidates ?? [outcome.item], differences: [why] };
 }
 
 // Official first with no reference; ddb-importer is then compared against the official item when there is one.
@@ -208,16 +211,21 @@ export function inventory({
   };
   // Monsters also report the creatures read (with the ones that have no feature of their own), the `_copy` ones, the
   // creatures with no actor of their name in the official dump (`noActor`) and the ones with no DDB Importer actor of their
-  // edition (`noDdbActor`). A book has one edition.
+  // edition (`noDdbActor` none at all, `ddbOtherEditionOnly`, `ddbOtherBookOnly`: only actors of another edition or book).
   const actorsOf = new Map();
   const actorsFor = (creature) => {
     if (!actorsOf.has(creature)) actorsOf.set(creature, actorCandidates(creature, dumps.actors));
     return actorsOf.get(creature);
   };
+  // The edition of a creature is its own (the list of creatures states it, even for one with no feature), else its features'.
+  const editionOfCreature = new Map(dataset.map((e) => [e.owner, e.edition]));
+  for (const c of creatures ?? []) if (c.edition) editionOfCreature.set(c.name, c.edition);
   const ddbActorsOf = new Map();
   const ddbActorsFor = (creature) => {
     if (!ddbActorsOf.has(creature)) {
-      ddbActorsOf.set(creature, ddbActorCandidates(creature, dumps.ddbActors, dataset[0]?.edition));
+      ddbActorsOf.set(creature, ddbActorCandidates(creature, dumps.ddbActors, {
+        edition: editionOfCreature.get(creature), book, books: dumps.ddbBooks
+      }));
     }
     return ddbActorsOf.get(creature);
   };
@@ -226,7 +234,8 @@ export function inventory({
     Object.assign(report, {
       creatures: list.length, copies: list.filter((c) => c.copyOf).length,
       noActor: list.filter((c) => !actorsFor(c.name).found).length,
-      noDdbActor: list.filter((c) => !ddbActorsFor(c.name).found).length
+      ...Object.fromEntries([["noDdbActor", "none"], ["ddbOtherEditionOnly", "otherEdition"], ["ddbOtherBookOnly", "otherBook"]]
+        .map(([field, status]) => [field, list.filter((c) => ddbActorsFor(c.name).status === status).length]))
     });
   }
   const seen = new Map();
@@ -238,6 +247,11 @@ export function inventory({
   const ddbOutcomes = monsters
     ? monsterOutcomes(dataset, (e, i) => monsterDdb(e, ddbActorsFor(e.owner), referenceOf(i)))
     : [];
+  // An item taken from an actor of no known book is matched, visibly.
+  for (const [i, o] of ddbOutcomes.entries()) {
+    const unknownBook = o.match === "matched" && ddbActorsFor(dataset[i].owner).bookUnknown;
+    if (unknownBook) o.differences = [...(o.differences ?? []), "book-unknown"];
+  }
   const numbers = monsters ? numberOccurrences(dataset, records, book) : [];
   // A creature whose name slugs to nothing is one skip, however many features it has.
   if (monsters) {

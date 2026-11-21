@@ -133,6 +133,12 @@ const editionOfActor = (doc) => {
   return rules === "2014" || rules === "2024" ? { edition: rules } : {};
 };
 
+// The book an actor states in `system.source.book` (D&D Beyond's abbreviation, e.g. "MM 2024"); `{}` when it states none.
+const bookOfActor = (doc) => {
+  const book = doc.system?.source?.book;
+  return typeof book === "string" && book.trim() ? { book: book.trim() } : {};
+};
+
 // An actor document that embeds items: its embedded items are what the pipeline reads, wherever the dump is (DDB Importer's
 // monsters are in a `ddb.` file that is not named after actors).
 export const isActorDoc = (doc) => doc !== null && typeof doc === "object" && doc.type === "npc" && Array.isArray(doc.items);
@@ -143,7 +149,7 @@ export const isActorDoc = (doc) => doc !== null && typeof doc === "object" && do
  */
 export function actorSummaries(docs, origin) {
   return docs.filter((d) => Array.isArray(d.items)).map((d) => ({
-    id: d._id, name: d.name, ...editionOfActor(d),
+    id: d._id, name: d.name, ...editionOfActor(d), ...bookOfActor(d),
     items: d.items.map((i) => ({ ...itemSummary(i, origin), docId: `${d._id}.${i._id}` }))
   }));
 }

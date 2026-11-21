@@ -19,12 +19,14 @@ const item = (origin, id, name, over = {}) => ({
   activities: [{ id: "a1", type: "attack", damageTypes: ["slashing"] }], effects: [{ id: "e1", name: "x", statuses: [] }],
   activations: ["action"], data: `h-${origin}-${id}`, ...over
 });
-const actor = (origin, id, name, items, edition) => ({
-  id, name, ...(edition ? { edition } : {}),
+const BOOKS = { Mine: "XZZ", mine2: "xzz", Other: "XOT" };
+const actor = (origin, id, name, items, edition, book) => ({
+  id, name, ...(edition ? { edition } : {}), ...(book ? { book } : {}),
   items: items.map((i) => ({ ...i, origin, docId: `${id}.${i.docId.split(".")[1]}` }))
 });
 const official = (items) => actor("official", "off1", "Mist Weasel", items);
-const ddb = (id, items, edition = "2024", name = "Mist Weasel") => actor("ddb-importer", id, name, items, edition);
+const ddb = (id, items, edition = "2024", name = "Mist Weasel", book = "Mine") =>
+  actor("ddb-importer", id, name, items, edition, book);
 const O = (id, name, over) => item("official", id, name, over);
 const D = (id, name, over) => item("ddb-importer", id, name, over);
 
@@ -32,27 +34,60 @@ let textDir;
 beforeEach(() => { textDir = mkdtempSync(join(tmpdir(), "ddb-mon-")); });
 afterEach(() => rmSync(textDir, { recursive: true, force: true }));
 const run = (dataset, { actors = [], ddbActors = [], previous = [], creatures } = {}) => inventory({
-  book: "XZZ", kind: "monster", dataset, creatures, dumps: { official: [], "ddb-importer": [], actors, ddbActors },
+  book: "XZZ", kind: "monster", dataset, creatures, dumps: { official: [], "ddb-importer": [], actors, ddbActors, ddbBooks: BOOKS },
   textDir, previous
 });
 const itemsOf = (r) => Object.fromEntries(r.items.map((i) => [i.origin, i]));
 
 describe("ddbActorCandidates", () => {
   const A = ddb("d1", [D("1", "Claw")]);
+  const pick = (actors, edition = "2024", book = "XZZ") =>
+    ddbActorCandidates("Mist Weasel", actors, { edition, book, books: BOOKS });
   it("takes the actors of the creature's name and edition, items carrying the actor's edition", () => {
-    const out = ddbActorCandidates("Mist Weasel", [A, ddb("d2", [D("2", "Bite")], "2014")], "2024");
-    expect(out).toMatchObject({ found: true, ambiguous: false });
+    const out = pick([A, ddb("d2", [D("2", "Bite")], "2014")]);
+    expect(out).toMatchObject({ found: true, ambiguous: false, status: "found", bookUnknown: false });
     expect(out.candidates.map((c) => [c.docId, c.rules])).toEqual([["d1.1", "2024"]]);
   });
+  it("lets an actor that states its edition decide for its items, and one that states none leave them their own", () => {
+    const stated = pick([ddb("d1", [D("1", "Claw", { rules: "2014" }), D("2", "Bite")])]);
+    expect(stated.candidates.map((c) => c.rules)).toEqual(["2024", "2024"]);
+    const none = pick([ddb("d1", [D("1", "Claw", { rules: "2014" }), D("2", "Bite")], null)]);
+    expect(none.candidates.map((c) => c.rules)).toEqual(["2014", undefined]);
+  });
   it("is not found when the name exists only in the other edition, and hands those items over", () => {
-    const out = ddbActorCandidates("Mist Weasel", [ddb("d2", [D("2", "Bite")], "2014")], "2024");
-    expect(out).toMatchObject({ found: false, candidates: [] });
+    const out = pick([ddb("d2", [D("2", "Bite")], "2014")]);
+    expect(out).toMatchObject({ found: false, candidates: [], status: "otherEdition" });
     expect(out.otherEdition.map((c) => c.docId)).toEqual(["d2.2"]);
+  });
+  it("says none when no actor has the name", () => {
+    expect(pick([ddb("d2", [D("2", "Bite")], "2024", "Someone Else")])).toMatchObject({ found: false, status: "none" });
   });
   it("uses an actor with no stated edition, and prefers the ones that state it", () => {
     const none = ddb("d3", [D("3", "Claw")], null);
-    expect(ddbActorCandidates("Mist Weasel", [none], "2024").candidates[0].rules).toBeUndefined();
-    expect(ddbActorCandidates("Mist Weasel", [none, A], "2024").candidates.map((c) => c.docId)).toEqual(["d1.1"]);
+    expect(pick([none]).candidates[0].rules).toBeUndefined();
+    expect(pick([none, A]).candidates.map((c) => c.docId)).toEqual(["d1.1"]);
+  });
+  describe("book", () => {
+    const mine = ddb("m1", [D("1", "Claw")], "2024", "Mist Weasel", "Mine");
+    const other = ddb("o1", [D("2", "Claw")], "2024", "Mist Weasel", "Other");
+    it("prefers the actors of the record's book and uses them alone, whatever the case of the code", () => {
+      expect(pick([other, mine]).candidates.map((c) => c.docId)).toEqual(["m1.1"]);
+      expect(pick([other, ddb("m2", [D("3", "Claw")], "2024", "Mist Weasel", "mine2")]).candidates.map((c) => c.docId))
+        .toEqual(["m2.3"]);
+      expect(pick([other, mine]).bookUnknown).toBe(false);
+    });
+    it("uses the actors with no book, an SRD one or an unmapped one when none is of the book, saying so", () => {
+      for (const book of [null, "SRD 5.1", "SRD 5.2", "Never Heard Of"]) {
+        const out = pick([other, ddb("u1", [D("4", "Claw")], "2024", "Mist Weasel", book)]);
+        expect(out).toMatchObject({ found: true, bookUnknown: true });
+        expect(out.candidates.map((c) => c.docId)).toEqual(["u1.4"]);
+      }
+    });
+    it("is not found when the only actors state another mapped book", () => {
+      const out = pick([other]);
+      expect(out).toMatchObject({ found: false, candidates: [], status: "otherBook" });
+      expect(out.otherBook.map((c) => c.docId)).toEqual(["o1.2"]);
+    });
   });
 });
 
@@ -66,7 +101,7 @@ describe("monster features matched against DDB Importer's actors", () => {
       origin: "ddb-importer", match: "matched", identifier: "claw", docId: "d1.7", activities: ["a1"], effects: ["e1"],
       data: { sha256: "h-ddb-importer-7" }
     });
-    expect(report).toMatchObject({ noActor: 0, noDdbActor: 0 });
+    expect(report).toMatchObject({ noActor: 0, noDdbActor: 0, ddbOtherEditionOnly: 0, ddbOtherBookOnly: 0 });
   });
 
   it("asks DDB Importer even where there is no official actor, and counts each absence apart", () => {
@@ -100,7 +135,7 @@ describe("monster features matched against DDB Importer's actors", () => {
       const ddbActors = [ddb("d1", [D("1", "Claw", { activations: [] }), D("2", "Hiss", { activations: ["bonus"] })])];
       const { records } = run([feature("Claw", "action"), feature("Hiss", "action"), feature("Hiss", "bonus")], { ddbActors });
       expect(itemsOf(records[0])["ddb-importer"]).toMatchObject({ match: "matched", docId: "d1.1" });
-      // The one same-name item is of another section and nothing else claims it: matched, visibly.
+      // The "Hiss" item is taken by the bonus feature: the action feature has no item left, so it is absent.
       expect(itemsOf(records[1])["ddb-importer"]).toBeUndefined();
       expect(itemsOf(records[2])["ddb-importer"]).toMatchObject({ match: "matched", docId: "d1.2" });
     });
@@ -134,12 +169,36 @@ describe("monster features matched against DDB Importer's actors", () => {
         match: "ambiguous", differences: ["edition"], candidates: [{ docId: "d1.1" }, { docId: "d1.2" }]
       });
       expect(report.ambiguous).toEqual([records[0].key]);
-      expect(report.noDdbActor).toBe(1);
+      expect(report).toMatchObject({ noDdbActor: 0, ddbOtherEditionOnly: 1, ddbOtherBookOnly: 0 });
     });
 
-    it("is absent, not ambiguous, when the other edition's actor has no item of that name", () => {
-      const { records } = run([feature("Claw", "action")], { ddbActors: [ddb("d1", [D("1", "Bite")], "2014")] });
+    it("is absent at item level, but reported, when the other edition's actor has no item of that name", () => {
+      const { records, report } = run([feature("Claw", "action")], { ddbActors: [ddb("d1", [D("1", "Bite")], "2014")] });
       expect(itemsOf(records[0])["ddb-importer"]).toBeUndefined();
+      expect(report).toMatchObject({ noDdbActor: 0, ddbOtherEditionOnly: 1 });
+    });
+
+    it("makes the feature ambiguous (edition) when an actor with no edition has an item of the other edition", () => {
+      const { records } = run([feature("Claw", "action")], {
+        ddbActors: [ddb("d1", [D("1", "Claw", { rules: "2014" })], null)]
+      });
+      expect(itemsOf(records[0])["ddb-importer"]).toMatchObject({ match: "ambiguous", differences: ["edition"] });
+    });
+
+    it("adds no edition-unknown when the item of an actor with no edition states the creature's edition", () => {
+      const { records } = run([feature("Claw", "action")], {
+        ddbActors: [ddb("d1", [D("1", "Claw", { rules: "2024" })], null)]
+      });
+      expect(itemsOf(records[0])["ddb-importer"].match).toBe("matched");
+      expect(itemsOf(records[0])["ddb-importer"].differences).toBeUndefined();
+    });
+
+    it("reads the edition of a creature with no feature from the creature itself, not from the first feature", () => {
+      const { report } = run([feature("Claw", "action")], {
+        creatures: [{ name: "Mist Weasel", features: 1, edition: "2024" }, { name: "Old Weasel", features: 0, edition: "2014" }],
+        ddbActors: [ddb("d1", [D("1", "Claw")]), ddb("d2", [D("2", "Claw")], "2014", "Old Weasel")]
+      });
+      expect(report).toMatchObject({ creatures: 2, noDdbActor: 0, ddbOtherEditionOnly: 0 });
     });
 
     it("never takes the other edition's actor when one of the creature's edition exists", () => {
@@ -154,6 +213,33 @@ describe("monster features matched against DDB Importer's actors", () => {
       const { records, report } = run([feature("Claw", "action")], { ddbActors: [ddb("d1", [D("1", "Claw")], null)] });
       expect(itemsOf(records[0])["ddb-importer"]).toMatchObject({ match: "matched", differences: ["edition-unknown"] });
       expect(report.differing).toEqual([records[0].key]);
+    });
+  });
+
+  describe("book", () => {
+    it("joins the actor of the record's book, never another book's actor of the same name and edition", () => {
+      const { records } = run([feature("Claw", "action")], {
+        ddbActors: [ddb("o1", [D("2", "Claw")], "2024", "Mist Weasel", "Other"), ddb("m1", [D("1", "Claw")])]
+      });
+      expect(itemsOf(records[0])["ddb-importer"]).toMatchObject({ match: "matched", docId: "m1.1" });
+      expect(itemsOf(records[0])["ddb-importer"].differences).toBeUndefined();
+    });
+    it("uses an actor of no known book and adds book-unknown", () => {
+      const { records, report } = run([feature("Claw", "action")], {
+        ddbActors: [ddb("u1", [D("1", "Claw")], "2024", "Mist Weasel", "SRD 5.2")]
+      });
+      expect(itemsOf(records[0])["ddb-importer"]).toMatchObject({ match: "matched", differences: ["book-unknown"] });
+      expect(report.differing).toEqual([records[0].key]);
+    });
+    it("makes the feature ambiguous (book) when the only actors are of another book, and counts the creature", () => {
+      const { records, report } = run([feature("Claw", "action"), feature("Bite", "action")], {
+        ddbActors: [ddb("o1", [D("2", "Claw")], "2024", "Mist Weasel", "Other")]
+      });
+      expect(itemsOf(records[0])["ddb-importer"]).toMatchObject({
+        match: "ambiguous", differences: ["book"], candidates: [{ docId: "o1.2" }]
+      });
+      expect(itemsOf(records[1])["ddb-importer"]).toBeUndefined();
+      expect(report).toMatchObject({ noDdbActor: 0, ddbOtherEditionOnly: 0, ddbOtherBookOnly: 1 });
     });
   });
 
@@ -239,6 +325,32 @@ describe("actorSummaries edition", () => {
   });
 });
 
+describe("actorSummaries book", () => {
+  it("states the D&D Beyond book abbreviation of the actor when it has one", () => {
+    const docs = ["MM 2024", "", undefined, 7].map((book, n) => ({
+      _id: `a${n}`, name: `A${n}`, type: "npc", system: { source: { book } }, items: []
+    }));
+    expect(actorSummaries(docs, "ddb-importer").map((a) => a.book)).toEqual(["MM 2024", undefined, undefined, undefined]);
+  });
+});
+
+describe("docs/ddb-books.json", () => {
+  const load = (name) => JSON.parse(readFileSync(new URL(`../../docs/${name}`, import.meta.url), "utf8"));
+  it("maps D&D Beyond abbreviations to dataset book codes, none to an SRD", () => {
+    const map = load("ddb-books.json");
+    expect(Object.entries(map).every(([k, v]) => k && /^[A-Za-z0-9-]+$/.test(v))).toBe(true);
+    expect(Object.keys(map).some((k) => /^srd/i.test(k))).toBe(false);
+    expect(map["MM 2024"]).toBe("XMM");
+    expect(map.MotM).toBe("MPMM");
+  });
+  it("names a book of the catalogue wherever the catalogue lists it", () => {
+    const map = load("ddb-books.json");
+    const codes = new Set(load("books.json").books.map((b) => b.code.toUpperCase()));
+    expect(["XMM", "MM", "MPMM", "XPHB", "XDMG"].every((c) => codes.has(c))).toBe(true);
+    for (const c of ["XMM", "MM", "MPMM"]) expect(Object.values(map).map((v) => v.toUpperCase())).toContain(c);
+  });
+});
+
 describe("pipeline CLI with DDB Importer's monsters", () => {
   let tmp, env;
   const MARK = "ZZMARKERZZ";
@@ -286,6 +398,38 @@ describe("pipeline CLI with DDB Importer's monsters", () => {
       ["ddb-importer", "matched", "ddbActorAAAAAAA1.ddbItemAAAAAAAA1"],
       ["plutonium", "unchecked", undefined]
     ]);
+    // The fixture's actor states no book: used, visibly.
+    expect(records[0].items[1].differences).toEqual(["book-unknown"]);
+  });
+
+  it("joins an actor of a mapped book to the creature of that book only, and reports the creature otherwise", () => {
+    write("dumps/ddb.ddb-base-world-ddb-monsters.json", [{ ...npc, system: { source: { rules: "2014", book: "ToA" } } }]);
+    const r = run(["inventory", "TCE", "monster"]);
+    expect(r.status, r.stderr).toBe(0);
+    expect(JSON.parse(r.stdout)).toMatchObject({ noDdbActor: 0, ddbOtherEditionOnly: 0, ddbOtherBookOnly: 1 });
+    const { records } = JSON.parse(readFileSync(join(tmp, "registry", "tce.json"), "utf8"));
+    expect(records[0].items[1]).toMatchObject({ origin: "ddb-importer", match: "ambiguous", differences: ["book"] });
+  });
+
+  it("resolve settles an ambiguous ddb-importer monster item against the official item, and inventory keeps it", () => {
+    const twin = claw("ddbItemAAAAAAAA2");
+    twin.system.activities.actAAAAAAAAAAAAA.damage = { parts: [{ types: ["fire"] }] };
+    write("dumps/ddb.ddb-base-world-ddb-monsters.json", [{ ...npc, items: [npc.items[0], twin] }]);
+    expect(run(["inventory", "TCE", "monster"]).status).toBe(0);
+    const file = join(tmp, "registry", "tce.json");
+    const ddbOf = () => JSON.parse(readFileSync(file, "utf8")).records[0].items.find((i) => i.origin === "ddb-importer");
+    expect(ddbOf()).toMatchObject({ match: "ambiguous" });
+    const key = "tce:monster:ember-mole/action/scorch";
+    const doc = "ddbActorAAAAAAA1.ddbItemAAAAAAAA2";
+    const settled = { match: "matched", docId: doc, differences: ["damageTypes"] };
+    const r = run(["resolve", key, "ddb-importer", "--doc", doc, "--because", "the fire one"]);
+    expect(r.status, r.stderr).toBe(0);
+    // Compared against the official item (no damage type): the structural difference is recorded.
+    expect(ddbOf()).toMatchObject({ ...settled, resolved: { because: "the fire one" } });
+    const again = run(["inventory", "TCE", "monster"]);
+    expect(again.status, again.stderr).toBe(0);
+    expect(JSON.parse(again.stdout).resolutionStale).toEqual([]);
+    expect(ddbOf()).toMatchObject({ ...settled, resolved: { because: "the fire one" } });
   });
 
   it("resolves a ddb-importer monster docId to the embedded item of the ddb. actor dump", () => {
