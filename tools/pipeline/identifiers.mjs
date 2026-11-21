@@ -52,7 +52,62 @@ export const boundBySource = (record, item) =>
 export function reaches(record, item) {
   const own = norm(item?.identifier);
   if (own === norm(record?.identifier) || boundBySource(record, item)) return true;
-  return (record?.rule?.alsoAs ?? []).some((a) => norm(a?.identifier) === own && own !== "");
+  return (record?.rule?.alsoAs ?? []).some((a) => a?.origin === item?.origin && norm(a?.identifier) === own && own !== "");
+}
+
+/** Why a monster feature whose embedded item id several creatures share has no source (Ruling R3). */
+export const SHARED_EMBEDDED = "shared embedded item id: waits on upstream (engine: actor.item sources, refused by external"
+  + " registration)";
+
+/**
+ * What is wrong with the identifiers a ruled record registers, from the record alone (so it holds under `gates --ci`, which
+ * has no dumps): its own identifier must not be generic, a monster feature's must be its creature-scoped one (R3) and its
+ * embedded item id must not be shared, and every alias (R2) must be a non-generic identifier that the record's matched item
+ * of a named origin carries; a monster feature has none. The DAS · Core identifiers are the `unique` gate's (it has the
+ * engine). Messages start with "identifier:"; none for a record without a rule.
+ */
+export function identifierProblems(record) {
+  const rule = record?.rule;
+  if (!rule || typeof rule !== "object") return [];
+  const out = [];
+  const own = norm(record.identifier);
+  if (GENERIC_IDENTIFIERS.has(own)) out.push(`identifier: ${own || "(empty)"} is a generic identifier: a rule never registers it`);
+  const monster = record.kind === "monster";
+  if (monster) {
+    let scoped = null;
+    try { scoped = monsterIdentifier(record); } catch (e) { out.push(`identifier: ${e.message}`); }
+    if (scoped && record.identifier !== scoped) {
+      out.push(`identifier: a ruled monster feature is registered as ${scoped}, not ${JSON.stringify(record.identifier)}`);
+    }
+    const origins = Array.isArray(rule.origins) ? rule.origins : [];
+    const shared = (record.items ?? []).some((i) => i?.match === "matched" && i.embeddedShared && origins.includes(i.origin));
+    if (shared) out.push(`identifier: ${SHARED_EMBEDDED}`);
+  }
+  for (const a of Array.isArray(rule.alsoAs) ? rule.alsoAs : []) {
+    const id = norm(a?.identifier);
+    const shown = id || "(empty)";
+    if (monster) {
+      out.push(`identifier: alias ${shown}: a monster feature has no alias (DDB Importer monster features are uncovered)`);
+      continue;
+    }
+    if (GENERIC_IDENTIFIERS.has(id)) out.push(`identifier: alias ${shown} is a generic identifier`);
+    if (!(Array.isArray(rule.origins) && rule.origins.includes(a?.origin))) {
+      out.push(`identifier: alias ${shown}: ${a?.origin} is not in rule.origins`);
+    } else if (norm(matchedOf(record, a.origin)?.identifier) !== id) {
+      out.push(`identifier: alias ${shown} is not the identifier of the matched ${a.origin} item`);
+    }
+  }
+  return out;
+}
+
+/** The matched origins (Plutonium `unchecked` is not one) that the rule neither names nor lists as uncovered (Ruling R5). */
+export function unaccountedOrigins(record) {
+  const rule = record?.rule;
+  if (!rule) return [];
+  const named = new Set([...(Array.isArray(rule.origins) ? rule.origins : []),
+    ...(Array.isArray(rule.uncovered) ? rule.uncovered.map((u) => u?.origin) : [])]);
+  return [...new Set((record.items ?? []).filter((i) => i?.match === "matched").map((i) => i.origin))]
+    .filter((o) => !named.has(o));
 }
 
 /**
@@ -67,7 +122,7 @@ export function aliasFor(record, origin, { coreIdentifiers = new Set() } = {}) {
   if (record.kind === "monster" && origin === "ddb-importer") {
     return { uncovered: "DDB Importer monster features: world ids and generic identifiers" };
   }
-  if (item.embeddedShared) return { uncovered: "shared embedded item id (engine: actor.item sources)" };
+  if (item.embeddedShared) return { uncovered: SHARED_EMBEDDED };
   if (norm(item.identifier) === norm(record.identifier) || boundBySource(record, item)) return null;
   const id = norm(item.identifier);
   if (record.kind === "monster") return { uncovered: "monster feature item not bound by a source" };

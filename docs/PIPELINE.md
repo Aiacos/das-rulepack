@@ -125,17 +125,22 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    item is not) is named in `origins` or listed in `rule.uncovered: [{ origin, because }]` with one line saying why
    (Ruling R5; `ids: <origin> is matched but neither in origins nor uncovered`). The item of every origin named must be
    reached by an identifier the rule registers: the record's own, a `sources` binding, or an alias of `rule.alsoAs`
-   (`ids: <origin> item identifier <x> is not reached (no source, no alias)`); a monster feature whose embedded item id is
-   shared by several creatures cannot be (`ids: shared embedded item id (engine: actor.item sources)`, the rule stays
-   `drafted`). A legacy record with standing is held to the first two checks only (its origins predate `uncovered` and
-   aliases: the TCE rules name `ddb-importer` alone although the official item is matched). The ids gate also looks at the
+   (`ids: <origin> item identifier <x> is not reached (no source, no alias)`; an alias reaches only the item of its own
+   `origin`). A legacy record with standing is held to the first two checks only (its origins predate `uncovered` and
+   aliases: the TCE rules name `ddb-importer` alone although the official item is matched); each such origin is printed as a
+   `coverage:` note (not a gate: the record's evidence does not change) and `docs/RULES.md` says "Not checked on <origin>".
+   The schema gate also checks, from the record alone (so under `--ci` too), the identifiers a ruled record registers
+   (`identifiers.mjs` `identifierProblems`): its own identifier is not generic (`GENERIC_IDENTIFIERS`); a monster feature's
+   is its creature-scoped one, it has no alias, and an official item with `embeddedShared` fails
+   (`shared embedded item id: waits on upstream …`, the rule stays `drafted`); every alias is not generic, its `origin` is in
+   `rule.origins`, and it equals the identifier of the record's matched item of that origin. The ids gate also looks at the
    reprints (below), with the ids the official item contributes.
    The `unique` gate applies only to records that have a `rule`, the only ones that register an identifier with the engine:
    two ruled records that register one identifier, their own or an alias, always fail, whatever `sources` they bind; records
    without a rule are ignored (many features and traits share a name). A registered table is merged over the engine's own
    entries identifier by identifier, so an identifier or alias equal to a DAS · Core identifier (`content/index.mjs`
-   `SHIPPED` and `SRD_ALIASES` of the clone) fails unless the rule says `inCore: true` (set by a person): it would patch the
-   engine's entry for every item of that name. A data fix without `from` must at least find its path on the document
+   `SHIPPED` and `SRD_ALIASES` of the clone) fails unless it is the record's own identifier and the rule says `inCore: true`
+   (set by a person): it would patch the engine's entry for every item of that name. An alias never may. A data fix without `from` must at least find its path on the document
    (`fixes: <path> does not exist`). The schema gate also checks `sources`: every key must be the docId (or
    an `alsoDocIds`) of the record's matched official item and every value the record's identifier
    (`sources: <docId> is not an item of this record`). `generate` fails naming the record on the same check, and refuses two
@@ -444,7 +449,8 @@ Notes on what inventory does with each kind:
   `<book>-<creature>-<feature>` (`-2` for a repeated name; `identifiers.mjs` `monsterIdentifier`), never the bare feature
   name (the engine has generic entries under names such as `bite`). Inventory binds it by the id of its official embedded item
   (`sources: { <item id>: <identifier> }`, the part after `.`) when no actor of another creature of the book's package embeds
-  that id; otherwise the item gets `embeddedShared: true` and no source (the engine reads `<actor id>.<item id>` sources, but
+  that id and the record carries its scoped identifier (a bare name is never bound); otherwise, for a shared id, the item gets
+  `embeddedShared: true` and no source (the engine reads `<actor id>.<item id>` sources, but
   external registration accepts 16-character ids only), and the ids gate keeps the rule `drafted`. A feature without a rule
   binds nothing. DDB Importer monster features are always uncovered (world ids, generic identifiers).
 - **Aliases (Ruling R2).** `rule.alsoAs: [{ identifier, origin }]` registers the entry under the identifier an origin's item

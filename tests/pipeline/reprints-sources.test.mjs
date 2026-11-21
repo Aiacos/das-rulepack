@@ -147,13 +147,14 @@ describe("sources", () => {
     const first = inventory({ book: "TST", kind: "monster", dataset: [monster], dumps: { official: [], "ddb-importer": [],
       actors: [{ id: "Ac00Ac11Ac22Ac33", name: "Wolf", items: [embedded] }] }, textDir, previous: [] }).records;
     expect(first[0].sources).toBeUndefined();
-    const ruled = first.map((r) => ({ ...r, identifier: "claw", verdict: "code",
+    const ruled = first.map((r) => ({ ...r, identifier: "tst-wolf-claw", verdict: "code",
       rule: { handledIn: "code", adds: "x", origins: ["official"] } }));
     const again = inventory({ book: "TST", kind: "monster", dataset: [monster], dumps: { official: [], "ddb-importer": [],
       actors: [{ id: "Ac00Ac11Ac22Ac33", name: "Wolf", items: [embedded] }] }, textDir, previous: ruled }).records[0];
-    expect(again.sources).toEqual({ Bb00Bb11Bb22Bb33: "claw" });
+    expect(again.sources).toEqual({ Bb00Bb11Bb22Bb33: "tst-wolf-claw" });
     expect(officialOf(again).identifierDiffers).toBeUndefined();
     expect(validateRecord(again)).toEqual([]);
+    expect(gateSchema(again)).toEqual([]);
   });
 });
 

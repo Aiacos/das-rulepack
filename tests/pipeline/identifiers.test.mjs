@@ -111,11 +111,10 @@ describe("inventory binds a ruled monster feature to its embedded item id", () =
     expect(wolf.sources).toBeUndefined();
     expect(wolf.items.find((i) => i.origin === "official")).toMatchObject({ embeddedShared: true, identifierDiffers: true });
     expect(validateRecord(wolf)).toEqual([]);
-    // No source is bound, and nothing registers under the bare feature name.
-    expect(Object.values(next.flatMap((r) => Object.values(r.sources ?? {})))).toEqual([]);
-    expect(wolf.identifier).not.toBe("bite");
+    // No source is bound (the bare-name case, where the fixture does not scope the identifier: identifiers-gates.test.mjs).
+    expect(next.flatMap((r) => Object.values(r.sources ?? {}))).toEqual([]);
     expect(checkIds(wolf, { core: { vocabulary: new Set() } }).failures)
-      .toContain("ids: shared embedded item id (engine: actor.item sources)");
+      .toContain("ids: shared embedded item id: waits on upstream (engine: actor.item sources, refused by external registration)");
     expect(stateOf(wolf)).toBe("drafted");
     // An unruled feature is not marked: only a rule needs the binding.
     expect(bear.items.find((i) => i.origin === "official").embeddedShared).toBeUndefined();

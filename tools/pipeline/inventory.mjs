@@ -5,6 +5,10 @@ import { fittingDocTypes, identityOf, matchName, matchOrigin } from "./match.mjs
 import { KIND_TABLE } from "./kinds.mjs";
 import { actorCandidates, baseFeatureName, ddbActorCandidates } from "./monsters.mjs";
 import { itemOf, keepSettled, reprintsOf, bindSources, canonicalIdentifier } from "./settle.mjs";
+import { monsterIdentifier } from "./identifiers.mjs";
+
+// The creature-scoped identifier of a monster record, or null when it has none (a name that slugs to nothing).
+const scopedIdentifier = (record) => { try { return monsterIdentifier(record); } catch { return null; } };
 
 export { itemOf };
 
@@ -371,7 +375,10 @@ export function inventory({
       report.added += 1;
     }
     // Identifiers and what was settled by hand follow the items; a record with neither carries neither field.
-    const monster = monsters ? { ruled: Boolean(record.rule), sharedId: (id) => sharedEmbedded(id, record.owner) } : undefined;
+    const monster = monsters ? {
+      ruled: Boolean(record.rule), scoped: Boolean(record.rule) && record.identifier === scopedIdentifier(record),
+      sharedId: (id) => sharedEmbedded(id, record.owner)
+    } : undefined;
     const sources = bindSources(record.items, record.identifier, { monster });
     for (const [field, value] of [["sources", sources], ["resolutions", resolutions]]) {
       if (Object.keys(value).length) record[field] = value;

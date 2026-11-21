@@ -12,7 +12,7 @@ import {
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
-import { reaches } from "./identifiers.mjs";
+import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
 
 export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
@@ -63,7 +63,11 @@ const isLegacy = (record, context) => hasLegacyStanding(record, context?.legacy)
 const matchedItems = (record, origin) => (record.items ?? []).filter((i) => i?.origin === origin && i.match === "matched");
 
 // The structure of the record, and its `sources` (each must be a document of this record bound to its identifier).
-export const gateSchema = (record) => [...validateRecord(record).map((e) => `schema: ${e}`), ...sourceProblems(record)];
+// And the identifiers a ruled record registers (identifiers.mjs identifierProblems): from the record alone, so under --ci too.
+export const gateSchema = (record) => [
+  ...validateRecord(record).map((e) => `schema: ${e}`), ...sourceProblems(record),
+  ...(validateRecord(record).length ? [] : identifierProblems(record).map((e) => `schema: ${e}`))
+];
 
 export function gateValidator(record, { core }) {
   if (!record.rule) return [];
@@ -79,9 +83,6 @@ export function gateValidator(record, { core }) {
   }
 }
 
-// The origins whose item was matched (an `unchecked` Plutonium item is not), in the record's order.
-const matchedOrigins = (record) =>
-  [...new Set((record.items ?? []).filter((i) => i?.match === "matched").map((i) => i.origin))];
 const uncoveredOf = (rule) => (Array.isArray(rule?.uncovered) ? rule.uncovered.map((u) => u?.origin) : []);
 
 /**
@@ -120,7 +121,7 @@ export function checkIds(record, context) {
     for (const id of mine) owned.add(id);
     if (ids.length && !mine.length && !legacy) out.failures.push(`ids: ${origin} contributes no id`);
     for (const item of legacy ? [] : items) {
-      if (item.embeddedShared) out.failures.push("ids: shared embedded item id (engine: actor.item sources)");
+      if (item.embeddedShared) out.failures.push(`ids: ${SHARED_EMBEDDED}`);
       else if (!reaches(record, item)) {
         out.failures.push(`ids: ${origin} item identifier ${item.identifier} is not reached (no source, no alias)`);
       }
@@ -145,10 +146,8 @@ export function checkIds(record, context) {
   // A rule that names no origin already failed: every matched origin would be blamed again.
   if (!legacy && origins.length) {
     const uncovered = uncoveredOf(record.rule);
-    for (const origin of matchedOrigins(record)) {
-      if (!origins.includes(origin) && !uncovered.includes(origin)) {
-        out.failures.push(`ids: ${origin} is matched but neither in origins nor uncovered`);
-      }
+    for (const origin of unaccountedOrigins(record)) {
+      out.failures.push(`ids: ${origin} is matched but neither in origins nor uncovered`);
     }
     for (const origin of uncovered) {
       if (!matchedItems(record, origin).length) out.failures.push(`ids: ${origin} is uncovered but has no matched item`);
@@ -246,13 +245,17 @@ const coreMessage = (record, id) => `unique: ${record.key}: ${id} is a DAS · Co
   + " for every item of that name; set rule.inCore only on purpose)";
 
 // A registered table is merged over the engine's entries identifier by identifier: a rule under one of the engine's
-// identifiers patches the engine's entry, allowed only with `rule.inCore: true` (set by a person).
+// identifiers patches the engine's entry, allowed only for its own identifier with `rule.inCore: true` (set by a person).
 function coreCollisions(records, identifiers) {
   const out = [];
   if (!identifiers?.size) return out;
   for (const record of records) {
-    if (!isObject(record) || !record.rule || record.rule.inCore === true) continue;
-    for (const id of registeredBy(record)) if (identifiers.has(id)) out.push([record, coreMessage(record, id)]);
+    if (!isObject(record) || !record.rule) continue;
+    // `inCore` is a person's decision about the record's own identifier; an alias never patches an entry of the engine.
+    const own = norm(record.identifier);
+    for (const id of registeredBy(record)) {
+      if (identifiers.has(id) && !(id === own && record.rule.inCore === true)) out.push([record, coreMessage(record, id)]);
+    }
   }
   return out;
 }
@@ -312,6 +315,13 @@ export function runGates(records, context) {
     };
     run("schema", gateSchema(record));
     const sound = !failures[key]?.schema;
+    // Ruling R5 is not applied to a legacy record with standing (its origins predate `uncovered`): said, under a name that is
+    // not a gate, so that its evidence (`passed`, `noted`) does not change.
+    if (sound && record.rule && isLegacy(record, context)) {
+      const notes = unaccountedOrigins(record)
+        .map((o) => `coverage: ${o} is matched but neither in origins nor uncovered (legacy)`);
+      run("coverage", { failures: [], notes });
+    }
     const standing = legacyProblem(record, context.legacy);
     if (standing) run("legacy", [standing]);
     if (sound && record.rule) {

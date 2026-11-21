@@ -3,7 +3,7 @@ import { copyFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { checkFixes, checkIds, gateUnique, idsIn, runGates } from "../../tools/pipeline/gates.mjs";
+import { checkFixes, checkIds, gateSchema, gateUnique, idsIn, runGates } from "../../tools/pipeline/gates.mjs";
 import { legacyFingerprint, ruleFingerprint, saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { generate } from "../../tools/pipeline/generate.mjs";
 
@@ -97,10 +97,13 @@ describe("unique gate: identifiers and aliases", () => {
     r.rule.alsoAs = [{ identifier: "moon-glimmer", origin: "ddb-importer" }];
     expect(gateUnique([r], { core })).toEqual(["unique: tst:spell:glimmer-bolt: moon-glimmer is a DAS · Core identifier"
       + " (an entry there would be patched for every item of that name; set rule.inCore only on purpose)"]);
+    // inCore is for the record's own identifier (a person's decision); an alias never patches Core.
     r.rule.inCore = true;
-    expect(gateUnique([r], { core })).toEqual([]);
+    expect(gateUnique([r], { core })).toHaveLength(1);
     const own = rec(sideBySide, ["official", "ddb-importer"], { identifier: "moon-glimmer" });
     expect(gateUnique([own], { core })).toHaveLength(1);
+    own.rule.inCore = true;
+    expect(gateUnique([own], { core })).toEqual([]);
   });
 
   it("two rules sharing an alias fail unique", () => {
@@ -139,17 +142,31 @@ describe("generate: aliases", () => {
   it("registers the entry under each alias, and says which origins are not covered", async () => {
     const r = rec(sideBySide, ["official", "ddb-importer"], { legacy: true, legacyStatus: "pending" });
     r.rule.alsoAs = [{ identifier: "glimmer-bolt-ddb", origin: "ddb-importer" }];
-    r.rule.uncovered = [{ origin: "plutonium", because: "not dumped yet" }];
+    r.items[1].identifier = "glimmer-bolt-ddb";
+    // A second rule covers one origin and says why the other is not: both are records the live gates accept.
+    const narrow = rec({ saveDamage: { [A_OFF]: "half" } }, ["official"], {
+      key: "tst:spell:dusk-bolt", name: "Dusk Bolt", identifier: "dusk-bolt", legacy: true, legacyStatus: "pending"
+    });
+    narrow.items = narrow.items.map((i) => ({ ...i, identifier: "dusk-bolt" }));
+    narrow.rule.uncovered = [{ origin: "ddb-importer", because: "the imported item has no save" }];
+    for (const x of [r, narrow]) {
+      expect(gateSchema(x)).toEqual([]);
+      expect(checkIds(x, { core }).failures).toEqual([]);
+    }
+    expect(gateUnique([r, narrow], { core })).toEqual([]);
     const registry = join(dir, "registry");
-    saveBook(registry, { book: "TST", records: [r] });
-    writeFileSync(join(registry, "legacy.json"), JSON.stringify({ [r.key]: legacyFingerprint(r) }));
+    saveBook(registry, { book: "TST", records: [r, narrow] });
+    writeFileSync(join(registry, "legacy.json"),
+      JSON.stringify({ [r.key]: legacyFingerprint(r), [narrow.key]: legacyFingerprint(narrow) }));
     const out = join(dir, "rules");
     mkdirSync(out);
     copyFileSync(new URL("../../scripts/rules/book.mjs", import.meta.url), join(out, "book.mjs"));
     generate({ registry, out });
     const { TABLE, RULES } = await import(pathToFileURL(join(out, "index.mjs")).href);
-    expect(RULES[0]).toMatchObject({ alsoAs: ["glimmer-bolt-ddb"], uncovered: [{ origin: "plutonium", because: "not dumped yet" }] });
-    expect(Object.keys(TABLE).sort()).toEqual(["glimmer-bolt", "glimmer-bolt-ddb"]);
+    const byId = Object.fromEntries(RULES.map((x) => [x.identifier, x]));
+    expect(byId["glimmer-bolt"].alsoAs).toEqual(["glimmer-bolt-ddb"]);
+    expect(byId["dusk-bolt"].uncovered).toEqual([{ origin: "ddb-importer", because: "the imported item has no save" }]);
+    expect(Object.keys(TABLE).sort()).toEqual(["dusk-bolt", "glimmer-bolt", "glimmer-bolt-ddb"]);
     expect(TABLE["glimmer-bolt-ddb"]).toEqual(TABLE["glimmer-bolt"]);
     expect(ruleFingerprint(r.rule)).toMatch(/^[0-9a-f]{64}$/);
   });

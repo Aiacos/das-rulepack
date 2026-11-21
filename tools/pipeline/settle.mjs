@@ -102,7 +102,8 @@ export function reprintsOf(item, index, previous, types) {
  * what the engine registers with `register(source, table, { sources })`). The engine takes a 16-character document id as key,
  * so only the official packages' documents qualify: a DDB Importer item lives in a world, where the id is the world's own;
  * those are flagged `identifierDiffers` on the item instead.
- * A monster feature (`monster`: { ruled, sharedId(itemId) }) is bound only once it has a rule (Ruling R3): by the id of its
+ * A monster feature (`monster`: { ruled, scoped, sharedId(itemId) }) is bound only once it has a rule and its creature-scoped
+ * identifier (`scoped`, Ruling R3): by the id of its
  * embedded item (the part after "." of `<actor id>.<item id>`) when no actor of another creature of the package embeds that
  * id; a shared id is flagged `embeddedShared` (the engine reads `<actor id>.<item id>` sources, external registration refuses
  * them), and the item `identifierDiffers`.
@@ -113,16 +114,21 @@ export function bindSources(items, identifier, { monster } = {}) {
   for (const item of items) {
     delete item.identifierDiffers;
     delete item.embeddedShared;
-    if (item.match !== "matched" || item.identifier === identifier) continue;
+    if (item.match !== "matched") continue;
+    // A monster feature is looked at before the identifiers are compared: a ruled one under its item's own (bare) name must
+    // still be checked for a shared embedded id (the identifier gate fails the bare name itself).
     if (monster) {
+      if (!monster.ruled && item.identifier === identifier) continue;
       const [own] = sourceKeysOf(item, "monster");
       if (item.origin === "official" && monster.ruled && KEBAB.test(identifier) && own) {
         if (monster.sharedId(own)) item.embeddedShared = true;
-        else { sources[own] = identifier; continue; }
+        // Only the creature-scoped identifier is ever bound: a source under the bare name would reach every creature.
+        else if (monster.scoped) { sources[own] = identifier; continue; }
       }
-      item.identifierDiffers = true;
+      if (item.identifier !== identifier) item.identifierDiffers = true;
       continue;
     }
+    if (item.identifier === identifier) continue;
     const ids = [item.docId, ...(item.alsoDocIds ?? [])];
     if (item.origin === "official" && KEBAB.test(identifier) && ids.every((id) => DOC_ID.test(id))) {
       for (const id of ids) sources[id] = identifier;
