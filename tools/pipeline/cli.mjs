@@ -15,7 +15,7 @@ import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
-import { autoTriage, clip, ingest, isReaderHandle, setByRule, triageContext, BY } from "./triage.mjs";
+import { autoTriage, clip, ingest, ingestSecond, isReaderHandle, setByRule, triageContext, BY } from "./triage.mjs";
 import { cutBatches, DEFAULT_BATCH_SIZE, highestBatches } from "./batch.mjs";
 import { structureOf } from "./structure.mjs";
 
@@ -359,13 +359,23 @@ function queuedKeys(dir) {
   return new Set(queue.map((q) => q?.key).filter((k) => typeof k === "string"));
 }
 
+// The entries of registry/queue.json, validated as far as the readers of it need.
+function queueEntries(dir) {
+  const file = join(dir, "queue.json");
+  if (!existsSync(file)) return [];
+  const queue = readJson(file, "queue");
+  if (!Array.isArray(queue)) throw new UsageError(`${file}: must be an array`);
+  return queue.filter((q) => q !== null && typeof q === "object" && typeof q.key === "string");
+}
+
 function batchCommand([stage, book, ...rest]) {
   const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>] "
-    + "[--without-items]";
+    + "[--without-items] [--queued]";
   if (stage !== "triage" || !book) throw new UsageError(usage);
   const opts = {};
   const withoutItems = rest.includes("--without-items");
-  rest = rest.filter((a) => a !== "--without-items");
+  const second = rest.includes("--queued");
+  rest = rest.filter((a) => a !== "--without-items" && a !== "--queued");
   for (let i = 0; i < rest.length; i += 2) {
     if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
@@ -384,8 +394,13 @@ function batchCommand([stage, book, ...rest]) {
     checkStructureDir(opts.structure, opts.out);
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   }
-  const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out)) : {};
-  const batches = cutBatches(found.records, { size, kind: opts.kind, after, queued: queuedKeys(REGISTRY), withoutItems });
+  const series = second ? "second" : "triage";
+  const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
+  // A second reading is cut from the queue entries that have no second reading yet; a normal batch leaves the whole queue out.
+  const cutOptions = second
+    ? { only: new Set(queueEntries(REGISTRY).filter((q) => !q.second).map((q) => q.key)), series }
+    : { queued: queuedKeys(REGISTRY) };
+  const batches = cutBatches(found.records, { size, kind: opts.kind, after, withoutItems, ...cutOptions });
   // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
   const structures = dumpsDir === null ? [] : batches.map((b) => structuresOf(b, found.records, dumpsDir));
   mkdirSync(opts.out, { recursive: true });
@@ -420,10 +435,12 @@ function mergeQueue(dir, queued, applied) {
 
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
-  const usage = "Usage: ingest <results-file> [--overwrite]";
+  const usage = "Usage: ingest <results-file> [--overwrite | --second]";
   const overwrite = args.includes("--overwrite");
-  const [file, ...rest] = args.filter((a) => a !== "--overwrite");
+  const second = args.includes("--second");
+  const [file, ...rest] = args.filter((a) => a !== "--overwrite" && a !== "--second");
   if (!file || rest.length) throw new UsageError(usage);
+  if (second && overwrite) throw new UsageError("--second and --overwrite cannot be used together");
   const textDir = need("RULEPACK_TEXT");
   const coreDir = need("DAS_CORE");
   const input = readJson(file, "results file");
@@ -436,7 +453,10 @@ async function ingestCommand(args) {
   if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
-  const out = ingest(books.flatMap((b) => b.records), input.results, { textDir, by: input.by, overwrite, entryKeys });
+  if (second) return ingestSecondCommand(books, input, { textDir, entryKeys });
+  const out = ingest(books.flatMap((b) => b.records), input.results, {
+    textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY)
+  });
   const touched = new Set(out.records.filter((r) => out.applied.includes(r.key)).map((r) => r.book));
   for (const b of books) {
     if (!touched.has(b.book)) continue;
@@ -447,6 +467,22 @@ async function ingestCommand(args) {
   if (out.rejected.length) process.exitCode = 1;
 }
 
+// `ingest <results-file> --second`: the second reading of the queue. Agreements are applied and leave the queue;
+// disagreements stay in it, with the second reading beside the first, for a person.
+function ingestSecondCommand(books, input, { textDir, entryKeys }) {
+  const queue = queueEntries(REGISTRY);
+  const out = ingestSecond(books.flatMap((b) => b.records), input.results, { textDir, by: input.by, entryKeys, queue });
+  const touched = new Set(out.records.filter((r) => out.agreed.includes(r.key)).map((r) => r.book));
+  for (const b of books) {
+    if (!touched.has(b.book)) continue;
+    saveBook(REGISTRY, { book: b.book, note: b.note, records: out.records.filter((r) => r.book === b.book) });
+  }
+  const parked = [...out.disagreed, ...out.unsure];
+  if (parked.length || out.agreed.length) mergeQueue(REGISTRY, parked, out.agreed);
+  const counts = { agreed: out.agreed.length, disagreed: out.disagreed.length, unsure: out.unsure.length, rejected: out.rejected };
+  console.log(JSON.stringify(counts, null, 2));
+  if (out.rejected.length) process.exitCode = 1;
+}
 
 // `resolve <key> <origin> --doc <docId> | --absent | --exclude-reprint <package>  --because "<one line>" [--by <handle>] [--force]`
 async function resolveCommand(args) {

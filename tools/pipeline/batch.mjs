@@ -15,24 +15,28 @@ const entryOf = (r) => ({
 });
 
 // The highest batch number per book among file names of a folder (`<book>-triage-<NNN>.json`; structure files do not count).
-export function highestBatches(files) {
+export function highestBatches(files, series = "triage") {
   const highest = {};
   for (const f of files) {
-    const m = /^(.+)-triage-(\d+)\.json$/.exec(f);
+    const m = new RegExp(`^(.+)-${series}-(\\d+)\\.json$`).exec(f);
     if (m) highest[m[1]] = Math.max(highest[m[1]] ?? 0, Number(m[2]));
   }
   return highest;
 }
 
+// With `only` (a Set of keys: the entries of the queue that have no second reading yet) and `series: "second"`, the batches are
+// cut from those records alone and numbered `<book>-second-<NNN>`, on their own count (`after` then holds the highest
+// `-second-` numbers). The entries are the same as ever: nothing of the first reading goes in, the second one is blind.
 // Records without a verdict (and with text), per book, grouped by kind (only `kind` when given), cut at `size`. The keys of
 // `queued` (registry/queue.json: results waiting for a person) are left out: they have no verdict but are not to be read again.
 // Ids: <book>-triage-<NNN>; `after` ({ book: highest number in use }) makes the numbering continue, so an id is never reused.
 // A record with no matched item in any origin is left out unless `withoutItems`: a reader has nothing to compare its text with.
 export function cutBatches(records, options = {}) {
-  const { size = DEFAULT_BATCH_SIZE, kind, after = {}, queued = new Set(), withoutItems = false } = options;
+  const { size = DEFAULT_BATCH_SIZE, kind, after = {}, queued = new Set(), withoutItems = false, only, series = "triage" }
+    = options;
   const hasItem = (r) => (r.items ?? []).some((i) => i.match === "matched");
   const open = records.filter((r) => !r.verdict && r.text && (!kind || r.kind === kind) && !queued.has(r.key)
-    && (withoutItems || hasItem(r)));
+    && (!only || only.has(r.key)) && (withoutItems || hasItem(r)));
   const batches = [];
   const counts = new Map(Object.entries(after));
   for (const [book, ofBook] of groupBy(open, (r) => r.book.toLowerCase())) {
@@ -40,7 +44,7 @@ export function cutBatches(records, options = {}) {
       for (let i = 0; i < ofKind.length; i += size) {
         const n = (counts.get(book) ?? 0) + 1;
         counts.set(book, n);
-        const id = `${book}-triage-${String(n).padStart(3, "0")}`;
+        const id = `${book}-${series}-${String(n).padStart(3, "0")}`;
         batches.push({ id, stage: "triage", entries: ofKind.slice(i, i + size).map(entryOf) });
       }
     }
