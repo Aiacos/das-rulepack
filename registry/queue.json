@@ -1464,6 +1464,22 @@
     "reason": "low-confidence"
   },
   {
+    "key": "xmm:monster:will-o-wisp/bonus/consume-life",
+    "verdict": "data",
+    "why": "Save or die with heal activity and a dead effect; target restriction is minor",
+    "confidence": 0.65,
+    "by": "reader-xmm-027",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:xorn/bonus/charge",
+    "verdict": "none",
+    "why": "Bonus movement toward an enemy; no rule beyond normal movement",
+    "confidence": 0.65,
+    "by": "reader-xmm-027",
+    "reason": "low-confidence"
+  },
+  {
     "key": "xmm:monster:yuan-ti-abomination/bonus/shape-shift",
     "verdict": "none",
     "why": "Bonus-action form change with no combat numbers beyond the data use.",

@@ -96641,9 +96641,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain weapon attack handled by the attack activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wereboar/action/multiattack",
@@ -96680,9 +96689,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wereboar/action/tusk-boar-or-hybrid-form-only",
@@ -96722,9 +96740,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra damage and prone only if target is small enough and monster moved 20 ft straight first; data lacks the movement and size condition",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wereboar/bonus/shape-shift",
@@ -96763,10 +96790,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Form change with no rule effect at the table beyond size; no combat automation needed",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wererat/action/bite-rat-or-hybrid-form-only",
@@ -96807,10 +96843,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Humanoid-only curse with save; becomes a servant at 0 HP and 24h immunity; data lacks the rider conditions",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wererat/action/hand-crossbow-humanoid-or-hybrid-form-only",
@@ -96847,9 +96892,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wererat/action/multiattack",
@@ -96886,9 +96940,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wererat/action/scratch",
@@ -96925,9 +96988,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wererat/bonus/shape-shift",
@@ -96964,10 +97036,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Form change with no rule effect at the table beyond size; no combat automation needed",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:weretiger/action/bite-tiger-or-hybrid-form-only",
@@ -97008,10 +97089,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Humanoid-only curse with save; becomes a servant at 0 HP and 24h immunity; data lacks the rider conditions",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:weretiger/action/longbow-humanoid-or-hybrid-form-only",
@@ -97048,9 +97138,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:weretiger/action/multiattack",
@@ -97087,9 +97186,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:weretiger/action/scratch",
@@ -97126,9 +97234,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:weretiger/bonus/prowl-tiger-or-hybrid-form-only",
@@ -97165,10 +97282,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Bonus move that avoids opportunity attacks then optional Hide; data has only a bare utility activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:weretiger/bonus/shape-shift",
@@ -97205,10 +97331,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Form change with no rule effect at the table beyond size; no combat automation needed",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:werewolf/action/bite-wolf-or-hybrid-form-only",
@@ -97249,10 +97384,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Humanoid-only curse with save; becomes a servant at 0 HP and 24h immunity; data lacks the rider conditions",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:werewolf/action/longbow-humanoid-or-hybrid-form-only",
@@ -97276,9 +97420,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain ranged weapon attack; no item data (no item data), nothing special beyond the attack",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:werewolf/action/multiattack",
@@ -97315,9 +97468,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:werewolf/action/scratch",
@@ -97354,9 +97516,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:werewolf/bonus/shape-shift",
@@ -97395,10 +97566,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Form change with no rule effect at the table beyond size; no combat automation needed",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:werewolf/trait/pack-tactics",
@@ -97433,10 +97613,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:white-dragon-wyrmling/action/cold-breath",
@@ -97473,9 +97662,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for half damage with recharge uses carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:white-dragon-wyrmling/action/multiattack",
@@ -97512,9 +97710,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:white-dragon-wyrmling/action/rend",
@@ -97551,9 +97758,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with two damage types carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:white-dragon-wyrmling/trait/ice-walk",
@@ -97588,9 +97804,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ignoring ice movement costs and checks has no combat automation need",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wight/action/life-drain",
@@ -97628,10 +97853,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Hit point maximum reduction and zombie rising on death, with a cap on controlled zombies; data has save and summon but not these riders",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wight/action/multiattack",
@@ -97668,9 +97902,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wight/action/necrotic-bow",
@@ -97707,9 +97950,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with extra damage type carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wight/action/necrotic-sword",
@@ -97746,9 +97998,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with extra damage type carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wight/trait/sunlight-sensitivity",
@@ -97783,9 +98044,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:will-o-wisp/action/shock",
@@ -97822,9 +98092,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:will-o-wisp/bonus/consume-life",
@@ -97906,9 +98185,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Invisible until concentration ends, ending early after an attack roll or the other bonus action; data has only the condition",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:will-o-wisp/trait/ephemeral",
@@ -97943,9 +98231,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cannot carry items; no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:will-o-wisp/trait/illumination",
@@ -97980,9 +98277,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Light emission is a token setting, not a combat rule",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:will-o-wisp/trait/incorporeal-movement",
@@ -98017,9 +98323,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage when ending the turn inside an object; movement through creatures as difficult terrain; data has nothing",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:winged-kobold/action/chromatic-spittle",
@@ -98056,9 +98371,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage type chosen at use time from a list; data has a plain attack only",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:winged-kobold/action/dragon-tooth-blade",
@@ -98095,9 +98419,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:winged-kobold/trait/pack-tactics",
@@ -98132,10 +98465,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:winged-kobold/trait/sunlight-sensitivity",
@@ -98170,9 +98512,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:winter-wolf/action/bite",
@@ -98211,10 +98562,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Prone applied only to Large or smaller targets; data applies prone without a size check",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:winter-wolf/action/cold-breath",
@@ -98251,9 +98611,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for half damage with recharge uses carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:winter-wolf/trait/pack-tactics",
@@ -98288,10 +98657,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wolf/action/bite",
@@ -98330,10 +98708,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Prone applied only to Medium or smaller targets; data applies prone without a size check",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wolf/trait/pack-tactics",
@@ -98368,10 +98755,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:worg/action/bite",
@@ -98408,10 +98804,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Next attack against the target before the worg's next turn has advantage; data has no effect for it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wraith/action/create-specter",
@@ -98448,9 +98853,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity carries the specter raising; corpse and cap limits are minor",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wraith/action/life-drain",
@@ -98487,10 +98901,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Hit point maximum reduction equal to damage taken; data has only the attack damage",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wraith/trait/incorporeal-movement",
@@ -98525,9 +98948,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage when ending the turn inside an object; movement through creatures as difficult terrain; data has nothing",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wraith/trait/sunlight-sensitivity",
@@ -98562,9 +98994,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wyvern/action/bite",
@@ -98601,10 +99042,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wyvern/action/multiattack",
@@ -98641,9 +99091,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:wyvern/action/sting",
@@ -98682,9 +99141,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poison condition until start of its next turn; data lacks it: the effect lists the wrong status (prone) and duration is not expressed",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:xorn/action/bite",
@@ -98721,10 +99189,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:xorn/action/claw",
@@ -98761,9 +99238,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:xorn/action/multiattack",
@@ -98800,9 +99286,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:xorn/bonus/charge",
@@ -98876,9 +99371,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Burrowing through earth is movement, nothing to automate in combat",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:xorn/trait/treasure-sense",
@@ -98913,9 +99417,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sensing metals is exploration only",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yeti/action/chilling-gaze",
@@ -98954,9 +99467,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Paralysis until start of its next turn, skipped for cold immunity, plus per-source 1 hour immunity; data has save and condition only",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yeti/action/claw",
@@ -98993,9 +99515,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yeti/action/ice-throw",
@@ -99032,9 +99563,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yeti/action/multiattack",
@@ -99071,9 +99611,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yeti/trait/fear-of-fire",
@@ -99115,9 +99664,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to taking fire damage: disadvantage until end of next turn; data has an effect but no trigger",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/action/caustic-lash",
@@ -99154,9 +99712,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/action/multiattack",
@@ -99193,9 +99760,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/bonus/shape-shift",
@@ -99232,10 +99808,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Form change with no rule effect at the table beyond size; no combat automation needed",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/reaction/toxic-escape",
@@ -99274,10 +99859,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction to being hit: halves damage, teleports, area save poisoning; data has save and effect but no trigger or movement",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/trait/demonic-restoration",
@@ -99312,9 +99906,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Revival in another plane after death; not a combat automation",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/trait/magic-resistance",
@@ -99349,10 +99952,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves against spells and magical effects; data carries none",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/trait/spellcasting",
@@ -99392,9 +100004,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells; engine handles casting",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/trait/spider-climb",
@@ -99429,10 +100050,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Climbing without checks; no combat automation",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:yochlol/trait/web-walker",
@@ -99467,9 +100097,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ignoring web movement limits; negligible for combat",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-black-dragon/action/acid-breath",
@@ -99506,9 +100145,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Line breath save for half damage with recharge uses carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-black-dragon/action/multiattack",
@@ -99545,9 +100193,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-black-dragon/action/rend",
@@ -99584,9 +100241,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-black-dragon/trait/amphibious",
@@ -99621,9 +100287,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathing medium has no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-blue-dragon/action/lightning-breath",
@@ -99660,9 +100335,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Line breath save for half damage with recharge uses carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-blue-dragon/action/multiattack",
@@ -99699,9 +100383,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a summary of which attacks to use; nothing for the engine beyond the separate attack items",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-blue-dragon/action/rend",
@@ -99738,9 +100431,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xmm-027",
+          "at": "2026-11-21T20:09:30.714Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack/save/damage carried by the activity; engine resolves it",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:young-brass-dragon/action/fire-breath",

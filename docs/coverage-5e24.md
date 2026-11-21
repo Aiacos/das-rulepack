@@ -20,20 +20,20 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | Ambiguous against the official module (wait for `npm run resolve`) | 168 |
 | No item in the official module | 425 |
 | Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 678 |
-| Verdict `none` (nothing to automate in combat) | 1,271 |
-| Verdict `data` (the item's own data is enough) | 1,227 |
-| Verdict `entry` (a declarative rule is needed and not written yet) | 1,272 |
+| Verdict `none` (nothing to automate in combat) | 1,298 |
+| Verdict `data` (the item's own data is enough) | 1,252 |
+| Verdict `entry` (a declarative rule is needed and not written yet) | 1,298 |
 | Verdict `code` (a script is needed) | 0 |
 | Verdict `engine` (needs something the engine lacks) | 0 |
 | Verdict `unverifiable` (no text) | 118 |
-| No verdict, in `registry/queue.json`, waiting for a person | 231 |
-| No verdict, left for reader agents | 95 |
+| No verdict, in `registry/queue.json`, waiting for a person | 233 |
+| No verdict, left for reader agents | 15 |
 
-Who set the verdicts: reader agents 3,612, rule 859, SRD reading of November 2026 95. A reader agent's verdict is one reading of
+Who set the verdicts: reader agents 3,690, rule 859, SRD reading of November 2026 95. A reader agent's verdict is one reading of
 the text against the structure of the item's data; it was not checked by a second reader and not played. Verdicts below 0.7
 of confidence, and every `engine` verdict, were not applied: they are in the queue.
 
-Of the entries still without a verdict, 58 carry the hint `core-generic`: the engine has an entry under their
+Of the entries still without a verdict, 35 carry the hint `core-generic`: the engine has an entry under their
 identifier, but the identifier is a generic name shared by several entries, so the rule does not decide for them.
 
 Joined with a recorded difference against the official item: 38 by word order of the name,
@@ -71,7 +71,7 @@ Records in `registry/xdmg.json`: 596 inventoried.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | item | 1 | 0 / 0 / 1 | 0 / 0 / 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-| monster | 2146 | 2114 / 28 / 4 | 0 / 0 / 2146 | 0 | 407 | 826 | 733 | 0 | 0 | 0 | 100 | 80 |
+| monster | 2146 | 2114 / 28 / 4 | 0 / 0 / 2146 | 0 | 434 | 851 | 759 | 0 | 0 | 0 | 102 | 0 |
 
 Records in `registry/xmm.json`: 2147 inventoried.
 
@@ -114,7 +114,7 @@ Records in `registry/fraif.json`: 277 inventoried.
 ## Not done
 
 - No rule was drafted from the `entry` and `code` verdicts, no independent review was made, nothing was played.
-- 95 entries still need a reader; 80 of them are monster features.
+- 15 entries still need a reader; 0 of them are monster features.
 - Ambiguous matches are not settled. Most are class features named "Ability Score Improvement" (the only same-name documents
   are general feats), same-name embedded items inside one actor, item variants, and items the equipment pack holds in
   several different copies.
