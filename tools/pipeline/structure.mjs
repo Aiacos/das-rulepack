@@ -35,7 +35,8 @@ const labelOf = (name) => {
 
 const part = (p) => clean({ number: plain(p?.number), denomination: plain(p?.denomination), types: plainList(p?.types) });
 
-function activityOf(id, a) {
+// `base` is the item's own damage (`system.damage.base`): an attack that includes it rolls it before its own parts.
+function activityOf(id, a, base) {
   const out = { id: plain(a?._id) ?? id, type: plain(a?.type) ?? "" };
   const label = labelOf(a?.name);
   if (label) out.label = label;
@@ -46,7 +47,9 @@ function activityOf(id, a) {
   }
   const onSave = plain(a?.damage?.onSave);
   if (onSave) out.onSave = onSave;
-  out.damage = list(a?.damage?.parts).map(part);
+  const own = list(a?.damage?.parts).map(part);
+  const fromItem = plain(a?.type) === "attack" && a?.damage?.includeBase === true && isObject(base) ? [part(base)] : [];
+  out.damage = [...fromItem.filter((p) => Object.keys(p).length), ...own];
   if (isObject(a?.healing)) {
     const healing = part(a.healing);
     if (Object.keys(healing).length) out.healing = [healing];
@@ -87,7 +90,8 @@ export function structureOf(doc) {
     const uses = clean({ max: plain(system.uses.max), recovery });
     if (uses.max !== undefined && uses.max !== "" || uses.recovery.length) out.uses = uses;
   }
-  out.activities = Object.entries(isObject(system.activities) ? system.activities : {}).map(([id, a]) => activityOf(id, a));
+  out.activities = Object.entries(isObject(system.activities) ? system.activities : {})
+    .map(([id, a]) => activityOf(id, a, system.damage?.base));
   out.effects = list(doc?.effects).map(effectOf);
   return out;
 }

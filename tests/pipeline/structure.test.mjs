@@ -37,6 +37,28 @@ const doc = () => ({
   }]
 });
 
+describe("structureOf: an attack that takes its damage from the item", () => {
+  const weapon = (includeBase, parts = []) => ({
+    _id: "Ww00Bb11Cc22Dd33", name: "Invented Claw", type: "weapon",
+    system: {
+      damage: { base: { number: 2, denomination: 6, types: ["slashing"], bonus: "@mod", custom: { formula: MARK } } },
+      activities: { actWWWWWWWWWWWWW: { _id: "actWWWWWWWWWWWWW", type: "attack", damage: { includeBase, parts } } }
+    }
+  });
+  it("lists the base damage first when the activity includes it", () => {
+    expect(structureOf(weapon(true)).activities[0].damage).toEqual([{ number: 2, denomination: 6, types: ["slashing"] }]);
+    expect(structureOf(weapon(true, [{ number: 1, denomination: 4, types: ["fire"] }])).activities[0].damage).toEqual([
+      { number: 2, denomination: 6, types: ["slashing"] }, { number: 1, denomination: 4, types: ["fire"] }]);
+    expect(JSON.stringify(structureOf(weapon(true)))).not.toContain(MARK);
+  });
+  it("leaves it out when the activity does not include it, or is not an attack", () => {
+    expect(structureOf(weapon(false)).activities[0].damage).toEqual([]);
+    const d = weapon(true);
+    d.system.activities.actWWWWWWWWWWWWW.type = "save";
+    expect(structureOf(d).activities[0].damage).toEqual([]);
+  });
+});
+
 describe("structureOf", () => {
   it("summarises activities and effects without a word of prose", () => {
     const s = structureOf(doc());
