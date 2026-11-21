@@ -41026,6 +41026,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 25
         }
       ],
       "state": "inventoried"
@@ -41082,6 +41086,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 25
         }
       ],
       "state": "inventoried"
@@ -41139,6 +41147,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 25
         }
       ],
       "state": "inventoried"
@@ -41170,6 +41182,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 25
         }
       ],
       "state": "inventoried"
@@ -41201,6 +41217,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 25
         }
       ],
       "state": "inventoried"
@@ -41232,6 +41252,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 25
         }
       ],
       "state": "inventoried"
@@ -41399,6 +41423,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "ERLW",
+          "page": 17
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -41424,6 +41454,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "ERLW",
+          "page": 17
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -41474,6 +41510,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "ERLW",
+          "page": 17
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -41499,6 +41541,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "ERLW",
+          "page": 17
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -42849,6 +42897,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 26
         }
       ],
       "state": "inventoried"
@@ -43289,6 +43341,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "ERLW",
+          "page": 26
         }
       ],
       "state": "inventoried"
@@ -44018,6 +44074,10 @@
         {
           "book": "VGM",
           "page": 120
+        },
+        {
+          "book": "ERLW",
+          "page": 31
         }
       ],
       "state": "inventoried"
@@ -44075,6 +44135,10 @@
         {
           "book": "VGM",
           "page": 120
+        },
+        {
+          "book": "ERLW",
+          "page": 31
         }
       ],
       "state": "inventoried"
@@ -44106,6 +44170,10 @@
         {
           "book": "VGM",
           "page": 120
+        },
+        {
+          "book": "ERLW",
+          "page": 31
         }
       ],
       "state": "inventoried"
@@ -44717,6 +44785,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "ERLW",
+          "page": 33
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44767,6 +44841,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "ERLW",
+          "page": 33
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44792,6 +44872,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "ERLW",
+          "page": 33
+        }
+      ],
       "state": "inventoried"
     },
     {
