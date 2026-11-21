@@ -4439,15 +4439,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:boromar-underboss/trait/hustle",
@@ -4954,15 +4949,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:dreaming-dark-infiltrator/action/mind-blade",
@@ -5685,15 +5675,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:ghallanda-troubleshooter/trait/hustle",
@@ -5883,15 +5868,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:homunculus-servant/trait/magic-bond",
@@ -6447,15 +6427,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:lyrandar-scion/trait/jump",
@@ -6494,15 +6469,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:lyrandar-scion/trait/spellcasting",
@@ -6944,15 +6914,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:sentinel-marshal/action/longsword",
@@ -7110,15 +7075,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:shadow-marked-agent/action/multiattack",
@@ -7793,15 +7753,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:tarkanan-marauder/trait/spellcasting",
@@ -8161,15 +8116,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:umbragen-shadow-walker/action/gloom-burst",
@@ -8596,15 +8546,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:monster:vadalis-heir/trait/spellcasting",
@@ -9049,15 +8994,9 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "unverifiable",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "The rulebook text is not in the cache",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
     },
     {
       "key": "efa:species:changeling/changeling-instincts",
@@ -9162,15 +9101,9 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "unverifiable",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "The rulebook text is not in the cache",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
     },
     {
       "key": "efa:species:kalashtar/dual-mind",
@@ -9350,15 +9283,9 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "unverifiable",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "The rulebook text is not in the cache",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
     },
     {
       "key": "efa:species:khoravar/darkvision",
@@ -9417,15 +9344,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "efa:species:khoravar/fey-gift",
@@ -9564,15 +9486,9 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "unverifiable",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "The rulebook text is not in the cache",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
     },
     {
       "key": "efa:species:shifter/bestial-instincts",
@@ -9700,15 +9616,9 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "unverifiable",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:13.648Z"
-        }
-      },
-      "why": "The rulebook text is not in the cache",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
     },
     {
       "key": "efa:species:warforged/construct-resilience",
