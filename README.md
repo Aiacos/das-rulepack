@@ -728,7 +728,8 @@ lowercase) holds one record per rulebook entry: names, pages, identifiers and fi
 the entries that have one, the rule with its metadata and the entry registered with DAS · Core. The book modules under
 `scripts/rules/books/` and `scripts/rules/index.mjs` are generated from it by `npm run build:rules` and are never edited
 by hand: CI and `./build.sh` refuse modules that differ from the registry. The pipeline that fills the registry runs from
-`tools/pipeline/`; how to run it is in [docs/PIPELINE.md](docs/PIPELINE.md).
+`tools/pipeline/`; how to run it is in [docs/PIPELINE.md](docs/PIPELINE.md). What the registry holds for the 2024-era rulebooks,
+in counts, is in [docs/coverage-5e24.md](docs/coverage-5e24.md).
 
 **Editing or adding a rule**: edit its record in `registry/<code>.json`; run `npm run gates` (with the variables of
 [docs/PIPELINE.md](docs/PIPELINE.md)) until it passes, `npm run build:rules` to regenerate the modules and `npm run books`

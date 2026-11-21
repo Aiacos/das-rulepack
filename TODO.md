@@ -13,16 +13,21 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
       Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
       uses — to be checked in play, then reported upstream).
-- [ ] A command to settle an ambiguous match by hand (`resolve`), and reprints as a checked origin: Thaumaturgy has one
-      more effect in the adventure's copy than in the rulebook's.
+- [x] `npm run resolve` settles an ambiguous match by hand; reprints are recorded and checked by the ids gate.
 - [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`): the official module and the dataset agree on the
       school, DDB Importer's item has another one — same entry, importer data to be reported; settle it with `resolve`.
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
 - [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
-- [ ] The other kinds (features, feats, options, items, monsters) and the other books: inventory supports spells only.
-- [ ] Before the next book is inventoried: bind the identifiers of the other origins through `sources` and keep the identifier of
-      a record that already has a rule (16 XPHB spells have different identifiers in the official module and in DDB
-      Importer, e.g. `bigbys-hand` / `arcane-hand`); `generate` does not emit `sources` yet.
+- [x] Every kind of entry is inventoried (milestone 2), and six 2024-era books are in the registry: `docs/coverage-5e24.md`.
+- [ ] Reader batches for the 3,362 entries left without a verdict (`npm run batch -- triage <BOOK> --kind <kind> --out <dir>
+      --structure <private dir>`), book by book: XPHB, XDMG, XMM, EFA, FRHOF, FRAIF.
+- [ ] 113 ambiguous official matches to settle with `npm run resolve`; 521 entries with no official item to look at by category.
+- [ ] Ravenloft: The Horrors Within is not in the dataset (no text to fingerprint); Arcana Unleashed and World of Warcraft
+      have no local dump.
+- [ ] After the 2024-era books: the older books (Xanathar's, Tasha's and the others), by the same commands.
+- [ ] A rule whose named origin has `identifierDiffers` (16 spells: the official module and DDB Importer name them
+      differently) needs a second identifier before it can pass the ids gate.
+- [x] A record that has a rule keeps its identifier and page on re-inventory; `generate` emits `SOURCES` (empty today).
 - [ ] Before the first non-legacy rule is gated: the ids gate does not find ids inside `#id`, `a/b` or `@UUID[…]` strings; a data
       fix without `from` on a mistyped path passes.
 - [ ] Before a release built from the registry: run the local gates (dumps and text cache) and fail on any registry difference;
