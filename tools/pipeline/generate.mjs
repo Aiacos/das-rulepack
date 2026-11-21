@@ -1,13 +1,14 @@
 // Registry records -> the Rule objects of the pack, and the generated scripts/rules/books/*.mjs and scripts/rules/index.mjs.
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy, stateOf } from "./registry.mjs";
+import { NOT_BOOKS, hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy, stateOf } from "./registry.mjs";
 import { editionOf } from "./edition.mjs";
 import { RULE_VERDICTS } from "./schema.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems } from "./identifiers.mjs";
 
-export const NOT_BOOKS = ["legacy.json", "queue.json"];
+// legacy.json and the queues (registry.mjs NOT_BOOKS) sit beside the books and are not books.
+export { NOT_BOOKS };
 const GENERATED = /^\/\/ Generated (from registry\/|by npm run build:rules)/;
 
 // A shipped rule as a registry record (legacy: it keeps its status until the gates and a review replace it).

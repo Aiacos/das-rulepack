@@ -13,6 +13,8 @@ import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
+import { singleSlotKeys } from "./draft-keys.mjs";
+import { assertProblems } from "./assert.mjs";
 
 export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
@@ -71,15 +73,18 @@ export const gateSchema = (record) => [
 
 export function gateValidator(record, { core }) {
   if (!record.rule) return [];
+  // The rule's assertions, against the engine's enumerations (the schema gate checked their shape without them).
+  const asserts = Array.isArray(record.rule.assert)
+    ? assertProblems(record.rule.assert, { vocabulary: core }).map((e) => `validator: ${e}`) : [];
   const { entry, error } = entryOf(record.rule);
-  if (error) return [`validator: ${error}`];
-  if (!entry) return [];
+  if (error) return [`validator: ${error}`, ...asserts];
+  if (!entry) return asserts;
   // The engine looks a fact up as a key of the object it is given.
   const facts = Object.fromEntries(core.facts.map((name) => [name, true]));
   try {
-    return core.validateEntry(entry, { facts }).map((e) => `validator: ${e}`);
+    return [...core.validateEntry(entry, { facts }).map((e) => `validator: ${e}`), ...asserts];
   } catch (e) {
-    return [`validator: the engine threw on the entry: ${e.message}`];
+    return [`validator: the engine threw on the entry: ${e.message}`, ...asserts];
   }
 }
 
@@ -142,6 +147,14 @@ export function checkIds(record, context) {
   // An origin with no item already failed above: its ids are not blamed twice.
   if (origins.some((o) => matchedItems(record, o).length)) {
     for (const id of ids) if (!owned.has(id)) out.failures.push(`ids: ${id} belongs to no origin of the rule`);
+  }
+  // Ruling R4: a key whose slot holds one id (draft-keys.mjs, slot `single`) cannot carry the ids of two origins side by side.
+  if (!legacy && origins.length > 1) {
+    for (const key of singleSlotKeys(entry)) {
+      if (idsIn(entry[key], context?.core?.vocabulary).length) {
+        out.failures.push(`ids: ${key} holds one id: it may name one origin only (the others go in rule.uncovered)`);
+      }
+    }
   }
   // A rule that names no origin already failed: every matched origin would be blamed again.
   if (!legacy && origins.length) {

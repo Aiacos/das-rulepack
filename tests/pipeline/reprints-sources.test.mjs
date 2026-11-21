@@ -9,6 +9,7 @@ import { matchOrigin } from "../../tools/pipeline/match.mjs";
 import { validateRecord } from "../../tools/pipeline/registry.mjs";
 import { generate, indexSource } from "../../tools/pipeline/generate.mjs";
 import { saveBook } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented entries and invented ids.
 const OFF = "Of00Of11Of22Of33";
@@ -87,7 +88,8 @@ describe("reprints", () => {
   });
 
   describe("the ids gate", () => {
-    const rule = (id) => ({ handledIn: "table", adds: "x", entry: { triggers: [{ fromEffect: id }] }, origins: ["official"] });
+    const rule = (id) => ({ handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [{ fromEffect: id }] },
+        origins: ["official"] });
     const record = (reprints, extra = {}) => ({
       key: "tst:item:glimmer-ring", name: "Glimmer Ring", kind: "item", book: "TST", page: 3, edition: "2024", text: null,
       verdict: "entry", evidence: {}, identifier: "glimmer-ring", rule: rule(ACT),
@@ -114,7 +116,7 @@ describe("reprints", () => {
 
 describe("sources", () => {
   const withRule = (records, identifier) => records.map((r) => ({ ...r, identifier, verdict: "entry",
-    rule: { handledIn: "table", adds: "x", entry: {}, origins: ["official"] } }));
+    rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: {}, origins: ["official"] } }));
   it("binds the document ids of an official item whose identifier is not the record's, alsoDocIds included", () => {
     const first = run({ official: [summary("official", OFF)] }).records;
     const kept = withRule(first, "ring-of-glimmer");
@@ -148,7 +150,7 @@ describe("sources", () => {
       actors: [{ id: "Ac00Ac11Ac22Ac33", name: "Wolf", items: [embedded] }] }, textDir, previous: [] }).records;
     expect(first[0].sources).toBeUndefined();
     const ruled = first.map((r) => ({ ...r, identifier: "tst-wolf-claw", verdict: "code",
-      rule: { handledIn: "code", adds: "x", origins: ["official"] } }));
+      rule: { handledIn: "code", assert: ASSERT, adds: "x", origins: ["official"] } }));
     const again = inventory({ book: "TST", kind: "monster", dataset: [monster], dumps: { official: [], "ddb-importer": [],
       actors: [{ id: "Ac00Ac11Ac22Ac33", name: "Wolf", items: [embedded] }] }, textDir, previous: ruled }).records[0];
     expect(again.sources).toEqual({ Bb00Bb11Bb22Bb33: "tst-wolf-claw" });
@@ -165,7 +167,7 @@ describe("generate: SOURCES", () => {
   const gated = (key, over = {}) => ({
     key, name: "Glimmer Ring", kind: "spell", book: "TST", page: 3, edition: "2024", identifier: "glimmer-ring", text: null,
     items: [], verdict: "entry", evidence: {}, legacy: true, legacyStatus: "pending",
-    rule: { handledIn: "table", adds: "x", entry: { triggers: [] }, origins: ["official"] }, ...over
+    rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [] }, origins: ["official"] }, ...over
   });
   const write = (records) => {
     const registry = join(dir, "registry");
@@ -211,7 +213,7 @@ describe("sources are checked against the record", () => {
   it("makes generate fail naming the record", () => {
     const dir = mkdtempSync(join(tmpdir(), "rs-bad-"));
     try {
-      const rule = { handledIn: "table", adds: "x", entry: { triggers: [] }, origins: ["official"] };
+      const rule = { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [] }, origins: ["official"] };
       const registry = join(dir, "registry");
       saveBook(registry, { book: "TST", records: [{ ...base, sources: { [ACT]: "glimmer-ring" }, verdict: "entry", rule }] });
       expect(() => generate({ registry, out: join(dir, "rules") })).toThrow(/tst:item:glimmer-ring.*not an item/);
@@ -221,7 +223,7 @@ describe("sources are checked against the record", () => {
     const { legacyFingerprint } = await import("../../tools/pipeline/registry.mjs");
     const dir = mkdtempSync(join(tmpdir(), "rs-dup-"));
     try {
-      const rule = { handledIn: "table", adds: "x", entry: { triggers: [] }, origins: ["official"] };
+      const rule = { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [] }, origins: ["official"] };
       const mk = (key) => ({ ...base, key, verdict: "entry", rule, legacy: true, legacyStatus: "pending", items: [] });
       const [a, b] = [mk("tst:item:a"), mk("tst:item:b")];
       const registry = join(dir, "registry");
@@ -234,7 +236,7 @@ describe("sources are checked against the record", () => {
 });
 
 describe("reprints that lose ids fail closed", () => {
-  const rule = { handledIn: "table", adds: "x", entry: { triggers: [{ fromEffect: ACT }] }, origins: ["official"] };
+  const rule = { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [{ fromEffect: ACT }] }, origins: ["official"] };
   const mk = (reprint) => ({
     key: "tst:item:glimmer-ring", name: "Glimmer Ring", kind: "item", book: "TST", page: 3, edition: "2024", text: null,
     verdict: "entry", evidence: {}, identifier: "glimmer-ring", rule,

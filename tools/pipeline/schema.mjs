@@ -1,4 +1,6 @@
 // The record format of the rulebook registry: the closed vocabularies and the structural validator.
+import { assertProblems } from "./assert.mjs";
+
 export const VERDICTS = Object.freeze(["core", "data", "none", "entry", "code", "engine", "unverifiable"]);
 export const STATES = Object.freeze(["inventoried", "triaged", "drafted", "gated", "reviewed", "played"]);
 export const ORIGINS = Object.freeze(["official", "ddb-importer", "plutonium"]);
@@ -110,7 +112,7 @@ function checkUncovered(list, origins, errors) {
   });
 }
 
-function checkRule(rule, verdict, errors, identifier) {
+function checkRule(rule, verdict, errors, identifier, legacy) {
   if (!isObject(rule)) return errors.push("rule: must be an object");
   if (!HANDLED_IN.includes(rule.handledIn)) errors.push(`rule.handledIn: must be one of ${HANDLED_IN.join(", ")}`);
   if (typeof rule.adds !== "string") errors.push("rule.adds: must be a string");
@@ -120,7 +122,12 @@ function checkRule(rule, verdict, errors, identifier) {
   }
   if ("entry" in rule && !isObject(rule.entry)) errors.push("rule.entry: must be an object");
   if ("inCore" in rule && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
-  if ("assert" in rule && !isObject(rule.assert)) errors.push("rule.assert: must be an object");
+  // What the rule says happens (assert.mjs), its shape only: the gates check the engine's words. Required from this
+  // milestone on; a legacy rule predates it.
+  if ("assert" in rule) errors.push(...assertProblems(rule.assert));
+  if (!legacy && !(Array.isArray(rule.assert) && rule.assert.length)) {
+    errors.push("rule.assert: required, at least one { given, expect } (a legacy rule may have none)");
+  }
   if (!Array.isArray(rule.origins)) errors.push("rule.origins: must be an array");
   else for (const o of rule.origins) if (!ORIGINS.includes(o)) errors.push(`rule.origins: unknown origin ${JSON.stringify(o)}`);
   if (verdict === "entry" && !isObject(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
@@ -137,9 +144,11 @@ const isGateList = (v) => Array.isArray(v) && v.every((g) => GATE_NAMES.includes
 export const BY = /^[a-z0-9][a-z0-9._-]{0,63}$/i;
 export const isReaderHandle = (by) => typeof by === "string" && BY.test(by) && by.toLowerCase() !== "rule";
 
-// The shapes of evidence.gates, evidence.reviewed and evidence.played, when present (the tools write them; nobody types them).
-function checkEvidence(evidence, errors) {
-  const { gates, reviewed, played, triaged } = evidence;
+// The shapes of evidence.gates, .drafted, .reviewed and .played, when present (the tools write them; nobody types them).
+// Evidence about the rule carries its fingerprint (`rule`, 64 hex): editing the rule makes it stale (registry.mjs stateOf). A
+// legacy record may keep a review or a play written before the stamp existed.
+function checkEvidence(evidence, errors, legacy) {
+  const { gates, triaged } = evidence;
   // A verdict settled by two readers carries the first one: { by, confidence } (triage.mjs ingestSecond).
   if (isObject(triaged) && "first" in triaged) {
     const first = triaged.first;
@@ -166,22 +175,33 @@ function checkEvidence(evidence, errors) {
       }
     }
   }
-  if ("reviewed" in evidence) {
-    if (!isObject(reviewed)) errors.push("evidence.reviewed: must be { by, at, agrees }");
-    else {
-      for (const f of ["by", "at"]) if (!isString(reviewed[f])) errors.push(`evidence.reviewed.${f}: must be a non-empty string`);
-      if (typeof reviewed.agrees !== "boolean") errors.push("evidence.reviewed.agrees: must be a boolean");
+  checkStamped(evidence, "drafted", { by: isReaderHandle, at: isString, core: isString, rule: isHex64 }, {}, errors);
+  const confidence = (v) => typeof v === "number" && v >= 0 && v <= 1;
+  checkStamped(evidence, "reviewed", { by: isReaderHandle, at: isString, agrees: (v) => typeof v === "boolean", rule: isHex64,
+    confidence }, { rule: legacy, confidence: legacy }, errors);
+  checkStamped(evidence, "played", { at: isString, core: isString, world: isString, scenario: isString, rule: isHex64 },
+    { rule: legacy }, errors, { client: isString });
+}
+
+const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
+const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
+  confidence: "a number from 0 to 1" };
+
+// One rule-stamped evidence object: `fields` (name → check) are required unless `optional[name]`; `extra` are optional ones.
+// No other field is allowed.
+function checkStamped(evidence, name, fields, optional, errors, extra = {}) {
+  if (!(name in evidence)) return;
+  const value = evidence[name];
+  const shape = `{ ${[...Object.keys(fields), ...Object.keys(extra).map((k) => `${k}?`)].join(", ")} }`;
+  if (!isObject(value)) return errors.push(`evidence.${name}: must be ${shape}`);
+  const checks = { ...fields, ...extra };
+  for (const [f, ok] of Object.entries(checks)) {
+    const required = f in fields && !optional[f];
+    if (!(f in value) ? required : !ok(value[f])) {
+      errors.push(`evidence.${name}.${f}: must be ${WHAT[f] ?? "a non-empty string"}`);
     }
   }
-  if ("played" in evidence) {
-    if (!isObject(played)) errors.push("evidence.played: must be { at, core, world, scenario, client? }");
-    else {
-      for (const f of ["at", "core", "world", "scenario"]) {
-        if (!isString(played[f])) errors.push(`evidence.played.${f}: must be a non-empty string`);
-      }
-      if ("client" in played && !isString(played.client)) errors.push("evidence.played.client: must be a non-empty string");
-    }
-  }
+  for (const f of Object.keys(value)) if (!(f in checks)) errors.push(`evidence.${name}.${f}: unknown field (${shape})`);
 }
 
 export function validateRecord(record) {
@@ -197,11 +217,11 @@ export function validateRecord(record) {
     errors.push(`verdict: unknown verdict ${JSON.stringify(record.verdict)}`);
   }
   if (!isObject(record.evidence)) errors.push("evidence: must be an object");
-  else checkEvidence(record.evidence, errors);
+  else checkEvidence(record.evidence, errors, record.legacy === true);
   // A verdict comes before any draft: `rule.entry` is required only once a rule is there. A rule is registered only under
   // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
   if ("rule" in record) {
-    checkRule(record.rule, record.verdict, errors, record.identifier);
+    checkRule(record.rule, record.verdict, errors, record.identifier, record.legacy === true);
     if (!RULE_VERDICTS.includes(record.verdict)) {
       errors.push(`verdict: a record with a rule can only have the verdict entry or code, not ${JSON.stringify(record.verdict)}`);
     }

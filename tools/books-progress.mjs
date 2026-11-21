@@ -17,6 +17,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 import { RULES } from "../scripts/rules/index.mjs";
 import { unaccountedOrigins } from "./pipeline/identifiers.mjs";
+import { NOT_BOOKS } from "./pipeline/registry.mjs";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../..");
 const read = file => JSON.parse(readFileSync(resolve(ROOT, file), "utf8"));
@@ -220,7 +221,7 @@ export function renderBooks() {
  */
 export function unaccountedByRule(dir = resolve(ROOT, "registry")) {
   const out = new Map();
-  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !["legacy.json", "queue.json"].includes(f)) ) {
+  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !NOT_BOOKS.includes(f)) ) {
     for ( const r of JSON.parse(readFileSync(resolve(dir, f), "utf8")).records ?? [] ) {
       const gaps = unaccountedOrigins(r);
       if ( gaps.length ) out.set(`${r.book}|${r.identifier}`, gaps);

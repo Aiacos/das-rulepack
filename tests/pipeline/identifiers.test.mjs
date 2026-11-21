@@ -6,6 +6,7 @@ import { aliasFor, GENERIC_IDENTIFIERS, monsterIdentifier } from "../../tools/pi
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { checkIds, gateSchema } from "../../tools/pipeline/gates.mjs";
 import { stateOf, validateRecord } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented creatures, spells and ids.
 const OFF = "Of00Of11Of22Of33";
@@ -81,7 +82,8 @@ describe("inventory binds a ruled monster feature to its embedded item id", () =
   const run = (actors, dataset, previous = []) => inventory({
     book: "TST", kind: "monster", dataset, dumps: { official: [], "ddb-importer": [], actors }, textDir, previous
   });
-  const rule = { handledIn: "table", adds: "x", entry: { triggers: [{ fromActivity: ACT }] }, origins: ["official"] };
+  const rule = { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [{ fromActivity: ACT }] },
+      origins: ["official"] };
   const ruled = (records, owner) => records.map((r) => (r.owner === owner
     ? { ...r, identifier: monsterIdentifier(r), verdict: "entry", rule: structuredClone(rule) } : r));
 

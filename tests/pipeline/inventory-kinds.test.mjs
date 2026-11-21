@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { ruleFromRecord } from "../../tools/pipeline/generate.mjs";
 import { emittedFingerprint, loadBook, ruleFingerprint, saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented entries and documents.
 const FIXTURES = join(dirname(fileURLToPath(import.meta.url)), "fixtures", "dataset");
@@ -74,7 +75,7 @@ describe("inventory of the other kinds", () => {
   });
 
   it("generate refuses to emit a rule whose record has no page, naming the key", () => {
-    const rule = { handledIn: "code", adds: "x", origins: [] };
+    const rule = { handledIn: "code", assert: ASSERT, adds: "x", origins: [] };
     const gated = (page) => {
       const r = { ...run().records[0], page, verdict: "code", rule, identifier: "moss-stride" };
       const passed = ["schema", "validator", "ids", "fixes", "text"];
@@ -120,7 +121,8 @@ describe("inventory of the other kinds", () => {
 
   it("keeps the identifier of a record that has a rule, and refreshes the identifier of one without", () => {
     const [first] = run().records;
-    const ruled = { ...first, identifier: "my-id", verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } };
+    const ruled = { ...first, identifier: "my-id", verdict: "code", rule: { handledIn: "code", assert: ASSERT, adds: "x",
+        origins: [] } };
     const dumps = { official: [doc("Moss Stride", { identifier: "official-id" })], "ddb-importer": [] };
     const again = run({ previous: [ruled], dumps });
     expect(again.records[0].identifier).toBe("my-id");
@@ -202,7 +204,8 @@ describe("pipeline CLI: inventory of every kind", () => {
     saveBook(dir, {
       ...book, records: book.records.map((r, i) => ({
         ...r, verdict: i ? "none" : "entry", why: "decided", evidence: { triaged: { by: "reader-1", at: "2026-01-01T00:00:00Z" } },
-        ...(i ? {} : { rule: { handledIn: "table", adds: "x", entry: { dataFixes: [] }, origins: ["ddb-importer"] } })
+        ...(i ? {} : { rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: { dataFixes: [] },
+            origins: ["ddb-importer"] } })
       }))
     });
     const spells = () => JSON.stringify(records("XZZ").filter((r) => r.kind === "spell"));

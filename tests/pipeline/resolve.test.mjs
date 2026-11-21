@@ -7,6 +7,7 @@ import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { resolveItem, excludeReprint, ResolveError } from "../../tools/pipeline/resolve.mjs";
 import * as settle from "../../tools/pipeline/settle.mjs";
 import { saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented entries and invented ids.
 const A = "Aa00Aa11Aa22Aa33";
@@ -45,7 +46,8 @@ describe("resolveItem", () => {
     expect(next.items.map((i) => i.origin)).toEqual(["official", "plutonium"]);
   });
   it("never touches verdict, rule or evidence", () => {
-    const record = { ...ambiguous(), verdict: "entry", rule: { handledIn: "table", adds: "x", entry: {}, origins: ["official"] },
+    const record = { ...ambiguous(), verdict: "entry", rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: {},
+        origins: ["official"] },
       evidence: { triaged: { by: "rule", at: AT } }, why: "w", identifier: "kept-id" };
     const next = resolveItem(record, { ...base, docId: A });
     expect(next).toMatchObject({ verdict: "entry", rule: record.rule, evidence: record.evidence, why: "w", identifier: "kept-id" });

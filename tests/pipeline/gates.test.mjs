@@ -10,6 +10,7 @@ import { loadCore } from "../../tools/pipeline/core.mjs";
 import {
   idsIn, gateSchema, gateValidator, gateIds, gateFixes, gateText, gateUnique, runGates
 } from "../../tools/pipeline/gates.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented spells and invented ids, no real book content.
 const ACT = "Ab12Cd34Ef56Gh78";
@@ -41,7 +42,7 @@ const item = (extra = {}) => ({
 const rec = (over = {}) => ({
   key: "tst:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "TST", page: 12, edition: "2014",
   text: null, items: [item()], verdict: "entry", evidence: {}, identifier: "glimmer-bolt",
-  rule: { handledIn: "table", adds: "A bolt that glimmers.", entry: entryWith(), origins: ["ddb-importer"] },
+  rule: { handledIn: "table", assert: ASSERT, adds: "A bolt that glimmers.", entry: entryWith(), origins: ["ddb-importer"] },
   ...over
 });
 const withEntry = (entry, over = {}) => rec({ rule: { ...rec().rule, entry }, ...over });
@@ -133,7 +134,8 @@ describe("gateValidator", () => {
   });
 
   it("has nothing to validate on a rule without an entry", () => {
-    expect(gateValidator(rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } }), ctx())).toEqual([]);
+    expect(gateValidator(rec({ verdict: "code", rule: { handledIn: "code", assert: ASSERT, adds: "x",
+        origins: [] } }), ctx())).toEqual([]);
   });
 });
 
@@ -163,7 +165,9 @@ describe("gateIds", () => {
   it("checks every origin the rule names", () => {
     const r = withEntry(entryWith(), { items: [item(), item({ origin: "official", activities: [], effects: [] })] });
     r.rule.origins = ["ddb-importer", "official"];
-    expect(gateIds(r, ctx())).toEqual(["ids: official contributes no id"]);
+    // A trigger's ids sit in fields of one id (draft-keys.mjs slot `single`, Ruling R4): one origin only, too.
+    expect(gateIds(r, ctx())).toEqual(["ids: official contributes no id",
+      "ids: triggers holds one id: it may name one origin only (the others go in rule.uncovered)"]);
   });
 
   it("fails ids with no origin to check them against", () => {
@@ -171,7 +175,7 @@ describe("gateIds", () => {
     expect(gateIds(r, ctx())).toEqual(["ids: rule names no origin"]);
     const noIds = withEntry({ aura: true }); noIds.rule.origins = [];
     expect(gateIds(noIds, ctx())).toEqual(["ids: rule names no origin"]);
-    const code = rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } });
+    const code = rec({ verdict: "code", rule: { handledIn: "code", assert: ASSERT, adds: "x", origins: [] } });
     expect(gateIds(code, ctx())).toEqual([]);
     expect(runGates([withText(r)], ctx()).failures[r.key].ids).toEqual(["ids: rule names no origin"]);
   });
@@ -199,13 +203,13 @@ describe("gateIds", () => {
   });
 
   it("notes a code rule without entry as having nothing to check: noted, not passed; a table rule needs an entry", () => {
-    const code = withText(rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } }));
+    const code = withText(rec({ verdict: "code", rule: { handledIn: "code", assert: ASSERT, adds: "x", origins: [] } }));
     const { failures, notes, updated } = runGates([code], ctx());
     expect(failures).toEqual({});
     expect(notes[code.key].ids).toEqual(["ids: nothing to check (code rule without entry)"]);
     expect(updated[0].evidence.gates.noted).toEqual(["ids"]);
     expect(updated[0].evidence.gates.passed).not.toContain("ids");
-    const table = rec({ rule: { handledIn: "table", adds: "x", origins: ["ddb-importer"] } });
+    const table = rec({ rule: { handledIn: "table", assert: ASSERT, adds: "x", origins: ["ddb-importer"] } });
     expect(gateIds(table, ctx())).toEqual(["ids: a table rule has no entry"]);
   });
 
@@ -383,7 +387,7 @@ describe("runGates", () => {
   });
 
   it("does not run the other gates on a record that fails the schema", () => {
-    const bad = rec({ page: 0, rule: { handledIn: "table", adds: "x", entry: 5, origins: "ddb-importer" } });
+    const bad = rec({ page: 0, rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: 5, origins: "ddb-importer" } });
     const { failures } = runGates([bad], ctx());
     expect(Object.keys(failures[bad.key])).toEqual(["schema"]);
   });

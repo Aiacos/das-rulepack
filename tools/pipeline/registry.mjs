@@ -2,7 +2,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord } from "./schema.mjs";
+import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, isReaderHandle, validateRecord } from "./schema.mjs";
 
 export { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord };
 
@@ -96,6 +96,12 @@ export function evidenceIsCurrent(record, gates) {
   return canonical(recorded) === canonical(gatedItems(record));
 }
 
+// Evidence about the rule (a review, a play) counts only while its `rule` is the fingerprint of the rule as it is: editing the
+// rule makes it stale. A legacy record keeps today's behaviour: a review or a play written before the stamp existed (no `rule`)
+// still counts; one that carries a stamp is held to it.
+const aboutThisRule = (record, evidence) =>
+  typeof evidence?.rule === "string" ? evidence.rule === ruleFingerprint(record.rule) : record.legacy === true;
+
 // The state is always derived from the evidence, never read from a stored field. `core` is accepted for the callers that
 // know which engine they gate against; the gates carry their own fingerprint of the rule, which is what staleness hangs on.
 export function stateOf(record, { core } = {}) {
@@ -104,8 +110,9 @@ export function stateOf(record, { core } = {}) {
   const gates = record.evidence?.gates;
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
   if (!evidenceIsCurrent(record, gates) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
-  if (!record.evidence.reviewed?.agrees) return "gated";
-  return isPlayed(record.evidence.played) ? "played" : "reviewed";
+  const { reviewed, played } = record.evidence;
+  if (reviewed?.agrees !== true || !aboutThisRule(record, reviewed)) return "gated";
+  return isPlayed(played) && aboutThisRule(record, played) ? "played" : "reviewed";
 }
 
 // A play counts only with what it was played on: a hand-typed `played: {}` or `played: true` does not.
@@ -149,8 +156,13 @@ export function loadBook(dir, code) {
   return { book, ...(note === undefined ? {} : { note }), records: records.map(({ state, ...record }) => record) };
 }
 
-// legacy.json and queue.json live beside the books in the registry folder, so no book may take those names.
-export const RESERVED_BOOKS = Object.freeze(["legacy", "queue"]);
+// The queues a person reads, beside queue.json (Ruling R7): drafts that are not rules (outcome person, code, engine, low
+// confidence) and reviews that do not agree. Each is an array of { key, reason, by, why, confidence, draft?, review? }.
+export const QUEUE_FILES = Object.freeze({ drafts: "drafts-queue.json", review: "review-queue.json" });
+// The files of the registry folder that are not books: every reader of registry/*.json leaves them out.
+export const NOT_BOOKS = Object.freeze(["legacy.json", "queue.json", ...Object.values(QUEUE_FILES)]);
+// legacy.json and the queues live beside the books in the registry folder, so no book may take those names.
+export const RESERVED_BOOKS = Object.freeze(NOT_BOOKS.map((f) => f.slice(0, -5)));
 export const isReservedBook = (code) => RESERVED_BOOKS.includes(String(code).toLowerCase());
 
 // A book code: an upper-case letter, then 1 to 9 upper-case letters or digits. Its lower-case form names the file, and
@@ -176,4 +188,57 @@ export function saveBook(dir, { book, note, records }) {
   const out = { book, ...(note === undefined ? {} : { note }), records: withState };
   mkdirSync(dir, { recursive: true });
   writeFileSync(fileOf(dir, book), `${JSON.stringify(out, null, 2)}\n`);
+}
+
+const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review"];
+
+/** The problems of one entry of drafts-queue.json or review-queue.json, or []. */
+export function validateQueueEntry(entry) {
+  if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return ["entry: must be an object"];
+  const errors = [];
+  for (const f of ["key", "reason", "why"]) {
+    if (typeof entry[f] !== "string" || !entry[f]) errors.push(`${f}: must be a non-empty string`);
+  }
+  if (!isReaderHandle(entry.by)) errors.push("by: must be a reader handle (not \"rule\")");
+  const c = entry.confidence;
+  if (!(typeof c === "number" && c >= 0 && c <= 1)) errors.push("confidence: must be a number from 0 to 1");
+  for (const f of ["draft", "review"]) {
+    if (f in entry && (entry[f] === null || typeof entry[f] !== "object" || Array.isArray(entry[f]))) {
+      errors.push(`${f}: must be an object`);
+    }
+  }
+  for (const f of Object.keys(entry)) if (!QUEUE_FIELDS.includes(f)) errors.push(`${f}: unknown field`);
+  return errors;
+}
+
+const queueFile = (dir, name) => {
+  if (!Object.hasOwn(QUEUE_FILES, name)) {
+    throw new Error(`unknown queue ${JSON.stringify(name)} (${Object.keys(QUEUE_FILES).join(", ")})`);
+  }
+  return join(dir, QUEUE_FILES[name]);
+};
+
+/** The entries of a queue (`name`: drafts or review); a missing file is an empty queue. Throws on a file that is no array. */
+export function loadQueue(dir, name) {
+  const file = queueFile(dir, name);
+  if (!existsSync(file)) return [];
+  let list;
+  try { list = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new Error(`${file}: ${e.message}`); }
+  if (!Array.isArray(list)) throw new Error(`${file}: must be an array of queue entries`);
+  return list;
+}
+
+/** Writes a queue, every entry checked, sorted by key; one key appears once. */
+export function saveQueue(dir, name, entries) {
+  const file = queueFile(dir, name);
+  const keys = new Set();
+  for (const e of entries) {
+    const errors = validateQueueEntry(e);
+    if (errors.length) throw new Error(`${QUEUE_FILES[name]}: ${e?.key ?? "entry"}: ${errors.join("; ")}`);
+    if (keys.has(e.key)) throw new Error(`${QUEUE_FILES[name]}: ${e.key} is listed twice`);
+    keys.add(e.key);
+  }
+  const sorted = [...entries].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(file, `${JSON.stringify(sorted, null, 2)}\n`);
 }

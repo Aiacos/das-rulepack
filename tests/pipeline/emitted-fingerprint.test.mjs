@@ -10,6 +10,7 @@ import {
   emittedFingerprint, evidenceIsCurrent, legacyFingerprint, legacyProblem, saveBook, stateOf
 } from "../../tools/pipeline/registry.mjs";
 import { generate } from "../../tools/pipeline/generate.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only. Fix round 2 of Task 2: what a record emits besides its rule (identifier, sources...) is part of the
 // gate evidence, and generate refuses a record whose identifiers fail the identifier checks.
@@ -34,7 +35,8 @@ function gatedWolf() {
   const run = (previous) => inventory({ book: "TST", kind: "monster", dataset: [feature],
     dumps: { official: [], "ddb-importer": [], actors }, textDir, previous }).records;
   const ruled = run([]).map((r) => ({ ...r, identifier: monsterIdentifier(r), verdict: "entry",
-    rule: { handledIn: "table", adds: "x", entry: { triggers: [{ fromActivity: ACT }] }, origins: ["official"] } }));
+    rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [{ fromActivity: ACT }] },
+        origins: ["official"] } }));
   const [record] = run(ruled);
   cacheText(textDir, "the wolf bites");
   const { failures, updated } = runGates([record], { core, documents: {}, textDir, ci: false, legacy: new Map() });
@@ -77,7 +79,7 @@ describe("legacy records", () => {
     const r = {
       key: "tst:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "TST", page: 3, edition: "2024", text: null,
       identifier: "glimmer-bolt", items: [], verdict: "entry", legacy: true, legacyStatus: "validated", evidence: {},
-      rule: { handledIn: "table", adds: "x", entry: { triggers: [] }, origins: ["ddb-importer"] }
+      rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [] }, origins: ["ddb-importer"] }
     };
     const legacy = new Map([[r.key, legacyFingerprint(r)]]);
     const edited = { ...r, identifier: "longsword" };

@@ -122,7 +122,10 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    document id unless it is a word of the engine's own vocabulary (entry keys, enumeration values, fact and moment names
    of the `DAS_CORE` clone). The ids of several origins sit side by side (Ruling R4): every id must be an activity or effect
    of the matched item of at least one origin the rule names (`ids: <id> belongs to no origin of the rule`), and each origin
-   named must contribute one when the entry has any (`ids: <origin> contributes no id`); an item saved under several ids,
+   named must contribute one when the entry has any (`ids: <origin> contributes no id`). A key whose slot holds one id
+   (`tools/pipeline/draft-keys.mjs`, slot `single`: `triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`) names one
+   origin only when it holds an id: a rule that names two fails (`ids: <key> holds one id: it may name one origin only (the
+   others go in rule.uncovered)`); a legacy record is not held to it. An item saved under several ids,
    `alsoDocIds`, has the same ids in every copy (identical data implies it). Every matched origin (a Plutonium `unchecked`
    item is not) is named in `origins` or listed in `rule.uncovered: [{ origin, because }]` with one line saying why
    (Ruling R5; `ids: <origin> is matched but neither in origins nor uncovered`). The item of every origin named must be
@@ -143,6 +146,7 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    entries identifier by identifier, so an identifier or alias equal to a DAS · Core identifier (`content/index.mjs`
    `SHIPPED` and `SRD_ALIASES` of the clone) fails unless it is the record's own identifier and the rule says `inCore: true`
    (set by a person): it would patch the engine's entry for every item of that name. An alias never may.
+   The validator gate also checks the rule's assertions (`rule.assert`, below) against the enumerations of the clone.
    A data fix without `from` must at least find its path on the document (`fixes: <path> does not exist`).
    The schema gate also checks `sources`: every key must be the docId (or
    an `alsoDocIds`) of the record's matched official item and every value the record's identifier
@@ -168,8 +172,39 @@ The state is derived from the evidence and written by the tools; nobody types it
 | `triaged` | a verdict is set |
 | `drafted` | a rule is written, but the gates have not passed on it (or the rule changed since) |
 | `gated` | every required gate passed on the current rule |
-| `reviewed` | an independent reading agrees |
-| `played` | a scenario passed in a running world |
+| `reviewed` | an independent reading agrees, about the rule as it is |
+| `played` | a scenario passed in a running world, on the rule as it is |
+
+Evidence about the rule carries its fingerprint (`rule`, `registry.mjs` `ruleFingerprint`): `evidence.drafted: { by, at, core,
+rule }`, `evidence.reviewed: { by, at, agrees, rule, confidence }`, `evidence.played: { at, core, world, scenario, client?,
+rule }` (no other field; `by` a reader handle, `confidence` from 0 to 1). A review or a play counts only while its `rule` is
+the fingerprint of the current rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a
+review or a play written before the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it.
+
+## 🧾 Rule vocabulary
+
+- **Assertions.** Every rule outside the legacy ones has `rule.assert`, a non-empty array of `{ given, expect }`
+  (`tools/pipeline/assert.mjs`): what the rule says happens, so that a draft and a review can be compared and a scenario can
+  check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free? }`; `expect: { damage?:
+  { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode: advantage|disadvantage, on:
+  attack|save|check, for: self|target|ally|enemy }, affects?, excludes? (target|allies|enemies|self), move?: { mode,
+  distance }, uses?: { spent }, free? }`. Any other field is refused; `free` is one line of at most 120 characters. The schema
+  checks the shape; the validator gate checks `moment` (MOMENTS), `targetType` (CREATURE_TYPES), the statuses of `condition`
+  (the conditions `core/monster-text.mjs` names), `ends` (EFFECT_ENDS or a moment), `move.mode` (MOVE_MODES) and
+  `damage.type` (DAMAGE_TYPES) against the clone (`loadCore`). `normaliseAssert` gives the sorted canonical forms of a list
+  (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry)` what an entry says by itself:
+  `saveDamage` (a saved save: half or no damage), `halfOnMiss`, `noDamage`, and a `triggers` declaration on `failedSave` with a
+  `status` or `move` step.
+- **Drafter keys** (Ruling R6). `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`) lists the entry keys a drafter may write, each
+  with the slot its ids sit in (`activityMap`, `effectMap`: ids as an object's keys or a list, origins side by side; `single`:
+  one id, one origin; `none`), read off each key's validator in the clone; `tests/pipeline/draft-keys.test.mjs` checks every
+  key against the engine's `ENTRY_KEYS` and validator. `checkDraftKeys(entry, { origins, kind })` refuses any other key
+  (the record goes to the drafts queue as outcome `person`) and a `dataFixes` that is not on the official origin alone, has a
+  path fix without `from`, or is on a monster feature.
+- **Queues** (Ruling R7). `registry/drafts-queue.json` and `registry/review-queue.json` sit beside `queue.json`: arrays of
+  `{ key, reason, by, why, confidence, draft?, review? }`, sorted by key (`registry.mjs` `loadQueue`, `saveQueue`,
+  `validateQueueEntry`). With `legacy.json` they are the files of `NOT_BOOKS` (`registry.mjs`): `generate`, the CLI,
+  `books-progress` and every other reader of `registry/*.json` leave them out, and no book code may take their names.
 
 Besides the state, a record may carry the flag `legacy` (a rule that predates the pipeline). Verdicts: `core` (DAS · Core
 has the entry), `data` (the item's own data resolves it), `none` (nothing to automate in combat), `entry` (a declarative

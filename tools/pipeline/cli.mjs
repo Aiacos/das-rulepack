@@ -2,7 +2,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { BOOK_CODE, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
+import { BOOK_CODE, NOT_BOOKS, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
 import {
@@ -32,8 +32,6 @@ const need = (name) => {
   return process.env[name];
 };
 
-const NOT_BOOKS = ["legacy.json", "queue.json"];
-
 // The <BOOK> argument of every subcommand, upper-cased once here: `xzz` and `XZZ` are the same book.
 function bookArg(code) {
   if (isReservedBook(code)) throw new UsageError(`"${code}" is reserved in the registry folder and cannot be a book code`);
@@ -44,7 +42,7 @@ function bookArg(code) {
 
 function loadRegistry(dir) {
   if (!existsSync(dir)) return [];
-  // legacy.json and queue.json sit beside the books and are not books.
+  // legacy.json and the queues (registry.mjs NOT_BOOKS) sit beside the books and are not books.
   return readdirSync(dir).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f)).sort()
     .map((f) => ({ file: f, ...loadBook(dir, f.slice(0, -5)) }));
 }

@@ -6,6 +6,7 @@ import { monsterIdentifier, reaches, unaccountedOrigins } from "../../tools/pipe
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { checkIds, gateSchema, gateUnique, runGates } from "../../tools/pipeline/gates.mjs";
 import { legacyFingerprint, ruleFingerprint } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented creatures, spells and ids. Fix round 1 of Task 2: a rule must never be registered under a
 // bare or generic identifier, whatever a later task does or forgets.
@@ -43,7 +44,8 @@ describe("a ruled monster feature is registered under its creature-scoped identi
     book: "TST", kind: "monster", dataset: dataset.filter((f) => actors.some((a) => a.name === f.owner)),
     dumps: { official: [], "ddb-importer": [], actors }, textDir, previous
   });
-  const rule = { handledIn: "table", adds: "x", entry: { triggers: [{ fromActivity: ACT }] }, origins: ["official"] };
+  const rule = { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [{ fromActivity: ACT }] },
+      origins: ["official"] };
   // The fixture rules the feature WITHOUT touching its identifier, unless told to scope it.
   const ruleWolf = (records, scope) => records.map((r) => (r.owner === "Dire Wolf"
     ? { ...r, ...(scope ? { identifier: monsterIdentifier(r) } : {}), verdict: "entry", rule: structuredClone(rule) } : r));
@@ -91,7 +93,8 @@ const spell = (alsoAs, { ddbIdentifier = "glimmer-bolt", origins = ["official", 
   key: "tst:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "TST", page: 3, edition: "2024", text: null,
   identifier: "glimmer-bolt", verdict: "entry", evidence: {},
   items: [item("official", "glimmer-bolt", [ACT]), item("ddb-importer", ddbIdentifier, [A_DDB])],
-  rule: { handledIn: "table", adds: "x", entry: { saveDamage: { [ACT]: "half", [A_DDB]: "half" } }, origins, alsoAs },
+  rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: { saveDamage: { [ACT]: "half", [A_DDB]: "half" } },
+      origins, alsoAs },
   ...over
 });
 const alias = (identifier, origin = "ddb-importer") => [{ identifier, origin }];
@@ -127,7 +130,7 @@ describe("every alias is gated (record only: it holds under --ci)", () => {
       key: "tst:monster:dire-wolf/action/howl", name: "Howl", kind: "monster", owner: "Dire Wolf", section: "action",
       book: "TST", page: 9, edition: "2024", text: null, identifier: "tst-dire-wolf-howl", verdict: "entry", evidence: {},
       items: [{ ...item("ddb-importer", "dire-howl", [A_DDB]), docId: `${WOLF}.${DDB}` }],
-      rule: { handledIn: "table", adds: "x", entry: { saveDamage: { [A_DDB]: "half" } }, origins: ["ddb-importer"],
+      rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: { saveDamage: { [A_DDB]: "half" } }, origins: ["ddb-importer"],
         alsoAs: alias("dire-howl") }
     };
     expect(gateSchema(m).join("\n")).toMatch(/monster feature.*alias/);

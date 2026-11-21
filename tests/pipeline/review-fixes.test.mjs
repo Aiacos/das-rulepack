@@ -17,6 +17,7 @@ import { docIndex, findDocument, itemSummary, reprintIndex, actorSummaries } fro
 import { reprintsOf } from "../../tools/pipeline/settle.mjs";
 import { baseFeatureName, readMonsters } from "../../tools/pipeline/monsters.mjs";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented names and invented ids.
 const cand = (name, over = {}) => ({
@@ -211,7 +212,7 @@ describe("I2: triage --redo-rule and batch on the command line", () => {
       base("tst:item:read", { verdict: "data", why: "a reader said so", evidence: { triaged: { by: "reader-1", at: "x",
         confidence: 0.9 } } }),
       base("tst:item:ruled", { verdict: "entry", why: "w", evidence: rule,
-        rule: { handledIn: "table", adds: "x", entry: {}, origins: ["official"] } })
+        rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: {}, origins: ["official"] } })
     ];
     saveBook(registry, { book: "TST", records });
     const before = book();
@@ -266,7 +267,8 @@ describe("I3: gate evidence is bound to the items checked", () => {
       origin: "official", match: "ambiguous", candidates: [{ identifier: "glimmer-ring", docId: A },
         { identifier: "glimmer-ring", docId: B }], differences: []
     }], verdict: "entry", evidence: {},
-    rule: { handledIn: "table", adds: "x", entry: { triggers: [{ on: "x", fromActivity: ACT }] }, origins: ["official"] }
+    rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: { triggers: [{ on: "x", fromActivity: ACT }] },
+        origins: ["official"] }
   });
   const ctx = (over = {}) => ({ core: stubCore, documents: {}, textDir, ci: false, legacy: new Map(), ...over });
   const settled = (docId, r = record()) => resolveItem(r, {
