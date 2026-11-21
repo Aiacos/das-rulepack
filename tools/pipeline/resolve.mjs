@@ -1,7 +1,7 @@
 // Settling a match by hand: a person picks the document of an ambiguous item (or says there is none), or excludes a reprint
 // from the ids gate. Nothing here touches verdict, rule or evidence.
 import { docTypesOf } from "./match.mjs";
-import { itemOf, bindSources, canonicalIdentifier, reprintsOf } from "./inventory.mjs";
+import { itemOf, bindSources, canonicalIdentifier, reprintsOf } from "./settle.mjs";
 import { BY, MAX_WHY, ONE_LINE } from "./triage.mjs";
 
 export class ResolveError extends Error {}

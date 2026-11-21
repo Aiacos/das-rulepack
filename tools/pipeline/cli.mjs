@@ -8,7 +8,8 @@ import { readMonsters } from "./monsters.mjs";
 import {
   actorSummaries, dumpsFor, grantIndex, isActorFile, itemSummary, officialFilesFor, readDump, reprintIndex
 } from "./dumps.mjs";
-import { inventory, INVENTORY_KINDS, poolOf } from "./inventory.mjs";
+import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
+import { poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
