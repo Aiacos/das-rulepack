@@ -1639,9 +1639,9 @@
       "page": 46,
       "srd": true,
       "text": {
-        "sha256": "53ad3e38b0fd065597d4f99a120e11c49e8e507305ee29aee8d8c0d6e8caac02",
+        "sha256": "cbaa9d80f4033bd82ccc6b56f6aa58f9e98620263ed4744962e345bca7a7c4b1",
         "source": "5etools",
-        "chars": 376
+        "chars": 379
       },
       "items": [
         {
@@ -5840,9 +5840,9 @@
       "page": 64,
       "srd": true,
       "text": {
-        "sha256": "1cf1373bfce2f0f1d6d67446f4b208446c5c21e27f485ba63fe089bd20d82bb9",
+        "sha256": "df87ec32fcaec7a9325d27072f3b3b3c1b1af3d9f2b6ab429a628da295e17c15",
         "source": "5etools",
-        "chars": 304
+        "chars": 307
       },
       "items": [
         {
@@ -12334,9 +12334,9 @@
       "page": 97,
       "srd": false,
       "text": {
-        "sha256": "34350f61010633fefedf1d17680c2f792df00b253fb6ce4461bdeb15fd04b00e",
+        "sha256": "c8dae8f5e71d0baecaa6df32b2a63983be5812d17ff8f2404aa9a4a2366b6bc9",
         "source": "5etools",
-        "chars": 285
+        "chars": 288
       },
       "items": [
         {
@@ -16273,9 +16273,9 @@
       "page": 148,
       "srd": true,
       "text": {
-        "sha256": "c6803444346203681083ebe8bc73fcbedb357bd6ba89c58770f6e6febd20439a",
+        "sha256": "2a1287981dce1b50233933c2d5e10794da21cb2a64eac4ab7c121675098b470c",
         "source": "5etools",
-        "chars": 425
+        "chars": 428
       },
       "items": [
         {
@@ -16693,9 +16693,9 @@
       "page": 151,
       "srd": true,
       "text": {
-        "sha256": "c0824d0100dd1661f800db4461f29352f87ebf414e0a1779e9c576463b507a21",
+        "sha256": "92e10fc830626554b348c3bcb7dceffbebdccc97635326b6fa4b5516f35ccb9c",
         "source": "5etools",
-        "chars": 294
+        "chars": 297
       },
       "items": [
         {
@@ -16792,9 +16792,9 @@
       "page": 153,
       "srd": true,
       "text": {
-        "sha256": "fdec5f6f576272b36e276e3316825fc06f3629aa568a1d6910779ee32386f021",
+        "sha256": "329a8964e826b6104c768cfea7479b4724f6249561f3c762de1d1623d23616c2",
         "source": "5etools",
-        "chars": 338
+        "chars": 341
       },
       "items": [
         {
@@ -17528,9 +17528,9 @@
       "page": 151,
       "srd": true,
       "text": {
-        "sha256": "9e63b05e0b2bd92c1e4a760f82f35a1d420e390e472658032c37e2b175cbc0bd",
+        "sha256": "c0c9a9607ad04638cf3ae3a9b5d278b97850ce95abe7d37b888f11f404aa1a3a",
         "source": "5etools",
-        "chars": 383
+        "chars": 386
       },
       "items": [
         {
@@ -17553,9 +17553,9 @@
       "page": 151,
       "srd": true,
       "text": {
-        "sha256": "9e63b05e0b2bd92c1e4a760f82f35a1d420e390e472658032c37e2b175cbc0bd",
+        "sha256": "c0c9a9607ad04638cf3ae3a9b5d278b97850ce95abe7d37b888f11f404aa1a3a",
         "source": "5etools",
-        "chars": 383
+        "chars": 386
       },
       "items": [
         {
@@ -17874,9 +17874,9 @@
       "page": 151,
       "srd": true,
       "text": {
-        "sha256": "f97bfc6898a5601f3902f2b2e18aa2d07cda3dc1da87f0c2ed7e02cec5673ffb",
+        "sha256": "db353e5cd8241495c94f30f4cededd8dc1dde660e25737013997bc7ea0271b72",
         "source": "5etools",
-        "chars": 79
+        "chars": 82
       },
       "items": [
         {
@@ -20555,9 +20555,9 @@
       "page": 153,
       "srd": true,
       "text": {
-        "sha256": "68748f01edf5556788b5da7783f6d55df666611800955258d65dc8917b6076be",
+        "sha256": "438f83e7255cd83c9d4660b4064ce200e8c636f147168abfba0cfb88e784261f",
         "source": "5etools",
-        "chars": 95
+        "chars": 98
       },
       "items": [
         {
@@ -20871,9 +20871,9 @@
       "page": 152,
       "srd": true,
       "text": {
-        "sha256": "67d2e61fc920c3ae83b778a3eb9e6deb314129abc38d9608c91d51cf71342573",
+        "sha256": "0925694117dd5424ac792622b4f11dcb229fa087e4ccfcd3b281cf9868060008",
         "source": "5etools",
-        "chars": 707
+        "chars": 713
       },
       "items": [
         {
@@ -21590,9 +21590,9 @@
       "page": 152,
       "srd": true,
       "text": {
-        "sha256": "a252a7f41224e2617e0547b14794cb29180558aaed4cc0efae9ee9a30ac8bf04",
+        "sha256": "70c2a03acbafa4955742fd3584fb550fa263380013516464f1d62cb425210403",
         "source": "5etools",
-        "chars": 218
+        "chars": 221
       },
       "items": [
         {
@@ -21882,9 +21882,9 @@
       "page": 152,
       "srd": true,
       "text": {
-        "sha256": "5b7e2b6bd69bd7da847675f9c935598cec12cb730e51519742ef21a833fa25e7",
+        "sha256": "df21fad24b8c9a34de28f505fbec0d655925534bfaedb6c9951c0547f5cb00e7",
         "source": "5etools",
-        "chars": 373
+        "chars": 382
       },
       "items": [
         {
@@ -22391,9 +22391,9 @@
       "page": 149,
       "srd": true,
       "text": {
-        "sha256": "41e6e7177af2469b0d01bd1594220ce915103da5d3a2b5dc84fe3b465e24ce0a",
+        "sha256": "bdebaaa2a024714bd3b86f9971e835309e584d97aeae174778911d20ece0a8bb",
         "source": "5etools",
-        "chars": 587
+        "chars": 590
       },
       "items": [
         {
@@ -24433,9 +24433,9 @@
       "page": 153,
       "srd": true,
       "text": {
-        "sha256": "68748f01edf5556788b5da7783f6d55df666611800955258d65dc8917b6076be",
+        "sha256": "438f83e7255cd83c9d4660b4064ce200e8c636f147168abfba0cfb88e784261f",
         "source": "5etools",
-        "chars": 95
+        "chars": 98
       },
       "items": [
         {
@@ -26151,9 +26151,9 @@
       "page": 213,
       "srd": false,
       "text": {
-        "sha256": "d27a3a2b54dcbd2ab95844ab4dc8f7c63c1d742403f9e98982e2e0f53f91ac76",
+        "sha256": "b07d364f70246d3cf03fa8cd08b9c72c83138d19c0e07a9746d4fb4cd972cd1b",
         "source": "5etools",
-        "chars": 71
+        "chars": 94
       },
       "items": [
         {
@@ -26233,9 +26233,9 @@
       "page": 213,
       "srd": false,
       "text": {
-        "sha256": "7299cac32d18c37be64134742b221d81a67def71c034b8a8fd3eef8998f96693",
+        "sha256": "0a907120753934848f5de7f846032daf8d3d11441b35c6b440f9c74e8fcae78c",
         "source": "5etools",
-        "chars": 71
+        "chars": 94
       },
       "items": [
         {
@@ -26315,9 +26315,9 @@
       "page": 213,
       "srd": false,
       "text": {
-        "sha256": "d7685dff2cf0b724c3956c3d4bf12c6835f05ca01447922592a22d3ab8188a7c",
+        "sha256": "d0cc47d18fcd8a6b2c4ab01383ef8182e5058a359479c29197178b1a0fb4af52",
         "source": "5etools",
-        "chars": 69
+        "chars": 92
       },
       "items": [
         {
@@ -26384,9 +26384,9 @@
       "page": 213,
       "srd": false,
       "text": {
-        "sha256": "7480fb46d79e8f5339c02661abdf44931965836e118b292e5645b3ff31d6eb57",
+        "sha256": "57ffa64df3b40d392a046a5190865d0562e46d46c91a1f068a1e22ab29cf2510",
         "source": "5etools",
-        "chars": 69
+        "chars": 92
       },
       "items": [
         {
@@ -26453,9 +26453,9 @@
       "page": 213,
       "srd": false,
       "text": {
-        "sha256": "832102bcadba7792ca93cfc4a8da994f8b96e502c58b5c15dc07a605c76512d7",
+        "sha256": "81b48c4ad69f3834af71a43610730f3bc999a1384239d83056fbdccc9c58c935",
         "source": "5etools",
-        "chars": 69
+        "chars": 92
       },
       "items": [
         {
@@ -34102,9 +34102,9 @@
       "page": 226,
       "srd": true,
       "text": {
-        "sha256": "7b38b974da0cbdc221ee3ef0d61ed7715928aa898f0a68580942d7cf7b330c8a",
+        "sha256": "eee65ba8549ce1ef53f4e1b5e09ead4cc3a2111f40353a76ff4f7cd65863d298",
         "source": "5etools",
-        "chars": 905
+        "chars": 908
       },
       "items": [
         {
@@ -36101,9 +36101,9 @@
       "page": 236,
       "srd": true,
       "text": {
-        "sha256": "effd4ca43091d38cfefdab3da4efb0639cb400220e4f4c7b13c1d108aa2a09ee",
+        "sha256": "39901a6223f4769df944b570603d3977bf35f64a409427a4ad1b67641082a18c",
         "source": "5etools",
-        "chars": 2078
+        "chars": 2081
       },
       "items": [
         {
@@ -41246,9 +41246,9 @@
       "page": 258,
       "srd": true,
       "text": {
-        "sha256": "0e5ffeefb492cc8e65fc9782f2c9c110f079ac31035e7d25f3ffc025fde49e27",
+        "sha256": "f7c51e4e63f513153cce931c40748a93fad06c997150da8f10950d9a8227bd9d",
         "source": "5etools",
-        "chars": 486
+        "chars": 489
       },
       "items": [
         {

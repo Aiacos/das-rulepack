@@ -1,7 +1,7 @@
 // Reader for the 5etools dataset (RULEPACK_DATASET points at its data/ folder), one reader for every kind of entry.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { plainText } from "./text.mjs";
+import { textFields } from "./text.mjs";
 import { editionOf } from "./edition.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
 import { readMonsterFeatures } from "./monsters.mjs";
@@ -19,7 +19,7 @@ function withoutRefs(node) {
   return out;
 }
 
-const textOf = (entries) => plainText(withoutRefs(entries));
+const textOf = (entries) => textFields(withoutRefs(entries));
 const sameBook = (entry, book) => String(entry.source ?? book).toUpperCase() === book.toUpperCase();
 const isFlagged = (e) => Boolean(e.srd52 || e.basicRules2024);
 
@@ -49,7 +49,7 @@ function readFeature(e, book, edition) {
     ? (e.className && e.subclassShortName ? `${e.className}/${e.subclassShortName}` : undefined)
     : e.className || undefined;
   return [{
-    ...base(e, e.name, "feature", book, edition), ...(owner ? { owner } : {}), level: e.level, text: textOf(e.entries),
+    ...base(e, e.name, "feature", book, edition), ...(owner ? { owner } : {}), level: e.level, ...textOf(e.entries),
   }];
 }
 
@@ -59,9 +59,9 @@ function readSpecies(e, book, edition) {
   if (!name) return [];
   const entries = Array.isArray(e.entries) ? e.entries : [];
   const named = (n) => isNode(n) && !Array.isArray(n) && typeof n.name === "string" && !isRef(n);
-  const species = { ...base(e, name, "species", book, edition), text: textOf(entries.filter((n) => !named(n))) };
+  const species = { ...base(e, name, "species", book, edition), ...textOf(entries.filter((n) => !named(n))) };
   const traits = entries.filter(named).map((t) => ({
-    ...base(e, t.name, "species", book, edition), owner: name, text: textOf(t.entries ?? t.entry),
+    ...base(e, t.name, "species", book, edition), owner: name, ...textOf(t.entries ?? t.entry),
   }));
   return [species, ...traits];
 }
@@ -76,7 +76,7 @@ function subraceName(e) {
 function readOne(kind, e, book, edition) {
   if (kind === "feature") return readFeature(e, book, edition);
   if (kind === "species") return readSpecies(e, book, edition);
-  const entry = { ...base(e, e.name, kind, book, edition), text: textOf(e.entries) };
+  const entry = { ...base(e, e.name, kind, book, edition), ...textOf(e.entries) };
   if (kind === "spell") Object.assign(entry, { level: e.level, school: e.school });
   if (kind === "item" && e.rarity !== undefined) entry.rarity = e.rarity;
   return [entry];

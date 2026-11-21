@@ -2,7 +2,7 @@
 // trait, action, bonus action, reaction, legendary action and mythic action is an entry of its own (kind "monster").
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { plainText } from "./text.mjs";
+import { plainTextV1, textFields } from "./text.mjs";
 import { editionOf } from "./edition.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
 import { slug } from "./registry.mjs";
@@ -21,7 +21,8 @@ const KEY_QUALIFIER = /\s*\((?:costs?\b|recharges?\b|at will\b|[^()]*\d\s*\/\s*(
 const LIMIT = /\b(?:costs?|recharges?|at will|uses?|per (?:day|turn|round|rest))\b|\d\s*\/\s*[a-z]/i;
 const TRAILING_GROUP = /\s*\(([^()]*)\)\s*$/;
 
-const clean = (name) => plainText(name).replace(/\s+/g, " ").trim();
+// Names keep the first renderer: a key never changes, whatever the text renderer learns.
+const clean = (name) => plainTextV1(name).replace(/\s+/g, " ").trim();
 
 /**
  * The name a feature's KEY is derived from: the rule the first registry records were written with, frozen so that no
@@ -45,7 +46,7 @@ function spellcastingText(block) {
   const spells = Object.values(block.spells ?? {}).flatMap((level) => level?.spells ?? []);
   const daily = Object.values(block.daily ?? {}).flat();
   const rest = Object.values(block.rest ?? {}).flat();
-  return plainText([block.headerEntries, block.will, daily, rest, spells, block.footerEntries]);
+  return textFields([block.headerEntries, block.will, daily, rest, spells, block.footerEntries]);
 }
 
 const isFlagged = (e) => Boolean(e.srd52 || e.basicRules2024);
@@ -54,12 +55,12 @@ function ownFeatures(creature) {
   const out = [];
   for (const section of SECTIONS) {
     for (const f of Array.isArray(creature[section]) ? creature[section] : []) {
-      if (typeof f?.name === "string") out.push({ section, name: f.name, text: plainText(f.entries) });
+      if (typeof f?.name === "string") out.push({ section, name: f.name, ...textFields(f.entries) });
     }
     if (section === "trait") {
       for (const block of Array.isArray(creature.spellcasting) ? creature.spellcasting : []) {
         const name = typeof block?.name === "string" ? block.name : "Spellcasting";
-        out.push({ section, name, text: spellcastingText(block ?? {}), spellcastingBlock: true });
+        out.push({ section, name, ...spellcastingText(block ?? {}), spellcastingBlock: true });
       }
     }
   }
@@ -103,7 +104,7 @@ export function readMonsters(datasetDir, bookCode, { year } = {}) {
       n += 1;
       features.push({
         name, kind: "monster", owner: creature.name, section: f.section, book: bookCode, page: creature.page, edition,
-        srd: Boolean(creature.srd52 || creature.srd), text: f.text, creatureIndex,
+        srd: Boolean(creature.srd52 || creature.srd), text: f.text, ...(f.textV1 ? { textV1: f.textV1 } : {}), creatureIndex,
         ...(keyName !== name ? { keyName } : {}), ...(f.spellcastingBlock ? { spellcastingBlock: true } : {}),
         ...(occurrence > 1 ? { occurrence } : {}), ...(copyOf ? { copyOf } : {}),
       });

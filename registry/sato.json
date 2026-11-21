@@ -155,9 +155,9 @@
       "page": 11,
       "srd": false,
       "text": {
-        "sha256": "23b4d670eba44eb1050ddb914c09d3ddf2bb452f1c0512e6d23f250be118893b",
+        "sha256": "e1ab7e84b55a5f6ce1639caa54a06e2a719d3b21450808344e759fceda60b3dc",
         "source": "5etools",
-        "chars": 1232
+        "chars": 1238
       },
       "items": [
         {
@@ -255,9 +255,9 @@
       "page": 13,
       "srd": false,
       "text": {
-        "sha256": "5215e9603722b1277f1e32647d209daa31b8e2538f9758c79a38fae6e6c8bd90",
+        "sha256": "d72c46a9699da47ab60db05775d9026275ceafdf347b09bc0a1f4547a15178a4",
         "source": "5etools",
-        "chars": 1368
+        "chars": 1371
       },
       "items": [
         {
@@ -468,9 +468,9 @@
       "page": 12,
       "srd": false,
       "text": {
-        "sha256": "3095343baabe51fb269a361418127df29fce3a19aebbefecc73de3a491a8ea25",
+        "sha256": "13f6796ed2077719c487c39cbc7cdfb6010bd9d5e579ec4fd226c6c8eb6de67a",
         "source": "5etools",
-        "chars": 612
+        "chars": 615
       },
       "items": [
         {

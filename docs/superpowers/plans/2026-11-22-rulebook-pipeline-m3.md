@@ -55,7 +55,7 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
 
 - **R1 — Renderer-only text changes are silent.** `plainTextV1` (today's renderer) is kept; when the new text differs but the old
   fingerprint equals `sha(plainTextV1(raw))`, inventory refingerprints without `textChangedAt` and keeps gate evidence. Wrong if
-  a header changes meaning for a reader: those verdicts would not be re-read (mitigated: the reader judged the same words).
+  a header changes meaning for a reader: those verdicts would not be re-read (mitigated: the reader judged the same words). Tags whose old rendering was empty (e.g. swapping `{@h}` for `{@m}`) are invisible to the old-renderer comparison, so such a dataset edit made between the two renderings would be refingerprinted without a date, once.
 - **R2 — Second identifier = alias.** `rule.alsoAs: [{ identifier, origin }]`, filled by `ingest --draft` from the matched item's
   `identifier` when `identifierDiffers` and no source can bind it; `generate` emits the same entry under each alias. Wrong if an
   alias is shared by an unrelated item of that origin: the rule fires on it (Review Focus 1 refuses the known generic names; the

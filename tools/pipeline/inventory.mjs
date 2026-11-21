@@ -173,8 +173,8 @@ function numberOccurrences(dataset, records, book) {
     const free = [...existing];
     const assigned = new Map();
     for (const [e, i] of members) {
-      const sha = e.text ? textFingerprint(e.text) : null;
-      const at = sha ? free.findIndex((r) => r.text?.sha256 === sha) : -1;
+      const shas = e.text ? [textFingerprint(e.text), ...(e.textV1 ? [textFingerprint(e.textV1)] : [])] : [];
+      const at = shas.length ? free.findIndex((r) => shas.includes(r.text?.sha256)) : -1;
       if (at >= 0) assigned.set(i, numberOf(free.splice(at, 1)[0]));
     }
     const rest = members.filter(([, i]) => !assigned.has(i));
@@ -206,8 +206,8 @@ export function inventory({
   const records = structuredClone(previous);
   const byIdentity = new Map(records.map((r) => [identityOfRecord(r), r]));
   const report = {
-    added: 0, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [], noPage: [],
-    collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
+    added: 0, kept: 0, skipped: 0, textChanged: [], rerendered: [], dataChanged: [], ambiguous: [], noOfficial: [],
+    differing: [], noPage: [], collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
   };
   // Monsters also report the creatures read (with the ones that have no feature of their own), the `_copy` ones, the
   // creatures with no actor of their name in the official dump (`noActor`) and the ones with no DDB Importer actor of their
@@ -329,7 +329,10 @@ export function inventory({
         delete fresh.text;
         report.textVanished.push(existing.key);
       }
-      const textChanged = existing.text && !vanished && existing.text.sha256 !== sha256;
+      const differs = existing.text && !vanished && existing.text.sha256 !== sha256;
+      // Ruling R1: the words are the old ones and only the renderer changed (attack headers): refingerprint, say nothing else.
+      const rendererOnly = differs && entry.textV1 !== undefined && existing.text.sha256 === textFingerprint(entry.textV1);
+      const textChanged = differs && !rendererOnly;
       const dataChanged = dataFingerprints(existing.items) !== dataFingerprints(items);
       // A record that has a rule keeps its identifier (the rule is registered under it) and its page (a rule's page is a decision).
       if (existing.rule) {
@@ -343,6 +346,7 @@ export function inventory({
       if (monsters && !existing.rule) fresh.name = entry.name;
       Object.assign(existing, fresh);
       if (textChanged) report.textChanged.push(existing.key);
+      if (rendererOnly) report.rerendered.push(existing.key);
       // A verdict stands on a text that is no longer the one it was given on: dated until a new verdict is written.
       if (textChanged && existing.verdict) existing.textChangedAt = at;
       if (dataChanged) report.dataChanged.push(existing.key);

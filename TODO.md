@@ -21,8 +21,9 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] 2,209 entries have the verdict `entry` and no rule yet: drafting is the next stage to build.
 - [x] Second-reader sample (200 entries, three kinds): same verdict on 88%, same answer to "needs a rule or not" on 96.5% —
       `docs/reader-agreement.md`. Spells, species and older books are not sampled yet.
-- [ ] `plainText` drops the attack header of monster attacks (`{@atkr m}`, `{@hit 7}` become "m 7"): fix the conversion, then
-      re-fingerprint (every affected record will report `textChanged`).
+- [x] `plainText` kept only the first argument of attack tags (`{@atkr m}`, `{@hit 7}` became "m 7"): now renders the headers
+      (`tools/pipeline/text.mjs`, `TAG_RENDER`). Inventory refingerprints a header-only change without `textChangedAt`
+      (`rerendered` in its report, Ruling R1); the real books are re-run per book.
 - [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
 - [x] Every kind of entry is inventoried (milestone 2), and six 2024-era books are in the registry: `docs/coverage-5e24.md`.
 - [ ] 15 entries still have no verdict and are not queued (entries without text that no batch can carry: species shells and

@@ -40,7 +40,7 @@ describe("inventory records", () => {
     expect(readFileSync(join(textDir, `${sha}.txt`), "utf8")).toBe("A bolt of invented light.");
     expect(JSON.stringify(r)).not.toContain("invented light");
     expect(report).toEqual({
-      added: 1, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
+      added: 1, kept: 0, skipped: 0, textChanged: [], rerendered: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
       noPage: [], collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
     });
   });
@@ -123,7 +123,7 @@ describe("inventory over previous records", () => {
       evidence: { reviewed: { agrees: true }, gates: { rule: "f", passed: ["schema"] } } }];
     const again = run({ previous: worked });
     expect(again.report).toEqual({
-      added: 0, kept: 1, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
+      added: 0, kept: 1, skipped: 0, textChanged: [], rerendered: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
       noPage: [], collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
     });
     expect(again.records).toEqual(worked);
