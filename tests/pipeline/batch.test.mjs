@@ -63,6 +63,19 @@ describe("cutBatches", () => {
   });
 });
 
+describe("cutBatches: entries with no item", () => {
+  const none = rec(2, { items: [{ origin: "official", match: "absent" }, { origin: "plutonium", match: "unchecked" }] });
+  const doubt = rec(3, { items: [{ origin: "official", match: "ambiguous", candidates: [], differences: [] }] });
+  it("leaves out by default the records with no matched item in any origin", () => {
+    expect(cutBatches([rec(1), none, doubt, rec(4, { items: [] })], {}).flatMap((b) => b.entries.map((e) => e.key)))
+      .toEqual(["tst:spell:s01"]);
+  });
+  it("cuts them too with withoutItems", () => {
+    expect(cutBatches([rec(1), none, doubt], { withoutItems: true })[0].entries.map((e) => e.key))
+      .toEqual(["tst:spell:s01", "tst:spell:s02", "tst:spell:s03"]);
+  });
+});
+
 describe("cutBatches: reader fields, kind filter, numbering", () => {
   it("adds owner, level, section, rarity, page and srd to an entry when the record has them, and item differences", () => {
     const r = rec(1, {

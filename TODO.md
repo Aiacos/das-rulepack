@@ -32,7 +32,7 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [x] Older books: the entries that have an item in a local source are read (2026-11-21). 11,945 entries stay without a
       verdict: almost all are monster features of books with no official module and no local item — they need a dump of
       imported items (Plutonium, or DDB Importer's monsters) before a reader can judge them.
-- [ ] `batch` should skip entries with no item in any origin by default (a flag to include them): reading them fills the
+- [x] `batch` skips entries with no item in any origin by default (a flag to include them): reading them fills the
       queue with low-confidence verdicts.
 - [ ] The three XPHB feature rules (Dreadful Strikes, Inspiring Smite, Psychic Veil) and the rules of FTD, MPMM, AI and PHB
       are still legacy records without item data: their keys carry no owner, or their book has no dump of that kind.

@@ -360,9 +360,12 @@ function queuedKeys(dir) {
 }
 
 function batchCommand([stage, book, ...rest]) {
-  const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>]";
+  const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>] "
+    + "[--without-items]";
   if (stage !== "triage" || !book) throw new UsageError(usage);
   const opts = {};
+  const withoutItems = rest.includes("--without-items");
+  rest = rest.filter((a) => a !== "--without-items");
   for (let i = 0; i < rest.length; i += 2) {
     if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
@@ -382,7 +385,7 @@ function batchCommand([stage, book, ...rest]) {
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   }
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out)) : {};
-  const batches = cutBatches(found.records, { size, kind: opts.kind, after, queued: queuedKeys(REGISTRY) });
+  const batches = cutBatches(found.records, { size, kind: opts.kind, after, queued: queuedKeys(REGISTRY), withoutItems });
   // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
   const structures = dumpsDir === null ? [] : batches.map((b) => structuresOf(b, found.records, dumpsDir));
   mkdirSync(opts.out, { recursive: true });

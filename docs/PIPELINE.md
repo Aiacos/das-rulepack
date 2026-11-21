@@ -35,7 +35,7 @@ excepted.
 | 1 | Inventory | `npm run inventory -- <BOOK> <kind|all> [--allow-collisions]` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 1b | Settle a match | `npm run resolve -- <key> <origin> --doc <docId> --because "<one line>"` (see "Settling matches") | `RULEPACK_DUMPS` (`--doc`) | a person |
 | 2a | Triage by rule | `npm run triage -- <BOOK> [--redo-rule]` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
-| 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
+| 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
@@ -77,6 +77,8 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      differently is rewritten, and one they no longer give is cleared (`verdict` back to null, `why` and `evidence.triaged`
      removed, and the count printed as `cleared`). A verdict set by `ingest` and a record that has a `rule` are never
      touched. `by: "rule"` is reserved: `ingest` refuses a results file signed with it.
+   - `batch triage` leaves out the records with no matched item in any origin (a reader has nothing to compare the text
+     with); `--without-items` cuts them too.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
      kind (`--kind` keeps one kind), `--size` entries each (default 40). A record whose key is in `registry/queue.json`
      (waiting for a person) is not cut. When `<dir>` already holds batch files of the book, numbering continues after the

@@ -27,8 +27,12 @@ export function highestBatches(files) {
 // Records without a verdict (and with text), per book, grouped by kind (only `kind` when given), cut at `size`. The keys of
 // `queued` (registry/queue.json: results waiting for a person) are left out: they have no verdict but are not to be read again.
 // Ids: <book>-triage-<NNN>; `after` ({ book: highest number in use }) makes the numbering continue, so an id is never reused.
-export function cutBatches(records, { size = DEFAULT_BATCH_SIZE, kind, after = {}, queued = new Set() } = {}) {
-  const open = records.filter((r) => !r.verdict && r.text && (!kind || r.kind === kind) && !queued.has(r.key));
+// A record with no matched item in any origin is left out unless `withoutItems`: a reader has nothing to compare its text with.
+export function cutBatches(records, options = {}) {
+  const { size = DEFAULT_BATCH_SIZE, kind, after = {}, queued = new Set(), withoutItems = false } = options;
+  const hasItem = (r) => (r.items ?? []).some((i) => i.match === "matched");
+  const open = records.filter((r) => !r.verdict && r.text && (!kind || r.kind === kind) && !queued.has(r.key)
+    && (withoutItems || hasItem(r)));
   const batches = [];
   const counts = new Map(Object.entries(after));
   for (const [book, ofBook] of groupBy(open, (r) => r.book.toLowerCase())) {
