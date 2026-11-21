@@ -57,8 +57,10 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
 2. **Triage** has three parts.
    - `triage` applies `autoTriage` to the records of the book that have no verdict (an existing verdict is never
      overwritten), in this order:
-     - **`core`** ("DAS · Core has an entry under this identifier") only when DAS · Core has the record's identifier AND no
-       other record of the same kind, in the whole registry, uses it. A monster feature never gets `core` by rule. A record
+     - **`core`** ("DAS · Core has an entry under this identifier") only when DAS · Core has the record's identifier, the
+       record is of the 2024 edition (the engine's entries are written for the 2024 rules) AND no other 2024 record of the
+       same kind, in the whole registry, uses it: a 2014 twin neither takes the verdict away nor gets it. A monster feature
+       never gets `core` by rule. A record
        that misses `core` only for that reason gets `hint: "core-generic"` (the engine has a generic entry of that name) and
        goes on through the rules below; the hint is passed to the reader.
      - **No text in the dataset** (`text: null`): a species whose traits are records of their own is left alone (its traits
