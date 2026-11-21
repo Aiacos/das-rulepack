@@ -9,7 +9,8 @@ import { canonical, ruleFingerprint, validateRecord } from "./registry.mjs";
 import { hasText } from "./text.mjs";
 
 export const GATES = Object.freeze(["schema", "validator", "ids", "fixes", "text", "unique"]);
-const NEEDS_LOCAL_INPUTS = ["ids", "fixes", "text"];
+// What stateOf requires in `passed` for a rule to count as gated.
+const FULL_EVIDENCE = ["schema", "validator", "ids", "fixes", "text"];
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const ID = /^[A-Za-z0-9]{16}$/;
@@ -44,6 +45,8 @@ function entryOf(rule) {
 }
 
 const originsOf = (rule) => (Array.isArray(rule?.origins) ? rule.origins : []);
+// `legacy: true` counts only for a key the registry's legacy.json lists (context.legacyKeys, a Set).
+const isLegacy = (record, context) => record?.legacy === true && !!context?.legacyKeys?.has(record.key);
 const matchedItems = (record, origin) => (record.items ?? []).filter((i) => i?.origin === origin && i.match === "matched");
 
 export const gateSchema = (record) => validateRecord(record).map((e) => `schema: ${e}`);
@@ -62,7 +65,7 @@ export function gateValidator(record, { core }) {
   }
 }
 
-export function checkIds(record) {
+export function checkIds(record, context) {
   const out = { failures: [], notes: [] };
   if (!record.rule) return out;
   const { entry, error } = entryOf(record.rule);
@@ -73,7 +76,7 @@ export function checkIds(record) {
   for (const origin of origins) {
     const items = matchedItems(record, origin);
     if (!items.length) {
-      if (record.legacy) {
+      if (isLegacy(record, context)) {
         if (!out.notes.includes("ids: no item data (legacy)")) out.notes.push("ids: no item data (legacy)");
       } else out.failures.push(`ids: no matched item for ${origin}`);
       continue;
@@ -87,7 +90,8 @@ export const gateIds = (record, context) => checkIds(record, context).failures;
 
 const ACTIVITY_FIELD = /^system\.activities\.([A-Za-z0-9]{16})\./;
 
-export function checkFixes(record, { core, documents } = {}) {
+export function checkFixes(record, context = {}) {
+  const { core, documents } = context;
   const out = { failures: [], notes: [] };
   if (!record.rule) return out;
   const { entry, error } = entryOf(record.rule);
@@ -95,13 +99,14 @@ export function checkFixes(record, { core, documents } = {}) {
   const fixes = entry?.dataFixes;
   if (fixes === undefined) return out;
   if (!Array.isArray(fixes)) return { ...out, failures: ["fixes: dataFixes is not an array"] };
+  if (!fixes.length) return out;
   const failures = new Set();
   const drift = (path) => failures.add(`fixes: drift at ${path}`);
   for (const origin of originsOf(record.rule)) {
     const items = matchedItems(record, origin);
     const docs = items.map((i) => documents?.[origin]?.[i.docId]).filter(Boolean);
     if (!docs.length) {
-      if (record.legacy) {
+      if (isLegacy(record, context)) {
         if (!out.notes.includes("fixes: no item data (legacy)")) out.notes.push("fixes: no item data (legacy)");
       } else failures.add(`fixes: no document for ${origin}`);
       continue;
@@ -110,6 +115,7 @@ export function checkFixes(record, { core, documents } = {}) {
       for (const fix of fixes) {
         if (!isObject(fix)) { drift(String(fix)); continue; }
         if ("create" in fix) continue;
+        if (typeof fix.path !== "string") { failures.add("fixes: a data fix has no string path"); continue; }
         let holder = doc;
         if (fix.effect !== undefined) {
           holder = (doc.effects ?? []).find((e) => e?._id === fix.effect);
@@ -129,10 +135,11 @@ export function checkFixes(record, { core, documents } = {}) {
 }
 export const gateFixes = (record, context) => checkFixes(record, context).failures;
 
-export function checkText(record, { textDir } = {}) {
+export function checkText(record, context = {}) {
+  const { textDir } = context;
   const out = { failures: [], notes: [] };
   if (record.text === null || record.text === undefined) {
-    if (record.legacy) out.notes.push("text: not fingerprinted (legacy)");
+    if (isLegacy(record, context)) out.notes.push("text: not fingerprinted (legacy)");
     else out.failures.push("text: the record has no text fingerprint");
     return out;
   }
@@ -170,18 +177,20 @@ const uniqueFailuresByKey = (records) => {
 
 const trusted = (record) => {
   const gates = record.evidence?.gates;
-  return gates && gates.rule === ruleFingerprint(record.rule) && NEEDS_LOCAL_INPUTS.every((g) => (gates.passed ?? []).includes(g));
+  const passed = Array.isArray(gates?.passed) ? gates.passed : [];
+  return !!gates && gates.rule === ruleFingerprint(record.rule) && FULL_EVIDENCE.every((g) => passed.includes(g));
 };
 
-function ciEvidence(record) {
+function ciEvidence(record, context) {
   if (trusted(record)) return { failures: [], notes: [] };
-  if (record.legacy && !record.evidence?.gates) return { failures: [], notes: ["gates: no evidence yet (legacy)"] };
+  if (isLegacy(record, context)) return { failures: [], notes: ["gates: no full evidence yet (legacy)"] };
   return { failures: ["gates: no current evidence for this rule: run npm run gates locally and commit the registry"], notes: [] };
 }
 
 /**
  * Runs the gates over every record. In `ci` mode only schema, validator and unique run, and the other gates are replaced by the
- * evidence a local run left on the record, which counts while its fingerprint is the rule's.
+ * evidence a local run left on the record, which counts while its fingerprint is the rule's and it lists every gate as passed.
+ * `evidence.gates.passed` lists the gates that were checked and passed; a gate that only left a note is in `noted` instead.
  * @returns {{ failures: object, notes: object, updated: object[] }}
  */
 export function runGates(records, context) {
@@ -191,17 +200,22 @@ export function runGates(records, context) {
   const add = (target, key, gate, list) => {
     if (list.length) ((target[key] ??= {})[gate] = list);
   };
-  const updated = records.map((record) => {
-    const key = record?.key;
+  const updated = records.map((record, index) => {
+    if (!isObject(record)) {
+      add(failures, `record #${index}`, "schema", ["schema: record must be an object"]);
+      return record;
+    }
+    const key = record.key;
     const run = (gate, result) => {
       add(failures, key, gate, result.failures ?? result);
       add(notes, key, gate, result.notes ?? []);
     };
     run("schema", gateSchema(record));
     const sound = !failures[key]?.schema;
+    if (record.legacy === true && !context.legacyKeys?.has(key)) run("legacy", [`legacy: ${key} is not in legacy.json`]);
     if (sound && record.rule) {
       run("validator", gateValidator(record, context));
-      if (context.ci) run("gates", ciEvidence(record));
+      if (context.ci) run("gates", ciEvidence(record, context));
       else {
         run("ids", checkIds(record, context));
         run("fixes", checkFixes(record, context));
@@ -213,7 +227,10 @@ export function runGates(records, context) {
     if (!record.rule || context.ci) return record;
     const { gates, ...evidence } = record.evidence ?? {};
     if (failures[key]) return { ...record, evidence };
-    const next = { core: context.core.version, rule: ruleFingerprint(record.rule), passed: [...GATES] };
+    const noted = GATES.filter((g) => notes[key]?.[g]);
+    const passed = GATES.filter((g) => !noted.includes(g));
+    const next = { core: context.core.version, rule: ruleFingerprint(record.rule), passed };
+    if (noted.length) next.noted = noted;
     const keep = gates && canonical({ ...gates, at: null }) === canonical({ ...next, at: null });
     return { ...record, evidence: { ...evidence, gates: keep ? gates : { at: new Date().toISOString(), ...next } } };
   });

@@ -1,5 +1,5 @@
 // Command line of the rulebook pipeline: `npm run pipeline -- <subcommand> ...`. Later tasks add one function each to COMMANDS.
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { canonical, loadBook, saveBook } from "./registry.mjs";
@@ -19,9 +19,12 @@ const need = (name) => {
   return process.env[name];
 };
 
+const NOT_BOOKS = ["legacy.json", "queue.json"];
+
 function loadRegistry(dir) {
   if (!existsSync(dir)) return [];
-  return readdirSync(dir).filter((f) => f.endsWith(".json")).sort()
+  // legacy.json and queue.json sit beside the books and are not books.
+  return readdirSync(dir).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f)).sort()
     .map((f) => ({ file: f, ...loadBook(dir, f.slice(0, -5)) }));
 }
 
@@ -84,6 +87,18 @@ function loadDocuments(dumpsDir, records) {
   return documents;
 }
 
+// legacy.json: the keys of the records that may carry `legacy: true` (a JSON array; a missing file is an empty list).
+function loadLegacyKeys(dir) {
+  const file = join(dir, "legacy.json");
+  if (!existsSync(file)) return new Set();
+  let list;
+  try { list = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new UsageError(`${file}: ${e.message}`); }
+  if (!Array.isArray(list) || !list.every((k) => typeof k === "string")) {
+    throw new UsageError(`${file}: must be an array of record keys`);
+  }
+  return new Set(list);
+}
+
 function gatesCommand(args) {
   const ci = args.includes("--ci");
   const unknown = args.filter((a) => a !== "--ci");
@@ -97,7 +112,7 @@ function gatesCommand(args) {
   const textDir = ci ? null : need("RULEPACK_TEXT");
   return loadCore(coreDir).then((core) => {
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
-    const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci });
+    const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci, legacyKeys: loadLegacyKeys(REGISTRY) });
     if (!ci) {
       const before = new Map(records.map((r) => [r.key, canonical(r)]));
       const byBook = Map.groupBy(updated, (r) => r.book);

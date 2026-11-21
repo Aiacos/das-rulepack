@@ -47,7 +47,8 @@ let dir;
 beforeEach(() => { dir = mkdtempSync(join(tmpdir(), "gates-")); });
 afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
-const ctx = (over = {}) => ({ core: stubCore, documents: {}, textDir: dir, ci: false, ...over });
+const ctx = (over = {}) => ({ core: stubCore, documents: {}, textDir: dir, ci: false, legacyKeys: new Set(), ...over });
+const allowed = (...records) => ({ legacyKeys: new Set(records.map((r) => r.key)) });
 const withText = (r) => ({
   ...r, text: { sha256: cacheText(dir, "synthetic text of glimmer bolt"), source: "5etools", chars: 30 }
 });
@@ -135,17 +136,26 @@ describe("gateIds", () => {
     expect(gateIds(r, ctx())[0]).toMatch(/rule.origins is empty/);
   });
 
-  it("is a note, not a failure, for a legacy record without item data", () => {
-    const r = rec({ legacy: true, items: [] });
-    expect(gateIds(r, ctx())).toEqual([]);
-    const { notes, failures } = runGates([withText(r)], ctx());
+  it("is a note, not a failure, for an allow-listed legacy record without item data; it is not in passed", () => {
+    const r = withText(rec({ legacy: true, items: [] }));
+    expect(gateIds(r, ctx(allowed(r)))).toEqual([]);
+    const { notes, failures, updated } = runGates([r], ctx(allowed(r)));
     expect(failures).toEqual({});
     expect(notes[r.key].ids).toEqual(["ids: no item data (legacy)"]);
+    const gates = updated[0].evidence.gates;
+    expect(gates.passed).not.toContain("ids");
+    expect(gates.noted).toContain("ids");
+    expect(stateOf(updated[0])).toBe("drafted");
   });
 
   it("still fails a legacy record whose matched item lacks the id", () => {
     const r = withEntry(entryWith({ extra: NOPE }), { legacy: true });
-    expect(gateIds(r, ctx())).toHaveLength(1);
+    expect(gateIds(r, ctx(allowed(r)))).toHaveLength(1);
+  });
+
+  it("gives a legacy record that is not allow-listed no leniency", () => {
+    const r = rec({ legacy: true, items: [] });
+    expect(gateIds(r, ctx())).toEqual(["ids: no matched item for ddb-importer"]);
   });
 });
 
@@ -186,6 +196,15 @@ describe("gateFixes", () => {
     expect(gateFixes(fixed({ effect: NOPE, create: { name: "x" } }), ctx({ documents }))).toEqual([]);
   });
 
+  it("has no failure for an empty dataFixes list, even without a document", () => {
+    expect(gateFixes(fixed(), ctx())).toEqual([]);
+  });
+
+  it("reports a fix whose path is not a string instead of throwing", () => {
+    expect(gateFixes(fixed({ path: 5, value: 1 }), ctx({ documents }))).toEqual(["fixes: a data fix has no string path"]);
+    expect(gateFixes(fixed({ effect: EFF, value: 1 }), ctx({ documents }))).toEqual(["fixes: a data fix has no string path"]);
+  });
+
   it("has nothing to check without dataFixes", () => {
     expect(gateFixes(rec(), ctx())).toEqual([]);
   });
@@ -194,8 +213,12 @@ describe("gateFixes", () => {
     const f = fixed({ path, value: "bonus" });
     expect(gateFixes(f, ctx())).toEqual(["fixes: no document for ddb-importer"]);
     const legacy = { ...f, legacy: true };
-    expect(gateFixes(legacy, ctx())).toEqual([]);
-    expect(runGates([withText(legacy)], ctx()).notes[f.key].fixes).toEqual(["fixes: no item data (legacy)"]);
+    expect(gateFixes(legacy, ctx())).toEqual(["fixes: no document for ddb-importer"]);
+    expect(gateFixes(legacy, ctx(allowed(legacy)))).toEqual([]);
+    const r = runGates([withText(legacy)], ctx({ ...allowed(legacy), documents: {} }));
+    expect(r.notes[f.key].fixes).toEqual(["fixes: no item data (legacy)"]);
+    expect(r.updated[0].evidence.gates.passed).not.toContain("fixes");
+    expect(r.updated[0].evidence.gates.noted).toContain("fixes");
   });
 });
 
@@ -209,8 +232,20 @@ describe("gateText", () => {
   it("fails a record without a fingerprint; for a legacy one it is a note", () => {
     expect(gateText(rec(), ctx())).toEqual(["text: the record has no text fingerprint"]);
     const legacy = rec({ legacy: true });
-    expect(gateText(legacy, ctx())).toEqual([]);
-    expect(runGates([legacy], ctx()).notes[legacy.key].text).toEqual(["text: not fingerprinted (legacy)"]);
+    expect(gateText(legacy, ctx())).toEqual(["text: the record has no text fingerprint"]);
+    expect(gateText(legacy, ctx(allowed(legacy)))).toEqual([]);
+    const r = runGates([legacy], ctx(allowed(legacy)));
+    expect(r.failures).toEqual({});
+    expect(r.notes[legacy.key].text).toEqual(["text: not fingerprinted (legacy)"]);
+    expect(r.updated[0].evidence.gates.passed).not.toContain("text");
+    expect(r.updated[0].evidence.gates.noted).toEqual(["text"]);
+    expect(stateOf(r.updated[0])).toBe("drafted");
+  });
+
+  it("a record that passes every gate has no noted list", () => {
+    const g = runGates([withText(rec())], ctx()).updated[0].evidence.gates;
+    expect(g.noted).toBeUndefined();
+    expect(g.passed).toEqual(["schema", "validator", "ids", "fixes", "text", "unique"]);
   });
 });
 
@@ -314,21 +349,45 @@ describe("runGates", () => {
       expect(runGates([partial], ci()).failures[partial.key].gates).toHaveLength(1);
     });
 
-    it("still runs the validator and unique, and tolerates a legacy rule that was never gated, with a note", () => {
+    it("tolerates an allow-listed legacy rule without full evidence, with a note, and still runs validator and unique", () => {
       const legacy = rec({ legacy: true });
-      const r = runGates([legacy], ci());
+      const r = runGates([legacy], ci(allowed(legacy)));
       expect(r.failures).toEqual({});
       expect(r.notes[legacy.key].gates).toHaveLength(1);
       const bad = withEntry(entryWith({ triggers: [{ if: { "moon.phase": 1 }, do: [] }] }), { legacy: true });
-      expect(runGates([bad], ci()).failures[bad.key].validator).toHaveLength(1);
-      expect(Object.keys(runGates([legacy, { ...legacy, key: "tst:spell:y" }], ci()).failures)).toHaveLength(2);
+      expect(runGates([bad], ci(allowed(bad))).failures[bad.key].validator).toHaveLength(1);
+      const twin = { ...legacy, key: "tst:spell:y" };
+      expect(Object.keys(runGates([legacy, twin], ci(allowed(legacy, twin))).failures)).toHaveLength(2);
     });
 
-    it("does not tolerate a legacy rule whose old evidence is stale", () => {
+    it("tolerates an allow-listed legacy rule even when its old evidence is stale or partial", () => {
       const gated = runGates([good()], ctx()).updated[0];
       const stale = { ...gated, legacy: true, rule: { ...gated.rule, adds: "Changed." } };
-      expect(runGates([stale], ci()).failures[stale.key].gates).toHaveLength(1);
+      expect(runGates([stale], ci(allowed(stale))).failures).toEqual({});
     });
+
+    it("fails a legacy record that is not in legacy.json, in every mode, and a rule without evidence", () => {
+      const legacy = rec({ legacy: true });
+      expect(runGates([legacy], ci()).failures[legacy.key].legacy).toEqual([`legacy: ${legacy.key} is not in legacy.json`]);
+      expect(runGates([legacy], ci()).failures[legacy.key].gates).toHaveLength(1);
+      expect(runGates([withText(legacy)], ctx()).failures[legacy.key].legacy).toHaveLength(1);
+      expect(runGates([legacy], ci({ legacyKeys: undefined })).failures[legacy.key].legacy).toHaveLength(1);
+    });
+
+    it("does not trust evidence whose passed list lacks a gate that only left a note", () => {
+      const legacy = withText(rec({ legacy: true, items: [] }));
+      const gated = runGates([legacy], ctx(allowed(legacy))).updated[0];
+      expect(gated.evidence.gates.passed).not.toContain("ids");
+      const { legacy: _dropped, ...plain } = gated;
+      expect(runGates([plain], ci()).failures[plain.key].gates).toHaveLength(1);
+    });
+  });
+
+  it("reports a record that is not an object instead of crashing", () => {
+    const { failures, updated } = runGates([null, "x", rec()], ctx());
+    expect(failures["record #0"].schema).toHaveLength(1);
+    expect(failures["record #1"].schema).toHaveLength(1);
+    expect(updated[0]).toBeNull();
   });
 });
 
@@ -355,8 +414,9 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("with the real DAS · Core", () =>
       for (const found of idsIn(entry)) expect(found, id).toMatch(/^[A-Za-z0-9]{16}$/);
     }
     const unknownFact = entryWith({ triggers: [{ on: "isHit", if: { "moon.phase": "full" }, do: [{ type: "resave" }] }] });
-    expect(gateValidator(withEntry(unknownFact), ctx({ core }))).not.toEqual([]);
-    expect(gateValidator(withEntry({ recastt: true }), ctx({ core }))).not.toEqual([]);
+    const messages = (entry) => gateValidator(withEntry(entry), ctx({ core })).join("\n");
+    expect(messages(unknownFact)).toMatch(/unknown fact "moon\.phase"/);
+    expect(messages({ recastt: true })).toMatch(/recastt/);
   });
 
   it("applies the engine's own matching to the data fixes", async () => {
@@ -405,6 +465,18 @@ describe("gates CLI", () => {
       const ok = cli(["gates", "--ci"], env());
       expect(ok.status).toBe(0);
       expect(ok.stderr).toBe("");
+    });
+
+    it("--ci allows a legacy record only through legacy.json, which is not read as a book", () => {
+      const legacy = rec({ legacy: true });
+      saveBook(registry(), { book: "TST", records: [legacy] });
+      const refused = cli(["gates", "--ci"], env());
+      expect(refused.status).toBe(1);
+      expect(refused.stderr).toContain(`legacy: ${legacy.key} is not in legacy.json`);
+      writeJson(join(registry(), "legacy.json"), [legacy.key]);
+      const ok = cli(["gates", "--ci"], env());
+      expect(ok.status, ok.stderr).toBe(0);
+      expect(ok.stdout).toContain("no full evidence yet (legacy)");
     });
 
     it("--ci fails on an invalid entry", () => {
