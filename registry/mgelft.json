@@ -1,0 +1,709 @@
+{
+  "book": "MGELFT",
+  "records": [
+    {
+      "key": "mgelft:monster:dankwood-duergar/action/haymaker",
+      "name": "Haymaker",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Duergar",
+      "section": "action",
+      "identifier": "haymaker",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "63f43e74ce153a56363444a7a6092a907b1a990d09cc79376211457e41dadc18",
+        "source": "5etools",
+        "chars": 155
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-duergar/action/verbal-jab",
+      "name": "Verbal Jab",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Duergar",
+      "section": "action",
+      "identifier": "verbal-jab",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "3f7023a0a41facf9869b389ed16e6bdb63097463ee575528e41db1e79cd1e62b",
+        "source": "5etools",
+        "chars": 342
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-duergar/trait/duergar-resilience",
+      "name": "Duergar Resilience",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Duergar",
+      "section": "trait",
+      "identifier": "duergar-resilience",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "838a585cc52c6ee8c11d121823170e74f1cda9dcbdd106eb5092073e01450424",
+        "source": "5etools",
+        "chars": 139
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-duergar/trait/sunlight-sensitivity",
+      "name": "Sunlight Sensitivity",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Duergar",
+      "section": "trait",
+      "identifier": "sunlight-sensitivity",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "d54ab75fadf2552846c2e05d12b0c5e2f17ce46c71412e4d49030ae926e9e422",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-grung/action/dagger",
+      "name": "Dagger",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Grung",
+      "section": "action",
+      "identifier": "dagger",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "66599144f3b67833fa7556904a4e31d337eaad7bf4a4296785d9edc97ab81f91",
+        "source": "5etools",
+        "chars": 223
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-grung/action/grumpy-grung-growl",
+      "name": "Grumpy Grung Growl",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Grung",
+      "section": "action",
+      "identifier": "grumpy-grung-growl",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "37abf19eb3336600562d2fe22b834467e6d89b618fcfddbd124a111aaaa684fc",
+        "source": "5etools",
+        "chars": 241
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-grung/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Grung",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "e28e0275a235674d09a33a75168935d47c4218960dadac7a7cff264f4fa31d74",
+        "source": "5etools",
+        "chars": 36
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-grung/trait/poisonous-skin",
+      "name": "Poisonous Skin",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Grung",
+      "section": "trait",
+      "identifier": "poisonous-skin",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "f0b29df5ee44575b01b519845afd8a2ed8745b253a0362f2c73a77b0b113bd68",
+        "source": "5etools",
+        "chars": 343
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:dankwood-grung/trait/standing-leap",
+      "name": "Standing Leap",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Dankwood Grung",
+      "section": "trait",
+      "identifier": "standing-leap",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "1218c744fb6abc9e465a95ca2151eba0bc9cce43f8c844802d01d0798d7d15dc",
+        "source": "5etools",
+        "chars": 107
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:king-robbit-the-slimy/action/dagger",
+      "name": "Dagger",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "King Robbit the Slimy",
+      "section": "action",
+      "identifier": "dagger",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "66599144f3b67833fa7556904a4e31d337eaad7bf4a4296785d9edc97ab81f91",
+        "source": "5etools",
+        "chars": 223
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:king-robbit-the-slimy/action/grumpy-grung-growl",
+      "name": "Grumpy Grung Growl",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "King Robbit the Slimy",
+      "section": "action",
+      "identifier": "grumpy-grung-growl",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "37abf19eb3336600562d2fe22b834467e6d89b618fcfddbd124a111aaaa684fc",
+        "source": "5etools",
+        "chars": 241
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:king-robbit-the-slimy/action/shortbow",
+      "name": "Shortbow",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "King Robbit the Slimy",
+      "section": "action",
+      "identifier": "shortbow",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "4223a6b660609baefacbc2885e364fd395feeeb34dd3b4deef2adef0f479cbee",
+        "source": "5etools",
+        "chars": 156
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:king-robbit-the-slimy/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "King Robbit the Slimy",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "e28e0275a235674d09a33a75168935d47c4218960dadac7a7cff264f4fa31d74",
+        "source": "5etools",
+        "chars": 36
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:king-robbit-the-slimy/trait/poisonous-skin",
+      "name": "Poisonous Skin",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "King Robbit the Slimy",
+      "section": "trait",
+      "identifier": "poisonous-skin",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "f0b29df5ee44575b01b519845afd8a2ed8745b253a0362f2c73a77b0b113bd68",
+        "source": "5etools",
+        "chars": 343
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:king-robbit-the-slimy/trait/standing-leap",
+      "name": "Standing Leap",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "King Robbit the Slimy",
+      "section": "trait",
+      "identifier": "standing-leap",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "1218c744fb6abc9e465a95ca2151eba0bc9cce43f8c844802d01d0798d7d15dc",
+        "source": "5etools",
+        "chars": 107
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:sludge-hag/action/false-appearance",
+      "name": "False Appearance",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Sludge Hag",
+      "section": "action",
+      "identifier": "false-appearance",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "69a87e099bdcf7ca00a4d940dddc1580738babca235f09df70a59f7eb3ffe078",
+        "source": "5etools",
+        "chars": 151
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:sludge-hag/action/sludge-slap",
+      "name": "Sludge Slap",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Sludge Hag",
+      "section": "action",
+      "identifier": "sludge-slap",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "be131ce06c4be8e657fe305ac23d2bc446dda635cc6f290582322bb1822b6c37",
+        "source": "5etools",
+        "chars": 147
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:sludge-hag/trait/amorphous",
+      "name": "Amorphous",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Sludge Hag",
+      "section": "trait",
+      "identifier": "amorphous",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "0e1a9f8634a31c6bf861a5e99b531a25cc0aa2547592baedaa25ecc02214d20f",
+        "source": "5etools",
+        "chars": 83
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:sludge-hag/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Sludge Hag",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "adbf629be9f34fab6868f91f17b3f0ac7a108024142307432395629a6c07ae83",
+        "source": "5etools",
+        "chars": 41
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:sludge-hag/trait/innate-spellcasting",
+      "name": "Innate Spellcasting",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Sludge Hag",
+      "section": "trait",
+      "identifier": "innate-spellcasting",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "6c6c574def1cba75d08a84219a71a87b54ab6d841cb973b7faf8c0593a210701",
+        "source": "5etools",
+        "chars": 186
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:spiderfrog/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Spiderfrog",
+      "section": "action",
+      "identifier": "bite",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "4aae7354609a0e1ba7ce50513050503c1c13fec467dbf168f7722052fa31d533",
+        "source": "5etools",
+        "chars": 191
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:spiderfrog/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Spiderfrog",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "48ae9cf96b72bfeda5779aeb232a0a884cecca3ced277d8b01dec02eb0df7503",
+        "source": "5etools",
+        "chars": 41
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:spiderfrog/trait/spider-climb",
+      "name": "Spider Climb",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Spiderfrog",
+      "section": "trait",
+      "identifier": "spider-climb",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "e917c6d7d2190c688356fe61f2a11abe533ee49bc729a12facc2a17ce60b5910",
+        "source": "5etools",
+        "chars": 121
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:spiderfrog/trait/standing-leap",
+      "name": "Standing Leap",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Spiderfrog",
+      "section": "trait",
+      "identifier": "standing-leap",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "4882d4ea01555bc69746650ea941a33577a901beeacba57a3e6186d511bf906e",
+        "source": "5etools",
+        "chars": 108
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:yeti-tyke/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Yeti Tyke",
+      "section": "action",
+      "identifier": "claw",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "cba488ca86e0d28758e58592c49cacfeb4c8c8c6bf13d9c48637d56e3f0229d8",
+        "source": "5etools",
+        "chars": 133
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:yeti-tyke/trait/keen-smell",
+      "name": "Keen Smell",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Yeti Tyke",
+      "section": "trait",
+      "identifier": "keen-smell",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "959dcfe49fabeeb126287a9732c9e21b6f414e85354e9c4f795f83dd7ba6c75b",
+        "source": "5etools",
+        "chars": 77
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mgelft:monster:yeti-tyke/trait/snow-camouflage",
+      "name": "Snow Camouflage",
+      "kind": "monster",
+      "book": "MGELFT",
+      "edition": "2014",
+      "owner": "Yeti Tyke",
+      "section": "trait",
+      "identifier": "snow-camouflage",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "2eaadd01b9468d5d7438f4d4c217bc46b06290d42d3212998230027a5ee8e44f",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
