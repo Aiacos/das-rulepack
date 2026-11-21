@@ -142,13 +142,13 @@ describe("gateIds", () => {
     expect(gateIds(withEntry(entryWith({ [ACT]: 1 })), ctx())).toEqual([]);
   });
 
-  it("names the origin and the missing id", () => {
-    expect(gateIds(withEntry(entryWith({ extra: NOPE })), ctx())).toEqual([`ids: ddb-importer has no activity or effect ${NOPE}`]);
+  it("names the id that no origin of the rule has", () => {
+    expect(gateIds(withEntry(entryWith({ extra: NOPE })), ctx())).toEqual([`ids: ${NOPE} belongs to no origin of the rule`]);
   });
 
   it("fails a camelCase DDB-style id that the item does not have, and passes it once the item has it", () => {
     const r = withEntry(entryWith({ noDamage: ["saveTashCausBrew"] }));
-    expect(gateIds(r, ctx())).toEqual(["ids: ddb-importer has no activity or effect saveTashCausBrew"]);
+    expect(gateIds(r, ctx())).toEqual(["ids: saveTashCausBrew belongs to no origin of the rule"]);
     const owned = { ...r, items: [item({ activities: [ACT, "saveTashCausBrew"] })] };
     expect(gateIds(owned, ctx())).toEqual([]);
     expect(gateIds(withEntry(entryWith({ [LONG_KEY]: true })), ctx())).toEqual([]);
@@ -163,7 +163,7 @@ describe("gateIds", () => {
   it("checks every origin the rule names", () => {
     const r = withEntry(entryWith(), { items: [item(), item({ origin: "official", activities: [], effects: [] })] });
     r.rule.origins = ["ddb-importer", "official"];
-    expect(gateIds(r, ctx())).toEqual([`ids: official has no activity or effect ${EFF}`]);
+    expect(gateIds(r, ctx())).toEqual(["ids: official contributes no id"]);
   });
 
   it("fails ids with no origin to check them against", () => {
@@ -358,7 +358,7 @@ describe("runGates", () => {
     const edited = { ...passed, rule: { ...passed.rule, entry: entryWith({ extra: NOPE }) } };
     expect(stateOf(edited)).toBe("drafted");
     const { failures, updated } = runGates([edited], ctx());
-    expect(failures[edited.key].ids).toEqual([`ids: ddb-importer has no activity or effect ${NOPE}`]);
+    expect(failures[edited.key].ids).toEqual([`ids: ${NOPE} belongs to no origin of the rule`]);
     expect(updated[0].evidence.gates).toBeUndefined();
   });
 

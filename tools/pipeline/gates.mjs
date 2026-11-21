@@ -7,11 +7,12 @@
 // A gate returns its failures as a string[]; the gates that can also say something that must not fail a run (a note) expose it
 // through the matching check function, and runGates collects both.
 import {
-  canonical, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
+  canonical, emittedFingerprint, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
 } from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
+import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
 
 export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
@@ -20,15 +21,20 @@ const FULL_EVIDENCE = ["schema", "validator", "ids", "fixes", "text"];
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const ID = /^[A-Za-z0-9]{16}$/;
 
+// What separates an id from its neighbours in a string: a path (`a.<id>.b`), an anchor (`#<id>`), a pair (`<id>/<id>`), a
+// document link (`@UUID[Compendium.pkg.Item.<id>]{Name}`).
+const SEGMENT = /[.#/[\]{}\s]+/;
+
 /**
  * Every 16-character [A-Za-z0-9] token of the entry that is not a word of the engine's `vocabulary` (a Set, core.vocabulary):
- * a key, a string value, or a dot-separated segment of either. Fails closed: a token the engine does not name is an id.
+ * a key, a string value, or a segment of either (split at ".", "#", "/", brackets, braces and spaces). Fails closed: a token
+ * the engine does not name is an id.
  */
 export function idsIn(entry, vocabulary = new Set()) {
   const found = new Set();
   const take = (s) => {
     // A path such as `system.activities.<id>.activation.type` names an id as one of its segments.
-    for (const part of [s, ...s.split(".")]) if (ID.test(part) && !vocabulary.has(part)) found.add(part);
+    for (const part of [s, ...s.split(SEGMENT)]) if (ID.test(part) && !vocabulary.has(part)) found.add(part);
   };
   const walk = (node) => {
     if (typeof node === "string") take(node);
@@ -57,7 +63,11 @@ const isLegacy = (record, context) => hasLegacyStanding(record, context?.legacy)
 const matchedItems = (record, origin) => (record.items ?? []).filter((i) => i?.origin === origin && i.match === "matched");
 
 // The structure of the record, and its `sources` (each must be a document of this record bound to its identifier).
-export const gateSchema = (record) => [...validateRecord(record).map((e) => `schema: ${e}`), ...sourceProblems(record)];
+// And the identifiers a ruled record registers (identifiers.mjs identifierProblems): from the record alone, so under --ci too.
+export const gateSchema = (record) => [
+  ...validateRecord(record).map((e) => `schema: ${e}`), ...sourceProblems(record),
+  ...(validateRecord(record).length ? [] : identifierProblems(record).map((e) => `schema: ${e}`))
+];
 
 export function gateValidator(record, { core }) {
   if (!record.rule) return [];
@@ -73,6 +83,16 @@ export function gateValidator(record, { core }) {
   }
 }
 
+const uncoveredOf = (rule) => (Array.isArray(rule?.uncovered) ? rule.uncovered.map((u) => u?.origin) : []);
+
+/**
+ * The ids gate (Rulings R4, R5). Every id of the entry must be an activity or effect of the matched item of at least one origin
+ * the rule names (the ids of several origins sit side by side), and every origin named must contribute one when the entry has
+ * any. Every matched origin is either named or listed in `rule.uncovered`. The item of every origin named must be reached by
+ * an identifier the rule registers (its own, a source, an alias), and a monster feature whose embedded item id is shared by
+ * several creatures cannot be (the engine would need `<actor id>.<item id>` sources). A legacy record with standing is held
+ * to the first rule only (its origins were written before uncovered origins and aliases existed).
+ */
 export function checkIds(record, context) {
   const out = { failures: [], notes: [] };
   if (!record.rule) return out;
@@ -85,17 +105,27 @@ export function checkIds(record, context) {
   }
   const ids = idsIn(entry, context?.core?.vocabulary);
   const origins = originsOf(record.rule);
+  const legacy = isLegacy(record, context);
   if (!origins.length) out.failures.push("ids: rule names no origin");
+  const owned = new Set();
   for (const origin of origins) {
     const items = matchedItems(record, origin);
     if (!items.length) {
-      if (isLegacy(record, context)) {
+      if (legacy) {
         if (!out.notes.includes("ids: no item data (legacy)")) out.notes.push("ids: no item data (legacy)");
       } else out.failures.push(`ids: no matched item for ${origin}`);
       continue;
     }
     const known = new Set(items.flatMap((i) => [...(i.activities ?? []), ...(i.effects ?? [])]));
-    for (const id of ids) if (!known.has(id)) out.failures.push(`ids: ${origin} has no activity or effect ${id}`);
+    const mine = ids.filter((id) => known.has(id));
+    for (const id of mine) owned.add(id);
+    if (ids.length && !mine.length && !legacy) out.failures.push(`ids: ${origin} contributes no id`);
+    for (const item of legacy ? [] : items) {
+      if (item.embeddedShared) out.failures.push(`ids: ${SHARED_EMBEDDED}`);
+      else if (!reaches(record, item)) {
+        out.failures.push(`ids: ${origin} item identifier ${item.identifier} is not reached (no source, no alias)`);
+      }
+    }
     // Another official package that reprints the document without an id the entry uses: the entry would not fit that copy.
     // Only the official origin has reprints. A reprint with other ids and no usable list of what it lacks lacks every id.
     for (const item of origin === "official" ? items : []) {
@@ -103,10 +133,24 @@ export function checkIds(record, context) {
       for (const r of item.reprints ?? []) {
         if (r?.sameIds !== false || excluded.has(r.package)) continue;
         const lacks = Array.isArray(r.missing) ? new Set(r.missing) : null;
-        for (const id of ids) {
+        for (const id of mine) {
           if (!lacks || lacks.has(id)) out.failures.push(`ids: the reprint in ${r.package} has no activity or effect ${id}`);
         }
       }
+    }
+  }
+  // An origin with no item already failed above: its ids are not blamed twice.
+  if (origins.some((o) => matchedItems(record, o).length)) {
+    for (const id of ids) if (!owned.has(id)) out.failures.push(`ids: ${id} belongs to no origin of the rule`);
+  }
+  // A rule that names no origin already failed: every matched origin would be blamed again.
+  if (!legacy && origins.length) {
+    const uncovered = uncoveredOf(record.rule);
+    for (const origin of unaccountedOrigins(record)) {
+      out.failures.push(`ids: ${origin} is matched but neither in origins nor uncovered`);
+    }
+    for (const origin of uncovered) {
+      if (!matchedItems(record, origin).length) out.failures.push(`ids: ${origin} is uncovered but has no matched item`);
     }
   }
   return out;
@@ -152,7 +196,12 @@ export function checkFixes(record, context = {}) {
         }
         const current = core.getPath(holder, fix.path);
         if (core.matchesFrom(current, fix.value)) continue; // already applied
-        if (!("from" in fix) || core.matchesFrom(current, fix.from)) continue; // still applicable
+        // Without `from`, nothing says what the fix expects: at least its path must be there (a mistyped one never applies).
+        if (!("from" in fix)) {
+          if (current === undefined) failures.add(`fixes: ${fix.path} does not exist`);
+          continue;
+        }
+        if (core.matchesFrom(current, fix.from)) continue; // still applicable
         drift(fix.path);
       }
     }
@@ -175,29 +224,56 @@ export function checkText(record, context = {}) {
 }
 export const gateText = (record, context) => checkText(record, context).failures;
 
-const identifierOfRecord = (record) => (typeof record?.identifier === "string" ? record.identifier.trim().toLowerCase() : "");
-// The groups of ruled records that share one identifier. Only a record that has a rule registers an identifier with the engine,
-// and two rules must never register one: binding `sources` does not make two entries one.
+const norm = (id) => (typeof id === "string" ? id.trim().toLowerCase() : "");
+// The identifiers a ruled record registers with the engine: its own and the aliases of its rule (Ruling R2).
+const registeredBy = (record) =>
+  [...new Set([norm(record.identifier), ...(record.rule?.alsoAs ?? []).map((a) => norm(a?.identifier))].filter(Boolean))];
+
+// The groups of ruled records that share one identifier, aliases included. Only a record that has a rule registers an
+// identifier with the engine, and two rules must never register one: binding `sources` does not make two entries one.
 function duplicateGroups(records) {
   const byIdentifier = new Map();
   for (const record of records) {
     if (!isObject(record) || !record.rule) continue;
-    const id = identifierOfRecord(record);
-    if (id) byIdentifier.set(id, [...(byIdentifier.get(id) ?? []), record]);
+    for (const id of registeredBy(record)) byIdentifier.set(id, [...(byIdentifier.get(id) ?? []), record]);
   }
   return [...byIdentifier].filter(([, group]) => group.length > 1);
 }
 
 const uniqueMessage = (id, group) => `unique: ${group.map((r) => r.key).join(" and ")} share the identifier ${id}`;
+const coreMessage = (record, id) => `unique: ${record.key}: ${id} is a DAS · Core identifier (an entry there would be patched`
+  + " for every item of that name; set rule.inCore only on purpose)";
 
-/** Two ruled records with the same identifier would register one entry twice, always a failure. Unruled records are ignored. */
-export const gateUnique = (records) => duplicateGroups(records).map(([id, group]) => uniqueMessage(id, group));
-
-const uniqueFailuresByKey = (records) => {
-  const byKey = new Map();
-  for (const [id, group] of duplicateGroups(records)) {
-    for (const { key } of group) byKey.set(key, [...(byKey.get(key) ?? []), uniqueMessage(id, group)]);
+// A registered table is merged over the engine's entries identifier by identifier: a rule under one of the engine's
+// identifiers patches the engine's entry, allowed only for its own identifier with `rule.inCore: true` (set by a person).
+function coreCollisions(records, identifiers) {
+  const out = [];
+  if (!identifiers?.size) return out;
+  for (const record of records) {
+    if (!isObject(record) || !record.rule) continue;
+    // `inCore` is a person's decision about the record's own identifier; an alias never patches an entry of the engine.
+    const own = norm(record.identifier);
+    for (const id of registeredBy(record)) {
+      if (identifiers.has(id) && !(id === own && record.rule.inCore === true)) out.push([record, coreMessage(record, id)]);
+    }
   }
+  return out;
+}
+
+/**
+ * Two ruled records that register one identifier (own or alias) would register one entry twice, always a failure; so is an
+ * identifier or alias equal to a DAS · Core identifier (`core.identifiers`) without `rule.inCore`. Unruled records are ignored.
+ */
+export const gateUnique = (records, { core } = {}) => [
+  ...duplicateGroups(records).map(([id, group]) => uniqueMessage(id, group)),
+  ...coreCollisions(records, core?.identifiers).map(([, m]) => m)
+];
+
+const uniqueFailuresByKey = (records, core) => {
+  const byKey = new Map();
+  const add = (key, m) => byKey.set(key, [...(byKey.get(key) ?? []), m]);
+  for (const [id, group] of duplicateGroups(records)) for (const { key } of group) add(key, uniqueMessage(id, group));
+  for (const [record, m] of coreCollisions(records, core?.identifiers)) add(record.key, m);
   return byKey;
 };
 
@@ -223,7 +299,7 @@ function ciEvidence(record, context) {
 export function runGates(records, context) {
   const failures = {};
   const notes = {};
-  const unique = uniqueFailuresByKey(records);
+  const unique = uniqueFailuresByKey(records, context.core);
   const add = (target, key, gate, list) => {
     if (list.length) ((target[key] ??= {})[gate] = list);
   };
@@ -239,6 +315,13 @@ export function runGates(records, context) {
     };
     run("schema", gateSchema(record));
     const sound = !failures[key]?.schema;
+    // Ruling R5 is not applied to a legacy record with standing (its origins predate `uncovered`): said, under a name that is
+    // not a gate, so that its evidence (`passed`, `noted`) does not change.
+    if (sound && record.rule && isLegacy(record, context)) {
+      const notes = unaccountedOrigins(record)
+        .map((o) => `coverage: ${o} is matched but neither in origins nor uncovered (legacy)`);
+      run("coverage", { failures: [], notes });
+    }
     const standing = legacyProblem(record, context.legacy);
     if (standing) run("legacy", [standing]);
     if (sound && record.rule) {
@@ -257,7 +340,7 @@ export function runGates(records, context) {
     if (failures[key]) return { ...record, evidence };
     const noted = GATES.filter((g) => notes[key]?.[g]);
     const passed = GATES.filter((g) => !noted.includes(g));
-    const next = { core: context.core.version, rule: ruleFingerprint(record.rule), passed };
+    const next = { core: context.core.version, rule: ruleFingerprint(record.rule), emits: emittedFingerprint(record), passed };
     if (noted.length) next.noted = noted;
     // The items checked, so that evidence never outlives a change of item (resolve, inventory or any other editor).
     const items = gatedItems(record);

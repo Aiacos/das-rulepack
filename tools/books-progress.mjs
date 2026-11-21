@@ -12,10 +12,11 @@
  *
  * Plain Node, no dependency.
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 import { RULES } from "../scripts/rules/index.mjs";
+import { unaccountedOrigins } from "./pipeline/identifiers.mjs";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../..");
 const read = file => JSON.parse(readFileSync(resolve(ROOT, file), "utf8"));
@@ -213,6 +214,21 @@ export function renderBooks() {
   return out.join("\n");
 }
 
+/**
+ * Ruling R5, for the rules written before it (legacy): the matched origins they neither name nor list as uncovered, by
+ * "<book>|<identifier>", read from registry/. The generated rule does not carry them (its module stays as it was migrated).
+ */
+export function unaccountedByRule(dir = resolve(ROOT, "registry")) {
+  const out = new Map();
+  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !["legacy.json", "queue.json"].includes(f)) ) {
+    for ( const r of JSON.parse(readFileSync(resolve(dir, f), "utf8")).records ?? [] ) {
+      const gaps = unaccountedOrigins(r);
+      if ( gaps.length ) out.set(`${r.book}|${r.identifier}`, gaps);
+    }
+  }
+  return out;
+}
+
 const STATUS = { played: "Played", validated: "Validated", pending: "Pending" };
 const KIND = { spell: "Spell", feature: "Feature", sense: "Sense" };
 
@@ -221,6 +237,7 @@ export function renderRules() {
   const books = CATALOG.books.filter(book => RULES.some(rule => rule.book === book.code))
     .sort((a, b) => (Number(!foundryPackage(a.code)) - Number(!foundryPackage(b.code))) || byYear(a, b));
   const out = [];
+  const unaccounted = unaccountedByRule();
   for ( const book of books ) {
     const pkg = foundryPackage(book.code);
     out.push(`### ${book.code} · ${book.name}${/\(\d{4}\)$/.test(book.name) ? "" : ` (${book.year})`}`, "");
@@ -230,7 +247,11 @@ export function renderRules() {
       const name = rule.origin ? `${rule.name} (${rule.origin})` : rule.name;
       const pages = [`p.${rule.page}`, ...(rule.alsoIn ?? []).map(other => `${other.book} p.${other.page}`)].join("; ");
       const where = (rule.handledIn === "code") ? `code${rule.entry ? " + table" : ""}` : "table";
-      out.push(`| ${name} | ${KIND[rule.kind]} | ${pages} | ${rule.adds} | ${where} | ${STATUS[rule.status]} |`);
+      // Ruling R5: an origin whose item the rule does not reach is said, with why.
+      const gaps = [...(rule.uncovered ?? []).map(u => ` Not covered on ${u.origin}: ${u.because}.`),
+        ...(unaccounted.get(`${rule.book}|${rule.identifier}`) ?? []).map(o => ` Not checked on ${o} (the rule predates it).`)]
+        .join("");
+      out.push(`| ${name} | ${KIND[rule.kind]} | ${pages} | ${rule.adds}${gaps} | ${where} | ${STATUS[rule.status]} |`);
     }
     out.push("");
   }

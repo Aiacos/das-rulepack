@@ -40,8 +40,8 @@ const isStringList = (v) => Array.isArray(v) && v.every((x) => typeof x === "str
 // What inventory and `resolve` add to an item: copies of one document, reprints, what a person settled.
 function checkItemExtras(item, at, errors) {
   if ("alsoDocIds" in item && !isStringList(item.alsoDocIds)) errors.push(`${at}.alsoDocIds: must be an array of strings`);
-  if ("identifierDiffers" in item && typeof item.identifierDiffers !== "boolean") {
-    errors.push(`${at}.identifierDiffers: must be a boolean`);
+  for (const f of ["identifierDiffers", "embeddedShared"]) {
+    if (f in item && typeof item[f] !== "boolean") errors.push(`${at}.${f}: must be a boolean`);
   }
   if ("resolved" in item) {
     const r = item.resolved;
@@ -73,7 +73,44 @@ function checkText(text, errors) {
   if (!Number.isInteger(text.chars) || text.chars < 0) errors.push("text.chars: must be a non-negative integer");
 }
 
-function checkRule(rule, verdict, errors) {
+// One printable line of at most 200 characters (a reason).
+const isLine = (v) => isString(v) && v.length <= 200 && !/[\u0000-\u001f\u007f]/.test(v);
+
+// `rule.alsoAs` (Ruling R2): the other identifiers the entry is registered under, one per origin whose item names it otherwise.
+function checkAlsoAs(list, identifier, errors) {
+  if (!Array.isArray(list)) return errors.push("rule.alsoAs: must be an array of { identifier, origin }");
+  const seen = new Set();
+  list.forEach((a, i) => {
+    const at = `rule.alsoAs[${i}]`;
+    if (!isObject(a) || Object.keys(a).some((k) => k !== "identifier" && k !== "origin")) {
+      return errors.push(`${at}: must be { identifier, origin }`);
+    }
+    if (typeof a.identifier !== "string" || !KEBAB.test(a.identifier)) errors.push(`${at}.identifier: must be kebab-case`);
+    else if (a.identifier === identifier) errors.push(`${at}.identifier: is the record's own identifier`);
+    else if (seen.has(a.identifier)) errors.push(`${at}.identifier: ${a.identifier} is listed twice`);
+    seen.add(a.identifier);
+    if (!ORIGINS.includes(a.origin)) errors.push(`${at}.origin: unknown origin ${JSON.stringify(a.origin)}`);
+  });
+}
+
+// `rule.uncovered` (Ruling R5): the matched origins the rule does not cover, each with why.
+function checkUncovered(list, origins, errors) {
+  if (!Array.isArray(list)) return errors.push("rule.uncovered: must be an array of { origin, because }");
+  const seen = new Set();
+  list.forEach((u, i) => {
+    const at = `rule.uncovered[${i}]`;
+    if (!isObject(u) || Object.keys(u).some((k) => k !== "origin" && k !== "because")) {
+      return errors.push(`${at}: must be { origin, because }`);
+    }
+    if (!ORIGINS.includes(u.origin)) errors.push(`${at}.origin: unknown origin ${JSON.stringify(u.origin)}`);
+    else if (seen.has(u.origin)) errors.push(`${at}.origin: ${u.origin} is listed twice`);
+    else if (Array.isArray(origins) && origins.includes(u.origin)) errors.push(`${at}.origin: ${u.origin} is also in origins`);
+    seen.add(u.origin);
+    if (!isLine(u.because)) errors.push(`${at}.because: must be one line of at most 200 characters`);
+  });
+}
+
+function checkRule(rule, verdict, errors, identifier) {
   if (!isObject(rule)) return errors.push("rule: must be an object");
   if (!HANDLED_IN.includes(rule.handledIn)) errors.push(`rule.handledIn: must be one of ${HANDLED_IN.join(", ")}`);
   if (typeof rule.adds !== "string") errors.push("rule.adds: must be a string");
@@ -87,6 +124,8 @@ function checkRule(rule, verdict, errors) {
   if (!Array.isArray(rule.origins)) errors.push("rule.origins: must be an array");
   else for (const o of rule.origins) if (!ORIGINS.includes(o)) errors.push(`rule.origins: unknown origin ${JSON.stringify(o)}`);
   if (verdict === "entry" && !isObject(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
+  if ("alsoAs" in rule) checkAlsoAs(rule.alsoAs, identifier, errors);
+  if ("uncovered" in rule) checkUncovered(rule.uncovered, rule.origins, errors);
 }
 
 // The gates the evidence may name (gates.mjs GATES).
@@ -109,10 +148,13 @@ function checkEvidence(evidence, errors) {
     if (!ok) errors.push("evidence.triaged.first: must be { by: reader handle, confidence: number from 0 to 1 }");
   }
   if ("gates" in evidence) {
-    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, passed, noted?, items? }");
+    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, emits?, passed, noted?, items? }");
     else {
       for (const f of ["at", "core"]) if (!isString(gates[f])) errors.push(`evidence.gates.${f}: must be a non-empty string`);
       if (typeof gates.rule !== "string" || !HEX64.test(gates.rule)) errors.push("evidence.gates.rule: must be 64 hex characters");
+      if ("emits" in gates && !(typeof gates.emits === "string" && HEX64.test(gates.emits))) {
+        errors.push("evidence.gates.emits: must be 64 hex characters");
+      }
       if (!isGateList(gates.passed)) {
         errors.push(`evidence.gates.passed: must be an array of gate names (${GATE_NAMES.join(", ")})`);
       }
@@ -159,7 +201,7 @@ export function validateRecord(record) {
   // A verdict comes before any draft: `rule.entry` is required only once a rule is there. A rule is registered only under
   // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
   if ("rule" in record) {
-    checkRule(record.rule, record.verdict, errors);
+    checkRule(record.rule, record.verdict, errors, record.identifier);
     if (!RULE_VERDICTS.includes(record.verdict)) {
       errors.push(`verdict: a record with a rule can only have the verdict entry or code, not ${JSON.stringify(record.verdict)}`);
     }

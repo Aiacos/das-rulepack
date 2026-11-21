@@ -3,7 +3,8 @@ import { mkdtempSync, rmSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  VERDICTS, STATES, ORIGINS, MATCHES, keyOf, slug, groupBy, validateRecord, ruleFingerprint, stateOf, loadBook, saveBook
+  VERDICTS, STATES, ORIGINS, MATCHES, keyOf, slug, groupBy, validateRecord, ruleFingerprint, emittedFingerprint, stateOf,
+  loadBook, saveBook
 } from "../../tools/pipeline/registry.mjs";
 
 // Synthetic fixtures only: invented spells, no real book content.
@@ -14,7 +15,8 @@ const minimal = () => ({
 const rule = () => ({ handledIn: "table", adds: "Glimmer Bolt", entry: { aura: true }, origins: ["official"] });
 const GATES = ["schema", "validator", "ids", "fixes", "text"];
 const gated = (r) => ({
-  ...r, evidence: { gates: { at: "2026-11-21", core: "abc", rule: ruleFingerprint(r.rule), passed: GATES } }
+  ...r,
+  evidence: { gates: { at: "2026-11-21", core: "abc", rule: ruleFingerprint(r.rule), emits: emittedFingerprint(r), passed: GATES } }
 });
 
 describe("constants", () => {

@@ -6,7 +6,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { ruleFromRecord } from "../../tools/pipeline/generate.mjs";
-import { loadBook, ruleFingerprint, saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
+import { emittedFingerprint, loadBook, ruleFingerprint, saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 
 // Synthetic fixtures only: invented entries and documents.
 const FIXTURES = join(dirname(fileURLToPath(import.meta.url)), "fixtures", "dataset");
@@ -75,13 +75,12 @@ describe("inventory of the other kinds", () => {
 
   it("generate refuses to emit a rule whose record has no page, naming the key", () => {
     const rule = { handledIn: "code", adds: "x", origins: [] };
-    const gated = (page) => ({
-      ...run().records[0], page, verdict: "code", rule, identifier: "moss-stride",
-      evidence: {
-        gates: { at: "t", core: "1", rule: ruleFingerprint(rule), passed: ["schema", "validator", "ids", "fixes", "text"] },
-        reviewed: { by: "r", at: "t", agrees: true }
-      }
-    });
+    const gated = (page) => {
+      const r = { ...run().records[0], page, verdict: "code", rule, identifier: "moss-stride" };
+      const passed = ["schema", "validator", "ids", "fixes", "text"];
+      const gates = { at: "t", core: "1", rule: ruleFingerprint(rule), emits: emittedFingerprint(r), passed };
+      return { ...r, evidence: { gates, reviewed: { by: "r", at: "t", agrees: true } } };
+    };
     expect(ruleFromRecord(gated(31)).page).toBe(31);
     expect(() => ruleFromRecord(gated(null))).toThrow(/tst:feat:moss-stride.*no page/);
   });

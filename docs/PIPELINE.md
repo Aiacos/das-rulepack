@@ -111,23 +111,48 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
 4. **Gates** check every record deterministically and write their outcome into `evidence.gates`: the gates that were
    checked and passed in `passed`, those that could only leave a note in `noted`, and in `items` the data fingerprint of
    the matched item of each origin the rule names (`{ <origin>: <data.sha256> }`, left out when no item has data, as for a
-   legacy rule). The evidence counts (state `gated`, and the `--ci` check) only while the rule fingerprint is the rule's
+   legacy rule), and in `emits` a fingerprint of the record fields its emitted rule is made of besides the rule
+   (`identifier`, `name`, `book`, `page`, `kind`, `alsoIn`, `sources`: `registry.mjs` `emittedFingerprint`). The evidence
+   counts (state `gated`, and the `--ci` check) only while the rule fingerprint is the rule's, `emits` is the record's,
    and every recorded item fingerprint is that of the record's current matched item of its origin: moving an item to
    another document or changing its data, by `resolve`, inventory or anyone, makes the record `drafted` again.
    The ids gate fails closed: every
-   16-character token of letters and digits in an entry (a key, a value, or a dot-separated segment of either) is a
+   16-character token of letters and digits in an entry (a key, a value, or a segment of either split at `.`, `#`, `/`,
+   brackets, braces and spaces, so `#<id>`, `<id>/<id>` and `@UUID[…<id>]` are read) is a
    document id unless it is a word of the engine's own vocabulary (entry keys, enumeration values, fact and moment names
-   of the `DAS_CORE` clone), and every origin the rule names must have it as an activity or effect of its matched item (an item
-   saved under several ids,
-   `alsoDocIds`, has the same ids in every copy: identical data implies it). The ids gate also looks at the reprints (below).
+   of the `DAS_CORE` clone). The ids of several origins sit side by side (Ruling R4): every id must be an activity or effect
+   of the matched item of at least one origin the rule names (`ids: <id> belongs to no origin of the rule`), and each origin
+   named must contribute one when the entry has any (`ids: <origin> contributes no id`); an item saved under several ids,
+   `alsoDocIds`, has the same ids in every copy (identical data implies it). Every matched origin (a Plutonium `unchecked`
+   item is not) is named in `origins` or listed in `rule.uncovered: [{ origin, because }]` with one line saying why
+   (Ruling R5; `ids: <origin> is matched but neither in origins nor uncovered`). The item of every origin named must be
+   reached by an identifier the rule registers: the record's own, a `sources` binding, or an alias of `rule.alsoAs`
+   (`ids: <origin> item identifier <x> is not reached (no source, no alias)`; an alias reaches only the item of its own
+   `origin`). A legacy record with standing is held to the first two checks only (its origins predate `uncovered` and
+   aliases: the TCE rules name `ddb-importer` alone although the official item is matched); each such origin is printed as a
+   `coverage:` note (not a gate: the record's evidence does not change) and `docs/RULES.md` says "Not checked on <origin>".
+   The schema gate also checks, from the record alone (so under `--ci` too), the identifiers a ruled record registers
+   (`identifiers.mjs` `identifierProblems`): its own identifier is not generic (`GENERIC_IDENTIFIERS`); a monster feature's
+   is its creature-scoped one, it has no alias, and an official item with `embeddedShared` fails
+   (`shared embedded item id: waits on upstream …`, the rule stays `drafted`); every alias is not generic, its `origin` is in
+   `rule.origins`, and it equals the identifier of the record's matched item of that origin. The ids gate also looks at the
+   reprints (below), with the ids the official item contributes.
    The `unique` gate applies only to records that have a `rule`, the only ones that register an identifier with the engine:
-   two ruled records with one identifier always fail, whatever `sources` they bind; records without a rule are
-   ignored (many features and traits share a name). The schema gate also checks `sources`: every key must be the docId (or
+   two ruled records that register one identifier, their own or an alias, always fail, whatever `sources` they bind; records
+   without a rule are ignored (many features and traits share a name). A registered table is merged over the engine's own
+   entries identifier by identifier, so an identifier or alias equal to a DAS · Core identifier (`content/index.mjs`
+   `SHIPPED` and `SRD_ALIASES` of the clone) fails unless it is the record's own identifier and the rule says `inCore: true`
+   (set by a person): it would patch the engine's entry for every item of that name. An alias never may.
+   A data fix without `from` must at least find its path on the document (`fixes: <path> does not exist`).
+   The schema gate also checks `sources`: every key must be the docId (or
    an `alsoDocIds`) of the record's matched official item and every value the record's identifier
-   (`sources: <docId> is not an item of this record`). `generate` fails naming the record on the same check, and refuses two
+   (`sources: <docId> is not an item of this record`). `generate` fails naming the record on the same check, and on the
+   identifier checks of any record that has a rule (`identifierProblems`, whatever its state), and refuses two
    emitted rules with one identifier. A
    code rule without an entry has nothing to check there (`ids: nothing to check (code rule without entry)`, noted).
-7. **Generate** writes the book modules under `scripts/rules/` from the registry, and in `index.mjs` the export `SOURCES`
+7. **Generate** writes the book modules under `scripts/rules/` from the registry (a rule with aliases carries
+   `alsoAs: [<identifier>]`, and one with uncovered origins `uncovered`, shown in `docs/RULES.md`); `TABLE` in `index.mjs`
+   registers each entry under its identifier and under each alias; and in `index.mjs` the export `SOURCES`
    (document id to identifier) of the records whose rule is emitted and that bind `sources` (checked against the record); it is
    an empty object for the 24
    rules of today. `scripts/main.mjs` hands it to the engine as `register(source, table, { sources })` only when it is not
@@ -424,6 +449,20 @@ Notes on what inventory does with each kind:
   identifiers). Only an official package's documents qualify. A DDB Importer item lives in a world, where the id is the world's
   own and not stable across worlds, and a monster feature's id is `<actor id>.<item id>`: those get `identifierDiffers: true`
   on the item and no source. Inventory owns the field: it is recomputed on every run and removed when nothing is bound.
+- **Monster features (Ruling R3).** A ruled monster feature has an identifier scoped to its creature,
+  `<book>-<creature>-<feature>` (`-2` for a repeated name; `identifiers.mjs` `monsterIdentifier`), never the bare feature
+  name (the engine has generic entries under names such as `bite`). Inventory binds it by the id of its official embedded item
+  (`sources: { <item id>: <identifier> }`, the part after `.`) when no actor of another creature of the book's package embeds
+  that id and the record carries its scoped identifier (a bare name is never bound); otherwise, for a shared id, the item gets
+  `embeddedShared: true` and no source (the engine reads `<actor id>.<item id>` sources, but
+  external registration accepts 16-character ids only), and the ids gate keeps the rule `drafted`. A feature without a rule
+  binds nothing. DDB Importer monster features are always uncovered (world ids, generic identifiers).
+- **Aliases (Ruling R2).** `rule.alsoAs: [{ identifier, origin }]` registers the entry under the identifier an origin's item
+  carries when no source can bind it (a DDB Importer item, say). `identifiers.mjs` `aliasFor(record, origin,
+  { coreIdentifiers })` gives the alias, or `{ uncovered: because }` when there may be none: a monster feature, an empty or
+  generic identifier (`GENERIC_IDENTIFIERS`: `new-item`, `spellcasting`, `multiattack`, natural weapons, weapon base names),
+  a DAS · Core identifier, or one that is not kebab-case; null when the item is already reached. The schema refuses an alias
+  equal to the record's own identifier or listed twice; the `unique` gate refuses one shared with another rule or Core.
 - **Reprints.** The official item of every kind but monsters gets `reprints: [{ package, docId, sameIds, missing? }]` for each
   other official package (any dump file that is not of the book's package, does not start with `ddb.` or `dnd5e.`, and is not
   an actor pack) that holds the same document id in a document of one of the record kind's types (a journal page or a

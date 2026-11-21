@@ -5,6 +5,7 @@ import { hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy
 import { editionOf } from "./edition.mjs";
 import { RULE_VERDICTS } from "./schema.mjs";
 import { sourceProblems } from "./settle.mjs";
+import { identifierProblems } from "./identifiers.mjs";
 
 export const NOT_BOOKS = ["legacy.json", "queue.json"];
 const GENERATED = /^\/\/ Generated (from registry\/|by npm run build:rules)/;
@@ -61,8 +62,16 @@ export function ruleFromRecord(record, { legacy } = {}) {
   for (const f of ["catalog", "inCore"]) if (f in rule) out[f] = rule[f];
   out.adds = rule.adds;
   for (const f of ["code", "entry"]) if (f in rule) out[f] = structuredClone(rule[f]);
+  // Ruling R2: the other identifiers the entry is registered under (left out when there are none).
+  const aliases = aliasesOf(record);
+  if (aliases.length) out.alsoAs = aliases;
+  // Ruling R5: the matched origins the rule does not cover, shown in docs/RULES.md (left out when there are none).
+  if (Array.isArray(rule.uncovered) && rule.uncovered.length) out.uncovered = structuredClone(rule.uncovered);
   return out;
 }
+
+// The aliases of a record's rule, in their order.
+const aliasesOf = (record) => (Array.isArray(record.rule?.alsoAs) ? record.rule.alsoAs.map((a) => a.identifier) : []);
 
 /**
  * The `sources` of the records whose rule is emitted: `{ docId: identifier }`, what the pack registers beside its table so that
@@ -161,8 +170,9 @@ export const SENSES = entriesOf("sense");
 /** Class features where an entry of DAS · Core is completed, key by key. */
 export const FEATURES = entriesOf("feature");
 
-/** The table registered with DAS · Core: every rule that has an entry, by identifier. */
-export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.entry).map(rule => [rule.identifier, rule.entry])));
+/** The table registered with DAS · Core: every rule that has an entry, by identifier and by each of its aliases (\`alsoAs\`). */
+export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.entry)
+  .flatMap(rule => [rule.identifier, ...(rule.alsoAs ?? [])].map(identifier => [identifier, rule.entry]))));
 
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as \`sources\`. */
 export const SOURCES = Object.freeze(${sourcesLiteral(sources)});
@@ -188,9 +198,12 @@ export function generate({ registry, out, check = false }) {
     const code = f.slice(0, -5);
     const { book, note, records } = loadBook(registry, code);
     refused.push(...records.map((r) => legacyProblem(r, legacy)).filter(Boolean));
-    // A rule under another verdict would silently drop out of the pack.
+    // A rule under another verdict would silently drop out of the pack. A rule's identifiers are checked as the schema gate
+    // checks them (identifiers.mjs identifierProblems), whatever its state: an edit made after the gates is refused here too.
     for (const r of records) {
       if (r.rule && !RULE_VERDICTS.includes(r.verdict)) refused.push(`${r.key}: has a rule but the verdict ${r.verdict}`);
+      const problems = r.rule ? identifierProblems(r) : [];
+      if (problems.length) refused.push(`${r.key}: ${problems.join("; ")}`);
     }
     const source = bookModuleSource(book, records, note, { legacy });
     if (source) wanted.set(`books/${code}.mjs`, source);
@@ -202,12 +215,13 @@ export function generate({ registry, out, check = false }) {
         }
       } catch (e) { refused.push(e.message); }
     }
-    // Two emitted rules must never register one identifier.
+    // Two emitted rules must never register one identifier, aliases included.
     for (const r of records) {
       if (!ruleFromRecord(r, { legacy })) continue;
-      const id = String(r.identifier).trim().toLowerCase();
-      if (emitted.has(id)) refused.push(`${r.key}: shares the identifier ${id} with ${emitted.get(id)}`);
-      else emitted.set(id, r.key);
+      for (const id of new Set([r.identifier, ...aliasesOf(r)].map((x) => String(x).trim().toLowerCase()))) {
+        if (emitted.has(id)) refused.push(`${r.key}: shares the identifier ${id} with ${emitted.get(id)}`);
+        else emitted.set(id, r.key);
+      }
     }
   }
   if (refused.length) throw new Error(`Refusing to generate: ${refused.join("; ")}`);

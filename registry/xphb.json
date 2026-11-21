@@ -10187,9 +10187,10 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-21T17:17:44.625Z",
+          "at": "2026-11-21T22:50:35.293Z",
           "core": "0.289.0",
           "rule": "4142f17a5c95e1c97eec0e02d16abf2fe837200d629f0f4aec723189f8ab7d0a",
+          "emits": "c1e21fd47e8ca2fa0ca36341c731e35196f9ddeab5865ec071d4fcb28687342f",
           "passed": [
             "schema",
             "validator",
@@ -15142,9 +15143,10 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-21T17:17:44.625Z",
+          "at": "2026-11-21T22:50:35.295Z",
           "core": "0.289.0",
           "rule": "8a3bf78339be8932ba81e056ccce8f14095d90317234350227fa1e3347ea4d6e",
+          "emits": "4fca2c63206941c3d3e00b360634605f9e2e9a83c6ef7f787366045ff2a6ee19",
           "passed": [
             "schema",
             "validator",
@@ -20029,9 +20031,10 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-21T17:17:44.625Z",
+          "at": "2026-11-21T22:50:35.297Z",
           "core": "0.289.0",
           "rule": "5caf36635b62a991a132ff667e1f356d2de837e26b6f198a518cef34d009d1a0",
+          "emits": "8cc0755986d4053d6c802aec7e070e307a7d1b3caac3c00b61df3ee3465794bc",
           "passed": [
             "schema",
             "validator",
