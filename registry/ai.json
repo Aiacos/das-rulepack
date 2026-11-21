@@ -3,6 +3,4490 @@
   "note": "Acquisitions Incorporated (2019).\n\nThe effect ids are those of the items imported by DDB Importer; an item from another source keeps the general rules of the\nengine, and the parts of a rule that name an id do nothing on it.",
   "records": [
     {
+      "key": "ai:background:celebrity-adventurers-scion",
+      "name": "Celebrity Adventurer's Scion",
+      "kind": "background",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "celebrity-adventurers-scion",
+      "page": 48,
+      "srd": false,
+      "text": {
+        "sha256": "9c47f1056af392041654ae8c3d4e4c612ae4769fddc139cadc10bd00e48548a5",
+        "source": "5etools",
+        "chars": 916
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:background:failed-merchant",
+      "name": "Failed Merchant",
+      "kind": "background",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "failed-merchant",
+      "page": 49,
+      "srd": false,
+      "text": {
+        "sha256": "5fd217372e961e94a1ab0f36eefafd69bbec5428a0b1843dd55e92cb96ace248",
+        "source": "5etools",
+        "chars": 913
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:background:gambler",
+      "name": "Gambler",
+      "kind": "background",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "gambler",
+      "page": 49,
+      "srd": false,
+      "text": {
+        "sha256": "b8494bda5b1e21d386fd0d7334252736639ab833d2634e2c04cca21e735b98a7",
+        "source": "5etools",
+        "chars": 984
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:background:plaintiff",
+      "name": "Plaintiff",
+      "kind": "background",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "plaintiff",
+      "page": 50,
+      "srd": false,
+      "text": {
+        "sha256": "b874a5cdee5d228c58a555fed53730162a68d558984cb2efc4ab7247e0f17fc0",
+        "source": "5etools",
+        "chars": 899
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:background:rival-intern",
+      "name": "Rival Intern",
+      "kind": "background",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "rival-intern",
+      "page": 51,
+      "srd": false,
+      "text": {
+        "sha256": "bc8518d7eff85de47731b8b90b291d04870e9cd625f8834f34dfaf426f44d612",
+        "source": "5etools",
+        "chars": 918
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:cartographers-map-case",
+      "name": "Cartographer's Map Case",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "common",
+      "identifier": "cartographers-map-case",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "b1967ba24a876919fc70106f928f3fca93d400a4ad27becccae9f51405e30fe0",
+        "source": "5etools",
+        "chars": 1128
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "cartographers-map-case",
+          "docId": "Qz1ykPymXj7kV2XP",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "f07bad51abb5ba2ff096882c9847beae4ab498d8d4835219a66c9ad1f592a9f4"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:chronolometer",
+      "name": "Chronolometer",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "very rare",
+      "identifier": "chronolometer",
+      "page": 220,
+      "srd": false,
+      "text": {
+        "sha256": "5d6daa02481e7fa2b0451fe95fd74083c823edc13e9caf365d9ac896ad9f9618",
+        "source": "5etools",
+        "chars": 1221
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "chronolometer",
+          "docId": "v2s22JN0OCJB0LiM",
+          "activities": [
+            "utilityChronolom"
+          ],
+          "effects": [
+            "UNL5mNfN960vj4VU"
+          ],
+          "data": {
+            "sha256": "0454a8bd9071fdf75db9590fcaed5b13fa7366aad79416aa4692db6df51564bc"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:coin-of-decisionry",
+      "name": "Coin of Decisionry",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "varies",
+      "identifier": "coin-of-decisionry",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "553337f7907b7e629f39d823564449bcbc5648d12e4b3dd16d7503ec94655469",
+        "source": "5etools",
+        "chars": 1317
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "coin-of-decisionry",
+          "docId": "JQGIhBzcryH8wRbk",
+          "activities": [
+            "utilityCoiOfDecI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "a4d9b8d44950231f4073bc597595fae6973dc01ee9bccb15c4b7c54678e266a8"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:dimensional-loop",
+      "name": "Dimensional Loop",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "very rare",
+      "identifier": "dimensional-loop",
+      "page": 220,
+      "srd": false,
+      "text": {
+        "sha256": "4b3d71cfe384bd12e1c049f6f3dcd4ed65e9eb41ca299c55240e0d5a6f65ede9",
+        "source": "5etools",
+        "chars": 1202
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "dimensional-loop",
+          "docId": "B5KhrBuxnHRUGlXJ",
+          "activities": [
+            "utilityDimenLoop"
+          ],
+          "effects": [
+            "kP0tOrZ1iyjOKEvU"
+          ],
+          "data": {
+            "sha256": "aa75c5d4411c5093f2f30be0300eee15d014c3b37ca9bd5cdccae231f1155f87"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:documancy-satchel",
+      "name": "Documancy Satchel",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "varies",
+      "identifier": "documancy-satchel",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "6002bafc4dd56266fa40be29702b4e0fa59105307533de6192b889a102bbda6c",
+        "source": "5etools",
+        "chars": 1169
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "documancy-satchel",
+          "docId": "bWF7iCZ5jfU4UBje",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "313c29c13c72a41ea944817456dc868caeb21d0a8c1b054d0669d62fd688abfa"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:elder-cartographers-glossography",
+      "name": "Elder Cartographer's Glossography",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "uncommon",
+      "identifier": "elder-cartographers-glossography",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "e070421f29bae10f71322026d45b3a26e07d1a71fd6ca2d2fd1da9f571cbdcdf",
+        "source": "5etools",
+        "chars": 212
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "elder-cartographers-glossography",
+          "docId": "kHcLl3PRwaSroiUW",
+          "activities": [
+            "utilityEldCarGlo"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c256ec609a84c6a3f6443d1140e98fd1719f74db4a2de8968fb4be0840caf23e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:failed-experiment-wand",
+      "name": "Failed Experiment Wand",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "rare",
+      "identifier": "failed-experiment-wand",
+      "page": 162,
+      "srd": false,
+      "text": {
+        "sha256": "bb4181e197dc60ee7fd8fe896b75c1243e644d393dab838f10c3ee4561417b3e",
+        "source": "5etools",
+        "chars": 497
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "failed-experiment-wand",
+          "docId": "36Ks5WMTl9JpeS0m",
+          "activities": [
+            "castFireFaExWaLe",
+            "castLiBoFaExWaLe"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "e430222448723456c774d07b87fd92231b4f480feb49b8b214f607a28cc10508"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:far-gear",
+      "name": "Far Gear",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "very rare",
+      "identifier": "far-gear",
+      "page": 221,
+      "srd": false,
+      "text": {
+        "sha256": "fb28122b8bd64b4b90af4a624dc6b3dbac3836f50d3c2008be19e7cd4ad354c2",
+        "source": "5etools",
+        "chars": 866
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "far-gear",
+          "docId": "WIWxphiH7JlKw2bK",
+          "activities": [
+            "utilityFarGearII",
+            "castBanFarGeaLeg"
+          ],
+          "effects": [
+            "y9M8wLbESBA0WlHK"
+          ],
+          "data": {
+            "sha256": "4c5bb24c955c0356c0c35caab841a5bee7d154d3b7a59cd25142c35e401a3729"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:living-loot-satchel",
+      "name": "Living Loot Satchel",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "varies",
+      "identifier": "living-loot-satchel",
+      "page": 25,
+      "srd": false,
+      "text": {
+        "sha256": "b9bb9c9afed4bae6b558be4c0941b22f0009ceffc12987e4db1b483b651f7f0e",
+        "source": "5etools",
+        "chars": 2217
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "living-loot-satchel",
+          "docId": "SHoFyOUlygBrbqhT",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "1de9994e76b9f5cea897861b6b36edd3b19caa84c8a366b04d67b6fc9a9f6279"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:obviators-lenses",
+      "name": "Obviator's Lenses",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "varies",
+      "identifier": "obviators-lenses",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "df56b91283beabcfd12ef1d04426db7044cd07e92414239e6eb4c098771781c5",
+        "source": "5etools",
+        "chars": 824
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "obviators-lenses",
+          "docId": "A3Kg7ez4e7nOcnNM",
+          "activities": [
+            "utilityObviaLens"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "e25e8a50d0396e5937411624bdf479c1482bfff2c8e4b4f232cec3aa1d125418"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:occultant-abacus",
+      "name": "Occultant Abacus",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "varies",
+      "identifier": "occultant-abacus",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "401ffc6eced37d13bcdbb7467278685b29150cc874b36cbb52c312f261e56422",
+        "source": "5etools",
+        "chars": 3104
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "occultant-abacus",
+          "docId": "veR9MZWJOazcuzEY",
+          "activities": [
+            "castAugOccAbaLeg"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "292a58628e27347738218a18283e40833cd4ec20b7a3b1622c17352a3f4c163c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:orrery-of-the-wanderer",
+      "name": "Orrery of the Wanderer",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "artifact",
+      "identifier": "orrery-of-the-wanderer",
+      "page": 220,
+      "srd": false,
+      "text": {
+        "sha256": "152af4aa2bd92623148c4091428395f30f2831f2fef488b5fabdb2eb827782b6",
+        "source": "5etools",
+        "chars": 3367
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "orrery-of-the-wanderer",
+          "docId": "5k7CpC1XdEfbUeGB",
+          "activities": [
+            "utilityOrrOfThWa",
+            "castContaOPOOTWL",
+            "castDeOrOfThWaLe",
+            "castGaOrOfThWaLe",
+            "castTelepoCOOTWL"
+          ],
+          "effects": [
+            "jzyFqVHNWleqOWVV"
+          ],
+          "data": {
+            "sha256": "bb6a1dd27f420a25b8163961981d308054b5cdee52221ba7032966d52f2e9ea6"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:piercer",
+      "name": "Piercer",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "rare",
+      "identifier": "piercer",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "6054e1ed74b309d74d2c855e5256de2db8e443adfe4546764e84b613e53defda",
+        "source": "5etools",
+        "chars": 357
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "piercer",
+          "docId": "ZqBv5Q2dkv5pKdJ5",
+          "activities": [
+            "attackPiercerIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "78f80ddf5a7c0f23cad9752a25326125d41216520d898a16dcf711cf9fefcc5a"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:12:14.194Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "ai:item:portfolio-keeper",
+      "name": "Portfolio Keeper",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "varies",
+      "identifier": "portfolio-keeper",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "51d418b1eb41e8f3554d171cab6ba13234beb56aea904bcb5f553cb5805c4a12",
+        "source": "5etools",
+        "chars": 1473
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "portfolio-keeper",
+          "docId": "D7NX7H8TKCdIzz6Z",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "63663899d217be9263c2ec5e7c26f4eaee92eed4e94283d64323cfd6417aef39"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:rotor-of-return",
+      "name": "Rotor of Return",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "very rare",
+      "identifier": "rotor-of-return",
+      "page": 221,
+      "srd": false,
+      "text": {
+        "sha256": "f055d12e1c7cee6c3e4c41f73d405e2af5aefa2fc9a6a12571a805f01a72e369",
+        "source": "5etools",
+        "chars": 1339
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "rotor-of-return",
+          "docId": "hVl3ZEu2m2f0gmPg",
+          "activities": [
+            "utilityRotOfRetI"
+          ],
+          "effects": [
+            "DFFksSwQ4DrubJfv"
+          ],
+          "data": {
+            "sha256": "d0361e9d59b633dbfc7a4f6d7bfee7ac0e61d0576a1832488a04f119e2bd49e6"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:sending-stone",
+      "name": "Sending Stone",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "uncommon",
+      "identifier": "sending-stone",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "35601ab5e442bd0fdcfb82871080c315e754cf10b5705beb863f218e7b3899df",
+        "source": "5etools",
+        "chars": 1243
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "sending-stone",
+          "docId": "2YWzYRf5ylogHvJK",
+          "activities": [
+            "utilitySendiSton"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ac2ce4a006d63f5bcb1020a9d2b6b410ac99f0b109f247f83e4aed6a93d81356"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:spyglass-of-clairvoyance",
+      "name": "Spyglass of Clairvoyance",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "common",
+      "identifier": "spyglass-of-clairvoyance",
+      "page": 19,
+      "srd": false,
+      "text": {
+        "sha256": "3f0814a8d850a0d52bb07b2950380531bcff1fe5fe38d4315b49eb0fef3d0525",
+        "source": "5etools",
+        "chars": 555
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "spyglass-of-clairvoyance",
+          "docId": "lCJ7VWjsb9VkPJ2T",
+          "activities": [
+            "utilitySpyOfClaI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "cf8f9cd4de8dfd49d5fc842a02998fca6c3038417d2e250eac7dac30c0efd8e2"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:timepiece-of-travel",
+      "name": "Timepiece of Travel",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "very rare",
+      "identifier": "timepiece-of-travel",
+      "page": 221,
+      "srd": false,
+      "text": {
+        "sha256": "d50a33df66a664d80b017eca2b44ff9c43a3226b93582f61baa697415f6cc36b",
+        "source": "5etools",
+        "chars": 1300
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "timepiece-of-travel",
+          "docId": "9f4cXVltM5bPO4wo",
+          "activities": [
+            "utilityTimOfTraI",
+            "castLongTiOfTrLe",
+            "castTeleTiOfTrLe"
+          ],
+          "effects": [
+            "LfzaOw3Q6J8bOKqx"
+          ],
+          "data": {
+            "sha256": "1f5b2865d13261a8352fc156c756d199c251da5e86456ca53bf3a3da959e5aa4"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:travel-alchemical-kit",
+      "name": "Travel Alchemical Kit",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "uncommon",
+      "identifier": "travel-alchemical-kit",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "7ea42686e96cd43ce045f8d3d9b1d9d9e03e32fe231900a4fd0ad44c7648fd1b",
+        "source": "5etools",
+        "chars": 553
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "travel-alchemical-kit",
+          "docId": "sOQhLduMC3CoQeAh",
+          "activities": [
+            "utilityTraAlcKit"
+          ],
+          "effects": [
+            "cRuTbVWKozHx8gE8"
+          ],
+          "data": {
+            "sha256": "57f61f83373d0185057f0945161753d03e23ebd5523223b047d80eacf29b50d0"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:trinket",
+      "name": "Trinket",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "trinket",
+      "page": 222,
+      "srd": false,
+      "text": {
+        "sha256": "f2c7edf1cb34d1267c8768e7bc2a74f6476ce13dbc987c892e7da90ad0ceb8cd",
+        "source": "5etools",
+        "chars": 350
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:voting-kit",
+      "name": "Voting Kit",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "common",
+      "identifier": "voting-kit",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "b5098a5c29410a2883d7288893eb7f3b79554218ea65c8a248c7fff970f1bcba",
+        "source": "5etools",
+        "chars": 567
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "voting-kit",
+          "docId": "Qlbhu91OfxY2Hv8j",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "146ac7e9fbaf38d78d55b726135884b8005c37591a04c096ad8bee484fec6ffd"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:wheel-of-stars",
+      "name": "Wheel of Stars",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "very rare",
+      "identifier": "wheel-of-stars",
+      "page": 222,
+      "srd": false,
+      "text": {
+        "sha256": "72b9b7b55554ff43336591e43de348ec897fa76440bf36cc895a6e8ba0399b5f",
+        "source": "5etools",
+        "chars": 864
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "wheel-of-stars",
+          "docId": "aqVPuCx51xvUGJqy",
+          "activities": [
+            "utilityWheOfStaI",
+            "castDaLiWhOfStLe",
+            "castFlyWheOfStLe",
+            "castGuidWhOfStLe",
+            "castLeviWhOfStLe",
+            "castMessWhOfStLe"
+          ],
+          "effects": [
+            "KRgoHbFzRofCxoe0"
+          ],
+          "data": {
+            "sha256": "2642d7e8dd2e4e14ac60a50be6259f68bd803baa5b61cda9917544dd4196a826"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:item:whisper-jar",
+      "name": "Whisper Jar",
+      "kind": "item",
+      "book": "AI",
+      "edition": "2014",
+      "rarity": "varies",
+      "identifier": "whisper-jar",
+      "page": 27,
+      "srd": false,
+      "text": {
+        "sha256": "b07b2e6d8b373fc3ce3bcbe303464f18a833b8b3d6c989c5feed4896de595e46",
+        "source": "5etools",
+        "chars": 1595
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "whisper-jar",
+          "docId": "GzMeoQ9HzypN3zci",
+          "activities": [
+            "castDetectPADWJL",
+            "castFindTrWhJaLe",
+            "castIdeWhiJarLeg",
+            "castLocateAOPWJL"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3964864187c1b795df14d706766e3557586fe247d577599558f51700aa46f318"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "action",
+      "identifier": "claw",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "d0160680df2ab5f192fa2246d85cb63b747173eeb056f8a599317e649da85aae",
+        "source": "5etools",
+        "chars": 68
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/action/mandibles",
+      "name": "Mandibles",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "action",
+      "identifier": "mandibles",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "3794e54baccf977a72d1e512e9d782fba1e23f831932de7814afb41f2773a025",
+        "source": "5etools",
+        "chars": 230
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "2174746494cbdc63c9dec8e29ccb794694dc5da6fe5567a1028a9f2f552ff326",
+        "source": "5etools",
+        "chars": 89
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/action/shadow-caw",
+      "name": "Shadow Caw",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "action",
+      "identifier": "shadow-caw",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "6fa9ce373c8cf2de6fd2b45850cbc1cf46ee86b69890ade3f369e703d731db42",
+        "source": "5etools",
+        "chars": 211
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/legendary/detect",
+      "name": "Detect",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "legendary",
+      "identifier": "detect",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "dc18349241d95c693816660007786009ba55630083b208f23c771bb605802f28",
+        "source": "5etools",
+        "chars": 48
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/legendary/shadow-caw",
+      "name": "Shadow Caw",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "legendary",
+      "identifier": "shadow-caw",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "8d1c6c267845c395a55ca46e48755525bdd65cd2e893dd21257741b31379f588",
+        "source": "5etools",
+        "chars": 38
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/legendary/wing-attack",
+      "name": "Wing Attack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "legendary",
+      "identifier": "wing-attack",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "b7d205f51d1ffda96a55860c0ef579ecf84f7bab4dcfdac17ad15b0655ebcac3",
+        "source": "5etools",
+        "chars": 254
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "bbcebe42d80d29bfa7763b02bb216fd5b4e7daa193a2c1bb3c88292beb5bf902",
+        "source": "5etools",
+        "chars": 94
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:ancient-deep-crow/trait/shadow-stealth",
+      "name": "Shadow Stealth",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Ancient Deep Crow",
+      "section": "trait",
+      "identifier": "shadow-stealth",
+      "page": 211,
+      "srd": false,
+      "text": {
+        "sha256": "f83312cb005d6027ebff7d4b7729c2ffb72d2995c6e41d0dbec3604f97f9443d",
+        "source": "5etools",
+        "chars": 97
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:auspicia-dran/action/light-crossbow",
+      "name": "Light Crossbow",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Auspicia Dran",
+      "section": "action",
+      "identifier": "light-crossbow",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "32991227931d5b965b6fdd26d6f6bfbefc0f38d03bf9f26505199f2adc5f2dd7",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:auspicia-dran/action/longsword",
+      "name": "Longsword",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Auspicia Dran",
+      "section": "action",
+      "identifier": "longsword",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "72769571a5da8dafdbde3304842b1193dcb94e32c848ac387a134643b131611b",
+        "source": "5etools",
+        "chars": 122
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:auspicia-dran/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Auspicia Dran",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "e975d77d30f8aedfa9e0e371c85b696a514668101cf2e2d023a11649f304255b",
+        "source": "5etools",
+        "chars": 27
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:auspicia-dran/trait/innate-spellcasting-psionics",
+      "name": "Innate Spellcasting (Psionics)",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Auspicia Dran",
+      "section": "trait",
+      "identifier": "innate-spellcasting-psionics",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "44c3eb694302da64141b57cefaae56cd291891582f4023035bbf10149a03c0bd",
+        "source": "5etools",
+        "chars": 147
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:brahma-lutier/action/song-of-domination",
+      "name": "Song of Domination",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Brahma Lutier",
+      "section": "action",
+      "identifier": "song-of-domination",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "a19cbbefdc70cba686731c8598c659e5d1a67695d18e244464274a5b92ac9c63",
+        "source": "5etools",
+        "chars": 506
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:brahma-lutier/action/war-lute",
+      "name": "War Lute",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Brahma Lutier",
+      "section": "action",
+      "identifier": "war-lute",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "04037a7d0ffde0d734fba9c3bba889ab0a999843792d43f99b6ee52781fd2030",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:brahma-lutier/trait/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Brahma Lutier",
+      "section": "trait",
+      "identifier": "fey-ancestry",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "0cfbcaf7ffc73dd8766621350710372e32124222037ca44931f297ae3e2d0beb",
+        "source": "5etools",
+        "chars": 94
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:brahma-lutier/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Brahma Lutier",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "150f4eb0260919d6bb48a08b500d39a0750e1b39fde5a48a0f939bf2c877a8b6",
+        "source": "5etools",
+        "chars": 283
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:brahma-lutier/trait/taunt",
+      "name": "Taunt",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Brahma Lutier",
+      "section": "trait",
+      "identifier": "taunt",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "f06f6f92f4c161c1a8c82c435a9408ec784a64ca16a92ca18ed7bedc789ff251",
+        "source": "5etools",
+        "chars": 275
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:chaos-quadrapod/action/chaos-cloud",
+      "name": "Chaos Cloud",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Chaos Quadrapod",
+      "section": "action",
+      "identifier": "chaos-cloud",
+      "page": 209,
+      "srd": false,
+      "text": {
+        "sha256": "5afef1853398e2310b3dbce437b9f92a79a24d47a036c0c1482ae81663effc9e",
+        "source": "5etools",
+        "chars": 276
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:chaos-quadrapod/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Chaos Quadrapod",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 209,
+      "srd": false,
+      "text": {
+        "sha256": "33fe80372c3a0ff07dac5a52d3eb101edffb54c9d744c85c6fc6afa87d12252d",
+        "source": "5etools",
+        "chars": 53
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:chaos-quadrapod/action/tentacle",
+      "name": "Tentacle",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Chaos Quadrapod",
+      "section": "action",
+      "identifier": "tentacle",
+      "page": 209,
+      "srd": false,
+      "text": {
+        "sha256": "b206e9a81f9ebb7c08ed03c80422156bca33e84718b50cf98d45c1e6f8df80cb",
+        "source": "5etools",
+        "chars": 247
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:chaos-quadrapod/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Chaos Quadrapod",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 209,
+      "srd": false,
+      "text": {
+        "sha256": "05ee9cdd0d5fe53df104a34db40136e6c82bbf3c6e303418aa14dc35f3e81cd7",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:clockwork-dragon/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Clockwork Dragon",
+      "section": "action",
+      "identifier": "bite",
+      "page": 209,
+      "srd": false,
+      "text": {
+        "sha256": "157c3534140986cc38472181001d7c675e447f88a1243e4ab7faeac7d953a893",
+        "source": "5etools",
+        "chars": 67
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:clockwork-dragon/action/fire-breath",
+      "name": "Fire Breath",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Clockwork Dragon",
+      "section": "action",
+      "identifier": "fire-breath",
+      "page": 209,
+      "srd": false,
+      "text": {
+        "sha256": "bf4ea57838c77c101856aa59468f15bb1b11ec9439b5f8f0a7d941caf9d4054a",
+        "source": "5etools",
+        "chars": 208
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:clockwork-dragon/trait/false-appearance",
+      "name": "False Appearance",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Clockwork Dragon",
+      "section": "trait",
+      "identifier": "false-appearance",
+      "page": 209,
+      "srd": false,
+      "text": {
+        "sha256": "85fed6554f36c7babdc5f1ebf05f4bbbfc98fe148eea43c0bad4a443e70d94e8",
+        "source": "5etools",
+        "chars": 91
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:deep-crow/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Deep Crow",
+      "section": "action",
+      "identifier": "claw",
+      "page": 210,
+      "srd": false,
+      "text": {
+        "sha256": "fe123697f52ecd6be46948bed1620358e3152432bb37e3c9c3f187cf1d640487",
+        "source": "5etools",
+        "chars": 67
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:deep-crow/action/mandibles",
+      "name": "Mandibles",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Deep Crow",
+      "section": "action",
+      "identifier": "mandibles",
+      "page": 210,
+      "srd": false,
+      "text": {
+        "sha256": "460da30bb4faa76d8328ed96c11dfb02059e151b860c949a27f32877e7921b2a",
+        "source": "5etools",
+        "chars": 221
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:deep-crow/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Deep Crow",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 210,
+      "srd": false,
+      "text": {
+        "sha256": "cfc91543fde0e907b23af4ed90926b015820fa554e53d9a8346619a69b72e219",
+        "source": "5etools",
+        "chars": 81
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:deep-crow/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Deep Crow",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 210,
+      "srd": false,
+      "text": {
+        "sha256": "513af37fef24d96f1f28aa5c9a88f32b345f2074822d5acb9da24399c51042ea",
+        "source": "5etools",
+        "chars": 86
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:deep-crow/trait/shadow-stealth",
+      "name": "Shadow Stealth",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Deep Crow",
+      "section": "trait",
+      "identifier": "shadow-stealth",
+      "page": 210,
+      "srd": false,
+      "text": {
+        "sha256": "e1270da033528f9821a393a6b5a191f9f5dbb00d3002f138e1cd65a7f8e07884",
+        "source": "5etools",
+        "chars": 89
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:deep-crow/trait/sunlight-sensitivity",
+      "name": "Sunlight Sensitivity",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Deep Crow",
+      "section": "trait",
+      "identifier": "sunlight-sensitivity",
+      "page": 210,
+      "srd": false,
+      "text": {
+        "sha256": "44541b265e3a0ebb35d5b0a973f811dd39912df0b4431cb1f93aa4d8b35143fb",
+        "source": "5etools",
+        "chars": 127
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:donaar-blitzen/action/acid-vomit",
+      "name": "Acid Vomit",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Donaar Blit'zen",
+      "section": "action",
+      "identifier": "acid-vomit",
+      "page": 201,
+      "srd": false,
+      "text": {
+        "sha256": "cfc0471029adf83a8b18a28a0ff992799569fe0eb2b8fdb37544a654307c9b9b",
+        "source": "5etools",
+        "chars": 218
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:donaar-blitzen/action/greatsword",
+      "name": "Greatsword",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Donaar Blit'zen",
+      "section": "action",
+      "identifier": "greatsword",
+      "page": 201,
+      "srd": false,
+      "text": {
+        "sha256": "5469c3c56200fa1022224a7b1389740e99e9c96c23c1254f3b6847580f2d6b83",
+        "source": "5etools",
+        "chars": 164
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:donaar-blitzen/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Donaar Blit'zen",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 201,
+      "srd": false,
+      "text": {
+        "sha256": "400a7924acdcd138ed34c4ea0ccecfdca1659fce61613498250e7c81de93624b",
+        "source": "5etools",
+        "chars": 57
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:donaar-blitzen/action/whip",
+      "name": "Whip",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Donaar Blit'zen",
+      "section": "action",
+      "identifier": "whip",
+      "page": 201,
+      "srd": false,
+      "text": {
+        "sha256": "a8aece91afff1da1de8a156c9f6598d34444f56b8f7440a97b53e6c51b04fe6b",
+        "source": "5etools",
+        "chars": 67
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:donaar-blitzen/trait/champion-challenge",
+      "name": "Champion Challenge",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Donaar Blit'zen",
+      "section": "trait",
+      "identifier": "champion-challenge",
+      "page": 201,
+      "srd": false,
+      "text": {
+        "sha256": "1ecbdfc75397956e7fb32dd373fd8293da75ef66a444deff3ce5b8e5dce9c883",
+        "source": "5etools",
+        "chars": 344
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:donaar-blitzen/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Donaar Blit'zen",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 201,
+      "srd": false,
+      "text": {
+        "sha256": "976429003a8d970147dc3ec3593ce2758f9b7e96c030847420faa252f195f6d4",
+        "source": "5etools",
+        "chars": 278
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:flabbergast/action/dagger",
+      "name": "Dagger",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Flabbergast",
+      "section": "action",
+      "identifier": "dagger",
+      "page": 200,
+      "srd": false,
+      "text": {
+        "sha256": "b76c8c97b18938deb17aec137711cb69bdd7b7b726e2cf151a96081226405de2",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:flabbergast/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Flabbergast",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 200,
+      "srd": false,
+      "text": {
+        "sha256": "ab791e6806ac4cc45644520ed477e8e8d109e4d3beebfed6ec4f10a56795b358",
+        "source": "5etools",
+        "chars": 375
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:jim-darkmagic/action/dagger",
+      "name": "Dagger",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Jim Darkmagic",
+      "section": "action",
+      "identifier": "dagger",
+      "page": 197,
+      "srd": false,
+      "text": {
+        "sha256": "e0d1ec2137e0a90ef85d941c675ab732d0c0112e97edc1144f280461fdf039c5",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:jim-darkmagic/action/minor-conjuration",
+      "name": "Minor Conjuration",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Jim Darkmagic",
+      "section": "action",
+      "identifier": "minor-conjuration",
+      "page": 197,
+      "srd": false,
+      "text": {
+        "sha256": "f1e7be061505e39e6725d98dfab134c2cba409f9c04545ff9f671d02c484a332",
+        "source": "5etools",
+        "chars": 334
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:jim-darkmagic/trait/benign-transportation",
+      "name": "Benign Transportation",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Jim Darkmagic",
+      "section": "trait",
+      "identifier": "benign-transportation",
+      "page": 197,
+      "srd": false,
+      "text": {
+        "sha256": "f1616b255d5e44e5431e72759c9b03b91c002d20b3714cb3b8e4ce9fc8f986a2",
+        "source": "5etools",
+        "chars": 225
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:jim-darkmagic/trait/special-equipment",
+      "name": "Special Equipment",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Jim Darkmagic",
+      "section": "trait",
+      "identifier": "special-equipment",
+      "page": 197,
+      "srd": false,
+      "text": {
+        "sha256": "4c68308742612ff19642f644bea74fbed4da43a8ceadf6ad9e5d3d3eb140e280",
+        "source": "5etools",
+        "chars": 29
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:jim-darkmagic/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Jim Darkmagic",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 197,
+      "srd": false,
+      "text": {
+        "sha256": "f44d3f0c2115f936a76686e395ad406a2689eb3d2ef4fc0f01e9e5738e0748a7",
+        "source": "5etools",
+        "chars": 403
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:keg-robot/action/acid-squirt",
+      "name": "Acid Squirt",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Keg Robot",
+      "section": "action",
+      "identifier": "acid-squirt",
+      "page": 212,
+      "srd": false,
+      "text": {
+        "sha256": "07fa1a02e9588562ffc4ea817dd5682380f16965ee65027a3c11c7f1b4d044e1",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:keg-robot/action/beer-shower",
+      "name": "Beer Shower",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Keg Robot",
+      "section": "action",
+      "identifier": "beer-shower",
+      "page": 212,
+      "srd": false,
+      "text": {
+        "sha256": "29df8d93fa089dfa7ea607561d89b18647714d1eefdc0b40d39c9e6e963e07b4",
+        "source": "5etools",
+        "chars": 492
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:keg-robot/action/fist",
+      "name": "Fist",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Keg Robot",
+      "section": "action",
+      "identifier": "fist",
+      "page": 212,
+      "srd": false,
+      "text": {
+        "sha256": "4e3256800ce232f564efbf5c4c86d96a6e98be2cfe4c5a075a577b50655d4ca9",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:keg-robot/action/hot-oil-spray",
+      "name": "Hot Oil Spray",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Keg Robot",
+      "section": "action",
+      "identifier": "hot-oil-spray",
+      "page": 212,
+      "srd": false,
+      "text": {
+        "sha256": "28896fea029f09c90634ead5ce25bfe3a6542226fa7cd7f5ae32d36076915752",
+        "source": "5etools",
+        "chars": 682
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:keg-robot/trait/customizable-storage",
+      "name": "Customizable Storage",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Keg Robot",
+      "section": "trait",
+      "identifier": "customizable-storage",
+      "page": 212,
+      "srd": false,
+      "text": {
+        "sha256": "6dafefc734196444a5f87b72effa7491b122d5dda2e4a12c65159bd79b9c19ae",
+        "source": "5etools",
+        "chars": 333
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:kthriss-drowb/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "K'thriss Drow'b",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 202,
+      "srd": false,
+      "text": {
+        "sha256": "8c28605b24b0d48eabc1e7cbf795d74be0e75982c5f23aed62ca67facddc2ce7",
+        "source": "5etools",
+        "chars": 43
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:kthriss-drowb/action/sickle",
+      "name": "Sickle",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "K'thriss Drow'b",
+      "section": "action",
+      "identifier": "sickle",
+      "page": 202,
+      "srd": false,
+      "text": {
+        "sha256": "7b6382851ad8299ee8acb47204d4463cc7c9ba16000ecb160a1525911b7b6f1e",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:kthriss-drowb/trait/awakened-mind",
+      "name": "Awakened Mind",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "K'thriss Drow'b",
+      "section": "trait",
+      "identifier": "awakened-mind",
+      "page": 202,
+      "srd": false,
+      "text": {
+        "sha256": "88ec3c93754aacd8f3258e96f9705d5f3f794ea8cb34269969d9024e94b1cce1",
+        "source": "5etools",
+        "chars": 143
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:kthriss-drowb/trait/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "K'thriss Drow'b",
+      "section": "trait",
+      "identifier": "fey-ancestry",
+      "page": 202,
+      "srd": false,
+      "text": {
+        "sha256": "4f94fd4ef9825e8c1af8cd1a58aa3d2dae494ca8bcfce797614b8900c9d2a0ad",
+        "source": "5etools",
+        "chars": 241
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:kthriss-drowb/trait/innate-spellcasting",
+      "name": "Innate Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "K'thriss Drow'b",
+      "section": "trait",
+      "identifier": "innate-spellcasting",
+      "page": 202,
+      "srd": false,
+      "text": {
+        "sha256": "ca4152ef92dfde2508e29e7f2a4f92788ae1869eacb3f55e67aab6aca21e4019",
+        "source": "5etools",
+        "chars": 194
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:kthriss-drowb/trait/special-equipment",
+      "name": "Special Equipment",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "K'thriss Drow'b",
+      "section": "trait",
+      "identifier": "special-equipment",
+      "page": 202,
+      "srd": false,
+      "text": {
+        "sha256": "8ebd9e8e4f0123d3d89a309328d8d9b8586016f78ef6a931d22d2747bda18e0b",
+        "source": "5etools",
+        "chars": 149
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:kthriss-drowb/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "K'thriss Drow'b",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 202,
+      "srd": false,
+      "text": {
+        "sha256": "d47ddcb677b21ef1d3edaa1a664af0eefb70156202ad3edede4c9c0f80093074",
+        "source": "5etools",
+        "chars": 367
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:morg-n/action/longbow",
+      "name": "Longbow",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Môrgæn",
+      "section": "action",
+      "identifier": "longbow",
+      "page": 199,
+      "srd": false,
+      "text": {
+        "sha256": "a6a0ae9460c5cf746b3f6a4a110e465e6ef9127b80cb768d0d2ea1fc00552874",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:morg-n/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Môrgæn",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 199,
+      "srd": false,
+      "text": {
+        "sha256": "213946eb2377b5a2c113ca2c4879c1e1b6ac6d11ac4eeb9e505b208ff5a3ae48",
+        "source": "5etools",
+        "chars": 61
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:morg-n/action/scimitars",
+      "name": "Scimitars",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Môrgæn",
+      "section": "action",
+      "identifier": "scimitars",
+      "page": 199,
+      "srd": false,
+      "text": {
+        "sha256": "7cda5f14dde8d906a2b15946741bb8609bfc7116b34f2e879eff9c406acd25f5",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:morg-n/trait/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Môrgæn",
+      "section": "trait",
+      "identifier": "fey-ancestry",
+      "page": 199,
+      "srd": false,
+      "text": {
+        "sha256": "c9cf039dbf17f842fecae217b37e831d715cd2d3ba3cc3f4f5022a005d7cbb1e",
+        "source": "5etools",
+        "chars": 94
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:morg-n/trait/innate-spellcasting",
+      "name": "Innate Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Môrgæn",
+      "section": "trait",
+      "identifier": "innate-spellcasting",
+      "page": 199,
+      "srd": false,
+      "text": {
+        "sha256": "a2f93e2615844265db54af0bb60a74ba52cd88436c6117f8f8fc876948800944",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:morg-n/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Môrgæn",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 199,
+      "srd": false,
+      "text": {
+        "sha256": "5416c4e812261c5f14107fad787dbd3d5c4318a23be6598188cb4be5567f0afb",
+        "source": "5etools",
+        "chars": 247
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:oak-truestrike/action/hand-crossbow",
+      "name": "Hand Crossbow",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Oak Truestrike",
+      "section": "action",
+      "identifier": "hand-crossbow",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "1414699ad993259cf0805ee592efbebdc1e362e0fcefb4bcaab0776b2049dc7b",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:oak-truestrike/action/hooked-dagger",
+      "name": "Hooked Dagger",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Oak Truestrike",
+      "section": "action",
+      "identifier": "hooked-dagger",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "acd4f2d9c8f615940bb2efb1ca2027d5d15446d3e71f17413a2caa3eda4f780c",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:oak-truestrike/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Oak Truestrike",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "efbf21ef770cf874a93801a0f72d66326080bc7aed2e67cc7f5df7d2d02eb8ef",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:oak-truestrike/reaction/return-the-favor",
+      "name": "Return the Favor",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Oak Truestrike",
+      "section": "reaction",
+      "identifier": "return-the-favor",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "a363d238ffda1b26500e3a47d15079a82286d9212b82cbe109959df8bee77a28",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:oak-truestrike/trait/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Oak Truestrike",
+      "section": "trait",
+      "identifier": "fey-ancestry",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "7d7076cbac90020ec4a1dde04b0137762504697446208a10bf49f9fbe4a2bd7c",
+        "source": "5etools",
+        "chars": 91
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:oak-truestrike/trait/keen-hearing-and-sight",
+      "name": "Keen Hearing and Sight",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Oak Truestrike",
+      "section": "trait",
+      "identifier": "keen-hearing-and-sight",
+      "page": 205,
+      "srd": false,
+      "text": {
+        "sha256": "3ee47f2e7457a00d18c3654c14135da2442de954a8a71860ed7c1c422d35afb3",
+        "source": "5etools",
+        "chars": 78
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:omin-dran/action/maul",
+      "name": "Maul",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Omin Dran",
+      "section": "action",
+      "identifier": "maul",
+      "page": 196,
+      "srd": false,
+      "text": {
+        "sha256": "919e04080507164d5155e9cff98a2ee9ec555bbbde2fd979d56352f6a284e9b0",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:omin-dran/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Omin Dran",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 196,
+      "srd": false,
+      "text": {
+        "sha256": "555f1d2d9cf2bbae23793a809476504d833846d02494ff5d3e3d283882dbc4c4",
+        "source": "5etools",
+        "chars": 37
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:omin-dran/reaction/war-gods-blessing",
+      "name": "War God's Blessing",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Omin Dran",
+      "section": "reaction",
+      "identifier": "war-gods-blessing",
+      "page": 196,
+      "srd": false,
+      "text": {
+        "sha256": "9eeb496e6cd541b9c4caff800759bbec0e0afd0bc82cb5843b5e41754c843ce9",
+        "source": "5etools",
+        "chars": 161
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:omin-dran/trait/divine-strike",
+      "name": "Divine Strike",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Omin Dran",
+      "section": "trait",
+      "identifier": "divine-strike",
+      "page": 196,
+      "srd": false,
+      "text": {
+        "sha256": "dab9cbba2400adddbc81609e581d78f501b39a10e8c0ba9e53b1d43e8b950531",
+        "source": "5etools",
+        "chars": 167
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:omin-dran/trait/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Omin Dran",
+      "section": "trait",
+      "identifier": "fey-ancestry",
+      "page": 196,
+      "srd": false,
+      "text": {
+        "sha256": "17bd6eed3a23038720f010a7ac7bfe4cdf71872add3ba39b73a0c5b0b0d47c89",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:omin-dran/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Omin Dran",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 196,
+      "srd": false,
+      "text": {
+        "sha256": "303b7c2cd6d1aefbf286f0278f3717ccca1235a7a1f5c4334be65bae925e23f8",
+        "source": "5etools",
+        "chars": 534
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:pendragon-beestinger/action/shortsword",
+      "name": "Shortsword",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Pendragon Beestinger",
+      "section": "action",
+      "identifier": "shortsword",
+      "page": 206,
+      "srd": false,
+      "text": {
+        "sha256": "3b5f96dd4adf08b407eabcd889495c503f0169bc07afbe96e3804dabd39d8465",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:pendragon-beestinger/trait/echo-spell",
+      "name": "Echo Spell",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Pendragon Beestinger",
+      "section": "trait",
+      "identifier": "echo-spell",
+      "page": 206,
+      "srd": false,
+      "text": {
+        "sha256": "941ab79827a7e184ad26becc9902706aafa1f1dc1780b54612556a11eb00fea7",
+        "source": "5etools",
+        "chars": 145
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:pendragon-beestinger/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Pendragon Beestinger",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 206,
+      "srd": false,
+      "text": {
+        "sha256": "b705d6802b64f872272413c13ba58f6251268b6d5e94d144c21685daba284dc5",
+        "source": "5etools",
+        "chars": 319
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:phoenix-anvil/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Phoenix Anvil",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 206,
+      "srd": false,
+      "text": {
+        "sha256": "d90d4e6bdde27e2550403fcebcbae1d6530cb8f1eb4dc1171824ea87bfa99c88",
+        "source": "5etools",
+        "chars": 32
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:phoenix-anvil/action/warhammer",
+      "name": "Warhammer",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Phoenix Anvil",
+      "section": "action",
+      "identifier": "warhammer",
+      "page": 206,
+      "srd": false,
+      "text": {
+        "sha256": "c5c5271b8034e3573fdbe119fd4349100849c3a0afe969e29747809bb67eea00",
+        "source": "5etools",
+        "chars": 148
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:phoenix-anvil/trait/divine-display",
+      "name": "Divine Display",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Phoenix Anvil",
+      "section": "trait",
+      "identifier": "divine-display",
+      "page": 206,
+      "srd": false,
+      "text": {
+        "sha256": "84686fd4c5ccb436f27a8e18788b651344ca97841f010e61310c9b4273880f94",
+        "source": "5etools",
+        "chars": 299
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:phoenix-anvil/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Phoenix Anvil",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 206,
+      "srd": false,
+      "text": {
+        "sha256": "4e264cdc76205036d001f9d57b25ed08504fbf2f2c32944d0f5a1976bf5c92f5",
+        "source": "5etools",
+        "chars": 256
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:portentia-dran/action/change-shape",
+      "name": "Change Shape",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Portentia Dran",
+      "section": "action",
+      "identifier": "change-shape",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "ccc12cb604b126db75d55aa865d19d0cd39aa97199c6dc47c4e90f72b31b0d84",
+        "source": "5etools",
+        "chars": 565
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:portentia-dran/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Portentia Dran",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "7bcbf23a82fbadc22622782daddd810ca3c8c766f68187e26c01eb8b53f175b5",
+        "source": "5etools",
+        "chars": 36
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:portentia-dran/action/shortsword",
+      "name": "Shortsword",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Portentia Dran",
+      "section": "action",
+      "identifier": "shortsword",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "7cda5f14dde8d906a2b15946741bb8609bfc7116b34f2e879eff9c406acd25f5",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:portentia-dran/trait/sneak-attack",
+      "name": "Sneak Attack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Portentia Dran",
+      "section": "trait",
+      "identifier": "sneak-attack",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "26aeeb3c0061628f21a9adfa1c1c26a167742727936287f0b4694217cd78979e",
+        "source": "5etools",
+        "chars": 267
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:prophetess-dran/action/maul",
+      "name": "Maul",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Prophetess Dran",
+      "section": "action",
+      "identifier": "maul",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "2e46fe383b80b210ac9f6718af89c6b12396e74e47e501f085fb6960ba9f6a2c",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:prophetess-dran/trait/divine-eminence",
+      "name": "Divine Eminence",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Prophetess Dran",
+      "section": "trait",
+      "identifier": "divine-eminence",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "e3763d382d1374caf5258135a8edad7881b8918b31295279ce96217654a4e0b8",
+        "source": "5etools",
+        "chars": 325
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:prophetess-dran/trait/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Prophetess Dran",
+      "section": "trait",
+      "identifier": "fey-ancestry",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "16269d4ff3ca7d89dbe4ef6138c2cde6002b7d90c070968647a634481dd215cf",
+        "source": "5etools",
+        "chars": 98
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:prophetess-dran/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Prophetess Dran",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 208,
+      "srd": false,
+      "text": {
+        "sha256": "a022108415c9a0ea08da86a401fed53baafb177a4dadf3bd49b8b246f3af84fe",
+        "source": "5etools",
+        "chars": 304
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "d4126b4e681fe6ae2c323d73986811c1da446dcd94866b02a3e12b7d69ebce58",
+        "source": "5etools",
+        "chars": 65
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/action/staff-of-the-master-1-quarterstaff",
+      "name": "Staff of the Master (+1 Quarterstaff)",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "action",
+      "identifier": "staff-of-the-master-1-quarterstaff",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "caadf401dd3d138c2e42504371a172d56793b9c9c7b3c1116a86fa5688c4c43f",
+        "source": "5etools",
+        "chars": 127
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/action/unarmed-strike",
+      "name": "Unarmed Strike",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "action",
+      "identifier": "unarmed-strike",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "2025a9603d7149d9634154fc90aaed4ab22baebcd815f2d35017746da8c9fdf6",
+        "source": "5etools",
+        "chars": 106
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/reaction/deflect-missiles",
+      "name": "Deflect Missiles",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "reaction",
+      "identifier": "deflect-missiles",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "0224886a5e51b32425a5c1a6ded7029936576e58a633b35aec1a77f672971ec5",
+        "source": "5etools",
+        "chars": 261
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/trait/brave",
+      "name": "Brave",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "trait",
+      "identifier": "brave",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "49b877eed1d8beb302f6e797592265923467fbe7549ba9b0c7f0e31c7739aa68",
+        "source": "5etools",
+        "chars": 62
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/trait/evasion",
+      "name": "Evasion",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "trait",
+      "identifier": "evasion",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "ad69d54b3e1f2b9fb25d3d8bf07f852751614e207b285ca430959bba25986564",
+        "source": "5etools",
+        "chars": 258
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/trait/halfling-nimbleness",
+      "name": "Halfling Nimbleness",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "trait",
+      "identifier": "halfling-nimbleness",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "c981a55e8689fa9a209a6221cd49e6701af0b4d21f5b5d3f2afe7201d1034866",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/trait/innate-spellcasting",
+      "name": "Innate Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "trait",
+      "identifier": "innate-spellcasting",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "aaf41da7612d56486181474aea8a5cab845cdc7d50e61446b69d3d54b89a4cb0",
+        "source": "5etools",
+        "chars": 235
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:rosie-beestinger/trait/shadow-step",
+      "name": "Shadow Step",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Rosie Beestinger",
+      "section": "trait",
+      "identifier": "shadow-step",
+      "page": 203,
+      "srd": false,
+      "text": {
+        "sha256": "37aff167d46b4f2b028256d7f432ba7fd147597b722c000691977168a5b9aece",
+        "source": "5etools",
+        "chars": 247
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:splugoth-the-returned/action/dagger",
+      "name": "Dagger",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Splugoth the Returned",
+      "section": "action",
+      "identifier": "dagger",
+      "page": 213,
+      "srd": false,
+      "text": {
+        "sha256": "7b6382851ad8299ee8acb47204d4463cc7c9ba16000ecb160a1525911b7b6f1e",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:splugoth-the-returned/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Splugoth the Returned",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 213,
+      "srd": false,
+      "text": {
+        "sha256": "9e8b7417dd5057879a1694da10f61d3d05753916e1dda7e41b5c8216f35d55ae",
+        "source": "5etools",
+        "chars": 43
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:splugoth-the-returned/action/word-from-beyond",
+      "name": "Word From Beyond",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Splugoth the Returned",
+      "section": "action",
+      "identifier": "word-from-beyond",
+      "page": 213,
+      "srd": false,
+      "text": {
+        "sha256": "cb3ff6d202e8270eb8853fcec7915040961dff853a4708ce7deb842f31816089",
+        "source": "5etools",
+        "chars": 279
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:splugoth-the-returned/reaction/absorb-attack",
+      "name": "Absorb Attack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Splugoth the Returned",
+      "section": "reaction",
+      "identifier": "absorb-attack",
+      "page": 213,
+      "srd": false,
+      "text": {
+        "sha256": "51eccdae661b77a72c1242931026284cdf45cf48f9195eaa4967bcba22b74c82",
+        "source": "5etools",
+        "chars": 457
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:splugoth-the-returned/trait/defensive-advantage",
+      "name": "Defensive Advantage",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Splugoth the Returned",
+      "section": "trait",
+      "identifier": "defensive-advantage",
+      "page": 213,
+      "srd": false,
+      "text": {
+        "sha256": "9658c05dafc49f02533ac89bcfac8b10e70aba268ce17959dc904fce0d5e8c66",
+        "source": "5etools",
+        "chars": 148
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:splugoth-the-returned/trait/nimble-escape",
+      "name": "Nimble Escape",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Splugoth the Returned",
+      "section": "trait",
+      "identifier": "nimble-escape",
+      "page": 213,
+      "srd": false,
+      "text": {
+        "sha256": "6ffb707c989cd4ed40cd843ce9a7cd32338617c5dc7a785ed173b07f0761c5d8",
+        "source": "5etools",
+        "chars": 86
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:splugoth-the-returned/trait/touch-of-madness",
+      "name": "Touch of Madness",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Splugoth the Returned",
+      "section": "trait",
+      "identifier": "touch-of-madness",
+      "page": 213,
+      "srd": false,
+      "text": {
+        "sha256": "5e1a2e8c7f70d66af56e596481cd29e45bef8b428345141e5ce97abfc69cc892",
+        "source": "5etools",
+        "chars": 76
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/action/1-shortsword",
+      "name": "+1 Shortsword",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "action",
+      "identifier": "1-shortsword",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "e68b6d99128f36d110c05ea8f19cee09c28135b53a84b611c8cf98a10fd15252",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/action/dagger",
+      "name": "Dagger",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "action",
+      "identifier": "dagger",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "936fb2b14dfe84631f0401e8c29c65cc1ea8b8f29c402194729a0a2b19a7a6f5",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "516513b19056d332e0c29db6f8b47c9fad930b7f4fa58981ae8abadd4c8e6ba4",
+        "source": "5etools",
+        "chars": 76
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/action/rapier",
+      "name": "Rapier",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "action",
+      "identifier": "rapier",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "1de380548f86dc817acc94e999cd083795fd2303e2263bfc7734abfaa28b6f0d",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/reaction/uncanny-dodge",
+      "name": "Uncanny Dodge",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "reaction",
+      "identifier": "uncanny-dodge",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "e9db63a2d392bc08b07b34eb822b8163b862182bcc72e7cb98968d0952a2d260",
+        "source": "5etools",
+        "chars": 104
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/trait/evasion",
+      "name": "Evasion",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "trait",
+      "identifier": "evasion",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "5e695fcc856bff10f56de1f409d6eba2f46d362e4856f5279632729f72fa0354",
+        "source": "5etools",
+        "chars": 253
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/trait/second-story-work",
+      "name": "Second-Story Work",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "trait",
+      "identifier": "second-story-work",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "acdda4d30a595c729fb650dac89046a3d732891fa37632ea7fb429bd81cff91b",
+        "source": "5etools",
+        "chars": 132
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:viari/trait/sneak-attack",
+      "name": "Sneak Attack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Viari",
+      "section": "trait",
+      "identifier": "sneak-attack",
+      "page": 198,
+      "srd": false,
+      "text": {
+        "sha256": "9e8c65517f4ae79551c79973209e29dd76021c39cae924f0ea038d139c424177",
+        "source": "5etools",
+        "chars": 254
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:walnut-dankgrass/action/foremother-1-scimitar",
+      "name": "Foremother (+1 Scimitar)",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Walnut Dankgrass",
+      "section": "action",
+      "identifier": "foremother-1-scimitar",
+      "page": 204,
+      "srd": false,
+      "text": {
+        "sha256": "7cda5f14dde8d906a2b15946741bb8609bfc7116b34f2e879eff9c406acd25f5",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:walnut-dankgrass/action/longbow",
+      "name": "Longbow",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Walnut Dankgrass",
+      "section": "action",
+      "identifier": "longbow",
+      "page": 204,
+      "srd": false,
+      "text": {
+        "sha256": "8acded1d692e1f25d03d3d7f74a5d6ac0686b83d67586639313217cb186786c0",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:walnut-dankgrass/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Walnut Dankgrass",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 204,
+      "srd": false,
+      "text": {
+        "sha256": "4afcd055f042d8d99e1484ad25993d8b45e0384d2239f1aa05c1605ff3ab4b90",
+        "source": "5etools",
+        "chars": 56
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:walnut-dankgrass/trait/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Walnut Dankgrass",
+      "section": "trait",
+      "identifier": "fey-ancestry",
+      "page": 204,
+      "srd": false,
+      "text": {
+        "sha256": "0d37bf74f20d45e07b90dadf1e0d1b5a4ad4729e203b2389eab95240396c5079",
+        "source": "5etools",
+        "chars": 94
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:walnut-dankgrass/trait/mask-of-the-wild",
+      "name": "Mask of the Wild",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Walnut Dankgrass",
+      "section": "trait",
+      "identifier": "mask-of-the-wild",
+      "page": 204,
+      "srd": false,
+      "text": {
+        "sha256": "934b4260ade8bc4fc3ef2d7e76319b92ea7da2a8b85e97d2f8acddd53ddcf05c",
+        "source": "5etools",
+        "chars": 138
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:walnut-dankgrass/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Walnut Dankgrass",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 204,
+      "srd": false,
+      "text": {
+        "sha256": "cf89885bf1a18d75365acdc78d93ca0e0fe99ff502a42fb6eba1ed3a703c566a",
+        "source": "5etools",
+        "chars": 337
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:monster:walnut-dankgrass/trait/wild-shape",
+      "name": "Wild Shape",
+      "kind": "monster",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Walnut Dankgrass",
+      "section": "trait",
+      "identifier": "wild-shape",
+      "page": 204,
+      "srd": false,
+      "text": {
+        "sha256": "399b3c710c5e18fef4abfdb65335f62c14ece30ebed80a0f0ff4bfd80abc5bfa",
+        "source": "5etools",
+        "chars": 609
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan",
+      "name": "Verdan",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "verdan",
+      "page": 72,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/age",
+      "name": "Age",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "age",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "29fc0f1d8fd3a4c056cd13ea5cc0bcb32dd6b3ec68001e1f7f0ffbed8e366204",
+        "source": "5etools",
+        "chars": 247
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/alignment",
+      "name": "Alignment",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "alignment",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "85e984b48f8c4c41c8d918524cb52e52896ebdb29875b87095250b27daf3b2f7",
+        "source": "5etools",
+        "chars": 178
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/black-blood-healing",
+      "name": "Black Blood Healing",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "black-blood-healing",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "b688fb141183bf0fb44b70d06066ef644a04530466d18be64403ed5311375d6d",
+        "source": "5etools",
+        "chars": 235
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/language",
+      "name": "Language",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "language",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "b7cd006d9f23ccd28a986a2314842d3f3023e1b46d33ea965758d5258bf1a556",
+        "source": "5etools",
+        "chars": 195
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/limited-telepathy",
+      "name": "Limited Telepathy",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "limited-telepathy",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "b9e82104caa5c2473f022b8f20b38d20359c01e73421eff24a2333644006a7a4",
+        "source": "5etools",
+        "chars": 362
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/persuasive",
+      "name": "Persuasive",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "persuasive",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "ac3347d61591acad18f54baf92cb0c9896d6eee4456f9d2084688cfabf75e41b",
+        "source": "5etools",
+        "chars": 109
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "size",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "78b642dbfa4ca35c09689fed19a852b5cc09cace49dfec2f5cbd2af7a1facf2e",
+        "source": "5etools",
+        "chars": 309
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:species:verdan/telepathic-insight",
+      "name": "Telepathic Insight",
+      "kind": "species",
+      "book": "AI",
+      "edition": "2014",
+      "owner": "Verdan",
+      "identifier": "telepathic-insight",
+      "page": 72,
+      "srd": false,
+      "text": {
+        "sha256": "cea39713a9b46d0e3ec07886340cef09180ceb73a6a5122adcf9535827bcead4",
+        "source": "5etools",
+        "chars": 130
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:spell:distort-value",
+      "name": "Distort Value",
+      "kind": "spell",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "distort-value",
+      "page": 75,
+      "srd": false,
+      "text": {
+        "sha256": "64b38a2b10c480abe0cf61b78169643388241c688bb339780b89a73cd033f08c",
+        "source": "5etools",
+        "chars": 667
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "distort-value",
+          "docId": "ddbDistorValue14",
+          "activities": [
+            "utilityDistoValu"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "0627cda5de8e0ff9608032bae27af5a59738b4fc26a8f2ecb58f1db7a0f9b792"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:spell:fast-friends",
+      "name": "Fast Friends",
+      "kind": "spell",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "fast-friends",
+      "page": 75,
+      "srd": false,
+      "text": {
+        "sha256": "14eda4d2a70966a910bf626a27600814fe6e7a906e7bc1febf8ed96b7d9af237",
+        "source": "5etools",
+        "chars": 1046
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "fast-friends",
+          "docId": "ddbFastFriend14I",
+          "activities": [
+            "saveFastFriendII"
+          ],
+          "effects": [
+            "3e9W6wegImVRwdwh"
+          ],
+          "data": {
+            "sha256": "4beabb281aee27d5ab3c3bfbd2fef6c23138245a0358589da15749348455d2b6"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:spell:gift-of-gab",
+      "name": "Gift of Gab",
+      "kind": "spell",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "gift-of-gab",
+      "page": 76,
+      "srd": false,
+      "text": {
+        "sha256": "aeb7acb6af5bddda26d6ecc253180e4b88c9910feb718227a0f6ae25a2ed33de",
+        "source": "5etools",
+        "chars": 927
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "gift-of-gab",
+          "docId": "ddbGiftOfGab14II",
+          "activities": [
+            "utilityGifOfGabI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "cefa65e00ec344a347cf20b3375d53297e0d5f8dcdd17c5f32763008dd38a84d"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
       "key": "ai:spell:incite-greed",
       "identifier": "incite-greed",
       "name": "Incite Greed",
@@ -10,8 +4494,32 @@
       "book": "AI",
       "page": 76,
       "edition": "2014",
-      "text": null,
-      "items": [],
+      "text": {
+        "sha256": "a96ead9db93c3ed5ac715f0c4da4e28e7227a26b0e134f626e45ffba2c31caae",
+        "source": "5etools",
+        "chars": 655
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "incite-greed",
+          "docId": "ddbInciteGreed14",
+          "activities": [
+            "saveInciteGreedI"
+          ],
+          "effects": [
+            "4Hi47QCDFVz6m9gd"
+          ],
+          "data": {
+            "sha256": "5b2a21e39e642091f4cd7ab8696c18eec252277f04c2e435758dd784e042f817"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
       "verdict": "entry",
       "rule": {
         "handledIn": "table",
@@ -38,24 +4546,138 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-21T17:17:44.622Z",
+          "at": "2026-11-21T20:12:16.481Z",
           "core": "0.289.0",
           "rule": "3ab9a63fb57af2329d35d36333482b51dad700e5dacb083fe25d3d24b094869a",
           "passed": [
             "schema",
             "validator",
+            "ids",
             "fixes",
+            "text",
             "unique"
           ],
-          "noted": [
-            "ids",
-            "text"
-          ]
+          "items": {
+            "ddb-importer": "5b2a21e39e642091f4cd7ab8696c18eec252277f04c2e435758dd784e042f817"
+          }
         }
       },
       "order": 0,
       "note": "Incite Greed (AI p.76): the effect lets its bearer repeat the save at the end of each of its turns.",
-      "state": "drafted"
+      "srd": false,
+      "state": "gated"
+    },
+    {
+      "key": "ai:spell:jims-glowing-coin",
+      "name": "Jim's Glowing Coin",
+      "kind": "spell",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "jims-glowing-coin",
+      "page": 76,
+      "srd": false,
+      "text": {
+        "sha256": "2afa3868174008fdc20e08c62f2b793f05fff7b8d117e06a29a88c26b3d377b6",
+        "source": "5etools",
+        "chars": 552
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "jims-glowing-coin",
+          "docId": "ddbJimsGlowCoi14",
+          "activities": [
+            "saveJimsGlowCoin"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3fc404feae841e3f774be87f2b471d64ba4cb9915452cb9e5f3ec48dde7423b4"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:spell:jims-magic-missile",
+      "name": "Jim's Magic Missile",
+      "kind": "spell",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "jims-magic-missile",
+      "page": 76,
+      "srd": false,
+      "text": {
+        "sha256": "306610def4e024083e0a8cf939075e1a2474d8a2b936d9c320ae072c0571717b",
+        "source": "5etools",
+        "chars": 891
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "jims-magic-missile",
+          "docId": "ddbJimsMagiMis14",
+          "activities": [
+            "attackJimsMagMis"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3f0b1ea81c1e70b053779c05029fee7e5b565be287173affaa38a0f6a47a2328"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "ai:spell:motivational-speech",
+      "name": "Motivational Speech",
+      "kind": "spell",
+      "book": "AI",
+      "edition": "2014",
+      "identifier": "motivational-speech",
+      "page": 77,
+      "srd": false,
+      "text": {
+        "sha256": "42fa3ef51514c129ed664ee054bd1a91a70e7ccfe1b9065a0298bfbee606482f",
+        "source": "5etools",
+        "chars": 654
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "motivational-speech",
+          "docId": "ddbMotivaSpeec14",
+          "activities": [
+            "utilityMotivSpee",
+            "healHealing1IIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "422b653b38253d4acff892ae557e9d4d93ce304b915228b5298c00da69c89cc7"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
     }
   ]
 }
