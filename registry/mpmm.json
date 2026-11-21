@@ -2336,9 +2336,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d34",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data effect carries no changes; ignoring magical darkness for darkvision needs a vision rule.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:amnizu/trait/magic-resistance",
@@ -2424,9 +2440,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d34",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:angry-sorrowsworn/action/hook",
@@ -2851,9 +2885,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d34",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:apprentice-wizard/action/arcane-burst",
@@ -2938,9 +2990,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d34",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:archdruid/action/multiattack",
@@ -3121,9 +3191,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d34",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Use-time form choice replaces the stat block and keeps some values; data has only a use-limited utility activity.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:archdruid/trait/spellcasting",
@@ -3160,9 +3246,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d34",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:archer/action/longbow",
@@ -6057,10 +6161,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d36",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Hiding status is carried, but the dim light or darkness condition is not expressed by the data.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:banderhobb/trait/resonant-connection",
@@ -7112,9 +7232,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d36",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Shape swap with size and speed changes and revert on death; data has a bare utility activity.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:barghest/trait/fire-banishment",
@@ -7875,9 +8011,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d37",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Spellcasting is conditional on holding or riding a specific item; data cannot express that gate.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:black-abishai/action/bite",
@@ -8158,9 +8310,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d37",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data effect carries no changes; ignoring magical darkness for darkvision needs a vision rule.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:black-abishai/trait/magic-resistance",
@@ -8544,9 +8712,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d37",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:blue-abishai/action/bite",
@@ -8777,9 +8963,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d37",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data effect carries no changes; ignoring magical darkness for darkvision needs a vision rule.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:blue-abishai/trait/magic-resistance",
@@ -8869,9 +9071,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d37",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:bodak/action/fist",
@@ -13453,10 +13673,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d39",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Single spell cast with 1 use per short rest; utility activity already consumes the use. data: only spell choice by hand",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:darkling-elder/trait/death-burn",
@@ -22371,9 +22609,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d39",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Bonus action move toward a hostile creature seen; data lacks a movement effect.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:gazer/trait/mimicry",
@@ -23065,9 +23319,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d39",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Ignoring the loading property of certain weapons needs a rule; data lacks any effect for it.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:giff/trait/headfirst-charge",
@@ -23451,9 +23721,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d40",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:githyanki-kithrak/action/greatsword",
@@ -25232,9 +25520,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d40",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Spell list and DC are not a rule; each spell resolves by its own item. none #1",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:grung-elite-warrior/action/dagger",
@@ -28296,9 +28602,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t5",
+          "at": "2026-11-21T23:14:41.793Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d40",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Two attack activities cover normal and on-the-ground damage; player picks which by hand. data",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:korred/action/multiattack",
@@ -28384,9 +28708,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d40",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Two attack activities carry the base damage and the grounded version; plain attack, data suffices",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:korred/bonus/command-hair",
@@ -28474,9 +28816,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d40",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #1: spellcasting trait, list and DC are not a rule; each spell is its own item",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:korred/trait/stone-camouflage",
@@ -32786,9 +33146,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d40",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s27",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #1: spellcasting trait, list and DC are not a rule; each spell is its own item",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:neogi-hatchling/action/bite",

@@ -396,9 +396,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t2",
+          "at": "2026-11-21T23:14:38.945Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-005",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s33",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Optional d4 after the roll for a charge; data gives a passive bonus on two skills with no charge spend or after-roll choice. entry: restriction/consumption missing.",
+      "state": "triaged"
     },
     {
       "key": "scc:item:lorehold-trinket",
@@ -460,9 +478,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t2",
+          "at": "2026-11-21T23:14:38.945Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-005",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s33",
+            "confidence": 0.72
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Cast activity exists but data lacks sunset recovery, the 1h/6h choice and ending when the charm is removed. entry: missing end of effect.",
+      "state": "triaged"
     },
     {
       "key": "scc:item:murgaxors-elixir-of-life",
@@ -1038,9 +1074,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s34",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-d64",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s34",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Multiattack is descriptive; the listed attacks are separate items the user triggers. The optional extra action is a free choice, nothing for the engine to chain.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:archaic/action/teleport",
@@ -1903,9 +1955,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s34",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d64",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s34",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Multiattack is descriptive; bite and claw are separate items rolled by the user, nothing to automate beyond them.",
+      "state": "triaged"
     },
     {
       "key": "scc:monster:beledros-witherbloom/legendary/claw",

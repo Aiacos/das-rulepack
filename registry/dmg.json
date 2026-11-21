@@ -5106,9 +5106,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Save activity carries DC 15, 10d10 bludgeoning, half on save and the cube template; dismiss and door are utilities. Rest is scenery.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:dagger-of-venom",
@@ -5390,10 +5408,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-002",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Data has no effect; text bars extradimensional movement while bound and a once-per-30-days Athletics break check, which need a rule.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:driftglobe",
@@ -6117,9 +6151,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Passive +1 AC and armor proficiency are item-level numbers; no effect shown but the armor bonus normally lives in the item itself.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:embroidered-glove-set-with-jewel-chips",
@@ -7986,9 +8036,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-002",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Text is only a cross-reference tag to the grenade item; nothing in it to automate.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:gunpowder-horn",
@@ -8788,10 +8854,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-002",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Data lacks anything for ignoring difficult terrain and floating over surfaces; passive movement rider is needed.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:horseshoes-of-speed",
@@ -11816,10 +11898,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-002",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Data lacks the charisma check outcome (control or charm), at-will suggestion on the charmed, daily recharge and 1-hour call limit. Entry: missing pieces.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:painted-gold-childs-sarcophagus",
@@ -12259,10 +12359,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Charm applies to the next creature seen within 10 minutes and lasts an hour; effect carries no duration or trigger. Entry: end of effect and trigger missing.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:pipes-of-haunting",
@@ -12349,9 +12467,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Charges and summon exist, but contested checks, control of swarms and loss of control need rules the data does not carry.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:pistol",
@@ -16177,10 +16311,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Repeated use before a long rest requires a Con save or exhaustion; data has a mislabeled save and no tracking of reuse.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:robe-of-eyes",
@@ -17997,9 +18147,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-2nd-level",
@@ -18033,9 +18199,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-3rd-level",
@@ -18069,9 +18251,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-4th-level",
@@ -18105,9 +18303,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-5th-level",
@@ -18141,9 +18355,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-6th-level",
@@ -18177,9 +18407,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-7th-level",
@@ -18213,9 +18459,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-8th-level",
@@ -18249,9 +18511,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-9th-level",
@@ -18285,9 +18563,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s8",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Data has no activity or effect; reading casts a spell with an ability check when the spell is above the reader's level, and a fixed DC and bonus.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:spell-scroll-cantrip",
@@ -21842,10 +22136,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t2",
+          "at": "2026-11-21T23:14:38.945Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d70",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s9",
+            "confidence": 0.85
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with base damage; attack activity matches. data: plain attack.",
+      "state": "triaged"
     },
     {
       "key": "dmg:species:aarakocra/dive-attack",

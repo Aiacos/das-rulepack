@@ -380,10 +380,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d67",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s22",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "entry: advantage on saves only against spells and magical effects; data flag is a generic save advantage without that restriction",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:archon-of-boundaries/trait/spellcasting",
@@ -420,9 +438,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s22",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d67",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s22",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Text gives an at-will spell list chosen at use time; data lacks cast activities, only a bare utility action. Text is terse/truncated, so unsure.",
+      "state": "triaged"
     },
     {
       "key": "mcv4ec:monster:beanstalk-wurm/action/bite",

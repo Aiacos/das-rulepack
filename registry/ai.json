@@ -681,9 +681,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s1",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-001",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s1",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "AC bonus and charges are carried, but the plane shift cast is missing, and charges only exist while all components are installed; data fix needed. Alignment drift is not combat.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:piercer",
@@ -1075,9 +1091,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-001",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s1",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Item data lacks the charm person cast and its once-until-dawn use; extradimensional storage limits are not carried. Entry: missing piece.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:wheel-of-stars",
@@ -1795,9 +1829,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s2",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d66",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s2",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Spell list and casting ability only (text appears truncated); spells are cast via their own items. No activity in data, but no distinct combat rule beyond the list.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:brahma-lutier/action/song-of-domination",
@@ -1979,9 +2029,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s2",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d66",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s2",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Prepared bard spell list with save DC and attack bonus; spells are separate items. Nothing extra to automate in this trait itself. Data has no activity.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:brahma-lutier/trait/taunt",

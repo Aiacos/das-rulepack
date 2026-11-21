@@ -1164,9 +1164,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s10",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-efa-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s10",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Die size is data; casting the free Magic Weapon at its higher level is a change to the parent feat's cast activity that the data does not express.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-passage",
@@ -1339,9 +1355,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s10",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-efa-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s10",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Die size is data; casting the free Invisibility at its higher level modifies the parent feat's cast activity, which the data does not express.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-storm",
@@ -2023,9 +2055,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s10",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-efa-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s10",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "data lacks the extra slot: level is half character level capped at 5, short or long rest recovery, usable only for the dragonmark spells; plus always-prepared spells.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/1/spellcasting",
@@ -2738,9 +2786,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s11",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-efa-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s11",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Recharge by chosen slot level and a slot that vanishes at long rest are not carried by the activities, which only consume slots and uses; needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/7/flash-of-genius",
@@ -3037,9 +3101,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s11",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-efa-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s11",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Table roll, chosen elixir and effect on drinking are not in data; activities only mark the rest trigger and slot cost, no effects. Data lacks the elixir effects.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/alchemist/3/tools-of-the-trade",
@@ -3318,9 +3398,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s11",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Enchant effects change only name, description and properties; Intelligence replacing the attack and damage ability is not carried. Entry: missing piece.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/armorer",
@@ -3844,9 +3942,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s11",
+            "confidence": 0.62
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "One cannon at a time, vanishes at 0 HP or after an hour, early dismissal; activities carry the attacks but not these limits. Entry: end of effect and one-at-a-time.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/artillerist/3/tools-of-the-trade",
@@ -4214,9 +4330,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s11",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-efa-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s11",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Summon activities exist, but acting on your turn with Dodge only unless commanded, vanishing on death and replacing the old one need rules beyond the data.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/3/tools-of-the-trade",
@@ -9612,9 +9744,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s12",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #2: fixed three-attack reminder",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-marauder/bonus/tear-through-space",
@@ -9995,9 +10145,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s12",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #2: fixed count, free choice among two attacks, no swap for other actions",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tharashk-hunter/action/shortsword",
@@ -10231,9 +10399,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s12",
+            "confidence": 0.68
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #2: fixed attack count plus a use of another action, a reminder",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:umbragen-shadow-walker/action/shadow-cowl",
@@ -10464,9 +10650,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s12",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "data lacks the rider: no light emission and no ban on benefiting from invisibility, no end at next turn; entry: missing end of effect",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vadalis-heir/action/multiattack",
@@ -10503,9 +10707,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s12",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #2: fixed four attacks, free mix of two attacks",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vadalis-heir/action/scimitar",
@@ -12226,9 +12448,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s13",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-efa-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s13",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Summon activity exists, but the replace-previous-summon rule and the ally acting right after the caster on the caster's initiative count are not in the data; default Dodge when no orders.",
+      "state": "triaged"
     }
   ]
 }

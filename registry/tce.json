@@ -351,9 +351,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-001",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s35",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Data lacks the 2 sorcery points limited to Metamagic and long-rest recovery (no uses). Entry: missing resource and restriction.",
+      "state": "triaged"
     },
     {
       "key": "tce:feat:piercer",
@@ -2821,9 +2839,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s36",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Summon has duration and uses, but lacks the one-cannon limit, ending at 0 HP, and bonus-action command economy. Entry: summon with limits.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:artificer/artillerist/3/tool-proficiency",
@@ -3207,9 +3243,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s36",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Summon lacks the Dodge-by-default command economy, revival rule, and replacing the previous defender. Entry: summon with command economy.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:artificer/battle-smith/3/tool-proficiency",
@@ -4298,9 +4352,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-002",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s36",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Summon has duration and uses, but lacks the one-at-a-time rule and command economy tied to Bardic Inspiration. Entry: summon with limits.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:bard/eloquence/14/infectious-inspiration",
@@ -6836,10 +6908,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-003",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s36",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon activity exists but lacks consumption of a Wild Shape use and the fey familiar change. Entry: missing consumption.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:druid/4/cantrip-versatility",
@@ -7925,9 +8015,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-003",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s36",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Data lacks Wild Shape use consumption, one-spirit limit, ending on re-summon, and command economy. Entry: summon with end conditions.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:druid/wildfire/3/circle-of-wildfire",
@@ -9566,9 +9674,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s36",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-tce-004",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s36",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Doubles uses of the rune powers and refreshes them on short rest; structure has no activity or effect, so data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:fighter/rune-knight/18/runic-juggernaut",
@@ -13114,10 +13238,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-005",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s36",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Uses lack long-rest recovery and die size scaling; the one-per-rest die regain restriction is missing. Entry: missing recovery and restriction.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:rogue/soulknife/3/psychic-blades",
@@ -19630,9 +19772,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s37",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-tce-007",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s37",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Metamagic use triggers a wild surge roll, with concentration waived and a once-per-dawn limit without the origin; data only has a charge activity, no effect.",
+      "state": "triaged"
     },
     {
       "key": "tce:item:fire-absorbing-tattoo",
@@ -20946,9 +21104,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t2",
+          "at": "2026-11-21T23:14:38.945Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s37",
+            "confidence": 0.75
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "DC bonus effect is not limited to bard spells in data (applies to all spells). entry: restriction to one class missing.",
+      "state": "triaged"
     },
     {
       "key": "tce:item:shadowfell-brand-tattoo",
@@ -22349,9 +22525,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s38",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "data lacks the healing part (utility activity has none, only uses); formula uses the summon spell level; entry needed",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:celestial-spirit/action/multiattack",
@@ -22857,9 +23051,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s38",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Immunity to form-altering effects; nothing the engine tracks in combat, no roll or condition to resolve",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:dancing-item/trait/irrepressible-dance",
@@ -23521,9 +23733,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s38",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Darkvision seeing through magical darkness is a sense/vision matter with no combat effect to automate here.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:fiendish-spirit/trait/magic-resistance",
@@ -23808,10 +24036,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s38",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "none #4: polymorph into an object with unchanged statistics, left to the game master",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:juvenile-mimic/trait/false-appearance-object-form-only",
@@ -24042,9 +24288,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t6",
+          "at": "2026-11-21T23:14:42.735Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s38",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Immunity to form change or plane shifting; no roll, no tracked condition to resolve",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:mighty-servant-of-leuk-o/trait/magic-resistance",
@@ -24433,9 +24697,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s38",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Takes Hide automatically while in dim light or darkness; conditional on lighting, data lacks any activity or effect.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:shadow-spirit/trait/terror-frenzy-fury-only",
@@ -26312,9 +26592,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-010",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s39",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Summon with command economy (Dodge only unless bonus action), vanishes on death, mending heals it; data lacks these (entry: summon command economy)",
+      "state": "triaged"
     },
     {
       "key": "tce:option:interception",

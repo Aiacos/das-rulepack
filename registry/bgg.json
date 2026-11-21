@@ -481,9 +481,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-bgg-004",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s3",
+            "confidence": 0.65
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Casts exist but item lacks uses with dawn recovery, the 9th-level no-concentration Bigby's hand, and the three-copy limit. Entry: missing consumption and restriction.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:crown-of-the-wrath-bringer",
@@ -6731,9 +6749,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s4",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d61",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s4",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Other actions are gated on holding the rune object, which has its own AC, HP, regeneration and dust rule; data lacks all of it. Object as a target is hard to model.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:fire-giant-forgecaller/trait/legendary-resistance",

@@ -26341,10 +26341,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s31",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d69",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s31",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with one bludgeoning damage roll; the attack activity carries it, but damage shows no dice count/size (maybe custom formula); unsure it matches text.",
+      "state": "triaged"
     },
     {
       "key": "phb:monster:animated-object-medium/trait/animated",
@@ -26410,10 +26426,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s31",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d69",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s31",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with one bludgeoning damage roll; the attack activity carries it, but damage shows no dice count/size (maybe custom formula); unsure it matches text.",
+      "state": "triaged"
     },
     {
       "key": "phb:monster:animated-object-small/trait/animated",
@@ -26479,10 +26511,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s31",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-d69",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s31",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with one bludgeoning damage roll; the attack activity carries it, but damage shows no dice count/size (maybe custom formula); unsure it matches text.",
+      "state": "triaged"
     },
     {
       "key": "phb:monster:animated-object-tiny/trait/animated",
@@ -31121,9 +31169,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Transform activities have no effect; data lacks stat replacement, HP of new form, revert on 0 HP with carry-over (entry: piece missing)",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:animate-dead",
@@ -31205,10 +31271,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon with size-based counts, command via bonus action and revert to object at 0 HP; data lacks these (entry: summon command economy/end conditions)",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:antilife-shell",
@@ -31243,10 +31327,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-006",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Moving barrier that blocks non-undead/non-construct creatures from passing; spell ends if you force them through. Data has only a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:antimagic-field",
@@ -31281,10 +31381,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-006",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Sphere suppresses spells, magic items and summons inside; data lacks any effect. Needs a suppression rule tied to position.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:antipathy-sympathy",
@@ -31416,10 +31532,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Paired portals for travel; positioning is handled by the table, little to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:arcane-lock",
@@ -32756,10 +32888,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-006",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Template, save-for-half damage and the outdoor storm variant exist; reusing each turn is a manual choice (data)",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:calm-emotions",
@@ -34226,9 +34376,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-006",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Delayed trigger spell chosen narratively with a stored spell; nothing the engine can resolve in combat.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:continual-flame",
@@ -34827,10 +34993,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Lights on scenery with movement only; no roll or effect to resolve (none #5/#3)",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:darkness",
@@ -36176,10 +36360,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Cantrip scaling adds separate beams, each with its own attack roll; data shows a single damage line and one attack, so data lacks the beam count.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:elemental-weapon",
@@ -37050,10 +37250,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.68
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon limited to one familiar, reaction touch-spell delivery, dismiss/reappear; data lacks restrictions (entry: one at a time)",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:find-steed",
@@ -37088,10 +37306,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon activity covers the steed; sharing self-targeted spells with the mount is a minor rider.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:find-the-path",
@@ -37707,10 +37941,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Sphere that heavily obscures vision; data has no template or effect, so data lacks the area and its vision rule.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:forbiddance",
@@ -37795,10 +38045,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Barrier trapping creatures with a save only for teleport escape; data's save has no damage and no effect. Needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:foresight",
@@ -38082,10 +38348,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t8",
+          "at": "2026-11-21T23:14:44.643Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.62
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Charmed effect exists but the psychic damage for acting against orders, once per day, is missing from the data (entry: no damage part)",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:gentle-repose",
@@ -38166,10 +38450,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.68,
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.68
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon activity covers the transformed creatures; commands are table-level.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:glibness",
@@ -38541,10 +38841,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "entry: ends conditions and reductions (charm, petrify, exhaustion, max HP); utility activity has no effects, data lacks it",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:guardian-of-faith",
@@ -39256,10 +39574,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Uses with recovery, healing activity and effect exist; advantage on Wisdom saves and immunities depend on effect contents.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:heroism",
@@ -40348,10 +40682,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.68,
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.68
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Rises and hangs; unwilling Con save; data has a save but no effect for the suspended state, so data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:light",
@@ -41231,10 +41581,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Charm-like suggestion ending for a target when damaged by you or allies; data has a save but no effect or end event.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:maze",
@@ -41321,9 +41687,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Hidden inside stone with perception disadvantage and expulsion damage on destruction; data effect has no changes.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:melfs-acid-arrow",
@@ -42767,9 +43149,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Melee spell attack then Cha save to banish; data has only the save, so the attack part is missing.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:plant-growth",
@@ -44121,10 +44519,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Creatures fall upward unless a Dex save to grab; falling and ending fall need a rule; data has only a save.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:revivify",
@@ -44651,10 +45065,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "entry: invisible status must end when target takes damage; data only applies the status with no end event (none boundary exception)",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:shapechange",
@@ -44690,9 +45122,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "data: transform activities plus concentration cover the form change; no temp HP in this edition, rest is GM-managed",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:shatter",
@@ -45063,9 +45513,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "entry: summon with half HP, construct type, ends at 0 HP and only one active copy allowed; data has no template or limit",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:sleep",
@@ -46602,9 +47070,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-old-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Several consecutive turns, ending if you affect another creature or move far; data has only a utility.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:tongues",
@@ -46782,9 +47266,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Multiple transformation modes, ends at 0 HP, permanent if concentrated fully; data has transform/summon without effects.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:true-resurrection",
@@ -46819,10 +47319,28 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t9",
+          "at": "2026-11-21T23:14:45.659Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-009",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.72
+          },
+          "via": "third-reading"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "none #5: raising the dead is outside combat; nothing to resolve at the table in a fight",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:true-seeing",
@@ -47669,10 +48187,26 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-old-010",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Damage save is present; the rider making ordinary projectiles miss and blocking small fliers is not in data.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:wish",
@@ -47709,9 +48243,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.62,
+          "first": {
+            "by": "reader-old-010",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s32",
+            "confidence": 0.62
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Duplicates spells or chosen effects; stress rule gives necrotic damage on later casts and Strength drop; data effect only partial.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:witch-bolt",

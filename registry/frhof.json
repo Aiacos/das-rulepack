@@ -5011,9 +5011,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s17",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-frhof-004",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s17",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Toggleable light source (open/close as bonus action) sheds bright and dim light; data lacks any light effect, only a bare utility activity. Mostly lighting, not combat math.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:axe-beak",
@@ -6086,9 +6102,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s17",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-frhof-004",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s17",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Advantage on Stealth checks only in an appropriate environment; data lacks any effect, and the circumstance cannot be expressed by a plain passive bonus.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:yarting",

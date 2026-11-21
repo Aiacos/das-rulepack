@@ -12447,9 +12447,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.65,
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s41",
+            "confidence": 0.65
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Only a utility activity: no summon data; needs form and creature type choice, Intelligence bump, shared self-spells, return with full HP on recast.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:flame-arrows",

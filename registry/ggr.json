@@ -1027,9 +1027,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "third-t1",
+          "at": "2026-11-21T23:14:37.952Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-004",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s20",
+            "confidence": 0.6
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "Choice of spell at use time, Arcana check against a slot-based DC, random replacement spell on failure; utility activity carries none. Entry: choice at use.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:mizzium-mortar",
@@ -2396,9 +2414,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s21",
+          "at": "2026-11-21T23:14:46.522Z",
+          "confidence": 0.6,
+          "first": {
+            "by": "reader-d50",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s21",
+            "confidence": 0.6
+          },
+          "via": "bulk-unsure"
+        }
+      },
+      "why": "Legendary action teleporting to a steed and mounting it; data has only a legendary utility activity with cost, no mount or teleport handling.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/legendary/smite",
@@ -2532,9 +2566,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d50",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s21",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #1: innate spellcasting list and DC, spells resolved by own items",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:archon-of-the-triumvirate/trait/mount",
@@ -3828,9 +3880,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d50",
+            "confidence": 0.6
+          },
+          "second": {
+            "by": "second-s21",
+            "confidence": 0.7
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "none #1: spellcasting list and DC, spells resolved by own items",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:blistercoil-weird/action/slam",
@@ -4840,9 +4910,27 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "third-t3",
+          "at": "2026-11-21T23:14:39.865Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d51",
+            "confidence": 0.65
+          },
+          "second": {
+            "by": "second-s21",
+            "confidence": 0.82
+          },
+          "via": "third-reading"
+        }
+      },
+      "why": "data: attack activity with base damage plus save activity applying prone; nothing else needed",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:borborygmos/action/multiattack",
