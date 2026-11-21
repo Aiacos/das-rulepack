@@ -2,7 +2,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { canonical, loadBook, saveBook } from "./registry.mjs";
+import { canonical, isReservedBook, loadBook, saveBook } from "./registry.mjs";
 import { readSpells } from "./dataset.mjs";
 import { dumpsFor, itemSummary, readDump } from "./dumps.mjs";
 import { inventory } from "./inventory.mjs";
@@ -34,10 +34,16 @@ function loadDumps(dir) {
   return { official: read("official"), "ddb-importer": read("ddb-importer") };
 }
 
+// The year of a book in docs/books.json, or undefined when the catalogue does not list it.
+function yearOf(code) {
+  const { books } = JSON.parse(readFileSync(join(ROOT, "docs", "books.json"), "utf8"));
+  return books.find((b) => b.code.toUpperCase() === code.toUpperCase())?.year;
+}
+
 function readBookSpells(datasetDir, book) {
   let spells;
   try {
-    spells = readSpells(datasetDir, book);
+    spells = readSpells(datasetDir, book, { year: yearOf(book) });
   } catch (e) {
     if (e.code !== "ENOENT") throw e;
     spells = [];
@@ -48,6 +54,7 @@ function readBookSpells(datasetDir, book) {
 
 function inventoryCommand([book, kind]) {
   if (!book || !kind) throw new UsageError("Usage: inventory <BOOK> <kind>");
+  if (isReservedBook(book)) throw new UsageError(`"${book}" is reserved in the registry folder and cannot be a book code`);
   if (kind !== "spell") throw new UsageError(`Kind "${kind}" is not supported yet: only "spell" is`);
   const datasetDir = need("RULEPACK_DATASET");
   const dumpsDir = need("RULEPACK_DUMPS");

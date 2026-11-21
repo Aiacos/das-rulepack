@@ -2,11 +2,13 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { plainText } from "./text.mjs";
+import { editionOf } from "./edition.mjs";
 
-export function readSpells(datasetDir, bookCode) {
+// `year` is the book's year from docs/books.json, when the caller knows it.
+export function readSpells(datasetDir, bookCode, { year } = {}) {
   const file = join(datasetDir, "spells", `spells-${bookCode.toLowerCase()}.json`);
   const spells = JSON.parse(readFileSync(file, "utf8")).spell ?? [];
-  const edition = /^X/i.test(bookCode) || spells.some((s) => s.srd52 || s.basicRules2024) ? "2024" : "2014";
+  const edition = editionOf(bookCode, { year, flagged: spells.some((s) => s.srd52 || s.basicRules2024) });
   return spells.map((s) => ({
     name: s.name,
     book: bookCode,

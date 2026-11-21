@@ -67,6 +67,14 @@ describe("idsIn", () => {
     expect(idsIn(entry)).toEqual([]);
   });
 
+  it("finds an id that is a segment of a dotted path string", () => {
+    const entry = {
+      dataFixes: [{ path: `system.activities.${ACT}.activation.type`, value: 1 }, { effect: EFF, path: `effects.${NOPE}.x` }]
+    };
+    expect(idsIn(entry)).toEqual([ACT, EFF, NOPE].sort());
+    expect(idsIn({ p: "system.activities.activation.type" })).toEqual([]);
+  });
+
   it("keeps an id made of letters only", () => {
     expect(idsIn({ x: "AbCdEfGhIjKlMnOp" })).toEqual(["AbCdEfGhIjKlMnOp"]);
   });
@@ -133,7 +141,17 @@ describe("gateIds", () => {
 
   it("fails ids with no origin to check them against", () => {
     const r = rec(); r.rule.origins = [];
-    expect(gateIds(r, ctx())[0]).toMatch(/rule.origins is empty/);
+    expect(gateIds(r, ctx())).toEqual(["ids: rule names no origin"]);
+    const noIds = withEntry({ aura: true }); noIds.rule.origins = [];
+    expect(gateIds(noIds, ctx())).toEqual(["ids: rule names no origin"]);
+    const code = rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } });
+    expect(gateIds(code, ctx())).toEqual([]);
+    expect(runGates([withText(r)], ctx()).failures[r.key].ids).toEqual(["ids: rule names no origin"]);
+  });
+
+  it("fails dataFixes with no origin to read them from", () => {
+    const r = withEntry(entryWith({ dataFixes: [{ path: "system.x", value: 1 }] })); r.rule.origins = [];
+    expect(gateFixes(r, ctx())).toEqual(["fixes: rule names no origin"]);
   });
 
   it("is a note, not a failure, for an allow-listed legacy record without item data; it is not in passed", () => {
@@ -190,6 +208,12 @@ describe("gateFixes", () => {
   it("fails a field of an activity the document does not have", () => {
     const p = `system.activities.${NOPE}.uses.max`;
     expect(gateFixes(fixed({ path: p, value: "2" }), ctx({ documents }))).toEqual([`fixes: drift at ${p}`]);
+  });
+
+  it("skips a { effect, create } item, which has no path, before the path check", () => {
+    const create = { effect: NOPE, create: { name: "x" }, unless: EFF };
+    expect("path" in create).toBe(false);
+    expect(gateFixes(fixed(create), ctx({ documents }))).toEqual([]);
   });
 
   it("reports nothing for an effect to create", () => {
@@ -441,6 +465,16 @@ describe("gates CLI", () => {
       expect(r.status).toBe(0);
       expect(r.stdout).toMatch(/nothing to check/i);
     }
+  });
+
+  it("rejects the reserved book codes legacy and queue with exit 2, and saveBook refuses them", () => {
+    for (const code of ["legacy", "QUEUE", "Legacy"]) {
+      const r = cli(["inventory", code, "spell"], { RULEPACK_REGISTRY: registry() });
+      expect(r.status).toBe(2);
+      expect(r.stderr).toMatch(/reserved/);
+      expect(() => saveBook(registry(), { book: code, records: [] })).toThrow(/reserved/);
+    }
+    expect(existsSync(join(registry(), "legacy.json"))).toBe(false);
   });
 
   it("exits 2 naming the variable that is missing", () => {

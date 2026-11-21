@@ -2,9 +2,9 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { keyOf, loadBook, stateOf } from "./registry.mjs";
+import { editionOf } from "./edition.mjs";
 
 export const NOT_BOOKS = ["legacy.json", "queue.json"];
-const BOOKS_2024 = /^X(PHB|DMG|MM)$/;
 const GENERATED = /^\/\/ Generated (from registry\/|by npm run build:rules)/;
 
 // A shipped rule as a registry record (legacy: it keeps its status until the gates and a review replace it).
@@ -18,7 +18,7 @@ export function recordFromRule(rule, order, note) {
     kind: rule.kind,
     book: rule.book,
     page: rule.page,
-    edition: BOOKS_2024.test(rule.book) ? "2024" : "2014",
+    edition: editionOf(rule.book),
     text: null,
     items: [],
     verdict: rule.handledIn === "code" ? "code" : "entry",

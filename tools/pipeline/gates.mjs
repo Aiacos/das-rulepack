@@ -24,7 +24,8 @@ export function idsIn(entry) {
   const found = new Set();
   const walk = (node) => {
     if (typeof node === "string") {
-      if (isId(node)) found.add(node);
+      // A path such as `system.activities.<id>.activation.type` names an id as one of its segments.
+      for (const part of [node, ...node.split(".")]) if (isId(part)) found.add(part);
     } else if (Array.isArray(node)) node.forEach(walk);
     else if (isObject(node)) {
       for (const [key, value] of Object.entries(node)) {
@@ -72,7 +73,7 @@ export function checkIds(record, context) {
   if (error) return { ...out, failures: [`ids: ${error}`] };
   const ids = entry ? idsIn(entry) : [];
   const origins = originsOf(record.rule);
-  if (ids.length && !origins.length) out.failures.push(`ids: the entry names ${ids.length} ids but rule.origins is empty`);
+  if (entry && !origins.length) out.failures.push("ids: rule names no origin");
   for (const origin of origins) {
     const items = matchedItems(record, origin);
     if (!items.length) {
@@ -100,6 +101,7 @@ export function checkFixes(record, context = {}) {
   if (fixes === undefined) return out;
   if (!Array.isArray(fixes)) return { ...out, failures: ["fixes: dataFixes is not an array"] };
   if (!fixes.length) return out;
+  if (!originsOf(record.rule).length) return { ...out, failures: ["fixes: rule names no origin"] };
   const failures = new Set();
   const drift = (path) => failures.add(`fixes: drift at ${path}`);
   for (const origin of originsOf(record.rule)) {

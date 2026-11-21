@@ -44,7 +44,12 @@ export function loadBook(dir, code) {
   return { book, records: records.map(({ state, ...record }) => record) };
 }
 
+// legacy.json and queue.json live beside the books in the registry folder, so no book may take those names.
+export const RESERVED_BOOKS = Object.freeze(["legacy", "queue"]);
+export const isReservedBook = (code) => RESERVED_BOOKS.includes(String(code).toLowerCase());
+
 export function saveBook(dir, { book, records }) {
+  if (isReservedBook(book)) throw new Error(`"${book}" is reserved: registry/${book.toLowerCase()}.json is not a book`);
   for (const r of records) {
     const errors = validateRecord(r);
     if (errors.length) throw new Error(`${r?.key ?? "record"}: ${errors.join("; ")}`);

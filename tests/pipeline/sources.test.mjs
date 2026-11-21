@@ -5,6 +5,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { plainText, textFingerprint, cacheText, hasText } from "../../tools/pipeline/text.mjs";
 import { readSpells } from "../../tools/pipeline/dataset.mjs";
+import { editionOf } from "../../tools/pipeline/edition.mjs";
 import { readDump, itemSummary, dumpsFor } from "../../tools/pipeline/dumps.mjs";
 
 const fixtures = join(dirname(fileURLToPath(import.meta.url)), "fixtures");
@@ -48,6 +49,25 @@ describe("text cache", () => {
     writeFileSync(join(dir, `${sha}.txt`), "marker");
     cacheText(dir, "same");
     expect(readFileSync(join(dir, `${sha}.txt`), "utf8")).toBe("marker");
+  });
+});
+
+describe("editionOf", () => {
+  it("is 2014 for XGE (a book code starting with X proves nothing), 2024 for XPHB and XDMG", () => {
+    expect(editionOf("XGE", { year: 2017 })).toBe("2014");
+    expect(editionOf("XGE")).toBe("2014");
+    expect(editionOf("XPHB")).toBe("2024");
+    expect(editionOf("xdmg")).toBe("2024");
+  });
+  it("is 2024 from the year 2025 on (XMM), and for a file whose entries are flagged", () => {
+    expect(editionOf("XMM", { year: 2025 })).toBe("2024");
+    expect(editionOf("XMM", { year: 2024 })).toBe("2014");
+    expect(editionOf("ZZZ", { flagged: true })).toBe("2024");
+    expect(editionOf("ZZZ", { flagged: false, year: 2019 })).toBe("2014");
+  });
+  it("is used by readSpells: a 2017 X book is 2014, and the year dates a book", () => {
+    expect(readSpells(fixtures, "YZZ", { year: 2025 })[0].edition).toBe("2024");
+    expect(readSpells(fixtures, "YZZ", { year: 2017 })[0].edition).toBe("2014");
   });
 });
 
