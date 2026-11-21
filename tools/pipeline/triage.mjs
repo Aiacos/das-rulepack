@@ -351,7 +351,7 @@ export function settleUnsure(records, { textDir, queue, min, at = new Date().toI
   const problems = [];
   for (const entry of queue.filter((q) => q.reason === "unsure-twice")) {
     const second = entry.second;
-    const eligible = second && entry.verdict === second.verdict && entry.verdict !== "engine"
+    const eligible = second && !entry.third && entry.verdict === second.verdict && entry.verdict !== "engine"
       && typeof entry.confidence === "number" && typeof second.confidence === "number"
       && entry.confidence >= min && second.confidence >= min && isReaderHandle(entry.by) && isReaderHandle(second.by);
     if (!eligible) { kept.push(entry); continue; }

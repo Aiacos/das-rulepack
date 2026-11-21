@@ -271,3 +271,112 @@ describe("third reading on the command line", () => {
     expect(snap()).toEqual(before);
   });
 });
+
+describe("writes are all or nothing", () => {
+  let tmp, registry, textDir2;
+  const run = (args) => spawnSync("node", ["tools/pipeline/cli.mjs", ...args], {
+    encoding: "utf8",
+    env: { PATH: process.env.PATH, RULEPACK_REGISTRY: registry, RULEPACK_TEXT: textDir2, DAS_CORE: process.env.DAS_CORE ?? "" }
+  });
+  const files = () => ["aaa.json", "bbb.json", "queue.json"].map((f) => readFileSync(join(registry, f), "utf8"));
+  const dis = (key) => ({ key, verdict: "data", why: "w", confidence: 0.5, by: "reader-1", reason: "disagreement",
+    second: { verdict: "none", why: "w", confidence: 0.9, by: "reader-2" } });
+  const uns = (key, extra = {}) => ({ key, verdict: "data", why: "w", confidence: 0.65, by: "reader-1", reason: "unsure-twice",
+    second: { verdict: "data", why: "w2", confidence: 0.65, by: "reader-2" }, ...extra });
+  const resultsFile = (by, results) => {
+    const f = join(tmp, "r.json");
+    writeFileSync(f, JSON.stringify({ batch: "x-001", by, results }));
+    return f;
+  };
+  let broken = true;
+  const setup = () => {
+    tmp = mkdtempSync(join(tmpdir(), "atomic-"));
+    registry = join(tmp, "registry");
+    textDir2 = join(tmp, "text");
+    mkdirSync(textDir2);
+    const rec = (book, n, over = {}) => ({
+      key: `${book.toLowerCase()}:spell:s${n}`, name: `S ${n}`, kind: "spell", book, page: 1, edition: "2024", identifier: `s${n}`,
+      text: { sha256: cacheText(textDir2, `${BODY} ${book} ${n}`), source: "5etools", chars: 5 },
+      items: [{ origin: "official", match: "matched" }], verdict: null, evidence: {}, ...over
+    });
+    saveBook(registry, { book: "AAA", records: [rec("AAA", 1), rec("AAA", 2)] });
+    saveBook(registry, { book: "BBB", records: [rec("BBB", 1), rec("BBB", 2)] });
+    if (broken) {
+      // An unrelated record that no longer validates: a verdict outside the list, written by hand.
+      const f = join(registry, "bbb.json");
+      const b = JSON.parse(readFileSync(f, "utf8"));
+      b.records[1].verdict = "bogus";
+      writeFileSync(f, `${JSON.stringify(b, null, 2)}\n`);
+    }
+    writeFileSync(join(registry, "queue.json"), JSON.stringify([
+      uns("aaa:spell:s1"), uns("bbb:spell:s1"), dis("aaa:spell:s2")
+    ]));
+  };
+  afterEach(() => rmSync(tmp, { recursive: true, force: true }));
+  const withCore = it.skipIf(!process.env.DAS_CORE);
+
+  withCore("--settle-unsure with an invalid record in a touched book writes nothing", () => {
+    broken = true; setup();
+    const before = files();
+    const r = run(["ingest", "--settle-unsure"]);
+    expect(r.status).toBe(1);
+    expect(r.stderr).toMatch(/BBB/);
+    expect(r.stderr).not.toMatch(/\n\s+at /);
+    expect(files()).toEqual(before);
+  });
+  withCore("--third, --second and a normal ingest write nothing either", () => {
+    broken = true; setup();
+    const res = (k) => ({ key: k, verdict: "none", why: "third", confidence: 0.9 });
+    const low = (k) => ({ key: k, verdict: "none", why: "w", confidence: 0.4, by: "reader-1", reason: "low-confidence" });
+    const queueFile = join(registry, "queue.json");
+    const attempt = (queue, args, results, by) => {
+      writeFileSync(queueFile, JSON.stringify(queue));
+      const before = files();
+      const r = run(["ingest", resultsFile(by, results), ...args]);
+      expect(r.status, args.join(" ")).toBe(1);
+      expect(r.stderr).toMatch(/BBB/);
+      expect(files()).toEqual(before);
+    };
+    attempt([dis("aaa:spell:s2"), dis("bbb:spell:s1")], ["--third"], [res("aaa:spell:s2"), res("bbb:spell:s1")], "reader-3");
+    attempt([low("aaa:spell:s1"), low("bbb:spell:s1")], ["--second"], [res("aaa:spell:s1"), res("bbb:spell:s1")], "reader-2");
+    attempt([], [], [res("aaa:spell:s1"), res("bbb:spell:s1")], "reader-5");
+  });
+  withCore("the same runs write both books and the queue when every record is valid", () => {
+    broken = false; setup();
+    const r = run(["ingest", "--settle-unsure"]);
+    expect(r.status, r.stderr).toBe(0);
+    expect(JSON.parse(r.stdout)).toEqual({ applied: 2, kept: 0 });
+    const rec = (f, k) => JSON.parse(readFileSync(join(registry, f), "utf8")).records.find((x) => x.key === k);
+    expect(rec("aaa.json", "aaa:spell:s1").verdict).toBe("data");
+    expect(rec("bbb.json", "bbb:spell:s1").verdict).toBe("data");
+    expect(JSON.parse(readFileSync(join(registry, "queue.json"), "utf8")).map((q) => q.key)).toEqual(["aaa:spell:s2"]);
+  });
+  withCore("a failing write is reported with what was and was not written", () => {
+    broken = false; setup();
+    // The queue path is a directory: its write fails after both books were written.
+    rmSync(join(registry, "queue.json"));
+    mkdirSync(join(registry, "queue.json"));
+    const r = run(["ingest", "--settle-unsure"]);
+    expect(r.status).not.toBe(0);
+    expect(r.stderr).not.toMatch(/\n\s+at /);
+  });
+});
+
+describe("--settle-unsure and --min details", () => {
+  const unsure = (over) => ({
+    key: "tst:spell:dim-glow", verdict: "data", why: "w", confidence: 0.65, by: "reader-1", reason: "unsure-twice",
+    second: { verdict: "data", why: "w2", confidence: 0.65, by: "reader-2" }, ...over
+  });
+  it("keeps an entry that has a third reading", () => {
+    const q = unsure({ third: { verdict: "data", why: "w", confidence: 0.9, by: "reader-3" } });
+    const out = settleUnsure([record("Dim Glow")], { textDir, queue: [q], min: 0.6, at: AT });
+    expect(out.applied).toEqual([]);
+    expect(out.kept).toHaveLength(1);
+  });
+  it("rejects a --min with surrounding whitespace", () => {
+    const r = spawnSync("node", ["tools/pipeline/cli.mjs", "ingest", "--settle-unsure", "--min", " 0.6"], {
+      encoding: "utf8", env: { PATH: process.env.PATH, RULEPACK_REGISTRY: textDir, RULEPACK_TEXT: textDir }
+    });
+    expect(r.status).toBe(2);
+  });
+});

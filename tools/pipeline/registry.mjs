@@ -157,20 +157,25 @@ export const isReservedBook = (code) => RESERVED_BOOKS.includes(String(code).toL
 // generate.mjs also imports the book under it (so it must not be a reserved word there).
 export const BOOK_CODE = /^[A-Z][A-Z0-9]{1,9}$/;
 
-// `note` is the book-level comment (the header of the generated module); it is written only when there is one.
-export function saveBook(dir, { book, note, records }) {
-  if (isReservedBook(book)) throw new Error(`"${book}" is reserved: registry/${String(book).toLowerCase()}.json is not a book`);
-  if (typeof book !== "string" || !BOOK_CODE.test(book)) {
-    throw new Error(`book code ${JSON.stringify(book)} must match ${BOOK_CODE}`);
-  }
+// Why a book cannot be saved (what `saveBook` checks first), or null.
+export function checkBook({ book, records }) {
+  if (isReservedBook(book)) return `"${book}" is reserved: registry/${String(book).toLowerCase()}.json is not a book`;
+  if (typeof book !== "string" || !BOOK_CODE.test(book)) return `book code ${JSON.stringify(book)} must match ${BOOK_CODE}`;
   const keys = new Set();
   for (const r of records) {
     const errors = validateRecord(r);
-    if (errors.length) throw new Error(`${r?.key ?? "record"}: ${errors.join("; ")}`);
-    if (r.book !== book) throw new Error(`${r.key}: book ${JSON.stringify(r.book)} is not the book of the file, ${book}`);
-    if (keys.has(r.key)) throw new Error(`${r.key}: two records share this key`);
+    if (errors.length) return `${r?.key ?? "record"}: ${errors.join("; ")}`;
+    if (r.book !== book) return `${r.key}: book ${JSON.stringify(r.book)} is not the book of the file, ${book}`;
+    if (keys.has(r.key)) return `${r.key}: two records share this key`;
     keys.add(r.key);
   }
+  return null;
+}
+
+// `note` is the book-level comment (the header of the generated module); it is written only when there is one.
+export function saveBook(dir, { book, note, records }) {
+  const invalid = checkBook({ book, records });
+  if (invalid) throw new Error(invalid);
   const sorted = [...records].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
   const withState = sorted.map(({ state, ...r }) => ({ ...r, state: stateOf(r) }));
   const out = { book, ...(note === undefined ? {} : { note }), records: withState };

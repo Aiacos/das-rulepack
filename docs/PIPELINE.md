@@ -356,24 +356,30 @@ two bulk rules. Both are options of `ingest`; `--third`, `--second`, `--overwrit
 
 These are our own words, approved by the project owner; they are not rulebook text.
 
-### `none` or `entry`
+#### `none` or `entry`
 `none` when:
-1. A monster's "Spellcasting" / "Innate Spellcasting" trait: the spell list and the DC are not a rule, each spell is resolved by its own item.
+1. A monster's "Spellcasting" / "Innate Spellcasting" trait: the spell list and the DC are not a rule, each spell is resolved by
+   its own item.
 2. A Multiattack with a fixed sequence: a reminder of how many attacks to make.
 3. Movement only (a leap, a dash, dragging a grappled creature): no roll and no effect to resolve.
 4. A change of shape with no change to the statistics, or left to the game master.
-5. Effects outside combat, or on objects and scenery only: raising the dead, building, destroying an unattended object, lights, decorative smoke.
+5. Effects outside combat, or on objects and scenery only: raising the dead, building, destroying an unattended object, lights,
+   decorative smoke.
 6. Character-building choices: which weapons have mastery, always-prepared spells.
 
 `entry` instead, even in one of the cases above, when:
 - the Multiattack has a variable number of attacks or lets attacks be swapped for something else;
 - the movement is tied to an attack or a saving throw (move, then attack, as a legendary action);
-- the effect removes or imposes a condition the engine tracks (a restoration that ends a condition, an invisibility that ends on the first damage).
+- the effect removes or imposes a condition the engine tracks (a restoration that ends a condition, an invisibility that ends on
+  the first damage).
 
-### `data` or `entry`
-`data` when the item already has the right activity (attack, save, damage, healing, cast, summon) and what is missing is only a choice the player makes by hand anyway: using the activity again each turn, upcasting by spending more charges, choosing which spell of a list to cast.
+#### `data` or `entry`
+`data` when the item already has the right activity (attack, save, damage, healing, cast, summon) and what is missing is only a
+choice the player makes by hand anyway: using the activity again each turn, upcasting by spending more charges, choosing which
+spell of a list to cast.
 
-`entry` when the text gives a mechanical effect that would by itself change a roll, hit points, a condition or a duration, and the data does not carry it:
+`entry` when the text gives a mechanical effect that would by itself change a roll, hit points, a condition or a duration, and the
+data does not carry it:
 - a piece is missing: no damage or healing part, no consumption of uses or charges, no template, no save ability;
 - the end of the effect is missing: a duration, or an event that ends it;
 - a restriction is missing: "only for spells of one class", "one at a time", "once per rest";
