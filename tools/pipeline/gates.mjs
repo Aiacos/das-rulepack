@@ -92,6 +92,16 @@ export function checkIds(record, context) {
     }
     const known = new Set(items.flatMap((i) => [...(i.activities ?? []), ...(i.effects ?? [])]));
     for (const id of ids) if (!known.has(id)) out.failures.push(`ids: ${origin} has no activity or effect ${id}`);
+    // Another official package that reprints the document without an id the entry uses: the entry would not fit that copy.
+    for (const item of items) {
+      const excluded = new Set((item.reprintsExcluded ?? []).map((x) => x?.package));
+      for (const r of item.reprints ?? []) {
+        if (r?.sameIds !== false || excluded.has(r.package)) continue;
+        for (const id of ids) {
+          if ((r.missing ?? []).includes(id)) out.failures.push(`ids: the reprint in ${r.package} has no activity or effect ${id}`);
+        }
+      }
+    }
   }
   return out;
 }
@@ -162,10 +172,12 @@ export const gateText = (record, context) => checkText(record, context).failures
 const identifierOfRecord = (record) => (typeof record?.identifier === "string" ? record.identifier.trim().toLowerCase() : "");
 const bindsSources = (record) => isObject(record.sources) && Object.keys(record.sources).length > 0;
 
-// The groups of records that share one canonical identifier, unless every one of them binds its own sources.
+// The groups of records that share one canonical identifier, unless every one of them binds its own sources. Only a record that
+// has a rule registers an identifier with the engine, so only those are grouped.
 function duplicateGroups(records) {
   const byIdentifier = new Map();
   for (const record of records) {
+    if (!isObject(record) || !record.rule) continue;
     const id = identifierOfRecord(record);
     if (id) byIdentifier.set(id, [...(byIdentifier.get(id) ?? []), record]);
   }
@@ -174,7 +186,10 @@ function duplicateGroups(records) {
 
 const uniqueMessage = (id, group) => `unique: ${group.map((r) => r.key).join(" and ")} share the identifier ${id}`;
 
-/** Two records with the same canonical identifier are one entry for the engine, unless every one of them binds its own sources. */
+/**
+ * Two ruled records with the same canonical identifier are one entry for the engine, unless every one of them binds its own
+ * sources. Records without a rule register nothing and are ignored.
+ */
 export const gateUnique = (records) => duplicateGroups(records).map(([id, group]) => uniqueMessage(id, group));
 
 const uniqueFailuresByKey = (records) => {

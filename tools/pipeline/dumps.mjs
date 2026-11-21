@@ -1,6 +1,7 @@
 // Reader for the compendium dumps (RULEPACK_DUMPS: <package>.<pack>.json, each a JSON array of Foundry documents).
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { canonical } from "./registry.mjs";
 
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
@@ -70,6 +71,9 @@ export function itemSummary(doc, origin, grants) {
   if (system.type && typeof system.type === "object" && doc.type === "feat") {
     summary.featType = { value: system.type.value ?? "", subtype: system.type.subtype ?? "" };
   }
+  if (doc.type === "subclass" && typeof system.classIdentifier === "string" && system.classIdentifier) {
+    summary.classIdentifier = system.classIdentifier;
+  }
   if (typeof system.requirements === "string" && system.requirements) summary.requirements = system.requirements;
   if (grants?.get(doc._id)) summary.grantedBy = grants.get(doc._id);
   summary.data = sha256(canonical({ system, effects }));
@@ -105,4 +109,26 @@ export function actorSummaries(docs, origin) {
     id: d._id, name: d.name,
     items: d.items.map((i) => ({ ...itemSummary(i, origin), docId: `${d._id}.${i._id}` }))
   }));
+}
+
+/**
+ * The documents of the other official packages, by document id: `Map<docId, [{ package, activities, effects }]>`, `activities`
+ * and `effects` being the ids the document holds. `files` are dump file names of the folder (`<package>.<pack>.json`); actor
+ * packs are left out (an actor id is no item). Used to tell whether a package reprints a document with the same ids.
+ */
+export function reprintIndex(dumpsDir, files) {
+  const index = new Map();
+  for (const file of files) {
+    if (isActorFile(file)) continue;
+    const pkg = file.split(".")[0];
+    for (const doc of readDump(join(dumpsDir, file))) {
+      if (typeof doc?._id !== "string") continue;
+      const row = {
+        package: pkg, activities: Object.keys(doc.system?.activities ?? {}).sort(),
+        effects: (doc.effects ?? []).map((e) => e._id).filter(Boolean).sort()
+      };
+      index.set(doc._id, [...(index.get(doc._id) ?? []), row]);
+    }
+  }
+  return index;
 }

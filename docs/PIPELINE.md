@@ -32,6 +32,7 @@ Every command is an npm script: `npm run <name> -- <arguments>`.
 | # | Stage | Command | Needs | Who runs it |
 |---|---|---|---|---|
 | 1 | Inventory | `npm run inventory -- <BOOK> <kind|all> [--allow-collisions]` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
+| 1b | Settle a match | `npm run resolve -- <key> <origin> --doc <docId> --because "<one line>"` (see "Settling matches") | `RULEPACK_DUMPS` (`--doc`) | a person |
 | 2a | Triage by rule | `npm run triage -- <BOOK>` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--size 40]` | nothing | a person |
 | 2c | Read a batch | (no command: a reader agent reads a file) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
@@ -54,8 +55,9 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    touches a verdict.
 2. **Triage** has three parts.
    - `triage` applies `autoTriage` to the records of the book that have no verdict (an existing verdict is never
-     overwritten): an identifier that DAS · Core already has is `core` ("DAS · Core has an entry"); an entry whose text
-     is not in the cache is `unverifiable`; anything else, SRD or not, is left for a reader (SRD content that Core lacks
+     overwritten): an identifier that DAS · Core already has is `core` ("DAS · Core has an entry"); a record with no text whose official origin is absent (a placeholder such as a
+     "Subclass Feature" line: no text and no item) is `none` with why "placeholder: no text and no item"; an entry whose
+     text is not in the cache, or that has no text but does have an official item, is `unverifiable`; anything else, SRD or not, is left for a reader (SRD content that Core lacks
      is a finding for upstream, not a rule for this pack). It records `evidence.triaged = { by: "rule", at }`, saves the
      book and prints a count per verdict and how many records are left.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
@@ -67,9 +69,16 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    checked and passed in `passed`, those that could only leave a note in `noted`. The ids gate fails closed: every
    16-character token of letters and digits in an entry (a key, a value, or a dot-separated segment of either) is a
    document id unless it is a word of the engine's own vocabulary (entry keys, enumeration values, fact and moment names
-   of the `DAS_CORE` clone), and every origin the rule names must have it as an activity or effect of its matched item. A
+   of the `DAS_CORE` clone), and every origin the rule names must have it as an activity or effect of its matched item (an item saved under several ids,
+   `alsoDocIds`, has the same ids in every copy: identical data implies it). The ids gate also looks at the reprints (below).
+   The `unique` gate applies only to records that have a `rule`, the only ones that register an identifier with the engine:
+   two ruled records with one identifier fail unless every one of the group binds `sources`; records without a rule are
+   ignored (many features and traits share a name). A
    code rule without an entry has nothing to check there (`ids: nothing to check (code rule without entry)`, noted).
-7. **Generate** writes the book modules under `scripts/rules/` from the registry.
+7. **Generate** writes the book modules under `scripts/rules/` from the registry, and in `index.mjs` the export `SOURCES`
+   (document id to identifier) of the records whose rule is emitted and that bind `sources`; it is an empty object for the 24
+   rules of today. `scripts/main.mjs` hands it to the engine as `register(source, table, { sources })` only when it is not
+   empty, so with no sources the call is the two-argument call it has always been.
 
 ## 📋 Record states
 
@@ -201,7 +210,7 @@ emits, is refused.
 
 ## 🚧 Not built yet
 
-Only inventory, triage (rule-based, batch files, ingest), gates and generation exist. These stages of the design do not:
+Only inventory, triage (rule-based, batch files, ingest), resolve, gates and generation exist. These stages of the design do not:
 
 - **Draft**: writing `rule` for the `entry` and `code` verdicts.
 - **Review**: the independent second reading and its comparison with the draft.
@@ -245,3 +254,43 @@ Notes on what inventory does with each kind:
   passive or without activity) agrees with its section, one that states none being neutral (a spellcasting block ignores the section); an item still claimed by two
   features of one creature makes both `ambiguous` (`differences: ["section"]`). A creature's identity includes its book.
 - A re-run keeps every key; a record that has a `rule` keeps its `identifier` (the official one stays on the official item).
+
+## 🤝 Settling matches, sources and reprints
+
+- **`resolve`** settles an item that matching left `ambiguous`:
+  `npm run resolve -- <key> <origin> --doc <docId> --because "<one line>" [--by <handle>] [--force]`, or `--absent` instead of
+  `--doc`. `<origin>` is `official` or `ddb-importer`. `--doc` needs `RULEPACK_DUMPS` (it reads the document's ids and data
+  fingerprint from the book's dumps). The docId must be one of the item's listed `candidates`; with `--force`, any document of
+  the origin's dumps whose type fits the kind (and an item that is not ambiguous can be re-settled). `--because` is mandatory:
+  one printable line of at most 200 characters. `--by` is a handle like ingest's (default `maintainer`). It writes the item as
+  `matched` (ids, `data`) with `resolved: { by, at, because }`; `--absent` removes the item and records
+  `{ origin, absent: true, by, at, because, candidates }` in the record's `resolutions`, so inventory does not add it again.
+  It never touches verdict, rule or evidence.
+- **Inventory and what was settled.** A resolved item stays while the chosen document is in the dump with the same data
+  fingerprint; an `absent` resolution stays while matching offers the same candidates (or none). Otherwise the item goes back
+  to what matching says and the key is listed under `resolutionStale` in the report.
+- **`sources`.** When an item's identifier is not the record's, inventory fills `sources: { <docId>: <identifier> }`, which is
+  what the engine accepts with `register(source, table, { sources })` (keys are 16-character document ids, values kebab-case
+  identifiers). Only an official package's documents qualify. A DDB Importer item lives in a world, where the id is the world's
+  own and not stable across worlds, and a monster feature's id is `<actor id>.<item id>`: those get `identifierDiffers: true`
+  on the item and no source. Inventory owns the field: it is recomputed on every run and removed when nothing is bound.
+- **Reprints.** The official item of every kind but monsters gets `reprints: [{ package, docId, sameIds, missing? }]` for each
+  other official package (any dump file that is not of the book's package, does not start with `ddb.` or `dnd5e.`, and is not
+  an actor pack) that holds the same document id. `sameIds` compares the sets of activity ids and effect ids; when they differ,
+  `missing` lists the ids of the item that the reprint lacks. The ids gate fails a ruled record whose entry uses an id listed in
+  `missing`, naming the package, unless the item lists the package under `reprintsExcluded: [{ package, because }]`, which is set
+  by `npm run resolve -- <key> official --exclude-reprint <package> --because "<one line>"`. Inventory keeps a
+  `reprintsExcluded` entry while the package is still a reprint.
+
+Rulings of this milestone, in short:
+
+- **Identical copies.** Official candidates whose `data` fingerprint is identical (one item saved under several document ids)
+  are one candidate: `matched` with the first docId in sorted order, the others on the item as `alsoDocIds`. Candidates whose data
+  differs stay `ambiguous`. A monster feature never collapses (two embedded items of one name are two items).
+- **A feature named like its subclass** (owner `Class/Subclass`, name equal to the subclass) may match the `subclass`
+  document of that name, only when no feature document matches; a subclass document belongs to the class it names.
+- **Re-inventory keeps `page`** as well as `identifier` on a record that has a `rule`; another page in the dataset is listed under
+  `pageChanged` and the stored one kept (a stored page of `null` is filled).
+- **Monsters.** When a feature's section disagrees with the activation of the only same-name item of the actor and no other
+  feature of the creature claims that item, the feature is `matched` with `differences: ["section"]`; two features competing
+  for one item stay `absent` (disagreeing) or `ambiguous` (agreeing).

@@ -18,6 +18,9 @@ export function autoTriage(record, { coreIdentifiers, textDir } = {}) {
   if (coreIdentifiers.has(record.identifier ?? slug(record.name))) {
     return { verdict: "core", why: "DAS · Core has an entry", by: "rule" };
   }
+  // A placeholder (a "Subclass Feature" line): no text and no official item, so nothing to read and nothing to automate.
+  const hasOfficial = (record.items ?? []).some((i) => i?.origin === "official" && i.match !== "absent");
+  if (!record.text && !hasOfficial) return { verdict: "none", why: "placeholder: no text and no item", by: "rule" };
   if (!record.text || !hasText(textDir, record.text.sha256)) {
     return { verdict: "unverifiable", why: "The rulebook text is not in the cache", by: "rule" };
   }
@@ -49,7 +52,7 @@ const MAX_SIMILAR = 5;
 
 const isList = (v, max, ok) => Array.isArray(v) && v.length <= max && v.every((x) => typeof x === "string" && ok(x));
 // `why` is one line of printable characters: no control or format character, no line or paragraph separator.
-const ONE_LINE = /^[^\p{C}\p{Zl}\p{Zp}]*$/u;
+export const ONE_LINE = /^[^\p{C}\p{Zl}\p{Zp}]*$/u;
 export const MAX_ECHO = 80;
 // What a rejection repeats of a reader's own strings: at most MAX_ECHO characters.
 export const clip = (s) => String(s).slice(0, MAX_ECHO);

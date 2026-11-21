@@ -23,7 +23,11 @@ const record = (name, over = {}) => {
     text: { sha256: sha, source: "5etools", chars: 10 }, items: [], verdict: null, evidence: {}, ...rest
   };
 };
-const noText = (name) => record(name, { text: null });
+// No text but an official item: something a reader could have verified, so unverifiable (a record with no item either is a
+// placeholder, see rulings.test.mjs).
+const noText = (name) => record(name, {
+  text: null, items: [{ origin: "official", match: "matched", identifier: "x", docId: "d", activities: [], effects: [] }]
+});
 const core = new Set(["in-core"]);
 // A stand-in for the engine's entry keys (core.entryKeys).
 const ENTRY_KEYS = new Set(["triggers", "aura", "noDamage"]);

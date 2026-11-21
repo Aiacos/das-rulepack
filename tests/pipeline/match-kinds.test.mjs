@@ -36,8 +36,8 @@ describe("matchOrigin: names", () => {
     expect(matchOrigin(e("Glass Blade"), [plus])).toEqual({ match: "absent" });
   });
   it("is ambiguous when several candidates carry the variant, and never takes the first", () => {
-    const a = cand("Glass Blade +1", { type: "weapon", docId: "a" });
-    const b = cand("Glass Blade +1", { type: "weapon", docId: "b" });
+    const a = cand("Glass Blade +1", { type: "weapon", docId: "a", data: "ha" });
+    const b = cand("Glass Blade +1", { type: "weapon", docId: "b", data: "hb" });
     const r = matchOrigin({ name: "+1 Glass Blade", kind: "item", edition: "2024" }, [a, b]);
     expect(r).toMatchObject({ match: "ambiguous", candidates: [a, b] });
   });
@@ -95,11 +95,11 @@ describe("matchOrigin: features and traits of one name", () => {
     expect(matchOrigin(entry, [blank, sub]).item).toBe(sub);
   });
   it("is ambiguous, never the first, when same-name candidates cannot be told apart", () => {
-    const a = cand("Ember Path", { docId: "a" });
-    const b = cand("Ember Path", { docId: "b" });
+    const a = cand("Ember Path", { docId: "a", data: "ha" });
+    const b = cand("Ember Path", { docId: "b", data: "hb" });
     expect(matchOrigin(entry, [a, b])).toMatchObject({ match: "ambiguous", candidates: [a, b] });
-    const both = [cand("Ember Path", { docId: "x", ...grant({ class: "zzfighter", subclass: ["ember"] }) }),
-      cand("Ember Path", { docId: "y", ...grant({ class: "zzfighter", subclass: ["ember"] }) })];
+    const both = [cand("Ember Path", { docId: "x", data: "hx", ...grant({ class: "zzfighter", subclass: ["ember"] }) }),
+      cand("Ember Path", { docId: "y", data: "hy", ...grant({ class: "zzfighter", subclass: ["ember"] }) })];
     expect(matchOrigin({ ...entry, level: undefined }, both).match).toBe("ambiguous");
   });
   it("tells the traits of two species apart by the race document that grants them", () => {

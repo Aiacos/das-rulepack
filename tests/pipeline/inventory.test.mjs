@@ -41,7 +41,7 @@ describe("inventory records", () => {
     expect(JSON.stringify(r)).not.toContain("invented light");
     expect(report).toEqual({
       added: 1, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
-      noPage: [], collisions: [], textVanished: [], vanished: []
+      noPage: [], collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
     });
   });
 
@@ -70,7 +70,7 @@ describe("inventory records", () => {
   });
 
   it("records an ambiguous origin with its candidates and reports it", () => {
-    const twin = summary("official", { docId: "second" });
+    const twin = summary("official", { docId: "second", data: "h-other" });
     const { records, report } = run({ dumps: dumps({ official: [summary("official"), twin] }) });
     expect(records[0].items[0]).toMatchObject({
       origin: "official", match: "ambiguous", candidates: [{ identifier: "glimmer-bolt", docId: "official-doc" },
@@ -124,7 +124,7 @@ describe("inventory over previous records", () => {
     const again = run({ previous: worked });
     expect(again.report).toEqual({
       added: 0, kept: 1, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
-      noPage: [], collisions: [], textVanished: [], vanished: []
+      noPage: [], collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
     });
     expect(again.records).toEqual(worked);
   });

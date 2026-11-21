@@ -29,6 +29,38 @@ function checkItem(item, at, errors) {
     errors.push(`${at}.differences: must be an array of strings`);
   }
   if ("data" in item && !isObject(item.data)) errors.push(`${at}.data: must be an object`);
+  checkItemExtras(item, at, errors);
+}
+
+const STAMP = ["by", "at", "because"];
+const isStringList = (v) => Array.isArray(v) && v.every((x) => typeof x === "string");
+
+// What inventory and `resolve` add to an item: copies of one document, reprints, what a person settled.
+function checkItemExtras(item, at, errors) {
+  if ("alsoDocIds" in item && !isStringList(item.alsoDocIds)) errors.push(`${at}.alsoDocIds: must be an array of strings`);
+  if ("identifierDiffers" in item && typeof item.identifierDiffers !== "boolean") {
+    errors.push(`${at}.identifierDiffers: must be a boolean`);
+  }
+  if ("resolved" in item) {
+    const r = item.resolved;
+    if (!isObject(r) || !STAMP.every((f) => isString(r[f]))) errors.push(`${at}.resolved: must be { by, at, because }`);
+  }
+  if ("reprints" in item) {
+    if (!Array.isArray(item.reprints)) errors.push(`${at}.reprints: must be an array`);
+    else item.reprints.forEach((r, i) => {
+      const ok = isObject(r) && isString(r.package) && isString(r.docId) && typeof r.sameIds === "boolean"
+        && (!("missing" in r) || isStringList(r.missing));
+      if (!ok) errors.push(`${at}.reprints[${i}]: must be { package, docId, sameIds, missing? }`);
+    });
+  }
+  if ("reprintsExcluded" in item) {
+    if (!Array.isArray(item.reprintsExcluded)) errors.push(`${at}.reprintsExcluded: must be an array`);
+    else item.reprintsExcluded.forEach((r, i) => {
+      if (!isObject(r) || !isString(r.package) || !isString(r.because)) {
+        errors.push(`${at}.reprintsExcluded[${i}]: must be { package, because }`);
+      }
+    });
+  }
 }
 
 function checkText(text, errors) {
@@ -131,6 +163,14 @@ export function validateRecord(record) {
       if (!DOC_ID.test(id)) errors.push(`sources: ${JSON.stringify(id)} is not a 16-character document id`);
       if (typeof identifier !== "string" || !KEBAB.test(identifier)) errors.push(`sources.${id}: must be a kebab-case identifier`);
     }
+  }
+  if ("resolutions" in record) {
+    if (!Array.isArray(record.resolutions)) errors.push("resolutions: must be an array");
+    else record.resolutions.forEach((r, i) => {
+      const ok = isObject(r) && ORIGINS.includes(r.origin) && r.absent === true && STAMP.every((f) => isString(r[f]))
+        && (!("candidates" in r) || isStringList(r.candidates));
+      if (!ok) errors.push(`resolutions[${i}]: must be { origin, absent: true, by, at, because, candidates? }`);
+    });
   }
   if ("order" in record && !(Number.isInteger(record.order) && record.order >= 0)) {
     errors.push("order: must be a non-negative integer");

@@ -63,6 +63,24 @@ export function ruleFromRecord(record, { legacy } = {}) {
   return out;
 }
 
+/**
+ * The `sources` of the records whose rule is emitted: `{ docId: identifier }`, what the pack registers beside its table so that
+ * the engine knows an item by its document id. A record that registers no rule binds nothing.
+ */
+export function sourcesOf(records, { legacy } = {}) {
+  const out = {};
+  for (const record of records) {
+    if (!record.sources || !ruleFromRecord(record, { legacy })) continue;
+    for (const [docId, identifier] of Object.entries(record.sources)) {
+      if (out[docId] !== undefined && out[docId] !== identifier) {
+        throw new Error(`${record.key}: the document ${docId} is bound to ${identifier} and to ${out[docId]}`);
+      }
+      out[docId] = identifier;
+    }
+  }
+  return out;
+}
+
 const byOrder = (a, b) => {
   const [x, y] = [a.order ?? Infinity, b.order ?? Infinity];
   if (x !== y) return x < y ? -1 : 1;
@@ -94,6 +112,11 @@ export function bookModuleSource(code, records, note, { legacy } = {}) {
   ].join("\n");
 }
 
+const sourcesLiteral = (sources) => {
+  const keys = Object.keys(sources).sort();
+  return keys.length ? `{\n${keys.map((k) => `  ${JSON.stringify(k)}: ${JSON.stringify(sources[k])}`).join(",\n")}\n}` : "{}";
+};
+
 // Words that cannot name the import of a book module.
 const RESERVED_WORDS = new Set(("await break case catch class const continue debugger default delete do else enum export extends "
   + "false finally for function if implements import in instanceof interface let new null package private protected public "
@@ -101,7 +124,7 @@ const RESERVED_WORDS = new Set(("await break case catch class const continue deb
 const JS_NAME = /^[a-z_$][a-z0-9_$]*$/;
 
 // The text of scripts/rules/index.mjs for the given lowercase book codes.
-export function indexSource(codes) {
+export function indexSource(codes, sources = {}) {
   for (const code of codes) {
     if (!JS_NAME.test(code) || RESERVED_WORDS.has(code)) {
       throw new Error(`book code ${JSON.stringify(code)}: its lower-case form must be a JavaScript identifier to be imported`);
@@ -137,6 +160,9 @@ export const FEATURES = entriesOf("feature");
 
 /** The table registered with DAS · Core: every rule that has an entry, by identifier. */
 export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.entry).map(rule => [rule.identifier, rule.entry])));
+
+/** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as \`sources\`. */
+export const SOURCES = Object.freeze(${sourcesLiteral(sources)});
 `;
 }
 
@@ -153,6 +179,7 @@ export function generate({ registry, out, check = false }) {
   const legacy = existsSync(registry) ? loadLegacy(registry) : new Map();
   const wanted = new Map();
   const refused = [];
+  const sources = {};
   for (const f of files) {
     const code = f.slice(0, -5);
     const { book, note, records } = loadBook(registry, code);
@@ -163,9 +190,15 @@ export function generate({ registry, out, check = false }) {
     }
     const source = bookModuleSource(book, records, note, { legacy });
     if (source) wanted.set(`books/${code}.mjs`, source);
+    if (!refused.length) {
+      for (const [docId, identifier] of Object.entries(sourcesOf(records, { legacy }))) {
+        if (sources[docId] !== undefined && sources[docId] !== identifier) refused.push(`${docId}: bound to two identifiers`);
+        sources[docId] = identifier;
+      }
+    }
   }
   if (refused.length) throw new Error(`Refusing to generate: ${refused.join("; ")}`);
-  wanted.set("index.mjs", indexSource([...wanted.keys()].map((p) => p.slice(6, -4))));
+  wanted.set("index.mjs", indexSource([...wanted.keys()].map((p) => p.slice(6, -4)), sources));
 
   const booksDir = join(out, "books");
   const stale = existsSync(booksDir)

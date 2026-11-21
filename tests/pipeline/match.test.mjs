@@ -66,7 +66,7 @@ describe("matchOrigin", () => {
     const twin = { ...a, origin: "official" };
     expect(matchOrigin(entry, [a, twin])).toEqual({ match: "matched", item: a });
     expect(matchOrigin(entry, [a, item({ docId: "same", data: "other" })]).match).toBe("ambiguous");
-    expect(matchOrigin(entry, [a, item({ docId: "else", data: "h" })]).match).toBe("ambiguous");
+    expect(matchOrigin(entry, [a, item({ docId: "else", data: "other" })]).match).toBe("ambiguous");
   });
   it("is ambiguous on edition when the only candidate is the other edition", () => {
     const c = item({ rules: "2014" });
@@ -89,8 +89,8 @@ describe("matchOrigin", () => {
     expect(matchOrigin({ ...entry, reference: ref }, [c]).differences).toEqual(["saves", "edition-unknown"]);
   });
   it("is ambiguous with two candidates of the same edition", () => {
-    const a = item({ docId: "a" });
-    const b = item({ docId: "b" });
+    const a = item({ docId: "a", data: "ha" });
+    const b = item({ docId: "b", data: "hb" });
     const r = matchOrigin(entry, [a, b]);
     expect(r.match).toBe("ambiguous");
     expect(r.candidates).toEqual([a, b]);

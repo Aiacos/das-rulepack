@@ -86,6 +86,11 @@ const OWNED_FEAT_TYPES = { feature: ["class", "subclass"], species: ["race"] };
 // entry's is still the same feature (the dataset and the module can place it differently); the level only breaks ties.
 function ownerStanding(entry, candidate) {
   const [first, second] = String(entry.owner).split("/");
+  // A subclass document is nobody's grant: it belongs to the class it names (`classIdentifier`).
+  if (candidate.type === "subclass") {
+    if (!candidate.classIdentifier) return "neutral";
+    return slug(candidate.classIdentifier) === slug(first) ? "agrees" : "disagrees";
+  }
   const grants = candidate.grantedBy ?? [];
   const agreesGrant = (g) => {
     if (entry.kind === "species") return g.race !== undefined && matchName(g.race).full === matchName(first).full;
@@ -114,16 +119,25 @@ function ofOwner(entry, candidates) {
   return { list: (sameLevel.length ? sameLevel : kept).map(([c]) => c), disagreed: candidates.length > 0 && !kept.length };
 }
 
-const docTypesOf = (entry) => {
+// A feature named exactly like its subclass ("Class/Subclass", the name equal to the subclass) may be the subclass document.
+const namesItsSubclass = (entry) => {
+  if (entry.kind !== "feature" || !entry.owner) return false;
+  const [, subclass] = String(entry.owner).split("/");
+  return Boolean(subclass) && matchName(entry.name).full === matchName(subclass).full;
+};
+
+export const docTypesOf = (entry) => {
   const row = KIND_TABLE[entry.kind];
   if (!row) return [entry.kind];
   return entry.kind === "species" && entry.owner ? row.traitDocTypes : row.docTypes;
 };
 
 // Same name: the exact slug wins; otherwise the candidates equal on the base name with the same variant marker.
+// A subclass document is also known by its identifier.
+const namesOf = (c) => (c.type === "subclass" && c.identifier ? [c.name, c.identifier] : [c.name]);
 function sameName(entry, candidates) {
   const wanted = matchName(entry.name);
-  const exact = candidates.filter((c) => matchName(c.name).full === wanted.full);
+  const exact = candidates.filter((c) => namesOf(c).some((n) => matchName(n).full === wanted.full));
   if (exact.length) return exact;
   return candidates.filter((c) => {
     const n = matchName(c.name);
@@ -131,11 +145,25 @@ function sameName(entry, candidates) {
   });
 }
 
+// Candidates that are one document saved under several ids (identical data fingerprint) are one: the first docId (sorted)
+// stands for them and the others are listed apart. A candidate with no data fingerprint is never merged.
+function collapse(candidates) {
+  const [first, ...rest] = [...candidates].sort((a, b) => (String(a.docId) < String(b.docId) ? -1 : 1));
+  const identical = first?.data !== undefined && rest.length > 0 && rest.every((c) => c.data === first.data);
+  return identical ? { item: first, alsoDocIds: rest.map((c) => c.docId) } : null;
+}
+
 // With a reference, the identity fields of the kind decide (level and school of a spell, rarity of an item); other differences
 // come back with the match. An edition-unknown candidate (rules undefined) never forces ambiguity by itself: it is used only
 // when no candidate states the entry's edition, and then mechanics decide when a reference exists.
 export function matchOrigin(entry, candidates) {
-  const types = docTypesOf(entry);
+  const found = matchAmong(entry, candidates, docTypesOf(entry));
+  // Only when no feature document is there: the subclass document of the same name.
+  if (found.match === "absent" && namesItsSubclass(entry)) return matchAmong(entry, candidates, ["subclass"]);
+  return found;
+}
+
+function matchAmong(entry, candidates, types) {
   const typed = distinct(candidates).filter((c) => types.includes(c.type));
   const named = sameName(entry, typed);
   const { list: same, disagreed } = ofOwner(entry, named);
@@ -146,9 +174,12 @@ export function matchOrigin(entry, candidates) {
   const exact = same.filter((c) => c.rules === entry.edition);
   const preferred = exact.length ? exact : same.filter((c) => c.rules === undefined);
   if (!preferred.length) return { match: "ambiguous", candidates: same, differences: ["edition"] };
-  if (preferred.length > 1) return { match: "ambiguous", candidates: preferred, differences: [] };
+  // A monster feature is never collapsed: two embedded items of one name are two items.
+  const merged = preferred.length > 1 && entry.kind !== "monster" ? collapse(preferred) : null;
+  if (preferred.length > 1 && !merged) return { match: "ambiguous", candidates: preferred, differences: [] };
 
-  const [item] = preferred;
+  const item = merged ? merged.item : preferred[0];
+  const also = merged ? { alsoDocIds: merged.alsoDocIds } : {};
   const differences = entry.reference ? compareMechanics(mechanicsOf(entry.reference), mechanicsOf(item)) : [];
   if (entry.rarity !== undefined && rarityDiffers(entry.rarity, item.rarity) && !differences.includes("rarity")) {
     differences.push("rarity");
@@ -157,5 +188,5 @@ export function matchOrigin(entry, candidates) {
   if (differences.some((f) => identity.includes(f))) return { match: "ambiguous", candidates: preferred, differences };
   // A candidate that does not say its edition is taken, but visibly.
   if (item.rules === undefined && entry.edition) differences.push("edition-unknown");
-  return differences.length ? { match: "matched", item, differences } : { match: "matched", item };
+  return { match: "matched", item, ...(differences.length ? { differences } : {}), ...also };
 }
