@@ -97,9 +97,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only the spell attack bonus; ignoring cover on spell attacks is missing.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:1-wraps-of-unarmed-power",
@@ -250,9 +259,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only the spell attack bonus; ignoring cover on spell attacks is missing.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:2-wraps-of-unarmed-power",
@@ -403,9 +421,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only the spell attack bonus; ignoring cover on spell attacks is missing.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:3-wraps-of-unarmed-power",
@@ -509,9 +536,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Utility liquid-producing jug; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:alexandrite",
@@ -545,9 +581,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:amber",
@@ -581,9 +626,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:amethyst",
@@ -617,9 +671,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:amulet-of-health",
@@ -673,9 +736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets Constitution score; passive.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:amulet-of-proof-against-detection-and-location",
@@ -725,9 +797,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Anti-divination targeting protection; no combat relevance.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:amulet-of-the-planes",
@@ -780,9 +861,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Check activity plus cast of Plane Shift carry the use; failure table is not combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:animated-shield",
@@ -992,9 +1082,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:armor-of-invulnerability",
@@ -1049,9 +1148,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Resistances and the timed immunity are carried by effects with uses recovering at dawn.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:arrow-catching-shield",
@@ -1166,9 +1274,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity with half damage and a poisoned effect already present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:automatic-rifle",
@@ -1294,9 +1411,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra damage on a natural 20, bonus vs Giants, object max damage and thrown return need rules beyond data.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:azurite",
@@ -1330,9 +1456,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:baba-yagas-dancing-broom",
@@ -1499,9 +1634,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Chance of being pulled in and devoured at turn start need rules; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bag-of-holding",
@@ -1546,9 +1690,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Storage item; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bag-of-tricks-gray",
@@ -1604,10 +1757,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon activity with three uses and dawn recovery matches the text.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bag-of-tricks-rust",
@@ -1663,10 +1825,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon activity with three uses and dawn recovery matches the text.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bag-of-tricks-tan",
@@ -1722,10 +1893,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Summon activity with three uses and dawn recovery matches the text.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:banded-agate",
@@ -1759,9 +1939,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bead-of-force",
@@ -1869,9 +2058,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Food or water utility; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bead-of-refreshment",
@@ -1920,9 +2118,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Food or water utility; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bejeweled-gold-bracelet",
@@ -2034,9 +2241,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Strength score; passive.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:belt-of-dwarvenkind",
@@ -2156,9 +2372,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Strength score; passive.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:belt-of-frost-giant-strength",
@@ -2216,9 +2441,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Strength score; passive.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:belt-of-hill-giant-strength",
@@ -2276,9 +2510,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Strength score; passive.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:belt-of-stone-giant-strength",
@@ -2336,9 +2579,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Strength score; passive.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:belt-of-storm-giant-strength",
@@ -2396,9 +2648,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Strength score; passive.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:black-dragon-scale-mail",
@@ -2438,9 +2699,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to another entry, so no rule text is readable here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:black-opal",
@@ -2474,9 +2744,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:black-pearl",
@@ -2510,9 +2789,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:black-sapphire",
@@ -2546,9 +2834,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:black-velvet-mask-stitched-with-silver-thread",
@@ -2672,9 +2969,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:blue-dragon-scale-mail",
@@ -2714,9 +3020,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to another entry, so no rule text is readable here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:blue-quartz",
@@ -2750,9 +3065,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:blue-sapphire",
@@ -2786,9 +3110,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:blue-spinel",
@@ -2822,9 +3155,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bomb",
@@ -2873,9 +3215,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Thrown save activity with fire damage, half on success and area template present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:book-of-exalted-deeds",
@@ -2939,9 +3290,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Halo advantage and disadvantage on attackers by creature type, big radiant damage and slot upgrade need rules.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:book-of-vile-darkness",
@@ -3007,9 +3367,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Self and area psychic damage by creature type, advantage on checks and charisma-save transform need rules.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:boots-of-elvenkind",
@@ -3121,9 +3490,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic track-making; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:boots-of-levitation",
@@ -3176,9 +3554,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity of Levitate on self covers the text.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:boots-of-speed",
@@ -3355,9 +3742,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cold resistance effect present; ignoring snow terrain is minor.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:bottle-stopper-cork-embossed-with-gold-leaf-and-set-with-amethysts",
@@ -3637,9 +4033,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to another entry, so no rule text is readable here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:brass-mug-with-jade-inlay",
@@ -3794,9 +4199,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to another entry, so no rule text is readable here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:brooch-of-shielding",
@@ -3850,9 +4264,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Force resistance is in data; immunity to damage from one named spell is missing.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:broom-of-flying",
@@ -4117,9 +4540,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Mundane candle property; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:canvas-1-sq-yd",
@@ -4200,9 +4632,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Underwater breathing bubble; not a combat rule.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cape-of-the-mountebank",
@@ -4293,9 +4734,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:carpet-of-flying-3-ft-5-ft",
@@ -4318,9 +4768,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Flying carpet movement and capacity; no item data, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:carpet-of-flying-4-ft-6-ft",
@@ -4343,9 +4802,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Flying carpet movement and capacity; no item data, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:carpet-of-flying-5-ft-7-ft",
@@ -4368,9 +4836,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Flying carpet movement and capacity; no item data, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:carpet-of-flying-6-ft-9-ft",
@@ -4393,9 +4870,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Flying carpet movement and capacity; no item data, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:carrion-crawler-mucus",
@@ -4596,9 +5082,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Potion brewing and resurrection ritual over hours; not combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:censer-of-controlling-air-elementals",
@@ -4716,9 +5211,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:charlatans-die",
@@ -4772,9 +5276,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dice-control novelty item; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:chicken",
@@ -4854,9 +5367,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity of Knock with 10 uses matches the text.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:chrysoberyl",
@@ -4890,9 +5412,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:chrysoprase",
@@ -4926,9 +5457,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cinnamon",
@@ -5008,9 +5548,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity of Scorching Ray with one use per dawn.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:citrine",
@@ -5044,9 +5593,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cloak-of-arachnida",
@@ -5163,9 +5721,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic billowing; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cloak-of-displacement",
@@ -5342,9 +5909,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Invisibility effect with charges exists; ending early when the hood is lowered needs an event rule.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cloak-of-many-fashions",
@@ -5393,9 +5969,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic appearance change; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cloak-of-protection",
@@ -5449,9 +6034,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect gives bonus to AC and saves.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cloak-of-the-bat",
@@ -5572,9 +6166,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Swim speed effect present; breathing is not a combat rule.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:clockwork-amulet",
@@ -5630,9 +6233,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Replacing an attack roll d20 with a 10 is a choice at roll time; data has only a use counter.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cloth-of-gold-vestments",
@@ -5716,9 +6328,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Self-repairing clothes; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cloves",
@@ -5839,9 +6460,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to another entry, so no rule text is readable here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:coral",
@@ -5875,9 +6505,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Gemstone description only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cotton-cloth-1-sq-yd",
@@ -5980,9 +6619,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity of Scrying covers the text.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:crystal-ball-of-mind-reading",
@@ -6038,9 +6686,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-001",
+          "at": "2026-11-21T19:58:25.822Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities of Scrying and Detect Thoughts present; concentration nuance is minor out of combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:crystal-ball-of-telepathy",
@@ -6092,9 +6749,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Two cast activities plus a once-per-dawn use already carry it; the Suggestion-ends-with-Scrying link is a minor rider",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:crystal-ball-of-true-seeing",
@@ -6221,9 +6887,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities with a 10-charge pool and dawn recovery carry the item; per-face charge costs live in activities",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:cube-of-summoning",
@@ -6343,9 +7018,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Two cast activities with a 3-charge pool and dawn recovery already express the item",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:daerns-instant-fortress",
@@ -6397,9 +7081,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fortress statuette mostly matters out of combat; the tower and its door are scene features, not an engine rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:dagger-of-venom",
@@ -6637,9 +7330,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Harmless illusory creature that cannot hurt anyone; nothing acts in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:deck-of-many-things",
@@ -6826,9 +7528,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:dimensional-shackles",
@@ -6946,9 +7657,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic helm, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:driftglobe",
@@ -7118,9 +7838,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage applies only to water-based elementals as a creature-type limit; data carries a save-for-damage activity but not the target restriction",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:dust-of-sneezing-and-choking",
@@ -7355,9 +8084,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect suppressing the deafened condition transfers to the bearer; the held-to-ear condition is minor",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:efreeti-bottle",
@@ -7818,9 +8556,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enduring-spellbook",
@@ -7870,9 +8617,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Durability against fire and water for a spellbook; nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:energy-cell",
@@ -7961,9 +8717,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-1",
@@ -8012,9 +8777,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-2",
@@ -8063,9 +8837,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-3",
@@ -8114,9 +8897,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-4",
@@ -8165,9 +8957,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-5",
@@ -8216,9 +9017,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-6",
@@ -8267,9 +9077,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-7",
@@ -8318,9 +9137,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:enspelled-staff-level-8",
@@ -8369,9 +9197,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a staff whose bound spell is chosen at creation, charge cost, fixed DC and attack bonus, and a d20 loss check when the last charge is spent need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ersatz-eye",
@@ -8421,9 +9258,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prosthetic eye with no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:essence-of-ether",
@@ -8578,9 +9424,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:eye-of-vecna",
@@ -8651,10 +9506,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Truesight and charges are data, but a chance on every cast that the artifact takes over the bearer and the alignment change need a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:eye-patch-decorated-with-tiny-blue-sapphires-and-moonstones",
@@ -9002,9 +9866,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Goat of Terror has a fear emanation with a repeated save and a 24 hour immunity, plus charge-based travel goat; data lacks the aura and repeated save",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:figurine-of-wondrous-power-marble-elephant",
@@ -9078,9 +9951,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Per-use chance that the steed ignores orders and the planar-ride consequence need a rule; data has only a summon",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:figurine-of-wondrous-power-onyx-dog",
@@ -9255,9 +10137,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:flour",
@@ -9334,9 +10225,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Command-word boat transformation, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:fragmentation-grenade",
@@ -9389,9 +10289,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save for piercing damage, half on success, is a single save activity with damage",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:garnet",
@@ -9425,9 +10334,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:gauntlets-of-ogre-power",
@@ -9481,9 +10399,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Strength score while worn; the no-effect-if-higher clause depends on how the change mode is set",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:gem-of-brightness",
@@ -9716,9 +10643,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Armor bonus is a passive number the item data should hold; the appearance change is cosmetic",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:gloves-of-missile-snaring",
@@ -9894,9 +10830,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Passive bonus to Sleight of Hand checks carried by an effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:goat",
@@ -9977,9 +10922,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Darkvision range increase carried by an effect on the bearer",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:gold",
@@ -10520,9 +11474,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area dexterity save for fire damage, half on success, is carried by the save activity",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:gunpowder-powder-horn",
@@ -10571,9 +11534,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area dexterity save for fire damage, half on success, is carried by the save activity",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hag-eye",
@@ -10628,9 +11600,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Two cast activities with a 3-charge pool and dawn recovery; the coven sensor is out of combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hand-of-vecna",
@@ -10698,10 +11679,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Extra cold damage applies only to melee spell attacks and weapons held by the hand, and each cast makes the hand cast a compelling spell on the bearer; data lacks that rider",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:handheld-mirror-set-in-a-painted-wooden-frame",
@@ -10781,9 +11771,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity for the spell; ending when the hat is removed is a minor rider",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hat-of-many-spells",
@@ -10843,9 +11842,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Unknown-spell use needs a spell slot, a level-scaled check, a short or long rest limit and a random failure table; data does not join these",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hat-of-vermin",
@@ -10894,9 +11902,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity with 3 charges and dawn recovery; the creature is indifferent and uncontrolled, which needs no extra rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hat-of-wizardry",
@@ -11001,9 +12018,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect sets the Intelligence score while worn",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:helm-of-brilliance",
@@ -11132,9 +12158,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Language comprehension spell with no combat use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:helm-of-telepathy",
@@ -11254,9 +12289,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity with 3 charges and dawn recovery carries the item",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hematite",
@@ -11290,9 +12334,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hewards-handy-haversack",
@@ -11337,9 +12390,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extradimensional storage, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:hewards-handy-spice-pouch",
@@ -11388,9 +12450,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Seasoning pouch, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:horn-of-blasting",
@@ -11508,9 +12579,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Silent signal to one creature, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:horn-of-valhalla-brass",
@@ -11565,9 +12645,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:horn-of-valhalla-bronze",
@@ -11622,9 +12711,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:horn-of-valhalla-iron",
@@ -11679,9 +12777,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:horn-of-valhalla-silver",
@@ -11968,9 +13075,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fixed rod for utility use, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-illusions",
@@ -12021,9 +13137,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Harmless illusory visuals, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-scribing",
@@ -12072,9 +13197,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Magical message writing, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-the-bards-anstruth-harp",
@@ -12119,9 +13253,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-the-bards-canaith-mandolin",
@@ -12166,9 +13309,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-the-bards-cli-lyre",
@@ -12213,9 +13365,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-the-bards-doss-lute",
@@ -12260,9 +13421,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-the-bards-fochlucan-bandore",
@@ -12308,9 +13478,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-the-bards-mac-fuirmidh-cittern",
@@ -12355,9 +13534,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:instrument-of-the-bards-ollamh-harp",
@@ -12402,9 +13590,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-absorption",
@@ -12427,9 +13624,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-002",
+          "at": "2026-11-21T19:58:26.128Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data: a reaction cancels a low-level spell and the stone tracks canceled levels until it burns out; that needs a rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-agility",
@@ -12452,9 +13658,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; passive ability score bonus capped at 20 while worn, nothing in the data carries it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-awareness",
@@ -12477,9 +13692,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; advantage on initiative and Perception checks while worn needs a stated-circumstance rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-fortitude",
@@ -12502,9 +13726,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; passive ability score bonus capped at 20 while worn, nothing in the data carries it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-greater-absorption",
@@ -12527,9 +13760,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; a reaction cancels a spell of limited level and the stone burns out after 20 spell levels",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-insight",
@@ -12552,9 +13794,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; passive ability score bonus capped at 20 while worn, nothing in the data carries it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-intellect",
@@ -12577,9 +13828,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; passive ability score bonus capped at 20 while worn, nothing in the data carries it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-leadership",
@@ -12602,9 +13862,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; passive ability score bonus capped at 20 while worn, nothing in the data carries it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-mastery",
@@ -12652,9 +13921,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; +1 AC bonus while worn, data lacks it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-regeneration",
@@ -12677,9 +13955,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; healing only once per hour, not a combat-time effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-reserve",
@@ -12727,9 +14014,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; passive ability score bonus capped at 20 while worn, nothing in the data carries it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ioun-stone-sustenance",
@@ -12752,9 +14048,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data; removes need to eat and drink, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:iron",
@@ -12945,9 +14250,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:jade",
@@ -12981,9 +14295,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:jade-game-board-with-gold-playing-pieces",
@@ -13044,9 +14367,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:javelin-of-lightning",
@@ -13097,9 +14429,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "damage type swap to lightning on a hit is a choice at use time; bolt activity is carried once per dawn but swap is not",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:jet",
@@ -13133,9 +14474,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:jeweled-anklet",
@@ -13366,9 +14716,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:laser-pistol",
@@ -13561,9 +14920,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "lock only affects lockpicking checks, outside combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:lolths-sting",
@@ -13680,9 +15048,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bard may use Charisma for attack rolls with the lute; thunder damage is in data but the ability choice and class limit are not",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:mace-of-disruption",
@@ -13908,9 +15285,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:malice",
@@ -13963,9 +15349,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "save or poisoned and blinded for an hour; official activity carries save and both statuses",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:mantle-of-spell-resistance",
@@ -14121,9 +15516,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "golem crafting manual, downtime only; the psychic damage rider for unfit readers is not combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:manual-of-flesh-golems",
@@ -14159,9 +15563,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "golem crafting manual, downtime only; the psychic damage rider for unfit readers is not combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:manual-of-gainful-exercise",
@@ -14259,9 +15672,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "golem crafting manual, downtime only; the psychic damage rider for unfit readers is not combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:manual-of-quickness-of-action",
@@ -14359,9 +15781,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "golem crafting manual, downtime only; the psychic damage rider for unfit readers is not combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:medallion-of-thoughts",
@@ -14414,9 +15845,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "cast activity with charges and dawn recovery carries it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:midnight-tears",
@@ -14563,9 +16003,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:moss-agate",
@@ -14599,9 +16048,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:mystery-key",
@@ -14650,9 +16108,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "percentage chance to unlock a lock, outside combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:natures-mantle",
@@ -14702,9 +16169,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "bonus-action Hide when lightly obscured even when observed is a circumstance rule; official data lacks it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:necklace-of-adaptation",
@@ -14813,9 +16289,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "damage increases per extra bead thrown together, a choice made at use; data has only a cast activity",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:necklace-of-prayer-beads",
@@ -14960,9 +16445,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "ten-minute painting out of combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:obsidian",
@@ -14996,9 +16490,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:obsidian-statuette-with-gold-fittings-and-inlay",
@@ -15082,9 +16585,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "ethereal status for an hour after applying; official activity and effect carry it",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:oil-of-sharpness",
@@ -15335,9 +16847,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:opal",
@@ -15371,9 +16892,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:orb-of-direction",
@@ -15423,9 +16953,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "utility or flavor effect, nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:orb-of-dragonkind",
@@ -15549,9 +17088,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "utility or flavor effect, nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ox",
@@ -15731,9 +17279,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:pearl-of-power",
@@ -15785,9 +17342,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "official has one use per dawn and spell slot recovery consumption",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:pepper",
@@ -15867,9 +17433,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "advantage on social checks, outside combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:periapt-of-health",
@@ -15980,9 +17555,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "official passive effect changes damage and condition immunity keys",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:periapt-of-wound-closure",
@@ -16074,9 +17658,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "plain gemstone, no mechanics",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:philter-of-love",
@@ -16214,9 +17807,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "utility or flavor effect, nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:pipes-of-haunting",
@@ -16328,9 +17930,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "summons rat swarms with a charge and sways them with a save, plus control lost beyond 30 feet; data only has a summon and save",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:platinum",
@@ -16434,9 +18045,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "utility or flavor effect, nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:pole-of-collapsing",
@@ -16493,9 +18113,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "utility or flavor effect, nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:portable-hole",
@@ -16546,9 +18175,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "extradimensional hole utility, no routine combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:pot-of-awakening",
@@ -16600,9 +18238,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "utility or flavor effect, nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-acid-resistance",
@@ -16640,9 +18287,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-animal-friendship",
@@ -16756,9 +18412,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "clairvoyance utility spell, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-climbing",
@@ -16876,9 +18541,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength set to a fixed value for an hour; effect changes the Strength key, upgrade-only rule is a mode choice",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-cold-resistance",
@@ -16916,9 +18590,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-comprehension",
@@ -16971,9 +18654,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "comprehend languages utility",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-diminution",
@@ -17092,9 +18784,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "drink then three bonus-action breaths within an hour; data lacks the limit of three and ending",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-fire-giant-strength",
@@ -17151,9 +18852,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength set to a fixed value for an hour; effect changes the Strength key, upgrade-only rule is a mode choice",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-fire-resistance",
@@ -17191,9 +18901,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-flying",
@@ -17292,9 +19011,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-frost-giant-strength",
@@ -17351,9 +19079,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength set to a fixed value for an hour; effect changes the Strength key, upgrade-only rule is a mode choice",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-gaseous-form",
@@ -17406,9 +19143,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "cast activity for the gaseous form spell, ending as bonus action is the spell's rule",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-greater-healing",
@@ -17464,9 +19210,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "heal activity with dice carried",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-greater-invisibility",
@@ -17519,9 +19274,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "invisible status effect and use carried",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-growth",
@@ -17768,9 +19532,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength set to a fixed value for an hour; effect changes the Strength key, upgrade-only rule is a mode choice",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-invisibility",
@@ -17930,9 +19703,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-longevity",
@@ -17981,9 +19763,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "age change, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-mind-reading",
@@ -18082,9 +19873,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-poison",
@@ -18137,9 +19937,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "poison damage always, save for poisoned; official has full damage and poisoned, ddb half is wrong",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-poison-resistance",
@@ -18177,9 +19986,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-psychic-resistance",
@@ -18217,9 +20035,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-pugilism",
@@ -18316,9 +20143,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-speed",
@@ -18432,9 +20268,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength set to a fixed value for an hour; effect changes the Strength key, upgrade-only rule is a mode choice",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-storm-giant-strength",
@@ -18491,9 +20336,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength set to a fixed value for an hour; effect changes the Strength key, upgrade-only rule is a mode choice",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-superior-healing",
@@ -18659,9 +20513,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "text is a shared reference; data has a non-transfer resistance effect and one use",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:potion-of-vitality",
@@ -18771,9 +20634,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "underwater breathing, rarely a combat matter",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:prosthetic-limb",
@@ -18823,15 +20695,24 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "alsoIn": [
         {
           "book": "FRHOF",
           "page": 132
         }
       ],
-      "state": "inventoried"
+      "why": "replacement limb, no combat effect",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:purple-worm-poison",
@@ -18880,9 +20761,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-003",
+          "at": "2026-11-21T19:58:26.453Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "save for damage half on success carried by the activity",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quaals-feather-token-anchor",
@@ -18934,9 +20824,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Immobilizes a vessel for a day; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quaals-feather-token-bird",
@@ -18986,9 +20885,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity with one use covers it; the bird cannot attack, and the rest is travel.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quaals-feather-token-fan",
@@ -19040,9 +20948,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Wind for a ship, a travel effect only.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quaals-feather-token-swan-boat",
@@ -19092,9 +21009,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Conjures a self-propelled boat; travel only.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quaals-feather-token-tree",
@@ -19144,9 +21070,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Creates a nonmagical tree outdoors; nothing combat-relevant.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quaals-feather-token-whip",
@@ -19201,9 +21136,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Whip needs bonus-action melee spell attacks and repositioning; data lacks the attack and the 1 hour or incapacitated end.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quarterstaff-of-the-acrobat",
@@ -19298,9 +21242,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:quiver-of-ehlonna",
@@ -19345,9 +21298,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extradimensional storage only.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:red-dragon-scale-mail",
@@ -19387,9 +21349,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so no readable rule text; no item data either.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:revolver",
@@ -19480,9 +21451,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-acid-resistance",
@@ -19520,9 +21500,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-animal-influence",
@@ -19625,9 +21614,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-djinni-summoning",
@@ -19676,9 +21674,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity with limited use carries it; djinni concentration and command behavior are not engine-automatable.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-elemental-command-air",
@@ -20111,9 +22118,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-force-resistance",
@@ -20151,9 +22167,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-free-action",
@@ -20322,9 +22347,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity for Jump covers it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-lightning-resistance",
@@ -20362,9 +22396,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-mind-shielding",
@@ -20414,9 +22457,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Protection from thought reading and detection; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-necrotic-resistance",
@@ -20454,9 +22506,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-poison-resistance",
@@ -20494,9 +22555,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-protection",
@@ -20550,9 +22620,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Official effect changes AC bonus and save bonus keys.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-psychic-resistance",
@@ -20590,9 +22669,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-radiant-resistance",
@@ -20630,9 +22718,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-regeneration",
@@ -20681,9 +22778,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Slow healing every 10 minutes and limb regrowth; irrelevant in combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-shooting-stars",
@@ -20742,9 +22848,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Official lightning spheres lack damage, the discharge trigger and movement; saves lack an ability.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-spell-storing",
@@ -20907,9 +23022,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect on the swim speed key carries it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-telekinesis",
@@ -20962,9 +23086,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity for Telekinesis covers it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-the-ram",
@@ -21076,9 +23209,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.82,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity for Wish with 3 uses covers it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-thunder-resistance",
@@ -21116,9 +23258,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-warmth",
@@ -21229,9 +23380,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity for Water Walk, self only, covers it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ring-of-x-ray-vision",
@@ -21351,9 +23511,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.78,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Coin toss picks heads or tails at use; heads imposes disadvantage on the next attack, but the official effect has no changes.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:robe-of-eyes",
@@ -21667,9 +23836,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Patches produce mundane objects or creatures; nothing the engine must handle.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:rod-of-absorption",
@@ -21932,9 +24110,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for Heal and Resurrection with charges and dawn recovery cover it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:rod-of-rulership",
@@ -22044,9 +24231,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Demiplane shelter; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:rope-of-climbing",
@@ -22097,9 +24293,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Animated rope for climbing; no combat use.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:rope-of-entanglement",
@@ -22217,9 +24422,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Rope repairs itself; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ruby",
@@ -22253,9 +24467,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:ruby-of-the-war-mage",
@@ -22309,9 +24532,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Lets a weapon serve as a spellcasting focus after a 10-minute attachment; no combat rule.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:saddle-of-the-cavalier",
@@ -22361,9 +24593,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attacks against the mount have disadvantage and rider cannot be forcibly dismounted; data lacks both.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:saffron",
@@ -22451,9 +24692,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scarab-of-protection",
@@ -22621,9 +24871,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-beasts",
@@ -22673,9 +24932,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-celestials",
@@ -22725,9 +24993,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-constructs",
@@ -22777,9 +25054,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-dragons",
@@ -22829,9 +25115,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-elementals",
@@ -22881,9 +25176,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-fey",
@@ -22933,9 +25237,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-fiends",
@@ -22985,9 +25298,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-giants",
@@ -23037,9 +25359,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-humanoids",
@@ -23089,9 +25420,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-monstrosities",
@@ -23141,9 +25481,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-oozes",
@@ -23193,9 +25542,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-plants",
@@ -23245,9 +25603,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-protection-undead",
@@ -23297,9 +25664,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so the rule cannot be read here.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:scroll-of-titan-summoning-animal-lord",
@@ -23762,9 +26138,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity for Sending with one use and dawn recovery covers it.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:sentinel-shield",
@@ -23870,9 +26255,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity with poison damage and half on success carries it; official save lacks the ability.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:set-of-gold-nesting-dolls",
@@ -23975,9 +26369,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic bonus-action change of the face; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:shield-of-missile-attraction",
@@ -24380,9 +26783,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Text is only a cross-reference to a shared entry, so no readable rule text; no item data either.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:silver-ewer",
@@ -24608,9 +27020,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Adhesive for objects; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-cantrip",
@@ -24657,9 +27078,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-1",
@@ -24706,9 +27136,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-2",
@@ -24755,9 +27194,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-3",
@@ -24804,9 +27252,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-4",
@@ -24853,9 +27310,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-5",
@@ -24902,9 +27368,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-6",
@@ -24951,9 +27426,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-7",
@@ -25000,9 +27484,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-8",
@@ -25049,9 +27542,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spell-scroll-level-9",
@@ -25098,9 +27600,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spellguard-shield",
@@ -25208,9 +27719,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Control check, bonus-action movement and a save on the sphere entering a space; data has no movement or entering trigger and the official save lacks an ability.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spinel",
@@ -25244,9 +27764,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:spirit-board",
@@ -25300,9 +27829,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-004",
+          "at": "2026-11-21T19:58:26.749Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "One-minute divination casts with charges; no combat use.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-adornment",
@@ -25351,9 +27889,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic floating objects; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-birdcalls",
@@ -25405,9 +27952,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Harmless sound effect with charges the data carries; last-charge roll is not combat.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-charming",
@@ -25466,9 +28022,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to turn back a spell and a once-per-dawn forced save success are not expressed by the data; cast activities and charges are.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-fire",
@@ -25526,9 +28091,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fire resistance transfer effect, cast activities and charge costs with dawn recovery are all present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-flowers",
@@ -25580,9 +28154,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Harmless nonmagical flower; charges already in data.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-frost",
@@ -25643,9 +28226,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cold resistance transfer effect, cast activities with charge costs and dawn recovery are present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-healing",
@@ -25700,9 +28292,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities with charge costs and dawn recovery are present; nothing further needed.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-power",
@@ -25965,9 +28566,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Toggled snake head with its own AC and HP, attack using proficiency and Wisdom, destruction on 0 HP; data only has attack damage lines.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-the-magi",
@@ -26191,9 +28801,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plus 2 weapon and spell attack bonuses are missing: data lacks any effect for them; casting activities and charges are present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:staff-of-thunder-and-lightning",
@@ -26367,9 +28986,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:star-ruby",
@@ -26403,9 +29031,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:star-sapphire",
@@ -26439,9 +29076,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:stone-of-controlling-earth-elementals",
@@ -26547,9 +29193,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data; a passive bonus to ability checks and saves while carried would need an effect or rule.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:sun-blade",
@@ -26661,9 +29316,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction melee attack with advantage that ignores immunity and resistance on its damage; plain data cannot express the ignore clause.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:sword-of-kas",
@@ -26854,9 +29518,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only concerns controlling a Sphere of Annihilation, an exploration matter.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:talisman-of-ultimate-evil",
@@ -26969,9 +29642,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Flavor item recording phrases; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:tankard-of-sobriety",
@@ -27021,9 +29703,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prevents intoxication only; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:tentacle-rod",
@@ -27158,9 +29849,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength set to 20 minimum, extra thunder damage, and prone/concentration riders; data has saves but lacks the ability override and per-hit bonus.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:tiger-eye",
@@ -27194,9 +29894,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:tome-of-clear-thought",
@@ -27369,9 +30078,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus action to cast a written spell without slot or components once per dawn needs a rule; data has only a generic utility.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:tome-of-understanding",
@@ -27467,9 +30185,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:torpor",
@@ -27564,9 +30291,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:trident-of-fish-command",
@@ -27617,9 +30353,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast of Dominate Beast is limited to Beasts with a swim speed; charges present in data but target restriction is not.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:truth-serum",
@@ -27714,9 +30459,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:universal-solvent",
@@ -27767,9 +30521,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dissolves adhesive; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:veterans-cane",
@@ -27824,9 +30587,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus action transform into a longsword is carried by an enchant activity and its transferring effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-binding",
@@ -27877,9 +30649,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities with charge costs and dawn recovery are present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-conducting",
@@ -27929,9 +30710,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Music only; charges already in data.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-enemy-detection",
@@ -27980,9 +30770,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Detection of hostile direction; no direct combat effect, charges in data.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-fear",
@@ -28094,9 +30893,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-lightning-bolts",
@@ -28145,9 +30953,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-magic-detection",
@@ -28197,9 +31014,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Single cast activity with charge cost and dawn recovery is present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-magic-missiles",
@@ -28248,9 +31074,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-orcus",
@@ -28322,9 +31157,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Many riders: attunement save, plus 3 weapon and AC bonuses, extra necrotic, discounted charges for Orcus, undead summon with limit; data lacks most.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-paralysis",
@@ -28495,9 +31339,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Harmless light burst; charges in data.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-secrets",
@@ -28546,9 +31399,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Detection of secret doors and traps only; charges in data.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wand-of-web",
@@ -28750,9 +31612,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plus 3 bonuses, extra necrotic on a natural 20, initiative advantage present as effect; data lacks bonuses and crit rider, globe once-per-dawn needs care.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:well-made-tapestry-that-is-10-feet-by-10-feet",
@@ -28828,9 +31699,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Portal to elsewhere with DM discretion; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wheat",
@@ -29025,9 +31905,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cumulative chance of failure per use and destruction on failure is not expressed by data.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:winged-boots",
@@ -29080,9 +31969,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fly speed effect, charge use and dawn recovery are carried by the activity and effect.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wings-of-flying",
@@ -29135,9 +32033,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fly speed effect on an activity with limited use is present; the fall on expiry is standard.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:wyvern-poison",
@@ -29186,9 +32093,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity with half damage on success and single use is present.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:yellow-sapphire",
@@ -29222,9 +32138,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:zircon",
@@ -29258,9 +32183,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-005",
+          "at": "2026-11-21T19:58:27.052Z",
+          "confidence": 0.95,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain gemstone description.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:monster:avatar-of-death/action/multiattack",
@@ -29297,9 +32231,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-006",
+          "at": "2026-11-21T19:58:27.361Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Number of attacks scales with the summoner's proficiency bonus; the data only has a self-targeted utility activity with no count.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:monster:avatar-of-death/action/reaping-scythe",
@@ -29336,9 +32279,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-006",
+          "at": "2026-11-21T19:58:27.361Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Automatic-hit attack: the damage activity already carries both slashing and necrotic dice; no roll or rider needed.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:monster:avatar-of-death/trait/incorporeal-movement",
@@ -29375,9 +32327,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-xdmg-006",
+          "at": "2026-11-21T19:58:27.361Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Self damage applies only if it ends its turn inside an object; the data has an untriggered self-damage activity and no end-of-turn condition. Movement through creatures is a terrain rule.",
+      "state": "triaged"
     }
   ]
 }

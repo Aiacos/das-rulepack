@@ -32,9 +32,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:archaeologist",
@@ -67,9 +76,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-agent",
@@ -102,9 +120,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-cannith-heir",
@@ -137,9 +164,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-deneith-heir",
@@ -172,9 +208,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-ghallanda-heir",
@@ -207,9 +252,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-jorasco-heir",
@@ -242,9 +296,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-kundarak-heir",
@@ -277,9 +340,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-lyrandar-heir",
@@ -312,9 +384,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-medani-heir",
@@ -347,9 +428,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-orien-heir",
@@ -382,9 +472,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-phiarlan-heir",
@@ -417,9 +516,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-sivis-heir",
@@ -452,9 +560,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-tharashk-heir",
@@ -487,9 +604,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-thuranni-heir",
@@ -522,9 +648,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:house-vadalis-heir",
@@ -557,9 +692,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:background:inquisitive",
@@ -592,9 +736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-001",
+          "at": "2026-11-21T19:58:27.645Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability scores, an origin feat, skills, a tool and starting gear only; no combat effect here (the feat is its own item).",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:aberrant-dragonmark",
@@ -631,9 +784,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction d4 on a failed Con save has no effect in data; Surge parity rule and hit die roll outcomes need handling at cast time.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:boon-of-siberys",
@@ -666,9 +828,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only grants a chosen spell with a free cast; spell choice and casting are item/advancement matters, no extra combat rule. No origin data beyond empty.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-aberrant-mark",
@@ -706,9 +877,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggers on cantrip cast, rolls hit dice for temp HP plus force damage to a chosen creature; data only has damage shells and a die scale.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-detection",
@@ -780,9 +960,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Die upgrade is in data; doubled Hunter's Mark range and denying Invisible benefit is a cast-time spell modification data lacks.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-handling",
@@ -820,9 +1009,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subdue Animal save/Frightened is in data; mount reaction after a melee hit while mounted is a trigger the data lacks.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-healing",
@@ -857,9 +1055,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cure Wounds healing dice treat 1 or 2 as 3: a roll modification and free cast uses that data does not carry.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-hospitality",
@@ -968,9 +1175,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Misty Step extension lets two allies take a reaction to teleport; trigger-based, data only has the die scale.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-scribing",
@@ -1005,9 +1221,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Comprehend Languages modification and telepathy are exploration/social, nothing in combat; die upgrade carried by the effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-sentinel",
@@ -1042,9 +1267,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extends the swap reaction with one attack as part of the same reaction; reaction rider that data lacks.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-shadow",
@@ -1116,9 +1350,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fly speed granted only for the duration of a free Gust of Wind cast; conditional on a spell, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-warding",
@@ -1155,9 +1398,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to impose disadvantage on an attack roll against self or ally within range, limited uses; the activity has no effect, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-detection",
@@ -1192,9 +1444,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Check bonus die is carried by a transferring effect; granted spells are advancement matters, nothing else for combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-finding",
@@ -1229,9 +1490,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Perception/Survival check bonus carried by effect; spell grants are item choices, no combat rider.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-handling",
@@ -1266,9 +1536,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Nature/Animal Handling bonus carried by effect; spell grants and Monstrosity targeting are not combat riders.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-healing",
@@ -1303,9 +1582,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Medicine and herbalism check bonus carried by effect; free Cure Wounds is a spell grant.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-hospitality",
@@ -1340,9 +1628,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Persuasion and tool check bonus carried by effect; remaining benefits are spell grants.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-making",
@@ -1377,9 +1674,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Arcana and tool check bonus carried by effect; remaining benefits are spell grants and list additions.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-passage",
@@ -1415,9 +1721,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Speed increase and Athletics/Acrobatics bonus both carried by effects; Misty Step is a spell grant.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-scribing",
@@ -1452,9 +1767,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "History and calligrapher check bonus carried by effect; the rest is spells and list additions with no combat rider.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-sentinel",
@@ -1491,9 +1815,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to swap places and take the hit instead has no effect in data; the check bonus part is carried by effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-shadow",
@@ -1528,9 +1861,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Stealth/Performance bonus carried by effect; Invisibility and cantrip are spell grants.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-storm",
@@ -1565,9 +1907,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Lightning resistance is not set by any effect in data (data lacks it); check bonus is carried by effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:mark-of-warding",
@@ -1602,9 +1953,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-002",
+          "at": "2026-11-21T19:58:27.931Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Investigation and thieves tools bonus carried by effect; spells are grants with no combat rider.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:potent-dragonmark",
@@ -1674,9 +2034,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell list, cantrip and preparation choices; casting itself is the engine spell handling. Nothing at the table beyond data.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/1/tinkers-magic",
@@ -1745,9 +2114,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Limited-use action that creates mundane items, with uses and long rest recovery already in the data; no combat rider.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/10/magic-item-adept",
@@ -1784,9 +2162,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Passive attunement limit raised; the effect already changes the attunement maximum key.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/11/spell-storing-item",
@@ -1826,9 +2213,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Stored spell in an item: others cast it, once per creature turn, limited charges, concentration. Data has only a cast stub.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/12/ability-score-improvement",
@@ -1852,9 +2248,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Feat choice at level up; no table effect in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/14/advanced-artifice",
@@ -1893,9 +2298,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attunement cap effect present and a short rest regain activity exists for the Flash of Genius use.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/15/subclass-feature",
@@ -1919,9 +2333,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Placeholder granting a subclass feature; nothing to automate itself.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/16/ability-score-improvement",
@@ -1945,9 +2368,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Feat choice at level up; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/18/magic-item-master",
@@ -1984,9 +2416,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Passive attunement cap increase, already carried by an effect on the matching key.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/19/epic-boon",
@@ -2010,9 +2451,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Epic boon feat choice; no effect of its own. No item data.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/2/replicate-magic-item",
@@ -2047,9 +2497,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Long rest crafting of magic items from known plans; out of combat bookkeeping, nothing to resolve in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/20/soul-of-artifice",
@@ -2087,9 +2546,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Trigger when dropped to 0 HP: sacrifice created items to set HP to a computed value. Data lacks that trigger and formula.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/3/artificer-subclass",
@@ -2124,9 +2592,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass choice; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/4/ability-score-improvement",
@@ -2150,9 +2627,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Feat choice at level up; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/5/subclass-feature",
@@ -2176,9 +2662,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Placeholder granting a subclass feature; no effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/6/magic-item-tinker",
@@ -2256,9 +2751,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to add a bonus to another creature failed check or save within range; trigger and use-time choice. Data has only a stub activity.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/8/ability-score-improvement",
@@ -2282,9 +2786,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Feat choice at level up; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/9/subclass-feature",
@@ -2308,9 +2821,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Placeholder granting a subclass feature; no effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/alchemist/15/chemical-mastery",
@@ -2348,9 +2870,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once per turn extra force damage on certain spell damage types, resistances and poison immunity, free cast. Data lacks resistances and the limit.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/alchemist/3/alchemist",
@@ -2385,9 +2916,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavor introduction; no mechanics.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/alchemist/3/alchemist-spells",
@@ -2422,9 +2962,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list granted by level; spell list setup only.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/alchemist/3/experimental-elixir",
@@ -2499,9 +3048,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Tool proficiencies and crafting time; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/alchemist/5/alchemical-savant",
@@ -2542,9 +3100,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus to one roll of a spell cast with a focus, only for healing or certain damage types. Existing effect is unconditional.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/alchemist/9/restorative-reagents",
@@ -2581,9 +3148,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Free cast of a spell with limited uses and long rest recovery; cast activity and uses present.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/15/perfected-armor",
@@ -2618,9 +3194,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Model-specific upgrades: reach and size growth, pull reaction with a save and a melee attack, glimmer disadvantage, fly bonus action. Data empty.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/arcane-armor",
@@ -2655,9 +3240,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Armor conversion and focus rules; mostly out of combat, nothing needed in the data.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/armor-model",
@@ -2735,9 +3329,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavor introduction; no mechanics.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/armorer-spells",
@@ -2772,9 +3375,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list granted by level; spell list setup only.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/dreadnaught",
@@ -2798,9 +3410,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data. Force weapon with optional push or pull on hit, and a size and reach growth bonus action with uses.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/guardian",
@@ -2824,9 +3445,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data. Thunder weapon imposing disadvantage on attacks vs others, plus temp HP bonus action while bloodied.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/infiltrator",
@@ -2850,9 +3480,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "no item data. Once per turn extra lightning damage, speed bonus, stealth advantage conditional on armor.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/3/tools-of-the-trade",
@@ -2887,9 +3526,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Armor training, tool proficiency and crafting time; no combat effect beyond proficiency.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/5/extra-attack",
@@ -2963,9 +3611,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plus one to attack and damage with the model special weapon only; data effect only covers plan scale. Data lacks bonus.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/artillerist/15/fortified-position",
@@ -3000,9 +3657,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Two cannons at once and an aura giving cover to allies within 10 feet of the cannon. Data lacks the aura.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/artillerist/3/artillerist",
@@ -3037,9 +3703,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavor introduction; no mechanics.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/artillerist/3/artillerist-spells",
@@ -3074,9 +3749,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list granted by level; spell list setup only.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/artillerist/3/eldritch-cannon",
@@ -3158,9 +3842,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Proficiencies and crafting time; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/artillerist/5/arcane-firearm",
@@ -3197,9 +3890,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spells cast through the marked focus add a rolled bonus to one damage roll; data lacks any damage bonus effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/artillerist/9/explosive-cannon",
@@ -3234,9 +3936,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction detonation when the cannon is hit with a dex save area; plus damage increases. Data lacks the activity.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/15/improved-defender",
@@ -3273,9 +3984,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Upgrades to extra damage and healing dice and a retaliation damage on deflect; data has only a damage stub.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/3/battle-ready",
@@ -3314,9 +4034,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Enchant activity with an effect swapping the attack ability to Intelligence on magic weapons; proficiency part is character building.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/3/battle-smith",
@@ -3351,9 +4080,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavor introduction; no mechanics.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/3/battle-smith-spells",
@@ -3388,9 +4126,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list granted by level; spell list setup only.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/3/steel-defender",
@@ -3465,9 +4212,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Tool proficiency and crafting time; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/5/extra-attack",
@@ -3504,9 +4260,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra attack plus forgoing an attack to command the companion action; data has only a utility stub.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/battle-smith/9/arcane-jolt",
@@ -3544,9 +4309,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "On a hit, extra force damage or healing choice at use time, once per turn, limited uses. Data has stubs, no once per turn.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/15/superior-atlas",
@@ -3585,9 +4359,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Replaces dropping to 0 HP with set HP and teleport for a map holder; free cast once per rest. Data only has init bonus.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/3/adventurers-atlas",
@@ -3626,9 +4409,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Map holders get initiative bonus (data) but also ignore sight and cover when targeting each other; map creation limits. Data lacks targeting.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/3/cartographer",
@@ -3663,9 +4455,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavor introduction; no mechanics.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/3/cartographer-spells",
@@ -3700,9 +4501,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list granted by level; spell list setup only.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/3/mapping-magic",
@@ -3739,9 +4549,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Free spell casts with uses, and movement-cost teleport with conditions on destination. Data has a single special stub.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/3/tools-of-the-trade",
@@ -3776,9 +4595,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Tool proficiencies and crafting time; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/5/guided-precision",
@@ -3817,9 +4645,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once per turn Intelligence damage bonus only for certain spells or attacks against a marked target; concentration protection. Data bonus is unconditional.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/cartographer/9/ingenious-movement",
@@ -3856,9 +4693,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-003",
+          "at": "2026-11-21T19:58:28.245Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Rider on Flash of Genius reaction letting a creature teleport a short distance; data lacks the rider.",
+      "state": "triaged"
     },
     {
       "key": "efa:item:boots-of-the-winding-path",
@@ -3907,9 +4753,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-004",
+          "at": "2026-11-21T19:58:28.545Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus action teleport limited to a space occupied earlier this turn; data has only a bare utility activity with no movement or restriction.",
+      "state": "triaged"
     },
     {
       "key": "efa:item:helm-of-awareness",
@@ -3963,9 +4818,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-004",
+          "at": "2026-11-21T19:58:28.545Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Initiative advantage is carried by a transferring effect on the initiative advantage flag in official and importer data.",
+      "state": "triaged"
     },
     {
       "key": "efa:item:manifold-tool",
@@ -4014,9 +4878,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-004",
+          "at": "2026-11-21T19:58:28.545Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat tool transformation into artisan tools; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:item:mind-sharpener",
@@ -4065,9 +4938,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-004",
+          "at": "2026-11-21T19:58:28.545Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction spending a charge to turn a failed concentration save into a success; needs a trigger on that save. Official origin is ambiguous; importer data has uses only.",
+      "state": "triaged"
     },
     {
       "key": "efa:item:repulsion-shield",
@@ -4116,9 +4998,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-004",
+          "at": "2026-11-21T19:58:28.545Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the +1 AC bonus (no effect) and the reaction to push a Large or smaller melee attacker 15 feet needs a trigger and size limit.",
+      "state": "triaged"
     },
     {
       "key": "efa:item:spell-refueling-ring",
@@ -4167,9 +5058,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-004",
+          "at": "2026-11-21T19:58:28.545Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recover a spent slot of level 3 or lower as a bonus action; data consumes a fixed slot level 1 or only a use, so the choice of slot is missing.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-smuggler/action/pistol",
@@ -4206,9 +5106,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-smuggler/action/shortsword",
@@ -4245,9 +5154,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with an extra poison damage part in its activity.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-smuggler/trait/hustle",
@@ -4282,9 +5200,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Moving through larger creatures spaces without stopping is a movement rule; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-underboss/action/arcane-firearm",
@@ -4321,9 +5248,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-underboss/action/multiattack",
@@ -4360,9 +5296,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-underboss/action/poisoned-blade",
@@ -4400,9 +5345,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poisoned until next turn and extra damage only if already Poisoned: a conditional rider; data has two split activities, no condition check.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-underboss/reaction/uncanny-dodge",
@@ -4439,10 +5393,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction that halves damage of the triggering hit; data has only an empty use-expending activity.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:boromar-underboss/trait/hustle",
@@ -4477,9 +5440,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Moving through larger creatures spaces without stopping is a movement rule; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:cannith-artificer/action/artillery-strike",
@@ -4516,9 +5488,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:cannith-artificer/action/battering-mace",
@@ -4557,9 +5538,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone only against Large or smaller targets: size-limited rider; the effect is applied without a size check.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:cannith-artificer/action/multiattack",
@@ -4596,9 +5586,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:cannith-artificer/trait/spellcasting",
@@ -4639,9 +5638,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells, with per-spell uses where limited; nothing more needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-bruiser/action/glare",
@@ -4680,9 +5688,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity applies Frightened on a failed save with a duration; plain condition.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-bruiser/action/multiattack",
@@ -4719,9 +5736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-bruiser/action/pummel",
@@ -4758,9 +5784,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-bruiser/reaction/smackback",
@@ -4797,9 +5832,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction triggered by taking damage from a creature within 5 ft, making a free attack at the triggerer; data has an empty utility.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-bruiser/trait/blood-frenzy",
@@ -4834,9 +5878,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on attacks against targets not at full HP: conditional advantage; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-raider/action/pummel",
@@ -4873,9 +5926,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-raider/reaction/smackback",
@@ -4912,9 +5974,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction triggered by taking damage from a creature within 5 ft, making a free attack at the triggerer; data has an empty utility.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:daask-raider/trait/pack-tactics",
@@ -4949,10 +6020,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage when an able ally is within 5 ft of the target: situational advantage; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-infiltrator/action/mind-blade",
@@ -4989,9 +6069,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-infiltrator/action/multiattack",
@@ -5028,9 +6117,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-infiltrator/bonus/mind-curse",
@@ -5069,9 +6167,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus-action curse with disadvantage against the caster, repeat save on rest, only on a creature hit this turn; data holds a status only.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-infiltrator/trait/spellcasting",
@@ -5109,9 +6216,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells, with per-spell uses where limited; nothing more needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-mindkiller/action/multiattack",
@@ -5148,9 +6264,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-mindkiller/action/nightmare-whisper",
@@ -5190,9 +6315,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Frightened rider plus extra damage only if the target is already Frightened; conditional, data splits it into two activities without a check.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-mindkiller/action/primal-fear",
@@ -5231,9 +6365,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Frightened plus a restriction to one of move/action/bonus action per turn; the data effect has no keys for the restriction.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:dreaming-dark-mindkiller/trait/slayers-puppet",
@@ -5270,9 +6413,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity for the spell with a daily use limit; nothing more required.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:emerald-claw-commander/action/flail",
@@ -5312,9 +6464,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra necrotic only while Bloodied and disadvantage on the next attack; the effect has no keys and no HP condition.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:emerald-claw-commander/action/javelin",
@@ -5352,9 +6513,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra necrotic damage only while the attacker is Bloodied; data has a separate activity with no HP check.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:emerald-claw-commander/action/multiattack",
@@ -5391,9 +6561,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:emerald-claw-commander/trait/aura-of-authority",
@@ -5433,9 +6612,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura giving allies advantage on attacks and saves unless the bearer is Incapacitated; data has only a utility template.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:emerald-claw-knight/action/flail",
@@ -5475,9 +6663,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra necrotic only while Bloodied and disadvantage on the next attack; the effect has no keys and no HP condition.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:emerald-claw-knight/action/javelin",
@@ -5515,9 +6712,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra necrotic damage only while the attacker is Bloodied; data has a separate activity with no HP check.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:emerald-claw-knight/action/multiattack",
@@ -5554,9 +6760,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:ghallanda-troubleshooter/action/multiattack",
@@ -5593,9 +6808,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:ghallanda-troubleshooter/action/poisoned-dagger",
@@ -5634,9 +6858,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack applying the Poisoned status with a duration until next turn; plain condition.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:ghallanda-troubleshooter/bonus/nimble-escape",
@@ -5675,10 +6908,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Bonus Disengage or Hide choice at use time; data has only a Hiding status, no Disengage.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:ghallanda-troubleshooter/trait/hustle",
@@ -5713,9 +6955,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Moving through larger creatures spaces without stopping is a movement rule; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:ghallanda-troubleshooter/trait/spellcasting",
@@ -5753,9 +7004,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells, with per-spell uses where limited; nothing more needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:homunculus-servant/action/force-strike",
@@ -5792,9 +7052,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage scaling by summon spell level, carried by the activity.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:homunculus-servant/reaction/channel-magic",
@@ -5831,9 +7100,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to the summoner casting a touch spell, delivering it through the familiar; data has an empty utility.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:homunculus-servant/trait/evasion",
@@ -5868,10 +7146,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Evasion on Dex saves with an Incapacitated exception; data lacks any effect for it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:homunculus-servant/trait/magic-bond",
@@ -5906,9 +7193,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Adds the summoning spell level to checks and saves; data lacks any effect for it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:jorasco-medic/action/multiattack",
@@ -5945,9 +7241,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:jorasco-medic/action/radiant-burst",
@@ -5986,9 +7291,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with radiant damage that applies Blinded until next turn; plain condition.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:jorasco-medic/trait/lucky",
@@ -6025,9 +7339,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reroll on a natural 1 is carried by the halflingLucky flag on a transferring effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:jorasco-medic/trait/mark-of-healing",
@@ -6065,9 +7388,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for two spells sharing a limited daily use pool.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:kundarak-warden/action/arcane-whip",
@@ -6107,9 +7439,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone only to Medium or smaller, extra force damage only if already Prone; conditional riders not checked by data.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:kundarak-warden/action/multiattack",
@@ -6146,9 +7487,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:kundarak-warden/action/shackling-glyph",
@@ -6188,9 +7538,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge save grapple with escape DC 14 plus Restrained while grappled; the grapple link and escape need engine-side handling.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:kundarak-warden/trait/magic-resistance",
@@ -6225,9 +7584,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against spells and magical effects: situational advantage; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:kundarak-warden/trait/protective-magic",
@@ -6265,9 +7633,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction casting Counterspell or Shield in response to a spell trigger; limited uses carried, trigger not.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:kundarak-warden/trait/spellcasting",
@@ -6306,9 +7683,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells, with per-spell uses where limited; nothing more needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:lyrandar-scion/action/multiattack",
@@ -6345,9 +7731,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:lyrandar-scion/action/thunderbolt",
@@ -6386,9 +7781,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Deafened applies only on a critical hit; the effect is attached without a crit condition.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:lyrandar-scion/trait/feather-fall",
@@ -6427,10 +7831,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Casts Feather Fall as a reaction to a falling trigger; no item data.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:lyrandar-scion/trait/jump",
@@ -6511,9 +7924,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells, with per-spell uses where limited; nothing more needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:medani-inquisitive/action/crooked-staff",
@@ -6553,9 +7975,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone only to Medium or smaller, extra radiant damage only if already Prone; conditional riders not checked by data.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:medani-inquisitive/action/inquisitive-eye",
@@ -6594,9 +8025,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Mark grants advantage vs marked target, blocks hiding and Invisible benefit, ends after a minute or on reuse; data has a status only.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:medani-inquisitive/action/multiattack",
@@ -6633,9 +8073,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:medani-inquisitive/reaction/spontaneous-barrier",
@@ -6672,9 +8121,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction adding 2 AC to self or ally against a triggering hit; data lacks the AC bonus effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:medani-inquisitive/trait/spellcasting",
@@ -6713,9 +8171,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells, with per-spell uses where limited; nothing more needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:orien-enforcer/action/dagger",
@@ -6752,9 +8219,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:orien-enforcer/action/lightning-cage",
@@ -6791,9 +8267,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for half damage plus no Reactions until the end of its next turn; data carries damage but no effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:orien-enforcer/action/multiattack",
@@ -6830,9 +8315,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:orien-enforcer/reaction/temporal-disruption",
@@ -6869,9 +8363,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction teleport after melee damage then a halving-speed save on nearby creatures; data has the save only, no trigger or movement.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:orien-enforcer/trait/misty-step",
@@ -6956,9 +8459,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on the next attack roll before a set time; effect has no keys, so the data lacks the actual modifier.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sentinel-marshal/action/multiattack",
@@ -6995,9 +8507,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sentinel-marshal/action/pistol",
@@ -7034,9 +8555,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sentinel-marshal/trait/shield",
@@ -7075,10 +8605,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Casts Shield as a reaction to its trigger; no item data.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:shadow-marked-agent/action/multiattack",
@@ -7115,9 +8654,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:shadow-marked-agent/action/shadow-knife",
@@ -7156,9 +8704,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with extra necrotic damage and a speed reduction effect on movement keys.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:shadow-marked-agent/bonus/shadow-cloak",
@@ -7198,9 +8755,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Invisibility until next turn that ends early after an attack roll; data lacks the end-on-attack event.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:shadow-marked-agent/trait/spellcasting",
@@ -7239,9 +8805,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for the listed spells, with per-spell uses where limited; nothing more needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sivis-scribe/action/bursting-sigil",
@@ -7278,9 +8853,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack; the activity carries the roll and damage, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sivis-scribe/action/multiattack",
@@ -7317,9 +8901,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack is a descriptive utility activity; the attacks it names are separate items.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sivis-scribe/reaction/word-of-stasis",
@@ -7361,9 +8954,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-005",
+          "at": "2026-11-21T19:58:28.835Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity applying Incapacitated and zero speed via effect keys with duration; trigger is a reaction use.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sivis-scribe/trait/spellcasting",
@@ -7403,9 +9005,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for each listed spell with use consumption on the limited ones; nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:sivis-scribe/trait/words-of-reason",
@@ -7442,9 +9053,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Emanation aura giving allies advantage on saves vs charmed/frightened, off when incapacitated; data has only an empty utility template.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:steel-defender/action/force-empowered-rend",
@@ -7481,9 +9101,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with force damage; the ability modifier bonus is a roll-data matter.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:steel-defender/action/repair",
@@ -7520,9 +9149,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Heal activity 2d8 with 3 uses per day; the target restriction is minor.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:steel-defender/reaction/deflect-attack",
@@ -7559,9 +9197,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction imposing disadvantage on a nearby attacker vs another target; data has an empty reaction utility, no effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:steel-defender/trait/steel-bond",
@@ -7596,9 +9243,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Proficiency bonus added to the defender checks and saves; data lacks any effect or activity.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-marauder/action/aberrant-strike",
@@ -7636,9 +9292,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra force damage only when the attack had advantage; data splits it into a separate damage activity with no condition.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-marauder/action/multiattack",
@@ -7716,9 +9381,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport plus blinding emanation on arrival with an end-of-next-turn duration; data has the save and effect but no movement or timed end.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-marauder/trait/evasion",
@@ -7753,10 +9427,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Half-damage Dex save becomes none on success, off when incapacitated; data empty. Generic Core entry applies.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-marauder/trait/spellcasting",
@@ -7794,9 +9477,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for each listed spell with use consumption on the limited ones; nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-ruffian/action/spear",
@@ -7833,9 +9525,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity, melee or thrown, damage from the attack item.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-ruffian/trait/aberrant-surge",
@@ -7875,9 +9576,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggered by casting a given spell, then a d8 parity branch: temp HP or damage to a chosen creature; data is a lone roll utility.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tarkanan-ruffian/trait/spellcasting",
@@ -7915,9 +9625,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for each listed spell with use consumption on the limited ones; nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tharashk-hunter/action/longbow",
@@ -7956,9 +9675,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with an effect reducing speed keys; duration to end of next turn assumed by effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tharashk-hunter/action/multiattack",
@@ -8036,9 +9764,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity plus an effect for disadvantage on d20 tests; duration end of next turn.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tharashk-hunter/bonus/mark-of-tharashk",
@@ -8077,9 +9814,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Mark gives attacker advantage and negates target invisibility against it, ends on events; data has only a marked status.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:tharashk-hunter/reaction/uncanny-dodge",
@@ -8116,10 +9862,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction to being hit that halves the damage; data has a use-expending utility only. Generic Core entry applies.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:umbragen-shadow-walker/action/gloom-burst",
@@ -8156,9 +9911,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity, melee or ranged, with damage from the attack item.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:umbragen-shadow-walker/action/multiattack",
@@ -8236,9 +10000,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save activity with necrotic damage and a blinded effect; the duration to start of next turn is expressed by the effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:umbragen-shadow-walker/trait/fey-ancestry",
@@ -8273,9 +10046,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Immunity to magical sleep; data lacks it (no effect). A declarative rule on the sleep source is needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:umbragen-shadow-walker/trait/spellcasting",
@@ -8314,9 +10096,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for each listed spell with use consumption on the limited ones; nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:umbragen-shadow-walker/trait/sunlight-sensitivity",
@@ -8351,9 +10142,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on checks and attacks while in sunlight; data lacks any effect. Generic Core entry applies.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vadalis-heir/action/lunar-wisp",
@@ -8470,9 +10270,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity carrying the extra poison damage part.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vadalis-heir/bonus/spur-beast",
@@ -8509,9 +10318,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Lets a Beast ally spend its reaction to move and attack; data lacks it (empty utility, no effect).",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vadalis-heir/trait/pack-tactics",
@@ -8546,10 +10364,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data empty. Generic Core entry applies.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vadalis-heir/trait/spellcasting",
@@ -8591,9 +10418,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for each listed spell with use consumption on the limited ones; nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vulkoori-stingblade/action/boomerang",
@@ -8630,9 +10466,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain ranged attack activity with damage from the attack item.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vulkoori-stingblade/action/stingblade",
@@ -8669,9 +10514,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with the extra poison damage part.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vulkoori-stingblade/trait/fey-ancestry",
@@ -8706,9 +10560,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Immunity to magical sleep; data lacks it (no effect). A declarative rule on the sleep source is needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vulkoori-venom-priest/action/venom-staff",
@@ -8747,9 +10610,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity applying a poisoned effect; the duration to end of next turn is carried by the effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vulkoori-venom-priest/bonus/intensify-poison",
@@ -8786,9 +10658,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damages only creatures already poisoned inside the aura; data has an area damage activity with no poisoned filter.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vulkoori-venom-priest/trait/fey-ancestry",
@@ -8823,9 +10704,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Immunity to magical sleep; data lacks it (no effect). A declarative rule on the sleep source is needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:monster:vulkoori-venom-priest/trait/spellcasting",
@@ -8867,9 +10757,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-006",
+          "at": "2026-11-21T19:58:29.145Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities exist for each listed spell with use consumption on the limited ones; nothing extra.",
+      "state": "triaged"
     },
     {
       "key": "efa:option:celebrated-in-house",
@@ -8891,9 +10790,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-007",
+          "at": "2026-11-21T19:58:29.434Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data. Favors, stipend and house benefits are downtime and social perks; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:option:favored-in-house",
@@ -8915,9 +10823,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-007",
+          "at": "2026-11-21T19:58:29.434Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data. Favors, stipend and house benefits are downtime and social perks; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:option:preeminent-in-house",
@@ -8939,9 +10856,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-007",
+          "at": "2026-11-21T19:58:29.434Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data. Favors, stipend and house benefits are downtime and social perks; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:option:recognized-in-house",
@@ -8963,9 +10889,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-007",
+          "at": "2026-11-21T19:58:29.434Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data. Favors, stipend and house benefits are downtime and social perks; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:changeling",
@@ -9030,9 +10965,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Character-building choice of two skill proficiencies; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:changeling/shape-shifter",
@@ -9070,9 +11014,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Appearance change is a self activity; the Charisma-check advantage is carried by an effect. Only noncombat checks affected, so no rule needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:kalashtar",
@@ -9139,9 +11092,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Passive advantage on Wisdom and Charisma saves is already carried by a transferring effect changing both save modes.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:kalashtar/mental-discipline",
@@ -9175,9 +11137,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.82,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Psychic damage resistance; data lacks any effect for it, so a rule or data fix must grant the resistance.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:kalashtar/mind-link",
@@ -9216,9 +11187,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Telepathy range effect and a utility activity are present; telepathy has no combat resolution to automate.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:kalashtar/severed-from-dreams",
@@ -9252,9 +11232,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dream spell immunity and a rest-based skill proficiency; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:khoravar",
@@ -9308,9 +11297,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain 60 ft darkvision sense; no item data, so judged from text alone; sense not a combat rule.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:khoravar/fey-ancestry",
@@ -9344,10 +11342,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves against or to end the Charmed condition; data lacks any effect, so a conditional save rule is needed.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:khoravar/fey-gift",
@@ -9381,9 +11388,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grants a cantrip that can be swapped after a long rest; spell choice only, nothing combat-specific.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:khoravar/lethargy-resilience",
@@ -9419,9 +11435,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction-like choice to turn a failed save versus Unconscious into success, with limited uses; data has only a use counter, no trigger.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:khoravar/skill-versatility",
@@ -9455,9 +11480,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Skill or tool proficiency choice, swappable on rest; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:shifter",
@@ -9522,9 +11556,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Skill proficiency choice; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:shifter/darkvision",
@@ -9547,9 +11590,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain 60 ft darkvision sense; no item data, so judged from text alone; sense not a combat rule.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:shifter/shifting",
@@ -9585,9 +11637,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shift state with temp HP plus per-option riders (AC bonus, bonus-action bite, speed, reaction move, advantage); data has only a temp HP heal, lacks the options and duration.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:warforged",
@@ -9652,9 +11713,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poison resistance and advantage on saves against Poisoned; data lacks any effect for them.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:warforged/integrated-protection",
@@ -9690,9 +11760,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "The +1 AC bonus is carried by a transferring effect on the AC bonus key; armor lock is not a combat matter.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:warforged/sentrys-rest",
@@ -9726,9 +11805,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sleep immunity and a shorter rest posture; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:warforged/specialized-design",
@@ -9762,9 +11850,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "One skill and one tool proficiency of choice; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "efa:species:warforged/tireless",
@@ -9798,9 +11895,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-efa-008",
+          "at": "2026-11-21T19:58:29.735Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Exhaustion immunity for dehydration, hunger, suffocation; not combat related.",
+      "state": "triaged"
     },
     {
       "key": "efa:spell:homunculus-servant",

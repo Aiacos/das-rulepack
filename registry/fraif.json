@@ -67,9 +67,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura damage on entry/turn end, once per turn, with toggle and self-immunity; data has only a plain damage activity. Rays need per-ray choice at use.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:crown-of-horns",
@@ -135,9 +144,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fear aura with entry/start-of-turn saves, repeat save on triggers, 1-minute immunity, incapacitated off-switch; undead rising on kill. Data only has a one-shot save.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:deathdance",
@@ -190,9 +208,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Humanoids auto-succeed (creature-type limit) and the poison also incapacitates; data cannot express the type exemption.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:ffolk-sailing-ship",
@@ -259,9 +286,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Persona only changes how detection magic reads you; nothing acts in combat. No item data for this origin.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:mechanical-wonder-domestic",
@@ -511,9 +547,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Fear aura: enemies save at turn start, then 24h immunity; breath type chosen at use; toggle. Official data has fixed damage types and lacks the immunity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:prespra",
@@ -570,9 +615,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poison/blinded plus repeated save each turn with damage on failure, ending on success; data has only the first save.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:rusted-hulk",
@@ -652,9 +706,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Long ritual with a final necrotic blast on participants; a downtime event, not a combat mechanic.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:ulcrun",
@@ -703,9 +766,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the exhaustion level on a failed save; damage and save are present, the exhaustion rider is missing in every origin.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:whaleboat",
@@ -784,9 +856,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charge-spent jewelry becomes a vehicle for an hour; summon activity exists and the rest is travel flavor with no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "fraif:item:yellow-death",
@@ -839,9 +920,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-001",
+          "at": "2026-11-21T19:58:31.777Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Con save for poison damage, half on success, poisoned for a minute on failure; both origins carry it with a status effect.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-deep-dragon/action/multiattack",
@@ -878,9 +968,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-deep-dragon/action/nightmare-breath",
@@ -919,9 +1018,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save-for-damage with recharge uses is in data; frightened lasting until end of the dragon's next turn is not expressed.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-deep-dragon/action/rend",
@@ -958,9 +1066,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with the extra damage part; plain melee attack, nothing conditional.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-deep-dragon/bonus/shape-shift",
@@ -997,9 +1114,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Transform activity on bonus action covers the shape change; no combat rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-deep-dragon/legendary/pounce",
@@ -1077,9 +1203,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save repeated at end of each turn, 1 minute cap, and one-use-per-turn limit; data holds only the initial save and poisoned.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-deep-dragon/trait/legendary-resistance",
@@ -1116,9 +1251,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; data only has a resource-spending activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/action/multiattack",
@@ -1155,9 +1299,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sequences attacks and optionally swaps one for a breath or cast; both exist as own activities, so no extra rule evident.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/action/rend",
@@ -1194,9 +1347,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with the extra damage part; plain melee attack, nothing conditional.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/action/ruinous-breath",
@@ -1233,9 +1395,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge cone save for half damage matches the activity and uses.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/action/time-warping-breath",
@@ -1274,9 +1445,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Repeated save each turn with timed expiry, no reactions and action-or-bonus limit; data only halves speed.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/legendary/pounce",
@@ -1352,9 +1532,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity of the named spell carries it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/legendary/unearth-ruins",
@@ -1393,9 +1582,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Difficult terrain zone, save damage plus prone are in data; terrain and the use-again limit are not.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/trait/legendary-resistance",
@@ -1432,9 +1630,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; data only has a resource-spending activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/trait/spellcasting",
@@ -1513,9 +1720,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/action/nightmare-breath",
@@ -1554,9 +1770,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save-for-damage with recharge uses is in data; frightened lasting until end of the dragon's next turn is not expressed.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/action/rend",
@@ -1593,9 +1818,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with the extra damage part; plain melee attack, nothing conditional.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/bonus/shape-shift",
@@ -1632,10 +1866,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Transform activity on bonus action covers the shape change; no combat rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/legendary/pounce",
@@ -1713,9 +1956,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save repeated at end of each turn, 1 minute cap, and one-use-per-turn limit; data holds only the initial save and poisoned.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/trait/legendary-resistance",
@@ -1752,9 +2004,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; data only has a resource-spending activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/action/multiattack",
@@ -1791,9 +2052,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sequences attacks and optionally swaps one for a breath or cast; both exist as own activities, so no extra rule evident.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/action/rend",
@@ -1830,9 +2100,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity with the extra damage part; plain melee attack, nothing conditional.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/action/ruinous-breath",
@@ -1869,9 +2148,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge cone save for half damage matches the activity and uses.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/action/time-warping-breath",
@@ -1910,9 +2198,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Repeated save each turn with timed expiry, no reactions and action-or-bonus limit; data only halves speed.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/legendary/pounce",
@@ -1988,9 +2285,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity of the named spell carries it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/legendary/unearth-ruins",
@@ -2029,9 +2335,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Difficult terrain zone, save damage plus prone are in data; terrain and the use-again limit are not.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/trait/legendary-resistance",
@@ -2068,9 +2383,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; data only has a resource-spending activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/trait/spellcasting",
@@ -2150,9 +2474,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity; damage comes from the base attack, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/action/multiattack",
@@ -2189,9 +2522,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/action/slam",
@@ -2228,9 +2570,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity; damage comes from the base attack, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/action/sling-humanoid-or-hybrid-form-only",
@@ -2267,9 +2618,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity; damage comes from the base attack, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/bonus/shape-shift",
@@ -2347,9 +2707,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells carry it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/trait/spider-climb-hybrid-or-spider-form-only",
@@ -2373,9 +2742,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data; climbing without checks is a movement ability, nothing for combat resolution.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/trait/web-walker",
@@ -2449,9 +2827,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity; damage comes from the base attack, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/action/claws-land-or-sky-form-only",
@@ -2490,9 +2877,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone applies only if the target is Large or smaller; data applies prone unconditionally.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/action/multiattack",
@@ -2529,9 +2925,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/bonus/recuperative-shape-shift",
@@ -2568,9 +2973,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Self-heal on bonus action in data; the form choice is narrative.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/trait/amphibious-sea-form-only",
@@ -2605,9 +3019,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Water breathing, nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/trait/divine-immortality",
@@ -2642,9 +3065,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Revival after death over days; outside combat.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/trait/legendary-resistance",
@@ -2681,9 +3113,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; data only has a resource-spending activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/trait/magic-resistance",
@@ -2718,10 +3159,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves only against spells and magical effects; data lacks any effect.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:beast-of-malar/trait/regeneration",
@@ -2758,10 +3208,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Turn-start healing that is suppressed after radiant damage or a critical hit; data has a bare heal activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/action/marine-burst",
@@ -2798,9 +3257,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity; damage comes from the base attack, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/action/multiattack",
@@ -2837,9 +3305,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/action/tail-marid-form-only",
@@ -2878,9 +3355,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone applies only if the target is Huge or smaller; data applies prone unconditionally.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/bonus/fluid-form",
@@ -2917,9 +3403,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Transform activity covers the shape change.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/legendary/misty-burst",
@@ -2995,9 +3490,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Emanation save for half damage is in data; the pull toward the source and the use-again limit are not.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/trait/amphibious",
@@ -3032,9 +3536,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Water breathing, nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/trait/elemental-restoration",
@@ -3069,9 +3582,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Revival after death over days; outside combat.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/trait/legendary-resistance",
@@ -3108,9 +3630,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; data only has a resource-spending activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/trait/spellcasting",
@@ -3154,9 +3685,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities with uses carry the spell list; one spell has a restricted option set.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/trait/wishes",
@@ -3196,9 +3736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Three-use cast activity is in data; the target restriction is outside combat automation.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bane/action/gauntlet",
@@ -3235,9 +3784,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity; damage comes from the base attack, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bane/action/multiattack",
@@ -3274,9 +3832,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bane/action/oppressive-burst",
@@ -3315,9 +3882,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No reactions until the start of the attacker's next turn; effect lacks that end event.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bane/reaction/counterattack",
@@ -3354,9 +3930,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction triggered by being hit, attacking the triggering creature; data has an empty utility activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bane/trait/determined-survivor",
@@ -3393,9 +3978,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Turn-start healing only while Bloodied with at least 1 HP; the heal activity has no condition.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bane/trait/spellcasting",
@@ -3434,9 +4028,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities with uses carry the spell list.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bhaal/action/cursed-blade",
@@ -3473,9 +4076,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on the attack against a wounded target and the returning weapon; data lacks the condition.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bhaal/action/multiattack",
@@ -3512,9 +4124,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sequences attacks and optionally swaps one for Spellcasting; no own effect.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bhaal/trait/blood-soaked-resolve",
@@ -3553,9 +4174,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves only while Bloodied; the effect has no condition and one ability key looks misspelled (dez).",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-bhaal/trait/spellcasting",
@@ -3594,9 +4224,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities with uses carry the spell list.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-myrkul/action/multiattack",
@@ -3633,9 +4272,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-myrkul/action/necrotic-burst",
@@ -3674,9 +4322,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack damage is in data; the no-healing rider needs an end at the attacker's next turn, which the effect lacks.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-myrkul/trait/nearer-to-the-dead",
@@ -3715,9 +4372,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Immunities apply only while Bloodied; the transferring effect has no such condition.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:cultist-of-myrkul/trait/spellcasting",
@@ -3757,9 +4423,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities with uses carry the spell list.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/action/death-touch",
@@ -3796,9 +4471,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack activity; damage comes from the base attack, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/action/mindwrack-bolt",
@@ -3837,9 +4521,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poisoned lasts until the start of the attacker's next turn; the effect has no such end event.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/action/multiattack",
@@ -3876,9 +4569,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only sequences other attacks the data already carries; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/legendary/attack",
@@ -3956,10 +4658,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "No item data; casts a spell at higher level and cannot be reused until the next turn.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/trait/culling-aura",
@@ -3998,9 +4709,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "End-of-turn emanation aura limited to Bloodied creatures; the save activity is not conditioned on that.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/trait/legendary-resistance",
@@ -4037,9 +4757,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice to turn a failed save into a success at use time; data only spends the resource, nothing applies the swap.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/trait/magic-resistance",
@@ -4074,10 +4803,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves against a stated category (spells and magical effects); data carries no effect for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:dead-three-scion/trait/spellcasting",
@@ -4120,9 +4858,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells are present with uses where limited; nothing beyond the casting.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:deep-dragon-wyrmling/action/nightmare-breath",
@@ -4161,9 +4908,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge breath: save activity with half on success, cone template, Frightened effect and recharge uses all present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:deep-dragon-wyrmling/action/rend",
@@ -4200,9 +4956,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with damage; the attack activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:domestic-wonder/trait/mechanical-determination",
@@ -4242,9 +5007,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Drop-to-1-HP save at 0 HP with damage-based DC and exceptions for Lightning and crits; data has only an empty save activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:domestic-wonder/trait/wind-up-operation",
@@ -4283,9 +5057,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Unconscious until wound-up, then runs for a duration or until deactivated; data has a permanent Unconscious effect, no event-ended wake-up.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-elite-warrior-of-lolth/action/drow-hand-crossbow",
@@ -4326,9 +5109,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poison-and-sleep rider ends when the target takes damage or is woken; data applies both statuses with no end-on-event.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-elite-warrior-of-lolth/action/multiattack",
@@ -4365,9 +5157,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-elite-warrior-of-lolth/action/shortsword",
@@ -4404,9 +5205,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-elite-warrior-of-lolth/trait/fey-ancestry",
@@ -4441,9 +5251,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against one condition plus immunity to magical sleep; circumstance-limited, not in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-elite-warrior-of-lolth/trait/sunlight-sensitivity",
@@ -4478,9 +5297,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attack rolls while in sunlight; circumstance-limited, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-elite-warrior-of-lolth/trait/underdark-magic",
@@ -4519,9 +5347,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Limited-use cast activities with uses and daily recovery already present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-mage-of-lolth/action/abyssal-burst",
@@ -4558,9 +5395,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-mage-of-lolth/action/multiattack",
@@ -4597,9 +5443,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-mage-of-lolth/trait/fey-ancestry",
@@ -4634,9 +5489,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against one condition plus immunity to magical sleep; circumstance-limited, not in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-mage-of-lolth/trait/spellcasting",
@@ -4677,9 +5541,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells are present; casting only.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-mage-of-lolth/trait/sunlight-sensitivity",
@@ -4714,9 +5587,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attack rolls while in sunlight; circumstance-limited, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-mage-of-lolth/trait/underdark-magic",
@@ -4754,9 +5636,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Limited-use cast activities with uses and daily recovery already present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-of-lolth/action/drow-hand-crossbow",
@@ -4797,9 +5688,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Unconscious only on failing by 5 or more and ends on damage or waking; data applies Unconscious unconditionally.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-of-lolth/action/rapier",
@@ -4836,9 +5736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with damage.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-of-lolth/trait/fey-ancestry",
@@ -4873,9 +5782,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against one condition plus immunity to magical sleep; circumstance-limited, not in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-of-lolth/trait/spellcasting",
@@ -4913,9 +5831,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells are present with uses where limited; nothing beyond the casting.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-of-lolth/trait/sunlight-sensitivity",
@@ -4950,9 +5877,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attack rolls while in sunlight; circumstance-limited, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-priestess-of-lolth/action/multiattack",
@@ -4989,9 +5925,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-priestess-of-lolth/action/scourge",
@@ -5028,9 +5973,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-priestess-of-lolth/action/spider-vortex",
@@ -5069,9 +6023,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recharge save-for-half in an emanation with Restrained effect; data has template, save and recharge uses.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-priestess-of-lolth/trait/fey-ancestry",
@@ -5106,9 +6069,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against one condition plus immunity to magical sleep; circumstance-limited, not in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-priestess-of-lolth/trait/lolths-blessing",
@@ -5148,9 +6120,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Limited-use cast activities with uses and daily recovery already present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-priestess-of-lolth/trait/spellcasting",
@@ -5189,9 +6170,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells are present with uses where limited; nothing beyond the casting.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:drow-priestess-of-lolth/trait/sunlight-sensitivity",
@@ -5226,9 +6216,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on attack rolls while in sunlight; circumstance-limited, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:flying-wonder/bonus/chime",
@@ -5304,9 +6303,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dash as a bonus action; nothing beyond the standard action.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:flying-wonder/trait/increased-carrying-capacity",
@@ -5343,9 +6351,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carrying capacity bonus carried by a transferring effect on the encumbrance key.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:flying-wonder/trait/wind-up-operation",
@@ -5384,9 +6401,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Unconscious until wound-up, then runs for a duration or until deactivated; data has a permanent Unconscious effect, no event-ended wake-up.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/action/dread-dagger",
@@ -5423,9 +6449,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/action/multiattack",
@@ -5462,9 +6497,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/action/tyrants-blade",
@@ -5504,9 +6548,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra psychic damage only if the target is already Frightened, otherwise the status; data has both unconditionally.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/bonus/withdraw",
@@ -5585,9 +6638,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Repeating save each turn ends the effect, speed 0, cannot reuse until next turn; data only partly models it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/legendary/stealth-attack",
@@ -5624,9 +6686,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Composite legendary action: one attack plus another action; data only has an empty expend-use activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/trait/evasion",
@@ -5661,9 +6732,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dex-save-for-half becomes none on success, blocked while Incapacitated; data has nothing for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/trait/legendary-resistance",
@@ -5700,9 +6780,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice to turn a failed save into a success at use time; data only spends the resource, nothing applies the swap.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/trait/spellcasting",
@@ -5744,9 +6833,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities present with uses; a listed spell has no activity and one is unlabeled, so a check is wise.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:manshoon/action/arcane-burst",
@@ -5783,9 +6881,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:manshoon/action/multiattack",
@@ -5859,9 +6966,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against a stated category (spells and magical effects); data carries no effect for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:manshoon/trait/misty-step",
@@ -5941,9 +7057,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the two reaction spells exist; trigger handled by reaction activation.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:manshoon/trait/spellcasting",
@@ -5994,9 +7119,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells with uses; casting only.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-guard/action/clockwork-crossbow",
@@ -6033,9 +7167,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-guard/action/multiattack",
@@ -6072,9 +7215,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-guard/action/scimitar",
@@ -6111,9 +7263,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-guard/reaction/parry",
@@ -6150,10 +7311,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction adding a bonus to AC against a melee hit while armed; data has only an empty use activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-guard/trait/evasion",
@@ -6188,10 +7358,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Dex-save-for-half becomes none on success, blocked while Incapacitated; data has nothing for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-hulk/action/halting-slam",
@@ -6230,9 +7409,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with an effect zeroing movement for a short duration via the movement key.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-hulk/action/multiattack",
@@ -6269,9 +7457,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-hulk/action/radiant-ray",
@@ -6308,9 +7505,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-hulk/trait/evasion",
@@ -6345,10 +7551,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Dex-save-for-half becomes none on success, blocked while Incapacitated; data has nothing for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-hulk/trait/magic-resistance",
@@ -6383,10 +7598,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves against a stated category (spells and magical effects); data carries no effect for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-steed/action/hooves",
@@ -6426,9 +7650,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus damage and Prone only if it moved straight toward the target beforehand and size-limited; data applies them unconditionally.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-steed/bonus/nimble-movement",
@@ -6502,10 +7735,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Dex-save-for-half becomes none on success, blocked while Incapacitated; data has nothing for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-agent/action/dread-stinger",
@@ -6542,9 +7784,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-agent/action/mindwarp-ray",
@@ -6583,9 +7834,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged attack with Charmed effect applied on hit for a short duration.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-agent/action/multiattack",
@@ -6622,9 +7882,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-agent/bonus/teleport",
@@ -6698,10 +7967,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves against a stated category (spells and magical effects); data carries no effect for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-agent/trait/protective-magic",
@@ -6739,9 +8017,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction casts of two spells with limited daily uses already in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-agent/trait/spellcasting",
@@ -6783,9 +8070,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells are present with uses where limited; nothing beyond the casting.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-hatchling/action/multiattack",
@@ -6822,9 +8118,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary; the listed attacks are separate items, nothing extra to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-hatchling/action/stinger",
@@ -6861,9 +8166,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-hatchling/trait/magic-resistance",
@@ -6898,10 +8212,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves against a stated category (spells and magical effects); data carries no effect for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:phaerimm-hatchling/trait/spellcasting",
@@ -6939,9 +8262,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the listed spells are present with uses where limited; nothing beyond the casting.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:polar-serpent/action/bite",
@@ -6978,9 +8310,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:polar-serpent/action/constrict",
@@ -7020,9 +8361,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple plus Restrained with escape DC, size limit and linked end; data lacks the escape DC and end-on-grapple link.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:polar-serpent/action/multiattack",
@@ -7059,9 +8409,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack summary naming Bite and Constrict; each is its own item.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:polar-serpent/trait/misty-slithering",
@@ -7096,9 +8455,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Squeezing through narrow spaces; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:queen-forfallen/action/greataxe",
@@ -7137,9 +8505,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with Poisoned effect until end of next turn.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:queen-forfallen/action/handaxe",
@@ -7176,9 +8553,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with damage (extra damage typed in the activity where needed); no conditional rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:queen-forfallen/action/multiattack",
@@ -7215,9 +8601,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:queen-forfallen/bonus/rusts-grip",
@@ -7257,9 +8652,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save with disadvantage when poisoned, repeat save each turn, and a worse outcome on a bigger failure: needs a rule beyond data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:queen-forfallen/trait/inspiring-presence",
@@ -7296,9 +8700,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura giving chosen allies advantage on attacks, off while the source is incapacitated.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:queen-forfallen/trait/magic-resistance",
@@ -7333,10 +8746,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Data lacks any effect; advantage on saves against spells and magical effects is a conditional rule needing an entry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-behemoth/action/multiattack",
@@ -7373,9 +8795,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-behemoth/action/rusted-shot-put",
@@ -7414,9 +8845,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged attack with a short poisoned condition; activity and effect carry it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-behemoth/action/slam",
@@ -7453,9 +8893,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with damage; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-behemoth/reaction/rust-riddled-hide",
@@ -7494,9 +8943,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction triggered by being hit with weapon-type damage, then an area save; trigger and filter need a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-berserker/action/greatsword",
@@ -7535,9 +8993,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a poisoned condition until the end of its next turn; activity and effect carry it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-berserker/action/javelin",
@@ -7576,9 +9043,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a poisoned condition until the end of its next turn; activity and effect carry it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-berserker/action/multiattack",
@@ -7615,9 +9091,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-wyrm/action/bite",
@@ -7654,9 +9139,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with damage; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-wyrm/action/multiattack",
@@ -7693,9 +9187,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-wyrm/action/steam-breath",
@@ -7732,9 +9235,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breath save with half damage is in data, but the burning rider and the ignored underwater resistance are not carried.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-wyrm/bonus/encasing-rust",
@@ -7773,9 +9285,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Con save, damage, poisoned plus paralyzed effect with the same duration; the effect lists both statuses.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:rusted-wyrm/trait/legendary-resistance",
@@ -7812,9 +9333,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt rule and a usage limit.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/action/corroding-breath",
@@ -7851,9 +9381,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage type is chosen at use time between two types; data holds a fixed part.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/action/multiattack",
@@ -7890,9 +9429,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/action/rend",
@@ -7929,9 +9477,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with two damage types; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/legendary/pounce",
@@ -7968,9 +9525,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Movement plus one attack as a legendary action; nothing to carry beyond the attack.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/legendary/sickening-ray",
@@ -8007,9 +9573,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Legendary use of a cast activity for a fixed spell.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/legendary/terrifying-presence",
@@ -8048,9 +9623,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save with damage and frightened is data, but the restriction on reuse until its next turn needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/trait/legendary-resistance",
@@ -8087,9 +9671,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt rule and a usage limit.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/trait/life-suppression",
@@ -8126,9 +9719,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura stopping healing for creatures near the source; no effect carries it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/trait/magic-resistance",
@@ -8163,10 +9765,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Data lacks any effect; advantage on saves against spells and magical effects is a conditional rule needing an entry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/trait/soul-gem",
@@ -8201,9 +9812,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Revival after days and a phylactery-like object; no combat action to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/trait/spellcasting",
@@ -8249,9 +9869,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "List of spells with cast activities already present; save DC comes with the cast.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/action/corrosive-burst",
@@ -8288,9 +9917,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage type chosen at use between acid and necrotic; data holds a single attack.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/action/multiattack",
@@ -8327,9 +9965,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/action/paralyzing-touch",
@@ -8368,9 +10015,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with paralyzed until the start of its next turn; effect present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/legendary/deathly-teleport",
@@ -8408,9 +10064,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport plus damage to creatures around the space left; the area is centred on the origin point, needing placement logic.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/legendary/dissolve",
@@ -8447,9 +10112,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grants one attack as a legendary action; nothing beyond the attack.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/legendary/terrifying-presence",
@@ -8488,9 +10162,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save with damage and frightened is data, but the restriction on reuse until its next turn needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/trait/legendary-resistance",
@@ -8527,9 +10210,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt rule and a usage limit.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/trait/life-suppression",
@@ -8566,9 +10258,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura stopping healing for creatures near the source; no effect carries it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/trait/magic-resistance",
@@ -8603,10 +10304,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Data lacks any effect; advantage on saves against spells and magical effects is a conditional rule needing an entry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/trait/protective-magic",
@@ -8644,9 +10354,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction cast of two spells triggered by a spell being cast; trigger needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/trait/soul-gem",
@@ -8681,9 +10400,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Revival after days and a phylactery-like object; no combat action to automate.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/trait/spellcasting",
@@ -8730,9 +10458,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "List of spells with cast activities already present; save DC comes with the cast.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spirit-dragon-wyrmling/action/rend",
@@ -8769,9 +10506,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with two damage types; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spirit-dragon-wyrmling/action/ruinous-breath",
@@ -8808,9 +10554,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save for damage, half on success, with recharge use; all in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spirit-dragon-wyrmling/action/time-warping-breath",
@@ -8849,9 +10604,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Halved speed, no reactions, one action type per turn, repeated save each turn and timed expiry: needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spore-of-moander/action/consume",
@@ -8892,9 +10656,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple with escape DC, start-of-turn damage, creature capacity limit, moving captives along.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spore-of-moander/action/multiattack",
@@ -8931,9 +10704,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spore-of-moander/action/tendril",
@@ -8970,9 +10752,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack data fine, but the pull toward itself for size-limited targets is a rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spore-of-moander/trait/explosive-core",
@@ -9009,9 +10800,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggered when the creature takes fire damage; area damage in response.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:spore-of-moander/trait/rolling-mass",
@@ -9046,9 +10846,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ignoring difficult terrain cost for movement; no effect in data, needs a movement flag or rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:swanmay/action/beak-swan-form-only",
@@ -9087,9 +10896,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone applied only if the target is Large or smaller; data applies it unconditionally.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:swanmay/action/longbow-humanoid-form-only",
@@ -9126,9 +10944,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack with damage; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:swanmay/action/multiattack",
@@ -9165,9 +10992,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:swanmay/action/scimitar-humanoid-form-only",
@@ -9204,9 +11040,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack with damage; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:swanmay/bonus/shape-shift",
@@ -9243,9 +11088,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Transform activity present; stats stay the same.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:swanmay/trait/flyby-swan-form-only",
@@ -9280,9 +11134,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Moving out of reach never provokes an opportunity attack; needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:swanmay/trait/spellcasting",
@@ -9323,9 +11186,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "List of spells with cast activities already present; save DC comes with the cast.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/action/deathly-grasp",
@@ -9366,9 +11238,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save, restrained with repeated save each turn, worse results on later failures and temp HP gain.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/action/eldritch-burst",
@@ -9405,9 +11286,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain attack with damage; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/action/multiattack",
@@ -9444,9 +11334,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/action/paralyzing-touch",
@@ -9485,9 +11384,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with paralyzed until the start of its next turn; effect present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/legendary/disrupt-life",
@@ -9524,9 +11432,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Area save excluding undead, half on success, and a reuse restriction; filter needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/legendary/eldritch-jaunt",
@@ -9563,9 +11480,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "One attack and an optional teleport as a legendary action; nothing to carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/legendary/life-rending-gaze",
@@ -9604,9 +11530,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Single-target save with damage, half on success, and frightened; effect present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/trait/illusory-disguise",
@@ -9643,9 +11578,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disguise spell with duration conditions and check disadvantage; social, outside combat.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/trait/legendary-resistance",
@@ -9682,9 +11626,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at the moment of a failed save to succeed instead; needs a prompt rule and a usage limit.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/trait/protective-magic",
@@ -9722,9 +11675,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction cast of two spells triggered by a spell being cast; trigger needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/trait/spellcasting",
@@ -9774,9 +11736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "List of spells with cast activities already present; save DC comes with the cast.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:valindra-shadowmantle/trait/spirit-gem",
@@ -9811,9 +11782,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Return from death after days; no combat action.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:werewyvern/action/javelin-humanoid-or-hybrid-form-only",
@@ -9837,9 +11817,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data; plain attack with nothing beyond damage in the text.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:werewyvern/action/multiattack",
@@ -9876,9 +11865,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:werewyvern/action/rend",
@@ -9915,9 +11913,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain melee attack with damage; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:werewyvern/action/stinger-wyvern-or-hybrid-form-only",
@@ -9958,9 +11965,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with poison rider, follow-up save for a curse, and a death-trigger transformation for humanoids.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:werewyvern/bonus/shape-shift",
@@ -9998,9 +12014,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Transform activities for the forms are present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:werewyvern/trait/flyby-wyvern-or-hybrid-form-only",
@@ -10024,9 +12049,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Moving out of reach never provokes an opportunity attack; needs a rule. No item data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:young-deep-dragon/action/multiattack",
@@ -10063,9 +12097,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:young-deep-dragon/action/nightmare-breath",
@@ -10104,9 +12147,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save for damage, half on success, with frightened effect and uses.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:young-deep-dragon/action/rend",
@@ -10143,9 +12195,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with two damage types; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:young-spirit-dragon/action/multiattack",
@@ -10182,9 +12243,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Multiattack only picks among attacks; no mechanical rider the data must carry.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:young-spirit-dragon/action/rend",
@@ -10221,9 +12291,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with two damage types; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:young-spirit-dragon/action/ruinous-breath",
@@ -10260,9 +12339,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone save for damage, half on success, with recharge use; all in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:young-spirit-dragon/action/time-warping-breath",
@@ -10301,9 +12389,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Halved speed, no reactions, one action type per turn, repeated save each turn and timed expiry: needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-paladin-of-bane/action/dooming-blade",
@@ -10340,9 +12437,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with two damage types; the activity covers it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-paladin-of-bane/action/multiattack",
@@ -10379,9 +12485,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack routine summary; each attack is its own item, so nothing extra to automate in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-paladin-of-bane/action/oppressive-ray",
@@ -10418,9 +12533,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged attack with psychic damage; attack activity carries it, no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-paladin-of-bane/trait/aura-of-dread",
@@ -10459,9 +12583,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Emanation aura halving Speed with owner-chosen exemptions; data has only a non-transfer effect and a radius.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-paladin-of-bane/trait/spellcasting",
@@ -10499,9 +12632,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for the two listed spells with use consumption already present.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-soldier/action/knock-down",
@@ -10540,9 +12682,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone applies only to Medium or smaller targets; data applies prone unconditionally on a failed save.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-soldier/action/multiattack",
@@ -10579,9 +12730,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack routine summary; each attack is its own item, so nothing extra to automate in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-soldier/action/pistol",
@@ -10618,9 +12778,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Plain ranged weapon attack with piercing damage; attack activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zhentilar-soldier/action/shortsword",
@@ -10657,9 +12826,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee weapon attack with extra poison damage part present in the activity.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/action/bewildering-bolt",
@@ -10698,9 +12876,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged attack plus Charmed status until end of target's next turn; standard duration handling should cover it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/action/multiattack",
@@ -10737,9 +12924,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack routine summary; each attack is its own item, so nothing extra to automate in data.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/action/slam",
@@ -10776,9 +12972,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Melee attack with bludgeoning plus extra necrotic part present; no rider.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/legendary/retaliation",
@@ -10856,9 +13061,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Conditional disadvantage on the save, charm lasting until the caster dies, no-ally rider, and a reuse lockout; data has only a save, half damage and plain charm.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/trait/chardalyn-sense",
@@ -10893,9 +13107,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat awareness of emotions near a material; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/trait/counterspell",
@@ -10934,10 +13157,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Reaction cast of a spell on a trigger; data matching is ambiguous and no trigger handling is visible.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/trait/legendary-resistance",
@@ -10974,9 +13206,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choose-to-succeed prompt on a failed save; data only consumes a resource use.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/trait/magic-resistance",
@@ -11011,10 +13252,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Advantage on saves against spells and magical effects; data has no activity or effect for it.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/trait/next-of-the-seven-6-year",
@@ -11049,9 +13299,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Rebirth after death over days via a distant object; not a combat-time effect.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/trait/spellcasting",
@@ -11097,9 +13356,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-fraif-005",
+          "at": "2026-11-21T19:58:32.966Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities for each listed spell with use consumption on the limited ones.",
+      "state": "triaged"
     }
   ]
 }

@@ -1,5 +1,1501 @@
 [
   {
+    "key": "efa:feat:greater-mark-of-detection",
+    "verdict": "entry",
+    "why": "Die upgrade is carried by data; the See Invisibility share to a creature within range is a cast-time modification the data lacks.",
+    "confidence": 0.6,
+    "by": "reader-efa-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feat:greater-mark-of-hospitality",
+    "verdict": "entry",
+    "why": "Spell modification at cast time: exhaustion reduction and temp HP to creatures in range, once per long rest; data only has the die scale.",
+    "confidence": 0.65,
+    "by": "reader-efa-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feat:greater-mark-of-making",
+    "verdict": "entry",
+    "why": "Free Magic Weapon cast as level 3 is a cast-time choice the data does not express; die scale only is in data.",
+    "confidence": 0.65,
+    "by": "reader-efa-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feat:greater-mark-of-shadow",
+    "verdict": "entry",
+    "why": "Free Invisibility cast at level 3 is a cast-time choice; data has only the die scale.",
+    "confidence": 0.65,
+    "by": "reader-efa-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feat:potent-dragonmark",
+    "verdict": "entry",
+    "why": "Extra spell slot restricted to mark spells, level from half character level, regained on short or long rest; data has no uses or effect for it.",
+    "confidence": 0.65,
+    "by": "reader-efa-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feature:artificer/6/magic-item-tinker",
+    "verdict": "entry",
+    "why": "Bonus action options on created items: recharge via slot, drain into a slot, transmute. Data has stub activities but no slot handling.",
+    "confidence": 0.6,
+    "by": "reader-efa-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feature:artificer/alchemist/3/experimental-elixir",
+    "verdict": "entry",
+    "why": "Random or chosen elixir effects consumed by drinking as bonus action, tied to table results. Data has stub activities without the table.",
+    "confidence": 0.65,
+    "by": "reader-efa-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feature:artificer/armorer/3/armor-model",
+    "verdict": "data",
+    "why": "Enchant activity with an effect per model already present, switching special weapon ability usage.",
+    "confidence": 0.65,
+    "by": "reader-efa-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feature:artificer/armorer/5/extra-attack",
+    "verdict": "entry",
+    "why": "Data lacks any attack count effect; two attacks per Attack action needs a rule or count support.",
+    "confidence": 0.6,
+    "by": "reader-efa-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feature:artificer/artillerist/3/eldritch-cannon",
+    "verdict": "entry",
+    "why": "Creating the cannon: one at a time, once per rest or spend a slot, choice at use. Data has activities but not these limits.",
+    "confidence": 0.65,
+    "by": "reader-efa-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:feature:artificer/battle-smith/3/steel-defender",
+    "verdict": "entry",
+    "why": "Companion acting on your turn limited to Dodge unless commanded by bonus action, revive with slot. Summon activities exist but not command rules.",
+    "confidence": 0.65,
+    "by": "reader-efa-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:monster:lyrandar-scion/trait/jump",
+    "verdict": "data",
+    "why": "Plain spellcast of Jump with no extra conditions in the text; no item data though, so a data fix.",
+    "confidence": 0.6,
+    "by": "reader-efa-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:monster:orien-enforcer/trait/misty-step",
+    "verdict": "entry",
+    "why": "Casts Misty Step as a trait with no item data; bonus-action teleport spell to be provided.",
+    "confidence": 0.65,
+    "by": "reader-efa-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:monster:tarkanan-marauder/action/multiattack",
+    "verdict": "none",
+    "why": "Attack sequence chosen by the player; the data has a utility activity and each attack is separate. Nothing to automate.",
+    "confidence": 0.65,
+    "by": "reader-efa-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:monster:tharashk-hunter/action/multiattack",
+    "verdict": "none",
+    "why": "Attack sequence chosen by the player; the data has a utility activity and each attack is separate. Nothing to automate.",
+    "confidence": 0.65,
+    "by": "reader-efa-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:monster:umbragen-shadow-walker/action/multiattack",
+    "verdict": "none",
+    "why": "Attack sequence chosen by the player; the data has a utility activity and each attack is separate. Nothing to automate.",
+    "confidence": 0.65,
+    "by": "reader-efa-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:monster:vadalis-heir/action/lunar-wisp",
+    "verdict": "data",
+    "why": "Attack activity with radiant damage and an effect of invisible status; the light emission and invisibility denial are only approximated.",
+    "confidence": 0.65,
+    "by": "reader-efa-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:monster:vadalis-heir/action/multiattack",
+    "verdict": "none",
+    "why": "Attack sequence chosen by the player; the data has a utility activity and each attack is separate. Nothing to automate.",
+    "confidence": 0.65,
+    "by": "reader-efa-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "efa:spell:homunculus-servant",
+    "verdict": "entry",
+    "why": "Summon activity covers the summoning; text adds replacing the prior servant, acting right after the caster in initiative, and default Dodge when unordered. Unsure the engine handles these.",
+    "confidence": 0.65,
+    "by": "reader-efa-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:item:mechanical-wonder-domestic",
+    "verdict": "entry",
+    "why": "Summoned ally acting on the owner's initiative count right after, default Dodge without orders; no item data, so judged from text alone.",
+    "confidence": 0.6,
+    "by": "reader-fraif-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:item:mechanical-wonder-flying",
+    "verdict": "entry",
+    "why": "Ally construct sharing the owner's initiative, acting right after, defaults to Dodge; no item data, judged from text alone.",
+    "confidence": 0.6,
+    "by": "reader-fraif-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:item:mechanical-wonder-gyrocopter",
+    "verdict": "none",
+    "why": "Vehicle with fixed stats and cord glide rules; little automatable in combat. No item data.",
+    "confidence": 0.6,
+    "by": "reader-fraif-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:item:mechanical-wonder-mobility",
+    "verdict": "entry",
+    "why": "While active, sets owner's Speed to 30 ft and resists removal; data lacks any effect (no item data), a timed speed effect is needed.",
+    "confidence": 0.6,
+    "by": "reader-fraif-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:adult-deep-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half speed then one attack; data holds only an empty utility activity, so data lacks the compound action.",
+    "confidence": 0.6,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:adult-spirit-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half speed then one attack; data holds only an empty utility activity, so data lacks the compound action.",
+    "confidence": 0.6,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:adult-spirit-dragon/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spell list with altered concentration/temp HP rules for one spell; cast activities exist but the modification is not expressed.",
+    "confidence": 0.65,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:ancient-deep-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half speed then one attack; data holds only an empty utility activity, so data lacks the compound action.",
+    "confidence": 0.6,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:ancient-spirit-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half speed then one attack; data holds only an empty utility activity, so data lacks the compound action.",
+    "confidence": 0.6,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:ancient-spirit-dragon/trait/spellcasting",
+    "verdict": "entry",
+    "why": "Spell list with altered concentration/temp HP rules for one spell; cast activities exist but the modification is not expressed.",
+    "confidence": 0.65,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:aranea/bonus/shape-shift",
+    "verdict": "none",
+    "why": "Form change with unchanged statistics; no combat mechanic beyond narrative.",
+    "confidence": 0.65,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:aranea/trait/web-walker",
+    "verdict": "entry",
+    "why": "Ignores web movement restrictions and senses creatures on the web; data has nothing for it.",
+    "confidence": 0.65,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:biha-babir/legendary/misty-burst",
+    "verdict": "entry",
+    "why": "Teleport then one attack as a legendary action; data holds an empty utility activity, so data lacks it.",
+    "confidence": 0.6,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:dead-three-scion/legendary/attack",
+    "verdict": "none",
+    "why": "Grants one attack as a legendary action; the attacks exist separately.",
+    "confidence": 0.65,
+    "by": "reader-fraif-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:flying-wonder/bonus/chime",
+    "verdict": "entry",
+    "why": "Chooses an ally, grants advantage on its next check of certain kinds until next turn; data lacks effect; mostly out of combat.",
+    "confidence": 0.6,
+    "by": "reader-fraif-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:karas-chembryl/bonus/withdraw",
+    "verdict": "entry",
+    "why": "Half-speed move without opportunity attacks plus Hide; data lacks the no-provoke movement.",
+    "confidence": 0.65,
+    "by": "reader-fraif-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:manshoon/action/multiattack",
+    "verdict": "none",
+    "why": "Multiattack summary; the option to swap two attacks for spellcasting is a choice the data cannot express but is minor.",
+    "confidence": 0.65,
+    "by": "reader-fraif-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:manshoon/trait/misty-step",
+    "verdict": "entry",
+    "why": "No item data (not readable); a cast of a movement spell in combat is likely needed.",
+    "confidence": 0.6,
+    "by": "reader-fraif-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:nimblewright-steed/bonus/nimble-movement",
+    "verdict": "entry",
+    "why": "Disengage as a bonus action; data lacks any effect preventing opportunity attacks.",
+    "confidence": 0.65,
+    "by": "reader-fraif-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:phaerimm-agent/bonus/teleport",
+    "verdict": "none",
+    "why": "Short self-teleport; no save, damage or condition, movement is resolved by the table.",
+    "confidence": 0.65,
+    "by": "reader-fraif-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "fraif:monster:zlan/legendary/retaliation",
+    "verdict": "entry",
+    "why": "Legendary action granting one attack of choice; data has only an expend-use utility, data lacks the attack choice.",
+    "confidence": 0.65,
+    "by": "reader-fraif-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "frhof:feat:boon-of-fluid-forms",
+    "verdict": "entry",
+    "why": "Shapechange with temp HP from the form, early end at 0 temp HP, plus a bonus; transform activity lacks these riders.",
+    "confidence": 0.65,
+    "by": "reader-frhof-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "frhof:feature:paladin/noble-genies/3/djinnis-escape",
+    "verdict": "data",
+    "why": "Teleport, damage resistances and condition immunities until end of next turn are carried by the activity and effect.",
+    "confidence": 0.65,
+    "by": "reader-frhof-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "frhof:feature:sorcerer/spellfire/3/bolstering-flames",
+    "verdict": "none",
+    "why": "No item data; an option of Spellfire Burst, whose own entry carries the limits.",
+    "confidence": 0.6,
+    "by": "reader-frhof-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "frhof:feature:sorcerer/spellfire/3/radiant-fire",
+    "verdict": "none",
+    "why": "No item data; an option of Spellfire Burst, whose own entry carries the limits.",
+    "confidence": 0.6,
+    "by": "reader-frhof-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "frhof:feature:sorcerer/spellfire/6/absorb-spells",
+    "verdict": "entry",
+    "why": "Regain sorcery points when a target fails against your Counterspell; needs a spell hook, data only has a manual activity.",
+    "confidence": 0.65,
+    "by": "reader-frhof-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "frhof:item:adventurers-ring",
+    "verdict": "entry",
+    "why": "Bonus action toggles a light source; data lacks any light effect on the bearer, so a light rule would be needed.",
+    "confidence": 0.65,
+    "by": "reader-frhof-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "frhof:item:winter-camouflage",
+    "verdict": "entry",
+    "why": "Advantage on Stealth checks only in a fitting environment; data has no effect expressing it.",
+    "confidence": 0.65,
+    "by": "reader-frhof-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:1-rod-of-the-pact-keeper",
+    "verdict": "entry",
+    "why": "Data adds the bonus to all spells; text limits the DC bonus to Warlock spells. Slot regain has activities and uses.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:1-wraps-of-unarmed-power",
+    "verdict": "entry",
+    "why": "Data applies the bonus via enchant; the choice of Force or normal damage type at use time needs a rule.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:2-rod-of-the-pact-keeper",
+    "verdict": "entry",
+    "why": "Data adds the bonus to all spells; text limits the DC bonus to Warlock spells. Slot regain has activities and uses.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:2-wraps-of-unarmed-power",
+    "verdict": "entry",
+    "why": "Data applies the bonus via enchant; the choice of Force or normal damage type at use time needs a rule.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:3-rod-of-the-pact-keeper",
+    "verdict": "entry",
+    "why": "Data adds the bonus to all spells; text limits the DC bonus to Warlock spells. Slot regain has activities and uses.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:3-wraps-of-unarmed-power",
+    "verdict": "entry",
+    "why": "Data applies the bonus via enchant; the choice of Force or normal damage type at use time needs a rule.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:apparatus-of-kwalish",
+    "verdict": "entry",
+    "why": "Vehicle with its own stats, lever table and pressure damage; data lacks the vehicle rules.",
+    "confidence": 0.6,
+    "by": "reader-xdmg-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:cube-of-summoning",
+    "verdict": "entry",
+    "why": "Random spell table and a level-5 cast without concentration, with fixed DC and attack bonus, need a rule for the roll and the no-concentration cast",
+    "confidence": 0.6,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:dark-shard-amulet",
+    "verdict": "entry",
+    "why": "Data has a check and a cast activity but nothing joins them: the cast happens only on a successful check, once per long rest, with a cantrip chosen at use",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:deck-of-many-things",
+    "verdict": "none",
+    "why": "Random card draws, mostly narrative or DM adjudicated; a few lasting modifiers are one-off and not worth a combat rule",
+    "confidence": 0.6,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:driftglobe",
+    "verdict": "data",
+    "why": "Light-casting commands map to the cast or summon activities; a hovering globe has no combat relevance beyond that",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:efreeti-bottle",
+    "verdict": "entry",
+    "why": "First opening triggers a random outcome table (hostile, obedient, wishes) and delayed appearance at end of turn; data has only a summon",
+    "confidence": 0.6,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:eyes-of-charming",
+    "verdict": "entry",
+    "why": "Cast activity exists, but upcasting by spending extra charges is a choice at use time that data does not express",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:eyes-of-minute-seeing",
+    "verdict": "none",
+    "why": "Very short-range darkvision and an investigation advantage within 1 foot; no combat relevance",
+    "confidence": 0.6,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-bronze-griffon",
+    "verdict": "data",
+    "why": "Summon activity with a single use already creates the creature; duration and cooldown days are item uses, riders are minor",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-ebony-fly",
+    "verdict": "data",
+    "why": "Summon activity with a single use creates the giant fly; mount use and duration need nothing extra",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-golden-lions",
+    "verdict": "data",
+    "why": "Summon activity with two uses covers the pair of lions; duration and cooldown are carried by uses",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-marble-elephant",
+    "verdict": "data",
+    "why": "Summon activity with a single use already creates the creature; duration and cooldown days are item uses, riders are minor",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-onyx-dog",
+    "verdict": "data",
+    "why": "Summon activity with a single use already creates the creature; duration and cooldown days are item uses, riders are minor",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-serpentine-owl",
+    "verdict": "data",
+    "why": "Summon activity with a single use already creates the creature; duration and cooldown days are item uses, riders are minor",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-silver-raven",
+    "verdict": "data",
+    "why": "Summon activity with a single use already creates the creature; duration and cooldown days are item uses, riders are minor",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:gold-dragon-scale-mail",
+    "verdict": "entry",
+    "why": "no item data: the text is only a cross-reference stub, so the item cannot be judged and a person should check the full entry",
+    "confidence": 0.4,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:green-dragon-scale-mail",
+    "verdict": "entry",
+    "why": "no item data: the text is only a cross-reference stub, so the item cannot be judged and a person should check the full entry",
+    "confidence": 0.4,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:grenade-launcher",
+    "verdict": "data",
+    "why": "Text is only a reference stub to the grenade entry; the official item carries a save-for-damage activity",
+    "confidence": 0.55,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:hat-of-wizardry",
+    "verdict": "entry",
+    "why": "Data has a check but nothing links it to the cast: a cantrip chosen at use, cast only on success, once per long rest",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:horseshoes-of-speed",
+    "verdict": "data",
+    "why": "Speed bonus effect applied to the mount through an activity; the all-four-attached condition is not expressed",
+    "confidence": 0.65,
+    "by": "reader-xdmg-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:ioun-stone-mastery",
+    "verdict": "entry",
+    "why": "no item data; proficiency bonus raised by 1 while worn, needs a passive effect",
+    "confidence": 0.65,
+    "by": "reader-xdmg-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:ioun-stone-reserve",
+    "verdict": "entry",
+    "why": "no item data; stores spells cast into it and lets the wearer cast them later with the original caster's DC; unclear table need",
+    "confidence": 0.6,
+    "by": "reader-xdmg-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:midnight-tears",
+    "verdict": "none",
+    "why": "delayed poison at midnight, a timing outside combat; data has save and damage only",
+    "confidence": 0.6,
+    "by": "reader-xdmg-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:potion-of-speed",
+    "verdict": "entry",
+    "why": "haste without the lethargy at the end; cast activity alone would apply the spell's lethargy",
+    "confidence": 0.65,
+    "by": "reader-xdmg-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:ring-of-spell-storing",
+    "verdict": "code",
+    "why": "Stores spells cast into it and later casts them with the caster original DC; needs runtime state beyond data.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:scroll-of-titan-summoning-animal-lord",
+    "verdict": "none",
+    "why": "No item data; a hostile titan appears via the scroll, which is the DM placing a monster, so no rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:scroll-of-titan-summoning-blob-of-annihilation",
+    "verdict": "none",
+    "why": "No item data; a hostile titan appears via the scroll, which is the DM placing a monster, so no rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:scroll-of-titan-summoning-colossus",
+    "verdict": "none",
+    "why": "No item data; a hostile titan appears via the scroll, which is the DM placing a monster, so no rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:scroll-of-titan-summoning-elemental-cataclysm",
+    "verdict": "none",
+    "why": "No item data; a hostile titan appears via the scroll, which is the DM placing a monster, so no rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:scroll-of-titan-summoning-empyrean",
+    "verdict": "none",
+    "why": "No item data; a hostile titan appears via the scroll, which is the DM placing a monster, so no rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:scroll-of-titan-summoning-kraken",
+    "verdict": "none",
+    "why": "No item data; a hostile titan appears via the scroll, which is the DM placing a monster, so no rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:scroll-of-titan-summoning-tarrasque",
+    "verdict": "none",
+    "why": "No item data; a hostile titan appears via the scroll, which is the DM placing a monster, so no rule to automate.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:staff-of-the-python",
+    "verdict": "entry",
+    "why": "Thrown staff becomes a controlled snake sharing initiative, reverting with HP restore and 1 hour lockout; summon activity lacks that lifecycle.",
+    "confidence": 0.65,
+    "by": "reader-xdmg-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xdmg:item:white-dragon-scale-mail",
+    "verdict": "none",
+    "why": "No item data; text is only a cross reference stub, so nothing to judge.",
+    "confidence": 0.5,
+    "by": "reader-xdmg-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:adult-green-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half Speed then one Rend attack; data has only a utility activity with a use, no move or attack link.",
+    "confidence": 0.65,
+    "by": "reader-xmm-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:adult-red-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half Speed then one Rend attack; data has only a utility activity with a use, no move or attack link.",
+    "confidence": 0.65,
+    "by": "reader-xmm-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:adult-silver-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half Speed then one Rend attack; data has only a utility activity with a use, no move or attack link.",
+    "confidence": 0.65,
+    "by": "reader-xmm-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:adult-white-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half Speed then one Rend attack; data has only a utility activity with a use, no move or attack link.",
+    "confidence": 0.65,
+    "by": "reader-xmm-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-black-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half Speed then one Rend attack; data has only a utility activity with a use, no move or attack link.",
+    "confidence": 0.65,
+    "by": "reader-xmm-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-brass-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half Speed then one Rend attack; data has only a utility activity with a use, no move or attack link.",
+    "confidence": 0.65,
+    "by": "reader-xmm-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-bronze-dragon/legendary/pounce",
+    "verdict": "entry",
+    "why": "Move half Speed then one Rend attack; data has only a utility activity with a use, no move or attack link.",
+    "confidence": 0.65,
+    "by": "reader-xmm-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-copper-dragon/legendary/pounce",
+    "verdict": "none",
+    "why": "Move then one attack of an existing item; nothing to resolve beyond the attack and DM-driven movement, but a legendary rule could chain them",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-gold-dragon/legendary/pounce",
+    "verdict": "none",
+    "why": "Move then one attack of an existing item; nothing to resolve beyond the attack and DM-driven movement, but a legendary rule could chain them",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-green-dragon/legendary/pounce",
+    "verdict": "none",
+    "why": "Move then one attack of an existing item; nothing to resolve beyond the attack and DM-driven movement, but a legendary rule could chain them",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-red-dragon/legendary/pounce",
+    "verdict": "none",
+    "why": "Move then one attack of an existing item; nothing to resolve beyond the attack and DM-driven movement, but a legendary rule could chain them",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-silver-dragon/legendary/pounce",
+    "verdict": "none",
+    "why": "Move then one attack of an existing item; nothing to resolve beyond the attack and DM-driven movement, but a legendary rule could chain them",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ancient-white-dragon/legendary/pounce",
+    "verdict": "none",
+    "why": "Move then one attack of an existing item; nothing to resolve beyond the attack and DM-driven movement, but a legendary rule could chain them",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:animal-lord/action/multiattack",
+    "verdict": "data",
+    "why": "Sequence of two attacks plus the Animal Spirit action; the utility activity and the separate items carry the parts",
+    "confidence": 0.65,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:animal-lord/action/radiant-ray",
+    "verdict": "entry",
+    "why": "Data attaches a prone effect that the text does not mention and has no damage part; data fix or mismatch to review",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:animal-lord/bonus/shape-shift",
+    "verdict": "none",
+    "why": "Shape-shift bonus action with a choice of forms; stats unchanged, so little to resolve in combat",
+    "confidence": 0.65,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:animal-lord/legendary/feral-strike",
+    "verdict": "entry",
+    "why": "Move without provoking opportunity attacks then one attack; data is only a utility activity",
+    "confidence": 0.65,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:animal-lord/legendary/radiant-strike",
+    "verdict": "none",
+    "why": "Legendary action that just makes one attack of another item; nothing beyond that attack",
+    "confidence": 0.6,
+    "by": "reader-xmm-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:arcanaloth/trait/soul-tome",
+    "verdict": "none",
+    "why": "Tome is narrative support gating another action; no combat resolution the data must carry.",
+    "confidence": 0.65,
+    "by": "reader-xmm-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:arch-hag/legendary/malicious-magic",
+    "verdict": "entry",
+    "why": "Casts via Spellcasting but with a cooldown until its next turn start; limit not in the data.",
+    "confidence": 0.65,
+    "by": "reader-xmm-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:archmage/trait/misty-step",
+    "verdict": "entry",
+    "why": "Self-cast teleport spell with no item data; judged on text alone.",
+    "confidence": 0.65,
+    "by": "reader-xmm-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:azer-pyromancer/trait/hellish-rebuke",
+    "verdict": "entry",
+    "why": "Reaction cast tied to a spell trigger; no item data, judged on text alone.",
+    "confidence": 0.65,
+    "by": "reader-xmm-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:azer-pyromancer/trait/illumination",
+    "verdict": "none",
+    "why": "Light emission only; no combat resolution, token light is outside the rules engine.",
+    "confidence": 0.65,
+    "by": "reader-xmm-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:azer-sentinel/trait/illumination",
+    "verdict": "none",
+    "why": "Light emission only; no combat resolution, token light is outside the rules engine.",
+    "confidence": 0.65,
+    "by": "reader-xmm-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:barlgura/bonus/leap",
+    "verdict": "none",
+    "why": "Jump costing movement; no action or attack to resolve.",
+    "confidence": 0.65,
+    "by": "reader-xmm-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:beholder/bonus/antimagic-cone",
+    "verdict": "entry",
+    "why": "Cone that suppresses magic until next turn start; data has only a cone utility. May need engine support for spell suppression.",
+    "confidence": 0.6,
+    "by": "reader-xmm-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:blob-of-annihilation/trait/astral-implosion",
+    "verdict": "entry",
+    "why": "Effect on dropping to 0 HP releasing engulfed creatures; data has nothing.",
+    "confidence": 0.65,
+    "by": "reader-xmm-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:blood-hawk/action/beak",
+    "verdict": "entry",
+    "why": "Damage die depends on target being bloodied; data uses two separate attacks to choose from.",
+    "confidence": 0.65,
+    "by": "reader-xmm-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:bugbear-stalker/trait/abduct",
+    "verdict": "entry",
+    "why": "Free movement while dragging a grappled creature; data lacks any effect, minor movement rule.",
+    "confidence": 0.6,
+    "by": "reader-xmm-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:bugbear-warrior/trait/abduct",
+    "verdict": "entry",
+    "why": "Free movement while dragging a grappled creature; data lacks any effect, minor movement rule.",
+    "confidence": 0.6,
+    "by": "reader-xmm-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:bulette-pup/bonus/leap",
+    "verdict": "entry",
+    "why": "Bonus-action jump costing reduced movement; data only a utility activity with no movement effect.",
+    "confidence": 0.65,
+    "by": "reader-xmm-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:bulette/bonus/leap",
+    "verdict": "entry",
+    "why": "Bonus-action jump costing reduced movement; data only a utility activity with no movement effect.",
+    "confidence": 0.65,
+    "by": "reader-xmm-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:bullywug-bog-sage/bonus/leap",
+    "verdict": "entry",
+    "why": "Bonus-action jump costing reduced movement; data only a utility activity with no movement effect.",
+    "confidence": 0.65,
+    "by": "reader-xmm-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:bullywug-warrior/bonus/leap",
+    "verdict": "entry",
+    "why": "Bonus-action jump costing reduced movement; data only a utility activity with no movement effect.",
+    "confidence": 0.65,
+    "by": "reader-xmm-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:chimera/action/bite",
+    "verdict": "entry",
+    "why": "Extra damage dice when the attack had Advantage; data offers a separate activity but nothing selects it automatically.",
+    "confidence": 0.65,
+    "by": "reader-xmm-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:clay-golem/action/multiattack",
+    "verdict": "entry",
+    "why": "Attack count depends on whether Hasten was used this turn; a conditional the data cannot express.",
+    "confidence": 0.65,
+    "by": "reader-xmm-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:clay-golem/bonus/hasten",
+    "verdict": "entry",
+    "why": "Dash and Disengage bonus action; data only expends a use and lacks the movement effects.",
+    "confidence": 0.65,
+    "by": "reader-xmm-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:cloud-giant/trait/misty-step",
+    "verdict": "entry",
+    "why": "No item data; spell cast as a trait using spellcasting ability, would need a cast rule.",
+    "confidence": 0.6,
+    "by": "reader-xmm-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:couatl/trait/divine-aid",
+    "verdict": "entry",
+    "why": "No item data; cast of one of three spells with no components, would need a cast rule.",
+    "confidence": 0.6,
+    "by": "reader-xmm-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:cultist-fanatic/trait/spiritual-weapon",
+    "verdict": "entry",
+    "why": "No item data; casts a spell as a trait using the spellcasting ability, would need a cast rule.",
+    "confidence": 0.6,
+    "by": "reader-xmm-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:deer/action/ram",
+    "verdict": "entry",
+    "why": "Prone effect in data is not in the text; data fix needed to drop it.",
+    "confidence": 0.65,
+    "by": "reader-xmm-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:dire-worg/bonus/warp-step",
+    "verdict": "entry",
+    "why": "Teleport self plus a willing creature of choice at use time; data is only a utility with no effect.",
+    "confidence": 0.65,
+    "by": "reader-xmm-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:dracolich/legendary/pounce",
+    "verdict": "none",
+    "why": "Legendary move plus one attack; positioning and sequencing, no declarative effect.",
+    "confidence": 0.65,
+    "by": "reader-xmm-010",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:dryad/bonus/tree-stride",
+    "verdict": "none",
+    "why": "Conditional teleport between trees; position dependent, player moves the token.",
+    "confidence": 0.6,
+    "by": "reader-xmm-010",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:dust-mephit/trait/sleep",
+    "verdict": "entry",
+    "why": "No item data; casts a sleep spell in combat, needs a rule to cast it.",
+    "confidence": 0.65,
+    "by": "reader-xmm-010",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:elemental-cataclysm/legendary/eruption",
+    "verdict": "none",
+    "why": "Legendary action to make one attack; data is a bare marker, DM sequencing.",
+    "confidence": 0.65,
+    "by": "reader-xmm-010",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:empyrean-iota/trait/healing-word",
+    "verdict": "none",
+    "why": "No item data; the text just casts a spell at will with the listed ability, nothing beyond a cast.",
+    "confidence": 0.6,
+    "by": "reader-xmm-011",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:erinyes/trait/diabolical-restoration",
+    "verdict": "entry",
+    "why": "Revival on death outside a plane is an event-triggered effect; data has nothing.",
+    "confidence": 0.65,
+    "by": "reader-xmm-011",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:erinyes/trait/magic-rope",
+    "verdict": "none",
+    "why": "Equipment that gates an action and tracks object hit points; no automatable combat effect itself.",
+    "confidence": 0.6,
+    "by": "reader-xmm-011",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ettercap/bonus/reel",
+    "verdict": "entry",
+    "why": "Forced pull of a creature restrained by a specific effect; data has only a placeholder activity.",
+    "confidence": 0.65,
+    "by": "reader-xmm-011",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ghost/trait/etherealness",
+    "verdict": "entry",
+    "why": "No item data; casting a plane-shift style spell with mutual intangibility may need a rule, unclear.",
+    "confidence": 0.6,
+    "by": "reader-xmm-012",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:giant-ape/bonus/leap",
+    "verdict": "entry",
+    "why": "Jump by spending movement is a bonus action tied to movement; data has only a bare utility activity.",
+    "confidence": 0.65,
+    "by": "reader-xmm-012",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:green-hag/trait/coven-magic",
+    "verdict": "entry",
+    "why": "Casting needs two hag allies within 30 feet and a long rest; data has uses only, no proximity condition.",
+    "confidence": 0.65,
+    "by": "reader-xmm-014",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:grell/trait/abduct",
+    "verdict": "entry",
+    "why": "Free movement cost while moving a grappled creature; data has no movement rule.",
+    "confidence": 0.65,
+    "by": "reader-xmm-014",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:half-dragon/action/claw",
+    "verdict": "entry",
+    "why": "Extra damage whose type depends on a stored trait choice; data lists all types without the choice.",
+    "confidence": 0.65,
+    "by": "reader-xmm-015",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:half-dragon/action/dragons-breath",
+    "verdict": "entry",
+    "why": "Breath damage type follows the origin choice; recharge is in data but not the type choice.",
+    "confidence": 0.65,
+    "by": "reader-xmm-015",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:hydra/action/multiattack",
+    "verdict": "entry",
+    "why": "Attack count equals the number of heads, which changes in play; data has a fixed utility.",
+    "confidence": 0.65,
+    "by": "reader-xmm-015",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:hydra/trait/multiple-heads",
+    "verdict": "entry",
+    "why": "Head loss on heavy damage, regrowth unless fire damage, healing; needs tracked state, maybe more than a rule.",
+    "confidence": 0.6,
+    "by": "reader-xmm-015",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:hydra/trait/reactive-heads",
+    "verdict": "entry",
+    "why": "Extra reactions per head limited to opportunity attacks; data has nothing.",
+    "confidence": 0.65,
+    "by": "reader-xmm-015",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ice-mephit/trait/fog-cloud",
+    "verdict": "entry",
+    "why": "No item data; innate casting of a spell as an action, may need a cast rule.",
+    "confidence": 0.6,
+    "by": "reader-xmm-016",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:imp/trait/invisibility",
+    "verdict": "entry",
+    "why": "No item data; casts a spell on itself, a cast rule would be needed.",
+    "confidence": 0.6,
+    "by": "reader-xmm-016",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:intellect-devourer/action/steal-body",
+    "verdict": "code",
+    "why": "Possession with cover, stat adoption, forced exit and body death; far beyond declarative rules.",
+    "confidence": 0.65,
+    "by": "reader-xmm-016",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:kuo-toa-archpriest/trait/shield-of-faith",
+    "verdict": "entry",
+    "why": "No item data; casts a defensive spell on itself, a cast rule would be needed.",
+    "confidence": 0.6,
+    "by": "reader-xmm-016",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:kuo-toa-whip/trait/shield-of-faith",
+    "verdict": "entry",
+    "why": "No item data; self-cast spell needing its own setup and concentration handling.",
+    "confidence": 0.6,
+    "by": "reader-xmm-017",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:lizardfolk-sovereign/bonus/charge",
+    "verdict": "entry",
+    "why": "Bonus action move straight toward an enemy; data has only an empty utility activity.",
+    "confidence": 0.65,
+    "by": "reader-xmm-017",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:mage/trait/misty-step",
+    "verdict": "entry",
+    "why": "No item data; spell cast with no activity available, would need a rule or data fix.",
+    "confidence": 0.6,
+    "by": "reader-xmm-017",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:mummy/action/dreadful-glare",
+    "verdict": "entry",
+    "why": "Save and frightened are in data, but end of next turn duration and 24 hour immunity rider are not",
+    "confidence": 0.65,
+    "by": "reader-xmm-019",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:nalfeshnee/trait/demonic-restoration",
+    "verdict": "none",
+    "why": "Revival happens on death away from the encounter; nothing to automate in combat",
+    "confidence": 0.6,
+    "by": "reader-xmm-019",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:night-hag/trait/coven-magic",
+    "verdict": "data",
+    "why": "Cast activities with per-use limits present; the nearby-allies condition is not combat-enforced",
+    "confidence": 0.65,
+    "by": "reader-xmm-019",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:nightmare/trait/illumination",
+    "verdict": "none",
+    "why": "Light emission only; no combat rule beyond lighting",
+    "confidence": 0.65,
+    "by": "reader-xmm-019",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:nycaloth/trait/fiendish-restoration",
+    "verdict": "none",
+    "why": "Revival on death away from the encounter; nothing to automate in combat",
+    "confidence": 0.6,
+    "by": "reader-xmm-019",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:oni/trait/invisibility",
+    "verdict": "none",
+    "why": "Casts a spell on itself; the spell carries the effect; no item data, judged from text",
+    "confidence": 0.65,
+    "by": "reader-xmm-019",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:quasit/trait/invisibility",
+    "verdict": "entry",
+    "why": "no item data; self-cast of a spell with no components; probably a cast on self but unverified.",
+    "confidence": 0.6,
+    "by": "reader-xmm-021",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:rakshasa/action/cursed-touch",
+    "verdict": "entry",
+    "why": "Curse status exists but its rest-denial rider is not in the data; mostly outside combat.",
+    "confidence": 0.65,
+    "by": "reader-xmm-021",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:rust-monster/action/destroy-metal",
+    "verdict": "none",
+    "why": "Destroys an unattended object cube; no combat resolution needed",
+    "confidence": 0.65,
+    "by": "reader-xmm-022",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:salamander-fire-snake/trait/fire-aura",
+    "verdict": "entry",
+    "why": "End-of-turn aura damage to chosen creatures in an emanation; data has a turn-end activity but no true aura behaviour",
+    "confidence": 0.65,
+    "by": "reader-xmm-022",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:salamander-inferno-master/trait/fire-aura",
+    "verdict": "entry",
+    "why": "End-of-turn aura damage to chosen creatures in an emanation; data has a turn-end activity but no true aura behaviour",
+    "confidence": 0.65,
+    "by": "reader-xmm-022",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:salamander/trait/fire-aura",
+    "verdict": "entry",
+    "why": "End-of-turn aura damage to chosen creatures in an emanation; data has a turn-end activity but no true aura behaviour",
+    "confidence": 0.65,
+    "by": "reader-xmm-022",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:shadow-demon/trait/demonic-restoration",
+    "verdict": "none",
+    "why": "Revival in another plane after death; narrative, nothing to resolve in a combat round.",
+    "confidence": 0.6,
+    "by": "reader-xmm-023",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:shadow-dragon/legendary/pounce",
+    "verdict": "data",
+    "why": "Legendary action costing a use; move then one attack is player-driven, activity only consumes the legendary action.",
+    "confidence": 0.65,
+    "by": "reader-xmm-023",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:shield-guardian/trait/spell-storing",
+    "verdict": "none",
+    "why": "Spell storage by an amulet wearer; no activity or effect, rare and driven by the table, not an automated combat step.",
+    "confidence": 0.6,
+    "by": "reader-xmm-023",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:shrieker-fungus/reaction/shriek",
+    "verdict": "entry",
+    "why": "Reaction to a creature or light moving nearby; data has a bare reaction utility with no trigger.",
+    "confidence": 0.65,
+    "by": "reader-xmm-023",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:solar/trait/exalted-restoration",
+    "verdict": "none",
+    "why": "Revival in another plane after death; narrative, nothing to resolve in a combat round.",
+    "confidence": 0.6,
+    "by": "reader-xmm-023",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:sphinx-of-lore/legendary/arcane-prowl",
+    "verdict": "data",
+    "why": "Legendary action costing a use; teleport and the claw attack are player-driven choices.",
+    "confidence": 0.65,
+    "by": "reader-xmm-023",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:sphinx-of-valor/legendary/arcane-prowl",
+    "verdict": "data",
+    "why": "Legendary action costing a use; teleport and the claw attack are player-driven choices.",
+    "confidence": 0.65,
+    "by": "reader-xmm-023",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:sprite/trait/invisibility",
+    "verdict": "entry",
+    "why": "no item data; self-cast of a spell as an action, would need a cast rule",
+    "confidence": 0.6,
+    "by": "reader-xmm-024",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:stone-golem/trait/slow",
+    "verdict": "entry",
+    "why": "no item data; casts a spell as an action with a fixed DC, would need a cast rule",
+    "confidence": 0.6,
+    "by": "reader-xmm-024",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:tarrasque/legendary/onslaught",
+    "verdict": "entry",
+    "why": "Move half speed then attack as a legendary action; choice at use time, data only expends a use.",
+    "confidence": 0.6,
+    "by": "reader-xmm-025",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:tiger/bonus/nimble-escape",
+    "verdict": "entry",
+    "why": "Disengage or Hide at use time; data shows only a hiding effect, disengage missing.",
+    "confidence": 0.6,
+    "by": "reader-xmm-025",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:treant/action/animate-trees",
+    "verdict": "data",
+    "why": "Summon activity with stat adjustments in an effect; initiative sharing and duration conditions are unclear.",
+    "confidence": 0.65,
+    "by": "reader-xmm-025",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:ultroloth/trait/fiendish-restoration",
+    "verdict": "entry",
+    "why": "Revival on death outside a plane; data has nothing, effect is on death trigger.",
+    "confidence": 0.6,
+    "by": "reader-xmm-025",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:vampire-familiar/bonus/deathless-agility",
+    "verdict": "entry",
+    "why": "Dash or Disengage chosen at use time; data has no effect, so combat movement benefit is missing.",
+    "confidence": 0.65,
+    "by": "reader-xmm-026",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:vampire-spawn/bonus/deathless-agility",
+    "verdict": "entry",
+    "why": "Dash or Disengage chosen at use time; data has no effect, so combat movement benefit is missing.",
+    "confidence": 0.65,
+    "by": "reader-xmm-026",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:vampire-umbral-lord/legendary/umbral-strike",
+    "verdict": "none",
+    "why": "Legendary action moving then attacking; both parts are ordinary player-driven actions.",
+    "confidence": 0.65,
+    "by": "reader-xmm-026",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:vampire-umbral-lord/trait/hunger-of-hadar",
+    "verdict": "entry",
+    "why": "Spell cast with no component use and level override; no item data, judged from text alone.",
+    "confidence": 0.6,
+    "by": "reader-xmm-026",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:vampire/legendary/deathless-strike",
+    "verdict": "none",
+    "why": "Legendary action moving then attacking; both parts are ordinary player-driven actions.",
+    "confidence": 0.65,
+    "by": "reader-xmm-026",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:yuan-ti-abomination/bonus/shape-shift",
+    "verdict": "none",
+    "why": "Bonus-action form change with no combat numbers beyond the data use.",
+    "confidence": 0.65,
+    "by": "reader-xmm-028",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:yuan-ti-malison-type-1/bonus/shape-shift",
+    "verdict": "none",
+    "why": "Bonus-action form change with no combat numbers beyond the data use.",
+    "confidence": 0.65,
+    "by": "reader-xmm-028",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:yuan-ti-malison-type-2/bonus/shape-shift",
+    "verdict": "none",
+    "why": "Bonus-action form change with no combat numbers beyond the data use.",
+    "confidence": 0.65,
+    "by": "reader-xmm-028",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xmm:monster:yuan-ti-malison-type-3/bonus/shape-shift",
+    "verdict": "none",
+    "why": "Bonus-action form change with no combat numbers beyond the data use.",
+    "confidence": 0.65,
+    "by": "reader-xmm-028",
+    "reason": "low-confidence"
+  },
+  {
     "key": "xphb:feat:fey-touched",
     "verdict": "none",
     "why": "Spell choice and free casts granted through spell selection; no data of its own and nothing beyond cast rules.",

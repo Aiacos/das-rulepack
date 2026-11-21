@@ -20,20 +20,20 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | Ambiguous against the official module (wait for `npm run resolve`) | 168 |
 | No item in the official module | 425 |
 | Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 678 |
-| Verdict `none` (nothing to automate in combat) | 570 |
-| Verdict `data` (the item's own data is enough) | 130 |
-| Verdict `entry` (a declarative rule is needed and not written yet) | 184 |
+| Verdict `none` (nothing to automate in combat) | 1,271 |
+| Verdict `data` (the item's own data is enough) | 1,227 |
+| Verdict `entry` (a declarative rule is needed and not written yet) | 1,272 |
 | Verdict `code` (a script is needed) | 0 |
 | Verdict `engine` (needs something the engine lacks) | 0 |
-| Verdict `unverifiable` (no text) | 87 |
-| No verdict, in `registry/queue.json`, waiting for a person | 44 |
-| No verdict, left for reader agents | 3,199 |
+| Verdict `unverifiable` (no text) | 118 |
+| No verdict, in `registry/queue.json`, waiting for a person | 231 |
+| No verdict, left for reader agents | 95 |
 
-Who set the verdicts: rule 859, reader agents 695, SRD reading of November 2026 95. A reader agent's verdict is one reading of
+Who set the verdicts: reader agents 3,612, rule 859, SRD reading of November 2026 95. A reader agent's verdict is one reading of
 the text against the structure of the item's data; it was not checked by a second reader and not played. Verdicts below 0.7
 of confidence, and every `engine` verdict, were not applied: they are in the queue.
 
-Of the entries still without a verdict, 539 carry the hint `core-generic`: the engine has an entry under their
+Of the entries still without a verdict, 58 carry the hint `core-generic`: the engine has an entry under their
 identifier, but the identifier is a generic name shared by several entries, so the rule does not decide for them.
 
 Joined with a recorded difference against the official item: 38 by word order of the name,
@@ -61,8 +61,8 @@ Records in `registry/xphb.json`: 1461 inventoried.
 
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| item | 593 | 349 / 51 / 193 | 462 / 30 / 101 | 146 | 76 | 0 | 0 | 0 | 0 | 5 | 0 | 366 |
-| monster | 3 | 3 / 0 / 0 | 0 / 0 / 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |
+| item | 593 | 349 / 51 / 193 | 462 / 30 / 101 | 146 | 207 | 84 | 80 | 0 | 0 | 36 | 40 | 0 |
+| monster | 3 | 3 / 0 / 0 | 0 / 0 / 3 | 0 | 0 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
 
 Records in `registry/xdmg.json`: 596 inventoried.
 
@@ -70,8 +70,8 @@ Records in `registry/xdmg.json`: 596 inventoried.
 
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| item | 1 | 0 / 0 / 1 | 0 / 0 / 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
-| monster | 2146 | 2114 / 28 / 4 | 0 / 0 / 2146 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2146 |
+| item | 1 | 0 / 0 / 1 | 0 / 0 / 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| monster | 2146 | 2114 / 28 / 4 | 0 / 0 / 2146 | 0 | 407 | 826 | 733 | 0 | 0 | 0 | 100 | 80 |
 
 Records in `registry/xmm.json`: 2147 inventoried.
 
@@ -79,14 +79,14 @@ Records in `registry/xmm.json`: 2147 inventoried.
 
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| spell | 1 | 1 / 0 / 0 | 1 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
-| feat | 28 | 28 / 0 / 0 | 0 / 0 / 28 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 28 |
-| option | 4 | 0 / 0 / 4 | 0 / 0 / 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 |
-| feature | 60 | 49 / 0 / 11 | 0 / 0 / 60 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 60 |
-| species | 24 | 22 / 0 / 2 | 0 / 0 / 24 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 24 |
-| background | 17 | 17 / 0 / 0 | 0 / 0 / 17 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 17 |
-| item | 6 | 5 / 1 / 0 | 6 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 6 |
-| monster | 118 | 114 / 4 / 0 | 0 / 0 / 118 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 118 |
+| spell | 1 | 1 / 0 / 0 | 1 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
+| feat | 28 | 28 / 0 / 0 | 0 / 0 / 28 | 0 | 2 | 10 | 11 | 0 | 0 | 0 | 5 | 0 |
+| option | 4 | 0 / 0 / 4 | 0 / 0 / 4 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| feature | 60 | 49 / 0 / 11 | 0 / 0 / 60 | 0 | 27 | 6 | 21 | 0 | 0 | 0 | 6 | 0 |
+| species | 24 | 22 / 0 / 2 | 0 / 0 / 24 | 0 | 10 | 4 | 5 | 0 | 0 | 0 | 0 | 5 |
+| background | 17 | 17 / 0 / 0 | 0 / 0 / 17 | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| item | 6 | 5 / 1 / 0 | 6 / 0 / 0 | 0 | 1 | 1 | 4 | 0 | 0 | 0 | 0 | 0 |
+| monster | 118 | 114 / 4 / 0 | 0 / 0 / 118 | 0 | 0 | 59 | 52 | 0 | 0 | 0 | 7 | 0 |
 
 Records in `registry/efa.json`: 258 inventoried.
 
@@ -94,11 +94,11 @@ Records in `registry/efa.json`: 258 inventoried.
 
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| spell | 19 | 19 / 0 / 0 | 19 / 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 19 |
-| feat | 34 | 34 / 0 / 0 | 0 / 0 / 34 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 34 |
-| feature | 56 | 46 / 0 / 10 | 0 / 0 / 56 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 56 |
-| background | 18 | 18 / 0 / 0 | 0 / 0 / 18 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 18 |
-| item | 26 | 15 / 0 / 11 | 17 / 0 / 9 | 0 | 8 | 0 | 0 | 0 | 0 | 3 | 0 | 15 |
+| spell | 19 | 19 / 0 / 0 | 19 / 0 / 0 | 0 | 1 | 1 | 17 | 0 | 0 | 0 | 0 | 0 |
+| feat | 34 | 34 / 0 / 0 | 0 / 0 / 34 | 0 | 1 | 1 | 31 | 0 | 0 | 0 | 1 | 0 |
+| feature | 56 | 46 / 0 / 10 | 0 / 0 / 56 | 0 | 17 | 8 | 27 | 0 | 0 | 0 | 4 | 0 |
+| background | 18 | 18 / 0 / 0 | 0 / 0 / 18 | 0 | 18 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| item | 26 | 15 / 0 / 11 | 17 / 0 / 9 | 0 | 18 | 2 | 1 | 0 | 0 | 3 | 2 | 0 |
 
 Records in `registry/frhof.json`: 153 inventoried.
 
@@ -106,15 +106,15 @@ Records in `registry/frhof.json`: 153 inventoried.
 
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| item | 18 | 9 / 1 / 8 | 9 / 4 / 5 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 14 |
-| monster | 259 | 253 / 3 / 3 | 0 / 0 / 259 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 259 |
+| item | 18 | 9 / 1 / 8 | 9 / 4 / 5 | 0 | 7 | 1 | 6 | 0 | 0 | 0 | 4 | 0 |
+| monster | 259 | 253 / 3 / 3 | 0 / 0 / 259 | 0 | 52 | 93 | 97 | 0 | 0 | 0 | 17 | 0 |
 
 Records in `registry/fraif.json`: 277 inventoried.
 
 ## Not done
 
 - No rule was drafted from the `entry` and `code` verdicts, no independent review was made, nothing was played.
-- 3,199 entries still need a reader; 2,526 of them are monster features.
+- 95 entries still need a reader; 80 of them are monster features.
 - Ambiguous matches are not settled. Most are class features named "Ability Score Improvement" (the only same-name documents
   are general feats), same-name embedded items inside one actor, item variants, and items the equipment pack holds in
   several different copies.

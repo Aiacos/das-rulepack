@@ -32,9 +32,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:dead-magic-dweller",
@@ -67,9 +76,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:dragon-cultist",
@@ -102,9 +120,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:emerald-enclave-caretaker",
@@ -137,9 +164,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:flaming-fist-mercenary",
@@ -172,9 +208,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:genie-touched",
@@ -207,9 +252,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:harper",
@@ -242,9 +296,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:ice-fisher",
@@ -277,9 +340,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:knight-of-the-gauntlet",
@@ -312,9 +384,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:lords-alliance-vassal",
@@ -347,9 +428,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:moonwell-pilgrim",
@@ -382,9 +472,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:mulhorandi-tomb-raider",
@@ -417,9 +516,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:mythalkeeper",
@@ -452,9 +560,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:purple-dragon-squire",
@@ -487,9 +604,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:rashemi-wanderer",
@@ -522,9 +648,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:shadowmasters-exile",
@@ -557,9 +692,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:spellfire-initiate",
@@ -592,9 +736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:background:zhentarim-mercenary",
@@ -627,9 +780,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-001",
+          "at": "2026-11-21T19:58:30.310Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Background grants ability choices, feat, skills, a tool and equipment; nothing acts in combat. The granted feat is judged on its own entry.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-bloodshed",
@@ -668,9 +830,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage after an enemy drops to 0 plus once-per-turn proficiency-bonus extra damage while Bloodied; data has no usable condition or trigger.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-bountiful-health",
@@ -709,9 +880,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temp HP gain bonus and max-die hit dice recovery are modifiers to other rolls; data only has generic heal activities.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-communication",
@@ -746,9 +926,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Telepathy is carried by the effect; the rest is social or utility with no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-desperate-resilience",
@@ -785,9 +974,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Resistance applies only while Bloodied, and not to Force; the effect transfers unconditionally.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-exquisite-radiance",
@@ -822,9 +1020,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Maximized Radiant damage once per long rest plus a rider against undeath on kills; data has only a use counter.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-fluid-forms",
@@ -896,9 +1103,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reroll a failed save, once until next turn start; a reaction to a roll result the data cannot apply.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-poison-mastery",
@@ -933,9 +1149,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poison and Poisoned immunities are missing from data; once-per-turn maximized poison dice needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-revelry",
@@ -968,9 +1193,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the prepared spell, free cast, no components and concentration protection, and the singing restriction.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-terror",
@@ -1005,9 +1239,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Frightened immunity missing in data; reaction on a creature's turn start with a forced-movement save needs a trigger.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-the-bright-sun",
@@ -1046,9 +1289,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Toggled aura with turn-start temp HP for allies in range and end on incapacitation; data is only a toggle and heal.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-the-furious-storm",
@@ -1085,9 +1337,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Resistance and Bloodied-only immunity are absent from data; disadvantage on saves against own lightning/thunder spells.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-the-soul-drinker",
@@ -1122,9 +1383,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cold and Necrotic resistance missing from data; reaction heal triggered by an enemy dropping nearby needs a trigger.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:cold-caster",
@@ -1159,9 +1429,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once-per-turn on-hit rider: subtract a die from the target's next save before a stated time; data has only a utility stub.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:cult-of-the-dragon-initiate",
@@ -1199,9 +1478,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Frightening save has an effect, but 24-hour immunity and the inspiration rider on the source are not in data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:dragonscarred",
@@ -1238,9 +1526,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Chosen damage resistance missing from data; bonus-action use of another feat's save is conditional on a hit during Attack or Magic.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:emerald-enclave-fledgling",
@@ -1273,9 +1570,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "No item data for the spell or swap; data lacks the Help-action place swap with an Incapacitated check and spell tweaks.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:enclave-magic",
@@ -1308,9 +1614,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks spell grants and no-concentration free cast; advantage on Influence is non-combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:fairy-trickster",
@@ -1348,9 +1663,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disengage terrain rule plus a Wisdom save for disadvantage on saves; effect lasts until next turn and is limited per proficiency; data partly there.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:genie-magic",
@@ -1385,9 +1709,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast a chosen spell as a Magic action with slot level scaling by character level; a choice at use time.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:harper-agent",
@@ -1420,9 +1753,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Language, tool proficiency and the Help range extension add nothing the data or engine must handle in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:harper-teamwork",
@@ -1459,9 +1801,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Help-linked disadvantage on the first save and ending Frightened or Paralyzed on an ally after a save; data has a bare effect.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:lordly-resolve",
@@ -1498,9 +1849,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Group buff lasting a minute: stand-up reaction, charm and fear immunity or advantage on new saves; ends on incapacitation.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:lords-alliance-agent",
@@ -1537,9 +1897,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once-per-turn on-crit inspiration grant and a conditional advantage after an enemy hurts a nearby ally; data is a stub.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:mythal-touched",
@@ -1576,9 +1945,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to a spell attack hit or failed save then rolling on a table with a proficiency-based DC; data lacks the table.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:orders-resilience",
@@ -1615,9 +1993,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cheaper stand-up and advantage on Strength saves near a non-incapacitated ally; effect lacks proximity condition.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:purple-dragon-commandant",
@@ -1653,9 +2040,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temp HP heal is carried by data, but advantage on attacks while Bloodied is missing from the data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:purple-dragon-rook",
@@ -1690,9 +2086,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Inspiration to allies when rolling initiative, with use limit; data lacks the initiative trigger. Skill choice is non-combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:spellfire-adept",
@@ -1727,9 +2132,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once-per-turn extra hit dice added to Radiant spell damage, and ignoring Radiant resistance; data lacks these.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:spellfire-spark",
@@ -1765,9 +2179,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once-per-turn damage reduction from spells and a bonus-action cantrip; data has misconfigured heal and no trigger.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:street-justice",
@@ -1800,9 +2223,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Allies get advantage against a creature you grapple; data lacks it. Other benefits are out of combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:tyro-of-the-gauntlet",
@@ -1840,9 +2272,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to block a push or pull on an ally and a Ready-action disadvantage rider; data lacks the effect and trigger.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:zhentarim-ruffian",
@@ -1875,9 +2316,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Roll opportunity-attack damage twice and take either; spend Inspiration for group initiative advantage; data lacks both.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:zhentarim-tactics",
@@ -1910,9 +2360,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-002",
+          "at": "2026-11-21T19:58:30.602Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Free opportunity attack after being hit in melee; the long-rest expertise choice is out of combat; data lacks the first.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:bard/moon/14/eventides-splendor",
@@ -1954,9 +2413,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction teleport and invisibility riders on the Inspired Eclipse use, plus a d6 swap for the die; data has activities but not these timings.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:bard/moon/3/college-of-the-moon",
@@ -1980,9 +2448,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text only; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:bard/moon/3/moons-inspiration",
@@ -2023,9 +2500,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Invisibility ending early on attack/damage/spell, teleport as part of the bonus action, and once-per-turn heal boost are circumstances data cannot express.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:bard/moon/3/primal-lore",
@@ -2060,9 +2546,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Language, cantrip and skill choice: character building only.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:bard/moon/6/blessing-of-moonlight",
@@ -2104,9 +2599,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Modifies a Moonbeam casting; heals a third party when a creature fails its save; once per long rest. Needs a hook on the spell.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:cleric/knowledge/17/divine-foreknowledge",
@@ -2146,9 +2650,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Timed advantage on all D20 tests with uses and long-rest recovery plus slot restore are carried by the activities and effect.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:cleric/knowledge/3/blessings-of-knowledge",
@@ -2183,9 +2696,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Tool and skill proficiency and expertise: character building only.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:cleric/knowledge/3/knowledge-domain",
@@ -2209,9 +2731,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text only; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:cleric/knowledge/3/knowledge-domain-spells",
@@ -2246,9 +2777,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:cleric/knowledge/3/mind-magic",
@@ -2285,9 +2825,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast a chosen prepared spell for a Channel Divinity use without a slot; choice at use time, data only has the cost.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:cleric/knowledge/6/unfettered-mind",
@@ -2324,9 +2873,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Telepathy and a saving throw proficiency; no combat rule beyond data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:fighter/banneret/10/rallying-surge",
@@ -2363,9 +2921,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "On Action Surge, allies in an emanation each take a reaction to attack or move; a choice per ally with a trigger.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:fighter/banneret/15/shared-resilience",
@@ -2402,9 +2969,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction on an ally failed save, spends Indomitable, ally rerolls with a bonus and must keep the result.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:fighter/banneret/18/inspiring-commander",
@@ -2439,9 +3015,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the immunity to charmed and frightened, and the widened range of two other features.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:fighter/banneret/3/banneret",
@@ -2476,9 +3061,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text only; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:fighter/banneret/3/group-recovery",
@@ -2515,9 +3109,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Heal activity with area, ally count and uses with short rest recovery matches the text; trigger on Second Wind is player-chosen.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:fighter/banneret/3/knightly-envoy",
@@ -2552,9 +3155,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ritual spell, language and skill proficiency: no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:fighter/banneret/7/team-tactics",
@@ -2593,9 +3205,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect applies advantage on D20 tests until the next turn; the activity is tied to Group Recovery use.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/15/elemental-rebuke",
@@ -2632,9 +3253,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction on being hit that halves the attack damage; data has the save and damage but not the halving.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/20/noble-scion",
@@ -2675,9 +3305,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to turn a failed D20 test into a success for self or aura ally; data has no such effect.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/3/daos-crush",
@@ -2701,9 +3340,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Grapple with escape DC on the Smite target, restrained while grappled; riders tied to Divine Smite.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/3/djinnis-escape",
@@ -2753,9 +3401,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra fire damage on the Smite target plus a second target within range; tied to Divine Smite.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/3/elemental-smite",
@@ -2799,9 +3456,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Option chosen after casting Divine Smite, spending Channel Divinity; a choice at use time tied to another feature.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/3/genie-spells",
@@ -2836,9 +3502,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/3/genies-splendor",
@@ -2875,9 +3550,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect changes the AC calculation; skill choice is character building.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/3/marids-surge",
@@ -2901,9 +3585,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Strength save push and prone for the Smite target and creatures in an emanation; riders tied to Divine Smite.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/3/oath-of-the-noble-genies",
@@ -2927,9 +3620,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text and tenets; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:paladin/noble-genies/7/aura-of-elemental-shielding",
@@ -2972,9 +3674,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura sharing a chosen damage resistance with allies, choice changeable each turn; data effects are static per type.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:ranger/winter-walker/11/chilling-retribution",
@@ -3013,9 +3724,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction save with stunned status effect and speed zero; uses with long rest recovery carried by data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:ranger/winter-walker/15/frozen-haunt",
@@ -3057,9 +3777,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Form tied to Hunter's Mark with start-of-turn emanation damage, immunities, movement through creatures and end-of-turn force damage.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:ranger/winter-walker/3/frigid-explorer",
@@ -3096,9 +3825,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ignoring cold resistance and a once per turn extra cold weapon damage rider that scales; data lacks the limit.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:ranger/winter-walker/3/hunters-rime",
@@ -3138,9 +3876,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temp HP when Hunter's Mark is cast and marked creature cannot Disengage; needs a spell hook and a restriction.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:ranger/winter-walker/3/winter-walker",
@@ -3175,9 +3922,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text only; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:ranger/winter-walker/3/winter-walker-spells",
@@ -3212,9 +3968,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:ranger/winter-walker/7/fortifying-soul",
@@ -3253,9 +4018,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Heal is present but data lacks the advantage on saves against the frightened condition for an hour.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:rogue/scion-of-the-three/13/aura-of-malevolence",
@@ -3292,9 +4066,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage to creatures near the origin or destination when Bloodthirst teleports, damage type from another feature, ignoring resistance.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:rogue/scion-of-the-three/17/dread-incarnate",
@@ -3333,9 +4116,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Short rest use regain and sneak attack die floor effect are carried by the activity and effect.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:rogue/scion-of-the-three/3/bloodthirst",
@@ -3372,9 +4164,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction when a seen enemy becomes bloodied, teleport adjacent and one melee attack; trigger conditions in data lacking.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:rogue/scion-of-the-three/3/dread-allegiance",
@@ -3420,9 +4221,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice of damage resistance and cantrip with per choice effects and long rest change; carried by activities and effects.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:rogue/scion-of-the-three/3/scion-of-the-three",
@@ -3457,9 +4267,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text only; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:rogue/scion-of-the-three/9/strike-fear",
@@ -3499,9 +4318,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cunning Strike option with a repeated save each turn, advantage against the frightened target and the cost die.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:sorcerer/spellfire/14/honed-spellfire",
@@ -3539,9 +4367,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Improves values of Spellfire Burst options; activities with the improved dice and uses exist in data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:sorcerer/spellfire/18/crown-of-spellfire",
@@ -3584,9 +4421,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Alters Innate Sorcery; once per turn damage reduction on being hit, flight, and a save-for-half override (evasion-like).",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:sorcerer/spellfire/3/bolstering-flames",
@@ -3676,9 +4522,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once per turn, tied to spending sorcery points on a Magic or bonus action; options with riders; data only has activities.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:sorcerer/spellfire/3/spellfire-sorcery",
@@ -3702,9 +4557,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text only; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:sorcerer/spellfire/3/spellfire-spells",
@@ -3739,9 +4603,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Always-prepared spell list; no combat effect of its own.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:sorcerer/spellfire/6/absorb-spells",
@@ -3817,9 +4690,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction while Bladesong active to cut damage by five times slot level; data has only the slot cost.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:wizard/bladesinger/14/song-of-victory",
@@ -3854,9 +4736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks it: bonus action weapon attack after casting a spell with an action casting time.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:wizard/bladesinger/3/bladesinger",
@@ -3891,9 +4782,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Subclass flavour text only; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:wizard/bladesinger/3/bladesong",
@@ -3933,9 +4833,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ends early on incapacitated, armor or shield, or two-handed attack; skill advantage and concentration bonus; conditional limits.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:wizard/bladesinger/3/training-in-war-and-song",
@@ -3970,9 +4879,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Weapon and skill proficiency and focus use: character building.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:wizard/bladesinger/6/extra-attack",
@@ -4007,9 +4925,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-003",
+          "at": "2026-11-21T19:58:30.894Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks it: replacing one attack with a Wizard cantrip cast as part of the Attack action.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:adventurers-ring",
@@ -4094,9 +5021,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only points to a stat block; the item carries no rule of its own.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:bandore",
@@ -4200,9 +5136,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Unfurl activity with an effect changing token light bright, dim, color and alpha already covers the light; food part is irrelevant.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:cittern",
@@ -4300,9 +5245,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cover for a rider inside the vehicle; data lacks any cover effect or vehicle rule.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:cult-of-the-dragon-trinket",
@@ -4379,9 +5333,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Automatic success on saves against extreme heat is an exploration hazard rule, not combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:devil-mask",
@@ -4431,9 +5394,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disadvantage on others' checks to see through a disguise is a social matter outside combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:emerald-enclave-trinket",
@@ -4496,9 +5468,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Only points to a stat block for a pet; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:garb-of-light-and-shadow",
@@ -4548,9 +5529,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on influence checks toward certain Fey is social, not combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:genie-robe",
@@ -4600,9 +5590,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on influence checks toward certain Elementals is social, not combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:harper-trinket",
@@ -4678,9 +5677,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Lock and a pick check are out-of-combat; the data already has a check activity.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:lords-alliance-trinket",
@@ -4756,9 +5764,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Disguise check against observers is a non-combat matter; data has a check activity.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:order-of-the-gauntlet-trinket",
@@ -4873,9 +5890,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Stat block pointer plus an exhaustion rule for hauling; no combat automation.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:thayan-spell-tattoo",
@@ -4912,9 +5938,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activity with slot use and a free-cast forward activity with one use cover the spell casting; crafting rules are downtime.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:warm-fungal-clothing",
@@ -4964,9 +5999,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-004",
+          "at": "2026-11-21T19:58:31.191Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Automatic success on saves against extreme cold is an exploration hazard rule, not combat.",
+      "state": "triaged"
     },
     {
       "key": "frhof:item:winter-camouflage",
@@ -5156,9 +6200,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura grants allies cover and resistance; a reaction turns a failed save into success and ends the spell. Data lacks the aura and the save override.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:backlash",
@@ -5208,9 +6261,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction reducing incoming damage by a roll, then optional retaliation save against the source; data only has the retaliation save, not the reduction.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:blade-of-disaster",
@@ -5258,9 +6320,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon only in data; needs two melee spell attacks per use, crit on 18+, repeat on later bonus actions. Data lacks the attacks and widened crit range.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:cacophonic-shield",
@@ -5317,9 +6388,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Emanation aura with save once per turn on enter or end turn, deafened until next caster turn, ranged attacks at disadvantage; aura and timing are not in data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:conjure-constructs",
@@ -5367,9 +6447,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon only; the repeatable per-turn command with a save-for-damage or temp HP choice and spirit movement is not carried by data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:death-armor",
@@ -5423,9 +6512,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once-per-turn retaliation damage when a melee attacker within 5 feet hits the target; data has a bare damage activity and the death save advantage change only.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:deryans-helpful-homunculi",
@@ -5476,9 +6574,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Crafting and skill-proficiency helpers with no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:dirge",
@@ -5536,9 +6643,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura blocking healing, save on entry or turn end once per turn with prone and halved speed on success; plus circle options. Data lacks the repeat trigger and no-heal rule.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:doomtide",
@@ -5591,9 +6707,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Moving sphere with repeated save on entry, turn end or movement, once per turn, and save penalty die until next turn end; data has only the first save.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:elminsters-effulgent-spheres",
@@ -5663,9 +6788,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sphere pool with reaction resistance choice by damage type and ranged bonus attack with chosen type; spell ends at zero spheres. Choice at use time and ending are missing.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:elminsters-elusion",
@@ -5716,9 +6850,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against spells and magical effects, and no damage on a successful save for half effects; the official effect carries no changes and ddb has none.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:holy-star-of-mystra",
@@ -5785,9 +6928,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack each bonus action with chosen damage type, cover, and a reaction to deflect a single-target spell back at its caster; the deflection is absent from data.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:laerals-silver-lance",
@@ -5840,9 +6992,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Line save for half force damage with prone on failure; activity and prone effect carry it.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:simbuls-synostodweomer",
@@ -5895,9 +7056,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Triggers when the target casts using a slot: rolls hit dice for healing; the data lacks the trigger and dice spending (ddb heal is empty).",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:songals-elemental-suffusion",
@@ -5961,9 +7131,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Chosen resistance type, flight, and an emanation burst at the start of each turn with save, prone; data lacks the recurring start-of-turn trigger and circle option.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:spellfire-flare",
@@ -6011,9 +7190,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ranged spell attack that ignores cover on the roll; data has the attack and damage but not the cover bypass.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:spellfire-storm",
@@ -6062,9 +7250,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cylinder with repeated save on first entry or turn end once per turn, plus a save when a creature inside casts that can nullify the spell; data has only the initial save.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:sylunes-viper",
@@ -6120,9 +7317,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temp HP tied to spell duration ending at zero, climb speed, bite poisoning with linked incapacitated until next turn; data lacks the end-on-zero condition and timed linkage.",
+      "state": "triaged"
     },
     {
       "key": "frhof:spell:wardaway",
@@ -6174,9 +7380,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-frhof-005",
+          "at": "2026-11-21T19:58:31.483Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save for half with halved speed; Constructs and Undead auto succeed and the target gets only action or bonus action next turn. Data lacks the type exemption and action limit.",
+      "state": "triaged"
     }
   ]
 }

@@ -8,7 +8,7 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 
 - [x] Triage of the 114 XPHB spells left by the rule: 97 verdicts applied (95 from the SRD 5.2 reading of November 2026, 2
       by a reader agent), see `docs/pilot-xphb-spells.md`.
-- [ ] `registry/queue.json`: 44 entries wait for a person (low-confidence readings and `engine` verdicts).
+- [ ] `registry/queue.json`: 231 entries wait for a person (low-confidence readings and `engine` verdicts).
 - [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
       Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
       uses — to be checked in play, then reported upstream).
@@ -16,11 +16,15 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`): the official module and the dataset agree on the
       school, DDB Importer's item has another one — same entry, importer data to be reported; settle it with `resolve`.
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
-- [ ] 184 entries have the verdict `entry` and no rule yet: drafting is the next stage to build.
+- [ ] 1,272 entries have the verdict `entry` and no rule yet: drafting is the next stage to build.
+- [ ] A reader's verdict is one reading: before drafting, a second independent reader on a sample of each kind, to measure how
+      often two readers disagree.
+- [ ] `plainText` drops the attack header of monster attacks (`{@atkr m}`, `{@hit 7}` become "m 7"): fix the conversion, then
+      re-fingerprint (every affected record will report `textChanged`).
 - [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
 - [x] Every kind of entry is inventoried (milestone 2), and six 2024-era books are in the registry: `docs/coverage-5e24.md`.
-- [ ] Reader batches for the 3,199 entries left without a verdict (XPHB is read: 22 batches, 2026-11-21) (`npm run batch -- triage <BOOK> --kind <kind> --out <dir>
-      --structure <private dir>`), book by book: XPHB, XDMG, XMM, EFA, FRHOF, FRAIF.
+- [ ] 95 entries still have no verdict and are not queued (one Monster Manual batch not yet ingested, plus entries without text
+      that no batch can carry); all six 2024-era books were read by reader agents on 2026-11-21 (75 batches).
 - [ ] 168 ambiguous official matches to settle with `npm run resolve`; 425 entries with no official item to look at by category.
 - [ ] Ravenloft: The Horrors Within is not in the dataset (no text to fingerprint); Arcana Unleashed and World of Warcraft
       have a local dump since 2026-11-21 but are not in the dataset.
