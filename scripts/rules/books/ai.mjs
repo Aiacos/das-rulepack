@@ -1,4 +1,10 @@
 // Generated from registry/ai.json by npm run build:rules — do not edit.
+/**
+ * Acquisitions Incorporated (2019).
+ *
+ * The effect ids are those of the items imported by DDB Importer; an item from another source keeps the general rules of the
+ * engine, and the parts of a rule that name an id do nothing on it.
+ */
 import { book } from "../book.mjs";
 
 export const BOOK = "AI";

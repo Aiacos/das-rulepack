@@ -1,4 +1,10 @@
 // Generated from registry/tce.json by npm run build:rules — do not edit.
+/**
+ * Tasha's Cauldron of Everything (2020).
+ *
+ * The activity and effect ids are those of the items imported by DDB Importer (its ids are stable from one import to the next);
+ * an item from another source keeps the general rules of the engine, and the parts of a rule that name an id do nothing on it.
+ */
 import { book } from "../book.mjs";
 
 export const BOOK = "TCE";

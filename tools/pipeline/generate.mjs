@@ -8,7 +8,7 @@ export const NOT_BOOKS = ["legacy.json", "queue.json"];
 const GENERATED = /^\/\/ Generated (from registry\/|by npm run build:rules)/;
 
 // A shipped rule as a registry record (legacy: it keeps its status until the gates and a review replace it).
-export function recordFromRule(rule, order, note) {
+export function recordFromRule(rule, order, note, year) {
   const own = { handledIn: rule.handledIn, adds: rule.adds };
   for (const f of ["entry", "code", "origin", "catalog", "inCore"]) if (f in rule) own[f] = structuredClone(rule[f]);
   const record = {
@@ -18,7 +18,7 @@ export function recordFromRule(rule, order, note) {
     kind: rule.kind,
     book: rule.book,
     page: rule.page,
-    edition: editionOf(rule.book),
+    edition: editionOf(rule.book, { year }),
     text: null,
     items: [],
     verdict: rule.handledIn === "code" ? "code" : "entry",
@@ -62,7 +62,7 @@ const byOrder = (a, b) => {
 const indent = (text, pad) => text.split("\n").map((l) => pad + l).join("\n");
 
 // The text of scripts/rules/books/<code>.mjs, or null when no record of the book is emitted.
-export function bookModuleSource(code, records) {
+export function bookModuleSource(code, records, note) {
   const blocks = [];
   for (const record of [...records].sort(byOrder)) {
     const rule = ruleFromRecord(record);
@@ -74,6 +74,7 @@ export function bookModuleSource(code, records) {
   if (!blocks.length) return null;
   return [
     `// Generated from registry/${code.toLowerCase()}.json by npm run build:rules — do not edit.`,
+    ...(note ? [`/**\n${note.split("\n").map((l) => ` * ${l}`.trimEnd()).join("\n")}\n */`] : []),
     'import { book } from "../book.mjs";',
     "",
     `export const BOOK = ${JSON.stringify(code)};`,
@@ -129,8 +130,8 @@ export function generate({ registry, out, check = false }) {
   const wanted = new Map();
   for (const f of files) {
     const code = f.slice(0, -5);
-    const { book, records } = loadBook(registry, code);
-    const source = bookModuleSource(book, records);
+    const { book, note, records } = loadBook(registry, code);
+    const source = bookModuleSource(book, records, note);
     if (source) wanted.set(`books/${code}.mjs`, source);
   }
   wanted.set("index.mjs", indexSource([...wanted.keys()].map((p) => p.slice(6, -4))));

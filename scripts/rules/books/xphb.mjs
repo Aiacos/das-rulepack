@@ -1,4 +1,11 @@
 // Generated from registry/xphb.json by npm run build:rules — do not edit.
+/**
+ * Player's Handbook (2024). Class features from subclasses that are not in the SRD, where DAS · Core ships an entry that plays
+ * the rule only in part. Each entry here replaces the keys it names (the engine merges a registered table over its own, key by
+ * key) and nothing else.
+ *
+ * The activity ids are those of the official Player's Handbook module — the same ids DAS · Core's own entries cite.
+ */
 import { book } from "../book.mjs";
 
 export const BOOK = "XPHB";

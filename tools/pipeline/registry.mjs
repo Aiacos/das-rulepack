@@ -40,22 +40,23 @@ export function stateOf(record, { core } = {}) {
 const fileOf = (dir, code) => join(dir, `${code.toLowerCase()}.json`);
 
 export function loadBook(dir, code) {
-  const { book, records } = JSON.parse(readFileSync(fileOf(dir, code), "utf8"));
-  return { book, records: records.map(({ state, ...record }) => record) };
+  const { book, note, records } = JSON.parse(readFileSync(fileOf(dir, code), "utf8"));
+  return { book, ...(note === undefined ? {} : { note }), records: records.map(({ state, ...record }) => record) };
 }
 
 // legacy.json and queue.json live beside the books in the registry folder, so no book may take those names.
 export const RESERVED_BOOKS = Object.freeze(["legacy", "queue"]);
 export const isReservedBook = (code) => RESERVED_BOOKS.includes(String(code).toLowerCase());
 
-export function saveBook(dir, { book, records }) {
+// `note` is the book-level comment (the header of the generated module); it is written only when there is one.
+export function saveBook(dir, { book, note, records }) {
   if (isReservedBook(book)) throw new Error(`"${book}" is reserved: registry/${book.toLowerCase()}.json is not a book`);
   for (const r of records) {
     const errors = validateRecord(r);
     if (errors.length) throw new Error(`${r?.key ?? "record"}: ${errors.join("; ")}`);
   }
   const sorted = [...records].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
-  const out = { book, records: sorted.map(({ state, ...r }) => ({ ...r, state: stateOf(r) })) };
+  const out = { book, ...(note === undefined ? {} : { note }), records: sorted.map(({ state, ...r }) => ({ ...r, state: stateOf(r) })) };
   mkdirSync(dir, { recursive: true });
   writeFileSync(fileOf(dir, book), `${JSON.stringify(out, null, 2)}\n`);
 }

@@ -1,5 +1,6 @@
 {
   "book": "XPHB",
+  "note": "Player's Handbook (2024). Class features from subclasses that are not in the SRD, where DAS · Core ships an entry that plays\nthe rule only in part. Each entry here replaces the keys it names (the engine merges a registered table over its own, key by\nkey) and nothing else.\n\nThe activity ids are those of the official Player's Handbook module — the same ids DAS · Core's own entries cite.",
   "records": [
     {
       "key": "xphb:feature:dreadful-strikes",

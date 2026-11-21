@@ -1,5 +1,6 @@
 {
   "book": "MPMM",
+  "note": "Mordenkainen Presents: Monsters of the Multiverse (2022).\n\nSenses are declared with the engine's generic `sense` block (DAS · Core, `module/scripts/core/senses.mjs`), keyed by the dnd5e\nidentifier the imported items carry. They were first proposed to DAS · Core (dnd5e-combat pull request 128) and belong here:\nthe engine's public repositories carry nothing from non-SRD books.\n\nThey need a DAS · Core that knows the `sense` key (pull requests 119 and 122 of dnd5e-combat, not in a release at the time\nof writing). On an older engine these entries are rejected one by one when the pack registers (the engine logs them); the\nother rules are registered all the same.",
   "records": [
     {
       "key": "mpmm:sense:life-sense",

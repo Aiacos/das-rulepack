@@ -73,7 +73,8 @@ function inventoryCommand([book, kind]) {
   const before = new Map(previous.map((r) => [r.key, canonical(r)]));
   for (const r of records) if (before.get(r.key) !== canonical(r)) touched.add(r.book);
   for (const code of touched) {
-    saveBook(REGISTRY, { book: code, records: records.filter((r) => r.book === code) });
+    const { note } = books.find((b) => b.book === code) ?? {};
+    saveBook(REGISTRY, { book: code, note, records: records.filter((r) => r.book === code) });
   }
   console.log(JSON.stringify(report, null, 2));
 }
@@ -127,7 +128,7 @@ function gatesCommand(args) {
       for (const b of books) {
         const next = byBook.get(b.book) ?? [];
         const changed = next.some((r) => before.get(r.key) !== canonical(r));
-        if (changed && !next.some((r) => failures[r.key]?.schema)) saveBook(REGISTRY, { book: b.book, records: next });
+        if (changed && !next.some((r) => failures[r.key]?.schema)) saveBook(REGISTRY, { book: b.book, note: b.note, records: next });
       }
     }
     const lines = (byKey) => Object.entries(byKey).flatMap(([key, gates]) => Object.values(gates).flat().map((m) => [key, m]));

@@ -43,6 +43,8 @@ describe("recordFromRule / ruleFromRecord", () => {
   it("takes 2024 for the 2024 books only", () => {
     expect(recordFromRule({ ...rules()[0], book: "XPHB" }).edition).toBe("2024");
     expect(recordFromRule({ ...rules()[0], book: "XGE" }).edition).toBe("2014");
+    expect(recordFromRule({ ...rules()[0], book: "XMM" }, undefined, undefined, 2025).edition).toBe("2024");
+    expect(recordFromRule({ ...rules()[0], book: "XMM" }, undefined, undefined, 2022).edition).toBe("2014");
   });
 
   it("legacy keeps the old status; once gated it follows the state; lower states are not emitted", () => {
@@ -66,6 +68,14 @@ describe("bookModuleSource", () => {
     const src = bookModuleSource("ZZB", records());
     expect(src.split("\n")[0]).toBe("// Generated from registry/zzb.json by npm run build:rules — do not edit.");
     expect(src).toContain("  // First line.\n  // Second line.\n  {");
+  });
+
+  it("emits the book note as the header comment, right after the generated line", () => {
+    const src = bookModuleSource("ZZB", records(), "Title (2030).\n\nSecond paragraph.");
+    expect(src.split("\n").slice(0, 6)).toEqual([
+      "// Generated from registry/zzb.json by npm run build:rules — do not edit.",
+      "/**", " * Title (2030).", " *", " * Second paragraph.", " */"
+    ]);
   });
 
   it("exports BOOK and RULES deep-equal to the input, in order, new records after by key", async () => {
