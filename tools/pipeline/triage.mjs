@@ -70,6 +70,9 @@ function problem(record, result, { overwrite, textOf, known }) {
   const text = textOf(record);
   if (text === null) return result.verdict === "unverifiable" ? null : "no text, no verdict: only unverifiable is allowed";
   if (quotes(result.why, text)) return `why contains a quotation of ${MAX_QUOTE_WORDS + 1} or more consecutive words of the text`;
+  // `similar` entries that are not record keys could carry a quotation as kebab-case identifiers.
+  const spelled = (result.similar ?? []).filter((s) => !known.has(s)).join(" ").replaceAll("-", " ");
+  if (quotes(spelled, text)) return `similar contains a quotation of ${MAX_QUOTE_WORDS + 1} or more consecutive words of the text`;
   return null;
 }
 

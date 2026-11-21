@@ -96,6 +96,12 @@ describe("inventory records", () => {
     expect(report.ambiguous).toEqual([]);
   });
 
+  it("stores edition-unknown on an item whose edition the dump does not state", () => {
+    const { records, report } = run({ dumps: dumps({ official: [summary("official", { rules: undefined })] }) });
+    expect(records[0].items[0]).toMatchObject({ match: "matched", differences: ["edition-unknown"] });
+    expect(report.differing).toEqual([records[0].key]);
+  });
+
   it("omits differences when there are none and rejects a malformed field", () => {
     const [r] = run().records;
     expect("differences" in r.items[1]).toBe(false);

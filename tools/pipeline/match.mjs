@@ -52,5 +52,7 @@ export function matchOrigin(entry, candidates) {
   const [item] = preferred;
   const differences = entry.reference ? compareMechanics(mechanicsOf(entry.reference), mechanicsOf(item)) : [];
   if (differences.some((f) => IDENTITY.includes(f))) return { match: "ambiguous", candidates: preferred, differences };
+  // A candidate that does not say its edition is taken, but visibly.
+  if (item.rules === undefined && entry.edition) differences.push("edition-unknown");
   return differences.length ? { match: "matched", item, differences } : { match: "matched", item };
 }

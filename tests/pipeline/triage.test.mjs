@@ -89,6 +89,15 @@ describe("ingest", () => {
     }
   });
 
+  it("rejects a quotation hidden in kebab-case similar entries, but not record keys", () => {
+    const records = [record("Dim Glow"), record("Other One")];
+    const hidden = ["alpha-beta-gamma-delta", "epsilon-zeta-eta-theta", "iota-kappa-lambda-mu"];
+    const out = run(records, [ok("tst:spell:dim-glow", { similar: hidden })]);
+    expect(out.rejected[0].reason).toMatch(/similar contains a quotation/);
+    expect(run(records, [ok("tst:spell:dim-glow", { similar: hidden.slice(0, 2) })]).rejected).toEqual([]);
+    expect(run(records, [ok("tst:spell:dim-glow", { similar: ["tst:spell:other-one"] })]).rejected).toEqual([]);
+  });
+
   it("rejects a result with an unknown field", () => {
     const out = run([record("Dim Glow")], [ok("tst:spell:dim-glow", { notes: "x" })]);
     expect(out.rejected[0].reason).toMatch(/unknown field "notes"/);

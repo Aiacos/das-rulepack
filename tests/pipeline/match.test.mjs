@@ -79,7 +79,14 @@ describe("matchOrigin", () => {
   });
   it("treats an edition-unknown candidate as a match when there is no reference", () => {
     const c = item({ rules: undefined });
-    expect(matchOrigin(entry, [c])).toEqual({ match: "matched", item: c });
+    expect(matchOrigin(entry, [c])).toEqual({ match: "matched", item: c, differences: ["edition-unknown"] });
+  });
+  it("adds edition-unknown to the structural differences when there is a reference", () => {
+    const c = item({ rules: undefined });
+    expect(matchOrigin({ ...entry, reference: item() }, [c]))
+      .toEqual({ match: "matched", item: c, differences: ["edition-unknown"] });
+    const ref = item({ activities: [{ id: "y", type: "save", save: ["con"], damageTypes: ["cold", "fire"] }] });
+    expect(matchOrigin({ ...entry, reference: ref }, [c]).differences).toEqual(["saves", "edition-unknown"]);
   });
   it("is ambiguous with two candidates of the same edition", () => {
     const a = item({ docId: "a" });
