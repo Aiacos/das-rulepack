@@ -109,9 +109,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell bonus is carried by a transfer effect; the hit-die draw with a radiant-or-healing choice at use time is not expressed by the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:1-wraps-of-unarmed-prowess",
@@ -149,9 +158,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Enchant activity and effect already carry the magical unarmed bonus; nothing conditional remains",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:2-fate-dealers-deck",
@@ -189,9 +207,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell bonus is carried by a transfer effect; the hit-die draw with a radiant-or-healing choice at use time is not expressed by the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:2-wraps-of-unarmed-prowess",
@@ -229,9 +256,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Enchant activity and effect already carry the magical unarmed bonus; nothing conditional remains",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:3-fate-dealers-deck",
@@ -269,9 +305,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell bonus is carried by a transfer effect; the hit-die draw with a radiant-or-healing choice at use time is not expressed by the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:3-wraps-of-unarmed-prowess",
@@ -309,9 +354,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Enchant activity and effect already carry the magical unarmed bonus; nothing conditional remains",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:balance-card",
@@ -373,9 +427,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save only triggers on a natural 19 or 20 on the attack, plus disintegration at 0 hp; data has no trigger on the roll",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:blasted-goggles",
@@ -411,9 +474,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save-for-damage and charges are in the data; the cursed blindness when the target rolls a natural 20 on its save is not",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:bloodrage-greataxe",
@@ -449,9 +521,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack bonus applies only while at half hit points or fewer; a conditional bonus the data cannot express",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:boomerang-shield",
@@ -526,9 +607,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to cancel advantage or disadvantage on a d20 for self or a seen creature, spending a charge; needs a roll-interrupt rule",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:card-sharps-deck",
@@ -631,9 +721,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Star bolts with variable charge count chosen at use time; flight effect is set to always transfer though it is a timed use",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:deck-of-dimensions",
@@ -670,9 +769,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Marked card teleport with 24 hour window and a teleport on a thrown card are choices and states the data does not hold",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:deck-of-many-more-things",
@@ -748,15 +856,24 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
       "alsoIn": [
         {
           "book": "DMG",
           "page": 162
         }
       ],
-      "state": "inventoried"
+      "why": "Only lists the individual cards; nothing acts in combat",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:deck-of-miscellany",
@@ -792,9 +909,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Transforms a card into an item outside combat; nothing to automate",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:deck-of-oracles",
@@ -830,9 +956,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to replace another creature's d20 roll with a recorded number; needs a roll-replacement rule",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:deck-of-wild-cards",
@@ -869,9 +1004,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Thrown card ranged spell attack with a suit-dependent effect chosen randomly; the suit effects are not in the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:deck-of-wonder",
@@ -975,9 +1119,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Weapon hit trigger forcing a save to banish until end of its next turn, advantage on planar-effect saves; not fully in data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:euryale-card",
@@ -1044,9 +1197,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Repeating save at start of the target's next turn with restrained then petrified; the data has the first save only",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:fabulist-gem",
@@ -1082,9 +1244,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic coins and clothing illusions outside combat",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:fate-cutter-shears",
@@ -1120,9 +1291,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra force damage on hit and a crit-range rider on the target until a long rest; the data lacks both",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:fates-card",
@@ -1258,9 +1438,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Hit option to pull the target instead of dealing damage; a choice at use time not in the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:hammer-of-runic-focus",
@@ -1296,9 +1485,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus-action rune area with a bonus that applies only while inside it; the area-conditional bonus is not in the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:house-of-cards",
@@ -1334,9 +1532,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Shelter of cards outside combat; no attack, save or condition",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:jester-card",
@@ -1399,9 +1606,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction teleport negating a hit, natural 1 treated as 20, and a Charisma-only spell bonus; the data transfers the bonus unconditionally",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:key-card",
@@ -1512,9 +1728,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus-action summon of an allied stat block sharing initiative; data has only a bare utility activity",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:puzzle-card",
@@ -1575,9 +1800,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on an Intelligence check by spending a charge; nothing used in combat",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:rod-of-hellish-flames",
@@ -1616,9 +1850,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Max damage for fire or necrotic spells once per dawn is a use-time choice; resistance and cast are in the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:rogue-card",
@@ -1682,9 +1925,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Teleport with advantage on the first melee attack after it, tied to light or darkness; the data lacks the advantage rider",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:ruin-card",
@@ -1748,9 +2000,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poison on a failed save with damage at the start of each turn and a repeated save at end of turn; data has no turn triggers",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sage-card",
@@ -1813,9 +2074,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities and shared charges already carry the spells; no further conditions",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sages-signet-hart",
@@ -1854,9 +2124,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities and shared charges already carry the spells; no further conditions",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sages-signet-lion",
@@ -1895,9 +2174,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities and shared charges already carry the spells; no further conditions",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sages-signet-serpent",
@@ -1936,9 +2224,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities and shared charges already carry the spells; no further conditions",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sages-signet-songbird",
@@ -1977,9 +2274,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities and shared charges already carry the spells; no further conditions",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sages-signet-wolf",
@@ -2018,9 +2324,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cast activities and shared charges already carry the spells; no further conditions",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:secondhand-steal-trinket",
@@ -2081,9 +2396,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the armor class bonus, the halved speed and the forced initiative roll of 1 from the curse",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:shrieking-greaves",
@@ -2119,9 +2443,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Timed speed boost and advantage on Dex saves plus a curse scream at the start of a frightened turn; not in the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:skull-card",
@@ -2185,9 +2518,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Resistance effect, cast activity and once-per-dawn use are already carried; the cast needs no further rule",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sling-of-giant-felling",
@@ -2226,9 +2568,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Prone only applies against giants on a ranged hit; the data applies it to any target",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:spindle-of-fate",
@@ -2264,9 +2615,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Initiative adjustment, once-per-turn bonus damage on the doomed target and a reaction altering a roll; needs rules",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:star-card",
@@ -2331,9 +2691,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Petrify save only on a critical hit against low-hp targets, spending a charge; data lacks the crit trigger",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:sun-card",
@@ -2394,9 +2763,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra fire damage on hit, a damage-dice reroll option and a glow toggle; the data lacks the rider and reroll",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:talons-card",
@@ -2457,9 +2835,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Long travel by a skill check after an hour of calibration; nothing in combat",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:throne-card",
@@ -2522,9 +2909,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on attacks with the weapon only underwater; charge-spent casts are carried by the data",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:void-card",
@@ -2585,9 +2981,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summoned projection acts as the origin for attacks and spells and ends at turn end; the data has only a save activity",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:warriors-passkey",
@@ -2624,9 +3029,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bmt-003",
+          "at": "2026-11-21T20:25:10.520Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus-action transformation between key and weapon with a force damage rider; the data lacks the transform",
+      "state": "triaged"
     },
     {
       "key": "bmt:monster:ambitious-assassin/action/multiattack",

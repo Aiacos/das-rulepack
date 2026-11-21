@@ -278,9 +278,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Floating knowledge device with a legend lore cast; no real combat effect.",
+      "state": "triaged"
     },
     {
       "key": "sato:item:planar-philosopher-trinket",
@@ -343,9 +352,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "sato:item:sensory-stone",
@@ -381,9 +399,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus action ending charmed or frightened on self and destroying the stone is not expressed in data.",
+      "state": "triaged"
     },
     {
       "key": "sato:spell:gate-seal",
@@ -418,9 +445,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-010",
+          "at": "2026-11-21T20:26:39.426Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Closes portals and blocks planar travel in a cube; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "sato:spell:warp-sense",
@@ -455,9 +491,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-010",
+          "at": "2026-11-21T20:26:39.426Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Detection of portals with a utility ability check; exploration only.",
+      "state": "triaged"
     }
   ]
 }

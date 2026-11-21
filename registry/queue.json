@@ -1,5 +1,261 @@
 [
   {
+    "key": "ai:item:orrery-of-the-wanderer",
+    "verdict": "entry",
+    "why": "AC bonus within range of the artifact and charge-cost spells that depend on installed components; data lacks the condition and costs.",
+    "confidence": 0.6,
+    "by": "reader-old-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ai:item:voting-kit",
+    "verdict": "none",
+    "why": "Tool storage space plus a once daily charm cast; marginal, no item data for it.",
+    "confidence": 0.65,
+    "by": "reader-old-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bgg:item:bigbys-beneficent-bracelet",
+    "verdict": "data",
+    "why": "Cast activities cover mage hand and the hand spell; the no-concentration clause and copies are out of combat or minor.",
+    "confidence": 0.65,
+    "by": "reader-bgg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bgg:item:lucent-destroyer",
+    "verdict": "data",
+    "why": "Casts and rune uses are carried; radiant damage swap and no loading belong to weapon data.",
+    "confidence": 0.65,
+    "by": "reader-bgg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bgg:item:prehistoric-figurine-of-wondrous-power-carnelian-triceratops",
+    "verdict": "entry",
+    "why": "Data lacks a summon of the creature that reverts at duration end or 0 HP; only a utility activity exists.",
+    "confidence": 0.65,
+    "by": "reader-bgg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bgg:item:prehistoric-figurine-of-wondrous-power-kyanite-pteranodon",
+    "verdict": "entry",
+    "why": "Data lacks a summon of the creature that reverts at duration end or 0 HP; only a utility activity exists.",
+    "confidence": 0.65,
+    "by": "reader-bgg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bgg:item:prehistoric-figurine-of-wondrous-power-pyrite-plesiosaurus",
+    "verdict": "entry",
+    "why": "Data lacks a summon of the creature that reverts at duration end or 0 HP; only a utility activity exists.",
+    "confidence": 0.65,
+    "by": "reader-bgg-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:item:boomerang-shield",
+    "verdict": "entry",
+    "why": "Data has only a damage activity, no thrown attack; Str or Dex choice and the return to hand are missing",
+    "confidence": 0.65,
+    "by": "reader-bmt-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:item:card-sharps-deck",
+    "verdict": "entry",
+    "why": "Data lacks a spell attack with Dex for the card and a recovery on the spell use; ranged spell attack rider needs an entry",
+    "confidence": 0.65,
+    "by": "reader-bmt-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:item:deck-of-many-more-things",
+    "verdict": "none",
+    "why": "Random card draws applied by the DM, mostly narrative or long-term boons; no combat step to automate",
+    "confidence": 0.65,
+    "by": "reader-bmt-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "bmt:item:deck-of-wonder",
+    "verdict": "entry",
+    "why": "Many random card effects with timed bonuses, penalties and a death-save of hp; data holds only one save and a poison status",
+    "confidence": 0.6,
+    "by": "reader-bmt-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:cape-of-the-mountebank",
+    "verdict": "entry",
+    "why": "Dimension door cast is present, but the smoke clouds left behind that obscure both spaces are not.",
+    "confidence": 0.65,
+    "by": "reader-old-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:daerns-instant-fortress",
+    "verdict": "entry",
+    "why": "Save damage is in the data; the push to a space outside the fortress and the placed structure are not.",
+    "confidence": 0.65,
+    "by": "reader-old-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:dimensional-shackles",
+    "verdict": "entry",
+    "why": "Blocks extradimensional movement of the bound creature; data only has utility and an escape check.",
+    "confidence": 0.6,
+    "by": "reader-old-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:elven-chain",
+    "verdict": "data",
+    "why": "Only a passive AC bonus and a proficiency; no activity, bonus assumed in armor data.",
+    "confidence": 0.65,
+    "by": "reader-old-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:grenade-launcher",
+    "verdict": "none",
+    "why": "Text only points to another item; adds nothing for combat.",
+    "confidence": 0.6,
+    "by": "reader-old-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:horseshoes-of-a-zephyr",
+    "verdict": "entry",
+    "why": "Mount ignores difficult terrain and crosses liquids; data has no effect to express it.",
+    "confidence": 0.6,
+    "by": "reader-old-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:orb-of-dragonkind",
+    "verdict": "entry",
+    "why": "Control check with ongoing charm and at-will suggestion, plus charge spells; data lacks the charm and control state.",
+    "confidence": 0.6,
+    "by": "reader-old-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:philter-of-love",
+    "verdict": "entry",
+    "why": "Charm applies only toward the first creature seen after drinking; the data has a generic charmed status, not the trigger or source.",
+    "confidence": 0.65,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:pipes-of-the-sewers",
+    "verdict": "entry",
+    "why": "Contested checks, swarm control ending on hearing loss and 24 hour sway immunity exceed the summon activity; mostly DM adjudicated.",
+    "confidence": 0.65,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:ring-of-x-ray-vision",
+    "verdict": "entry",
+    "why": "Reuse before a long rest triggers a Constitution save for exhaustion; vision radius is not combat; low relevance.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-1st-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-2nd-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-3rd-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-4th-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-5th-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-6th-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-7th-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-8th-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:spell-scroll-9th-level",
+    "verdict": "entry",
+    "why": "Scroll casting needs an ability check for higher level spells and fixed DC and bonus; no activity in the data, spell is chosen later.",
+    "confidence": 0.6,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:staff-of-the-adder",
+    "verdict": "data",
+    "why": "Attack, damage and poison save activities are present; the enchant form and destruction clauses are minor.",
+    "confidence": 0.65,
+    "by": "reader-old-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "dmg:item:wand-of-wonder",
+    "verdict": "entry",
+    "why": "Random d100 table of effects on a chosen target; data holds an unrelated save and a few casts. Needs a rule for the table.",
+    "confidence": 0.65,
+    "by": "reader-old-004",
+    "reason": "low-confidence"
+  },
+  {
     "key": "efa:feat:greater-mark-of-detection",
     "verdict": "entry",
     "why": "Die upgrade is carried by data; the See Invisibility share to a creature within range is a cast-time modification the data lacks.",
@@ -373,6 +629,398 @@
     "why": "Advantage on Stealth checks only in a fitting environment; data has no effect expressing it.",
     "confidence": 0.65,
     "by": "reader-frhof-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ftd:item:potion-of-dragons-majesty",
+    "verdict": "entry",
+    "why": "Transformation into an adult dragon with duration and restrictions; data has only a utility activity with a single use, data lacks the transform.",
+    "confidence": 0.65,
+    "by": "reader-ftd-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "ggr:item:mizzium-apparatus",
+    "verdict": "entry",
+    "why": "Casting unprepared spells with an Arcana check against a slot-based DC and a random spell on failure; needs a rule.",
+    "confidence": 0.65,
+    "by": "reader-old-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:item:flying-chariot",
+    "verdict": "entry",
+    "why": "AC bonus effect exists, but mounted-chariot rules (cover while mounted, shared initiative, movement cost) are not in data.",
+    "confidence": 0.65,
+    "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:item:helm-of-the-gods",
+    "verdict": "none",
+    "why": "Fiend/celestial sensing and a spell stored at long rest; little direct combat automation beyond charges.",
+    "confidence": 0.65,
+    "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mot:item:pyxis-of-pandemonium",
+    "verdict": "entry",
+    "why": "Short-rest benefit with bless, curse save for charm with escape on success, and table roll are not fully carried by data.",
+    "confidence": 0.65,
+    "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "mtf:item:infernal-tack",
+    "verdict": "entry",
+    "why": "Summon of an allied nightmare acting on rider initiative; data has only a utility with no summon.",
+    "confidence": 0.65,
+    "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:item:ball-bearings-bag-of-1-000",
+    "verdict": "entry",
+    "why": "Save when moving across the area (not if at half speed), prone on failure; area-entry trigger is not expressed by the data.",
+    "confidence": 0.65,
+    "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:animal-shapes",
+    "verdict": "data",
+    "why": "Transform activities cover the beast form and reversion; excess damage carryover is handled by transform rules",
+    "confidence": 0.65,
+    "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:animate-objects",
+    "verdict": "data",
+    "why": "Summon activity for animated objects; size-based statistics and revert behaviour are not expressed beyond it",
+    "confidence": 0.65,
+    "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:antilife-shell",
+    "verdict": "entry",
+    "why": "Barrier blocks non-undead non-construct creatures from passing; data lacks any effect, needs a movement-blocking rule",
+    "confidence": 0.6,
+    "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:antimagic-field",
+    "verdict": "entry",
+    "why": "Sphere suppresses spells and magic items around caster; data has no effect, needs an area suppression rule",
+    "confidence": 0.6,
+    "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:arcane-gate",
+    "verdict": "none",
+    "why": "Linked portals for travel; positional teleport out of combat scope",
+    "confidence": 0.65,
+    "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:call-lightning",
+    "verdict": "entry",
+    "why": "Repeatable bolt each turn and stormy-weather bonus damage; data has multiple activities but no recurring use or condition",
+    "confidence": 0.65,
+    "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:contingency",
+    "verdict": "none",
+    "why": "Stores a spell to trigger on a described circumstance; open-ended and not a combat automation",
+    "confidence": 0.6,
+    "by": "reader-old-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:dancing-lights",
+    "verdict": "entry",
+    "why": "Summon carries the lights but data lacks the dim light emission and bonus-action move.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:dimension-door",
+    "verdict": "data",
+    "why": "Teleport activity present; the collision damage on a blocked arrival is a minor rider.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:eldritch-blast",
+    "verdict": "entry",
+    "why": "Multiple beams by level each with its own attack roll; data shows one attack, scaling unclear.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:etherealness",
+    "verdict": "entry",
+    "why": "Plane-separation interaction rules; data has an effect but the rules need handling.",
+    "confidence": 0.6,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:find-familiar",
+    "verdict": "entry",
+    "why": "Summon covers the familiar; touch-spell delivery by reaction is a trigger the data lacks.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:find-steed",
+    "verdict": "data",
+    "why": "Summon covers the steed; shared self-targeting spells with the mount are a minor rider.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:fog-cloud",
+    "verdict": "entry",
+    "why": "Vision-obscuring area; data has a utility activity only, no area effect.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:forcecage",
+    "verdict": "entry",
+    "why": "Barrier blocking movement with a teleport save; no data for the barrier.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:geas",
+    "verdict": "data",
+    "why": "Charmed effect and save present; the damage for disobedience is DM adjudicated.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:giant-insect",
+    "verdict": "data",
+    "why": "Summon activity transforms creatures; command rules are narrative.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:globe-of-invulnerability",
+    "verdict": "entry",
+    "why": "Blocks lower-level spells into the area; data has only a utility activity.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:greater-restoration",
+    "verdict": "entry",
+    "why": "Ends one chosen effect or reduces exhaustion; choice at use time; no data.",
+    "confidence": 0.65,
+    "by": "reader-old-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:guidance",
+    "verdict": "entry",
+    "why": "Die added to one check chosen at use time, then the spell ends; the effect carries a bonus key but not the single-use end.",
+    "confidence": 0.65,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:heroes-feast",
+    "verdict": "data",
+    "why": "Out of combat; uses and effect carry the immunities and save advantage; HP max gain is minor. Not sure it is complete.",
+    "confidence": 0.6,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:levitate",
+    "verdict": "entry",
+    "why": "Save only for unwilling target; data lacks the lift, movement limits and altitude changes.",
+    "confidence": 0.65,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:magic-jar",
+    "verdict": "entry",
+    "why": "Possession with save and body swap; data lacks the soul transfer, but it is a rare combat case.",
+    "confidence": 0.6,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:mass-suggestion",
+    "verdict": "entry",
+    "why": "Data lacks the compelled course of action and its end when the creature is damaged by allies.",
+    "confidence": 0.65,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:meld-into-stone",
+    "verdict": "entry",
+    "why": "Ejection damage when stone is destroyed or altered and a perception disadvantage; data lacks a hosting effect.",
+    "confidence": 0.65,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:plane-shift",
+    "verdict": "entry",
+    "why": "Banish an unwilling creature via melee spell attack then save; data lacks the attack step.",
+    "confidence": 0.65,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:polymorph",
+    "verdict": "entry",
+    "why": "Transform activity exists; ending at 0 hit points with carryover and shapechanger limit need a rule.",
+    "confidence": 0.65,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:prayer-of-healing",
+    "verdict": "entry",
+    "why": "Healing in data; excludes undead and constructs, but casting takes 10 minutes so out of combat.",
+    "confidence": 0.65,
+    "by": "reader-old-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:resurrection",
+    "verdict": "entry",
+    "why": "Penalty effects exist but the caster cost (no casting, disadvantage until long rest) is missing from data",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:reverse-gravity",
+    "verdict": "entry",
+    "why": "Forced upward fall with save to grab on; data has only a save, no movement or fall damage",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:sequester",
+    "verdict": "none",
+    "why": "Hides and suspends a creature; invisible effect exists but nothing automatable beyond that",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:shapechange",
+    "verdict": "data",
+    "why": "Transform activities carry the polymorph; revert rules are handled by the system",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:simulacrum",
+    "verdict": "data",
+    "why": "Summon activity creates the duplicate; half hit points rider is minor",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:time-stop",
+    "verdict": "entry",
+    "why": "Extra turns in a row that end if another creature is affected; data has only a utility",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:true-polymorph",
+    "verdict": "entry",
+    "why": "Transform and summon activities exist but ending at 0 hit points and creature choice need handling",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:true-resurrection",
+    "verdict": "entry",
+    "why": "Data lacks the revive effect; only a utility activity is present",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:wall-of-stone",
+    "verdict": "none",
+    "why": "Stone wall for terrain; reaction escape is minor",
+    "confidence": 0.65,
+    "by": "reader-old-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:wind-wall",
+    "verdict": "entry",
+    "why": "Data carries the save damage and wall; ranged projectiles deflected to auto-miss behind the wall and flyer blocking are not expressed.",
+    "confidence": 0.65,
+    "by": "reader-old-010",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "phb:spell:wish",
+    "verdict": "entry",
+    "why": "Choice at cast time among several effects, spell duplication and a stress aftermath with extra damage per spell cast; mostly DM-adjudicated.",
+    "confidence": 0.6,
+    "by": "reader-old-010",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "scc:item:lorehold-primer",
+    "verdict": "entry",
+    "why": "Charge spent after rolling for d4 on History/Religion checks and a chosen spell cast once; effect gives flat bonus only.",
+    "confidence": 0.65,
+    "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "scc:item:masque-charm",
+    "verdict": "entry",
+    "why": "Disguise self with a choice of duration and the charm becoming nonmagical after the long duration; data lacks the choice.",
+    "confidence": 0.65,
+    "by": "reader-old-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "scc:item:strixhaven-pennant",
+    "verdict": "none",
+    "why": "Waved pennant sheds light; no damage, save or combat rule, and no effect in the data",
+    "confidence": 0.65,
+    "by": "reader-old-006",
     "reason": "low-confidence"
   },
   {

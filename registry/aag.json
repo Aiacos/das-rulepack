@@ -81,9 +81,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Downtime fishing check and catch table; nothing at the combat table.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:bombard",
@@ -117,9 +126,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:damselfly-ship",
@@ -153,9 +171,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:fish-suit",
@@ -193,9 +220,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect already carries swim and fly speeds; breathing and environment limits are not combat relevant.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:flying-fish-ship",
@@ -229,9 +265,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:hammerhead-ship",
@@ -265,9 +310,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:lamprey-ship",
@@ -301,9 +355,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:living-ship",
@@ -337,9 +400,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship with a treant crew member that repairs hull on a rest; vessel upkeep, not combat item rules.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:nautiloid",
@@ -373,9 +445,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship property for planar travel with a recharge roll; outside combat automation, no item data.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:nightspider",
@@ -409,9 +490,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:scorpion-ship",
@@ -445,9 +535,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:shrike-ship",
@@ -481,9 +580,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:space-galleon",
@@ -517,9 +625,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:spelljamming-helm",
@@ -555,9 +672,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship propulsion and attunement transfer; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:squid-ship",
@@ -591,9 +717,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:star-moth",
@@ -627,9 +762,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:turtle-ship",
@@ -663,9 +807,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:tyrant-ship",
@@ -699,9 +852,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:wasp-ship",
@@ -735,9 +897,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship description with travel notes; vessel combat is not item automation and no data is present.",
+      "state": "triaged"
     },
     {
       "key": "aag:item:wildspace-orrery",
@@ -773,9 +944,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Display device with no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "aag:species:astral-elf",
@@ -1806,9 +1986,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Breathable air globe on a willing creature; no combat effect to automate",
+      "state": "triaged"
     },
     {
       "key": "aag:spell:create-spelljamming-helm",
@@ -1843,9 +2032,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Turns a chair into a spelljamming helm; no combat effect",
+      "state": "triaged"
     }
   ]
 }

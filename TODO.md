@@ -8,7 +8,7 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 
 - [x] Triage of the 114 XPHB spells left by the rule: 97 verdicts applied (95 from the SRD 5.2 reading of November 2026, 2
       by a reader agent), see `docs/pilot-xphb-spells.md`.
-- [ ] `registry/queue.json`: 322 entries wait for a person (low-confidence readings and `engine` verdicts).
+- [ ] `registry/queue.json`: 403 entries wait for a person (low-confidence readings and `engine` verdicts).
 - [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
       Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
       uses — to be checked in play, then reported upstream).
@@ -16,7 +16,7 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`): the official module and the dataset agree on the
       school, DDB Importer's item has another one — same entry, importer data to be reported; settle it with `resolve`.
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
-- [ ] 1,272 entries have the verdict `entry` and no rule yet: drafting is the next stage to build.
+- [ ] 2,209 entries have the verdict `entry` and no rule yet: drafting is the next stage to build.
 - [x] Second-reader sample (200 entries, three kinds): same verdict on 88%, same answer to "needs a rule or not" on 96.5% —
       `docs/reader-agreement.md`. Spells, species and older books are not sampled yet.
 - [ ] `plainText` drops the attack header of monster attacks (`{@atkr m}`, `{@hit 7}` become "m 7"): fix the conversion, then
@@ -29,8 +29,11 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] Ravenloft: The Horrors Within is not in the dataset (no text to fingerprint); Arcana Unleashed and World of Warcraft
       have a local dump since 2026-11-21 but are not in the dataset.
 - [x] The older books are inventoried and triaged by rule (2026-11-21): 39 books, 19,143 entries, `docs/coverage.md`.
-- [ ] Reader batches for the older books (Tasha's and Xanathar's are read, 2026-11-21): 12,880 entries without a verdict (the 2014 Monster Manual and Mordenkainen Presents
-      alone are 3,880), after a second-reader sample has measured how reliable one reading is.
+- [x] Older books: the entries that have an item in a local source are read (2026-11-21). 11,945 entries stay without a
+      verdict: almost all are monster features of books with no official module and no local item — they need a dump of
+      imported items (Plutonium, or DDB Importer's monsters) before a reader can judge them.
+- [ ] `batch` should skip entries with no item in any origin by default (a flag to include them): reading them fills the
+      queue with low-confidence verdicts.
 - [ ] The three XPHB feature rules (Dreadful Strikes, Inspiring Smite, Psychic Veil) and the rules of FTD, MPMM, AI and PHB
       are still legacy records without item data: their keys carry no owner, or their book has no dump of that kind.
 - [ ] A rule whose named origin has `identifierDiffers` (16 spells: the official module and DDB Importer name them

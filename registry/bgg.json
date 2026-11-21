@@ -433,9 +433,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus damage, force rider and the two cast uses are carried by the activities; double damage to objects is marginal.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:bigbys-beneficent-bracelet",
@@ -511,9 +520,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spending a Hit Die on a hit for extra psychic damage is a use-time choice; data lacks it (only the fear cast is present).",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:delvers-claws",
@@ -551,9 +569,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Burrow/blindsight effects exist, but the rune's Hit Die spend with Con healing is a use-time choice that the data lacks.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:elven-thrower",
@@ -591,9 +618,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra damage only on ranged hits, larger vs Giants, plus return to hand: restricted variants exist but nothing applies them automatically.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:giant-trinket",
@@ -654,9 +690,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the rune effects (temp HP, advantage on saves, prone immunity, darkvision, one rune at a time).",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:goose-egg-trinket",
@@ -719,9 +764,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charges and the cast activities are present; the check floor and sentience are non-combat.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:helm-of-perfect-potential",
@@ -762,9 +816,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bolt activity has no damage and lacks the damage type choice; charge-cost spellcasting is partial.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:horizon-puzzle-cube",
@@ -800,9 +863,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Puzzle and portal to a demiplane; nothing acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:lash-of-immolation",
@@ -839,9 +911,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Critical hit restrains the target, and a reaction raises the extra fire die; data lacks both.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:longbow-of-the-healing-hearth",
@@ -879,9 +960,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Curative arrow replaces an attack, once per turn, with a Hit Die choice and Wis bonus; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:lucent-destroyer",
@@ -960,9 +1050,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save triggered by moving next to a creature, once per turn, with prone on a fail; data has a half-damage save instead.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:nimbus-coronet",
@@ -998,9 +1097,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the cloud form (fly speed, physical resistance, end on incapacitation) and the short teleport.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:orb-of-skoraeus",
@@ -1038,9 +1146,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effects carry the concentration bonus and darkvision; charges for components are a resource on the item.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:prehistoric-figurine-of-wondrous-power-carnelian-triceratops",
@@ -1114,9 +1231,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon is missing from data, and a roll of 1 on each command makes the creature hostile.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:prehistoric-figurine-of-wondrous-power-kyanite-pteranodon",
@@ -1232,9 +1358,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Natural 20 grants temp HP and attackers take necrotic damage while they last; rune save only partly set up.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:ring-of-amity",
@@ -1270,9 +1405,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction turns an ally's hit into a critical, and healing is shared with the bonded creature; data lacks both.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:sanctum-amulet",
@@ -1311,9 +1455,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Resistance is carried by an effect, but the reaction that leaves a creature at 1 HP instead of 0 is missing.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:shield-of-the-blazing-dreadnought",
@@ -1349,9 +1502,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the active state (fire immunity, bash replacing an attack once per turn, condition cleanse).",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:staff-of-the-rooted-hills",
@@ -1392,9 +1554,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Restraint on the first hit each turn after a Str save; data has a save and effect but no first-hit limit.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:stonebreakers-breastplate",
@@ -1433,9 +1604,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Resistances and prone immunity are effects and the wall cast has uses; concentration advantage is minor.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:thunderbuss",
@@ -1472,9 +1652,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Rune burst save and damage exist, but the failed-save rider (no reactions until end of next turn) and thunder swap are missing.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:war-horn-of-valor",
@@ -1510,9 +1699,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks ending frightened, advantage vs fear until next turn, and the +1 AC to chosen creatures in range.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:wayfarers-boots",
@@ -1551,9 +1749,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Walk speed and Survival advantage are effects; expeditious retreat is a cast with a limited-use rune.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:wyrmreaver-gauntlets",
@@ -1589,9 +1796,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-bgg-004",
+          "at": "2026-11-21T20:24:18.020Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks extra unarmed force damage, 30 ft reach and prone on opportunity attack hits, and the chosen resistance; the save is misapplied.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:aerosaur/action/bite",

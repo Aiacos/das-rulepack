@@ -523,9 +523,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Equipment pack contents list only; nothing acts in combat",
+      "state": "triaged"
     },
     {
       "key": "vrgr:item:nepenthe",
@@ -562,9 +571,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Weapon bonus, extra radiant vs fiends/undead and an aura granting advantage on saves vs magic (radius grows by paladin level); data lacks bonus, rider and aura",
+      "state": "triaged"
     },
     {
       "key": "vrgr:monster:bodytaker-plant/action/entrapping-pod",

@@ -206,9 +206,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Damage at start of each turn until a Dex check ends it; data also duplicates the damage dice.",
+      "state": "triaged"
     },
     {
       "key": "scc:item:bottle-of-boundless-coffee",
@@ -244,9 +253,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scc:item:catapult-munition",
@@ -282,9 +300,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lists the 10d6 fire twice and lacks object damage; needs a data fix.",
+      "state": "triaged"
     },
     {
       "key": "scc:item:cuddly-strixhaven-mascot",
@@ -320,9 +347,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on a save against frightened chosen before rolling, then blocked until long rest; data has no effect.",
+      "state": "triaged"
     },
     {
       "key": "scc:item:lorehold-primer",
@@ -462,9 +498,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on death saves for 24 hours; data has only a use activity and no effect, so data lacks the death-save advantage",
+      "state": "triaged"
     },
     {
       "key": "scc:item:murgaxors-orb",
@@ -502,9 +547,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Sentient orb with curse, suggestion and timed effects at use time; data has a save activity without effects, so it lacks the curse riders",
+      "state": "triaged"
     },
     {
       "key": "scc:item:prismari-primer",
@@ -542,9 +596,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charge-spend 1d4 bonus after the roll on two skills; the passive skill bonus effect is always on and cannot model the per-use spend or the prepared spell",
+      "state": "triaged"
     },
     {
       "key": "scc:item:prismari-trinket",
@@ -607,9 +670,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charge-spend 1d4 bonus after the roll on two skills; the passive skill bonus effect is always on and cannot model the per-use spend or the prepared spell",
+      "state": "triaged"
     },
     {
       "key": "scc:item:quandrix-trinket",
@@ -672,9 +744,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charge-spend 1d4 bonus after the roll on two skills; the passive skill bonus effect is always on and cannot model the per-use spend or the prepared spell",
+      "state": "triaged"
     },
     {
       "key": "scc:item:silverquill-trinket",
@@ -775,9 +856,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charge-spend 1d4 bonus after the roll on two skills; the passive skill bonus effect is always on and cannot model the per-use spend or the prepared spell",
+      "state": "triaged"
     },
     {
       "key": "scc:item:witherbloom-trinket",
@@ -7584,9 +7674,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-010",
+          "at": "2026-11-21T20:26:39.426Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temporary skill proficiency of the caster's choice; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "scc:spell:kinetic-jaunt",
@@ -7621,9 +7720,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-010",
+          "at": "2026-11-21T20:26:39.426Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks it: speed bonus, no opportunity attacks, pass through creatures and shunt plus force damage when ending turn in an occupied space.",
+      "state": "triaged"
     },
     {
       "key": "scc:spell:silvery-barbs",
@@ -7661,9 +7769,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-010",
+          "at": "2026-11-21T20:26:39.426Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to a triggering roll forcing a reroll with the lower result, plus advantage on the next roll of a chosen creature, once per creature.",
+      "state": "triaged"
     },
     {
       "key": "scc:spell:vortex-warp",
@@ -7698,9 +7815,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-010",
+          "at": "2026-11-21T20:26:39.426Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save the target may choose to fail, then teleport to a caster-chosen space; data holds only the save, not the move.",
+      "state": "triaged"
     },
     {
       "key": "scc:spell:wither-and-bloom",
@@ -7736,9 +7862,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-010",
+          "at": "2026-11-21T20:26:39.426Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save damage is in the data; the chosen creature spending a Hit Die to heal with caster modifier is a use-time choice the data lacks.",
+      "state": "triaged"
     }
   ]
 }

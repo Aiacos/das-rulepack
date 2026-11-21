@@ -154,9 +154,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Travel and map features with ability checks; nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:chronolometer",
@@ -194,9 +203,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Start-of-turn d6 roll giving an extra action or a reroll, plus a reaction granting an action to another; data lacks the timing.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:coin-of-decisionry",
@@ -232,9 +250,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Social and divination flavor features; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:dimensional-loop",
@@ -272,9 +299,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Phase shift imposing disadvantage on attacks against you, and a reach trick without opportunity attacks; data has only save bonus and vision.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:documancy-satchel",
@@ -308,9 +344,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Document, storage and scroll features; nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:elder-cartographers-glossography",
@@ -346,9 +391,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on geography-related checks only; not a combat matter.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:failed-experiment-wand",
@@ -385,9 +439,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Random choice between two spells, upcast by charges spent, with a destruction roll at zero charges; data lacks the random pick and scaling.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:far-gear",
@@ -426,9 +489,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Saving throw bonus and Intimidation advantage in effects, but the custom aberration summon and bane use need rules the data lacks.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:living-loot-satchel",
@@ -462,9 +534,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Storage and requisition features; nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:obviators-lenses",
@@ -500,9 +581,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once per dawn advantage on a weapon attack plus one extra damage die on a hit; data has no such rider.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:occultant-abacus",
@@ -538,9 +628,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction to grant advantage or disadvantage on a creature's roll, and d10 grants to other creatures; data lacks these triggers.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:orrery-of-the-wanderer",
@@ -662,9 +761,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Business cards and social spells; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:rotor-of-return",
@@ -702,9 +810,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save bonus is in data, but the stored-point teleport as a bonus action needs a rule; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:sending-stone",
@@ -740,9 +857,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Communication item with checks; nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:spyglass-of-clairvoyance",
@@ -778,9 +904,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Terrain mapping with a check; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:timepiece-of-travel",
@@ -820,9 +955,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dex save bonus is an effect, and the cast activities and daily use cover the spells; directions are non-combat.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:travel-alchemical-kit",
@@ -860,9 +1004,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Tool proficiency and concealment; nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:trinket",
@@ -972,9 +1125,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction adding or subtracting a d10 on another creature's roll, once per dawn; data lacks the trigger and choice.",
+      "state": "triaged"
     },
     {
       "key": "ai:item:whisper-jar",
@@ -1013,9 +1175,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Recording, lore and detection spells; no combat automation needed.",
+      "state": "triaged"
     },
     {
       "key": "ai:monster:ancient-deep-crow/action/claw",
@@ -4412,9 +4583,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.92,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Illusory change of an object's perceived value; no combat effect",
+      "state": "triaged"
     },
     {
       "key": "ai:spell:fast-friends",
@@ -4451,9 +4631,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charm with repeat save if asked to act against its interest, advantage if fighting it, ends on certain death; data only applies charmed",
+      "state": "triaged"
     },
     {
       "key": "ai:spell:gift-of-gab",
@@ -4488,9 +4677,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Memory edit of recent speech; nothing acts in combat",
+      "state": "triaged"
     },
     {
       "key": "ai:spell:incite-greed",
@@ -4606,9 +4804,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Distracted creatures get disadvantage on Perception checks and initiative rolls; data has a save but no effect with those penalties",
+      "state": "triaged"
     },
     {
       "key": "ai:spell:jims-magic-missile",
@@ -4643,9 +4850,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Three darts, crit uses fixed 5d4, and a natural 1 on any missile makes all miss and hurt the caster; data has a plain attack",
+      "state": "triaged"
     },
     {
       "key": "ai:spell:motivational-speech",
@@ -4681,9 +4897,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Temp HP, advantage on Wis saves, advantage on next attack after being hit, ends when temp HP lost; data lacks the effect",
+      "state": "triaged"
     }
   ]
 }

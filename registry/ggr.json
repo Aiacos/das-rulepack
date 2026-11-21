@@ -276,9 +276,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:azorius-keyrune",
@@ -314,9 +323,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:boros-guild-signet",
@@ -353,9 +371,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:boros-keyrune",
@@ -391,9 +418,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:copper-alms-coin",
@@ -484,9 +520,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:dimir-keyrune",
@@ -522,9 +567,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:electrum-50-zib-coin",
@@ -642,9 +696,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:golgari-keyrune",
@@ -680,9 +743,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:gruul-guild-signet",
@@ -719,9 +791,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:gruul-keyrune",
@@ -757,9 +838,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:illusionists-bracers",
@@ -795,9 +885,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "After casting a cantrip, a bonus-action recast of it the same turn; needs a trigger rule.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:izzet-guild-signet",
@@ -834,9 +933,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:izzet-keyrune",
@@ -872,9 +980,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:mizzium-apparatus",
@@ -949,9 +1066,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cone and cylinder fire saves exist, but the cone lacks its template and the bombard lacks its 3-charge cost. Data fix needed.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:moodmark-paint",
@@ -987,9 +1113,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic mood paint, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:orzhov-guild-signet",
@@ -1026,9 +1161,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:orzhov-keyrune",
@@ -1064,9 +1208,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:pariahs-shield",
@@ -1102,9 +1255,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "AC bonus scaled by adjacent allies and a reaction to absorb an ally's damage as force damage; data has only a reaction placeholder.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:peregrine-mask",
@@ -1142,9 +1304,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effects grant a flying speed and initiative advantage as the text says.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:platinum-10-zino-coin",
@@ -1234,9 +1405,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Malfunction check of a d10 plus prior uses, self damage and lockout until long rest; data's damage is duplicated and uses wrong.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:rakdos-guild-signet",
@@ -1273,9 +1453,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:rakdos-keyrune",
@@ -1311,9 +1500,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:rakdos-riteknife",
@@ -1351,9 +1549,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Soul count tracking with extra necrotic per soul, bonus-action healing from souls, and a reaction kill save below an HP threshold.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:selesnya-guild-signet",
@@ -1390,9 +1597,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:selesnya-keyrune",
@@ -1428,9 +1644,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:silver-25-zib-coin",
@@ -1494,9 +1719,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged ring casting a spell; the cast activity and its uses with dawn recovery carry it.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:simic-keyrune",
@@ -1532,9 +1766,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a utility activity; the text needs a friendly creature summoned for a duration with early reversion and a cooldown. Data lacks a summon.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:skyblinder-staff",
@@ -1574,9 +1817,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction against a flying attacker imposing disadvantage with a blinding save; data has the pieces but not the trigger or disadvantage.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:spies-murmur",
@@ -1612,9 +1864,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Telepathic link and shared hearing, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:sunforger",
@@ -1652,9 +1913,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack plus a once-per-rest explosion save with its use consumption and a recall activity are present in the data.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:sword-of-the-paruns",
@@ -1690,9 +1960,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Once per turn, after Attack, Dash or Dodge, lets an ally react; data has only the attack.",
+      "state": "triaged"
     },
     {
       "key": "ggr:item:voyager-staff",
@@ -1735,9 +2014,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charge-costed spell activities, uses with dawn recovery and spell bonus effect present; vanish-on-1 at empty is minor.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:anarch/action/spiked-club",
@@ -13671,9 +13959,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-006",
+          "at": "2026-11-21T20:26:37.531Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Stores a thought in a strand object; no combat effect",
+      "state": "triaged"
     }
   ]
 }

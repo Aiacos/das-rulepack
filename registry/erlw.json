@@ -134,9 +134,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Magic force-damage melee weapon with thrown property; the damage activity and weapon data suffice, return-to-hand is flavor.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:argonnessen-trinket",
@@ -211,9 +220,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Darkvision effect plus charge-costed spell casts carried by the cast activities; the symbiosis rules are out of combat.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:cleansing-stone",
@@ -249,9 +267,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cleaning item, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:common-glamerweave",
@@ -312,9 +339,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "At end of turn at 0 HP the item makes a Medicine check to stabilize you; a turn-end trigger the data does not carry.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:double-bladed-scimitar",
@@ -350,9 +386,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus-action follow-up attack after the Attack action with a reduced damage die; data has only a normal attack.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:dragons-blood",
@@ -388,9 +433,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Drug with effects left to the DM; nothing defined to automate.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:dreamlily",
@@ -426,9 +480,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Poisoned for an hour, fear immunity, and drop to 1 HP the first time reduced to 0; data lacks the effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:dyrrns-tentacle-whip",
@@ -464,9 +527,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.88,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "+2 weapon, disadvantage against aberrations, extra psychic damage and stun on a natural 20; data lacks the riders.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:earworm",
@@ -506,9 +578,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Charged spell casts with dawn recovery and a language effect are carried by the data.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:everbright-lantern",
@@ -544,9 +625,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Light source only, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:feather-token",
@@ -646,9 +736,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Skill die for Insight checks and a locating ability; not combat.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:frostfell-and-everice-trinket",
@@ -711,9 +810,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spell-tie utility for keys, nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:khyber-trinket",
@@ -778,9 +886,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effect with resistances and poison immunity plus the acid breath save with a dawn-recovery use matches the text.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:living-gloves",
@@ -895,9 +1012,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Writing tool, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:shiftweave",
@@ -933,9 +1059,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic outfit change, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:speaking-stone",
@@ -972,9 +1107,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Long-distance messaging, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:spellshard",
@@ -1010,9 +1154,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Information storage, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:uncommon-glamerweave",
@@ -1050,9 +1203,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Cosmetic pattern and a social check die, nothing in combat.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:ventilating-lungs",
@@ -1088,9 +1250,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against gas effects only, plus a once-per-dawn gust of wind; the circumstance-limited advantage needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:wand-sheath",
@@ -1126,9 +1297,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Wand holder handling, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:wheel-of-wind-and-water",
@@ -1164,9 +1344,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-004",
+          "at": "2026-11-21T20:26:36.575Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ship control item, no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "erlw:item:xendrik-trinket",

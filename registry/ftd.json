@@ -420,9 +420,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus to ki save DCs is limited to ki features; data has only the dawn-recharge ki regain, no effect for the DC bonus.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:2-dragonhide-belt",
@@ -458,9 +467,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus to ki save DCs is limited to ki features; data has only the dawn-recharge ki regain, no effect for the DC bonus.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:3-dragonhide-belt",
@@ -496,9 +514,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bonus to ki save DCs is limited to ki features; data has only the dawn-recharge ki regain, no effect for the DC bonus.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:amethyst-lodestone",
@@ -537,9 +564,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save advantage and flight exist as effect keys, but the flight charge use and the push on a failed save are not carried; data lacks the push and a flight activity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:ascendant-dragon-touched-focus",
@@ -590,9 +626,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Per-family properties need triggers: d6 bonus on qualifying spell damage, reaction save advantage for others, upcast once per dawn; data has labelled activities but no rules.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:ascendant-dragon-vessel",
@@ -632,9 +677,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat container that conjures drinks or potions once per dawn; nothing to automate in combat beyond the use itself.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:ascendant-scaled-ornament",
@@ -677,9 +731,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura advantage on charm/fear saves for chosen allies and a reaction to negate breath damage and heal; effects only carry AC, immunity and flight.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:emerald-pen",
@@ -716,9 +779,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "At-will illusory script casting; no combat effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:flail-of-tiamat",
@@ -755,9 +827,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack with extra elemental damage and a breath save with half on success are carried by the activities; dawn use recharge present. Bonus +3 not visible in structure.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:gold-canary-figurine-of-wondrous-power",
@@ -793,9 +874,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Transforms into a creature with conditions (half HP missing, duration, reverts at 0 HP); data has only a generic utility activity with uses.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:platinum-scarf",
@@ -831,9 +921,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Choice at use time among heal, shield, hammer; data holds one damage activity only and lacks healing, shield and the extra damage vs chromatic dragons.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:potion-of-dragons-majesty",
@@ -907,9 +1006,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Spellcasting focus with charges to skip costly components and a daily spell pick; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:sapphire-buckler",
@@ -947,9 +1055,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Resistances are carried by the effect, but the reaction thunder damage to an adjacent attacker is a triggered rider; data lacks its damage.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:slumbering-dragon-touched-focus",
@@ -988,9 +1105,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Initiative advantage is carried by a transferring effect; focus use needs nothing else.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:slumbering-dragon-vessel",
@@ -1029,9 +1155,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat container that conjures drinks or potions once per dawn; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:slumbering-scaled-ornament",
@@ -1068,9 +1203,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Advantage on saves against charm and fear conditions only; structure shows no effect or activity, data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:stirring-dragon-touched-focus",
@@ -1114,9 +1258,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Per-family properties need triggers: d6 bonus on qualifying spell damage, reaction save advantage for others; data has labelled activities only.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:stirring-dragon-vessel",
@@ -1156,9 +1309,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat container that conjures drinks or potions once per dawn; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:stirring-scaled-ornament",
@@ -1198,9 +1360,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura advantage on charm/fear saves for chosen creatures nearby; effect carries AC bonus and immunities but not the aura.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:topaz-annihilator",
@@ -1237,9 +1408,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Attack activity has no damage and no disintegration on reaching 0 HP; data lacks the necrotic damage and dust rider. Cast activity covers the daily spell.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:wakened-dragon-touched-focus",
@@ -1289,9 +1469,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Per-family properties need triggers (spell damage bonus, reaction save advantage, spell teleport) and once-per-dawn casts per spell; data has only labelled activities.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:wakened-dragon-vessel",
@@ -1331,9 +1520,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Out-of-combat container that conjures drinks or potions once per dawn; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "ftd:item:wakened-scaled-ornament",
@@ -1375,9 +1573,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-003",
+          "at": "2026-11-21T20:24:17.163Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Aura advantage on charm/fear saves for chosen creatures nearby and a reaction negating breath damage with healing; effect only carries AC and immunity.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:adult-amethyst-dragon/action/bite",
@@ -19514,9 +19721,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-011",
+          "at": "2026-11-21T20:24:17.588Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has only a plain damage activity; the trail damage on moving near things, once per turn per target, plus no opportunity attacks and speed bonus are missing.",
+      "state": "triaged"
     },
     {
       "key": "ftd:spell:draconic-transformation",
@@ -19551,9 +19767,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-011",
+          "at": "2026-11-21T20:24:17.588Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data has the breath save only; bonus-action reuse, blindsight, flying speed and per-turn breath use are not carried by any effect.",
+      "state": "triaged"
     },
     {
       "key": "ftd:spell:fizbans-platinum-shield",
@@ -19588,9 +19813,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-011",
+          "at": "2026-11-21T20:24:17.588Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Utility activity with no effect: cover, five resistances, evasion on Dex saves and bonus-action moving of the field to another creature are all missing; data lacks them.",
+      "state": "triaged"
     },
     {
       "key": "ftd:spell:nathairs-mischief",
@@ -19629,9 +19863,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-011",
+          "at": "2026-11-21T20:24:17.588Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Effects exist for conditions only; the per-turn random table roll, cube movement and area-based triggers need a rule.",
+      "state": "triaged"
     },
     {
       "key": "ftd:spell:raulothims-psychic-lance",
@@ -19738,9 +19981,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-011",
+          "at": "2026-11-21T20:24:17.588Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Save and damage are in data; the speed-zero hindrance and its ending by an action to break the ice (by target or adjacent ally) is not expressed.",
+      "state": "triaged"
     },
     {
       "key": "ftd:spell:summon-draconic-spirit",
@@ -19775,9 +20027,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-ftd-011",
+          "at": "2026-11-21T20:24:17.588Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Summon activity covers the creature; the family choice and shared-initiative turn are standard summon handling, little else to add.",
+      "state": "triaged"
     }
   ]
 }

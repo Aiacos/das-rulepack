@@ -73,9 +73,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks fire resistance and exhaustion immunity while held, smith advantage, once-per-dusk spell limits and piety-based benefits.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:dekella-bident-of-thassa",
@@ -115,9 +124,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Dominate limited to swimming beasts/monstrosities, weather command and piety-gated benefits are not carried; extra cold damage and uses exist.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:ephixis-bow-of-nylea",
@@ -156,9 +174,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks 19-20 crit range, no long-range disadvantage, extra damage, and per-arrow season effects; no effects in structure.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:flying-chariot",
@@ -273,9 +300,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Reaction counterattack after taking damage, blind until next turn, once per dawn, plus extra radiant damage not on the attack; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:mastix-whip-of-erebos",
@@ -314,9 +350,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Life drain equal to half necrotic dealt, once-per-dusk 300 ft range boost and spell limits (undead only) need rules beyond data.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:potion-of-aqueous-form",
@@ -352,9 +397,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Data lacks the transformation effects: resistance to nonmagical damage, save advantage, no attacking or casting, ends when incapacitated.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:pyxis-of-pandemonium",
@@ -433,9 +487,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Four cast activities with per-spell uses already match the text; DC 13 and dawn recharge per spell are close enough.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:sling-bullets-of-althemone",
@@ -471,9 +534,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Bullet bonus, teleport back on a miss and losing magic after a hit are not in data; only a placeholder utility exists.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:two-birds-sling",
@@ -509,9 +581,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Ricochet to a second target within 10 feet with a follow-up attack; data lacks it.",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:abhorrent-overlord/action/claws",

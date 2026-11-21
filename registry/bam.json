@@ -35,9 +35,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-001",
+          "at": "2026-11-21T20:26:35.211Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Extra force damage on any weapon hit by the wearer and a timed golem summon; data has a bare damage activity not tied to hits.",
+      "state": "triaged"
     },
     {
       "key": "bam:monster:aartuk-elder/action/branch",

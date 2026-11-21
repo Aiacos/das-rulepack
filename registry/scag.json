@@ -1585,9 +1585,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:glaur",
@@ -1623,9 +1632,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:hand-drum",
@@ -1661,9 +1679,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:longhorn",
@@ -1699,9 +1726,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:shawm",
@@ -1737,15 +1773,24 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
       "alsoIn": [
         {
           "book": "PHB",
           "page": 154
         }
       ],
-      "state": "inventoried"
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:songhorn",
@@ -1781,9 +1826,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:spiked-armor",
@@ -1857,9 +1911,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:thelarr",
@@ -1895,9 +1958,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:tocken",
@@ -1933,9 +2005,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:wargong",
@@ -1971,9 +2052,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:yarting",
@@ -2009,9 +2099,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:item:zulkoon",
@@ -2047,9 +2146,18 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "reader-old-005",
+          "at": "2026-11-21T20:26:37.035Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": []
+        }
+      },
+      "why": "Carried gear, tool or flavor item; nothing to automate in combat.",
+      "state": "triaged"
     },
     {
       "key": "scag:species:gnome-deep-svirfneblin",
