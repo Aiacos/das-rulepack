@@ -1,0 +1,2699 @@
+{
+  "book": "SCAG",
+  "records": [
+    {
+      "key": "scag:background:city-watch",
+      "name": "City Watch",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "city-watch",
+      "page": 145,
+      "srd": false,
+      "text": {
+        "sha256": "6de8f297e2d1f11eacc50f9d86c2eaebc49235ba14143586d3d695112d4cebe7",
+        "source": "5etools",
+        "chars": 1153
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:clan-crafter",
+      "name": "Clan Crafter",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "clan-crafter",
+      "page": 145,
+      "srd": false,
+      "text": {
+        "sha256": "5e68f1910d28162b1ec0b29cc6da19a89b4711935ddade02acbfae8254b44ec8",
+        "source": "5etools",
+        "chars": 1380
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:cloistered-scholar",
+      "name": "Cloistered Scholar",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "cloistered-scholar",
+      "page": 146,
+      "srd": false,
+      "text": {
+        "sha256": "50b0997392668568dd787d25b6ed625d2b931686d55d028566c90740f70c6e63",
+        "source": "5etools",
+        "chars": 1502
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:courtier",
+      "name": "Courtier",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "courtier",
+      "page": 146,
+      "srd": false,
+      "text": {
+        "sha256": "99914b304e7c8ae495d84f134506baea951dcea36a1d00be75616ef0389a2074",
+        "source": "5etools",
+        "chars": 977
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:faction-agent",
+      "name": "Faction Agent",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "faction-agent",
+      "page": 147,
+      "srd": false,
+      "text": {
+        "sha256": "d35ed3d23ce718a255c8196f095942f851f9fad5b3270f04638615f88d186e5e",
+        "source": "5etools",
+        "chars": 1325
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:far-traveler",
+      "name": "Far Traveler",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "far-traveler",
+      "page": 148,
+      "srd": false,
+      "text": {
+        "sha256": "d84c04d3131c95ef28c63d256eeeb884d4900dd61770115e16aee432ca0d8150",
+        "source": "5etools",
+        "chars": 1567
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:inheritor",
+      "name": "Inheritor",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "inheritor",
+      "page": 150,
+      "srd": false,
+      "text": {
+        "sha256": "dfaa896682be81bed5103824d6c63fde4a0e1023214a5f7d50166bf7519d10bb",
+        "source": "5etools",
+        "chars": 2150
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:knight-of-the-order",
+      "name": "Knight of the Order",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "knight-of-the-order",
+      "page": 151,
+      "srd": false,
+      "text": {
+        "sha256": "3b2844cfc3651ed881638ed2f9357a614547333817692e68422d2af436793272",
+        "source": "5etools",
+        "chars": 1617
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:mercenary-veteran",
+      "name": "Mercenary Veteran",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "mercenary-veteran",
+      "page": 152,
+      "srd": false,
+      "text": {
+        "sha256": "298f5ef412d921cf9ca21e7fe3ac1d3d5b0ea8a3e8693f596efbcd42bcc4245d",
+        "source": "5etools",
+        "chars": 1269
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:urban-bounty-hunter",
+      "name": "Urban Bounty Hunter",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "urban-bounty-hunter",
+      "page": 153,
+      "srd": false,
+      "text": {
+        "sha256": "14b99b94ca8ea3460e7c00100c79f83e05e3a331d5801544702e7aab506dbd4f",
+        "source": "5etools",
+        "chars": 1193
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:uthgardt-tribe-member",
+      "name": "Uthgardt Tribe Member",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "uthgardt-tribe-member",
+      "page": 153,
+      "srd": false,
+      "text": {
+        "sha256": "76e5c5d26dd228ce90e068865f3a47261f8ca66f1d64106afe3892a7fd26287c",
+        "source": "5etools",
+        "chars": 1780
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:variant-city-watch-investigator",
+      "name": "Variant City Watch (Investigator)",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "variant-city-watch-investigator",
+      "page": 145,
+      "srd": false,
+      "text": {
+        "sha256": "14e7171f5f1d68c0404b07e6666bb4e3e7be1063b12df1a43fae66d648f9fc02",
+        "source": "5etools",
+        "chars": 1157
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:background:waterdhavian-noble",
+      "name": "Waterdhavian Noble",
+      "kind": "background",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "waterdhavian-noble",
+      "page": 154,
+      "srd": false,
+      "text": {
+        "sha256": "382d536f881d12705fb929974f964cb1d198e3b8254f1787955008d0e12d593a",
+        "source": "5etools",
+        "chars": 1680
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/battlerager/10/battlerager-charge",
+      "name": "Battlerager Charge",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Battlerager",
+      "level": 10,
+      "identifier": "battlerager-charge",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "2aafe3fd021bafba808099954b6bc5557941530727f27ee5e42d3e51a97b901e",
+        "source": "5etools",
+        "chars": 93
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/battlerager/14/spiked-retribution",
+      "name": "Spiked Retribution",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Battlerager",
+      "level": 14,
+      "identifier": "spiked-retribution",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "a8375aa80dbc9b896eae359e8ab1fb24af1c671c7ff564bb06d70c486dd1ba83",
+        "source": "5etools",
+        "chars": 198
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/battlerager/3/battlerager-armor",
+      "name": "Battlerager Armor",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Battlerager",
+      "level": 3,
+      "identifier": "battlerager-armor",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "8f40b776acf21651070da31958b788e154bcc6b05a15077de9abc6ef63264a6d",
+        "source": "5etools",
+        "chars": 516
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/battlerager/3/path-of-the-battlerager",
+      "name": "Path of the Battlerager",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Battlerager",
+      "level": 3,
+      "identifier": "path-of-the-battlerager",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "139083ad4595f4ee0569c90e5c8e27232630fd787f15639f2b2e1b49e45d4b1a",
+        "source": "5etools",
+        "chars": 311
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/battlerager/3/restriction-dwarves-only",
+      "name": "Restriction—Dwarves Only",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Battlerager",
+      "level": 3,
+      "identifier": "restriction-dwarves-only",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "2752ce5ae5a376031f744226507973a5c0b5999dc70481857a14fedcea686830",
+        "source": "5etools",
+        "chars": 313
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/battlerager/6/reckless-abandon",
+      "name": "Reckless Abandon",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Battlerager",
+      "level": 6,
+      "identifier": "reckless-abandon",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "f8820750270a378fb0d7e77703faa30d8d3437fb0b29663e71628245c4c07cc8",
+        "source": "5etools",
+        "chars": 210
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/totem-warrior/14/elk",
+      "name": "Elk",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Totem Warrior",
+      "level": 14,
+      "identifier": "elk",
+      "page": 122,
+      "srd": false,
+      "text": {
+        "sha256": "f4e43b7900c37839b25e8112ccd79e17dbc17d34aa286622a421b91636165fd6",
+        "source": "5etools",
+        "chars": 308
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/totem-warrior/14/tiger",
+      "name": "Tiger",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Totem Warrior",
+      "level": 14,
+      "identifier": "tiger",
+      "page": 122,
+      "srd": false,
+      "text": {
+        "sha256": "6797cd132288311b4b352cadaff86bfd0647669740d61e7e3aafa5858bc7fdbe",
+        "source": "5etools",
+        "chars": 236
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/totem-warrior/3/elk",
+      "name": "Elk",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Totem Warrior",
+      "level": 3,
+      "identifier": "elk",
+      "page": 122,
+      "srd": false,
+      "text": {
+        "sha256": "53f49024bcc5604d776fe9d3355e3f8bb08a36f508b0fb57439b393375df7f79",
+        "source": "5etools",
+        "chars": 147
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/totem-warrior/3/tiger",
+      "name": "Tiger",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Totem Warrior",
+      "level": 3,
+      "identifier": "tiger",
+      "page": 122,
+      "srd": false,
+      "text": {
+        "sha256": "0b727c8b801f3526efbb05d1c4461b05c88822827208f88c8f84e95020fc6664",
+        "source": "5etools",
+        "chars": 144
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/totem-warrior/6/elk",
+      "name": "Elk",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Totem Warrior",
+      "level": 6,
+      "identifier": "elk",
+      "page": 122,
+      "srd": false,
+      "text": {
+        "sha256": "31e49481fb00914f75fd47012a1d67f02dac57f12890f0302f9364db2b574a6f",
+        "source": "5etools",
+        "chars": 212
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:barbarian/totem-warrior/6/tiger",
+      "name": "Tiger",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Barbarian/Totem Warrior",
+      "level": 6,
+      "identifier": "tiger",
+      "page": 122,
+      "srd": false,
+      "text": {
+        "sha256": "dcacab9495a8e6b0eca41d93efc88dc27a9eb35b482be5fdc98a6abb5d40c8bd",
+        "source": "5etools",
+        "chars": 151
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/1/arcana-domain",
+      "name": "Arcana Domain",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 1,
+      "identifier": "arcana-domain",
+      "page": 125,
+      "srd": false,
+      "text": {
+        "sha256": "929f156537e5348c86043a81234ca7ae1ce788394f586432c1f0cc6c6a6addec",
+        "source": "5etools",
+        "chars": 917
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/1/arcane-initiate",
+      "name": "Arcane Initiate",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 1,
+      "identifier": "arcane-initiate",
+      "page": 125,
+      "srd": false,
+      "text": {
+        "sha256": "69f1e108ebbe72aaaddadc01770620c18f8cb40e6828b74ad47e21eb34857a5c",
+        "source": "5etools",
+        "chars": 202
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/17/arcane-mastery",
+      "name": "Arcane Mastery",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 17,
+      "identifier": "arcane-mastery",
+      "page": 125,
+      "srd": false,
+      "text": {
+        "sha256": "72c3cc7b03cf4f903dfaa71cff13f6a5208e1fd24a5233da75e07cf6fdea3e87",
+        "source": "5etools",
+        "chars": 264
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/2/channel-divinity-arcane-abjuration",
+      "name": "Channel Divinity: Arcane Abjuration",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 2,
+      "identifier": "channel-divinity-arcane-abjuration",
+      "page": 125,
+      "srd": false,
+      "text": {
+        "sha256": "0fd520a0d43038d6a590a561b77ecd0007884fc66f70f16acd9d71c65a78f876",
+        "source": "5etools",
+        "chars": 1081
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/3/arcana-domain",
+      "name": "Arcana Domain",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 3,
+      "copyOf": "Arcana Domain",
+      "identifier": "arcana-domain",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:13:08.077Z"
+        }
+      },
+      "why": "no text and no item in any origin",
+      "state": "triaged"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/3/channel-divinity-arcane-abjuration",
+      "name": "Channel Divinity: Arcane Abjuration",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 3,
+      "copyOf": "Channel Divinity: Arcane Abjuration",
+      "identifier": "channel-divinity-arcane-abjuration",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:13:08.077Z"
+        }
+      },
+      "why": "no text and no item in any origin",
+      "state": "triaged"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/6/spell-breaker",
+      "name": "Spell Breaker",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 6,
+      "identifier": "spell-breaker",
+      "page": 125,
+      "srd": false,
+      "text": {
+        "sha256": "3cfc982264a11bdbddedde8f5005f2e3e87301b9af5ff28c0711ce3c26ffee6a",
+        "source": "5etools",
+        "chars": 283
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:cleric/arcana/8/potent-spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Cleric/Arcana",
+      "level": 8,
+      "identifier": "potent-spellcasting",
+      "page": 125,
+      "srd": false,
+      "text": {
+        "sha256": "de298d6a2746fc127677858cde3641d3612d3c1d085486c5fd572ddc50becd07",
+        "source": "5etools",
+        "chars": 99
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:fighter/purple-dragon-knight-banneret/10/inspiring-surge",
+      "name": "Inspiring Surge",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Fighter/Purple Dragon Knight (Banneret)",
+      "level": 10,
+      "identifier": "inspiring-surge",
+      "page": 128,
+      "srd": false,
+      "text": {
+        "sha256": "bf4739bcd32f93abf3ebe7eb3adc80466e66182ad158de57cd0360162a4f2b35",
+        "source": "5etools",
+        "chars": 342
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:fighter/purple-dragon-knight-banneret/15/bulwark",
+      "name": "Bulwark",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Fighter/Purple Dragon Knight (Banneret)",
+      "level": 15,
+      "identifier": "bulwark",
+      "page": 128,
+      "srd": false,
+      "text": {
+        "sha256": "eb32b1097795a848b7ecfa55b9ac5fd1aab25aceb5e4f25b0a61aebe0fed6ced",
+        "source": "5etools",
+        "chars": 421
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:fighter/purple-dragon-knight-banneret/18/inspiring-surge",
+      "name": "Inspiring Surge",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Fighter/Purple Dragon Knight (Banneret)",
+      "level": 18,
+      "identifier": "inspiring-surge",
+      "page": 128,
+      "srd": false,
+      "text": {
+        "sha256": "d907b2fae4f8c2460c79dd09373cf7b7a682db634ac7f1f90821b2451a916f82",
+        "source": "5etools",
+        "chars": 89
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:fighter/purple-dragon-knight-banneret/3/purple-dragon-knight-banneret",
+      "name": "Purple Dragon Knight (Banneret)",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Fighter/Purple Dragon Knight (Banneret)",
+      "level": 3,
+      "identifier": "purple-dragon-knight-banneret",
+      "page": 128,
+      "srd": false,
+      "text": {
+        "sha256": "d2e1551b36bfc7e792a53fad9e50b77cc6058bc53113e7193182c63a9dc4ea5a",
+        "source": "5etools",
+        "chars": 854
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:fighter/purple-dragon-knight-banneret/3/rallying-cry",
+      "name": "Rallying Cry",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Fighter/Purple Dragon Knight (Banneret)",
+      "level": 3,
+      "identifier": "rallying-cry",
+      "page": 128,
+      "srd": false,
+      "text": {
+        "sha256": "ddb3ad8323d561477859e862daafd7f44dffa7677274a4984b52f46c39bc2531",
+        "source": "5etools",
+        "chars": 343
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:fighter/purple-dragon-knight-banneret/3/restriction-knighthood",
+      "name": "Restriction: Knighthood",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Fighter/Purple Dragon Knight (Banneret)",
+      "level": 3,
+      "identifier": "restriction-knighthood",
+      "page": 128,
+      "srd": false,
+      "text": {
+        "sha256": "9bd26542d0097c2f6ba123ed05bc2451cf0f1c7bb85b3453c2aa760d9c3831ac",
+        "source": "5etools",
+        "chars": 230
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:fighter/purple-dragon-knight-banneret/7/royal-envoy",
+      "name": "Royal Envoy",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Fighter/Purple Dragon Knight (Banneret)",
+      "level": 7,
+      "identifier": "royal-envoy",
+      "page": 128,
+      "srd": false,
+      "text": {
+        "sha256": "616149ef2468bb45c3e3c9e842ac3765c4b4a1b04c147b85e197274bb78eff99",
+        "source": "5etools",
+        "chars": 534
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:monk/long-death/11/mastery-of-death",
+      "name": "Mastery of Death",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Monk/Long Death",
+      "level": 11,
+      "identifier": "mastery-of-death",
+      "page": 130,
+      "srd": false,
+      "text": {
+        "sha256": "4c00d66add3fdea0bf9d52e415159b7069f56fa579c25a97fd0a2dcb973803e9",
+        "source": "5etools",
+        "chars": 195
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:monk/long-death/17/touch-of-the-long-death",
+      "name": "Touch of the Long Death",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Monk/Long Death",
+      "level": 17,
+      "identifier": "touch-of-the-long-death",
+      "page": 130,
+      "srd": false,
+      "text": {
+        "sha256": "6ae1cc6e716f4c413e8fc4c17e070431bae9402ff92e623dd2ecf9bab7a31ceb",
+        "source": "5etools",
+        "chars": 341
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:monk/long-death/3/touch-of-death",
+      "name": "Touch of Death",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Monk/Long Death",
+      "level": 3,
+      "identifier": "touch-of-death",
+      "page": 130,
+      "srd": false,
+      "text": {
+        "sha256": "13cd9eee9e18bf427a8467d33dffe0dece0c98528b193ad5344a185cc1654bbd",
+        "source": "5etools",
+        "chars": 329
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:13:08.077Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "scag:feature:monk/long-death/3/way-of-the-long-death",
+      "name": "Way of the Long Death",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Monk/Long Death",
+      "level": 3,
+      "identifier": "way-of-the-long-death",
+      "page": 130,
+      "srd": false,
+      "text": {
+        "sha256": "88e6e6a65204258c2b4b35645100e3dfef7cfc1ef07abd0475377fd187c7595c",
+        "source": "5etools",
+        "chars": 313
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:monk/long-death/6/hour-of-reaping",
+      "name": "Hour of Reaping",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Monk/Long Death",
+      "level": 6,
+      "identifier": "hour-of-reaping",
+      "page": 130,
+      "srd": false,
+      "text": {
+        "sha256": "6ecc6aa81a4fffbc328c4b76ea2da63f87e72461138ad091b125957c9a2aaf47",
+        "source": "5etools",
+        "chars": 318
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/15/unyielding-spirit",
+      "name": "Unyielding Spirit",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 15,
+      "identifier": "unyielding-spirit",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "e5efd11f56a7a934681f64ce6aeb0f92471f0112a8c2a0a37ea5bc5984e62382",
+        "source": "5etools",
+        "chars": 99
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/20/exalted-champion",
+      "name": "Exalted Champion",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 20,
+      "identifier": "exalted-champion",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "66c4a604ffb6025720446ef0bdd8a9ee3872b1129f58e42972156cf94e747504",
+        "source": "5etools",
+        "chars": 561
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/3/champion-challenge",
+      "name": "Champion Challenge",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 3,
+      "identifier": "champion-challenge",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "caca6f2f78366c2951f1355824611fdb1f58e5dc654421e1764fcf4c56f0f289",
+        "source": "5etools",
+        "chars": 396
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/3/channel-divinity",
+      "name": "Channel Divinity",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 3,
+      "identifier": "channel-divinity",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "264c5a7ded5ca83791fa19365e5ae1048565ae5c99dfd1a45fd80831516131ec",
+        "source": "5etools",
+        "chars": 90
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/3/oath-of-the-crown",
+      "name": "Oath of the Crown",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 3,
+      "identifier": "oath-of-the-crown",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "d08e4b954fda63fd0a7f26065737aecb1a543f0eb70943b29538829dd2a81bb8",
+        "source": "5etools",
+        "chars": 696
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/3/oath-spells",
+      "name": "Oath Spells",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 3,
+      "identifier": "oath-spells",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "277599f071ee32c87074db8033c95fa70f09c3cbc1ceca8821ac54a82e7c793c",
+        "source": "5etools",
+        "chars": 50
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/3/tenets-of-the-crown",
+      "name": "Tenets of the Crown",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 3,
+      "identifier": "tenets-of-the-crown",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "7ab8c77fdf446560fb37abe4ea30933d9c96ca96611af559e0dd137ec0504135",
+        "source": "5etools",
+        "chars": 627
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/3/turn-the-tide",
+      "name": "Turn the Tide",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 3,
+      "identifier": "turn-the-tide",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "a3a5240971f785961b638e7cf70c2152087fbc0e152d44d1506c172526e854f6",
+        "source": "5etools",
+        "chars": 268
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:paladin/crown/7/divine-allegiance",
+      "name": "Divine Allegiance",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Paladin/Crown",
+      "level": 7,
+      "identifier": "divine-allegiance",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "d62b112bd2387f3274da6f9a3396fd01d24d2a363a66b4d0cc490ea72040c0ce",
+        "source": "5etools",
+        "chars": 309
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:warlock/undying/1/among-the-dead",
+      "name": "Among the Dead",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Warlock/Undying",
+      "level": 1,
+      "identifier": "among-the-dead",
+      "page": 139,
+      "srd": false,
+      "text": {
+        "sha256": "2ea1c44d4b6e506e7d12199da5466f69cb7feda4ea2358c68fb6175fe856be72",
+        "source": "5etools",
+        "chars": 788
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:warlock/undying/1/the-undying",
+      "name": "The Undying",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Warlock/Undying",
+      "level": 1,
+      "identifier": "the-undying",
+      "page": 139,
+      "srd": false,
+      "text": {
+        "sha256": "867322d7ad6041951f1553145b2248db96d0c9a81a7b52429a02176df421f975",
+        "source": "5etools",
+        "chars": 855
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:warlock/undying/10/undying-nature",
+      "name": "Undying Nature",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Warlock/Undying",
+      "level": 10,
+      "identifier": "undying-nature",
+      "page": 139,
+      "srd": false,
+      "text": {
+        "sha256": "36c8f88142302ad52b992d3b28e7199939f2e12f4799f60aa1d53c7e34a0081d",
+        "source": "5etools",
+        "chars": 357
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:warlock/undying/14/indestructible-life",
+      "name": "Indestructible Life",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Warlock/Undying",
+      "level": 14,
+      "identifier": "indestructible-life",
+      "page": 139,
+      "srd": false,
+      "text": {
+        "sha256": "8f97fc6aa84802caa47bd3b47ab5860c748b07477eae43258eb94dd6747d0167",
+        "source": "5etools",
+        "chars": 381
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:feature:warlock/undying/3/the-undying",
+      "name": "The Undying",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Warlock/Undying",
+      "level": 3,
+      "copyOf": "The Undying",
+      "identifier": "the-undying",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:13:08.077Z"
+        }
+      },
+      "why": "no text and no item in any origin",
+      "state": "triaged"
+    },
+    {
+      "key": "scag:feature:warlock/undying/6/defy-death",
+      "name": "Defy Death",
+      "kind": "feature",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Warlock/Undying",
+      "level": 6,
+      "identifier": "defy-death",
+      "page": 139,
+      "srd": false,
+      "text": {
+        "sha256": "797b548763b7ec40d9d8f8052d0294b45cb379a112bfe0d7b795a4957219bf03",
+        "source": "5etools",
+        "chars": 383
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:birdpipes",
+      "name": "Birdpipes",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "birdpipes",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "43a0824edbdc18b35b4f527fa98fade83c88ec2cc6336f8c3d098212293216ab",
+        "source": "5etools",
+        "chars": 123
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "birdpipes",
+          "docId": "oKNK1cvzeJkNvHXS",
+          "activities": [
+            "checkBirdpipesII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "0c3445996601cd9aa5f6b90e62bb06c41066cf78300e1da172b381a5cbf97daa"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:glaur",
+      "name": "Glaur",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "glaur",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "94683df3bb828ab1277a2c3522f2ec346a19c049e147b3564d10a3797ff7eabb",
+        "source": "5etools",
+        "chars": 157
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "glaur",
+          "docId": "61qhE2GZnsCBa9iZ",
+          "activities": [
+            "checkGlaurIIIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "e963d53f2f79b8a0f565c28faf1a2f2e9aa692b826fd3ee2eef979cc739e36b5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:hand-drum",
+      "name": "Hand Drum",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "hand-drum",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "0b02e0dd7d9286dfea2b6fb98d81fb6bf83714cb4c5edd1e4f0c764939c7e4b4",
+        "source": "5etools",
+        "chars": 61
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "hand-drum",
+          "docId": "U7DhfF2a11UkHnz5",
+          "activities": [
+            "checkHandDrumIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "81f108a16c813e0bc21f5959aa59e0ed364a6e67414de55c89da4cf585303373"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:longhorn",
+      "name": "Longhorn",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "longhorn",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "65d6241ccd7cfb3560a6f51081f8256dffeb48d4bbaa3640e36f18b6c88c30c9",
+        "source": "5etools",
+        "chars": 121
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "longhorn",
+          "docId": "FN65CsvOz7Lh0oAK",
+          "activities": [
+            "checkLonghornIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "9cb7bc774c03bda2590ed01d29b3f90703f09e0602cbff9205591d4ed4be2867"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:shawm",
+      "name": "Shawm",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "shawm",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "e499e8049ed1e2e40cce72d421656a7d7954455d5fe1c94c6a2845bec246c48d",
+        "source": "5etools",
+        "chars": 128
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "shawm",
+          "docId": "m0XSGMGUq9JWPWj6",
+          "activities": [
+            "checkShawmIIIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "4cb50276eeceb469f2ee19f778aa4861ed258c16d99be714e6350e4fc3c1dba3"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:songhorn",
+      "name": "Songhorn",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "songhorn",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "61757224eff3ababd88cfd4d9883607cdb44f0a84fe8f7ad9f3cf85e95c01846",
+        "source": "5etools",
+        "chars": 61
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "songhorn",
+          "docId": "eI8QQEg8pXy1Z6EU",
+          "activities": [
+            "checkSonghornIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "1f590b9f1b09c71dea34d792bcfbcda533ba6e40e8e4be2b2e0246b5ef228168"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:spiked-armor",
+      "name": "Spiked Armor",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "unknown",
+      "identifier": "spiked-armor",
+      "page": 121,
+      "srd": false,
+      "text": {
+        "sha256": "2748ddf945ec6bc4898f784425ce50f92cd7e71d1874f9e5406c0ec60d049241",
+        "source": "5etools",
+        "chars": 155
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "spiked-armor",
+              "docId": "EsQEmuri1LHqyyo9"
+            }
+          ],
+          "differences": [
+            "edition"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:tantan",
+      "name": "Tantan",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "tantan",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "e7ebb5b0f070066a5f72e141926f85ec67020b0f6d339a23444fa1e21566fc1e",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "tantan",
+          "docId": "ZWr76Zeh9FfLObeF",
+          "activities": [
+            "checkTantanIIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "11b71f399090d7e2f00b92f8966b3be7257a913ebe9edc02ed674e5ff640b0d4"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:thelarr",
+      "name": "Thelarr",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "thelarr",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "d11db22141c2fda6bae8e6935653f7b9cfe551a8af32bea466a510e42bf9fd8c",
+        "source": "5etools",
+        "chars": 217
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "thelarr",
+          "docId": "S8J9qgfhdTrVpIzH",
+          "activities": [
+            "checkThelarrIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "7c9432642976c8ce25d88b5fcc2df9dd139f0d2e0b94fa62656c4014b0e5f3bd"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:tocken",
+      "name": "Tocken",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "tocken",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "19be02f59729486e62106535649dfc2a2a40e3722e4e5e5de048ed8937064bbf",
+        "source": "5etools",
+        "chars": 186
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "tocken",
+          "docId": "RdfXTosuJkYhWAZX",
+          "activities": [
+            "checkTockenIIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3ca569c57f1bd109d07d43b14ec37e235b3c4cab1e940061bec5e61ca879b140"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:wargong",
+      "name": "Wargong",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "wargong",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "828cc1a1be78d28411bd5079856bdbeb7dbae10603998cdc370935e923b13dcd",
+        "source": "5etools",
+        "chars": 187
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "wargong",
+          "docId": "wkfcOYh8VVx9srCA",
+          "activities": [
+            "checkWargongIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "31c4a8dadb88d9765f83933f965329637a417b09814772f831e50ffcc1b98e3d"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:yarting",
+      "name": "Yarting",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "yarting",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "0170229b19f6dd15dcc1ebfd9b8ed83b946464c96faf19e51dadb515f0c58de3",
+        "source": "5etools",
+        "chars": 140
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "yarting",
+          "docId": "ktLLwxmhXcWEr4s9",
+          "activities": [
+            "checkYartingIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "0b41cd023cb3f10b543a31f5c4092117ddd8ac91138969614e40759e56ba991c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:item:zulkoon",
+      "name": "Zulkoon",
+      "kind": "item",
+      "book": "SCAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "zulkoon",
+      "page": 124,
+      "srd": false,
+      "text": {
+        "sha256": "d10e4e0072d51559210eb055f81f74b372cb065c6302569f38f8be57d6494f42",
+        "source": "5etools",
+        "chars": 163
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "zulkoon",
+          "docId": "cQdmkjbXG4WF226G",
+          "activities": [
+            "checkZulkoonIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c4e424366f595e28acd1230e13f102f4f5759bc1944cedf9fdc67da00764b0f0"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:gnome-deep-svirfneblin",
+      "name": "Gnome (Deep/Svirfneblin)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "gnome-deep-svirfneblin",
+      "page": 115,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:gnome-deep/svirfneblin/age",
+      "name": "Age",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Gnome (Deep/Svirfneblin)",
+      "identifier": "age",
+      "page": 115,
+      "srd": false,
+      "text": {
+        "sha256": "ece422509305a1d0a31375ea20bde22a5c3f1e08f0ea062df3a561730465322e",
+        "source": "5etools",
+        "chars": 238
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:gnome-deep/svirfneblin/alignment",
+      "name": "Alignment",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Gnome (Deep/Svirfneblin)",
+      "identifier": "alignment",
+      "page": 115,
+      "srd": false,
+      "text": {
+        "sha256": "b2b47f0746a0e8e2c4c4564effa89b474d588da713782a0dfd16807c531f2c35",
+        "source": "5etools",
+        "chars": 232
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:gnome-deep/svirfneblin/languages",
+      "name": "Languages",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Gnome (Deep/Svirfneblin)",
+      "identifier": "languages",
+      "page": 115,
+      "srd": false,
+      "text": {
+        "sha256": "b645a7fa60d3c42ffcf038a8f441bf637f4bcb1ad950010c05a5e468cfda79b0",
+        "source": "5etools",
+        "chars": 305
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:gnome-deep/svirfneblin/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Gnome (Deep/Svirfneblin)",
+      "identifier": "size",
+      "page": 115,
+      "srd": false,
+      "text": {
+        "sha256": "744d2f8204bc81db11fabd29f2f955930ae11c34c5e5655d879a30f8bc9a1279",
+        "source": "5etools",
+        "chars": 101
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:gnome-deep/svirfneblin/stone-camouflage",
+      "name": "Stone Camouflage",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Gnome (Deep/Svirfneblin)",
+      "identifier": "stone-camouflage",
+      "page": 115,
+      "srd": false,
+      "text": {
+        "sha256": "69966ec492ffe1ac54841c0f1838182d54b9fb15f0fab4f05bd1b3f0fbb40ec9",
+        "source": "5etools",
+        "chars": 74
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:gnome-deep/svirfneblin/superior-darkvision",
+      "name": "Superior Darkvision",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Gnome (Deep/Svirfneblin)",
+      "identifier": "superior-darkvision",
+      "page": 115,
+      "srd": false,
+      "text": {
+        "sha256": "c6e2bca8ae190cbfa292a1febc035c9cdc4492bcfdad4dba51e53a1eafe1955d",
+        "source": "5etools",
+        "chars": 259
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-aquatic-elf-descent",
+      "name": "Half-Elf (Variant; Aquatic Elf Descent)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "half-elf-variant-aquatic-elf-descent",
+      "page": 116,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-aquatic-elf-descent/variant-feature-choose-1",
+      "name": "Variant Feature (Choose 1)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Half-Elf (Variant; Aquatic Elf Descent)",
+      "identifier": "variant-feature-choose-1",
+      "page": 116,
+      "srd": false,
+      "text": {
+        "sha256": "139397576c82402ae72a6a14d12b7da241b81d9fcad224a70f7706b4df167556",
+        "source": "5etools",
+        "chars": 109
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-drow-descent",
+      "name": "Half-Elf (Variant; Drow Descent)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "half-elf-variant-drow-descent",
+      "page": 116,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-drow-descent/variant-feature-choose-1",
+      "name": "Variant Feature (Choose 1)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Half-Elf (Variant; Drow Descent)",
+      "identifier": "variant-feature-choose-1",
+      "page": 116,
+      "srd": false,
+      "text": {
+        "sha256": "2fc091638a8073838a618181f8d5f2d9361b2bc75fed21d7778bd6d7bacaa590",
+        "source": "5etools",
+        "chars": 482
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-moon-elf-or-sun-elf-descent",
+      "name": "Half-Elf (Variant; Moon Elf or Sun Elf Descent)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "half-elf-variant-moon-elf-or-sun-elf-descent",
+      "page": 116,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-moon-elf-or-sun-elf-descent/variant-feature-choose-1",
+      "name": "Variant Feature (Choose 1)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Half-Elf (Variant; Moon Elf or Sun Elf Descent)",
+      "identifier": "variant-feature-choose-1",
+      "page": 116,
+      "srd": false,
+      "text": {
+        "sha256": "68a8e03fd58a4e02967f140cd6ed25ea6ab337e0f3bc31224af5b59e3f40a7b1",
+        "source": "5etools",
+        "chars": 286
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-wood-elf-descent",
+      "name": "Half-Elf (Variant; Wood Elf Descent)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "half-elf-variant-wood-elf-descent",
+      "page": 116,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:half-elf-variant-wood-elf-descent/variant-feature-choose-1",
+      "name": "Variant Feature (Choose 1)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Half-Elf (Variant; Wood Elf Descent)",
+      "identifier": "variant-feature-choose-1",
+      "page": 116,
+      "srd": false,
+      "text": {
+        "sha256": "ceca2dee53032af0011ebad10d24295840f12a0281805f6cd73ba1e165043d54",
+        "source": "5etools",
+        "chars": 378
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:halfling-ghostwise",
+      "name": "Halfling (Ghostwise)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "halfling-ghostwise",
+      "page": 110,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:halfling-ghostwise/silent-speech",
+      "name": "Silent Speech",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Halfling (Ghostwise)",
+      "identifier": "silent-speech",
+      "page": 110,
+      "srd": false,
+      "text": {
+        "sha256": "526f302985553cc648dfaac0c94ea1abe8252d6205fe854f53c74fce437ac25d",
+        "source": "5etools",
+        "chars": 205
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-devils-tongue",
+      "name": "Tiefling (Variant; Devil's Tongue)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "tiefling-variant-devils-tongue",
+      "page": 118,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-devils-tongue/appearance",
+      "name": "Appearance",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Tiefling (Variant; Devil's Tongue)",
+      "identifier": "appearance",
+      "page": 118,
+      "srd": false,
+      "text": {
+        "sha256": "f9189073782fe9c517939d60844dbbfced84d5339deddfccc12db4e76aba7215",
+        "source": "5etools",
+        "chars": 415
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-devils-tongue/devils-tongue",
+      "name": "Devil's Tongue",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Tiefling (Variant; Devil's Tongue)",
+      "identifier": "devils-tongue",
+      "page": 118,
+      "srd": false,
+      "text": {
+        "sha256": "7d74053b22180f4f026b665881e6ad892ee7404331638dbde6a58e93a80ad92f",
+        "source": "5etools",
+        "chars": 394
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-hellfire",
+      "name": "Tiefling (Variant; Hellfire)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "tiefling-variant-hellfire",
+      "page": 118,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-hellfire/appearance",
+      "name": "Appearance",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Tiefling (Variant; Hellfire)",
+      "identifier": "appearance",
+      "page": 118,
+      "srd": false,
+      "text": {
+        "sha256": "f9189073782fe9c517939d60844dbbfced84d5339deddfccc12db4e76aba7215",
+        "source": "5etools",
+        "chars": 415
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-hellfire/hellfire",
+      "name": "Hellfire",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Tiefling (Variant; Hellfire)",
+      "identifier": "hellfire",
+      "page": 118,
+      "srd": false,
+      "text": {
+        "sha256": "169a8797c8b70833b93a2405110db7c54c00ce2e070914444ec17cae3db3b423",
+        "source": "5etools",
+        "chars": 409
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-infernal-legacy",
+      "name": "Tiefling (Variant; Infernal Legacy)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "tiefling-variant-infernal-legacy",
+      "page": 118,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-infernal-legacy/appearance",
+      "name": "Appearance",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Tiefling (Variant; Infernal Legacy)",
+      "identifier": "appearance",
+      "page": 118,
+      "srd": false,
+      "text": {
+        "sha256": "f9189073782fe9c517939d60844dbbfced84d5339deddfccc12db4e76aba7215",
+        "source": "5etools",
+        "chars": 415
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-winged",
+      "name": "Tiefling (Variant; Winged)",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "identifier": "tiefling-variant-winged",
+      "page": 118,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-winged/appearance",
+      "name": "Appearance",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Tiefling (Variant; Winged)",
+      "identifier": "appearance",
+      "page": 118,
+      "srd": false,
+      "text": {
+        "sha256": "f9189073782fe9c517939d60844dbbfced84d5339deddfccc12db4e76aba7215",
+        "source": "5etools",
+        "chars": 415
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "scag:species:tiefling-variant-winged/winged",
+      "name": "Winged",
+      "kind": "species",
+      "book": "SCAG",
+      "edition": "2014",
+      "owner": "Tiefling (Variant; Winged)",
+      "identifier": "winged",
+      "page": 118,
+      "srd": false,
+      "text": {
+        "sha256": "4a6aa867d63b0659dade19e5d4e08eb28aa22365ae3e1d042835a3b25961940d",
+        "source": "5etools",
+        "chars": 133
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
