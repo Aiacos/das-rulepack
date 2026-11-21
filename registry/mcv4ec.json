@@ -1,0 +1,3926 @@
+{
+  "book": "MCV4EC",
+  "records": [
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/action/hooves",
+      "name": "Hooves",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "action",
+      "identifier": "hooves",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "db77aef4dc4c9d6fe13ddd604be6a1ba93b32d082a436a24ef69d12bc1bd11e0",
+        "source": "5etools",
+        "chars": 222
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ea2a1a71d36ca5d409dd701860c63e9a8c4b35578b3d65e1366e87c02c58161c",
+        "source": "5etools",
+        "chars": 64
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/action/radiant-lance",
+      "name": "Radiant Lance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "action",
+      "identifier": "radiant-lance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "4ea2950f0fc983973d2fd2fe63fcea3af398f250130264e095823959d55bef14",
+        "source": "5etools",
+        "chars": 272
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/reaction/archons-pursuit",
+      "name": "Archon's Pursuit",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "reaction",
+      "identifier": "archons-pursuit",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "259a1e63993712043903b9019bbc4b0f58343b83e80d9c5dd87a5acee026438e",
+        "source": "5etools",
+        "chars": 183
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/reaction/haunting-radiance",
+      "name": "Haunting Radiance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "reaction",
+      "identifier": "haunting-radiance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0e8e33babe9f9debd120b578677bd32b09c6b4cd21e3bebb238090c6065ba1f1",
+        "source": "5etools",
+        "chars": 268
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/reaction/parry",
+      "name": "Parry",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "reaction",
+      "identifier": "parry",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "3533525a90d3ab3e9b3218d90068d879409c7375c9e4c948d13b8a9cf3f14c71",
+        "source": "5etools",
+        "chars": 105
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "a5247bd67b7c9bb9e0a6da5c27155530e975e1d31b49100691cd4af3fa3b9616",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "643488383d0d72e6a60fc1cf2df6a15833c23eefeb34017cbca0e82f14ab8a37",
+        "source": "5etools",
+        "chars": 83
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:archon-of-boundaries/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Archon of Boundaries",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5cd2b0a13b5a477f8feb886e2ba70d49fe23637be102ddb8b08abc6e656b7518",
+        "source": "5etools",
+        "chars": 117
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:beanstalk-wurm/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Beanstalk Wurm",
+      "section": "action",
+      "identifier": "bite",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "72d0e300f72ff912a4905e15992cd557edf366badec6e4f7cf041a4acc3423e6",
+        "source": "5etools",
+        "chars": 933
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:beanstalk-wurm/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Beanstalk Wurm",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b3490d6c87712d59ee074e63bc68beb4c6920e6dbd4bd07d8684edd51ff0ff5f",
+        "source": "5etools",
+        "chars": 32
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:beanstalk-wurm/trait/false-appearance",
+      "name": "False Appearance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Beanstalk Wurm",
+      "section": "trait",
+      "identifier": "false-appearance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "69511466ed3f73e32d3d0d4e9d9c7396cc995a03de6a41a9bd2332aad16096e0",
+        "source": "5etools",
+        "chars": 259
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:beanstalk-wurm/trait/leafy-handholds",
+      "name": "Leafy Handholds",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Beanstalk Wurm",
+      "section": "trait",
+      "identifier": "leafy-handholds",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "7a068ce9fb997b745915508f9bb419d7ed06e7cc1700efb69c1f2f3e703de257",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:beanstalk-wurm/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Beanstalk Wurm",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "bd37f8c8d91319866a4341b5e032041462fe6bba671acbd8aa75218e9964c56d",
+        "source": "5etools",
+        "chars": 67
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:beanstalk-wurm/trait/regeneration",
+      "name": "Regeneration",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Beanstalk Wurm",
+      "section": "trait",
+      "identifier": "regeneration",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "686f266d20bee5d4967c7ec231fcb5de7c83c27134beeda674b37c91c3ffa979",
+        "source": "5etools",
+        "chars": 197
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:deathless-rider/action/axe",
+      "name": "Axe",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Deathless Rider",
+      "section": "action",
+      "identifier": "axe",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "647f73edc99e540b0f798aa9761ef40aa5bf1398ae00c09996d91b03a3e12d41",
+        "source": "5etools",
+        "chars": 67
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:deathless-rider/action/fell-glare",
+      "name": "Fell Glare",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Deathless Rider",
+      "section": "action",
+      "identifier": "fell-glare",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e6270cfacf3bddbf2eb6da220216179f054b3a9b0e2ea6eec9e5db4f056dd1d2",
+        "source": "5etools",
+        "chars": 329
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:deathless-rider/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Deathless Rider",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "45001892aecb5c9e8bd9f7e81c7fa9b7b86939c0a15a6ab140aafcf638b875e9",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:deathless-rider/trait/mounted-adept",
+      "name": "Mounted Adept",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Deathless Rider",
+      "section": "trait",
+      "identifier": "mounted-adept",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1131c97f64ae816dc35b8e18d050eb7e6414c0611875795f757ec039cb76d71d",
+        "source": "5etools",
+        "chars": 307
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:deathless-rider/trait/undead-fortitude",
+      "name": "Undead Fortitude",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Deathless Rider",
+      "section": "trait",
+      "identifier": "undead-fortitude",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "69dc34b25f303bb0e0f8f811e0932c766ca46a33476ece09767dc2cadc2c2639",
+        "source": "5etools",
+        "chars": 233
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:dunbarrow-witch/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Dunbarrow Witch",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e1bb87fcbc3059e88be06ec38414b5d943dd707a8a28e3ab4cb36dd532033883",
+        "source": "5etools",
+        "chars": 97
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:dunbarrow-witch/action/poison-dagger",
+      "name": "Poison Dagger",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Dunbarrow Witch",
+      "section": "action",
+      "identifier": "poison-dagger",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "02607e8a79afd5d00848b522f9c5c1f89b134a47a235a386f09ee1edbd36cc5d",
+        "source": "5etools",
+        "chars": 116
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:dunbarrow-witch/action/polymorph-concoction",
+      "name": "Polymorph Concoction",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Dunbarrow Witch",
+      "section": "action",
+      "identifier": "polymorph-concoction",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1573ecd11fe9b78010547028ffd914136cd64a3fca1f9e0db848d70454835511",
+        "source": "5etools",
+        "chars": 497
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:dunbarrow-witch/action/shattered-shards",
+      "name": "Shattered Shards",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Dunbarrow Witch",
+      "section": "action",
+      "identifier": "shattered-shards",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "50a54f4f25172f808e3c3d6d56c5dbadd787c804a5cb74c1b55e0a248b0071d0",
+        "source": "5etools",
+        "chars": 340
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:dunbarrow-witch/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Dunbarrow Witch",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "dbf5d6818e803885f2508d6cc0f241cc5cf4070433748ca236f253fa3182af4a",
+        "source": "5etools",
+        "chars": 225
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-borrower/action/magic-mockery",
+      "name": "Magic Mockery",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Borrower",
+      "section": "action",
+      "identifier": "magic-mockery",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "831b3c80dde5c343417945e328561840c502980234f16b888b3c768ab32a62a2",
+        "source": "5etools",
+        "chars": 269
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-borrower/action/needle-blade",
+      "name": "Needle Blade",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Borrower",
+      "section": "action",
+      "identifier": "needle-blade",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "19b6b4643f22edba9249be68191bd7647fdfb6999fa63b380f51d09a9c86556f",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-borrower/reaction/tricksy-parry",
+      "name": "Tricksy Parry",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Borrower",
+      "section": "reaction",
+      "identifier": "tricksy-parry",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0cfd66c6fadb29a4d18f509de3e3e6cfb355d7e0cb61436a2b6571beec940922",
+        "source": "5etools",
+        "chars": 80
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-borrower/trait/flyby",
+      "name": "Flyby",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Borrower",
+      "section": "trait",
+      "identifier": "flyby",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "47bdfb6b26d54c0a1ccbcc0d4155e2fe7712cede913602403a12b2550838fdb1",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-borrower/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Borrower",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f6d9e9ab4ddff9a5e80cd8b8f8089f634e0b46b5da1c4b28a26f2383d858749e",
+        "source": "5etools",
+        "chars": 172
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pathlighter/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pathlighter",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b526b1d12c4965b12269c8afbe84acd3615b8dc9a0bcb73e989f52878b06739f",
+        "source": "5etools",
+        "chars": 44
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pathlighter/action/shining-strike",
+      "name": "Shining Strike",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pathlighter",
+      "section": "action",
+      "identifier": "shining-strike",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "666a9d5a67f15cd6b84711c90d1fbc07a0be1892997be299470059d17c0a8965",
+        "source": "5etools",
+        "chars": 375
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pathlighter/bonus/guiding-light",
+      "name": "Guiding Light",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pathlighter",
+      "section": "bonus",
+      "identifier": "guiding-light",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c282ebbcb7328cc2bd05eda84fe4794f780362227fcd0d01968f42d256627899",
+        "source": "5etools",
+        "chars": 627
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pathlighter/trait/faerie-illumination",
+      "name": "Faerie Illumination",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pathlighter",
+      "section": "trait",
+      "identifier": "faerie-illumination",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0543f4d89433e2e3b1233877a34324514939a2c459fc0070e8d1251ac22e9cac",
+        "source": "5etools",
+        "chars": 47
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pathlighter/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pathlighter",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8460c33879fe6e274fe3127dcd56cb312d532eb9899fbe91d15e5df514d91404",
+        "source": "5etools",
+        "chars": 187
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pest/action/stingblade",
+      "name": "Stingblade",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pest",
+      "section": "action",
+      "identifier": "stingblade",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ea02f587e6503c8c9c7fe6b269d9efc5d7dd2e06172d52f2559e019139971a05",
+        "source": "5etools",
+        "chars": 197
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pest/action/theft-of-nerves",
+      "name": "Theft of Nerves",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pest",
+      "section": "action",
+      "identifier": "theft-of-nerves",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5ef4e094fbe8304c18222e66feec1989aaa6a38919a6dd509e0fc72116498bf1",
+        "source": "5etools",
+        "chars": 316
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pest/bonus/mischievous-stealth",
+      "name": "Mischievous Stealth",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pest",
+      "section": "bonus",
+      "identifier": "mischievous-stealth",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "017e6f510faa91a5079dc3452a7f19df4945ba8278c46d7d6744f4b49a03444a",
+        "source": "5etools",
+        "chars": 33
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:faerie-pest/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Faerie Pest",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "9284bd6a729c23aabef7bea3f6a114294791a38f2a065d455103da5e6907ed33",
+        "source": "5etools",
+        "chars": 173
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:gingerbrute/action/fork",
+      "name": "Fork",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Gingerbrute",
+      "section": "action",
+      "identifier": "fork",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "cfdb18c10f698b9c7cd912ee4cc1f0eab8cc8f34a4ba26ba7027d110427168ce",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:gingerbrute/action/gumdrop-slingshot",
+      "name": "Gumdrop Slingshot",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Gingerbrute",
+      "section": "action",
+      "identifier": "gumdrop-slingshot",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "37a5784acf45bcf86009898e001ec78e5f5a6acd669832cc9b1807844ef6a2eb",
+        "source": "5etools",
+        "chars": 74
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:gingerbrute/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Gingerbrute",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5c7a879fd7adae8fd8e43a6a5e9ea882903d463e905f555ccc2518d3e312c10f",
+        "source": "5etools",
+        "chars": 86
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:gingerbrute/trait/cant-catch-me",
+      "name": "Can't Catch Me",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Gingerbrute",
+      "section": "trait",
+      "identifier": "cant-catch-me",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1087c2fc2f0959c917a83aedca9de434d3a1cf71f8d410004d990678b62bac18",
+        "source": "5etools",
+        "chars": 145
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:gingerbrute/trait/sweet-victory",
+      "name": "Sweet Victory",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Gingerbrute",
+      "section": "trait",
+      "identifier": "sweet-victory",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "bd7bd6aeb9a024440887a3030812915e9cc746f58812df45d65f1463129d3aa0",
+        "source": "5etools",
+        "chars": 174
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/action/beak",
+      "name": "Beak",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "action",
+      "identifier": "beak",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8573e3f2c4b06c01c495f02b13ea9c00d884bfa35c21a8f5aa6aae162eb971a3",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/action/lullaby-of-honks",
+      "name": "Lullaby of Honks",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "action",
+      "identifier": "lullaby-of-honks",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "dcbd79f888f8c4862a4bb7d1969c2d928ebabfae793608bf619a8d8ca490e5c7",
+        "source": "5etools",
+        "chars": 545
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "212e24a53bc5f2da53395cc8cb45f0e08cafc16f58f1c828f7ed64e4c1aec068",
+        "source": "5etools",
+        "chars": 80
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/action/wing",
+      "name": "Wing",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "action",
+      "identifier": "wing",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "656a5d84ede7efdc12f193bd4eed87c448eb7396d555b67f36b9de78f2b472c1",
+        "source": "5etools",
+        "chars": 192
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b31312493d2c0e4889541b71d33c108a8cdac53eb49b66d10fc995bc88de159a",
+        "source": "5etools",
+        "chars": 75
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/trait/multiple-heads",
+      "name": "Multiple Heads",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "trait",
+      "identifier": "multiple-heads",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "55c15d7955318e125066c74c241a97af16eb9f48ef14eab705abaaa179f11d91",
+        "source": "5etools",
+        "chars": 403
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/trait/reactive-heads",
+      "name": "Reactive Heads",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "trait",
+      "identifier": "reactive-heads",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "25c6ee7852d759a742f97f38812d376d4f820c4a55c01d0a035f0f592ab3d1ea",
+        "source": "5etools",
+        "chars": 119
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:goose-mother/trait/wakeful",
+      "name": "Wakeful",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Goose Mother",
+      "section": "trait",
+      "identifier": "wakeful",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5c7c761638476778a223b18a1056321434d7501729ee13b8001fef6cbfd9b3a2",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-impostor/action/fae-blade",
+      "name": "Fae Blade",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Impostor",
+      "section": "action",
+      "identifier": "fae-blade",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "cfe2c87f529d294c3b713da523fa1f76d4dcc6a74d5cd8b2f7ab4d1e5c21a4cf",
+        "source": "5etools",
+        "chars": 64
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-impostor/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Impostor",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "a2a32999415b6e31fffcb65328117cb18eb8a25e52b9bfa9a3f0d3acb0e8df08",
+        "source": "5etools",
+        "chars": 68
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-impostor/action/vexing-prank",
+      "name": "Vexing Prank",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Impostor",
+      "section": "action",
+      "identifier": "vexing-prank",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "04e23eda6b0cf9b2d4540fedea6db9fa2ec02ae8d5a40d850518099986a3c993",
+        "source": "5etools",
+        "chars": 340
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-impostor/bonus/loot-likeness",
+      "name": "Loot Likeness",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Impostor",
+      "section": "bonus",
+      "identifier": "loot-likeness",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d05f11b1ed8a4fe4db2a702b85546968db5df8724041fd9f22ceaeff7389e3f8",
+        "source": "5etools",
+        "chars": 483
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-impostor/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Impostor",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "2abdd9c1588a77831c9ee5de6f2af0e44bc7f1b06af2a9fe8a4bdd0144d10be2",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-impostor/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Impostor",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "cdda329904956c4bbdbe0f35075039bb0fd2b369499a3e2ecafae4123d53edf9",
+        "source": "5etools",
+        "chars": 196
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-kindguard/action/fae-claymore",
+      "name": "Fae Claymore",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Kindguard",
+      "section": "action",
+      "identifier": "fae-claymore",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "93935697b7338a90c6cd89d352e4a48909f12442c69d2901dd55ffabf2b7ffcc",
+        "source": "5etools",
+        "chars": 207
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-kindguard/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Kindguard",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "95f9ed6d7bb8006e33e0faa10fd6623fc9981f43d5f15daf3afcac86628dd4b8",
+        "source": "5etools",
+        "chars": 68
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-kindguard/action/tripping-feint",
+      "name": "Tripping Feint",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Kindguard",
+      "section": "action",
+      "identifier": "tripping-feint",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c6268d42f3b2eca6c950420346f6d580d545eea9b6b935892bcdc6586801a5e1",
+        "source": "5etools",
+        "chars": 171
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-kindguard/bonus/darting-flight",
+      "name": "Darting Flight",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Kindguard",
+      "section": "bonus",
+      "identifier": "darting-flight",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f5972ff765e678ffbd137b3e15cd12912ffd6b5edfbea09f8ad647c299b25fcb",
+        "source": "5etools",
+        "chars": 86
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-kindguard/reaction/parry-and-riposte",
+      "name": "Parry and Riposte",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Kindguard",
+      "section": "reaction",
+      "identifier": "parry-and-riposte",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e9858d9d0c56492c9ffa412d2282e47c5da57026d2e863e524d811188111eeea",
+        "source": "5etools",
+        "chars": 215
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-kindguard/trait/evasion",
+      "name": "Evasion",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Kindguard",
+      "section": "trait",
+      "identifier": "evasion",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "81c712abd12e75ba72dbb5bc990f2563e9d2d1f208cc25adb5d905c415df727a",
+        "source": "5etools",
+        "chars": 265
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-kindguard/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Kindguard",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "2abdd9c1588a77831c9ee5de6f2af0e44bc7f1b06af2a9fe8a4bdd0144d10be2",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-mage/action/elemental-strike",
+      "name": "Elemental Strike",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Mage",
+      "section": "action",
+      "identifier": "elemental-strike",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "4a2f56052625786f36a3a269d720f503455725a3e48bc5eec18330e834bb54e5",
+        "source": "5etools",
+        "chars": 150
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-mage/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Mage",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8597e47df3124ef40c11a3b7d6558b9399f0ec2febe2be158335612b3d669150",
+        "source": "5etools",
+        "chars": 48
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-mage/action/negotiate-life",
+      "name": "Negotiate Life",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Mage",
+      "section": "action",
+      "identifier": "negotiate-life",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "6c462ea4f1b7d4b4b35d7731891a078dad65b0b63d24d022bfd972ade795c540",
+        "source": "5etools",
+        "chars": 364
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-mage/reaction/fae-counterspell",
+      "name": "Fae Counterspell",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Mage",
+      "section": "reaction",
+      "identifier": "fae-counterspell",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "bc9e2b51d02c4d0ccdc5358751b979c47ce3ebd44961729b7b992f1c550694cb",
+        "source": "5etools",
+        "chars": 303
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-mage/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Mage",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "2abdd9c1588a77831c9ee5de6f2af0e44bc7f1b06af2a9fe8a4bdd0144d10be2",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-mage/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Mage",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d5dcd71d01b9eb43815faa2fc4e68c5fe4700ae9f25aa6b40f44484b794fd286",
+        "source": "5etools",
+        "chars": 244
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/action/fae-blade",
+      "name": "Fae Blade",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "action",
+      "identifier": "fae-blade",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d97bb572350d3990419a72491b4e1289f7647767368a341abc0edf7ae6f4550a",
+        "source": "5etools",
+        "chars": 65
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ed74bead85ba0cb2fee6381d973a352f3de3f4efa4e0b402f3bb0836aa8b1c16",
+        "source": "5etools",
+        "chars": 115
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/action/stunning-soliloquy",
+      "name": "Stunning Soliloquy",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "action",
+      "identifier": "stunning-soliloquy",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "789e5b1d8b0482aa20dede22088f227710e755c8c7aca5b69c6c024823222f6c",
+        "source": "5etools",
+        "chars": 320
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/reaction/capricious-step",
+      "name": "Capricious Step",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "reaction",
+      "identifier": "capricious-step",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "a62557d6a18936044416c06d97f3f89b506d02d17752d0d5497df74a608af91d",
+        "source": "5etools",
+        "chars": 276
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/reaction/ridicule",
+      "name": "Ridicule",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "reaction",
+      "identifier": "ridicule",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f79081603bdb0bf90b54d3d1bc1d7e48cce714158e43c4c260c29715109d2ccb",
+        "source": "5etools",
+        "chars": 147
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/trait/aura-of-overwhelming-splendor",
+      "name": "Aura of Overwhelming Splendor",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "trait",
+      "identifier": "aura-of-overwhelming-splendor",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e2d42c25f273292374ca3489f1bf69587f9683c70d23ac1e84ec045557666a92",
+        "source": "5etools",
+        "chars": 313
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "4abcaafcf788b1837c159290570d6146d634803ace5802fb93b296b5cfeade8f",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "2abdd9c1588a77831c9ee5de6f2af0e44bc7f1b06af2a9fe8a4bdd0144d10be2",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:high-fae-noble/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "High Fae Noble",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8e67f0375ea66f4ca4c86fba965e44cf2182161764ed08296fe5924447d47637",
+        "source": "5etools",
+        "chars": 211
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:knight-of-eldraine/action/heavy-crossbow",
+      "name": "Heavy Crossbow",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Knight of Eldraine",
+      "section": "action",
+      "identifier": "heavy-crossbow",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b8e9585a308cb76abef63c0c536cbcfbfd2353aa52d2b966ac4a4d3e235bed46",
+        "source": "5etools",
+        "chars": 101
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:knight-of-eldraine/action/lance",
+      "name": "Lance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Knight of Eldraine",
+      "section": "action",
+      "identifier": "lance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "542e228f421aeffa2ca42b653b8fd20aead949e6ed7f4d3373ef57a5358e8876",
+        "source": "5etools",
+        "chars": 96
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:knight-of-eldraine/action/longsword",
+      "name": "Longsword",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Knight of Eldraine",
+      "section": "action",
+      "identifier": "longsword",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e6f7f2b9a305bd8eb0d37d9df43da0c498b5218be1232582a1d7775085884ec5",
+        "source": "5etools",
+        "chars": 151
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:knight-of-eldraine/trait/knightly-virtue",
+      "name": "Knightly Virtue",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Knight of Eldraine",
+      "section": "trait",
+      "identifier": "knightly-virtue",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ad82f4891c8654927f8ccc587e072f2f618ffdbe509284e782ff290c8affec00",
+        "source": "5etools",
+        "chars": 530
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:nightmare-haunt/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Nightmare Haunt",
+      "section": "action",
+      "identifier": "claw",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "de0cf6e81d711bffb85e60edc9e38d494484a332d688c4b2e68fb899ccbd2ded",
+        "source": "5etools",
+        "chars": 94
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:nightmare-haunt/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Nightmare Haunt",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "bffd3a21f9198f1b55d41fd135032af4b3f8886c149b01c22a9f9ffc55dd16a9",
+        "source": "5etools",
+        "chars": 43
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:nightmare-haunt/action/tendrils-of-slumber",
+      "name": "Tendrils of Slumber",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Nightmare Haunt",
+      "section": "action",
+      "identifier": "tendrils-of-slumber",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "030ee888cbdb887ae5f8fdcbaac96b0c692c3c5d12d762518fa237cfb3ad6ba9",
+        "source": "5etools",
+        "chars": 1002
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:nightmare-haunt/bonus/shadow-stealth",
+      "name": "Shadow Stealth",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Nightmare Haunt",
+      "section": "bonus",
+      "identifier": "shadow-stealth",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b2aaa85e2a6b2e13d720cf5beefef94e78772e2b47e005bee047c579646f9e74",
+        "source": "5etools",
+        "chars": 74
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:nightmare-haunt/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Nightmare Haunt",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "471bf9e3718f5aa63f991589a38a77e0bdd01058637feaf8f92625b64a77338f",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:nightmare-haunt/trait/somnophage",
+      "name": "Somnophage",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Nightmare Haunt",
+      "section": "trait",
+      "identifier": "somnophage",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f81b8704c461f03089e46bf94660762fb0b5d1a604c8b22541c98ba12cc22296",
+        "source": "5etools",
+        "chars": 163
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:ogre-chitterlord/action/club",
+      "name": "Club",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Ogre Chitterlord",
+      "section": "action",
+      "identifier": "club",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "7c7ef9843d05ed431ea4f7f66de98594886914257ec449d7bb11f3aebd7140ad",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:ogre-chitterlord/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Ogre Chitterlord",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0e0383254150647bc4b33b482d8fccd494c75d3235f0b29b40216023ed479656",
+        "source": "5etools",
+        "chars": 75
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:ogre-chitterlord/action/rat-tail-whip",
+      "name": "Rat-Tail Whip",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Ogre Chitterlord",
+      "section": "action",
+      "identifier": "rat-tail-whip",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "683b7dd9c4fd63d119158ad35a53ccc7e7ab826b81f8deafc7b157f74b0a08c1",
+        "source": "5etools",
+        "chars": 144
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:ogre-chitterlord/bonus/call-rats",
+      "name": "Call Rats",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Ogre Chitterlord",
+      "section": "bonus",
+      "identifier": "call-rats",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "278d46696137079a6564da42def15f9c11f6b7d48e5fa92c3c7d09cdfde02c52",
+        "source": "5etools",
+        "chars": 377
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:ogre-chitterlord/trait/speak-with-rats",
+      "name": "Speak with Rats",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Ogre Chitterlord",
+      "section": "trait",
+      "identifier": "speak-with-rats",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "724f423b6216c98d1c840dcaf5b0a9d11a94c55be7d2325951d9d5fe5384a214",
+        "source": "5etools",
+        "chars": 82
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:ogre-chitterlord/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Ogre Chitterlord",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "47b2f452499b7f9b60e6bad8b3fc5efd5622ca967dc4199719647c50027ce87e",
+        "source": "5etools",
+        "chars": 226
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:redtooth-werefox/action/bite-fox-or-hybrid-form-only",
+      "name": "Bite (Fox or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Redtooth Werefox",
+      "section": "action",
+      "identifier": "bite-fox-or-hybrid-form-only",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "926b7962f2259a0cff49e17d1da7c7a809407a508d5f782a7c09547489364326",
+        "source": "5etools",
+        "chars": 290
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:redtooth-werefox/action/entangling-arrow-elf-or-hybrid-form-only",
+      "name": "Entangling Arrow (Elf or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Redtooth Werefox",
+      "section": "action",
+      "identifier": "entangling-arrow-elf-or-hybrid-form-only",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "18010028841f3b9b62a5fe55b4178bf3b26bb6212f7919b51858ffafaba8b441",
+        "source": "5etools",
+        "chars": 209
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:redtooth-werefox/action/lance-elf-or-hybrid-form-only",
+      "name": "Lance (Elf or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Redtooth Werefox",
+      "section": "action",
+      "identifier": "lance-elf-or-hybrid-form-only",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b3d55b5daadc7c7a2703485d3686408cd495689ba5b56889f70508e5e2fd0778",
+        "source": "5etools",
+        "chars": 68
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:redtooth-werefox/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Redtooth Werefox",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d1848a81921e1b8c82b3bc33992febd881b885730ef4a8aeb1e59c8c3255a884",
+        "source": "5etools",
+        "chars": 95
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:redtooth-werefox/bonus/change-shape",
+      "name": "Change Shape",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Redtooth Werefox",
+      "section": "bonus",
+      "identifier": "change-shape",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "018b411985b76899feb80a4c1f190b7c45051fcccd96ad89d062142bac3045b8",
+        "source": "5etools",
+        "chars": 252
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:redtooth-werefox/bonus/vulpine-nimbleness-fox-or-hybrid-form-only",
+      "name": "Vulpine Nimbleness (Fox or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Redtooth Werefox",
+      "section": "bonus",
+      "identifier": "vulpine-nimbleness-fox-or-hybrid-form-only",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "9b3b566291a7b29a6e832c5fb0ba222b6ec457569068dce879515e78bf2fbb93",
+        "source": "5etools",
+        "chars": 47
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sewer-king/action/rancid-bite",
+      "name": "Rancid Bite",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sewer King",
+      "section": "action",
+      "identifier": "rancid-bite",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c7b5e3cf7716be6802768e1264583552cbc1d4458f4ce7cf57fb6f0f074ba6bf",
+        "source": "5etools",
+        "chars": 248
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sewer-king/action/summon-swarm",
+      "name": "Summon Swarm",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sewer King",
+      "section": "action",
+      "identifier": "summon-swarm",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "2a22fa2dd4df1d1039b0a8d03d2c3d24812790b290fd934ea2222ee2c1feaa64",
+        "source": "5etools",
+        "chars": 393
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sewer-king/bonus/skitter",
+      "name": "Skitter",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sewer King",
+      "section": "bonus",
+      "identifier": "skitter",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "dae91a8db16d60d9cf21884c2a6a74da9fcef2e46a2e63582ef32bc137d31d52",
+        "source": "5etools",
+        "chars": 75
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sewer-king/trait/beast-speech",
+      "name": "Beast Speech",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sewer King",
+      "section": "trait",
+      "identifier": "beast-speech",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "108d2baf4d072ae7fb0319815d9c946a9627d56a5ab029ff058643770f88ec76",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:snapping-hydra/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Snapping Hydra",
+      "section": "action",
+      "identifier": "bite",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5ef01e71368eb90a9da890e4508d750ed9c59bae1d9542d53a610d6a165b42fe",
+        "source": "5etools",
+        "chars": 68
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:snapping-hydra/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Snapping Hydra",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "3d3afa6bf17f6bcdf6760cf202994b7552bf659b9b9e3f0ac3b24f0e0a2ec693",
+        "source": "5etools",
+        "chars": 53
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:snapping-hydra/action/shell-defense",
+      "name": "Shell Defense",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Snapping Hydra",
+      "section": "action",
+      "identifier": "shell-defense",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "69c5b512f3c6dfcb80273e56627ecd9b7d69f969f552bf155f919bd2c7b7d3d6",
+        "source": "5etools",
+        "chars": 388
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:snapping-hydra/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Snapping Hydra",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "cfb9ce41fbce22a57ca84baefd8fa7377af4fc20e1f5df3d76f695c9e2627e4b",
+        "source": "5etools",
+        "chars": 36
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:snapping-hydra/trait/multiple-heads",
+      "name": "Multiple Heads",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Snapping Hydra",
+      "section": "trait",
+      "identifier": "multiple-heads",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8ddf6c20fb971acc6d3bd8e1fdd63ddda9405123daaa4cc52d05dac111a48d0e",
+        "source": "5etools",
+        "chars": 367
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:snapping-hydra/trait/reactive-heads",
+      "name": "Reactive Heads",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Snapping Hydra",
+      "section": "trait",
+      "identifier": "reactive-heads",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e5968520e989298140e31783348f7a7c32fa41199f295f13d40cbd2ee8930fe9",
+        "source": "5etools",
+        "chars": 112
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:snapping-hydra/trait/wakeful",
+      "name": "Wakeful",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Snapping Hydra",
+      "section": "trait",
+      "identifier": "wakeful",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f0830178a31dabb6d367c4f299d429928dd00c14a553445fa2208bef550372f6",
+        "source": "5etools",
+        "chars": 59
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:specter-of-night/action/hooves",
+      "name": "Hooves",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Specter of Night",
+      "section": "action",
+      "identifier": "hooves",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f55a9c04e09d475b7d975387dd420fb35d74f440a3d58768aaddb7262a170dbb",
+        "source": "5etools",
+        "chars": 224
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:specter-of-night/action/mournful-keening",
+      "name": "Mournful Keening",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Specter of Night",
+      "section": "action",
+      "identifier": "mournful-keening",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "96b4bcf7f1c9d2ba79403b86e89d64dc3b31dd8ac46a080e38431e424a103fcc",
+        "source": "5etools",
+        "chars": 490
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:specter-of-night/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Specter of Night",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "a4327e9564221ab45e1eace1e3f7a335d2c9a8a2590fe1e24c82abd99da5a139",
+        "source": "5etools",
+        "chars": 107
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:specter-of-night/action/reaping-scythe",
+      "name": "Reaping Scythe",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Specter of Night",
+      "section": "action",
+      "identifier": "reaping-scythe",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "7347a0e045ebdec1aec208e7d2e9ef73a0477126d238c2be18bfd1d48a2e2025",
+        "source": "5etools",
+        "chars": 210
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:specter-of-night/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Specter of Night",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d962fe619b278b7aa2c266194abd3de16d779fb5e40826f0005226c602a376b9",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:specter-of-night/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Specter of Night",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ccb9602ce0b2b00218a038882022e5a804f2071409b0bebdbe12e4178ffbf7fe",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sweettooth-horror/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sweettooth Horror",
+      "section": "action",
+      "identifier": "bite",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f540e6201f7936d79e3a76c023f5a18fe610b0cab183a88c6b00afa253417117",
+        "source": "5etools",
+        "chars": 93
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sweettooth-horror/action/candy-cane",
+      "name": "Candy Cane",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sweettooth Horror",
+      "section": "action",
+      "identifier": "candy-cane",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "cd966521961702c955418427741a8d260e932a821aac49001596b36b58414594",
+        "source": "5etools",
+        "chars": 265
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sweettooth-horror/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sweettooth Horror",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ddcea3db98df589f78240c59a20dabde82182ed18a4dee4e7b1545c9200d40cd",
+        "source": "5etools",
+        "chars": 60
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sweettooth-horror/trait/caramelization",
+      "name": "Caramelization",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sweettooth Horror",
+      "section": "trait",
+      "identifier": "caramelization",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "7908a1232804e44eaf573461b649b8d61a531adea57596244c5482aabb1acc71",
+        "source": "5etools",
+        "chars": 309
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:sweettooth-horror/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Sweettooth Horror",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "7666c5dc519da16005ec8933972bb4d76aefa8efaf22dcbd0bbe0f4d088eaae9",
+        "source": "5etools",
+        "chars": 83
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:tempest-hart/action/lightning-antlers",
+      "name": "Lightning Antlers",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Tempest Hart",
+      "section": "action",
+      "identifier": "lightning-antlers",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b7123eb69e09f97052f554af27717198812efd6e6bd33fc6213f54ec7944413d",
+        "source": "5etools",
+        "chars": 220
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:tempest-hart/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Tempest Hart",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "937c58d82ac5ce574602d431a78a6206414d7dcb628e4cbfacd5f1acac5425eb",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:tempest-hart/action/thunder-hooves",
+      "name": "Thunder Hooves",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Tempest Hart",
+      "section": "action",
+      "identifier": "thunder-hooves",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "21115b1dd858af481e4e07a8607643a00c9f8fbc2902ca896f01d42208b42480",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:tempest-hart/reaction/entangling-growth",
+      "name": "Entangling Growth",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Tempest Hart",
+      "section": "reaction",
+      "identifier": "entangling-growth",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e38a4ab3790b2d8205bd27f18bdb3ef95fd24b6ff13e0451140e31c751e185ea",
+        "source": "5etools",
+        "chars": 488
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:tempest-hart/reaction/lightning-call",
+      "name": "Lightning Call",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Tempest Hart",
+      "section": "reaction",
+      "identifier": "lightning-call",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0e2d2a57bf909b7d80b7fe36fe1f2b0b0d16ad7bfb2cd59d68974ff1f5a8e6c1",
+        "source": "5etools",
+        "chars": 285
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:tempest-hart/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Tempest Hart",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "3306fa160cc5f7ac0906b99e5befc7cd425b84593216fb4df20f3a2fcc19b3a7",
+        "source": "5etools",
+        "chars": 67
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:treefolk/action/crushing-vine",
+      "name": "Crushing Vine",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Treefolk",
+      "section": "action",
+      "identifier": "crushing-vine",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "86ecb3f27609c25cda17e7a53f65c742bc0f3c782d6ed531db1c01ae086733bb",
+        "source": "5etools",
+        "chars": 264
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:treefolk/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Treefolk",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "365d0b441edf0cc51b7e82087f8a9a39d0dbb140e9d7721d6ed7b1243cf50618",
+        "source": "5etools",
+        "chars": 90
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:treefolk/action/nightshade-bolt",
+      "name": "Nightshade Bolt",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Treefolk",
+      "section": "action",
+      "identifier": "nightshade-bolt",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "6dd5de1dcb3ba929e9e7839730a5c771aa25450514ad186adac96b65e333b156",
+        "source": "5etools",
+        "chars": 63
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:treefolk/bonus/oaken-boon",
+      "name": "Oaken Boon",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Treefolk",
+      "section": "bonus",
+      "identifier": "oaken-boon",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "50fcbe5693cd84ca221bfed79481e3d5c06dfc25fcac579eef2629d072338bb6",
+        "source": "5etools",
+        "chars": 424
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:treefolk/trait/plant-camouflage",
+      "name": "Plant Camouflage",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Treefolk",
+      "section": "trait",
+      "identifier": "plant-camouflage",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1802c1eedb1fb26f6340195b2e146e72cc8c5059f063885a11ab596824094dd5",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:treefolk/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Treefolk",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0709b0b87ce478e696c5a1df9d4dbf0e67202ac23ab4ce2a2e3c0b35a578aed4",
+        "source": "5etools",
+        "chars": 247
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:treefolk/trait/tree-stride",
+      "name": "Tree Stride",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Treefolk",
+      "section": "trait",
+      "identifier": "tree-stride",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "47c6cd83b8b32447174a94e05fada5a2014bbf2c5f7a041815de487702376d31",
+        "source": "5etools",
+        "chars": 334
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchkite/action/malevolent-flare",
+      "name": "Malevolent Flare",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchkite",
+      "section": "action",
+      "identifier": "malevolent-flare",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "9b7f42765abd617b99cac3bfd575f48c7d47a75b75d5519af245349eeebb49c4",
+        "source": "5etools",
+        "chars": 524
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchkite/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchkite",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "6eb0b27e9337b29a7b193a57c924f70b57741b2be7746e77811c82f150576b6e",
+        "source": "5etools",
+        "chars": 68
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchkite/action/rend",
+      "name": "Rend",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchkite",
+      "section": "action",
+      "identifier": "rend",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "699c13949dd84737383b3488659ea321de56efc09e41a89bc04072a6e942e59d",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchkite/reaction/enchanting-gaze",
+      "name": "Enchanting Gaze",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchkite",
+      "section": "reaction",
+      "identifier": "enchanting-gaze",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "3ab89af88cca934b778e9b89c822102ca5021c5ccf85a067e972d7fc35e9b7e6",
+        "source": "5etools",
+        "chars": 270
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchkite/reaction/retribution",
+      "name": "Retribution",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchkite",
+      "section": "reaction",
+      "identifier": "retribution",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "20872699972e5d6376a412e74fb33e3fceb4644166910b9c814b518ef6a71716",
+        "source": "5etools",
+        "chars": 110
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchkite/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchkite",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0b5bce78162c3c28dc9137f131b657b87940ddf1503bdc7f307ea7c91d9e1ce7",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchkite/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchkite",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "3389911a0f2d39b54d1581659845f8349238f2fcbedab953f0296a9484d5ac16",
+        "source": "5etools",
+        "chars": 233
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchstalker/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchstalker",
+      "section": "action",
+      "identifier": "bite",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "36ab2d57479abc4f0b4ae970798e944789c5ac520af91879e347ac47f1fff1af",
+        "source": "5etools",
+        "chars": 188
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchstalker/action/mind-wracking-howl",
+      "name": "Mind-Wracking Howl",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchstalker",
+      "section": "action",
+      "identifier": "mind-wracking-howl",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "4478dfc51c0bb0df435e583ad4050690c0e78a485de4197cc4a304e40d787d82",
+        "source": "5etools",
+        "chars": 386
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchstalker/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchstalker",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f5bc1cf9658733cb1b7fb5e6711a35d0ef1703a58fad03bb2373a2ea2cd3e97a",
+        "source": "5etools",
+        "chars": 40
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchstalker/reaction/spell-stalk",
+      "name": "Spell Stalk",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchstalker",
+      "section": "reaction",
+      "identifier": "spell-stalk",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f6819c90dc4e42d585db90fda3237517c9da418f434f564069fd72897c6caf9d",
+        "source": "5etools",
+        "chars": 220
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchstalker/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchstalker",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "13c6393a87c85eee62742e093524c18cde9774ac85d2a7e318b90ec9acf007b0",
+        "source": "5etools",
+        "chars": 89
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "mcv4ec:monster:witchstalker/trait/smell-magic",
+      "name": "Smell Magic",
+      "kind": "monster",
+      "book": "MCV4EC",
+      "edition": "2014",
+      "owner": "Witchstalker",
+      "section": "trait",
+      "identifier": "smell-magic",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "7b3d8c7e2261747358b97f782c6d2ae4095c597b47321fca44200e22e59482eb",
+        "source": "5etools",
+        "chars": 214
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
