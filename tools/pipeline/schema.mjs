@@ -7,6 +7,8 @@ export const LEGACY_STATUSES = Object.freeze(["played", "validated", "pending"])
 export const HANDLED_IN = Object.freeze(["table", "code"]);
 export const EDITIONS = Object.freeze(["2014", "2024"]);
 
+const DOC_ID = /^[A-Za-z0-9]{16}$/;
+const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isString = (v) => typeof v === "string" && v !== "";
 const isPage = (v) => Number.isInteger(v) && v > 0;
@@ -33,14 +35,14 @@ function checkRule(rule, verdict, errors) {
   if (!isObject(rule)) return errors.push("rule: must be an object");
   if (!HANDLED_IN.includes(rule.handledIn)) errors.push(`rule.handledIn: must be one of ${HANDLED_IN.join(", ")}`);
   if (typeof rule.adds !== "string") errors.push("rule.adds: must be a string");
-  for (const f of ["entry", "code", "origin", "catalog"]) {
-    if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
-  }
+  for (const f of ["code", "origin"]) if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
+  if ("catalog" in rule && rule.catalog !== null && typeof rule.catalog !== "string") errors.push("rule.catalog: must be a string or null");
+  if ("entry" in rule && !isObject(rule.entry)) errors.push("rule.entry: must be an object");
   if ("inCore" in rule && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
   if ("assert" in rule && !isObject(rule.assert)) errors.push("rule.assert: must be an object");
   if (!Array.isArray(rule.origins)) errors.push("rule.origins: must be an array");
   else for (const o of rule.origins) if (!ORIGINS.includes(o)) errors.push(`rule.origins: unknown origin ${JSON.stringify(o)}`);
-  if (verdict === "entry" && !isString(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
+  if (verdict === "entry" && !isObject(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
 }
 
 export function validateRecord(record) {
@@ -67,6 +69,14 @@ export function validateRecord(record) {
     else record.alsoIn.forEach((a, i) => {
       if (!isObject(a) || !isString(a.book) || !isPage(a.page)) errors.push(`alsoIn[${i}]: must be { book, page }`);
     });
+  }
+  if ("sources" in record) {
+    const s = record.sources;
+    if (!isObject(s)) errors.push("sources: must be an object of document id to identifier");
+    else for (const [id, identifier] of Object.entries(s)) {
+      if (!DOC_ID.test(id)) errors.push(`sources: ${JSON.stringify(id)} is not a 16-character document id`);
+      if (typeof identifier !== "string" || !KEBAB.test(identifier)) errors.push(`sources.${id}: must be a kebab-case identifier`);
+    }
   }
   for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
   return errors;

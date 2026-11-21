@@ -36,18 +36,11 @@ export function idsIn(entry) {
   return [...found].sort();
 }
 
-// The entry of a rule is an object, or the JSON text of one. Anything else is reported by the gate that needed it.
+// The entry of a rule is an object; anything else is reported by the gate that needed it.
 function entryOf(rule) {
   const raw = rule?.entry;
   if (raw === undefined) return { entry: null };
-  if (isObject(raw)) return { entry: raw };
-  if (typeof raw === "string") {
-    try {
-      const parsed = JSON.parse(raw);
-      if (isObject(parsed)) return { entry: parsed };
-    } catch { /* reported below */ }
-  }
-  return { error: "rule.entry is neither an object nor the JSON text of one" };
+  return isObject(raw) ? { entry: raw } : { error: "rule.entry is not an object" };
 }
 
 const originsOf = (rule) => (Array.isArray(rule?.origins) ? rule.origins : []);

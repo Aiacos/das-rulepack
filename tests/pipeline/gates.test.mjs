@@ -38,12 +38,10 @@ const item = (extra = {}) => ({
 const rec = (over = {}) => ({
   key: "tst:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "TST", page: 12, edition: "2014",
   text: null, items: [item()], verdict: "entry", evidence: {}, identifier: "glimmer-bolt",
-  rule: { handledIn: "table", adds: "A bolt that glimmers.", entry: JSON.stringify(entryWith()), origins: ["ddb-importer"] },
+  rule: { handledIn: "table", adds: "A bolt that glimmers.", entry: entryWith(), origins: ["ddb-importer"] },
   ...over
 });
-// The registry stores an entry as JSON text (schema: rule.entry is a string); the gates accept the object as well.
-const withEntry = (entry, over = {}) => rec({ rule: { ...rec().rule, entry: JSON.stringify(entry) }, ...over });
-const withObjectEntry = (entry) => rec({ rule: { ...rec().rule, entry } });
+const withEntry = (entry, over = {}) => rec({ rule: { ...rec().rule, entry }, ...over });
 
 let dir;
 beforeEach(() => { dir = mkdtempSync(join(tmpdir(), "gates-")); });
@@ -91,13 +89,14 @@ describe("gateValidator", () => {
     expect(gateValidator(withEntry(entry), ctx())).toEqual(['validator: unknown fact "moon.phase"']);
   });
 
-  it("reads an entry written as JSON text, and refuses text that is not an entry", () => {
+  it("refuses an entry that is not an object", () => {
     expect(gateValidator(rec(), ctx())).toEqual([]);
+    expect(gateValidator(rec({ rule: { ...rec().rule, entry: JSON.stringify(entryWith()) } }), ctx())[0]).toMatch(/not an object/);
     const text = (entry) => rec({ rule: { ...rec().rule, entry } });
-    expect(gateValidator(text("not json"), ctx())[0]).toMatch(/^validator: rule.entry is neither/);
-    expect(gateValidator(text("[1]"), ctx())[0]).toMatch(/^validator: rule.entry is neither/);
+    expect(gateValidator(text("not json"), ctx())[0]).toMatch(/^validator: rule.entry is not an object/);
+    expect(gateValidator(text("[1]"), ctx())[0]).toMatch(/^validator: rule.entry is not an object/);
     const unknown = entryWith({ triggers: [{ if: { "moon.phase": "full" }, do: [] }] });
-    expect(gateValidator(withObjectEntry(unknown), ctx())).toEqual(['validator: unknown fact "moon.phase"']);
+    expect(gateValidator(withEntry(unknown), ctx())).toEqual(['validator: unknown fact "moon.phase"']);
   });
 
   it("reports an engine that throws instead of crashing", () => {
@@ -259,7 +258,7 @@ describe("runGates", () => {
   it("removes the evidence of a record that fails, and a changed entry makes it a draft again", () => {
     const passed = runGates([good()], ctx()).updated[0];
     expect(stateOf(passed)).toBe("gated");
-    const edited = { ...passed, rule: { ...passed.rule, entry: JSON.stringify(entryWith({ extra: NOPE })) } };
+    const edited = { ...passed, rule: { ...passed.rule, entry: entryWith({ extra: NOPE }) } };
     expect(stateOf(edited)).toBe("drafted");
     const { failures, updated } = runGates([edited], ctx());
     expect(failures[edited.key].ids).toEqual([`ids: ddb-importer has no activity or effect ${NOPE}`]);

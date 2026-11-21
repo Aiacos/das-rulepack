@@ -11,7 +11,7 @@ const minimal = () => ({
   key: "xphb:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "XPHB", page: 12, edition: "2024",
   text: null, items: [], verdict: null, evidence: {}
 });
-const rule = () => ({ handledIn: "table", adds: "Glimmer Bolt", entry: "glimmer-bolt", origins: ["official"] });
+const rule = () => ({ handledIn: "table", adds: "Glimmer Bolt", entry: { aura: true }, origins: ["official"] });
 const GATES = ["schema", "validator", "ids", "fixes", "text"];
 const gated = (r) => ({
   ...r, evidence: { gates: { at: "2026-11-21", core: "abc", rule: ruleFingerprint(r.rule), passed: GATES } }
@@ -82,6 +82,22 @@ describe("validateRecord", () => {
     };
     expect(validateRecord({ ...minimal(), items: [item] })).toEqual([]);
   });
+  it("takes rule.entry as an object only, catalog as string or null", () => {
+    for (const entry of ["glimmer-bolt", [], null, 3]) {
+      expect(validateRecord({ ...minimal(), verdict: "entry", rule: { ...rule(), entry } }).join()).toMatch(/rule.entry/);
+    }
+    expect(validateRecord({ ...minimal(), rule: { ...rule(), catalog: null, inCore: true } })).toEqual([]);
+    expect(validateRecord({ ...minimal(), rule: { ...rule(), catalog: 3 } }).join()).toMatch(/catalog/);
+  });
+
+  it("validates sources as document id to kebab-case identifier", () => {
+    const ok = { ...minimal(), sources: { Ab12Cd34Ef56Gh78: "glimmer-bolt" } };
+    expect(validateRecord(ok)).toEqual([]);
+    for (const sources of [[], "x", { short: "glimmer-bolt" }, { Ab12Cd34Ef56Gh78: "Glimmer Bolt" }]) {
+      expect(validateRecord({ ...minimal(), sources }).join()).toMatch(/sources/);
+    }
+  });
+
   it("requires rule.entry when the verdict is entry", () => {
     const { entry, ...noEntry } = rule();
     expect(validateRecord({ ...minimal(), verdict: "entry", rule: noEntry }).join()).toMatch(/entry/);
@@ -148,7 +164,7 @@ describe("stateOf", () => {
   it("falls back to drafted when rule.entry changes after the gates", () => {
     const g = gated({ ...minimal(), verdict: "entry", rule: rule() });
     expect(stateOf(g, { core })).toBe("gated");
-    expect(stateOf({ ...g, rule: { ...g.rule, entry: "other-entry" } }, { core })).toBe("drafted");
+    expect(stateOf({ ...g, rule: { ...g.rule, entry: { aura: false } } }, { core })).toBe("drafted");
   });
   it("does not count review or play without the gates", () => {
     const r = { ...minimal(), verdict: "entry", rule: rule(), evidence: { reviewed: { agrees: true }, played: { at: "x" } } };
