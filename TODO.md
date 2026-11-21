@@ -11,6 +11,8 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] `registry/queue.json`: 553 entries wait for a person (low-confidence readings and `engine` verdicts).
 - [x] Second reading of the queue (`batch ... --queued`, `ingest --second`): tooling done, see `docs/PIPELINE.md`.
 - [ ] Run the second reading over the queue; only the disagreements (`reason: "disagreement"`) are left for a person.
+- [x] Third reading of the disagreements (`ingest --third`) and the owner's bulk rule for two unsure readings
+      (`ingest --settle-unsure`): tooling done, with the written criteria, see `docs/PIPELINE.md`. Still to do: run them.
 - [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
       Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
       uses — to be checked in play, then reported upstream).

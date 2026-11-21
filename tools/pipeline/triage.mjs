@@ -269,3 +269,104 @@ export function ingestSecond(records, results, { textDir, by, at = new Date().to
   }
   return { records: out, agreed, disagreed, unsure, rejected };
 }
+
+/**
+ * The third reading (`ingest --third`), blind, made with the written criteria, of the queue entries with `reason:
+ * "disagreement"` and a `second`, and no `third` yet. A result is rejected when its key is not such an entry, when its reader
+ * is one of the first two, when the key repeats in the file, or for any reason `ingest` gives (no overwrite). Confidence at
+ * least QUEUE_THRESHOLD and a verdict equal to the first or the second reading's (never `engine`): applied, the third reader's
+ * `why` kept, `evidence.triaged` carrying `first`, `second` and `via: "third-reading"`; the key is in `settled`. Otherwise
+ * nothing is applied and the entry comes back in `unsettled` with `third: { verdict, why, confidence, by }`. Inputs unchanged.
+ */
+export function ingestThird(records, results, { textDir, by, at = new Date().toISOString(), entryKeys, queue }) {
+  if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
+  const out = structuredClone(records);
+  const byKey = new Map(out.map((r) => [r.key, r]));
+  const inQueue = new Map(queue.map((q) => [q.key, q]));
+  const textOf = (r) => {
+    if (!r.text || !hasText(textDir, r.text.sha256)) return null;
+    return readFileSync(join(textDir, `${r.text.sha256}.txt`), "utf8");
+  };
+  const settled = [];
+  const unsettled = [];
+  const seen = new Set();
+  const rejected = [];
+  const reject = (result, reason) => rejected.push({ key: typeof result?.key === "string" ? clip(result.key) : null, reason });
+  for (const result of results) {
+    if (result === null || typeof result !== "object") { reject(result, "result must be an object"); continue; }
+    if (seen.has(result.key)) { reject(result, "the key appears twice in this file"); continue; }
+    seen.add(result.key);
+    const entry = inQueue.get(result.key);
+    if (!entry) { reject(result, "the key is not in the queue: a third reading only reads queued entries"); continue; }
+    if (entry.third) { reject(result, "the queue entry already has a third reading"); continue; }
+    if (!entry.second || entry.reason !== "disagreement") {
+      reject(result, "a third reading only reads entries where the first two readings disagree");
+      continue;
+    }
+    if (typeof entry.by !== "string" || typeof entry.second.by !== "string") {
+      reject(result, "the queue entry names no first or second reader");
+      continue;
+    }
+    if ([entry.by, entry.second.by].some((h) => h.toLowerCase() === by.toLowerCase())) {
+      reject(result, "the third reader must be another reader than the first two");
+      continue;
+    }
+    const record = byKey.get(result.key);
+    const reason = problem(record, result, { overwrite: false, textOf, known: byKey, entryKeys });
+    if (reason) { reject(result, reason); continue; }
+    const agrees = result.verdict !== "engine" && [entry.verdict, entry.second.verdict].includes(result.verdict);
+    if (agrees && result.confidence >= QUEUE_THRESHOLD) {
+      const extra = {
+        first: { by: entry.by, confidence: entry.confidence }, second: { by: entry.second.by, confidence: entry.second.confidence },
+        via: "third-reading"
+      };
+      const invalid = settle(record, result, { by, at, extra });
+      if (invalid) { reject(result, invalid); continue; }
+      settled.push(result.key);
+      inQueue.delete(result.key);
+    } else {
+      const next = { ...entry, third: { verdict: result.verdict, why: result.why, confidence: result.confidence, by } };
+      unsettled.push(next);
+      inQueue.set(result.key, next);
+    }
+  }
+  return { records: out, settled, unsettled, rejected };
+}
+
+/**
+ * The owner's bulk rule (`ingest --settle-unsure`): every queue entry with `reason: "unsure-twice"` and a `second` whose first
+ * and second confidence are both at least `min` gets its common verdict applied (never `engine`), with the second reader's `why`
+ * and handle; `evidence.triaged` carries both readings and `via: "bulk-unsure"`. `applied` lists the keys; `kept` the unsure-twice
+ * entries that stay; `problems` the `{ key, reason }` of those kept although eligible (the record cannot take the verdict).
+ */
+export function settleUnsure(records, { textDir, queue, min, at = new Date().toISOString() }) {
+  const out = structuredClone(records);
+  const byKey = new Map(out.map((r) => [r.key, r]));
+  const textOf = (r) => {
+    if (!r.text || !hasText(textDir, r.text.sha256)) return null;
+    return readFileSync(join(textDir, `${r.text.sha256}.txt`), "utf8");
+  };
+  const applied = [];
+  const kept = [];
+  const problems = [];
+  for (const entry of queue.filter((q) => q.reason === "unsure-twice")) {
+    const second = entry.second;
+    const eligible = second && entry.verdict === second.verdict && entry.verdict !== "engine"
+      && typeof entry.confidence === "number" && typeof second.confidence === "number"
+      && entry.confidence >= min && second.confidence >= min && isReaderHandle(entry.by) && isReaderHandle(second.by);
+    if (!eligible) { kept.push(entry); continue; }
+    const record = byKey.get(entry.key);
+    const result = { key: entry.key, verdict: second.verdict, why: second.why, confidence: second.confidence };
+    const invalid = problem(record, result, { overwrite: false, textOf, known: byKey })
+      ?? settle(record, result, {
+        by: second.by, at,
+        extra: {
+          first: { by: entry.by, confidence: entry.confidence }, second: { by: second.by, confidence: second.confidence },
+          via: "bulk-unsure"
+        }
+      });
+    if (invalid) { kept.push(entry); problems.push({ key: clip(entry.key), reason: invalid }); continue; }
+    applied.push(entry.key);
+  }
+  return { records: out, applied, kept, problems };
+}
