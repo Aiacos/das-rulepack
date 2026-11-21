@@ -35,7 +35,7 @@ Every command is an npm script: `npm run <name> -- <arguments>`.
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--size 40]` | nothing | a person |
 | 2c | Read a batch | (no command: a reader agent reads a file) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file>` | `RULEPACK_TEXT` | the Claude Code session |
-| 4 | Gates | `npm run gates` (`-- --ci` for CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT`; `--ci`: `DAS_CORE` | a person, CI |
+| 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
 The numbers 1, 2, 4, 7 are the stage numbers of the design
@@ -43,7 +43,10 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
 
 1. **Inventory** reads the dataset and the dumps and writes (or refreshes) one record per entry: page, edition, `srd`
    flag, canonical `identifier`, text fingerprint, and per origin the matched item with its activity and effect ids. The
-   text goes into the cache. Re-running it refreshes the fingerprints and the `srd` flag; it never touches a verdict.
+   text goes into the cache. Official candidates come only from the dump files of the book's own package
+   (`docs/foundry-modules.json`); a difference in level, school or edition makes a match `ambiguous`, other differences
+   are kept on the matched item as `differences`. Re-running it refreshes the fingerprints and the `srd` flag; it never
+   touches a verdict.
 2. **Triage** has three parts.
    - `triage` applies `autoTriage` to the records of the book that have no verdict (an existing verdict is never
      overwritten): an identifier that DAS · Core already has is `core` ("DAS · Core has an entry"); an entry whose text

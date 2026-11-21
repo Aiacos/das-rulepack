@@ -21,6 +21,9 @@ function checkItem(item, at, errors) {
     if (f in item && typeof item[f] !== "string") errors.push(`${at}.${f}: must be a string`);
   }
   for (const f of ["activities", "effects"]) if (f in item && !Array.isArray(item[f])) errors.push(`${at}.${f}: must be an array`);
+  if ("differences" in item && !(Array.isArray(item.differences) && item.differences.every((d) => typeof d === "string"))) {
+    errors.push(`${at}.differences: must be an array of strings`);
+  }
   if ("data" in item && !isObject(item.data)) errors.push(`${at}.data: must be an object`);
 }
 

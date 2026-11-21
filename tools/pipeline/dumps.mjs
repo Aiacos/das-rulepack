@@ -44,3 +44,10 @@ export function dumpsFor(dumpsDir, origin) {
   if (origin === "ddb-importer") return files.filter(isOwn);
   throw new Error(`No dump files are defined for origin "${origin}"`);
 }
+
+// The official dump files of one book: those of the package(s) of `packages` ([{ id, book }]) whose book is `book`.
+// A file is named <package id>.<pack>.json. A book that no package maps to has none.
+export function officialFilesFor(dumpsDir, packages, book) {
+  const ids = packages.filter((p) => p.book && p.book.toUpperCase() === book.toUpperCase()).map((p) => p.id);
+  return dumpsFor(dumpsDir, "official").filter((f) => ids.some((id) => f.startsWith(`${id}.`)));
+}

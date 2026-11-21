@@ -22,11 +22,26 @@ const FIELDS = ["level", "school", "activityTypes", "saves", "damageTypes", "sta
 export const compareMechanics = (a, b) =>
   FIELDS.filter((f) => JSON.stringify(a[f] ?? null) !== JSON.stringify(b[f] ?? null));
 
-// An edition-unknown candidate (rules undefined) never forces ambiguity by itself: it is used only when no candidate
+// Only these differences say the two items are different spells. The others (how the activities are structured) are
+// recorded next to a match and never decide it.
+const IDENTITY = ["level", "school"];
+
+// The same document met twice (a book module and an adventure that reprints it) is one candidate.
+function distinct(candidates) {
+  const seen = new Set();
+  return candidates.filter((c) => {
+    if (c.docId === undefined) return true;
+    const id = `${c.docId}|${c.data}`;
+    return seen.has(id) ? false : seen.add(id);
+  });
+}
+
+// With a reference, level and school decide; other differences come back with the match. An edition-unknown
+// candidate (rules undefined) never forces ambiguity by itself: it is used only when no candidate
 // states the entry's edition, and then mechanics decide when a reference exists.
 export function matchOrigin(entry, candidates) {
   const wanted = slug(entry.name);
-  const same = candidates.filter((c) => slug(c.name) === wanted && c.type === entry.kind);
+  const same = distinct(candidates).filter((c) => slug(c.name) === wanted && c.type === entry.kind);
   if (!same.length) return { match: "absent" };
 
   const exact = same.filter((c) => c.rules === entry.edition);
@@ -36,5 +51,6 @@ export function matchOrigin(entry, candidates) {
 
   const [item] = preferred;
   const differences = entry.reference ? compareMechanics(mechanicsOf(entry.reference), mechanicsOf(item)) : [];
-  return differences.length ? { match: "ambiguous", candidates: preferred, differences } : { match: "matched", item };
+  if (differences.some((f) => IDENTITY.includes(f))) return { match: "ambiguous", candidates: preferred, differences };
+  return differences.length ? { match: "matched", item, differences } : { match: "matched", item };
 }

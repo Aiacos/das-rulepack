@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { plainText, textFingerprint, cacheText, hasText } from "../../tools/pipeline/text.mjs";
 import { readSpells } from "../../tools/pipeline/dataset.mjs";
 import { editionOf } from "../../tools/pipeline/edition.mjs";
-import { readDump, itemSummary, dumpsFor } from "../../tools/pipeline/dumps.mjs";
+import { readDump, itemSummary, dumpsFor, officialFilesFor } from "../../tools/pipeline/dumps.mjs";
 
 const fixtures = join(dirname(fileURLToPath(import.meta.url)), "fixtures");
 const tmp = () => mkdtempSync(join(tmpdir(), "rulepack-"));
@@ -150,6 +150,15 @@ describe("dumps", () => {
     expect(itemSummary(reordered, "official").data).toBe(itemSummary(doc, "official").data);
     const changed = { ...doc, system: { ...doc.system, level: 3 } };
     expect(itemSummary(changed, "official").data).not.toBe(itemSummary(doc, "official").data);
+  });
+  it("lists the official files of the packages of one book only", () => {
+    const dir = tmp();
+    for (const f of ["pkg-a.spells.json", "pkg-a.items.json", "pkg-ab.spells.json", "pkg-b.spells.json", "ddb.items.json"]) {
+      writeFileSync(join(dir, f), "[]");
+    }
+    const packages = [{ id: "pkg-a", book: "AAA" }, { id: "pkg-b", book: "BBB" }, { id: "pkg-c", book: null }];
+    expect(officialFilesFor(dir, packages, "aaa")).toEqual(["pkg-a.items.json", "pkg-a.spells.json"]);
+    expect(officialFilesFor(dir, packages, "CCC")).toEqual([]);
   });
   it("reads a dump file and lists dump files per origin", () => {
     const dir = tmp();

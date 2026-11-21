@@ -42,11 +42,31 @@ describe("matchOrigin", () => {
     const c = item();
     expect(matchOrigin(entry, [c])).toEqual({ match: "matched", item: c });
   });
-  it("matches when the reference has equal mechanics, ambiguous on a different save", () => {
+  it("matches when the reference has equal mechanics, and records a structural difference without deciding on it", () => {
     const c = item();
-    expect(matchOrigin({ ...entry, reference: item({ origin: "official" }) }, [c]).match).toBe("matched");
+    expect(matchOrigin({ ...entry, reference: item({ origin: "official" }) }, [c])).toEqual({ match: "matched", item: c });
     const ref = item({ origin: "official", activities: [{ id: "y", type: "save", save: ["con"], damageTypes: ["cold", "fire"] }] });
-    expect(matchOrigin({ ...entry, reference: ref }, [c])).toEqual({ match: "ambiguous", candidates: [c], differences: ["saves"] });
+    expect(matchOrigin({ ...entry, reference: ref }, [c])).toEqual({ match: "matched", item: c, differences: ["saves"] });
+  });
+  it("is ambiguous when the reference differs in level or school", () => {
+    const c = item();
+    const level = matchOrigin({ ...entry, reference: item({ level: 3 }) }, [c]);
+    expect(level).toEqual({ match: "ambiguous", candidates: [c], differences: ["level"] });
+    const school = matchOrigin({ ...entry, reference: item({ school: "abj", activities: [] }) }, [c]);
+    expect(school.match).toBe("ambiguous");
+    expect(school.differences).toContain("school");
+  });
+  it("keeps a 2014 candidate for a 2024 entry ambiguous even with a reference", () => {
+    const c = item({ rules: "2014" });
+    const r = matchOrigin({ ...entry, reference: item() }, [c]);
+    expect(r).toEqual({ match: "ambiguous", candidates: [c], differences: ["edition"] });
+  });
+  it("takes the same document met twice (same docId and data) as one candidate", () => {
+    const a = item({ docId: "same", data: "h" });
+    const twin = { ...a, origin: "official" };
+    expect(matchOrigin(entry, [a, twin])).toEqual({ match: "matched", item: a });
+    expect(matchOrigin(entry, [a, item({ docId: "same", data: "other" })]).match).toBe("ambiguous");
+    expect(matchOrigin(entry, [a, item({ docId: "else", data: "h" })]).match).toBe("ambiguous");
   });
   it("is ambiguous on edition when the only candidate is the other edition", () => {
     const c = item({ rules: "2014" });

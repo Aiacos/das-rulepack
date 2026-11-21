@@ -39,7 +39,9 @@ describe("inventory records", () => {
     expect(r.text).toEqual({ sha256: sha, source: "5etools", chars: 25 });
     expect(readFileSync(join(textDir, `${sha}.txt`), "utf8")).toBe("A bolt of invented light.");
     expect(JSON.stringify(r)).not.toContain("invented light");
-    expect(report).toEqual({ added: 1, kept: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [] });
+    expect(report).toEqual({
+      added: 1, kept: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: []
+    });
   });
 
   it("lists matched origins official first, then ddb-importer, and plutonium unchecked", () => {
@@ -85,6 +87,22 @@ describe("inventory records", () => {
     expect(report.noOfficial).toEqual([]);
   });
 
+  it("keeps a structural difference visible on the matched item and in the report", () => {
+    const ddb = summary("ddb-importer", { activities: [{ id: "z", type: "save", save: ["con"], damageTypes: ["fire"] }] });
+    const { records, report } = run({ dumps: dumps({ "ddb-importer": [ddb] }) });
+    expect(records[0].items[1]).toMatchObject({ origin: "ddb-importer", match: "matched", differences: ["saves"] });
+    expect(validateRecord(records[0])).toEqual([]);
+    expect(report.differing).toEqual([records[0].key]);
+    expect(report.ambiguous).toEqual([]);
+  });
+
+  it("omits differences when there are none and rejects a malformed field", () => {
+    const [r] = run().records;
+    expect("differences" in r.items[1]).toBe(false);
+    const bad = { ...r, items: [{ ...r.items[0], differences: "saves" }, ...r.items.slice(1)] };
+    expect(validateRecord(bad)).toContain("items[0].differences: must be an array of strings");
+  });
+
   it("lists entries without an official item", () => {
     const { records, report } = run({ dumps: dumps({ official: [] }) });
     expect(report.noOfficial).toEqual([records[0].key]);
@@ -97,7 +115,9 @@ describe("inventory over previous records", () => {
     const worked = [{ ...first[0], verdict: "data", why: "table row", rule: { handledIn: "table", adds: "x", origins: [] },
       evidence: { reviewed: { agrees: true }, gates: { rule: "f", passed: ["schema"] } } }];
     const again = run({ previous: worked });
-    expect(again.report).toEqual({ added: 0, kept: 1, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [] });
+    expect(again.report).toEqual({
+      added: 0, kept: 1, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: []
+    });
     expect(again.records).toEqual(worked);
   });
 
@@ -179,7 +199,7 @@ describe("pipeline CLI inventory on temporary folders", () => {
     writeFileSync(file, JSON.stringify(data));
   };
   const book = (code) => write(`data/spells/spells-${code.toLowerCase()}.json`, {
-    spell: [{ name: "Glimmer Bolt", page: code === "TST" ? 10 : 44, level: 2, school: "V", entries: ["Invented light."] }]
+    spell: [{ name: "Glimmer Bolt", page: code === "TCE" ? 10 : 44, level: 2, school: "V", entries: ["Invented light."] }]
   });
   const run = (args) => spawnSync("node", ["tools/pipeline/cli.mjs", ...args], { encoding: "utf8", env });
   const registryFile = (code) => join(tmp, "registry", `${code.toLowerCase()}.json`);
@@ -191,8 +211,8 @@ describe("pipeline CLI inventory on temporary folders", () => {
       PATH: process.env.PATH, RULEPACK_DATASET: join(tmp, "data"), RULEPACK_DUMPS: join(tmp, "dumps"),
       RULEPACK_TEXT: join(tmp, "text"), RULEPACK_REGISTRY: join(tmp, "registry")
     };
-    book("TST");
-    write("dumps/pack.spells.json", [{
+    book("TCE");
+    write("dumps/dnd-tashas-cauldron.spells.json", [{
       _id: "doc1", name: "Glimmer Bolt", type: "spell",
       system: { identifier: "glimmer-bolt", source: { rules: "2014" }, level: 2, school: "evo", activities: {} }
     }]);
@@ -200,44 +220,57 @@ describe("pipeline CLI inventory on temporary folders", () => {
   afterEach(() => rmSync(tmp, { recursive: true, force: true }));
 
   it("writes the book file on the first run", () => {
-    const r = run(["inventory", "TST", "spell"]);
+    const r = run(["inventory", "TCE", "spell"]);
     expect(r.status).toBe(0);
     expect(JSON.parse(r.stdout)).toMatchObject({ added: 1, kept: 0 });
-    const { records } = read("TST");
+    const { records } = read("TCE");
     expect(records).toHaveLength(1);
     expect(records[0]).toMatchObject({
-      key: "tst:spell:glimmer-bolt", page: 10, edition: "2014", identifier: "glimmer-bolt", state: "inventoried"
+      key: "tce:spell:glimmer-bolt", page: 10, edition: "2014", identifier: "glimmer-bolt", state: "inventoried"
     });
     expect(records[0].items.map((i) => [i.origin, i.match])).toEqual([["official", "matched"], ["plutonium", "unchecked"]]);
-    expect(existsSync(registryFile("TST"))).toBe(true);
+    expect(existsSync(registryFile("TCE"))).toBe(true);
     expect(existsSync(join(process.cwd(), "registry", "tst.json"))).toBe(false);
   });
 
+  it("takes official candidates from the book's own package only", () => {
+    // The same document in an adventure that reprints it is not a second candidate; a book with no package has none.
+    const doc = JSON.parse(readFileSync(join(tmp, "dumps", "dnd-tashas-cauldron.spells.json"), "utf8"));
+    write("dumps/dnd-some-adventure.spells.json", doc);
+    expect(run(["inventory", "TCE", "spell"]).status).toBe(0);
+    expect(read("TCE").records[0].items.map((i) => [i.origin, i.match])).toEqual([
+      ["official", "matched"], ["plutonium", "unchecked"]
+    ]);
+    write("data/spells/spells-nop.json", { spell: [{ name: "Other Glow", page: 1, level: 1, school: "V", entries: ["Invented."] }] });
+    expect(run(["inventory", "NOP", "spell"]).status).toBe(0);
+    expect(read("NOP").records[0].items.map((i) => i.origin)).toEqual(["plutonium"]);
+  });
+
   it("rewrites nothing on a second identical run", () => {
-    run(["inventory", "TST", "spell"]);
+    run(["inventory", "TCE", "spell"]);
     const old = new Date(2020, 0, 1);
-    utimesSync(registryFile("TST"), old, old);
-    const bytes = readFileSync(registryFile("TST"), "utf8");
-    const r = run(["inventory", "TST", "spell"]);
+    utimesSync(registryFile("TCE"), old, old);
+    const bytes = readFileSync(registryFile("TCE"), "utf8");
+    const r = run(["inventory", "TCE", "spell"]);
     expect(r.status).toBe(0);
     expect(JSON.parse(r.stdout)).toMatchObject({ added: 0, kept: 1 });
-    expect(readFileSync(registryFile("TST"), "utf8")).toBe(bytes);
-    expect(statSync(registryFile("TST")).mtimeMs).toBe(old.getTime());
+    expect(readFileSync(registryFile("TCE"), "utf8")).toBe(bytes);
+    expect(statSync(registryFile("TCE")).mtimeMs).toBe(old.getTime());
   });
 
   it("records a reprint in the first book's file and writes no second file", () => {
-    run(["inventory", "TST", "spell"]);
-    book("TS2");
-    const r = run(["inventory", "TS2", "spell"]);
+    run(["inventory", "TCE", "spell"]);
+    book("XGE");
+    const r = run(["inventory", "XGE", "spell"]);
     expect(r.status).toBe(0);
     expect(JSON.parse(r.stdout)).toMatchObject({ added: 0 });
-    expect(read("TST").records[0].alsoIn).toEqual([{ book: "TS2", page: 44 }]);
-    expect(existsSync(registryFile("TS2"))).toBe(false);
+    expect(read("TCE").records[0].alsoIn).toEqual([{ book: "XGE", page: 44 }]);
+    expect(existsSync(registryFile("XGE"))).toBe(false);
   });
 
   it("exits 2 for a dataset or dumps folder that does not exist", () => {
     for (const name of ["RULEPACK_DATASET", "RULEPACK_DUMPS"]) {
-      const r = spawnSync("node", ["tools/pipeline/cli.mjs", "inventory", "TST", "spell"], {
+      const r = spawnSync("node", ["tools/pipeline/cli.mjs", "inventory", "TCE", "spell"], {
         encoding: "utf8", env: { ...env, [name]: join(tmp, "missing") }
       });
       expect(r.status).toBe(2);

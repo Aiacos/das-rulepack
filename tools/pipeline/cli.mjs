@@ -4,7 +4,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { canonical, isReservedBook, loadBook, saveBook } from "./registry.mjs";
 import { readSpells } from "./dataset.mjs";
-import { dumpsFor, itemSummary, readDump } from "./dumps.mjs";
+import { dumpsFor, itemSummary, officialFilesFor, readDump } from "./dumps.mjs";
 import { inventory } from "./inventory.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
@@ -31,9 +31,14 @@ function loadRegistry(dir) {
     .map((f) => ({ file: f, ...loadBook(dir, f.slice(0, -5)) }));
 }
 
-function loadDumps(dir) {
-  const read = (origin) => dumpsFor(dir, origin).flatMap((f) => readDump(join(dir, f)).map((d) => itemSummary(d, origin)));
-  return { official: read("official"), "ddb-importer": read("ddb-importer") };
+// The official candidates of a book are the documents of the book's own package only (docs/foundry-modules.json).
+function loadDumps(dir, book) {
+  const read = (origin, files) => files.flatMap((f) => readDump(join(dir, f)).map((d) => itemSummary(d, origin)));
+  const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+  return {
+    official: read("official", officialFilesFor(dir, packages, book)),
+    "ddb-importer": read("ddb-importer", dumpsFor(dir, "ddb-importer"))
+  };
 }
 
 // The year of a book in docs/books.json, or undefined when the catalogue does not list it.
@@ -69,7 +74,7 @@ function inventoryCommand([book, kind]) {
 
   const books = loadRegistry(REGISTRY);
   const previous = books.flatMap((b) => b.records);
-  const { records, report } = inventory({ book, kind, dataset, dumps: loadDumps(dumpsDir), textDir, previous });
+  const { records, report } = inventory({ book, kind, dataset, dumps: loadDumps(dumpsDir, book), textDir, previous });
 
   const touched = new Set();
   const before = new Map(previous.map((r) => [r.key, canonical(r)]));

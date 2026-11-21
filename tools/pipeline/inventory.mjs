@@ -8,10 +8,11 @@ const identityOfRecord = (r) => identityOf({ name: r.name, kind: r.kind, edition
 
 function itemOf(origin, outcome) {
   if (outcome.match === "matched") {
-    const { item } = outcome;
+    const { item, differences } = outcome;
     return {
       origin, match: "matched", identifier: item.identifier ?? slug(item.name), docId: item.docId,
-      activities: item.activities.map((a) => a.id), effects: item.effects.map((e) => e.id), data: { sha256: item.data }
+      activities: item.activities.map((a) => a.id), effects: item.effects.map((e) => e.id), data: { sha256: item.data },
+      ...(differences?.length ? { differences } : {})
     };
   }
   const candidates = outcome.candidates.map((c) => ({ identifier: c.identifier ?? slug(c.name), docId: c.docId }));
@@ -45,7 +46,7 @@ export function inventory({ book, kind, dataset, dumps, textDir, previous }) {
   if (kind !== KIND) throw new Error(`Only kind "${KIND}" is supported, not "${kind}"`);
   const records = structuredClone(previous);
   const byIdentity = new Map(records.map((r) => [identityOfRecord(r), r]));
-  const report = { added: 0, kept: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [] };
+  const report = { added: 0, kept: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [] };
   const seen = new Set();
 
   for (const entry of dataset) {
@@ -86,6 +87,7 @@ export function inventory({ book, kind, dataset, dumps, textDir, previous }) {
       report.added += 1;
     }
     if (items.some((i) => i.match === "ambiguous")) report.ambiguous.push(record.key);
+    if (items.some((i) => i.match === "matched" && i.differences)) report.differing.push(record.key);
     if (!items.some((i) => i.origin === "official" && i.match === "matched")) report.noOfficial.push(record.key);
   }
   return { records, report };
