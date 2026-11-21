@@ -1,0 +1,463 @@
+{
+  "book": "SATO",
+  "records": [
+    {
+      "key": "sato:background:gate-warden",
+      "name": "Gate Warden",
+      "kind": "background",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "gate-warden",
+      "page": 7,
+      "srd": false,
+      "text": {
+        "sha256": "db814918477d78fb9a93b717b01bc3561728393ce10cabd682a9a2b54e16fba4",
+        "source": "5etools",
+        "chars": 1143
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:background:planar-philosopher",
+      "name": "Planar Philosopher",
+      "kind": "background",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "planar-philosopher",
+      "page": 8,
+      "srd": false,
+      "text": {
+        "sha256": "6db062a16b592a692cee22cdc71691219d4a34cc1a387407f39c5c28688ae77f",
+        "source": "5etools",
+        "chars": 2910
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:feat:agent-of-order",
+      "name": "Agent of Order",
+      "kind": "feat",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "agent-of-order",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "180e4aabcf8ec1aff1204752662751db6e6858de6d780af59c2e7ca3d7725e55",
+        "source": "5etools",
+        "chars": 763
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:feat:baleful-scion",
+      "name": "Baleful Scion",
+      "kind": "feat",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "baleful-scion",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "a9d6e55e436ff12eeb0cb35c66559642d15fabed1944798fff0f67c763582ebb",
+        "source": "5etools",
+        "chars": 471
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:feat:cohort-of-chaos",
+      "name": "Cohort of Chaos",
+      "kind": "feat",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "cohort-of-chaos",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "44f2af50d8e3a617cecb472cb142f731a3421f386473e3aab6bb8495f3424f28",
+        "source": "5etools",
+        "chars": 360
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:feat:outlands-envoy",
+      "name": "Outlands Envoy",
+      "kind": "feat",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "outlands-envoy",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "d26dbeba567694799b875cd7d45d6127269a1343db06ff76259e290141933684",
+        "source": "5etools",
+        "chars": 638
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:feat:planar-wanderer",
+      "name": "Planar Wanderer",
+      "kind": "feat",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "planar-wanderer",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "23b4d670eba44eb1050ddb914c09d3ddf2bb452f1c0512e6d23f250be118893b",
+        "source": "5etools",
+        "chars": 1232
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:feat:righteous-heritor",
+      "name": "Righteous Heritor",
+      "kind": "feat",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "righteous-heritor",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "a24fe7cacbfc20acba52d907cf51d76fff86f080173672b0089be4f2bf95e14b",
+        "source": "5etools",
+        "chars": 352
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:feat:scion-of-the-outer-planes",
+      "name": "Scion of the Outer Planes",
+      "kind": "feat",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "scion-of-the-outer-planes",
+      "page": 12,
+      "srd": false,
+      "text": {
+        "sha256": "6365d2458be83688b5c5d352d43810ccd028c309372a1cc379ea2274d1f955f3",
+        "source": "5etools",
+        "chars": 405
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:item:gate-warden-trinket",
+      "name": "Gate Warden Trinket",
+      "kind": "item",
+      "book": "SATO",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "gate-warden-trinket",
+      "page": 7,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:56.637Z"
+        }
+      },
+      "why": "no text and no item in any origin",
+      "state": "triaged"
+    },
+    {
+      "key": "sato:item:mimir",
+      "name": "Mimir",
+      "kind": "item",
+      "book": "SATO",
+      "edition": "2014",
+      "rarity": "rare",
+      "identifier": "mimir",
+      "page": 13,
+      "srd": false,
+      "text": {
+        "sha256": "5215e9603722b1277f1e32647d209daa31b8e2538f9758c79a38fae6e6c8bd90",
+        "source": "5etools",
+        "chars": 1368
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "mimir",
+          "docId": "zsBF6Nn2SeGfOyo8",
+          "activities": [
+            "castLegLorMimLeg"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "a8778ad32c53469b7d4e11406b0b52efa28568b9df6af31e28523f50f6f3368e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:item:planar-philosopher-trinket",
+      "name": "Planar Philosopher Trinket",
+      "kind": "item",
+      "book": "SATO",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "planar-philosopher-trinket",
+      "page": 8,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:56.637Z"
+        }
+      },
+      "why": "no text and no item in any origin",
+      "state": "triaged"
+    },
+    {
+      "key": "sato:item:portal-compass",
+      "name": "Portal Compass",
+      "kind": "item",
+      "book": "SATO",
+      "edition": "2014",
+      "rarity": "uncommon",
+      "identifier": "portal-compass",
+      "page": 13,
+      "srd": false,
+      "text": {
+        "sha256": "6de39cf27c79d8d6fcdcaae804658bda6816245a552e7f514d9ae0e971c4b4cb",
+        "source": "5etools",
+        "chars": 258
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "portal-compass",
+          "docId": "IKvvZqHsOyaWXUlN",
+          "activities": [
+            "utilityPortaComp"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3ee61b5bac6a08163255abee6c6ed54631acd2ae03e68316cf6d01f09b208a3f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:item:sensory-stone",
+      "name": "Sensory Stone",
+      "kind": "item",
+      "book": "SATO",
+      "edition": "2014",
+      "rarity": "uncommon",
+      "identifier": "sensory-stone",
+      "page": 13,
+      "srd": false,
+      "text": {
+        "sha256": "565f3b0d929a1acf154d7e4c3127320660298f7a8317bad81d40cda732fb4c4a",
+        "source": "5etools",
+        "chars": 763
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "sensory-stone",
+          "docId": "gwNPzoMp2eM3dEPs",
+          "activities": [
+            "utilitySensoSton"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "1f0e05a995369024c4e21ef6e048f20f11c6da4490d8fb8a5fd4c0dbcb463d85"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:spell:gate-seal",
+      "name": "Gate Seal",
+      "kind": "spell",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "gate-seal",
+      "page": 12,
+      "srd": false,
+      "text": {
+        "sha256": "a4ac837ce5bdeb9d3fe670e153c234f0fef8a060b23c78ae78124af6a95571e9",
+        "source": "5etools",
+        "chars": 311
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "gate-seal",
+          "docId": "ddbGateSeal14III",
+          "activities": [
+            "utilityGateSealI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "9f275de2f71f1ddaaaca443801d8cb8eecccd6240311f7e215a9eac22a12efe5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "sato:spell:warp-sense",
+      "name": "Warp Sense",
+      "kind": "spell",
+      "book": "SATO",
+      "edition": "2014",
+      "identifier": "warp-sense",
+      "page": 12,
+      "srd": false,
+      "text": {
+        "sha256": "3095343baabe51fb269a361418127df29fce3a19aebbefecc73de3a491a8ea25",
+        "source": "5etools",
+        "chars": 612
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "warp-sense",
+          "docId": "ddbWarpSense14II",
+          "activities": [
+            "utilityWarpSense"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "4efd65c0849a50df2edc48efb8d2fe7e7fc83441376a90a5e45f8bec89fc24fe"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
