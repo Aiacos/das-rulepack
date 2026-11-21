@@ -42,6 +42,8 @@ export const FIX_ENUMS = Object.freeze({
 export const FIX_MAX_ITEMS = 12;
 const ID = /^[A-Za-z0-9]{16}$/;
 const ATTRIBUTE = /^[a-z][A-Za-z0-9]*(\.[A-Za-z0-9]+)*$/;
+// Own properties only: a key named like an inherited one (`constructor`, `toString`...) is never taken for a known key.
+const has = (o, k) => Object.hasOwn(o, k);
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 
 // A type is a function of a value: null when the value has the type, else what it should have been.
@@ -49,7 +51,14 @@ const num = (v) => ((typeof v === "number" && Number.isFinite(v)) || isFormula(v
 const bool = (v) => (typeof v === "boolean" ? null : "a boolean");
 const oneOf = (name) => (v) => (FIX_ENUMS[name].includes(v) ? null : `one of ${FIX_ENUMS[name].join(", ")}`);
 const id = (v) => (typeof v === "string" && ID.test(v) ? null : "a 16-character id");
-const attribute = (v) => (typeof v === "string" && v.length <= 64 && ATTRIBUTE.test(v) ? null : "a dotted attribute path");
+// A dotted attribute path (a change key, a consumption target): at most PATH_SEGMENTS segments of at most PATH_SEGMENT
+// characters each (Ruling R19: an identifier is too short to carry a sentence).
+export const PATH_SEGMENTS = 6;
+export const PATH_SEGMENT = 24;
+export const isShortPath = (v) => typeof v === "string" && v.length <= 64 && ATTRIBUTE.test(v)
+  && v.split(".").length <= PATH_SEGMENTS && v.split(".").every((p) => p.length <= PATH_SEGMENT);
+const attribute = (v) => (isShortPath(v) ? null
+  : `a dotted attribute path (at most ${PATH_SEGMENTS} segments of at most ${PATH_SEGMENT} characters)`);
 const either = (...types) => (v) => (types.some((t) => t(v) === null) ? null : types.map((t) => t(v)).join(" or "));
 const intIn = (lo, hi) => (v) => (Number.isInteger(v) && v >= lo && v <= hi ? null : `an integer from ${lo} to ${hi}`);
 
@@ -57,10 +66,10 @@ const intIn = (lo, hi) => (v) => (Number.isInteger(v) && v >= lo && v <= hi ? nu
 const object = (required, optional = {}) => {
   const type = (v) => {
     if (!isObject(v)) return "an object";
-    for (const k of Object.keys(v)) if (!(k in required) && !(k in optional)) return `no key ${k}`;
-    for (const k of Object.keys(required)) if (!(k in v)) return `a key ${k}`;
+    for (const k of Object.keys(v)) if (!has(required, k) && !has(optional, k)) return `no key ${k}`;
+    for (const k of Object.keys(required)) if (!has(v, k)) return `a key ${k}`;
     for (const [k, t] of Object.entries({ ...required, ...optional })) {
-      if (k in v) {
+      if (has(v, k)) {
         const problem = t(v[k]);
         if (problem) return `${k}: ${problem}`;
       }

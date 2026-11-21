@@ -19,6 +19,8 @@ export const AFFECTS = Object.freeze(["target", "allies", "enemies", "self"]);
 export const GIVEN_FIELDS = Object.freeze(["roll", "moment", "origin", "targetType", "free"]);
 export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll", "affects", "excludes", "move", "uses", "free"]);
 
+// Own properties only: a key named like an inherited one (`constructor`, `toString`...) is never taken for a known key.
+const has = (o, k) => Object.hasOwn(o, k);
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isWord = (v) => typeof v === "string" && v !== "";
 /** One line of printable ASCII (0x20-0x7E) of at most `max` characters: no control, format or look-alike character. */
@@ -35,6 +37,9 @@ const REFERENCE = new RegExp("@(?:(?:mod|prof)(?![A-Za-z0-9.])"
  */
 export const isFormula = (v, max = DISTANCE_MAX) => {
   if (typeof v !== "string" || v.trim() === "" || v.length > max) return false;
+  // Each reference is a short path: at most 6 segments (its root included) of at most 24 characters (Ruling R19).
+  const refs = v.match(REFERENCE) ?? [];
+  if (refs.some((r) => r.slice(1).split(".").length > 6 || r.slice(1).split(".").some((p) => p.length > 24))) return false;
   const rest = v.replace(REFERENCE, " ");
   return /^[0-9 +\-*/().]*$/.test(rest) && (rest !== v || /[0-9]/.test(rest));
 };
@@ -69,46 +74,48 @@ export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS,
     // `free` never counts as agreement: an assertion made of it alone says nothing a review or a scenario can check.
     if (!Object.keys(expect).some((k) => k !== "free")) errors.push(`${here}.expect: at least one closed field besides free`);
     for (const [part, o] of [["given", given], ["expect", expect]]) {
-      if ("free" in o && !isFree(o.free)) errors.push(`${here}.${part}.free: one line of at most ${FREE_MAX} characters`);
+      if (has(o, "free") && !isFree(o.free)) errors.push(`${here}.${part}.free: one line of at most ${FREE_MAX} characters`);
     }
-    if ("roll" in given) oneOf(given.roll, ROLLS, `${here}.given.roll`);
-    if ("moment" in given) word(given.moment, "moments", `${here}.given.moment`, "a moment of the engine (MOMENTS)");
-    if ("origin" in given) {
+    if (has(given, "roll")) oneOf(given.roll, ROLLS, `${here}.given.roll`);
+    if (has(given, "moment")) word(given.moment, "moments", `${here}.given.moment`, "a moment of the engine (MOMENTS)");
+    if (has(given, "origin")) {
       if (!origins.includes(given.origin)) errors.push(`${here}.given.origin: must be an origin (${origins.join(", ")})`);
     }
-    if ("targetType" in given) word(given.targetType, "creatureTypes", `${here}.given.targetType`, "a creature type of the engine");
+    if (has(given, "targetType")) {
+      word(given.targetType, "creatureTypes", `${here}.given.targetType`, "a creature type of the engine");
+    }
     checkExpect(expect, `${here}.expect`, { errors, word, oneOf, vocabulary });
   });
   return errors;
 }
 
 function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
-  if ("damage" in expect) {
+  if (has(expect, "damage")) {
     const d = expect.damage;
     if (!isObject(d) || !onlyKeys(d, ["fraction", "type"])) errors.push(`${at}.damage: must be { fraction, type? }`);
     else {
       oneOf(d.fraction, FRACTIONS, `${at}.damage.fraction`);
-      if ("type" in d) word(d.type, "damageTypes", `${at}.damage.type`, "a damage type of the engine");
+      if (has(d, "type")) word(d.type, "damageTypes", `${at}.damage.type`, "a damage type of the engine");
     }
   }
-  if ("condition" in expect) {
+  if (has(expect, "condition")) {
     const c = expect.condition;
     if (!isObject(c) || !onlyKeys(c, ["applied", "ended"]) || !Object.keys(c).length) {
       errors.push(`${at}.condition: must be { applied?, ended? }, at least one`);
     } else for (const k of ["applied", "ended"]) {
-      if (k in c) word(c[k], "statuses", `${at}.condition.${k}`, "a status of the engine");
+      if (has(c, k)) word(c[k], "statuses", `${at}.condition.${k}`, "a status of the engine");
     }
   }
-  if ("ends" in expect) {
+  if (has(expect, "ends")) {
     const ends = [...(list(vocabulary.effectEnds) ?? []), ...(list(vocabulary.moments) ?? [])];
     const known = list(vocabulary.effectEnds) || list(vocabulary.moments);
     if (!isWord(expect.ends) || (known && !ends.includes(expect.ends))) {
       errors.push(`${at}.ends: must be an effect end (EFFECT_ENDS) or a moment of the engine`);
     }
   }
-  if ("roll" in expect) {
+  if (has(expect, "roll")) {
     const r = expect.roll;
-    if (!isObject(r) || !onlyKeys(r, ["mode", "on", "for"]) || !("mode" in r && "on" in r && "for" in r)) {
+    if (!isObject(r) || !onlyKeys(r, ["mode", "on", "for"]) || !(has(r, "mode") && has(r, "on") && has(r, "for"))) {
       errors.push(`${at}.roll: must be { mode, on, for }`);
     } else {
       oneOf(r.mode, ROLL_MODES, `${at}.roll.mode`);
@@ -116,18 +123,18 @@ function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
       oneOf(r.for, ROLL_FOR, `${at}.roll.for`);
     }
   }
-  for (const k of ["affects", "excludes"]) if (k in expect) oneOf(expect[k], AFFECTS, `${at}.${k}`);
-  if ("move" in expect) {
+  for (const k of ["affects", "excludes"]) if (has(expect, k)) oneOf(expect[k], AFFECTS, `${at}.${k}`);
+  if (has(expect, "move")) {
     const m = expect.move;
     if (!isObject(m) || !onlyKeys(m, ["mode", "distance"])) errors.push(`${at}.move: must be { mode, distance? }`);
     else {
       word(m.mode, "moveModes", `${at}.move.mode`, "a move mode of the engine (MOVE_MODES)");
-      if ("distance" in m && !isDistance(m.distance)) {
+      if (has(m, "distance") && !isDistance(m.distance)) {
         errors.push(`${at}.move.distance: must be a non-negative number or a formula of at most ${DISTANCE_MAX} characters`);
       }
     }
   }
-  if ("uses" in expect) {
+  if (has(expect, "uses")) {
     const u = expect.uses;
     if (!isObject(u) || !onlyKeys(u, ["spent"]) || !(Number.isInteger(u.spent) && u.spent > 0)) {
       errors.push(`${at}.uses: must be { spent: a positive integer }`);

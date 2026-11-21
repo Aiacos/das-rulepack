@@ -113,6 +113,18 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   the gate checks that a file exists, not that it implements the rule (review and play do); a script moved without its
   rules being updated fails every gate run until they are.
 
+- **R19 — The drafter limits target accidental prose and verbatim quotation by an agent.** Every string of a rule (its free
+  texts and every key and value of its entry, identifiers read as words: dots, camelCase and digits split) is checked for 8
+  consecutive words of the source text, alone and together; free identifiers are short (a dotted path has at most 6
+  segments of at most 24 characters, a formula at most 24 characters) and an entry may hold at most 60 distinct words of 3
+  letters or more outside its ids and the pack's closed vocabularies. A deliberately encoded paraphrase inside identifiers
+  is bounded (≤ 60 words per rule) but not eliminated: the independent review (Task 6) and the owner's reading of the
+  registry diff are the remaining controls. Wrong: up to 60 words of paraphrase per rule could reach the registry unseen
+  by the tools.
+- **R20 — `docs/owners.json` is protected by code review only** (a single-owner repository: CODEOWNERS adds nothing), and
+  `evidence.person` is a visible, reviewable claim, not a cryptographic signature. Wrong: anyone who can commit can add an
+  owner or sign as one; the commit that does it is in the history, which is the control.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed

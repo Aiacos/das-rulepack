@@ -13,10 +13,10 @@ import {
   canonical, emittedFingerprint, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
 } from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
-import { hasText, readText } from "./text.mjs";
+import { hasText, readText, splitWords } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
-import { checkDraftKeys, singleSlotKeys } from "./draft-keys.mjs";
+import { checkDraftKeys, isStructural, singleSlotKeys } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 
 export const GATES = GATE_NAMES;
@@ -302,10 +302,11 @@ export function checkText(record, context = {}) {
 }
 
 // A rule's prose may share at most RULE_QUOTE_WORDS - 1 consecutive words with the text it was drafted from. Both sides are
-// normalised the same way: NFKC (full-width and compatibility forms fold), lower case, and every run of characters that are
-// not letters or digits (spaces, hyphens, slashes, zero-width and other format characters) separates words.
+// cut into words the same way (text.mjs splitWords: NFKC, camelCase and digit boundaries, lower case, any other character a
+// separator), and the prose is every free text of the rule plus every string of its entry.
 export const RULE_QUOTE_WORDS = 8;
-const wordsOf = (s) => String(s).normalize("NFKC").toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+const REFERENCE_ROOT = /@(?:mod|prof|item|abilities|attributes|details|scale|flags)\b/g;
+const wordsOf = splitWords;
 const nGrams = (words, n) => {
   const out = [];
   for (let i = 0; i + n <= words.length; i++) out.push(words.slice(i, i + n).join(" "));
@@ -322,6 +323,22 @@ function ruleProse(rule) {
   (Array.isArray(rule.uncovered) ? rule.uncovered : []).forEach((u, i) => {
     if (typeof u?.because === "string") out.push([`rule.uncovered[${i}].because`, u.because]);
   });
+  // And every string of the entry, keys and values, in document order (Ruling R19: identifiers are read as words too). A
+  // string made only of structure (a key of the pack's vocabulary, an id, an allowed path) is left out, so that it does not
+  // cut a quote carried by the strings around it.
+  const walk = (node, at) => {
+    if (typeof node === "string") {
+      // The root of a formula reference (`@item.`, `@scale.`...) is structure too: it does not cut the words after it.
+      if (!isStructural(node)) out.push([at, node.replace(REFERENCE_ROOT, " ")]);
+    } else if (Array.isArray(node)) node.forEach((x, i) => walk(x, `${at}[${i}]`));
+    else if (isObject(node)) {
+      for (const [k, v] of Object.entries(node)) {
+        if (!isStructural(k)) out.push([`${at} key ${k}`, k]);
+        walk(v, `${at}.${k}`);
+      }
+    }
+  };
+  walk(rule.entry, "rule.entry");
   return out;
 }
 export const gateText = (record, context) => checkText(record, context).failures;

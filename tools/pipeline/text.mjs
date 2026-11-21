@@ -104,3 +104,16 @@ export function cacheText(dir, text) {
 export const hasText = (dir, sha) => existsSync(fileOf(dir, sha));
 /** The cached text of a fingerprint (the caller checked hasText). */
 export const readText = (dir, sha) => readFileSync(fileOf(dir, sha), "utf8");
+
+/**
+ * The words of a string as the quotation check and the drafter's word budget read them: NFKC (full-width and compatibility
+ * forms fold), camelCase and PascalCase boundaries and letter/digit boundaries split, lower case, and every run of characters
+ * that are not letters or digits (spaces, dots, hyphens, slashes, zero-width and other format characters) separates words.
+ * So `when.you.cast`, `WhenYouCastThis` and `@item.saving.throw` are words, as in the text.
+ */
+export function splitWords(s) {
+  return String(s).normalize("NFKC")
+    .replace(/(\p{Ll}|\p{N})(\p{Lu})/gu, "$1 $2").replace(/(\p{Lu})(\p{Lu}\p{Ll})/gu, "$1 $2")
+    .replace(/(\p{L})(\p{N})/gu, "$1 $2").replace(/(\p{N})(\p{L})/gu, "$1 $2")
+    .toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+}

@@ -25,6 +25,8 @@ export const CODE_MAX = 96;
 const CODE_PATH = /^scripts\/[a-z0-9][a-z0-9-]*(\/[a-z0-9][a-z0-9-]*)*\.mjs$/;
 /** A `rule.code` path (Ruling R18): a repository-relative script under scripts/, kebab parts, `.mjs`. */
 export const isCodePath = (v) => typeof v === "string" && v.length <= CODE_MAX && CODE_PATH.test(v);
+// Own properties only: a key named like an inherited one (`constructor`, `toString`...) is never taken for a known key.
+const has = (o, k) => Object.hasOwn(o, k);
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isString = (v) => typeof v === "string" && v !== "";
 const isPage = (v) => Number.isInteger(v) && v > 0;
@@ -34,13 +36,15 @@ function checkItem(item, at, errors) {
   if (!ORIGINS.includes(item.origin)) errors.push(`${at}.origin: unknown origin ${JSON.stringify(item.origin)}`);
   if (!MATCHES.includes(item.match)) errors.push(`${at}.match: unknown match ${JSON.stringify(item.match)}`);
   for (const f of ["identifier", "docId"]) {
-    if (f in item && typeof item[f] !== "string") errors.push(`${at}.${f}: must be a string`);
+    if (has(item, f) && typeof item[f] !== "string") errors.push(`${at}.${f}: must be a string`);
   }
-  for (const f of ["activities", "effects"]) if (f in item && !Array.isArray(item[f])) errors.push(`${at}.${f}: must be an array`);
-  if ("differences" in item && !(Array.isArray(item.differences) && item.differences.every((d) => typeof d === "string"))) {
+  for (const f of ["activities", "effects"]) {
+    if (has(item, f) && !Array.isArray(item[f])) errors.push(`${at}.${f}: must be an array`);
+  }
+  if (has(item, "differences") && !(Array.isArray(item.differences) && item.differences.every((d) => typeof d === "string"))) {
     errors.push(`${at}.differences: must be an array of strings`);
   }
-  if ("data" in item && !isObject(item.data)) errors.push(`${at}.data: must be an object`);
+  if (has(item, "data") && !isObject(item.data)) errors.push(`${at}.data: must be an object`);
   checkItemExtras(item, at, errors);
 }
 
@@ -49,24 +53,24 @@ const isStringList = (v) => Array.isArray(v) && v.every((x) => typeof x === "str
 
 // What inventory and `resolve` add to an item: copies of one document, reprints, what a person settled.
 function checkItemExtras(item, at, errors) {
-  if ("alsoDocIds" in item && !isStringList(item.alsoDocIds)) errors.push(`${at}.alsoDocIds: must be an array of strings`);
+  if (has(item, "alsoDocIds") && !isStringList(item.alsoDocIds)) errors.push(`${at}.alsoDocIds: must be an array of strings`);
   for (const f of ["identifierDiffers", "embeddedShared"]) {
-    if (f in item && typeof item[f] !== "boolean") errors.push(`${at}.${f}: must be a boolean`);
+    if (has(item, f) && typeof item[f] !== "boolean") errors.push(`${at}.${f}: must be a boolean`);
   }
-  if ("resolved" in item) {
+  if (has(item, "resolved")) {
     const r = item.resolved;
     if (!isObject(r) || !STAMP.every((f) => isString(r[f]))) errors.push(`${at}.resolved: must be { by, at, because }`);
   }
-  if ("reprints" in item) {
+  if (has(item, "reprints")) {
     if (!Array.isArray(item.reprints)) errors.push(`${at}.reprints: must be an array`);
     else item.reprints.forEach((r, i) => {
       const ok = isObject(r) && isString(r.package) && isString(r.docId) && typeof r.sameIds === "boolean"
-        && (r.sameIds ? !("missing" in r) || isStringList(r.missing) : isStringList(r.missing));
+        && (r.sameIds ? !has(r, "missing") || isStringList(r.missing) : isStringList(r.missing));
       const shape = "{ package, docId, sameIds, missing }, missing required if sameIds is false";
       if (!ok) errors.push(`${at}.reprints[${i}]: must be ${shape}`);
     });
   }
-  if ("reprintsExcluded" in item) {
+  if (has(item, "reprintsExcluded")) {
     if (!Array.isArray(item.reprintsExcluded)) errors.push(`${at}.reprintsExcluded: must be an array`);
     else item.reprintsExcluded.forEach((r, i) => {
       if (!isObject(r) || !isString(r.package) || !isString(r.because)) {
@@ -132,8 +136,8 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
   else if (!legacy && !isPlainLine(rule.adds, ADDS_MAX)) {
     errors.push(`rule.adds: one printable line of at most ${ADDS_MAX} characters`);
   }
-  for (const f of ["code", "origin"]) if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
-  if ("catalog" in rule && rule.catalog !== null && typeof rule.catalog !== "string") {
+  for (const f of ["code", "origin"]) if (has(rule, f) && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
+  if (has(rule, "catalog") && rule.catalog !== null && typeof rule.catalog !== "string") {
     errors.push("rule.catalog: must be a string or null");
   }
   // From this milestone on (a legacy rule's predate it): `catalog` an identifier; `origin` a display label of where the rule
@@ -143,27 +147,29 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
     if (typeof rule.catalog === "string" && !(rule.catalog.length <= 64 && DOTTED.test(rule.catalog))) {
       errors.push("rule.catalog: must be a kebab/dot identifier of at most 64 characters");
     }
-    if ("origin" in rule && !isPlainLine(rule.origin, ORIGIN_MAX)) {
+    if (has(rule, "origin") && !isPlainLine(rule.origin, ORIGIN_MAX)) {
       errors.push(`rule.origin: one line of printable ASCII, at most ${ORIGIN_MAX} characters`);
     }
-    if ("code" in rule && !isCodePath(rule.code)) {
+    if (has(rule, "code") && !isCodePath(rule.code)) {
       errors.push(`rule.code: a script path scripts/<kebab>(/<kebab>)*.mjs of at most ${CODE_MAX} characters`);
     }
   }
-  if ("entry" in rule && !isObject(rule.entry)) errors.push("rule.entry: must be an object");
-  if ("inCore" in rule && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
+  if (has(rule, "entry") && !isObject(rule.entry)) errors.push("rule.entry: must be an object");
+  if (has(rule, "inCore") && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
   // What the rule says happens (assert.mjs), its shape only: the gates check the engine's words. Required from this
   // milestone on; a legacy rule predates it.
   // `given.origin` may name only an origin the rule covers.
-  if ("assert" in rule) errors.push(...assertProblems(rule.assert, Array.isArray(rule.origins) ? { origins: rule.origins } : {}));
+  if (has(rule, "assert")) {
+    errors.push(...assertProblems(rule.assert, Array.isArray(rule.origins) ? { origins: rule.origins } : {}));
+  }
   if (!legacy && !(Array.isArray(rule.assert) && rule.assert.length)) {
     errors.push("rule.assert: required, at least one { given, expect } (a legacy rule may have none)");
   }
   if (!Array.isArray(rule.origins)) errors.push("rule.origins: must be an array");
   else for (const o of rule.origins) if (!ORIGINS.includes(o)) errors.push(`rule.origins: unknown origin ${JSON.stringify(o)}`);
   if (verdict === "entry" && !isObject(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
-  if ("alsoAs" in rule) checkAlsoAs(rule.alsoAs, identifier, errors);
-  if ("uncovered" in rule) checkUncovered(rule.uncovered, rule.origins, errors);
+  if (has(rule, "alsoAs")) checkAlsoAs(rule.alsoAs, identifier, errors);
+  if (has(rule, "uncovered")) checkUncovered(rule.uncovered, rule.origins, errors);
 }
 
 // The gates the evidence may name (gates.mjs GATES).
@@ -184,33 +190,33 @@ function checkEvidence(evidence, errors, legacy) {
   const { gates, triaged } = evidence;
   // A verdict settled by several readings carries them: `first` and `second` are { by, confidence } (triage.mjs); `via` says
   // how it was settled when not by two agreeing readers: a third reading, or the owner's bulk rule for two unsure ones.
-  if (isObject(triaged) && ["first", "second", "via"].some((k) => k in triaged)) {
+  if (isObject(triaged) && ["first", "second", "via"].some((k) => has(triaged, k))) {
     const reading = (r) => isObject(r) && Object.keys(r).every((k) => k === "by" || k === "confidence")
       && isReaderHandle(r.by) && typeof r.confidence === "number" && r.confidence >= 0 && r.confidence <= 1;
     for (const k of ["first", "second"]) {
-      if (k in triaged && !reading(triaged[k])) {
+      if (has(triaged, k) && !reading(triaged[k])) {
         errors.push(`evidence.triaged.${k}: must be { by: reader handle, confidence: number from 0 to 1 }`);
       }
     }
-    if ("via" in triaged && !VIA.includes(triaged.via)) errors.push(`evidence.triaged.via: must be one of ${VIA.join(", ")}`);
-    if ("second" in triaged && !("first" in triaged)) errors.push("evidence.triaged.second: needs evidence.triaged.first");
-    if ("via" in triaged && !("first" in triaged && "second" in triaged)) {
+    if (has(triaged, "via") && !VIA.includes(triaged.via)) errors.push(`evidence.triaged.via: must be one of ${VIA.join(", ")}`);
+    if (has(triaged, "second") && !has(triaged, "first")) errors.push("evidence.triaged.second: needs evidence.triaged.first");
+    if (has(triaged, "via") && !(has(triaged, "first") && has(triaged, "second"))) {
       errors.push("evidence.triaged.via: needs evidence.triaged.first and evidence.triaged.second");
     }
   }
-  if ("gates" in evidence) {
+  if (has(evidence, "gates")) {
     if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, emits?, passed, noted?, items? }");
     else {
       for (const f of ["at", "core"]) if (!isString(gates[f])) errors.push(`evidence.gates.${f}: must be a non-empty string`);
       if (typeof gates.rule !== "string" || !HEX64.test(gates.rule)) errors.push("evidence.gates.rule: must be 64 hex characters");
-      if ("emits" in gates && !(typeof gates.emits === "string" && HEX64.test(gates.emits))) {
+      if (has(gates, "emits") && !(typeof gates.emits === "string" && HEX64.test(gates.emits))) {
         errors.push("evidence.gates.emits: must be 64 hex characters");
       }
       if (!isGateList(gates.passed)) {
         errors.push(`evidence.gates.passed: must be an array of gate names (${GATE_NAMES.join(", ")})`);
       }
-      if ("noted" in gates && !isGateList(gates.noted)) errors.push("evidence.gates.noted: must be an array of gate names");
-      if ("items" in gates) {
+      if (has(gates, "noted") && !isGateList(gates.noted)) errors.push("evidence.gates.noted: must be an array of gate names");
+      if (has(gates, "items")) {
         const fingerprint = ([origin, sha]) => ORIGINS.includes(origin) && typeof sha === "string" && HEX64.test(sha);
         const ok = isObject(gates.items) && Object.entries(gates.items).every(fingerprint);
         if (!ok) errors.push("evidence.gates.items: must be an object of origin to the 64-hex data fingerprint of its item");
@@ -220,7 +226,7 @@ function checkEvidence(evidence, errors, legacy) {
   // A person's signature that lets a rule hold what a drafter may not write (Ruling R6; gates.mjs draftProblems): bound to the
   // rule it signs (`rule`, its fingerprint), by an owner of docs/owners.json (checked by the gate), never an agent's handle.
   // No ingest writes it: a person types it.
-  if ("person" in evidence) {
+  if (has(evidence, "person")) {
     const p = evidence.person;
     if (!isObject(p) || !onlyPersonKeys(p)) {
       errors.push("evidence.person: must be { by, because, rule }");
@@ -250,18 +256,18 @@ const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex charact
 // One rule-stamped evidence object: `fields` (name → check) are required unless `optional[name]`; `extra` are optional ones.
 // No other field is allowed.
 function checkStamped(evidence, name, fields, optional, errors, extra = {}) {
-  if (!(name in evidence)) return;
+  if (!has(evidence, name)) return;
   const value = evidence[name];
   const shape = `{ ${[...Object.keys(fields), ...Object.keys(extra).map((k) => `${k}?`)].join(", ")} }`;
   if (!isObject(value)) return errors.push(`evidence.${name}: must be ${shape}`);
   const checks = { ...fields, ...extra };
   for (const [f, ok] of Object.entries(checks)) {
-    const required = f in fields && !optional[f];
-    if (!(f in value) ? required : !ok(value[f])) {
+    const required = has(fields, f) && !optional[f];
+    if (!has(value, f) ? required : !ok(value[f])) {
       errors.push(`evidence.${name}.${f}: must be ${WHAT[f] ?? "a non-empty string"}`);
     }
   }
-  for (const f of Object.keys(value)) if (!(f in checks)) errors.push(`evidence.${name}.${f}: unknown field (${shape})`);
+  for (const f of Object.keys(value)) if (!has(checks, f)) errors.push(`evidence.${name}.${f}: unknown field (${shape})`);
 }
 
 export function validateRecord(record) {
@@ -280,24 +286,24 @@ export function validateRecord(record) {
   else checkEvidence(record.evidence, errors, record.legacy === true);
   // A verdict comes before any draft: `rule.entry` is required only once a rule is there. A rule is registered only under
   // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
-  if ("rule" in record) {
+  if (has(record, "rule")) {
     checkRule(record.rule, record.verdict, errors, record.identifier, record.legacy === true);
     if (!RULE_VERDICTS.includes(record.verdict)) {
       errors.push(`verdict: a record with a rule can only have the verdict entry or code, not ${JSON.stringify(record.verdict)}`);
     }
   }
-  if ("legacy" in record && typeof record.legacy !== "boolean") errors.push("legacy: must be a boolean");
-  if ("srd" in record && typeof record.srd !== "boolean") errors.push("srd: must be a boolean");
-  if ("legacyStatus" in record && !LEGACY_STATUSES.includes(record.legacyStatus)) {
+  if (has(record, "legacy") && typeof record.legacy !== "boolean") errors.push("legacy: must be a boolean");
+  if (has(record, "srd") && typeof record.srd !== "boolean") errors.push("srd: must be a boolean");
+  if (has(record, "legacyStatus") && !LEGACY_STATUSES.includes(record.legacyStatus)) {
     errors.push(`legacyStatus: must be one of ${LEGACY_STATUSES.join(", ")}`);
   }
-  if ("alsoIn" in record) {
+  if (has(record, "alsoIn")) {
     if (!Array.isArray(record.alsoIn)) errors.push("alsoIn: must be an array");
     else record.alsoIn.forEach((a, i) => {
       if (!isObject(a) || !isString(a.book) || !isPage(a.page)) errors.push(`alsoIn[${i}]: must be { book, page }`);
     });
   }
-  if ("sources" in record) {
+  if (has(record, "sources")) {
     const s = record.sources;
     if (!isObject(s)) errors.push("sources: must be an object of document id to identifier");
     else for (const [id, identifier] of Object.entries(s)) {
@@ -305,34 +311,34 @@ export function validateRecord(record) {
       if (typeof identifier !== "string" || !KEBAB.test(identifier)) errors.push(`sources.${id}: must be a kebab-case identifier`);
     }
   }
-  if ("resolutions" in record) {
+  if (has(record, "resolutions")) {
     if (!Array.isArray(record.resolutions)) errors.push("resolutions: must be an array");
     else record.resolutions.forEach((r, i) => {
       const ok = isObject(r) && ORIGINS.includes(r.origin) && r.absent === true && STAMP.every((f) => isString(r[f]))
-        && (!("candidates" in r) || isStringList(r.candidates))
-        && (!("was" in r) || (isObject(r.was) && isString(r.was.docId)));
+        && (!has(r, "candidates") || isStringList(r.candidates))
+        && (!has(r, "was") || (isObject(r.was) && isString(r.was.docId)));
       if (!ok) errors.push(`resolutions[${i}]: must be { origin, absent: true, by, at, because, candidates?, was? }`);
     });
   }
-  if ("order" in record && !(Number.isInteger(record.order) && record.order >= 0)) {
+  if (has(record, "order") && !(Number.isInteger(record.order) && record.order >= 0)) {
     errors.push("order: must be a non-negative integer");
   }
-  if ("owner" in record && !isString(record.owner)) errors.push("owner: must be a non-empty string");
-  if ("level" in record && !(Number.isInteger(record.level) && record.level >= 0)) {
+  if (has(record, "owner") && !isString(record.owner)) errors.push("owner: must be a non-empty string");
+  if (has(record, "level") && !(Number.isInteger(record.level) && record.level >= 0)) {
     errors.push("level: must be a non-negative integer");
   }
-  if ("occurrence" in record && !(Number.isInteger(record.occurrence) && record.occurrence >= 2)) {
+  if (has(record, "occurrence") && !(Number.isInteger(record.occurrence) && record.occurrence >= 2)) {
     errors.push("occurrence: must be an integer of 2 or more");
   }
   for (const f of ["rarity", "section", "copyOf"]) {
-    if (f in record && !isString(record[f])) errors.push(`${f}: must be a non-empty string`);
+    if (has(record, f) && !isString(record[f])) errors.push(`${f}: must be a non-empty string`);
   }
   const isDate = (v) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}(T.*)?$/.test(v);
-  if ("textChangedAt" in record && !isDate(record.textChangedAt)) {
+  if (has(record, "textChangedAt") && !isDate(record.textChangedAt)) {
     errors.push("textChangedAt: must be an ISO date string");
   }
-  if ("note" in record && typeof record.note !== "string") errors.push("note: must be a string");
-  for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
-  if ("hint" in record && !HINTS.includes(record.hint)) errors.push(`hint: must be one of ${HINTS.join(", ")}`);
+  if (has(record, "note") && typeof record.note !== "string") errors.push("note: must be a string");
+  for (const f of ["why", "identifier"]) if (has(record, f) && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
+  if (has(record, "hint") && !HINTS.includes(record.hint)) errors.push(`hint: must be one of ${HINTS.join(", ")}`);
   return errors;
 }

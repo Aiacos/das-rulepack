@@ -244,10 +244,19 @@ review or a play written before the stamp existed (no `rule`): it counts as it d
   `docs/owners.json` (never an agent's handle: `reader…`, `drafter…`, `reviewer…`, `second…`, `third…`, anything with
   `agent`). A signature of an earlier rule (the rule was edited since) or by someone not listed does not apply: the drafter
   limits do again. `evidence.person` is part of what the gate evidence fingerprints (`emits`), so adding or changing it
-  after the gates makes the record `drafted` and fails `--ci` until the gates run again. **No ingest ever writes
+  after the gates makes the record `drafted` and fails `--ci` until the gates run again.
+  `docs/owners.json` is protected by code review only, and `evidence.person` is a visible, reviewable claim, not a
+  cryptographic signature (Ruling R20). **No ingest ever writes
   `evidence.person`** (a results file that carries `evidence` is rejected: unknown field); a person types it. The fixes gate
   fails an effect to `create` without a valid signature (`fixes: create goes to a person`). A legacy rule with standing
   keeps its behaviour.
+- **Identifiers and inherited names** (Rulings R19, fix round 5). A key set is tested on own properties only, so a key named
+  `constructor`, `toString`, `__proto__`... never passes for a known key; `__proto__`, `constructor` and `prototype` are
+  refused as keys anywhere in an entry. A dotted path (change key, consumption target, formula reference) has at most 6
+  segments of at most 24 characters; an entry may hold at most 60 distinct words of 3 letters or more in its strings, ids
+  and the pack's closed vocabularies (`draft-keys.mjs` `CLOSED_WORDS`) left out; one effect's changes go through `changes`
+  or `system.changes`, not both. The quotation check reads every string of the entry too (keys and values, structure-only
+  strings and the roots of `@` references left out), with the words split at dots, camelCase and digit boundaries.
 - **Queues** (Ruling R7). `registry/drafts-queue.json` and `registry/review-queue.json` sit beside `queue.json`: arrays of
   `{ key, reason, by, why, confidence, draft?, review? }`, sorted by key (`registry.mjs` `loadQueue`, `saveQueue`,
   `validateQueueEntry`). With `legacy.json` they are the files of `NOT_BOOKS` (`registry.mjs`): `generate`, the CLI,
