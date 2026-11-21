@@ -1,0 +1,6182 @@
+{
+  "book": "FRHOF",
+  "records": [
+    {
+      "key": "frhof:background:chondathan-freebooter",
+      "name": "Chondathan Freebooter",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "chondathan-freebooter",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "16641fa548ae677e9229f90be789852198424eedbf5b1dcb81650349d53bc2df",
+        "source": "5etools",
+        "chars": 334
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "chondathan-freebooter",
+          "docId": "hofChondathanFre",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "f9095cbb6b103c29310c7a5d22baedbc9f556f15ce909f2c47f6a722e01e7c22"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:dead-magic-dweller",
+      "name": "Dead Magic Dweller",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "dead-magic-dweller",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "86098ad4a990bd71df08cbe53d931f82539d407812a103343361b9da0a8093d8",
+        "source": "5etools",
+        "chars": 348
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dead-magic-dweller",
+          "docId": "hofDeadMagicDwel",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "bf2577b93187c885bb3e04deeac38a5b05aad945d31178c71ea18e1b0f9bddbc"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:dragon-cultist",
+      "name": "Dragon Cultist",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "dragon-cultist",
+      "page": 29,
+      "srd": false,
+      "text": {
+        "sha256": "a90741edf06471445b6a55e78bfaae55b9b6c67e7e87f17d6c644e8dc4297d0a",
+        "source": "5etools",
+        "chars": 324
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dragon-cultist",
+          "docId": "hofDragonCultist",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "8ea5d3a0d91621ac8674b52dbc7cab03e1e15cc642b2f53fad99052cb4ba535e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:emerald-enclave-caretaker",
+      "name": "Emerald Enclave Caretaker",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "emerald-enclave-caretaker",
+      "page": 29,
+      "srd": false,
+      "text": {
+        "sha256": "8e3d873e27e7a7bedba34b3c75f3ea4744d858a1fbdabdef15ccdd4316404d73",
+        "source": "5etools",
+        "chars": 290
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "emerald-enclave-caretaker",
+          "docId": "hofEECaretaker00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "d8ff06e1345d32d08c6e8ba90d54f0061f3a0ee8e04b7d78be56a023a5eaf89c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:flaming-fist-mercenary",
+      "name": "Flaming Fist Mercenary",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "flaming-fist-mercenary",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "6678c7d1410e85a813969da37cb7f83ef5a7cc6d9528e5f3715a58c2a8c933ad",
+        "source": "5etools",
+        "chars": 251
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "flaming-fist-mercenary",
+          "docId": "hofFlamingFistMe",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "daf54b463b8b273e27ccd0f5453fb1a558baec155e1bb4de2d131db2de05e899"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:genie-touched",
+      "name": "Genie Touched",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "genie-touched",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "6090020492527a8e3c6e692eb3d211228704283c2c5009031647ccb85a3f04fe",
+        "source": "5etools",
+        "chars": 291
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "genie-touched",
+          "docId": "hofGenieTouched0",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "86bf943b548610dc4bf3b1185acd221d613c690ef504b988b6f2272045fa4ab9"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:harper",
+      "name": "Harper",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "harper",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "5bb7dd9a159055dd55b073dd3ad2fb76b4fae490158ba7db4b879909acd963ba",
+        "source": "5etools",
+        "chars": 278
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "harper",
+          "docId": "hofHarper0000000",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "d319195e2cdd9b121cddf8e206285ff344720deb571b15ca849d962c5bbc2115"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:ice-fisher",
+      "name": "Ice Fisher",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "ice-fisher",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "4964f5ac6889a62b6cc13b22bbec420b239f5f9c9e1f466af1547a5bb86883c7",
+        "source": "5etools",
+        "chars": 324
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "ice-fisher",
+          "docId": "hofIceFisher0000",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "4137bdc29186e3580febf3fda3128c7590137d8ff89e132e38337f01a11f5b89"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:knight-of-the-gauntlet",
+      "name": "Knight of the Gauntlet",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "knight-of-the-gauntlet",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "8e73a34c0a6c1e9d1f1ae50c7074e181704bd08ec79e30c01965cfb477200306",
+        "source": "5etools",
+        "chars": 310
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "knight-of-the-gauntlet",
+          "docId": "hofKnightoftheGa",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "da5939b6cdab338f3ba49c565ec984f05b1865f47c6d90a1f99cbbdc40ba2249"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:lords-alliance-vassal",
+      "name": "Lords' Alliance Vassal",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "lords-alliance-vassal",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "6e05acf1ee407ee7f2a9de83225b7a6453b734e63f8d6fcbe861ebfdb7c035e1",
+        "source": "5etools",
+        "chars": 302
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "lords-alliance-vassal",
+          "docId": "hofLAVassal00000",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "9ff3a1588ac47aff28fbb6232d5dbd26ed72170f182d721daf9b848501eccf41"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:moonwell-pilgrim",
+      "name": "Moonwell Pilgrim",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "moonwell-pilgrim",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "7f46ccbfb537f71a2fef3fa5ed66c14a06d702c44846fac4655fd2534916681a",
+        "source": "5etools",
+        "chars": 309
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "moonwell-pilgrim",
+          "docId": "hofMoonwellPilgr",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "fb34883cf1361ee8a4f4f7bde1f68797f5a148104a6c58312bb44b8326e48d6b"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:mulhorandi-tomb-raider",
+      "name": "Mulhorandi Tomb Raider",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "mulhorandi-pilgrim",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "8d657eaf449161b3b24d71bde7cb96d06eb3f40e74b36d310439d0d3cb9d6fdb",
+        "source": "5etools",
+        "chars": 349
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "mulhorandi-pilgrim",
+          "docId": "hofMulhorandiPil",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "c1193a7d4684adf185eb7fa0352da8c124026b8f90b4dbb6e07d9ae7518add73"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:mythalkeeper",
+      "name": "Mythalkeeper",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "mythalkeeper",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "928f080e4ca427c76f9ecc31ebf1a9627a2fc7b28fab7fcaca6da5c323772e6e",
+        "source": "5etools",
+        "chars": 266
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "mythalkeeper",
+          "docId": "hofMythalkeeper0",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "4d1574ed26ad2bf2f3102a32afde575e13e6836731a5f344d44589c7743024a1"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:purple-dragon-squire",
+      "name": "Purple Dragon Squire",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "purple-dragon-squire",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "31af0bac9e325c9629eddc11ff000a0baaa29af967efaeb82b682be8e03df898",
+        "source": "5etools",
+        "chars": 243
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "purple-dragon-squire",
+          "docId": "hofPurpleDragonS",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "204a0c66c3848150d9208f42f5ff54b303aea85df59d998b70ef879d3e6d26a5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:rashemi-wanderer",
+      "name": "Rashemi Wanderer",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "rashemi-wanderer",
+      "page": 35,
+      "srd": false,
+      "text": {
+        "sha256": "12565a8917594a8d3becc8dc128cd9ec6df4bbd5ae04f7397b7546a0b94387a8",
+        "source": "5etools",
+        "chars": 321
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "rashemi-wanderer",
+          "docId": "hofRashemiWander",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "32cf47635bad3eafb2f94722549e90a2a29cc1e99c46dadec208f550715f2a28"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:shadowmasters-exile",
+      "name": "Shadowmasters Exile",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "shadowmasters-exile",
+      "page": 35,
+      "srd": false,
+      "text": {
+        "sha256": "357373d5991dbf05cb2e1fd252e0af557b816f4dc42aac4da384e23784d72c1c",
+        "source": "5etools",
+        "chars": 317
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "shadowmasters-exile",
+          "docId": "hofShadowmasters",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "2c6510ad25d5d51d9d3d301ec87edfc4bdd1809ad92d0382784f2a012b2e3482"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:spellfire-initiate",
+      "name": "Spellfire Initiate",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "spellfire-initiate",
+      "page": 36,
+      "srd": false,
+      "text": {
+        "sha256": "d5c4ee550bb64a82406a067b54b6cd1f56317d7cdaa3cb58cbeb3b5b19e4bdcf",
+        "source": "5etools",
+        "chars": 306
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "spellfire-initiate",
+          "docId": "hofSpellfireInit",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "c6f1eee773ce7719e2e4fabed9f929ba209fd9eb9ae5918bcc0e166f5992bf82"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:background:zhentarim-mercenary",
+      "name": "Zhentarim Mercenary",
+      "kind": "background",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "zhentarim-mercenary",
+      "page": 36,
+      "srd": false,
+      "text": {
+        "sha256": "96384d65b125a95f2be764f780a989a9f1dda6c36c2cb02108ffb7dea6b8f60a",
+        "source": "5etools",
+        "chars": 301
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "zhentarim-mercenary",
+          "docId": "hofZhentarimMerc",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "fee55b014da70b9eaf4a42a7a45fdd1bc2a0b499a53c115f63561c387bf70142"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-bloodshed",
+      "name": "Boon of Bloodshed",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-bloodshed",
+      "page": 42,
+      "srd": false,
+      "text": {
+        "sha256": "8e1fa0a29857443e1921531d7c3254dd3f2cdee0f10ccaa8f51d4b7c69538189",
+        "source": "5etools",
+        "chars": 390
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-bloodshed",
+          "docId": "hofBoonofBloodsh",
+          "activities": [
+            "3gyjbKRgDdAwgylP",
+            "l9gXdoq8fehBMftN"
+          ],
+          "effects": [
+            "1mq07W7qFZpXjGCS",
+            "ocEMVTgsH9KIajRG"
+          ],
+          "data": {
+            "sha256": "7a6637fd7f6074bda6a504527cc8e3b32858e365523df72e5b807ef44f8c4e83"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-bountiful-health",
+      "name": "Boon of Bountiful Health",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-bountiful-health",
+      "page": 42,
+      "srd": false,
+      "text": {
+        "sha256": "1a7e703cc6e9118a25ab8cda2b24c2820ee7e44d7e3b7e352cb7481a5437155e",
+        "source": "5etools",
+        "chars": 292
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-bountiful-health",
+          "docId": "hofBoonofBountif",
+          "activities": [
+            "DaYvNHjS8JoQwQL3",
+            "N3AAE6K5dRctvKxM",
+            "kXMgiGkEt4wLnf5D",
+            "Ld5EKPzpw0kGCZ59",
+            "8zOghPc6P7txk0Xt"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "bad23b190857bf0259c0c718ceccd78441a99d9e4bc9541ac7dda5c3efa663df"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-communication",
+      "name": "Boon of Communication",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-communication",
+      "page": 42,
+      "srd": false,
+      "text": {
+        "sha256": "be5fac9b08f163443dbb6ce81985b65f8104a60e756d20db5d49fc321d817c9d",
+        "source": "5etools",
+        "chars": 373
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-communication",
+          "docId": "hofBoonofCommuni",
+          "activities": [],
+          "effects": [
+            "JozUb6D48DZPZVFt"
+          ],
+          "data": {
+            "sha256": "bbedb13d213cf59fa92233a366dbcc1f3acdfb59818344e85183136a16465233"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-desperate-resilience",
+      "name": "Boon of Desperate Resilience",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-desperate-resilience",
+      "page": 42,
+      "srd": false,
+      "text": {
+        "sha256": "d9bb36b5f7ec58fd3eba31e7dc6b335e267043ce6c2ddc83994c95fcbed2ccb8",
+        "source": "5etools",
+        "chars": 136
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-desperate-resilience",
+          "docId": "hofBoonofDespera",
+          "activities": [
+            "l6QLAFvmupF6wqSw"
+          ],
+          "effects": [
+            "1wwg8ROyk0yY7iRA"
+          ],
+          "data": {
+            "sha256": "a0144afeef070ed4d28558b941d77996908363777982c237ff6b0eb78bcffbc3"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-exquisite-radiance",
+      "name": "Boon of Exquisite Radiance",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-exquisite-radiance",
+      "page": 42,
+      "srd": false,
+      "text": {
+        "sha256": "e33097049a4acd7c7e98c54961c904a8c6ae1fb3928e789bf4ce6bf8c3975214",
+        "source": "5etools",
+        "chars": 324
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-exquisite-radiance",
+          "docId": "hofBoonofExquisi",
+          "activities": [
+            "4npDTQpGxwCS7znc"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c59bc52cf4bd796d45a0019119c0b57c43ed469ae21a6d67d352c403c20cbc1d"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-fluid-forms",
+      "name": "Boon of Fluid Forms",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-fluid-forms",
+      "page": 42,
+      "srd": false,
+      "text": {
+        "sha256": "1c8a734d31ce3f147502dec613c4ad6b4659834f65ea16a152f12d871271ada5",
+        "source": "5etools",
+        "chars": 1105
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-fluid-forms",
+          "docId": "hofBoonofFluidFo",
+          "activities": [
+            "tnz42h5Qh1tTK9dt"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "52204fcb794b247942ea74cc7b7aaf02e1e618b511dcced808e90d06a650263e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-fortunes-favor",
+      "name": "Boon of Fortune's Favor",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-fortunes-favor",
+      "page": 43,
+      "srd": false,
+      "text": {
+        "sha256": "219284d4c2ea0b9a8171ee797ae31a050efdb77b72b7e5c0a5e8ab7099462991",
+        "source": "5etools",
+        "chars": 211
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-fortunes-favor",
+          "docId": "hofBoonofFortune",
+          "activities": [
+            "cxUusaGrqSj5pmFo"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c017d15262baadfd275453f528f68b48a5d245b29d06f4b1472857ebd5fa1c29"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-poison-mastery",
+      "name": "Boon of Poison Mastery",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-poison-mastery",
+      "page": 43,
+      "srd": false,
+      "text": {
+        "sha256": "2dc870928be07be09d7eb6c718ff0ae262b3322096b9c5988a4599672e256d79",
+        "source": "5etools",
+        "chars": 299
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-poison-mastery",
+          "docId": "hofBoonofPoisonM",
+          "activities": [
+            "oEiAtymK7ck3rx3b"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c9bad7c2c5764decf3861ed4dd416e81a7fa47ab11573e19886d3ba9676facb8"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-revelry",
+      "name": "Boon of Revelry",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-revelry",
+      "page": 43,
+      "srd": false,
+      "text": {
+        "sha256": "276c95e91d0072362ef1ec2563e69960049b0457fb885dae1989f9a86328b7bd",
+        "source": "5etools",
+        "chars": 659
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-revelry",
+          "docId": "hofBoonofRevelry",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "05f69f6e6b8c54483cb366183450e4b506fbda0f834505b733ca5ddac309c437"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-terror",
+      "name": "Boon of Terror",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-terror",
+      "page": 43,
+      "srd": false,
+      "text": {
+        "sha256": "abd482dc9567654530e9482bba6741a90cb52b121a7c69234f262c76be9c1e36",
+        "source": "5etools",
+        "chars": 709
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-terror",
+          "docId": "hofBoonofTerror0",
+          "activities": [
+            "DGw8ZZg9lLhPlqVq"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "a016a597bd0acae3de718453323b0a9236c5051bb0e7000b3e0862408875d82f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-the-bright-sun",
+      "name": "Boon of the Bright Sun",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-the-bright-sun",
+      "page": 43,
+      "srd": false,
+      "text": {
+        "sha256": "7b69fc7848ead958b6bc4c7a5dbe7f414ba7a0975f707b35d808fc5d51215612",
+        "source": "5etools",
+        "chars": 576
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-the-bright-sun",
+          "docId": "hofBoonoftheBrig",
+          "activities": [
+            "BxKLbnrPdoCrndPB",
+            "ZeKpRLJ6CYpvPNQf"
+          ],
+          "effects": [
+            "Xemk0WJIPaPsL6lx",
+            "ZY8GZVl4kbwfIgA6"
+          ],
+          "data": {
+            "sha256": "752516f9a203c149f235a0ed8b7ead3ea8a08e0614afe665cbef904d0ffeb9bd"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-the-furious-storm",
+      "name": "Boon of the Furious Storm",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-the-furious-storm",
+      "page": 43,
+      "srd": false,
+      "text": {
+        "sha256": "f438d1581704c5f3139bfea7d746d75f9d36d9ff7a7301cac9276700b00c732c",
+        "source": "5etools",
+        "chars": 298
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-the-furious-storm",
+          "docId": "hofBoonoftheFuri",
+          "activities": [
+            "2qx7q14R1YiifaUF"
+          ],
+          "effects": [
+            "hMJCkTZ3VBtXPITy"
+          ],
+          "data": {
+            "sha256": "90552755c9aeba26fbd8c41ab0f02719704279f8b174709ab9ea5bd474ed82d5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:boon-of-the-soul-drinker",
+      "name": "Boon of the Soul Drinker",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "boon-of-the-soul-drinker",
+      "page": 43,
+      "srd": false,
+      "text": {
+        "sha256": "7d479a0dce01d230907b66a4eedb6bc9fab7aed6c1fb393a6ca8aa67613f83b0",
+        "source": "5etools",
+        "chars": 325
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "boon-of-the-soul-drinker",
+          "docId": "hofBoonoftheSoul",
+          "activities": [
+            "ZbAvOPqYaoo6k7QZ"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c6201793c6d199dbdd025ad5b308841a6d5e17fc67c4693d13681ba3599d74de"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:cold-caster",
+      "name": "Cold Caster",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "cold-caster",
+      "page": 39,
+      "srd": false,
+      "text": {
+        "sha256": "ad06b76033c55fca76eddaa6f014941058756e57d2bc9f4ccdb29673d7079b77",
+        "source": "5etools",
+        "chars": 464
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "cold-caster",
+          "docId": "hofColdCaster000",
+          "activities": [
+            "fwB1rhhu4Zad0w5k"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "5a317d7fae3304bc2a5abf3ad85cec977b3dd1ceb1a54d4c4505f8969c0e2c90"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:cult-of-the-dragon-initiate",
+      "name": "Cult of the Dragon Initiate",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "cult-of-the-dragon-initiate",
+      "page": 37,
+      "srd": false,
+      "text": {
+        "sha256": "37d9658af75ec556f3a77d4462413a4d5a8937d6bdff9efd2ec5ec37fab7a972",
+        "source": "5etools",
+        "chars": 903
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "cult-of-the-dragon-initiate",
+          "docId": "hofCultoftheDrag",
+          "activities": [
+            "rAHXfll0UUPCdO7e",
+            "k8lZ0OQqHr9En6Rm"
+          ],
+          "effects": [
+            "jSQuIMh5gK6vbvk2"
+          ],
+          "data": {
+            "sha256": "5e418a92a4522733551b21412e108b5e4100a56d18920dcc4ccc1b79eefb83dd"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:dragonscarred",
+      "name": "Dragonscarred",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "dragonscarred",
+      "page": 39,
+      "srd": false,
+      "text": {
+        "sha256": "aab6567e4daf1c1b00f1085411db1871794ac449b859046a2744bf448b18fb5d",
+        "source": "5etools",
+        "chars": 380
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dragonscarred",
+          "docId": "hofDragonscarred",
+          "activities": [
+            "6C9A5iicR111v7El"
+          ],
+          "effects": [
+            "1nBVBMyc9aJceZPe"
+          ],
+          "data": {
+            "sha256": "ab2bc8da7786e0ba94ad4a0bdbff1b846c58f97d5d89175ad3dfa26a38d6ea8a"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:emerald-enclave-fledgling",
+      "name": "Emerald Enclave Fledgling",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "emerald-enclave-fledgling",
+      "page": 37,
+      "srd": false,
+      "text": {
+        "sha256": "c84054323172e31460347d0c4a8c5b74999112d00f0450996447e19f22cd696e",
+        "source": "5etools",
+        "chars": 588
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "emerald-enclave-fledgling",
+          "docId": "hofEmeraldEnclav",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "8b130851f5ab66ccdbd40898f108d50303db8f98c397f57abb08ade5b39be7d5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:enclave-magic",
+      "name": "Enclave Magic",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "enclave-magic",
+      "page": 39,
+      "srd": false,
+      "text": {
+        "sha256": "a373238a6351de155a3e11521020fae4539c93d0aceff984e21bc8d6982e9c7b",
+        "source": "5etools",
+        "chars": 573
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "enclave-magic",
+          "docId": "hofEnclaveMagic0",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "4895deae11ab53ee2d8a2038bf5a74c84d0486b94c9d1afeeb6e60b7552d082f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:fairy-trickster",
+      "name": "Fairy Trickster",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "fairy-trickster",
+      "page": 39,
+      "srd": false,
+      "text": {
+        "sha256": "a3a09465c43ab773a1774ea85b912ead041805b91ae6b8e4ea0ac010e319a50b",
+        "source": "5etools",
+        "chars": 622
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "fairy-trickster",
+          "docId": "hofFairyTrickste",
+          "activities": [
+            "pn4ED90WpiqZgKtV",
+            "6gYPID7GKNubutA8"
+          ],
+          "effects": [
+            "qcGxA9i7QOy0g0Ak"
+          ],
+          "data": {
+            "sha256": "aa619a81a46d6162408ce7517c0ee1b6ea24848e3d93fceed3b885eba2e8e77c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:genie-magic",
+      "name": "Genie Magic",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "genie-magic",
+      "page": 39,
+      "srd": false,
+      "text": {
+        "sha256": "af95fa792ffb6b7844fff269ba14d3e8dd65bf8d4e01f0e9e13b0dee14ef03cd",
+        "source": "5etools",
+        "chars": 510
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "genie-magic",
+          "docId": "hofGenieMagic000",
+          "activities": [
+            "ZR8HE1j8bA1IO8JV"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3b551382be2bcf17e184489477b4d5668db9818d0246c8746f1ef7d4e311151f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:harper-agent",
+      "name": "Harper Agent",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "harper-agent",
+      "page": 37,
+      "srd": false,
+      "text": {
+        "sha256": "d975be1ee4feeec66a1a26b3f005ae32788ed4de021dbd539b5c13c4778b9a9c",
+        "source": "5etools",
+        "chars": 368
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "harper-agent",
+          "docId": "hofHarperAgent00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "2aafbc4e79c00cb21beb8a72fb48e393d913ff74e0e81fd7563723b0f156519a"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:harper-teamwork",
+      "name": "Harper Teamwork",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "harper-teamwork",
+      "page": 39,
+      "srd": false,
+      "text": {
+        "sha256": "3e935113b572413182bc5627fd3c376a85765a3c7b9a959f5a312ab605bba4ff",
+        "source": "5etools",
+        "chars": 485
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "harper-teamwork",
+          "docId": "hofHarperTeamwor",
+          "activities": [
+            "mz5nIO2Cvsil15WQ"
+          ],
+          "effects": [
+            "BaE0kAZ4BsdIqdx6"
+          ],
+          "data": {
+            "sha256": "15e280993396e3dc40bd973c6734aaeec01c5459d1ca1ba2697b0235628a2218"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:lordly-resolve",
+      "name": "Lordly Resolve",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "lordly-resolve",
+      "page": 40,
+      "srd": false,
+      "text": {
+        "sha256": "52fd98917391ea76858ad0cdba3d7cef9c6a2ec2b9061519c32324d8f9b4d269",
+        "source": "5etools",
+        "chars": 683
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "lordly-resolve",
+          "docId": "hofLordlyResolve",
+          "activities": [
+            "kMfCYLBtEimXjpcR"
+          ],
+          "effects": [
+            "FC1005JDR7WAuF0D"
+          ],
+          "data": {
+            "sha256": "8003ee5594bce4e9b8baaf56e2b863162067b981d95e3e67a39f12b7dacb26df"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:lords-alliance-agent",
+      "name": "Lords' Alliance Agent",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "lords-alliance-agent",
+      "page": 38,
+      "srd": false,
+      "text": {
+        "sha256": "29bd7e961ea3f5673de6421ed43aea2230d76f94f89ee2d2bc35fa8582aa1b51",
+        "source": "5etools",
+        "chars": 458
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "lords-alliance-agent",
+          "docId": "hofLordsAlliance",
+          "activities": [
+            "RpXbN4d1hdKJ0pm7"
+          ],
+          "effects": [
+            "9vVPWs4q46EpcJ18"
+          ],
+          "data": {
+            "sha256": "0a57db7ae541d028855b9c14a1133abcfb13db307057f6bf0bf0be2d5dcc28bf"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:mythal-touched",
+      "name": "Mythal Touched",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "mythal-touched",
+      "page": 40,
+      "srd": false,
+      "text": {
+        "sha256": "1bb05e772933fecedaa58af7865efaa28e2f9ad1dc367802206ec6cb9fffb5e5",
+        "source": "5etools",
+        "chars": 440
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "mythal-touched",
+          "docId": "hofMythalTouched",
+          "activities": [
+            "ruFwQRRyQodSkiM6",
+            "XVpC1GGTTdHYAU1Q",
+            "sTs8VFr1I8E35buJ"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c5d95a8d2f4bb682119eb9b3a455d0fbbebb385c5118332122901ebba74123d6"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:orders-resilience",
+      "name": "Order's Resilience",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "orders-resilience",
+      "page": 40,
+      "srd": false,
+      "text": {
+        "sha256": "a016a839e4a984b359fb74d8a7cc71e772ff16aa1371d4f29a8b26eabf987c22",
+        "source": "5etools",
+        "chars": 360
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "orders-resilience",
+          "docId": "hofOrdersResilie",
+          "activities": [
+            "qm1zfVXkpBfExZqO"
+          ],
+          "effects": [
+            "8CWcRgBFuOrNl3K2"
+          ],
+          "data": {
+            "sha256": "c711161cf348dc37504d2ebe62bc44cc5c4e2f3ae1f33d3d4f5e8648654138e4"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:purple-dragon-commandant",
+      "name": "Purple Dragon Commandant",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "purple-dragon-commandant",
+      "page": 40,
+      "srd": false,
+      "text": {
+        "sha256": "5a20a8c6ce7dcfb88bed836b176e8d43138e42e1c33cd24d07ce260d331f43f1",
+        "source": "5etools",
+        "chars": 385
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "purple-dragon-commandant",
+          "docId": "hofPurpleDragonC",
+          "activities": [
+            "y1KwmaDrgE5edMWw",
+            "oyIadFvvvNunWpZg"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "0c83bd79c6a58fa4a9fc1742604b41a3823983c2fbe1a2e1ce548304069abc89"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:purple-dragon-rook",
+      "name": "Purple Dragon Rook",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "purple-dragon-rook",
+      "page": 38,
+      "srd": false,
+      "text": {
+        "sha256": "dbe261dca737bafd8b5d37902804543038f72dd8b6348aa13b004893dd212318",
+        "source": "5etools",
+        "chars": 440
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "purple-dragon-rook",
+          "docId": "hofPurpleDragonR",
+          "activities": [
+            "x7pM3AZJgz3lZZBx"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "f5fef60d31f0d294f585a37af89818c1ca1119da1702b0a0c3ee9ba90ab02531"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:spellfire-adept",
+      "name": "Spellfire Adept",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "spellfire-adept",
+      "page": 41,
+      "srd": false,
+      "text": {
+        "sha256": "321e944130acd855ecd0f65421503a5dfd718a1cfad3f052253f485a4324dc60",
+        "source": "5etools",
+        "chars": 332
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "spellfire-adept",
+          "docId": "hofSpellfireAdep",
+          "activities": [
+            "gGF2DTUf30J8Luoy"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "9b4114eee265b559852c1f3c0d58c8f6e72ffb5f98c252ad9cabf0a003374c97"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:spellfire-spark",
+      "name": "Spellfire Spark",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "spellfire-spark",
+      "page": 38,
+      "srd": false,
+      "text": {
+        "sha256": "8804ea89b653cfb74298bac636960425c4955eec362abb4881a0946ddff8aa95",
+        "source": "5etools",
+        "chars": 549
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "spellfire-spark",
+          "docId": "hofSpellfireSpar",
+          "activities": [
+            "DInyOSZxvesVfd08",
+            "BvEivoHfOseqHSOa"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "02fd9b15f02c647ad8e0c24bf092c232b3951df7fedd0adfeeb6d0e859d31e26"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:street-justice",
+      "name": "Street Justice",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "street-justice",
+      "page": 41,
+      "srd": false,
+      "text": {
+        "sha256": "d74986890d158bacb749cd7859ee63198e9d6e14ac270071cd26ef7d23866232",
+        "source": "5etools",
+        "chars": 417
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "street-justice",
+          "docId": "hofStreetJustice",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b0a0fc19cfefbd884bae680496d31acc149cb8935bc7ef2bcf0db0d2be0db3a7"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:tyro-of-the-gauntlet",
+      "name": "Tyro of the Gauntlet",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "tyro-of-the-gauntlet",
+      "page": 38,
+      "srd": false,
+      "text": {
+        "sha256": "2ff1b32e8cdc2a50770d750bcd8f80b4caccb43743a758f74ac2ceed27ed45f0",
+        "source": "5etools",
+        "chars": 413
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "tyro-of-the-gauntlet",
+          "docId": "hofTyrooftheGaun",
+          "activities": [
+            "IX9aS3xmtPpMj0lu",
+            "gasM8Yg5Ld2wUnVt"
+          ],
+          "effects": [
+            "zpSGM6XvTaDTCMFw"
+          ],
+          "data": {
+            "sha256": "d9b472d603c8374912f28801ab722600e945d0cd63e16401db944b774edc306f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:zhentarim-ruffian",
+      "name": "Zhentarim Ruffian",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "zhentarim-ruffian",
+      "page": 38,
+      "srd": false,
+      "text": {
+        "sha256": "7b5b4ba382571b4b738219e8c37c04ff22a4a8726683cad239c32a420c234984",
+        "source": "5etools",
+        "chars": 327
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "zhentarim-ruffian",
+          "docId": "hofZhentarimRuff",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "81ed8784a6e118cb07a90ae2a4b8669303848f39e4c6281edb589c6084b50135"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feat:zhentarim-tactics",
+      "name": "Zhentarim Tactics",
+      "kind": "feat",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "zhentarim-tactics",
+      "page": 41,
+      "srd": false,
+      "text": {
+        "sha256": "20cc0a3e4ff07c79b2215b1adc27978aabc20f85720403b28b7bf8c8cecd93de",
+        "source": "5etools",
+        "chars": 341
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "zhentarim-tactics",
+          "docId": "hofZhentarimTact",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "372f10f4b25efad71239bc7c7c2e8ea4200a79bc24ad701b33ccf7e65edbfa50"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:bard/moon/14/eventides-splendor",
+      "name": "Eventide's Splendor",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Bard/Moon",
+      "level": 14,
+      "identifier": "eventides-splendor",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "6563a79aa1b61c819827d72d32d3ff74e8b1abd64e114e6a5bbc2a4b2f76ad50",
+        "source": "5etools",
+        "chars": 553
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "eventides-splendor",
+          "docId": "hofComEventidesS",
+          "activities": [
+            "tj9Nc9indTq8N6EW",
+            "nDwhMwhOxqMtdyEn",
+            "avZcQcpa3Guf0IFn"
+          ],
+          "effects": [
+            "YhKSlGUbGsIaJlGD",
+            "ndVlhZQOg940ezfr"
+          ],
+          "data": {
+            "sha256": "09cd88f684ed445214e1e644e6f51163973d7e9a9bffaea3cbb84a738f1a0589"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:bard/moon/3/college-of-the-moon",
+      "name": "College of the Moon",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Bard/Moon",
+      "level": 3,
+      "identifier": "college-of-the-moon",
+      "page": 16,
+      "srd": false,
+      "text": {
+        "sha256": "176308e0b826f6f5990250446228046436221446691c766d0ce06222c97c0972",
+        "source": "5etools",
+        "chars": 414
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:bard/moon/3/moons-inspiration",
+      "name": "Moon's Inspiration",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Bard/Moon",
+      "level": 3,
+      "identifier": "moons-inspiration",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "e75470bafb27967c0e0c8e9f743c8239908b890591b1f7c53aaa95bb2e3d2cdd",
+        "source": "5etools",
+        "chars": 778
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "moons-inspiration",
+          "docId": "hofComMoonsInspi",
+          "activities": [
+            "BDvndpGS01CsGOUP",
+            "dV6hqemUS5Pm6TO4"
+          ],
+          "effects": [
+            "GB694PN6XGnGOc0V",
+            "h2fM3EvwoZhWsulF"
+          ],
+          "data": {
+            "sha256": "a7a5520c77d208d6753eaf603be7b38021a54b166bf07f4372ea083161ee75fe"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:bard/moon/3/primal-lore",
+      "name": "Primal Lore",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Bard/Moon",
+      "level": 3,
+      "identifier": "primal-lore",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "d70fe47d4a028acabfa1c5b145d7618e436a21007fbde00408f4e0b27ae76578",
+        "source": "5etools",
+        "chars": 432
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "primal-lore",
+          "docId": "hofComPrimalLore",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "59e17ff5ed7032c6f2c78b7a79307d6a431e4f7892bca50aec02607bf4045bab"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:bard/moon/6/blessing-of-moonlight",
+      "name": "Blessing of Moonlight",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Bard/Moon",
+      "level": 6,
+      "identifier": "blessing-of-moonlight",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "fb98fa95529564399db360aecbfa48523b0457893a08408430236b2a14c19f38",
+        "source": "5etools",
+        "chars": 491
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "blessing-of-moonlight",
+          "docId": "hofComBlessingof",
+          "activities": [
+            "FnYEKLJErvGjffxh",
+            "iQQJrCOfCTK75irU",
+            "TxIz1K69kM8dUXjh"
+          ],
+          "effects": [
+            "RhRODxlxbQEzToM4",
+            "o6CwVis7z1Mh7ul4"
+          ],
+          "data": {
+            "sha256": "5909b42526ffdac51fb10255a3b551b4aabd5d562ec711de15a8ec05baf30cd5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:cleric/knowledge/17/divine-foreknowledge",
+      "name": "Divine Foreknowledge",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Cleric/Knowledge",
+      "level": 17,
+      "identifier": "divine-foreknowledge",
+      "page": 19,
+      "srd": false,
+      "text": {
+        "sha256": "02406accb7877a33c594d835e25501cd3effb4965db87759d2dea0e0f282fb5e",
+        "source": "5etools",
+        "chars": 291
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "divine-foreknowledge",
+          "docId": "hofKdoDivineFore",
+          "activities": [
+            "04tyUfDCNHs9HDqE",
+            "09cY0kR0n0OUwpB0"
+          ],
+          "effects": [
+            "H0DdhMiQsAdqFr4W"
+          ],
+          "data": {
+            "sha256": "8bd4ba623a5a26de79a438c16f5b27fbff0dff6ec5c3e5c9352230493c9ea0ce"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:cleric/knowledge/3/blessings-of-knowledge",
+      "name": "Blessings of Knowledge",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Cleric/Knowledge",
+      "level": 3,
+      "identifier": "blessings-of-knowledge",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "7f44f161bd6003a220a0aa5d2c0af316387a7580a00c07a534f791ec033f2a5c",
+        "source": "5etools",
+        "chars": 197
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "blessings-of-knowledge",
+          "docId": "hofKdoBlessingso",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "106557da92e4a655a5ee0024123f8c6f391b06deecb11fd2081b3d3616244599"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:cleric/knowledge/3/knowledge-domain",
+      "name": "Knowledge Domain",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Cleric/Knowledge",
+      "level": 3,
+      "identifier": "knowledge-domain",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "b276773021f33d4cc864df7fcac67fd4d617943d0a4ccc59641c95ad7109866b",
+        "source": "5etools",
+        "chars": 655
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:cleric/knowledge/3/knowledge-domain-spells",
+      "name": "Knowledge Domain Spells",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Cleric/Knowledge",
+      "level": 3,
+      "identifier": "knowledge-domain-spells",
+      "page": 2,
+      "srd": false,
+      "text": {
+        "sha256": "26e1d6fb147d568205909696a8c13319600bddadba4a2f1ae5bb3b46a3662a0e",
+        "source": "5etools",
+        "chars": 132
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "knowledge-domain-spells",
+          "docId": "hofKdoSpellsKnow",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "7899a3e8c251147d698976d8cfc13ffd400e7fff124e75b30635876435d822f3"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:cleric/knowledge/3/mind-magic",
+      "name": "Mind Magic",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Cleric/Knowledge",
+      "level": 3,
+      "identifier": "mind-magic",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "47cbdb3b5d13f9e69f92aa9060ecc474fbb1126f01469885f7e4f9256d431cd1",
+        "source": "5etools",
+        "chars": 314
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "mind-magic",
+          "docId": "hofKdoMindMagic0",
+          "activities": [
+            "Ts5TP2YdViveWsE5"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "23a8539f7bc2704a6e36d2161703f8b3f04b03d345fe318f80433bf24665d703"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:cleric/knowledge/6/unfettered-mind",
+      "name": "Unfettered Mind",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Cleric/Knowledge",
+      "level": 6,
+      "identifier": "unfettered-mind",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "40aebe273379fbf1aacca82193511a17293d26229625180b72c184dae89f0218",
+        "source": "5etools",
+        "chars": 349
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "unfettered-mind",
+          "docId": "hofKdoUnfettered",
+          "activities": [],
+          "effects": [
+            "HdBACUuEhQcyq4d4"
+          ],
+          "data": {
+            "sha256": "f5b069736e05b9a67f87ce4b0b528c6ad9de1a7ac1a4afd6fbb12aa2f557d7a9"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:fighter/banneret/10/rallying-surge",
+      "name": "Rallying Surge",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Fighter/Banneret",
+      "level": 10,
+      "identifier": "rallying-surge",
+      "page": 19,
+      "srd": false,
+      "text": {
+        "sha256": "0cc66d241f8a808787bce4490a0079ba7cdda919aa5361aaf5b2e11a94811c2a",
+        "source": "5etools",
+        "chars": 440
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "rallying-surge",
+          "docId": "hofPdkRallyingSu",
+          "activities": [
+            "f2S9cHcG1bVxZVeE"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "02598cbbd68138d5af1377599094434ebb3ffb58bb9eb9be8d2e7fb68ace777d"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:fighter/banneret/15/shared-resilience",
+      "name": "Shared Resilience",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Fighter/Banneret",
+      "level": 15,
+      "identifier": "shared-resilience",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "2e2dcd568e3aa3e1998e17dec5b42c8191a0a3b8cfbcbad168f683b06229603b",
+        "source": "5etools",
+        "chars": 265
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "shared-resilience",
+          "docId": "hofPdkSharedResi",
+          "activities": [
+            "odvr99wLYvE8pPWI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "31f51337d6d6c172204300732161f41c50635c1329adcca5db91146f4de75fff"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:fighter/banneret/18/inspiring-commander",
+      "name": "Inspiring Commander",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Fighter/Banneret",
+      "level": 18,
+      "identifier": "inspiring-commander",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "6957fb93266004754f9e1792c6a86bd063fe55ca3205881d070d1262c1f816fc",
+        "source": "5etools",
+        "chars": 234
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "inspiring-commander",
+          "docId": "hofPdkInspiringC",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "709b1fdf5c1088a7f984f7157a5bf454a7aeda49091e69906c675f3a8a0de587"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:fighter/banneret/3/banneret",
+      "name": "Banneret",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Fighter/Banneret",
+      "level": 3,
+      "identifier": "banneret",
+      "page": 19,
+      "srd": false,
+      "text": {
+        "sha256": "3d1a1143207f556c7dbe5958684695af0735069ac64113c182b0e687c86de3bf",
+        "source": "5etools",
+        "chars": 674
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "banneret",
+          "docId": "hofBanneretFight",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "e3c6805ceb1aaa2a9f05cc8c506c880830b750523cb18aadf0eebb19d2988809"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:fighter/banneret/3/group-recovery",
+      "name": "Group Recovery",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Fighter/Banneret",
+      "level": 3,
+      "identifier": "group-recovery",
+      "page": 19,
+      "srd": false,
+      "text": {
+        "sha256": "ade302ea0be25a5d9a51b0bdb7f0a46e67f8f522b816a2761b05f3595a9f0fe8",
+        "source": "5etools",
+        "chars": 403
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "group-recovery",
+          "docId": "hofPdkGroupRecov",
+          "activities": [
+            "GKue41K0GkjUEzJk"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "a47764f77e614f0f5ff1eef62d1501c7e07d5b0cab1f6945059c6e461709e05b"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:fighter/banneret/3/knightly-envoy",
+      "name": "Knightly Envoy",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Fighter/Banneret",
+      "level": 3,
+      "identifier": "knightly-envoy",
+      "page": 19,
+      "srd": false,
+      "text": {
+        "sha256": "6b309cb5741394f3639d441a8fee93232d13acbd860a7b2b72a446f5fd0159a7",
+        "source": "5etools",
+        "chars": 628
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "knightly-envoy",
+          "docId": "hofPdkKnightlyEn",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "de0c74ae7a6034b5e90d702aedf6cbfbf2880597a4895bdc4c34cb80b4aa9469"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:fighter/banneret/7/team-tactics",
+      "name": "Team Tactics",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Fighter/Banneret",
+      "level": 7,
+      "identifier": "team-tactics",
+      "page": 19,
+      "srd": false,
+      "text": {
+        "sha256": "e4524025c2e8177eb8c692a9fe73b4a5c4e53cf63ee23573bae446bf0439708e",
+        "source": "5etools",
+        "chars": 106
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "team-tactics",
+          "docId": "hofPdkTeamTactic",
+          "activities": [
+            "prA3XGTjuTOdIxOe"
+          ],
+          "effects": [
+            "oWJAb573YYPcuGLY"
+          ],
+          "data": {
+            "sha256": "e551d22a7c7b6661c9604e771892a6e95c0f50151af381bf7cd436945b64f49a"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/15/elemental-rebuke",
+      "name": "Elemental Rebuke",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 15,
+      "identifier": "elemental-rebuke",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "e84c598e9f6c40f30801def0a15497b1fa43225d0ffc5a77a9697c5007f671c2",
+        "source": "5etools",
+        "chars": 592
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "elemental-rebuke",
+          "docId": "hofOngElementalR",
+          "activities": [
+            "ohQMuz3UieZNqcFZ"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "bb95f805702ba2e86ffc47896ea2e99c6b6cb5ff4d6fd932567198756bd28dd6"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/20/noble-scion",
+      "name": "Noble Scion",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 20,
+      "identifier": "noble-scion",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "95ea70233b6ad1d213311253696a72e5dd460445c81bbf77138cb54243e70a56",
+        "source": "5etools",
+        "chars": 469
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "noble-scion",
+          "docId": "hofOngNobleScion",
+          "activities": [
+            "miUxaC39r61ZOndb",
+            "DaOE4wBirVLV5dc8",
+            "KSFultiLXZv4LCeF"
+          ],
+          "effects": [
+            "GtCwjbnlX5O3gQxW"
+          ],
+          "data": {
+            "sha256": "5cb002c647bd7ff3629178c5f763e3fba3fa9a8a109a5401ae327280749e4c68"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/daos-crush",
+      "name": "Dao's Crush",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "daos-crush",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "2689b905da421d6375b92a7c5a589076658831f770cd515f7c8a4e5210176dfe",
+        "source": "5etools",
+        "chars": 190
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/djinnis-escape",
+      "name": "Djinni's Escape",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "djinnis-escape",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "13ccda33dd4e54d7396d7bc1b094cc093ca29664ace57e549ad156aefc39ec75",
+        "source": "5etools",
+        "chars": 321
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/efreetis-fury",
+      "name": "Efreeti's Fury",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "efreetis-fury",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "17c211e08c32cb1547b4d162724df510339418015f8b58d2f068fed0604fdf6d",
+        "source": "5etools",
+        "chars": 202
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/elemental-smite",
+      "name": "Elemental Smite",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "elemental-smite",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "c4acb9edaf3238361a0bf547ed4db2cf40040fe5c34d73fa29f6cf9a621b0d71",
+        "source": "5etools",
+        "chars": 129
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "elemental-smite",
+          "docId": "hofOngElementalS",
+          "activities": [
+            "csOPXyBgbuK3D3wh",
+            "DmXwETSKLiE7cMwb",
+            "6WxqQ31Gb4q53zhZ",
+            "fxMpNYe6o3Uro14z"
+          ],
+          "effects": [
+            "5eS5mKboaQxPHEJz",
+            "NrCdUkcfS1EuXE7v",
+            "waNzre8PZe2a3NpU"
+          ],
+          "data": {
+            "sha256": "98d2ed54ee44dbb69c99c504c207b07d0ca0b2999f2acc99d60c8cbfc654c1d0"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/genie-spells",
+      "name": "Genie Spells",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "genie-spells",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "9e543ad1b3250704be8a7fc105c59b78dc9534a0ced92e4e443997e4415384f0",
+        "source": "5etools",
+        "chars": 122
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "genie-spells",
+          "docId": "hofOngGenieSpell",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "2d7147d4b9a0ce87cef6fc7b0f804df8e169918fb81c681f5867171a423ffe88"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/genies-splendor",
+      "name": "Genie's Splendor",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "genies-splendor",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "9d608b1208ed6d6f18471850e3b553b126fdaddc87bb319f44d4d73aaa6c363a",
+        "source": "5etools",
+        "chars": 287
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "genies-splendor",
+          "docId": "hofOngGeniesSple",
+          "activities": [],
+          "effects": [
+            "AqAGiOdrE34lqRTt"
+          ],
+          "data": {
+            "sha256": "484cf9e01bacdc4747f61a10f759b743713feeb1eef950200494550811202402"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/marids-surge",
+      "name": "Marid's Surge",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "marids-surge",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "44345d1bb3854cbbcbc17edba35da80bac8f1bc45685b943b2c0605dff20b5ad",
+        "source": "5etools",
+        "chars": 281
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/3/oath-of-the-noble-genies",
+      "name": "Oath of the Noble Genies",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 3,
+      "identifier": "oath-of-the-noble-genies",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "3b9861d1ce26d4b468c633cc67f9177b5fb8201b2625a129ef6a84c50533f48e",
+        "source": "5etools",
+        "chars": 731
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:paladin/noble-genies/7/aura-of-elemental-shielding",
+      "name": "Aura of Elemental Shielding",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Paladin/Noble Genies",
+      "level": 7,
+      "identifier": "aura-of-elemental-shielding",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "1a3671a2ac680d6e7739c07c842eae3de3b0f2fa27ce546dbc4c14d56d1ae469",
+        "source": "5etools",
+        "chars": 321
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "aura-of-elemental-shielding",
+          "docId": "hofOngAuraofElem",
+          "activities": [
+            "FhUfg55W7NaY6q2y"
+          ],
+          "effects": [
+            "44VGkbmlYWSPgMvT",
+            "9OSqe9pkRx2yXoeZ",
+            "R6g7KOj6AlZVXfZ7",
+            "nu5gC6YHvYqYkPnu",
+            "yqBPdlZ3W2SSWVtV"
+          ],
+          "data": {
+            "sha256": "06c639204762dede7a0f8b6dae72c0572d33bc420839d8c8f2a0ac6f8b61961f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:ranger/winter-walker/11/chilling-retribution",
+      "name": "Chilling Retribution",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Ranger/Winter Walker",
+      "level": 11,
+      "identifier": "chilling-retribution",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "d82763b939f2bb8aae5a9d3af00cd2563f873969d5dd1317f2a8b4d2d95943c9",
+        "source": "5etools",
+        "chars": 452
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "chilling-retribution",
+          "docId": "hofWiwChillingRe",
+          "activities": [
+            "Xvc96fzCV7ayzHfE"
+          ],
+          "effects": [
+            "U3V3MzH7eQlECOab"
+          ],
+          "data": {
+            "sha256": "63fdd94fbcb8ca4bc0ee645d727f23fbe13cdf27dfcc80de5568f80c80d8023f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:ranger/winter-walker/15/frozen-haunt",
+      "name": "Frozen Haunt",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Ranger/Winter Walker",
+      "level": 15,
+      "identifier": "frozen-haunt",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "e33264fbcf5891cb66982bd732646bee98d4ff9b43ad5bfe674c3bad32e6cd36",
+        "source": "5etools",
+        "chars": 915
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "frozen-haunt",
+          "docId": "hofWiwFrozenHaun",
+          "activities": [
+            "DSD6panmxvWFqSRp",
+            "fmd3RftvhB8jMgI3",
+            "SRayGgP04REmiPpb"
+          ],
+          "effects": [
+            "OWSvlfzTNYesLA3T",
+            "PBjRN6COrgnkf6Of"
+          ],
+          "data": {
+            "sha256": "7731d5d778d35705178abf23eb77dea9a1eaedcf8467a197aa5487ede8adf788"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:ranger/winter-walker/3/frigid-explorer",
+      "name": "Frigid Explorer",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Ranger/Winter Walker",
+      "level": 3,
+      "identifier": "frigid-explorer",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "cf5e0c8271296c126993c310b9c25ca3dfce3e5ad852d5b698352e14422458fe",
+        "source": "5etools",
+        "chars": 448
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "frigid-explorer",
+          "docId": "hofWiwFrigidExpl",
+          "activities": [
+            "bQf7P1Vm6SA0UXXv"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "a4abb6f07883b009d2935e31a87d87a5ce0aaf4b85eef27403a5194d4be7314e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:ranger/winter-walker/3/hunters-rime",
+      "name": "Hunter's Rime",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Ranger/Winter Walker",
+      "level": 3,
+      "identifier": "hunters-rime",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "7a097296e09ed57b1ab75285193b162da50a73260b8ce84734fe1226f1c6ec91",
+        "source": "5etools",
+        "chars": 258
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "hunters-rime",
+          "docId": "hofWiwHuntersRim",
+          "activities": [
+            "rP3N0Wu7QGMsQk4P",
+            "t1WaSmIPV7AGyOto"
+          ],
+          "effects": [
+            "u138r6VgXRLaYQV0"
+          ],
+          "data": {
+            "sha256": "15d7b62aa64682d1be73ad5b4e09b3a6b4eb771effc9ac189412e83918b67d3e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:ranger/winter-walker/3/winter-walker",
+      "name": "Winter Walker",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Ranger/Winter Walker",
+      "level": 3,
+      "identifier": "winter-walker",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "274b096ea7dea05b3871565caff7d032d58d6e566a59c1f7397c9454acb2b762",
+        "source": "5etools",
+        "chars": 824
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "winter-walker",
+          "docId": "hofWinterWalkerR",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "25565cf08a0cbb6f45968a3b8a17abb920f9edd0f836f6d97264cd5b59716197"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:ranger/winter-walker/3/winter-walker-spells",
+      "name": "Winter Walker Spells",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Ranger/Winter Walker",
+      "level": 3,
+      "identifier": "winter-walker-spells",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "c37c807b76ccf92b27aeda011498f913489275516ebdddbac826e3952ae7eb55",
+        "source": "5etools",
+        "chars": 129
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "winter-walker-spells",
+          "docId": "hofWiwWinterWalk",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "3e90dcbacb8dbf3633a6030f9eed82ab3360bb455afe62bda687ab968d6ff74d"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:ranger/winter-walker/7/fortifying-soul",
+      "name": "Fortifying Soul",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Ranger/Winter Walker",
+      "level": 7,
+      "identifier": "fortifying-soul",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "aef2766b01195ac7aa3f41de519d791da17c167642dfad5d79081e6a54453b67",
+        "source": "5etools",
+        "chars": 460
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "fortifying-soul",
+          "docId": "hofWiwFortifying",
+          "activities": [
+            "IcnQnbtJHWyU9O0I"
+          ],
+          "effects": [
+            "yOsSorHfe1rU5lnT"
+          ],
+          "data": {
+            "sha256": "3de966fbb65fc79abba1f3ea2075cad15ba904b2d13b42236c92bb643e692479"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:rogue/scion-of-the-three/13/aura-of-malevolence",
+      "name": "Aura of Malevolence",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Rogue/Scion of the Three",
+      "level": 13,
+      "identifier": "aura-of-malevolence",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "3572d6ba875103f13b07153008b1a9a36b945bc2ed6fd74fd9636b5c1554e1ba",
+        "source": "5etools",
+        "chars": 426
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "aura-of-malevolence",
+          "docId": "hofSotAuraofMale",
+          "activities": [
+            "kjsN8CgBXiuDSsmU"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "98ad34af497bbadb5b2b636bf33b8f310999fea57c92f0eca26c22140ba49856"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:rogue/scion-of-the-three/17/dread-incarnate",
+      "name": "Dread Incarnate",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Rogue/Scion of the Three",
+      "level": 17,
+      "identifier": "dread-incarnate",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "d8019baef946fe8402633265188c18c27785c5deb1c10556a9f414b636d234e2",
+        "source": "5etools",
+        "chars": 228
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dread-incarnate",
+          "docId": "hofSotDreadIncar",
+          "activities": [
+            "K5cIOD8LxWHH97rh"
+          ],
+          "effects": [
+            "DYpxSboLMhOa90ih"
+          ],
+          "data": {
+            "sha256": "0b124363c11cd2a000b6231b590cda819e4b42f0ca301acc83f8e2696b2d19b4"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:rogue/scion-of-the-three/3/bloodthirst",
+      "name": "Bloodthirst",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Rogue/Scion of the Three",
+      "level": 3,
+      "identifier": "bloodthirst",
+      "page": 23,
+      "srd": false,
+      "text": {
+        "sha256": "2635317a902f4157a3f150dbc0b486c1820f17b43ca308eedc35610f2ea41caa",
+        "source": "5etools",
+        "chars": 433
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "bloodthirst",
+          "docId": "hofSotBloodthirs",
+          "activities": [
+            "YUD3OCJ4g10rkgsy"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "c4c67dd5fb3fe9b063fc1f5c2d2c5b98e5b761d78d94308a9780f5b0ac68cab7"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:rogue/scion-of-the-three/3/dread-allegiance",
+      "name": "Dread Allegiance",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Rogue/Scion of the Three",
+      "level": 3,
+      "identifier": "dread-allegiance",
+      "page": 23,
+      "srd": false,
+      "text": {
+        "sha256": "54a0f0a916ffac72e9ca0e472d60dd28357395f4d1f2d533af41e7dc7f7fa129",
+        "source": "5etools",
+        "chars": 279
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dread-allegiance",
+          "docId": "hofSotDreadAlleg",
+          "activities": [
+            "quhmnXem2ujMg5i9",
+            "OVmuZzlGfr5kTG3A",
+            "pxVc39bddorPk3JL",
+            "FFooDAOT5BgyQxVc",
+            "oulDWjaQvL5zyOT6",
+            "pYTB76QOwTMjH485"
+          ],
+          "effects": [
+            "9r6LpubOo34JQvlP",
+            "gpJcAeXbV5HwFfzu",
+            "yVT0Gga2LnQAGJLc"
+          ],
+          "data": {
+            "sha256": "71edf977362350865a52a855d4b0e4f290cbbde8fd03ee9e92825962d1fa488e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:rogue/scion-of-the-three/3/scion-of-the-three",
+      "name": "Scion of the Three",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Rogue/Scion of the Three",
+      "level": 3,
+      "identifier": "scion-of-the-three",
+      "page": 23,
+      "srd": false,
+      "text": {
+        "sha256": "7a7c2455f4309e29b5b0bc7d64da4ce8da5496521f8162fa25cdabea0a61bbd2",
+        "source": "5etools",
+        "chars": 926
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "scion-of-the-three",
+          "docId": "hofScionoftheThr",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "23a0cd6dc3b88540f57b4d366ee72ce521695a2b399c60b2590fed3880c0b7b7"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:rogue/scion-of-the-three/9/strike-fear",
+      "name": "Strike Fear",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Rogue/Scion of the Three",
+      "level": 9,
+      "identifier": "strike-fear",
+      "page": 23,
+      "srd": false,
+      "text": {
+        "sha256": "bf31203e43e7a26b14b9646cead4045fb364c1531bd14e39fab7de6d43df4f44",
+        "source": "5etools",
+        "chars": 377
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "strike-fear",
+          "docId": "hofSotStrikeFear",
+          "activities": [
+            "p0Sf2KiK0hWXSc6x",
+            "jm50YQ94ctFASsRy"
+          ],
+          "effects": [
+            "QCrtOB3YmjifFdTO"
+          ],
+          "data": {
+            "sha256": "92887e407e9098721c5c2650e840dd8950f8939abb00480587d223712f8d9ccc"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/14/honed-spellfire",
+      "name": "Honed Spellfire",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 14,
+      "identifier": "honed-spellfire",
+      "page": 25,
+      "srd": false,
+      "text": {
+        "sha256": "1a479a84a97db1c78e1673bf9c48136945152794b6837dac40cdce4b383aeabf",
+        "source": "5etools",
+        "chars": 166
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "honed-spellfire",
+          "docId": "hofSpfHonedSpell",
+          "activities": [
+            "CCzW7ioScL7awI1u",
+            "0ClxBrfGufPYEF23"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "0709d4b18fe436586102b4b6fa3bd5f7bd19ae08cea552dd2fcaf909f575deba"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/18/crown-of-spellfire",
+      "name": "Crown of Spellfire",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 18,
+      "identifier": "crown-of-spellfire",
+      "page": 25,
+      "srd": false,
+      "text": {
+        "sha256": "e6fd526bddac5cdf2b0f781a1d7c4ba92a369dbffb2385df64f11546e87210cc",
+        "source": "5etools",
+        "chars": 984
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "crown-of-spellfire",
+          "docId": "hofSpfCrownofSpe",
+          "activities": [
+            "K8v4JRUvPraRum0S",
+            "U8zLPuy0ACVK5AHc",
+            "NglGWX8kwDnHdF95",
+            "owasgHDqBWORv2ZY"
+          ],
+          "effects": [
+            "Jvhk5j8Qr6dwWoi9",
+            "Kl4OhmXUMw0RbRmk"
+          ],
+          "data": {
+            "sha256": "43e6d39685e0ad73f5282669010da6bc52bf1cec805835ff68c8ada48576934e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/3/bolstering-flames",
+      "name": "Bolstering Flames",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 3,
+      "identifier": "bolstering-flames",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "1eaec3f5f7cdd1e6549e073b7727f839768706b0ac1e5dccc2b254616a0f5a33",
+        "source": "5etools",
+        "chars": 127
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/3/radiant-fire",
+      "name": "Radiant Fire",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 3,
+      "identifier": "radiant-fire",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "31f4f5bc9e74564355a3ee3b9f38c156a51fae6e3ff7d3f19c05a26a6c0acb29",
+        "source": "5etools",
+        "chars": 99
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/3/spellfire-burst",
+      "name": "Spellfire Burst",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 3,
+      "identifier": "spellfire-burst",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "ef2eac1d188253d530ac10dce212252326a92f615a873c77d04e178cfe936159",
+        "source": "5etools",
+        "chars": 202
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "spellfire-burst",
+          "docId": "hofSpfSpellfireB",
+          "activities": [
+            "oMBPgiikMtgHnqD0",
+            "VDizxcmKZMIp6jYj"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "6251dc68a1808e92b0229caef13a277b34d8e50ad8924ff46f2ed355e72947e2"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/3/spellfire-sorcery",
+      "name": "Spellfire Sorcery",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 3,
+      "identifier": "spellfire-sorcery",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "61af462bd2f8a2e93422c0a6ca7b5ca6f317686b482999566fd22d0ac285b2fe",
+        "source": "5etools",
+        "chars": 837
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/3/spellfire-spells",
+      "name": "Spellfire Spells",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 3,
+      "identifier": "spellfire-spells",
+      "page": 24,
+      "srd": false,
+      "text": {
+        "sha256": "fe854e10a180b151e08528ec0b5309f7174c10a6985a2a42c153da54a912d116",
+        "source": "5etools",
+        "chars": 127
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "spellfire-spells",
+          "docId": "hofSpfSpellfireS",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "46d838c22a0b6c4f5623a10ee4a83b5eb942d3712e6dbce8226010b09b0185f3"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:sorcerer/spellfire/6/absorb-spells",
+      "name": "Absorb Spells",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Sorcerer/Spellfire",
+      "level": 6,
+      "identifier": "absorb-spells",
+      "page": 25,
+      "srd": false,
+      "text": {
+        "sha256": "c9d1d615b4d6450e4f978d2cc7c74a355a75a0d7bb5c0c82d6365567f4d9ae6a",
+        "source": "5etools",
+        "chars": 157
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "absorb-spells",
+          "docId": "hofSpfAbsorbSpel",
+          "activities": [
+            "qxmeyDYKiZV69VCK"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "f69adb2fd3601f116e1c857aa1990a15c299d54e7c20da36272f3a9dc3b4115c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:wizard/bladesinger/10/song-of-defense",
+      "name": "Song of Defense",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Wizard/Bladesinger",
+      "level": 10,
+      "identifier": "song-of-defense",
+      "page": 27,
+      "srd": false,
+      "text": {
+        "sha256": "a5169653117d83f5d3579b9c2f8b27742e6b5b9d35ae763e4d67a619efa03492",
+        "source": "5etools",
+        "chars": 186
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "song-of-defense",
+          "docId": "hofBldSongofDefe",
+          "activities": [
+            "hh64gPFlYwAvYtek"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "cff82bc401a9186c2482cecf59921c518b10161e6c6ea93841a0aae01db78643"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:wizard/bladesinger/14/song-of-victory",
+      "name": "Song of Victory",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Wizard/Bladesinger",
+      "level": 14,
+      "identifier": "song-of-victory",
+      "page": 27,
+      "srd": false,
+      "text": {
+        "sha256": "6f83e167c8b6c91bfbb1a9c6924410c24501f800f799b4eef69aec68739661dc",
+        "source": "5etools",
+        "chars": 117
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "song-of-victory",
+          "docId": "hofBldSongofVict",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "5e1d99cd59c5e9d99812969e527da107dd1f3cbd1e5da13e616df25e9b7200db"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:wizard/bladesinger/3/bladesinger",
+      "name": "Bladesinger",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Wizard/Bladesinger",
+      "level": 3,
+      "identifier": "bladesinger",
+      "page": 26,
+      "srd": false,
+      "text": {
+        "sha256": "88eff6e1d8ba0e032bbcbf5d62b6e0cc8f6a32d5ab17339cb06e318e951d2984",
+        "source": "5etools",
+        "chars": 951
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "bladesinger",
+          "docId": "hofBladesingerWi",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "266da2891ee521a92d77b9ce25aea8aee6bd8b83368db1b50bf33c3a9c0e64fc"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:wizard/bladesinger/3/bladesong",
+      "name": "Bladesong",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Wizard/Bladesinger",
+      "level": 3,
+      "identifier": "bladesong",
+      "page": 26,
+      "srd": false,
+      "text": {
+        "sha256": "eb5b3e8ebdcb04608224058a3d6f0a6b284474bdb6356919bf9a54bfc10671f8",
+        "source": "5etools",
+        "chars": 1153
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "bladesong",
+          "docId": "hofBldBladesong0",
+          "activities": [
+            "ZRx69wF5iJCuT7TG",
+            "M3iAi2e51EzpO1ci"
+          ],
+          "effects": [
+            "gN3MtriIRf3KApfA"
+          ],
+          "data": {
+            "sha256": "bef9abdb5cc2d742899d2bff165860621c9738b0c9d61852fe25966d8b04d931"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:wizard/bladesinger/3/training-in-war-and-song",
+      "name": "Training in War and Song",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Wizard/Bladesinger",
+      "level": 3,
+      "identifier": "training-in-war-and-song",
+      "page": 27,
+      "srd": false,
+      "text": {
+        "sha256": "29bdd53a83d12b5fbb222ed22b95caf9807f0950b59a59b0fa90e0b40dc3c99c",
+        "source": "5etools",
+        "chars": 320
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "training-in-war-and-song",
+          "docId": "hofBldTrainingin",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "1593ed32e253cbeb91cd86c9a7232542bed276b88f83596bcbccdb97dd3c9c1a"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:feature:wizard/bladesinger/6/extra-attack",
+      "name": "Extra Attack",
+      "kind": "feature",
+      "book": "FRHOF",
+      "edition": "2024",
+      "owner": "Wizard/Bladesinger",
+      "level": 6,
+      "identifier": "extra-attack",
+      "page": 27,
+      "srd": false,
+      "text": {
+        "sha256": "322a141ba9201fe2c910cf7eb3fec8af5b597bcd4abb1fc1938e054b839ff001",
+        "source": "5etools",
+        "chars": 210
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "extra-attack",
+          "docId": "hofBldExtraAttac",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "bd5f282fd586e04f21ae77ad8319f6b53e565b5ffddc954e6800f3e3ae1f093c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:adventurers-ring",
+      "name": "Adventurer's Ring",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "common",
+      "identifier": "adventurers-ring",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "bb8b0e69b84130581b4d1c28a7377eae4f0c8d9af247393feb9111eeffb763b7",
+        "source": "5etools",
+        "chars": 273
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "adventurers-ring",
+          "docId": "hofAdventurersRi",
+          "activities": [
+            "JM1AlnbtHiRnm8nY"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "d19f51815a551f8204e958c54008927ac38c47389a8935f8ea98e1aeafd83ce7"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "adventurers-ring",
+          "docId": "OZJ4cBFpoRi5EPY4",
+          "activities": [
+            "utilityAdvenRing"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "668ecf84a9ae470ab8588d44d932b1e29c33af54fb7a5efcbfa7916423b2e16d"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:axe-beak",
+      "name": "Axe Beak",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "axe-beak",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "5216d6aec23c5569c4d28a4112844cd9b6cd36d1c688f2c640f7d498f3192750",
+        "source": "5etools",
+        "chars": 28
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "axe-beak",
+          "docId": "7z5aaEGMpng5p4Il",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "a5b2d9c6e2ac1ee7f60809a53e5e425db5625f2de27ada1aecdbf22eac7892e5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:bandore",
+      "name": "Bandore",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "bandore",
+      "page": 132,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "bandore",
+          "docId": "hofBandore000000",
+          "activities": [
+            "sKivGtvfGVbacnz5"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "37bd05761e13dad21c11d9a5d35f246591d76c92bf5044f96b740b6cbc01d893"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "bandore",
+          "docId": "nE9q1Q62NNHNAX0C",
+          "activities": [
+            "checkBandoreIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "82b015c6ca73ee1cbba7d448c03ad992207a0c62b20330c835b7aab53c94aaaa"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "The rulebook text is not in the cache",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:bright-fungal-cloak",
+      "name": "Bright Fungal Cloak",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "bright-fungal-cloak",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "885b2b81a69813a69e96931e6588550a34fd5eba4abd19edf8aa90844314e32b",
+        "source": "5etools",
+        "chars": 373
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "bright-fungal-cloak",
+          "docId": "hofBrightFungalC",
+          "activities": [
+            "9JecY5V5bqSctFR0"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "d1c1692600d518b5f592d8577c40d4df91023eadf3eb022d19976451ff4d7bb3"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "bright-fungal-cloak",
+          "docId": "tg4QnUrj6nn9nX2F",
+          "activities": [
+            "utilityBriFunClo"
+          ],
+          "effects": [
+            "6oYrGWtmcVuZWrX0"
+          ],
+          "data": {
+            "sha256": "537aa804abd4456e306f0b20c74963ae733a625bde5bab427d23027c95319ad1"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:cittern",
+      "name": "Cittern",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "cittern",
+      "page": 132,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "cittern",
+          "docId": "hofCittern000000",
+          "activities": [
+            "xCThf1SZVpNFO6Sq"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "55ec8531cb88570f6a7e290986a3f4d4e8eca8de0f38514e1db54c83084e8c4d"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "cittern",
+          "docId": "3TRx3TKnKpLpbeSW",
+          "activities": [
+            "checkCitternIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "6e9e6813f82d140ee7c9ba44f4635480f7f1d086528f657fd1ecd8de6b1c3881"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "The rulebook text is not in the cache",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:covered-wagon",
+      "name": "Covered Wagon",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "covered-wagon",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "9ab49623d84f455eae0d3c7006aa7477b4ca35ae1fd688209609c40911f831a5",
+        "source": "5etools",
+        "chars": 105
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "covered-wagon",
+          "docId": "hofvehCoveredWag",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "afaf3615364484ae24401741de0bfe48c6930b8d9d7e23eebf42b604af31097f"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "covered-wagon",
+          "docId": "ZtKIlcld2walA5C9",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b2b4d4b6914ac5aab652e1a9b4ddf3c8423d2ff9a9eb29912cdb6719611803e0"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:cult-of-the-dragon-trinket",
+      "name": "Cult of the Dragon Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "cult-of-the-dragon-trinket",
+      "page": 152,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:desert-clothing",
+      "name": "Desert Clothing",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "desert-clothing",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "5d4fd18ba7ef4cbf7fc9aa6c562245bed2a04133df0f3583723edd13b8d35bda",
+        "source": "5etools",
+        "chars": 155
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "desert-clothing",
+          "docId": "hofDesertClothin",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "1fddb4a03ed99de3f62f783b6df2af75dc3c9ff1c8ad3c94b98ac5015cd2ff69"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "desert-clothing",
+          "docId": "qMSeHCMs4NwHLgLs",
+          "activities": [
+            "utilityDeserClot"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "4429ce03307403d703489166f0739ef186ba92fbedf766b150fc19b80838941f"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:devil-mask",
+      "name": "Devil Mask",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "devil-mask",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "c0d838868d7ec6d3512eaeaf76aa9231bf0b52e2a16b3a9d8247ac11e76fbb29",
+        "source": "5etools",
+        "chars": 179
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "devil-mask",
+          "docId": "hofDevilMask0000",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "c38abcd8272ac6074c3a9be6e501cfcbd4b63da19c18ad2aeb9d0bf90b513042"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "devil-mask",
+          "docId": "KwvWVVmQs4PtlItz",
+          "activities": [
+            "utilityDevilMask"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "5141614994647803c7434d4271c27ec36a1e8d97866b1465558fec7c794d0734"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:emerald-enclave-trinket",
+      "name": "Emerald Enclave Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "emerald-enclave-trinket",
+      "page": 156,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:flying-snake",
+      "name": "Flying Snake",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "flying-snake",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "6e9cb6d613d33c069dffa684586c1aebe984711753de43eba289aef40669f28a",
+        "source": "5etools",
+        "chars": 50
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "flying-snake",
+          "docId": "UYYawXJIkYSjLSQE",
+          "activities": [
+            "utilityFlyinSnak"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "62e080869f7713868410108870b0100f4fb165306982d54ab7f9efbd4938807b"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:garb-of-light-and-shadow",
+      "name": "Garb of Light and Shadow",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "garb-of-light-and-shadow",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "b3b85cba9db4cb982c013f185fb11c6e44b804fda19531270a1bf41407a27a84",
+        "source": "5etools",
+        "chars": 218
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "garb-of-light-and-shadow",
+          "docId": "hofGarbofLightan",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "5cb4455b9f70cc47c215d0d3613a4f5c2eeb5a9a27fa423125248e77c78aa459"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "garb-of-light-and-shadow",
+          "docId": "UsDFGuJmJCkbcxFa",
+          "activities": [
+            "utilityGarbOfLAS"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "798781d18930d09ea5b4ad78a448d4a7cd73261fd8dbfe3b56a3d5aa9af328da"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:genie-robe",
+      "name": "Genie Robe",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "genie-robe",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "115fcbecdc0fe8a7f5f8521426d978ac83d65eccb68887e849625b231d46fd4e",
+        "source": "5etools",
+        "chars": 225
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "genie-robe",
+          "docId": "hofGenieRobe0000",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "12d83addce9656c5b3702a2f61c94c84a67942332349004e2109e6156e39d0b8"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "genie-robe",
+          "docId": "YsCSLpDyfnVLywh4",
+          "activities": [
+            "utilityGenieRobe"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "b33eb55f009cd18d43eb51aa79a3e915bc12dcb9fff7666d62aaa41d707dccaf"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:harper-trinket",
+      "name": "Harper Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "harper-trinket",
+      "page": 160,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:locking-spellbook",
+      "name": "Locking Spellbook",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "locking-spellbook",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "68f978db974e269f84c85f3f40673c91b12c52fb2c06dd029111a4cbc5e2ec9d",
+        "source": "5etools",
+        "chars": 255
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "locking-spellbook",
+          "docId": "hofLockingSpellb",
+          "activities": [
+            "pHMiHVKeqri9L7kW"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "09433f424e17d6d301cc3f4fab16b22699aff218af539bf9d2981ad833ed993e"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "locking-spellbook",
+          "docId": "pUziDkPOJnu6fWA5",
+          "activities": [
+            "checkLockinSpell"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "16cb01421794f607270f3ede18034397327a619d76dbab6593a0b8f68d4341d7"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:lords-alliance-trinket",
+      "name": "Lords' Alliance Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "lords-alliance-trinket",
+      "page": 164,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:monster-camouflage",
+      "name": "Monster Camouflage",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "monster-camouflage",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "86a0b57c3daee77204fb8130ac372b97f3c73f58819d2c660dc6c2df6f9fc492",
+        "source": "5etools",
+        "chars": 428
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "monster-camouflage",
+          "docId": "hofMonsterCamouf",
+          "activities": [
+            "1VqEiaIyUGPfdKYB"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "eba30472a1e844ca60c67a48291c1a207e82bc6319dbe6bba310593b864bc8b7"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "monster-camouflage",
+          "docId": "Lrvn7OVuvLsskLlP",
+          "activities": [
+            "checkMonsteCamou"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "6f0db1945719e28a186ac39e402a627906e0f787ceaee36d0ec92b29a923d248"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:order-of-the-gauntlet-trinket",
+      "name": "Order of the Gauntlet Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "order-of-the-gauntlet-trinket",
+      "page": 168,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:purple-dragon-knight-trinket",
+      "name": "Purple Dragon Knight Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "purple-dragon-knight-trinket",
+      "page": 172,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:red-wizard-trinket",
+      "name": "Red Wizard Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "red-wizard-trinket",
+      "page": 176,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:sled-dog",
+      "name": "Sled Dog",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "sled-dog",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "2e2c37337820bd7d90cdb223636b34de76a8bceabf8acfaefa20666d07c9f2a9",
+        "source": "5etools",
+        "chars": 189
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "sled-dog",
+          "docId": "WOXK8GA7Jz3K0UW3",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "53e09a7c00d88be3698976ad62e9a8438d19713afec331bdd72ed7aa54d26d97"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:thayan-spell-tattoo",
+      "name": "Thayan Spell Tattoo",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "uncommon",
+      "identifier": "thayan-spell-tattoo",
+      "page": 176,
+      "srd": false,
+      "text": {
+        "sha256": "f9dd1188188a37e258bca5eea5dcd8be26e46e1e795736ae01186ed48909f592",
+        "source": "5etools",
+        "chars": 1390
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "thayan-spell-tattoo",
+          "docId": "hofThayanSpellTa",
+          "activities": [
+            "S6Vw9inF04oFN6tP",
+            "VTTMOF1iBBFN4KHA"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "e8433c5fb376fe12c7ab7463cddf98958cd5abd9b837bacc98d41952515d6ed5"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:warm-fungal-clothing",
+      "name": "Warm Fungal Clothing",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "warm-fungal-clothing",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "4739876963b855193d03e19dc4f757636ef5f3e45fada88396674d4d3c640d55",
+        "source": "5etools",
+        "chars": 359
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "warm-fungal-clothing",
+          "docId": "hofWarmFungalClo",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "207497e69d5e39b766aa7b2d0cb48a0a66c3a78d9ca4cfb96ab8183faed9eead"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "warm-fungal-clothing",
+          "docId": "HkfPHDrJ3wLuy7rG",
+          "activities": [
+            "utilityWarFunClo"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "2b74fc51dcd7415c193207e0b6dfe8296edf209db71c0cbf69c0729c6bcc32d4"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:winter-camouflage",
+      "name": "Winter Camouflage",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "winter-camouflage",
+      "page": 132,
+      "srd": false,
+      "text": {
+        "sha256": "5bfb1b09b2233fd7c7fd7370f10c6fd2d5143782b75b69fb558fc0b20cf71810",
+        "source": "5etools",
+        "chars": 113
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "winter-camouflage",
+          "docId": "hofWinterCamoufl",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "17ee42dd21a908a2e2e4819356ca4848ac9167be8bbaaf9dc218ea8c90242b84"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "winter-camouflage",
+          "docId": "i2RAV454906AwC66",
+          "activities": [
+            "utilityWinteCamo"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "b685bd1d6ae1b3b53ab0b1e4a03051019bae830369a33a8fda2b93d232d6fca8"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:item:yarting",
+      "name": "Yarting",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "yarting",
+      "page": 132,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "yarting",
+          "docId": "hofYarting000000",
+          "activities": [
+            "NuBHMtQQjla7OwU2"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "b0d4286c60b5331e3592301971963557310575d15c8c1cafe98c1ad6d1819f47"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "yarting",
+          "docId": "AiHX8SLkgLmUa26Z",
+          "activities": [
+            "checkYartingIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "6dbc40a7ca258223ab715a0452e1a07eccf5042f2d707ed0ffa9b27ba837c56a"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "unverifiable",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "The rulebook text is not in the cache",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:item:zhentarim-trinket",
+      "name": "Zhentarim Trinket",
+      "kind": "item",
+      "book": "FRHOF",
+      "edition": "2024",
+      "rarity": "none",
+      "identifier": "zhentarim-trinket",
+      "page": 180,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T19:09:23.425Z"
+        }
+      },
+      "why": "placeholder: no text and no item",
+      "state": "triaged"
+    },
+    {
+      "key": "frhof:spell:alustriels-mooncloak",
+      "name": "Alustriel's Mooncloak",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "mooncloak",
+      "page": 142,
+      "srd": false,
+      "text": {
+        "sha256": "c59caa5e9d000a2a03e8cb8e7d19a863c28bcf5d47796119c83d4f5a6fa96f4a",
+        "source": "5etools",
+        "chars": 603
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "mooncloak",
+          "docId": "hofAlustrielsMoo",
+          "activities": [
+            "u7YrWJiA4zbcZxIl",
+            "95HbnfbFvxge1NHP",
+            "ZUsvcO7aXBD8Z9xs"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ff7cb1cf3000cd94a7bb47ff93333f7cc56111f2c37f0c9524a2452b164a9aee"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "alustriels-mooncloak",
+          "docId": "ddbAlustrMoonc24",
+          "activities": [
+            "ddbMooncloakCast",
+            "ddbMooncloakLibr",
+            "ddbMooncloakResp"
+          ],
+          "effects": [
+            "ddbMooncloakEnch"
+          ],
+          "data": {
+            "sha256": "b646d77f64fc2e10b7033d626232e972706a8b016533d7707bd43a3b10acb7f3"
+          },
+          "differences": [
+            "activityTypes"
+          ],
+          "identifierDiffers": true
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:backlash",
+      "name": "Backlash",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "backlash",
+      "page": 142,
+      "srd": false,
+      "text": {
+        "sha256": "589f2dafd441a85a417645b1346485df8b8d5571bc15abd7f84b0058c7e1e581",
+        "source": "5etools",
+        "chars": 339
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "backlash",
+          "docId": "hofBacklash00000",
+          "activities": [
+            "7dmLi7akIZRfjKF6",
+            "esGwhPeVIw3C3DbG"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "2bf347f6e6c2ab0f9588fd07347c7aed3dc4e69ed39f6ea62293c24f047ea78d"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "backlash",
+          "docId": "ddbBacklash24III",
+          "activities": [
+            "saveBacklashIIII",
+            "addCast1IIIIIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "9d46de95c61b66b1423d299625989a9fa3fbe91da0fa4e1ce7d93e35b42fe79a"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:blade-of-disaster",
+      "name": "Blade of Disaster",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "blade-of-disaster",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "3c1b2318b28460d782e549149b0c5bb536f910a778cd2ec43bc3cd9c18f8ec81",
+        "source": "5etools",
+        "chars": 709
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "blade-of-disaster",
+          "docId": "hofBladeofDisast",
+          "activities": [
+            "2UTIhyZkeP4Zfm2Q"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ffd3f44d2f7841692e1768238aea1c964839f781d6391dc516586692db3ffff1"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "blade-of-disaster",
+          "docId": "ddbBladeOfDis24I",
+          "activities": [
+            "summonBladOfDisI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3a3d8af41d27c34fda404e0ee27101853c89f2afd2bba9207187c4b7440d3c6b"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:cacophonic-shield",
+      "name": "Cacophonic Shield",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "cacophonic-shield",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "b97d01fcc26d5a38d62b47dfb2c9e8aa5a34fcfa78bd2a0d446bf0fc356de77e",
+        "source": "5etools",
+        "chars": 736
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "cacophonic-shield",
+          "docId": "hofCacophonicShi",
+          "activities": [
+            "lLOy0jFLtFX4TtFv",
+            "Kp4FocISru3OyCeK"
+          ],
+          "effects": [
+            "mFaLCt7nvzFRKyJG",
+            "rYj32NuxdH8RJw72"
+          ],
+          "data": {
+            "sha256": "d9e5224e09818f20bbdd3d3bdba67feaf323bb3e945781939c4ce56bc994a17a"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "cacophonic-shield",
+          "docId": "ddbCacophShiel24",
+          "activities": [
+            "utilityCacopShie",
+            "addSaveVsDaAnDe1"
+          ],
+          "effects": [
+            "3F62Hz0F2pKWiy8u",
+            "3IJ19wAYD4e4T5Kp",
+            "ihgnNVUbwbak1eOh"
+          ],
+          "data": {
+            "sha256": "9070520d6f3af543dbc9feda3b721de28c6c5de2971b41624d10efb70eda2d7c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:conjure-constructs",
+      "name": "Conjure Constructs",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "conjure-constructs",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "eb8b8d273f08efa2e6a2c8e7a68fc9e67e0d64c0a18b0eb544a8fb3f2e294cf5",
+        "source": "5etools",
+        "chars": 763
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "conjure-constructs",
+          "docId": "hofConjureConstr",
+          "activities": [
+            "EDfp7JQ03K8aPk80"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3ac638c33a1866776fe741d10ce96ae3552652d337bae09a60a83bb52793ff5f"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "conjure-constructs",
+          "docId": "ddbConjurConst24",
+          "activities": [
+            "summonConjuConst"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "33c6f0f986af1d7db1ad444fb8d4d84bf3e752684ec54697b7945abd999a501e"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:death-armor",
+      "name": "Death Armor",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "death-armor",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "11c42b3834862726e1ddbcbce53c48e12de56be4d4bf81565cf926fc345cf902",
+        "source": "5etools",
+        "chars": 249
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "death-armor",
+          "docId": "hofDeathArmor000",
+          "activities": [
+            "UHxXPEUYCNoH0UTt",
+            "XLHZl29jf5VvPgsb"
+          ],
+          "effects": [
+            "7SHyUO2S0yxtrn92"
+          ],
+          "data": {
+            "sha256": "9b8cd0e582083747c0bec325bfd32ab2d318e9b6d025639412998a1ffc286791"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "death-armor",
+          "docId": "ddbDeathArmor24I",
+          "activities": [
+            "damageDeathArmor",
+            "addCast1IIIIIIII"
+          ],
+          "effects": [
+            "UZlKSWm3hKaTsbNE"
+          ],
+          "data": {
+            "sha256": "b68eed9664c20aee7001583a28a2d0f87aaf96d09b475a6e6ee15c88fe83eff4"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:deryans-helpful-homunculi",
+      "name": "Deryan's Helpful Homunculi",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "helpful-homunculi",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "0446525b6677327c7fced7fbd92fd8940634abfd1ee4b73792f6b040ff5124cd",
+        "source": "5etools",
+        "chars": 423
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "helpful-homunculi",
+          "docId": "hofDeryansHelpfu",
+          "activities": [
+            "1SMD2KdtbMN2lBcq"
+          ],
+          "effects": [
+            "3D4qOptXcSjR5o1e"
+          ],
+          "data": {
+            "sha256": "68dfc790a7a3b8a4c6ccaf796441ae8b5f0e6c52b7d9e51efe6cb53d076fd7ab"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "deryans-helpful-homunculi",
+          "docId": "ddbDeryaHelHom24",
+          "activities": [
+            "utilityDerHelHom"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "48c45eb9586f2d203686ff0d0b63ccae19697301f56f0c1336ce60a8405813ce"
+          },
+          "identifierDiffers": true
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:dirge",
+      "name": "Dirge",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "dirge",
+      "page": 144,
+      "srd": false,
+      "text": {
+        "sha256": "154a0669ee42421baa121e0c2399a0d95e3be190b6991d7fde370d6c00fb64d3",
+        "source": "5etools",
+        "chars": 1213
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dirge",
+          "docId": "hofDirge00000000",
+          "activities": [
+            "6AEnf6WomTBwbtPX"
+          ],
+          "effects": [
+            "VS69LzoYn6mQrNVz",
+            "Y74yuwmgtE29lBmd",
+            "jbTn1EbfuRxsuR92"
+          ],
+          "data": {
+            "sha256": "3d63f8b01b4c9d8fc7b18bb9f91c57da6714b6e222ea8b0ab4e423dd613891d1"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "dirge",
+          "docId": "ddbDirge24IIIIII",
+          "activities": [
+            "utilityDirgeIIII",
+            "addOngoinSave1II"
+          ],
+          "effects": [
+            "PGiWcdRpSCLHh5Nm"
+          ],
+          "data": {
+            "sha256": "95385b86dd3a0d2b873fc21a2a6b09a1ffde0afeb4bd2d9a9dec459054efea99"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:doomtide",
+      "name": "Doomtide",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "doomtide",
+      "page": 144,
+      "srd": false,
+      "text": {
+        "sha256": "99548c01fef8e1f841c96fb3097351fb191f30be7386c6df490d2cd7029e8625",
+        "source": "5etools",
+        "chars": 1467
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "doomtide",
+          "docId": "hofDoomtide00000",
+          "activities": [
+            "1IG4whzRRbDvWzxo"
+          ],
+          "effects": [
+            "7Nj8ryyHdxKpoEQe"
+          ],
+          "data": {
+            "sha256": "be19716e29a27826604e0fddfec8a40b34dbc1e7e154bf16c5691172d848672b"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "doomtide",
+          "docId": "ddbDoomtide24III",
+          "activities": [
+            "saveDoomtideIIII",
+            "ddbDoomTideAdSa1"
+          ],
+          "effects": [
+            "BvEkUXQSP2FXqoaS"
+          ],
+          "data": {
+            "sha256": "037b5fd664435b6664bf1db276850f2867870fb77a404f832e6586870557b5c0"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:elminsters-effulgent-spheres",
+      "name": "Elminster's Effulgent Spheres",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "effulgent-spheres",
+      "page": 144,
+      "srd": false,
+      "text": {
+        "sha256": "ec3e88fd9fba64830a2757b87fc0461eb49b5885c0366a4277b586cdbd1bd567",
+        "source": "5etools",
+        "chars": 693
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "effulgent-spheres",
+          "docId": "hofElminstersEff",
+          "activities": [
+            "dKHRCjJ8LBPCCF72",
+            "DgArj81LsdVxGk2q",
+            "waTx1EQN0rVbAgQs"
+          ],
+          "effects": [
+            "A9xO0s6vBbdsnF8i",
+            "BFluXbNH5nXNnzId",
+            "Dqub3USZoPPxwiLE",
+            "R2rdmvqYSGl1cHhD",
+            "jool4VGnsBOI3AyP",
+            "no9gAtdli0aOOueV"
+          ],
+          "data": {
+            "sha256": "020ed5010ac4ba53811e552cbeb92e3cbbb8b2961ba57dfc6ada7b2fc77c9011"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "elminsters-effulgent-spheres",
+          "docId": "ddbElminEffSph24",
+          "activities": [
+            "enchantElmEffSph",
+            "AbsorbEnergySphe",
+            "EnergyBlastSpher"
+          ],
+          "effects": [
+            "2rZqoF8J95MlgMdb",
+            "3jE6fTfBYmgIBWUN",
+            "b8gUQwbeCVSksSkp",
+            "fJOTcYhd2fFZlbLn",
+            "mLvCDwLV89cnSaBx",
+            "rZEkMLEgHp7TzT43"
+          ],
+          "data": {
+            "sha256": "372721368e42bfb667ad02f1eaa163d251b1122d4b223bc06eaff4eb25571cfd"
+          },
+          "differences": [
+            "activityTypes"
+          ],
+          "identifierDiffers": true
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:elminsters-elusion",
+      "name": "Elminster's Elusion",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "elusion",
+      "page": 144,
+      "srd": false,
+      "text": {
+        "sha256": "e4d9cf5d102a2224386e3d2bc9ea2ff9afb6299486ebcfdc8270dcf2f991b6ec",
+        "source": "5etools",
+        "chars": 282
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "elusion",
+          "docId": "hofElminstersElu",
+          "activities": [
+            "e3dW4uuUjFLZEYpo"
+          ],
+          "effects": [
+            "CcT0AxuUVpZFdtfX"
+          ],
+          "data": {
+            "sha256": "355e751808874844d897b153604e7de8bd8913b6fd9652a29e44acd8d1b410bc"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "elminsters-elusion",
+          "docId": "ddbElminsElusi24",
+          "activities": [
+            "utilityElminElus"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "e4f39d9966c14ae2785f6e88b284dc7810960c5d0433f7412eaa73438fed6653"
+          },
+          "identifierDiffers": true
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:holy-star-of-mystra",
+      "name": "Holy Star of Mystra",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "holy-star-of-mystra",
+      "page": 145,
+      "srd": false,
+      "text": {
+        "sha256": "35df724477fe3a82c5569c8ffaac7c2cc2881245e92875691690716645f81195",
+        "source": "5etools",
+        "chars": 824
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "holy-star-of-mystra",
+          "docId": "hofHolyStarofMys",
+          "activities": [
+            "y2TqbGhkeDe8oiei"
+          ],
+          "effects": [
+            "Mn7CmPM3Xk1Kfiae"
+          ],
+          "data": {
+            "sha256": "6daa590b4d089d6074c26d5ed080b7e4a6f2bb7facccabc786422add95070c1c"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "holy-star-of-mystra",
+          "docId": "ddbHolyStaOfMy24",
+          "activities": [
+            "ddbHolyStarMCast",
+            "ddbHolyStarMAtck"
+          ],
+          "effects": [
+            "ddbHolyStarMMote",
+            "hsmAcidencIIIIII",
+            "hsmAcidimmIIIIII",
+            "hsmColdencIIIIII",
+            "hsmColdimmIIIIII",
+            "hsmFireencIIIIII",
+            "hsmFireimmIIIIII",
+            "hsmLightningencI",
+            "hsmLightningimmI",
+            "hsmThunderencIII",
+            "hsmThunderimmIII"
+          ],
+          "data": {
+            "sha256": "8dc8221c46d901dd85fc46bd5049a11f7ea592834bf0275d8a1bd4f117361415"
+          },
+          "differences": [
+            "activityTypes",
+            "damageTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:laerals-silver-lance",
+      "name": "Laeral's Silver Lance",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "silver-lance",
+      "page": 145,
+      "srd": false,
+      "text": {
+        "sha256": "2381a69a3f62586fbec19fd93a6b92b536adfdb950ae8ee2d9be13afa8f403d6",
+        "source": "5etools",
+        "chars": 324
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "silver-lance",
+          "docId": "hofLaeralsSilver",
+          "activities": [
+            "xXPCHauXnGmSmrew"
+          ],
+          "effects": [
+            "qIeCkQ7YG9jxb0HK"
+          ],
+          "data": {
+            "sha256": "f2587878cc890ff4167e06fd3cf115a02a60f115a4c94f0d420a6ad913d632d4"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "laerals-silver-lance",
+          "docId": "ddbLaeraSilLan24",
+          "activities": [
+            "saveLaerSilvLanc"
+          ],
+          "effects": [
+            "Gbuhgu6n1CCv3Cpg"
+          ],
+          "data": {
+            "sha256": "c84d7f04c2fcc7727e4e0abd3402cb8c563d9ff39c97996a8b8998008682b836"
+          },
+          "identifierDiffers": true
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:simbuls-synostodweomer",
+      "name": "Simbul's Synostodweomer",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "simbuls-synostodweomer",
+      "page": 145,
+      "srd": false,
+      "text": {
+        "sha256": "0b8290a8bd9aa0c0f366c69e050128594d829eba56528888e8fe19e84319fda2",
+        "source": "5etools",
+        "chars": 353
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "simbuls-synostodweomer",
+          "docId": "hofSimbulsSynost",
+          "activities": [
+            "EJ1suBcxXzFmYw3v"
+          ],
+          "effects": [
+            "ZFeU6lKzEXaAhvu7"
+          ],
+          "data": {
+            "sha256": "9aab2d9c1449469e62c3500eb514d6baca203818f82ef3dfbd9adda8422a3c07"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "simbuls-synostodweomer",
+          "docId": "ddbSimbulSynos24",
+          "activities": [
+            "healSimbulSynost"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "93cbcafc2f47220798fa4615b2d13aabe1c180c64c8caab68aebccfbce3d1c6d"
+          },
+          "differences": [
+            "activityTypes"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:songals-elemental-suffusion",
+      "name": "Songal's Elemental Suffusion",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "elemental-suffusion",
+      "page": 145,
+      "srd": false,
+      "text": {
+        "sha256": "7feac5fe460a4c57d7b9d03a3e6a09e0ab1893d54fb3124640e1d80e57062020",
+        "source": "5etools",
+        "chars": 1299
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "elemental-suffusion",
+          "docId": "hofSongalsElemen",
+          "activities": [
+            "GbTUQsgsSpSvAz4F",
+            "rdmRNL63QtA7zh1S"
+          ],
+          "effects": [
+            "6PhpgMCmTMBCScGO",
+            "AfoOMoWj136uteFI",
+            "EA1NKMnlctxA279b",
+            "MaFuonX583cOZJPO",
+            "P8iuSmy8wVMa9H2T",
+            "WqGPTExWNSoxmgcp"
+          ],
+          "data": {
+            "sha256": "39a769e4ce448ab97d4f1d25d22627f1da8a3a6fce912d74e40d2592335be55e"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "songals-elemental-suffusion",
+          "docId": "ddbSongaEleSuf24",
+          "activities": [
+            "saveSongElemSuff",
+            "addCast1IIIIIIII"
+          ],
+          "effects": [
+            "VhjVUDHYpAdBX8F5",
+            "ktTDAJVTgNZo15UR"
+          ],
+          "data": {
+            "sha256": "2bf430829ee398b1f785ba9377bf337d495318bb2c97302d6223922b6a75cab9"
+          },
+          "differences": [
+            "activityTypes"
+          ],
+          "identifierDiffers": true
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:spellfire-flare",
+      "name": "Spellfire Flare",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "spellfire-flare",
+      "page": 146,
+      "srd": false,
+      "text": {
+        "sha256": "d65c60a0403a792441c4d48833b4825bde7eb21abeba20f84eac38e63e806e9c",
+        "source": "5etools",
+        "chars": 212
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "spellfire-flare",
+          "docId": "hofSpellfireFlar",
+          "activities": [
+            "pjEOS1VqrlZbZ1Oe"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ba07468a404ac7ecda22abedbe87c3f4cd3a8cfd838a87fd07ca94d351dbaee4"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "spellfire-flare",
+          "docId": "ddbSpellfFlare24",
+          "activities": [
+            "attackSpellFlare"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "2373c3b423bd09054a8b55e8ebbc545c5b3d621968553469f98cc3d123dfc0c0"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:spellfire-storm",
+      "name": "Spellfire Storm",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "spellfire-storm",
+      "page": 146,
+      "srd": false,
+      "text": {
+        "sha256": "ec15f2d9fa6a47c65088b88a53b12f243312b09a9713420db641f8e9542fe0de",
+        "source": "5etools",
+        "chars": 1276
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "spellfire-storm",
+          "docId": "hofSpellfireStor",
+          "activities": [
+            "FYfPb6ScQN3lS7vL"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "b00f63feb9465afcd7b7c2c148dc303a254c8ee0aa892eecc0489676e64fc34e"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "spellfire-storm",
+          "docId": "ddbSpellfStorm24",
+          "activities": [
+            "saveSpellfStormI",
+            "ddbSpellStormSa1"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "a1fd520b895e6e7d189e8af0cdd1c5c75ec2a3362f76e93286d69d63b7c3b68d"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:sylunes-viper",
+      "name": "Syluné's Viper",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "sylunes-viper",
+      "page": 147,
+      "srd": false,
+      "text": {
+        "sha256": "890c59d4de22c7b6b9afd27f5fa55f638732d42ab9939f7a57d016b26a10fbc5",
+        "source": "5etools",
+        "chars": 567
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "sylunes-viper",
+          "docId": "hofSylunesViper0",
+          "activities": [
+            "VNg2FUuVUUT18uN0",
+            "f1nWOZVSG7Tv13yz"
+          ],
+          "effects": [
+            "06YjZvu9VuRCT46b",
+            "8OxRTR73JiXF80JO"
+          ],
+          "data": {
+            "sha256": "98661c3647383da14e0ab243621b7a2631ab804828b133212dcb5775daabc759"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "sylunes-viper",
+          "docId": "ddbSylunsViper24",
+          "activities": [
+            "healSylunsViperI",
+            "addSpecSnakAtta1"
+          ],
+          "effects": [
+            "O5FVukEiJLrLGmy7",
+            "jO8TTCadcebIj1NY"
+          ],
+          "data": {
+            "sha256": "1b54b743eda2a1679d69aaa87f7b095913b7a5e45d7741a22c38a09798376d58"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "frhof:spell:wardaway",
+      "name": "Wardaway",
+      "kind": "spell",
+      "book": "FRHOF",
+      "edition": "2024",
+      "identifier": "wardaway",
+      "page": 147,
+      "srd": false,
+      "text": {
+        "sha256": "0f98b40b2157ba661a66269d8d2a5b0c61a27cc541fa6f2db8c7c67fbbfd3dcc",
+        "source": "5etools",
+        "chars": 431
+      },
+      "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "wardaway",
+          "docId": "hofWardaway00000",
+          "activities": [
+            "BqbqQHgxcTsuNXJ0"
+          ],
+          "effects": [
+            "xqZ1J6Zs1UO98acX"
+          ],
+          "data": {
+            "sha256": "615885f92a0d2c2dcb8fee2049cff627f4d895ced81c863794c6856f80817007"
+          }
+        },
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "wardaway",
+          "docId": "ddbWardaway24III",
+          "activities": [
+            "saveWardawayIIII"
+          ],
+          "effects": [
+            "jV2r831kQYO51yOH"
+          ],
+          "data": {
+            "sha256": "91d122013858d07b5ba60c24458fa1218a0ff2dbc1dc780203024fdd9a9d3010"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
