@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { canonical } from "./registry.mjs";
+import { KIND_TABLE } from "./kinds.mjs";
 
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 const sortedUnique = (list) => [...new Set(list)].sort();
@@ -64,6 +65,18 @@ export function mechanicsFingerprint(system, effects) {
   return sha256(canonical({ system: rest, effects }));
 }
 
+// The document types the pipeline reads: the item types of every kind, the documents that grant features (class, subclass,
+// race), backgrounds and the actors of the monsters. A journal entry or page, a scene or a table is none of them, even when it
+// shares an item's id.
+export const KNOWN_DOC_TYPES = Object.freeze([...new Set([
+  ...Object.values(KIND_TABLE).flatMap((row) => [...row.docTypes, ...(row.traitDocTypes ?? [])]),
+  "class", "subclass", "race", "background", "npc", "character"
+])]);
+const isKnown = (doc) => doc !== null && typeof doc === "object" && KNOWN_DOC_TYPES.includes(doc.type);
+
+/** The data fingerprint of a document, as inventory records it on a matched item (`data.sha256`). */
+export const dataFingerprint = (doc) => sha256(canonical({ system: doc?.system ?? {}, effects: doc?.effects ?? [] }));
+
 export function itemSummary(doc, origin, grants) {
   const system = doc.system ?? {};
   const effects = doc.effects ?? [];
@@ -89,7 +102,7 @@ export function itemSummary(doc, origin, grants) {
   }
   if (typeof system.requirements === "string" && system.requirements) summary.requirements = system.requirements;
   if (grants?.get(doc._id)) summary.grantedBy = grants.get(doc._id);
-  summary.data = sha256(canonical({ system, effects }));
+  summary.data = dataFingerprint(doc);
   summary.mechanics = mechanicsFingerprint(system, effects);
   return summary;
 }
@@ -126,9 +139,11 @@ export function actorSummaries(docs, origin) {
 }
 
 /**
- * The documents of the other official packages, by document id: `Map<docId, [{ package, activities, effects }]>`, `activities`
- * and `effects` being the ids the document holds. `files` are dump file names of the folder (`<package>.<pack>.json`); actor
- * packs are left out (an actor id is no item). Used to tell whether a package reprints a document with the same ids.
+ * The documents of the other official packages, by document id: `Map<docId, [{ package, type, activities, effects }]>`,
+ * `activities` and `effects` being the ids the document holds. `files` are dump file names of the folder
+ * (`<package>.<pack>.json`); actor packs are left out (an actor id is no item), and so is every document that is not of a type
+ * the pipeline knows (a journal page sharing the id is no reprint). Used to tell whether a package reprints a document with the
+ * same ids; `settle.mjs reprintsOf` keeps only the types of the record's kind.
  */
 export function reprintIndex(dumpsDir, files) {
   const index = new Map();
@@ -136,9 +151,9 @@ export function reprintIndex(dumpsDir, files) {
     if (isActorFile(file)) continue;
     const pkg = file.split(".")[0];
     for (const doc of readDump(join(dumpsDir, file))) {
-      if (typeof doc?._id !== "string") continue;
+      if (typeof doc?._id !== "string" || !isKnown(doc)) continue;
       const row = {
-        package: pkg, activities: Object.keys(doc.system?.activities ?? {}).sort(),
+        package: pkg, type: doc.type, activities: Object.keys(doc.system?.activities ?? {}).sort(),
         effects: (doc.effects ?? []).map((e) => e._id).filter(Boolean).sort()
       };
       index.set(doc._id, [...(index.get(doc._id) ?? []), row]);
@@ -148,17 +163,31 @@ export function reprintIndex(dumpsDir, files) {
 }
 
 /**
- * The raw documents of dump files, by id: `Map<docId, document>`; the first of a document id wins (copies of one item share
- * their data). In an actor pack the documents are the items embedded in the actors, keyed `<actor id>.<item id>`.
+ * The raw documents of dump files, by id: `Map<docId, document[]>`, only documents of a type the pipeline knows (never a
+ * journal entry or page). In an actor pack the documents are the items embedded in the actors, keyed `<actor id>.<item id>`.
+ * Look a document up with findDocument.
  */
 export function docIndex(dumpsDir, files) {
   const index = new Map();
-  const add = (id, doc) => { if (typeof id === "string" && !index.has(id)) index.set(id, doc); };
+  const add = (id, doc) => {
+    if (typeof id === "string" && isKnown(doc)) index.set(id, [...(index.get(id) ?? []), doc]);
+  };
   for (const file of files) {
     for (const doc of readDump(join(dumpsDir, file))) {
-      if (isActorFile(file)) for (const item of doc.items ?? []) add(`${doc._id}.${item._id}`, item);
-      else add(doc?._id, doc);
+      if (!isActorFile(file)) add(doc?._id, doc);
+      else if (isKnown(doc)) for (const item of doc.items ?? []) add(`${doc._id}.${item?._id}`, item);
     }
   }
   return index;
+}
+
+/**
+ * The document of `docIndex` with this id and, when `sha` is given (an item's `data.sha256`), this data fingerprint; without
+ * one, the document of the id when every document of the id has the same data (copies of one item). Null when there is no
+ * such document or several different ones could be meant: never another document.
+ */
+export function findDocument(index, docId, sha) {
+  const docs = index.get(docId) ?? [];
+  if (typeof sha === "string") return docs.find((d) => dataFingerprint(d) === sha) ?? null;
+  return docs.length && docs.every((d) => dataFingerprint(d) === dataFingerprint(docs[0])) ? docs[0] : null;
 }

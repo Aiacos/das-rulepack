@@ -71,8 +71,19 @@ function distinct(candidates) {
   });
 }
 
-const words = (text) => `-${slug(text)}-`;
-const mentions = (text, part) => Boolean(text) && Boolean(slug(part)) && words(text).includes(words(part));
+// The words of a text as whole hyphenated words: "Half-Elf" is one word, so a text that names it does not mention "Elf".
+const wordsOf = (text) => String(text ?? "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/['’]/g, "")
+  .split(/[^a-z0-9-]+/).map((w) => w.replace(/^-+|-+$/g, "")).filter(Boolean);
+// True when the words of `part` appear in `text`, in order and next to each other.
+function mentions(text, part) {
+  const haystack = wordsOf(text);
+  const needle = wordsOf(part);
+  if (!needle.length) return false;
+  for (let i = 0; i + needle.length <= haystack.length; i++) {
+    if (needle.every((w, j) => haystack[i + j] === w)) return true;
+  }
+  return false;
+}
 
 // The feat types of a document (`system.type.value`) that are what a feature or a trait is, and so say nothing against it.
 const OWNED_FEAT_TYPES = { feature: ["class", "subclass"], species: ["race"] };
@@ -132,6 +143,9 @@ export const docTypesOf = (entry) => {
   return entry.kind === "species" && entry.owner ? row.traitDocTypes : row.docTypes;
 };
 
+// The document types an entry's item can be: the kind's, and a subclass document for a feature that names its subclass.
+export const fittingDocTypes = (entry) => [...docTypesOf(entry), ...(namesItsSubclass(entry) ? ["subclass"] : [])];
+
 // Same name: the exact slug wins; otherwise the candidates equal on the base name with the same variant marker.
 // A subclass document is also known by its identifier.
 const namesOf = (c) => (c.type === "subclass" && c.identifier ? [c.name, c.identifier] : [c.name]);
@@ -143,6 +157,23 @@ function sameName(entry, candidates) {
     const n = matchName(c.name);
     return n.base === wanted.base && n.variant === wanted.variant;
   });
+}
+
+// The words of a name in sorted order: "Poison, Basic" and "Basic Poison" have the same ones (commas do not count).
+const sortedWords = (name) => matchName(name).full.split("-").sort().join("-");
+
+// When no candidate has the same name: the ones of the same base name with another variant marker ("variant"), and the
+// ones whose name has the same words in another order ("name-order"). A candidate whose owner disagrees is not offered.
+function similarNames(entry, candidates) {
+  const wanted = matchName(entry.name);
+  const words = sortedWords(entry.name);
+  const variant = candidates.filter((c) => {
+    const n = matchName(c.name);
+    return n.base === wanted.base && n.variant !== wanted.variant;
+  });
+  const order = candidates.filter((c) => !variant.includes(c)
+    && namesOf(c).some((n) => matchName(n).full !== wanted.full && sortedWords(n) === words));
+  return { variant: ofOwner(entry, variant).list, order: ofOwner(entry, order).list };
 }
 
 // Candidates that are one item saved under several ids (the same mechanics fingerprint, which leaves out the container, the
@@ -174,16 +205,36 @@ export function differencesOf(entry, item) {
 // With a reference, the identity fields of the kind decide (level and school of a spell, rarity of an item); other differences
 // come back with the match. An edition-unknown candidate (rules undefined) never forces ambiguity by itself: it is used only
 // when no candidate states the entry's edition, and then mechanics decide when a reference exists.
+// A name of another variant or in another order is looked at last, only when nothing has the same name: the one candidate
+// whose words are the same in another order is matched (`differences: ["name-order"]`, the same words cannot name another
+// item); a candidate of another variant, or several, are ambiguous for a person to settle. The items embedded in a monster are
+// matched by the same name only.
 export function matchOrigin(entry, candidates) {
   const found = matchAmong(entry, candidates, docTypesOf(entry));
+  if (found.match !== "absent") return found;
   // Only when no feature document is there: the subclass document of the same name.
-  if (found.match === "absent" && namesItsSubclass(entry)) return matchAmong(entry, candidates, ["subclass"]);
-  return found;
+  if (namesItsSubclass(entry)) {
+    const subclass = matchAmong(entry, candidates, ["subclass"]);
+    if (subclass.match !== "absent") return subclass;
+  }
+  if (entry.kind === "monster") return found;
+  return matchAmong(entry, candidates, docTypesOf(entry), { loose: true });
 }
 
-function matchAmong(entry, candidates, types) {
+function matchAmong(entry, candidates, types, { loose = false } = {}) {
   const typed = distinct(candidates).filter((c) => types.includes(c.type));
-  const named = sameName(entry, typed);
+  if (!loose) return matchNamed(entry, sameName(entry, typed));
+  const { variant, order } = similarNames(entry, typed);
+  if (!variant.length && !order.length) return { match: "absent" };
+  if (variant.length || order.length > 1) {
+    const differences = [...(variant.length ? ["variant"] : []), ...(order.length ? ["name-order"] : [])];
+    return { match: "ambiguous", candidates: [...variant, ...order], differences };
+  }
+  const outcome = matchNamed(entry, order);
+  return outcome.match === "absent" ? outcome : { ...outcome, differences: ["name-order", ...(outcome.differences ?? [])] };
+}
+
+function matchNamed(entry, named) {
   const { list: same, disagreed } = ofOwner(entry, named);
   // Same name, but every document states another owner: not a match, and not nothing either.
   if (disagreed) return { match: "ambiguous", candidates: named, differences: ["owner"] };

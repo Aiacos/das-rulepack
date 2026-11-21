@@ -72,10 +72,13 @@ export function keepSettled(existing, items, dumps, kind) {
 /**
  * The other official packages that hold the official item's document id: `[{ package, docId, sameIds, missing? }]`.
  * `sameIds` compares the sets of activity and effect ids; when they differ, `missing` lists the ids of the item that the
- * reprint does not have. `index` is the `reprints` of the dumps: Map of document id to [{ package, activities, effects }].
+ * reprint does not have. `index` is the `reprints` of the dumps: Map of document id to [{ package, type, activities, effects }].
+ * Only a document of one of `types` (the record kind's document types) is a reprint: another document that shares the id is
+ * something else.
  */
-export function reprintsOf(item, index, previous) {
-  const found = index?.get(item.docId) ?? [];
+export function reprintsOf(item, index, previous, types) {
+  if (!Array.isArray(types)) throw new Error("reprintsOf needs the document types of the record's kind");
+  const found = (index?.get(item.docId) ?? []).filter((r) => types.includes(r.type));
   const mine = { activities: [...item.activities].sort(), effects: [...item.effects].sort() };
   const reprints = found.map((r) => {
     const same = sameList(mine.activities, [...r.activities].sort()) && sameList(mine.effects, [...r.effects].sort());

@@ -1,6 +1,6 @@
 // Settling a match by hand: a person picks the document of an ambiguous item (or says there is none), or excludes a reprint
-// from the ids gate. Nothing here touches verdict, rule or evidence.
-import { differencesOf, docTypesOf, namesItsSubclass } from "./match.mjs";
+// from the ids gate. Nothing here touches verdict or rule; of the evidence, only the gate evidence of a changed item goes.
+import { differencesOf, fittingDocTypes } from "./match.mjs";
 import { itemOf, bindSources, canonicalIdentifier, reprintsOf } from "./settle.mjs";
 import { BY, MAX_WHY, ONE_LINE, clip } from "./triage.mjs";
 
@@ -23,9 +23,17 @@ function checkOrigin(origin) {
 }
 
 // What the record's derived fields become once its items changed: the identifier (unless a rule is registered under it),
-// and the sources the items bind.
-function refresh(record, items) {
+// and the sources the items bind. Gate evidence is dropped when the `origin` item is no longer the same document with the
+// same data (`before` is the item as it was): the gates checked another item. (stateOf would not count it anyway.)
+function refresh(record, items, origin, before) {
   const next = { ...record, items: items.sort((a, b) => ORIGIN_ORDER.indexOf(a.origin) - ORIGIN_ORDER.indexOf(b.origin)) };
+  const after = next.items.find((i) => i.origin === origin && i.match === "matched");
+  const same = (a, b) => a?.match === "matched" && b?.match === "matched" && a.docId === b.docId
+    && a.data?.sha256 === b.data?.sha256;
+  if (record.evidence?.gates && !same(before, after)) {
+    const { gates, ...evidence } = record.evidence;
+    next.evidence = evidence;
+  }
   if (!record.rule) next.identifier = canonicalIdentifier(next.items, record.name);
   const sources = bindSources(next.items, next.identifier);
   if (Object.keys(sources).length) next.sources = sources;
@@ -61,7 +69,8 @@ export function resolveItem(record, options) {
     if (current.match !== "ambiguous" && !force) throw new ResolveError(`the ${origin} item is ${state}, not ambiguous (--force)`);
     const was = current.match === "matched" ? { was: { docId: current.docId, sha256: current.data?.sha256 } } : {};
     const candidates = (current.candidates ?? []).map((c) => c.docId).sort();
-    return refresh({ ...record, resolutions: [...resolutions, { origin, absent: true, ...stamp, candidates, ...was }] }, others);
+    const settled = { ...record, resolutions: [...resolutions, { origin, absent: true, ...stamp, candidates, ...was }] };
+    return refresh(settled, others, origin, current);
   }
 
   if (current?.match !== "ambiguous" && !force) {
@@ -73,18 +82,18 @@ export function resolveItem(record, options) {
   }
   const doc = pool.find((c) => c.docId === docId);
   if (!doc) throw new ResolveError(`${clip(docId)} is not in the ${origin} dumps`);
-  const fits = [...docTypesOf(record), ...(namesItsSubclass(record) ? ["subclass"] : [])];
+  const fits = fittingDocTypes(record);
   if (!listed && !fits.includes(doc.type)) {
     throw new ResolveError(`${clip(docId)} is a ${doc.type} document; a ${record.kind} is one of ${fits.join(", ")}`);
   }
   const subject = { edition: record.edition, rarity: record.rarity, reference };
   const item = { ...itemOf(origin, { match: "matched", item: doc, differences: differencesOf(subject, doc) }), resolved: stamp };
   if (origin === "official" && record.kind !== "monster") {
-    const { reprints: found, excluded } = reprintsOf(item, reprints, current);
+    const { reprints: found, excluded } = reprintsOf(item, reprints, current, fits);
     if (found.length) item.reprints = found;
     if (excluded.length) item.reprintsExcluded = excluded;
   }
-  const next = refresh({ ...record, resolutions }, [...others, item]);
+  const next = refresh({ ...record, resolutions }, [...others, item], origin, current);
   if (!next.resolutions.length) delete next.resolutions;
   return next;
 }

@@ -37,8 +37,8 @@ describe("reprints", () => {
   it("records, per other official package holding the same docId, whether the activity and effect ids are the same", () => {
     const { records } = run({
       official: [summary("official", OFF)],
-      reprints: index({ package: "pkg-b", activities: [ACT], effects: [EFF] },
-        { package: "pkg-a", activities: [ACT, ACT2], effects: [EFF] })
+      reprints: index({ package: "pkg-b", type: "equipment", activities: [ACT], effects: [EFF] },
+        { package: "pkg-a", type: "equipment", activities: [ACT, ACT2], effects: [EFF] })
     });
     expect(officialOf(records[0]).reprints).toEqual([
       { package: "pkg-a", docId: OFF, sameIds: false, missing: [] },
@@ -48,7 +48,8 @@ describe("reprints", () => {
   });
   it("names the ids of the item that the reprint lacks", () => {
     const { records } = run({
-      official: [summary("official", OFF)], reprints: index({ package: "pkg-a", activities: [ACT2], effects: [] })
+      official: [summary("official", OFF)],
+      reprints: index({ package: "pkg-a", type: "equipment", activities: [ACT2], effects: [] })
     });
     expect(officialOf(records[0]).reprints).toEqual([{ package: "pkg-a", docId: OFF, sameIds: false, missing: [ACT, EFF].sort() }]);
   });
@@ -60,7 +61,9 @@ describe("reprints", () => {
     expect(records[0].items.find((i) => i.origin === "ddb-importer").reprints).toBeUndefined();
   });
   it("keeps reprintsExcluded of an existing item while the package is still a reprint", () => {
-    const dumps = { official: [summary("official", OFF)], reprints: index({ package: "pkg-a", activities: [], effects: [] }) };
+    const dumps = {
+      official: [summary("official", OFF)], reprints: index({ package: "pkg-a", type: "equipment", activities: [], effects: [] })
+    };
     const first = run(dumps).records;
     first[0].items[0].reprintsExcluded = [
       { package: "pkg-a", because: "the reprint is a draft" }, { package: "gone", because: "x" }
@@ -78,7 +81,7 @@ describe("reprints", () => {
         writeFileSync(join(dir, "pkg-a.actors.json"), JSON.stringify([doc("Ac11Ac11Ac11Ac11", {}, [])]));
         const found = reprintIndex(dir, ["pkg-a.items.json", "pkg-a.actors.json"]);
         expect([...found.keys()]).toEqual([OFF]);
-        expect(found.get(OFF)).toEqual([{ package: "pkg-a", activities: [ACT], effects: [EFF] }]);
+        expect(found.get(OFF)).toEqual([{ package: "pkg-a", type: "equipment", activities: [ACT], effects: [EFF] }]);
       } finally { rmSync(dir, { recursive: true, force: true }); }
     });
   });

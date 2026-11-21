@@ -12,13 +12,32 @@ import { matchName } from "./match.mjs";
 export const SECTIONS = Object.freeze(["trait", "action", "bonus", "reaction", "legendary", "mythic"]);
 
 const RECHARGE_TAG = /\{@recharge[^}]*\}/gi;
-// A parenthesised qualifier that says how a feature is paid for or limited: (Costs 2 Actions), (3/Day), (Recharge 5-6),
-// (Recharges after a Short or Long Rest), (At Will). Any other group ("(Beast)") belongs to the name.
-const QUALIFIER = /\s*\((?:costs?\b|recharges?\b|at will\b|[^()]*\d\s*\/\s*(?:day|rest|turn|short|long))[^()]*\)/gi;
+// The qualifier the first keys were derived with: a parenthesised group that starts with a cost, a recharge or "at will", or
+// that holds a count per day, rest, turn, short or long rest. Kept as it was for the keys only (keyFeatureName).
+const KEY_QUALIFIER = /\s*\((?:costs?\b|recharges?\b|at will\b|[^()]*\d\s*\/\s*(?:day|rest|turn|short|long))[^()]*\)/gi;
+// A trailing parenthesised group that says anywhere in it how a feature is paid for or limited: (Costs 2 Actions), (2/Day),
+// (6/Year), (Recharge 5–6), (Celestial Only; Recharges after a Long Rest), (At Will), (3 Uses). Any other group ("(Beast Form
+// Only)") belongs to the name.
+const LIMIT = /\b(?:costs?|recharges?|at will|uses?|per (?:day|turn|round|rest))\b|\d\s*\/\s*[a-z]/i;
+const TRAILING_GROUP = /\s*\(([^()]*)\)\s*$/;
 
-/** The name of a feature without the recharge markup and the cost or use qualifiers; those are in its text. */
+const clean = (name) => plainText(name).replace(/\s+/g, " ").trim();
+
+/**
+ * The name a feature's KEY is derived from: the rule the first registry records were written with, frozen so that no
+ * committed key changes (a key never changes). Use baseFeatureName for everything else.
+ */
+export function keyFeatureName(name) {
+  return clean(String(name ?? "").replace(RECHARGE_TAG, " ").replace(KEY_QUALIFIER, " "));
+}
+
+/** The name of a feature without the recharge markup and the cost, use or limit qualifiers; those are in its text. */
 export function baseFeatureName(name) {
-  return plainText(String(name ?? "").replace(RECHARGE_TAG, " ").replace(QUALIFIER, " ")).replace(/\s+/g, " ").trim();
+  let rest = keyFeatureName(name);
+  for (let group = rest.match(TRAILING_GROUP); group && LIMIT.test(group[1]); group = rest.match(TRAILING_GROUP)) {
+    rest = rest.slice(0, group.index).trim();
+  }
+  return rest || keyFeatureName(name);
 }
 
 // The strings a spellcasting block is made of: its header and footer, the spells it lists and its ability.
@@ -49,8 +68,9 @@ function ownFeatures(creature) {
 
 /**
  * The creatures of `bookCode` and their features: `{ features, creatures }`. `features` is `[{ name, kind: "monster", owner,
- * section, book, page, edition, srd, text, occurrence?, copyOf? }]`; `name` is the base name (no recharge or cost marker) and
- * `occurrence` (2, 3, ...) numbers a name repeated within one creature and section, in dataset order (inventory renumbers
+ * section, book, page, edition, srd, text, keyName?, occurrence?, copyOf? }]`; `name` is the base name (no recharge, cost or
+ * limit marker), `keyName` the name the key is derived from when it is not `name` (keyFeatureName), and
+ * `occurrence` (2, 3, ...) numbers a key name repeated within one creature and section, in dataset order (inventory renumbers
  * against the registry); `spellcastingBlock` marks a spellcasting block (listed
  * as a trait, whatever its item's activation); `creatureIndex` is the position of the creature in the book, which tells
  * same-named creatures apart. A `_copy` creature lists its own sections only (nothing is inherited) and carries `copyOf` =
@@ -76,14 +96,15 @@ export function readMonsters(datasetDir, bookCode, { year } = {}) {
     // A name that slugs to nothing is still listed: inventory counts it under `skipped` instead of keying it.
     for (const f of ownFeatures(creature)) {
       const name = baseFeatureName(f.name);
-      const id = `${f.section}/${slug(name)}`;
+      const keyName = keyFeatureName(f.name);
+      const id = `${f.section}/${slug(keyName)}`;
       const occurrence = (counts.get(id) ?? 0) + 1;
       counts.set(id, occurrence);
       n += 1;
       features.push({
         name, kind: "monster", owner: creature.name, section: f.section, book: bookCode, page: creature.page, edition,
         srd: Boolean(creature.srd52 || creature.srd), text: f.text, creatureIndex,
-        ...(f.spellcastingBlock ? { spellcastingBlock: true } : {}),
+        ...(keyName !== name ? { keyName } : {}), ...(f.spellcastingBlock ? { spellcastingBlock: true } : {}),
         ...(occurrence > 1 ? { occurrence } : {}), ...(copyOf ? { copyOf } : {}),
       });
     }

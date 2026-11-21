@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { gateUnique, runGates } from "../../tools/pipeline/gates.mjs";
 import { matchOrigin } from "../../tools/pipeline/match.mjs";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
-import { autoTriage } from "../../tools/pipeline/triage.mjs";
+import { autoTriage, triageContext } from "../../tools/pipeline/triage.mjs";
 import { validateRecord } from "../../tools/pipeline/registry.mjs";
 
 // Synthetic fixtures only: invented entries, invented ids.
@@ -172,11 +172,12 @@ describe("ruling F: a placeholder with no text and no item is none, by rule", ()
   beforeEach(() => { textDir = mkdtempSync(join(tmpdir(), "rul-")); });
   afterEach(() => rmSync(textDir, { recursive: true, force: true }));
   const base = {
-    key: "tst:feature:a/3/subclass-feature", name: "Subclass Feature", identifier: "subclass-feature", text: null, verdict: null
+    key: "tst:feature:a/3/subclass-feature", name: "Subclass Feature", kind: "feature", book: "TST",
+    identifier: "subclass-feature", text: null, verdict: null
   };
-  const triage = (r) => autoTriage(r, { coreIdentifiers: new Set(["in-core"]), textDir });
+  const triage = (r) => autoTriage(r, { coreIdentifiers: new Set(["in-core"]), textDir, ...triageContext([r]) });
   it("sets none when the text is null and the official origin is absent, or listed absent", () => {
-    const why = "placeholder: no text and no item";
+    const why = "no text and no item in any origin";
     expect(triage({ ...base, items: [{ origin: "plutonium", match: "unchecked" }] })).toEqual({ verdict: "none", why, by: "rule" });
     expect(triage({ ...base, items: [] })?.verdict).toBe("none");
     expect(triage({ ...base, items: [{ origin: "official", match: "absent" }] })?.verdict).toBe("none");

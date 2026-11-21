@@ -6,7 +6,9 @@
 //   legacy    legacy.json as a Map of record key to the fingerprint of its rule at migration (registry.mjs loadLegacy)
 // A gate returns its failures as a string[]; the gates that can also say something that must not fail a run (a note) expose it
 // through the matching check function, and runGates collects both.
-import { canonical, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord } from "./registry.mjs";
+import {
+  canonical, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
+} from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
@@ -202,7 +204,7 @@ const uniqueFailuresByKey = (records) => {
 const trusted = (record) => {
   const gates = record.evidence?.gates;
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
-  return !!gates && gates.rule === ruleFingerprint(record.rule) && FULL_EVIDENCE.every((g) => passed.includes(g));
+  return evidenceIsCurrent(record, gates) && FULL_EVIDENCE.every((g) => passed.includes(g));
 };
 
 function ciEvidence(record, context) {
@@ -213,7 +215,8 @@ function ciEvidence(record, context) {
 
 /**
  * Runs the gates over every record. In `ci` mode only schema, validator and unique run, and the other gates are replaced by the
- * evidence a local run left on the record, which counts while its fingerprint is the rule's and it lists every gate as passed.
+ * evidence a local run left on the record, which counts while its fingerprint is the rule's, its item fingerprints are those of
+ * the record's matched items (`items`, per origin the rule names) and it lists every gate as passed.
  * `evidence.gates.passed` lists the gates that were checked and passed; a gate that only left a note is in `noted` instead.
  * @returns {{ failures: object, notes: object, updated: object[] }}
  */
@@ -256,6 +259,9 @@ export function runGates(records, context) {
     const passed = GATES.filter((g) => !noted.includes(g));
     const next = { core: context.core.version, rule: ruleFingerprint(record.rule), passed };
     if (noted.length) next.noted = noted;
+    // The items checked, so that evidence never outlives a change of item (resolve, inventory or any other editor).
+    const items = gatedItems(record);
+    if (Object.keys(items).length) next.items = items;
     const keep = gates && canonical({ ...gates, at: null }) === canonical({ ...next, at: null });
     return { ...record, evidence: { ...evidence, gates: keep ? gates : { at: new Date().toISOString(), ...next } } };
   });

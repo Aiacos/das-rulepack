@@ -60,6 +60,33 @@ export const legacyFingerprint = (record) =>
 
 const REQUIRED_GATES = ["schema", "validator", "ids", "fixes", "text"];
 
+/**
+ * The items the gates check, as `evidence.gates.items` records them: per origin the rule names, the data fingerprint of the
+ * record's matched item of that origin (an origin whose item has no data, a legacy record's, is left out).
+ */
+export function gatedItems(record) {
+  const out = {};
+  const origins = Array.isArray(record?.rule?.origins) ? record.rule.origins : [];
+  for (const origin of origins) {
+    const item = (record.items ?? [])
+      .find((i) => i?.origin === origin && i.match === "matched" && typeof i.data?.sha256 === "string");
+    if (item) out[origin] = item.data.sha256;
+  }
+  return out;
+}
+
+/**
+ * True when gate evidence stands for the record as it is: the fingerprint of its rule, and for every origin the rule names the
+ * same matched item (by data fingerprint) as when the gates ran. Moving an item to another document, or changing its data,
+ * makes the evidence stale whoever did it.
+ */
+export function evidenceIsCurrent(record, gates) {
+  if (!gates || gates.rule !== ruleFingerprint(record.rule)) return false;
+  const recorded = gates.items ?? {};
+  if (recorded === null || typeof recorded !== "object" || Array.isArray(recorded)) return false;
+  return canonical(recorded) === canonical(gatedItems(record));
+}
+
 // The state is always derived from the evidence, never read from a stored field. `core` is accepted for the callers that
 // know which engine they gate against; the gates carry their own fingerprint of the rule, which is what staleness hangs on.
 export function stateOf(record, { core } = {}) {
@@ -67,7 +94,7 @@ export function stateOf(record, { core } = {}) {
   if (!record.rule) return "triaged";
   const gates = record.evidence?.gates;
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
-  if (gates?.rule !== ruleFingerprint(record.rule) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
+  if (!evidenceIsCurrent(record, gates) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
   if (!record.evidence.reviewed?.agrees) return "gated";
   return isPlayed(record.evidence.played) ? "played" : "reviewed";
 }

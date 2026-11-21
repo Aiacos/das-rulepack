@@ -1,12 +1,12 @@
 // Command line of the rulebook pipeline: `npm run pipeline -- <subcommand> ...`. Later tasks add one function each to COMMANDS.
-import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
-import { basename, dirname, join, resolve, sep } from "node:path";
+import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
+import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BOOK_CODE, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
 import {
-  actorSummaries, docIndex, dumpsFor, grantIndex, isActorFile, itemSummary, officialFilesFor, readDump, reprintIndex
+  actorSummaries, docIndex, dumpsFor, findDocument, grantIndex, isActorFile, itemSummary, officialFilesFor, readDump, reprintIndex
 } from "./dumps.mjs";
 import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { poolOf } from "./settle.mjs";
@@ -14,7 +14,7 @@ import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
-import { autoTriage, clip, ingest, BY } from "./triage.mjs";
+import { autoTriage, clip, ingest, isReaderHandle, setByRule, triageContext, BY } from "./triage.mjs";
 import { cutBatches, DEFAULT_BATCH_SIZE, highestBatches } from "./batch.mjs";
 import { structureOf } from "./structure.mjs";
 
@@ -232,40 +232,73 @@ function loadBookOrFail(code) {
   return found;
 }
 
-async function triageCommand([book, ...rest]) {
-  if (!book || rest.length) throw new UsageError("Usage: triage <BOOK>");
+// `triage <BOOK>` applies the rules to the records without a verdict; with `--redo-rule` it also re-evaluates the records whose
+// verdict the rules set (never one set by ingest, never a record that has a rule), clearing what the rules no longer give.
+async function triageCommand(args) {
+  const redo = args.includes("--redo-rule");
+  const [book, ...rest] = args.filter((a) => a !== "--redo-rule");
+  if (!book || rest.length) throw new UsageError("Usage: triage <BOOK> [--redo-rule]");
   const coreDir = need("DAS_CORE");
   const textDir = need("RULEPACK_TEXT");
   const found = loadBookOrFail(book);
   const { identifiers } = await loadCore(coreDir);
+  const context = { coreIdentifiers: identifiers, textDir, ...triageContext(loadRegistry(REGISTRY).flatMap((b) => b.records)) };
   const at = new Date().toISOString();
   const counts = {};
+  let cleared = 0;
   const records = found.records.map((r) => {
-    const t = autoTriage(r, { coreIdentifiers: identifiers, textDir });
-    if (!t) return r;
-    counts[t.verdict] = (counts[t.verdict] ?? 0) + 1;
-    const { textChangedAt, ...rest } = r;
-    return { ...rest, verdict: t.verdict, why: t.why, evidence: { ...r.evidence, triaged: { by: t.by, at } } };
+    const open = !r.verdict || (redo && !r.rule && setByRule(r));
+    if (!open) return r;
+    const t = autoTriage({ ...r, verdict: null }, context);
+    const { hint, textChangedAt, ...next } = r;
+    if (t?.hint) next.hint = t.hint;
+    if (t?.verdict) {
+      counts[t.verdict] = (counts[t.verdict] ?? 0) + 1;
+      // A verdict the rules give again, unchanged, keeps its date.
+      if (r.verdict === t.verdict && r.why === t.why) return next;
+      return { ...next, verdict: t.verdict, why: t.why, evidence: { ...r.evidence, triaged: { by: t.by, at } } };
+    }
+    if (!r.verdict) return { ...next, ...(textChangedAt === undefined ? {} : { textChangedAt }) };
+    cleared += 1;
+    const { why, ...unsettled } = next;
+    const { triaged, ...evidence } = r.evidence ?? {};
+    return { ...unsettled, verdict: null, evidence };
   });
   saveBook(REGISTRY, { book: found.book, note: found.note, records });
   for (const [verdict, n] of Object.entries(counts)) console.log(`${verdict}: ${n}`);
+  if (redo) console.log(`cleared: ${cleared}`);
   console.log(`left: ${records.filter((r) => !r.verdict).length}`);
 }
 
-// The real path of `p`, also when it does not exist yet: the nearest existing ancestor is resolved (symlinks included).
+// The real path of `p`, also when it does not exist yet: each existing part is resolved (symlinks included) before the next
+// one is applied, so a ".." goes up from where a symlink really leads; what does not exist yet is appended as written.
 function realPathOf(p) {
-  let current = resolve(p);
-  const rest = [];
-  while (!existsSync(current)) {
-    rest.unshift(basename(current));
-    current = dirname(current);
+  const absolute = isAbsolute(p) ? p : `${process.cwd()}${sep}${p}`;
+  const parts = absolute.split(sep).filter((part) => part && part !== ".");
+  let current = realpathSync(sep);
+  let i = 0;
+  for (; i < parts.length; i++) {
+    if (parts[i] === "..") { current = dirname(current); continue; }
+    const next = join(current, parts[i]);
+    if (!existsSync(next)) break;
+    current = realpathSync(next);
   }
-  return join(realpathSync(current), ...rest);
+  return resolve(current, ...parts.slice(i));
 }
 const isInside = (path, dir) => path === dir || path.startsWith(dir.endsWith(sep) ? dir : dir + sep);
+const hasDotDot = (p) => String(p).split(/[\\/]/).includes("..");
+
+// A folder argument must be a folder or not exist yet: an existing file is a usage error, never overwritten or written into.
+function checkFolderArg(flag, dir) {
+  if (existsSync(dir) && !statSync(dir).isDirectory()) throw new UsageError(`${flag} ${dir} is a file, not a folder`);
+}
 
 // The structure folder holds data derived from premium items: never inside the repository, the registry or the batch folder.
+// A path with a ".." segment is refused outright, for the structure folder and the batch folder it is compared with.
 function checkStructureDir(dir, out) {
+  for (const [flag, path] of [["--structure", dir], ["--out", out]]) {
+    if (hasDotDot(path)) throw new UsageError(`${flag} ${path} has a ".." segment: give the folder without one`);
+  }
   const real = realPathOf(dir);
   for (const [what, guarded] of [["the repository", ROOT], ["the registry folder", REGISTRY], ["the batch folder", out]]) {
     if (isInside(real, realPathOf(guarded))) throw new UsageError(`--structure ${dir} is inside ${what}: choose a private folder`);
@@ -274,14 +307,16 @@ function checkStructureDir(dir, out) {
 }
 
 // Per batch entry and matched origin, the structure of the item's document (null when the dumps do not hold it).
-// A monster feature's document is the item embedded in the actor (`<actor id>.<item id>`).
+// A document is the one with the item's docId and, when the item records it, its data fingerprint: never another document
+// that shares the id (a journal page, another printing). A monster feature's document is the item embedded in the actor
+// (`<actor id>.<item id>`).
 function structuresOf(batch, records, dumpsDir) {
   const byKey = new Map(records.map((r) => [r.key, r]));
   const indexes = new Map();
+  const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
   const docs = (book, origin, kind) => {
     const id = `${book}/${origin}/${kind === "monster"}`;
     if (!indexes.has(id)) {
-      const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
       const files = origin === "official" ? officialFilesFor(dumpsDir, packages, book)
         : origin === "ddb-importer" ? dumpsFor(dumpsDir, "ddb-importer") : [];
       indexes.set(id, docIndex(dumpsDir, files.filter((f) => isActorFile(f) === (kind === "monster"))));
@@ -293,12 +328,21 @@ function structuresOf(batch, records, dumpsDir) {
     const r = byKey.get(e.key);
     const perOrigin = {};
     for (const item of r.items.filter((i) => i.match === "matched")) {
-      const doc = docs(r.book, item.origin, r.kind).get(item.docId);
+      const doc = findDocument(docs(r.book, item.origin, r.kind), item.docId, item.data?.sha256);
       perOrigin[item.origin] = doc ? structureOf(doc) : null;
     }
     if (Object.keys(perOrigin).length) entries[e.key] = perOrigin;
   }
   return { batch: batch.id, entries };
+}
+
+// The keys registry/queue.json holds: results waiting for a person.
+function queuedKeys(dir) {
+  const file = join(dir, "queue.json");
+  if (!existsSync(file)) return new Set();
+  const queue = readJson(file, "queue");
+  if (!Array.isArray(queue)) throw new UsageError(`${file}: must be an array`);
+  return new Set(queue.map((q) => q?.key).filter((k) => typeof k === "string"));
 }
 
 function batchCommand([stage, book, ...rest]) {
@@ -316,22 +360,25 @@ function batchCommand([stage, book, ...rest]) {
     throw new UsageError(`--kind "${clip(opts.kind)}" is unknown: ${INVENTORY_KINDS.join(", ")}`);
   }
   const found = loadBookOrFail(book);
+  checkFolderArg("--out", opts.out);
   const dumpsDir = opts.structure === undefined ? null : need("RULEPACK_DUMPS");
   if (dumpsDir !== null) {
+    checkFolderArg("--structure", opts.structure);
     checkStructureDir(opts.structure, opts.out);
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   }
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out)) : {};
-  const batches = cutBatches(found.records, { size, kind: opts.kind, after });
+  const batches = cutBatches(found.records, { size, kind: opts.kind, after, queued: queuedKeys(REGISTRY) });
+  // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
+  const structures = dumpsDir === null ? [] : batches.map((b) => structuresOf(b, found.records, dumpsDir));
   mkdirSync(opts.out, { recursive: true });
   if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
-  for (const b of batches) {
+  batches.forEach((b, i) => {
     writeFileSync(join(opts.out, `${b.id}.json`), `${JSON.stringify(b, null, 2)}\n`);
     if (dumpsDir !== null) {
-      const file = join(opts.structure, `${b.id}.structure.json`);
-      writeFileSync(file, `${JSON.stringify(structuresOf(b, found.records, dumpsDir), null, 2)}\n`);
+      writeFileSync(join(opts.structure, `${b.id}.structure.json`), `${JSON.stringify(structures[i], null, 2)}\n`);
     }
-  }
+  });
   const withStructure = dumpsDir === null ? "" : `, structure files to ${opts.structure}`;
   console.log(`${batches.length} batches written to ${opts.out}${withStructure}`);
 }
@@ -369,7 +416,7 @@ async function ingestCommand(args) {
   if ("overwrite" in input) throw new UsageError(`${file}: overwrite is not a results field: pass --overwrite to ingest`);
   const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
   if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
-  if (!BY.test(input.by)) throw new UsageError(`${file}: by must match ${BY}`);
+  if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
   const out = ingest(books.flatMap((b) => b.records), input.results, { textDir, by: input.by, overwrite, entryKeys });

@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { autoTriage, ingest, QUEUE_THRESHOLD } from "../../tools/pipeline/triage.mjs";
+import { autoTriage, ingest, triageContext, QUEUE_THRESHOLD } from "../../tools/pipeline/triage.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
@@ -45,28 +45,30 @@ describe("textChangedAt", () => {
 });
 
 describe("autoTriage", () => {
+  // A record triaged alone: its identifier is used by no other record of its kind.
+  const tri = (r, extra = {}) => autoTriage(r, { coreIdentifiers: core, textDir, ...triageContext([r]), ...extra });
   it("returns core when the engine has an entry, whatever the text", () => {
-    expect(autoTriage(record("In Core"), { coreIdentifiers: core, textDir }))
-      .toEqual({ verdict: "core", why: "DAS · Core has an entry", by: "rule" });
-    expect(autoTriage(noText("In Core"), { coreIdentifiers: core, textDir })?.verdict).toBe("core");
+    expect(tri(record("In Core")))
+      .toEqual({ verdict: "core", why: "DAS · Core has an entry under this identifier", by: "rule" });
+    expect(tri(noText("In Core"))?.verdict).toBe("core");
   });
 
   it("leaves SRD content that Core lacks to a reader", () => {
-    expect(autoTriage(record("Open Spell", { srd: true }), { coreIdentifiers: core, textDir })).toBeNull();
-    expect(autoTriage(record("Open Spell"), { coreIdentifiers: core, textDir, srd: true })).toBeNull();
+    expect(tri(record("Open Spell", { srd: true }))).toBeNull();
+    expect(tri(record("Open Spell"), { srd: true })).toBeNull();
   });
 
   it("returns unverifiable when there is no text, or it is not in the cache", () => {
-    expect(autoTriage(noText("Dim Glow"), { coreIdentifiers: core, textDir }))
+    expect(tri(noText("Dim Glow")))
       .toMatchObject({ verdict: "unverifiable", by: "rule" });
     const lost = record("Dim Glow", { text: { sha256: "a".repeat(64), source: "5etools", chars: 1 } });
-    expect(autoTriage(lost, { coreIdentifiers: core, textDir })?.verdict).toBe("unverifiable");
-    expect(autoTriage(noText("Open Spell"), { coreIdentifiers: core, textDir, srd: true })?.verdict).toBe("unverifiable");
+    expect(tri(lost)?.verdict).toBe("unverifiable");
+    expect(tri(noText("Open Spell"), { srd: true })?.verdict).toBe("unverifiable");
   });
 
   it("returns null for anything else and never overwrites a verdict", () => {
-    expect(autoTriage(record("Dim Glow"), { coreIdentifiers: core, textDir })).toBeNull();
-    expect(autoTriage(record("In Core", { verdict: "none" }), { coreIdentifiers: core, textDir })).toBeNull();
+    expect(tri(record("Dim Glow"))).toBeNull();
+    expect(tri(record("In Core", { verdict: "none" }))).toBeNull();
   });
 });
 

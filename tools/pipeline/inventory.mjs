@@ -1,9 +1,9 @@
 // Inventory: one registry record per rulebook entry, with the same item as found in each source ("origin").
 import { keyOf, slug, canonical, groupBy } from "./registry.mjs";
 import { cacheText, textFingerprint } from "./text.mjs";
-import { identityOf, matchOrigin } from "./match.mjs";
+import { fittingDocTypes, identityOf, matchOrigin } from "./match.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
-import { actorCandidates } from "./monsters.mjs";
+import { actorCandidates, baseFeatureName } from "./monsters.mjs";
 import { itemOf, keepSettled, reprintsOf, bindSources, canonicalIdentifier } from "./settle.mjs";
 
 export { itemOf };
@@ -17,9 +17,16 @@ const identityIn = (book, f) => {
   const id = identityOf(f);
   return f.kind === "monster" ? `${book}|${id}` : id;
 };
-const identityOfRecord = (r) => identityIn(r.book, {
-  name: r.name, kind: r.kind, edition: r.edition, owner: r.owner, section: r.section, level: r.level, occurrence: r.occurrence
-});
+// A monster feature's identity is read from its key (the part after "<book>:monster:"), which never changes: its `name` follows
+// the current naming rule, its key the rule it was first written with (monsters.mjs keyFeatureName).
+const identityOfRecord = (r) => (r.kind === "monster" && typeof r.key === "string"
+  ? `${r.book}|${r.key.slice(`${String(r.book).toLowerCase()}:monster:`.length)}|monster|${r.edition}`
+  : identityIn(r.book, {
+    name: r.name, kind: r.kind, edition: r.edition, owner: r.owner, section: r.section, level: r.level, occurrence: r.occurrence
+  }));
+// The name a monster feature is keyed by (`keyName` when the dataset reader gives one), and the slug a record was keyed by.
+const keyNameOf = (entry) => entry.keyName ?? entry.name;
+const keyedSlugOf = (r) => String(r.key).split("/").pop().replace(/#\d+$/, "");
 
 // What the dataset entry contributes to the record besides the common fields: owner (features, species traits), level
 // (features only: a spell's level is not the record's), rarity (items), the section and repeat number of a monster feature,
@@ -37,6 +44,19 @@ const extrasOf = (entry, kind) => ({
 // of the name differ in their embedded items, a feature found in any of them is ambiguous between those items.
 // Only the embedded items that agree with the feature's section can be it: one that states its activation (action, bonus,
 // reaction, legendary, mythic, or trait for a passive one) must state the feature's section; one that states none is neutral.
+// An embedded item is compared by its name as a feature name reads (monsters.mjs baseFeatureName: "Glow (6/Year)" is "Glow"),
+// since the feature's own name has its qualifiers dropped; the outcome carries the item summaries as they are.
+const asFeatureNamed = (candidates) => candidates.map((c) => ({ ...c, name: baseFeatureName(c.name), summary: c }));
+function unwrapped(outcome) {
+  const original = (c) => c.summary ?? c;
+  return {
+    ...outcome,
+    ...(outcome.item ? { item: original(outcome.item) } : {}),
+    ...(outcome.candidates ? { candidates: outcome.candidates.map(original) } : {})
+  };
+}
+const matchFeature = (subject, candidates) => unwrapped(matchOrigin(subject, asFeatureNamed(candidates)));
+
 function monsterOfficial(entry, actors) {
   const subject = { name: entry.name, kind: "monster", edition: entry.edition };
   const { found, ambiguous } = actors;
@@ -45,14 +65,14 @@ function monsterOfficial(entry, actors) {
   const agrees = (c) => entry.spellcastingBlock || !c.activations?.length || c.activations.includes(entry.section);
   const candidates = actors.candidates.filter(agrees);
   if (!ambiguous) {
-    const outcome = matchOrigin(subject, candidates);
+    const outcome = matchFeature(subject, candidates);
     if (outcome.match !== "absent") return outcome;
     // Absent only because the section disagrees with the activation of the one same-name item: kept for the claims check.
-    const only = matchOrigin(subject, actors.candidates);
+    const only = matchFeature(subject, actors.candidates);
     return only.match === "matched" ? { match: "absent", sectionOnly: only } : outcome;
   }
   const perActor = [...groupBy(candidates, (c) => String(c.docId).split(".")[0]).values()];
-  const outcomes = perActor.map((items) => matchOrigin(subject, items)).filter((o) => o.match !== "absent");
+  const outcomes = perActor.map((items) => matchFeature(subject, items)).filter((o) => o.match !== "absent");
   if (!outcomes.length) return { match: "absent" };
   return {
     match: "ambiguous", candidates: outcomes.flatMap((o) => o.candidates ?? [o.item]), differences: ["actor"]
@@ -121,14 +141,15 @@ const numberOf = (r) => r.occurrence ?? 1;
 // a lone record and no fingerprint match is a plain text edit: it keeps that record. Every other feature takes the lowest
 // number no existing record uses; the records left unmatched stay as they are (listed as vanished).
 function numberOccurrences(dataset, records, book) {
-  const groups = groupBy(dataset.map((e, i) => [e, i]), ([e]) => `${e.creatureIndex ?? e.owner}|${e.section}|${slug(e.name)}`);
+  const groupOf = ([e]) => `${e.creatureIndex ?? e.owner}|${e.section}|${slug(keyNameOf(e))}`;
+  const groups = groupBy(dataset.map((e, i) => [e, i]), groupOf);
   const numbers = dataset.map((e) => e.occurrence ?? 1);
   for (const members of groups.values()) {
     const [first] = members[0];
-    if (!slug(first.name) || !slug(first.owner)) continue;
+    if (!slug(keyNameOf(first)) || !slug(first.owner)) continue;
     const existing = records
       .filter((r) => r.book === book && r.kind === "monster" && r.section === first.section
-        && slug(r.owner) === slug(first.owner) && slug(r.name) === slug(first.name))
+        && slug(r.owner) === slug(first.owner) && keyedSlugOf(r) === slug(keyNameOf(first)))
       .sort((a, b) => numberOf(a) - numberOf(b));
     const free = [...existing];
     const assigned = new Map();
@@ -200,9 +221,10 @@ export function inventory({
     // nothing) is counted, never keyed under a guess.
     if (kind === "feature" && !entry.owner) { report.skipped += 1; continue; }
     if (monsters && !slug(entry.owner)) continue;
-    if (monsters && !slug(entry.name)) { report.skipped += 1; continue; }
+    if (monsters && !slug(keyNameOf(entry))) { report.skipped += 1; continue; }
+    const keyName = monsters ? keyNameOf(entry) : entry.name;
     const key = keyOf({
-      book, kind, name: entry.name, owner: entry.owner, section: entry.section, level: entry.level, occurrence: entry.occurrence
+      book, kind, name: keyName, owner: entry.owner, section: entry.section, level: entry.level, occurrence: entry.occurrence
     });
     if (seen.has(key)) {
       const found = report.collisions.find((c) => c.key === key);
@@ -216,7 +238,7 @@ export function inventory({
     }
     seen.set(key, entry);
     const identity = identityIn(book, {
-      name: entry.name, kind, edition: entry.edition, owner: entry.owner, section: entry.section, level: entry.level,
+      name: keyName, kind, edition: entry.edition, owner: entry.owner, section: entry.section, level: entry.level,
       occurrence: entry.occurrence
     });
     const existing = byIdentity.get(identity);
@@ -243,7 +265,9 @@ export function inventory({
     }
     const official = items.find((i) => i.origin === "official" && i.match === "matched");
     if (official && !monsters) {
-      const { reprints, excluded } = reprintsOf(official, dumps.reprints, existing?.items.find((i) => i.origin === "official"));
+      const previousItem = existing?.items.find((i) => i.origin === "official");
+      const types = fittingDocTypes({ kind, name: entry.name, owner: entry.owner });
+      const { reprints, excluded } = reprintsOf(official, dumps.reprints, previousItem, types);
       if (reprints.length) official.reprints = reprints;
       if (excluded.length) official.reprintsExcluded = excluded;
     }
@@ -271,6 +295,8 @@ export function inventory({
           fresh.page = existing.page;
         }
       }
+      // A monster feature's name follows the current naming rule (its key does not); a record that has a rule keeps its name.
+      if (monsters && !existing.rule) fresh.name = entry.name;
       Object.assign(existing, fresh);
       if (textChanged) report.textChanged.push(existing.key);
       // A verdict stands on a text that is no longer the one it was given on: dated until a new verdict is written.

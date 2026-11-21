@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { cutBatches, highestBatches } from "../../tools/pipeline/batch.mjs";
 import { saveBook } from "../../tools/pipeline/registry.mjs";
+import { itemSummary } from "../../tools/pipeline/dumps.mjs";
 
 // Synthetic fixtures only: invented entries.
 const sha = (n) => String(n).padStart(64, "0");
@@ -170,7 +171,9 @@ describe("pipeline CLI: batch --structure", () => {
       rec(1, {
         book: "XPHB", key: "xphb:spell:s01",
         items: [
-          item("Aa00Bb11Cc22Dd33"), item("Zz00Bb11Cc22Dd33", { origin: "ddb-importer" }),
+          // The document is found by id and data fingerprint, as inventory recorded it.
+          item("Aa00Bb11Cc22Dd33", { data: { sha256: itemSummary(spell, "official").data } }),
+          item("Zz00Bb11Cc22Dd33", { origin: "ddb-importer" }),
           item("-", { origin: "plutonium", match: "absent" })
         ]
       }),
@@ -179,7 +182,7 @@ describe("pipeline CLI: batch --structure", () => {
     saveBook(registry, { book: "XMM", records: [
       rec(3, {
         book: "XMM", key: "xmm:monster:invented-beast/action/claw", kind: "monster",
-        items: [item("Ac00Bb11Cc22Dd33.It00Bb11Cc22Dd33")]
+        items: [item("Ac00Bb11Cc22Dd33.It00Bb11Cc22Dd33", { data: { sha256: itemSummary(claw, "official").data } })]
       })
     ] });
   });

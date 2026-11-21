@@ -5,8 +5,9 @@ import { groupBy } from "./registry.mjs";
 export const DEFAULT_BATCH_SIZE = 40;
 
 const summary = ({ data, ...item }) => item;
-// What a reader needs besides the text: where the entry sits (owner, level, section), its rarity, page and SRD flag.
-const READER_FIELDS = ["owner", "level", "section", "rarity", "page", "srd"];
+// What a reader needs besides the text: where the entry sits (owner, level, section), its rarity, page and SRD flag, and the
+// hint of the rule-based triage (`core-generic`: the engine has a generic entry of that identifier; the text still decides).
+const READER_FIELDS = ["owner", "level", "section", "rarity", "page", "srd", "hint"];
 const entryOf = (r) => ({
   key: r.key, name: r.name, kind: r.kind, edition: r.edition, textSha: r.text.sha256,
   ...Object.fromEntries(READER_FIELDS.filter((f) => r[f] !== undefined && r[f] !== null).map((f) => [f, r[f]])),
@@ -23,10 +24,11 @@ export function highestBatches(files) {
   return highest;
 }
 
-// Records without a verdict (and with text), per book, grouped by kind (only `kind` when given), cut at `size`.
+// Records without a verdict (and with text), per book, grouped by kind (only `kind` when given), cut at `size`. The keys of
+// `queued` (registry/queue.json: results waiting for a person) are left out: they have no verdict but are not to be read again.
 // Ids: <book>-triage-<NNN>; `after` ({ book: highest number in use }) makes the numbering continue, so an id is never reused.
-export function cutBatches(records, { size = DEFAULT_BATCH_SIZE, kind, after = {} } = {}) {
-  const open = records.filter((r) => !r.verdict && r.text && (!kind || r.kind === kind));
+export function cutBatches(records, { size = DEFAULT_BATCH_SIZE, kind, after = {}, queued = new Set() } = {}) {
+  const open = records.filter((r) => !r.verdict && r.text && (!kind || r.kind === kind) && !queued.has(r.key));
   const batches = [];
   const counts = new Map(Object.entries(after));
   for (const [book, ofBook] of groupBy(open, (r) => r.book.toLowerCase())) {

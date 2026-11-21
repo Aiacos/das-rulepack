@@ -10,6 +10,8 @@ export const KINDS = Object.freeze(["spell", "feat", "option", "feature", "speci
 export const EDITIONS = Object.freeze(["2014", "2024"]);
 // The verdicts under which a record carries a rule that the pack registers.
 export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
+// What the rule-based triage may tell a reader about a record (triage.mjs): `core-generic`.
+export const HINTS = Object.freeze(["core-generic"]);
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -96,7 +98,7 @@ const isGateList = (v) => Array.isArray(v) && v.every((g) => GATE_NAMES.includes
 function checkEvidence(evidence, errors) {
   const { gates, reviewed, played } = evidence;
   if ("gates" in evidence) {
-    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, passed, noted? }");
+    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, passed, noted?, items? }");
     else {
       for (const f of ["at", "core"]) if (!isString(gates[f])) errors.push(`evidence.gates.${f}: must be a non-empty string`);
       if (typeof gates.rule !== "string" || !HEX64.test(gates.rule)) errors.push("evidence.gates.rule: must be 64 hex characters");
@@ -104,6 +106,11 @@ function checkEvidence(evidence, errors) {
         errors.push(`evidence.gates.passed: must be an array of gate names (${GATE_NAMES.join(", ")})`);
       }
       if ("noted" in gates && !isGateList(gates.noted)) errors.push("evidence.gates.noted: must be an array of gate names");
+      if ("items" in gates) {
+        const fingerprint = ([origin, sha]) => ORIGINS.includes(origin) && typeof sha === "string" && HEX64.test(sha);
+        const ok = isObject(gates.items) && Object.entries(gates.items).every(fingerprint);
+        if (!ok) errors.push("evidence.gates.items: must be an object of origin to the 64-hex data fingerprint of its item");
+      }
     }
   }
   if ("reviewed" in evidence) {
@@ -193,5 +200,6 @@ export function validateRecord(record) {
   }
   if ("note" in record && typeof record.note !== "string") errors.push("note: must be a string");
   for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
+  if ("hint" in record && !HINTS.includes(record.hint)) errors.push(`hint: must be one of ${HINTS.join(", ")}`);
   return errors;
 }

@@ -32,8 +32,9 @@ describe("matchOrigin: names", () => {
     const plus = cand("Glass Blade +1", { type: "weapon" });
     const e = (name) => ({ name, kind: "item", edition: "2024" });
     expect(matchOrigin(e("+1 Glass Blade"), [plus]).item).toBe(plus);
-    expect(matchOrigin(e("Glass Blade +2"), [plus])).toEqual({ match: "absent" });
-    expect(matchOrigin(e("Glass Blade"), [plus])).toEqual({ match: "absent" });
+    // Another variant is never matched: it is offered to a person as ambiguous.
+    expect(matchOrigin(e("Glass Blade +2"), [plus])).toEqual({ match: "ambiguous", candidates: [plus], differences: ["variant"] });
+    expect(matchOrigin(e("Glass Blade"), [plus])).toEqual({ match: "ambiguous", candidates: [plus], differences: ["variant"] });
   });
   it("is ambiguous when several candidates carry the variant, and never takes the first", () => {
     const a = cand("Glass Blade +1", { type: "weapon", docId: "a", data: "ha" });

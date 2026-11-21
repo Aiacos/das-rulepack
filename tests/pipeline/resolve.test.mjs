@@ -184,7 +184,7 @@ describe("inventory keeps what was settled", () => {
 
 describe("excludeReprint", () => {
   const withReprint = () => {
-    const reprints = new Map([[A, [{ package: "pkg-a", activities: [], effects: [] }]]]);
+    const reprints = new Map([[A, [{ package: "pkg-a", type: "equipment", activities: [], effects: [] }]]]);
     return run({ official: [doc(A)], reprints }).records[0];
   };
   it("lists the package under reprintsExcluded with the reason", () => {
