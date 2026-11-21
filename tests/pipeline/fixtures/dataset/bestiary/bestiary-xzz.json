@@ -1,0 +1,39 @@
+{
+  "monster": [
+    {
+      "name": "Glimmer Hound", "source": "XZZ", "page": 12, "srd52": true,
+      "trait": [
+        { "name": "Keen Nose", "entries": ["Advantage on {@skill Perception} checks that rely on scent."] },
+        { "name": "Pack Tactics (3/Day)", "entries": ["Advantage when an ally is near."] }
+      ],
+      "spellcasting": [
+        { "name": "Spellcasting", "type": "spellcasting", "headerEntries": ["The hound casts invented glimmers."], "will": ["{@spell glimmer bolt}"] }
+      ],
+      "action": [
+        { "name": "Multiattack", "entries": ["Two Claw attacks."] },
+        { "name": "Claw", "entries": ["Melee, 1d6 slashing."] },
+        { "name": "Claw", "entries": ["Melee, 1d4 radiant."] },
+        { "name": "Radiant Burst {@recharge 5}", "entries": ["Everyone near is dazzled."] }
+      ],
+      "bonus": [{ "name": "Dash", "entries": ["Moves twice."] }],
+      "reaction": [{ "name": "Yelp", "entries": ["Warns allies."] }],
+      "legendary": [{ "name": "Gleam (Costs 2 Actions)", "entries": ["Shines brightly."] }]
+    },
+    {
+      "name": "Glimmer Hound Alpha", "source": "XZZ", "page": 13, "_copy": { "name": "Glimmer Hound", "source": "XZZ" },
+      "action": [{ "name": "Howl", "entries": ["Calls the pack."] }]
+    },
+    {
+      "name": "Glimmer Pup", "source": "XZZ", "page": 14, "_copy": { "name": "Glimmer Hound", "source": "XZZ" }
+    },
+    {
+      "name": "Ghost Cart", "source": "XZZ", "page": 20,
+      "trait": [{ "name": "Rattle", "entries": ["Clatters."] }],
+      "mythic": [{ "name": "Rolls Again", "entries": ["Returns at full strength."] }]
+    },
+    {
+      "name": "Elsewhere Beast", "source": "OTH", "page": 1,
+      "trait": [{ "name": "Wander", "entries": ["Roams."] }]
+    }
+  ]
+}

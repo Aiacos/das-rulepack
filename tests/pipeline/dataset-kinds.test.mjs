@@ -153,8 +153,7 @@ describe("readEntries: spell, missing files, unsupported kinds", () => {
     expect(read("feat", "NOPE")).toEqual([]);
     expect(read("item", "NOPE")).toEqual([]);
   });
-  it("says that monster is not built yet, and refuses sense and unknown kinds", () => {
-    expect(() => read("monster")).toThrow(/not built yet/);
+  it("refuses sense and unknown kinds", () => {
     expect(() => read("sense")).toThrow(/sense/);
     expect(() => read("unicorn")).toThrow(/unicorn/);
   });

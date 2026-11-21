@@ -21,9 +21,9 @@ describe("KINDS", () => {
 });
 
 describe("KIND_TABLE", () => {
-  it("has a row for every inventoriable kind except monster, and none for sense", () => {
-    expect(Object.keys(KIND_TABLE).sort()).toEqual(["background", "feat", "feature", "item", "option", "species", "spell"]);
-    expect(KIND_TABLE).not.toHaveProperty("monster");
+  it("has a row for every inventoriable kind, monster included, and none for sense", () => {
+    expect(Object.keys(KIND_TABLE).sort())
+      .toEqual(["background", "feat", "feature", "item", "monster", "option", "species", "spell"]);
     expect(KIND_TABLE).not.toHaveProperty("sense");
   });
   it("names the Foundry document types and the identity mechanics of each kind", () => {

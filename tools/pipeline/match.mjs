@@ -6,8 +6,8 @@ const sortedUnique = (list) => [...new Set(list)].sort();
 
 // What makes two entries of one book the same entry: the part of the key after the book, the kind and the edition.
 // A feature of another class, a trait of another species or an item of another kind with the same name is another entry.
-export function identityOf({ name, kind, edition, owner, level }) {
-  const key = keyOf({ book: "_", kind, name, owner, level });
+export function identityOf({ name, kind, edition, owner, section, level, occurrence }) {
+  const key = keyOf({ book: "_", kind, name, owner, section, level, occurrence });
   return `${key.slice(`_:${slug(kind)}:`.length)}|${kind}|${edition}`;
 }
 

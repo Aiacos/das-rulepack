@@ -80,3 +80,17 @@ export function officialFilesFor(dumpsDir, packages, book) {
   const ids = packages.filter((p) => p.book && p.book.toUpperCase() === book.toUpperCase()).map((p) => p.id);
   return dumpsFor(dumpsDir, "official").filter((f) => ids.some((id) => f.startsWith(`${id}.`)));
 }
+
+// A pack of actors: the pack name (the file name after the package id) contains "actors".
+export const isActorFile = (file) => file.slice(0, -".json".length).split(".").slice(1).join(".").includes("actors");
+
+/**
+ * The actors of an actor dump, summarised for matching their embedded items: `[{ id, name, items }]`, each item an
+ * `itemSummary` whose `docId` is `<actor id>.<item id>`. A document that embeds no items is left out.
+ */
+export function actorSummaries(docs, origin) {
+  return docs.filter((d) => Array.isArray(d.items)).map((d) => ({
+    id: d._id, name: d.name,
+    items: d.items.map((i) => ({ ...itemSummary(i, origin), docId: `${d._id}.${i._id}` }))
+  }));
+}

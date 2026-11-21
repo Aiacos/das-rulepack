@@ -28,7 +28,7 @@ const run = (over = {}) => inventory({
 
 describe("inventory of the other kinds", () => {
   it("refuses a kind it cannot read", () => {
-    expect(() => run({ kind: "monster" })).toThrow(/monster/);
+    expect(() => run({ kind: "unicorn" })).toThrow(/unicorn/);
     expect(() => run({ kind: "sense" })).toThrow(/sense/);
   });
 
@@ -152,12 +152,13 @@ describe("pipeline CLI: inventory of every kind", () => {
     const r = cli("inventory", "xzz", "all");
     expect(r.status, r.stderr).toBe(0);
     const out = JSON.parse(r.stdout);
-    expect(Object.keys(out)).toEqual(["spell", "feat", "option", "feature", "species", "background", "item"]);
+    expect(Object.keys(out)).toEqual(["spell", "feat", "option", "feature", "species", "background", "item", "monster"]);
+    expect(out.monster).toMatchObject({ creatures: 4, copies: 2, added: 13 });
     expect(out.spell.added).toBe(2);
     expect(out.feat.added).toBe(2);
     expect(out.item.noPage).toBeDefined();
     const kinds = new Set(records("XZZ").map((x) => x.kind));
-    expect([...kinds].sort()).toEqual(["background", "feat", "feature", "item", "option", "species", "spell"]);
+    expect([...kinds].sort()).toEqual(["background", "feat", "feature", "item", "monster", "option", "species", "spell"]);
     expect(records("XZZ").find((x) => x.name === "Glimmerkin Twin")).toMatchObject({ text: null, copyOf: "Glimmerkin" });
     write("data/optionalfeatures.json", { optionalfeature: [] });
     const again = JSON.parse(cli("inventory", "XZZ", "all").stdout);

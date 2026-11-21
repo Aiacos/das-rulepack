@@ -1,18 +1,26 @@
 // Inventory: one registry record per rulebook entry, with the same item as found in each source ("origin").
-import { keyOf, slug, canonical } from "./registry.mjs";
+import { keyOf, slug, canonical, groupBy } from "./registry.mjs";
 import { cacheText } from "./text.mjs";
 import { identityOf, matchOrigin } from "./match.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
+import { actorCandidates } from "./monsters.mjs";
 
-// The kinds inventory can read, in the order `inventory <BOOK> all` runs them (monster is a later task).
-export const INVENTORY_KINDS = Object.freeze(["spell", "feat", "option", "feature", "species", "background", "item"]);
+// The kinds inventory can read, in the order `inventory <BOOK> all` runs them.
+export const INVENTORY_KINDS = Object.freeze(
+  ["spell", "feat", "option", "feature", "species", "background", "item", "monster"]
+);
 const identityOfRecord = (r) =>
-  identityOf({ name: r.name, kind: r.kind, edition: r.edition, owner: r.owner, level: r.level });
+  identityOf({
+    name: r.name, kind: r.kind, edition: r.edition, owner: r.owner, section: r.section, level: r.level, occurrence: r.occurrence
+  });
 
 // What the dataset entry contributes to the record besides the common fields: owner (features, species traits), level
-// (features only: a spell's level is not the record's), rarity (items) and the name an entry was copied from.
+// (features only: a spell's level is not the record's), rarity (items), the section and repeat number of a monster feature,
+// and the name an entry was copied from.
 const extrasOf = (entry, kind) => ({
   ...(entry.owner ? { owner: entry.owner } : {}),
+  ...(kind === "monster" && entry.section ? { section: entry.section } : {}),
+  ...(kind === "monster" && entry.occurrence > 1 ? { occurrence: entry.occurrence } : {}),
   ...(kind === "feature" && entry.level != null ? { level: entry.level } : {}),
   ...(kind === "item" && entry.rarity ? { rarity: entry.rarity } : {}),
   ...(entry.copyOf ? { copyOf: entry.copyOf } : {}),
@@ -31,8 +39,27 @@ function itemOf(origin, outcome) {
   return { origin, match: "ambiguous", candidates, differences: outcome.differences };
 }
 
+// A monster feature is matched against the items embedded in the actor of its creature, nowhere else. When several actors
+// of the name differ in their embedded items, a feature found in any of them is ambiguous between those items.
+function monsterOfficial(entry, actors) {
+  const subject = { name: entry.name, kind: "monster", edition: entry.edition };
+  const { found, ambiguous, candidates } = actors;
+  if (!found) return { match: "absent" };
+  if (!ambiguous) return matchOrigin(subject, candidates);
+  const perActor = [...groupBy(candidates, (c) => String(c.docId).split(".")[0]).values()];
+  const outcomes = perActor.map((items) => matchOrigin(subject, items)).filter((o) => o.match !== "absent");
+  if (!outcomes.length) return { match: "absent" };
+  return {
+    match: "ambiguous", candidates: outcomes.flatMap((o) => o.candidates ?? [o.item]), differences: ["actor"]
+  };
+}
+
 // Official first with no reference; ddb-importer is then compared against the official item when there is one.
-function itemsFor(entry, kind, dumps) {
+function itemsFor(entry, kind, dumps, actors) {
+  if (kind === "monster") {
+    const official = monsterOfficial(entry, actors);
+    return [...(official.match !== "absent" ? [itemOf("official", official)] : []), { origin: "plutonium", match: "unchecked" }];
+  }
   const subject = {
     name: entry.name, kind, edition: entry.edition, owner: entry.owner, level: entry.level, rarity: entry.rarity
   };
@@ -58,7 +85,7 @@ const canonicalIdentifier = (items, name) =>
 // entries of `book` added or refreshed. A reprint of an entry known from another book only extends its `alsoIn`.
 // A record is found by its identity; if its key is not the one the entry would get now, that is a bug and it throws.
 // Two entries of one book with one key are a collision: the first gets the record, both are reported, the second gets none.
-export function inventory({ book, kind, dataset, dumps, textDir, previous }) {
+export function inventory({ book, kind, dataset, creatures, dumps, textDir, previous }) {
   if (!INVENTORY_KINDS.includes(kind) || !KIND_TABLE[kind]) {
     throw new Error(`Kind ${JSON.stringify(kind)} cannot be inventoried (${INVENTORY_KINDS.join(", ")})`);
   }
@@ -68,12 +95,28 @@ export function inventory({ book, kind, dataset, dumps, textDir, previous }) {
     added: 0, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [], noPage: [],
     collisions: []
   };
+  // Monsters also report the creatures read (with the ones that have no feature of their own), the `_copy` ones, and the
+  // creatures with no actor of their name in the official dump.
+  const actorsOf = new Map();
+  const actorsFor = (creature) => {
+    if (!actorsOf.has(creature)) actorsOf.set(creature, actorCandidates(creature, dumps.actors));
+    return actorsOf.get(creature);
+  };
+  if (kind === "monster") {
+    const list = creatures ?? [...new Set(dataset.map((e) => e.owner))].map((name) => ({ name }));
+    Object.assign(report, {
+      creatures: list.length, copies: list.filter((c) => c.copyOf).length,
+      noActor: list.filter((c) => !actorsFor(c.name).found).length
+    });
+  }
   const seen = new Map();
 
   for (const entry of dataset) {
     // A feature whose owner cannot be named has no key of its own: it is counted, never keyed under a guess.
     if (kind === "feature" && !entry.owner) { report.skipped += 1; continue; }
-    const key = keyOf({ book, kind, name: entry.name, owner: entry.owner, level: entry.level });
+    const key = keyOf({
+      book, kind, name: entry.name, owner: entry.owner, section: entry.section, level: entry.level, occurrence: entry.occurrence
+    });
     if (seen.has(key)) {
       const found = report.collisions.find((c) => c.key === key);
       if (found) found.entries.push({ name: entry.name, page: entry.page ?? null });
@@ -85,7 +128,10 @@ export function inventory({ book, kind, dataset, dumps, textDir, previous }) {
       continue;
     }
     seen.set(key, entry);
-    const identity = identityOf({ name: entry.name, kind, edition: entry.edition, owner: entry.owner, level: entry.level });
+    const identity = identityOf({
+      name: entry.name, kind, edition: entry.edition, owner: entry.owner, section: entry.section, level: entry.level,
+      occurrence: entry.occurrence
+    });
     const existing = byIdentity.get(identity);
 
     if (existing && existing.book !== book) {
@@ -100,7 +146,7 @@ export function inventory({ book, kind, dataset, dumps, textDir, previous }) {
 
     const sha256 = entry.text ? cacheText(textDir, entry.text) : null;
     const text = sha256 ? { sha256, source: "5etools", chars: entry.text.length } : null;
-    const items = itemsFor(entry, kind, dumps);
+    const items = itemsFor(entry, kind, dumps, kind === "monster" ? actorsFor(entry.owner) : undefined);
     const fresh = {
       identifier: canonicalIdentifier(items, entry.name), page: entry.page ?? null, srd: Boolean(entry.srd), text, items
     };

@@ -4,7 +4,8 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BOOK_CODE, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
-import { dumpsFor, grantIndex, itemSummary, officialFilesFor, readDump } from "./dumps.mjs";
+import { readMonsters } from "./monsters.mjs";
+import { actorSummaries, dumpsFor, grantIndex, isActorFile, itemSummary, officialFilesFor, readDump } from "./dumps.mjs";
 import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
@@ -43,17 +44,20 @@ function loadRegistry(dir) {
 }
 
 // The official candidates of a book are the documents of the book's own package only (docs/foundry-modules.json).
-function loadDumps(dir, book) {
+// The actor packs hold creatures, not items: they feed only the monsters (`actors`), and only when those are read.
+function loadDumps(dir, book, { actors = false } = {}) {
   // The class, subclass and race documents of a package say which feature documents they grant.
-  const read = (origin, files) => files.flatMap((f) => {
+  const read = (origin, files) => files.filter((f) => !isActorFile(f)).flatMap((f) => {
     const docs = readDump(join(dir, f));
     const grants = grantIndex(docs);
     return docs.map((d) => itemSummary(d, origin, grants));
   });
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+  const official = officialFilesFor(dir, packages, book);
   return {
-    official: read("official", officialFilesFor(dir, packages, book)),
-    "ddb-importer": read("ddb-importer", dumpsFor(dir, "ddb-importer"))
+    official: read("official", official),
+    "ddb-importer": read("ddb-importer", dumpsFor(dir, "ddb-importer")),
+    ...(actors ? { actors: official.filter(isActorFile).flatMap((f) => actorSummaries(readDump(join(dir, f)), "official")) } : {})
   };
 }
 
@@ -66,7 +70,6 @@ function yearOf(code) {
 // Every inventoriable kind of `kind` ("all" or one of them), in the order of INVENTORY_KINDS.
 function kindsOf(kind) {
   if (kind === "all") return [...INVENTORY_KINDS];
-  if (kind === "monster") throw new UsageError('Kind "monster" is not supported yet');
   if (!INVENTORY_KINDS.includes(kind)) {
     throw new UsageError(`Kind "${clip(kind)}" is unknown: ${INVENTORY_KINDS.join(", ")} or all`);
   }
@@ -87,19 +90,25 @@ function inventoryCommand(args) {
     if (!existsSync(dir)) throw new UsageError(`${name} points at a folder that does not exist: ${dir}`);
   }
   const year = yearOf(book);
-  const datasets = Object.fromEntries(kinds.map((k) => [k, readEntries(datasetDir, book, k, { year })]));
+  // The monsters come with the list of their creatures, which the report counts.
+  const bestiary = kinds.includes("monster") ? readMonsters(datasetDir, book, { year }) : null;
+  const readKind = (k) => (k === "monster" ? bestiary.features : readEntries(datasetDir, book, k, { year }));
+  const datasets = Object.fromEntries(kinds.map((k) => [k, readKind(k)]));
   if (kinds.every((k) => !datasets[k].length)) {
     throw new UsageError(`The dataset has no ${kind === "all" ? "" : `${kind} `}entries for book ${book}`);
   }
 
   const books = loadRegistry(REGISTRY);
   const previous = books.flatMap((b) => b.records);
-  const dumps = loadDumps(dumpsDir, book);
+  const dumps = loadDumps(dumpsDir, book, { actors: kinds.includes("monster") });
   let records = previous;
   const reports = {};
   for (const k of kinds) {
     if (!datasets[k].length) { reports[k] = { entries: 0 }; continue; }
-    const out = inventory({ book, kind: k, dataset: datasets[k], dumps, textDir, previous: records });
+    const out = inventory({
+      book, kind: k, dataset: datasets[k], creatures: k === "monster" ? bestiary.creatures : undefined, dumps, textDir,
+      previous: records
+    });
     records = out.records;
     reports[k] = out.report;
   }

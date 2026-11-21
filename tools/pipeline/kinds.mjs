@@ -1,10 +1,12 @@
 // What each kind of rulebook entry is made of in the 5etools dataset: where it lives, how to list it, which Foundry
 // document types it can become and which mechanics make two entries of one name different things.
-// `monster` has no row yet (a later task adds it); `sense` is a legacy kind and is never inventoried.
+// `sense` is a legacy kind and is never inventoried.
 import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const lower = (code) => code.toLowerCase();
+// The Foundry document types an actor's embedded items can have.
+const EMBEDDED_ITEM_TYPES = ["feat", "weapon", "equipment", "spell", "consumable", "loot", "tool", "container"];
 const arrayOf = (json, key) => (Array.isArray(json?.[key]) ? json[key] : []);
 
 // The class files of the dataset: every `class/class-*.json` (a book's features sit in the file of their class).
@@ -66,5 +68,13 @@ export const KIND_TABLE = Object.freeze({
     list: (json) => [...arrayOf(json, "item"), ...arrayOf(json, "baseitem")],
     docTypes: ["weapon", "equipment", "consumable", "tool", "loot", "container"],
     identity: ["rarity"],
+  },
+  // A creature of the bestiary; each of its stat-block features is an entry (monsters.mjs) matched to an item embedded in
+  // the actor of the same name.
+  monster: {
+    files: (book) => [`bestiary/bestiary-${lower(book)}.json`],
+    list: (json) => arrayOf(json, "monster"),
+    docTypes: EMBEDDED_ITEM_TYPES,
+    identity: [],
   },
 });

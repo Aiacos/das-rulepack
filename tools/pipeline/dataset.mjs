@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { plainText } from "./text.mjs";
 import { editionOf } from "./edition.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
+import { readMonsterFeatures } from "./monsters.mjs";
 
 const isNode = (n) => n !== null && typeof n === "object";
 // A node that only points at another record (refClassFeature, refSubclassFeature, refOptionalfeature, refFeat): the
@@ -87,8 +88,8 @@ function readOne(kind, e, book, edition) {
  * `year` is the book's year from docs/books.json, when the caller knows it.
  */
 export function readEntries(datasetDir, bookCode, kind, { year } = {}) {
-  if (kind === "monster") throw new Error("Kind \"monster\": its reader is not built yet");
   if (!Object.hasOwn(KIND_TABLE, kind)) throw new Error(`Kind ${JSON.stringify(kind)} cannot be read from the dataset`);
+  if (kind === "monster") return readMonsterFeatures(datasetDir, bookCode, { year });
   const raw = rawEntriesOf(datasetDir, bookCode, kind);
   const edition = editionOf(bookCode, { year, flagged: raw.some(isFlagged) });
   return raw.flatMap((e) => readOne(kind, e, bookCode, edition));

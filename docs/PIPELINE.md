@@ -208,10 +208,9 @@ Only inventory, triage (rule-based, batch files, ingest), gates and generation e
 - **Play**: scenario generation and runs on a test world.
 - **Drift**: recomputing fingerprints and reopening the records whose inputs changed.
 
-Inventory reads the kinds `spell`, `feat`, `option`, `feature`, `species`, `background` and `item` (`all` runs them in that
-order and prints `{ kind: report }`; a kind with no dataset entries for the book is `{ entries: 0 }`, and only when every
-kind is empty does the command exit 2). `monster` is not built yet. Triage and the later stages run on whatever the registry
-holds.
+Inventory reads the kinds `spell`, `feat`, `option`, `feature`, `species`, `background`, `item` and `monster` (`all` runs
+them in that order and prints `{ kind: report }`; a kind with no dataset entries for the book is `{ entries: 0 }`, and only
+when every kind is empty does the command exit 2). Triage and the later stages run on whatever the registry holds.
 
 Notes on what inventory does with each kind:
 
@@ -227,4 +226,15 @@ Notes on what inventory does with each kind:
   subclass or race document whose advancement grants them, then by `system.requirements` and the feat subtype; what cannot be
   told apart is `ambiguous`, never the first. An item whose rarity differs (case-insensitive; a missing one is unknown) is
   `ambiguous`.
+- A monster has no single rule: each stat-block feature (trait, action, bonus action, reaction, legendary or mythic action;
+  a spellcasting block is one trait named as the block) is a record, `kind: "monster"`, with `owner` = the creature and
+  `section`. Key: `<book>:monster:<creature>/<section>/<feature>`, a name repeated within one creature and section numbered
+  `#2`, `#3` in dataset order (the record carries `occurrence`). The name is the base name: the recharge markup and the
+  cost or use qualifiers ("(Costs 2 Actions)", "(3/Day)") are dropped, the text keeps them. A `_copy` creature lists only the
+  sections it defines itself (nothing is inherited; the base's features are records of the base creature), with
+  `copyOf` = "<base name>|<base source>". Two creatures of one name in a book collide like any other key.
+  The official candidates are the items embedded in the actors of the creature's name in the book package's `*actors*`
+  dumps (`docId` = `<actor id>.<item id>`); same-name actors with identical embedded item ids are one, differing ones make
+  the features found in them `ambiguous`; no actor of the name makes every feature `absent`. DDB Importer has no monster
+  dump. The report adds `creatures`, `copies` (`_copy` creatures) and `noActor` (creatures with no actor), all counts.
 - A re-run keeps every key; a record that has a `rule` keeps its `identifier` (the official one stays on the official item).

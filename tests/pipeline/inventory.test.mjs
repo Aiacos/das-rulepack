@@ -182,13 +182,13 @@ describe("pipeline CLI", () => {
     expect(r.stderr).toMatch(/usage/i);
   });
 
-  it("exits 2 for an unknown kind and for monster, naming what is supported", () => {
+  it("exits 2 for an unknown kind, naming what is supported (monster included)", () => {
     const r = cli(["inventory", "TST", "sense"]);
     expect(r.status).toBe(2);
-    expect(r.stderr).toMatch(/spell, feat, option, feature, species, background, item or all/);
+    expect(r.stderr).toMatch(/spell, feat, option, feature, species, background, item, monster or all/);
     const m = cli(["inventory", "TST", "monster"]);
     expect(m.status).toBe(2);
-    expect(m.stderr).toMatch(/monster/);
+    expect(m.stderr).toContain("RULEPACK_DATASET");
   });
 
   it("exits 2 naming a missing environment variable", () => {

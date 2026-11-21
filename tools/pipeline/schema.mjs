@@ -5,7 +5,7 @@ export const ORIGINS = Object.freeze(["official", "ddb-importer", "plutonium"]);
 export const MATCHES = Object.freeze(["matched", "absent", "ambiguous", "unchecked"]);
 export const LEGACY_STATUSES = Object.freeze(["played", "validated", "pending"]);
 export const HANDLED_IN = Object.freeze(["table", "code"]);
-// Kinds of rulebook entry. `sense` exists only in legacy records and is never inventoried; `monster` has no reader yet.
+// Kinds of rulebook entry. `sense` exists only in legacy records and is never inventoried.
 export const KINDS = Object.freeze(["spell", "feat", "option", "feature", "species", "background", "item", "monster", "sense"]);
 export const EDITIONS = Object.freeze(["2014", "2024"]);
 // The verdicts under which a record carries a rule that the pack registers.
@@ -138,6 +138,9 @@ export function validateRecord(record) {
   if ("owner" in record && !isString(record.owner)) errors.push("owner: must be a non-empty string");
   if ("level" in record && !(Number.isInteger(record.level) && record.level >= 0)) {
     errors.push("level: must be a non-negative integer");
+  }
+  if ("occurrence" in record && !(Number.isInteger(record.occurrence) && record.occurrence >= 2)) {
+    errors.push("occurrence: must be an integer of 2 or more");
   }
   for (const f of ["rarity", "section", "copyOf"]) {
     if (f in record && !isString(record[f])) errors.push(`${f}: must be a non-empty string`);
