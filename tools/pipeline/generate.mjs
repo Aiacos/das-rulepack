@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync
 import { dirname, join } from "node:path";
 import { hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy, stateOf } from "./registry.mjs";
 import { editionOf } from "./edition.mjs";
+import { RULE_VERDICTS } from "./schema.mjs";
 
 export const NOT_BOOKS = ["legacy.json", "queue.json"];
 const GENERATED = /^\/\/ Generated (from registry\/|by npm run build:rules)/;
@@ -34,8 +35,6 @@ export function recordFromRule(rule, order, note, year) {
 }
 
 const STATUS_OF_STATE = { played: "played", reviewed: "validated", gated: "validated" };
-// Only these verdicts are rules the pack registers.
-const EMITTED_VERDICTS = ["entry", "code"];
 
 /**
  * The Rule a record registers, or null: while the record has not reached `gated`, when its verdict is not entry or code, and
@@ -43,7 +42,7 @@ const EMITTED_VERDICTS = ["entry", "code"];
  * record keeps its old status, or "played" once a complete play is recorded.
  */
 export function ruleFromRecord(record, { legacy } = {}) {
-  if (!record.rule || !EMITTED_VERDICTS.includes(record.verdict)) return null;
+  if (!record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
   let status;
   if (record.legacy === true) {
     if (!hasLegacyStanding(record, legacy)) return null;
@@ -141,7 +140,8 @@ export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.
 /**
  * Writes (or, with `check`, only compares) the generated files under `out`: books/<code>.mjs for every registry book that has an
  * emitted rule, and index.mjs. Generated files of books/ that no registry book accounts for are removed (reported when checking).
- * Throws, before writing anything, when a record says `legacy: true` without legacy standing (registry/legacy.json).
+ * Throws, before writing anything, when a record says `legacy: true` without legacy standing (registry/legacy.json), or has a
+ * rule under a verdict other than entry or code.
  * @returns {{ written: string[], differing: string[] }}  Paths relative to `out`.
  */
 export function generate({ registry, out, check = false }) {
@@ -154,6 +154,10 @@ export function generate({ registry, out, check = false }) {
     const code = f.slice(0, -5);
     const { book, note, records } = loadBook(registry, code);
     refused.push(...records.map((r) => legacyProblem(r, legacy)).filter(Boolean));
+    // A rule under another verdict would silently drop out of the pack.
+    for (const r of records) {
+      if (r.rule && !RULE_VERDICTS.includes(r.verdict)) refused.push(`${r.key}: has a rule but the verdict ${r.verdict}`);
+    }
     const source = bookModuleSource(book, records, note, { legacy });
     if (source) wanted.set(`books/${code}.mjs`, source);
   }

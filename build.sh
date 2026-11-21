@@ -63,8 +63,9 @@ echo ""
 
 # ─── Check the generated rule modules ────────────────────────────────
 
-# The modules under scripts/rules/ are generated from registry/: a stale or hand-edited one must not ship.
-if ! npm run -s build:rules -- --check; then
+# The modules under scripts/rules/ are generated from registry/: a stale or hand-edited one must not ship. The check runs
+# on this repository's registry/ and scripts/rules/ whatever the environment points at.
+if ! env -u RULEPACK_REGISTRY -u RULEPACK_RULES npm run -s build:rules -- --check; then
     echo -e "${RED}ERROR: scripts/rules/ differs from registry/ (run npm run build:rules)${NC}"
     exit 1
 fi

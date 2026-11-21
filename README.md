@@ -717,7 +717,7 @@ docs/
   PIPELINE.md              how to run the rulebook pipeline
 registry/
   <code>.json              one record per rulebook entry, rules included: the source of the book modules
-  legacy.json              the 24 rules that predate the pipeline, with the fingerprint of each rule as migrated
+  legacy.json              the 24 rules that predate the pipeline, with a fingerprint of each as migrated
 tools/books-progress.mjs   writes the generated blocks of this README and of docs/RULES.md (`npm run books`)
 tools/pipeline/            the rulebook pipeline: inventory, triage, gates, generation of the book modules
 tests/
@@ -735,8 +735,9 @@ by hand: CI and `./build.sh` refuse modules that differ from the registry. The p
 for the generated documents; add a new identifier to `tests/registration.test.mjs` and run `npx vitest run -u`. A new
 record of a book comes from the inventory (`npm run inventory -- <BOOK> spell`), which supports **spells only** for now:
 a new feature or sense rule cannot yet be added through the pipeline. The 24 rules that predate the pipeline are
-*legacy* (`registry/legacy.json`): editing one in place makes the gates fail and `build:rules` refuse, until it is
-redone through the pipeline (docs/PIPELINE.md, "Legacy rules"). A book of group A or B is laid out the same way; the
+*legacy* (`registry/legacy.json`): editing in place anything the module emits for one (its rule, identifier, name, book,
+page, kind, verdict, status or `alsoIn`) makes the gates fail and `build:rules` refuse, until it is redone through the
+pipeline (docs/PIPELINE.md, "Legacy rules"). A book of group A or B is laid out the same way; the
 group comes from `docs/foundry-modules.json` alone.
 
 **Rules handled in code** (Shadow Blade, the blade cantrips, Psychic Veil, Dreadful Strikes) keep their code where it was:

@@ -2,7 +2,8 @@
 // Nothing here reads rulebook text except to check that a reader did not quote it.
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { VERDICTS, slug } from "./registry.mjs";
+import { VERDICTS, slug, validateRecord } from "./registry.mjs";
+import { RULE_VERDICTS } from "./schema.mjs";
 import { hasText } from "./text.mjs";
 
 export const QUEUE_THRESHOLD = 0.7;
@@ -75,6 +76,9 @@ function problem(record, result, { overwrite, textOf, known, entryKeys }) {
     return `similar must be at most ${MAX_SIMILAR} record keys or kebab-case identifiers of at most 64 characters`;
   }
   if (record.verdict && !overwrite) return `the record already has a verdict (${record.verdict})`;
+  if (record.rule && !RULE_VERDICTS.includes(result.verdict)) {
+    return "record has a rule; its verdict can only be entry or code";
+  }
   const text = textOf(record);
   if (text === null) return result.verdict === "unverifiable" ? null : "no text, no verdict: only unverifiable is allowed";
   if (quotes(result.why, text)) return `why contains a quotation of ${MAX_QUOTE_WORDS + 1} or more consecutive words of the text`;
@@ -113,15 +117,23 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
       });
       continue;
     }
-    record.verdict = result.verdict;
-    record.why = result.why;
-    record.evidence = {
-      ...record.evidence,
-      triaged: {
-        by, at, confidence: result.confidence,
-        ...(result.keys ? { keys: result.keys } : {}), ...(result.similar ? { similar: result.similar } : {})
+    const next = {
+      ...record, verdict: result.verdict, why: result.why,
+      evidence: {
+        ...record.evidence,
+        triaged: {
+          by, at, confidence: result.confidence,
+          ...(result.keys ? { keys: result.keys } : {}), ...(result.similar ? { similar: result.similar } : {})
+        }
       }
     };
+    // Whatever else the record says (a drafted rule, say) must still hold under the new verdict, or nothing is applied.
+    const invalid = validateRecord(next);
+    if (invalid.length) {
+      rejected.push({ key: clip(result.key), reason: `the record would be invalid: ${invalid[0]}` });
+      continue;
+    }
+    Object.assign(record, next);
     applied.push(result.key);
   }
   return { records: out, applied, queued, rejected };

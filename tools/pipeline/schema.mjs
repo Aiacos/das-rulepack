@@ -6,6 +6,8 @@ export const MATCHES = Object.freeze(["matched", "absent", "ambiguous", "uncheck
 export const LEGACY_STATUSES = Object.freeze(["played", "validated", "pending"]);
 export const HANDLED_IN = Object.freeze(["table", "code"]);
 export const EDITIONS = Object.freeze(["2014", "2024"]);
+// The verdicts under which a record carries a rule that the pack registers.
+export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -101,8 +103,14 @@ export function validateRecord(record) {
   }
   if (!isObject(record.evidence)) errors.push("evidence: must be an object");
   else checkEvidence(record.evidence, errors);
-  // A verdict comes before any draft: `rule.entry` is required only once a rule is there.
-  if ("rule" in record) checkRule(record.rule, record.verdict, errors);
+  // A verdict comes before any draft: `rule.entry` is required only once a rule is there. A rule is registered only under
+  // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
+  if ("rule" in record) {
+    checkRule(record.rule, record.verdict, errors);
+    if (!RULE_VERDICTS.includes(record.verdict)) {
+      errors.push(`verdict: a record with a rule can only have the verdict entry or code, not ${JSON.stringify(record.verdict)}`);
+    }
+  }
   if ("legacy" in record && typeof record.legacy !== "boolean") errors.push("legacy: must be a boolean");
   if ("srd" in record && typeof record.srd !== "boolean") errors.push("srd: must be a boolean");
   if ("legacyStatus" in record && !LEGACY_STATUSES.includes(record.legacyStatus)) {

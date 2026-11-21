@@ -4,7 +4,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { loadBook, ruleFingerprint, saveBook } from "./registry.mjs";
+import { legacyFingerprint, loadBook, saveBook } from "./registry.mjs";
 import { recordFromRule } from "./generate.mjs";
 
 // Index of the `}` that closes the object opened at `open`, skipping string literals and comments.
@@ -74,9 +74,9 @@ async function main() {
     const notes = extractNotes(src, module.RULES.map((r) => r.identifier));
     const records = module.RULES.map((rule, i) => recordFromRule(rule, i, notes[rule.identifier], years.get(rule.book)));
     saveBook(registry, { book: module.BOOK, records });
-    for (const r of records) legacy[r.key] = ruleFingerprint(r.rule);
+    for (const r of records) legacy[r.key] = legacyFingerprint(r);
   }
-  // legacy.json: each migrated key with the fingerprint of its rule as migrated (the rule's legacy standing hangs on it).
+  // legacy.json: each migrated key with the legacyFingerprint of its record as migrated (its legacy standing hangs on it).
   const sorted = Object.fromEntries(Object.entries(legacy).sort(([a], [b]) => (a < b ? -1 : 1)));
   mkdirSync(registry, { recursive: true });
   writeFileSync(join(registry, "legacy.json"), `${JSON.stringify(sorted, null, 2)}\n`);

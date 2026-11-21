@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { ruleFingerprint, saveBook, stateOf } from "../../tools/pipeline/registry.mjs";
+import { legacyFingerprint, ruleFingerprint, saveBook, stateOf } from "../../tools/pipeline/registry.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { itemSummary } from "../../tools/pipeline/dumps.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
@@ -52,7 +52,7 @@ afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
 const ctx = (over = {}) => ({ core: stubCore, documents: {}, textDir: dir, ci: false, legacy: new Map(), ...over });
 // legacy.json for these records, each with the fingerprint of its rule as it is now.
-const allowed = (...records) => ({ legacy: new Map(records.map((r) => [r.key, ruleFingerprint(r.rule)])) });
+const allowed = (...records) => ({ legacy: new Map(records.map((r) => [r.key, legacyFingerprint(r)])) });
 const withText = (r) => ({
   ...r, text: { sha256: cacheText(dir, "synthetic text of glimmer bolt"), source: "5etools", chars: 30 }
 });
@@ -440,7 +440,7 @@ describe("runGates", () => {
       const legacy = withText(rec({ legacy: true, items: [] }));
       const listed = allowed(legacy);
       const edited = { ...legacy, rule: { ...legacy.rule, adds: "An edit after migration." } };
-      const message = `legacy: ${legacy.key} rule changed since migration`;
+      const message = `legacy: ${legacy.key} changed since migration`;
       for (const context of [ci(listed), ctx(listed)]) {
         const { failures } = runGates([edited], context);
         expect(failures[legacy.key].legacy).toEqual([message]);
@@ -448,6 +448,19 @@ describe("runGates", () => {
       expect(runGates([edited], ci(listed)).failures[legacy.key].gates).toHaveLength(1);
       expect(runGates([edited], ctx(listed)).failures[legacy.key].ids).toEqual(["ids: no matched item for ddb-importer"]);
       expect(runGates([legacy], ci(listed)).failures).toEqual({});
+    });
+
+    it("refuses a legacy record whose legacyStatus, identifier, page or name changed, not one that gains evidence", () => {
+      const legacy = withText(rec({ legacy: true, legacyStatus: "validated", items: [] }));
+      const listed = allowed(legacy);
+      for (const edit of [{ legacyStatus: "played" }, { identifier: "glimmer-lance" }, { page: 13 }, { name: "Glimmer Lance" }]) {
+        for (const context of [ci(listed), ctx(listed)]) {
+          const { failures } = runGates([{ ...legacy, ...edit }], context);
+          expect(failures[legacy.key]?.legacy, JSON.stringify(edit)).toEqual([`legacy: ${legacy.key} changed since migration`]);
+        }
+      }
+      const played = { at: "2026-11-21", core: "1.0.0", world: "w", scenario: "s" };
+      expect(runGates([{ ...legacy, evidence: { played } }], ci(listed)).failures).toEqual({});
     });
 
     it("does not trust evidence whose passed list lacks a gate that only left a note", () => {
@@ -571,7 +584,7 @@ describe("gates CLI", () => {
       expect(refused.stderr).toContain(`legacy: ${legacy.key} is not in legacy.json`);
       writeJson(join(registry(), "legacy.json"), [legacy.key]);
       expect(cli(["gates", "--ci"], env()).status).toBe(2);
-      writeJson(join(registry(), "legacy.json"), { [legacy.key]: ruleFingerprint(legacy.rule) });
+      writeJson(join(registry(), "legacy.json"), { [legacy.key]: legacyFingerprint(legacy) });
       const ok = cli(["gates", "--ci"], env());
       expect(ok.status, ok.stderr).toBe(0);
       expect(ok.stdout).toContain("no full evidence yet (legacy)");

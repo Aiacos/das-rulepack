@@ -5,14 +5,14 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { spawnSync } from "node:child_process";
 import { RULES } from "../../scripts/rules/index.mjs";
-import { validateRecord, ruleFingerprint, saveBook } from "../../tools/pipeline/registry.mjs";
+import { legacyFingerprint, validateRecord, ruleFingerprint, saveBook } from "../../tools/pipeline/registry.mjs";
 import {
   recordFromRule, ruleFromRecord, bookModuleSource, indexSource, generate
 } from "../../tools/pipeline/generate.mjs";
 import { extractNotes } from "../../tools/pipeline/migrate.mjs";
 
 // legacy.json for these records: each key with the fingerprint of its rule as it is now.
-const legacyOf = (records) => new Map(records.map((r) => [r.key, ruleFingerprint(r.rule)]));
+const legacyOf = (records) => new Map(records.map((r) => [r.key, legacyFingerprint(r)]));
 const PLAY = { at: "2026-11-21", core: "1.0.0", world: "test-world", scenario: "s-1" };
 
 // Synthetic rules only: invented spells.
@@ -88,11 +88,25 @@ describe("recordFromRule / ruleFromRecord", () => {
 
   it("emits only the verdicts entry and code", () => {
     const r = recordFromRule(rules()[0]);
-    const legacy = legacyOf([r]);
     for (const verdict of ["core", "data", "none", "engine", "unverifiable"]) {
-      expect(ruleFromRecord({ ...r, verdict }, { legacy }), verdict).toBeNull();
+      const other = { ...r, verdict };
+      expect(ruleFromRecord(other, { legacy: legacyOf([other]) }), verdict).toBeNull();
     }
-    expect(ruleFromRecord({ ...r, verdict: "code" }, { legacy })).not.toBeNull();
+    const code = { ...r, verdict: "code" };
+    expect(ruleFromRecord(code, { legacy: legacyOf([code]) })).not.toBeNull();
+  });
+
+  it("binds legacy standing to everything the module emits, not to the evidence", () => {
+    const r = recordFromRule(rules()[1], 0);
+    const legacy = legacyOf([r]);
+    const edits = [
+      { legacyStatus: "played" }, { identifier: "dusk-stride" }, { name: "Dusk Stride" }, { page: 99 }, { kind: "spell" },
+      { book: "ZZC" }, { verdict: "entry" }, { alsoIn: [] }, { rule: { ...r.rule, adds: "Edited." } }
+    ];
+    for (const edit of edits) {
+      expect(ruleFromRecord({ ...r, ...edit }, { legacy }), JSON.stringify(edit)).toBeNull();
+    }
+    expect(ruleFromRecord({ ...r, evidence: { played: PLAY } }, { legacy }).status).toBe("played");
   });
 });
 
@@ -187,7 +201,7 @@ describe("generate", () => {
     const [first, ...others] = records;
     const edited = { ...first, rule: { ...first.rule, adds: "Edited after migration." } };
     saveBook(registry, { book: "ZZB", records: [edited, ...others] });
-    expect(() => generate({ registry, out })).toThrow(`legacy: ${first.key} rule changed since migration`);
+    expect(() => generate({ registry, out })).toThrow(`legacy: ${first.key} changed since migration`);
     expect(readdirSync(join(out, "books"))).toEqual([]);
     const stray = { ...others[0], key: "zzb:spell:stray", identifier: "stray", name: "Stray" };
     saveBook(registry, { book: "ZZB", records: [first, ...others, stray] });
@@ -197,6 +211,14 @@ describe("generate", () => {
     });
     expect(cli.status).toBe(1);
     expect(cli.stderr).toContain(`legacy: ${stray.key} is not in legacy.json`);
+    // A rule under a verdict that is not emitted is named, not skipped (saveBook refuses it, so the file is written by hand).
+    const file = join(registry, "zzb.json");
+    const book = JSON.parse(readFileSync(file, "utf8"));
+    book.records = book.records.filter((x) => x.key !== stray.key);
+    book.records[0].verdict = "unverifiable";
+    writeFileSync(file, JSON.stringify(book));
+    const named = `${book.records[0].key}: has a rule but the verdict unverifiable`;
+    expect(() => generate({ registry, out, check: true })).toThrow(named);
   });
 });
 

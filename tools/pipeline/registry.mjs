@@ -35,6 +35,12 @@ export function canonical(value) {
 
 export const ruleFingerprint = (rule) => createHash("sha256").update(canonical(rule)).digest("hex");
 
+// What the generated module emits for a legacy rule, besides its evidence-derived parts: legacy standing hangs on all of it.
+const LEGACY_FIELDS = ["identifier", "name", "book", "page", "kind", "verdict", "legacyStatus", "alsoIn", "rule"];
+/** The fingerprint legacy.json stores for a legacy record: a canonical hash of everything its module entry is made of. */
+export const legacyFingerprint = (record) =>
+  ruleFingerprint(Object.fromEntries(LEGACY_FIELDS.map((f) => [f, record?.[f]])));
+
 const REQUIRED_GATES = ["schema", "validator", "ids", "fixes", "text"];
 
 // The state is always derived from the evidence, never read from a stored field. `core` is accepted for the callers that
@@ -55,7 +61,7 @@ export const isPlayed = (played) =>
   played !== null && typeof played === "object" && PLAYED_FIELDS.every((f) => typeof played[f] === "string" && played[f] !== "");
 
 /**
- * legacy.json: `{ "<record key>": "<fingerprint of its rule at migration>" }`, as a Map. A missing file is an empty Map.
+ * legacy.json: `{ "<record key>": "<legacyFingerprint of the record at migration>" }`, as a Map. A missing file is an empty Map.
  * Throws on a file that is not such an object.
  */
 export function loadLegacy(dir) {
@@ -65,20 +71,20 @@ export function loadLegacy(dir) {
   try { map = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new Error(`${file}: ${e.message}`); }
   const valid = map !== null && typeof map === "object" && !Array.isArray(map)
     && Object.values(map).every((v) => typeof v === "string" && /^[0-9a-f]{64}$/.test(v));
-  if (!valid) throw new Error(`${file}: must be an object of record key to the 64-hex fingerprint of its rule at migration`);
+  if (!valid) throw new Error(`${file}: must be an object of record key to the 64-hex fingerprint of the record at migration`);
   return new Map(Object.entries(map));
 }
 
 /**
  * Why a record that says `legacy: true` has no legacy standing, or null when it has it (or does not claim it). Standing needs
- * the key in legacy.json (`legacy`, a Map) and the rule unchanged since migration (same fingerprint).
+ * the key in legacy.json (`legacy`, a Map) and, unchanged since migration, everything the generated module emits for the
+ * record: its rule, identifier, name, book, page, kind, verdict, legacyStatus and alsoIn (same legacyFingerprint).
  */
 export function legacyProblem(record, legacy) {
   if (record?.legacy !== true) return null;
   const stored = legacy?.get(record.key);
   if (stored === undefined) return `legacy: ${record.key} is not in legacy.json`;
-  const changed = record.rule === undefined || stored !== ruleFingerprint(record.rule);
-  if (changed) return `legacy: ${record.key} rule changed since migration`;
+  if (stored !== legacyFingerprint(record)) return `legacy: ${record.key} changed since migration`;
   return null;
 }
 export const hasLegacyStanding = (record, legacy) => record?.legacy === true && legacyProblem(record, legacy) === null;

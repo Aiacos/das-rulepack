@@ -90,7 +90,7 @@ describe("validateRecord", () => {
     for (const entry of ["glimmer-bolt", [], null, 3]) {
       expect(validateRecord({ ...minimal(), verdict: "entry", rule: { ...rule(), entry } }).join()).toMatch(/rule.entry/);
     }
-    expect(validateRecord({ ...minimal(), rule: { ...rule(), catalog: null, inCore: true } })).toEqual([]);
+    expect(validateRecord({ ...minimal(), verdict: "entry", rule: { ...rule(), catalog: null, inCore: true } })).toEqual([]);
     expect(validateRecord({ ...minimal(), rule: { ...rule(), catalog: 3 } }).join()).toMatch(/catalog/);
   });
 
@@ -102,6 +102,13 @@ describe("validateRecord", () => {
     }
   });
 
+  it("refuses a rule under any verdict but entry and code", () => {
+    for (const verdict of [null, "core", "data", "none", "engine", "unverifiable"]) {
+      const errors = validateRecord({ ...minimal(), verdict, rule: rule() }).join();
+      expect(errors, String(verdict)).toMatch(/only have the verdict entry or code/);
+    }
+    expect(validateRecord({ ...minimal(), verdict: "code", rule: rule() })).toEqual([]);
+  });
   it("requires rule.entry when the verdict is entry and a rule is there", () => {
     const { entry, ...noEntry } = rule();
     expect(validateRecord({ ...minimal(), verdict: "entry", rule: noEntry }).join()).toMatch(/entry/);

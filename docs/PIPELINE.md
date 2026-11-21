@@ -176,19 +176,28 @@ What the session does with the output:
 
 The 24 rules that shipped before the pipeline were migrated into the registry as they were: `legacy: true`, their old
 status in `legacyStatus`, no text fingerprint and no item data (`text: null`, `items: []`). `registry/legacy.json` is the
-list of them: an object `{ "<record key>": "<SHA-256 fingerprint of its rule at migration>" }`.
+list of them: an object `{ "<record key>": "<SHA-256 fingerprint of the record at migration>" }`. The fingerprint
+(`legacyFingerprint` in `tools/pipeline/registry.mjs`) covers everything the generated module emits for the rule:
+`identifier`, `name`, `book`, `page`, `kind`, `verdict`, `legacyStatus`, `alsoIn` and `rule`. It does not cover `evidence`.
 
-A record has **legacy standing** only when it says `legacy: true`, its key is in `legacy.json` and the fingerprint of its
-current `rule` is the one stored there. With standing, the gates note what cannot be checked without item data or text
+A record has **legacy standing** only when it says `legacy: true`, its key is in `legacy.json` and the fingerprint of the
+record as it is now is the one stored there. With standing, the gates note what cannot be checked without item data or text
 (`ids`, `fixes`, `text` land in `evidence.gates.noted`, not in `passed`) instead of failing, and `build:rules` emits the
 rule with its old status. That is why the 24 show the state `drafted` (the gates have not all *passed*) and still ship.
-Without standing (a key not listed, or a rule edited since migration) the gates fail (`legacy: <key> rule changed since
-migration`) and `build:rules` refuses to write anything, naming the record. A hand-typed `evidence.played` does not
-change the status of a legacy rule: only a complete play record (`scenario`, `core`, `world`, `at`) does.
+Without standing (a key not listed, or any of the fingerprinted fields edited since migration: a status raised from
+`validated` to `played`, a new identifier, another page…) the gates fail in every mode (`legacy: <key> changed since
+migration`) and `build:rules` refuses to write anything, naming the record. Evidence is not fingerprinted, so a legacy
+rule may gain real evidence; but a hand-typed `evidence.played` does not change its status: only a complete play record
+(`scenario`, `core`, `world`, `at`) does.
+
+Whether legacy or not, a record that has a `rule` can only have the verdict `entry` or `code`: the schema refuses any
+other, `ingest` rejects such a result even with `--overwrite` ("record has a rule; its verdict can only be entry or
+code"), and `build:rules` fails naming a record found that way instead of silently leaving its rule out of the pack.
 
 A rule leaves legacy by being redone through the pipeline: inventory gives it text and item data, a person drafts or
 edits its `rule`, removes `legacy` and `legacyStatus` and its key from `legacy.json`, and from then on it ships only once
-the gates pass on it (`gated`, status `validated`). Editing a legacy rule in place without that is refused.
+the gates pass on it (`gated`, status `validated`). Editing a legacy record in place without that, in anything the module
+emits, is refused.
 
 ## 🚧 Not built yet
 
