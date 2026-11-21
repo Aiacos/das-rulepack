@@ -35,8 +35,11 @@ Run from the repository root, in this order, with `DAS_CORE`, `RULEPACK_DATASET`
 The one ambiguous match is `xphb:spell:flaming-sphere`; the difference is the school.
 
 The 3 legacy XPHB features were already in the registry. They are the same records afterwards, apart from the fields the
-tools derive (`state`, `evidence.gates`). The 24 shipped rules pass the gates (schema, validator, fixes, unique) and register
-the same entries (`tests/registration.test.mjs`, unchanged). No two records share an identifier.
+tools derive (`state`, `evidence.gates`). The 24 shipped rules register the same entries (`tests/registration.test.mjs`,
+unchanged) and fail no gate, but they do not all *pass*: as legacy rules without item data or text, what cannot be checked
+is noted. Counted from `evidence.gates` in the committed registry: `schema`, `validator` and `unique` passed for all 24;
+`fixes` passed for 23 and was noted for 1 (the one rule with data fixes, and no document to check them on); `ids` and
+`text` were noted for all 24, passed for none. No two records share an identifier.
 
 ## Checks before the commit
 

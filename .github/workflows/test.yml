@@ -1,8 +1,14 @@
 name: test
 
 on:
+  # Pushes to the default branch only: a same-repository pull request runs once, as a pull request.
   push:
+    branches: [master]
   pull_request:
+  workflow_dispatch:
+  # Weekly, against the latest release of DAS · Core: an engine release can break the pack without a commit here.
+  schedule:
+    - cron: "17 5 * * 1"
 
 permissions:
   contents: read
@@ -10,8 +16,11 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:

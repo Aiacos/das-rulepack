@@ -1,6 +1,6 @@
 # Rulebook pipeline — design
 
-Date: 2026-11-21 · Status: draft, waiting for approval · Scope: `das-rulepack`
+Date: 2026-11-21 · Status: approved 2026-11-21; milestone 1 implemented on feat/rulebook-pipeline · Scope: `das-rulepack`
 
 ## Intent
 
@@ -100,7 +100,8 @@ Chosen: A, with B's pattern readers as an accelerator. Picked by the user on 202
 }
 ```
 
-Verdicts: `core` (DAS · Core already has the entry — SRD content, nothing to write here), `data` (the item's own data resolves it), `none` (nothing to automate in combat), `entry` (declarative rule),
+Verdicts: `core` (DAS · Core already has the entry — SRD content, nothing to write here), `data` (the item's own data
+resolves it), `none` (nothing to automate in combat), `entry` (declarative rule),
 `code` (needs a script), `engine` (needs a key the engine lacks — carries the upstream issue), `unverifiable` (no text).
 
 The text cache lives outside the repository (`$RULEPACK_TEXT`, default a sibling private folder), addressed by the
@@ -221,7 +222,9 @@ and one rule**, never three.
   `ambiguous` (several candidates, or same name with different mechanics — 2014 against 2024) which goes to the human
   queue and is never auto-joined.
 - **A match is checked on mechanics, not on the name alone**: level, school, activation, save ability, damage parts and
-  the set of statuses of the two items are compared; a difference downgrades the match to `ambiguous`.
+  the set of statuses of the two items are compared; a difference downgrades the match to `ambiguous`. Amended during
+  milestone 1: only edition, level and school make a match ambiguous; structural differences (activities, saves, damage
+  types, statuses) are recorded on the matched item as `differences`.
 - **One identifier.** When origins disagree on the identifier, the record keeps one canonical identifier and binds the
   others through `sources`; the gate refuses two records that resolve to the same identifier, and two identifiers that
   resolve to the same item.

@@ -61,6 +61,14 @@ echo -e "  Module:  ${GREEN}${MODULE_ID}${NC}"
 echo -e "  Version: ${GREEN}${VERSION}${NC}"
 echo ""
 
+# ─── Check the generated rule modules ────────────────────────────────
+
+# The modules under scripts/rules/ are generated from registry/: a stale or hand-edited one must not ship.
+if ! npm run -s build:rules -- --check; then
+    echo -e "${RED}ERROR: scripts/rules/ differs from registry/ (run npm run build:rules)${NC}"
+    exit 1
+fi
+
 # ─── Check required files ────────────────────────────────────────────
 
 echo -e "${BLUE}[1/6]${NC} Checking project files..."
