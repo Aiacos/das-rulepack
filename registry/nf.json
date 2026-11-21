@@ -1,0 +1,1123 @@
+{
+  "book": "NF",
+  "records": [
+    {
+      "key": "nf:item:arcane-battery",
+      "name": "Arcane Battery",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "uncommon",
+      "identifier": "arcane-battery",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c6733051ede867d03233560a53bcfc22afc116622b5938faa3a70ec038a6c528",
+        "source": "5etools",
+        "chars": 309
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:item:brooch-of-the-elements",
+      "name": "Brooch of the Elements",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "rare",
+      "identifier": "brooch-of-the-elements",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "86977309a82d9e5e2b248ac83fd460704ebce70dc29ff306c8d94acfe13e1769",
+        "source": "5etools",
+        "chars": 431
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:item:fork-of-eddy-summoning",
+      "name": "Fork of Eddy Summoning",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "rare",
+      "identifier": "fork-of-eddy-summoning",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f844e99b8291bab98449547f44964b86486fe52f015443134048d32d7e27882f",
+        "source": "5etools",
+        "chars": 643
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:item:hat-of-vortexes",
+      "name": "Hat of Vortexes",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "uncommon",
+      "identifier": "hat-of-vortexes",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0f36aa8b3dbb91162b6bcd044428fe34b0d944dd995d1b0aa24516cb276d4adf",
+        "source": "5etools",
+        "chars": 446
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:item:magen-handbell",
+      "name": "Magen Handbell",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "rare",
+      "identifier": "magen-handbell",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "a08ac65b921a289676765cbcdf0033690583bbf12ccf447dd5a7c55d00701cac",
+        "source": "5etools",
+        "chars": 1054
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:item:mask-of-changed-appearance",
+      "name": "Mask of Changed Appearance",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "common",
+      "identifier": "mask-of-changed-appearance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d1cee0af4df74b5709260f153cdc90f922f605025f197c4ae9622235e7a68abe",
+        "source": "5etools",
+        "chars": 621
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:item:mythallar-bracelet",
+      "name": "Mythallar Bracelet",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "common",
+      "identifier": "mythallar-bracelet",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "47fbcc7775c263ec67b7fac7d58b95c3adf247618fbac4b7c4f060a197db8792",
+        "source": "5etools",
+        "chars": 343
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:item:mythallar-cloak",
+      "name": "Mythallar Cloak",
+      "kind": "item",
+      "book": "NF",
+      "edition": "2024",
+      "rarity": "rare",
+      "identifier": "mythallar-cloak",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "787e0180a2f66d3d49515ee3771c65e76a1d7e5243faa55dcecfb784fb11776b",
+        "source": "5etools",
+        "chars": 661
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:caldron-magen/action/acid-spittle",
+      "name": "Acid Spittle",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Caldron Magen",
+      "section": "action",
+      "identifier": "acid-spittle",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b4cc81213defe5b8c62f297532fe31b3577a7b3dfffb33e7c3e762ba8529ced3",
+        "source": "5etools",
+        "chars": 43
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:caldron-magen/action/extended-fist",
+      "name": "Extended Fist",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Caldron Magen",
+      "section": "action",
+      "identifier": "extended-fist",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d4e583e61981fd3231f71c8482a4443410954be5c2765cf0cc228c3679dcd8fb",
+        "source": "5etools",
+        "chars": 187
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:caldron-magen/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Caldron Magen",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1be630e11147cc49d2e0edb68d88be0031cc350e6b337bf6ae17f246e769fed3",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:caldron-magen/trait/disintegration",
+      "name": "Disintegration",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Caldron Magen",
+      "section": "trait",
+      "identifier": "disintegration",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "28ef8e2985dcdd1a4e9409706159c81a31f763c3a1be2ec2ca9d54ed98ac2bd1",
+        "source": "5etools",
+        "chars": 98
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:caldron-magen/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Caldron Magen",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "027613ca71c4b06bd6e017e9fd13a47d339c94e76f12773cf83672e84944ce14",
+        "source": "5etools",
+        "chars": 82
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:eldritch-eddy/action/arcane-bolt",
+      "name": "Arcane Bolt",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Eldritch Eddy",
+      "section": "action",
+      "identifier": "arcane-bolt",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "3fb407bd7a16f9db377862ebe663bd3d19f8f4c724353e8c80d0872d8c597d5e",
+        "source": "5etools",
+        "chars": 46
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:eldritch-eddy/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Eldritch Eddy",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "dc6875f266b266644311b3b390b8eeb223caedd4f421b3049d4e3b0b2f296c96",
+        "source": "5etools",
+        "chars": 82
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:eldritch-eddy/action/searing-swipe",
+      "name": "Searing Swipe",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Eldritch Eddy",
+      "section": "action",
+      "identifier": "searing-swipe",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "fce6304e403d995da2758a26925e164c23dfca83554fe300f9302584e3fc990e",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:eldritch-eddy/reaction/eldritch-overload",
+      "name": "Eldritch Overload",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Eldritch Eddy",
+      "section": "reaction",
+      "identifier": "eldritch-overload",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "695f17d8e7102441029ec26b29a951b8962f174940122928b8cd0f3137c2d3bb",
+        "source": "5etools",
+        "chars": 194
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:eldritch-eddy/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Eldritch Eddy",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e08f8849bfcbf651b834376d10120b3564c289c495dbc2e82b81b9969e814afa",
+        "source": "5etools",
+        "chars": 81
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/action/mind-lash",
+      "name": "Mind Lash",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "action",
+      "identifier": "mind-lash",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8989d534c0700054b7eaa9cbeaa26dabb2d6ca9c83d32ad33ecc2ebc580a82af",
+        "source": "5etools",
+        "chars": 65
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e25b61de0f5264b8df87efac3a4684d76c15a259ebd6bde2d1e7ec790b867bb9",
+        "source": "5etools",
+        "chars": 174
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/action/siphon-magic",
+      "name": "Siphon Magic",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "action",
+      "identifier": "siphon-magic",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "4e5bfe78c84f6f95e543655d92732943adb92d066c21ea81e3281c52bb192cc4",
+        "source": "5etools",
+        "chars": 274
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/action/vicious-stinger",
+      "name": "Vicious Stinger",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "action",
+      "identifier": "vicious-stinger",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "18b827da964768eae72d57f8995ba38a07bae9db8b03440dc21076c1b620cc76",
+        "source": "5etools",
+        "chars": 164
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/bonus/teleport",
+      "name": "Teleport",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "bonus",
+      "identifier": "teleport",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "56c0c08d7a4755b2d6a00e11c647655d50b780c6656ba4c2ace94df71ee0b54a",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "58b8e743a0e168f048d5fc2748e82b23b86fab71f0bd909579cc715df4d2bd6d",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/trait/protective-magic",
+      "name": "Protective Magic",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "trait",
+      "identifier": "protective-magic",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1827c091f022525e16935da1f489fa74be08ba36a85272f8eabcec23ee882467",
+        "source": "5etools",
+        "chars": 150
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-elder/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Elder",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8583330943256fb86b467bc688358dd50223ed4f4a3398b3cd6fb43bbae49edd",
+        "source": "5etools",
+        "chars": 250
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-scout/action/mindwarp-ray",
+      "name": "Mindwarp Ray",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Scout",
+      "section": "action",
+      "identifier": "mindwarp-ray",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "39d8d46d06109153ba59445e5a825dd515f3482a9002e9e0ea34a0b52ced21f4",
+        "source": "5etools",
+        "chars": 132
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-scout/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Scout",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ae54824ca150ef0e5b7b37ec256c16945b8e5bc3608dea8410c8e029c6bbb28c",
+        "source": "5etools",
+        "chars": 81
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-scout/action/stinger",
+      "name": "Stinger",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Scout",
+      "section": "action",
+      "identifier": "stinger",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "20dc5c957c73a15fcc07fb6619b82c064ab6711ad76636ad5eccb01205f13575",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-scout/reaction/uncanny-dodge",
+      "name": "Uncanny Dodge",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Scout",
+      "section": "reaction",
+      "identifier": "uncanny-dodge",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d1369809427838513829a440200489f707e30138b96b51e0aa97878feee4df86",
+        "source": "5etools",
+        "chars": 109
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-scout/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Scout",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "58b8e743a0e168f048d5fc2748e82b23b86fab71f0bd909579cc715df4d2bd6d",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:phaerimm-scout/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Phaerimm Scout",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "cb45eb2afdbe28f23dbf4694a5fa3198860707af2f2cbf648904a476e7ce377b",
+        "source": "5etools",
+        "chars": 193
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:terran-magen/action/hammer-fist",
+      "name": "Hammer Fist",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Terran Magen",
+      "section": "action",
+      "identifier": "hammer-fist",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "85c8c3825b32b418411cabd169bf388d615eda3b5ff873550c9c928b9dce9970",
+        "source": "5etools",
+        "chars": 76
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:terran-magen/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Terran Magen",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "4dd0c493795bb63400de14ddbdcb4797154efe1eddf874e5ba936e7b4290cefe",
+        "source": "5etools",
+        "chars": 85
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:terran-magen/action/thunderous-boom",
+      "name": "Thunderous Boom",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Terran Magen",
+      "section": "action",
+      "identifier": "thunderous-boom",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "06337c59c68a2de8d9adc20fa7ef216605ee2dc4705074aaafb93bf30fd278d4",
+        "source": "5etools",
+        "chars": 42
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:terran-magen/trait/disintegration",
+      "name": "Disintegration",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Terran Magen",
+      "section": "trait",
+      "identifier": "disintegration",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "28ef8e2985dcdd1a4e9409706159c81a31f763c3a1be2ec2ca9d54ed98ac2bd1",
+        "source": "5etools",
+        "chars": 98
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:terran-magen/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Terran Magen",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "027613ca71c4b06bd6e017e9fd13a47d339c94e76f12773cf83672e84944ce14",
+        "source": "5etools",
+        "chars": 82
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:terran-magen/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Terran Magen",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "fea2b89b068e36a4d5e3f16eb75a79aba396697921a34e3d3088cf5ff18460c8",
+        "source": "5etools",
+        "chars": 210
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:virvos-magen/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Virvos Magen",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "9c2c7b1786617258502a61ce3b123d12afdc26e893dec3cdeef03ad7528401a0",
+        "source": "5etools",
+        "chars": 42
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:virvos-magen/action/psychic-blast",
+      "name": "Psychic Blast",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Virvos Magen",
+      "section": "action",
+      "identifier": "psychic-blast",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "428873bb9dedec64be86b6e69075c42d9f57c3ae6b5962c96c8992b22c8c4273",
+        "source": "5etools",
+        "chars": 59
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:virvos-magen/trait/disintegration",
+      "name": "Disintegration",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Virvos Magen",
+      "section": "trait",
+      "identifier": "disintegration",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "28ef8e2985dcdd1a4e9409706159c81a31f763c3a1be2ec2ca9d54ed98ac2bd1",
+        "source": "5etools",
+        "chars": 98
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:virvos-magen/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Virvos Magen",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "027613ca71c4b06bd6e017e9fd13a47d339c94e76f12773cf83672e84944ce14",
+        "source": "5etools",
+        "chars": 82
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "nf:monster:virvos-magen/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "NF",
+      "edition": "2024",
+      "owner": "Virvos Magen",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "52bf68203620accf73dd5892308578df415fa434cb1fc25bb5206b7710396003",
+        "source": "5etools",
+        "chars": 200
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
