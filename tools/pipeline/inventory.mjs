@@ -3,7 +3,7 @@ import { keyOf, slug, canonical, groupBy } from "./registry.mjs";
 import { cacheText, textFingerprint } from "./text.mjs";
 import { fittingDocTypes, identityOf, matchOrigin } from "./match.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
-import { actorCandidates, baseFeatureName } from "./monsters.mjs";
+import { actorCandidates, baseFeatureName, ddbActorCandidates } from "./monsters.mjs";
 import { itemOf, keepSettled, reprintsOf, bindSources, canonicalIdentifier } from "./settle.mjs";
 
 export { itemOf };
@@ -40,8 +40,9 @@ const extrasOf = (entry, kind) => ({
   ...(entry.copyOf ? { copyOf: entry.copyOf } : {}),
 });
 
-// A monster feature is matched against the items embedded in the actor of its creature, nowhere else. When several actors
-// of the name differ in their embedded items, a feature found in any of them is ambiguous between those items.
+// A monster feature is matched against the items embedded in the actor of its creature, nowhere else: for the official origin
+// the actors of the book's package, for ddb-importer the actors of the `ddb.` dumps. When several actors of the name differ in
+// their embedded items, a feature found in any of them is ambiguous between those items.
 // Only the embedded items that agree with the feature's section can be it: one that states its activation (action, bonus,
 // reaction, legendary, mythic, or trait for a passive one) must state the feature's section; one that states none is neutral.
 // An embedded item is compared by its name as a feature name reads (monsters.mjs baseFeatureName: "Glow (6/Year)" is "Glow"),
@@ -57,8 +58,9 @@ function unwrapped(outcome) {
 }
 const matchFeature = (subject, candidates) => unwrapped(matchOrigin(subject, asFeatureNamed(candidates)));
 
-function monsterOfficial(entry, actors) {
-  const subject = { name: entry.name, kind: "monster", edition: entry.edition };
+// `reference` is the official item a ddb-importer item is compared against (its structural differences are recorded).
+function monsterOfficial(entry, actors, reference) {
+  const subject = { name: entry.name, kind: "monster", edition: entry.edition, reference };
   const { found, ambiguous } = actors;
   if (!found) return { match: "absent" };
   // A spellcasting block is listed as a trait whatever the activation of the item that casts, so its section is not compared.
@@ -79,11 +81,27 @@ function monsterOfficial(entry, actors) {
   };
 }
 
+// A creature that DDB has only in the other edition, or only in other books: its features that have an item of the name there
+// are ambiguous (edition, book) for a person to settle, never joined. A feature with no such item stays absent (there is no
+// candidate to list); the report counts the creature (`ddbOtherEditionOnly`, `ddbOtherBookOnly`).
+function monsterDdb(entry, actors, reference) {
+  if (actors.found) return monsterOfficial(entry, actors, reference);
+  const subject = { name: entry.name, kind: "monster", edition: entry.edition };
+  const [items, why] = actors.status === "otherBook" ? [actors.otherBook, "book"] : [actors.otherEdition, "edition"];
+  const outcome = matchFeature(subject, items);
+  if (outcome.match === "absent") return { match: "absent" };
+  return { match: "ambiguous", candidates: outcome.candidates ?? [outcome.item], differences: [why] };
+}
+
 // Official first with no reference; ddb-importer is then compared against the official item when there is one.
 function itemsFor(entry, kind, dumps, monster) {
   if (kind === "monster") {
-    const official = monster;
-    return [...(official.match !== "absent" ? [itemOf("official", official)] : []), { origin: "plutonium", match: "unchecked" }];
+    const { official, ddb } = monster;
+    return [
+      ...(official.match !== "absent" ? [itemOf("official", official)] : []),
+      ...(ddb.match !== "absent" ? [itemOf("ddb-importer", ddb)] : []),
+      { origin: "plutonium", match: "unchecked" }
+    ];
   }
   const subject = {
     name: entry.name, kind, edition: entry.edition, owner: entry.owner, level: entry.level, rarity: entry.rarity
@@ -102,10 +120,11 @@ function itemsFor(entry, kind, dumps, monster) {
 const dataFingerprints = (items) =>
   canonical(items.filter((i) => i.match === "matched").map((i) => [i.origin, i.data]));
 
-// The official outcome of every monster feature, with one more rule: an embedded item claimed by two features of one creature
-// cannot be told which of them it is, so both are ambiguous: `duplicate` when they share a section, else `section`.
-function monsterOutcomes(dataset, actorsFor) {
-  const outcomes = dataset.map((e) => monsterOfficial(e, actorsFor(e.owner)));
+// The outcome of every monster feature in one origin (`outcomeOf(entry, index)`), with one more rule: an embedded item claimed
+// by two features of one creature cannot be told which of them it is, so both are ambiguous: `duplicate` when they share a
+// section, else `section`.
+function monsterOutcomes(dataset, outcomeOf) {
+  const outcomes = dataset.map(outcomeOf);
   const claimOf = (e, i) => `${e.creatureIndex ?? e.owner}|${outcomes[i].item.docId}`;
   const claims = groupBy(
     dataset.flatMap((e, i) => (outcomes[i].match === "matched" ? [[claimOf(e, i), i]] : [])), ([claim]) => claim
@@ -190,24 +209,49 @@ export function inventory({
     added: 0, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [], noPage: [],
     collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
   };
-  // Monsters also report the creatures read (with the ones that have no feature of their own), the `_copy` ones, and the
-  // creatures with no actor of their name in the official dump.
+  // Monsters also report the creatures read (with the ones that have no feature of their own), the `_copy` ones, the
+  // creatures with no actor of their name in the official dump (`noActor`) and the ones with no DDB Importer actor of their
+  // edition (`noDdbActor` none at all, `ddbOtherEditionOnly`, `ddbOtherBookOnly`: only actors of another edition or book).
   const actorsOf = new Map();
   const actorsFor = (creature) => {
     if (!actorsOf.has(creature)) actorsOf.set(creature, actorCandidates(creature, dumps.actors));
     return actorsOf.get(creature);
   };
+  // The edition of a creature is its own (the list of creatures states it, even for one with no feature), else its features'.
+  const editionOfCreature = new Map(dataset.map((e) => [e.owner, e.edition]));
+  for (const c of creatures ?? []) if (c.edition) editionOfCreature.set(c.name, c.edition);
+  const ddbActorsOf = new Map();
+  const ddbActorsFor = (creature) => {
+    if (!ddbActorsOf.has(creature)) {
+      ddbActorsOf.set(creature, ddbActorCandidates(creature, dumps.ddbActors, {
+        edition: editionOfCreature.get(creature), book, books: dumps.ddbBooks
+      }));
+    }
+    return ddbActorsOf.get(creature);
+  };
   if (kind === "monster") {
     const list = creatures ?? [...new Set(dataset.map((e) => e.owner))].map((name) => ({ name }));
     Object.assign(report, {
       creatures: list.length, copies: list.filter((c) => c.copyOf).length,
-      noActor: list.filter((c) => !actorsFor(c.name).found).length
+      noActor: list.filter((c) => !actorsFor(c.name).found).length,
+      ...Object.fromEntries([["noDdbActor", "none"], ["ddbOtherEditionOnly", "otherEdition"], ["ddbOtherBookOnly", "otherBook"]]
+        .map(([field, status]) => [field, list.filter((c) => ddbActorsFor(c.name).status === status).length]))
     });
   }
   const seen = new Map();
   const produced = new Set();
   const monsters = kind === "monster";
-  const outcomes = monsters ? monsterOutcomes(dataset, actorsFor) : [];
+  const outcomes = monsters ? monsterOutcomes(dataset, (e) => monsterOfficial(e, actorsFor(e.owner))) : [];
+  // DDB Importer is compared against the official item of the feature when that one is matched.
+  const referenceOf = (i) => (outcomes[i].match === "matched" ? outcomes[i].item : undefined);
+  const ddbOutcomes = monsters
+    ? monsterOutcomes(dataset, (e, i) => monsterDdb(e, ddbActorsFor(e.owner), referenceOf(i)))
+    : [];
+  // An item taken from an actor of no known book is matched, visibly.
+  for (const [i, o] of ddbOutcomes.entries()) {
+    const unknownBook = o.match === "matched" && ddbActorsFor(dataset[i].owner).bookUnknown;
+    if (unknownBook) o.differences = [...(o.differences ?? []), "book-unknown"];
+  }
   const numbers = monsters ? numberOccurrences(dataset, records, book) : [];
   // A creature whose name slugs to nothing is one skip, however many features it has.
   if (monsters) {
@@ -256,7 +300,7 @@ export function inventory({
 
     const sha256 = entry.text ? cacheText(textDir, entry.text) : null;
     const text = sha256 ? { sha256, source: "5etools", chars: entry.text.length } : null;
-    let items = itemsFor(entry, kind, dumps, monsters ? outcomes[index] : undefined);
+    let items = itemsFor(entry, kind, dumps, monsters ? { official: outcomes[index], ddb: ddbOutcomes[index] } : undefined);
     let resolutions = [];
     if (existing) {
       const settled = keepSettled(existing, items, dumps, kind);
@@ -272,7 +316,7 @@ export function inventory({
       if (excluded.length) official.reprintsExcluded = excluded;
     }
     const fresh = {
-      identifier: canonicalIdentifier(items, entry.name), page: entry.page ?? null, srd: Boolean(entry.srd), text, items
+      identifier: canonicalIdentifier(items, entry.name, kind), page: entry.page ?? null, srd: Boolean(entry.srd), text, items
     };
 
     let record = existing;

@@ -323,8 +323,31 @@ Notes on what inventory does with each kind:
   `copyOf` = "<base name>|<base source>". Two creatures of one name in a book collide like any other key.
   The official candidates are the items embedded in the actors of the creature's name in the book package's `*actors*`
   dumps (`docId` = `<actor id>.<item id>`); same-name actors with identical embedded item ids are one, differing ones make
-  the features found in them `ambiguous`; no actor of the name makes every feature `absent`. DDB Importer has no monster
-  dump. The report adds `creatures`, `copies` (`_copy` creatures) and `noActor` (creatures with no actor), all counts.
+  the features found in them `ambiguous`; no actor of the name makes every feature `absent`. The report adds `creatures`,
+  `copies` (`_copy` creatures), `noActor` (creatures with no official actor) and three counts about DDB Importer's actors, each a
+  creature in one group only: `noDdbActor` (no DDB actor of that name at all), `ddbOtherEditionOnly` (its only DDB actors state
+  the other edition) and `ddbOtherBookOnly` (its only DDB actors of its edition state another book).
+  The `ddb-importer` origin is asked for monsters too: its candidates are the items embedded in the DDB Importer actors of the
+  creature's name, read from the dump files that start with `ddb.` and hold actors (`type: "npc"`, whatever the pack is
+  named), with the same name, section, claim and `<actor id>.<item id>` rules as the official ones. A DDB actor states its
+  edition in `system.source.rules` ("2014" or "2024"): only the actors of the creature's edition are candidates (the ones
+  that state none are used when there is none that does). An actor that states its edition decides for its
+  items (DDB Importer stamps an item with the printing it was imported from, so items of a 2014 actor often say 2024); only
+  when the actor states none is the item's own `system.source.rules` used: none adds `differences: ["edition-unknown"]`,
+  the other edition makes the feature `ambiguous`. A creature's edition is its own, also when it has no feature.
+  A DDB actor also states its book in `system.source.book`, a D&D Beyond abbreviation ("MM 2024", "MotM"), which
+  `docs/ddb-books.json` maps to the dataset book code (compared case-insensitively; only pairs confirmed against the dataset
+  are listed). Among the actors of the creature's name and edition, the ones of the record's book are used alone when there
+  are any; else the ones with no book, an SRD book ("SRD 5.1") or a book not in the map are used and the matched item gets
+  `differences: ["book-unknown"]`; else (the only actors state another mapped book) a feature that has an item of its name
+  there is `ambiguous` with `differences: ["book"]` and those items as candidates, never matched. When the creature exists
+  only in the other edition, a feature that has an item of its name there is `ambiguous` with `differences: ["edition"]` and
+  those items as candidates (never joined; settle it with `resolve`). A feature with no such item stays absent at item level
+  (there is no candidate to list); the report counts the creature (`ddbOtherEditionOnly`, `ddbOtherBookOnly`).
+  Same-name DDB actors with identical embedded item ids are one, differing ones make the features `ambiguous`
+  (`differences: ["actor"]`). The official match is made first; when it is `matched` it is the reference of the ddb-importer
+  match, whose structural differences (saves, damage types, activity types, statuses) are recorded on the item (a monster
+  has no identity field beyond the edition).
 - Repeat numbers (`#2`) are re-derived against the registry on every run, not by position: among the same-name features of one
   creature and section, the record whose stored text fingerprint equals the feature's keeps its key; only a lone feature
   with a lone record and no fingerprint match is a text edit and keeps that record; every other feature takes the lowest

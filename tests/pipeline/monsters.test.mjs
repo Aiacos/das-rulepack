@@ -80,10 +80,10 @@ describe("readMonsterFeatures", () => {
   it("reports the creatures, with the copies among them", () => {
     const { creatures } = readMonsters(dir, "XZZ", {});
     expect(creatures).toEqual([
-      { name: "Glimmer Hound", features: 10 },
-      { name: "Glimmer Hound Alpha", features: 1, copyOf: "Glimmer Hound|XZZ" },
-      { name: "Glimmer Pup", features: 0, copyOf: "Glimmer Hound|XZZ" },
-      { name: "Ghost Cart", features: 2 },
+      { name: "Glimmer Hound", features: 10, edition: "2024" },
+      { name: "Glimmer Hound Alpha", features: 1, edition: "2024", copyOf: "Glimmer Hound|XZZ" },
+      { name: "Glimmer Pup", features: 0, edition: "2024", copyOf: "Glimmer Hound|XZZ" },
+      { name: "Ghost Cart", features: 2, edition: "2024" },
     ]);
   });
 
@@ -232,7 +232,7 @@ describe("inventory of monster features", () => {
     expect(byKey(records)["xzz:monster:glimmer-hound/trait/pack-tactics"].items.map((i) => i.origin)).toEqual(["plutonium"]);
   });
 
-  it("never asks DDB Importer: it has no monster dump", () => {
+  it("never reads monster features from the flat ddb-importer item list: only its actors count (ddb-monsters.test.mjs)", () => {
     const ddb = [item("x", "Keen Nose", { origin: "ddb-importer", docId: "ddb1" })];
     const { records } = run({ dumps: { official: [], "ddb-importer": ddb, actors: [HOUND] } });
     const nose = byKey(records)["xzz:monster:glimmer-hound/trait/keen-nose"];

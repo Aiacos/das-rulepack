@@ -108,7 +108,7 @@ export function readMonsters(datasetDir, bookCode, { year } = {}) {
         ...(occurrence > 1 ? { occurrence } : {}), ...(copyOf ? { copyOf } : {}),
       });
     }
-    creatures.push({ name: creature.name, features: n, ...(copyOf ? { copyOf } : {}) });
+    creatures.push({ name: creature.name, features: n, edition, ...(copyOf ? { copyOf } : {}) });
   }
   return { features, creatures };
 }
@@ -130,4 +130,44 @@ export function actorCandidates(creature, actors) {
   const signature = (a) => a.items.map((i) => itemIdOf(i.docId)).sort().join("|");
   const ambiguous = new Set(named.map(signature)).size > 1;
   return { found: true, ambiguous, candidates: (ambiguous ? named : [named[0]]).flatMap((a) => a.items) };
+}
+
+/**
+ * The items of a DDB actor as candidates. An actor that states its edition decides for the items it embeds (DDB Importer stamps
+ * its items with the printing it imported them from, not the creature's); one that states none leaves each item with the
+ * edition it states itself, if any.
+ */
+export const ddbItemsOf = (actor) => actor.items.map((i) => ({ ...i, rules: actor.edition ?? i.rules }));
+
+/**
+ * The DDB Importer candidates of a creature's features, for a creature of `edition` in the book `book`: the embedded items of
+ * the actors named as the creature (`actors` as actorSummaries gives them: `edition` from `system.source.rules`, `book` the D&D
+ * Beyond abbreviation from `system.source.book`). `books` maps those abbreviations to dataset book codes (docs/ddb-books.json),
+ * compared case-insensitively.
+ * - Only the actors of that edition count; when none states it, the ones that state none do (their items then say what
+ *   edition they are, or matching reports "edition-unknown").
+ * - Among those, the actors of the book are used alone when there are any; else the ones whose book is unknown (absent, an SRD,
+ *   or not in the map: `bookUnknown` is true, and matched items get "book-unknown"); else none is used (`status` "otherBook",
+ *   the items of those actors in `otherBook`).
+ * - Several actors are one or ambiguous exactly as in actorCandidates.
+ * `status` is "found", "none" (no actor has the name), "otherEdition" (the name exists only in the other edition, those items in
+ * `otherEdition`) or "otherBook". `found` is true only for "found".
+ */
+export function ddbActorCandidates(creature, actors, { edition, book, books = {} } = {}) {
+  const wanted = matchName(creature).full;
+  const named = (actors ?? []).filter((a) => matchName(a.name).full === wanted);
+  const stated = named.filter((a) => a.edition === edition);
+  const tier = stated.length ? stated : named.filter((a) => a.edition === undefined);
+  const otherEdition = named.filter((a) => a.edition !== undefined && a.edition !== edition).flatMap(ddbItemsOf);
+  const table = new Map(Object.entries(books).map(([k, v]) => [k.toLowerCase(), String(v).toUpperCase()]));
+  const codeOf = (a) => table.get(String(a.book ?? "").toLowerCase());
+  const own = tier.filter((a) => book && codeOf(a) === String(book).toUpperCase());
+  const unknown = tier.filter((a) => codeOf(a) === undefined);
+  const used = own.length ? own : unknown;
+  const status = used.length ? "found" : tier.length ? "otherBook" : named.length ? "otherEdition" : "none";
+  return {
+    ...actorCandidates(creature, used.map((a) => ({ ...a, items: ddbItemsOf(a) }))),
+    status, bookUnknown: !own.length && unknown.length > 0, otherEdition,
+    otherBook: status === "otherBook" ? tier.flatMap(ddbItemsOf) : []
+  };
 }

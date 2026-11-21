@@ -6,7 +6,8 @@ import { BOOK_CODE, canonical, groupBy, isReservedBook, loadBook, loadLegacy, sa
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
 import {
-  actorSummaries, docIndex, dumpsFor, findDocument, grantIndex, isActorFile, itemSummary, officialFilesFor, readDump, reprintIndex
+  actorSummaries, docIndex, dumpsFor, findDocument, grantIndex, isActorDoc, isActorFile, itemSummary, officialFilesFor, readDump,
+  reprintIndex
 } from "./dumps.mjs";
 import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { poolOf } from "./settle.mjs";
@@ -53,17 +54,23 @@ function loadRegistry(dir) {
 function loadDumps(dir, book, { actors = false, reprints = false } = {}) {
   // The class, subclass and race documents of a package say which feature documents they grant.
   // The grants are indexed across every file of the package: a feature of one file is granted by a class document of another.
+  // The actors of DDB Importer are the npc documents of its (`ddb.`) dumps, whatever the pack is named: they are no items.
   const read = (origin, files) => {
-    const docs = files.filter((f) => !isActorFile(f)).flatMap((f) => readDump(join(dir, f)));
+    const docs = files.filter((f) => !isActorFile(f)).flatMap((f) => readDump(join(dir, f))).filter((d) => !isActorDoc(d));
     const grants = grantIndex(docs);
     return docs.map((d) => itemSummary(d, origin, grants));
   };
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
   const official = officialFilesFor(dir, packages, book);
+  const ddbActors = () => dumpsFor(dir, "ddb-importer")
+    .flatMap((f) => actorSummaries(readDump(join(dir, f)).filter(isActorDoc), "ddb-importer"));
   return {
     official: read("official", official),
     "ddb-importer": read("ddb-importer", dumpsFor(dir, "ddb-importer")),
-    ...(actors ? { actors: official.filter(isActorFile).flatMap((f) => actorSummaries(readDump(join(dir, f)), "official")) } : {}),
+    ...(actors ? {
+      actors: official.filter(isActorFile).flatMap((f) => actorSummaries(readDump(join(dir, f)), "official")),
+      ddbActors: ddbActors(), ddbBooks: JSON.parse(readFileSync(join(ROOT, "docs", "ddb-books.json"), "utf8"))
+    } : {}),
     // The other official packages: a document id they share with the book's package is a reprint.
     ...(reprints ? { reprints: reprintIndex(dir, dumpsFor(dir, "official").filter((f) => !official.includes(f))) } : {})
   };
@@ -142,7 +149,8 @@ function inventoryCommand(args) {
 
 // The documents the data-fix gate reads: for each matched item of a record, by origin and document id, the dump document with
 // that id whose data fingerprint is the item's `data.sha256` (the one inventory matched). No such document: it is absent.
-function loadDocuments(dumpsDir, records) {
+// A monster feature's document is the item embedded in an actor, its id `<actor id>.<item id>`.
+export function loadDocuments(dumpsDir, records) {
   const wanted = { official: new Map(), "ddb-importer": new Map() };
   for (const r of records) {
     for (const i of r.items ?? []) {
@@ -155,9 +163,13 @@ function loadDocuments(dumpsDir, records) {
     documents[origin] = {};
     if (!ids.size) continue;
     for (const file of dumpsFor(dumpsDir, origin)) {
+      const take = (id, doc) => {
+        if (!ids.has(id) || documents[origin][id]) return;
+        if (itemSummary(doc, origin).data === ids.get(id)) documents[origin][id] = doc;
+      };
       for (const doc of readDump(join(dumpsDir, file))) {
-        if (!ids.has(doc._id) || documents[origin][doc._id]) continue;
-        if (itemSummary(doc, origin).data === ids.get(doc._id)) documents[origin][doc._id] = doc;
+        take(doc._id, doc);
+        if (isActorDoc(doc) || isActorFile(file)) for (const item of doc.items ?? []) take(`${doc._id}.${item?._id}`, item);
       }
     }
   }
@@ -319,7 +331,9 @@ function structuresOf(batch, records, dumpsDir) {
     if (!indexes.has(id)) {
       const files = origin === "official" ? officialFilesFor(dumpsDir, packages, book)
         : origin === "ddb-importer" ? dumpsFor(dumpsDir, "ddb-importer") : [];
-      indexes.set(id, docIndex(dumpsDir, files.filter((f) => isActorFile(f) === (kind === "monster"))));
+      // The actors of DDB Importer sit in `ddb.` dumps that are not named after actors: docIndex finds them by their content.
+      const wanted = (f) => origin === "ddb-importer" || isActorFile(f) === (kind === "monster");
+      indexes.set(id, docIndex(dumpsDir, files.filter(wanted)));
     }
     return indexes.get(id);
   };
@@ -472,8 +486,8 @@ async function resolveCommand(args) {
       });
       // A ddb-importer document is compared against the official one the record is matched to.
       const officialDocId = record.items.find((i) => i.origin === "official" && i.match === "matched")?.docId;
-      const reference = origin === "ddb-importer" && record.kind !== "monster"
-        ? dumps.official.find((c) => c.docId === officialDocId) : undefined;
+      const officials = record.kind === "monster" ? poolOf(dumps, "official", "monster", record.owner) : dumps.official;
+      const reference = origin === "ddb-importer" ? officials.find((c) => c.docId === officialDocId) : undefined;
       next = resolveItem(record, {
         origin, docId: flags.doc, at: new Date().toISOString(), force: flags.force,
         pool: poolOf(dumps, origin, record.kind, record.owner), reprints: dumps.reprints, reference, ...who
