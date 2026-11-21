@@ -39,18 +39,33 @@ export function quotes(why, text) {
   return false;
 }
 
-const isStringList = (v) => Array.isArray(v) && v.every((x) => typeof x === "string");
+export const BY = /^[a-z0-9][a-z0-9._-]{0,63}$/i;
+const ENGINE_KEY = /^[A-Za-z][A-Za-z0-9.]{0,63}$/;
+const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const RESULT_FIELDS = ["key", "verdict", "why", "keys", "similar", "confidence"];
+const MAX_KEYS = 12;
+const MAX_SIMILAR = 5;
+
+const isList = (v, max, ok) => Array.isArray(v) && v.length <= max && v.every((x) => typeof x === "string" && ok(x));
 
 // Why a result cannot be taken, or null. `textOf(record)` gives the cached text or null.
-function problem(record, result, { overwrite, textOf }) {
+function problem(record, result, { overwrite, textOf, known }) {
+  const extra = Object.keys(result).filter((k) => !RESULT_FIELDS.includes(k));
+  if (extra.length) return `unknown field ${JSON.stringify(extra[0])}`;
   if (!record) return `unknown key ${JSON.stringify(result.key)}`;
   if (!VERDICTS.includes(result.verdict)) return `unknown verdict ${JSON.stringify(result.verdict)}`;
+  if (result.verdict === "core") return "a reader may not return core: the rule-based step sets it";
   if (typeof result.confidence !== "number" || !(result.confidence >= 0 && result.confidence <= 1)) {
     return "confidence must be a number from 0 to 1";
   }
   if (typeof result.why !== "string" || !result.why.trim()) return "why must be a non-empty string";
   if (result.why.length > MAX_WHY) return `why is longer than ${MAX_WHY} characters`;
-  for (const f of ["keys", "similar"]) if (f in result && !isStringList(result[f])) return `${f} must be a list of strings`;
+  if ("keys" in result && !isList(result.keys, MAX_KEYS, (k) => ENGINE_KEY.test(k))) {
+    return `keys must be at most ${MAX_KEYS} engine keys (letters, digits and dots)`;
+  }
+  if ("similar" in result && !isList(result.similar, MAX_SIMILAR, (s) => known.has(s) || (s.length <= 64 && KEBAB.test(s)))) {
+    return `similar must be at most ${MAX_SIMILAR} record keys or kebab-case identifiers of at most 64 characters`;
+  }
   if (record.verdict && !overwrite) return `the record already has a verdict (${record.verdict})`;
   const text = textOf(record);
   if (text === null) return result.verdict === "unverifiable" ? null : "no text, no verdict: only unverifiable is allowed";
@@ -61,6 +76,7 @@ function problem(record, result, { overwrite, textOf }) {
 // Applies reader results to a copy of `records`. Low-confidence results and every `engine` verdict are returned in
 // `queued` instead of being applied. `rejected` is [{ key, reason }]; `applied` the keys that were changed.
 export function ingest(records, results, { textDir, by, at = new Date().toISOString(), overwrite = false }) {
+  if (typeof by !== "string" || !BY.test(by)) throw new Error(`by must match ${BY}`);
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
   const textOf = (r) => {
@@ -73,7 +89,7 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
   for (const result of results) {
     const record = byKey.get(result?.key);
     const isObject = result !== null && typeof result === "object";
-    const reason = isObject ? problem(record, result, { overwrite, textOf }) : "result must be an object";
+    const reason = isObject ? problem(record, result, { overwrite, textOf, known: byKey }) : "result must be an object";
     if (reason) {
       rejected.push({ key: result?.key ?? null, reason });
       continue;

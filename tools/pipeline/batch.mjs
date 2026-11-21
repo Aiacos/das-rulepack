@@ -11,10 +11,13 @@ const entryOf = (r) => ({
 export function cutBatches(records, { size = DEFAULT_BATCH_SIZE } = {}) {
   const open = records.filter((r) => !r.verdict && r.text);
   const batches = [];
+  const counts = new Map();
   for (const [book, ofBook] of Map.groupBy(open, (r) => r.book.toLowerCase())) {
     for (const ofKind of Map.groupBy(ofBook, (r) => r.kind).values()) {
       for (let i = 0; i < ofKind.length; i += size) {
-        const id = `${book}-triage-${String(batches.filter((b) => b.id.startsWith(`${book}-`)).length + 1).padStart(3, "0")}`;
+        const n = (counts.get(book) ?? 0) + 1;
+        counts.set(book, n);
+        const id = `${book}-triage-${String(n).padStart(3, "0")}`;
         batches.push({ id, stage: "triage", entries: ofKind.slice(i, i + size).map(entryOf) });
       }
     }

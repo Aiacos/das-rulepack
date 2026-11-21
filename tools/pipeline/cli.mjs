@@ -9,7 +9,7 @@ import { inventory } from "./inventory.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
-import { autoTriage, ingest } from "./triage.mjs";
+import { autoTriage, ingest, BY } from "./triage.mjs";
 import { cutBatches, DEFAULT_BATCH_SIZE } from "./batch.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -224,6 +224,10 @@ function ingestCommand([file, ...rest]) {
   if (typeof input?.batch !== "string" || typeof input?.by !== "string" || !Array.isArray(input?.results)) {
     throw new UsageError(`${file}: must be { batch: string, by: string, results: [...] }`);
   }
+  const extra = Object.keys(input).filter((k) => !["batch", "by", "results", "overwrite"].includes(k));
+  if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(extra[0])}`);
+  if ("overwrite" in input && typeof input.overwrite !== "boolean") throw new UsageError(`${file}: overwrite must be a boolean`);
+  if (!BY.test(input.by)) throw new UsageError(`${file}: by must match ${BY}`);
   const books = loadRegistry(REGISTRY);
   const out = ingest(books.flatMap((b) => b.records), input.results, {
     textDir, by: input.by, overwrite: input.overwrite === true

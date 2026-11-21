@@ -49,6 +49,13 @@ describe("cutBatches", () => {
     expect(cutBatches([], {})).toEqual([]);
   });
 
+  it("counts per book: a and a-b do not share a counter", () => {
+    const out = cutBatches([
+      rec(1, { book: "A" }), rec(2, { book: "A-B", key: "a-b:spell:s02" }), rec(3, { book: "A", kind: "feat" })
+    ], {});
+    expect(out.map((b) => b.id)).toEqual(["a-triage-001", "a-triage-002", "a-b-triage-001"]);
+  });
+
   it("keeps the books apart", () => {
     const out = cutBatches([rec(1), rec(2, { book: "XYZ", key: "xyz:spell:s02" })], {});
     expect(out.map((b) => b.id)).toEqual(["tst-triage-001", "xyz-triage-001"]);

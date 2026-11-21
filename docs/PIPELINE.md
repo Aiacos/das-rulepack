@@ -33,12 +33,13 @@ Every command is an npm script: `npm run <name> -- <arguments>`.
 | 1 | Inventory | `npm run inventory -- <BOOK> spell` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 2a | Triage by rule | `npm run triage -- <BOOK>` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--size 40]` | nothing | a person |
-| 2c | Read a batch | (no command: a reader agent reads a batch file) | `RULEPACK_TEXT` | the Claude Code session, through reader agents |
+| 2c | Read a batch | (no command: a reader agent reads a file) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file>` | `RULEPACK_TEXT` | the Claude Code session |
-| 4 | Gates | `npm run gates` (full) or `npm run gates -- --ci` | full: `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT`; `--ci`: `DAS_CORE` | a person; CI runs `--ci` |
+| 4 | Gates | `npm run gates` (`-- --ci` for CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT`; `--ci`: `DAS_CORE` | a person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
-Stage numbers follow the design (`docs/superpowers/specs/2026-11-21-rulebook-pipeline-design.md`).
+The numbers 1, 2, 4, 7 are the stage numbers of the design
+(`docs/superpowers/specs/2026-11-21-rulebook-pipeline-design.md`); stages 3, 5 and 6 are not built.
 
 1. **Inventory** reads the dataset and the dumps and writes (or refreshes) one record per entry: page, edition, `srd`
    flag, canonical `identifier`, text fingerprint, and per origin the matched item with its activity and effect ids. The
@@ -86,7 +87,8 @@ The Claude Code session gives each reader agent one batch file and this brief.
 > **What you decide.** For each entry, one verdict:
 > `data` (the item's own activities and effects already do what the text says), `none` (nothing in the text acts in
 > combat), `entry` (a declarative rule can express it), `code` (it needs a script), `engine` (it needs something DAS · Core
-> does not have: say what in `why`), or `unverifiable`. Do not use `core`: the script already settled it.
+> does not have: say what in `why`), or `unverifiable`. Do not use `core`: the script already
+> settled it, and a result with `core` is rejected.
 >
 > **No text, no verdict.** If the text file is missing or unreadable, answer `unverifiable`, whatever you know of the rules.
 > Never decide from memory of the book.
@@ -119,11 +121,20 @@ The main session runs `npm run ingest -- <results-file>` for each results file. 
 
 - applies every result that passes: sets `verdict` and `why`, and `evidence.triaged = { by, at, confidence }` (with `keys`
   and `similar` when given);
-- **rejects** a result when the key is unknown, the verdict is unknown, the confidence is not a number from 0 to 1, `why` is
-  empty or longer than 200 characters or quotes 12 or more consecutive words of the cached text (compared on lower-cased
-  words with whitespace and surrounding punctuation ignored), the entry has no text and the verdict is not `unverifiable`, or
-  the record already has a verdict (from a person, a rule or an earlier ingest). Set `"overwrite": true` in the results
-  file to replace existing verdicts on purpose;
+- **rejects the whole file** (exit 2, nothing applied) when it has a top-level field other than `batch`, `by`, `results`
+  and `overwrite`, when `overwrite` is not a boolean, or when `by` does not match `/^[a-z0-9][a-z0-9._-]{0,63}$/i`;
+- **rejects a result** (the others are still applied) when:
+  - it has a field other than `key`, `verdict`, `why`, `keys`, `similar`, `confidence`;
+  - `keys` has more than 12 entries, or an entry that is not an engine key (`/^[A-Za-z][A-Za-z0-9.]{0,63}$/`);
+  - `similar` has more than 5 entries, or an entry that is neither the key of a record nor a kebab-case identifier of at
+    most 64 characters;
+  - the verdict is `core` (only the rule-based step sets it) or unknown, or the key is unknown;
+  - the confidence is not a number from 0 to 1;
+  - `why` is empty, longer than 200 characters, or quotes 12 or more consecutive words of the cached text (compared on
+    lower-cased words, whitespace and surrounding punctuation ignored);
+  - the entry has no text and the verdict is not `unverifiable`;
+  - the record already has a verdict (from a person, a rule or an earlier ingest); set `"overwrite": true` in the results
+    file to replace verdicts on purpose;
 - puts results with confidence below 0.7, and every `engine` verdict whatever its confidence, in `registry/queue.json`
   instead of applying them: an array of `{ key, verdict, why, confidence, by, reason }` with `reason` either
   `low-confidence` or `engine`, sorted by key, one entry per key (a later result replaces an earlier one);

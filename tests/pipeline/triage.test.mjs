@@ -59,14 +59,45 @@ describe("ingest", () => {
 
   it("applies a verdict, why and evidence.triaged to a copy", () => {
     const records = [record("Dim Glow")];
-    const out = run(records, [ok("tst:spell:dim-glow", { keys: ["x"], similar: ["tst:spell:y"] })]);
+    const out = run(records, [ok("tst:spell:dim-glow", { keys: ["x"], similar: ["close-one"] })]);
     expect(out.rejected).toEqual([]);
     expect(out.applied).toEqual(["tst:spell:dim-glow"]);
     const [r] = out.records;
     expect(r).toMatchObject({ verdict: "none", why: "Pure narration." });
-    expect(r.evidence.triaged).toEqual({ by: "agent-1", at: AT, confidence: 0.9, keys: ["x"], similar: ["tst:spell:y"] });
+    expect(r.evidence.triaged).toEqual({ by: "agent-1", at: AT, confidence: 0.9, keys: ["x"], similar: ["close-one"] });
     expect(validateRecord(r)).toEqual([]);
     expect(records[0].verdict).toBeNull();
+  });
+
+  it("bounds the strings a reader can write", () => {
+    const records = [record("Dim Glow"), record("Other One")];
+    const bad = (over) => run(records, [ok("tst:spell:dim-glow", over)]).rejected;
+    expect(bad({ keys: ["triggers.on"] })).toEqual([]);
+    expect(bad({ keys: ["1bad"] })).toHaveLength(1);
+    expect(bad({ keys: ["has space"] })).toHaveLength(1);
+    expect(bad({ keys: ["a".repeat(65)] })).toHaveLength(1);
+    expect(bad({ keys: Array(13).fill("ok") })).toHaveLength(1);
+    expect(bad({ keys: Array(12).fill("ok") })).toEqual([]);
+    expect(bad({ similar: ["tst:spell:other-one", "some-identifier"] })).toEqual([]);
+    expect(bad({ similar: ["Not Kebab"] })).toHaveLength(1);
+    expect(bad({ similar: ["tst:spell:missing"] })).toHaveLength(1);
+    expect(bad({ similar: ["a".repeat(65)] })).toHaveLength(1);
+    expect(bad({ similar: Array(6).fill("some-identifier") })).toHaveLength(1);
+    expect(bad({ similar: Array(5).fill("some-identifier") })).toEqual([]);
+    for (const by of ["", "-x", "a b", "x".repeat(65), "a/b"]) {
+      expect(() => run(records, [ok("tst:spell:dim-glow")], { by })).toThrow(/by must match/);
+    }
+  });
+
+  it("rejects a result with an unknown field", () => {
+    const out = run([record("Dim Glow")], [ok("tst:spell:dim-glow", { notes: "x" })]);
+    expect(out.rejected[0].reason).toMatch(/unknown field "notes"/);
+  });
+
+  it("rejects the verdict core from a reader", () => {
+    const out = run([record("Dim Glow")], [ok("tst:spell:dim-glow", { verdict: "core" })]);
+    expect(out.rejected[0].reason).toMatch(/core/);
+    expect(out.applied).toEqual([]);
   });
 
   it("rejects unknown keys, unknown verdicts, bad confidence and a long why", () => {
@@ -227,6 +258,15 @@ describe("pipeline CLI: triage and ingest on temporary folders", () => {
     });
     expect(run(["ingest", third]).status).toBe(0);
     expect(queue()).toEqual([]);
+  });
+
+  it("ingest refuses a file with an unknown field, a non-boolean overwrite or a bad by, and applies nothing", () => {
+    const result = { key: "tst:spell:dim-glow", verdict: "none", why: "Narration.", confidence: 0.9 };
+    for (const extra of [{ note: "x" }, { overwrite: "yes" }, { by: "bad name" }]) {
+      const r = run(["ingest", resultsFile({ batch: "b", by: "agent-1", results: [result], ...extra })]);
+      expect(r.status).toBe(2);
+    }
+    expect(readBook().records.every((x) => x.verdict === null)).toBe(true);
   });
 
   it("ingest refuses a results file of the wrong shape", () => {
