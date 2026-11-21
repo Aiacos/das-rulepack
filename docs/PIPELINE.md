@@ -188,23 +188,36 @@ review or a play written before the stamp existed (no `rule`): it counts as it d
   check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free? }`; `expect: { damage?:
   { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode: advantage|disadvantage, on:
   attack|save|check, for: self|target|ally|enemy }, affects?, excludes? (target|allies|enemies|self), move?: { mode,
-  distance }, uses?: { spent }, free? }`. Any other field is refused; `free` is one line of at most 120 characters. The schema
+  distance? }, uses?: { spent }, free? }`. Any other field is refused; `free` is one printable line of at most 120
+  characters and never stands alone (every assertion has a closed `expect` field); `given.origin` is one of the rule's
+  `origins`; `move.distance` is a non-negative number or a formula of at most 24 characters (digits, spaces, `+ - * / ( ) .`,
+  `@` paths). `rule.adds` is one printable line of at most 200 characters (a legacy rule's predates the limit). The schema
   checks the shape; the validator gate checks `moment` (MOMENTS), `targetType` (CREATURE_TYPES), the statuses of `condition`
   (the conditions `core/monster-text.mjs` names), `ends` (EFFECT_ENDS or a moment), `move.mode` (MOVE_MODES) and
   `damage.type` (DAMAGE_TYPES) against the clone (`loadCore`). `normaliseAssert` gives the sorted canonical forms of a list
   (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry)` what an entry says by itself:
   `saveDamage` (a saved save: half or no damage), `halfOnMiss`, `noDamage`, and a `triggers` declaration on `failedSave` with a
-  `status` or `move` step.
+  `status` or `move` step (Rulings R15, R16: `noReactions` implies nothing, so such a rule always goes to a person at review).
+- **Quotations.** The text gate reads the record's cached text and fails a rule whose `adds` or any `assert[].given.free` /
+  `assert[].expect.free` repeats 8 or more consecutive words of it (`text: <field> quotes 8 or more consecutive words of the
+  source text`); a text not in the cache fails. Under `--ci` there is no text cache: what holds there is the gate evidence,
+  whose rule fingerprint covers `adds` and `assert`, so a rule edited after a local run fails `--ci` until the gates pass on
+  it again; the schema's length and line limits run in both modes.
 - **Drafter keys** (Ruling R6). `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`) lists the entry keys a drafter may write, each
   with the slot its ids sit in (`activityMap`, `effectMap`: ids as an object's keys or a list, origins side by side; `single`:
   one id, one origin; `none`), read off each key's validator in the clone; `tests/pipeline/draft-keys.test.mjs` checks every
-  key against the engine's `ENTRY_KEYS` and validator. `checkDraftKeys(entry, { origins, kind })` refuses any other key
-  (the record goes to the drafts queue as outcome `person`) and a `dataFixes` that is not on the official origin alone, has a
-  path fix without `from`, or is on a monster feature.
+  key against the engine's `ENTRY_KEYS` and validator. `checkDraftKeys(entry, { origins, kind })` (both required: it throws
+  without them) refuses any other key (the record goes to the drafts queue as outcome `person`) and, in `dataFixes`: a
+  `create` (an effect to create goes to a person), a fix without a non-empty `from` guard (`{}`, `[]` or an empty part inside
+  are refused: the engine's matcher takes `{}` for anything), a prose path (`name`, `system.description…`,
+  `system.unidentified…`, `flags.…`, `img`, any `name`, `description` or `chat…` segment), a string longer than 60
+  characters in `value`, an origin other than official alone, a monster feature.
 - **Queues** (Ruling R7). `registry/drafts-queue.json` and `registry/review-queue.json` sit beside `queue.json`: arrays of
   `{ key, reason, by, why, confidence, draft?, review? }`, sorted by key (`registry.mjs` `loadQueue`, `saveQueue`,
   `validateQueueEntry`). With `legacy.json` they are the files of `NOT_BOOKS` (`registry.mjs`): `generate`, the CLI,
   `books-progress` and every other reader of `registry/*.json` leave them out, and no book code may take their names.
+  `loadQueue` refuses a file that does not parse or an entry that is not valid (record key shape, known fields), and
+  `gates` (with or without `--ci`) loads every queue first: a broken one exits 2 naming the file.
 
 Besides the state, a record may carry the flag `legacy` (a rule that predates the pipeline). Verdicts: `core` (DAS · Core
 has the entry), `data` (the item's own data resolves it), `none` (nothing to automate in combat), `entry` (a declarative

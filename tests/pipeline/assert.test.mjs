@@ -62,7 +62,7 @@ describe("rule.assert in the schema", () => {
   });
 
   it("free text limited to 120 characters", () => {
-    const free = (s) => assertProblems([{ given: { free: s }, expect: { free: "ok" } }]).join("; ");
+    const free = (s) => assertProblems([{ given: { free: s }, expect: { free: "ok", affects: "target" } }]).join("; ");
     expect(free("x".repeat(FREE_MAX))).toBe("");
     expect(FREE_MAX).toBe(120);
     expect(free("x".repeat(FREE_MAX + 1))).toMatch(/given\.free: one line of at most 120 characters/);

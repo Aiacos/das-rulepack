@@ -21,7 +21,15 @@ export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isWord = (v) => typeof v === "string" && v !== "";
-const isFree = (v) => typeof v === "string" && v.trim() !== "" && v.length <= FREE_MAX && !/[\u0000-\u001f\u007f]/.test(v);
+/** One printable line of at most `max` characters: no control character, no line or paragraph separator. */
+export const isPlainLine = (v, max) => typeof v === "string" && v.trim() !== "" && v.length <= max
+  && !/[\u0000-\u001f\u007f-\u009f\u2028\u2029]/.test(v);
+const isFree = (v) => isPlainLine(v, FREE_MAX);
+// What a move distance may be: a number of feet, or a short formula (digits, operators, `@` paths).
+export const DISTANCE_MAX = 24;
+const FORMULA = /^(?:[0-9 +\-*/().]|@[A-Za-z0-9.]+)+$/;
+const isDistance = (v) => (Number.isFinite(v) && v >= 0)
+  || (typeof v === "string" && v.trim() !== "" && v.length <= DISTANCE_MAX && FORMULA.test(v) && /[0-9@]/.test(v));
 const onlyKeys = (o, keys) => Object.keys(o).every((k) => keys.includes(k));
 const list = (v) => (Array.isArray(v) ? v : v instanceof Set ? [...v] : null);
 
@@ -49,7 +57,8 @@ export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS,
     const { given, expect } = a;
     for (const k of Object.keys(given)) if (!GIVEN_FIELDS.includes(k)) errors.push(`${here}.given.${k}: unknown field`);
     for (const k of Object.keys(expect)) if (!EXPECT_FIELDS.includes(k)) errors.push(`${here}.expect.${k}: unknown field`);
-    if (!Object.keys(expect).length) errors.push(`${here}.expect: at least one expected outcome`);
+    // `free` never counts as agreement: an assertion made of it alone says nothing a review or a scenario can check.
+    if (!Object.keys(expect).some((k) => k !== "free")) errors.push(`${here}.expect: at least one closed field besides free`);
     for (const [part, o] of [["given", given], ["expect", expect]]) {
       if ("free" in o && !isFree(o.free)) errors.push(`${here}.${part}.free: one line of at most ${FREE_MAX} characters`);
     }
@@ -101,11 +110,12 @@ function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
   for (const k of ["affects", "excludes"]) if (k in expect) oneOf(expect[k], AFFECTS, `${at}.${k}`);
   if ("move" in expect) {
     const m = expect.move;
-    if (!isObject(m) || !onlyKeys(m, ["mode", "distance"])) errors.push(`${at}.move: must be { mode, distance }`);
+    if (!isObject(m) || !onlyKeys(m, ["mode", "distance"])) errors.push(`${at}.move: must be { mode, distance? }`);
     else {
       word(m.mode, "moveModes", `${at}.move.mode`, "a move mode of the engine (MOVE_MODES)");
-      const ok = (Number.isFinite(m.distance) && m.distance > 0) || (typeof m.distance === "string" && m.distance.trim() !== "");
-      if (!ok) errors.push(`${at}.move.distance: must be a positive number or a formula`);
+      if ("distance" in m && !isDistance(m.distance)) {
+        errors.push(`${at}.move.distance: must be a non-negative number or a formula of at most ${DISTANCE_MAX} characters`);
+      }
     }
   }
   if ("uses" in expect) {
@@ -160,7 +170,9 @@ export function impliedAsserts(entry) {
       if (step?.type === "status" && isWord(step.status)) {
         out.push({ given: { roll: "failedSave" }, expect: { condition: { applied: step.status } } });
       } else if (step?.type === "move" && isWord(step.mode)) {
-        out.push({ given: { roll: "failedSave" }, expect: { move: { mode: step.mode, distance: step.distance } } });
+        // A step without a distance implies no distance: never an undefined field.
+        const move = step.distance === undefined ? { mode: step.mode } : { mode: step.mode, distance: step.distance };
+        out.push({ given: { roll: "failedSave" }, expect: { move } });
       }
     }
   }

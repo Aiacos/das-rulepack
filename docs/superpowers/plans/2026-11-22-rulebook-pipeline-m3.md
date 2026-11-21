@@ -97,6 +97,13 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   given before, `stamp-triaged` backfills it from a registry file of the reading's date, which a person exports from git.
   Wrong: a backfill from the wrong commit marks fresh readings stale (cost: extra reads, never a wrong verdict).
 
+- **R15 — `noReactions` implies no assertion.** The assertion vocabulary has no word for a lost reaction, so a reviewer
+  cannot check it mechanically: a rule using `noReactions` always goes to a person at review. Wrong: those rules are slower
+  (a person reads each); a word for it can be added to `expect` once the pilot shows how many there are.
+- **R16 — `noDamage` implies "no damage dealt by this activity"** (`{ given: {}, expect: { damage: { fraction: 0 } } }`).
+  Damage that comes later from a trigger (Ensnaring Strike style) is a separate assertion of its own. Wrong: a reviewer who
+  reads "the spell deals damage" as one assertion disagrees with the draft and the record goes to a person.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
@@ -195,7 +202,8 @@ identifier equal to a Core identifier merges into Core's entry for every item of
   (`loadCore` gains `moments`, `statuses`, `creatureTypes`, `moveModes`).
 - `normaliseAssert(list) → string[]` (sorted canonical forms) and `impliedAsserts(entry) → string[]` for `saveDamage`,
   `halfOnMiss`, `noDamage`, `noReactions`, `triggers` with `failedSave → status|move` (others `[]`).
-- `DRAFT_KEYS: { [key]: { slot: "activityMap"|"effectMap"|"single"|"none" } }` and `checkDraftKeys(entry) → string[]`.
+- `DRAFT_KEYS: { [key]: { slot: "activityMap"|"effectMap"|"single"|"none" } }` and `checkDraftKeys(entry, { origins, kind })
+  → string[]` (both options required: called without them it throws, it never passes by default).
 - Evidence shapes: `drafted: { by, at, core, rule }`, `reviewed: { by, at, agrees, rule, confidence }`, `played: { at, core,
   world, scenario, client, rule }` (`rule` 64 hex). `stateOf`: `reviewed` and `played` count only while their `rule` is the
   current fingerprint; legacy records keep today's behaviour (`legacyStatus`, complete play record).
@@ -245,7 +253,8 @@ identifier equal to a Core identifier merges into Core's entry for every item of
 - CLI: `npm run ingest -- <results-file> --draft` (with `--second`, `--overwrite` or `--review`: usage error).
 - `ingestDrafts(records, results, { textDir, by, at, core, queue }) → { records, applied, queued, rejected }`. A result is rejected
   (others applied) when: an unknown field; unknown key; verdict not `entry`; the record already has a rule; no text in the cache;
-  `outcome` unknown; for `rule`: schema errors, `checkDraftKeys`, `core.validateEntry` with the real fact list, `checkIds` (R4,
+  `outcome` unknown; for `rule`: schema errors, `checkDraftKeys(entry, { origins: rule.origins, kind: record.kind })`,
+  `core.validateEntry` with the real fact list, `checkIds` (R4,
   R5), prose rules (Global Constraints), `assert` invalid or empty. `person`, `code`, `engine` outcomes and any rule with
   confidence < 0.7 go to `drafts-queue.json` (reason = outcome or `low-confidence`); the verdict is not changed.
 - An applied rule: `rule` written with `alsoAs` and (for monsters) `identifier` filled by Task 2's functions, `origin` derived

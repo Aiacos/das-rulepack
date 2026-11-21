@@ -122,8 +122,8 @@ describe("drafts-queue.json and review-queue.json", () => {
   });
 
   it("entries are checked and saved sorted by key", () => {
-    expect(validateQueueEntry(entry("a"))).toEqual([]);
-    expect(validateQueueEntry(entry("a", { draft: { assert: [] }, review: {} }))).toEqual([]);
+    expect(validateQueueEntry(entry("tst:spell:a"))).toEqual([]);
+    expect(validateQueueEntry(entry("tst:spell:a", { draft: { assert: [] }, review: {} }))).toEqual([]);
     expect(validateQueueEntry(entry("a", { confidence: 1.5 })).join("; ")).toMatch(/confidence/);
     expect(validateQueueEntry(entry("a", { by: "rule" })).join("; ")).toMatch(/by/);
     expect(validateQueueEntry(entry("a", { verdict: "entry" })).join("; ")).toMatch(/verdict: unknown field/);
@@ -131,8 +131,8 @@ describe("drafts-queue.json and review-queue.json", () => {
     saveQueue(dir, "drafts", [entry("tst:spell:b"), entry("tst:spell:a")]);
     expect(loadQueue(dir, "drafts").map((e) => e.key)).toEqual(["tst:spell:a", "tst:spell:b"]);
     expect(loadQueue(dir, "review")).toEqual([]);
-    expect(() => saveQueue(dir, "drafts", [entry("k"), entry("k")])).toThrow(/twice/);
-    expect(() => saveQueue(dir, "drafts", [entry("k", { confidence: -1 })])).toThrow(/confidence/);
+    expect(() => saveQueue(dir, "drafts", [entry("tst:spell:k"), entry("tst:spell:k")])).toThrow(/twice/);
+    expect(() => saveQueue(dir, "drafts", [entry("tst:spell:k", { confidence: -1 })])).toThrow(/confidence/);
     expect(() => saveQueue(dir, "other", [])).toThrow(/queue/);
     writeFileSync(join(dir, "review-queue.json"), "{}");
     expect(() => loadQueue(dir, "review")).toThrow(/array/);

@@ -98,7 +98,8 @@ export function evidenceIsCurrent(record, gates) {
 
 // Evidence about the rule (a review, a play) counts only while its `rule` is the fingerprint of the rule as it is: editing the
 // rule makes it stale. A legacy record keeps today's behaviour: a review or a play written before the stamp existed (no `rule`)
-// still counts; one that carries a stamp is held to it.
+// still counts; one that carries a stamp is held to it. `record.legacy` is the record's own flag (stateOf has no legacy.json):
+// a forged flag earns nothing, since the legacy gate fails it and generate refuses it (legacyProblem).
 const aboutThisRule = (record, evidence) =>
   typeof evidence?.rule === "string" ? evidence.rule === ruleFingerprint(record.rule) : record.legacy === true;
 
@@ -191,12 +192,15 @@ export function saveBook(dir, { book, note, records }) {
 }
 
 const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review"];
+// The shape of a record key (keyOf): `<book>:<kind>:<scoped name>`, lower case.
+export const RECORD_KEY = /^[a-z][a-z0-9]{1,9}:[a-z]+:[a-z0-9][a-z0-9/#-]*$/;
 
 /** The problems of one entry of drafts-queue.json or review-queue.json, or []. */
 export function validateQueueEntry(entry) {
   if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return ["entry: must be an object"];
   const errors = [];
-  for (const f of ["key", "reason", "why"]) {
+  if (typeof entry.key !== "string" || !RECORD_KEY.test(entry.key)) errors.push("key: must be a record key (<book>:<kind>:<name>)");
+  for (const f of ["reason", "why"]) {
     if (typeof entry[f] !== "string" || !entry[f]) errors.push(`${f}: must be a non-empty string`);
   }
   if (!isReaderHandle(entry.by)) errors.push("by: must be a reader handle (not \"rule\")");
@@ -218,13 +222,20 @@ const queueFile = (dir, name) => {
   return join(dir, QUEUE_FILES[name]);
 };
 
-/** The entries of a queue (`name`: drafts or review); a missing file is an empty queue. Throws on a file that is no array. */
+/**
+ * The entries of a queue (`name`: drafts or review); a missing file is an empty queue. Throws, naming the file, on a file
+ * that does not parse, is no array, or holds an entry that validateQueueEntry refuses.
+ */
 export function loadQueue(dir, name) {
   const file = queueFile(dir, name);
   if (!existsSync(file)) return [];
   let list;
   try { list = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new Error(`${file}: ${e.message}`); }
   if (!Array.isArray(list)) throw new Error(`${file}: must be an array of queue entries`);
+  list.forEach((e, i) => {
+    const errors = validateQueueEntry(e);
+    if (errors.length) throw new Error(`${file}: entry ${i}: ${errors.join("; ")}`);
+  });
   return list;
 }
 

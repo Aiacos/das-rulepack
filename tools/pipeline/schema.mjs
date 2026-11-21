@@ -1,5 +1,7 @@
 // The record format of the rulebook registry: the closed vocabularies and the structural validator.
-import { assertProblems } from "./assert.mjs";
+import { assertProblems, isPlainLine } from "./assert.mjs";
+
+export const ADDS_MAX = 200;
 
 export const VERDICTS = Object.freeze(["core", "data", "none", "entry", "code", "engine", "unverifiable"]);
 export const STATES = Object.freeze(["inventoried", "triaged", "drafted", "gated", "reviewed", "played"]);
@@ -112,10 +114,18 @@ function checkUncovered(list, origins, errors) {
   });
 }
 
+// `legacy` is the record's own flag, `record.legacy === true`: the schema has no legacy.json. That is safe because every
+// exemption it grants (no `assert`, a longer `adds`, an unstamped review or play) is only ever acted on with legacy standing:
+// a flag that legacy.json does not back fails the `legacy` gate in every mode and `generate` refuses the record
+// (registry.mjs legacyProblem; tests/pipeline/draft-limits.test.mjs "a forged legacy flag").
 function checkRule(rule, verdict, errors, identifier, legacy) {
   if (!isObject(rule)) return errors.push("rule: must be an object");
   if (!HANDLED_IN.includes(rule.handledIn)) errors.push(`rule.handledIn: must be one of ${HANDLED_IN.join(", ")}`);
   if (typeof rule.adds !== "string") errors.push("rule.adds: must be a string");
+  // The only prose of a rule besides `assert[].free` (a legacy rule's adds predates the limit, its fingerprint holds it).
+  else if (!legacy && !isPlainLine(rule.adds, ADDS_MAX)) {
+    errors.push(`rule.adds: one printable line of at most ${ADDS_MAX} characters`);
+  }
   for (const f of ["code", "origin"]) if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
   if ("catalog" in rule && rule.catalog !== null && typeof rule.catalog !== "string") {
     errors.push("rule.catalog: must be a string or null");
@@ -124,7 +134,8 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
   if ("inCore" in rule && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
   // What the rule says happens (assert.mjs), its shape only: the gates check the engine's words. Required from this
   // milestone on; a legacy rule predates it.
-  if ("assert" in rule) errors.push(...assertProblems(rule.assert));
+  // `given.origin` may name only an origin the rule covers.
+  if ("assert" in rule) errors.push(...assertProblems(rule.assert, Array.isArray(rule.origins) ? { origins: rule.origins } : {}));
   if (!legacy && !(Array.isArray(rule.assert) && rule.assert.length)) {
     errors.push("rule.assert: required, at least one { given, expect } (a legacy rule may have none)");
   }

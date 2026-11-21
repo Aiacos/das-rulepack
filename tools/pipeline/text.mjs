@@ -1,6 +1,6 @@
 // Plain text of 5etools entries, and the content-addressed text cache (files <sha256>.txt).
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const INNERMOST_TAG = /\{@(\w+)\s*([^{}]*)\}/g;
@@ -102,3 +102,5 @@ export function cacheText(dir, text) {
 }
 
 export const hasText = (dir, sha) => existsSync(fileOf(dir, sha));
+/** The cached text of a fingerprint (the caller checked hasText). */
+export const readText = (dir, sha) => readFileSync(fileOf(dir, sha), "utf8");

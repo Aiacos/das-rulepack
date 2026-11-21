@@ -2,7 +2,9 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { BOOK_CODE, NOT_BOOKS, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
+import {
+  BOOK_CODE, NOT_BOOKS, QUEUE_FILES, canonical, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue, saveBook
+} from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
 import {
@@ -182,6 +184,7 @@ function gatesCommand(args) {
   const ci = args.includes("--ci");
   const unknown = args.filter((a) => a !== "--ci");
   if (unknown.length) throw new UsageError(`Usage: gates [--ci] (unexpected: ${unknown.join(" ")})`);
+  checkQueues(REGISTRY);
   const books = loadRegistry(REGISTRY);
   const records = books.flatMap((b) => b.records);
   if (!records.length) return console.log("Nothing to check: the registry has no records.");
@@ -346,6 +349,15 @@ function structuresOf(batch, records, dumpsDir) {
     if (Object.keys(perOrigin).length) entries[e.key] = perOrigin;
   }
   return { batch: batch.id, entries };
+}
+
+// Every queue file of the registry folder parses and holds valid entries (the gates check them, under --ci too): a broken
+// queue would otherwise only show when a later stage reads it.
+function checkQueues(dir) {
+  for (const name of Object.keys(QUEUE_FILES)) {
+    try { loadQueue(dir, name); } catch (e) { throw new UsageError(e.message); }
+  }
+  queueEntries(dir);
 }
 
 // The keys registry/queue.json holds: results waiting for a person.

@@ -21,20 +21,22 @@ describe("DRAFT_KEYS and checkDraftKeys", () => {
   });
 
   it("checkDraftKeys refuses gmAlert and aura", () => {
-    expect(checkDraftKeys({ saveDamage: { [A_OFF]: "half" } })).toEqual([]);
-    const problems = checkDraftKeys({ gmAlert: "read the text", aura: { radius: 10 }, saveDamage: { [A_OFF]: "half" } });
+    const spell = { origins: ["official"], kind: "spell" };
+    expect(checkDraftKeys({ saveDamage: { [A_OFF]: "half" } }, spell)).toEqual([]);
+    const problems = checkDraftKeys({ gmAlert: "read the text", aura: { radius: 10 }, saveDamage: { [A_OFF]: "half" } }, spell);
     expect(problems).toHaveLength(2);
     expect(problems.join("; ")).toMatch(/gmAlert: not a drafter key/);
     expect(problems.join("; ")).toMatch(/aura: not a drafter key/);
-    expect(checkDraftKeys(null)).toEqual(["entry: must be an object"]);
+    expect(checkDraftKeys(null, spell)).toEqual(["entry: must be an object"]);
   });
 
-  it("dataFixes: official origin only, from on every path fix, never on a monster feature", () => {
+  it("dataFixes: official origin only, from on every fix, never on a monster feature", () => {
     const fix = { path: `system.activities.${A_OFF}.damage.onSave`, value: "half", from: "none" };
     expect(checkDraftKeys({ dataFixes: [fix] }, { origins: ["official"], kind: "spell" })).toEqual([]);
     const { from, ...bare } = fix;
-    expect(checkDraftKeys({ dataFixes: [bare] }).join("; ")).toMatch(/dataFixes\[0\]: from is required/);
-    expect(checkDraftKeys({ dataFixes: [fix] }, { origins: ["official", "ddb-importer"] }).join("; "))
+    expect(checkDraftKeys({ dataFixes: [bare] }, { origins: ["official"], kind: "spell" }).join("; "))
+      .toMatch(/dataFixes\[0\]: from is required/);
+    expect(checkDraftKeys({ dataFixes: [fix] }, { origins: ["official", "ddb-importer"], kind: "spell" }).join("; "))
       .toMatch(/dataFixes: official origin only/);
     expect(checkDraftKeys({ dataFixes: [fix] }, { origins: ["official"], kind: "monster" }).join("; "))
       .toMatch(/dataFixes: never on a monster feature/);
@@ -84,7 +86,7 @@ const CORE_DIR = process.env.DAS_CORE;
 describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
   // One entry per key, its ids where the slot says they sit: a map/list slot with the ids of two origins side by side.
   const samples = {
-    triggers: { triggers: [{ on: "failedSave", do: [{ type: "status", status: "prone" }] }] },
+    triggers: { triggers: [{ on: "endOfTurn", via: "effect", fromEffect: E_OFF, do: [{ type: "resave" }] }] },
     saveDamage: { saveDamage: { [A_OFF]: "half", [A_DDB]: "none" } },
     halfOnMiss: { halfOnMiss: true },
     noDamage: { noDamage: [A_OFF, A_DDB] },
@@ -133,7 +135,7 @@ describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
       const { slot } = DRAFT_KEYS[key];
       const count = holds(entry[key]);
       if (slot === "activityMap" || slot === "effectMap") expect(count, key).toBe(2);
-      else if (slot === "single") expect(count, key).toBeLessThanOrEqual(1);
+      else if (slot === "single") expect(count, key).toBe(1);
       else expect(count, key).toBe(0);
     }
   });

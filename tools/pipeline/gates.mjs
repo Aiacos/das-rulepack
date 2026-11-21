@@ -10,7 +10,8 @@ import {
   canonical, emittedFingerprint, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
 } from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
-import { hasText } from "./text.mjs";
+import { hasText, readText } from "./text.mjs";
+import { quotes } from "./triage.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
 import { singleSlotKeys } from "./draft-keys.mjs";
@@ -75,7 +76,9 @@ export function gateValidator(record, { core }) {
   if (!record.rule) return [];
   // The rule's assertions, against the engine's enumerations (the schema gate checked their shape without them).
   const asserts = Array.isArray(record.rule.assert)
-    ? assertProblems(record.rule.assert, { vocabulary: core }).map((e) => `validator: ${e}`) : [];
+    ? assertProblems(record.rule.assert, {
+      vocabulary: core, ...(Array.isArray(record.rule.origins) ? { origins: record.rule.origins } : {})
+    }).map((e) => `validator: ${e}`) : [];
   const { entry, error } = entryOf(record.rule);
   if (error) return [`validator: ${error}`, ...asserts];
   if (!entry) return asserts;
@@ -232,7 +235,32 @@ export function checkText(record, context = {}) {
     return out;
   }
   if (!textDir) return { ...out, failures: ["text: no text cache to look in"] };
-  if (!hasText(textDir, record.text.sha256)) out.failures.push(`text: ${record.text.sha256} is not in the text cache`);
+  if (!hasText(textDir, record.text.sha256)) {
+    out.failures.push(`text: ${record.text.sha256} is not in the text cache`);
+    return out;
+  }
+  // The prose of a rule (`adds`, the `free` of its assertions) never quotes its source. A legacy rule with standing predates
+  // the check (its `adds` is held by its legacy fingerprint, and checking it would change its evidence): it is not held to it.
+  const text = record.rule && !isLegacy(record, context) ? readText(textDir, record.text.sha256) : "";
+  if (!text) return out;
+  for (const [where, prose] of ruleProse(record.rule)) {
+    if (quotes(prose, text, RULE_QUOTE_WORDS)) {
+      out.failures.push(`text: ${where} quotes ${RULE_QUOTE_WORDS} or more consecutive words of the source text`);
+    }
+  }
+  return out;
+}
+
+// A rule's prose may share at most RULE_QUOTE_WORDS - 1 consecutive words with the text it was drafted from.
+export const RULE_QUOTE_WORDS = 8;
+function ruleProse(rule) {
+  if (!isObject(rule)) return [];
+  const out = typeof rule.adds === "string" ? [["rule.adds", rule.adds]] : [];
+  (Array.isArray(rule.assert) ? rule.assert : []).forEach((a, i) => {
+    for (const part of ["given", "expect"]) {
+      if (typeof a?.[part]?.free === "string") out.push([`rule.assert[${i}].${part}.free`, a[part].free]);
+    }
+  });
   return out;
 }
 export const gateText = (record, context) => checkText(record, context).failures;
