@@ -41282,6 +41282,10 @@
         {
           "book": "GGR",
           "page": 15
+        },
+        {
+          "book": "MOT",
+          "page": 18
         }
       ],
       "state": "inventoried"
@@ -43982,6 +43986,10 @@
         {
           "book": "GGR",
           "page": 18
+        },
+        {
+          "book": "MOT",
+          "page": 22
         }
       ],
       "state": "inventoried"
@@ -44278,6 +44286,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "MOT",
+          "page": 24
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44329,6 +44343,12 @@
       "verdict": null,
       "evidence": {},
       "hint": "core-generic",
+      "alsoIn": [
+        {
+          "book": "MOT",
+          "page": 24
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44354,6 +44374,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "MOT",
+          "page": 24
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44379,6 +44405,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "MOT",
+          "page": 24
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44404,6 +44436,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "MOT",
+          "page": 24
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -45328,6 +45366,10 @@
         {
           "book": "VGM",
           "page": 115
+        },
+        {
+          "book": "MOT",
+          "page": 26
         }
       ],
       "state": "inventoried"
