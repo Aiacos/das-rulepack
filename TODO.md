@@ -28,7 +28,11 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] 168 ambiguous official matches to settle with `npm run resolve`; 425 entries with no official item to look at by category.
 - [ ] Ravenloft: The Horrors Within is not in the dataset (no text to fingerprint); Arcana Unleashed and World of Warcraft
       have a local dump since 2026-11-21 but are not in the dataset.
-- [ ] After the 2024-era books: the older books (Xanathar's, Tasha's and the others), by the same commands.
+- [x] The older books are inventoried and triaged by rule (2026-11-21): 39 books, 19,143 entries, `docs/coverage.md`.
+- [ ] Reader batches for the older books: 13,837 entries without a verdict (the 2014 Monster Manual and Mordenkainen Presents
+      alone are 3,880), after a second-reader sample has measured how reliable one reading is.
+- [ ] The three XPHB feature rules (Dreadful Strikes, Inspiring Smite, Psychic Veil) and the rules of FTD, MPMM, AI and PHB
+      are still legacy records without item data: their keys carry no owner, or their book has no dump of that kind.
 - [ ] A rule whose named origin has `identifierDiffers` (16 spells: the official module and DDB Importer name them
       differently) needs a second identifier before it can pass the ids gate.
 - [x] A record that has a rule keeps its identifier and page on re-inventory; `generate` emits `SOURCES` (empty today).

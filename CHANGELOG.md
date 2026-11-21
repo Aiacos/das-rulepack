@@ -12,6 +12,10 @@
   of an official item in another official package are recorded and checked; batches for readers come with a structure
   file written outside the repository. Six 2024-era rulebooks are inventoried — 4,892 entries, see
   `docs/coverage-5e24.md`; nothing new is registered by the module.
+- Triage of the six 2024-era rulebooks by reader agents (76 batches): of 4,892 entries, 1,298 need a rule that is not written
+  yet, 1,252 are carried by the item's own data, 1,298 have nothing to automate in combat, 233 wait for a person. Every
+  other book of the catalogue is inventoried and triaged by rule: 39 books, 19,143 entries, see `docs/coverage.md`. Fourteen
+  of the 24 shipped rules now have their ids checked against the imported item and are `gated`.
 - README: three official Foundry sourcebooks the rulebook catalogue does not contain are in the table of official modules:
   Ravenloft: The Horrors Within (RHW), Arcana Unleashed (AU) and Dungeons & Dragons: World of Warcraft (WOW). Each is
   measured from the module's own compendia and counted like any other book; species traits are a part of their own (RHW,
