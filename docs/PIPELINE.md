@@ -27,13 +27,14 @@ network service or a Foundry server.
 
 ## 🪜 Stages
 
-Every command is an npm script: `npm run <name> -- <arguments>`.
+Every command is an npm script: `npm run <name> -- <arguments>`. Lines of this document stay within 132 columns, table rows
+excepted.
 
 | # | Stage | Command | Needs | Who runs it |
 |---|---|---|---|---|
 | 1 | Inventory | `npm run inventory -- <BOOK> <kind|all> [--allow-collisions]` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 1b | Settle a match | `npm run resolve -- <key> <origin> --doc <docId> --because "<one line>"` (see "Settling matches") | `RULEPACK_DUMPS` (`--doc`) | a person |
-| 2a | Triage by rule | `npm run triage -- <BOOK>` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
+| 2a | Triage by rule | `npm run triage -- <BOOK> [--redo-rule]` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
@@ -55,24 +56,43 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    touches a verdict.
 2. **Triage** has three parts.
    - `triage` applies `autoTriage` to the records of the book that have no verdict (an existing verdict is never
-     overwritten): an identifier that DAS · Core already has is `core` ("DAS · Core has an entry"); a record with no text whose
-     official origin is absent (a placeholder such as a
-     "Subclass Feature" line: no text and no item) is `none` with why "placeholder: no text and no item"; an entry whose
-     text is not in the cache, or that has no text but does have an official item, is `unverifiable`; anything else, SRD or not,
-     is left for a reader (SRD content that Core lacks
-     is a finding for upstream, not a rule for this pack). It records `evidence.triaged = { by: "rule", at }`, saves the
-     book and prints a count per verdict and how many records are left.
+     overwritten), in this order:
+     - **`core`** ("DAS · Core has an entry under this identifier") only when DAS · Core has the record's identifier AND no
+       other record of the same kind, in the whole registry, uses it. A monster feature never gets `core` by rule. A record
+       that misses `core` only for that reason gets `hint: "core-generic"` (the engine has a generic entry of that name) and
+       goes on through the rules below; the hint is passed to the reader.
+     - **No text in the dataset** (`text: null`): a species whose traits are records of their own is left alone (its traits
+       describe it); a record with a matched or ambiguous item in some origin is `unverifiable` ("the rulebook entry has no
+       text of its own"); a record of kind spell, feat, option, feature, background or item with no item in any origin (a
+       placeholder such as a "Subclass Feature" line) is `none` ("no text and no item in any origin"); any other is left.
+     - **A text fingerprint missing from the cache** is `unverifiable` ("the rulebook text is not in the cache").
+     - Anything else, SRD or not, is left for a reader (SRD content that Core lacks is a finding for upstream, not a rule
+       for this pack).
+
+     It records `evidence.triaged = { by: "rule", at }`, saves the book and prints a count per verdict and how many records
+     are left. With `--redo-rule` it also re-evaluates every record of the book whose verdict the rules set
+     (`evidence.triaged.by` is `"rule"`, with no confidence): a verdict the rules give again keeps its date, one they give
+     differently is rewritten, and one they no longer give is cleared (`verdict` back to null, `why` and `evidence.triaged`
+     removed, and the count printed as `cleared`). A verdict set by `ingest` and a record that has a `rule` are never
+     touched. `by: "rule"` is reserved: `ingest` refuses a results file signed with it.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
-     kind (`--kind` keeps one kind), `--size` entries each (default 40). When `<dir>` already holds batch files of the book,
-     numbering continues after the highest number there: an id is never reused. A batch is `{ id, stage: "triage", entries:
-     [{ key, name, kind, edition, textSha, owner?, level?, section?, rarity?, page?, srd?, items }] }`; the optional fields are
-     the record's own (where a feature sits, its page, the SRD flag) and are left out when the record has none; `items` are the
-     item summaries without their `data` (a matched item keeps its `differences`). Text is referenced by `textSha` and never
-     embedded, so a batch file is safe to commit.
+     kind (`--kind` keeps one kind), `--size` entries each (default 40). A record whose key is in `registry/queue.json`
+     (waiting for a person) is not cut. When `<dir>` already holds batch files of the book, numbering continues after the
+     highest number there: an id is never reused. Re-running `batch` therefore cuts the entries that are still open again,
+     under new ids, until their results are ingested. A batch is `{ id, stage: "triage", entries: [{ key, name, kind,
+     edition, textSha, owner?, level?, section?, rarity?, page?, srd?, hint?, items }] }`; the optional fields are the
+     record's own (where a feature sits, its page, the SRD flag, the hint of the rule-based triage) and are left out when the
+     record has none; `items` are the item summaries without their `data` (a matched item keeps its `differences`). Text is
+     referenced by `textSha` and never embedded, so a batch file is safe to commit. `--out` (and `--structure`) must be a
+     folder or not exist yet: an existing file is a usage error.
    - `batch triage ... --structure <private dir>` also writes `<private dir>/<batch id>.structure.json`:
      `{ batch, entries: { <key>: { <origin>: <structure> | null } } }`, one origin per matched item (`null` when the dumps do
      not hold its document, always so for `plutonium`); an entry with no matched item is left out. It needs `RULEPACK_DUMPS`.
-     For a monster feature the document is the item embedded in the actor (`<actor id>.<item id>`). The structure
+     The document is looked up by the item's docId and, when the item records one, its data fingerprint (`data.sha256`);
+     only documents of a type the pipeline reads are indexed (items, class, subclass, race, background, actors: never a
+     journal entry or page that shares the id), and a document that cannot be found that way is `null`, never another one.
+     Every structure is computed before any file is written. For a monster feature the document is the item embedded in the
+     actor (`<actor id>.<item id>`). The structure
      (`tools/pipeline/structure.mjs`) is built from a whitelist: `level`, `school`, `rarity`, `duration`, `concentration`,
      `uses` (`max`, recovery periods), per activity its `id`, a `label` (the name without markup, 40 characters at most),
      `type`, `activation`, `save` (abilities and DC), `onSave`, `damage` and `healing` parts (`number`, `denomination`,
@@ -80,11 +100,17 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      `statuses`, the `changes` as a list of changed KEYS (never their values), `transfer` and `duration`. No description,
      chat text, flag or prose value is ever copied: a string that is not a plain value (enumeration, id, key, short formula)
      is dropped. It is still derived from premium data, so the command REFUSES (exit 2, nothing written) a `--structure`
-     folder inside the repository (real paths, so also through a symlink), inside the registry folder or equal to or around
-     `--out`. Never commit a structure file.
+     folder inside the repository (real paths, so also through a symlink: each existing part of a path is resolved before
+     the next one is applied), inside the registry folder or equal to or around `--out`, and a `--structure` or `--out`
+     path with a `..` segment. Never commit a structure file.
    - `ingest` takes what the readers wrote (see below).
 4. **Gates** check every record deterministically and write their outcome into `evidence.gates`: the gates that were
-   checked and passed in `passed`, those that could only leave a note in `noted`. The ids gate fails closed: every
+   checked and passed in `passed`, those that could only leave a note in `noted`, and in `items` the data fingerprint of
+   the matched item of each origin the rule names (`{ <origin>: <data.sha256> }`, left out when no item has data, as for a
+   legacy rule). The evidence counts (state `gated`, and the `--ci` check) only while the rule fingerprint is the rule's
+   and every recorded item fingerprint is that of the record's current matched item of its origin: moving an item to
+   another document or changing its data, by `resolve`, inventory or anyone, makes the record `drafted` again.
+   The ids gate fails closed: every
    16-character token of letters and digits in an entry (a key, a value, or a dot-separated segment of either) is a
    document id unless it is a word of the engine's own vocabulary (entry keys, enumeration values, fact and moment names
    of the `DAS_CORE` clone), and every origin the rule names must have it as an activity or effect of its matched item (an item
@@ -135,6 +161,8 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 > text says what the rule is. A `null` origin has a matched item whose document could not be read; an origin missing from the
 > structure file has no matched item. The batch entry gives `owner`, `level`, `section`, `rarity`, `page` and `srd` where they
 > apply, and per item its `match` and `differences`. When the origins differ, say in `why` which origin lacks what.
+> An entry with `hint: "core-generic"` has an identifier for which DAS · Core has a generic entry (shared by many entries,
+> or a monster feature): it says nothing about this entry, so judge it against its text like any other.
 >
 > **What the engine does without an entry** (so the data resolves it: `data`, or `none` when the text adds nothing to combat):
 > attack rolls; saving throws; damage and healing, with half or none on a successful save as the activity says; applying an
@@ -273,15 +301,24 @@ Notes on what inventory does with each kind:
   An entry with no text gets `text: null` and no cache file.
 - Matching looks at the Foundry document types of the kind (a species matches a `race` document, its traits `feat`
   documents). Names compare by slug (apostrophes alike, a leading "The" ignored); a trailing parenthesised group and a
-  `+1`/`+2`/`+3` token are a variant marker that must agree. Same-name features and traits are told apart by the class,
-  subclass or race document whose advancement grants them, then by `system.requirements` and the feat subtype; what cannot be
-  told apart is `ambiguous`, never the first. An item whose rarity differs (case-insensitive; a missing one is unknown) is
-  `ambiguous`.
+  `+1`/`+2`/`+3` token are a variant marker that must agree. When no candidate has the same name, the candidates of the
+  same base name with another variant marker are offered as `ambiguous` (`differences: ["variant"]`: a "+1" item and the
+  base item are different entries, a person settles it with `resolve`), and so are those whose name has the same words in
+  another order, commas ignored ("Poison, Basic" and "Basic Poison"; `differences: ["name-order"]`); the one candidate in
+  another order, alone, of a fitting type and with no other difference, is `matched` with `differences: ["name-order"]`.
+  The items embedded in a monster are matched by the same name only. Same-name features and traits are told apart by the
+  class, subclass or race document whose advancement grants them, then by `system.requirements` and the feat subtype
+  (whole hyphenated words: "Half-Elf" does not name "Elf"); what cannot be told apart is `ambiguous`, never the first. An
+  item whose rarity differs (case-insensitive; a missing one is unknown) is `ambiguous`.
 - A monster has no single rule: each stat-block feature (trait, action, bonus action, reaction, legendary or mythic action;
   a spellcasting block is one trait named as the block) is a record, `kind: "monster"`, with `owner` = the creature and
   `section`. Key: `<book>:monster:<creature>/<section>/<feature>`, a name repeated within one creature and section numbered
-  `#2`, `#3` in dataset order (the record carries `occurrence`). The name is the base name: the recharge markup and the
-  cost or use qualifiers ("(Costs 2 Actions)", "(3/Day)") are dropped, the text keeps them. A `_copy` creature lists only the
+  `#2`, `#3` in dataset order (the record carries `occurrence`). The name is the base name: the recharge markup and a
+  trailing parenthesised group that names a cost, a recharge, uses or a limit anywhere in it ("(Costs 2 Actions)",
+  "(3/Day)", "(6/Year)", "(Celestial Only; Recharges after a Long Rest)") are dropped, the text keeps them; an embedded
+  item's name is read the same way when it is compared. The KEY keeps the rule the first records were written with (only
+  a group that starts with a cost, a recharge or "at will", or holds a count per day, rest or turn, is dropped from it), so
+  no committed key changes; inventory updates the `name` of a monster record without a rule. A `_copy` creature lists only the
   sections it defines itself (nothing is inherited; the base's features are records of the base creature), with
   `copyOf` = "<base name>|<base source>". Two creatures of one name in a book collide like any other key.
   The official candidates are the items embedded in the actors of the creature's name in the book package's `*actors*`
@@ -311,7 +348,8 @@ Notes on what inventory does with each kind:
   one printable line of at most 200 characters. `--by` is a handle like ingest's (default `maintainer`). It writes the item as
   `matched` (ids, `data`) with `resolved: { by, at, because }`; `--absent` removes the item and records
   `{ origin, absent: true, by, at, because, candidates }` in the record's `resolutions`, so inventory does not add it again.
-  It never touches verdict, rule or evidence.
+  It never touches verdict or rule; it removes `evidence.gates` when the item is no longer the same document with the same
+  data (the gates checked another item), and leaves the rest of the evidence.
 - **Inventory and what was settled.** A resolved item stays while the chosen document is in the dump with the same data
   fingerprint; an `absent` resolution stays while matching offers the same candidates (or none). Otherwise the item goes back
   to what matching says and the key is listed under `resolutionStale` in the report.
@@ -322,7 +360,9 @@ Notes on what inventory does with each kind:
   on the item and no source. Inventory owns the field: it is recomputed on every run and removed when nothing is bound.
 - **Reprints.** The official item of every kind but monsters gets `reprints: [{ package, docId, sameIds, missing? }]` for each
   other official package (any dump file that is not of the book's package, does not start with `ddb.` or `dnd5e.`, and is not
-  an actor pack) that holds the same document id. `sameIds` compares the sets of activity ids and effect ids; when they differ,
+  an actor pack) that holds the same document id in a document of one of the record kind's types (a journal page or a
+  document of another kind that shares the id is not a reprint).
+  `sameIds` compares the sets of activity ids and effect ids; when they differ,
   `missing` lists the ids of the item that the reprint lacks (required when `sameIds` is false). The ids gate fails a ruled
   record whose entry uses an id listed in
   `missing`, naming the package, unless the item lists the package under `reprintsExcluded: [{ package, because }]`, which is set
@@ -349,6 +389,5 @@ Rulings of this milestone, in short:
   listed candidate whatever its type; `--force` is limited to the kind's types (plus `subclass` for a feature that names its
   subclass) and, for a monster, to the actors of its own creature. `--absent` on a matched item needs `--force` and then
   sticks while the document's data is unchanged.
-- A resolution leaves `evidence.gates` in place until the gates run again.
 - A reprint is checked only when the rule names `official` among its origins; a `sameIds: false` reprint without a usable
   `missing` is taken to lack every id.
