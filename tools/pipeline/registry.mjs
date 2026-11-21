@@ -6,7 +6,7 @@ import { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord } from "./schema.mjs
 
 export { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord };
 
-const slug = (s) => String(s).toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+export const slug = (s) => String(s).toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 export function keyOf({ book, kind, name, creature }) {
   return [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : []), slug(name)].join(":");
