@@ -454,7 +454,9 @@ async function ingestCommand(args) {
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
   if (second) return ingestSecondCommand(books, input, { textDir, entryKeys });
-  const out = ingest(books.flatMap((b) => b.records), input.results, { textDir, by: input.by, overwrite, entryKeys });
+  const out = ingest(books.flatMap((b) => b.records), input.results, {
+    textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY)
+  });
   const touched = new Set(out.records.filter((r) => out.applied.includes(r.key)).map((r) => r.book));
   for (const b of books) {
     if (!touched.has(b.book)) continue;
@@ -475,8 +477,10 @@ function ingestSecondCommand(books, input, { textDir, entryKeys }) {
     if (!touched.has(b.book)) continue;
     saveBook(REGISTRY, { book: b.book, note: b.note, records: out.records.filter((r) => r.book === b.book) });
   }
-  if (out.disagreed.length || out.agreed.length) mergeQueue(REGISTRY, out.disagreed, out.agreed);
-  console.log(JSON.stringify({ agreed: out.agreed.length, disagreed: out.disagreed.length, rejected: out.rejected }, null, 2));
+  const parked = [...out.disagreed, ...out.unsure];
+  if (parked.length || out.agreed.length) mergeQueue(REGISTRY, parked, out.agreed);
+  const counts = { agreed: out.agreed.length, disagreed: out.disagreed.length, unsure: out.unsure.length, rejected: out.rejected };
+  console.log(JSON.stringify(counts, null, 2));
   if (out.rejected.length) process.exitCode = 1;
 }
 

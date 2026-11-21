@@ -154,10 +154,13 @@ rule), `code` (needs a script), `engine` (needs something the engine lacks), `un
 
 The Claude Code session gives each reader agent one batch file, its structure file and this brief.
 
-> You triage the entries of one batch file, `<dir>/<book>-triage-<NNN>.json`.
+> You triage the entries of one batch file, `<dir>/<book>-triage-<NNN>.json` (or `<dir>/<book>-second-<NNN>.json`, a second
+> reading: the same work, done blind).
 >
-> **What you may read.** The batch file; its structure file `<private dir>/<book>-triage-<NNN>.structure.json`; and the text
-> cache `$RULEPACK_TEXT`: the text of an entry is the file `<textSha>.txt`. Nothing else.
+> **What you may read.** The batch file; its structure file `<private dir>/<book>-triage-<NNN>.structure.json` (or
+> `<private dir>/<book>-second-<NNN>.structure.json`); and the text cache `$RULEPACK_TEXT`: the text of an entry is the file
+> `<textSha>.txt`. Nothing else: never open anything under `registry/` (`queue.json` included), nor the results files of
+> other readers.
 >
 > **How you work.** For each entry, read the rule text by its `textSha`, then compare it with the structure of each origin
 > (`official`, `ddb-importer`, `plutonium`) under the entry's key in the structure file. The structure says what the item's own
@@ -254,7 +257,8 @@ What the session does with the output:
    `--overwrite` if the record already has a verdict; applying a verdict removes the key from the queue. An `engine` verdict
    is never applied by `ingest`: it waits in the queue until a person records the upstream issue and sets the record.
 3. A batch with an unusual share of rejections or queued results is redone, not patched.
-4. Before a person reads the queue, a second reader may read it (below).
+4. Before a person reads the queue, a second reader may read it (below). Give a second reading to a reader with a different
+   handle (`by`) than the first one's: the tool rejects the same handle.
 
 ### Second reading of the queue
 
@@ -270,15 +274,24 @@ An independent, blind second reading keeps only the real disagreements for a per
   reader's). Every check of `ingest` applies and `core` is refused. In addition:
   - a result whose key is not in the queue, whose entry already has a `second`, or whose `by` equals the queued `by`
     (case aside) is rejected, and nothing of it is applied;
-  - same verdict as the queued one, neither being `engine`: **agreed**. The verdict is applied (`why` is the second
-    reader's; `evidence.triaged` is written as for any ingest, by the second reader, plus
-    `evidence.triaged.first: { by, confidence }` for the first reading) and the entry leaves the queue;
+  - same verdict as the queued one, neither being `engine`, and the second reader's confidence at least 0.7 (the queue
+    threshold; exactly 0.7 counts): **agreed**. The verdict is applied (`why` is the second reader's; `evidence.triaged` is
+    written as for any ingest, by the second reader, plus `evidence.triaged.first: { by, confidence }` for the first reading)
+    and the entry leaves the queue. Two unsure readings never settle a record;
+  - same verdict but the second confidence below 0.7: **unsure**. Nothing is applied; the entry stays in the queue with
+    `reason: "unsure-twice"` and the `second` reading;
   - a different verdict, or `engine` on either side: **disagreed**. The record stays without a verdict and the entry stays in
-    the queue with `reason: "disagreement"` and `second: { verdict, why, confidence, by }`. It is not cut again by
-    `--queued`, and a further `--second` result for it is rejected: no third reading;
-  - it prints `{ agreed, disagreed, rejected }` (`rejected` as `{ key, reason }`) and exits with 1 when anything was rejected.
+    the queue with `reason: "disagreement"` (`"engine"` when both readings are `engine`) and
+    `second: { verdict, why, confidence, by }`;
+  - an entry with a `second` (disagreed or unsure) is not cut again by `--queued`, a further `--second` result for it is
+    rejected, and so is a normal `ingest` result for it, with or without `--overwrite` ("two readers disagree: it waits for a
+    person"): no third reading, and no single reader undoes two. A result is also rejected when the same key appears twice in
+    the file, or when the queue entry names no first reader;
+  - it prints `{ agreed, disagreed, unsure, rejected }` (`rejected` as `{ key, reason }`) and exits with 1 when anything was
+    rejected.
   `--second` together with `--overwrite` is a usage error.
-- What stays for a person: the queue entries with `reason: "disagreement"` (the two readings side by side) and every `engine`
+- What stays for a person: the queue entries with a `second` (`reason` `"disagreement"`, `"unsure-twice"` or `"engine"`: the
+  two readings side by side) and every `engine`
   verdict, as before. Entries that nobody has read twice yet keep their original reason.
 
 ## 🏛️ Legacy rules

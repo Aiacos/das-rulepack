@@ -94,6 +94,10 @@ export const GATE_NAMES = Object.freeze(["schema", "validator", "ids", "fixes", 
 const HEX64 = /^[0-9a-f]{64}$/;
 const isGateList = (v) => Array.isArray(v) && v.every((g) => GATE_NAMES.includes(g));
 
+// A reader's handle (`evidence.triaged.by`, queue.json `by`): "rule" names the rule-based step, no reader may sign with it.
+export const BY = /^[a-z0-9][a-z0-9._-]{0,63}$/i;
+export const isReaderHandle = (by) => typeof by === "string" && BY.test(by) && by.toLowerCase() !== "rule";
+
 // The shapes of evidence.gates, evidence.reviewed and evidence.played, when present (the tools write them; nobody types them).
 function checkEvidence(evidence, errors) {
   const { gates, reviewed, played, triaged } = evidence;
@@ -101,8 +105,7 @@ function checkEvidence(evidence, errors) {
   if (isObject(triaged) && "first" in triaged) {
     const first = triaged.first;
     const ok = isObject(first) && Object.keys(first).every((k) => k === "by" || k === "confidence")
-      && typeof first.by === "string" && /^[a-z0-9][a-z0-9._-]{0,63}$/i.test(first.by) && first.by.toLowerCase() !== "rule"
-      && typeof first.confidence === "number" && first.confidence >= 0 && first.confidence <= 1;
+      && isReaderHandle(first.by) && typeof first.confidence === "number" && first.confidence >= 0 && first.confidence <= 1;
     if (!ok) errors.push("evidence.triaged.first: must be { by: reader handle, confidence: number from 0 to 1 }");
   }
   if ("gates" in evidence) {

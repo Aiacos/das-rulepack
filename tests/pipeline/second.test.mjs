@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { cutBatches, highestBatches } from "../../tools/pipeline/batch.mjs";
-import { ingestSecond } from "../../tools/pipeline/triage.mjs";
+import { ingest, ingestSecond } from "../../tools/pipeline/triage.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 
@@ -98,7 +98,7 @@ describe("ingestSecond", () => {
     const engineQ = queued("Dim Glow", { verdict: "engine", reason: "engine" });
     const same = second([r], [res("Dim Glow", { verdict: "engine" })], [engineQ]);
     expect(same.disagreed).toHaveLength(1);
-    expect(same.disagreed[0].reason).toBe("disagreement");
+    expect(same.disagreed[0].reason).toBe("engine");
     const mine = second([r], [res("Dim Glow", { verdict: "engine" })], [queued("Dim Glow")]);
     expect(mine.disagreed).toHaveLength(1);
     const theirs = second([r], [res("Dim Glow")], [engineQ]);
@@ -129,6 +129,64 @@ describe("ingestSecond", () => {
     const before = JSON.stringify([rs, q]);
     second(rs, [res("Dim Glow")], q);
     expect(JSON.stringify([rs, q])).toBe(before);
+  });
+});
+
+describe("fix round 1: rules of the second reading", () => {
+  const SECOND = { verdict: "none", why: "w", confidence: 0.9, by: "reader-2" };
+  const disagreed = () => queued("Dim Glow", { reason: "disagreement", second: SECOND });
+
+  it("a normal ingest cannot undo a disagreement, with or without --overwrite", () => {
+    const rs = [record("Dim Glow")];
+    for (const confidence of [0.95, 0.3]) {
+      for (const overwrite of [false, true]) {
+        const q = [disagreed()];
+        const before = JSON.stringify(q);
+        const out = ingest(rs, [res("Dim Glow", { confidence })], { textDir, by: "reader-3", at: AT, entryKeys: ENTRY_KEYS,
+          overwrite, queue: q });
+        expect(out.rejected[0].reason).toMatch(/two readers disagree: it waits for a person/);
+        expect(out.applied).toEqual([]);
+        expect(out.queued).toEqual([]);
+        expect(out.records[0].verdict).toBeNull();
+        expect(JSON.stringify(q)).toBe(before);
+      }
+    }
+  });
+  it("a normal low-confidence result for a queued key without second still queues", () => {
+    const out = ingest([record("Dim Glow")], [res("Dim Glow", { confidence: 0.3 })], { textDir, by: "reader-3", at: AT,
+      entryKeys: ENTRY_KEYS, queue: [queued("Dim Glow")] });
+    expect(out.queued).toHaveLength(1);
+    expect(out.rejected).toEqual([]);
+  });
+  it("applies an agreement at exactly the threshold and parks it just below", () => {
+    const r = record("Dim Glow");
+    const at = second([r], [res("Dim Glow", { confidence: 0.7 })], [queued("Dim Glow")]);
+    expect(at.agreed).toEqual([r.key]);
+    expect(at.unsure).toEqual([]);
+    const below = second([r], [res("Dim Glow", { confidence: 0.69 })], [queued("Dim Glow")]);
+    expect(below.agreed).toEqual([]);
+    expect(below.records[0].verdict).toBeNull();
+    expect(below.disagreed).toEqual([]);
+    expect(below.unsure).toEqual([{
+      ...queued("Dim Glow"), reason: "unsure-twice",
+      second: { verdict: "data", why: "second why", confidence: 0.69, by: "reader-2" }
+    }]);
+  });
+  it("keeps reason engine when both readings are engine", () => {
+    const q = queued("Dim Glow", { verdict: "engine", reason: "engine" });
+    const out = second([record("Dim Glow")], [res("Dim Glow", { verdict: "engine" })], [q]);
+    expect(out.disagreed[0]).toMatchObject({ reason: "engine", second: { verdict: "engine" } });
+  });
+  it("rejects a queue entry with no first reader and a key twice in one file", () => {
+    const rs = [record("Dim Glow"), record("Pale Lamp")];
+    const noBy = queued("Dim Glow");
+    delete noBy.by;
+    const a = second(rs, [res("Dim Glow")], [noBy]);
+    expect(a.rejected[0].reason).toMatch(/names no first reader/);
+    const b = second(rs, [res("Pale Lamp", { verdict: "none" }), res("Pale Lamp", { verdict: "none" }), res("Pale Lamp")],
+      [queued("Pale Lamp")]);
+    expect(b.disagreed).toHaveLength(1);
+    expect(b.rejected.map((x) => x.reason)).toEqual(["the key appears twice in this file", "the key appears twice in this file"]);
   });
 });
 
@@ -227,10 +285,36 @@ describe("second reading on the command line", () => {
   });
 
   withCore("ingest --second with --overwrite is a usage error and changes nothing", () => {
-    const before = readFileSync(queueFile(), "utf8");
-    const r = run(["ingest", resultsFile("r.json", "reader-2", []), "--second", "--overwrite"]);
+    const snap = () => [queueFile(), join(registry, "tst.json")].map((f) => readFileSync(f, "utf8"));
+    const before = snap();
+    const r = run(["ingest", resultsFile("r.json", "reader-2", [{ key: "tst:spell:s1", verdict: "data", why: "w", confidence: 1 }]),
+      "--second", "--overwrite"]);
     expect(r.status).toBe(2);
+    expect(r.stderr).toMatch(/--second and --overwrite/);
+    expect(snap()).toEqual(before);
+  });
+
+  withCore("ingest --second counts unsure readings apart; a normal ingest cannot undo a disagreement", () => {
+    const f = resultsFile("r.json", "reader-2", [{ key: "tst:spell:s1", verdict: "data", why: "unsure", confidence: 0.5 }]);
+    const r = run(["ingest", f, "--second"]);
+    expect(r.status).toBe(0);
+    expect(JSON.parse(r.stdout)).toMatchObject({ agreed: 0, disagreed: 0, unsure: 1, rejected: [] });
+    expect(readQueue()[0]).toMatchObject({ key: "tst:spell:s1", reason: "unsure-twice", second: { by: "reader-2" } });
+    expect(bookRecords().get("tst:spell:s1").verdict).toBeNull();
+    const before = readFileSync(queueFile(), "utf8");
+    const again = [{ key: "tst:spell:s1", verdict: "data", why: "w", confidence: 1 }];
+    const normal = run(["ingest", resultsFile("n.json", "reader-3", again), "--overwrite"]);
+    expect(normal.status).toBe(1);
+    expect(JSON.parse(normal.stdout).rejected[0].reason).toMatch(/two readers disagree/);
     expect(readFileSync(queueFile(), "utf8")).toBe(before);
-    expect(existsSync(join(tmp, "out"))).toBe(false);
+    expect(bookRecords().get("tst:spell:s1").verdict).toBeNull();
+  });
+
+  it("batch --queued works with --kind", () => {
+    const out = join(tmp, "out");
+    expect(run(["batch", "triage", "TST", "--out", out, "--queued", "--kind", "feat"]).stdout).toMatch(/^0 batches/);
+    expect(run(["batch", "triage", "TST", "--out", out, "--queued", "--kind", "spell"]).stdout).toMatch(/^1 batches/);
+    const b = JSON.parse(readFileSync(join(out, "tst-second-001.json"), "utf8"));
+    expect(b.entries.map((e) => e.key)).toEqual(["tst:spell:s1", "tst:spell:s2"]);
   });
 });
