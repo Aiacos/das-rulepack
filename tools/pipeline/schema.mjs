@@ -36,7 +36,9 @@ function checkRule(rule, verdict, errors) {
   if (!HANDLED_IN.includes(rule.handledIn)) errors.push(`rule.handledIn: must be one of ${HANDLED_IN.join(", ")}`);
   if (typeof rule.adds !== "string") errors.push("rule.adds: must be a string");
   for (const f of ["code", "origin"]) if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
-  if ("catalog" in rule && rule.catalog !== null && typeof rule.catalog !== "string") errors.push("rule.catalog: must be a string or null");
+  if ("catalog" in rule && rule.catalog !== null && typeof rule.catalog !== "string") {
+    errors.push("rule.catalog: must be a string or null");
+  }
   if ("entry" in rule && !isObject(rule.entry)) errors.push("rule.entry: must be an object");
   if ("inCore" in rule && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
   if ("assert" in rule && !isObject(rule.assert)) errors.push("rule.assert: must be an object");
