@@ -48,7 +48,9 @@ describe("validateRecord", () => {
   it("accepts a text fingerprint object and rejects malformed ones", () => {
     const text = { sha256: "a".repeat(64), source: "cache", chars: 0 };
     expect(validateRecord({ ...minimal(), text })).toEqual([]);
-    const bads = ["plain string", { ...text, sha256: "xyz" }, { ...text, source: 1 }, { ...text, chars: -1 }, { ...text, chars: 1.5 }];
+    const bads = [
+      "plain string", { ...text, sha256: "xyz" }, { ...text, source: 1 }, { ...text, chars: -1 }, { ...text, chars: 1.5 }
+    ];
     for (const bad of bads) {
       expect(validateRecord({ ...minimal(), text: bad }).join()).toMatch(/text/);
     }
