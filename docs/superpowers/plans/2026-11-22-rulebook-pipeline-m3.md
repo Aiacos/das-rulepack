@@ -229,6 +229,11 @@ identifier equal to a Core identifier merges into Core's entry for every item of
 - [ ] **Step 3:** Run — FAIL. Implement. Run — PASS; `npm test`, `gates --ci`, `build:rules --check` PASS.
 - [ ] **Step 4:** Commit `Pipeline: rule assertions, drafter keys and rule-stamped evidence`.
 
+**Parked** (review findings of Task 3 kept for later, not fixed in this milestone): the field order of the concatenated
+quotation check (a quote split across fields in another order than the record's); words inside `@flags.` references of a
+distance; a directory or a symlink named like a script passing the `rule.code` existence check; the length of `why` in
+`queue.json`.
+
 ### Task 4: `batch draft` and the drafter brief
 
 **Files:** modify `tools/pipeline/batch.mjs`, `cli.mjs`; `docs/PIPELINE.md` (stage 3 and brief); test
@@ -260,6 +265,8 @@ identifier equal to a Core identifier merges into Core's entry for every item of
 
 **Interfaces — produces:**
 - CLI: `npm run ingest -- <results-file> --draft` (with `--second`, `--overwrite` or `--review`: usage error).
+- The ingest never copies `evidence` (nor `evidence.person`, a person's signature) from a results file: a result that
+  carries one is rejected.
 - `ingestDrafts(records, results, { textDir, by, at, core, queue }) → { records, applied, queued, rejected }`. A result is rejected
   (others applied) when: an unknown field; unknown key; verdict not `entry`; the record already has a rule; no text in the cache;
   `outcome` unknown; for `rule`: schema errors, `checkDraftKeys(entry, { origins: rule.origins, kind: record.kind })`,

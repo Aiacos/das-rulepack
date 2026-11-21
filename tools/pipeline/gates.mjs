@@ -6,7 +6,7 @@
 //   legacy    legacy.json as a Map of record key to the fingerprint of its rule at migration (registry.mjs loadLegacy)
 // A gate returns its failures as a string[]; the gates that can also say something that must not fail a run (a note) expose it
 // through the matching check function, and runGates collects both.
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -81,6 +81,23 @@ export const gateSchema = (record, context) => {
   ];
 };
 
+// The owners who may sign `evidence.person` (docs/owners.json, `context.owners` in tests).
+let OWNERS;
+const ownersOf = (context) => {
+  if (context?.owners) return context.owners;
+  OWNERS ??= JSON.parse(readFileSync(join(REPO, "docs", "owners.json"), "utf8")).owners;
+  return OWNERS;
+};
+/**
+ * True when a person signed the record's rule as it is (Ruling R6): `evidence.person` by an owner, with the fingerprint of
+ * the current rule. A signature of an earlier rule, or by anyone else, does not apply: the drafter limits do.
+ */
+function signedByOwner(record, context) {
+  const p = record.evidence?.person;
+  return isObject(p) && typeof p.rule === "string" && p.rule === ruleFingerprint(record.rule)
+    && Array.isArray(ownersOf(context)) && ownersOf(context).includes(p.by);
+}
+
 // Ruling R18: the script a non-legacy code rule names is a file of the repository (`context.root`, default this checkout).
 const REPO = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 function codeProblems(record, context) {
@@ -93,7 +110,7 @@ function codeProblems(record, context) {
 // any key once they sign `evidence.person` (schema-checked, visible to review).
 function draftProblems(record, context) {
   const entry = record.rule?.entry;
-  if (!isObject(entry) || isLegacy(record, context) || isObject(record.evidence?.person)) return [];
+  if (!isObject(entry) || isLegacy(record, context) || signedByOwner(record, context)) return [];
   return checkDraftKeys(entry, { origins: originsOf(record.rule), kind: record.kind });
 }
 
@@ -227,7 +244,7 @@ export function checkFixes(record, context = {}) {
         if (!isObject(fix)) { drift(String(fix)); continue; }
         // An effect to create is a person's (Ruling R6): without their signature it fails, legacy with standing excepted.
         if ("create" in fix) {
-          if (!isLegacy(record, context) && !isObject(record.evidence?.person)) failures.add("fixes: create goes to a person");
+          if (!isLegacy(record, context) && !signedByOwner(record, context)) failures.add("fixes: create goes to a person");
           continue;
         }
         if (typeof fix.path !== "string") { failures.add("fixes: a data fix has no string path"); continue; }

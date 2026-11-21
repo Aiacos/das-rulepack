@@ -64,9 +64,14 @@ const REQUIRED_GATES = ["schema", "validator", "ids", "fixes", "text"];
 // stands on all of it, so that an identifier or a source edited after the gates makes the record `drafted` again. `note` and
 // `order` (a comment, a position in the module) do not change what is registered.
 const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", "sources"];
-/** The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of. */
-export const emittedFingerprint = (record) =>
-  ruleFingerprint(Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])));
+/**
+ * The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of, and of
+ * `evidence.person` (the signature that lets the gates pass what a drafter may not write: adding or changing it after the
+ * gates makes their evidence stale). Absent, it leaves the hash as it was (`canonical` drops undefined fields).
+ */
+export const emittedFingerprint = (record) => ruleFingerprint({
+  ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person
+});
 
 /**
  * The items the gates check, as `evidence.gates.items` records them: per origin the rule names, the data fingerprint of the

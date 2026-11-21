@@ -225,14 +225,29 @@ review or a play written before the stamp existed (no `rule`): it counts as it d
   `system.uses.(max|recovery|autoDestroy)`, `system.duration.(value|units)`, `system.range.(value|units)`, `system.target.`
   + the target leaves above, `system.properties`, `system.attunement`, `system.damage.base.denomination`; on an effect
   (`effect: <id>`) `duration.(seconds|rounds|turns|value|units|expiry)`, `statuses`, `system.changes`, `changes`,
-  `transfer`, `disabled`; a `from` that is missing, null, blank or has an empty object or array inside (0 and false are
-  guards); in `value` and `from`, keys and values at every depth, a string that is not a token (at most 40 characters of
-  letters, digits, `@ . _ - + * / ( ) [ ]` and at most 3 spaces), an array of more than 12 items, more than 4 levels, or more
-  than 12 distinct words of 4 letters or more in the fix; an origin other than official alone; a monster feature.
-  **It is a gate**: the schema gate (which runs under `--ci`) applies it to every non-legacy rule, unless the record carries
-  `evidence.person: { by, because }`, a person's signature (Ruling R6 lets a person write any key; the field is visible to
-  review). The fixes gate fails an effect to `create` on such a record without that signature (`fixes: create goes to a
-  person`). A legacy rule with standing keeps its behaviour.
+  `transfer`, `disabled`. Each leaf has a TYPE (`tools/pipeline/fix-types.mjs` `FIX_TYPES`) and `value` and `from` must
+  both have it; there is no free string type: a number (a finite number, a numeric string, or a formula of at most 24
+  characters of digits, operators, parentheses, spaces and the `@` references of `move.distance`); a word of a closed list
+  for that leaf (`FIX_ENUMS`: units, activation, template and target types, abilities, dc calculations, `onSave`, recovery
+  periods and types, damage and healing types, statuses, item properties, attunement, expiry, change types; damage types,
+  abilities and statuses are the engine's own, checked against the clone by a test); a boolean; or a list of at most 12
+  typed objects with closed keys (`damage.parts`: `{ number, denomination, bonus, types, scaling? }`; `consumption.targets`:
+  `{ type, value, target?, scaling? }`, `target` a 16-character id or a dotted attribute path; `uses.recovery`: `{ period,
+  type, formula? }`; `effects`: `{ _id, onSave?, level? }`; `changes` / `system.changes`: `{ key, value, type? | mode?,
+  priority? }`, `key` a dotted attribute path of at most 64 characters; `statuses`, `system.properties`, `healing.types`:
+  lists of words). `from: []` is a guard only for a list leaf ("it was empty"); null and empty strings are never one.
+  At most 12 fixes per rule, one per (target, path); no `create`; an origin other than official alone and a monster feature
+  are refused. Many of the engine's own fixes fall outside these types (null guards, `custom` damage parts, words as change
+  values): such fixes are a person's.
+  **It is a gate**: the schema gate (which runs under `--ci`) applies it to every non-legacy rule, unless a person signed
+  the rule: `evidence.person: { by, because, rule }`, `rule` the fingerprint of the rule as signed, `by` an owner listed in
+  `docs/owners.json` (never an agent's handle: `reader…`, `drafter…`, `reviewer…`, `second…`, `third…`, anything with
+  `agent`). A signature of an earlier rule (the rule was edited since) or by someone not listed does not apply: the drafter
+  limits do again. `evidence.person` is part of what the gate evidence fingerprints (`emits`), so adding or changing it
+  after the gates makes the record `drafted` and fails `--ci` until the gates run again. **No ingest ever writes
+  `evidence.person`** (a results file that carries `evidence` is rejected: unknown field); a person types it. The fixes gate
+  fails an effect to `create` without a valid signature (`fixes: create goes to a person`). A legacy rule with standing
+  keeps its behaviour.
 - **Queues** (Ruling R7). `registry/drafts-queue.json` and `registry/review-queue.json` sit beside `queue.json`: arrays of
   `{ key, reason, by, why, confidence, draft?, review? }`, sorted by key (`registry.mjs` `loadQueue`, `saveQueue`,
   `validateQueueEntry`). With `legacy.json` they are the files of `NOT_BOOKS` (`registry.mjs`): `generate`, the CLI,

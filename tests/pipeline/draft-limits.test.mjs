@@ -37,14 +37,14 @@ describe("checkDraftKeys: dataFixes", () => {
     expect(fixes(create)).toMatch(/dataFixes\[0\]: create is not for a drafter/);
   });
 
-  it("from is a non-empty guard: missing, {}, [] or an empty object inside are refused", () => {
+  it("from is a guard of the leaf's type: missing, {}, [] (on a non-list leaf), an empty object inside or \"\" are refused", () => {
     const path = `system.activities.${ACT}.range.units`;
     expect(fixes({ path, value: "touch" })).toMatch(/dataFixes\[0\]: from is required/);
     for (const from of [{}, [], { a: {} }, [{}], { a: [] }, ""]) {
-      expect(fixes({ path, value: "touch", from }), JSON.stringify(from)).toMatch(/dataFixes\[0\]\.from: a non-empty guard/);
+      expect(fixes({ path, value: "touch", from }), JSON.stringify(from)).toMatch(/dataFixes\[0\]\.from: must be/);
     }
-    expect(fixes({ path, value: "touch", from: { units: "self" } })).toBe("");
-    expect(fixes({ path, value: 5, from: 0 })).toBe("");
+    expect(fixes({ path, value: "touch", from: "self" })).toBe("");
+    expect(fixes({ path: `system.activities.${ACT}.range.value`, value: 5, from: 0 })).toBe("");
   });
 
   it("prose paths are refused", () => {
@@ -55,10 +55,10 @@ describe("checkDraftKeys: dataFixes", () => {
     expect(fixes({ effect: EFF, path: "name", from: "a", value: "b" })).toMatch(/dataFixes\[0\]\.path: not an allowed leaf/);
   });
 
-  it("a value with a long string anywhere is refused (tokens of at most 40 characters since fix round 2)", () => {
+  it("a value with a long string anywhere is refused (typed by the leaf since round 4)", () => {
     const path = `system.activities.${ACT}.range.units`;
-    expect(fixes({ path, from: "self", value: { a: ["x".repeat(61)] } })).toMatch(/dataFixes\[0\]\.value: a string that is not/);
-    expect(fixes({ path, from: "self", value: "x".repeat(40) })).toBe("");
+    expect(fixes({ path, from: "self", value: { a: ["x".repeat(61)] } })).toMatch(/dataFixes\[0\]\.value: must be/);
+    expect(fixes({ path, from: "self", value: "x".repeat(40) })).toMatch(/dataFixes\[0\]\.value: must be/);
   });
 
   it("the limits fail closed: origins and kind are required", () => {

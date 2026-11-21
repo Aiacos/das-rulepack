@@ -29,13 +29,16 @@ export const DISTANCE_MAX = 24;
 // The `@` references a distance may use: the roll data of the actor and item (`@mod`, `@prof`, `@scale.<class>.<x>`...).
 const REFERENCE = new RegExp("@(?:(?:mod|prof)(?![A-Za-z0-9.])"
   + "|(?:item|abilities|attributes|details|scale|flags)\\.[A-Za-z0-9]+(?:\\.[A-Za-z0-9]+)*)", "g");
-const isDistance = (v) => {
-  if (Number.isFinite(v)) return v >= 0;
-  if (typeof v !== "string" || v.trim() === "" || v.length > DISTANCE_MAX) return false;
-  // Once its references are taken out, what is left is digits and operators only: no word.
+/**
+ * A short formula: a string of at most `max` characters made of digits, spaces, `+ - * / ( ) .` and the references above.
+ * Once its references are taken out, what is left is digits and operators only: no word. A numeric string is one.
+ */
+export const isFormula = (v, max = DISTANCE_MAX) => {
+  if (typeof v !== "string" || v.trim() === "" || v.length > max) return false;
   const rest = v.replace(REFERENCE, " ");
   return /^[0-9 +\-*/().]*$/.test(rest) && (rest !== v || /[0-9]/.test(rest));
 };
+const isDistance = (v) => (Number.isFinite(v) ? v >= 0 : isFormula(v));
 const onlyKeys = (o, keys) => Object.keys(o).every((k) => keys.includes(k));
 const list = (v) => (Array.isArray(v) ? v : v instanceof Set ? [...v] : null);
 

@@ -10,7 +10,7 @@ import { loadCore } from "../../tools/pipeline/core.mjs";
 import {
   idsIn, gateSchema, gateValidator, gateIds, gateFixes, gateText, gateUnique, runGates
 } from "../../tools/pipeline/gates.mjs";
-import { ASSERT, PERSON } from "./fixtures/assert.mjs";
+import { ASSERT, sign } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented spells and invented ids, no real book content.
 const ACT = "Ab12Cd34Ef56Gh78";
@@ -224,7 +224,7 @@ describe("gateFixes", () => {
     effects: [{ _id: EFF, transfer: false, changes: [{ key: "a", value: "1" }] }] };
   const documents = { "ddb-importer": { [DOC]: doc } };
   const fixed = (...dataFixes) => withEntry(entryWith({ dataFixes }));
-  const signed = (r) => ({ ...r, evidence: { ...r.evidence, person: PERSON } });
+  const signed = sign;
   const path = `system.activities.${ACT}.activation.type`;
 
   it("passes a fix that is applicable (from matches)", () => {
@@ -363,8 +363,7 @@ describe("runGates", () => {
     const passed = runGates([good()], ctx()).updated[0];
     expect(stateOf(passed)).toBe("gated");
     // `extra` is no drafter key: a person's rule (signed) reaches the ids gate.
-    const edited = { ...passed, evidence: { ...passed.evidence, person: PERSON },
-      rule: { ...passed.rule, entry: entryWith({ extra: NOPE }) } };
+    const edited = sign({ ...passed, rule: { ...passed.rule, entry: entryWith({ extra: NOPE }) } });
     expect(stateOf(edited)).toBe("drafted");
     const { failures, updated } = runGates([edited], ctx());
     expect(failures[edited.key].ids).toEqual([`ids: ${NOPE} belongs to no origin of the rule`]);
@@ -600,7 +599,7 @@ describe("gates CLI", () => {
     });
 
     it("--ci fails on an invalid entry", () => {
-      saveBook(registry(), { book: "TST", records: [withEntry({ recastt: true }, { evidence: { person: PERSON } })] });
+      saveBook(registry(), { book: "TST", records: [sign(withEntry({ recastt: true }))] });
       const r = cli(["gates", "--ci"], env());
       expect(r.status).toBe(1);
       expect(r.stderr).toMatch(/FAIL tst:spell:glimmer-bolt: validator/);
@@ -639,10 +638,9 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("gates CLI: the document of a matc
     writeJson(join(dumps, "ddb.a.json"), [stale]);
     writeJson(join(dumps, "ddb.b.json"), [matched]);
     const env = { RULEPACK_REGISTRY: registry, DAS_CORE: CORE_DIR, RULEPACK_DUMPS: dumps, RULEPACK_TEXT: text };
-    const withData = (data) => withEntry({ dataFixes: [{ path: "system.x", value: 2, from: 1 }] }, {
-      text: { sha256: sha, source: "5etools", chars: 30 }, items: [item({ activities: [], effects: [], data: { sha256: data } })],
-      evidence: { person: PERSON }
-    });
+    const withData = (data) => sign(withEntry({ dataFixes: [{ path: "system.x", value: 2, from: 1 }] }, {
+      text: { sha256: sha, source: "5etools", chars: 30 }, items: [item({ activities: [], effects: [], data: { sha256: data } })]
+    }));
     saveBook(registry, { book: "TST", records: [withData(itemSummary(matched, "ddb-importer").data)] });
     const ok = cli(["gates"], env);
     expect(ok.status, ok.stderr).toBe(0);

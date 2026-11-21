@@ -9,7 +9,7 @@ import { assertProblems, isPlainLine } from "../../tools/pipeline/assert.mjs";
 import { validateRecord } from "../../tools/pipeline/schema.mjs";
 import { checkFixes, checkText, runGates } from "../../tools/pipeline/gates.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
-import { NOT_BOOKS, validateTriageQueueEntry } from "../../tools/pipeline/registry.mjs";
+import { NOT_BOOKS, ruleFingerprint, validateTriageQueueEntry } from "../../tools/pipeline/registry.mjs";
 import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented ids and invented text. Fix round 2 of Task 3: allowlists instead of blacklists, and the
@@ -26,14 +26,18 @@ beforeEach(() => { dir = mkdtempSync(join(tmpdir(), "allow-")); });
 afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
 describe("dataFixes paths: an allowlist", () => {
-  it("allowed leaves pass, for an activity, the item and an effect", () => {
-    for (const path of [RANGE, `system.activities.${ACT}.damage.parts`, `system.activities.${ACT}.save.dc.formula`,
-      `system.activities.${ACT}.target.template.size`, `system.activities.${ACT}.effects`, "system.uses.max",
-      "system.target.affects.type", "system.properties", "system.range.units"]) {
-      expect(fixes({ path, from: "self", value: "touch" }), path).toBe("");
+  it("allowed leaves pass, for an activity, the item and an effect (each with a value of its type)", () => {
+    const act = (leaf) => `system.activities.${ACT}.${leaf}`;
+    for (const [path, value, from] of [[RANGE, "touch", "self"], [act("damage.parts"), [{ number: 1, denomination: 8 }], []],
+      [act("save.dc.formula"), "@prof + 8", "13"], [act("target.template.size"), 20, 10], [act("effects"), [{ _id: EFF }], []],
+      ["system.uses.max", "1", "2"], ["system.target.affects.type", "creature", "self"], ["system.properties", ["ritual"], []],
+      ["system.range.units", "touch", "self"]]) {
+      expect(fixes({ path, from, value }), path).toBe("");
     }
-    for (const path of ["duration.seconds", "statuses", "system.changes", "changes", "transfer", "disabled"]) {
-      expect(fixes({ effect: EFF, path, from: 6, value: 60 }), path).toBe("");
+    for (const [path, value, from] of [["duration.seconds", 60, 6], ["statuses", ["prone"], []],
+      ["system.changes", [{ key: "system.attributes.ac.bonus", type: "add", value: "1" }], []], ["transfer", false, true],
+      ["disabled", false, true]]) {
+      expect(fixes({ effect: EFF, path, from, value }), path).toBe("");
     }
     expect(FIX_PATHS.item.length).toBeGreaterThan(10);
   });
@@ -51,7 +55,7 @@ describe("dataFixes paths: an allowlist", () => {
   });
 });
 
-describe("dataFixes values and guards: tokens, not prose", () => {
+describe("dataFixes values and guards: typed by the leaf (round 4), so no prose", () => {
   it("an array of short strings that together say a sentence is refused", () => {
     const words = ["the", "creature", "must", "succeed", "on", "a", "wisdom", "saving", "throw", "or", "become", "frightened",
       "until", "the", "end"];
@@ -60,29 +64,28 @@ describe("dataFixes values and guards: tokens, not prose", () => {
       "whose"];
     expect(fixes({ path: RANGE, from: "self", value: [twelve.slice(0, 6).join(" "), twelve.slice(6).join(" ")] }))
       .toMatch(/dataFixes\[0\]/);
-    expect(fixes({ path: RANGE, from: "self", value: [...twelve, "word"].map((w) => w.slice(0, 3)) }))
-      .toMatch(/more than 12 items/);
+    expect(fixes({ path: `system.activities.${ACT}.effects`, from: [], value: twelve.map((w) => ({ _id: EFF, [w]: 1 })) }))
+      .toMatch(/dataFixes\[0\]\.value/);
   });
 
-  it("prose in a key, too many spaces, a long token, a deep value, too many words are refused", () => {
-    expect(fixes({ path: RANGE, from: "self", value: { "the creature must save or fall": 1 } })).toMatch(/dataFixes\[0\]\.value/);
-    expect(fixes({ path: RANGE, from: "self", value: "a b c d e" })).toMatch(/dataFixes\[0\]\.value/);
-    expect(fixes({ path: RANGE, from: "self", value: "x".repeat(41) })).toMatch(/dataFixes\[0\]\.value/);
-    expect(fixes({ path: RANGE, from: "self", value: "it's" })).toMatch(/dataFixes\[0\]\.value/);
-    expect(fixes({ path: RANGE, from: "self", value: { a: { b: { c: { d: { e: 1 } } } } } })).toMatch(/deeper than 4/);
-    const many = { alpha: "bravo", charlie: "delta", echo: "foxtrot", golf: "hotel", india: "juliet", kilo: "lima", mike: 1 };
-    expect(fixes({ path: RANGE, from: "self", value: many })).toMatch(/more than 12 distinct words/);
-    expect(fixes({ path: RANGE, from: "self", value: { formula: "@mod + 1d6[fire]", types: ["fire", "cold"] } })).toBe("");
+  it("prose in a key, too many spaces, a long string, a deep value, many words are refused", () => {
+    for (const value of [{ "the creature must save or fall": 1 }, "a b c d e", "x".repeat(41), "it's",
+      { a: { b: { c: { d: { e: 1 } } } } }, { alpha: "bravo", charlie: "delta" }]) {
+      expect(fixes({ path: RANGE, from: "self", value }), JSON.stringify(value)).toMatch(/dataFixes\[0\]\.value/);
+    }
+    const part = { number: 1, denomination: 6, bonus: "@mod", types: ["fire", "cold"] };
+    expect(fixes({ path: `system.activities.${ACT}.damage.parts`, from: [], value: [part] })).toBe("");
   });
 
-  it("from is required and a real guard: null, empty, blank and empty parts refused; 0 and false accepted", () => {
+  it("from is required and a guard of the leaf's type: null, empty, blank, {} refused; 0 and false accepted", () => {
     expect(fixes({ path: RANGE, value: "touch" })).toMatch(/dataFixes\[0\]: from is required/);
     for (const from of [null, "", "   ", {}, [], { a: {} }, [[]]]) {
       expect(fixes({ path: RANGE, value: "touch", from }), JSON.stringify(from)).toMatch(/dataFixes\[0\]\.from/);
     }
-    for (const from of [0, false, "self", { attack: null, save: null, override: false }]) {
-      expect(fixes({ path: RANGE, value: 1, from }), JSON.stringify(from)).toBe("");
-    }
+    expect(fixes({ path: `system.activities.${ACT}.range.value`, value: 1, from: 0 })).toBe("");
+    expect(fixes({ path: `system.activities.${ACT}.consumption.spellSlot`, value: true, from: false })).toBe("");
+    expect(fixes({ path: `system.activities.${ACT}.spell.challenge`, value: { save: 13, override: true },
+      from: { override: false } })).toBe("");
   });
 
   it("create stays refused", () => {
@@ -112,7 +115,8 @@ describe("the drafter limits are a gate that runs under --ci", () => {
   });
 
   it("a person's override lets a person write any key; it is checked", () => {
-    const person = { by: "person-1", because: "an effect the data lacks, written by hand" };
+    const person = { by: "owner", because: "an effect the data lacks, written by hand",
+      rule: ruleFingerprint(record(create).rule) };
     expect(schemaOf(record(create, { evidence: { person } }))).toEqual([]);
     expect(validateRecord(record(create, { evidence: { person: { by: "rule", because: "x" } } })).join("; "))
       .toMatch(/evidence\.person/);
@@ -126,7 +130,7 @@ describe("the drafter limits are a gate that runs under --ci", () => {
     const docs = { official: { Of00Of11Of22Of33: { _id: "Of00Of11Of22Of33", system: {}, effects: [] } } };
     const ctx = { core: { getPath: () => undefined, matchesFrom: () => false }, documents: docs, legacy: new Map() };
     expect(checkFixes(record(create), ctx).failures.join("; ")).toMatch(/fixes: create goes to a person/);
-    const person = { by: "person-1", because: "written by hand" };
+    const person = { by: "owner", because: "written by hand", rule: ruleFingerprint(record(create).rule) };
     expect(checkFixes(record(create, { evidence: { person } }), ctx).failures).toEqual([]);
   });
 

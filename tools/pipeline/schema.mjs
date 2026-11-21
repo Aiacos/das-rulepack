@@ -217,14 +217,19 @@ function checkEvidence(evidence, errors, legacy) {
       }
     }
   }
-  // A person's signature that lets a rule hold what a drafter may not write (Ruling R6; gates.mjs draftProblems).
+  // A person's signature that lets a rule hold what a drafter may not write (Ruling R6; gates.mjs draftProblems): bound to the
+  // rule it signs (`rule`, its fingerprint), by an owner of docs/owners.json (checked by the gate), never an agent's handle.
+  // No ingest writes it: a person types it.
   if ("person" in evidence) {
     const p = evidence.person;
     if (!isObject(p) || !onlyPersonKeys(p)) {
-      errors.push("evidence.person: must be { by, because }");
+      errors.push("evidence.person: must be { by, because, rule }");
     } else {
-      if (!isReaderHandle(p.by)) errors.push("evidence.person.by: must be a reader handle");
+      if (!isReaderHandle(p.by) || AGENT_HANDLE.test(p.by)) {
+        errors.push("evidence.person.by: must be an owner's handle, not an agent's (reader, drafter, reviewer, second, third)");
+      }
       if (!isPlainLine(p.because, 120)) errors.push("evidence.person.because: one line of printable ASCII, at most 120 characters");
+      if (!isHex64(p.rule)) errors.push("evidence.person.rule: must be 64 hex characters (the fingerprint of the rule signed)");
     }
   }
   checkStamped(evidence, "drafted", { by: isReaderHandle, at: isString, core: isString, rule: isHex64 }, {}, errors);
@@ -235,7 +240,9 @@ function checkEvidence(evidence, errors, legacy) {
     { rule: legacy }, errors, { client: isString });
 }
 
-const onlyPersonKeys = (p) => Object.keys(p).every((k) => k === "by" || k === "because");
+const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
+// The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
+export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
 const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
   confidence: "a number from 0 to 1" };

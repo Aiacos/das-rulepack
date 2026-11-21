@@ -91,7 +91,7 @@ export async function loadCore(dir) {
   const statuses = statusNames(readFileSync(join(dir, "module", "scripts", "core", "monster-text.mjs"), "utf8"));
   if (statuses.length < MIN_STATUSES) throw new Error(`DAS_CORE ${dir}: only ${statuses.length} statuses found`);
   const lists = { creatureTypes: CREATURE_TYPES, moveModes: enums.MOVE_MODES, effectEnds: enums.EFFECT_ENDS,
-    damageTypes: enums.DAMAGE_TYPES };
+    damageTypes: enums.DAMAGE_TYPES, abilities: enums.ABILITIES };
   for (const [name, value] of Object.entries(lists)) {
     if (!Array.isArray(value) || !value.length) throw new Error(`DAS_CORE ${dir}: the engine does not export ${name}`);
   }
@@ -103,6 +103,6 @@ export async function loadCore(dir) {
   return {
     validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary, moments, statuses,
     creatureTypes: [...lists.creatureTypes], moveModes: [...lists.moveModes], effectEnds: [...lists.effectEnds],
-    damageTypes: [...lists.damageTypes]
+    damageTypes: [...lists.damageTypes], abilities: [...lists.abilities]
   };
 }
