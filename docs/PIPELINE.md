@@ -331,9 +331,10 @@ Notes on what inventory does with each kind:
   creature's name, read from the dump files that start with `ddb.` and hold actors (`type: "npc"`, whatever the pack is
   named), with the same name, section, claim and `<actor id>.<item id>` rules as the official ones. A DDB actor states its
   edition in `system.source.rules` ("2014" or "2024"): only the actors of the creature's edition are candidates (the ones
-  that state none are used when there is none that does). An item keeps the edition it states itself (`system.source.rules`
-  of the item), else takes its actor's; one that states none adds `differences: ["edition-unknown"]`, one that states the
-  other edition makes the feature `ambiguous`. A creature's edition is its own, also when it has no feature.
+  that state none are used when there is none that does). An actor that states its edition decides for its
+  items (DDB Importer stamps an item with the printing it was imported from, so items of a 2014 actor often say 2024); only
+  when the actor states none is the item's own `system.source.rules` used: none adds `differences: ["edition-unknown"]`,
+  the other edition makes the feature `ambiguous`. A creature's edition is its own, also when it has no feature.
   A DDB actor also states its book in `system.source.book`, a D&D Beyond abbreviation ("MM 2024", "MotM"), which
   `docs/ddb-books.json` maps to the dataset book code (compared case-insensitively; only pairs confirmed against the dataset
   are listed). Among the actors of the creature's name and edition, the ones of the record's book are used alone when there
