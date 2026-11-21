@@ -1,0 +1,1538 @@
+{
+  "book": "ABH",
+  "records": [
+    {
+      "key": "abh:background:carouser",
+      "name": "Carouser",
+      "kind": "background",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "carouser",
+      "page": 6,
+      "srd": false,
+      "text": {
+        "sha256": "f148fa4cf8fb51f453790da46797dcffd27133e91471d1f70ebea7365382b226",
+        "source": "5etools",
+        "chars": 315
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:background:vampire-devotee",
+      "name": "Vampire Devotee",
+      "kind": "background",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "vampire-devotee",
+      "page": 6,
+      "srd": false,
+      "text": {
+        "sha256": "ed4d5781665a26600b7b4ccbf383fb7b6e31c25f947f5858c873af5798c91334",
+        "source": "5etools",
+        "chars": 305
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:background:vampire-survivor",
+      "name": "Vampire Survivor",
+      "kind": "background",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "vampire-survivor",
+      "page": 7,
+      "srd": false,
+      "text": {
+        "sha256": "46872119d65130b9edcceb5b28bd65fcf09849966bca7bc9d12f1b435e187f2c",
+        "source": "5etools",
+        "chars": 344
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:bloodlust",
+      "name": "Bloodlust",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "bloodlust",
+      "page": 9,
+      "srd": false,
+      "text": {
+        "sha256": "74af6ff9d8a46606f9997f3384032ec4b2cfb656cf17bbfce460a045ac1b0510",
+        "source": "5etools",
+        "chars": 528
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:bomber",
+      "name": "Bomber",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "bomber",
+      "page": 9,
+      "srd": false,
+      "text": {
+        "sha256": "c9e102a545d74ad47fbdecd41d71d8aebdd8f281f627995ea496f5890136ea89",
+        "source": "5etools",
+        "chars": 277
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:boon-of-blazing-dawn",
+      "name": "Boon of Blazing Dawn",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "boon-of-blazing-dawn",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "bd087c413f8d3045703f12238c853c0c3a064a1b59b0326b1d2c4f0a6980a33d",
+        "source": "5etools",
+        "chars": 482
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:boon-of-looming-shadows",
+      "name": "Boon of Looming Shadows",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "boon-of-looming-shadows",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "d6b8a781852bf1ee766de7bda4d5fe3fad0d15c22792a22eceffb8edb30c9d02",
+        "source": "5etools",
+        "chars": 239
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:boon-of-misty-escape",
+      "name": "Boon of Misty Escape",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "boon-of-misty-escape",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "d3b3d2d984aa004a97eb57ed7ee2dd38de7505561dcfeab947aca938581d6db5",
+        "source": "5etools",
+        "chars": 546
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:cloying-mists",
+      "name": "Cloying Mists",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "cloying-mists",
+      "page": 9,
+      "srd": false,
+      "text": {
+        "sha256": "01f2be2782b50db970c3dff9b1c9e9b91efb6751e4f177362a92f602fb0f4ac9",
+        "source": "5etools",
+        "chars": 598
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:delicious-pain",
+      "name": "Delicious Pain",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "delicious-pain",
+      "page": 9,
+      "srd": false,
+      "text": {
+        "sha256": "0bed18fd23b2e33842248587771859d3812acf7e5ede2edbb3ce40103345142e",
+        "source": "5etools",
+        "chars": 336
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:light-bringer",
+      "name": "Light Bringer",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "light-bringer",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "359f9dd56dd0e1af2266d8beeab0fff676f24d67df2fec03d9a0aadefec9e986",
+        "source": "5etools",
+        "chars": 702
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:love-bites",
+      "name": "Love Bites",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "love-bites",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "a43f3e111aa47e507127f2bd1e91f83608e96359ed2982fe0304116655d7d19c",
+        "source": "5etools",
+        "chars": 365
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:putrefy",
+      "name": "Putrefy",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "putrefy",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "74972f70641f70ff9f3d432a8e95d6b3d2b99f16c93e38c9e9bade33e4fdf81b",
+        "source": "5etools",
+        "chars": 303
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:rebuke",
+      "name": "Rebuke",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "rebuke",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "7c9a970eb08faec5e088361b8aabee0a890c029e96804069ca1128099be6c445",
+        "source": "5etools",
+        "chars": 286
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:tireless-reveler",
+      "name": "Tireless Reveler",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "tireless-reveler",
+      "page": 8,
+      "srd": false,
+      "text": {
+        "sha256": "540d38d7ffbd44205c4ad310a937075d9f9ab54dd2d25dfb290feff75c92cb63",
+        "source": "5etools",
+        "chars": 273
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:treacherous-allure",
+      "name": "Treacherous Allure",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "treacherous-allure",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "7a6a2f8eb5d0709babba19834f8507a27cd7fb001ce6e0d1850502ed1e7b0ac3",
+        "source": "5etools",
+        "chars": 467
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:vampire-hunter",
+      "name": "Vampire Hunter",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "vampire-hunter",
+      "page": 8,
+      "srd": false,
+      "text": {
+        "sha256": "468b3d622c2cc191ed0bc191b0c2a9fbecbbbebc1819be65e7fa06a1d26d91a1",
+        "source": "5etools",
+        "chars": 448
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:vampire-touched",
+      "name": "Vampire Touched",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "vampire-touched",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "65bb19a204a9c517fc7a477c79db7125847b374664ad4fb078913ead035957b0",
+        "source": "5etools",
+        "chars": 564
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:feat:vampires-plaything",
+      "name": "Vampire's Plaything",
+      "kind": "feat",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "vampires-plaything",
+      "page": 9,
+      "srd": false,
+      "text": {
+        "sha256": "6753d45e851118226b7ad5af4860a4b1d216503e8be0770d17044edf08c1be7a",
+        "source": "5etools",
+        "chars": 734
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:fiendish-icon/action/fiery-eruption",
+      "name": "Fiery Eruption",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Fiendish Icon",
+      "section": "action",
+      "identifier": "fiery-eruption",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "04e31c4625e513f3b6e68894b21c39d03d6b7495da5a89c6d7adedef044be293",
+        "source": "5etools",
+        "chars": 108
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:fiendish-icon/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Fiendish Icon",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "c232213fdc65c1b93da5e38a7bbc9209c3b4706a1647a3793d9ffe4d034f12d0",
+        "source": "5etools",
+        "chars": 56
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:fiendish-icon/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Fiendish Icon",
+      "section": "action",
+      "identifier": "slam",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "8cbc170a14e3393ab05dcd7a007512c52aa86d26b9cbb76fd24d7898edd0e781",
+        "source": "5etools",
+        "chars": 48
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:fiendish-icon/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Fiendish Icon",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "ba7ea7d5529e603a3cc4f09f91116459fcf7be36b4db084d02980fe9b96a6232",
+        "source": "5etools",
+        "chars": 81
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:harvester-devil/action/compelling-contract",
+      "name": "Compelling Contract",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Harvester Devil",
+      "section": "action",
+      "identifier": "compelling-contract",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "307446f5d16cfce40baa4930361df39de0844456ad85aa6ed3987a84fa53eae3",
+        "source": "5etools",
+        "chars": 416
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:harvester-devil/action/confounding-ray",
+      "name": "Confounding Ray",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Harvester Devil",
+      "section": "action",
+      "identifier": "confounding-ray",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "a7d3a07f7d7b124c287d0e28872939b9339c746266cf8f2f67a4327bdbf5f1c3",
+        "source": "5etools",
+        "chars": 149
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:harvester-devil/action/infernal-blade",
+      "name": "Infernal Blade",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Harvester Devil",
+      "section": "action",
+      "identifier": "infernal-blade",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "cdaeaeff9dcf06511ec20e7c0fbf71bc6b2841fd7e046ca3eea7d2c86b571d4c",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:harvester-devil/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Harvester Devil",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "2740c4396593578747f0bc6eb0ddcabea8b58ee5ae4f92dd2c7db224b73fa55f",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:harvester-devil/trait/diabolic-ward",
+      "name": "Diabolic Ward",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Harvester Devil",
+      "section": "trait",
+      "identifier": "diabolic-ward",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "f691a7b36c6ba63c162bdaf8ea8c6619d426eabf02a5ebbd51363bbd6694aa63",
+        "source": "5etools",
+        "chars": 143
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:harvester-devil/trait/diabolical-restoration",
+      "name": "Diabolical Restoration",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Harvester Devil",
+      "section": "trait",
+      "identifier": "diabolical-restoration",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "cdaa5f94312c3de3bfbf812865b1e4a64a5be1978e81441f39dcd8c02a9cc229",
+        "source": "5etools",
+        "chars": 178
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:harvester-devil/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Harvester Devil",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "e4fae3c9dfedb670e3edf26c3eb0db83aa35c1bfffbe1eb5f98dc3a6709ed2a8",
+        "source": "5etools",
+        "chars": 82
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:speaker-devil/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Speaker Devil",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "213c5b1930a740f8c1eb0fce7377e09ac28aa4ca96933b5463f871b5ace11c50",
+        "source": "5etools",
+        "chars": 47
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:speaker-devil/action/thundering-halberd",
+      "name": "Thundering Halberd",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Speaker Devil",
+      "section": "action",
+      "identifier": "thundering-halberd",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "8ba3f40dd9a57ae7f7fe6939493e6bf62cc16dd417f0f0367ebb515778994c29",
+        "source": "5etools",
+        "chars": 77
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:speaker-devil/bonus/utterance-of-pain",
+      "name": "Utterance of Pain",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Speaker Devil",
+      "section": "bonus",
+      "identifier": "utterance-of-pain",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "54a024b8bae9598e51604831bf7a80f87a87954c683f6ac254702a5ffa1d765a",
+        "source": "5etools",
+        "chars": 166
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:speaker-devil/bonus/utterance-of-unmaking",
+      "name": "Utterance of Unmaking",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Speaker Devil",
+      "section": "bonus",
+      "identifier": "utterance-of-unmaking",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "cefb94fc54fd083c548cfa1c702d23a8c352de9147026f3b69eec546bab6725f",
+        "source": "5etools",
+        "chars": 126
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:speaker-devil/trait/diabolical-restoration",
+      "name": "Diabolical Restoration",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Speaker Devil",
+      "section": "trait",
+      "identifier": "diabolical-restoration",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "cdaa5f94312c3de3bfbf812865b1e4a64a5be1978e81441f39dcd8c02a9cc229",
+        "source": "5etools",
+        "chars": 178
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:speaker-devil/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Speaker Devil",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "e4fae3c9dfedb670e3edf26c3eb0db83aa35c1bfffbe1eb5f98dc3a6709ed2a8",
+        "source": "5etools",
+        "chars": 82
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:speaker-devil/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Speaker Devil",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 17,
+      "srd": false,
+      "text": {
+        "sha256": "5d2e4ca551bb26bc48166fce58d92cc2ab9d92a89a4d3abe23973ee39e3c0d47",
+        "source": "5etools",
+        "chars": 203
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/action/bite-imp-or-vampire-form-only",
+      "name": "Bite (Imp or Vampire Form Only)",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "action",
+      "identifier": "bite-imp-or-vampire-form-only",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "ea7165a5acae6cea78fd7f10997a8d5ea2909756aaf983618d6ecaab4fdd534e",
+        "source": "5etools",
+        "chars": 536
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/action/hellfire-claw-vampire-form-only",
+      "name": "Hellfire Claw (Vampire Form Only)",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "action",
+      "identifier": "hellfire-claw-vampire-form-only",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "b0340d6cb2f63e1249864c9a7fd3eab51e40d7821d971d4a801c7a9663185b21",
+        "source": "5etools",
+        "chars": 184
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/action/multiattack-vampire-form-only",
+      "name": "Multiattack (Vampire Form Only)",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "action",
+      "identifier": "multiattack-vampire-form-only",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "175a392e89317d7950b9829f835434504e5b7784e9fad3e5778beae78e942b84",
+        "source": "5etools",
+        "chars": 58
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/bonus/shape-shift",
+      "name": "Shape-Shift",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "bonus",
+      "identifier": "shape-shift",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "f7a9a98127f471fc9deda191ead78b4720f1c0fc4e169f3acfab6d76faa4791e",
+        "source": "5etools",
+        "chars": 669
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/legendary/hellfire-strike",
+      "name": "Hellfire Strike",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "legendary",
+      "identifier": "hellfire-strike",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "81066bb56d982ed488ccc61595dff2188ca815857ef4d8d1231081afafcf52b9",
+        "source": "5etools",
+        "chars": 78
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/legendary/infernal-majesty",
+      "name": "Infernal Majesty",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "legendary",
+      "identifier": "infernal-majesty",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "ae098234d4dcac484251f888702f1486096d05f87c1c4b2845d3cfd91732376a",
+        "source": "5etools",
+        "chars": 286
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/legendary/teleport",
+      "name": "Teleport",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "legendary",
+      "identifier": "teleport",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "6ebc363e7dd65170baa967fed63066d8437addf1bb948f07e2f944a3ce48695e",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "49d4f9f9a4f5a64f7e2e8d1b109a876e0209768394c0ccaa2a2c354eef885d2b",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/trait/misty-escape",
+      "name": "Misty Escape",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "trait",
+      "identifier": "misty-escape",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "cc16ac476975175de0643f425fe06c6b8b09bf530ce3a5a37138e8cd2c58a37e",
+        "source": "5etools",
+        "chars": 500
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "66e86e893e99ed89c3b9e19c92d2aec935ee0faa94ea4f6b38b4d4f04c84cdb9",
+        "source": "5etools",
+        "chars": 227
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-infernalist/trait/vampire-weakness",
+      "name": "Vampire Weakness",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Infernalist",
+      "section": "trait",
+      "identifier": "vampire-weakness",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "5ebda6d99703f66c29b89e0b7735ba283c41ebe3b3cef86e08bff35572eb6be3",
+        "source": "5etools",
+        "chars": 595
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-warden/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Warden",
+      "section": "action",
+      "identifier": "bite",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "51b3ba6b3569a987198ccd2d757a4d022d1881deede25ffaa03b2eeef9409ad5",
+        "source": "5etools",
+        "chars": 322
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-warden/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Warden",
+      "section": "action",
+      "identifier": "claw",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "2b394e19a97f48488501bc54f5a3aeee7427629f9a985c68b69b8cb8ffe8f708",
+        "source": "5etools",
+        "chars": 186
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-warden/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Warden",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "1f4bdcd76944b407b0c702bbf453608422146686df310f2ba429d0a6d0ab0e47",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-warden/reaction/resilient-flesh",
+      "name": "Resilient Flesh",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Warden",
+      "section": "reaction",
+      "identifier": "resilient-flesh",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "344ff927ac0534652d84d7b8e37b32350a1f007b23490f6906b759ef606f6f80",
+        "source": "5etools",
+        "chars": 152
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-warden/trait/guardians-command",
+      "name": "Guardian's Command",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Warden",
+      "section": "trait",
+      "identifier": "guardians-command",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "4bbe7b7e456d105e77de97c26487fb29ea15d49c49225da1eef074ed587306ce",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-warden/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Warden",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "2f0c0eb4edfe1e4121261778ca20a73f63445e631f2540fe187300a0c580ac6d",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:monster:vampire-warden/trait/vampire-weakness",
+      "name": "Vampire Weakness",
+      "kind": "monster",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Vampire Warden",
+      "section": "trait",
+      "identifier": "vampire-weakness",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "cdd68b5c1f3b33113f6ac92e63431c5f7a9e06c71b99d08335bc5b94d48cc318",
+        "source": "5etools",
+        "chars": 765
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:species:dhampir",
+      "name": "Dhampir",
+      "kind": "species",
+      "book": "ABH",
+      "edition": "2024",
+      "identifier": "dhampir",
+      "page": 7,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:species:dhampir/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Dhampir",
+      "identifier": "darkvision",
+      "page": 7,
+      "srd": false,
+      "text": {
+        "sha256": "64d34790cf7f24cc48a038e830a3f5e6e00852d0b4df939f83ab58a628b817bd",
+        "source": "5etools",
+        "chars": 44
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:species:dhampir/spider-climb",
+      "name": "Spider Climb",
+      "kind": "species",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Dhampir",
+      "identifier": "spider-climb",
+      "page": 7,
+      "srd": false,
+      "text": {
+        "sha256": "27fd5708c86778b0c80034890242fc2a5888833af91f91bd61c0ff2078755d39",
+        "source": "5etools",
+        "chars": 179
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:10:43.460Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "abh:species:dhampir/trace-of-undeath",
+      "name": "Trace of Undeath",
+      "kind": "species",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Dhampir",
+      "identifier": "trace-of-undeath",
+      "page": 7,
+      "srd": false,
+      "text": {
+        "sha256": "65896b4760cf55951578c585a4b99fcddd447d3953312b133238b7b1cf58e695",
+        "source": "5etools",
+        "chars": 39
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "abh:species:dhampir/vampiric-bite",
+      "name": "Vampiric Bite",
+      "kind": "species",
+      "book": "ABH",
+      "edition": "2024",
+      "owner": "Dhampir",
+      "identifier": "vampiric-bite",
+      "page": 7,
+      "srd": false,
+      "text": {
+        "sha256": "3159553fdb921a828a91f6f641067c0f1de89dcaec7a675523b0ebdd8633db16",
+        "source": "5etools",
+        "chars": 718
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:10:43.460Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    }
+  ]
+}
