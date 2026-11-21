@@ -7722,9 +7722,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s40",
+          "at": "2026-11-21T21:54:57.083Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xdmg-002",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Light and Daylight cast/summon activities; the once-per-dawn limit is minor and nothing here is combat-critical.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:dust-of-disappearance",
@@ -11423,9 +11436,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s40",
+          "at": "2026-11-21T21:54:57.083Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xdmg-002",
+            "confidence": 0.55
+          }
+        }
+      },
+      "why": "Text is only a reference to grenade; official data carries a save-for-damage fragmentation activity and a smoke utility.",
+      "state": "triaged"
     },
     {
       "key": "xdmg:item:gunpowder-keg",

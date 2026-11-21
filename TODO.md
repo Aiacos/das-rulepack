@@ -120,3 +120,9 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       2,220 applied, 150 queued for a person (queue now 553). One batch whose reader had judged by name was read again.
 - [x] `structure.mjs` listed an activity's own damage parts only (fixed: base damage of an attack that includes it): an attack that takes its damage from the item
       (`system.damage.base`, as DDB Importer's monster weapons do) shows no damage to the reader. Add the base damage.
+- [x] Second reading of the queue (2026-11-21): 468 of the 553 queued entries read blind by another reader — 116 agreed and
+      applied, 178 disagreed, 174 agreed below the threshold (`unsure-twice`). The queue holds 437 entries for a person:
+      those 352 with both readings, and 85 that have no item or no text to read. Most disagreements are `none`/`entry`
+      and `entry`/`data`: the line between "nothing to automate", "the data does it" and "needs a rule" is where a
+      written criterion per kind would help more than a third reader.
+

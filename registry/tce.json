@@ -2205,9 +2205,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s36",
+          "at": "2026-11-21T21:54:53.794Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-002",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Model choice at use time with a rest-based swap; Int for attack/damage on the model weapon plus reaction and model perks; effects only change item fields, no combat rider.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:artificer/armorer/3/armorer",
@@ -9745,9 +9758,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s36",
+          "at": "2026-11-21T21:54:53.794Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-004",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Rune selection and inscribing at long rest are build and prep choices; the actual rune effects live in separate features.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:fighter/rune-knight/3/rune-knight",
@@ -11795,9 +11821,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s36",
+          "at": "2026-11-21T21:54:53.794Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-004",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Grants extra known spells castable once per long rest; the spells themselves carry combat effects, not this feature.",
+      "state": "triaged"
     },
     {
       "key": "tce:feature:ranger/4/martial-versatility",
@@ -21364,9 +21403,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:aberrant-spirit/action/multiattack",
@@ -21457,9 +21509,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:aberrant-spirit/trait/regeneration-slaad-only",
@@ -22029,9 +22094,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:bestial-spirit/action/multiattack",
@@ -22364,9 +22442,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:celestial-spirit/action/radiant-mace-defender-only",
@@ -22508,10 +22599,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:construct-spirit/reaction/berserk-lashing-clay-only",
@@ -22948,9 +23052,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Squeezing through a 1-inch gap is movement flavour, no combat roll or effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:fey-spirit/action/multiattack",
@@ -23041,9 +23158,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity has both piercing and force damage parts; summon-level bonus to be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:fey-spirit/bonus/fey-step",
@@ -23134,9 +23264,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:fiendish-spirit/action/claws-yugoloth-only",
@@ -23706,9 +23849,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Passive indistinguishability while still; a narrative/stealth trait, nothing resolved in combat.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:juvenile-mimic/trait/spider-climb",
@@ -23746,10 +23902,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Climbing without checks is covered by a climb speed; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:mighty-servant-of-leuk-o/action/crushing-leap",
@@ -23999,9 +24168,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Jump distances are a movement rule outside combat resolution; nothing to automate.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:mighty-servant-of-leuk-o/trait/unusual-nature",
@@ -24090,9 +24272,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:shadow-spirit/action/dreadful-scream",
@@ -24630,9 +24825,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s38",
+          "at": "2026-11-21T21:54:55.462Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attack activity carries the dice; the summon-level bonus is not visible in the structure, so scaling must be checked.",
+      "state": "triaged"
     },
     {
       "key": "tce:monster:undead-spirit/action/multiattack",
@@ -25608,9 +25816,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s39",
+          "at": "2026-11-21T21:54:56.262Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-tce-010",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Spell attack bonus is carried by effects, but ignoring cover on spell attacks is not in the data; the level-10 upgrade is a separate variant effect.",
+      "state": "triaged"
     },
     {
       "key": "tce:option:enhanced-defense",

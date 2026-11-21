@@ -13587,9 +13587,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s19",
+          "at": "2026-11-21T21:54:39.294Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d48",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data shows one damage activity on one target; text needs four auto-hit spears at chosen targets with fixed force damage, no attack roll.",
+      "state": "triaged"
     },
     {
       "key": "ftd:monster:blue-greatwyrm/legendary/attack",

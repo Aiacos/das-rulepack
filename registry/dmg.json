@@ -18856,9 +18856,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s8",
+          "at": "2026-11-21T21:54:30.201Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Attack, snake attack with piercing damage and a Con save for poison are present; only the snake's own HP and destruction are loose.",
+      "state": "triaged"
     },
     {
       "key": "dmg:item:staff-of-the-magi",

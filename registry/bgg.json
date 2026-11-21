@@ -1193,9 +1193,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s3",
+          "at": "2026-11-21T21:54:26.054Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-bgg-004",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data has only a utility activity; lacks the summoned friendly mount, 6 hour duration, early reversion on 0 hp or command word, and 10 day recovery.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:prehistoric-figurine-of-wondrous-power-jasper-tyrannosaurus-rex",
@@ -1278,9 +1291,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s3",
+          "at": "2026-11-21T21:54:26.054Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-bgg-004",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data has only a utility activity; lacks the summoned creature, 8 hour duration, early reversion rules, and 7 day recovery.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:prehistoric-figurine-of-wondrous-power-pyrite-plesiosaurus",
@@ -1316,9 +1342,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s3",
+          "at": "2026-11-21T21:54:26.054Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-bgg-004",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the summoned creature, 12 hour duration, early reversion, 4 day recovery and the at-will water breathing while riding.",
+      "state": "triaged"
     },
     {
       "key": "bgg:item:reapers-scream",
@@ -6356,9 +6395,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s4",
+          "at": "2026-11-21T21:54:26.910Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d61",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Illusion duplicate with swap, expiry on range/incapacitation and later bonus-action moves; data has only a bare utility with uses, no effect.",
+      "state": "triaged"
     },
     {
       "key": "bgg:monster:firbolg-wanderer/trait/spellcasting",

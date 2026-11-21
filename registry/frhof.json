@@ -1066,9 +1066,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s15",
+          "at": "2026-11-21T21:54:36.033Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-frhof-002",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Transform activity and uses exist, but data lacks temp HP equal to the form's HP, the +20 rider, and ending the form early when temp HP run out.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feat:boon-of-fortunes-favor",
@@ -4651,9 +4664,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s16",
+          "at": "2026-11-21T21:54:36.844Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-frhof-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Regain of 1d4 points is tied to a trigger: a target failing its save against your own Counterspell. Data only has a manual recovery activity; an automatic trigger rule is needed.",
+      "state": "triaged"
     },
     {
       "key": "frhof:feature:wizard/bladesinger/10/song-of-defense",

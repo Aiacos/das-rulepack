@@ -216,9 +216,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s25",
+          "at": "2026-11-21T21:54:44.504Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-005",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "AC bonus effect exists, but riders versus pullers, cover while mounted, cheap mounting, shared initiative and flight depend on circumstances the data cannot express.",
+      "state": "triaged"
     },
     {
       "key": "mot:item:helm-of-the-gods",
@@ -2119,10 +2132,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s26",
+          "at": "2026-11-21T21:54:45.335Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d53",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Legendary action only spends legendary points; data lacks a summon of two creatures in free adjacent spaces.",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:arasta/legendary/toxic-web",
@@ -2702,9 +2728,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s26",
+          "at": "2026-11-21T21:54:45.335Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d54",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data only spends legendary points; lacks the attack and the mount's reaction attack that follows it.",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:archon-of-falling-stars/legendary/return-to-nyx",
@@ -2787,9 +2826,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s26",
+          "at": "2026-11-21T21:54:45.335Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d54",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "No activity or effect; data lacks castable spells list, spell DC and attack bonus for the innate casting.",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:archon-of-falling-stars/trait/magic-resistance",
@@ -3164,9 +3216,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s26",
+          "at": "2026-11-21T21:54:45.335Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d54",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data only spends legendary points; lacks the chosen attack and the mount's reaction melee attack.",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:ashen-rider/legendary/reduce-to-ash",
@@ -3299,9 +3364,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s26",
+          "at": "2026-11-21T21:54:45.335Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d54",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "No activity or effect; data lacks the innate spell list and the save DC for casting.",
+      "state": "triaged"
     },
     {
       "key": "mot:monster:ashen-rider/trait/mount",

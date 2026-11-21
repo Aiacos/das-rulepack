@@ -12564,9 +12564,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-006",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Raises attacks per Attack action to three; data has no activity or effect, so the attack count needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:fighter/12/ability-score-improvement",
@@ -13173,9 +13186,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-006",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Raises attacks per Attack action to four; data lacks any effect, attack count needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:fighter/3/fighter-subclass",
@@ -13293,9 +13319,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-006",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:fighter/5/tactical-shift",
@@ -16314,9 +16353,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-008",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:monk/5/stunning-strike",
@@ -17596,9 +17648,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-008",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Text is an intro to benefits; structure already has a focus-spending cast activity and a darkvision effect.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:monk/shadow/3/shadowy-figments",
@@ -18568,9 +18633,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:paladin/5/faithful-steed",
@@ -20824,9 +20902,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-009",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:ranger/6/roving",
@@ -26698,9 +26789,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s46",
+          "at": "2026-11-21T21:55:02.157Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-012",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Post-cast choice of a surge effect once per long rest; uses exist but the choice and the table exclusion need a rule.",
+      "state": "triaged"
     },
     {
       "key": "xphb:feature:sorcerer/wild-magic/3/tides-of-chaos",
@@ -32914,9 +33018,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s47",
+          "at": "2026-11-21T21:55:03.133Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-015",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Binding needs a check and a target already Grappled/Incapacitated/Restrained; Restrained until escape check or burst. No activity applies Restrained or ends it on a successful check.",
+      "state": "triaged"
     },
     {
       "key": "xphb:item:chain-mail",
@@ -39996,9 +40113,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s47",
+          "at": "2026-11-21T21:55:03.133Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-017",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Binding only valid on a target already Grappled/Incapacitated/Restrained, then Restrained until a escape check succeeds; data has no effect applying or ending the condition (no official item).",
+      "state": "triaged"
     },
     {
       "key": "xphb:item:rowboat",
@@ -47398,9 +47528,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s48",
+          "at": "2026-11-21T21:55:04.225Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xphb-020",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Utility sensing link via touch; sharing senses and casting from the other's space has no automatable combat effect; the bonus-action utility activity already covers activation.",
+      "state": "triaged"
     },
     {
       "key": "xphb:option:gift-of-the-depths",
@@ -66017,9 +66160,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s50",
+          "at": "2026-11-21T21:55:05.958Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          }
+        }
+      },
+      "why": "Illusion fooling detection and creature-type checks; no combat effect to automate.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:otilukes-freezing-sphere",
@@ -70224,9 +70380,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s50",
+          "at": "2026-11-21T21:55:05.958Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "srd-classification-2026-11",
+            "confidence": 0.5
+          }
+        }
+      },
+      "why": "Communication and terrain toggling out of combat; nothing needs automating in combat.",
+      "state": "triaged"
     },
     {
       "key": "xphb:spell:spider-climb",

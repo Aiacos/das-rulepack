@@ -16719,9 +16719,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s30",
+          "at": "2026-11-21T21:54:48.653Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-005",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Save to avoid prone triggers when a creature moves across the area, with an exemption at half speed; data has template, save and prone but no movement trigger or speed exception.",
+      "state": "triaged"
     },
     {
       "key": "phb:item:barrel",
@@ -26164,10 +26177,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s31",
+          "at": "2026-11-21T21:54:49.497Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d69",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with one bludgeoning damage roll; the attack activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "phb:monster:animated-object-huge/trait/animated",
@@ -26233,10 +26259,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s31",
+          "at": "2026-11-21T21:54:49.497Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d69",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Plain melee attack with one bludgeoning damage roll; the attack activity carries it.",
+      "state": "triaged"
     },
     {
       "key": "phb:monster:animated-object-large/trait/animated",
@@ -35358,10 +35397,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T21:54:50.317Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Teleport activity exists; force damage on landing in an occupied spot is a rare edge case.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:disguise-self",
@@ -38198,10 +38250,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T21:54:50.317Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-007",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Spells of a level limit cast from outside cannot affect those inside; data has only a bare utility, needs a level-gated protection rule.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:glyph-of-warding",
@@ -38609,10 +38674,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T21:54:50.317Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Choice of one ability check, d4 added once then spell ends; data effect changes a bonus key but not the use-once limit.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:guiding-bolt",
@@ -42820,10 +42898,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T21:54:50.317Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Transformation ends at 0 HP with carry-over damage, concentration; unwilling save; transform activity lacks effects.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:power-word-heal",
@@ -43001,10 +43092,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s32",
+          "at": "2026-11-21T21:54:50.317Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-old-008",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Healing excludes undead and constructs and adds spellcasting modifier; data heal shows only dice, so data lacks both.",
+      "state": "triaged"
     },
     {
       "key": "phb:spell:prestidigitation",

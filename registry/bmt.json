@@ -568,9 +568,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s5",
+          "at": "2026-11-21T21:54:27.772Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-bmt-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data has only a bare damage activity: no ranged attack, no STR/DEX choice, no range or shield proficiency link, and no return to hand after the throw.",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:breastplate-of-balance",
@@ -655,9 +668,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s5",
+          "at": "2026-11-21T21:54:27.772Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-bmt-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the ranged spell attack (DEX based) on the damage activity; the spell cast has uses of 1 but no dawn recovery, so the once-until-dawn limit is missing.",
+      "state": "triaged"
     },
     {
       "key": "bmt:item:comet-card",

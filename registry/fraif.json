@@ -1237,9 +1237,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Data lacks it: only an expend-use utility; the move of half Speed plus one Rend attack must be chained.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-deep-dragon/legendary/spore-salvo",
@@ -1670,9 +1683,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Data lacks it: only an expend-use utility; the move of half Speed plus one Rend attack must be chained.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:adult-spirit-dragon/legendary/shattering-wave",
@@ -2227,9 +2253,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Data lacks it: only an expend-use utility; the move of half Speed plus one Rend attack must be chained.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/legendary/spore-salvo",
@@ -2657,9 +2696,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Data lacks it: only an expend-use utility; the move of half Speed plus one Rend attack must be chained.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:ancient-spirit-dragon/legendary/shattering-wave",
@@ -3207,9 +3259,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Form change with unchanged statistics and no combat effect; the utility activity is enough.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:aranea/trait/spellcasting",
@@ -4224,9 +4289,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Data lacks it: expend-use utility only; needs a teleport within range then one attack chained.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:biha-babir/legendary/whirlpool",
@@ -7610,9 +7688,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks it: movement that does not provoke opportunity attacks followed by the Hide action must be applied.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:karas-chembryl/legendary/harrow",
@@ -8712,9 +8803,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks it: the Disengage action as a bonus action has no effect in the item to apply the no-opportunity-attack rule.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:nimblewright-steed/trait/evasion",
@@ -14198,9 +14302,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-005",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks it: expend-use utility only; choice between two named attacks at use time is needed.",
+      "state": "triaged"
     },
     {
       "key": "fraif:monster:zlan/legendary/stoke-paranoia",

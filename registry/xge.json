@@ -11466,9 +11466,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T21:54:57.936Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Data has only a bare utility activity; rites with timed d4 bonus to checks/saves and a +2 AC while paired are missing, plus a rite choice at cast.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:chaos-bolt",
@@ -11985,9 +11998,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T21:54:57.936Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the area wards: heavy obscurement, extra movement cost, entangle-like growth, guardian trees, immunity list; a choice among effects at cast time.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:dust-devil",
@@ -12639,9 +12665,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T21:54:57.936Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Save activity has no effect or damage; the push on a failed save and the choice among three effects at cast are not in the data.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:healing-spirit",
@@ -13470,9 +13509,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T21:54:57.936Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks per-target beast form, temp HP from the new form, reversion when temp HP gone, and action limits; save-gated transformation.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:maximilians-earthen-grasp",
@@ -13693,10 +13745,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T21:54:57.936Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Save and half damage are in data; the location tracking and removal of invisibility benefit against caster on a failed save are not.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:mold-earth",
@@ -14830,9 +14895,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T21:54:57.936Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Summon activity exists but text needs hostile-to-all behavior, group initiative, optional blood circle barrier, and a table roll.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:synaptic-static",
@@ -15149,9 +15227,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s41",
+          "at": "2026-11-21T21:54:57.936Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xge-008",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Utility only; object animation into a creature, bonus-action command, and damage carrying over on reversion are not in data.",
+      "state": "triaged"
     },
     {
       "key": "xge:spell:toll-the-dead",

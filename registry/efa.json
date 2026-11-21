@@ -923,9 +923,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s10",
+          "at": "2026-11-21T21:54:31.883Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-002",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Die size is carried by the scale effect, but the ally-sharing option on the free See Invisibility cast is a choice at use time that the data lacks.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-finding",
@@ -1101,9 +1114,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s10",
+          "at": "2026-11-21T21:54:31.883Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-002",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Die size is data; the Purify Food and Drink variant (exhaustion reduction, temp HP, choice of stat, once per long rest) is a use-time modification data lacks.",
+      "state": "triaged"
     },
     {
       "key": "efa:feat:greater-mark-of-making",
@@ -3572,9 +3598,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s11",
+          "at": "2026-11-21T21:54:32.723Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-efa-003",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Data has no activity or effect; the extra attack on the Attack action is a combat effect the data lacks.",
+      "state": "triaged"
     },
     {
       "key": "efa:feature:artificer/armorer/9/improved-armorer",

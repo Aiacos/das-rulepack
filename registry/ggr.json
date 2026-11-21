@@ -3050,9 +3050,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s21",
+          "at": "2026-11-21T21:54:40.951Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d50",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Radiant attack plus a heal on a second creature chosen at use time within range of the target; data has separate attack and heal activities but not the choice or link.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:aurelia/legendary/command-allies",
@@ -4575,9 +4588,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s21",
+          "at": "2026-11-21T21:54:40.951Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d51",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Innate casting list with level-gated and self-only notes; the spells are separate items, nothing extra to automate in the trait. No activity in data.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:bloodfray-giant/action/chain",
@@ -5381,9 +5407,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s21",
+          "at": "2026-11-21T21:54:40.951Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d51",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Innate casting with two cantrip-level spells; spells are separate items, the trait text adds no combat rule. No activity in data.",
+      "state": "triaged"
     },
     {
       "key": "ggr:monster:cackler/trait/last-laugh",

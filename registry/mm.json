@@ -1089,9 +1089,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d1",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Advantage limited to smell-based Perception; effect gives it to every Perception check, so the circumstance needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:abominable-yeti/trait/snow-camouflage",
@@ -1128,9 +1141,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d1",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Stealth advantage only in snowy terrain; effect grants it unconditionally, so a situational rule is needed.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:acolyte/action/club",
@@ -13589,9 +13615,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d7",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attacks count as magical to beat nonmagical resistance; data lacks any effect or flag for it.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:androsphinx/trait/spellcasting",
@@ -14358,9 +14397,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d7",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Attacks count as magical to beat nonmagical resistance; data lacks any effect or flag for it.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:arcanaloth/trait/spellcasting",
@@ -17543,9 +17595,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d9",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Darkvision sees through magical darkness; effect has no changes, so data lacks it and vision needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:bearded-devil/trait/magic-resistance",
@@ -22864,9 +22929,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d11",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Darkvision sees through magical darkness; effect has no changes, so data lacks it and vision needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:chain-devil/trait/magic-resistance",
@@ -27616,9 +27694,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d13",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Immunity to turn undead effects; data lacks it, needs a rule keyed on that feature.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:deva/action/change-shape",
@@ -28784,9 +28875,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "data",
+      "evidence": {
+        "triaged": {
+          "by": "second-s23",
+          "at": "2026-11-21T21:54:42.625Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d13",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Plain melee attack with damage in the activity; nothing further.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:dragon-turtle/action/bite",
@@ -62154,9 +62258,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T21:54:43.575Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d24",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Advantage only on sight-based Perception checks; the data effect changes the roll mode unconditionally, so the sight condition needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:nycaloth/action/claw",
@@ -62471,9 +62588,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T21:54:43.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d24",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Weapon attacks count as magical (overcoming nonmagical resistance); data lacks any effect or flag for it.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:ochre-jelly/action/pseudopod",
@@ -63420,9 +63550,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T21:54:43.575Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d24",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Prepared spell list and casting stats; nothing beyond the spells themselves acts in combat.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:orc-war-chief/action/battle-cry",
@@ -64562,9 +64705,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T21:54:43.575Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d24",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Advantage only on smell-based Perception checks; data effect is unconditional on the roll mode, so the circumstance needs a rule.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:panther/trait/pounce",
@@ -69426,9 +69582,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s24",
+          "at": "2026-11-21T21:54:43.575Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d26",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Immunity to turn undead effects; data has no effect or flag expressing it.",
+      "state": "triaged"
     },
     {
       "key": "mm:monster:revenant/trait/vengeful-tracker",

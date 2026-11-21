@@ -5624,9 +5624,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:adult-green-dragon/trait/amphibious",
@@ -6166,9 +6179,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:adult-red-dragon/trait/legendary-resistance",
@@ -6719,9 +6745,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:adult-silver-dragon/trait/legendary-resistance",
@@ -7152,9 +7191,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:adult-white-dragon/trait/frightful-presence",
@@ -8079,9 +8131,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-black-dragon/trait/amphibious",
@@ -9133,9 +9198,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-brass-dragon/legendary/scorching-sands",
@@ -9694,9 +9772,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-003",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:ancient-bronze-dragon/legendary/thunderclap",
@@ -13572,10 +13663,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-004",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Movement free of opportunity attacks plus an attack; data lacks both, only a use expenditure.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:animal-lord/legendary/radiant-strike",
@@ -15766,9 +15870,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s42",
+          "at": "2026-11-21T21:54:58.756Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-005",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Casts two spells via cast activities but the lockout until next turn is not expressed in data.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:arch-hag/trait/coven-magic",
@@ -62378,9 +62495,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-014",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Casting gated on two allies nearby and once per long rest each; cast activities exist but not the proximity condition.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:green-hag/trait/mimicry",
@@ -64625,9 +64755,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-015",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Extra damage whose type is a choice made elsewhere (trait); the data lists many types without that selection.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:half-dragon/action/dragons-breath",
@@ -68460,9 +68603,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-015",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Head loss on big damage, regrowth at turn end unless fire damage taken, healing; needs tracking.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:hydra/trait/reactive-heads",
@@ -68508,10 +68664,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-015",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Extra reactions limited to opportunity attacks scaling with heads; no data.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:hyena/action/bite",
@@ -83584,9 +83753,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-019",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Frightened until end of next turn plus a 24 hour immunity per source; effect carried but immunity and expiry not shown.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:mummy/action/multiattack",
@@ -100849,10 +101031,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-022",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "End-of-turn damage in an emanation to creatures of its choice; an aura needing turn timing.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:satyr-revelmaster/action/fey-melody",
@@ -104055,9 +104250,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Reaction triggered by creature or bright light entering range, with a timed audible effect; data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:silver-dragon-wyrmling/action/cold-breath",
@@ -112686,9 +112894,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-025",
+            "confidence": 0.6
+          }
+        }
+      },
+      "why": "Legendary half-speed move plus one of two attacks (a choice); data is a bare utility.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:tarrasque/legendary/world-shaking-movement",
@@ -113474,10 +113695,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s43",
+          "at": "2026-11-21T21:54:59.640Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-025",
+            "confidence": 0.6
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Choice of Disengage or Hide at use time; data carries only a hiding status effect.",
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:tough-boss/action/heavy-crossbow",

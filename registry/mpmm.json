@@ -6003,9 +6003,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T21:54:46.167Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d36",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Attack and save exist, but the pull on a failed save is not carried by the data (no effect or movement).",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:banderhobb/bonus/shadow-stealth",
@@ -7425,9 +7438,22 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
-      "state": "inventoried"
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T21:54:46.167Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d36",
+            "confidence": 0.65
+          }
+        }
+      },
+      "why": "Duplicate creation, caster unconscious meanwhile, psychic damage and dismissal rules are absent from the data.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:berbalang/trait/spellcasting",
@@ -8171,10 +8197,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T21:54:46.167Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d37",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Effect gives a generic save advantage flag; text limits it to spells and magical effects, so a conditional rule is needed.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:blackguard/action/dreadful-aspect",
@@ -8777,10 +8816,23 @@
           "match": "unchecked"
         }
       ],
-      "verdict": null,
-      "evidence": {},
+      "verdict": "entry",
+      "evidence": {
+        "triaged": {
+          "by": "second-s27",
+          "at": "2026-11-21T21:54:46.167Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-d37",
+            "confidence": 0.65
+          }
+        }
+      },
       "hint": "core-generic",
-      "state": "inventoried"
+      "why": "Effect gives a generic save advantage flag; text limits it to spells and magical effects, so a conditional rule is needed.",
+      "state": "triaged"
     },
     {
       "key": "mpmm:monster:blue-abishai/trait/spellcasting",
