@@ -41,9 +41,15 @@ function base(e, name, kind, book, edition) {
   };
 }
 
+// A feature whose owner cannot be named (a subclass feature without a subclass short name, a feature without a class)
+// comes back without `owner`: inventory skips it and counts it, rather than keying it under "Class/undefined".
 function readFeature(e, book, edition) {
-  const owner = e.featureOf === "subclass" ? `${e.className}/${e.subclassShortName}` : e.className;
-  return [{ ...base(e, e.name, "feature", book, edition), owner, level: e.level, text: textOf(e.entries) }];
+  const owner = e.featureOf === "subclass"
+    ? (e.className && e.subclassShortName ? `${e.className}/${e.subclassShortName}` : undefined)
+    : e.className || undefined;
+  return [{
+    ...base(e, e.name, "feature", book, edition), ...(owner ? { owner } : {}), level: e.level, text: textOf(e.entries),
+  }];
 }
 
 // A species is its unnamed remainder; each named sub-entry of its `entries` is a trait with its own text.

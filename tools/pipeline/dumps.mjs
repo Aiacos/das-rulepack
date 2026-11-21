@@ -16,7 +16,30 @@ function activitySummary(id, activity) {
   return out;
 }
 
-export function itemSummary(doc, origin) {
+// Who hands a document out: the class, subclass and race documents of a dump list the feature documents they grant (an
+// ItemGrant advancement holds their uuids). Returns a Map of document id to [{ class?, subclass?, race?, level? }] where each
+// value is the slug-ready identifier or name of the granting document; this is what tells two same-name features apart.
+export function grantIndex(docs) {
+  const index = new Map();
+  const add = (id, grant) => index.set(id, [...(index.get(id) ?? []), grant]);
+  for (const doc of docs) {
+    if (!["class", "subclass", "race"].includes(doc.type)) continue;
+    const sys = doc.system ?? {};
+    const owner = doc.type === "class" ? { class: sys.identifier ?? doc.name }
+      : doc.type === "subclass" ? { class: sys.classIdentifier, subclass: [sys.identifier, doc.name].filter(Boolean) }
+        : { race: doc.name };
+    for (const adv of Object.values(sys.advancement ?? {})) {
+      if (adv?.type !== "ItemGrant") continue;
+      for (const item of adv.configuration?.items ?? []) {
+        const id = String(item?.uuid ?? "").split(".").pop();
+        if (id) add(id, { ...owner, ...(Number.isInteger(adv.level) ? { level: adv.level } : {}) });
+      }
+    }
+  }
+  return index;
+}
+
+export function itemSummary(doc, origin, grants) {
   const system = doc.system ?? {};
   const effects = doc.effects ?? [];
   const summary = {
@@ -31,6 +54,12 @@ export function itemSummary(doc, origin) {
   };
   if (system.level !== undefined) summary.level = system.level;
   if (system.school !== undefined) summary.school = system.school;
+  if (typeof system.rarity === "string" && system.rarity) summary.rarity = system.rarity;
+  if (system.type && typeof system.type === "object" && doc.type === "feat") {
+    summary.featType = { value: system.type.value ?? "", subtype: system.type.subtype ?? "" };
+  }
+  if (typeof system.requirements === "string" && system.requirements) summary.requirements = system.requirements;
+  if (grants?.get(doc._id)) summary.grantedBy = grants.get(doc._id);
   summary.data = sha256(canonical({ system, effects }));
   return summary;
 }

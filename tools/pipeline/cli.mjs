@@ -3,9 +3,9 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BOOK_CODE, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
-import { readSpells } from "./dataset.mjs";
-import { dumpsFor, itemSummary, officialFilesFor, readDump } from "./dumps.mjs";
-import { inventory } from "./inventory.mjs";
+import { readEntries } from "./dataset.mjs";
+import { dumpsFor, grantIndex, itemSummary, officialFilesFor, readDump } from "./dumps.mjs";
+import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
@@ -44,7 +44,12 @@ function loadRegistry(dir) {
 
 // The official candidates of a book are the documents of the book's own package only (docs/foundry-modules.json).
 function loadDumps(dir, book) {
-  const read = (origin, files) => files.flatMap((f) => readDump(join(dir, f)).map((d) => itemSummary(d, origin)));
+  // The class, subclass and race documents of a package say which feature documents they grant.
+  const read = (origin, files) => files.flatMap((f) => {
+    const docs = readDump(join(dir, f));
+    const grants = grantIndex(docs);
+    return docs.map((d) => itemSummary(d, origin, grants));
+  });
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
   return {
     official: read("official", officialFilesFor(dir, packages, book)),
@@ -58,22 +63,22 @@ function yearOf(code) {
   return books.find((b) => b.code.toUpperCase() === code.toUpperCase())?.year;
 }
 
-function readBookSpells(datasetDir, book) {
-  let spells;
-  try {
-    spells = readSpells(datasetDir, book, { year: yearOf(book) });
-  } catch (e) {
-    if (e.code !== "ENOENT") throw e;
-    spells = [];
+// Every inventoriable kind of `kind` ("all" or one of them), in the order of INVENTORY_KINDS.
+function kindsOf(kind) {
+  if (kind === "all") return [...INVENTORY_KINDS];
+  if (kind === "monster") throw new UsageError('Kind "monster" is not supported yet');
+  if (!INVENTORY_KINDS.includes(kind)) {
+    throw new UsageError(`Kind "${clip(kind)}" is unknown: ${INVENTORY_KINDS.join(", ")} or all`);
   }
-  if (!spells.length) throw new UsageError(`The dataset has no spell entries for book ${book}`);
-  return spells;
+  return [kind];
 }
 
-function inventoryCommand([code, kind, ...rest]) {
-  if (!code || !kind || rest.length) throw new UsageError("Usage: inventory <BOOK> <kind>");
+function inventoryCommand(args) {
+  const allowCollisions = args.includes("--allow-collisions");
+  const [code, kind, ...rest] = args.filter((a) => a !== "--allow-collisions");
+  if (!code || !kind || rest.length) throw new UsageError("Usage: inventory <BOOK> <kind|all> [--allow-collisions]");
   const book = bookArg(code);
-  if (kind !== "spell") throw new UsageError(`Kind "${kind}" is not supported yet: only "spell" is`);
+  const kinds = kindsOf(kind);
   const datasetDir = need("RULEPACK_DATASET");
   const dumpsDir = need("RULEPACK_DUMPS");
   const textDir = need("RULEPACK_TEXT");
@@ -81,11 +86,23 @@ function inventoryCommand([code, kind, ...rest]) {
   for (const [name, dir] of [["RULEPACK_DATASET", datasetDir], ["RULEPACK_DUMPS", dumpsDir]]) {
     if (!existsSync(dir)) throw new UsageError(`${name} points at a folder that does not exist: ${dir}`);
   }
-  const dataset = readBookSpells(datasetDir, book);
+  const year = yearOf(book);
+  const datasets = Object.fromEntries(kinds.map((k) => [k, readEntries(datasetDir, book, k, { year })]));
+  if (kinds.every((k) => !datasets[k].length)) {
+    throw new UsageError(`The dataset has no ${kind === "all" ? "" : `${kind} `}entries for book ${book}`);
+  }
 
   const books = loadRegistry(REGISTRY);
   const previous = books.flatMap((b) => b.records);
-  const { records, report } = inventory({ book, kind, dataset, dumps: loadDumps(dumpsDir, book), textDir, previous });
+  const dumps = loadDumps(dumpsDir, book);
+  let records = previous;
+  const reports = {};
+  for (const k of kinds) {
+    if (!datasets[k].length) { reports[k] = { entries: 0 }; continue; }
+    const out = inventory({ book, kind: k, dataset: datasets[k], dumps, textDir, previous: records });
+    records = out.records;
+    reports[k] = out.report;
+  }
 
   const touched = new Set();
   const before = new Map(previous.map((r) => [r.key, canonical(r)]));
@@ -94,7 +111,12 @@ function inventoryCommand([code, kind, ...rest]) {
     const { note } = books.find((b) => b.book === code) ?? {};
     saveBook(REGISTRY, { book: code, note, records: records.filter((r) => r.book === code) });
   }
-  console.log(JSON.stringify(report, null, 2));
+  console.log(JSON.stringify(kind === "all" ? reports : reports[kind], null, 2));
+  const collided = Object.values(reports).some((r) => r.collisions?.length);
+  if (collided && !allowCollisions) {
+    console.error("Entries with one key were found (see collisions); pass --allow-collisions to accept them");
+    process.exitCode = 1;
+  }
 }
 
 // The documents the data-fix gate reads: for each matched item of a record, by origin and document id, the dump document with

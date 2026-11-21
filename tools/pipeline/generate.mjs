@@ -50,6 +50,9 @@ export function ruleFromRecord(record, { legacy } = {}) {
   } else status = STATUS_OF_STATE[stateOf(record)];
   if (!status) return null;
   const { rule } = record;
+  if (record.page === null || record.page === undefined) {
+    throw new Error(`${record.key}: the record has no page, so its rule cannot be emitted`);
+  }
   const out = { identifier: record.identifier, name: record.name, book: record.book, page: record.page, kind: record.kind, status };
   out.handledIn = rule.handledIn;
   for (const f of ["origin"]) if (f in rule) out[f] = structuredClone(rule[f]);

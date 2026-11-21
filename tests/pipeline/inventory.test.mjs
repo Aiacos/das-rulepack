@@ -40,7 +40,8 @@ describe("inventory records", () => {
     expect(readFileSync(join(textDir, `${sha}.txt`), "utf8")).toBe("A bolt of invented light.");
     expect(JSON.stringify(r)).not.toContain("invented light");
     expect(report).toEqual({
-      added: 1, kept: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: []
+      added: 1, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
+      noPage: [], collisions: []
     });
   });
 
@@ -122,7 +123,8 @@ describe("inventory over previous records", () => {
       evidence: { reviewed: { agrees: true }, gates: { rule: "f", passed: ["schema"] } } }];
     const again = run({ previous: worked });
     expect(again.report).toEqual({
-      added: 0, kept: 1, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: []
+      added: 0, kept: 1, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
+      noPage: [], collisions: []
     });
     expect(again.records).toEqual(worked);
   });
@@ -180,10 +182,13 @@ describe("pipeline CLI", () => {
     expect(r.stderr).toMatch(/usage/i);
   });
 
-  it("exits 2 for a kind other than spell", () => {
-    const r = cli(["inventory", "TST", "feat"]);
+  it("exits 2 for an unknown kind and for monster, naming what is supported", () => {
+    const r = cli(["inventory", "TST", "sense"]);
     expect(r.status).toBe(2);
-    expect(r.stderr).toMatch(/spell/);
+    expect(r.stderr).toMatch(/spell, feat, option, feature, species, background, item or all/);
+    const m = cli(["inventory", "TST", "monster"]);
+    expect(m.status).toBe(2);
+    expect(m.stderr).toMatch(/monster/);
   });
 
   it("exits 2 naming a missing environment variable", () => {

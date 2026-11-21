@@ -20,15 +20,19 @@ export function groupBy(list, keyOf) {
   }, new Map());
 }
 
-// `owner` ("Class" or "Class/Subclass": each part is slugged) and `level` come between the kind and the name, joined by "/".
+// `owner` ("Class" or "Class/Subclass": each part is slugged) is part of the key of features, species (traits) and monsters;
+// `level` is part of the key of features only (a spell's level or an item's rarity never is). Both come between the kind
+// and the name, joined by "/". A name or an owner part that slugs to nothing cannot make a key.
+const OWNED_KINDS = ["feature", "species", "monster"];
 export function keyOf({ book, kind, name, creature, owner, level }) {
   const head = [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : [])];
-  const scoped = [
-    ...(owner ? [String(owner).split("/").map(slug).join("/")] : []),
-    ...(level != null ? [String(level)] : []),
-    slug(name),
-  ];
-  return owner || level != null ? `${head.join(":")}:${scoped.join("/")}` : `${head.join(":")}:${slug(name)}`;
+  const ownerParts = owner && OWNED_KINDS.includes(kind) ? String(owner).split("/").map(slug) : [];
+  const levelParts = kind === "feature" && level != null ? [String(level)] : [];
+  const tail = slug(name);
+  if (!tail) throw new Error(`keyOf: the name ${JSON.stringify(name)} has no letters or digits`);
+  if (ownerParts.some((p) => !p)) throw new Error(`keyOf: the owner ${JSON.stringify(owner)} has an empty part`);
+  const scoped = [...(ownerParts.length ? [ownerParts.join("/")] : []), ...levelParts, tail];
+  return `${head.join(":")}:${scoped.join("/")}`;
 }
 
 export function canonical(value) {

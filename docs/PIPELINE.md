@@ -31,7 +31,7 @@ Every command is an npm script: `npm run <name> -- <arguments>`.
 
 | # | Stage | Command | Needs | Who runs it |
 |---|---|---|---|---|
-| 1 | Inventory | `npm run inventory -- <BOOK> spell` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
+| 1 | Inventory | `npm run inventory -- <BOOK> <kind|all> [--allow-collisions]` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 2a | Triage by rule | `npm run triage -- <BOOK>` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--size 40]` | nothing | a person |
 | 2c | Read a batch | (no command: a reader agent reads a file) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
@@ -208,4 +208,23 @@ Only inventory, triage (rule-based, batch files, ingest), gates and generation e
 - **Play**: scenario generation and runs on a test world.
 - **Drift**: recomputing fingerprints and reopening the records whose inputs changed.
 
-Inventory, and so triage, supports the `spell` kind only.
+Inventory reads the kinds `spell`, `feat`, `option`, `feature`, `species`, `background` and `item` (`all` runs them in that
+order and prints `{ kind: report }`; a kind with no dataset entries for the book is `{ entries: 0 }`, and only when every
+kind is empty does the command exit 2). `monster` is not built yet. Triage and the later stages run on whatever the registry
+holds.
+
+Notes on what inventory does with each kind:
+
+- A record's `kind` is the pipeline kind; `owner` ("Class", "Class/Subclass" or a species) and `level` belong to the key of a
+  feature, `owner` to that of a species trait; an item's `rarity` and a `copyOf` are recorded, never keyed. Two entries with
+  one key are not merged: the second gets no record, both are listed under `collisions` and the command exits 1 unless
+  `--allow-collisions` is given. A feature whose owner cannot be named is counted in `skipped`.
+- An entry with no page gets `page: null` and is listed under `noPage`; `generate` refuses to emit a rule for such a record.
+  An entry with no text gets `text: null` and no cache file.
+- Matching looks at the Foundry document types of the kind (a species matches a `race` document, its traits `feat`
+  documents). Names compare by slug (apostrophes alike, a leading "The" ignored); a trailing parenthesised group and a
+  `+1`/`+2`/`+3` token are a variant marker that must agree. Same-name features and traits are told apart by the class,
+  subclass or race document whose advancement grants them, then by `system.requirements` and the feat subtype; what cannot be
+  told apart is `ambiguous`, never the first. An item whose rarity differs (case-insensitive; a missing one is unknown) is
+  `ambiguous`.
+- A re-run keeps every key; a record that has a `rule` keeps its `identifier` (the official one stays on the official item).

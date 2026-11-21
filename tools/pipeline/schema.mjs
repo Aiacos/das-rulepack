@@ -95,7 +95,7 @@ export function validateRecord(record) {
   if (!isObject(record)) return ["record: must be an object"];
   const errors = [];
   for (const f of ["key", "name", "kind", "book"]) if (!isString(record[f])) errors.push(`${f}: must be a non-empty string`);
-  if (!isPage(record.page)) errors.push("page: must be a positive integer");
+  if (record.page !== null && !isPage(record.page)) errors.push("page: must be a positive integer or null");
   if (!EDITIONS.includes(record.edition)) errors.push(`edition: must be one of ${EDITIONS.join(", ")}`);
   if (record.text !== null) checkText(record.text, errors);
   if (!Array.isArray(record.items)) errors.push("items: must be an array");
