@@ -19,6 +19,7 @@ export const HINTS = Object.freeze(["core-generic"]);
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const DOTTED = /^[a-z0-9]+([.-][a-z0-9]+)*$/;
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isString = (v) => typeof v === "string" && v !== "";
 const isPage = (v) => Number.isInteger(v) && v > 0;
@@ -78,7 +79,7 @@ function checkText(text, errors) {
 }
 
 // One printable line of at most 200 characters (a reason).
-const isLine = (v) => isString(v) && v.length <= 200 && !/[\u0000-\u001f\u007f]/.test(v);
+const isLine = (v) => isPlainLine(v, 200);
 
 // `rule.alsoAs` (Ruling R2): the other identifiers the entry is registered under, one per origin whose item names it otherwise.
 function checkAlsoAs(list, identifier, errors) {
@@ -110,7 +111,7 @@ function checkUncovered(list, origins, errors) {
     else if (seen.has(u.origin)) errors.push(`${at}.origin: ${u.origin} is listed twice`);
     else if (Array.isArray(origins) && origins.includes(u.origin)) errors.push(`${at}.origin: ${u.origin} is also in origins`);
     seen.add(u.origin);
-    if (!isLine(u.because)) errors.push(`${at}.because: must be one line of at most 200 characters`);
+    if (!isLine(u.because)) errors.push(`${at}.because: must be one line of printable ASCII, at most 200 characters`);
   });
 }
 
@@ -129,6 +130,17 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
   for (const f of ["code", "origin"]) if (f in rule && typeof rule[f] !== "string") errors.push(`rule.${f}: must be a string`);
   if ("catalog" in rule && rule.catalog !== null && typeof rule.catalog !== "string") {
     errors.push("rule.catalog: must be a string or null");
+  }
+  // From this milestone on (a legacy rule's predate it: a script path, a display label): identifiers, not prose.
+  if (!legacy) {
+    for (const f of ["code", "catalog"]) {
+      if (typeof rule[f] === "string" && !(rule[f].length <= 64 && DOTTED.test(rule[f]))) {
+        errors.push(`rule.${f}: must be a kebab/dot identifier of at most 64 characters`);
+      }
+    }
+    if (typeof rule.origin === "string" && !ORIGINS.includes(rule.origin)) {
+      errors.push(`rule.origin: must be one of ${ORIGINS.join(", ")}`);
+    }
   }
   if ("entry" in rule && !isObject(rule.entry)) errors.push("rule.entry: must be an object");
   if ("inCore" in rule && typeof rule.inCore !== "boolean") errors.push("rule.inCore: must be a boolean");
@@ -197,6 +209,16 @@ function checkEvidence(evidence, errors, legacy) {
       }
     }
   }
+  // A person's signature that lets a rule hold what a drafter may not write (Ruling R6; gates.mjs draftProblems).
+  if ("person" in evidence) {
+    const p = evidence.person;
+    if (!isObject(p) || !onlyPersonKeys(p)) {
+      errors.push("evidence.person: must be { by, because }");
+    } else {
+      if (!isReaderHandle(p.by)) errors.push("evidence.person.by: must be a reader handle");
+      if (!isPlainLine(p.because, 120)) errors.push("evidence.person.because: one line of printable ASCII, at most 120 characters");
+    }
+  }
   checkStamped(evidence, "drafted", { by: isReaderHandle, at: isString, core: isString, rule: isHex64 }, {}, errors);
   const confidence = (v) => typeof v === "number" && v >= 0 && v <= 1;
   checkStamped(evidence, "reviewed", { by: isReaderHandle, at: isString, agrees: (v) => typeof v === "boolean", rule: isHex64,
@@ -205,6 +227,7 @@ function checkEvidence(evidence, errors, legacy) {
     { rule: legacy }, errors, { client: isString });
 }
 
+const onlyPersonKeys = (p) => Object.keys(p).every((k) => k === "by" || k === "because");
 const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
   confidence: "a number from 0 to 1" };

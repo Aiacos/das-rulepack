@@ -86,9 +86,9 @@ export const setByRule = (r) => r.evidence?.triaged?.by === "rule" && !("confide
 const EDGES = /^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu;
 const words = (s) => String(s).toLowerCase().split(/\s+/).map((w) => w.replace(EDGES, "")).filter(Boolean);
 
-// True when `why` repeats more than MAX_QUOTE_WORDS consecutive words of `text` (whitespace and case do not count), or `n`
-// consecutive words when it is given (the text gate's limit for the prose of a rule).
-export function quotes(why, text, n = MAX_QUOTE_WORDS + 1) {
+// True when `why` repeats more than MAX_QUOTE_WORDS consecutive words of `text` (whitespace and case do not count).
+export function quotes(why, text) {
+  const n = MAX_QUOTE_WORDS + 1;
   const source = words(text);
   const mine = words(why);
   if (mine.length < n || source.length < n) return false;

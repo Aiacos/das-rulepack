@@ -50,15 +50,15 @@ describe("checkDraftKeys: dataFixes", () => {
   it("prose paths are refused", () => {
     for (const path of ["name", "system.description.value", "system.unidentified.description", "flags.dnd5e.x", "img",
       `system.activities.${ACT}.name`, `system.activities.${ACT}.description.chatFlavor`, "system.chatFlavor"]) {
-      expect(fixes({ path, from: "a", value: "b" }), path).toMatch(/dataFixes\[0\]\.path: prose/);
+      expect(fixes({ path, from: "a", value: "b" }), path).toMatch(/dataFixes\[0\]\.path: not an allowed leaf/);
     }
-    expect(fixes({ effect: EFF, path: "name", from: "a", value: "b" })).toMatch(/dataFixes\[0\]\.path: prose/);
+    expect(fixes({ effect: EFF, path: "name", from: "a", value: "b" })).toMatch(/dataFixes\[0\]\.path: not an allowed leaf/);
   });
 
-  it("a value with a string longer than 60 characters anywhere is refused", () => {
+  it("a value with a long string anywhere is refused (tokens of at most 40 characters since fix round 2)", () => {
     const path = `system.activities.${ACT}.range.units`;
-    expect(fixes({ path, from: "self", value: { a: ["x".repeat(61)] } })).toMatch(/dataFixes\[0\]\.value: a string longer/);
-    expect(fixes({ path, from: "self", value: "x".repeat(60) })).toBe("");
+    expect(fixes({ path, from: "self", value: { a: ["x".repeat(61)] } })).toMatch(/dataFixes\[0\]\.value: a string that is not/);
+    expect(fixes({ path, from: "self", value: "x".repeat(40) })).toBe("");
   });
 
   it("the limits fail closed: origins and kind are required", () => {

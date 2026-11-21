@@ -21,15 +21,21 @@ export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isWord = (v) => typeof v === "string" && v !== "";
-/** One printable line of at most `max` characters: no control character, no line or paragraph separator. */
-export const isPlainLine = (v, max) => typeof v === "string" && v.trim() !== "" && v.length <= max
-  && !/[\u0000-\u001f\u007f-\u009f\u2028\u2029]/.test(v);
+/** One line of printable ASCII (0x20-0x7E) of at most `max` characters: no control, format or look-alike character. */
+export const isPlainLine = (v, max) => typeof v === "string" && v.trim() !== "" && v.length <= max && /^[\x20-\x7e]+$/.test(v);
 const isFree = (v) => isPlainLine(v, FREE_MAX);
 // What a move distance may be: a number of feet, or a short formula (digits, operators, `@` paths).
 export const DISTANCE_MAX = 24;
-const FORMULA = /^(?:[0-9 +\-*/().]|@[A-Za-z0-9.]+)+$/;
-const isDistance = (v) => (Number.isFinite(v) && v >= 0)
-  || (typeof v === "string" && v.trim() !== "" && v.length <= DISTANCE_MAX && FORMULA.test(v) && /[0-9@]/.test(v));
+// The `@` references a distance may use: the roll data of the actor and item (`@mod`, `@prof`, `@scale.<class>.<x>`...).
+const REFERENCE = new RegExp("@(?:(?:mod|prof)(?![A-Za-z0-9.])"
+  + "|(?:item|abilities|attributes|details|scale|flags)\\.[A-Za-z0-9]+(?:\\.[A-Za-z0-9]+)*)", "g");
+const isDistance = (v) => {
+  if (Number.isFinite(v)) return v >= 0;
+  if (typeof v !== "string" || v.trim() === "" || v.length > DISTANCE_MAX) return false;
+  // Once its references are taken out, what is left is digits and operators only: no word.
+  const rest = v.replace(REFERENCE, " ");
+  return /^[0-9 +\-*/().]*$/.test(rest) && (rest !== v || /[0-9]/.test(rest));
+};
 const onlyKeys = (o, keys) => Object.keys(o).every((k) => keys.includes(k));
 const list = (v) => (Array.isArray(v) ? v : v instanceof Set ? [...v] : null);
 

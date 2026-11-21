@@ -220,6 +220,35 @@ export function validateQueueEntry(entry) {
   return errors;
 }
 
+const TRIAGE_QUEUE_FIELDS = ["key", "verdict", "why", "confidence", "by", "reason", "second", "third"];
+const READING_FIELDS = ["verdict", "why", "confidence", "by"];
+const isConfidence = (c) => typeof c === "number" && c >= 0 && c <= 1;
+
+// One reading of a queue.json entry: its own, or its `second` / `third`.
+function readingProblems(r, at, fields, errors) {
+  if (!VERDICTS.includes(r.verdict)) errors.push(`${at}verdict: must be one of ${VERDICTS.join(", ")}`);
+  if (typeof r.why !== "string" || !r.why) errors.push(`${at}why: must be a non-empty string`);
+  if (!isConfidence(r.confidence)) errors.push(`${at}confidence: must be a number from 0 to 1`);
+  if (!isReaderHandle(r.by)) errors.push(`${at}by: must be a reader handle (not "rule")`);
+  for (const f of Object.keys(r)) if (!fields.includes(f)) errors.push(`${at}${f}: unknown field`);
+}
+
+/** The problems of one entry of registry/queue.json (triage results waiting for a person), or []. */
+export function validateTriageQueueEntry(entry) {
+  if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return ["entry: must be an object"];
+  const errors = [];
+  if (typeof entry.key !== "string" || !RECORD_KEY.test(entry.key)) errors.push("key: must be a record key (<book>:<kind>:<name>)");
+  if (typeof entry.reason !== "string" || !entry.reason) errors.push("reason: must be a non-empty string");
+  readingProblems(entry, "", TRIAGE_QUEUE_FIELDS, errors);
+  for (const f of ["second", "third"]) {
+    if (!(f in entry)) continue;
+    const r = entry[f];
+    if (r === null || typeof r !== "object" || Array.isArray(r)) errors.push(`${f}: must be { ${READING_FIELDS.join(", ")} }`);
+    else readingProblems(r, `${f}.`, READING_FIELDS, errors);
+  }
+  return errors;
+}
+
 const queueFile = (dir, name) => {
   if (!Object.hasOwn(QUEUE_FILES, name)) {
     throw new Error(`unknown queue ${JSON.stringify(name)} (${Object.keys(QUEUE_FILES).join(", ")})`);

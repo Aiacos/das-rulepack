@@ -3,7 +3,8 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSyn
 import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  BOOK_CODE, NOT_BOOKS, QUEUE_FILES, canonical, checkBook, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue, saveBook
+  BOOK_CODE, NOT_BOOKS, QUEUE_FILES, canonical, checkBook, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue, saveBook,
+  validateTriageQueueEntry
 } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
@@ -359,7 +360,14 @@ function checkQueues(dir) {
   for (const name of Object.keys(QUEUE_FILES)) {
     try { loadQueue(dir, name); } catch (e) { throw new UsageError(e.message); }
   }
-  queueEntries(dir);
+  const file = join(dir, "queue.json");
+  if (!existsSync(file)) return;
+  const queue = readJson(file, "queue");
+  if (!Array.isArray(queue)) throw new UsageError(`${file}: must be an array`);
+  queue.forEach((e, i) => {
+    const errors = validateTriageQueueEntry(e);
+    if (errors.length) throw new UsageError(`${file}: entry ${i}: ${errors.join("; ")}`);
+  });
 }
 
 // The keys registry/queue.json holds: results waiting for a person.

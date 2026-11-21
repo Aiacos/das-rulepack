@@ -11,10 +11,9 @@ import {
 } from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText, readText } from "./text.mjs";
-import { quotes } from "./triage.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
-import { singleSlotKeys } from "./draft-keys.mjs";
+import { checkDraftKeys, singleSlotKeys } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 
 export const GATES = GATE_NAMES;
@@ -67,10 +66,24 @@ const matchedItems = (record, origin) => (record.items ?? []).filter((i) => i?.o
 
 // The structure of the record, and its `sources` (each must be a document of this record bound to its identifier).
 // And the identifiers a ruled record registers (identifiers.mjs identifierProblems): from the record alone, so under --ci too.
-export const gateSchema = (record) => [
-  ...validateRecord(record).map((e) => `schema: ${e}`), ...sourceProblems(record),
-  ...(validateRecord(record).length ? [] : identifierProblems(record).map((e) => `schema: ${e}`))
-];
+// And what a drafter may write (draft-keys.mjs checkDraftKeys, Ruling R6), for every rule but a legacy one with standing,
+// unless a person signed for it (`evidence.person`): from the record alone, so under --ci too.
+export const gateSchema = (record, context) => {
+  const errors = validateRecord(record);
+  return [
+    ...errors.map((e) => `schema: ${e}`), ...sourceProblems(record),
+    ...(errors.length ? [] : identifierProblems(record).map((e) => `schema: ${e}`)),
+    ...(errors.length ? [] : draftProblems(record, context).map((e) => `schema: ${e}`))
+  ];
+};
+
+// The drafter limits of a ruled record's entry, or []: a legacy record with standing predates them, and a person may write
+// any key once they sign `evidence.person` (schema-checked, visible to review).
+function draftProblems(record, context) {
+  const entry = record.rule?.entry;
+  if (!isObject(entry) || isLegacy(record, context) || isObject(record.evidence?.person)) return [];
+  return checkDraftKeys(entry, { origins: originsOf(record.rule), kind: record.kind });
+}
 
 export function gateValidator(record, { core }) {
   if (!record.rule) return [];
@@ -200,7 +213,11 @@ export function checkFixes(record, context = {}) {
     for (const doc of docs) {
       for (const fix of fixes) {
         if (!isObject(fix)) { drift(String(fix)); continue; }
-        if ("create" in fix) continue;
+        // An effect to create is a person's (Ruling R6): without their signature it fails, legacy with standing excepted.
+        if ("create" in fix) {
+          if (!isLegacy(record, context) && !isObject(record.evidence?.person)) failures.add("fixes: create goes to a person");
+          continue;
+        }
         if (typeof fix.path !== "string") { failures.add("fixes: a data fix has no string path"); continue; }
         let holder = doc;
         if (fix.effect !== undefined) {
@@ -239,20 +256,32 @@ export function checkText(record, context = {}) {
     out.failures.push(`text: ${record.text.sha256} is not in the text cache`);
     return out;
   }
-  // The prose of a rule (`adds`, the `free` of its assertions) never quotes its source. A legacy rule with standing predates
-  // the check (its `adds` is held by its legacy fingerprint, and checking it would change its evidence): it is not held to it.
-  const text = record.rule && !isLegacy(record, context) ? readText(textDir, record.text.sha256) : "";
-  if (!text) return out;
-  for (const [where, prose] of ruleProse(record.rule)) {
-    if (quotes(prose, text, RULE_QUOTE_WORDS)) {
-      out.failures.push(`text: ${where} quotes ${RULE_QUOTE_WORDS} or more consecutive words of the source text`);
-    }
+  // The prose of a rule (`adds`, the `free` of its assertions, the `because` of its uncovered origins) never quotes its source,
+  // field by field nor all of it together (a quote split across fields). A legacy rule with standing predates the check (its
+  // `adds` is held by its legacy fingerprint, and checking it would change its evidence): it is not held to it.
+  if (!record.rule || isLegacy(record, context)) return out;
+  const source = new Set(nGrams(wordsOf(readText(textDir, record.text.sha256)), RULE_QUOTE_WORDS));
+  const quotes = (prose) => nGrams(wordsOf(prose), RULE_QUOTE_WORDS).some((g) => source.has(g));
+  const prose = ruleProse(record.rule);
+  for (const [where, value] of prose) {
+    if (quotes(value)) out.failures.push(`text: ${where} quotes ${RULE_QUOTE_WORDS} or more consecutive words of the source text`);
+  }
+  if (!out.failures.length && prose.length > 1 && quotes(prose.map(([, v]) => v).join(" "))) {
+    out.failures.push(`text: the rule's prose together quotes ${RULE_QUOTE_WORDS} or more consecutive words of the source text`);
   }
   return out;
 }
 
-// A rule's prose may share at most RULE_QUOTE_WORDS - 1 consecutive words with the text it was drafted from.
+// A rule's prose may share at most RULE_QUOTE_WORDS - 1 consecutive words with the text it was drafted from. Both sides are
+// normalised the same way: NFKC (full-width and compatibility forms fold), lower case, and every run of characters that are
+// not letters or digits (spaces, hyphens, slashes, zero-width and other format characters) separates words.
 export const RULE_QUOTE_WORDS = 8;
+const wordsOf = (s) => String(s).normalize("NFKC").toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+const nGrams = (words, n) => {
+  const out = [];
+  for (let i = 0; i + n <= words.length; i++) out.push(words.slice(i, i + n).join(" "));
+  return out;
+};
 function ruleProse(rule) {
   if (!isObject(rule)) return [];
   const out = typeof rule.adds === "string" ? [["rule.adds", rule.adds]] : [];
@@ -260,6 +289,9 @@ function ruleProse(rule) {
     for (const part of ["given", "expect"]) {
       if (typeof a?.[part]?.free === "string") out.push([`rule.assert[${i}].${part}.free`, a[part].free]);
     }
+  });
+  (Array.isArray(rule.uncovered) ? rule.uncovered : []).forEach((u, i) => {
+    if (typeof u?.because === "string") out.push([`rule.uncovered[${i}].because`, u.because]);
   });
   return out;
 }
@@ -354,7 +386,7 @@ export function runGates(records, context) {
       add(failures, key, gate, result.failures ?? result);
       add(notes, key, gate, result.notes ?? []);
     };
-    run("schema", gateSchema(record));
+    run("schema", gateSchema(record, context));
     const sound = !failures[key]?.schema;
     // Ruling R5 is not applied to a legacy record with standing (its origins predate `uncovered`): said, under a name that is
     // not a gate, so that its evidence (`passed`, `noted`) does not change.
