@@ -28,7 +28,10 @@ export function groupBy(list, keyOf) {
 const OWNED_KINDS = ["feature", "species", "monster"];
 export function keyOf({ book, kind, name, creature, owner, section, level, occurrence }) {
   const head = [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : [])];
-  const ownerParts = owner && OWNED_KINDS.includes(kind) ? String(owner).split("/").map(slug) : [];
+  // A creature's name is one part, whatever characters it holds; a class/subclass owner is split at "/".
+  const ownerParts = !owner || !OWNED_KINDS.includes(kind) ? []
+    : kind === "monster" ? [slug(owner)] : String(owner).split("/").map(slug);
+  if (kind === "monster" && !section) throw new Error("keyOf: a monster feature needs its section");
   const levelParts = kind === "feature" && level != null ? [String(level)] : [];
   const sectionParts = kind === "monster" && section ? [slug(section)] : [];
   const tail = slug(name) && Number.isInteger(occurrence) && occurrence > 1 ? `${slug(name)}#${occurrence}` : slug(name);

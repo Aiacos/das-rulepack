@@ -10,6 +10,7 @@ import { KIND_TABLE } from "../../tools/pipeline/kinds.mjs";
 import { inventory, INVENTORY_KINDS } from "../../tools/pipeline/inventory.mjs";
 import { keyOf, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { identityOf } from "../../tools/pipeline/match.mjs";
+import { itemSummary } from "../../tools/pipeline/dumps.mjs";
 
 // Synthetic fixtures only: invented creatures.
 const dir = join(dirname(fileURLToPath(import.meta.url)), "fixtures", "dataset");
@@ -43,7 +44,7 @@ describe("readMonsterFeatures", () => {
     ]);
     expect(features[0]).toEqual({
       name: "Keen Nose", kind: "monster", owner: "Glimmer Hound", section: "trait", book: "XZZ", page: 12, edition: "2024",
-      srd: true, text: "Advantage on Perception checks that rely on scent.",
+      srd: true, text: "Advantage on Perception checks that rely on scent.", creatureIndex: 0,
     });
     expect(features.every((f) => f.kind === "monster" && f.book === "XZZ")).toBe(true);
   });
@@ -71,7 +72,7 @@ describe("readMonsterFeatures", () => {
     const alpha = read().filter((f) => f.owner === "Glimmer Hound Alpha");
     expect(alpha).toEqual([{
       name: "Howl", kind: "monster", owner: "Glimmer Hound Alpha", section: "action", book: "XZZ", page: 13, edition: "2024",
-      srd: false, text: "Calls the pack.", copyOf: "Glimmer Hound|XZZ",
+      srd: false, text: "Calls the pack.", copyOf: "Glimmer Hound|XZZ", creatureIndex: 1,
     }]);
     expect(read().some((f) => f.owner === "Glimmer Pup")).toBe(false);
   });
@@ -101,7 +102,9 @@ describe("readMonsterFeatures", () => {
         name: "Twin", source: "XZZ", page: 1,
         action: [{ name: "Bite", entries: ["a"] }, { name: "bite (Costs 2 Actions)", entries: ["b"] }, { entries: ["no name"] }],
       }] }));
-      expect(keys(readMonsterFeatures(tmp, "XZZ", {}))).toEqual(["xzz:monster:twin/action/bite", "xzz:monster:twin/action/bite#2"]);
+      expect(keys(readMonsterFeatures(tmp, "XZZ", {}))).toEqual([
+        "xzz:monster:twin/action/bite", "xzz:monster:twin/action/bite#2",
+      ]);
     } finally { rmSync(tmp, { recursive: true, force: true }); }
   });
 });
@@ -113,6 +116,11 @@ describe("keyOf and identityOf for monster features", () => {
     expect(keyOf({ ...f, occurrence: 3 })).toBe("mm:monster:rime-wolf/action/frost-bite#3");
     expect(keyOf({ ...f, occurrence: 1 })).toBe("mm:monster:rime-wolf/action/frost-bite");
     expect(keyOf({ ...f, section: "legendary" })).not.toBe(keyOf(f));
+  });
+  it("slugs a creature name as one part even with a slash, and refuses a monster without a section", () => {
+    expect(keyOf({ book: "MM", kind: "monster", owner: "Fey/Beast", section: "trait", name: "Mist" }))
+      .toBe("mm:monster:fey-beast/trait/mist");
+    expect(() => keyOf({ book: "MM", kind: "monster", owner: "Wolf", name: "Bite" })).toThrow(/section/);
   });
   it("keeps the identity of two repeats apart", () => {
     const f = { name: "Claw", kind: "monster", edition: "2024", owner: "Hound", section: "action" };
@@ -233,7 +241,7 @@ describe("inventory of monster features", () => {
 
   it("reports two creatures of one name as collisions: the second gets no record", () => {
     const { features, creatures } = readMonsters(dir, "XZZ", {});
-    const again = features.filter((f) => f.owner === "Ghost Cart").map((f) => ({ ...f, page: 99 }));
+    const again = features.filter((f) => f.owner === "Ghost Cart").map((f) => ({ ...f, page: 99, creatureIndex: 99 }));
     const { records, report } = run({
       dataset: [...features, ...again], creatures: [...creatures, { name: "Ghost Cart", features: 2 }],
     });
@@ -278,7 +286,10 @@ describe("pipeline CLI: inventory <BOOK> monster", () => {
       _id: "actorAAAAAAAAAAA", name: "Ember Mole", type: "npc", system: {},
       items: [{
         _id: "itemAAAAAAAAAAAA", name: "Scorch", type: "feat", effects: [],
-        system: { identifier: "scorch", source: { rules: "2014" } },
+        system: {
+          identifier: "scorch", source: { rules: "2014" },
+          activities: { actAAAAAAAAAAAAA: { type: "attack", activation: { type: "action" } } },
+        },
       }],
     }]);
   });
@@ -302,5 +313,127 @@ describe("pipeline CLI: inventory <BOOK> monster", () => {
     const r = run(["inventory", "TCE", "all"]);
     expect(r.status).toBe(0);
     expect(Object.keys(JSON.parse(r.stdout)).at(-1)).toBe("monster");
+  });
+});
+
+// An embedded item that says how it is activated: `activations` as itemSummary computes it.
+const acting = (id, name, activations) => item(id, name, { activations });
+const claw = (section, name = "Bite") => ({
+  name, kind: "monster", owner: "Wolf", section, book: "XZZ", page: 3, edition: "2024", srd: false, text: `${section} ${name}.`,
+  creatureIndex: 0,
+});
+const runWith = (dataset, items, over = {}) => {
+  const dir0 = mkdtempSync(join(tmpdir(), "mon-sec-"));
+  try {
+    return inventory({
+      book: "XZZ", kind: "monster", dataset, dumps: { official: [], "ddb-importer": [], actors: [actor("w1", "Wolf", items)] },
+      textDir: dir0, previous: [], ...over,
+    });
+  } finally { rmSync(dir0, { recursive: true, force: true }); }
+};
+const officialOf = (r) => r.items.find((i) => i.origin === "official");
+
+describe("itemSummary activations", () => {
+  const doc = (activities) => ({ _id: "d", name: "Bite", type: "feat", system: { activities }, effects: [] });
+  it("names how an embedded item is activated, a passive one being a trait and an unstated one neutral", () => {
+    const act = (type) => ({ type: "attack", activation: { type } });
+    expect(itemSummary(doc({ a: act("action"), b: act("legendary") }), "official").activations).toEqual(["action", "legendary"]);
+    expect(itemSummary(doc({ a: act("") }), "official").activations).toEqual(["trait"]);
+    expect(itemSummary(doc({}), "official").activations).toEqual(["trait"]);
+    expect(itemSummary(doc({ a: { type: "attack" } }), "official").activations).toEqual([]);
+    expect(itemSummary(doc({ a: act("special") }), "official").activations).toEqual([]);
+  });
+});
+
+describe("monster features and the activation of the embedded item", () => {
+  it("matches the same name as an action and as a legendary action each to its own item", () => {
+    const items = [acting("a", "Bite", ["action"]), acting("b", "Bite", ["legendary"])];
+    const { records } = runWith([claw("action"), claw("legendary")], items);
+    const [a, l] = records;
+    expect(officialOf(a)).toMatchObject({ match: "matched", docId: "w1.a" });
+    expect(officialOf(l)).toMatchObject({ match: "matched", docId: "w1.b" });
+  });
+  it("matches only the agreeing feature when there is one item, the other is absent", () => {
+    const { records } = runWith([claw("action"), claw("legendary")], [acting("a", "Bite", ["action"])]);
+    expect(officialOf(records[0])).toMatchObject({ match: "matched", docId: "w1.a" });
+    expect(officialOf(records[1])).toBeUndefined();
+  });
+  it("makes both features ambiguous (section) when one neutral item is claimed by two", () => {
+    const { records, report } = runWith([claw("action"), claw("legendary")], [acting("a", "Bite", [])]);
+    for (const r of records) {
+      expect(officialOf(r)).toMatchObject({ match: "ambiguous", differences: ["section"] });
+      expect(officialOf(r).candidates.map((c) => c.docId)).toEqual(["w1.a"]);
+    }
+    expect(report.ambiguous).toHaveLength(2);
+  });
+  it("does not compare the section of a spellcasting block with the activation of its item", () => {
+    const block = { ...claw("trait", "Spellcasting"), spellcastingBlock: true };
+    const { records } = runWith([block], [acting("a", "Spellcasting", ["action"])]);
+    expect(officialOf(records[0])).toMatchObject({ match: "matched", docId: "w1.a" });
+  });
+  it("takes an item that lists several activations for any of them", () => {
+    const { records } = runWith([claw("bonus")], [acting("a", "Bite", ["action", "bonus"])]);
+    expect(officialOf(records[0])).toMatchObject({ match: "matched" });
+  });
+});
+
+describe("keys of repeated features across runs", () => {
+  const feat = (text, extra = {}) => ({ ...claw("action", "Claw"), text, ...extra });
+  const first = () => runWith([feat("one"), feat("two")], []).records;
+  const byText = (records) => Object.fromEntries(records.map((r) => [r.key, r.text.sha256]));
+  const sha = (text) => runWith([feat(text)], []).records[0].text.sha256;
+
+  it("keeps the number of the survivor when the first of two is removed, and lists the other as vanished", () => {
+    const records = first();
+    const again = runWith([feat("two")], [], { previous: records });
+    expect(again.report).toMatchObject({ added: 0, kept: 1, vanished: ["xzz:monster:wolf/action/claw"] });
+    expect(again.records).toHaveLength(2);
+    const survivor = again.records.find((r) => r.key === "xzz:monster:wolf/action/claw#2");
+    expect(survivor.text.sha256).toBe(sha("two"));
+    expect(again.records.find((r) => r.key === "xzz:monster:wolf/action/claw").text.sha256).toBe(sha("one"));
+  });
+  it("keeps existing keys when a same-name feature is added before them, the new one taking the next free number", () => {
+    const records = first();
+    const again = runWith([feat("new"), feat("one"), feat("two")], [], { previous: records });
+    expect(again.report).toMatchObject({ added: 1, kept: 2, vanished: [] });
+    const t = byText(again.records);
+    expect(t["xzz:monster:wolf/action/claw"]).toBe(sha("one"));
+    expect(t["xzz:monster:wolf/action/claw#2"]).toBe(sha("two"));
+    expect(t["xzz:monster:wolf/action/claw#3"]).toBe(sha("new"));
+  });
+  it("keeps the record of a lone feature whose text changed, and never lists a kept record as vanished", () => {
+    const [one] = runWith([feat("one")], []).records;
+    const again = runWith([feat("changed")], [], { previous: [one] });
+    expect(again.report).toMatchObject({ added: 0, kept: 1, textChanged: ["xzz:monster:wolf/action/claw"], vanished: [] });
+  });
+  it("lists the records of other kinds a run no longer produces as vanished, never deleting them", () => {
+    const { records } = inventory({
+      book: "XZZ", kind: "spell",
+      dataset: [{ name: "Old", book: "XZZ", page: 1, edition: "2024", srd: false, text: "t", level: 1, school: "V" }],
+      dumps: { official: [], "ddb-importer": [] }, textDir: mkdtempSync(join(tmpdir(), "van-")), previous: [],
+    });
+    const again = inventory({
+      book: "XZZ", kind: "spell", dataset: [], dumps: { official: [], "ddb-importer": [] }, textDir: tmpdir(), previous: records,
+    });
+    expect(again.report.vanished).toEqual(["xzz:spell:old"]);
+    expect(again.records).toEqual(records);
+  });
+});
+
+describe("monster identity, skipped names", () => {
+  it("does not merge a same-named creature of a second book into the first book's records", () => {
+    const first = runWith([claw("action")], []).records;
+    const second = runWith([{ ...claw("action"), book: "YZZ" }], [], { book: "YZZ", previous: first });
+    expect(second.records.map((r) => [r.key, r.book]).sort()).toEqual([
+      ["xzz:monster:wolf/action/bite", "XZZ"], ["yzz:monster:wolf/action/bite", "YZZ"],
+    ]);
+    expect(second.report).toMatchObject({ added: 1 });
+    expect(second.records.find((r) => r.book === "XZZ").alsoIn).toBeUndefined();
+  });
+  it("counts features and creatures whose name slugs to nothing under skipped", () => {
+    const dataset = [claw("action"), { ...claw("action"), name: "!!!" }, { ...claw("action"), owner: "???", name: "Ok" }];
+    const { records, report } = runWith(dataset, [], { creatures: [{ name: "Wolf", features: 2 }, { name: "???", features: 1 }] });
+    expect(records).toHaveLength(1);
+    expect(report.skipped).toBe(3);
   });
 });

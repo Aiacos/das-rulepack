@@ -40,7 +40,7 @@ function ownFeatures(creature) {
     if (section === "trait") {
       for (const block of Array.isArray(creature.spellcasting) ? creature.spellcasting : []) {
         const name = typeof block?.name === "string" ? block.name : "Spellcasting";
-        out.push({ section, name, text: spellcastingText(block ?? {}) });
+        out.push({ section, name, text: spellcastingText(block ?? {}), spellcastingBlock: true });
       }
     }
   }
@@ -50,8 +50,11 @@ function ownFeatures(creature) {
 /**
  * The creatures of `bookCode` and their features: `{ features, creatures }`. `features` is `[{ name, kind: "monster", owner,
  * section, book, page, edition, srd, text, occurrence?, copyOf? }]`; `name` is the base name (no recharge or cost marker) and
- * `occurrence` (2, 3, ...) numbers a name repeated within one creature and section, in dataset order. A `_copy` creature lists
- * its own sections only (nothing is inherited) and carries `copyOf` = "<base name>|<base source>". `creatures` is
+ * `occurrence` (2, 3, ...) numbers a name repeated within one creature and section, in dataset order (inventory renumbers
+ * against the registry); `spellcastingBlock` marks a spellcasting block (listed
+ * as a trait, whatever its item's activation); `creatureIndex` is the position of the creature in the book, which tells
+ * same-named creatures apart. A `_copy` creature lists its own sections only (nothing is inherited) and carries `copyOf` =
+ * "<base name>|<base source>". `creatures` is
  * `[{ name, features, copyOf? }]`, every creature of the book, the ones with no feature of their own included.
  */
 export function readMonsters(datasetDir, bookCode, { year } = {}) {
@@ -66,24 +69,23 @@ export function readMonsters(datasetDir, bookCode, { year } = {}) {
   const edition = editionOf(bookCode, { year, flagged: own.some(isFlagged) });
   const features = [];
   const creatures = [];
-  for (const creature of own) {
+  for (const [creatureIndex, creature] of own.entries()) {
     const copyOf = creature._copy?.name ? `${creature._copy.name}|${creature._copy.source ?? ""}` : undefined;
     const counts = new Map();
     let n = 0;
-    if (slug(creature.name)) {
-      for (const f of ownFeatures(creature)) {
-        const name = baseFeatureName(f.name);
-        const id = `${f.section}/${slug(name)}`;
-        if (!slug(name)) continue;
-        const occurrence = (counts.get(id) ?? 0) + 1;
-        counts.set(id, occurrence);
-        n += 1;
-        features.push({
-          name, kind: "monster", owner: creature.name, section: f.section, book: bookCode, page: creature.page, edition,
-          srd: Boolean(creature.srd52 || creature.srd), text: f.text,
-          ...(occurrence > 1 ? { occurrence } : {}), ...(copyOf ? { copyOf } : {}),
-        });
-      }
+    // A name that slugs to nothing is still listed: inventory counts it under `skipped` instead of keying it.
+    for (const f of ownFeatures(creature)) {
+      const name = baseFeatureName(f.name);
+      const id = `${f.section}/${slug(name)}`;
+      const occurrence = (counts.get(id) ?? 0) + 1;
+      counts.set(id, occurrence);
+      n += 1;
+      features.push({
+        name, kind: "monster", owner: creature.name, section: f.section, book: bookCode, page: creature.page, edition,
+        srd: Boolean(creature.srd52 || creature.srd), text: f.text, creatureIndex,
+        ...(f.spellcastingBlock ? { spellcastingBlock: true } : {}),
+        ...(occurrence > 1 ? { occurrence } : {}), ...(copyOf ? { copyOf } : {}),
+      });
     }
     creatures.push({ name: creature.name, features: n, ...(copyOf ? { copyOf } : {}) });
   }

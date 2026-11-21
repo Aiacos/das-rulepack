@@ -39,6 +39,17 @@ export function grantIndex(docs) {
   return index;
 }
 
+const ACTIVATIONS = ["action", "bonus", "reaction", "legendary", "mythic"];
+// How an item is activated, as the section of a stat block that would list it: `trait` for an item with no activity or a
+// passive one (no activation type), the type itself for action, bonus, reaction, legendary and mythic. An activity that states
+// nothing, or another timing (special, a turn's start or end, an hour), says nothing: the list may then be empty (neutral).
+function activationsOf(activities) {
+  const entries = Object.values(activities ?? {});
+  if (!entries.length) return ["trait"];
+  const types = entries.filter((a) => a?.activation && typeof a.activation === "object").map((a) => a.activation.type ?? "");
+  return sortedUnique(types.flatMap((t) => (ACTIVATIONS.includes(t) ? [t] : ["", "none", "passive"].includes(t) ? ["trait"] : [])));
+}
+
 export function itemSummary(doc, origin, grants) {
   const system = doc.system ?? {};
   const effects = doc.effects ?? [];
@@ -51,6 +62,7 @@ export function itemSummary(doc, origin, grants) {
     rules: system.source?.rules,
     activities: Object.entries(system.activities ?? {}).map(([id, a]) => activitySummary(id, a)),
     effects: effects.map((e) => ({ id: e._id, name: e.name, statuses: [...(e.statuses ?? [])] })),
+    activations: activationsOf(system.activities),
   };
   if (system.level !== undefined) summary.level = system.level;
   if (system.school !== undefined) summary.school = system.school;

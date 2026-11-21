@@ -1,6 +1,6 @@
 // Inventory: one registry record per rulebook entry, with the same item as found in each source ("origin").
 import { keyOf, slug, canonical, groupBy } from "./registry.mjs";
-import { cacheText } from "./text.mjs";
+import { cacheText, textFingerprint } from "./text.mjs";
 import { identityOf, matchOrigin } from "./match.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
 import { actorCandidates } from "./monsters.mjs";
@@ -9,10 +9,14 @@ import { actorCandidates } from "./monsters.mjs";
 export const INVENTORY_KINDS = Object.freeze(
   ["spell", "feat", "option", "feature", "species", "background", "item", "monster"]
 );
-const identityOfRecord = (r) =>
-  identityOf({
-    name: r.name, kind: r.kind, edition: r.edition, owner: r.owner, section: r.section, level: r.level, occurrence: r.occurrence
-  });
+// A stat block is not a reprint: the identity of a monster feature includes its book.
+const identityIn = (book, f) => {
+  const id = identityOf(f);
+  return f.kind === "monster" ? `${book}|${id}` : id;
+};
+const identityOfRecord = (r) => identityIn(r.book, {
+  name: r.name, kind: r.kind, edition: r.edition, owner: r.owner, section: r.section, level: r.level, occurrence: r.occurrence
+});
 
 // What the dataset entry contributes to the record besides the common fields: owner (features, species traits), level
 // (features only: a spell's level is not the record's), rarity (items), the section and repeat number of a monster feature,
@@ -41,10 +45,15 @@ function itemOf(origin, outcome) {
 
 // A monster feature is matched against the items embedded in the actor of its creature, nowhere else. When several actors
 // of the name differ in their embedded items, a feature found in any of them is ambiguous between those items.
+// Only the embedded items that agree with the feature's section can be it: one that states its activation (action, bonus,
+// reaction, legendary, mythic, or trait for a passive one) must state the feature's section; one that states none is neutral.
 function monsterOfficial(entry, actors) {
   const subject = { name: entry.name, kind: "monster", edition: entry.edition };
-  const { found, ambiguous, candidates } = actors;
+  const { found, ambiguous } = actors;
   if (!found) return { match: "absent" };
+  // A spellcasting block is listed as a trait whatever the activation of the item that casts, so its section is not compared.
+  const agrees = (c) => entry.spellcastingBlock || !c.activations?.length || c.activations.includes(entry.section);
+  const candidates = actors.candidates.filter(agrees);
   if (!ambiguous) return matchOrigin(subject, candidates);
   const perActor = [...groupBy(candidates, (c) => String(c.docId).split(".")[0]).values()];
   const outcomes = perActor.map((items) => matchOrigin(subject, items)).filter((o) => o.match !== "absent");
@@ -55,9 +64,9 @@ function monsterOfficial(entry, actors) {
 }
 
 // Official first with no reference; ddb-importer is then compared against the official item when there is one.
-function itemsFor(entry, kind, dumps, actors) {
+function itemsFor(entry, kind, dumps, monster) {
   if (kind === "monster") {
-    const official = monsterOfficial(entry, actors);
+    const official = monster;
     return [...(official.match !== "absent" ? [itemOf("official", official)] : []), { origin: "plutonium", match: "unchecked" }];
   }
   const subject = {
@@ -81,10 +90,65 @@ const canonicalIdentifier = (items, name) =>
   ?? items.find((i) => i.origin === "ddb-importer" && i.match === "matched")?.identifier
   ?? slug(name);
 
+// The official outcome of every monster feature, with one more rule: an embedded item claimed by two features of one creature
+// cannot be told which of them it is, so both are ambiguous (section).
+function monsterOutcomes(dataset, actorsFor) {
+  const outcomes = dataset.map((e) => monsterOfficial(e, actorsFor(e.owner)));
+  const claimOf = (e, i) => `${e.creatureIndex ?? e.owner}|${outcomes[i].item.docId}`;
+  const claims = groupBy(
+    dataset.flatMap((e, i) => (outcomes[i].match === "matched" ? [[claimOf(e, i), i]] : [])), ([claim]) => claim
+  );
+  for (const claimants of claims.values()) {
+    if (claimants.length < 2) continue;
+    for (const [, i] of claimants) {
+      outcomes[i] = { match: "ambiguous", candidates: [outcomes[i].item], differences: ["section"] };
+    }
+  }
+  return outcomes;
+}
+
+const numberOf = (r) => r.occurrence ?? 1;
+
+// The repeat number of every monster feature of the run. Among the same-name features of one creature and section, the
+// record whose stored text fingerprint equals the feature's keeps its number whatever its position; then, when as many
+// records as features remain, they pair in order (a text edit); otherwise the lowest number no existing record uses is taken.
+function numberOccurrences(dataset, records, book) {
+  const groups = groupBy(dataset.map((e, i) => [e, i]), ([e]) => `${e.creatureIndex ?? e.owner}|${e.section}|${slug(e.name)}`);
+  const numbers = dataset.map((e) => e.occurrence ?? 1);
+  for (const members of groups.values()) {
+    const [first] = members[0];
+    if (!slug(first.name) || !slug(first.owner)) continue;
+    const existing = records
+      .filter((r) => r.book === book && r.kind === "monster" && r.section === first.section
+        && slug(r.owner) === slug(first.owner) && slug(r.name) === slug(first.name))
+      .sort((a, b) => numberOf(a) - numberOf(b));
+    const free = [...existing];
+    const assigned = new Map();
+    for (const [e, i] of members) {
+      const sha = e.text ? textFingerprint(e.text) : null;
+      const at = sha ? free.findIndex((r) => r.text?.sha256 === sha) : -1;
+      if (at >= 0) assigned.set(i, numberOf(free.splice(at, 1)[0]));
+    }
+    const rest = members.filter(([, i]) => !assigned.has(i));
+    if (rest.length === free.length) rest.forEach(([, i], k) => assigned.set(i, numberOf(free[k])));
+    const used = new Set([...existing.map(numberOf), ...assigned.values()]);
+    for (const [, i] of rest) {
+      if (assigned.has(i)) continue;
+      let n = 1;
+      while (used.has(n)) n += 1;
+      used.add(n);
+      assigned.set(i, n);
+    }
+    for (const [i, n] of assigned) numbers[i] = n;
+  }
+  return numbers;
+}
+
 // `previous` holds the records of every book already in the registry; they are returned (not mutated) with the
 // entries of `book` added or refreshed. A reprint of an entry known from another book only extends its `alsoIn`.
 // A record is found by its identity; if its key is not the one the entry would get now, that is a bug and it throws.
 // Two entries of one book with one key are a collision: the first gets the record, both are reported, the second gets none.
+// A record of the book and kind that the run no longer produces is never deleted or rewritten: its key is listed in `vanished`.
 export function inventory({ book, kind, dataset, creatures, dumps, textDir, previous }) {
   if (!INVENTORY_KINDS.includes(kind) || !KIND_TABLE[kind]) {
     throw new Error(`Kind ${JSON.stringify(kind)} cannot be inventoried (${INVENTORY_KINDS.join(", ")})`);
@@ -93,7 +157,7 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
   const byIdentity = new Map(records.map((r) => [identityOfRecord(r), r]));
   const report = {
     added: 0, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [], noPage: [],
-    collisions: [], textVanished: []
+    collisions: [], textVanished: [], vanished: []
   };
   // Monsters also report the creatures read (with the ones that have no feature of their own), the `_copy` ones, and the
   // creatures with no actor of their name in the official dump.
@@ -110,10 +174,18 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
     });
   }
   const seen = new Map();
+  const produced = new Set();
+  const monsters = kind === "monster";
+  const outcomes = monsters ? monsterOutcomes(dataset, actorsFor) : [];
+  const numbers = monsters ? numberOccurrences(dataset, records, book) : [];
+  if (monsters) report.skipped += (creatures ?? []).filter((c) => !slug(c.name)).length;
 
-  for (const entry of dataset) {
-    // A feature whose owner cannot be named has no key of its own: it is counted, never keyed under a guess.
+  for (const [index, listed] of dataset.entries()) {
+    const entry = monsters ? { ...listed, occurrence: numbers[index] > 1 ? numbers[index] : undefined } : listed;
+    // An entry that cannot be keyed (a feature whose owner cannot be named, a monster whose creature or feature name slugs to
+    // nothing) is counted, never keyed under a guess.
     if (kind === "feature" && !entry.owner) { report.skipped += 1; continue; }
+    if (monsters && (!slug(entry.name) || !slug(entry.owner))) { report.skipped += 1; continue; }
     const key = keyOf({
       book, kind, name: entry.name, owner: entry.owner, section: entry.section, level: entry.level, occurrence: entry.occurrence
     });
@@ -128,7 +200,7 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
       continue;
     }
     seen.set(key, entry);
-    const identity = identityOf({
+    const identity = identityIn(book, {
       name: entry.name, kind, edition: entry.edition, owner: entry.owner, section: entry.section, level: entry.level,
       occurrence: entry.occurrence
     });
@@ -147,12 +219,13 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
 
     const sha256 = entry.text ? cacheText(textDir, entry.text) : null;
     const text = sha256 ? { sha256, source: "5etools", chars: entry.text.length } : null;
-    const items = itemsFor(entry, kind, dumps, kind === "monster" ? actorsFor(entry.owner) : undefined);
+    const items = itemsFor(entry, kind, dumps, monsters ? outcomes[index] : undefined);
     const fresh = {
       identifier: canonicalIdentifier(items, entry.name), page: entry.page ?? null, srd: Boolean(entry.srd), text, items
     };
 
     let record = existing;
+    if (existing) produced.add(existing.key);
     if (existing) {
       report.kept += 1;
       // A text that was fingerprinted and is now empty is kept as it was (and listed): the gates still stand on it.
@@ -175,6 +248,7 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
         evidence: {}
       };
       records.push(record);
+      produced.add(key);
       report.added += 1;
     }
     if (!record.page) report.noPage.push(record.key);
@@ -182,5 +256,6 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
     if (items.some((i) => i.match === "matched" && i.differences)) report.differing.push(record.key);
     if (!items.some((i) => i.origin === "official" && i.match === "matched")) report.noOfficial.push(record.key);
   }
+  report.vanished = records.filter((r) => r.book === book && r.kind === kind && !produced.has(r.key)).map((r) => r.key);
   return { records, report };
 }
