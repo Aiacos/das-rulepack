@@ -1,0 +1,6450 @@
+{
+  "book": "VRGR",
+  "records": [
+    {
+      "key": "vrgr:background:haunted-one",
+      "name": "Haunted One",
+      "kind": "background",
+      "book": "VRGR",
+      "edition": "2014",
+      "identifier": "haunted-one",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "3bc6c874d5000a29ae4194875935dc1f3d564a51fd6096b8bc7b5cb924b523e5",
+        "source": "5etools",
+        "chars": 1504
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:background:investigator",
+      "name": "Investigator",
+      "kind": "background",
+      "book": "VRGR",
+      "edition": "2014",
+      "identifier": "investigator",
+      "page": 35,
+      "srd": false,
+      "text": {
+        "sha256": "a326da2ef26a016aa58fc23567959b4419c87b486948f3eab860b17216d5543c",
+        "source": "5etools",
+        "chars": 1456
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:bard/spirits/14/mystical-connection",
+      "name": "Mystical Connection",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bard/Spirits",
+      "level": 14,
+      "identifier": "mystical-connection",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "1307aafe875c1c68e7df359d7cc1d761e37cf79345602aed92b854c81fa99dbe",
+        "source": "5etools",
+        "chars": 933
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:bard/spirits/3/college-of-spirits",
+      "name": "College of Spirits",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bard/Spirits",
+      "level": 3,
+      "identifier": "college-of-spirits",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "cf0572f110c06c35c39a22098341b4d65348a948d82955fbbf6d69b44f2082da",
+        "source": "5etools",
+        "chars": 356
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:bard/spirits/3/guiding-whispers",
+      "name": "Guiding Whispers",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bard/Spirits",
+      "level": 3,
+      "identifier": "guiding-whispers",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "1feed3477abf88ba9980b9d670ed4583b1a0182e234c3b63fa1913d7340fba48",
+        "source": "5etools",
+        "chars": 241
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:bard/spirits/3/spiritual-focus",
+      "name": "Spiritual Focus",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bard/Spirits",
+      "level": 3,
+      "identifier": "spiritual-focus",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "21b0e50712670c3b87e7978b52491fa9618ba6eb7c0ebab0309d4001b69260a6",
+        "source": "5etools",
+        "chars": 506
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:bard/spirits/3/tales-from-beyond",
+      "name": "Tales from Beyond",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bard/Spirits",
+      "level": 3,
+      "identifier": "tales-from-beyond",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "70d59fd7da70ae8794bd018cb4cd2ee748cbee46ac0d043696c1aec705a1c1cf",
+        "source": "5etools",
+        "chars": 868
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:bard/spirits/6/spirit-session",
+      "name": "Spirit Session",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bard/Spirits",
+      "level": 6,
+      "identifier": "spirit-session",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "cf4a86efa135f061c312f8ca3767ed1f07cab16c4f3e4b61b37838e57ff2c1ad",
+        "source": "5etools",
+        "chars": 878
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:warlock/undead/1/form-of-dread",
+      "name": "Form of Dread",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Warlock/Undead",
+      "level": 1,
+      "identifier": "form-of-dread",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "564ce451b790fc87ac4f8b94a03298132eedcf7729be270270422630a9124caa",
+        "source": "5etools",
+        "chars": 944
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:03.327Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "vrgr:feature:warlock/undead/1/the-undead",
+      "name": "The Undead",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Warlock/Undead",
+      "level": 1,
+      "identifier": "the-undead",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "6b2d2ade785d63f9662e92c4956c7a7afb2d6b8ef80969cf523f1ae3ab55852a",
+        "source": "5etools",
+        "chars": 992
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:warlock/undead/10/necrotic-husk",
+      "name": "Necrotic Husk",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Warlock/Undead",
+      "level": 10,
+      "identifier": "necrotic-husk",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "621ca07b9f5697a99f246159dd977a954fb9f17e503ef0e4c3b025456f47eed3",
+        "source": "5etools",
+        "chars": 632
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:03.327Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "vrgr:feature:warlock/undead/14/spirit-projection",
+      "name": "Spirit Projection",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Warlock/Undead",
+      "level": 14,
+      "identifier": "spirit-projection",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "8754728d05f7884d55d0e7c2eec74a453248d3634610edb062c3927f0fbf6902",
+        "source": "5etools",
+        "chars": 1500
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:feature:warlock/undead/3/the-undead",
+      "name": "The Undead",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Warlock/Undead",
+      "level": 3,
+      "copyOf": "The Undead",
+      "identifier": "the-undead",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "none",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:03.327Z"
+        }
+      },
+      "why": "no text and no item in any origin",
+      "state": "triaged"
+    },
+    {
+      "key": "vrgr:feature:warlock/undead/6/grave-touched",
+      "name": "Grave Touched",
+      "kind": "feature",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Warlock/Undead",
+      "level": 6,
+      "identifier": "grave-touched",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "c3616d4b5eeb892a7653b76876eace018db43f5547ba75e9ed46a9a25940acbe",
+        "source": "5etools",
+        "chars": 449
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:03.327Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "vrgr:item:harkons-bite",
+      "name": "Harkon's Bite",
+      "kind": "item",
+      "book": "VRGR",
+      "edition": "2014",
+      "rarity": "uncommon",
+      "identifier": "harkons-bite",
+      "page": 137,
+      "srd": false,
+      "text": {
+        "sha256": "f1d17ee7ab147f0fa77555495d7e711440b2ae2680ce8c7783ad1d7f3674e4cf",
+        "source": "5etools",
+        "chars": 695
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "harkons-bite",
+          "docId": "7pfqVdtr8fMNKFcP",
+          "activities": [
+            "utilityHarkoBite"
+          ],
+          "effects": [
+            "WHhbVdpbEVKdHujj"
+          ],
+          "data": {
+            "sha256": "06bb776e703b75528d1d5a1eeccd3bd217f5e6bc86a6e62f49382429f6a62df9"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:03.327Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "vrgr:item:horror-trinket",
+      "name": "Horror Trinket",
+      "kind": "item",
+      "book": "VRGR",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "horror-trinket",
+      "page": 36,
+      "srd": false,
+      "text": {
+        "sha256": "3dd119a81fcce7fe87a839cad27351b0565c910ca73ab49874cf433666e9c80c",
+        "source": "5etools",
+        "chars": 485
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:item:ivanas-whisper",
+      "name": "Ivana's Whisper",
+      "kind": "item",
+      "book": "VRGR",
+      "edition": "2014",
+      "rarity": "unknown",
+      "identifier": "ivanas-whisper",
+      "page": 83,
+      "srd": false,
+      "text": {
+        "sha256": "6626badd9b3ddeed1fdc22456fc5b7b6a208b4346bd2418db2dbfa7e0ae6fbc7",
+        "source": "5etools",
+        "chars": 643
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "ivanas-whisper-inhaled",
+              "docId": "LnofZGo0SE0uDQdj"
+            }
+          ],
+          "differences": [
+            "variant"
+          ]
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:item:monster-hunters-pack",
+      "name": "Monster Hunter's Pack",
+      "kind": "item",
+      "book": "VRGR",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "monster-hunters-pack",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "d9189a728f19a6d32ebef79ad1622c29196df00166d45f8928e4c3e1b506fe83",
+        "source": "5etools",
+        "chars": 158
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "monster-hunters-pack",
+          "docId": "oV7RkxVh5kuSnK6D",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "838bc214b7ef7f5d07f34c8b6bf7ed4113c4d408c8d08c6ced02f87c5b60b384"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:item:nepenthe",
+      "name": "Nepenthe",
+      "kind": "item",
+      "book": "VRGR",
+      "edition": "2014",
+      "rarity": "legendary",
+      "identifier": "nepenthe",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "4095b28dfabb8cd7918082e112e09dbb5e59e7f8d90eb5842d997e88cf6deb1e",
+        "source": "5etools",
+        "chars": 1111
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "nepenthe",
+          "docId": "582PO7uqTQSTs5w8",
+          "activities": [
+            "attackNepentheII",
+            "attackRestAAFOUI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "fe79d3f03eafb3fbaf0d0e6c38df979004e30555aa60bf83494762082e692cef"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:bodytaker-plant/action/entrapping-pod",
+      "name": "Entrapping Pod",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bodytaker Plant",
+      "section": "action",
+      "identifier": "entrapping-pod",
+      "page": 226,
+      "srd": false,
+      "text": {
+        "sha256": "13669a7bb19070d38f812af28f30fd7f28c7fd1aeafaa2d52bf54fc34d47808d",
+        "source": "5etools",
+        "chars": 1124
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:bodytaker-plant/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bodytaker Plant",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 226,
+      "srd": false,
+      "text": {
+        "sha256": "a0d7c7dad0ae234b875d8404f7f2b0c6b80b196317bcb25b964162f0baa3a098",
+        "source": "5etools",
+        "chars": 40
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:bodytaker-plant/action/vine-lash",
+      "name": "Vine Lash",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bodytaker Plant",
+      "section": "action",
+      "identifier": "vine-lash",
+      "page": 226,
+      "srd": false,
+      "text": {
+        "sha256": "1bb70d8f779e642603b6f75fc0172764b2e65faa15c73d59b73f643a0b111c28",
+        "source": "5etools",
+        "chars": 239
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:bodytaker-plant/trait/podling-link",
+      "name": "Podling Link",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bodytaker Plant",
+      "section": "trait",
+      "identifier": "podling-link",
+      "page": 226,
+      "srd": false,
+      "text": {
+        "sha256": "3d2f916746ea617c73034b08cd98ef26e47081fe41a2703a7d92972b39173bb9",
+        "source": "5etools",
+        "chars": 104
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:bodytaker-plant/trait/rejuvenation",
+      "name": "Rejuvenation",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bodytaker Plant",
+      "section": "trait",
+      "identifier": "rejuvenation",
+      "page": 226,
+      "srd": false,
+      "text": {
+        "sha256": "e9d675ee2d6f4299c279861dba74e93c2881ae7b62f15025a98b8abda61a3cbf",
+        "source": "5etools",
+        "chars": 163
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:bodytaker-plant/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Bodytaker Plant",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 226,
+      "srd": false,
+      "text": {
+        "sha256": "f9509c2326064dae028ab672cf8e5dafc0faa2522e79b0163907a882eb7dd4b8",
+        "source": "5etools",
+        "chars": 32
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:boneless/action/crushing-embrace",
+      "name": "Crushing Embrace",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Boneless",
+      "section": "action",
+      "identifier": "crushing-embrace",
+      "page": 228,
+      "srd": false,
+      "text": {
+        "sha256": "01b060c84d250aacb55f96ba8cc8963cb0b022c97d7751b870faff5b12c78f73",
+        "source": "5etools",
+        "chars": 680
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:boneless/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Boneless",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 228,
+      "srd": false,
+      "text": {
+        "sha256": "67eb847e725daf1dd14801533a55099134203a0e94a04e4cc9c5b5fa1764251c",
+        "source": "5etools",
+        "chars": 166
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:boneless/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Boneless",
+      "section": "action",
+      "identifier": "slam",
+      "page": 228,
+      "srd": false,
+      "text": {
+        "sha256": "95b4d62fadbd7510e733f19782565ab58cbf461330d9664e953894c97c5b963c",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:boneless/trait/compression",
+      "name": "Compression",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Boneless",
+      "section": "trait",
+      "identifier": "compression",
+      "page": 228,
+      "srd": false,
+      "text": {
+        "sha256": "b96f81f39412192c90eeada89352ef749c061d86a9611ab3851ea3a84ca8da60",
+        "source": "5etools",
+        "chars": 156
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:boneless/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Boneless",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 228,
+      "srd": false,
+      "text": {
+        "sha256": "399c005826b31fadb07a3ee7cbee107c87f033b461d9b8ebb0dbafba63ff4239",
+        "source": "5etools",
+        "chars": 35
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:brain-in-a-jar/action/chill-touch-cantrip",
+      "name": "Chill Touch (Cantrip)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Brain in a Jar",
+      "section": "action",
+      "identifier": "chill-touch-cantrip",
+      "page": 278,
+      "srd": false,
+      "text": {
+        "sha256": "21a4cf2104137ffefa17709f4b51d596e8c6e3ae5c41bcd91bddeb3f75f5ab8b",
+        "source": "5etools",
+        "chars": 272
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:brain-in-a-jar/action/mind-blast",
+      "name": "Mind Blast",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Brain in a Jar",
+      "section": "action",
+      "identifier": "mind-blast",
+      "page": 278,
+      "srd": false,
+      "text": {
+        "sha256": "4bf60c4d687fac25d07a0290a09722084ba9d94a9e9deb4241797a1edc2385e3",
+        "source": "5etools",
+        "chars": 312
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:brain-in-a-jar/trait/detect-sentience",
+      "name": "Detect Sentience",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Brain in a Jar",
+      "section": "trait",
+      "identifier": "detect-sentience",
+      "page": 278,
+      "srd": false,
+      "text": {
+        "sha256": "1d07b399d1b35ddbff294eea9e81305e19545ce93453843ccfe7d9dce9123422",
+        "source": "5etools",
+        "chars": 216
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:brain-in-a-jar/trait/innate-spellcasting-psionics",
+      "name": "Innate Spellcasting (Psionics)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Brain in a Jar",
+      "section": "trait",
+      "identifier": "innate-spellcasting-psionics",
+      "page": 278,
+      "srd": false,
+      "text": {
+        "sha256": "ef08b63f23ad4b781460513db24a65dc3fb79c322e21e12fa9126783aad89a20",
+        "source": "5etools",
+        "chars": 343
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:brain-in-a-jar/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Brain in a Jar",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 278,
+      "srd": false,
+      "text": {
+        "sha256": "55ce6c72e859eaeefdceda13c13caf77e0a7913f5ee6040e354f3f63d81238bd",
+        "source": "5etools",
+        "chars": 80
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:brain-in-a-jar/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Brain in a Jar",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 278,
+      "srd": false,
+      "text": {
+        "sha256": "5f114a7a73decbc9d2456b0dc64f7ff2aae4f9e2bc954b686820b78db53ced92",
+        "source": "5etools",
+        "chars": 53
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:carrion-stalker/action/larval-burst",
+      "name": "Larval Burst",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Carrion Stalker",
+      "section": "action",
+      "identifier": "larval-burst",
+      "page": 230,
+      "srd": false,
+      "text": {
+        "sha256": "ef5b125c6f3e2d3846f31fe36c02589f696289f3310dfca576396e5fb3f92e88",
+        "source": "5etools",
+        "chars": 844
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:carrion-stalker/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Carrion Stalker",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 230,
+      "srd": false,
+      "text": {
+        "sha256": "eff96878b3ce3a1551d259725ca8331d90bdbfe1cd82363990925b585be41cea",
+        "source": "5etools",
+        "chars": 150
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:carrion-stalker/action/tentacle",
+      "name": "Tentacle",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Carrion Stalker",
+      "section": "action",
+      "identifier": "tentacle",
+      "page": 230,
+      "srd": false,
+      "text": {
+        "sha256": "4174d59866cc21fcb4c35640d84703e9ec166b8c12d8f40775cbcdf5f2839a94",
+        "source": "5etools",
+        "chars": 606
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:carrionette/action/silver-needle",
+      "name": "Silver Needle",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Carrionette",
+      "section": "action",
+      "identifier": "silver-needle",
+      "page": 231,
+      "srd": false,
+      "text": {
+        "sha256": "09efd9f1fd75431ab3679abada190fb516b29271d84fd0d464800a679b156462",
+        "source": "5etools",
+        "chars": 347
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:carrionette/action/soul-swap",
+      "name": "Soul Swap",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Carrionette",
+      "section": "action",
+      "identifier": "soul-swap",
+      "page": 231,
+      "srd": false,
+      "text": {
+        "sha256": "675679717102a99315897899784a33071019b53e976705b80e11b70973363019",
+        "source": "5etools",
+        "chars": 1019
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:carrionette/trait/false-object",
+      "name": "False Object",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Carrionette",
+      "section": "trait",
+      "identifier": "false-object",
+      "page": 231,
+      "srd": false,
+      "text": {
+        "sha256": "7b1cdc323caca51a92f4fc6330f49eb86fc140f4f3314c377794e465c3341086",
+        "source": "5etools",
+        "chars": 271
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:carrionette/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Carrionette",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 231,
+      "srd": false,
+      "text": {
+        "sha256": "114ae51138f8137b40abf8aa40adb4187504c69c430a2f0657b9b32d0f3043cd",
+        "source": "5etools",
+        "chars": 59
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:deaths-head/action/gnashing-bite-gnashing-head-only",
+      "name": "Gnashing Bite (Gnashing Head Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Death's Head",
+      "section": "action",
+      "identifier": "gnashing-bite-gnashing-head-only",
+      "page": 232,
+      "srd": false,
+      "text": {
+        "sha256": "634cb88c89eee36e4e0eb8ccebb748be42e48b2418a28bd82a02b8e7f3c3aa48",
+        "source": "5etools",
+        "chars": 95
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:deaths-head/action/mind-bending-bite-aberrant-head-only",
+      "name": "Mind-Bending Bite (Aberrant Head Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Death's Head",
+      "section": "action",
+      "identifier": "mind-bending-bite-aberrant-head-only",
+      "page": 232,
+      "srd": false,
+      "text": {
+        "sha256": "0428e1bab5db579f1bc920ac40cd960adf0bc3c78de0dd8ee19efb50882a2ee9",
+        "source": "5etools",
+        "chars": 354
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:deaths-head/action/petrifying-bite-petrifying-head-only",
+      "name": "Petrifying Bite (Petrifying Head Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Death's Head",
+      "section": "action",
+      "identifier": "petrifying-bite-petrifying-head-only",
+      "page": 232,
+      "srd": false,
+      "text": {
+        "sha256": "cb1d7966fe0c0142536aedcb7e0bb3947d9ffef92c35c7771b044f2cba2d1148",
+        "source": "5etools",
+        "chars": 330
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:deaths-head/trait/beheaded-form",
+      "name": "Beheaded Form",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Death's Head",
+      "section": "trait",
+      "identifier": "beheaded-form",
+      "page": 232,
+      "srd": false,
+      "text": {
+        "sha256": "58cbeae7efaf5329aa4d929d2cb4b683f915d0447e6873d512ce6cda0bf693e3",
+        "source": "5etools",
+        "chars": 148
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:deaths-head/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Death's Head",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 232,
+      "srd": false,
+      "text": {
+        "sha256": "20d87a764eaf51a9b7e1da85684c04be20aa27ae0c36819b93d98b1cec739a95",
+        "source": "5etools",
+        "chars": 60
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/action/battleaxe",
+      "name": "Battleaxe",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "action",
+      "identifier": "battleaxe",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "437956e58489d8726322d1f6cc972994953e8cd1016771c3945d08a429d9e7f7",
+        "source": "5etools",
+        "chars": 493
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/action/fiery-skull",
+      "name": "Fiery Skull",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "action",
+      "identifier": "fiery-skull",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "0c3b0c5755b251b429a7be20c07ffcfd70eba44f4b7046e22cdc07af3dfb4f75",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "7a229c6e23a3f81ea5b999575b00c6dbedfe3a431a3625ef0a6482091cb21ecc",
+        "source": "5etools",
+        "chars": 31
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/legendary/attack",
+      "name": "Attack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "legendary",
+      "identifier": "attack",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "05fc3ab19eddde103c70b2bdd1555921c5d3e57b6cd9dfbd05b80902f07162fe",
+        "source": "5etools",
+        "chars": 30
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/legendary/frightful-presence",
+      "name": "Frightful Presence",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "legendary",
+      "identifier": "frightful-presence",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "398067313f43c3f6abc2e5a0aa640ba436f1800fdcfd1ad92062a09e881e88b0",
+        "source": "5etools",
+        "chars": 169
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/legendary/head-hunt",
+      "name": "Head Hunt",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "legendary",
+      "identifier": "head-hunt",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "c8d620ded674de9991b610eb8bb8f47f712c1758a60b0e489d2addaf2c25a300",
+        "source": "5etools",
+        "chars": 218
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/mythic/coordinated-assault",
+      "name": "Coordinated Assault",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "mythic",
+      "identifier": "coordinated-assault",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "055de01976f3cc4a5761207ac2082379a8c2cbff97ce9ee1d1c9d5665d2f96d0",
+        "source": "5etools",
+        "chars": 151
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/mythic/headless-wail",
+      "name": "Headless Wail",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "mythic",
+      "identifier": "headless-wail",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "4dc37e4ba49ebefd15281cd2916c1441388008c31f4569626e4b35900f699d52",
+        "source": "5etools",
+        "chars": 355
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/trait/headless-summoning",
+      "name": "Headless Summoning",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "trait",
+      "identifier": "headless-summoning",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "9edd7046d2400885f591ea617e6a5dba5edc4981f9cf8d28541f9499ecf602c5",
+        "source": "5etools",
+        "chars": 533
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "e9230ce8483dde2feea7c9a1b58fdf4d7cd1e97ca3cfd7cf55aae7384f1ea1b9",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:dullahan/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dullahan",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 233,
+      "srd": false,
+      "text": {
+        "sha256": "a28b66b6fd3ba5f287129819931e98c5f82fd3e814347d7d1222e3a049749b96",
+        "source": "5etools",
+        "chars": 56
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:elise/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Elise",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "059b2f0dd76517b0750a4437145553e7c773f6d1074eaf1575cb014d5b1772d4",
+        "source": "5etools",
+        "chars": 29
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:elise/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Elise",
+      "section": "action",
+      "identifier": "slam",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "ea2a9c5c2075cdc278f696c70c048a6d43683069ccc1de6a1fd92a58addbdc5b",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:elise/trait/immutable-form",
+      "name": "Immutable Form",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Elise",
+      "section": "trait",
+      "identifier": "immutable-form",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "d60965f0b9602874a18f9c55717218fa315ec4a3428a8e500531c06452d82859",
+        "source": "5etools",
+        "chars": 65
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:elise/trait/lightning-absorption",
+      "name": "Lightning Absorption",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Elise",
+      "section": "trait",
+      "identifier": "lightning-absorption",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "8bf05ff2fb49b1740ec3159e6535763d744c6cf1382b2ea9acb1e3475b74377d",
+        "source": "5etools",
+        "chars": 148
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:elise/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Elise",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "491097ae20f5cd7371e916fbf59f5fd9a9c9c0edb4b4b2f0a99f375cdd1f7a23",
+        "source": "5etools",
+        "chars": 78
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:elise/trait/magic-weapons",
+      "name": "Magic Weapons",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Elise",
+      "section": "trait",
+      "identifier": "magic-weapons",
+      "page": 143,
+      "srd": false,
+      "text": {
+        "sha256": "2d7a098d3e4b606bfbe4e656bd0bb83dc9532c1d5bda5201f07ee1cfa57c3c14",
+        "source": "5etools",
+        "chars": 35
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:gallows-speaker/action/foretelling-touch",
+      "name": "Foretelling Touch",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Gallows Speaker",
+      "section": "action",
+      "identifier": "foretelling-touch",
+      "page": 234,
+      "srd": false,
+      "text": {
+        "sha256": "182d7987a9c17ec2e528dd38828c4d8076730a586cbe2014e214f1549369fe78",
+        "source": "5etools",
+        "chars": 234
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:gallows-speaker/action/suffering-echoes",
+      "name": "Suffering Echoes",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Gallows Speaker",
+      "section": "action",
+      "identifier": "suffering-echoes",
+      "page": 234,
+      "srd": false,
+      "text": {
+        "sha256": "8ca7b74792d21e8ac24ff4664578cbf692e627896a8239681771f9cf7d95f1ad",
+        "source": "5etools",
+        "chars": 377
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:gallows-speaker/trait/divination-senses",
+      "name": "Divination Senses",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Gallows Speaker",
+      "section": "trait",
+      "identifier": "divination-senses",
+      "page": 234,
+      "srd": false,
+      "text": {
+        "sha256": "d8a11653c58a087b0ceb1e5747c5a85297a2e1179fdda07e5d752879de051e02",
+        "source": "5etools",
+        "chars": 108
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:gallows-speaker/trait/incorporeal-movement",
+      "name": "Incorporeal Movement",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Gallows Speaker",
+      "section": "trait",
+      "identifier": "incorporeal-movement",
+      "page": 234,
+      "srd": false,
+      "text": {
+        "sha256": "e75e6e6043f80853c132310f8e071a3056767bf1710c371b51262af2b819f165",
+        "source": "5etools",
+        "chars": 167
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:gallows-speaker/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Gallows Speaker",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 234,
+      "srd": false,
+      "text": {
+        "sha256": "3c40668a89fe5edc4ebceb406688e6e9b3df5adb2401baee84c13032da649818",
+        "source": "5etools",
+        "chars": 63
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/action/lashing-maw",
+      "name": "Lashing Maw",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "action",
+      "identifier": "lashing-maw",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "20bfd1ebed3ab32f6c0ae9ecd87a9f050840f14812f7fe894e8dee27a6f16c44",
+        "source": "5etools",
+        "chars": 96
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "fb82c4103ea009fd58bfb12db5c0c24e00a06788ff23f4b1efd0236cddeee180",
+        "source": "5etools",
+        "chars": 33
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/action/psychic-orb",
+      "name": "Psychic Orb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "action",
+      "identifier": "psychic-orb",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "296f3149936be5833b9c4adf1e62494cbf950be1d96e11b9f930022a66c1270e",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/action/unearthly-bile",
+      "name": "Unearthly Bile",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "action",
+      "identifier": "unearthly-bile",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "5435227bc2f8ab8e3368d3da47f907c087a16e06b53ee7adad049054fa6c493b",
+        "source": "5etools",
+        "chars": 705
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/legendary/attack",
+      "name": "Attack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "legendary",
+      "identifier": "attack",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "e92b1e0f8f5c052fbebb83614d00004acd9b97fc177dd61c743d25c84985e6bb",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/legendary/mind-cloud",
+      "name": "Mind Cloud",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "legendary",
+      "identifier": "mind-cloud",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "0f42400dc76ef741043f82dda43ce9f2ca005ca29c076889a84fd2565d7e414f",
+        "source": "5etools",
+        "chars": 252
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/legendary/warp-space",
+      "name": "Warp Space",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "legendary",
+      "identifier": "warp-space",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "e2d6dadbc993579b8fa456c6229c517a99e088f9681b944e6530d54563e9eb74",
+        "source": "5etools",
+        "chars": 288
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "d56a01f8b27c2f12cfc7dfcd251db08a147502afa1b3230aa3592c5acc74c363",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:greater-star-spawn-emissary/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Greater Star Spawn Emissary",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "4993967466aa795bdb924222219fba2dbd8589c28e5f38e332216a4e8508b9fa",
+        "source": "5etools",
+        "chars": 56
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:gremishka/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Gremishka",
+      "section": "action",
+      "identifier": "bite",
+      "page": 235,
+      "srd": false,
+      "text": {
+        "sha256": "ffb0d660a4dc8bb1d7b1dc5452778cd220b02fd16741967886d82e0f43d6ae69",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:gremishka/reaction/magic-allergy",
+      "name": "Magic Allergy",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Gremishka",
+      "section": "reaction",
+      "identifier": "magic-allergy",
+      "page": 235,
+      "srd": false,
+      "text": {
+        "sha256": "26b59196d444bf1402bff6cdbf947ae7aed919c77127cd72ddaa1415b38dcd32",
+        "source": "5etools",
+        "chars": 571
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-mind-fire/action/inquisitors-command",
+      "name": "Inquisitor's Command",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Mind Fire",
+      "section": "action",
+      "identifier": "inquisitors-command",
+      "page": 248,
+      "srd": false,
+      "text": {
+        "sha256": "68f5d35521832ec92f8694189f466325b77d5ecb31cb76fb7477e840f65b25f0",
+        "source": "5etools",
+        "chars": 400
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-mind-fire/action/mind-fire",
+      "name": "Mind Fire",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Mind Fire",
+      "section": "action",
+      "identifier": "mind-fire",
+      "page": 248,
+      "srd": false,
+      "text": {
+        "sha256": "2a8cbde8a788f6af48b6b87697949a1f37f6ef4bd26fc62980c2e3e789b2f7d7",
+        "source": "5etools",
+        "chars": 225
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-mind-fire/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Mind Fire",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 248,
+      "srd": false,
+      "text": {
+        "sha256": "d15aa36d9631ca8f80a8eb468a6f8224dc2fd21085b27873cac8448b19d1ffb5",
+        "source": "5etools",
+        "chars": 79
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-mind-fire/action/silver-longsword",
+      "name": "Silver Longsword",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Mind Fire",
+      "section": "action",
+      "identifier": "silver-longsword",
+      "page": 248,
+      "srd": false,
+      "text": {
+        "sha256": "9069aaf9d7f0441a11a39a8967236f7b7ae9c61a72dbac768b93ecf04c84045d",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-mind-fire/trait/innate-spellcasting-psionics",
+      "name": "Innate Spellcasting (Psionics)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Mind Fire",
+      "section": "trait",
+      "identifier": "innate-spellcasting-psionics",
+      "page": 248,
+      "srd": false,
+      "text": {
+        "sha256": "d658db3a65e3cee055a64a5e444a4ffcd61384fa622415d427b29779d2205591",
+        "source": "5etools",
+        "chars": 253
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-sword/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Sword",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "ba65a15319b7d0d617331792e51b0b72d0331912a450dfa98ec958b486d0fe98",
+        "source": "5etools",
+        "chars": 172
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-sword/action/silver-longsword",
+      "name": "Silver Longsword",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Sword",
+      "section": "action",
+      "identifier": "silver-longsword",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "9069aaf9d7f0441a11a39a8967236f7b7ae9c61a72dbac768b93ecf04c84045d",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-sword/bonus/blink-step",
+      "name": "Blink Step",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Sword",
+      "section": "bonus",
+      "identifier": "blink-step",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "36cd05dc53d16e6fae4f59b8a690278c6feb9067c2d64b8be84d9b6d3001a9e5",
+        "source": "5etools",
+        "chars": 73
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-sword/trait/innate-spellcasting-psionics",
+      "name": "Innate Spellcasting (Psionics)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Sword",
+      "section": "trait",
+      "identifier": "innate-spellcasting-psionics",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "d72e5d1e1b716b356f18dd33bc28185e6b1e4211bea364bb4f3fef42708a301a",
+        "source": "5etools",
+        "chars": 225
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-sword/trait/metabolic-control",
+      "name": "Metabolic Control",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Sword",
+      "section": "trait",
+      "identifier": "metabolic-control",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "359a166dae363d677d619d401b2a840b0ed191f47c60f662e838ef3a388b136c",
+        "source": "5etools",
+        "chars": 158
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-tome/action/force-bolt",
+      "name": "Force Bolt",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Tome",
+      "section": "action",
+      "identifier": "force-bolt",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "04eca504762cf86521ee3f472913c2cbc218bf829927371acd02ad77cb3cb48f",
+        "source": "5etools",
+        "chars": 163
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-tome/action/implode",
+      "name": "Implode",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Tome",
+      "section": "action",
+      "identifier": "implode",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "d44ed66f55cc745d6d4421ed3e1d5a8a2d02c0de188e400ca84974bd90e8b4c8",
+        "source": "5etools",
+        "chars": 402
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-tome/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Tome",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "fb18e53a98bd4f3a7447589ff0b3e92d40b2b598669ec426988fff594127706a",
+        "source": "5etools",
+        "chars": 29
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-tome/action/silver-longsword",
+      "name": "Silver Longsword",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Tome",
+      "section": "action",
+      "identifier": "silver-longsword",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "9069aaf9d7f0441a11a39a8967236f7b7ae9c61a72dbac768b93ecf04c84045d",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-tome/reaction/telekinetic-deflection",
+      "name": "Telekinetic Deflection",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Tome",
+      "section": "reaction",
+      "identifier": "telekinetic-deflection",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "13a6aa07a4b4428e4e037125aa8606c4e05169c33931da44e6939a52b08a72b7",
+        "source": "5etools",
+        "chars": 178
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:inquisitor-of-the-tome/trait/innate-spellcasting-psionics",
+      "name": "Innate Spellcasting (Psionics)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Inquisitor of the Tome",
+      "section": "trait",
+      "identifier": "innate-spellcasting-psionics",
+      "page": 249,
+      "srd": false,
+      "text": {
+        "sha256": "4643498a2c2455c228512f0cf5ecca21c73fd0ddd8cf312fd38c24b5fc8f87a5",
+        "source": "5etools",
+        "chars": 244
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:isolde/action/fiendish-charm",
+      "name": "Fiendish Charm",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Isolde",
+      "section": "action",
+      "identifier": "fiendish-charm",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "728bbfce9a96b2fbcc63f2cddb80b45023f75c80b0c7edaeb16fd472b4477440",
+        "source": "5etools",
+        "chars": 509
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:isolde/action/fire-ray",
+      "name": "Fire Ray",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Isolde",
+      "section": "action",
+      "identifier": "fire-ray",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "b0db40ad394d6f4f6075f9a7ac0ad6431b87a4034bf4b54dd41f8106950646e7",
+        "source": "5etools",
+        "chars": 61
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:isolde/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Isolde",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "07141d2cfc6580df9e7ef5689320aa950a7d628ef75bd9be45067cf161e0bdc5",
+        "source": "5etools",
+        "chars": 58
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:isolde/action/nepenthe",
+      "name": "Nepenthe",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Isolde",
+      "section": "action",
+      "identifier": "nepenthe",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "693be6d2f7587f09127975d6d1ca2c56d325f9ae1f865cdcd11d1dd927fcf462",
+        "source": "5etools",
+        "chars": 232
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:isolde/trait/fiendish-blessing",
+      "name": "Fiendish Blessing",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Isolde",
+      "section": "trait",
+      "identifier": "fiendish-blessing",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "8a3ef6a0d40cb0aae24775a011dda3944f1cfd65f8425d438e87ee4cc075e952",
+        "source": "5etools",
+        "chars": 45
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:isolde/trait/innate-spellcasting",
+      "name": "Innate Spellcasting",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Isolde",
+      "section": "trait",
+      "identifier": "innate-spellcasting",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "b9c072936df0339bb0da04e9c87b1563b596a6604ceb0283a843893e66dd5cb8",
+        "source": "5etools",
+        "chars": 195
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:isolde/trait/magic-resistance-aura",
+      "name": "Magic Resistance Aura",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Isolde",
+      "section": "trait",
+      "identifier": "magic-resistance-aura",
+      "page": 86,
+      "srd": false,
+      "text": {
+        "sha256": "2dd2bc1f262a938c2954866e455d547ec224366fe28f5b12601bf730a6dd3b2c",
+        "source": "5etools",
+        "chars": 232
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:jiangshi/action/change-shape",
+      "name": "Change Shape",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Jiangshi",
+      "section": "action",
+      "identifier": "change-shape",
+      "page": 236,
+      "srd": false,
+      "text": {
+        "sha256": "a6e317974a4d8ab95a2c28d006955a2d5d98dc49621a76e7e3b6978a3302f124",
+        "source": "5etools",
+        "chars": 320
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:jiangshi/action/consume-energy",
+      "name": "Consume Energy",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Jiangshi",
+      "section": "action",
+      "identifier": "consume-energy",
+      "page": 236,
+      "srd": false,
+      "text": {
+        "sha256": "3a3134d158026760e6d87fa07cbb5e7fe5ff9b79849422155d2ce894e8123d30",
+        "source": "5etools",
+        "chars": 809
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:jiangshi/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Jiangshi",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 236,
+      "srd": false,
+      "text": {
+        "sha256": "97a28e466dfbe68ebe9912e6e7a2ffdd750db7b648889ca6a35d295535de77fa",
+        "source": "5etools",
+        "chars": 62
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:jiangshi/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Jiangshi",
+      "section": "action",
+      "identifier": "slam",
+      "page": 236,
+      "srd": false,
+      "text": {
+        "sha256": "9a940c8d7ef7bfe1ae9657a470bc433162edfc577eb5cb20706a07714c668868",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:jiangshi/trait/jiangshi-weaknesses",
+      "name": "Jiangshi Weaknesses",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Jiangshi",
+      "section": "trait",
+      "identifier": "jiangshi-weaknesses",
+      "page": 236,
+      "srd": false,
+      "text": {
+        "sha256": "275b518eab2313281baaf8527d764f9f4df911495be34658e6218714ba5724d1",
+        "source": "5etools",
+        "chars": 364
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:jiangshi/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Jiangshi",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 236,
+      "srd": false,
+      "text": {
+        "sha256": "05b5edab4731dbd64ffcd866f3115f1dbd1cede5d2400c262605b6580d63f3f0",
+        "source": "5etools",
+        "chars": 33
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/action/change-shape",
+      "name": "Change Shape",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "action",
+      "identifier": "change-shape",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "28051ba1a2d3fa5ad48ce2b4568210d98ddf03a4166b900115492b69cd50a440",
+        "source": "5etools",
+        "chars": 220
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/action/lashing-maw",
+      "name": "Lashing Maw",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "action",
+      "identifier": "lashing-maw",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "842e4796b04f0bab236f3a6d3b6840c8104951454952ac09827fda4413ed31a8",
+        "source": "5etools",
+        "chars": 96
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "fb82c4103ea009fd58bfb12db5c0c24e00a06788ff23f4b1efd0236cddeee180",
+        "source": "5etools",
+        "chars": 33
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/action/psychic-orb",
+      "name": "Psychic Orb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "action",
+      "identifier": "psychic-orb",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "b90f9c6e8d2e88e15cc286a2a7fbc0d0725bde3a0dee719982da967453a74e8f",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/legendary/psychic-lash",
+      "name": "Psychic Lash",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "legendary",
+      "identifier": "psychic-lash",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "2b6dbc4532ecc5b1b805975d2d2c6999030e225e458b41470400b733820b3d4e",
+        "source": "5etools",
+        "chars": 244
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/legendary/psychic-orb",
+      "name": "Psychic Orb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "legendary",
+      "identifier": "psychic-orb",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "d886b895b1d4b3344ee942a19584bb1e6d5fef1fecd9697ccbd7ee514e693add",
+        "source": "5etools",
+        "chars": 40
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/legendary/teleportation-maw",
+      "name": "Teleportation Maw",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "legendary",
+      "identifier": "teleportation-maw",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "25984adf6c1a7aa004641a7cb5cc34eb7cd607bdc7140eff712ada34dc77acb5",
+        "source": "5etools",
+        "chars": 112
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/trait/aberrant-rejuvenation",
+      "name": "Aberrant Rejuvenation",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "trait",
+      "identifier": "aberrant-rejuvenation",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "ba63916cb8112df5df987857dcd893a7dea2f207fa1d97b4dc4f8c21380b76b1",
+        "source": "5etools",
+        "chars": 255
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "d56a01f8b27c2f12cfc7dfcd251db08a147502afa1b3230aa3592c5acc74c363",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:lesser-star-spawn-emissary/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Lesser Star Spawn Emissary",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 245,
+      "srd": false,
+      "text": {
+        "sha256": "4993967466aa795bdb924222219fba2dbd8589c28e5f38e332216a4e8508b9fa",
+        "source": "5etools",
+        "chars": 56
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/action/bite-dire-wolf-or-hybrid-form-only",
+      "name": "Bite (Dire Wolf or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "action",
+      "identifier": "bite-dire-wolf-or-hybrid-form-only",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "5046c2c7028f8ddcdf221f472be911b9ec8001ee9880c548fc2a01c3d3e6e93a",
+        "source": "5etools",
+        "chars": 218
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/action/claws-dire-wolf-or-hybrid-form-only",
+      "name": "Claws (Dire Wolf or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "action",
+      "identifier": "claws-dire-wolf-or-hybrid-form-only",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "078d2ab981414559a24003554549bc074354806138e202cd8fc82099a628ea0a",
+        "source": "5etools",
+        "chars": 163
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/action/longsword-humanoid-form-only",
+      "name": "Longsword (Humanoid Form Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "action",
+      "identifier": "longsword-humanoid-form-only",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "189791a5e32f8596b778a7cf75bf3dc5fafcdd7e377cee96dc5f4829a1d9c808",
+        "source": "5etools",
+        "chars": 124
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "7ddad98ddc846ba12c5f8bb7c69a7027da301f4c9c04eded139b7c3aefacb230",
+        "source": "5etools",
+        "chars": 144
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/bonus/change-shape",
+      "name": "Change Shape",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "bonus",
+      "identifier": "change-shape",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "e44cd5a0cf002b4ad34c7a678e64fcab6efe501c825860aa2e8bfb10a9d886a0",
+        "source": "5etools",
+        "chars": 311
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/legendary/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "legendary",
+      "identifier": "bite",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "b141923aeae4a994a7bfe469e9eaf2ffb9e891678d4d9c96902f4ea7f26f55b1",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/legendary/mauling-pounce",
+      "name": "Mauling Pounce",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "legendary",
+      "identifier": "mauling-pounce",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "01333557f1881b703b76295d78cc13ce212e8019039dda4130448fc64ba07bc2",
+        "source": "5etools",
+        "chars": 222
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/legendary/swipe",
+      "name": "Swipe",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "legendary",
+      "identifier": "swipe",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "7edde6bae2b961f9a7709e3fd475a1513836d0be67cbf1d5f3a70447916f0611",
+        "source": "5etools",
+        "chars": 115
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/trait/blood-frenzy",
+      "name": "Blood Frenzy",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "trait",
+      "identifier": "blood-frenzy",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "993b2c9437756dac398317b06f9c9ba690264a1c1f7af74bd9b4cc8c22f32c44",
+        "source": "5etools",
+        "chars": 101
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "b2ceefac617ec59dccb151e4d757fc19e92c5adfb7129df9ed1bd906a21f3fb1",
+        "source": "5etools",
+        "chars": 75
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:loup-garou/trait/regeneration",
+      "name": "Regeneration",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Loup Garou",
+      "section": "trait",
+      "identifier": "regeneration",
+      "page": 237,
+      "srd": false,
+      "text": {
+        "sha256": "db16c791d93f3f8b5b9d307d4cd25e4e15bbe448c99d9cbaffa3a722f6c7248b",
+        "source": "5etools",
+        "chars": 285
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/action/blood-puppeteering",
+      "name": "Blood Puppeteering",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "action",
+      "identifier": "blood-puppeteering",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "1efa14623a579b7b3da7ed310dcb2d9c83bfed53d26bb404c823a0825433449e",
+        "source": "5etools",
+        "chars": 855
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "8ffe27fb3aa9af634f5583adb1ba0beab510a7b526726da6371c7ea4899cf2cd",
+        "source": "5etools",
+        "chars": 32
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/action/necrotic-bolt",
+      "name": "Necrotic Bolt",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "action",
+      "identifier": "necrotic-bolt",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "46b2beae1df743fd63bd3a596c5e1bd2da3b4850932b32868b49a137eab0bdb2",
+        "source": "5etools",
+        "chars": 156
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/action/pseudopod",
+      "name": "Pseudopod",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "action",
+      "identifier": "pseudopod",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "d79cb9bd324309a460d8678bd4f149420d2ebf9cb79063f99c25a5efe6e8bf96",
+        "source": "5etools",
+        "chars": 191
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "08fb4685a74a639ba4200302fe466eb729de4709dd18291b2145f7ba7978e93a",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/trait/rejuvenation",
+      "name": "Rejuvenation",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "trait",
+      "identifier": "rejuvenation",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "aaf898fcc1776687c2bb60202dcf042f852f6b4441ea17bd383b985f352de216",
+        "source": "5etools",
+        "chars": 273
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/trait/spider-climb",
+      "name": "Spider Climb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "trait",
+      "identifier": "spider-climb",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "89e252580fee6e95db44572c0f8330c93f2121d6466af1031cf7ba2ff2d8773f",
+        "source": "5etools",
+        "chars": 120
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:necrichor/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Necrichor",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 238,
+      "srd": false,
+      "text": {
+        "sha256": "103bdb670f21e08716ab819a852c83662fab6484b0177ef9e116dd9830a2db74",
+        "source": "5etools",
+        "chars": 57
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "action",
+      "identifier": "bite",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "e4e9562ea1aedd1c624219415cdb2f41a252b9e0729f05bf0898d60354054b4a",
+        "source": "5etools",
+        "chars": 553
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/action/blood-disgorge",
+      "name": "Blood Disgorge",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "action",
+      "identifier": "blood-disgorge",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "5b032c480bd3d99e9e9246aa1e8b7f0faf2672b2e1b841fa895e75ef53ac088a",
+        "source": "5etools",
+        "chars": 309
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "action",
+      "identifier": "claw",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "aee2b0ef8f82eb020bb138f72a1a11e0aa9753ba0fe777563f62d43aa766f208",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "9d3c04920fed090c185e36d9924dda560b6e8e14a6fca1f12a337f8ca60b9e10",
+        "source": "5etools",
+        "chars": 149
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/trait/regeneration",
+      "name": "Regeneration",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "trait",
+      "identifier": "regeneration",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "17ed3bc4292381b58657227c465fa73d5f8daf836d9dd154ea9f40e985e9496b",
+        "source": "5etools",
+        "chars": 236
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/trait/spider-climb",
+      "name": "Spider Climb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "trait",
+      "identifier": "spider-climb",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "32031d0a1669414120e36065a0e1dbe3aa2d72f16a82a5b873bf834872f8a884",
+        "source": "5etools",
+        "chars": 120
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/trait/sunlight-hypersensitivity",
+      "name": "Sunlight Hypersensitivity",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "trait",
+      "identifier": "sunlight-hypersensitivity",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "453b4d171025fa9db67ca66ec94abe5f25eda719d1607e99c4435289d53d831d",
+        "source": "5etools",
+        "chars": 149
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:nosferatu/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Nosferatu",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 239,
+      "srd": false,
+      "text": {
+        "sha256": "5242b23a885d7eeebb246b7e3a6c77aebe62eff5d03e1762bbabb265d7cb77bc",
+        "source": "5etools",
+        "chars": 34
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:podling/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Podling",
+      "section": "action",
+      "identifier": "slam",
+      "page": 227,
+      "srd": false,
+      "text": {
+        "sha256": "3ec14c52ce2f763d87e2e7a2a216281a6ea58d42ca3824eddccb4fb352143b57",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:podling/trait/semblance-of-life",
+      "name": "Semblance of Life",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Podling",
+      "section": "trait",
+      "identifier": "semblance-of-life",
+      "page": 227,
+      "srd": false,
+      "text": {
+        "sha256": "263a1c65b6a562e72357180cd26eba40884217ac3e0260c86603b53276ffb074",
+        "source": "5etools",
+        "chars": 596
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:podling/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Podling",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 227,
+      "srd": false,
+      "text": {
+        "sha256": "689b8096feba4fcfed0078b4cc25531cbf65c9d7f97d1b03b5568b3f931b4ee2",
+        "source": "5etools",
+        "chars": 34
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:priest-of-osybus/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Priest of Osybus",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 241,
+      "srd": false,
+      "text": {
+        "sha256": "b2d3f65392dd09c5b0394904020d513ac6ef527e94a22d941308ffe05026bab9",
+        "source": "5etools",
+        "chars": 25
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:priest-of-osybus/action/necrotic-bolt",
+      "name": "Necrotic Bolt",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Priest of Osybus",
+      "section": "action",
+      "identifier": "necrotic-bolt",
+      "page": 241,
+      "srd": false,
+      "text": {
+        "sha256": "f7af8ebe452197c9a92523c1663ab4b9073bcf56246b67679e5fd2d57b4a4191",
+        "source": "5etools",
+        "chars": 151
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:priest-of-osybus/action/soul-blade",
+      "name": "Soul Blade",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Priest of Osybus",
+      "section": "action",
+      "identifier": "soul-blade",
+      "page": 241,
+      "srd": false,
+      "text": {
+        "sha256": "1ff1af18a7e03885c8441328b65aa6b4129ab0bef2e88f66661affbc82d464c7",
+        "source": "5etools",
+        "chars": 382
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:priest-of-osybus/bonus/soul-tattoo",
+      "name": "Soul Tattoo",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Priest of Osybus",
+      "section": "bonus",
+      "identifier": "soul-tattoo",
+      "page": 241,
+      "srd": false,
+      "text": {
+        "sha256": "35f2092af105f4c82ec2e4dbb47fcadff025019ced0b0301708e96c1814f84f8",
+        "source": "5etools",
+        "chars": 594
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:priest-of-osybus/trait/tattoo-of-osybus",
+      "name": "Tattoo of Osybus",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Priest of Osybus",
+      "section": "trait",
+      "identifier": "tattoo-of-osybus",
+      "page": 241,
+      "srd": false,
+      "text": {
+        "sha256": "8c45e8f9ca3de34a51fc353bd79cf2c0efbb8aae9c713f890d2e3e17007a6a11",
+        "source": "5etools",
+        "chars": 642
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/action/deadly-shaping",
+      "name": "Deadly Shaping",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "action",
+      "identifier": "deadly-shaping",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "b401d28a429151ddf3bb8058ab3c761c9cfe24d6fd7196a7dd6c99e3d3ad8dfd",
+        "source": "5etools",
+        "chars": 286
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/action/executioners-pick",
+      "name": "Executioner's Pick",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "action",
+      "identifier": "executioners-pick",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "d96242b3514c55c04a2b8645c0313f711bc4feb5cd905bfd927e20b4ae9f6186",
+        "source": "5etools",
+        "chars": 181
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/action/fist",
+      "name": "Fist",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "action",
+      "identifier": "fist",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "aac330c13e1178d0a2b2f8308b52f9cbc1878f94521f056e622b94f0446a8713",
+        "source": "5etools",
+        "chars": 189
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/action/flying-stone",
+      "name": "Flying Stone",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "action",
+      "identifier": "flying-stone",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "3835021b08485bb4c5a80047e63684c7aef50b7b6e9ddd1c681820a62fee1d6c",
+        "source": "5etools",
+        "chars": 140
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "97444e1ea6f8e4bbcaf79ddec0b730132b6a9324477feb76f620ebfa1c76f028",
+        "source": "5etools",
+        "chars": 95
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/action/scything-shrapnel",
+      "name": "Scything Shrapnel",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "action",
+      "identifier": "scything-shrapnel",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "3e1d500c996b0680bbfe8b039d5e19a568f5f4460126f3c07d1aaa93f15ba40b",
+        "source": "5etools",
+        "chars": 345
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/legendary/implacable-advance",
+      "name": "Implacable Advance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "legendary",
+      "identifier": "implacable-advance",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "038130201c4d50f1e41eeb2ae12e721b5f39c964ee8e93f48c4f841422127c24",
+        "source": "5etools",
+        "chars": 159
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/legendary/rapid-shaping",
+      "name": "Rapid Shaping",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "legendary",
+      "identifier": "rapid-shaping",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "53365db9333cba3c5d6e6e5cd9c1b662efa11bae15122c5f685bd1a2146f0db7",
+        "source": "5etools",
+        "chars": 52
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "0f72ea7b87ec00c5f459628ec18bbc051f8886a1e4f032d45f9828f674e83150",
+        "source": "5etools",
+        "chars": 73
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/trait/regeneration",
+      "name": "Regeneration",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "trait",
+      "identifier": "regeneration",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "712f212522784580a354529adecc9712620ebacfaad470a7567b23796b938bb3",
+        "source": "5etools",
+        "chars": 250
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-juggernaut/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Juggernaut",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 243,
+      "srd": false,
+      "text": {
+        "sha256": "e528ff522126c49e550caadf9a3835234b3ffed4f909972cc7df9be1cbf07bec",
+        "source": "5etools",
+        "chars": 58
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-slasher/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Slasher",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 242,
+      "srd": false,
+      "text": {
+        "sha256": "072246a27bb2759a649ea3a4d2ef7ba280d90ef9464793fe5dac085f66030255",
+        "source": "5etools",
+        "chars": 46
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-slasher/action/slashers-knife",
+      "name": "Slasher's Knife",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Slasher",
+      "section": "action",
+      "identifier": "slashers-knife",
+      "page": 242,
+      "srd": false,
+      "text": {
+        "sha256": "d66e7c55513cd0d88b62b57e2b625b70aae98667f8d2a265005f393deb9767af",
+        "source": "5etools",
+        "chars": 531
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-slasher/legendary/slice",
+      "name": "Slice",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Slasher",
+      "section": "legendary",
+      "identifier": "slice",
+      "page": 242,
+      "srd": false,
+      "text": {
+        "sha256": "807263681e095de112d204c2ef43d05c8426062dcf44479150e5aac1fb283213",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-slasher/legendary/vanishing-strike",
+      "name": "Vanishing Strike",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Slasher",
+      "section": "legendary",
+      "identifier": "vanishing-strike",
+      "page": 242,
+      "srd": false,
+      "text": {
+        "sha256": "5669025a81fd5819e0f9c3794819d60e4e4d27eacbf28c1c3fcafe8b2f2adf69",
+        "source": "5etools",
+        "chars": 152
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-slasher/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Slasher",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 242,
+      "srd": false,
+      "text": {
+        "sha256": "dc3c10f0594df458226ebd517ba121c9b328660e945b99b99e5ffe060c4fa4e3",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:relentless-slasher/trait/shrouded-presence",
+      "name": "Shrouded Presence",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Relentless Slasher",
+      "section": "trait",
+      "identifier": "shrouded-presence",
+      "page": 242,
+      "srd": false,
+      "text": {
+        "sha256": "414cb1d8431387dc59f7eb097c7df04c2209ba8153ba14f04ca4aab845b9944a",
+        "source": "5etools",
+        "chars": 144
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:strigoi/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Strigoi",
+      "section": "action",
+      "identifier": "claw",
+      "page": 246,
+      "srd": false,
+      "text": {
+        "sha256": "d9ec7af738b2f6d6a06b0f24bde1298c6e510d33f37215b2f44b16de05bcb83a",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:strigoi/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Strigoi",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 246,
+      "srd": false,
+      "text": {
+        "sha256": "928d50403f1054188e4cf5c3213d70eb14d9080b614499561c478e8ce52545ac",
+        "source": "5etools",
+        "chars": 65
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:strigoi/action/proboscis",
+      "name": "Proboscis",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Strigoi",
+      "section": "action",
+      "identifier": "proboscis",
+      "page": 246,
+      "srd": false,
+      "text": {
+        "sha256": "df6108c655ab6f7ca56bf8efe153693a1180c37eb3828c5a2730d8f427d4fe7d",
+        "source": "5etools",
+        "chars": 298
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:strigoi/action/ravenous-children",
+      "name": "Ravenous Children",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Strigoi",
+      "section": "action",
+      "identifier": "ravenous-children",
+      "page": 246,
+      "srd": false,
+      "text": {
+        "sha256": "04b7deb7b703a3e2d5578f70f95963bbd44d3427a069635cd761d3eaac8fb4bf",
+        "source": "5etools",
+        "chars": 361
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:strigoi/trait/stirge-telepathy",
+      "name": "Stirge Telepathy",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Strigoi",
+      "section": "trait",
+      "identifier": "stirge-telepathy",
+      "page": 246,
+      "srd": false,
+      "text": {
+        "sha256": "81285992603f950aa3c148f0a2abc20f08f134ed4241804728bbe1bd416b08f6",
+        "source": "5etools",
+        "chars": 102
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-gremishkas/action/bites",
+      "name": "Bites",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Gremishkas",
+      "section": "action",
+      "identifier": "bites",
+      "page": 235,
+      "srd": false,
+      "text": {
+        "sha256": "c5603127167c0b74e1f18d11c40bd6f8580d27a4bff96bddc6f418afccd2ac56",
+        "source": "5etools",
+        "chars": 196
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-gremishkas/reaction/spell-redirection",
+      "name": "Spell Redirection",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Gremishkas",
+      "section": "reaction",
+      "identifier": "spell-redirection",
+      "page": 235,
+      "srd": false,
+      "text": {
+        "sha256": "eebb5d515d93d02ffff918c0fdd2939600b73e932336efd74ac4d648803d1068",
+        "source": "5etools",
+        "chars": 157
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-gremishkas/trait/limited-spell-immunity",
+      "name": "Limited Spell Immunity",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Gremishkas",
+      "section": "trait",
+      "identifier": "limited-spell-immunity",
+      "page": 235,
+      "srd": false,
+      "text": {
+        "sha256": "6315f02f7dac047716d9db7268debb93d073ceb74c23fc86fb52a895ca97a833",
+        "source": "5etools",
+        "chars": 139
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-gremishkas/trait/swarm",
+      "name": "Swarm",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Gremishkas",
+      "section": "trait",
+      "identifier": "swarm",
+      "page": 235,
+      "srd": false,
+      "text": {
+        "sha256": "abe417c9cdad942f149b9af2a44cf014b1ca1ef452ec79a503e8bda10c6c0eed",
+        "source": "5etools",
+        "chars": 203
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-maggots/action/infestation",
+      "name": "Infestation",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Maggots",
+      "section": "action",
+      "identifier": "infestation",
+      "page": 247,
+      "srd": false,
+      "text": {
+        "sha256": "1dd0e7b0ac8e7905aa8d12b0316daa50f81d850ade47f3ca6bf2cf471394de4d",
+        "source": "5etools",
+        "chars": 839
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-maggots/trait/swarm",
+      "name": "Swarm",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Maggots",
+      "section": "trait",
+      "identifier": "swarm",
+      "page": 247,
+      "srd": false,
+      "text": {
+        "sha256": "0139e6861881d2a8b86a857a961e965cb4cd5ef53565abfaed86cbb73f7b5126",
+        "source": "5etools",
+        "chars": 200
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-scarabs/action/ravenous-bites",
+      "name": "Ravenous Bites",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Scarabs",
+      "section": "action",
+      "identifier": "ravenous-bites",
+      "page": 247,
+      "srd": false,
+      "text": {
+        "sha256": "a338845f723905831a1ec7f344c361ca6d960449335a6cd1198aa124ff09035c",
+        "source": "5etools",
+        "chars": 541
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-scarabs/trait/skeletonize",
+      "name": "Skeletonize",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Scarabs",
+      "section": "trait",
+      "identifier": "skeletonize",
+      "page": 247,
+      "srd": false,
+      "text": {
+        "sha256": "1dac9eab3d105e89a48da17f69d2fd9c357375ca32617c2c3d4ab115f3d503bc",
+        "source": "5etools",
+        "chars": 174
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-scarabs/trait/spider-climb",
+      "name": "Spider Climb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Scarabs",
+      "section": "trait",
+      "identifier": "spider-climb",
+      "page": 247,
+      "srd": false,
+      "text": {
+        "sha256": "86f3ea8b29fba69aa7dce642d3343ced5f927460f6728aab8ec9e0fb921a92cf",
+        "source": "5etools",
+        "chars": 116
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-scarabs/trait/swarm",
+      "name": "Swarm",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Scarabs",
+      "section": "trait",
+      "identifier": "swarm",
+      "page": 247,
+      "srd": false,
+      "text": {
+        "sha256": "1236a74a889020ac8a557008e9738f20a87bc6e4dcdf6bd6513879f7ffbb8e26",
+        "source": "5etools",
+        "chars": 200
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-zombie-limbs/action/grasping-limbs",
+      "name": "Grasping Limbs",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Zombie Limbs",
+      "section": "action",
+      "identifier": "grasping-limbs",
+      "page": 254,
+      "srd": false,
+      "text": {
+        "sha256": "80cd9d7aabe61fa1382d262c866e0e242e8aa3b30595b2df659fbb0d7fadd717",
+        "source": "5etools",
+        "chars": 409
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-zombie-limbs/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Zombie Limbs",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 254,
+      "srd": false,
+      "text": {
+        "sha256": "67261d9b178dc1af2220e9e4c2544cb93c669f0ad61a39243de700b94e26c57a",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-zombie-limbs/action/undead-mass",
+      "name": "Undead Mass",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Zombie Limbs",
+      "section": "action",
+      "identifier": "undead-mass",
+      "page": 254,
+      "srd": false,
+      "text": {
+        "sha256": "632a0294fc2fe0521cb8743aeda47e5dffcacbec2178c8f10646a453ca16b0a8",
+        "source": "5etools",
+        "chars": 174
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-zombie-limbs/trait/swarm",
+      "name": "Swarm",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Zombie Limbs",
+      "section": "trait",
+      "identifier": "swarm",
+      "page": 254,
+      "srd": false,
+      "text": {
+        "sha256": "23c6b471d63ca44394463ba7b4d4eb521498b433f7721714a24cd7b87fcb9cb7",
+        "source": "5etools",
+        "chars": 198
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:swarm-of-zombie-limbs/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Swarm of Zombie Limbs",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 254,
+      "srd": false,
+      "text": {
+        "sha256": "d5eaf406561d1d53f8c39573d70203aca15976cd6fe471b4d2d5620cd55c3129",
+        "source": "5etools",
+        "chars": 53
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:unspeakable-horror/action/hex-blast",
+      "name": "Hex Blast",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Unspeakable Horror",
+      "section": "action",
+      "identifier": "hex-blast",
+      "page": 250,
+      "srd": false,
+      "text": {
+        "sha256": "81ec384edcfb0218c2e3321643a8032b5e1bd2bfc4da77de141661b1be51a004",
+        "source": "5etools",
+        "chars": 216
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:unspeakable-horror/action/limbs",
+      "name": "Limbs",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Unspeakable Horror",
+      "section": "action",
+      "identifier": "limbs",
+      "page": 250,
+      "srd": false,
+      "text": {
+        "sha256": "802a2145f06985e13e156d87049d466d483235f5de2806f505103f9949b9d58a",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:unspeakable-horror/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Unspeakable Horror",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 250,
+      "srd": false,
+      "text": {
+        "sha256": "13cffb0dd2670fffbe50ab6072063d07648775a50da6c34c3992ac9e60fe2c10",
+        "source": "5etools",
+        "chars": 35
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:unspeakable-horror/trait/amorphous-malleable-mass-only",
+      "name": "Amorphous (Malleable Mass Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Unspeakable Horror",
+      "section": "trait",
+      "identifier": "amorphous-malleable-mass-only",
+      "page": 250,
+      "srd": false,
+      "text": {
+        "sha256": "a5bb97ae663f9e3aa7c18c01c0ad470d9429be96a3f82e16e33077b8547fcc94",
+        "source": "5etools",
+        "chars": 79
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:unspeakable-horror/trait/bile-body-oozing-organs-only",
+      "name": "Bile Body (Oozing Organs Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Unspeakable Horror",
+      "section": "trait",
+      "identifier": "bile-body-oozing-organs-only",
+      "page": 250,
+      "srd": false,
+      "text": {
+        "sha256": "6a7252eed89b9d9e90c43c143b57ebeb4b9c5351826157d1ab568133f3ac842d",
+        "source": "5etools",
+        "chars": 95
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:unspeakable-horror/trait/formed-by-the-mists",
+      "name": "Formed by the Mists",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Unspeakable Horror",
+      "section": "trait",
+      "identifier": "formed-by-the-mists",
+      "page": 250,
+      "srd": false,
+      "text": {
+        "sha256": "7b76defd6908bda1461ff6675141cc32814f28bebf750b10c3de9dd96f56fff3",
+        "source": "5etools",
+        "chars": 191
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:unspeakable-horror/trait/relentless-stride-loathsome-limbs-only",
+      "name": "Relentless Stride (Loathsome Limbs Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Unspeakable Horror",
+      "section": "trait",
+      "identifier": "relentless-stride-loathsome-limbs-only",
+      "page": 250,
+      "srd": false,
+      "text": {
+        "sha256": "4cf23c86f6075719f5de82dc5f9545253d6bfd8e4d00457dca4d67bbd6c00837",
+        "source": "5etools",
+        "chars": 220
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/action/claw",
+      "name": "Claw",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "action",
+      "identifier": "claw",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "15f23fab4238b4d09923c4da43cf0b9392c1e5221e833467145f24ef06eb1f32",
+        "source": "5etools",
+        "chars": 96
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/action/drink-sapience",
+      "name": "Drink Sapience",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "action",
+      "identifier": "drink-sapience",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "3e4a08e16c295eeaea97d2d197433ecf91cdd4a7cb0f38281f8cdd1d29a9065d",
+        "source": "5etools",
+        "chars": 314
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "fbdc745d49df07f96cedbaf6c91213b7ee9a966920be476a27dfa5f4c8a9f002",
+        "source": "5etools",
+        "chars": 83
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/action/tentacles",
+      "name": "Tentacles",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "action",
+      "identifier": "tentacles",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "c299a74a913b3b305ca5d1779243ec2195b8d25125fc041d8608e11176a576e8",
+        "source": "5etools",
+        "chars": 129
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/bonus/disrupt-psyche",
+      "name": "Disrupt Psyche",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "bonus",
+      "identifier": "disrupt-psyche",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "af9368b96ae9c890b921bcebd14eafe6ba455033b89c6e887fede8c07f7ef94a",
+        "source": "5etools",
+        "chars": 331
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/trait/spider-climb",
+      "name": "Spider Climb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "trait",
+      "identifier": "spider-climb",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "688ef950d1dbd0e4fc108c5dc09afe6d2d8c82fb2a38b1381c8cffcf71c4fb88",
+        "source": "5etools",
+        "chars": 122
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/trait/sunlight-sensitivity",
+      "name": "Sunlight Sensitivity",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "trait",
+      "identifier": "sunlight-sensitivity",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "56c7d681b323a73c31b69e5d32dea25e95ea64ff8f194cc81e241153d38ba185",
+        "source": "5etools",
+        "chars": 129
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:vampiric-mind-flayer/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Vampiric Mind Flayer",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 252,
+      "srd": false,
+      "text": {
+        "sha256": "862e62dae7d5552ec6e79b9ef03a50fdcd08bc99bc0ad30877071d8c90ab5c41",
+        "source": "5etools",
+        "chars": 52
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:wereraven/action/beak-raven-or-hybrid-form-only",
+      "name": "Beak (Raven or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Wereraven",
+      "section": "action",
+      "identifier": "beak-raven-or-hybrid-form-only",
+      "page": 253,
+      "srd": false,
+      "text": {
+        "sha256": "a7d091164c3a141ebaa653dcabdd012d481d9264682e145ef037862bdd9afcfb",
+        "source": "5etools",
+        "chars": 235
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:wereraven/action/hand-crossbow-human-or-hybrid-form-only",
+      "name": "Hand Crossbow (Human or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Wereraven",
+      "section": "action",
+      "identifier": "hand-crossbow-human-or-hybrid-form-only",
+      "page": 253,
+      "srd": false,
+      "text": {
+        "sha256": "7b4ea5bb86fe81e514f3c1ac506e745d1ed456519b5039ef54ca84e6376d0e8e",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:wereraven/action/multiattack-human-or-hybrid-form-only",
+      "name": "Multiattack (Human or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Wereraven",
+      "section": "action",
+      "identifier": "multiattack-human-or-hybrid-form-only",
+      "page": 253,
+      "srd": false,
+      "text": {
+        "sha256": "5f0a3774e347398b80023aba52d39bdaa2ea55e878f77a76522bc6eca1aeea94",
+        "source": "5etools",
+        "chars": 83
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:wereraven/action/shortsword-human-or-hybrid-form-only",
+      "name": "Shortsword (Human or Hybrid Form Only)",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Wereraven",
+      "section": "action",
+      "identifier": "shortsword-human-or-hybrid-form-only",
+      "page": 253,
+      "srd": false,
+      "text": {
+        "sha256": "3b5f96dd4adf08b407eabcd889495c503f0169bc07afbe96e3804dabd39d8465",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:wereraven/trait/mimicry",
+      "name": "Mimicry",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Wereraven",
+      "section": "trait",
+      "identifier": "mimicry",
+      "page": 253,
+      "srd": false,
+      "text": {
+        "sha256": "78756020034307b088511977a7c478ae1f3c6ae993acd2921211f95cc52078f4",
+        "source": "5etools",
+        "chars": 227
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:wereraven/trait/regeneration",
+      "name": "Regeneration",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Wereraven",
+      "section": "trait",
+      "identifier": "regeneration",
+      "page": 253,
+      "srd": false,
+      "text": {
+        "sha256": "b05d04511006ec8c7f9dcb8466d9abde6d2a5ed81e93d08f05eb01263961c501",
+        "source": "5etools",
+        "chars": 285
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:wereraven/trait/shapechanger",
+      "name": "Shapechanger",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Wereraven",
+      "section": "trait",
+      "identifier": "shapechanger",
+      "page": 253,
+      "srd": false,
+      "text": {
+        "sha256": "64f5d86ba471bb52c75e385f880caccc99ab0b302237f7b418a35f3e9a9f0813",
+        "source": "5etools",
+        "chars": 284
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-clot/action/flesh-entomb",
+      "name": "Flesh Entomb",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Clot",
+      "section": "action",
+      "identifier": "flesh-entomb",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "c3febd6a148ece7305aba39cb309f3e3a53012ed3ca09f1dd4d00697199086f4",
+        "source": "5etools",
+        "chars": 621
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-clot/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Clot",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "e413cca731b2e7015208962bab1da9301579d4ed2a0ab0e3a45efa7bc6182c82",
+        "source": "5etools",
+        "chars": 34
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-clot/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Clot",
+      "section": "action",
+      "identifier": "slam",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "4af7dd9c99b15b5fd3e69c8b8cff268d3109f4f6ef547fe03952c6c9130670ce",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-clot/trait/deathly-stench",
+      "name": "Deathly Stench",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Clot",
+      "section": "trait",
+      "identifier": "deathly-stench",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "aaf51b4a73d24a1deb45236d5b076a74eecf18ee73b556c7e56ebd4a50b67bdb",
+        "source": "5etools",
+        "chars": 200
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-clot/trait/undead-fortitude",
+      "name": "Undead Fortitude",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Clot",
+      "section": "trait",
+      "identifier": "undead-fortitude",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "8f70338d88777889e172502a9e36f941083988635426feb00e136c289a5c9a7d",
+        "source": "5etools",
+        "chars": 229
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-clot/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Clot",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "e0ce1f06ac62ae9b4cbeb1d1bffefd067c6d53de716f9e9be330396634b5543e",
+        "source": "5etools",
+        "chars": 54
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-plague-spreader/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Plague Spreader",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "2a96bc203a5dc0fae73d6f62ebb6bf9b90a926906a2d01bf3a8bd14804835a9b",
+        "source": "5etools",
+        "chars": 43
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-plague-spreader/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Plague Spreader",
+      "section": "action",
+      "identifier": "slam",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "6095b15f654304f6fcb8f1ddb0c6a8edc6573e1475b3b34c301ac12b84031652",
+        "source": "5etools",
+        "chars": 98
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-plague-spreader/action/virulent-miasma",
+      "name": "Virulent Miasma",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Plague Spreader",
+      "section": "action",
+      "identifier": "virulent-miasma",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "4e030b3d651912e1a32e7543a09d489cb3878f062a9d3e9efde2d9ef94a0eb23",
+        "source": "5etools",
+        "chars": 461
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-plague-spreader/trait/undead-fortitude",
+      "name": "Undead Fortitude",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Plague Spreader",
+      "section": "trait",
+      "identifier": "undead-fortitude",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "8f70338d88777889e172502a9e36f941083988635426feb00e136c289a5c9a7d",
+        "source": "5etools",
+        "chars": 229
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-plague-spreader/trait/unusual-nature",
+      "name": "Unusual Nature",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Plague Spreader",
+      "section": "trait",
+      "identifier": "unusual-nature",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "e0ce1f06ac62ae9b4cbeb1d1bffefd067c6d53de716f9e9be330396634b5543e",
+        "source": "5etools",
+        "chars": 54
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:monster:zombie-plague-spreader/trait/viral-aura",
+      "name": "Viral Aura",
+      "kind": "monster",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Zombie Plague Spreader",
+      "section": "trait",
+      "identifier": "viral-aura",
+      "page": 255,
+      "srd": false,
+      "text": {
+        "sha256": "81cd04827de7f3967264ce91610304b5ea979c5c9ca87b68c3670d8170f77a77",
+        "source": "5etools",
+        "chars": 312
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:dhampir",
+      "name": "Dhampir",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "identifier": "dhampir",
+      "page": 16,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:dhampir/ancestral-legacy",
+      "name": "Ancestral Legacy",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dhampir",
+      "identifier": "ancestral-legacy",
+      "page": 16,
+      "srd": false,
+      "text": {
+        "sha256": "050bbf620986acbe46a9167036565096b99442004a94d037b37e363c6b9c46c8",
+        "source": "5etools",
+        "chars": 338
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:dhampir/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dhampir",
+      "identifier": "darkvision",
+      "page": 16,
+      "srd": false,
+      "text": {
+        "sha256": "f39c5452147811ab18cfb0094b66e1f75537aab9f42259b2be450853cde111d9",
+        "source": "5etools",
+        "chars": 169
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:dhampir/deathless-nature",
+      "name": "Deathless Nature",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dhampir",
+      "identifier": "deathless-nature",
+      "page": 16,
+      "srd": false,
+      "text": {
+        "sha256": "7da8c9edcaeba121175536b5142b19b35e717a35a47e7c0ceda613aa45edb602",
+        "source": "5etools",
+        "chars": 26
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:dhampir/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dhampir",
+      "identifier": "size",
+      "page": 16,
+      "srd": false,
+      "text": {
+        "sha256": "b531ff3a8216146e7542f342caab5bb121d10645d5ac327406325306a85e6a9c",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:dhampir/spider-climb",
+      "name": "Spider Climb",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dhampir",
+      "identifier": "spider-climb",
+      "page": 16,
+      "srd": false,
+      "text": {
+        "sha256": "db56291287528e1c5f03636db3eb5c295d7c1b1348c27624fbef2203944bb1d5",
+        "source": "5etools",
+        "chars": 196
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:dhampir/vampiric-bite",
+      "name": "Vampiric Bite",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Dhampir",
+      "identifier": "vampiric-bite",
+      "page": 16,
+      "srd": false,
+      "text": {
+        "sha256": "15b3ed5e9a33daba01d57bdd7598dd96f960276727c2da1108f090bddac5a3f6",
+        "source": "5etools",
+        "chars": 897
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:hexblood",
+      "name": "Hexblood",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "identifier": "hexblood",
+      "page": 18,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:hexblood/ancestral-legacy",
+      "name": "Ancestral Legacy",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Hexblood",
+      "identifier": "ancestral-legacy",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "050bbf620986acbe46a9167036565096b99442004a94d037b37e363c6b9c46c8",
+        "source": "5etools",
+        "chars": 338
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:hexblood/creature-type",
+      "name": "Creature Type",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Hexblood",
+      "identifier": "creature-type",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "1c0018019301655dec8bd23d99827e4b966931ed8fd42fc59592f9600b386878",
+        "source": "5etools",
+        "chars": 14
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:hexblood/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Hexblood",
+      "identifier": "darkvision",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "f39c5452147811ab18cfb0094b66e1f75537aab9f42259b2be450853cde111d9",
+        "source": "5etools",
+        "chars": 169
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:hexblood/eerie-token",
+      "name": "Eerie Token",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Hexblood",
+      "identifier": "eerie-token",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "d4f45ff44e6d9227c429f7b16315b1f0779bc35cf4279ca957f658d3711b0e2c",
+        "source": "5etools",
+        "chars": 1052
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:hexblood/hex-magic",
+      "name": "Hex Magic",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Hexblood",
+      "identifier": "hex-magic",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "ac0df15f8a5fa4e050b7b4df1940519355916682009902aba0874e8410148a28",
+        "source": "5etools",
+        "chars": 907
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:hexblood/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Hexblood",
+      "identifier": "size",
+      "page": 18,
+      "srd": false,
+      "text": {
+        "sha256": "b531ff3a8216146e7542f342caab5bb121d10645d5ac327406325306a85e6a9c",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:reborn",
+      "name": "Reborn",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "identifier": "reborn",
+      "page": 20,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:reborn/ancestral-legacy",
+      "name": "Ancestral Legacy",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Reborn",
+      "identifier": "ancestral-legacy",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "050bbf620986acbe46a9167036565096b99442004a94d037b37e363c6b9c46c8",
+        "source": "5etools",
+        "chars": 338
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:reborn/deathless-nature",
+      "name": "Deathless Nature",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Reborn",
+      "identifier": "deathless-nature",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "3a6ea68b8a3d85a2ed6d3ccb22d30464e60e55505235feb2ab7411b271f56693",
+        "source": "5etools",
+        "chars": 463
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "vrgr:species:reborn/knowledge-from-a-past-life",
+      "name": "Knowledge from a Past Life",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Reborn",
+      "identifier": "knowledge-from-a-past-life",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "818bfdaaae28655acc58b4a455dcda12f38b709dc23ce08a22b6ee26b825787c",
+        "source": "5etools",
+        "chars": 399
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": "core",
+      "evidence": {
+        "triaged": {
+          "by": "rule",
+          "at": "2026-11-21T20:14:03.327Z"
+        }
+      },
+      "why": "DAS · Core has an entry under this identifier",
+      "state": "triaged"
+    },
+    {
+      "key": "vrgr:species:reborn/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "VRGR",
+      "edition": "2014",
+      "owner": "Reborn",
+      "identifier": "size",
+      "page": 20,
+      "srd": false,
+      "text": {
+        "sha256": "b531ff3a8216146e7542f342caab5bb121d10645d5ac327406325306a85e6a9c",
+        "source": "5etools",
+        "chars": 72
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
