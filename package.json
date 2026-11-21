@@ -6,7 +6,8 @@
   "scripts": {
     "test": "vitest run",
     "books": "node tools/books-progress.mjs",
-    "pipeline": "node tools/pipeline/cli.mjs"
+    "pipeline": "node tools/pipeline/cli.mjs",
+    "gates": "node tools/pipeline/cli.mjs gates"
   },
   "devDependencies": { "vitest": "^3.0.0" }
 }

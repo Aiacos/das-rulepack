@@ -6,9 +6,11 @@ import { canonical, loadBook, saveBook } from "./registry.mjs";
 import { readSpells } from "./dataset.mjs";
 import { dumpsFor, itemSummary, readDump } from "./dumps.mjs";
 import { inventory } from "./inventory.mjs";
+import { loadCore } from "./core.mjs";
+import { runGates } from "./gates.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const REGISTRY = join(ROOT, "registry");
+const REGISTRY = process.env.RULEPACK_REGISTRY || join(ROOT, "registry");
 
 class UsageError extends Error {}
 
@@ -50,14 +52,63 @@ function inventoryCommand([book, kind]) {
   console.log(JSON.stringify(report, null, 2));
 }
 
-export const COMMANDS = { inventory: inventoryCommand };
+// The documents the data-fix gate reads: those of the dumps that a record's matched items point at, by origin and document id.
+function loadDocuments(dumpsDir, records) {
+  const wanted = { official: new Set(), "ddb-importer": new Set() };
+  for (const r of records) {
+    for (const i of r.items ?? []) if (i.match === "matched" && wanted[i.origin]) wanted[i.origin].add(i.docId);
+  }
+  const documents = {};
+  for (const [origin, ids] of Object.entries(wanted)) {
+    documents[origin] = {};
+    if (!ids.size) continue;
+    for (const file of dumpsFor(dumpsDir, origin)) {
+      for (const doc of readDump(join(dumpsDir, file))) if (ids.has(doc._id)) documents[origin][doc._id] = doc;
+    }
+  }
+  return documents;
+}
 
-export function main(argv) {
+function gatesCommand(args) {
+  const ci = args.includes("--ci");
+  const unknown = args.filter((a) => a !== "--ci");
+  if (unknown.length) throw new UsageError(`Usage: gates [--ci] (unexpected: ${unknown.join(" ")})`);
+  const books = loadRegistry(REGISTRY);
+  const records = books.flatMap((b) => b.records);
+  if (!records.length) return console.log("Nothing to check: the registry has no records.");
+
+  const coreDir = need("DAS_CORE");
+  const dumpsDir = ci ? null : need("RULEPACK_DUMPS");
+  const textDir = ci ? null : need("RULEPACK_TEXT");
+  return loadCore(coreDir).then((core) => {
+    const documents = ci ? {} : loadDocuments(dumpsDir, records);
+    const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci });
+    if (!ci) {
+      const before = new Map(records.map((r) => [r.key, canonical(r)]));
+      const byBook = Map.groupBy(updated, (r) => r.book);
+      for (const b of books) {
+        const next = byBook.get(b.book) ?? [];
+        const changed = next.some((r) => before.get(r.key) !== canonical(r));
+        if (changed && !next.some((r) => failures[r.key]?.schema)) saveBook(REGISTRY, { book: b.book, records: next });
+      }
+    }
+    const lines = (byKey) => Object.entries(byKey).flatMap(([key, gates]) => Object.values(gates).flat().map((m) => [key, m]));
+    for (const [key, m] of lines(notes)) console.log(`note ${key}: ${m}`);
+    for (const [key, m] of lines(failures)) console.error(`FAIL ${key}: ${m}`);
+    const failed = Object.keys(failures).length;
+    console.log(`${records.length} records, ${failed} failing${ci ? " (ci: schema, validator, unique, evidence)" : ""}.`);
+    if (failed) process.exitCode = 1;
+  });
+}
+
+export const COMMANDS = { inventory: inventoryCommand, gates: gatesCommand };
+
+export async function main(argv) {
   const [name, ...args] = argv;
   const command = Object.hasOwn(COMMANDS, name) ? COMMANDS[name] : null;
   try {
     if (!command) throw new UsageError(`Usage: pipeline <${Object.keys(COMMANDS).join("|")}> ...`);
-    command(args);
+    await command(args);
   } catch (e) {
     if (!(e instanceof UsageError)) throw e;
     console.error(e.message);

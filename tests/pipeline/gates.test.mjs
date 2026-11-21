@@ -1,0 +1,436 @@
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
+import { ruleFingerprint, saveBook, stateOf } from "../../tools/pipeline/registry.mjs";
+import { cacheText } from "../../tools/pipeline/text.mjs";
+import { loadCore } from "../../tools/pipeline/core.mjs";
+import {
+  idsIn, gateSchema, gateValidator, gateIds, gateFixes, gateText, gateUnique, runGates
+} from "../../tools/pipeline/gates.mjs";
+
+// Synthetic fixtures only: invented spells and invented ids, no real book content.
+const ACT = "Ab12Cd34Ef56Gh78";
+const EFF = "Zy98Xw76Vu54Ts32";
+const NOPE = "Qq11Ww22Ee33Rr44";
+const DOC = "Dd00Cc11Bb22Aa33";
+
+const FACTS = ["target.hasStatus", "source.hasEffect"];
+const stubCore = {
+  version: "9.9.9", facts: FACTS,
+  // A stand-in for the engine: reports every key of a trigger condition that is not a known fact.
+  validateEntry: (entry, { facts }) => (entry.triggers ?? []).flatMap((t) => Object.keys(t.if ?? {})
+    .filter((k) => !(k in facts)).map((k) => `unknown fact "${k}"`)),
+  getPath: (o, path) => String(path).split(".").reduce((x, k) => (x == null ? undefined : x[k]), o),
+  matchesFrom: (current, from) => JSON.stringify(current) === JSON.stringify(from)
+};
+
+const entryWith = (extra = {}) => ({
+  triggers: [{ on: "endOfTurn", via: "effect", fromEffect: EFF, do: [{ type: "resave" }] }], ...extra
+});
+
+const item = (extra = {}) => ({
+  origin: "ddb-importer", match: "matched", identifier: "glimmer-bolt", docId: DOC, activities: [ACT], effects: [EFF],
+  data: { sha256: "0".repeat(64) }, ...extra
+});
+
+const rec = (over = {}) => ({
+  key: "tst:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "TST", page: 12, edition: "2014",
+  text: null, items: [item()], verdict: "entry", evidence: {}, identifier: "glimmer-bolt",
+  rule: { handledIn: "table", adds: "A bolt that glimmers.", entry: JSON.stringify(entryWith()), origins: ["ddb-importer"] },
+  ...over
+});
+// The registry stores an entry as JSON text (schema: rule.entry is a string); the gates accept the object as well.
+const withEntry = (entry, over = {}) => rec({ rule: { ...rec().rule, entry: JSON.stringify(entry) }, ...over });
+const withObjectEntry = (entry) => rec({ rule: { ...rec().rule, entry } });
+
+let dir;
+beforeEach(() => { dir = mkdtempSync(join(tmpdir(), "gates-")); });
+afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+const ctx = (over = {}) => ({ core: stubCore, documents: {}, textDir: dir, ci: false, ...over });
+const withText = (r) => ({
+  ...r, text: { sha256: cacheText(dir, "synthetic text of glimmer bolt"), source: "5etools", chars: 30 }
+});
+
+describe("idsIn", () => {
+  it("finds 16-character ids as keys and as string values, nested", () => {
+    const entry = { [ACT]: true, triggers: [{ fromEffect: EFF, list: [{ deep: NOPE }] }] };
+    expect(idsIn(entry)).toEqual([ACT, EFF, NOPE].sort());
+  });
+
+  it("ignores schema words, ordinary words and strings of another length", () => {
+    const entry = {
+      triggerOnEndTurn: "abcdefghijklmnop", on: "endOfTurn", n: 12345678,
+      a: "Ab12Cd34Ef56Gh7", b: "Ab12Cd34Ef56Gh789", c: "Ab12-d34Ef56Gh78"
+    };
+    expect(idsIn(entry)).toEqual([]);
+  });
+
+  it("keeps an id made of letters only", () => {
+    expect(idsIn({ x: "AbCdEfGhIjKlMnOp" })).toEqual(["AbCdEfGhIjKlMnOp"]);
+  });
+});
+
+describe("gateSchema", () => {
+  it("passes a valid record and reports the schema's errors", () => {
+    expect(gateSchema(rec())).toEqual([]);
+    expect(gateSchema(rec({ page: 0 }))[0]).toMatch(/^schema: page/);
+  });
+});
+
+describe("gateValidator", () => {
+  it("passes the entry with the real list of facts as the facts the engine knows", () => {
+    const known = entryWith({ triggers: [{ if: { "target.hasStatus": "charmed" }, do: [] }] });
+    expect(gateValidator(withEntry(known), ctx())).toEqual([]);
+  });
+
+  it("fails an unknown fact name", () => {
+    const entry = entryWith({ triggers: [{ if: { "moon.phase": "full" }, do: [] }] });
+    expect(gateValidator(withEntry(entry), ctx())).toEqual(['validator: unknown fact "moon.phase"']);
+  });
+
+  it("reads an entry written as JSON text, and refuses text that is not an entry", () => {
+    expect(gateValidator(rec(), ctx())).toEqual([]);
+    const text = (entry) => rec({ rule: { ...rec().rule, entry } });
+    expect(gateValidator(text("not json"), ctx())[0]).toMatch(/^validator: rule.entry is neither/);
+    expect(gateValidator(text("[1]"), ctx())[0]).toMatch(/^validator: rule.entry is neither/);
+    const unknown = entryWith({ triggers: [{ if: { "moon.phase": "full" }, do: [] }] });
+    expect(gateValidator(withObjectEntry(unknown), ctx())).toEqual(['validator: unknown fact "moon.phase"']);
+  });
+
+  it("reports an engine that throws instead of crashing", () => {
+    const boom = { ...stubCore, validateEntry: () => { throw new Error("boom"); } };
+    expect(gateValidator(rec(), ctx({ core: boom }))[0]).toMatch(/threw.*boom/);
+  });
+
+  it("has nothing to validate on a rule without an entry", () => {
+    expect(gateValidator(rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } }), ctx())).toEqual([]);
+  });
+});
+
+describe("gateIds", () => {
+  it("passes when every id is an activity or effect of the matched item", () => {
+    expect(gateIds(withEntry(entryWith({ [ACT]: 1 })), ctx())).toEqual([]);
+  });
+
+  it("names the origin and the missing id", () => {
+    expect(gateIds(withEntry(entryWith({ extra: NOPE })), ctx())).toEqual([`ids: ddb-importer has no activity or effect ${NOPE}`]);
+  });
+
+  it("fails an origin with no matched item, whatever the entry", () => {
+    const r = rec({ items: [item({ match: "absent" })] });
+    expect(gateIds(r, ctx())).toEqual(["ids: no matched item for ddb-importer"]);
+    expect(gateIds(rec({ items: [] }), ctx())).toEqual(["ids: no matched item for ddb-importer"]);
+  });
+
+  it("checks every origin the rule names", () => {
+    const r = withEntry(entryWith(), { items: [item(), item({ origin: "official", activities: [], effects: [] })] });
+    r.rule.origins = ["ddb-importer", "official"];
+    expect(gateIds(r, ctx())).toEqual([`ids: official has no activity or effect ${EFF}`]);
+  });
+
+  it("fails ids with no origin to check them against", () => {
+    const r = rec(); r.rule.origins = [];
+    expect(gateIds(r, ctx())[0]).toMatch(/rule.origins is empty/);
+  });
+
+  it("is a note, not a failure, for a legacy record without item data", () => {
+    const r = rec({ legacy: true, items: [] });
+    expect(gateIds(r, ctx())).toEqual([]);
+    const { notes, failures } = runGates([withText(r)], ctx());
+    expect(failures).toEqual({});
+    expect(notes[r.key].ids).toEqual(["ids: no item data (legacy)"]);
+  });
+
+  it("still fails a legacy record whose matched item lacks the id", () => {
+    const r = withEntry(entryWith({ extra: NOPE }), { legacy: true });
+    expect(gateIds(r, ctx())).toHaveLength(1);
+  });
+});
+
+describe("gateFixes", () => {
+  const doc = { system: { activities: { [ACT]: { activation: { type: "action" }, uses: { max: "1" } } } },
+    effects: [{ _id: EFF, transfer: false, changes: [{ key: "a", value: "1" }] }] };
+  const documents = { "ddb-importer": { [DOC]: doc } };
+  const fixed = (...dataFixes) => withEntry(entryWith({ dataFixes }));
+  const path = `system.activities.${ACT}.activation.type`;
+
+  it("passes a fix that is applicable (from matches)", () => {
+    expect(gateFixes(fixed({ path, value: "bonus", from: "action" }), ctx({ documents }))).toEqual([]);
+  });
+
+  it("passes a fix that is already applied", () => {
+    expect(gateFixes(fixed({ path, value: "action", from: "reaction" }), ctx({ documents }))).toEqual([]);
+  });
+
+  it("fails a fix whose from matches neither", () => {
+    expect(gateFixes(fixed({ path, value: "bonus", from: "reaction" }), ctx({ documents }))).toEqual([`fixes: drift at ${path}`]);
+  });
+
+  it("checks the field of an effect, and an effect that is gone", () => {
+    const ok = { effect: EFF, path: "transfer", value: true, from: false };
+    const bad = { effect: EFF, path: "transfer", value: true, from: "x" };
+    const gone = { effect: NOPE, path: "transfer", value: true };
+    expect(gateFixes(fixed(ok), ctx({ documents }))).toEqual([]);
+    expect(gateFixes(fixed(bad), ctx({ documents }))).toEqual(["fixes: drift at transfer"]);
+    expect(gateFixes(fixed(gone), ctx({ documents }))).toEqual(["fixes: drift at transfer"]);
+  });
+
+  it("fails a field of an activity the document does not have", () => {
+    const p = `system.activities.${NOPE}.uses.max`;
+    expect(gateFixes(fixed({ path: p, value: "2" }), ctx({ documents }))).toEqual([`fixes: drift at ${p}`]);
+  });
+
+  it("reports nothing for an effect to create", () => {
+    expect(gateFixes(fixed({ effect: NOPE, create: { name: "x" } }), ctx({ documents }))).toEqual([]);
+  });
+
+  it("has nothing to check without dataFixes", () => {
+    expect(gateFixes(rec(), ctx())).toEqual([]);
+  });
+
+  it("fails when the document is not in the dumps, unless the record is legacy (a note)", () => {
+    const f = fixed({ path, value: "bonus" });
+    expect(gateFixes(f, ctx())).toEqual(["fixes: no document for ddb-importer"]);
+    const legacy = { ...f, legacy: true };
+    expect(gateFixes(legacy, ctx())).toEqual([]);
+    expect(runGates([withText(legacy)], ctx()).notes[f.key].fixes).toEqual(["fixes: no item data (legacy)"]);
+  });
+});
+
+describe("gateText", () => {
+  it("passes a fingerprint that is in the cache and fails one that is not", () => {
+    expect(gateText(withText(rec()), ctx())).toEqual([]);
+    const missing = rec({ text: { sha256: "a".repeat(64), source: "5etools", chars: 3 } });
+    expect(gateText(missing, ctx())).toEqual([`text: ${"a".repeat(64)} is not in the text cache`]);
+  });
+
+  it("fails a record without a fingerprint; for a legacy one it is a note", () => {
+    expect(gateText(rec(), ctx())).toEqual(["text: the record has no text fingerprint"]);
+    const legacy = rec({ legacy: true });
+    expect(gateText(legacy, ctx())).toEqual([]);
+    expect(runGates([legacy], ctx()).notes[legacy.key].text).toEqual(["text: not fingerprinted (legacy)"]);
+  });
+});
+
+describe("gateUnique", () => {
+  const other = (over = {}) => rec({ key: "tst:spell:glimmer-bolt-2", ...over });
+
+  it("fails two records with the same canonical identifier, naming both keys", () => {
+    const f = gateUnique([rec(), other({ identifier: " Glimmer-Bolt " })]);
+    expect(f).toHaveLength(1);
+    expect(f[0]).toContain("tst:spell:glimmer-bolt");
+    expect(f[0]).toContain("tst:spell:glimmer-bolt-2");
+  });
+
+  it("allows them when each binds its own sources, and ignores distinct or missing identifiers", () => {
+    const sources = { [DOC]: "glimmer-bolt" };
+    expect(gateUnique([rec({ sources }), other({ sources })])).toEqual([]);
+    expect(gateUnique([rec({ sources }), other()])).toHaveLength(1);
+    expect(gateUnique([rec(), other({ identifier: "other" })])).toEqual([]);
+    const { identifier, ...bare } = rec();
+    expect(gateUnique([bare, { ...bare, key: "tst:spell:y" }])).toEqual([]);
+  });
+});
+
+describe("runGates", () => {
+  const good = () => withText(rec());
+
+  it("records the evidence of a record that passes, with the fingerprint of its rule", () => {
+    const r = good();
+    const { failures, updated } = runGates([r], ctx());
+    expect(failures).toEqual({});
+    const gates = updated[0].evidence.gates;
+    expect(gates).toMatchObject({ core: "9.9.9", rule: ruleFingerprint(r.rule) });
+    expect(gates.passed).toEqual(expect.arrayContaining(["schema", "validator", "ids", "fixes", "text"]));
+    expect(Number.isNaN(Date.parse(gates.at))).toBe(false);
+    expect(r.evidence).toEqual({});
+    expect(stateOf(updated[0])).toBe("gated");
+  });
+
+  it("keeps the time of a run that changes nothing", () => {
+    const first = runGates([good()], ctx()).updated;
+    const again = runGates(first, ctx()).updated;
+    expect(again[0]).toEqual(first[0]);
+  });
+
+  it("removes the evidence of a record that fails, and a changed entry makes it a draft again", () => {
+    const passed = runGates([good()], ctx()).updated[0];
+    expect(stateOf(passed)).toBe("gated");
+    const edited = { ...passed, rule: { ...passed.rule, entry: JSON.stringify(entryWith({ extra: NOPE })) } };
+    expect(stateOf(edited)).toBe("drafted");
+    const { failures, updated } = runGates([edited], ctx());
+    expect(failures[edited.key].ids).toEqual([`ids: ddb-importer has no activity or effect ${NOPE}`]);
+    expect(updated[0].evidence.gates).toBeUndefined();
+  });
+
+  it("fails every record of a group that shares an identifier, and sets no evidence on them", () => {
+    const a = good();
+    const b = { ...good(), key: "tst:spell:glimmer-bolt-2" };
+    const { failures, updated } = runGates([a, b], ctx());
+    expect(Object.keys(failures).sort()).toEqual([a.key, b.key].sort());
+    expect(failures[a.key].unique).toHaveLength(1);
+    expect(updated.every((r) => !r.evidence.gates)).toBe(true);
+  });
+
+  it("runs only schema, and text when it is set, on a record without a rule", () => {
+    const { rule, ...bare } = rec({ verdict: null, identifier: "x" });
+    const other = { ...bare, key: "tst:spell:other", identifier: "y" };
+    const withBadText = { ...other, text: { sha256: "b".repeat(64), source: "5etools", chars: 3 } };
+    const { failures, updated } = runGates([bare, withBadText], ctx());
+    expect(failures[bare.key]).toBeUndefined();
+    expect(updated[0].evidence.gates).toBeUndefined();
+    const { failures: f2 } = runGates([withBadText], ctx());
+    expect(Object.keys(f2[withBadText.key])).toEqual(["text"]);
+  });
+
+  it("does not run the other gates on a record that fails the schema", () => {
+    const bad = rec({ page: 0, rule: { handledIn: "table", adds: "x", entry: 5, origins: "ddb-importer" } });
+    const { failures } = runGates([bad], ctx());
+    expect(Object.keys(failures[bad.key])).toEqual(["schema"]);
+  });
+
+  describe("in ci mode", () => {
+    const ci = (over = {}) => ctx({ ci: true, textDir: undefined, documents: undefined, ...over });
+
+    it("trusts evidence whose fingerprint is the rule's, and does not touch the records", () => {
+      const gated = runGates([good()], ctx()).updated;
+      const { failures, updated } = runGates(gated, ci());
+      expect(failures).toEqual({});
+      expect(updated).toEqual(gated);
+    });
+
+    it("fails a rule whose evidence is missing or stale", () => {
+      const gated = runGates([good()], ctx()).updated[0];
+      const stale = { ...gated, rule: { ...gated.rule, adds: "A changed line." } };
+      expect(runGates([stale], ci()).failures[stale.key].gates).toHaveLength(1);
+      expect(runGates([good()], ci()).failures[good().key].gates).toHaveLength(1);
+    });
+
+    it("fails evidence that lacks a gate", () => {
+      const gated = runGates([good()], ctx()).updated[0];
+      const partial = { ...gated, evidence: { gates: { ...gated.evidence.gates, passed: ["schema", "validator"] } } };
+      expect(runGates([partial], ci()).failures[partial.key].gates).toHaveLength(1);
+    });
+
+    it("still runs the validator and unique, and tolerates a legacy rule that was never gated, with a note", () => {
+      const legacy = rec({ legacy: true });
+      const r = runGates([legacy], ci());
+      expect(r.failures).toEqual({});
+      expect(r.notes[legacy.key].gates).toHaveLength(1);
+      const bad = withEntry(entryWith({ triggers: [{ if: { "moon.phase": 1 }, do: [] }] }), { legacy: true });
+      expect(runGates([bad], ci()).failures[bad.key].validator).toHaveLength(1);
+      expect(Object.keys(runGates([legacy, { ...legacy, key: "tst:spell:y" }], ci()).failures)).toHaveLength(2);
+    });
+
+    it("does not tolerate a legacy rule whose old evidence is stale", () => {
+      const gated = runGates([good()], ctx()).updated[0];
+      const stale = { ...gated, legacy: true, rule: { ...gated.rule, adds: "Changed." } };
+      expect(runGates([stale], ci()).failures[stale.key].gates).toHaveLength(1);
+    });
+  });
+});
+
+const CORE_DIR = process.env.DAS_CORE && existsSync(join(process.env.DAS_CORE, "module/scripts/core/content.mjs"))
+  ? process.env.DAS_CORE : null;
+
+describe.skipIf(!CORE_DIR && !process.env.CI)("with the real DAS · Core", () => {
+  it("loads the validator, 60 facts or more, the version and the shipped identifiers", async () => {
+    const core = await loadCore(CORE_DIR);
+    expect(core.facts.length).toBeGreaterThanOrEqual(60);
+    expect(core.facts).toContain("activity.isAttack");
+    expect(core.facts.every((f) => /^\w+\.\w+$/.test(f))).toBe(true);
+    expect(core.version).toMatch(/^\d+\.\d+\.\d+/);
+    expect(core.identifiers).toBeInstanceOf(Set);
+    expect(core.identifiers.size).toBeGreaterThan(100);
+    expect(core.identifiers.has("black-tentacles") && core.identifiers.has("evards-black-tentacles")).toBe(true);
+  });
+
+  it("validates every entry of the pack, and refuses an unknown fact and an unknown key", async () => {
+    const core = await loadCore(CORE_DIR);
+    const { TABLE } = await import("../../scripts/rules/index.mjs");
+    for (const [id, entry] of Object.entries(TABLE)) {
+      expect(gateValidator(withEntry(entry), ctx({ core })), id).toEqual([]);
+      for (const found of idsIn(entry)) expect(found, id).toMatch(/^[A-Za-z0-9]{16}$/);
+    }
+    const unknownFact = entryWith({ triggers: [{ on: "isHit", if: { "moon.phase": "full" }, do: [{ type: "resave" }] }] });
+    expect(gateValidator(withEntry(unknownFact), ctx({ core }))).not.toEqual([]);
+    expect(gateValidator(withEntry({ recastt: true }), ctx({ core }))).not.toEqual([]);
+  });
+
+  it("applies the engine's own matching to the data fixes", async () => {
+    const core = await loadCore(CORE_DIR);
+    const doc = { system: { activities: { [ACT]: { activation: { type: "action" } } } }, effects: [] };
+    const path = `system.activities.${ACT}.activation.type`;
+    const r = withEntry(entryWith({ dataFixes: [{ path, value: "bonus", from: "reaction" }] }));
+    expect(gateFixes(r, ctx({ core, documents: { "ddb-importer": { [DOC]: doc } } }))).toEqual([`fixes: drift at ${path}`]);
+  });
+});
+
+describe("gates CLI", () => {
+  const cli = (args, env = {}) => spawnSync("node", [resolve("tools/pipeline/cli.mjs"), ...args], {
+    encoding: "utf8", env: { PATH: process.env.PATH, ...env }
+  });
+  const registry = () => join(dir, "registry");
+
+  it("has nothing to check over a missing or empty registry, and needs no variable for it", () => {
+    for (const make of [() => {}, () => saveBook(registry(), { book: "TST", records: [] })]) {
+      make();
+      const r = cli(["gates"], { RULEPACK_REGISTRY: registry() });
+      expect(r.status).toBe(0);
+      expect(r.stdout).toMatch(/nothing to check/i);
+    }
+  });
+
+  it("exits 2 naming the variable that is missing", () => {
+    saveBook(registry(), { book: "TST", records: [rec()] });
+    const env = { RULEPACK_REGISTRY: registry() };
+    expect(cli(["gates", "--ci"], env).stderr).toContain("DAS_CORE");
+    expect(cli(["gates"], { ...env, DAS_CORE: "/x" }).stderr).toContain("RULEPACK_DUMPS");
+    expect(cli(["gates"], { ...env, DAS_CORE: "/x", RULEPACK_DUMPS: "/y" }).stderr).toContain("RULEPACK_TEXT");
+    expect(cli(["gates", "--ci"], env).status).toBe(2);
+  });
+
+  describe.skipIf(!CORE_DIR && !process.env.CI)("with the real DAS · Core", () => {
+    const env = () => ({ RULEPACK_REGISTRY: registry(), DAS_CORE: CORE_DIR });
+
+    it("--ci fails a rule that has no evidence, and passes one gated by a local run with the same rule", async () => {
+      const r = rec();
+      saveBook(registry(), { book: "TST", records: [r] });
+      expect(cli(["gates", "--ci"], env()).status).toBe(1);
+      const core = await loadCore(CORE_DIR);
+      const gated = runGates([withText(r)], ctx({ core })).updated;
+      saveBook(registry(), { book: "TST", records: gated });
+      const ok = cli(["gates", "--ci"], env());
+      expect(ok.status).toBe(0);
+      expect(ok.stderr).toBe("");
+    });
+
+    it("--ci fails on an invalid entry", () => {
+      saveBook(registry(), { book: "TST", records: [withEntry({ recastt: true })] });
+      const r = cli(["gates", "--ci"], env());
+      expect(r.status).toBe(1);
+      expect(r.stderr).toMatch(/FAIL tst:spell:glimmer-bolt: validator/);
+    });
+
+    it("a full run gates the record from the dumps and the text cache, writes the evidence, and exits 0", () => {
+      const dumps = join(dir, "dumps");
+      const text = join(dir, "text");
+      const sha = cacheText(text, "synthetic text of glimmer bolt");
+      saveBook(registry(), { book: "TST", records: [rec({ text: { sha256: sha, source: "5etools", chars: 30 } })] });
+      mkdirSyncSafe(dumps);
+      writeJson(join(dumps, "ddb.spells.json"), [{ _id: DOC, name: "Glimmer Bolt", system: {}, effects: [] }]);
+      const r = cli(["gates"], { ...env(), RULEPACK_DUMPS: dumps, RULEPACK_TEXT: text });
+      expect(r.status, r.stderr).toBe(0);
+      const saved = JSON.parse(readFileSync(join(registry(), "tst.json"), "utf8"));
+      expect(saved.records[0].evidence.gates.core).toMatch(/^\d/);
+      expect(saved.records[0].state).toBe("gated");
+      expect(cli(["gates", "--ci"], env()).status).toBe(0);
+    });
+  });
+});
+
+function mkdirSyncSafe(p) { mkdirSync(p, { recursive: true }); }
+function writeJson(p, v) { writeFileSync(p, JSON.stringify(v)); }
