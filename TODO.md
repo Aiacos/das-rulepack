@@ -116,5 +116,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       to no verdict with `hint: "core-generic"` and wait for a reader.
 - [x] Monster features with a DDB Importer item and no official one are read (2026-11-21): 70 batches, 2,370 results —
       2,220 applied, 150 queued for a person (queue now 553). One batch whose reader had judged by name was read again.
-- [ ] `structure.mjs` lists an activity's own damage parts only: an attack that takes its damage from the item
+- [x] `structure.mjs` listed an activity's own damage parts only (fixed: base damage of an attack that includes it): an attack that takes its damage from the item
       (`system.damage.base`, as DDB Importer's monster weapons do) shows no damage to the reader. Add the base damage.
