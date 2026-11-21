@@ -1,5 +1,5 @@
-// Loads what the gates need from a clone of DAS · Core: the validator, the data-fix helpers, the fact names and the table of
-// identifiers the engine already has an entry for. Nothing here writes to the clone.
+// Loads what the gates need from a clone of DAS · Core: the validator, the data-fix helpers, the fact names, the table of
+// identifiers the engine already has an entry for, its entry keys and its vocabulary. Nothing here writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -20,8 +20,29 @@ export function factNames(source) {
 
 const load = (dir, path) => import(pathToFileURL(join(dir, "module", "scripts", path)).href);
 
+/**
+ * The words of the engine's schema: every string of the exported enumerations of the given modules (an array's strings, a
+ * Set's strings, an object's keys), and every fact name with its dot-separated segments. The ids gate never takes one of
+ * these words for a document id.
+ */
+export function vocabularyOf(modules, facts) {
+  const words = new Set();
+  const addAll = (list) => { for (const w of list) if (typeof w === "string") words.add(w); };
+  for (const mod of modules) {
+    for (const value of Object.values(mod)) {
+      if (Array.isArray(value) || value instanceof Set) addAll(value);
+      else if (value !== null && typeof value === "object") addAll(Object.keys(value));
+    }
+  }
+  for (const fact of facts) addAll([fact, ...fact.split(".")]);
+  return words;
+}
+
 export async function loadCore(dir) {
-  const files = ["core/content.mjs", "core/data-fixes.mjs", "content/index.mjs", "adapter/facts.mjs", "../module.json"];
+  const files = [
+    "core/content.mjs", "core/content/enums.mjs", "core/triggers.mjs", "core/data-fixes.mjs", "content/index.mjs",
+    "adapter/facts.mjs", "../module.json"
+  ];
   for (const f of files) {
     if (!existsSync(join(dir, "module", "scripts", f))) throw new Error(`DAS_CORE ${dir}: module/scripts/${f} is missing`);
   }
@@ -43,7 +64,18 @@ export async function loadCore(dir) {
     throw new Error(`DAS_CORE ${dir}: module.json has no version`);
   }
 
+  const enums = await load(dir, "core/content/enums.mjs");
+  const triggers = await load(dir, "core/triggers.mjs");
+  if (!Array.isArray(enums.ENTRY_KEYS) || !enums.ENTRY_KEYS.length) {
+    throw new Error(`DAS_CORE ${dir}: core/content/enums.mjs does not export ENTRY_KEYS`);
+  }
+  if (!triggers.MOMENTS || typeof triggers.MOMENTS !== "object") {
+    throw new Error(`DAS_CORE ${dir}: core/triggers.mjs does not export MOMENTS`);
+  }
+  const entryKeys = new Set(enums.ENTRY_KEYS);
+  const vocabulary = vocabularyOf([enums, triggers], facts);
+
   const aliases = SRD_ALIASES ?? {};
   const identifiers = new Set([...Object.keys(SHIPPED), ...Object.keys(aliases), ...Object.values(aliases)]);
-  return { validateEntry, facts, matchesFrom, getPath, version, identifiers };
+  return { validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary };
 }

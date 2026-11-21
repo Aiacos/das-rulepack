@@ -1,5 +1,7 @@
 // Batch files for reader agents. The tools never call a model: they cut the work into files and ingest what comes back.
 // Text is referenced by fingerprint (`textSha`), never embedded, so a batch file is safe to commit.
+import { groupBy } from "./registry.mjs";
+
 export const DEFAULT_BATCH_SIZE = 40;
 
 const summary = ({ data, ...item }) => item;
@@ -12,8 +14,8 @@ export function cutBatches(records, { size = DEFAULT_BATCH_SIZE } = {}) {
   const open = records.filter((r) => !r.verdict && r.text);
   const batches = [];
   const counts = new Map();
-  for (const [book, ofBook] of Map.groupBy(open, (r) => r.book.toLowerCase())) {
-    for (const ofKind of Map.groupBy(ofBook, (r) => r.kind).values()) {
+  for (const [book, ofBook] of groupBy(open, (r) => r.book.toLowerCase())) {
+    for (const ofKind of groupBy(ofBook, (r) => r.kind).values()) {
       for (let i = 0; i < ofKind.length; i += size) {
         const n = (counts.get(book) ?? 0) + 1;
         counts.set(book, n);

@@ -50,6 +50,43 @@ function checkRule(rule, verdict, errors) {
   if (verdict === "entry" && !isObject(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
 }
 
+// The gates the evidence may name (gates.mjs GATES).
+export const GATE_NAMES = Object.freeze(["schema", "validator", "ids", "fixes", "text", "unique"]);
+const HEX64 = /^[0-9a-f]{64}$/;
+const isGateList = (v) => Array.isArray(v) && v.every((g) => GATE_NAMES.includes(g));
+
+// The shapes of evidence.gates, evidence.reviewed and evidence.played, when present (the tools write them; nobody types them).
+function checkEvidence(evidence, errors) {
+  const { gates, reviewed, played } = evidence;
+  if ("gates" in evidence) {
+    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, passed, noted? }");
+    else {
+      for (const f of ["at", "core"]) if (!isString(gates[f])) errors.push(`evidence.gates.${f}: must be a non-empty string`);
+      if (typeof gates.rule !== "string" || !HEX64.test(gates.rule)) errors.push("evidence.gates.rule: must be 64 hex characters");
+      if (!isGateList(gates.passed)) {
+        errors.push(`evidence.gates.passed: must be an array of gate names (${GATE_NAMES.join(", ")})`);
+      }
+      if ("noted" in gates && !isGateList(gates.noted)) errors.push("evidence.gates.noted: must be an array of gate names");
+    }
+  }
+  if ("reviewed" in evidence) {
+    if (!isObject(reviewed)) errors.push("evidence.reviewed: must be { by, at, agrees }");
+    else {
+      for (const f of ["by", "at"]) if (!isString(reviewed[f])) errors.push(`evidence.reviewed.${f}: must be a non-empty string`);
+      if (typeof reviewed.agrees !== "boolean") errors.push("evidence.reviewed.agrees: must be a boolean");
+    }
+  }
+  if ("played" in evidence) {
+    if (!isObject(played)) errors.push("evidence.played: must be { at, core, world, scenario, client? }");
+    else {
+      for (const f of ["at", "core", "world", "scenario"]) {
+        if (!isString(played[f])) errors.push(`evidence.played.${f}: must be a non-empty string`);
+      }
+      if ("client" in played && !isString(played.client)) errors.push("evidence.played.client: must be a non-empty string");
+    }
+  }
+}
+
 export function validateRecord(record) {
   if (!isObject(record)) return ["record: must be an object"];
   const errors = [];
@@ -63,8 +100,9 @@ export function validateRecord(record) {
     errors.push(`verdict: unknown verdict ${JSON.stringify(record.verdict)}`);
   }
   if (!isObject(record.evidence)) errors.push("evidence: must be an object");
+  else checkEvidence(record.evidence, errors);
+  // A verdict comes before any draft: `rule.entry` is required only once a rule is there.
   if ("rule" in record) checkRule(record.rule, record.verdict, errors);
-  else if (record.verdict === "entry") errors.push("rule.entry: required when the verdict is entry");
   if ("legacy" in record && typeof record.legacy !== "boolean") errors.push("legacy: must be a boolean");
   if ("srd" in record && typeof record.srd !== "boolean") errors.push("srd: must be a boolean");
   if ("legacyStatus" in record && !LEGACY_STATUSES.includes(record.legacyStatus)) {

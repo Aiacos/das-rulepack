@@ -25,6 +25,8 @@ const record = (name, over = {}) => {
 };
 const noText = (name) => record(name, { text: null });
 const core = new Set(["in-core"]);
+// A stand-in for the engine's entry keys (core.entryKeys).
+const ENTRY_KEYS = new Set(["triggers", "aura", "noDamage"]);
 const AT = "2026-01-01T00:00:00.000Z";
 
 describe("autoTriage", () => {
@@ -55,16 +57,17 @@ describe("autoTriage", () => {
 
 describe("ingest", () => {
   const ok = (key, over = {}) => ({ key, verdict: "none", why: "Pure narration.", confidence: 0.9, ...over });
-  const run = (records, results, over = {}) => ingest(records, results, { textDir, by: "agent-1", at: AT, ...over });
+  const run = (records, results, over = {}) =>
+    ingest(records, results, { textDir, by: "agent-1", at: AT, entryKeys: ENTRY_KEYS, ...over });
 
   it("applies a verdict, why and evidence.triaged to a copy", () => {
     const records = [record("Dim Glow")];
-    const out = run(records, [ok("tst:spell:dim-glow", { keys: ["x"], similar: ["close-one"] })]);
+    const out = run(records, [ok("tst:spell:dim-glow", { keys: ["aura"], similar: ["close-one"] })]);
     expect(out.rejected).toEqual([]);
     expect(out.applied).toEqual(["tst:spell:dim-glow"]);
     const [r] = out.records;
     expect(r).toMatchObject({ verdict: "none", why: "Pure narration." });
-    expect(r.evidence.triaged).toEqual({ by: "agent-1", at: AT, confidence: 0.9, keys: ["x"], similar: ["close-one"] });
+    expect(r.evidence.triaged).toEqual({ by: "agent-1", at: AT, confidence: 0.9, keys: ["aura"], similar: ["close-one"] });
     expect(validateRecord(r)).toEqual([]);
     expect(records[0].verdict).toBeNull();
   });
@@ -76,8 +79,13 @@ describe("ingest", () => {
     expect(bad({ keys: ["1bad"] })).toHaveLength(1);
     expect(bad({ keys: ["has space"] })).toHaveLength(1);
     expect(bad({ keys: ["a".repeat(65)] })).toHaveLength(1);
-    expect(bad({ keys: Array(13).fill("ok") })).toHaveLength(1);
-    expect(bad({ keys: Array(12).fill("ok") })).toEqual([]);
+    expect(bad({ keys: Array(13).fill("aura") })).toHaveLength(1);
+    expect(bad({ keys: Array(12).fill("aura") })).toEqual([]);
+    expect(bad({ keys: ["noDamage", "triggers.0.do"] })).toEqual([]);
+    expect(bad({ keys: ["inventedKey"] })).toHaveLength(1);
+    expect(bad({ keys: ["inventedKey.triggers"] })).toHaveLength(1);
+    expect(run(records, [ok("tst:spell:dim-glow", { keys: ["aura"] })], { entryKeys: undefined }).rejected).toHaveLength(1);
+    expect(run(records, [ok("tst:spell:dim-glow")], { entryKeys: undefined }).rejected).toEqual([]);
     expect(bad({ similar: ["tst:spell:other-one", "some-identifier"] })).toEqual([]);
     expect(bad({ similar: ["Not Kebab"] })).toHaveLength(1);
     expect(bad({ similar: ["tst:spell:missing"] })).toHaveLength(1);
@@ -87,6 +95,17 @@ describe("ingest", () => {
     for (const by of ["", "-x", "a b", "x".repeat(65), "a/b"]) {
       expect(() => run(records, [ok("tst:spell:dim-glow")], { by })).toThrow(/by must match/);
     }
+  });
+
+  it("exempts a record key from the quotation check of similar, not the same words as kebab-case entries", () => {
+    const twelve = BODY.split(" ").slice(0, 12).join(" ");
+    const spelled = record(twelve);   // its key spells 12 consecutive words of the text of Dim Glow
+    expect(spelled.key).toBe(`tst:spell:${twelve.toLowerCase().replaceAll(" ", "-")}`);
+    const records = [record("Dim Glow"), spelled];
+    expect(run(records, [ok("tst:spell:dim-glow", { similar: [spelled.key] })]).rejected).toEqual([]);
+    const words = twelve.toLowerCase().split(" ");
+    const kebab = [words.slice(0, 4), words.slice(4, 8), words.slice(8)].map((w) => w.join("-"));
+    expect(run(records, [ok("tst:spell:dim-glow", { similar: kebab })]).rejected[0].reason).toMatch(/similar contains a quotation/);
   });
 
   it("rejects a quotation hidden in kebab-case similar entries, but not record keys", () => {
@@ -101,6 +120,25 @@ describe("ingest", () => {
   it("rejects a result with an unknown field", () => {
     const out = run([record("Dim Glow")], [ok("tst:spell:dim-glow", { notes: "x" })]);
     expect(out.rejected[0].reason).toMatch(/unknown field "notes"/);
+  });
+
+  it("takes why as one line of printable characters only", () => {
+    const records = [record("Dim Glow")];
+    for (const why of ["Two\nlines.", "Carriage\rreturn.", "Tab\there.", "Bell\u0007.", "Bidi \u202Eoverride.", "Line\u2028sep."]) {
+      const out = run(records, [ok("tst:spell:dim-glow", { why })]);
+      expect(out.rejected[0]?.reason, JSON.stringify(why)).toMatch(/single line of printable characters/);
+    }
+    expect(run(records, [ok("tst:spell:dim-glow", { why: "Plain — with ünïcode, and a dash." })]).rejected).toEqual([]);
+  });
+
+  it("echoes at most 80 characters of a key or of an unknown field name", () => {
+    const long = `tst:spell:${"z".repeat(300)}`;
+    const field = "f".repeat(300);
+    const out = run([record("Dim Glow")], [ok(long), ok("tst:spell:dim-glow", { [field]: 1 }), { ...ok("x"), key: { a: 1 } }]);
+    expect(out.rejected[0].key).toHaveLength(80);
+    expect(out.rejected[0].reason.length).toBeLessThan(120);
+    expect(out.rejected[1].reason).toBe(`unknown field "${"f".repeat(80)}"`);
+    expect(out.rejected[2].key).toBeNull();
   });
 
   it("rejects the verdict core from a reader", () => {
@@ -130,7 +168,7 @@ describe("ingest", () => {
     const eleven = "alpha beta gamma delta epsilon zeta eta theta iota kappa lambda";
     const twelve = `${eleven} mu`;
     expect(run(records, [ok("tst:spell:dim-glow", { why: eleven })]).rejected).toEqual([]);
-    const shout = "It says: ALPHA  beta\n gamma delta epsilon zeta eta theta iota kappa lambda MU.";
+    const shout = "It says: ALPHA  beta   gamma delta epsilon zeta eta theta iota kappa lambda MU.";
     const bad = run(records, [ok("tst:spell:dim-glow", { why: shout })]);
     expect(bad.rejected[0].reason).toMatch(/quotation/);
     expect(run(records, [ok("tst:spell:dim-glow", { why: twelve })]).rejected).toHaveLength(1);
@@ -223,6 +261,9 @@ describe("pipeline CLI: triage and ingest on temporary folders", () => {
     const r = run(["ingest", resultsFile({})], { RULEPACK_TEXT: "" });
     expect(r.status).toBe(2);
     expect(r.stderr).toContain("RULEPACK_TEXT");
+    const noCore = run(["ingest", resultsFile({})], { DAS_CORE: "" });
+    expect(noCore.status).toBe(2);
+    expect(noCore.stderr).toContain("DAS_CORE");
   });
 
   it.skipIf(!process.env.DAS_CORE)("triage applies the rules, saves and prints the counts", () => {
@@ -237,7 +278,10 @@ describe("pipeline CLI: triage and ingest on temporary folders", () => {
     expect(book.records.find((x) => x.key === "tst:spell:dim-glow").verdict).toBeNull();
   });
 
-  it("ingest applies, queues, merges the queue and exits 1 on a rejection", () => {
+  // ingest reads the engine's entry keys: it needs DAS_CORE.
+  const withCore = it.skipIf(!process.env.DAS_CORE && !process.env.CI);
+
+  withCore("ingest applies, queues, merges the queue and exits 1 on a rejection", () => {
     const file = resultsFile({
       batch: "tst-triage-001", by: "agent-1", results: [
         { key: "tst:spell:dim-glow", verdict: "none", why: "Narration.", confidence: 0.9 },
@@ -269,13 +313,58 @@ describe("pipeline CLI: triage and ingest on temporary folders", () => {
     expect(queue()).toEqual([]);
   });
 
-  it("ingest refuses a file with an unknown field, a non-boolean overwrite or a bad by, and applies nothing", () => {
+  withCore("ingest refuses a file with an unknown field, any overwrite field or a bad by, and applies nothing", () => {
     const result = { key: "tst:spell:dim-glow", verdict: "none", why: "Narration.", confidence: 0.9 };
-    for (const extra of [{ note: "x" }, { overwrite: "yes" }, { by: "bad name" }]) {
+    for (const extra of [{ note: "x" }, { overwrite: "yes" }, { overwrite: true }, { overwrite: false }, { by: "bad name" }]) {
       const r = run(["ingest", resultsFile({ batch: "b", by: "agent-1", results: [result], ...extra })]);
-      expect(r.status).toBe(2);
+      expect(r.status, JSON.stringify(extra)).toBe(2);
     }
+    const r = run(["ingest", resultsFile({ batch: "b", by: "agent-1", results: [result], overwrite: true })]);
+    expect(r.stderr).toMatch(/--overwrite/);
+    const long = run(["ingest", resultsFile({ batch: "b", by: "agent-1", results: [], ["x".repeat(500)]: 1 })]);
+    expect(long.stderr).toContain(`"${"x".repeat(80)}"`);
+    expect(long.stderr).not.toContain("x".repeat(81));
     expect(readBook().records.every((x) => x.verdict === null)).toBe(true);
+  });
+
+  withCore("ingest replaces a verdict only with --overwrite on the command line", () => {
+    const result = (verdict) => ({ key: "tst:spell:dim-glow", verdict, why: "Narration.", confidence: 0.9 });
+    expect(run(["ingest", resultsFile({ batch: "b", by: "agent-1", results: [result("none")] })]).status).toBe(0);
+    const again = resultsFile({ batch: "b", by: "agent-1", results: [result("data")] });
+    expect(run(["ingest", again]).status).toBe(1);
+    expect(readBook().records.find((x) => x.key === "tst:spell:dim-glow").verdict).toBe("none");
+    expect(run(["ingest", again, "--overwrite"]).status).toBe(0);
+    expect(readBook().records.find((x) => x.key === "tst:spell:dim-glow").verdict).toBe("data");
+    expect(run(["ingest", "--overwrite"]).status).toBe(2);
+  });
+
+  withCore("ingest takes every verdict a reader may return without crashing, and writes the books and the queue", () => {
+    const names = ["Ab Data", "Ab None", "Ab Entry", "Ab Code", "Ab Engine", "Ab Unverifiable"];
+    saveBook(registry, { book: "TST", records: names.map((n) => record(n)) });
+    const verdicts = ["data", "none", "entry", "code", "engine", "unverifiable"];
+    const results = names.map((n, i) => ({
+      key: `tst:spell:${n.toLowerCase().replace(/ /g, "-")}`, verdict: verdicts[i], why: "A reason in my own words.",
+      confidence: 0.9, ...(verdicts[i] === "entry" ? { keys: ["triggers"] } : {})
+    }));
+    const r = run(["ingest", resultsFile({ batch: "tst-triage-001", by: "agent-1", results })]);
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stderr).toBe("");
+    expect(JSON.parse(r.stdout)).toMatchObject({ applied: 5, queued: 1, rejected: [] });
+    const byKey = new Map(readBook().records.map((x) => [x.key, x]));
+    for (const res of results.filter((x) => x.verdict !== "engine")) {
+      expect(byKey.get(res.key)).toMatchObject({ verdict: res.verdict, state: "triaged" });
+    }
+    const queue = JSON.parse(readFileSync(join(registry, "queue.json"), "utf8"));
+    expect(queue.map((q) => [q.key, q.reason])).toEqual([["tst:spell:ab-engine", "engine"]]);
+  });
+
+  withCore("ingest rejects keys that are not the engine's entry keys", () => {
+    const result = (keys) => ({ key: "tst:spell:dim-glow", verdict: "entry", why: "Fits a trigger.", confidence: 0.9, keys });
+    const bad = run(["ingest", resultsFile({ batch: "b", by: "agent-1", results: [result(["inventedKeyOfMine"])] })]);
+    expect(bad.status).toBe(1);
+    expect(JSON.parse(bad.stdout).rejected[0].reason).toMatch(/entry keys of the engine/);
+    const good = run(["ingest", resultsFile({ batch: "b", by: "agent-1", results: [result(["triggers.0.on", "aura"])] })]);
+    expect(good.status, good.stdout).toBe(0);
   });
 
   it("ingest refuses a results file of the wrong shape", () => {

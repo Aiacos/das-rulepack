@@ -1,1 +1,15 @@
-{ "spell": [ { "name": "Old Mist", "source": "YZZ", "page": 3, "level": 1, "school": "C", "srd": true, "entries": ["A mist rises."] } ] }
+{
+  "spell": [
+    {
+      "name": "Old Mist",
+      "source": "YZZ",
+      "page": 3,
+      "level": 1,
+      "school": "C",
+      "srd": true,
+      "entries": [
+        "A mist rises."
+      ]
+    }
+  ]
+}

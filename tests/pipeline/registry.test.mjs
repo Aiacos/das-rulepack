@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { mkdtempSync, rmSync, readFileSync } from "node:fs";
+import { mkdtempSync, rmSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  VERDICTS, STATES, ORIGINS, MATCHES, keyOf, validateRecord, ruleFingerprint, stateOf, loadBook, saveBook
+  VERDICTS, STATES, ORIGINS, MATCHES, keyOf, slug, groupBy, validateRecord, ruleFingerprint, stateOf, loadBook, saveBook
 } from "../../tools/pipeline/registry.mjs";
 
 // Synthetic fixtures only: invented spells, no real book content.
@@ -38,6 +38,10 @@ describe("keyOf", () => {
   it("drops typographic apostrophes too", () => {
     expect(keyOf({ book: "XPHB", kind: "spell", name: "Mage’s Spark" })).toBe("xphb:spell:mages-spark");
   });
+  it("drops accents before slugging", () => {
+    expect(slug("Flèche")).toBe("fleche");
+    expect(keyOf({ book: "XZZ", kind: "spell", name: "Éclat de Glâce" })).toBe("xzz:spell:eclat-de-glace");
+  });
   it("includes the creature when given", () => {
     expect(keyOf({ book: "MM", kind: "action", name: "Frost Bite", creature: "Rime Wolf" })).toBe("mm:action:rime-wolf:frost-bite");
   });
@@ -63,8 +67,8 @@ describe("validateRecord", () => {
   });
   it("rejects a non-object", () => expect(validateRecord(null)).not.toEqual([]));
   it("rejects an unknown verdict", () => expect(validateRecord({ ...minimal(), verdict: "maybe" }).join()).toMatch(/verdict/));
-  it("accepts every known verdict except entry-without-rule", () => {
-    for (const v of VERDICTS.filter((x) => x !== "entry")) expect(validateRecord({ ...minimal(), verdict: v })).toEqual([]);
+  it("accepts every known verdict before any rule is drafted", () => {
+    for (const v of VERDICTS) expect(validateRecord({ ...minimal(), verdict: v }), v).toEqual([]);
   });
   it("rejects an unknown origin in items and in rule", () => {
     const bad = { ...minimal(), items: [{ origin: "homebrew", match: "matched" }] };
@@ -98,11 +102,25 @@ describe("validateRecord", () => {
     }
   });
 
-  it("requires rule.entry when the verdict is entry", () => {
+  it("requires rule.entry when the verdict is entry and a rule is there", () => {
     const { entry, ...noEntry } = rule();
     expect(validateRecord({ ...minimal(), verdict: "entry", rule: noEntry }).join()).toMatch(/entry/);
-    expect(validateRecord({ ...minimal(), verdict: "entry" }).join()).toMatch(/entry/);
+    expect(validateRecord({ ...minimal(), verdict: "entry" })).toEqual([]);
     expect(validateRecord({ ...minimal(), verdict: "entry", rule: rule() })).toEqual([]);
+  });
+  it("validates the shapes of evidence.gates, evidence.reviewed and evidence.played", () => {
+    const ok = (evidence) => validateRecord({ ...minimal(), evidence });
+    const gates = { at: "2026-11-21", core: "1.0.0", rule: "a".repeat(64), passed: ["schema", "validator"], noted: ["ids"] };
+    const reviewed = { by: "reader-2", at: "2026-11-21", agrees: true };
+    const played = { at: "2026-11-21", core: "1.0.0", world: "test-world", scenario: "glimmer-1", client: "gm" };
+    expect(ok({ gates, reviewed, played, triaged: { by: "rule", at: "x" } })).toEqual([]);
+    const bad = [
+      { gates: true }, { gates: { ...gates, at: "" } }, { gates: { ...gates, rule: "abc" } },
+      { gates: { ...gates, passed: ["schema", "vibes"] } }, { gates: { ...gates, passed: undefined } },
+      { gates: { ...gates, noted: "ids" } }, { reviewed: { ...reviewed, agrees: "yes" } }, { reviewed: { agrees: true } },
+      { played: {} }, { played: true }, { played: { ...played, world: undefined } }, { played: { ...played, client: 3 } }
+    ];
+    for (const evidence of bad) expect(ok(evidence), JSON.stringify(evidence)).not.toEqual([]);
   });
   it("rejects page <= 0 and non-integer pages", () => {
     expect(validateRecord({ ...minimal(), page: 0 }).join()).toMatch(/page/);
@@ -151,8 +169,11 @@ describe("stateOf", () => {
     expect(stateOf(g, { core })).toBe("gated");
     const reviewed = { ...g, evidence: { ...g.evidence, reviewed: { agrees: true } } };
     expect(stateOf(reviewed, { core })).toBe("reviewed");
-    const played = { ...reviewed, evidence: { ...reviewed.evidence, played: { at: "2026-11-22" } } };
+    const play = { at: "2026-11-22", core: "1.0.0", world: "test-world", scenario: "glimmer-1" };
+    const played = { ...reviewed, evidence: { ...reviewed.evidence, played: play } };
     expect(stateOf(played, { core })).toBe("played");
+    const partial = { ...reviewed, evidence: { ...reviewed.evidence, played: { at: "2026-11-22" } } };
+    expect(stateOf(partial, { core })).toBe("reviewed");
   });
   it("needs every gate", () => {
     const g = gated({ ...minimal(), verdict: "entry", rule: rule() });
@@ -218,5 +239,24 @@ describe("loadBook / saveBook", () => {
   });
   it("refuses to save an invalid record", () => {
     expect(() => saveBook(dir, { book: "XPHB", records: [{ ...minimal(), page: 0 }] })).toThrow(/page/);
+  });
+  it("ignores a stale state written by hand in the file", () => {
+    const file = join(dir, "xphb.json");
+    writeFileSync(file, JSON.stringify({ book: "XPHB", records: [{ ...minimal(), state: "played" }] }));
+    const [back] = loadBook(dir, "XPHB").records;
+    expect("state" in back).toBe(false);
+    expect(stateOf(back)).toBe("inventoried");
+  });
+  it("refuses a record of another book, a lower-case book code and two records with one key", () => {
+    expect(() => saveBook(dir, { book: "XPHB", records: [{ ...minimal(), book: "xphb" }] })).toThrow(/not the book of the file/);
+    expect(() => saveBook(dir, { book: "xphb", records: [] })).toThrow(/must match/);
+    expect(() => saveBook(dir, { book: "XPHB", records: [minimal(), minimal()] })).toThrow(/two records share/);
+  });
+});
+
+describe("groupBy", () => {
+  it("groups in first-seen order", () => {
+    const groups = groupBy(["ab", "c", "de", "f"], (s) => s.length);
+    expect([...groups]).toEqual([[2, ["ab", "de"]], [1, ["c", "f"]]]);
   });
 });

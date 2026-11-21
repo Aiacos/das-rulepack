@@ -47,21 +47,29 @@ const MAX_KEYS = 12;
 const MAX_SIMILAR = 5;
 
 const isList = (v, max, ok) => Array.isArray(v) && v.length <= max && v.every((x) => typeof x === "string" && ok(x));
+// `why` is one line of printable characters: no control or format character, no line or paragraph separator.
+const ONE_LINE = /^[^\p{C}\p{Zl}\p{Zp}]*$/u;
+export const MAX_ECHO = 80;
+// What a rejection repeats of a reader's own strings: at most MAX_ECHO characters.
+export const clip = (s) => String(s).slice(0, MAX_ECHO);
+const echo = (s) => JSON.stringify(clip(s));
 
-// Why a result cannot be taken, or null. `textOf(record)` gives the cached text or null.
-function problem(record, result, { overwrite, textOf, known }) {
+// Why a result cannot be taken, or null. `textOf(record)` gives the cached text or null; `entryKeys` the engine's entry keys.
+function problem(record, result, { overwrite, textOf, known, entryKeys }) {
   const extra = Object.keys(result).filter((k) => !RESULT_FIELDS.includes(k));
-  if (extra.length) return `unknown field ${JSON.stringify(extra[0])}`;
-  if (!record) return `unknown key ${JSON.stringify(result.key)}`;
-  if (!VERDICTS.includes(result.verdict)) return `unknown verdict ${JSON.stringify(result.verdict)}`;
+  if (extra.length) return `unknown field ${echo(extra[0])}`;
+  if (!record) return `unknown key ${echo(result.key)}`;
+  if (!VERDICTS.includes(result.verdict)) return `unknown verdict ${echo(result.verdict)}`;
   if (result.verdict === "core") return "a reader may not return core: the rule-based step sets it";
   if (typeof result.confidence !== "number" || !(result.confidence >= 0 && result.confidence <= 1)) {
     return "confidence must be a number from 0 to 1";
   }
   if (typeof result.why !== "string" || !result.why.trim()) return "why must be a non-empty string";
   if (result.why.length > MAX_WHY) return `why is longer than ${MAX_WHY} characters`;
-  if ("keys" in result && !isList(result.keys, MAX_KEYS, (k) => ENGINE_KEY.test(k))) {
-    return `keys must be at most ${MAX_KEYS} engine keys (letters, digits and dots)`;
+  if (!ONE_LINE.test(result.why)) return "why must be a single line of printable characters";
+  const isEngineKey = (k) => ENGINE_KEY.test(k) && !!entryKeys?.has(k.split(".")[0]);
+  if ("keys" in result && !isList(result.keys, MAX_KEYS, isEngineKey)) {
+    return `keys must be at most ${MAX_KEYS} entry keys of the engine, or dotted paths that start with one`;
   }
   if ("similar" in result && !isList(result.similar, MAX_SIMILAR, (s) => known.has(s) || (s.length <= 64 && KEBAB.test(s)))) {
     return `similar must be at most ${MAX_SIMILAR} record keys or kebab-case identifiers of at most 64 characters`;
@@ -77,8 +85,9 @@ function problem(record, result, { overwrite, textOf, known }) {
 }
 
 // Applies reader results to a copy of `records`. Low-confidence results and every `engine` verdict are returned in
-// `queued` instead of being applied. `rejected` is [{ key, reason }]; `applied` the keys that were changed.
-export function ingest(records, results, { textDir, by, at = new Date().toISOString(), overwrite = false }) {
+// `queued` instead of being applied. `rejected` is [{ key, reason }]; `applied` the keys that were changed. `entryKeys` (a Set,
+// core.entryKeys) are the engine's entry keys: without it, no result may name `keys`.
+export function ingest(records, results, { textDir, by, at = new Date().toISOString(), overwrite = false, entryKeys }) {
   if (typeof by !== "string" || !BY.test(by)) throw new Error(`by must match ${BY}`);
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
@@ -92,9 +101,9 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
   for (const result of results) {
     const record = byKey.get(result?.key);
     const isObject = result !== null && typeof result === "object";
-    const reason = isObject ? problem(record, result, { overwrite, textOf, known: byKey }) : "result must be an object";
+    const reason = isObject ? problem(record, result, { overwrite, textOf, known: byKey, entryKeys }) : "result must be an object";
     if (reason) {
-      rejected.push({ key: result?.key ?? null, reason });
+      rejected.push({ key: typeof result?.key === "string" ? clip(result.key) : null, reason });
       continue;
     }
     if (result.verdict === "engine" || result.confidence < QUEUE_THRESHOLD) {

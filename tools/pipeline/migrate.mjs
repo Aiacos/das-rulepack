@@ -4,7 +4,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { loadBook, saveBook } from "./registry.mjs";
+import { loadBook, ruleFingerprint, saveBook } from "./registry.mjs";
 import { recordFromRule } from "./generate.mjs";
 
 // Index of the `}` that closes the object opened at `open`, skipping string literals and comments.
@@ -68,17 +68,19 @@ async function main() {
   if (process.argv.includes("--notes")) return addHeaderNotes(registry);
   const years = new Map(JSON.parse(readFileSync(join(root, "docs", "books.json"), "utf8")).books.map((b) => [b.code, b.year]));
   const { BOOKS } = await import(pathToFileURL(join(root, "scripts/rules/index.mjs")).href);
-  const legacy = [];
+  const legacy = {};
   for (const module of BOOKS) {
     const src = readFileSync(join(root, "scripts/rules/books", `${module.BOOK.toLowerCase()}.mjs`), "utf8");
     const notes = extractNotes(src, module.RULES.map((r) => r.identifier));
     const records = module.RULES.map((rule, i) => recordFromRule(rule, i, notes[rule.identifier], years.get(rule.book)));
     saveBook(registry, { book: module.BOOK, records });
-    legacy.push(...records.map((r) => r.key));
+    for (const r of records) legacy[r.key] = ruleFingerprint(r.rule);
   }
+  // legacy.json: each migrated key with the fingerprint of its rule as migrated (the rule's legacy standing hangs on it).
+  const sorted = Object.fromEntries(Object.entries(legacy).sort(([a], [b]) => (a < b ? -1 : 1)));
   mkdirSync(registry, { recursive: true });
-  writeFileSync(join(registry, "legacy.json"), `${JSON.stringify(legacy.sort(), null, 2)}\n`);
-  console.log(`${legacy.length} rules migrated.`);
+  writeFileSync(join(registry, "legacy.json"), `${JSON.stringify(sorted, null, 2)}\n`);
+  console.log(`${Object.keys(sorted).length} rules migrated.`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

@@ -63,8 +63,8 @@ describe("the book-level note", () => {
   it.skipIf(!process.env.DAS_CORE)("a gates run that rewrites the book keeps it", () => {
     expect(cli(["inventory", "TCE", "spell"]).status).toBe(0);
     const file = read();
-    file.records[0].verdict = "none";
-    file.records[0].rule = { handledIn: "table", adds: "Nothing.", origins: ["official"] };
+    file.records[0].verdict = "entry";
+    file.records[0].rule = { handledIn: "table", adds: "Nothing.", entry: { triggers: [] }, origins: ["official"] };
     writeFileSync(join(tmp, "registry", "tce.json"), JSON.stringify({ ...file, note: NOTE }));
     cli(["gates"]);
     const after = read();

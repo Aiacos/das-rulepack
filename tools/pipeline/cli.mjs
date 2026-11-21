@@ -2,18 +2,21 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { canonical, isReservedBook, loadBook, saveBook } from "./registry.mjs";
+import { BOOK_CODE, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
 import { readSpells } from "./dataset.mjs";
 import { dumpsFor, itemSummary, officialFilesFor, readDump } from "./dumps.mjs";
 import { inventory } from "./inventory.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
-import { autoTriage, ingest, BY } from "./triage.mjs";
+import { autoTriage, clip, ingest, BY } from "./triage.mjs";
 import { cutBatches, DEFAULT_BATCH_SIZE } from "./batch.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const REGISTRY = process.env.RULEPACK_REGISTRY || join(ROOT, "registry");
+// Where `generate` writes the rule modules: scripts/rules/ of this repository unless RULEPACK_RULES says otherwise.
+const RULES_OUT = process.env.RULEPACK_RULES || join(ROOT, "scripts", "rules");
+const RULES_LABEL = process.env.RULEPACK_RULES || "scripts/rules";
 
 class UsageError extends Error {}
 
@@ -23,6 +26,14 @@ const need = (name) => {
 };
 
 const NOT_BOOKS = ["legacy.json", "queue.json"];
+
+// The <BOOK> argument of every subcommand, upper-cased once here: `xzz` and `XZZ` are the same book.
+function bookArg(code) {
+  if (isReservedBook(code)) throw new UsageError(`"${code}" is reserved in the registry folder and cannot be a book code`);
+  const book = String(code).toUpperCase();
+  if (!BOOK_CODE.test(book)) throw new UsageError(`Book code "${clip(code)}" must match ${BOOK_CODE} once upper-cased`);
+  return book;
+}
 
 function loadRegistry(dir) {
   if (!existsSync(dir)) return [];
@@ -59,9 +70,9 @@ function readBookSpells(datasetDir, book) {
   return spells;
 }
 
-function inventoryCommand([book, kind]) {
-  if (!book || !kind) throw new UsageError("Usage: inventory <BOOK> <kind>");
-  if (isReservedBook(book)) throw new UsageError(`"${book}" is reserved in the registry folder and cannot be a book code`);
+function inventoryCommand([code, kind, ...rest]) {
+  if (!code || !kind || rest.length) throw new UsageError("Usage: inventory <BOOK> <kind>");
+  const book = bookArg(code);
   if (kind !== "spell") throw new UsageError(`Kind "${kind}" is not supported yet: only "spell" is`);
   const datasetDir = need("RULEPACK_DATASET");
   const dumpsDir = need("RULEPACK_DUMPS");
@@ -86,33 +97,32 @@ function inventoryCommand([book, kind]) {
   console.log(JSON.stringify(report, null, 2));
 }
 
-// The documents the data-fix gate reads: those of the dumps that a record's matched items point at, by origin and document id.
+// The documents the data-fix gate reads: for each matched item of a record, by origin and document id, the dump document with
+// that id whose data fingerprint is the item's `data.sha256` (the one inventory matched). No such document: it is absent.
 function loadDocuments(dumpsDir, records) {
-  const wanted = { official: new Set(), "ddb-importer": new Set() };
+  const wanted = { official: new Map(), "ddb-importer": new Map() };
   for (const r of records) {
-    for (const i of r.items ?? []) if (i.match === "matched" && wanted[i.origin]) wanted[i.origin].add(i.docId);
+    for (const i of r.items ?? []) {
+      const data = i.data?.sha256;
+      if (i.match === "matched" && wanted[i.origin] && typeof data === "string") wanted[i.origin].set(i.docId, data);
+    }
   }
   const documents = {};
   for (const [origin, ids] of Object.entries(wanted)) {
     documents[origin] = {};
     if (!ids.size) continue;
     for (const file of dumpsFor(dumpsDir, origin)) {
-      for (const doc of readDump(join(dumpsDir, file))) if (ids.has(doc._id)) documents[origin][doc._id] = doc;
+      for (const doc of readDump(join(dumpsDir, file))) {
+        if (!ids.has(doc._id) || documents[origin][doc._id]) continue;
+        if (itemSummary(doc, origin).data === ids.get(doc._id)) documents[origin][doc._id] = doc;
+      }
     }
   }
   return documents;
 }
 
-// legacy.json: the keys of the records that may carry `legacy: true` (a JSON array; a missing file is an empty list).
-function loadLegacyKeys(dir) {
-  const file = join(dir, "legacy.json");
-  if (!existsSync(file)) return new Set();
-  let list;
-  try { list = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new UsageError(`${file}: ${e.message}`); }
-  if (!Array.isArray(list) || !list.every((k) => typeof k === "string")) {
-    throw new UsageError(`${file}: must be an array of record keys`);
-  }
-  return new Set(list);
+function legacyOf(dir) {
+  try { return loadLegacy(dir); } catch (e) { throw new UsageError(e.message); }
 }
 
 function gatesCommand(args) {
@@ -128,14 +138,16 @@ function gatesCommand(args) {
   const textDir = ci ? null : need("RULEPACK_TEXT");
   return loadCore(coreDir).then((core) => {
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
-    const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci, legacyKeys: loadLegacyKeys(REGISTRY) });
+    const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci, legacy: legacyOf(REGISTRY) });
     if (!ci) {
       const before = new Map(records.map((r) => [r.key, canonical(r)]));
-      const byBook = Map.groupBy(updated, (r) => r.book);
+      const byBook = groupBy(updated, (r) => r.book);
       for (const b of books) {
         const next = byBook.get(b.book) ?? [];
         const changed = next.some((r) => before.get(r.key) !== canonical(r));
-        if (changed && !next.some((r) => failures[r.key]?.schema)) saveBook(REGISTRY, { book: b.book, note: b.note, records: next });
+        if (changed && !next.some((r) => failures[r.key]?.schema)) {
+          saveBook(REGISTRY, { book: b.book, note: b.note, records: next });
+        }
       }
     }
     const lines = (byKey) => Object.entries(byKey).flatMap(([key, gates]) => Object.values(gates).flat().map((m) => [key, m]));
@@ -151,20 +163,29 @@ function generateCommand(args) {
   const check = args.includes("--check");
   const unknown = args.filter((a) => a !== "--check");
   if (unknown.length) throw new UsageError(`Usage: generate [--check] (unexpected: ${unknown.join(" ")})`);
-  const { written, differing } = generate({ registry: REGISTRY, out: join(ROOT, "scripts", "rules"), check });
+  let result;
+  try {
+    result = generate({ registry: REGISTRY, out: RULES_OUT, check });
+  } catch (e) {
+    console.error(e.message);
+    process.exitCode = 1;
+    return;
+  }
+  const { written, differing } = result;
   if (check) {
-    for (const path of differing) console.error(`differs from the registry: scripts/rules/${path}`);
+    for (const path of differing) console.error(`differs from the registry: ${RULES_LABEL}/${path}`);
     if (differing.length) process.exitCode = 1;
     else console.log("Generated rule modules are up to date.");
   } else {
-    console.log(written.length ? `Wrote ${written.map((p) => `scripts/rules/${p}`).join(", ")}.` : "Nothing to write.");
+    console.log(written.length ? `Wrote ${written.map((p) => `${RULES_LABEL}/${p}`).join(", ")}.` : "Nothing to write.");
   }
 }
 
 function loadBookOrFail(code) {
   if (!code) throw new UsageError("A book code is required");
-  const found = loadRegistry(REGISTRY).find((b) => b.book.toLowerCase() === code.toLowerCase());
-  if (!found) throw new UsageError(`The registry has no book ${code}`);
+  const book = bookArg(code);
+  const found = loadRegistry(REGISTRY).find((b) => b.book === book);
+  if (!found) throw new UsageError(`The registry has no book ${book}`);
   return found;
 }
 
@@ -222,21 +243,25 @@ function mergeQueue(dir, queued, applied) {
   }
 }
 
-function ingestCommand([file, ...rest]) {
-  if (!file || rest.length) throw new UsageError("Usage: ingest <results-file>");
+// `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
+async function ingestCommand(args) {
+  const usage = "Usage: ingest <results-file> [--overwrite]";
+  const overwrite = args.includes("--overwrite");
+  const [file, ...rest] = args.filter((a) => a !== "--overwrite");
+  if (!file || rest.length) throw new UsageError(usage);
   const textDir = need("RULEPACK_TEXT");
+  const coreDir = need("DAS_CORE");
   const input = readJson(file, "results file");
   if (typeof input?.batch !== "string" || typeof input?.by !== "string" || !Array.isArray(input?.results)) {
     throw new UsageError(`${file}: must be { batch: string, by: string, results: [...] }`);
   }
-  const extra = Object.keys(input).filter((k) => !["batch", "by", "results", "overwrite"].includes(k));
-  if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(extra[0])}`);
-  if ("overwrite" in input && typeof input.overwrite !== "boolean") throw new UsageError(`${file}: overwrite must be a boolean`);
+  if ("overwrite" in input) throw new UsageError(`${file}: overwrite is not a results field: pass --overwrite to ingest`);
+  const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
+  if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
   if (!BY.test(input.by)) throw new UsageError(`${file}: by must match ${BY}`);
+  const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
-  const out = ingest(books.flatMap((b) => b.records), input.results, {
-    textDir, by: input.by, overwrite: input.overwrite === true
-  });
+  const out = ingest(books.flatMap((b) => b.records), input.results, { textDir, by: input.by, overwrite, entryKeys });
   const touched = new Set(out.records.filter((r) => out.applied.includes(r.key)).map((r) => r.book));
   for (const b of books) {
     if (!touched.has(b.book)) continue;

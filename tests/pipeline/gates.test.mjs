@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { ruleFingerprint, saveBook, stateOf } from "../../tools/pipeline/registry.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
+import { itemSummary } from "../../tools/pipeline/dumps.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
 import {
   idsIn, gateSchema, gateValidator, gateIds, gateFixes, gateText, gateUnique, runGates
@@ -17,8 +18,10 @@ const NOPE = "Qq11Ww22Ee33Rr44";
 const DOC = "Dd00Cc11Bb22Aa33";
 
 const FACTS = ["target.hasStatus", "source.hasEffect"];
+// An engine key of exactly 16 characters, invented for the stand-in vocabulary.
+const LONG_KEY = "glimmerFromAfar1";
 const stubCore = {
-  version: "9.9.9", facts: FACTS,
+  version: "9.9.9", facts: FACTS, vocabulary: new Set(["triggerOnEndTurn", "abcdefghijklmnop", LONG_KEY, ...FACTS]),
   // A stand-in for the engine: reports every key of a trigger condition that is not a known fact.
   validateEntry: (entry, { facts }) => (entry.triggers ?? []).flatMap((t) => Object.keys(t.if ?? {})
     .filter((k) => !(k in facts)).map((k) => `unknown fact "${k}"`)),
@@ -47,8 +50,9 @@ let dir;
 beforeEach(() => { dir = mkdtempSync(join(tmpdir(), "gates-")); });
 afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
-const ctx = (over = {}) => ({ core: stubCore, documents: {}, textDir: dir, ci: false, legacyKeys: new Set(), ...over });
-const allowed = (...records) => ({ legacyKeys: new Set(records.map((r) => r.key)) });
+const ctx = (over = {}) => ({ core: stubCore, documents: {}, textDir: dir, ci: false, legacy: new Map(), ...over });
+// legacy.json for these records, each with the fingerprint of its rule as it is now.
+const allowed = (...records) => ({ legacy: new Map(records.map((r) => [r.key, ruleFingerprint(r.rule)])) });
 const withText = (r) => ({
   ...r, text: { sha256: cacheText(dir, "synthetic text of glimmer bolt"), source: "5etools", chars: 30 }
 });
@@ -59,12 +63,27 @@ describe("idsIn", () => {
     expect(idsIn(entry)).toEqual([ACT, EFF, NOPE].sort());
   });
 
-  it("ignores schema words, ordinary words and strings of another length", () => {
+  it("ignores the engine's own words and strings of another length", () => {
     const entry = {
       triggerOnEndTurn: "abcdefghijklmnop", on: "endOfTurn", n: 12345678,
       a: "Ab12Cd34Ef56Gh7", b: "Ab12Cd34Ef56Gh789", c: "Ab12-d34Ef56Gh78"
     };
-    expect(idsIn(entry)).toEqual([]);
+    expect(idsIn(entry, stubCore.vocabulary)).toEqual([]);
+  });
+
+  it("fails closed: a 16-character word the engine does not name is an id, camelCase or lowercase", () => {
+    const entry = { triggerOnEndTurn: "abcdefghijklmnop", noDamage: ["saveTashCausBrew"] };
+    expect(idsIn(entry)).toEqual(["abcdefghijklmnop", "saveTashCausBrew", "triggerOnEndTurn"]);
+    expect(idsIn(entry, stubCore.vocabulary)).toEqual(["saveTashCausBrew"]);
+  });
+
+  it("does not take an engine key of exactly 16 characters for an id, as a key, a value or a segment", () => {
+    const entry = { [LONG_KEY]: { x: LONG_KEY }, p: `system.${LONG_KEY}.y`, [`${LONG_KEY}.${ACT}`]: 1 };
+    expect(idsIn(entry, stubCore.vocabulary)).toEqual([ACT]);
+  });
+
+  it("splits object keys on dots", () => {
+    expect(idsIn({ [`activities.${ACT}.type`]: 1 })).toEqual([ACT]);
   });
 
   it("finds an id that is a segment of a dotted path string", () => {
@@ -127,6 +146,14 @@ describe("gateIds", () => {
     expect(gateIds(withEntry(entryWith({ extra: NOPE })), ctx())).toEqual([`ids: ddb-importer has no activity or effect ${NOPE}`]);
   });
 
+  it("fails a camelCase DDB-style id that the item does not have, and passes it once the item has it", () => {
+    const r = withEntry(entryWith({ noDamage: ["saveTashCausBrew"] }));
+    expect(gateIds(r, ctx())).toEqual(["ids: ddb-importer has no activity or effect saveTashCausBrew"]);
+    const owned = { ...r, items: [item({ activities: [ACT, "saveTashCausBrew"] })] };
+    expect(gateIds(owned, ctx())).toEqual([]);
+    expect(gateIds(withEntry(entryWith({ [LONG_KEY]: true })), ctx())).toEqual([]);
+  });
+
   it("fails an origin with no matched item, whatever the entry", () => {
     const r = rec({ items: [item({ match: "absent" })] });
     expect(gateIds(r, ctx())).toEqual(["ids: no matched item for ddb-importer"]);
@@ -169,6 +196,17 @@ describe("gateIds", () => {
   it("still fails a legacy record whose matched item lacks the id", () => {
     const r = withEntry(entryWith({ extra: NOPE }), { legacy: true });
     expect(gateIds(r, ctx(allowed(r)))).toHaveLength(1);
+  });
+
+  it("notes a code rule without entry as having nothing to check: noted, not passed; a table rule needs an entry", () => {
+    const code = withText(rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } }));
+    const { failures, notes, updated } = runGates([code], ctx());
+    expect(failures).toEqual({});
+    expect(notes[code.key].ids).toEqual(["ids: nothing to check (code rule without entry)"]);
+    expect(updated[0].evidence.gates.noted).toEqual(["ids"]);
+    expect(updated[0].evidence.gates.passed).not.toContain("ids");
+    const table = rec({ rule: { handledIn: "table", adds: "x", origins: ["ddb-importer"] } });
+    expect(gateIds(table, ctx())).toEqual(["ids: a table rule has no entry"]);
   });
 
   it("gives a legacy record that is not allow-listed no leniency", () => {
@@ -395,7 +433,21 @@ describe("runGates", () => {
       expect(runGates([legacy], ci()).failures[legacy.key].legacy).toEqual([`legacy: ${legacy.key} is not in legacy.json`]);
       expect(runGates([legacy], ci()).failures[legacy.key].gates).toHaveLength(1);
       expect(runGates([withText(legacy)], ctx()).failures[legacy.key].legacy).toHaveLength(1);
-      expect(runGates([legacy], ci({ legacyKeys: undefined })).failures[legacy.key].legacy).toHaveLength(1);
+      expect(runGates([legacy], ci({ legacy: undefined })).failures[legacy.key].legacy).toHaveLength(1);
+    });
+
+    it("fails a legacy rule edited since migration, in every mode, and gives it no leniency", () => {
+      const legacy = withText(rec({ legacy: true, items: [] }));
+      const listed = allowed(legacy);
+      const edited = { ...legacy, rule: { ...legacy.rule, adds: "An edit after migration." } };
+      const message = `legacy: ${legacy.key} rule changed since migration`;
+      for (const context of [ci(listed), ctx(listed)]) {
+        const { failures } = runGates([edited], context);
+        expect(failures[legacy.key].legacy).toEqual([message]);
+      }
+      expect(runGates([edited], ci(listed)).failures[legacy.key].gates).toHaveLength(1);
+      expect(runGates([edited], ctx(listed)).failures[legacy.key].ids).toEqual(["ids: no matched item for ddb-importer"]);
+      expect(runGates([legacy], ci(listed)).failures).toEqual({});
     });
 
     it("does not trust evidence whose passed list lacks a gate that only left a note", () => {
@@ -430,12 +482,22 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("with the real DAS · Core", () =>
     expect(core.identifiers.has("black-tentacles") && core.identifiers.has("evards-black-tentacles")).toBe(true);
   });
 
+  it("loads the entry keys and a vocabulary that holds them, the facts and the moments", async () => {
+    const core = await loadCore(CORE_DIR);
+    expect(core.entryKeys.has("triggers") && core.entryKeys.has("dataFixes")).toBe(true);
+    for (const word of [...core.entryKeys, ...core.facts, "endOfTurn", "isHit"]) expect(core.vocabulary.has(word), word).toBe(true);
+    const long = [...core.entryKeys].find((k) => k.length === 16);
+    expect(long).toBeDefined();
+    expect(idsIn({ [long]: { on: long } }, core.vocabulary)).toEqual([]);
+    expect(idsIn({ noDamage: ["saveTashCausBrew"] }, core.vocabulary)).toEqual(["saveTashCausBrew"]);
+  });
+
   it("validates every entry of the pack, and refuses an unknown fact and an unknown key", async () => {
     const core = await loadCore(CORE_DIR);
     const { TABLE } = await import("../../scripts/rules/index.mjs");
     for (const [id, entry] of Object.entries(TABLE)) {
       expect(gateValidator(withEntry(entry), ctx({ core })), id).toEqual([]);
-      for (const found of idsIn(entry)) expect(found, id).toMatch(/^[A-Za-z0-9]{16}$/);
+      for (const found of idsIn(entry, core.vocabulary)) expect(found, id).toMatch(/^[A-Za-z0-9]{16}$/);
     }
     const unknownFact = entryWith({ triggers: [{ on: "isHit", if: { "moon.phase": "full" }, do: [{ type: "resave" }] }] });
     const messages = (entry) => gateValidator(withEntry(entry), ctx({ core })).join("\n");
@@ -508,6 +570,8 @@ describe("gates CLI", () => {
       expect(refused.status).toBe(1);
       expect(refused.stderr).toContain(`legacy: ${legacy.key} is not in legacy.json`);
       writeJson(join(registry(), "legacy.json"), [legacy.key]);
+      expect(cli(["gates", "--ci"], env()).status).toBe(2);
+      writeJson(join(registry(), "legacy.json"), { [legacy.key]: ruleFingerprint(legacy.rule) });
       const ok = cli(["gates", "--ci"], env());
       expect(ok.status, ok.stderr).toBe(0);
       expect(ok.stdout).toContain("no full evidence yet (legacy)");
@@ -534,6 +598,35 @@ describe("gates CLI", () => {
       expect(saved.records[0].state).toBe("gated");
       expect(cli(["gates", "--ci"], env()).status).toBe(0);
     });
+  });
+});
+
+describe.skipIf(!CORE_DIR && !process.env.CI)("gates CLI: the document of a matched item", () => {
+  const cli = (args, env) => spawnSync("node", [resolve("tools/pipeline/cli.mjs"), ...args], {
+    encoding: "utf8", env: { PATH: process.env.PATH, ...env }
+  });
+
+  it("is the dump document with the item's id and data fingerprint, not the first with that id", () => {
+    const registry = join(dir, "registry");
+    const dumps = join(dir, "dumps");
+    const text = join(dir, "text");
+    const sha = cacheText(text, "synthetic text of glimmer bolt");
+    const stale = { _id: DOC, name: "Glimmer Bolt", type: "spell", system: { x: 5 }, effects: [] };
+    const matched = { ...stale, system: { x: 1 } };
+    mkdirSyncSafe(dumps);
+    writeJson(join(dumps, "ddb.a.json"), [stale]);
+    writeJson(join(dumps, "ddb.b.json"), [matched]);
+    const env = { RULEPACK_REGISTRY: registry, DAS_CORE: CORE_DIR, RULEPACK_DUMPS: dumps, RULEPACK_TEXT: text };
+    const withData = (data) => withEntry({ dataFixes: [{ path: "system.x", value: 2, from: 1 }] }, {
+      text: { sha256: sha, source: "5etools", chars: 30 }, items: [item({ activities: [], effects: [], data: { sha256: data } })]
+    });
+    saveBook(registry, { book: "TST", records: [withData(itemSummary(matched, "ddb-importer").data)] });
+    const ok = cli(["gates"], env);
+    expect(ok.status, ok.stderr).toBe(0);
+    saveBook(registry, { book: "TST", records: [withData("f".repeat(64))] });
+    const absent = cli(["gates"], env);
+    expect(absent.status).toBe(1);
+    expect(absent.stderr).toContain("fixes: no document for ddb-importer");
   });
 });
 

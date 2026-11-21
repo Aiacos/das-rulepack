@@ -1,35 +1,38 @@
 // The deterministic gates a rule passes before it may ship. Every gate is a pure function of a record and a context:
-//   context = { core, documents, textDir, ci }
-//   core      what loadCore() returns (tests inject stubs of validateEntry, matchesFrom and getPath)
+//   context = { core, documents, textDir, ci, legacy }
+//   core      what loadCore() returns (tests inject stand-ins of validateEntry, matchesFrom, getPath and vocabulary)
 //   documents { [origin]: { [docId]: Foundry document } }, from the dumps, for the data-fix gate
 //   textDir   the text cache; ci  true when the gates that need local inputs are replaced by the evidence on the record
+//   legacy    legacy.json as a Map of record key to the fingerprint of its rule at migration (registry.mjs loadLegacy)
 // A gate returns its failures as a string[]; the gates that can also say something that must not fail a run (a note) expose it
 // through the matching check function, and runGates collects both.
-import { canonical, ruleFingerprint, validateRecord } from "./registry.mjs";
+import { canonical, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord } from "./registry.mjs";
+import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
 
-export const GATES = Object.freeze(["schema", "validator", "ids", "fixes", "text", "unique"]);
+export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
 const FULL_EVIDENCE = ["schema", "validator", "ids", "fixes", "text"];
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const ID = /^[A-Za-z0-9]{16}$/;
-// Words of the entry schema and of its enumerations are 16 characters long now and then: a document id is random, so it is
-// never all lowercase and never a camelCase word.
-const WORD = /^[a-z]+([A-Z][a-z]+)*$/;
-const isId = (s) => ID.test(s) && !WORD.test(s);
 
-/** Every 16-character document id that appears as a key or as a string value anywhere in the entry. */
-export function idsIn(entry) {
+/**
+ * Every 16-character [A-Za-z0-9] token of the entry that is not a word of the engine's `vocabulary` (a Set, core.vocabulary):
+ * a key, a string value, or a dot-separated segment of either. Fails closed: a token the engine does not name is an id.
+ */
+export function idsIn(entry, vocabulary = new Set()) {
   const found = new Set();
+  const take = (s) => {
+    // A path such as `system.activities.<id>.activation.type` names an id as one of its segments.
+    for (const part of [s, ...s.split(".")]) if (ID.test(part) && !vocabulary.has(part)) found.add(part);
+  };
   const walk = (node) => {
-    if (typeof node === "string") {
-      // A path such as `system.activities.<id>.activation.type` names an id as one of its segments.
-      for (const part of [node, ...node.split(".")]) if (isId(part)) found.add(part);
-    } else if (Array.isArray(node)) node.forEach(walk);
+    if (typeof node === "string") take(node);
+    else if (Array.isArray(node)) node.forEach(walk);
     else if (isObject(node)) {
       for (const [key, value] of Object.entries(node)) {
-        if (isId(key)) found.add(key);
+        take(key);
         walk(value);
       }
     }
@@ -46,8 +49,8 @@ function entryOf(rule) {
 }
 
 const originsOf = (rule) => (Array.isArray(rule?.origins) ? rule.origins : []);
-// `legacy: true` counts only for a key the registry's legacy.json lists (context.legacyKeys, a Set).
-const isLegacy = (record, context) => record?.legacy === true && !!context?.legacyKeys?.has(record.key);
+// `legacy: true` counts only for a key that legacy.json lists with the fingerprint of the record's current rule.
+const isLegacy = (record, context) => hasLegacyStanding(record, context?.legacy);
 const matchedItems = (record, origin) => (record.items ?? []).filter((i) => i?.origin === origin && i.match === "matched");
 
 export const gateSchema = (record) => validateRecord(record).map((e) => `schema: ${e}`);
@@ -71,9 +74,14 @@ export function checkIds(record, context) {
   if (!record.rule) return out;
   const { entry, error } = entryOf(record.rule);
   if (error) return { ...out, failures: [`ids: ${error}`] };
-  const ids = entry ? idsIn(entry) : [];
+  // A code rule without an entry has no id to check: said so, and noted rather than passed.
+  if (!entry) {
+    if (record.rule.handledIn === "code") return { ...out, notes: ["ids: nothing to check (code rule without entry)"] };
+    return { ...out, failures: ["ids: a table rule has no entry"] };
+  }
+  const ids = idsIn(entry, context?.core?.vocabulary);
   const origins = originsOf(record.rule);
-  if (entry && !origins.length) out.failures.push("ids: rule names no origin");
+  if (!origins.length) out.failures.push("ids: rule names no origin");
   for (const origin of origins) {
     const items = matchedItems(record, origin);
     if (!items.length) {
@@ -214,7 +222,8 @@ export function runGates(records, context) {
     };
     run("schema", gateSchema(record));
     const sound = !failures[key]?.schema;
-    if (record.legacy === true && !context.legacyKeys?.has(key)) run("legacy", [`legacy: ${key} is not in legacy.json`]);
+    const standing = legacyProblem(record, context.legacy);
+    if (standing) run("legacy", [standing]);
     if (sound && record.rule) {
       run("validator", gateValidator(record, context));
       if (context.ci) run("gates", ciEvidence(record, context));

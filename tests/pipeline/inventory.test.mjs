@@ -247,7 +247,9 @@ describe("pipeline CLI inventory on temporary folders", () => {
     expect(read("TCE").records[0].items.map((i) => [i.origin, i.match])).toEqual([
       ["official", "matched"], ["plutonium", "unchecked"]
     ]);
-    write("data/spells/spells-nop.json", { spell: [{ name: "Other Glow", page: 1, level: 1, school: "V", entries: ["Invented."] }] });
+    write("data/spells/spells-nop.json", {
+      spell: [{ name: "Other Glow", page: 1, level: 1, school: "V", entries: ["Invented."] }]
+    });
     expect(run(["inventory", "NOP", "spell"]).status).toBe(0);
     expect(read("NOP").records[0].items.map((i) => i.origin)).toEqual(["plutonium"]);
   });
@@ -272,6 +274,27 @@ describe("pipeline CLI inventory on temporary folders", () => {
     expect(JSON.parse(r.stdout)).toMatchObject({ added: 0 });
     expect(read("TCE").records[0].alsoIn).toEqual([{ book: "XGE", page: 44 }]);
     expect(existsSync(registryFile("XGE"))).toBe(false);
+  });
+
+  it("upper-cases the book code once: inventory xzz is inventory XZZ, and leaves the file byte-identical", () => {
+    write("data/spells/spells-xzz.json", {
+      spell: [{ name: "Other Glow", page: 3, level: 1, school: "V", entries: ["Invented."] }]
+    });
+    expect(run(["inventory", "XZZ", "spell"]).status).toBe(0);
+    const bytes = readFileSync(registryFile("XZZ"), "utf8");
+    expect(JSON.parse(bytes).book).toBe("XZZ");
+    const again = run(["inventory", "xzz", "spell"]);
+    expect(again.status, again.stderr).toBe(0);
+    expect(readFileSync(registryFile("XZZ"), "utf8")).toBe(bytes);
+  });
+
+  it("exits 2 for a book code that does not match once upper-cased", () => {
+    for (const code of ["x", "1AB", "AB-C", "ABCDEFGHIJK", "a b"]) {
+      const r = run(["inventory", code, "spell"]);
+      expect(r.status, code).toBe(2);
+      expect(r.stderr).toMatch(/must match/);
+    }
+    expect(existsSync(join(tmp, "registry"))).toBe(false);
   });
 
   it("exits 2 for a dataset or dumps folder that does not exist", () => {

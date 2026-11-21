@@ -83,11 +83,14 @@ describe("pipeline CLI: batch", () => {
     expect(b.id).toBe("tst-triage-002");
     expect(b.entries.map((e) => e.key)).toEqual(["tst:spell:s02"]);
     expect(r.stdout).toContain("2 batches");
+    expect(run(["batch", "triage", "tst", "--out", join(tmp, "lower")]).status).toBe(0);
+    expect(readdirSync(join(tmp, "lower"))).toEqual(["tst-triage-001.json"]);
   });
 
   it("is a usage error without --out, with an unknown stage or a bad size", () => {
     for (const args of [["batch", "triage", "TST"], ["batch", "draft", "TST", "--out", out], ["batch"],
-      ["batch", "triage", "TST", "--out", out, "--size", "0"], ["batch", "triage", "NOPE", "--out", out]]) {
+      ["batch", "triage", "TST", "--out", out, "--size", "0"], ["batch", "triage", "NOPE", "--out", out],
+      ["batch", "triage", "T-1", "--out", out]]) {
       expect(run(args).status, args.join(" ")).toBe(2);
     }
   });

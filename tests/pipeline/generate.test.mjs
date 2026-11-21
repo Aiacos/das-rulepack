@@ -3,12 +3,17 @@ import { mkdtempSync, mkdirSync, copyFileSync, writeFileSync, readFileSync, read
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
+import { spawnSync } from "node:child_process";
 import { RULES } from "../../scripts/rules/index.mjs";
 import { validateRecord, ruleFingerprint, saveBook } from "../../tools/pipeline/registry.mjs";
 import {
   recordFromRule, ruleFromRecord, bookModuleSource, indexSource, generate
 } from "../../tools/pipeline/generate.mjs";
 import { extractNotes } from "../../tools/pipeline/migrate.mjs";
+
+// legacy.json for these records: each key with the fingerprint of its rule as it is now.
+const legacyOf = (records) => new Map(records.map((r) => [r.key, ruleFingerprint(r.rule)]));
+const PLAY = { at: "2026-11-21", core: "1.0.0", world: "test-world", scenario: "s-1" };
 
 // Synthetic rules only: invented spells.
 const rules = () => [
@@ -23,7 +28,10 @@ const rules = () => [
 describe("recordFromRule / ruleFromRecord", () => {
   it("round-trips every shipped rule, optional properties staying absent and catalog null staying null", () => {
     expect(RULES.length).toBeGreaterThan(0);
-    for (const r of RULES) expect(ruleFromRecord(recordFromRule(r)), r.identifier).toEqual(r);
+    for (const r of RULES) {
+      const record = recordFromRule(r);
+      expect(ruleFromRecord(record, { legacy: legacyOf([record]) }), r.identifier).toEqual(r);
+    }
   });
 
   it("writes a valid legacy record: key, edition, verdict, origins, no played evidence", () => {
@@ -49,29 +57,57 @@ describe("recordFromRule / ruleFromRecord", () => {
 
   it("legacy keeps the old status; once gated it follows the state; lower states are not emitted", () => {
     const r = recordFromRule(rules()[2]);
-    expect(ruleFromRecord(r).status).toBe("pending");
+    const legacy = legacyOf([r]);
+    expect(ruleFromRecord(r, { legacy }).status).toBe("pending");
     const passed = ["schema", "validator", "ids", "fixes", "text"];
     const gates = { at: "d", core: "c", rule: ruleFingerprint(r.rule), passed };
     const fresh = { ...r, legacy: undefined, legacyStatus: undefined };
     expect(ruleFromRecord(fresh)).toBeNull();
     expect(ruleFromRecord({ ...fresh, evidence: { gates } }).status).toBe("validated");
     expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed: { agrees: true } } }).status).toBe("validated");
-    expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed: { agrees: true }, played: {} } }).status).toBe("played");
-    expect(ruleFromRecord({ ...r, evidence: { played: {} } }).status).toBe("played");
+    expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed: { agrees: true }, played: PLAY } }).status).toBe("played");
+    expect(ruleFromRecord({ ...r, evidence: { played: PLAY } }, { legacy }).status).toBe("played");
+  });
+
+  it("does not let a hand-typed play upgrade a legacy record", () => {
+    const r = recordFromRule(rules()[2]);
+    const legacy = legacyOf([r]);
+    for (const played of [{}, true, { at: "x" }, { ...PLAY, world: "" }]) {
+      expect(ruleFromRecord({ ...r, evidence: { played } }, { legacy }).status).toBe("pending");
+    }
+  });
+
+  it("emits a legacy record only with standing: listed in legacy.json with its rule unchanged since migration", () => {
+    const r = recordFromRule(rules()[0]);
+    expect(ruleFromRecord(r)).toBeNull();
+    expect(ruleFromRecord(r, { legacy: new Map() })).toBeNull();
+    const edited = { ...r, rule: { ...r.rule, adds: "Edited after migration." } };
+    expect(ruleFromRecord(edited, { legacy: legacyOf([r]) })).toBeNull();
+    expect(ruleFromRecord(r, { legacy: legacyOf([r]) })).not.toBeNull();
+  });
+
+  it("emits only the verdicts entry and code", () => {
+    const r = recordFromRule(rules()[0]);
+    const legacy = legacyOf([r]);
+    for (const verdict of ["core", "data", "none", "engine", "unverifiable"]) {
+      expect(ruleFromRecord({ ...r, verdict }, { legacy }), verdict).toBeNull();
+    }
+    expect(ruleFromRecord({ ...r, verdict: "code" }, { legacy })).not.toBeNull();
   });
 });
 
 describe("bookModuleSource", () => {
   const records = () => rules().map((r, i) => recordFromRule(r, i, i === 1 ? "First line.\nSecond line." : undefined));
+  const legacy = legacyOf(records());
 
   it("starts with the generated header and carries the notes as comments", () => {
-    const src = bookModuleSource("ZZB", records());
+    const src = bookModuleSource("ZZB", records(), undefined, { legacy });
     expect(src.split("\n")[0]).toBe("// Generated from registry/zzb.json by npm run build:rules — do not edit.");
     expect(src).toContain("  // First line.\n  // Second line.\n  {");
   });
 
   it("emits the book note as the header comment, right after the generated line", () => {
-    const src = bookModuleSource("ZZB", records(), "Title (2030).\n\nSecond paragraph.");
+    const src = bookModuleSource("ZZB", records(), "Title (2030).\n\nSecond paragraph.", { legacy });
     expect(src.split("\n").slice(0, 6)).toEqual([
       "// Generated from registry/zzb.json by npm run build:rules — do not edit.",
       "/**", " * Title (2030).", " *", " * Second paragraph.", " */"
@@ -85,7 +121,9 @@ describe("bookModuleSource", () => {
     const [a, b, c] = records();
     const late = { ...c, key: "zzb:spell:aaa", identifier: "aaa", name: "Aaa" };
     delete late.order;
-    writeFileSync(join(dir, "books", "zzb.mjs"), bookModuleSource("ZZB", [late, c, b, a]));
+    writeFileSync(join(dir, "books", "zzb.mjs"), bookModuleSource("ZZB", [late, c, b, a], undefined, {
+      legacy: legacyOf([late, c, b, a])
+    }));
     const mod = await import(pathToFileURL(join(dir, "books", "zzb.mjs")).href);
     expect(mod.BOOK).toBe("ZZB");
     expect(mod.RULES.map((r) => r.identifier)).toEqual(["glimmer-bolt", "dusk-step", "moth-ward", "aaa"]);
@@ -107,6 +145,10 @@ describe("indexSource", () => {
     expect(src).toContain("export const BOOKS = Object.freeze([aa, bb]);");
     for (const name of ["RULES", "SPELLS", "SENSES", "FEATURES", "TABLE"]) expect(src).toContain(`export const ${name} =`);
   });
+
+  it("refuses a book code that is not a JavaScript identifier once lower-cased", () => {
+    for (const code of ["1ab", "a-b", "do", "new", "in"]) expect(() => indexSource([code]), code).toThrow(/JavaScript identifier/);
+  });
 });
 
 describe("generate", () => {
@@ -115,9 +157,10 @@ describe("generate", () => {
     const registry = join(root, "registry");
     const out = join(root, "rules");
     mkdirSync(join(out, "books"), { recursive: true });
-    saveBook(registry, { book: "ZZB", records: rules().map((r, i) => recordFromRule(r, i)) });
-    writeFileSync(join(registry, "legacy.json"), "[]\n");
-    return { registry, out };
+    const records = rules().map((r, i) => recordFromRule(r, i));
+    saveBook(registry, { book: "ZZB", records });
+    writeFileSync(join(registry, "legacy.json"), `${JSON.stringify(Object.fromEntries(legacyOf(records)))}\n`);
+    return { registry, out, records };
   };
 
   it("writes the books and the index, then --check passes; a manual edit makes it fail", () => {
@@ -137,6 +180,23 @@ describe("generate", () => {
     expect(generate({ registry, out, check: true }).differing).toEqual(["books/old.mjs"]);
     generate({ registry, out });
     expect(readdirSync(join(out, "books"))).toEqual(["zzb.mjs"]);
+  });
+
+  it("refuses, writing nothing, a legacy record edited since migration or not in legacy.json, and names it", () => {
+    const { registry, out, records } = setup();
+    const [first, ...others] = records;
+    const edited = { ...first, rule: { ...first.rule, adds: "Edited after migration." } };
+    saveBook(registry, { book: "ZZB", records: [edited, ...others] });
+    expect(() => generate({ registry, out })).toThrow(`legacy: ${first.key} rule changed since migration`);
+    expect(readdirSync(join(out, "books"))).toEqual([]);
+    const stray = { ...others[0], key: "zzb:spell:stray", identifier: "stray", name: "Stray" };
+    saveBook(registry, { book: "ZZB", records: [first, ...others, stray] });
+    expect(() => generate({ registry, out, check: true })).toThrow(`legacy: ${stray.key} is not in legacy.json`);
+    const cli = spawnSync("node", ["tools/pipeline/cli.mjs", "generate", "--check"], {
+      encoding: "utf8", env: { PATH: process.env.PATH, RULEPACK_REGISTRY: registry, RULEPACK_RULES: out }
+    });
+    expect(cli.status).toBe(1);
+    expect(cli.stderr).toContain(`legacy: ${stray.key} is not in legacy.json`);
   });
 });
 

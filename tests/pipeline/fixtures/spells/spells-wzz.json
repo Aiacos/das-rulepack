@@ -1,1 +1,15 @@
-{ "spell": [ { "name": "Pale Hush", "source": "WZZ", "page": 7, "level": 1, "school": "I", "basicRules2024": true, "entries": ["Silence falls."] } ] }
+{
+  "spell": [
+    {
+      "name": "Pale Hush",
+      "source": "WZZ",
+      "page": 7,
+      "level": 1,
+      "school": "I",
+      "basicRules2024": true,
+      "entries": [
+        "Silence falls."
+      ]
+    }
+  ]
+}

@@ -1,12 +1,24 @@
 // Registry records, their fingerprints and derived state, and their on-disk form (one JSON file per book).
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord } from "./schema.mjs";
 
 export { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord };
 
-export const slug = (s) => String(s).toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+// Accents are dropped before slugging (NFD, then the combining marks removed): "Flèche" is "fleche", not "fl-che".
+export const slug = (s) => String(s).normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/['’]/g, "")
+  .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+/** Groups `list` by `keyOf(item)` into a Map of arrays, in first-seen order (Map.groupBy needs Node 21; the pack runs on 20). */
+export function groupBy(list, keyOf) {
+  return list.reduce((groups, item) => {
+    const key = keyOf(item);
+    if (groups.has(key)) groups.get(key).push(item);
+    else groups.set(key, [item]);
+    return groups;
+  }, new Map());
+}
 
 export function keyOf({ book, kind, name, creature }) {
   return [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : []), slug(name)].join(":");
@@ -34,8 +46,42 @@ export function stateOf(record, { core } = {}) {
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
   if (gates?.rule !== ruleFingerprint(record.rule) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
   if (!record.evidence.reviewed?.agrees) return "gated";
-  return record.evidence.played ? "played" : "reviewed";
+  return isPlayed(record.evidence.played) ? "played" : "reviewed";
 }
+
+// A play counts only with what it was played on: a hand-typed `played: {}` or `played: true` does not.
+const PLAYED_FIELDS = ["scenario", "core", "world", "at"];
+export const isPlayed = (played) =>
+  played !== null && typeof played === "object" && PLAYED_FIELDS.every((f) => typeof played[f] === "string" && played[f] !== "");
+
+/**
+ * legacy.json: `{ "<record key>": "<fingerprint of its rule at migration>" }`, as a Map. A missing file is an empty Map.
+ * Throws on a file that is not such an object.
+ */
+export function loadLegacy(dir) {
+  const file = join(dir, "legacy.json");
+  if (!existsSync(file)) return new Map();
+  let map;
+  try { map = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new Error(`${file}: ${e.message}`); }
+  const valid = map !== null && typeof map === "object" && !Array.isArray(map)
+    && Object.values(map).every((v) => typeof v === "string" && /^[0-9a-f]{64}$/.test(v));
+  if (!valid) throw new Error(`${file}: must be an object of record key to the 64-hex fingerprint of its rule at migration`);
+  return new Map(Object.entries(map));
+}
+
+/**
+ * Why a record that says `legacy: true` has no legacy standing, or null when it has it (or does not claim it). Standing needs
+ * the key in legacy.json (`legacy`, a Map) and the rule unchanged since migration (same fingerprint).
+ */
+export function legacyProblem(record, legacy) {
+  if (record?.legacy !== true) return null;
+  const stored = legacy?.get(record.key);
+  if (stored === undefined) return `legacy: ${record.key} is not in legacy.json`;
+  const changed = record.rule === undefined || stored !== ruleFingerprint(record.rule);
+  if (changed) return `legacy: ${record.key} rule changed since migration`;
+  return null;
+}
+export const hasLegacyStanding = (record, legacy) => record?.legacy === true && legacyProblem(record, legacy) === null;
 
 const fileOf = (dir, code) => join(dir, `${code.toLowerCase()}.json`);
 
@@ -48,15 +94,27 @@ export function loadBook(dir, code) {
 export const RESERVED_BOOKS = Object.freeze(["legacy", "queue"]);
 export const isReservedBook = (code) => RESERVED_BOOKS.includes(String(code).toLowerCase());
 
+// A book code: an upper-case letter, then 1 to 9 upper-case letters or digits. Its lower-case form names the file, and
+// generate.mjs also imports the book under it (so it must not be a reserved word there).
+export const BOOK_CODE = /^[A-Z][A-Z0-9]{1,9}$/;
+
 // `note` is the book-level comment (the header of the generated module); it is written only when there is one.
 export function saveBook(dir, { book, note, records }) {
-  if (isReservedBook(book)) throw new Error(`"${book}" is reserved: registry/${book.toLowerCase()}.json is not a book`);
+  if (isReservedBook(book)) throw new Error(`"${book}" is reserved: registry/${String(book).toLowerCase()}.json is not a book`);
+  if (typeof book !== "string" || !BOOK_CODE.test(book)) {
+    throw new Error(`book code ${JSON.stringify(book)} must match ${BOOK_CODE}`);
+  }
+  const keys = new Set();
   for (const r of records) {
     const errors = validateRecord(r);
     if (errors.length) throw new Error(`${r?.key ?? "record"}: ${errors.join("; ")}`);
+    if (r.book !== book) throw new Error(`${r.key}: book ${JSON.stringify(r.book)} is not the book of the file, ${book}`);
+    if (keys.has(r.key)) throw new Error(`${r.key}: two records share this key`);
+    keys.add(r.key);
   }
   const sorted = [...records].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
-  const out = { book, ...(note === undefined ? {} : { note }), records: sorted.map(({ state, ...r }) => ({ ...r, state: stateOf(r) })) };
+  const withState = sorted.map(({ state, ...r }) => ({ ...r, state: stateOf(r) }));
+  const out = { book, ...(note === undefined ? {} : { note }), records: withState };
   mkdirSync(dir, { recursive: true });
   writeFileSync(fileOf(dir, book), `${JSON.stringify(out, null, 2)}\n`);
 }
