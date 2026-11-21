@@ -1,0 +1,579 @@
+{
+  "book": "AATM",
+  "records": [
+    {
+      "key": "aatm:monster:animated-coffin/action/entrap",
+      "name": "Entrap",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Animated Coffin",
+      "section": "action",
+      "identifier": "entrap",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5d34839f41259e248bc0d3ab3dcbd7a4ca9d7b3237d757882e56bd37e7aa0a6b",
+        "source": "5etools",
+        "chars": 335
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:animated-coffin/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Animated Coffin",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "55848648f8e7874bde824485b05b5fd4b5e425c25f4fd4db78c149ba1e1c5329",
+        "source": "5etools",
+        "chars": 43
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:animated-coffin/action/slam",
+      "name": "Slam",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Animated Coffin",
+      "section": "action",
+      "identifier": "slam",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c549886f0df402baf650c62ad1f24ae7b792b53698f7939b8bd65af9967947a3",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:animated-coffin/trait/false-appearance",
+      "name": "False Appearance",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Animated Coffin",
+      "section": "trait",
+      "identifier": "false-appearance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1f34a0b01d98402dac99c0da7c0cb68f93c2559fa8e739b28307428d377f8e3a",
+        "source": "5etools",
+        "chars": 274
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:animated-coffin/trait/spider-climb",
+      "name": "Spider Climb",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Animated Coffin",
+      "section": "trait",
+      "identifier": "spider-climb",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ff746a290c8a98478abd2fbad670ff8ee01db4f2bbc946c594340941bf53e217",
+        "source": "5etools",
+        "chars": 126
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/action/death-knell",
+      "name": "Death Knell",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "action",
+      "identifier": "death-knell",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0451b129469ea31dc9558f30998d397d752c93e6abb873af65a01ca25524d490",
+        "source": "5etools",
+        "chars": 319
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/action/fog-of-death",
+      "name": "Fog of Death",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "action",
+      "identifier": "fog-of-death",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ac899a4259dbd35cf51490afea292356f1559b410e1cd992dfc1ab56a5e6fa06",
+        "source": "5etools",
+        "chars": 759
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d59c1b85fc31bbad036d9944e99df8c1862b134804b9d4abf35b2d7d7665f455",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/action/withering-touch",
+      "name": "Withering Touch",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "action",
+      "identifier": "withering-touch",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e892deb9bb11c970060fb8be87a516978a9d51f7411eca1e35e4dddbb3aec984",
+        "source": "5etools",
+        "chars": 192
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/reaction/baleful-counterspell",
+      "name": "Baleful Counterspell",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "reaction",
+      "identifier": "baleful-counterspell",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "127b9a65f62aa6ad1f86a78d8ace2be3b071ac0287328d3bd71dedf19fffac99",
+        "source": "5etools",
+        "chars": 419
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/reaction/near-death-experience",
+      "name": "Near-Death Experience",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "reaction",
+      "identifier": "near-death-experience",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "be52dbaa00e578fb188908ce3061997f3489e377e2d3ae43ab678b797c3a7d56",
+        "source": "5etools",
+        "chars": 156
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/trait/aura-of-death",
+      "name": "Aura of Death",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "trait",
+      "identifier": "aura-of-death",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5984742576c20d74802e374979a362812f7c13bdb207dce39abcf24927f0308a",
+        "source": "5etools",
+        "chars": 75
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/trait/cosmic-annihilation",
+      "name": "Cosmic Annihilation",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "trait",
+      "identifier": "cosmic-annihilation",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "7b0bf4a3b02c2d67b371090789867e0f8a017030b6c638a5e935136ae32329cb",
+        "source": "5etools",
+        "chars": 102
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "963d8ddae4ac19ee96359ef1aef6327a422751549898c295174a9afd96673e6b",
+        "source": "5etools",
+        "chars": 64
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/trait/rejuvenation",
+      "name": "Rejuvenation",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "trait",
+      "identifier": "rejuvenation",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "cc1d6c8b9620289b60a8dfb262b8b959df885af6b688cf24cc9c769fd4d66228",
+        "source": "5etools",
+        "chars": 167
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c69648876e8f10d623fd41f5ff58eb10b7000293e78cc6d34dd223d2cdae8a48",
+        "source": "5etools",
+        "chars": 292
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:factol-skall/trait/turn-resistance",
+      "name": "Turn Resistance",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Factol Skall",
+      "section": "trait",
+      "identifier": "turn-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "2c9c5b066509b131394e65806f6a4b62edb8f84020c0c3a69eddd67167f5aec2",
+        "source": "5etools",
+        "chars": 74
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:heralds-of-dust-exorcist/action/admit-entity",
+      "name": "Admit Entity",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Heralds of Dust Exorcist",
+      "section": "action",
+      "identifier": "admit-entity",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "573e829280da7ec0b032cd4af488e7dd6415e563ea67a40c29e43449d66202f9",
+        "source": "5etools",
+        "chars": 568
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:heralds-of-dust-exorcist/action/grave-burst",
+      "name": "Grave Burst",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Heralds of Dust Exorcist",
+      "section": "action",
+      "identifier": "grave-burst",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "2760f99614561650f31cc2fec9e671fe13d58f6ee31212279ed1c960f58c9df3",
+        "source": "5etools",
+        "chars": 119
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:heralds-of-dust-exorcist/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Heralds of Dust Exorcist",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d6dff8b49be35c93e124ea048cbe373e1fd8cb6f5cfc6964fc0fcf5b1e1e0b83",
+        "source": "5etools",
+        "chars": 43
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:heralds-of-dust-exorcist/trait/incorruptible-vessel",
+      "name": "Incorruptible Vessel",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Heralds of Dust Exorcist",
+      "section": "trait",
+      "identifier": "incorruptible-vessel",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d84b06cd408a36c8cd693347aaad4c44cfcff4037bbeb4691695ec534f4d7a6a",
+        "source": "5etools",
+        "chars": 65
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aatm:monster:heralds-of-dust-exorcist/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "AATM",
+      "edition": "2014",
+      "owner": "Heralds of Dust Exorcist",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "def2e243a8cad8e364e3e7471efc1ca93e11e79d1386d730dc8699cf17151c18",
+        "source": "5etools",
+        "chars": 322
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
