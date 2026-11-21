@@ -34,7 +34,7 @@ function refresh(record, items, origin, before) {
     const { gates, ...evidence } = record.evidence;
     next.evidence = evidence;
   }
-  if (!record.rule) next.identifier = canonicalIdentifier(next.items, record.name);
+  if (!record.rule) next.identifier = canonicalIdentifier(next.items, record.name, record.kind);
   const sources = bindSources(next.items, next.identifier);
   if (Object.keys(sources).length) next.sources = sources;
   else delete next.sources;

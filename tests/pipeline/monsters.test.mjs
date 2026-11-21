@@ -232,7 +232,7 @@ describe("inventory of monster features", () => {
     expect(byKey(records)["xzz:monster:glimmer-hound/trait/pack-tactics"].items.map((i) => i.origin)).toEqual(["plutonium"]);
   });
 
-  it("never asks DDB Importer: it has no monster dump", () => {
+  it("never reads monster features from the flat ddb-importer item list: only its actors count (ddb-monsters.test.mjs)", () => {
     const ddb = [item("x", "Keen Nose", { origin: "ddb-importer", docId: "ddb1" })];
     const { records } = run({ dumps: { official: [], "ddb-importer": ddb, actors: [HOUND] } });
     const nose = byKey(records)["xzz:monster:glimmer-hound/trait/keen-nose"];

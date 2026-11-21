@@ -127,13 +127,23 @@ export function officialFilesFor(dumpsDir, packages, book) {
 // A pack of actors: the pack name (the file name after the package id) contains "actors".
 export const isActorFile = (file) => file.slice(0, -".json".length).split(".").slice(1).join(".").includes("actors");
 
+// The edition an actor states in `system.source.rules` ("2014" or "2024"); `{}` when it states none (or another value).
+const editionOfActor = (doc) => {
+  const rules = String(doc.system?.source?.rules ?? "");
+  return rules === "2014" || rules === "2024" ? { edition: rules } : {};
+};
+
+// An actor document that embeds items: its embedded items are what the pipeline reads, wherever the dump is (DDB Importer's
+// monsters are in a `ddb.` file that is not named after actors).
+export const isActorDoc = (doc) => doc !== null && typeof doc === "object" && doc.type === "npc" && Array.isArray(doc.items);
+
 /**
- * The actors of an actor dump, summarised for matching their embedded items: `[{ id, name, items }]`, each item an
+ * The actors of an actor dump, summarised for matching their embedded items: `[{ id, name, edition?, items }]`, each item an
  * `itemSummary` whose `docId` is `<actor id>.<item id>`. A document that embeds no items is left out.
  */
 export function actorSummaries(docs, origin) {
   return docs.filter((d) => Array.isArray(d.items)).map((d) => ({
-    id: d._id, name: d.name,
+    id: d._id, name: d.name, ...editionOfActor(d),
     items: d.items.map((i) => ({ ...itemSummary(i, origin), docId: `${d._id}.${i._id}` }))
   }));
 }
@@ -164,7 +174,8 @@ export function reprintIndex(dumpsDir, files) {
 
 /**
  * The raw documents of dump files, by id: `Map<docId, document[]>`, only documents of a type the pipeline knows (never a
- * journal entry or page). In an actor pack the documents are the items embedded in the actors, keyed `<actor id>.<item id>`.
+ * journal entry or page). In an actor pack (or for an actor document of any dump) the documents are the items embedded in the
+ * actors, keyed `<actor id>.<item id>`.
  * Look a document up with findDocument.
  */
 export function docIndex(dumpsDir, files) {
@@ -174,7 +185,7 @@ export function docIndex(dumpsDir, files) {
   };
   for (const file of files) {
     for (const doc of readDump(join(dumpsDir, file))) {
-      if (!isActorFile(file)) add(doc?._id, doc);
+      if (!isActorFile(file) && !isActorDoc(doc)) add(doc?._id, doc);
       else if (isKnown(doc)) for (const item of doc.items ?? []) add(`${doc._id}.${item?._id}`, item);
     }
   }

@@ -131,3 +131,21 @@ export function actorCandidates(creature, actors) {
   const ambiguous = new Set(named.map(signature)).size > 1;
   return { found: true, ambiguous, candidates: (ambiguous ? named : [named[0]]).flatMap((a) => a.items) };
 }
+
+/**
+ * The DDB Importer candidates of a creature's features, for a creature of `edition`: the embedded items of the actors named as
+ * the creature (`actors` as actorSummaries gives them, an actor stating its `edition`). Only the actors of that edition count;
+ * when there is none, the ones that state no edition do (their items carry no `rules`, which matching reports as
+ * "edition-unknown"). Several actors are one or ambiguous exactly as in actorCandidates. Each item carries the edition of its
+ * actor as `rules`. `found` is false when no usable actor has the name; `otherEdition` then holds the items of the actors of
+ * the name that state the other edition (never used as candidates, only to say the creature exists in the other edition).
+ */
+export function ddbActorCandidates(creature, actors, edition) {
+  const wanted = matchName(creature).full;
+  const named = (actors ?? []).filter((a) => matchName(a.name).full === wanted);
+  const stamped = (a) => ({ ...a, items: a.items.map((i) => ({ ...i, rules: a.edition })) });
+  const stated = named.filter((a) => a.edition === edition);
+  const used = stated.length ? stated : named.filter((a) => a.edition === undefined);
+  const otherEdition = named.filter((a) => a.edition !== undefined && a.edition !== edition).flatMap((a) => stamped(a).items);
+  return { ...actorCandidates(creature, used.map(stamped)), otherEdition };
+}

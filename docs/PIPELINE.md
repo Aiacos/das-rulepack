@@ -323,8 +323,20 @@ Notes on what inventory does with each kind:
   `copyOf` = "<base name>|<base source>". Two creatures of one name in a book collide like any other key.
   The official candidates are the items embedded in the actors of the creature's name in the book package's `*actors*`
   dumps (`docId` = `<actor id>.<item id>`); same-name actors with identical embedded item ids are one, differing ones make
-  the features found in them `ambiguous`; no actor of the name makes every feature `absent`. DDB Importer has no monster
-  dump. The report adds `creatures`, `copies` (`_copy` creatures) and `noActor` (creatures with no actor), all counts.
+  the features found in them `ambiguous`; no actor of the name makes every feature `absent`. The report adds `creatures`,
+  `copies` (`_copy` creatures), `noActor` (creatures with no official actor) and `noDdbActor` (creatures with no DDB Importer
+  actor of their edition), all counts.
+  The `ddb-importer` origin is asked for monsters too: its candidates are the items embedded in the DDB Importer actors of the
+  creature's name, read from the dump files that start with `ddb.` and hold actors (`type: "npc"`, whatever the pack is
+  named), with the same name, section, claim and `<actor id>.<item id>` rules as the official ones. A DDB actor states its
+  edition in `system.source.rules` ("2014" or "2024"): only the actors of the creature's edition are candidates (the ones
+  that state none are used when there is none that does, and the item gets `differences: ["edition-unknown"]`). When the
+  creature exists only in the other edition, a feature that has an item of its name there is `ambiguous` with
+  `differences: ["edition"]` and those items as candidates (never joined, never silently absent; settle it with `resolve`).
+  Same-name DDB actors with identical embedded item ids are one, differing ones make the features `ambiguous`
+  (`differences: ["actor"]`). The official match is made first; when it is `matched` it is the reference of the ddb-importer
+  match, whose structural differences (saves, damage types, activity types, statuses) are recorded on the item (a monster
+  has no identity field beyond the edition).
 - Repeat numbers (`#2`) are re-derived against the registry on every run, not by position: among the same-name features of one
   creature and section, the record whose stored text fingerprint equals the feature's keeps its key; only a lone feature
   with a lone record and no fingerprint match is a text edit and keeps that record; every other feature takes the lowest

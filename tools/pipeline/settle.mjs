@@ -30,6 +30,11 @@ export const poolOf = (dumps, origin, kind, owner) => {
     const wanted = owner === undefined ? null : matchName(owner).full;
     return (dumps.actors ?? []).filter((a) => wanted === null || matchName(a.name).full === wanted).flatMap((a) => a.items);
   }
+  if (origin === "ddb-importer" && kind === "monster") {
+    const wanted = owner === undefined ? null : matchName(owner).full;
+    return (dumps.ddbActors ?? []).filter((a) => wanted === null || matchName(a.name).full === wanted)
+      .flatMap((a) => a.items.map((i) => ({ ...i, rules: a.edition })));
+  }
   return dumps[origin] ?? [];
 };
 
@@ -110,9 +115,10 @@ export function bindSources(items, identifier) {
   return sources;
 }
 
-export const canonicalIdentifier = (items, name) =>
+// A monster feature is named by the official item or by itself, never by a DDB Importer item (its names carry qualifiers).
+export const canonicalIdentifier = (items, name, kind) =>
   items.find((i) => i.origin === "official" && i.match === "matched")?.identifier
-  ?? items.find((i) => i.origin === "ddb-importer" && i.match === "matched")?.identifier
+  ?? (kind === "monster" ? undefined : items.find((i) => i.origin === "ddb-importer" && i.match === "matched")?.identifier)
   ?? slug(name);
 
 
