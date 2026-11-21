@@ -1095,15 +1095,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:13:08.077Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "scag:feature:monk/long-death/3/way-of-the-long-death",

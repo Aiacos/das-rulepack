@@ -2329,15 +2329,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:11:26.572Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "xge:feature:cleric/grave/1/eyes-of-the-grave",
@@ -2559,15 +2554,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:11:26.572Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "xge:feature:cleric/grave/8/potent-spellcasting",
@@ -7159,15 +7149,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:11:26.572Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "xge:feature:sorcerer/shadow/18/umbral-form",
@@ -7191,15 +7176,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:11:26.572Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "xge:feature:sorcerer/shadow/3/shadow-magic",
@@ -8203,8 +8183,8 @@
           "at": "2026-11-21T20:11:26.572Z"
         }
       },
-      "hint": "core-generic",
       "why": "no text and no item in any origin",
+      "hint": "core-generic",
       "state": "triaged"
     },
     {
@@ -11174,15 +11154,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:11:26.572Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "xge:spell:aganazzars-scorcher",
@@ -11453,15 +11428,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:11:26.572Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "xge:spell:ceremony",

@@ -1131,8 +1131,8 @@
           "at": "2026-11-21T20:15:32.092Z"
         }
       },
-      "hint": "core-generic",
       "why": "the rulebook entry has no text of its own",
+      "hint": "core-generic",
       "state": "triaged"
     },
     {
@@ -10171,8 +10171,8 @@
           "at": "2026-11-21T20:15:32.092Z"
         }
       },
-      "hint": "core-generic",
       "why": "the rulebook entry has no text of its own",
+      "hint": "core-generic",
       "state": "triaged"
     },
     {
@@ -10212,8 +10212,8 @@
           "at": "2026-11-21T20:15:32.092Z"
         }
       },
-      "hint": "core-generic",
       "why": "the rulebook entry has no text of its own",
+      "hint": "core-generic",
       "state": "triaged"
     },
     {
@@ -14550,8 +14550,8 @@
           "at": "2026-11-21T20:15:32.092Z"
         }
       },
-      "hint": "core-generic",
       "why": "the rulebook entry has no text of its own",
+      "hint": "core-generic",
       "state": "triaged"
     },
     {
@@ -21690,6 +21690,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "reaping-scythe",
+          "docId": "ddbAvatOfDe27734.BK0Xoh7hLImx4Rnm",
+          "activities": [
+            "damageReScaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3561b3477e214a862716a4f67dc437dda3fdef5aaa6aefa407d417a6a672f36e"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -21715,6 +21728,19 @@
         "chars": 159
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "incorporeal-movement",
+          "docId": "ddbAvatOfDe27734.yB7r2QHLeEOgIjmz",
+          "activities": [
+            "damageInMspecial"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "3ab0e5e064f136d22f5e7a8cbcff872d185a1d1b53595051f8024d6a1070f2f9"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -21767,6 +21793,19 @@
         "chars": 66
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "bite",
+          "docId": "ddbLarva27752III.ln1ihWSIu6Xz81qW",
+          "activities": [
+            "attackBiteaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "9d74cee76e37bb51ec0cf1addd9d3d65a43b7b46427e863f66176814a2781a66"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -22889,15 +22928,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:15:32.092Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "dmg:species:troglodyte/sunlight-sensitivity",
@@ -23040,15 +23074,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T20:15:32.092Z"
-        }
-      },
-      "why": "DAS · Core has an entry under this identifier",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "dmg:species:zombie/undead-nature",

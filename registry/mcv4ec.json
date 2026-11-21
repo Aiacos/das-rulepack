@@ -19,6 +19,22 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "hooves",
+          "docId": "ddbArOfBo3852128.iplht2SPxI673O5u",
+          "activities": [
+            "attackHoovaction",
+            "saveSaveIIIIIIII"
+          ],
+          "effects": [
+            "zq60cJXirq0JzIG6"
+          ],
+          "data": {
+            "sha256": "d5ee70c4cbe6bc404bdaf29c2531b00f07dc8337af6cbe317300f70061fc759f"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -44,6 +60,19 @@
         "chars": 64
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "multiattack",
+          "docId": "ddbArOfBo3852128.0RqhU7thVuHGXGHR",
+          "activities": [
+            "utilityMulaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "db80178c741939a4be84fc92e33a31d00f07161e1f7571dc386c0f5f355d8d9a"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -71,6 +100,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "radiant-lance",
+          "docId": "ddbArOfBo3852128.IKpFsuE6cw7QnOkA",
+          "activities": [
+            "attackRaLaaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "d451ce671ae94edfc49fb92196a1dd97da23554e1494bf26acb1acee1fb37ce9"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -96,6 +138,19 @@
         "chars": 183
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "archons-pursuit",
+          "docId": "ddbArOfBo3852128.oNpmcc1bhTHKPkGw",
+          "activities": [
+            "utilityAreaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "6d0f5201c6d0424f3e6d38a9bca7ab85f2b19eced78a74ecf285a8962751a7ca"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -123,6 +178,21 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "haunting-radiance",
+          "docId": "ddbArOfBo3852128.3U8ldwSZRxIaX3ps",
+          "activities": [
+            "saveHaRareaction"
+          ],
+          "effects": [
+            "sEFr2FHtEkC9TplA"
+          ],
+          "data": {
+            "sha256": "c3c4f6e5ab1930d5299831b331bba1de813272ffe007cfc43b66d1fcba9508f3"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -148,6 +218,21 @@
         "chars": 105
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "parry",
+          "docId": "ddbArOfBo3852128.GQcPXs36Jtwoyw6E",
+          "activities": [
+            "utilityPreaction"
+          ],
+          "effects": [
+            "PyB2CjBgy102k3vo"
+          ],
+          "data": {
+            "sha256": "564e8143b86faf890ad32a7a58675a53d93b2ffc00d920fd935d66b615d314d6"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -176,6 +261,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "legendary-resistance",
+          "docId": "ddbArOfBo3852128.UWTPWMdPYOGXVuFy",
+          "activities": [
+            "utilityEUspecial"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "6ad7ba0b0aefb5fde24a83710bd0ed4851a183926eccc502bc041658539c8eff"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -201,6 +299,19 @@
         "chars": 83
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "magic-resistance",
+          "docId": "ddbArOfBo3852128.yWnykKLmB1iha6KF",
+          "activities": [],
+          "effects": [
+            "neZ9RcI6EAAnPIHo"
+          ],
+          "data": {
+            "sha256": "4398c89c3c34d0ebaa473a2328b1462e8fba61281ca40145076fa97b5701a8e4"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -229,6 +340,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "spellcasting",
+          "docId": "ddbArOfBo3852128.CsLZyRKiHwqsLq2r",
+          "activities": [
+            "utilitySpeaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "d2b8268d032dd8adcc687c9103314f2418334ef81592960d45363e06ffc70a1e"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -254,6 +378,22 @@
         "chars": 933
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "bite",
+          "docId": "ddbBeaWur3852129.ecFJJ6dJqUT0lRz5",
+          "activities": [
+            "attackBiteaction",
+            "saveConSaveIIIII",
+            "saveSave1IIIIIII",
+            "damageOngoiDama2"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "8cb756d49af482cd67e9920565847853413f11c7b4d0c0de1a8d6c1e4540a33a"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -282,6 +422,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "multiattack",
+          "docId": "ddbBeaWur3852129.kpy7An8dtO5yJDWK",
+          "activities": [
+            "utilityMulaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "aaca6af3790e793f997244a7b130c0beb604a194dbd0fabf0cb4208cb897fff4"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -308,6 +461,17 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "false-appearance",
+          "docId": "ddbBeaWur3852129.sKEswp7UdMVmKDAX",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "9e5c522450a5e72fcbbc4ca2416811342a709ed341619979e6ccca7465f5364a"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -333,6 +497,17 @@
         "chars": 66
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "leafy-handholds",
+          "docId": "ddbBeaWur3852129.yUwsNqjhYvhJAZ77",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "fcacbcc2e3a9c63a1521146ecb28eaa1402c40d117e290fdf5e1d83252fd8246"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -385,6 +560,19 @@
         "chars": 197
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "regeneration",
+          "docId": "ddbBeaWur3852129.s9iAPHSxQhDn2d7x",
+          "activities": [
+            "healHealIIIIIIII"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "5e28df914d0ee586f41e4a93e1f226e3281cd395930f60df0e4071081cd3c912"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
