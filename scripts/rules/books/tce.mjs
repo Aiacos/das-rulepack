@@ -1,9 +1,4 @@
-/**
- * Tasha's Cauldron of Everything (2020).
- *
- * The activity and effect ids are those of the items imported by DDB Importer (its ids are stable from one import to the next);
- * an item from another source keeps the general rules of the engine, and the parts of a rule that name an id do nothing on it.
- */
+// Generated from registry/tce.json by npm run build:rules — do not edit.
 import { book } from "../book.mjs";
 
 export const BOOK = "TCE";
@@ -12,57 +7,122 @@ export const RULES = book(BOOK, [
   // Booming Blade and Green-Flame Blade have no entry: the whole rule is in scripts/blade-cantrips.mjs (Foundry glue) and
   // scripts/core/blade-cantrips.mjs (pure rules), which recognise the two spells by their identifier.
   {
-    identifier: "booming-blade", name: "Booming Blade", page: 106, kind: "spell", status: "played",
-    handledIn: "code", code: "scripts/blade-cantrips.mjs",
-    adds: "Casting it makes one melee attack with a weapon you hold (you choose if you hold several). From 5th level the attack adds 1d8 thunder on a hit (2d8 at 11th, 3d8 at 17th). A target that is hit is sheathed until the start of your next turn: if it moves 5 feet or more of its own will, it takes 1d8 thunder (one more die at 5th, 11th and 17th) and the spell ends. Pushes and pulls by the engine do not set it off."
+    "identifier": "booming-blade",
+    "name": "Booming Blade",
+    "page": 106,
+    "kind": "spell",
+    "status": "played",
+    "handledIn": "code",
+    "adds": "Casting it makes one melee attack with a weapon you hold (you choose if you hold several). From 5th level the attack adds 1d8 thunder on a hit (2d8 at 11th, 3d8 at 17th). A target that is hit is sheathed until the start of your next turn: if it moves 5 feet or more of its own will, it takes 1d8 thunder (one more die at 5th, 11th and 17th) and the spell ends. Pushes and pulls by the engine do not set it off.",
+    "code": "scripts/blade-cantrips.mjs"
   },
 
   {
-    identifier: "green-flame-blade", name: "Green-Flame Blade", page: 107, kind: "spell", status: "played",
-    handledIn: "code", code: "scripts/blade-cantrips.mjs",
-    adds: "Casting it makes one melee attack with a weapon you hold. From 5th level the attack adds 1d8 fire on a hit (2d8 at 11th, 3d8 at 17th). On a hit you choose a creature within 5 feet of the target: it takes fire damage equal to your spellcasting modifier, plus the same dice."
+    "identifier": "green-flame-blade",
+    "name": "Green-Flame Blade",
+    "page": 107,
+    "kind": "spell",
+    "status": "played",
+    "handledIn": "code",
+    "adds": "Casting it makes one melee attack with a weapon you hold. From 5th level the attack adds 1d8 fire on a hit (2d8 at 11th, 3d8 at 17th). On a hit you choose a creature within 5 feet of the target: it takes fire damage equal to your spellcasting modifier, plus the same dice.",
+    "code": "scripts/blade-cantrips.mjs"
   },
 
+  // Lightning Lure (TCE p.107, SCAG): a failed save pulls the target up to 10 ft toward the caster. The damage is
+  // left as rolled: the engine applies it wherever the target ends. The imported item gives the save an area of
+  // size zero, so no creature is ever in it: the target is corrected to one creature in the item's data (by the
+  // active GM when the item is created, and by the world diagnostic for items already on a sheet).
   {
-    identifier: "lightning-lure", name: "Lightning Lure", page: 107, kind: "spell", status: "played", handledIn: "table",
-    adds: "On a failed save the target is pulled up to 10 ft toward the caster. The imported item's target (a \"0-foot emanation\" that never contains anyone) is corrected to one creature.",
-    // Lightning Lure (TCE p.107, SCAG): a failed save pulls the target up to 10 ft toward the caster. The damage is
-    // left as rolled: the engine applies it wherever the target ends. The imported item gives the save an area of
-    // size zero, so no creature is ever in it: the target is corrected to one creature in the item's data (by the
-    // active GM when the item is created, and by the world diagnostic for items already on a sheet).
-    entry: {
-      dataFixes: [
-        { path: "system.target.template.type", from: "radius", value: "" },
-        { path: "system.target.affects.type", from: "", value: "creature" }
+    "identifier": "lightning-lure",
+    "name": "Lightning Lure",
+    "page": 107,
+    "kind": "spell",
+    "status": "played",
+    "handledIn": "table",
+    "adds": "On a failed save the target is pulled up to 10 ft toward the caster. The imported item's target (a \"0-foot emanation\" that never contains anyone) is corrected to one creature.",
+    "entry": {
+      "dataFixes": [
+        {
+          "path": "system.target.template.type",
+          "from": "radius",
+          "value": ""
+        },
+        {
+          "path": "system.target.affects.type",
+          "from": "",
+          "value": "creature"
+        }
       ],
-      triggers: [{ on: "failedSave", do: [{ type: "move", mode: "pull", distance: 10, units: "ft", upTo: true }] }]
+      "triggers": [
+        {
+          "on": "failedSave",
+          "do": [
+            {
+              "type": "move",
+              "mode": "pull",
+              "distance": 10,
+              "units": "ft",
+              "upTo": true
+            }
+          ]
+        }
+      ]
     }
   },
 
+  // Tasha's Mind Whip (TCE p.115): the effect takes away its bearer's reactions and holds it to an action OR a
+  // bonus action, and ends at the end of the bearer's turn. Giving both up to move instead is left to the table.
   {
-    identifier: "tashas-mind-whip", name: "Tasha's Mind Whip", page: 115, kind: "spell", status: "played", handledIn: "table",
-    adds: "No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both.",
-    // Tasha's Mind Whip (TCE p.115): the effect takes away its bearer's reactions and holds it to an action OR a
-    // bonus action, and ends at the end of the bearer's turn. Giving both up to move instead is left to the table.
-    entry: {
-      noReactions: true,
-      actionOrBonus: true,
-      effectEnds: { cX99599Nv7wRWKFn: "bearerTurnEnd" }
+    "identifier": "tashas-mind-whip",
+    "name": "Tasha's Mind Whip",
+    "page": 115,
+    "kind": "spell",
+    "status": "played",
+    "handledIn": "table",
+    "adds": "No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both.",
+    "entry": {
+      "noReactions": true,
+      "actionOrBonus": true,
+      "effectEnds": {
+        "cX99599Nv7wRWKFn": "bearerTurnEnd"
+      }
     }
   },
 
+  // Tasha's Caustic Brew (TCE p.115): no damage on the cast. The item's data puts the 2d4 on the saving throw: it
+  // is rolled at the start of each of the bearer's turns instead, and the bearer can spend an action to end the
+  // effect.
   {
-    identifier: "tashas-caustic-brew", name: "Tasha's Caustic Brew", page: 115, kind: "spell", status: "played",
-    handledIn: "table",
-    adds: "No damage on the cast; 2d4 acid at the start of each of the target's turns; an action ends it.",
-    // Tasha's Caustic Brew (TCE p.115): no damage on the cast. The item's data puts the 2d4 on the saving throw: it
-    // is rolled at the start of each of the bearer's turns instead, and the bearer can spend an action to end the
-    // effect.
-    entry: {
-      noDamage: ["saveTashCausBrew"],
-      actionEnds: { "2LQhIQp9u4KZrcSj": { by: "bearer" } },
-      triggers: [{ on: "startOfTurn", via: "effect", fromEffect: "2LQhIQp9u4KZrcSj",
-        do: [{ type: "damage", to: "bearer", activity: "saveTashCausBrew" }] }]
+    "identifier": "tashas-caustic-brew",
+    "name": "Tasha's Caustic Brew",
+    "page": 115,
+    "kind": "spell",
+    "status": "played",
+    "handledIn": "table",
+    "adds": "No damage on the cast; 2d4 acid at the start of each of the target's turns; an action ends it.",
+    "entry": {
+      "noDamage": [
+        "saveTashCausBrew"
+      ],
+      "actionEnds": {
+        "2LQhIQp9u4KZrcSj": {
+          "by": "bearer"
+        }
+      },
+      "triggers": [
+        {
+          "on": "startOfTurn",
+          "via": "effect",
+          "fromEffect": "2LQhIQp9u4KZrcSj",
+          "do": [
+            {
+              "type": "damage",
+              "to": "bearer",
+              "activity": "saveTashCausBrew"
+            }
+          ]
+        }
+      ]
     }
   }
 ]);

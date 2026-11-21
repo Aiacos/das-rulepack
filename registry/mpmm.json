@@ -1,0 +1,54 @@
+{
+  "book": "MPMM",
+  "records": [
+    {
+      "key": "mpmm:sense:life-sense",
+      "identifier": "life-sense",
+      "name": "Life Sense",
+      "kind": "sense",
+      "book": "MPMM",
+      "page": 250,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it.",
+        "entry": {
+          "sense": {
+            "kind": "locate",
+            "range": 60,
+            "units": "ft",
+            "walls": false,
+            "detects": {
+              "not": {
+                "target.creatureType": [
+                  "construct",
+                  "undead"
+                ]
+              }
+            }
+          }
+        },
+        "origin": "Vampiric Mist",
+        "catalog": null,
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "alsoIn": [
+        {
+          "book": "MTF",
+          "page": 246
+        }
+      ],
+      "order": 0,
+      "note": "Life Sense (Vampiric Mist, MPMM p.250; MTF p.246): declared as a sense that locates creatures within 60 ft,\ntwo creature types excepted, and that walls do not stop. A natural sense: nothing wards against it.",
+      "state": "drafted"
+    }
+  ]
+}

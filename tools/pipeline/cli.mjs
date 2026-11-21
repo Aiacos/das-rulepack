@@ -8,6 +8,7 @@ import { dumpsFor, itemSummary, readDump } from "./dumps.mjs";
 import { inventory } from "./inventory.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
+import { generate } from "./generate.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const REGISTRY = process.env.RULEPACK_REGISTRY || join(ROOT, "registry");
@@ -131,7 +132,21 @@ function gatesCommand(args) {
   });
 }
 
-export const COMMANDS = { inventory: inventoryCommand, gates: gatesCommand };
+function generateCommand(args) {
+  const check = args.includes("--check");
+  const unknown = args.filter((a) => a !== "--check");
+  if (unknown.length) throw new UsageError(`Usage: generate [--check] (unexpected: ${unknown.join(" ")})`);
+  const { written, differing } = generate({ registry: REGISTRY, out: join(ROOT, "scripts", "rules"), check });
+  if (check) {
+    for (const path of differing) console.error(`differs from the registry: scripts/rules/${path}`);
+    if (differing.length) process.exitCode = 1;
+    else console.log("Generated rule modules are up to date.");
+  } else {
+    console.log(written.length ? `Wrote ${written.map((p) => `scripts/rules/${p}`).join(", ")}.` : "Nothing to write.");
+  }
+}
+
+export const COMMANDS = { inventory: inventoryCommand, gates: gatesCommand, generate: generateCommand };
 
 export async function main(argv) {
   const [name, ...args] = argv;

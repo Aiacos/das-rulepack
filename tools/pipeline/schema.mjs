@@ -80,6 +80,10 @@ export function validateRecord(record) {
       if (typeof identifier !== "string" || !KEBAB.test(identifier)) errors.push(`sources.${id}: must be a kebab-case identifier`);
     }
   }
+  if ("order" in record && !(Number.isInteger(record.order) && record.order >= 0)) {
+    errors.push("order: must be a non-negative integer");
+  }
+  if ("note" in record && typeof record.note !== "string") errors.push("note: must be a string");
   for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
   return errors;
 }

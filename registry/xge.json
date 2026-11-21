@@ -1,0 +1,443 @@
+{
+  "book": "XGE",
+  "records": [
+    {
+      "key": "xge:sense:ghostly-gaze",
+      "identifier": "ghostly-gaze",
+      "name": "Ghostly Gaze",
+      "kind": "sense",
+      "book": "XGE",
+      "page": 56,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "A sight that walls do not stop within 30 ft, carried by the effect the invocation places on its user; off while the user is Blinded.",
+        "entry": {
+          "sense": {
+            "kind": "sight",
+            "range": 30,
+            "units": "ft",
+            "via": "effect",
+            "walls": false,
+            "needs": "sight"
+          }
+        },
+        "origin": "Eldritch Invocation",
+        "catalog": "option",
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 11,
+      "note": "A sense, declared with the engine's generic `sense` block (DAS · Core, `module/scripts/core/senses.mjs`). It was first\nproposed to DAS · Core (dnd5e-combat pull request 128) and belongs here: the engine's public repositories carry nothing from\nnon-SRD books. It needs a DAS · Core that knows the `sense` key (pull requests 119 and 122 of dnd5e-combat, not in a release\nat the time of writing). On an older engine the entry is rejected when the pack registers (the engine logs it); the other\nrules are registered all the same.\nGhostly Gaze (eldritch invocation, XGE p.56): declared as a sight that walls do not stop, with a range of 30\nft, carried by the effect the invocation places on its user. It needs working eyes (`needs`): off while the\nuser is Blinded, and an Invisible creature stays unseen. Whatever else the effect grants is left to the\neffect.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:earth-tremor",
+      "identifier": "earth-tremor",
+      "name": "Earth Tremor",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 155,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "No damage on a successful save (the imported data gives half).",
+        "entry": {
+          "saveDamage": {
+            "saveEarthTremorI": "none"
+          }
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 5,
+      "note": "Earth Tremor (XGE p.155): a successful save takes no damage; the item's data gives half.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:frostbite",
+      "identifier": "frostbite",
+      "name": "Frostbite",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 156,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "Disadvantage on the target's next weapon attack before the end of its next turn, then the effect is spent.",
+        "entry": {
+          "effectEnds": {
+            "ZNq8opE3LPDQFXup": "bearerTurnEnd"
+          },
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "via": "effect",
+              "if": {
+                "source.hasEffect": "frostbite",
+                "activity.isWeapon": true
+              },
+              "do": [
+                {
+                  "type": "disadvantage"
+                },
+                {
+                  "type": "consume",
+                  "side": "source"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 1,
+      "note": "Frostbite (XGE p.156, EE): the effect \"Frostbitten\" ends at the end of its bearer's turn; while it is on, the\nbearer's first weapon attack is rolled with disadvantage and uses the effect up.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:holy-weapon",
+      "identifier": "holy-weapon",
+      "name": "Holy Weapon",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 157,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature blinded by the burst repeats the save at the end of each of its turns.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "AVAqMpoVU6J5tDTM",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {},
+      "order": 4,
+      "note": "Holy Weapon (XGE p.157), the burst that ends the spell: the blinding effect lets its bearer repeat the save at\nthe end of each of its turns.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:power-word-pain",
+      "identifier": "power-word-pain",
+      "name": "Power Word Pain",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 163,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "The target repeats the Constitution save at the end of each of its turns.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "zZ96n2pATqQe1y8v",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {},
+      "order": 9,
+      "note": "Power Word Pain (XGE p.163): the effect lets its bearer repeat the save at the end of each of its turns.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:psychic-scream",
+      "identifier": "psychic-scream",
+      "name": "Psychic Scream",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 163,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "A stunned target repeats the save at the end of each of its turns.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "DkdkPXVGU9anSsuT",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 3,
+      "note": "Psychic Scream (XGE p.163): the stunning effect lets its bearer repeat the save at the end of each of its\nturns.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:pyrotechnics",
+      "identifier": "pyrotechnics",
+      "name": "Pyrotechnics",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 163,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "Blinded by the fireworks ends at the end of the caster's next turn.",
+        "entry": {
+          "effectEnds": {
+            "ZjHJQ7woRp98O6cT": "casterTurnEnd"
+          }
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {},
+      "order": 6,
+      "note": "Pyrotechnics (XGE p.163), fireworks: the blinding effect ends at the end of the caster's next turn.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:shadow-blade",
+      "identifier": "shadow-blade",
+      "name": "Shadow Blade",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 164,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "code",
+      "rule": {
+        "handledIn": "code",
+        "adds": "The blade is in the caster's hand as soon as the spell is cast (created on the spot, or adopted when the item's own data conjures it), sized by the slot (2d8 / 3d8 / 4d8 / 5d8), and leaves with the concentration. Advantage against a target in dim light or darkness. A thrown blade dissipates at the end of the turn; casting the spell again while concentrating brings it back without a slot.",
+        "entry": {
+          "recast": true,
+          "recastCost": "bonus"
+        },
+        "code": "scripts/shadow-blade.mjs",
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 0,
+      "note": "Shadow Blade (XGE p.164): casting the spell again while concentrating calls the blade back, for a bonus action\nand no slot. The blade itself: scripts/shadow-blade.mjs.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:snare",
+      "identifier": "snare",
+      "name": "Snare",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 165,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "A restrained creature repeats the save at the end of each of its turns.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "e9NG1SwNcR4UZAXY",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {},
+      "order": 7,
+      "note": "Snare (XGE p.165): the restraining effect lets its bearer repeat the save at the end of each of its turns.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:wall-of-light",
+      "identifier": "wall-of-light",
+      "name": "Wall of Light",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 170,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "A blinded creature repeats the save at the end of each of its turns.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "VGU8pflgbBnWKJ7E",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {},
+      "order": 10,
+      "note": "Wall of Light (XGE p.170): the blinding effect lets its bearer repeat the save at the end of each of its\nturns.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:watery-sphere",
+      "identifier": "watery-sphere",
+      "name": "Watery Sphere",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 170,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "A restrained creature repeats the save at the end of each of its turns.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "b4gGKWLyZdmGqgrO",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {},
+      "order": 8,
+      "note": "Watery Sphere (XGE p.170): the restraining effect lets its bearer repeat the save at the end of each of its\nturns.",
+      "state": "drafted"
+    },
+    {
+      "key": "xge:spell:zephyr-strike",
+      "identifier": "zephyr-strike",
+      "name": "Zephyr Strike",
+      "kind": "spell",
+      "book": "XGE",
+      "page": 171,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "The caster's movement provokes no opportunity attacks while the spell lasts.",
+        "entry": {
+          "noOpportunity": "whileEffect"
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "validated",
+      "evidence": {},
+      "order": 2,
+      "note": "Zephyr Strike (XGE p.171): no opportunity attacks against the caster's movement while the spell's effect is\non.",
+      "state": "drafted"
+    }
+  ]
+}

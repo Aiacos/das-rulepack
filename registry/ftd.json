@@ -1,0 +1,35 @@
+{
+  "book": "FTD",
+  "records": [
+    {
+      "key": "ftd:spell:raulothims-psychic-lance",
+      "identifier": "raulothims-psychic-lance",
+      "name": "Raulothim's Psychic Lance",
+      "kind": "spell",
+      "book": "FTD",
+      "page": 21,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "Incapacitated ends at the start of the caster's next turn.",
+        "entry": {
+          "effectEnds": {
+            "31jOzP6HwmGO6HHd": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 0,
+      "note": "Raulothim's Psychic Lance (FTD p.21): the Incapacitated effect ends at the start of the caster's next turn.",
+      "state": "drafted"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "book": "PHB",
+  "records": [
+    {
+      "key": "phb:spell:ottos-irresistible-dance-2014",
+      "identifier": "irresistible-dance",
+      "name": "Otto's Irresistible Dance (2014)",
+      "kind": "spell",
+      "book": "PHB",
+      "page": 264,
+      "edition": "2014",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "Disadvantage on the dancer's attacks, Advantage on attacks against it, and an action to repeat the Wisdom save. The 2024 spell is covered by DAS · Core.",
+        "entry": {
+          "actionEnds": {
+            "aWuXl9NADX7vOCOC": {
+              "by": "bearer",
+              "roll": "save"
+            }
+          },
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "via": "effect",
+              "if": {
+                "source.hasEffect": {
+                  "item": "irresistible-dance",
+                  "effect": "aWuXl9NADX7vOCOC"
+                }
+              },
+              "do": [
+                {
+                  "type": "disadvantage"
+                }
+              ]
+            },
+            {
+              "on": "preAttackRoll",
+              "via": "effect",
+              "if": {
+                "target.hasEffect": {
+                  "item": "irresistible-dance",
+                  "effect": "aWuXl9NADX7vOCOC"
+                }
+              },
+              "do": [
+                {
+                  "type": "advantage"
+                }
+              ]
+            }
+          ]
+        },
+        "inCore": true,
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 0,
+      "note": "Otto's Irresistible Dance, 2014 version (PHB 2014 p.264; identifier `irresistible-dance`, where the 2024 spell\nis `ottos-irresistible-dance` and has its rule in DAS · Core): disadvantage on the attacks of a creature that\ncarries the dancing effect, advantage on the attacks against it, and an action of the bearer to roll the save\nthat ends the effect.\nThe effect is named: the caster carries one too (the spell's concentration), and must not count as dancing.",
+      "state": "drafted"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "book": "XPHB",
+  "records": [
+    {
+      "key": "xphb:feature:dreadful-strikes",
+      "identifier": "dreadful-strikes",
+      "name": "Dreadful Strikes",
+      "kind": "feature",
+      "book": "XPHB",
+      "page": 124,
+      "edition": "2024",
+      "text": null,
+      "items": [],
+      "verdict": "code",
+      "rule": {
+        "handledIn": "code",
+        "adds": "The extra Psychic die is once per turn for each target, not once per turn for the ranger.",
+        "entry": {
+          "triggers": []
+        },
+        "code": "scripts/dreadful-strikes.mjs",
+        "origin": "Fey Wanderer 3",
+        "inCore": true,
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 2,
+      "note": "Dreadful Strikes (Fey Wanderer 3, PHB 2024 p.124): the extra damage is counted once per turn for each TARGET.\nThe engine can only count per ranger, so its trigger is switched off here and scripts/dreadful-strikes.mjs\nadds the die itself.",
+      "state": "drafted"
+    },
+    {
+      "key": "xphb:feature:inspiring-smite",
+      "identifier": "inspiring-smite",
+      "name": "Inspiring Smite",
+      "kind": "feature",
+      "book": "XPHB",
+      "page": 114,
+      "edition": "2024",
+      "text": null,
+      "items": [],
+      "verdict": "entry",
+      "rule": {
+        "handledIn": "table",
+        "adds": "The Temporary Hit Points are divided among the chosen creatures as the paladin likes, where the engine splits them evenly.",
+        "entry": {
+          "healPool": {
+            "activities": [
+              "oBkPCmC2KsH2WUJp"
+            ],
+            "temp": true,
+            "choose": true
+          }
+        },
+        "origin": "Oath of Glory 3",
+        "inCore": true,
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 1,
+      "note": "Inspiring Smite (Oath of Glory 3, PHB 2024 p.114): the engine's entry splits the Temporary Hit Points evenly;\n`choose` opens its distribution window instead, so the player divides them.",
+      "state": "drafted"
+    },
+    {
+      "key": "xphb:feature:psychic-veil",
+      "identifier": "psychic-veil",
+      "name": "Psychic Veil",
+      "kind": "feature",
+      "book": "XPHB",
+      "page": 135,
+      "edition": "2024",
+      "text": null,
+      "items": [],
+      "verdict": "code",
+      "rule": {
+        "handledIn": "code",
+        "adds": "A missed attack no longer drops the invisibility; an attack that hits and deals damage still does.",
+        "entry": {
+          "breaksOn": [
+            "damage",
+            "forcesSave"
+          ]
+        },
+        "code": "scripts/psychic-veil.mjs",
+        "origin": "Soulknife 13",
+        "inCore": true,
+        "origins": [
+          "ddb-importer"
+        ]
+      },
+      "legacy": true,
+      "legacyStatus": "played",
+      "evidence": {},
+      "order": 0,
+      "note": "Psychic Veil (Soulknife 13, PHB 2024 p.135): the engine's entry ends the invisibility on any attack roll, so a\nmiss dropped it; the attack roll is taken out of the list. What the engine's \"damage\" does not cover — an\nattack that hits and deals damage — is handled by scripts/psychic-veil.mjs.",
+      "state": "drafted"
+    }
+  ]
+}

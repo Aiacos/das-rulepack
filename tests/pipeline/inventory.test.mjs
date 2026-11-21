@@ -210,7 +210,7 @@ describe("pipeline CLI inventory on temporary folders", () => {
     });
     expect(records[0].items.map((i) => [i.origin, i.match])).toEqual([["official", "matched"], ["plutonium", "unchecked"]]);
     expect(existsSync(registryFile("TST"))).toBe(true);
-    expect(existsSync(join(process.cwd(), "registry"))).toBe(false);
+    expect(existsSync(join(process.cwd(), "registry", "tst.json"))).toBe(false);
   });
 
   it("rewrites nothing on a second identical run", () => {
