@@ -5,7 +5,9 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { spawnSync } from "node:child_process";
 import { RULES } from "../../scripts/rules/index.mjs";
-import { legacyFingerprint, validateRecord, ruleFingerprint, saveBook } from "../../tools/pipeline/registry.mjs";
+import {
+  emittedFingerprint, legacyFingerprint, validateRecord, ruleFingerprint, saveBook
+} from "../../tools/pipeline/registry.mjs";
 import {
   recordFromRule, ruleFromRecord, bookModuleSource, indexSource, generate
 } from "../../tools/pipeline/generate.mjs";
@@ -60,8 +62,8 @@ describe("recordFromRule / ruleFromRecord", () => {
     const legacy = legacyOf([r]);
     expect(ruleFromRecord(r, { legacy }).status).toBe("pending");
     const passed = ["schema", "validator", "ids", "fixes", "text"];
-    const gates = { at: "d", core: "c", rule: ruleFingerprint(r.rule), passed };
     const fresh = { ...r, legacy: undefined, legacyStatus: undefined };
+    const gates = { at: "d", core: "c", rule: ruleFingerprint(r.rule), emits: emittedFingerprint(fresh), passed };
     expect(ruleFromRecord(fresh)).toBeNull();
     expect(ruleFromRecord({ ...fresh, evidence: { gates } }).status).toBe("validated");
     expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed: { agrees: true } } }).status).toBe("validated");

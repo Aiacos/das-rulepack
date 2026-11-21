@@ -7,7 +7,7 @@
 // A gate returns its failures as a string[]; the gates that can also say something that must not fail a run (a note) expose it
 // through the matching check function, and runGates collects both.
 import {
-  canonical, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
+  canonical, emittedFingerprint, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
 } from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
@@ -340,7 +340,7 @@ export function runGates(records, context) {
     if (failures[key]) return { ...record, evidence };
     const noted = GATES.filter((g) => notes[key]?.[g]);
     const passed = GATES.filter((g) => !noted.includes(g));
-    const next = { core: context.core.version, rule: ruleFingerprint(record.rule), passed };
+    const next = { core: context.core.version, rule: ruleFingerprint(record.rule), emits: emittedFingerprint(record), passed };
     if (noted.length) next.noted = noted;
     // The items checked, so that evidence never outlives a change of item (resolve, inventory or any other editor).
     const items = gatedItems(record);

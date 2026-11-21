@@ -5,6 +5,7 @@ import { hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy
 import { editionOf } from "./edition.mjs";
 import { RULE_VERDICTS } from "./schema.mjs";
 import { sourceProblems } from "./settle.mjs";
+import { identifierProblems } from "./identifiers.mjs";
 
 export const NOT_BOOKS = ["legacy.json", "queue.json"];
 const GENERATED = /^\/\/ Generated (from registry\/|by npm run build:rules)/;
@@ -197,9 +198,12 @@ export function generate({ registry, out, check = false }) {
     const code = f.slice(0, -5);
     const { book, note, records } = loadBook(registry, code);
     refused.push(...records.map((r) => legacyProblem(r, legacy)).filter(Boolean));
-    // A rule under another verdict would silently drop out of the pack.
+    // A rule under another verdict would silently drop out of the pack. A rule's identifiers are checked as the schema gate
+    // checks them (identifiers.mjs identifierProblems), whatever its state: an edit made after the gates is refused here too.
     for (const r of records) {
       if (r.rule && !RULE_VERDICTS.includes(r.verdict)) refused.push(`${r.key}: has a rule but the verdict ${r.verdict}`);
+      const problems = r.rule ? identifierProblems(r) : [];
+      if (problems.length) refused.push(`${r.key}: ${problems.join("; ")}`);
     }
     const source = bookModuleSource(book, records, note, { legacy });
     if (source) wanted.set(`books/${code}.mjs`, source);

@@ -111,7 +111,9 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
 4. **Gates** check every record deterministically and write their outcome into `evidence.gates`: the gates that were
    checked and passed in `passed`, those that could only leave a note in `noted`, and in `items` the data fingerprint of
    the matched item of each origin the rule names (`{ <origin>: <data.sha256> }`, left out when no item has data, as for a
-   legacy rule). The evidence counts (state `gated`, and the `--ci` check) only while the rule fingerprint is the rule's
+   legacy rule), and in `emits` a fingerprint of the record fields its emitted rule is made of besides the rule
+   (`identifier`, `name`, `book`, `page`, `kind`, `alsoIn`, `sources`: `registry.mjs` `emittedFingerprint`). The evidence
+   counts (state `gated`, and the `--ci` check) only while the rule fingerprint is the rule's, `emits` is the record's,
    and every recorded item fingerprint is that of the record's current matched item of its origin: moving an item to
    another document or changing its data, by `resolve`, inventory or anyone, makes the record `drafted` again.
    The ids gate fails closed: every
@@ -144,7 +146,8 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    A data fix without `from` must at least find its path on the document (`fixes: <path> does not exist`).
    The schema gate also checks `sources`: every key must be the docId (or
    an `alsoDocIds`) of the record's matched official item and every value the record's identifier
-   (`sources: <docId> is not an item of this record`). `generate` fails naming the record on the same check, and refuses two
+   (`sources: <docId> is not an item of this record`). `generate` fails naming the record on the same check, and on the
+   identifier checks of any record that has a rule (`identifierProblems`, whatever its state), and refuses two
    emitted rules with one identifier. A
    code rule without an entry has nothing to check there (`ids: nothing to check (code rule without entry)`, noted).
 7. **Generate** writes the book modules under `scripts/rules/` from the registry (a rule with aliases carries

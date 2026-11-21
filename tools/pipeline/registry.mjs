@@ -60,6 +60,14 @@ export const legacyFingerprint = (record) =>
 
 const REQUIRED_GATES = ["schema", "validator", "ids", "fixes", "text"];
 
+// What a gated record emits besides its rule (generate.mjs ruleFromRecord, and its `sources` in SOURCES): the gate evidence
+// stands on all of it, so that an identifier or a source edited after the gates makes the record `drafted` again. `note` and
+// `order` (a comment, a position in the module) do not change what is registered.
+const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", "sources"];
+/** The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of. */
+export const emittedFingerprint = (record) =>
+  ruleFingerprint(Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])));
+
 /**
  * The items the gates check, as `evidence.gates.items` records them: per origin the rule names, the data fingerprint of the
  * record's matched item of that origin (an origin whose item has no data, a legacy record's, is left out).
@@ -76,12 +84,13 @@ export function gatedItems(record) {
 }
 
 /**
- * True when gate evidence stands for the record as it is: the fingerprint of its rule, and for every origin the rule names the
+ * True when gate evidence stands for the record as it is: the fingerprint of its rule and of what it emits besides (`emits`,
+ * emittedFingerprint), and for every origin the rule names the
  * same matched item (by data fingerprint) as when the gates ran. Moving an item to another document, or changing its data,
  * makes the evidence stale whoever did it.
  */
 export function evidenceIsCurrent(record, gates) {
-  if (!gates || gates.rule !== ruleFingerprint(record.rule)) return false;
+  if (!gates || gates.rule !== ruleFingerprint(record.rule) || gates.emits !== emittedFingerprint(record)) return false;
   const recorded = gates.items ?? {};
   if (recorded === null || typeof recorded !== "object" || Array.isArray(recorded)) return false;
   return canonical(recorded) === canonical(gatedItems(record));

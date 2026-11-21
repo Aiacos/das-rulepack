@@ -148,10 +148,13 @@ function checkEvidence(evidence, errors) {
     if (!ok) errors.push("evidence.triaged.first: must be { by: reader handle, confidence: number from 0 to 1 }");
   }
   if ("gates" in evidence) {
-    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, passed, noted?, items? }");
+    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, emits?, passed, noted?, items? }");
     else {
       for (const f of ["at", "core"]) if (!isString(gates[f])) errors.push(`evidence.gates.${f}: must be a non-empty string`);
       if (typeof gates.rule !== "string" || !HEX64.test(gates.rule)) errors.push("evidence.gates.rule: must be 64 hex characters");
+      if ("emits" in gates && !(typeof gates.emits === "string" && HEX64.test(gates.emits))) {
+        errors.push("evidence.gates.emits: must be 64 hex characters");
+      }
       if (!isGateList(gates.passed)) {
         errors.push(`evidence.gates.passed: must be an array of gate names (${GATE_NAMES.join(", ")})`);
       }
