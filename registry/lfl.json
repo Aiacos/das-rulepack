@@ -1,0 +1,1471 @@
+{
+  "book": "LFL",
+  "records": [
+    {
+      "key": "lfl:background:lorwyn-expert",
+      "name": "Lorwyn Expert",
+      "kind": "background",
+      "book": "LFL",
+      "edition": "2024",
+      "identifier": "lorwyn-expert",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e4388df80c31cc0ad48b319e6cb63bfcd0ebccf0b1c4a4579bd2335d398254bf",
+        "source": "5etools",
+        "chars": 302
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:background:shadowmoor-expert",
+      "name": "Shadowmoor Expert",
+      "kind": "background",
+      "book": "LFL",
+      "edition": "2024",
+      "identifier": "shadowmoor-expert",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b67353663c7cdd8a78dd261818213031ff162bcfdcf1517b61603ff538c27de3",
+        "source": "5etools",
+        "chars": 311
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:feat:child-of-the-sun",
+      "name": "Child of the Sun",
+      "kind": "feat",
+      "book": "LFL",
+      "edition": "2024",
+      "identifier": "child-of-the-sun",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "57acfc5b2487c6bce7bceeec9fa16f26275f5411bb8925df074e0b685fd3c202",
+        "source": "5etools",
+        "chars": 626
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:feat:shadowmoor-hexer",
+      "name": "Shadowmoor Hexer",
+      "kind": "feat",
+      "book": "LFL",
+      "edition": "2024",
+      "identifier": "shadowmoor-hexer",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "508505599e846518faff54419aecec5d06e9adf2f609675cb8a5c4f9d9afa356",
+        "source": "5etools",
+        "chars": 568
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:item:reliquary-of-dawn",
+      "name": "Reliquary of Dawn",
+      "kind": "item",
+      "book": "LFL",
+      "edition": "2024",
+      "rarity": "uncommon",
+      "identifier": "reliquary-of-dawn",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "512e1c9a98911b0474a0624174b7bde1a82e41555ec164695237deea639f0e68",
+        "source": "5etools",
+        "chars": 206
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:item:reliquary-of-twilight",
+      "name": "Reliquary of Twilight",
+      "kind": "item",
+      "book": "LFL",
+      "edition": "2024",
+      "rarity": "uncommon",
+      "identifier": "reliquary-of-twilight",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8bc65245fadaccf66825aaa082d721bf61f7b0b28b36d258b0baf6d8e7b51377",
+        "source": "5etools",
+        "chars": 218
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-transience/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Transience",
+      "section": "action",
+      "identifier": "bite",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "a98d6c62d157d111a98b21a317afa912b9c5207d5418d22e3ce7806fc6568733",
+        "source": "5etools",
+        "chars": 46
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-transience/action/miasmic-globule",
+      "name": "Miasmic Globule",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Transience",
+      "section": "action",
+      "identifier": "miasmic-globule",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "36f635bbf4c25f9c1a75d1cc1803bd02899293f164b8844e1c39eaeed8da79a6",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-transience/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Transience",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8b8e45dae33c5e9f8d90ee5ac9128dac221d9f7bfdfda06315571a50f795d561",
+        "source": "5etools",
+        "chars": 86
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-transience/action/spectral-stampede",
+      "name": "Spectral Stampede",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Transience",
+      "section": "action",
+      "identifier": "spectral-stampede",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0885d825f27d756f3fd69b576c321f42f6f36ee4b8479a41561ed898d420baab",
+        "source": "5etools",
+        "chars": 275
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-transience/bonus/shape-shift",
+      "name": "Shape-Shift",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Transience",
+      "section": "bonus",
+      "identifier": "shape-shift",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ee12c0d37a1703602dbb7afea318fd3279ee01abad57775db83632e98092d0ca",
+        "source": "5etools",
+        "chars": 59
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-transience/trait/ephemeral-movement",
+      "name": "Ephemeral Movement",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Transience",
+      "section": "trait",
+      "identifier": "ephemeral-movement",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ba69bca12f0339ea4de6a77d065c230c9f4c13e7b1911e86134bdc63beacc441",
+        "source": "5etools",
+        "chars": 218
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-transience/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Transience",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "532d4090cbe88b0156c165e7c53cd503c461da881e875d0b923416d4aec55de0",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-vibrance/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Vibrance",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "31adb1fa42d4df96d09f8a059f0e3015f58851a25a7fa322ef86d28649cf7ff3",
+        "source": "5etools",
+        "chars": 161
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-vibrance/action/radiant-blast",
+      "name": "Radiant Blast",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Vibrance",
+      "section": "action",
+      "identifier": "radiant-blast",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "367dd24f1552287ef59f3efcc8dd1948ede9137c7d8a60cd8dc234431b91b841",
+        "source": "5etools",
+        "chars": 184
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-vibrance/action/vine",
+      "name": "Vine",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Vibrance",
+      "section": "action",
+      "identifier": "vine",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d19c7b95ef7e341e048905f5bb8462dc6beb50ef362feb1a22c8f47249cc2179",
+        "source": "5etools",
+        "chars": 167
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-vibrance/bonus/shape-shift",
+      "name": "Shape-Shift",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Vibrance",
+      "section": "bonus",
+      "identifier": "shape-shift",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ee12c0d37a1703602dbb7afea318fd3279ee01abad57775db83632e98092d0ca",
+        "source": "5etools",
+        "chars": 59
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-vibrance/bonus/teleport",
+      "name": "Teleport",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Vibrance",
+      "section": "bonus",
+      "identifier": "teleport",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e9c6f84c8b21a39c9d30f417a63abd02b3d0d5e7c1f24fe42c19e629d1016036",
+        "source": "5etools",
+        "chars": 139
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-vibrance/trait/magic-resistance",
+      "name": "Magic Resistance",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Vibrance",
+      "section": "trait",
+      "identifier": "magic-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "532d4090cbe88b0156c165e7c53cd503c461da881e875d0b923416d4aec55de0",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:incarnation-of-vibrance/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Incarnation of Vibrance",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "9c7f0b437fb1c6f66c7a60b276e81fbef9cae24e98e442b2c87e9f63f222d310",
+        "source": "5etools",
+        "chars": 180
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:lorwyn-giant/action/boulder",
+      "name": "Boulder",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Giant",
+      "section": "action",
+      "identifier": "boulder",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8c53052c0473e079ab4f4b4ab546e4e7d5b2871d6ea6a263e30346311fa777a7",
+        "source": "5etools",
+        "chars": 128
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:lorwyn-giant/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Giant",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "144e68f1a51d84bf5b9c9cf87e0f933382c9f17de421378e103f3ae309345936",
+        "source": "5etools",
+        "chars": 77
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:lorwyn-giant/action/stone-sword",
+      "name": "Stone Sword",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Giant",
+      "section": "action",
+      "identifier": "stone-sword",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d938c2b696dcbd97440397d2ac626a0e2e89b17fbd5b9219d23fcd6c5910a854",
+        "source": "5etools",
+        "chars": 48
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:lorwyn-giant/bonus/name-sleep",
+      "name": "Name Sleep",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Giant",
+      "section": "bonus",
+      "identifier": "name-sleep",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "52a752b7a0bae4fdf62ff729f4c3b8ea209482bec999a09e740d61f325763781",
+        "source": "5etools",
+        "chars": 248
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-doublespeaker/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Doublespeaker",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "203f90b2c4f3d3ef3629a8dc07db4746bfd5ba699fb055f40e56092d5abcf86b",
+        "source": "5etools",
+        "chars": 123
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-doublespeaker/action/spined-tail",
+      "name": "Spined Tail",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Doublespeaker",
+      "section": "action",
+      "identifier": "spined-tail",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "5bd6037793f288649bf22a426b8941324f43c5f0b064d26b69beac54e1da3e3f",
+        "source": "5etools",
+        "chars": 67
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-doublespeaker/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Doublespeaker",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "13a15b99cda5461cb05e086821efb469ecf5d019a11845ecddd0dd3615e3385b",
+        "source": "5etools",
+        "chars": 37
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-doublespeaker/trait/mimicry",
+      "name": "Mimicry",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Doublespeaker",
+      "section": "trait",
+      "identifier": "mimicry",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "0d0d6692c3c88e4018bdf432e7482dcf75537692d58aa9cd46a12f8fbc16e994",
+        "source": "5etools",
+        "chars": 156
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-doublespeaker/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Doublespeaker",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f287c0e5997bd09d44a9778f25246dd8afbc8ce93bf2f98cec54ef57617a6f6f",
+        "source": "5etools",
+        "chars": 175
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-haranguer/action/coral-scepter",
+      "name": "Coral Scepter",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Haranguer",
+      "section": "action",
+      "identifier": "coral-scepter",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "49b0aa0c1847f9df6112ae4732bdc81cfa7698eb3429f83ba9e98bd0e1307f1e",
+        "source": "5etools",
+        "chars": 50
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-haranguer/action/invective",
+      "name": "Invective",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Haranguer",
+      "section": "action",
+      "identifier": "invective",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "d5b0e80a38048a399593b63ee3fbcf1cc13f1df900fe75c9f13c5ecbe60a3b6a",
+        "source": "5etools",
+        "chars": 207
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-haranguer/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Haranguer",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "6ba5c4bbf3a8099ea79d8d2e9fe2a86c5853536158b9b46b621f5340534b9c96",
+        "source": "5etools",
+        "chars": 92
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-haranguer/action/poisoned-longbow",
+      "name": "Poisoned Longbow",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Haranguer",
+      "section": "action",
+      "identifier": "poisoned-longbow",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "336c0e1204aa2cd94d52716fdab7b51d524583eca9ba88400290e85c64d0cf7d",
+        "source": "5etools",
+        "chars": 78
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:merrow-haranguer/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Merrow Haranguer",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "13a15b99cda5461cb05e086821efb469ecf5d019a11845ecddd0dd3615e3385b",
+        "source": "5etools",
+        "chars": 37
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:noggle-ransacker/action/sabotaging-swipe",
+      "name": "Sabotaging Swipe",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Noggle Ransacker",
+      "section": "action",
+      "identifier": "sabotaging-swipe",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "72cbbdfc760144a5ece0e6f56ca0d46507ab1031d9604a4b08b1d1fcb43dce10",
+        "source": "5etools",
+        "chars": 244
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:noggle-ransacker/bonus/nimble-escape",
+      "name": "Nimble Escape",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Noggle Ransacker",
+      "section": "bonus",
+      "identifier": "nimble-escape",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "92004d6e166880993d1a3aa81ef6b588fa284f0e78ab31380df299ab613b580d",
+        "source": "5etools",
+        "chars": 46
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:noggle-ransacker/trait/siege-monster",
+      "name": "Siege Monster",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Noggle Ransacker",
+      "section": "trait",
+      "identifier": "siege-monster",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f2a1dc254b60a5923bd3dfadf6ccb8296f84fefec7c084f47f60427e5b398f3a",
+        "source": "5etools",
+        "chars": 57
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:noggle-wild-mage/action/befuddling-ray",
+      "name": "Befuddling Ray",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Noggle Wild Mage",
+      "section": "action",
+      "identifier": "befuddling-ray",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "aea63846cd8d2bb6ca7587d00d9de7293f5861f8468de890854ae4029e3652dd",
+        "source": "5etools",
+        "chars": 152
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:noggle-wild-mage/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Noggle Wild Mage",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "fc63fa8612c7417b183169b56209d32715cbdf37b4d4d3805169374f3f920663",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:noggle-wild-mage/action/noggling-stick",
+      "name": "Noggling Stick",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Noggle Wild Mage",
+      "section": "action",
+      "identifier": "noggling-stick",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "ec611d9660682bdb57b9ae50e7814ee6d583494d862cc775e5a155292cd480bc",
+        "source": "5etools",
+        "chars": 76
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:noggle-wild-mage/trait/bloodied-wild-magic",
+      "name": "Bloodied Wild Magic",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Noggle Wild Mage",
+      "section": "trait",
+      "identifier": "bloodied-wild-magic",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e3fc69c527eba28d706c99e09251ec10705ed9fcab393497e8274f4b930ef33c",
+        "source": "5etools",
+        "chars": 115
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:shadowmoor-giant/action/boulder",
+      "name": "Boulder",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Shadowmoor Giant",
+      "section": "action",
+      "identifier": "boulder",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "bc66596eea83bade0c46c286bfbcfa420658f868a71f0e94cca9bd0c7c441dca",
+        "source": "5etools",
+        "chars": 128
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:shadowmoor-giant/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Shadowmoor Giant",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "1a2c00d14326a6b33f9d62b2100a45bca16b73f6412561f1275638e930ca8734",
+        "source": "5etools",
+        "chars": 77
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:shadowmoor-giant/action/tree-club",
+      "name": "Tree Club",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Shadowmoor Giant",
+      "section": "action",
+      "identifier": "tree-club",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "8eb724a43b886c8c52516a2c25c572747b87e1ffb950f60259221a318da5daef",
+        "source": "5etools",
+        "chars": 51
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:monster:shadowmoor-giant/action/wild-magic-cataclysm",
+      "name": "Wild Magic Cataclysm",
+      "kind": "monster",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Shadowmoor Giant",
+      "section": "action",
+      "identifier": "wild-magic-cataclysm",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "54aed4d439ab668b68f090b0e96dadb09daae96e7640ae0090f000ad5b853f0b",
+        "source": "5etools",
+        "chars": 208
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:boggart",
+      "name": "Boggart",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "copyOf": "Goblin",
+      "identifier": "boggart",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:faerie",
+      "name": "Faerie",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "copyOf": "Fairy",
+      "identifier": "faerie",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:flamekin",
+      "name": "Flamekin",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "copyOf": "Genasi",
+      "identifier": "flamekin",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:kithkin",
+      "name": "Kithkin",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "copyOf": "Halfling",
+      "identifier": "kithkin",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:lorwyn-changeling",
+      "name": "Lorwyn Changeling",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "identifier": "lorwyn-changeling",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:lorwyn-changeling/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Changeling",
+      "identifier": "darkvision",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "e04d71c007a3d5d3b19998f722446e356490325911000281fd13246778d5aeb9",
+        "source": "5etools",
+        "chars": 45
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:lorwyn-changeling/delightful-imitator",
+      "name": "Delightful Imitator",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Changeling",
+      "identifier": "delightful-imitator",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "b45807835e0d22a5739cc1992a264298223df72067819598bed4ab5270c70f90",
+        "source": "5etools",
+        "chars": 59
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:lorwyn-changeling/shape-self",
+      "name": "Shape Self",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Changeling",
+      "identifier": "shape-self",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "f3270ee04d14261833f989b67ebd8699788b07428802b09327b0e80af36c0d6d",
+        "source": "5etools",
+        "chars": 202
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:lorwyn-changeling/unpredictable-movement",
+      "name": "Unpredictable Movement",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Lorwyn Changeling",
+      "identifier": "unpredictable-movement",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c268c1aedfb0bfba64ec654698c6ba5c2cd8e2a7e344db59ce8f7ea76254ba68",
+        "source": "5etools",
+        "chars": 134
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:rimekin",
+      "name": "Rimekin",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "identifier": "rimekin",
+      "page": null,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:rimekin/cold-fire-magic",
+      "name": "Cold Fire Magic",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Rimekin",
+      "identifier": "cold-fire-magic",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "bea1c1e3843e7635d9d06db89768a4bc4fb0b315c50d03bf0e79b5490f3e0d17",
+        "source": "5etools",
+        "chars": 632
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:rimekin/cold-resistance",
+      "name": "Cold Resistance",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Rimekin",
+      "identifier": "cold-resistance",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "c3d4f041791a1f40b3cf0fdf3c29cc02a140b8825d4f711a4842533f51430626",
+        "source": "5etools",
+        "chars": 35
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "lfl:species:rimekin/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "LFL",
+      "edition": "2024",
+      "owner": "Rimekin",
+      "identifier": "darkvision",
+      "page": null,
+      "srd": false,
+      "text": {
+        "sha256": "64d34790cf7f24cc48a038e830a3f5e6e00852d0b4df939f83ab58a628b817bd",
+        "source": "5etools",
+        "chars": 44
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
