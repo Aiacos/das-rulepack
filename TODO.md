@@ -19,11 +19,11 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
 - [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
 - [x] Every kind of entry is inventoried (milestone 2), and six 2024-era books are in the registry: `docs/coverage-5e24.md`.
-- [ ] Reader batches for the 3,362 entries left without a verdict (`npm run batch -- triage <BOOK> --kind <kind> --out <dir>
+- [ ] Reader batches for the 3,925 entries left without a verdict (`npm run batch -- triage <BOOK> --kind <kind> --out <dir>
       --structure <private dir>`), book by book: XPHB, XDMG, XMM, EFA, FRHOF, FRAIF.
-- [ ] 113 ambiguous official matches to settle with `npm run resolve`; 521 entries with no official item to look at by category.
+- [ ] 168 ambiguous official matches to settle with `npm run resolve`; 425 entries with no official item to look at by category.
 - [ ] Ravenloft: The Horrors Within is not in the dataset (no text to fingerprint); Arcana Unleashed and World of Warcraft
-      have no local dump.
+      have a local dump since 2026-11-21 but are not in the dataset.
 - [ ] After the 2024-era books: the older books (Xanathar's, Tasha's and the others), by the same commands.
 - [ ] A rule whose named origin has `identifierDiffers` (16 spells: the official module and DDB Importer name them
       differently) needs a second identifier before it can pass the ids gate.
