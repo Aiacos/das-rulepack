@@ -3,6 +3,10 @@
   "version": "0.6.0",
   "private": true,
   "type": "module",
-  "scripts": { "test": "vitest run", "books": "node tools/books-progress.mjs" },
+  "scripts": {
+    "test": "vitest run",
+    "books": "node tools/books-progress.mjs",
+    "pipeline": "node tools/pipeline/cli.mjs"
+  },
   "devDependencies": { "vitest": "^3.0.0" }
 }
