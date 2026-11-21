@@ -1,6 +1,7 @@
 // What inventory and `resolve` share: the registry item of a matched document, what a person settled, the reprints of a document
 // in other official packages, and the identifiers the engine will meet.
 import { slug } from "./registry.mjs";
+import { matchName } from "./match.mjs";
 
 export function itemOf(origin, outcome) {
   if (outcome.match === "matched") {
@@ -23,8 +24,12 @@ const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const sameList = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
 
 // The item summaries an origin offers for a record of `kind` (a monster feature's are the items embedded in its actors).
-export const poolOf = (dumps, origin, kind) => {
-  if (origin === "official" && kind === "monster") return (dumps.actors ?? []).flatMap((a) => a.items);
+// For a monster feature only the actors of its creature (`owner`) count.
+export const poolOf = (dumps, origin, kind, owner) => {
+  if (origin === "official" && kind === "monster") {
+    const wanted = owner === undefined ? null : matchName(owner).full;
+    return (dumps.actors ?? []).filter((a) => wanted === null || matchName(a.name).full === wanted).flatMap((a) => a.items);
+  }
   return dumps[origin] ?? [];
 };
 
@@ -41,17 +46,21 @@ export function keepSettled(existing, items, dumps, kind) {
   for (const origin of ["official", "ddb-importer"]) {
     const old = (existing.items ?? []).find((i) => i.origin === origin && i.match === "matched" && i.resolved);
     if (old) {
-      const doc = poolOf(dumps, origin, kind).find((c) => c.docId === old.docId);
+      const doc = poolOf(dumps, origin, kind, existing.owner).find((c) => c.docId === old.docId);
       if (doc && doc.data === old.data?.sha256) {
-        const kept = { ...itemOf(origin, { match: "matched", item: doc }), resolved: old.resolved };
+        const kept = { ...itemOf(origin, { match: "matched", item: doc, differences: old.differences }), resolved: old.resolved };
         next = [...next.filter((i) => i.origin !== origin), kept];
       } else stale = true;
     }
     const gone = (existing.resolutions ?? []).find((r) => r.origin === origin);
     if (gone) {
       const current = next.find((i) => i.origin === origin);
-      const offered = current?.match === "ambiguous" ? current.candidates.map((c) => c.docId).sort() : [current?.docId];
-      if (!current || (current.match === "ambiguous" && sameList(offered, gone.candidates ?? []))) {
+      const offered = current?.match === "ambiguous" ? current.candidates.map((c) => c.docId).sort() : [];
+      // An item that was matched when it was refused stays refused while its document keeps its data.
+      const same = gone.was
+        ? current?.match === "matched" && current.docId === gone.was.docId && current.data?.sha256 === gone.was.sha256
+        : current?.match === "ambiguous" && sameList(offered, gone.candidates ?? []);
+      if (!current || same) {
         next = next.filter((i) => i.origin !== origin);
         resolutions.push(gone);
       } else stale = true;
@@ -103,3 +112,21 @@ export const canonicalIdentifier = (items, name) =>
   ?? items.find((i) => i.origin === "ddb-importer" && i.match === "matched")?.identifier
   ?? slug(name);
 
+
+/**
+ * What is wrong with the `sources` of a record: each key must be the docId, or one of the alsoDocIds, of its matched official
+ * item, and each value its own identifier (the engine would otherwise know a document by an identifier the record does not
+ * register). Messages start with "sources:".
+ */
+export function sourceProblems(record) {
+  if (!record?.sources || typeof record.sources !== "object" || Array.isArray(record.sources)) return [];
+  const official = (record.items ?? []).find((i) => i?.origin === "official" && i.match === "matched");
+  const own = new Set(official ? [official.docId, ...(official.alsoDocIds ?? [])] : []);
+  const out = [];
+  for (const [docId, identifier] of Object.entries(record.sources)) {
+    const shown = docId.slice(0, 80);
+    if (!own.has(docId)) out.push(`sources: ${shown} is not an item of this record`);
+    else if (identifier !== record.identifier) out.push(`sources: ${shown} is bound to an identifier other than the record's`);
+  }
+  return out;
+}

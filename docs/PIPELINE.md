@@ -55,9 +55,11 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    touches a verdict.
 2. **Triage** has three parts.
    - `triage` applies `autoTriage` to the records of the book that have no verdict (an existing verdict is never
-     overwritten): an identifier that DAS · Core already has is `core` ("DAS · Core has an entry"); a record with no text whose official origin is absent (a placeholder such as a
+     overwritten): an identifier that DAS · Core already has is `core` ("DAS · Core has an entry"); a record with no text whose
+     official origin is absent (a placeholder such as a
      "Subclass Feature" line: no text and no item) is `none` with why "placeholder: no text and no item"; an entry whose
-     text is not in the cache, or that has no text but does have an official item, is `unverifiable`; anything else, SRD or not, is left for a reader (SRD content that Core lacks
+     text is not in the cache, or that has no text but does have an official item, is `unverifiable`; anything else, SRD or not,
+     is left for a reader (SRD content that Core lacks
      is a finding for upstream, not a rule for this pack). It records `evidence.triaged = { by: "rule", at }`, saves the
      book and prints a count per verdict and how many records are left.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
@@ -69,14 +71,19 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    checked and passed in `passed`, those that could only leave a note in `noted`. The ids gate fails closed: every
    16-character token of letters and digits in an entry (a key, a value, or a dot-separated segment of either) is a
    document id unless it is a word of the engine's own vocabulary (entry keys, enumeration values, fact and moment names
-   of the `DAS_CORE` clone), and every origin the rule names must have it as an activity or effect of its matched item (an item saved under several ids,
+   of the `DAS_CORE` clone), and every origin the rule names must have it as an activity or effect of its matched item (an item
+   saved under several ids,
    `alsoDocIds`, has the same ids in every copy: identical data implies it). The ids gate also looks at the reprints (below).
    The `unique` gate applies only to records that have a `rule`, the only ones that register an identifier with the engine:
-   two ruled records with one identifier fail unless every one of the group binds `sources`; records without a rule are
-   ignored (many features and traits share a name). A
+   two ruled records with one identifier always fail, whatever `sources` they bind; records without a rule are
+   ignored (many features and traits share a name). The schema gate also checks `sources`: every key must be the docId (or
+   an `alsoDocIds`) of the record's matched official item and every value the record's identifier
+   (`sources: <docId> is not an item of this record`). `generate` fails naming the record on the same check, and refuses two
+   emitted rules with one identifier. A
    code rule without an entry has nothing to check there (`ids: nothing to check (code rule without entry)`, noted).
 7. **Generate** writes the book modules under `scripts/rules/` from the registry, and in `index.mjs` the export `SOURCES`
-   (document id to identifier) of the records whose rule is emitted and that bind `sources`; it is an empty object for the 24
+   (document id to identifier) of the records whose rule is emitted and that bind `sources` (checked against the record); it is
+   an empty object for the 24
    rules of today. `scripts/main.mjs` hands it to the engine as `register(source, table, { sources })` only when it is not
    empty, so with no sources the call is the two-argument call it has always been.
 
@@ -281,15 +288,19 @@ Notes on what inventory does with each kind:
 - **Reprints.** The official item of every kind but monsters gets `reprints: [{ package, docId, sameIds, missing? }]` for each
   other official package (any dump file that is not of the book's package, does not start with `ddb.` or `dnd5e.`, and is not
   an actor pack) that holds the same document id. `sameIds` compares the sets of activity ids and effect ids; when they differ,
-  `missing` lists the ids of the item that the reprint lacks. The ids gate fails a ruled record whose entry uses an id listed in
+  `missing` lists the ids of the item that the reprint lacks (required when `sameIds` is false). The ids gate fails a ruled
+  record whose entry uses an id listed in
   `missing`, naming the package, unless the item lists the package under `reprintsExcluded: [{ package, because }]`, which is set
   by `npm run resolve -- <key> official --exclude-reprint <package> --because "<one line>"`. Inventory keeps a
   `reprintsExcluded` entry while the package is still a reprint.
 
 Rulings of this milestone, in short:
 
-- **Identical copies.** Official candidates whose `data` fingerprint is identical (one item saved under several document ids)
-  are one candidate: `matched` with the first docId in sorted order, the others on the item as `alsoDocIds`. Candidates whose data
+- **Identical copies.** Candidates with the same mechanics fingerprint (the canonical JSON of `system` and `effects` without
+  `system.container`, `quantity`, `source.revision`, `equipped`, `attuned` and `identified`) and the same activity and effect id
+  sets (one item saved under several document ids, e.g. per-folder copies) are one candidate; the stored `data.sha256` stays
+  the full fingerprint of the first docId: `matched` with the first docId in sorted order, the others on the item as
+  `alsoDocIds`. Candidates whose data
   differs stay `ambiguous`. A monster feature never collapses (two embedded items of one name are two items).
 - **A feature named like its subclass** (owner `Class/Subclass`, name equal to the subclass) may match the `subclass`
   document of that name, only when no feature document matches; a subclass document belongs to the class it names.
@@ -298,3 +309,11 @@ Rulings of this milestone, in short:
 - **Monsters.** When a feature's section disagrees with the activation of the only same-name item of the actor and no other
   feature of the creature claims that item, the feature is `matched` with `differences: ["section"]`; two features competing
   for one item stay `absent` (disagreeing) or `ambiguous` (agreeing).
+- **Settled items keep their reason.** A settled item keeps the `differences` of the chosen document against the entry (edition,
+  rarity, structure against the official item for ddb-importer), so `report.differing` still lists it. `resolve` accepts any
+  listed candidate whatever its type; `--force` is limited to the kind's types (plus `subclass` for a feature that names its
+  subclass) and, for a monster, to the actors of its own creature. `--absent` on a matched item needs `--force` and then
+  sticks while the document's data is unchanged.
+- A resolution leaves `evidence.gates` in place until the gates run again.
+- A reprint is checked only when the rule names `official` among its origins; a `sameIds: false` reprint without a usable
+  `missing` is taken to lack every id.

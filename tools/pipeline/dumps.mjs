@@ -50,6 +50,20 @@ function activationsOf(activities) {
   return sortedUnique(types.flatMap((t) => (ACTIVATIONS.includes(t) ? [t] : ["", "none", "passive"].includes(t) ? ["trait"] : [])));
 }
 
+// The fields in which copies of one item differ without the item being another: where it is kept, how many, which printing,
+// and the state a character gives it.
+const COPY_FIELDS = [["container"], ["quantity"], ["source", "revision"], ["equipped"], ["attuned"], ["identified"]];
+
+/** The fingerprint of what an item does: its `system` and `effects` without the fields in which copies of it differ. */
+export function mechanicsFingerprint(system, effects) {
+  const rest = structuredClone(system ?? {});
+  for (const path of COPY_FIELDS) {
+    const holder = path.slice(0, -1).reduce((o, k) => o?.[k], rest);
+    if (holder && typeof holder === "object") delete holder[path.at(-1)];
+  }
+  return sha256(canonical({ system: rest, effects }));
+}
+
 export function itemSummary(doc, origin, grants) {
   const system = doc.system ?? {};
   const effects = doc.effects ?? [];
@@ -76,6 +90,7 @@ export function itemSummary(doc, origin, grants) {
   if (typeof system.requirements === "string" && system.requirements) summary.requirements = system.requirements;
   if (grants?.get(doc._id)) summary.grantedBy = grants.get(doc._id);
   summary.data = sha256(canonical({ system, effects }));
+  summary.mechanics = mechanicsFingerprint(system, effects);
   return summary;
 }
 

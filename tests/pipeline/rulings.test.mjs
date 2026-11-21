@@ -22,12 +22,12 @@ describe("ruling A: unique applies only to records that have a rule", () => {
   it("ignores an unruled record that shares the identifier of a ruled one", () => {
     expect(gateUnique([ruled("tst:feature:a"), bare("tst:feature:b")])).toEqual([]);
   });
-  it("fails two ruled records with one identifier, unless every one of the group binds sources", () => {
+  it("fails two ruled records with one identifier, whatever sources they bind", () => {
     const [a, b] = [ruled("tst:feature:a"), ruled("tst:feature:b")];
     expect(gateUnique([a, b])).toHaveLength(1);
     const bound = { Aa11Bb22Cc33Dd44: "shared-name" };
     expect(gateUnique([{ ...a, sources: bound }, b])).toHaveLength(1);
-    expect(gateUnique([{ ...a, sources: bound }, { ...b, sources: bound }])).toEqual([]);
+    expect(gateUnique([{ ...a, sources: bound }, { ...b, sources: bound }])).toHaveLength(1);
   });
   it("reports the failure under the unique gate of each ruled record only", () => {
     const records = [ruled("tst:feature:a"), ruled("tst:feature:b"), bare("tst:feature:c")];

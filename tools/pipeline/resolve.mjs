@@ -1,8 +1,8 @@
 // Settling a match by hand: a person picks the document of an ambiguous item (or says there is none), or excludes a reprint
 // from the ids gate. Nothing here touches verdict, rule or evidence.
-import { docTypesOf } from "./match.mjs";
+import { differencesOf, docTypesOf, namesItsSubclass } from "./match.mjs";
 import { itemOf, bindSources, canonicalIdentifier, reprintsOf } from "./settle.mjs";
-import { BY, MAX_WHY, ONE_LINE } from "./triage.mjs";
+import { BY, MAX_WHY, ONE_LINE, clip } from "./triage.mjs";
 
 export class ResolveError extends Error {}
 
@@ -36,13 +36,16 @@ function refresh(record, items) {
 /**
  * Settles the `origin` item of `record`.
  * - `docId`: the item becomes `matched` to that document of `pool` (the item summaries the origin offers), which must be one of
- *   the item's listed candidates; with `force`, any document of the pool whose type fits the kind. `reprints` (the reprint
- *   index of the dumps, for an official item of a kind other than monster) refills the reprints of the new item.
- * - `absent`: the item is removed and the key of the origin is recorded under `resolutions`, so inventory does not add it again.
+ *   the item's listed candidates, whatever its type (inventory listed it); with `force`, any document of the pool whose type fits
+ *   the kind (a feature that names its subclass may also take the subclass document). The item keeps the `differences` of the
+ *   document against the entry (`reference`: the official summary, when a ddb-importer item is compared against it).
+ *   `reprints` (the reprint index of the dumps, for an official item of a kind other than monster) refills the reprints.
+ * - `absent`: the item is removed and the origin is recorded under `resolutions`, so inventory does not add it again; an item
+ *   that was matched needs `force`, and stays removed while its document keeps its data.
  * Both record who, when and why. Throws ResolveError for anything that cannot be done.
  */
 export function resolveItem(record, options) {
-  const { origin, docId, absent = false, because, by = "maintainer", at, pool = [], force = false, reprints } = options;
+  const { origin, docId, absent = false, because, by = "maintainer", at, pool = [], force = false, reprints, reference } = options;
   checkOrigin(origin);
   checkWho({ because, by });
   if (Boolean(docId) === Boolean(absent)) throw new ResolveError("give exactly one of --doc and --absent");
@@ -51,30 +54,31 @@ export function resolveItem(record, options) {
   const others = items.filter((i) => i !== current);
   const stamp = { by, at, because };
   const resolutions = (record.resolutions ?? []).filter((r) => r.origin !== origin);
+  const state = current?.match ?? "absent";
 
   if (absent) {
-    if (!current) throw new ResolveError(`${record.key} has no ${origin} item to settle`);
-    if (current.match !== "ambiguous" && !force) {
-      throw new ResolveError(`the ${origin} item is ${current.match}, not ambiguous (--force)`);
-    }
+    if (!current) throw new ResolveError(`${clip(record.key)} has no ${origin} item to settle`);
+    if (current.match !== "ambiguous" && !force) throw new ResolveError(`the ${origin} item is ${state}, not ambiguous (--force)`);
+    const was = current.match === "matched" ? { was: { docId: current.docId, sha256: current.data?.sha256 } } : {};
     const candidates = (current.candidates ?? []).map((c) => c.docId).sort();
-    const next = refresh({ ...record, resolutions: [...resolutions, { origin, absent: true, ...stamp, candidates }] }, others);
-    return next;
+    return refresh({ ...record, resolutions: [...resolutions, { origin, absent: true, ...stamp, candidates, ...was }] }, others);
   }
 
   if (current?.match !== "ambiguous" && !force) {
-    throw new ResolveError(`the ${origin} item of ${record.key} is ${current?.match ?? "absent"}, not ambiguous (--force)`);
+    throw new ResolveError(`the ${origin} item of ${clip(record.key)} is ${state}, not ambiguous (--force)`);
   }
   const listed = (current?.candidates ?? []).some((c) => c.docId === docId);
   if (!listed && !force) {
-    throw new ResolveError(`${docId} is not one of the candidates of the ${origin} item (--force for another document)`);
+    throw new ResolveError(`${clip(docId)} is not one of the candidates of the ${origin} item (--force for another document)`);
   }
   const doc = pool.find((c) => c.docId === docId);
-  if (!doc) throw new ResolveError(`${docId} is not in the ${origin} dumps`);
-  if (!docTypesOf(record).includes(doc.type)) {
-    throw new ResolveError(`${docId} is a ${doc.type} document; a ${record.kind} is one of ${docTypesOf(record).join(", ")}`);
+  if (!doc) throw new ResolveError(`${clip(docId)} is not in the ${origin} dumps`);
+  const fits = [...docTypesOf(record), ...(namesItsSubclass(record) ? ["subclass"] : [])];
+  if (!listed && !fits.includes(doc.type)) {
+    throw new ResolveError(`${clip(docId)} is a ${doc.type} document; a ${record.kind} is one of ${fits.join(", ")}`);
   }
-  const item = { ...itemOf(origin, { match: "matched", item: doc }), resolved: stamp };
+  const subject = { edition: record.edition, rarity: record.rarity, reference };
+  const item = { ...itemOf(origin, { match: "matched", item: doc, differences: differencesOf(subject, doc) }), resolved: stamp };
   if (origin === "official" && record.kind !== "monster") {
     const { reprints: found, excluded } = reprintsOf(item, reprints, current);
     if (found.length) item.reprints = found;
@@ -93,9 +97,9 @@ export function excludeReprint(record, { package: pkg, because, by = "maintainer
   checkWho({ because, by });
   const items = structuredClone(record.items ?? []);
   const official = items.find((i) => i.origin === "official" && i.match === "matched");
-  if (!official) throw new ResolveError(`${record.key} has no matched official item`);
+  if (!official) throw new ResolveError(`${clip(record.key)} has no matched official item`);
   if (!(official.reprints ?? []).some((r) => r.package === pkg)) {
-    throw new ResolveError(`the official item of ${record.key} has no reprint in ${JSON.stringify(String(pkg).slice(0, 80))}`);
+    throw new ResolveError(`the official item of ${clip(record.key)} has no reprint in ${JSON.stringify(clip(pkg))}`);
   }
   official.reprintsExcluded = [...(official.reprintsExcluded ?? []).filter((x) => x.package !== pkg), { package: pkg, because }]
     .sort((a, b) => (a.package < b.package ? -1 : 1));

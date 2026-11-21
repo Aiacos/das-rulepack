@@ -9,6 +9,7 @@
 import { canonical, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord } from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
+import { sourceProblems } from "./settle.mjs";
 
 export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
@@ -53,7 +54,8 @@ const originsOf = (rule) => (Array.isArray(rule?.origins) ? rule.origins : []);
 const isLegacy = (record, context) => hasLegacyStanding(record, context?.legacy);
 const matchedItems = (record, origin) => (record.items ?? []).filter((i) => i?.origin === origin && i.match === "matched");
 
-export const gateSchema = (record) => validateRecord(record).map((e) => `schema: ${e}`);
+// The structure of the record, and its `sources` (each must be a document of this record bound to its identifier).
+export const gateSchema = (record) => [...validateRecord(record).map((e) => `schema: ${e}`), ...sourceProblems(record)];
 
 export function gateValidator(record, { core }) {
   if (!record.rule) return [];
@@ -93,12 +95,14 @@ export function checkIds(record, context) {
     const known = new Set(items.flatMap((i) => [...(i.activities ?? []), ...(i.effects ?? [])]));
     for (const id of ids) if (!known.has(id)) out.failures.push(`ids: ${origin} has no activity or effect ${id}`);
     // Another official package that reprints the document without an id the entry uses: the entry would not fit that copy.
-    for (const item of items) {
+    // Only the official origin has reprints. A reprint with other ids and no usable list of what it lacks lacks every id.
+    for (const item of origin === "official" ? items : []) {
       const excluded = new Set((item.reprintsExcluded ?? []).map((x) => x?.package));
       for (const r of item.reprints ?? []) {
         if (r?.sameIds !== false || excluded.has(r.package)) continue;
+        const lacks = Array.isArray(r.missing) ? new Set(r.missing) : null;
         for (const id of ids) {
-          if ((r.missing ?? []).includes(id)) out.failures.push(`ids: the reprint in ${r.package} has no activity or effect ${id}`);
+          if (!lacks || lacks.has(id)) out.failures.push(`ids: the reprint in ${r.package} has no activity or effect ${id}`);
         }
       }
     }
@@ -170,10 +174,8 @@ export function checkText(record, context = {}) {
 export const gateText = (record, context) => checkText(record, context).failures;
 
 const identifierOfRecord = (record) => (typeof record?.identifier === "string" ? record.identifier.trim().toLowerCase() : "");
-const bindsSources = (record) => isObject(record.sources) && Object.keys(record.sources).length > 0;
-
-// The groups of records that share one canonical identifier, unless every one of them binds its own sources. Only a record that
-// has a rule registers an identifier with the engine, so only those are grouped.
+// The groups of ruled records that share one identifier. Only a record that has a rule registers an identifier with the engine,
+// and two rules must never register one: binding `sources` does not make two entries one.
 function duplicateGroups(records) {
   const byIdentifier = new Map();
   for (const record of records) {
@@ -181,15 +183,12 @@ function duplicateGroups(records) {
     const id = identifierOfRecord(record);
     if (id) byIdentifier.set(id, [...(byIdentifier.get(id) ?? []), record]);
   }
-  return [...byIdentifier].filter(([, group]) => group.length > 1 && !group.every(bindsSources));
+  return [...byIdentifier].filter(([, group]) => group.length > 1);
 }
 
 const uniqueMessage = (id, group) => `unique: ${group.map((r) => r.key).join(" and ")} share the identifier ${id}`;
 
-/**
- * Two ruled records with the same canonical identifier are one entry for the engine, unless every one of them binds its own
- * sources. Records without a rule register nothing and are ignored.
- */
+/** Two ruled records with the same identifier would register one entry twice, always a failure. Unruled records are ignored. */
 export const gateUnique = (records) => duplicateGroups(records).map(([id, group]) => uniqueMessage(id, group));
 
 const uniqueFailuresByKey = (records) => {

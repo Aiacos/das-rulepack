@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { resolveItem, excludeReprint, ResolveError } from "../../tools/pipeline/resolve.mjs";
+import * as settle from "../../tools/pipeline/settle.mjs";
 import { saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 
 // Synthetic fixtures only: invented entries and invented ids.
@@ -81,6 +82,68 @@ describe("resolveItem", () => {
   it("defaults by to maintainer", () => {
     const { by, ...rest } = base;
     expect(itemOf(resolveItem(ambiguous(), { ...rest, docId: A })).resolved.by).toBe("maintainer");
+  });
+});
+
+describe("resolveItem: documents of any type that inventory listed, differences, forced absents", () => {
+  const sub = (docId, over = {}) => ({
+    origin: "official", docId, identifier: "oathbound", name: "Oathbound", type: "subclass", rules: "2024", activities: [],
+    effects: [], classIdentifier: "zzfighter", data: `h-${docId}`, ...over
+  });
+  const featureRecord = (pool) => inventory({
+    book: "TST", kind: "feature", textDir, previous: [], dumps: { official: pool, "ddb-importer": [] },
+    dataset: [{ name: "Oathbound", kind: "feature", owner: "Zzfighter/Oathbound", level: 3, book: "TST", page: 5, edition: "2024",
+      srd: false, text: "t" }]
+  }).records[0];
+  it("settles a feature to a subclass document that inventory listed", () => {
+    const pool = [sub(A), sub(B)];
+    const record = featureRecord(pool);
+    expect(itemOf(record)).toMatchObject({ match: "ambiguous" });
+    const next = resolveItem(record, { ...base, pool, docId: B });
+    expect(itemOf(next)).toMatchObject({ match: "matched", docId: B });
+  });
+  it("limits --force to the kind's types, plus subclass for a feature that names its subclass", () => {
+    const pool = [sub(A), sub(B), sub("Cc00Cc11Cc22Cc33", { type: "spell" })];
+    const record = featureRecord([sub(A), sub(B)]);
+    expect(() => resolveItem(record, { ...base, pool, docId: "Cc00Cc11Cc22Cc33", force: true })).toThrow(/spell document/);
+    const other = { ...record, name: "Other Vow", items: [] };
+    expect(() => resolveItem(other, { ...base, pool, docId: A, force: true })).toThrow(/subclass document/);
+    expect(itemOf(resolveItem(record, { ...base, pool, docId: A, force: true }))).toMatchObject({ docId: A });
+  });
+  it("keeps the differences of the chosen document: a 2014 document for a 2024 entry is edition", () => {
+    const pool = [doc(A, { rules: "2014" }), doc(B, { rules: "2014" })];
+    const record = run({ official: [doc(A, { rules: "2014" }), doc(B, { rules: "2014" })] }).records[0];
+    expect(itemOf(record)).toMatchObject({ match: "ambiguous", differences: ["edition"] });
+    const next = resolveItem(record, { ...base, pool, docId: A });
+    expect(itemOf(next)).toMatchObject({ match: "matched", differences: ["edition"] });
+    const again = run({ official: pool }, [next]);
+    expect(itemOf(again.records[0]).differences).toEqual(["edition"]);
+    expect(again.report.differing).toEqual([next.key]);
+    expect(again.report.resolutionStale).toEqual([]);
+  });
+  it("refuses --absent on a matched item without --force, and a forced absent sticks until the document's data changes", () => {
+    const matched = run({ official: [doc(A)] }).records[0];
+    expect(() => resolveItem(matched, { ...base, absent: true })).toThrow(/--force/);
+    const next = resolveItem(matched, { ...base, absent: true, force: true });
+    expect(validateRecord(next)).toEqual([]);
+    const again = run({ official: [doc(A)] }, [next]);
+    expect(itemOf(again.records[0])).toBeUndefined();
+    expect(again.report.resolutionStale).toEqual([]);
+    const changed = run({ official: [doc(A, { data: "h-new" })] }, [next]);
+    expect(itemOf(changed.records[0])).toMatchObject({ match: "matched" });
+    expect(changed.report.resolutionStale).toEqual([next.key]);
+  });
+  it("clips an echoed id to 80 characters", () => {
+    const long = "x".repeat(300);
+    expect(() => resolveItem(ambiguous(), { ...base, docId: long })).toThrow(/^(?:(?!x{81}).)*$/);
+  });
+  it("takes a monster's forced document only from the actors of its own creature", () => {
+    const { poolOf } = settle;
+    const dumps = { actors: [
+      { id: "w1", name: "Wolf", items: [{ docId: "w1.a" }] }, { id: "b1", name: "Bear", items: [{ docId: "b1.a" }] }
+    ] };
+    expect(poolOf(dumps, "official", "monster", "Wolf").map((c) => c.docId)).toEqual(["w1.a"]);
+    expect(poolOf(dumps, "official", "monster").map((c) => c.docId)).toEqual(["w1.a", "b1.a"]);
   });
 });
 

@@ -120,7 +120,7 @@ function ofOwner(entry, candidates) {
 }
 
 // A feature named exactly like its subclass ("Class/Subclass", the name equal to the subclass) may be the subclass document.
-const namesItsSubclass = (entry) => {
+export const namesItsSubclass = (entry) => {
   if (entry.kind !== "feature" || !entry.owner) return false;
   const [, subclass] = String(entry.owner).split("/");
   return Boolean(subclass) && matchName(entry.name).full === matchName(subclass).full;
@@ -145,12 +145,30 @@ function sameName(entry, candidates) {
   });
 }
 
-// Candidates that are one document saved under several ids (identical data fingerprint) are one: the first docId (sorted)
-// stands for them and the others are listed apart. A candidate with no data fingerprint is never merged.
+// Candidates that are one item saved under several ids (the same mechanics fingerprint, which leaves out the container, the
+// quantity, the printing revision and a character's state of the item, and the same activity and effect ids) are one: the first
+// docId (sorted) stands for them and the others are listed apart. A candidate with no fingerprint is never merged.
+const idSet = (c) => JSON.stringify([(c.activities ?? []).map((a) => a.id).sort(), (c.effects ?? []).map((e) => e.id).sort()]);
+const printOf = (c) => c.mechanics ?? c.data;
 function collapse(candidates) {
   const [first, ...rest] = [...candidates].sort((a, b) => (String(a.docId) < String(b.docId) ? -1 : 1));
-  const identical = first?.data !== undefined && rest.length > 0 && rest.every((c) => c.data === first.data);
+  const identical = printOf(first) !== undefined && rest.length > 0
+    && rest.every((c) => printOf(c) === printOf(first) && idSet(c) === idSet(first));
   return identical ? { item: first, alsoDocIds: rest.map((c) => c.docId) } : null;
+}
+
+/**
+ * How a chosen document differs from the entry, as a match would have recorded it: the structural differences against
+ * `entry.reference` (when there is one), the rarity, and the edition (`edition-unknown` when the document does not say).
+ */
+export function differencesOf(entry, item) {
+  const differences = entry.reference ? compareMechanics(mechanicsOf(entry.reference), mechanicsOf(item)) : [];
+  if (entry.rarity !== undefined && rarityDiffers(entry.rarity, item.rarity) && !differences.includes("rarity")) {
+    differences.push("rarity");
+  }
+  if (entry.edition && item.rules === undefined) differences.push("edition-unknown");
+  else if (entry.edition && item.rules !== entry.edition) differences.push("edition");
+  return differences;
 }
 
 // With a reference, the identity fields of the kind decide (level and school of a spell, rarity of an item); other differences

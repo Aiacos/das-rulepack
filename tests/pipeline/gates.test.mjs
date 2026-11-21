@@ -321,9 +321,9 @@ describe("gateUnique", () => {
     expect(f[0]).toContain("tst:spell:glimmer-bolt-2");
   });
 
-  it("allows them when each binds its own sources, and ignores distinct or missing identifiers", () => {
+  it("fails them even when each binds its own sources, and ignores distinct or missing identifiers", () => {
     const sources = { [DOC]: "glimmer-bolt" };
-    expect(gateUnique([rec({ sources }), other({ sources })])).toEqual([]);
+    expect(gateUnique([rec({ sources }), other({ sources })])).toHaveLength(1);
     expect(gateUnique([rec({ sources }), other()])).toHaveLength(1);
     expect(gateUnique([rec(), other({ identifier: "other" })])).toEqual([]);
     const { identifier, ...bare } = rec();

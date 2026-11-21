@@ -49,8 +49,9 @@ function checkItemExtras(item, at, errors) {
     if (!Array.isArray(item.reprints)) errors.push(`${at}.reprints: must be an array`);
     else item.reprints.forEach((r, i) => {
       const ok = isObject(r) && isString(r.package) && isString(r.docId) && typeof r.sameIds === "boolean"
-        && (!("missing" in r) || isStringList(r.missing));
-      if (!ok) errors.push(`${at}.reprints[${i}]: must be { package, docId, sameIds, missing? }`);
+        && (r.sameIds ? !("missing" in r) || isStringList(r.missing) : isStringList(r.missing));
+      const shape = "{ package, docId, sameIds, missing }, missing required if sameIds is false";
+      if (!ok) errors.push(`${at}.reprints[${i}]: must be ${shape}`);
     });
   }
   if ("reprintsExcluded" in item) {
@@ -168,8 +169,9 @@ export function validateRecord(record) {
     if (!Array.isArray(record.resolutions)) errors.push("resolutions: must be an array");
     else record.resolutions.forEach((r, i) => {
       const ok = isObject(r) && ORIGINS.includes(r.origin) && r.absent === true && STAMP.every((f) => isString(r[f]))
-        && (!("candidates" in r) || isStringList(r.candidates));
-      if (!ok) errors.push(`resolutions[${i}]: must be { origin, absent: true, by, at, because, candidates? }`);
+        && (!("candidates" in r) || isStringList(r.candidates))
+        && (!("was" in r) || (isObject(r.was) && isString(r.was.docId)));
+      if (!ok) errors.push(`resolutions[${i}]: must be { origin, absent: true, by, at, because, candidates?, was? }`);
     });
   }
   if ("order" in record && !(Number.isInteger(record.order) && record.order >= 0)) {

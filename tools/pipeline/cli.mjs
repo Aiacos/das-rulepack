@@ -355,9 +355,13 @@ async function resolveCommand(args) {
       const dumps = loadDumps(dumpsDir, record.book, {
         actors: record.kind === "monster", reprints: origin === "official" && record.kind !== "monster"
       });
+      // A ddb-importer document is compared against the official one the record is matched to.
+      const officialDocId = record.items.find((i) => i.origin === "official" && i.match === "matched")?.docId;
+      const reference = origin === "ddb-importer" && record.kind !== "monster"
+        ? dumps.official.find((c) => c.docId === officialDocId) : undefined;
       next = resolveItem(record, {
-        origin, docId: flags.doc, at: new Date().toISOString(), force: flags.force, pool: poolOf(dumps, origin, record.kind),
-        reprints: dumps.reprints, ...who
+        origin, docId: flags.doc, at: new Date().toISOString(), force: flags.force,
+        pool: poolOf(dumps, origin, record.kind, record.owner), reprints: dumps.reprints, reference, ...who
       });
     }
   } catch (e) {

@@ -4,6 +4,7 @@ import { dirname, join } from "node:path";
 import { hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy, stateOf } from "./registry.mjs";
 import { editionOf } from "./edition.mjs";
 import { RULE_VERDICTS } from "./schema.mjs";
+import { sourceProblems } from "./settle.mjs";
 
 export const NOT_BOOKS = ["legacy.json", "queue.json"];
 const GENERATED = /^\/\/ Generated (from registry\/|by npm run build:rules)/;
@@ -70,6 +71,8 @@ export function ruleFromRecord(record, { legacy } = {}) {
 export function sourcesOf(records, { legacy } = {}) {
   const out = {};
   for (const record of records) {
+    const problems = sourceProblems(record);
+    if (problems.length) throw new Error(`${record.key}: ${problems.join("; ")}`);
     if (!record.sources || !ruleFromRecord(record, { legacy })) continue;
     for (const [docId, identifier] of Object.entries(record.sources)) {
       if (out[docId] !== undefined && out[docId] !== identifier) {
@@ -180,6 +183,7 @@ export function generate({ registry, out, check = false }) {
   const wanted = new Map();
   const refused = [];
   const sources = {};
+  const emitted = new Map();
   for (const f of files) {
     const code = f.slice(0, -5);
     const { book, note, records } = loadBook(registry, code);
@@ -191,10 +195,19 @@ export function generate({ registry, out, check = false }) {
     const source = bookModuleSource(book, records, note, { legacy });
     if (source) wanted.set(`books/${code}.mjs`, source);
     if (!refused.length) {
-      for (const [docId, identifier] of Object.entries(sourcesOf(records, { legacy }))) {
-        if (sources[docId] !== undefined && sources[docId] !== identifier) refused.push(`${docId}: bound to two identifiers`);
-        sources[docId] = identifier;
-      }
+      try {
+        for (const [docId, identifier] of Object.entries(sourcesOf(records, { legacy }))) {
+          if (sources[docId] !== undefined && sources[docId] !== identifier) refused.push(`${docId}: bound to two identifiers`);
+          sources[docId] = identifier;
+        }
+      } catch (e) { refused.push(e.message); }
+    }
+    // Two emitted rules must never register one identifier.
+    for (const r of records) {
+      if (!ruleFromRecord(r, { legacy })) continue;
+      const id = String(r.identifier).trim().toLowerCase();
+      if (emitted.has(id)) refused.push(`${r.key}: shares the identifier ${id} with ${emitted.get(id)}`);
+      else emitted.set(id, r.key);
     }
   }
   if (refused.length) throw new Error(`Refusing to generate: ${refused.join("; ")}`);
