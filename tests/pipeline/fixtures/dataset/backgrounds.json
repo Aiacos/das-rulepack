@@ -1,0 +1,5 @@
+{ "background": [
+  { "name": "Lamplighter", "source": "XZZ", "page": 60, "srd52": true,
+    "entries": [{ "type": "list", "style": "list-hang-notitle", "items": [{ "type": "item", "name": "Skills", "entry": "Stealth, Insight" }] }] },
+  { "name": "Rival Trade", "source": "QZZ", "page": 5, "entries": ["Elsewhere."] }
+] }

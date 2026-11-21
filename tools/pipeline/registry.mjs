@@ -2,9 +2,9 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord } from "./schema.mjs";
+import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord } from "./schema.mjs";
 
-export { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord };
+export { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord };
 
 // Accents are dropped before slugging (NFD, then the combining marks removed): "Flèche" is "fleche", not "fl-che".
 export const slug = (s) => String(s).normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/['’]/g, "")
@@ -20,8 +20,15 @@ export function groupBy(list, keyOf) {
   }, new Map());
 }
 
-export function keyOf({ book, kind, name, creature }) {
-  return [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : []), slug(name)].join(":");
+// `owner` ("Class" or "Class/Subclass": each part is slugged) and `level` come between the kind and the name, joined by "/".
+export function keyOf({ book, kind, name, creature, owner, level }) {
+  const head = [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : [])];
+  const scoped = [
+    ...(owner ? [String(owner).split("/").map(slug).join("/")] : []),
+    ...(level != null ? [String(level)] : []),
+    slug(name),
+  ];
+  return owner || level != null ? `${head.join(":")}:${scoped.join("/")}` : `${head.join(":")}:${slug(name)}`;
 }
 
 export function canonical(value) {

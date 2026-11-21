@@ -5,6 +5,8 @@ export const ORIGINS = Object.freeze(["official", "ddb-importer", "plutonium"]);
 export const MATCHES = Object.freeze(["matched", "absent", "ambiguous", "unchecked"]);
 export const LEGACY_STATUSES = Object.freeze(["played", "validated", "pending"]);
 export const HANDLED_IN = Object.freeze(["table", "code"]);
+// Kinds of rulebook entry. `sense` exists only in legacy records and is never inventoried; `monster` has no reader yet.
+export const KINDS = Object.freeze(["spell", "feat", "option", "feature", "species", "background", "item", "monster", "sense"]);
 export const EDITIONS = Object.freeze(["2014", "2024"]);
 // The verdicts under which a record carries a rule that the pack registers.
 export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
@@ -132,6 +134,13 @@ export function validateRecord(record) {
   }
   if ("order" in record && !(Number.isInteger(record.order) && record.order >= 0)) {
     errors.push("order: must be a non-negative integer");
+  }
+  if ("owner" in record && !isString(record.owner)) errors.push("owner: must be a non-empty string");
+  if ("level" in record && !(Number.isInteger(record.level) && record.level >= 0)) {
+    errors.push("level: must be a non-negative integer");
+  }
+  for (const f of ["rarity", "section", "copyOf"]) {
+    if (f in record && !isString(record[f])) errors.push(`${f}: must be a non-empty string`);
   }
   if ("note" in record && typeof record.note !== "string") errors.push("note: must be a string");
   for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
