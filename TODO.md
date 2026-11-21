@@ -7,11 +7,23 @@ Data for every non-official spell imported by DDB Importer (activity and effect 
 After the pilot (`docs/pilot-xphb-spells.md`):
 
 - [ ] Reader batches for the 114 XPHB spells left without a verdict (`npm run batch -- triage XPHB --out <dir>`, then
-      `npm run ingest`); 110 of them are SRD entries with no DAS · Core entry, which are findings for upstream.
+      `npm run ingest`); 110 of them are SRD entries with no dedicated DAS · Core entry — most need none (the item's data is
+      enough); those a reader finds lacking are findings for upstream, not rules for this pack.
 - [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`, difference: school) waits for a person.
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
 - [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
 - [ ] The other kinds (features, feats, options, items, monsters) and the other books: inventory supports spells only.
+- [ ] Before the next book is inventoried: bind the identifiers of the other origins through `sources` and keep the identifier of
+      a record that already has a rule (16 XPHB spells have different identifiers in the official module and in DDB
+      Importer, e.g. `bigbys-hand` / `arcane-hand`); `generate` does not emit `sources` yet.
+- [ ] Before the first non-legacy rule is gated: the ids gate does not find ids inside `#id`, `a/b` or `@UUID[…]` strings; a data
+      fix without `from` on a mistyped path passes.
+- [ ] Before a release built from the registry: run the local gates (dumps and text cache) and fail on any registry difference;
+      `ingest` saves the books and the queue in two steps.
+- [ ] The 24 migrated rules have no item data attached (`ids`, `fixes`, `text` are notes): attach DDB Importer items by
+      inventorying their books, then they can leave `registry/legacy.json`. `saveTashCausBrew` (Tasha's Caustic Brew) is
+      to be checked against the imported item.
+- [ ] Run the CI workflow on GitHub once (it was only simulated locally, on Node 20, against DAS · Core v0.289.0).
 
 ## Shadow Blade
 
