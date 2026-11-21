@@ -8,7 +8,9 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 
 - [x] Triage of the 114 XPHB spells left by the rule: 97 verdicts applied (95 from the SRD 5.2 reading of November 2026, 2
       by a reader agent), see `docs/pilot-xphb-spells.md`.
-- [ ] `registry/queue.json`: 403 entries wait for a person (low-confidence readings and `engine` verdicts).
+- [ ] `registry/queue.json`: 553 entries wait for a person (low-confidence readings and `engine` verdicts).
+- [x] Second reading of the queue (`batch ... --queued`, `ingest --second`): tooling done, see `docs/PIPELINE.md`.
+- [ ] Run the second reading over the queue; only the disagreements (`reason: "disagreement"`) are left for a person.
 - [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
       Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
       uses — to be checked in play, then reported upstream).

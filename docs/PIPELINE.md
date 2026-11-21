@@ -37,7 +37,7 @@ excepted.
 | 2a | Triage by rule | `npm run triage -- <BOOK> [--redo-rule]` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
-| 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
+| 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
@@ -254,6 +254,32 @@ What the session does with the output:
    `--overwrite` if the record already has a verdict; applying a verdict removes the key from the queue. An `engine` verdict
    is never applied by `ingest`: it waits in the queue until a person records the upstream issue and sets the record.
 3. A batch with an unusual share of rejections or queued results is redone, not patched.
+4. Before a person reads the queue, a second reader may read it (below).
+
+### Second reading of the queue
+
+An independent, blind second reading keeps only the real disagreements for a person.
+
+- `batch triage <BOOK> --out <dir> [--structure <dir>] [--size <n>] [--kind <kind>] [--without-items] --queued` cuts batches
+  only from the records of the book that are in `registry/queue.json` and have no `second` yet (and, as for any batch, no
+  verdict, a text and a matched item unless `--without-items`). Ids are `<book>-second-<NNN>`, numbered apart from the
+  triage batches and continuing after the highest `-second-` number in `<dir>`; `stage` stays `"triage"`. The entries are those
+  of a normal batch: they carry nothing of the first reading (no verdict, why, confidence or handle). `--structure` works as
+  usual. Without `--queued` nothing changes (a normal batch still leaves the whole queue out).
+- `ingest <results-file> --second` reads the results of the second reader (same file format, a handle other than the first
+  reader's). Every check of `ingest` applies and `core` is refused. In addition:
+  - a result whose key is not in the queue, whose entry already has a `second`, or whose `by` equals the queued `by`
+    (case aside) is rejected, and nothing of it is applied;
+  - same verdict as the queued one, neither being `engine`: **agreed**. The verdict is applied (`why` is the second
+    reader's; `evidence.triaged` is written as for any ingest, by the second reader, plus
+    `evidence.triaged.first: { by, confidence }` for the first reading) and the entry leaves the queue;
+  - a different verdict, or `engine` on either side: **disagreed**. The record stays without a verdict and the entry stays in
+    the queue with `reason: "disagreement"` and `second: { verdict, why, confidence, by }`. It is not cut again by
+    `--queued`, and a further `--second` result for it is rejected: no third reading;
+  - it prints `{ agreed, disagreed, rejected }` (`rejected` as `{ key, reason }`) and exits with 1 when anything was rejected.
+  `--second` together with `--overwrite` is a usage error.
+- What stays for a person: the queue entries with `reason: "disagreement"` (the two readings side by side) and every `engine`
+  verdict, as before. Entries that nobody has read twice yet keep their original reason.
 
 ## 🏛️ Legacy rules
 

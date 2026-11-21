@@ -148,6 +148,28 @@ function problem(record, result, { overwrite, textOf, known, entryKeys }) {
   return null;
 }
 
+// Writes the verdict of `result` on `record` (in place), `extra` going into `evidence.triaged`; returns why the record would be
+// invalid, or null. Whatever else the record says (a drafted rule, say) must still hold under the new verdict, or nothing is
+// written.
+function settle(record, result, { by, at, extra = {} }) {
+  const { textChangedAt, ...settled } = record;
+  const next = {
+    ...settled, verdict: result.verdict, why: result.why,
+    evidence: {
+      ...record.evidence,
+      triaged: {
+        by, at, confidence: result.confidence,
+        ...(result.keys ? { keys: result.keys } : {}), ...(result.similar ? { similar: result.similar } : {}), ...extra
+      }
+    }
+  };
+  const invalid = validateRecord(next);
+  if (invalid.length) return `the record would be invalid: ${invalid[0]}`;
+  Object.assign(record, next);
+  delete record.textChangedAt;
+  return null;
+}
+
 // Applies reader results to a copy of `records`. Low-confidence results and every `engine` verdict are returned in
 // `queued` instead of being applied. `rejected` is [{ key, reason }]; `applied` the keys that were changed. `entryKeys` (a Set,
 // core.entryKeys) are the engine's entry keys: without it, no result may name `keys`.
@@ -177,26 +199,61 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
       });
       continue;
     }
-    const { textChangedAt, ...settled } = record;
-    const next = {
-      ...settled, verdict: result.verdict, why: result.why,
-      evidence: {
-        ...record.evidence,
-        triaged: {
-          by, at, confidence: result.confidence,
-          ...(result.keys ? { keys: result.keys } : {}), ...(result.similar ? { similar: result.similar } : {})
-        }
-      }
-    };
-    // Whatever else the record says (a drafted rule, say) must still hold under the new verdict, or nothing is applied.
-    const invalid = validateRecord(next);
-    if (invalid.length) {
-      rejected.push({ key: clip(result.key), reason: `the record would be invalid: ${invalid[0]}` });
+    const invalid = settle(record, result, { by, at });
+    if (invalid) {
+      rejected.push({ key: clip(result.key), reason: invalid });
       continue;
     }
-    Object.assign(record, next);
-    delete record.textChangedAt;
     applied.push(result.key);
   }
   return { records: out, applied, queued, rejected };
+}
+
+/**
+ * The second reading of the queue (`ingest --second`): `queue` is registry/queue.json. A result whose key is not in the queue,
+ * whose queue entry already has a `second`, or signed by the handle of the first reader, is rejected; every other check of
+ * `ingest` applies (no overwrite). Same verdict, neither `engine`: applied (`evidence.triaged.first` is `{ by, confidence }` of
+ * the first reading) and listed in `agreed`. Otherwise the record stays open and the entry comes back in `disagreed` with
+ * `second: { verdict, why, confidence, by }` and `reason: "disagreement"`. The inputs are not changed.
+ */
+export function ingestSecond(records, results, { textDir, by, at = new Date().toISOString(), entryKeys, queue }) {
+  if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
+  const out = structuredClone(records);
+  const byKey = new Map(out.map((r) => [r.key, r]));
+  const inQueue = new Map(queue.map((q) => [q.key, q]));
+  const textOf = (r) => {
+    if (!r.text || !hasText(textDir, r.text.sha256)) return null;
+    return readFileSync(join(textDir, `${r.text.sha256}.txt`), "utf8");
+  };
+  const agreed = [];
+  const disagreed = [];
+  const rejected = [];
+  const reject = (result, reason) => rejected.push({ key: typeof result?.key === "string" ? clip(result.key) : null, reason });
+  for (const result of results) {
+    if (result === null || typeof result !== "object") { reject(result, "result must be an object"); continue; }
+    const first = inQueue.get(result.key);
+    if (!first) { reject(result, "the key is not in the queue: a second reading only reads queued entries"); continue; }
+    if (first.second) { reject(result, "the queue entry already has a second reading"); continue; }
+    if (typeof first.by === "string" && first.by.toLowerCase() === by.toLowerCase()) {
+      reject(result, "the second reader must be another reader than the first");
+      continue;
+    }
+    const record = byKey.get(result.key);
+    const reason = problem(record, result, { overwrite: false, textOf, known: byKey, entryKeys });
+    if (reason) { reject(result, reason); continue; }
+    if (result.verdict === first.verdict && result.verdict !== "engine") {
+      const extra = { first: { by: first.by, confidence: first.confidence } };
+      const invalid = settle(record, result, { by, at, extra });
+      if (invalid) { reject(result, invalid); continue; }
+      agreed.push(result.key);
+      inQueue.delete(result.key);
+      continue;
+    }
+    disagreed.push({
+      ...first, reason: "disagreement",
+      second: { verdict: result.verdict, why: result.why, confidence: result.confidence, by }
+    });
+    inQueue.set(result.key, disagreed.at(-1));
+  }
+  return { records: out, agreed, disagreed, rejected };
 }
