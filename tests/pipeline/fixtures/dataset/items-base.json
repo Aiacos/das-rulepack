@@ -1,0 +1,4 @@
+{ "baseitem": [
+  { "name": "Tin Pot", "source": "XZZ", "page": 125, "srd52": true, "type": "AT", "rarity": "none", "entries": ["A pot of tin."] },
+  { "name": "Rival Pot", "source": "QZZ", "page": 4, "entries": ["Elsewhere."] }
+], "itemProperty": [ { "abbreviation": "Q", "source": "XZZ" } ] }

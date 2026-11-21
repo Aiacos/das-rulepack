@@ -5,9 +5,13 @@ export const ORIGINS = Object.freeze(["official", "ddb-importer", "plutonium"]);
 export const MATCHES = Object.freeze(["matched", "absent", "ambiguous", "unchecked"]);
 export const LEGACY_STATUSES = Object.freeze(["played", "validated", "pending"]);
 export const HANDLED_IN = Object.freeze(["table", "code"]);
+// Kinds of rulebook entry. `sense` exists only in legacy records and is never inventoried.
+export const KINDS = Object.freeze(["spell", "feat", "option", "feature", "species", "background", "item", "monster", "sense"]);
 export const EDITIONS = Object.freeze(["2014", "2024"]);
 // The verdicts under which a record carries a rule that the pack registers.
 export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
+// What the rule-based triage may tell a reader about a record (triage.mjs): `core-generic`.
+export const HINTS = Object.freeze(["core-generic"]);
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -27,6 +31,39 @@ function checkItem(item, at, errors) {
     errors.push(`${at}.differences: must be an array of strings`);
   }
   if ("data" in item && !isObject(item.data)) errors.push(`${at}.data: must be an object`);
+  checkItemExtras(item, at, errors);
+}
+
+const STAMP = ["by", "at", "because"];
+const isStringList = (v) => Array.isArray(v) && v.every((x) => typeof x === "string");
+
+// What inventory and `resolve` add to an item: copies of one document, reprints, what a person settled.
+function checkItemExtras(item, at, errors) {
+  if ("alsoDocIds" in item && !isStringList(item.alsoDocIds)) errors.push(`${at}.alsoDocIds: must be an array of strings`);
+  if ("identifierDiffers" in item && typeof item.identifierDiffers !== "boolean") {
+    errors.push(`${at}.identifierDiffers: must be a boolean`);
+  }
+  if ("resolved" in item) {
+    const r = item.resolved;
+    if (!isObject(r) || !STAMP.every((f) => isString(r[f]))) errors.push(`${at}.resolved: must be { by, at, because }`);
+  }
+  if ("reprints" in item) {
+    if (!Array.isArray(item.reprints)) errors.push(`${at}.reprints: must be an array`);
+    else item.reprints.forEach((r, i) => {
+      const ok = isObject(r) && isString(r.package) && isString(r.docId) && typeof r.sameIds === "boolean"
+        && (r.sameIds ? !("missing" in r) || isStringList(r.missing) : isStringList(r.missing));
+      const shape = "{ package, docId, sameIds, missing }, missing required if sameIds is false";
+      if (!ok) errors.push(`${at}.reprints[${i}]: must be ${shape}`);
+    });
+  }
+  if ("reprintsExcluded" in item) {
+    if (!Array.isArray(item.reprintsExcluded)) errors.push(`${at}.reprintsExcluded: must be an array`);
+    else item.reprintsExcluded.forEach((r, i) => {
+      if (!isObject(r) || !isString(r.package) || !isString(r.because)) {
+        errors.push(`${at}.reprintsExcluded[${i}]: must be { package, because }`);
+      }
+    });
+  }
 }
 
 function checkText(text, errors) {
@@ -61,7 +98,7 @@ const isGateList = (v) => Array.isArray(v) && v.every((g) => GATE_NAMES.includes
 function checkEvidence(evidence, errors) {
   const { gates, reviewed, played } = evidence;
   if ("gates" in evidence) {
-    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, passed, noted? }");
+    if (!isObject(gates)) errors.push("evidence.gates: must be { at, core, rule, passed, noted?, items? }");
     else {
       for (const f of ["at", "core"]) if (!isString(gates[f])) errors.push(`evidence.gates.${f}: must be a non-empty string`);
       if (typeof gates.rule !== "string" || !HEX64.test(gates.rule)) errors.push("evidence.gates.rule: must be 64 hex characters");
@@ -69,6 +106,11 @@ function checkEvidence(evidence, errors) {
         errors.push(`evidence.gates.passed: must be an array of gate names (${GATE_NAMES.join(", ")})`);
       }
       if ("noted" in gates && !isGateList(gates.noted)) errors.push("evidence.gates.noted: must be an array of gate names");
+      if ("items" in gates) {
+        const fingerprint = ([origin, sha]) => ORIGINS.includes(origin) && typeof sha === "string" && HEX64.test(sha);
+        const ok = isObject(gates.items) && Object.entries(gates.items).every(fingerprint);
+        if (!ok) errors.push("evidence.gates.items: must be an object of origin to the 64-hex data fingerprint of its item");
+      }
     }
   }
   if ("reviewed" in evidence) {
@@ -93,7 +135,7 @@ export function validateRecord(record) {
   if (!isObject(record)) return ["record: must be an object"];
   const errors = [];
   for (const f of ["key", "name", "kind", "book"]) if (!isString(record[f])) errors.push(`${f}: must be a non-empty string`);
-  if (!isPage(record.page)) errors.push("page: must be a positive integer");
+  if (record.page !== null && !isPage(record.page)) errors.push("page: must be a positive integer or null");
   if (!EDITIONS.includes(record.edition)) errors.push(`edition: must be one of ${EDITIONS.join(", ")}`);
   if (record.text !== null) checkText(record.text, errors);
   if (!Array.isArray(record.items)) errors.push("items: must be an array");
@@ -130,10 +172,34 @@ export function validateRecord(record) {
       if (typeof identifier !== "string" || !KEBAB.test(identifier)) errors.push(`sources.${id}: must be a kebab-case identifier`);
     }
   }
+  if ("resolutions" in record) {
+    if (!Array.isArray(record.resolutions)) errors.push("resolutions: must be an array");
+    else record.resolutions.forEach((r, i) => {
+      const ok = isObject(r) && ORIGINS.includes(r.origin) && r.absent === true && STAMP.every((f) => isString(r[f]))
+        && (!("candidates" in r) || isStringList(r.candidates))
+        && (!("was" in r) || (isObject(r.was) && isString(r.was.docId)));
+      if (!ok) errors.push(`resolutions[${i}]: must be { origin, absent: true, by, at, because, candidates?, was? }`);
+    });
+  }
   if ("order" in record && !(Number.isInteger(record.order) && record.order >= 0)) {
     errors.push("order: must be a non-negative integer");
   }
+  if ("owner" in record && !isString(record.owner)) errors.push("owner: must be a non-empty string");
+  if ("level" in record && !(Number.isInteger(record.level) && record.level >= 0)) {
+    errors.push("level: must be a non-negative integer");
+  }
+  if ("occurrence" in record && !(Number.isInteger(record.occurrence) && record.occurrence >= 2)) {
+    errors.push("occurrence: must be an integer of 2 or more");
+  }
+  for (const f of ["rarity", "section", "copyOf"]) {
+    if (f in record && !isString(record[f])) errors.push(`${f}: must be a non-empty string`);
+  }
+  const isDate = (v) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}(T.*)?$/.test(v);
+  if ("textChangedAt" in record && !isDate(record.textChangedAt)) {
+    errors.push("textChangedAt: must be an ISO date string");
+  }
   if ("note" in record && typeof record.note !== "string") errors.push("note: must be a string");
   for (const f of ["why", "identifier"]) if (f in record && typeof record[f] !== "string") errors.push(`${f}: must be a string`);
+  if ("hint" in record && !HINTS.includes(record.hint)) errors.push(`hint: must be one of ${HINTS.join(", ")}`);
   return errors;
 }

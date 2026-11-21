@@ -6,9 +6,12 @@
 //   legacy    legacy.json as a Map of record key to the fingerprint of its rule at migration (registry.mjs loadLegacy)
 // A gate returns its failures as a string[]; the gates that can also say something that must not fail a run (a note) expose it
 // through the matching check function, and runGates collects both.
-import { canonical, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord } from "./registry.mjs";
+import {
+  canonical, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
+} from "./registry.mjs";
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText } from "./text.mjs";
+import { sourceProblems } from "./settle.mjs";
 
 export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
@@ -53,7 +56,8 @@ const originsOf = (rule) => (Array.isArray(rule?.origins) ? rule.origins : []);
 const isLegacy = (record, context) => hasLegacyStanding(record, context?.legacy);
 const matchedItems = (record, origin) => (record.items ?? []).filter((i) => i?.origin === origin && i.match === "matched");
 
-export const gateSchema = (record) => validateRecord(record).map((e) => `schema: ${e}`);
+// The structure of the record, and its `sources` (each must be a document of this record bound to its identifier).
+export const gateSchema = (record) => [...validateRecord(record).map((e) => `schema: ${e}`), ...sourceProblems(record)];
 
 export function gateValidator(record, { core }) {
   if (!record.rule) return [];
@@ -92,6 +96,18 @@ export function checkIds(record, context) {
     }
     const known = new Set(items.flatMap((i) => [...(i.activities ?? []), ...(i.effects ?? [])]));
     for (const id of ids) if (!known.has(id)) out.failures.push(`ids: ${origin} has no activity or effect ${id}`);
+    // Another official package that reprints the document without an id the entry uses: the entry would not fit that copy.
+    // Only the official origin has reprints. A reprint with other ids and no usable list of what it lacks lacks every id.
+    for (const item of origin === "official" ? items : []) {
+      const excluded = new Set((item.reprintsExcluded ?? []).map((x) => x?.package));
+      for (const r of item.reprints ?? []) {
+        if (r?.sameIds !== false || excluded.has(r.package)) continue;
+        const lacks = Array.isArray(r.missing) ? new Set(r.missing) : null;
+        for (const id of ids) {
+          if (!lacks || lacks.has(id)) out.failures.push(`ids: the reprint in ${r.package} has no activity or effect ${id}`);
+        }
+      }
+    }
   }
   return out;
 }
@@ -160,21 +176,21 @@ export function checkText(record, context = {}) {
 export const gateText = (record, context) => checkText(record, context).failures;
 
 const identifierOfRecord = (record) => (typeof record?.identifier === "string" ? record.identifier.trim().toLowerCase() : "");
-const bindsSources = (record) => isObject(record.sources) && Object.keys(record.sources).length > 0;
-
-// The groups of records that share one canonical identifier, unless every one of them binds its own sources.
+// The groups of ruled records that share one identifier. Only a record that has a rule registers an identifier with the engine,
+// and two rules must never register one: binding `sources` does not make two entries one.
 function duplicateGroups(records) {
   const byIdentifier = new Map();
   for (const record of records) {
+    if (!isObject(record) || !record.rule) continue;
     const id = identifierOfRecord(record);
     if (id) byIdentifier.set(id, [...(byIdentifier.get(id) ?? []), record]);
   }
-  return [...byIdentifier].filter(([, group]) => group.length > 1 && !group.every(bindsSources));
+  return [...byIdentifier].filter(([, group]) => group.length > 1);
 }
 
 const uniqueMessage = (id, group) => `unique: ${group.map((r) => r.key).join(" and ")} share the identifier ${id}`;
 
-/** Two records with the same canonical identifier are one entry for the engine, unless every one of them binds its own sources. */
+/** Two ruled records with the same identifier would register one entry twice, always a failure. Unruled records are ignored. */
 export const gateUnique = (records) => duplicateGroups(records).map(([id, group]) => uniqueMessage(id, group));
 
 const uniqueFailuresByKey = (records) => {
@@ -188,7 +204,7 @@ const uniqueFailuresByKey = (records) => {
 const trusted = (record) => {
   const gates = record.evidence?.gates;
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
-  return !!gates && gates.rule === ruleFingerprint(record.rule) && FULL_EVIDENCE.every((g) => passed.includes(g));
+  return evidenceIsCurrent(record, gates) && FULL_EVIDENCE.every((g) => passed.includes(g));
 };
 
 function ciEvidence(record, context) {
@@ -199,7 +215,8 @@ function ciEvidence(record, context) {
 
 /**
  * Runs the gates over every record. In `ci` mode only schema, validator and unique run, and the other gates are replaced by the
- * evidence a local run left on the record, which counts while its fingerprint is the rule's and it lists every gate as passed.
+ * evidence a local run left on the record, which counts while its fingerprint is the rule's, its item fingerprints are those of
+ * the record's matched items (`items`, per origin the rule names) and it lists every gate as passed.
  * `evidence.gates.passed` lists the gates that were checked and passed; a gate that only left a note is in `noted` instead.
  * @returns {{ failures: object, notes: object, updated: object[] }}
  */
@@ -242,6 +259,9 @@ export function runGates(records, context) {
     const passed = GATES.filter((g) => !noted.includes(g));
     const next = { core: context.core.version, rule: ruleFingerprint(record.rule), passed };
     if (noted.length) next.noted = noted;
+    // The items checked, so that evidence never outlives a change of item (resolve, inventory or any other editor).
+    const items = gatedItems(record);
+    if (Object.keys(items).length) next.items = items;
     const keep = gates && canonical({ ...gates, at: null }) === canonical({ ...next, at: null });
     return { ...record, evidence: { ...evidence, gates: keep ? gates : { at: new Date().toISOString(), ...next } } };
   });

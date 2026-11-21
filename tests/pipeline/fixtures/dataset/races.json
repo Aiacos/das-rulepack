@@ -1,0 +1,14 @@
+{ "race": [
+  { "name": "Glimmerkin", "source": "XZZ", "page": 20, "srd52": true, "entries": [
+    "Born under a shifting sky.",
+    { "type": "entries", "name": "Dim Sight", "entries": ["You see {@dice 60} feet in the dark."] },
+    { "type": "entries", "name": "Quick Blink", "entries": ["Teleport a short way.", { "type": "list", "items": ["Once", "Daily"] }] }
+  ] },
+  { "name": "Plainfolk", "source": "XZZ", "page": 21, "entries": [{ "type": "entries", "name": "Steady", "entries": ["Hardy."] }] },
+  { "name": "Glimmerkin Twin", "source": "XZZ", "page": 22, "_copy": { "name": "Glimmerkin", "source": "XZZ" } },
+  { "name": "Rivalkin", "source": "QZZ", "page": 2, "entries": ["Elsewhere."] }
+], "subrace": [
+  { "name": "Moonlit", "raceName": "Glimmerkin", "raceSource": "XZZ", "source": "XZZ", "page": 23,
+    "entries": [{ "type": "entries", "name": "Pale Glow", "entries": ["You shed light."] }] },
+  { "raceName": "Glimmerkin", "source": "XZZ", "page": 24, "entries": ["No name."] }
+] }

@@ -728,13 +728,17 @@ lowercase) holds one record per rulebook entry: names, pages, identifiers and fi
 the entries that have one, the rule with its metadata and the entry registered with DAS · Core. The book modules under
 `scripts/rules/books/` and `scripts/rules/index.mjs` are generated from it by `npm run build:rules` and are never edited
 by hand: CI and `./build.sh` refuse modules that differ from the registry. The pipeline that fills the registry runs from
-`tools/pipeline/`; how to run it is in [docs/PIPELINE.md](docs/PIPELINE.md).
+`tools/pipeline/`; how to run it is in [docs/PIPELINE.md](docs/PIPELINE.md). What the registry holds for the 2024-era rulebooks,
+in counts, is in [docs/coverage-5e24.md](docs/coverage-5e24.md).
 
 **Editing or adding a rule**: edit its record in `registry/<code>.json`; run `npm run gates` (with the variables of
 [docs/PIPELINE.md](docs/PIPELINE.md)) until it passes, `npm run build:rules` to regenerate the modules and `npm run books`
 for the generated documents; add a new identifier to `tests/registration.test.mjs` and run `npx vitest run -u`. A new
-record of a book comes from the inventory (`npm run inventory -- <BOOK> spell`), which supports **spells only** for now:
-a new feature or sense rule cannot yet be added through the pipeline. The 24 rules that predate the pipeline are
+record of a book comes from the inventory (`npm run inventory -- <BOOK> <kind|all>`), which reads every kind of entry:
+spells, feats, optional features, class and subclass features, species and their traits, backgrounds, items and monster
+features. A rule is a record whose verdict is `entry` or `code` and that carries a `rule`; drafting that `rule` through
+the pipeline is not built yet, so a person writes it into the record and the gates check it. `sense` records exist only
+among the legacy rules: inventory never produces one. The 24 rules that predate the pipeline are
 *legacy* (`registry/legacy.json`): editing in place anything the module emits for one (its rule, identifier, name, book,
 page, kind, verdict, status or `alsoIn`) makes the gates fail and `build:rules` refuse, until it is redone through the
 pipeline (docs/PIPELINE.md, "Legacy rules"). A book of group A or B is laid out the same way; the

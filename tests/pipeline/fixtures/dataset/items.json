@@ -1,0 +1,7 @@
+{ "item": [
+  { "name": "Lantern of Dusk", "source": "XZZ", "page": 120, "rarity": "rare", "type": "W",
+    "entries": ["Sheds {@dice 1d6} motes of dim light."] },
+  { "name": "Glass Whistle", "source": "XZZ", "page": 121, "rarity": "none", "entries": ["Shrill."] },
+  { "name": "Glass Whistle (Copy)", "source": "XZZ", "page": 121, "rarity": "uncommon", "_copy": { "name": "Glass Whistle", "source": "XZZ" } },
+  { "name": "Rival Ring", "source": "QZZ", "page": 3, "rarity": "rare", "entries": ["Elsewhere."] }
+], "itemGroup": [ { "name": "Group Never Listed", "source": "XZZ", "page": 1 } ] }

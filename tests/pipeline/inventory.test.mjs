@@ -40,7 +40,8 @@ describe("inventory records", () => {
     expect(readFileSync(join(textDir, `${sha}.txt`), "utf8")).toBe("A bolt of invented light.");
     expect(JSON.stringify(r)).not.toContain("invented light");
     expect(report).toEqual({
-      added: 1, kept: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: []
+      added: 1, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
+      noPage: [], collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
     });
   });
 
@@ -69,7 +70,7 @@ describe("inventory records", () => {
   });
 
   it("records an ambiguous origin with its candidates and reports it", () => {
-    const twin = summary("official", { docId: "second" });
+    const twin = summary("official", { docId: "second", data: "h-other" });
     const { records, report } = run({ dumps: dumps({ official: [summary("official"), twin] }) });
     expect(records[0].items[0]).toMatchObject({
       origin: "official", match: "ambiguous", candidates: [{ identifier: "glimmer-bolt", docId: "official-doc" },
@@ -122,7 +123,8 @@ describe("inventory over previous records", () => {
       evidence: { reviewed: { agrees: true }, gates: { rule: "f", passed: ["schema"] } } }];
     const again = run({ previous: worked });
     expect(again.report).toEqual({
-      added: 0, kept: 1, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: []
+      added: 0, kept: 1, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [],
+      noPage: [], collisions: [], textVanished: [], vanished: [], pageChanged: [], resolutionStale: []
     });
     expect(again.records).toEqual(worked);
   });
@@ -180,10 +182,13 @@ describe("pipeline CLI", () => {
     expect(r.stderr).toMatch(/usage/i);
   });
 
-  it("exits 2 for a kind other than spell", () => {
-    const r = cli(["inventory", "TST", "feat"]);
+  it("exits 2 for an unknown kind, naming what is supported (monster included)", () => {
+    const r = cli(["inventory", "TST", "sense"]);
     expect(r.status).toBe(2);
-    expect(r.stderr).toMatch(/spell/);
+    expect(r.stderr).toMatch(/spell, feat, option, feature, species, background, item, monster or all/);
+    const m = cli(["inventory", "TST", "monster"]);
+    expect(m.status).toBe(2);
+    expect(m.stderr).toContain("RULEPACK_DATASET");
   });
 
   it("exits 2 naming a missing environment variable", () => {

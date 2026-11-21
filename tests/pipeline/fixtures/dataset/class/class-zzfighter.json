@@ -1,0 +1,22 @@
+{ "class": [ { "name": "Zzfighter", "source": "XZZ", "page": 70 } ],
+  "classFeature": [
+    { "name": "Fighting Style", "source": "XZZ", "page": 71, "srd52": true, "className": "Zzfighter", "classSource": "XZZ",
+      "level": 1, "entries": ["Pick a style.", { "type": "refOptionalfeature", "optionalfeature": "Ember Technique|XZZ" }] },
+    { "name": "Second Wind", "source": "XZZ", "page": 71, "className": "Zzfighter", "classSource": "XZZ", "level": 1,
+      "entries": ["Heal {@dice 1d10} hit points."] },
+    { "name": "Ability Score Improvement", "source": "XZZ", "page": 72, "className": "Zzfighter", "classSource": "XZZ", "level": 4,
+      "entries": ["Raise a score."] },
+    { "name": "Ability Score Improvement", "source": "XZZ", "page": 72, "className": "Zzfighter", "classSource": "XZZ", "level": 6,
+      "entries": ["Raise a score again."] },
+    { "name": "Rival Feature", "source": "QZZ", "page": 8, "className": "Zzfighter", "classSource": "XZZ", "level": 2,
+      "entries": ["Elsewhere."] }
+  ],
+  "subclassFeature": [
+    { "name": "Ember Path", "source": "XZZ", "page": 74, "className": "Zzfighter", "classSource": "XZZ",
+      "subclassShortName": "Ember", "subclassSource": "XZZ", "level": 3,
+      "entries": ["Your blows glow.", { "type": "refSubclassFeature", "subclassFeature": "Ember Spark|Zzfighter|XZZ|Ember|XZZ|3" }] },
+    { "name": "Ember Spark", "source": "XZZ", "page": 74, "className": "Zzfighter", "classSource": "XZZ",
+      "subclassShortName": "Ember", "subclassSource": "XZZ", "level": 3, "entries": ["A spark leaps."] },
+    { "name": "Ember Path", "source": "XZZ", "page": 75, "className": "Zzfighter", "classSource": "XZZ",
+      "subclassShortName": "Frost", "subclassSource": "XZZ", "level": 3, "entries": ["Your blows chill."] }
+  ] }

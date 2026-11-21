@@ -1,7 +1,9 @@
 // Reader for the compendium dumps (RULEPACK_DUMPS: <package>.<pack>.json, each a JSON array of Foundry documents).
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { canonical } from "./registry.mjs";
+import { KIND_TABLE } from "./kinds.mjs";
 
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 const sortedUnique = (list) => [...new Set(list)].sort();
@@ -16,7 +18,66 @@ function activitySummary(id, activity) {
   return out;
 }
 
-export function itemSummary(doc, origin) {
+// Who hands a document out: the class, subclass and race documents of a dump list the feature documents they grant (an
+// ItemGrant advancement holds their uuids). Returns a Map of document id to [{ class?, subclass?, race?, level? }] where each
+// value is the slug-ready identifier or name of the granting document; this is what tells two same-name features apart.
+export function grantIndex(docs) {
+  const index = new Map();
+  const add = (id, grant) => index.set(id, [...(index.get(id) ?? []), grant]);
+  for (const doc of docs) {
+    if (!["class", "subclass", "race"].includes(doc.type)) continue;
+    const sys = doc.system ?? {};
+    const owner = doc.type === "class" ? { class: sys.identifier ?? doc.name }
+      : doc.type === "subclass" ? { class: sys.classIdentifier, subclass: [sys.identifier, doc.name].filter(Boolean) }
+        : { race: doc.name };
+    for (const adv of Object.values(sys.advancement ?? {})) {
+      if (adv?.type !== "ItemGrant") continue;
+      for (const item of adv.configuration?.items ?? []) {
+        const id = String(item?.uuid ?? "").split(".").pop();
+        if (id) add(id, { ...owner, ...(Number.isInteger(adv.level) ? { level: adv.level } : {}) });
+      }
+    }
+  }
+  return index;
+}
+
+const ACTIVATIONS = ["action", "bonus", "reaction", "legendary", "mythic"];
+// How an item is activated, as the section of a stat block that would list it: `trait` for a passive activity (an empty
+// activation type), the type itself for action, bonus, reaction, legendary and mythic. An item with no activity, an activity
+// that states nothing, or another timing (special, a turn's start or end, an hour) says nothing: the list is empty (neutral).
+function activationsOf(activities) {
+  const entries = Object.values(activities ?? {});
+  const types = entries.filter((a) => a?.activation && typeof a.activation === "object").map((a) => a.activation.type ?? "");
+  return sortedUnique(types.flatMap((t) => (ACTIVATIONS.includes(t) ? [t] : ["", "none", "passive"].includes(t) ? ["trait"] : [])));
+}
+
+// The fields in which copies of one item differ without the item being another: where it is kept, how many, which printing,
+// and the state a character gives it.
+const COPY_FIELDS = [["container"], ["quantity"], ["source", "revision"], ["equipped"], ["attuned"], ["identified"]];
+
+/** The fingerprint of what an item does: its `system` and `effects` without the fields in which copies of it differ. */
+export function mechanicsFingerprint(system, effects) {
+  const rest = structuredClone(system ?? {});
+  for (const path of COPY_FIELDS) {
+    const holder = path.slice(0, -1).reduce((o, k) => o?.[k], rest);
+    if (holder && typeof holder === "object") delete holder[path.at(-1)];
+  }
+  return sha256(canonical({ system: rest, effects }));
+}
+
+// The document types the pipeline reads: the item types of every kind, the documents that grant features (class, subclass,
+// race), backgrounds and the actors of the monsters. A journal entry or page, a scene or a table is none of them, even when it
+// shares an item's id.
+export const KNOWN_DOC_TYPES = Object.freeze([...new Set([
+  ...Object.values(KIND_TABLE).flatMap((row) => [...row.docTypes, ...(row.traitDocTypes ?? [])]),
+  "class", "subclass", "race", "background", "npc", "character"
+])]);
+const isKnown = (doc) => doc !== null && typeof doc === "object" && KNOWN_DOC_TYPES.includes(doc.type);
+
+/** The data fingerprint of a document, as inventory records it on a matched item (`data.sha256`). */
+export const dataFingerprint = (doc) => sha256(canonical({ system: doc?.system ?? {}, effects: doc?.effects ?? [] }));
+
+export function itemSummary(doc, origin, grants) {
   const system = doc.system ?? {};
   const effects = doc.effects ?? [];
   const summary = {
@@ -28,10 +89,21 @@ export function itemSummary(doc, origin) {
     rules: system.source?.rules,
     activities: Object.entries(system.activities ?? {}).map(([id, a]) => activitySummary(id, a)),
     effects: effects.map((e) => ({ id: e._id, name: e.name, statuses: [...(e.statuses ?? [])] })),
+    activations: activationsOf(system.activities),
   };
   if (system.level !== undefined) summary.level = system.level;
   if (system.school !== undefined) summary.school = system.school;
-  summary.data = sha256(canonical({ system, effects }));
+  if (typeof system.rarity === "string" && system.rarity) summary.rarity = system.rarity;
+  if (system.type && typeof system.type === "object" && doc.type === "feat") {
+    summary.featType = { value: system.type.value ?? "", subtype: system.type.subtype ?? "" };
+  }
+  if (doc.type === "subclass" && typeof system.classIdentifier === "string" && system.classIdentifier) {
+    summary.classIdentifier = system.classIdentifier;
+  }
+  if (typeof system.requirements === "string" && system.requirements) summary.requirements = system.requirements;
+  if (grants?.get(doc._id)) summary.grantedBy = grants.get(doc._id);
+  summary.data = dataFingerprint(doc);
+  summary.mechanics = mechanicsFingerprint(system, effects);
   return summary;
 }
 
@@ -50,4 +122,72 @@ export function dumpsFor(dumpsDir, origin) {
 export function officialFilesFor(dumpsDir, packages, book) {
   const ids = packages.filter((p) => p.book && p.book.toUpperCase() === book.toUpperCase()).map((p) => p.id);
   return dumpsFor(dumpsDir, "official").filter((f) => ids.some((id) => f.startsWith(`${id}.`)));
+}
+
+// A pack of actors: the pack name (the file name after the package id) contains "actors".
+export const isActorFile = (file) => file.slice(0, -".json".length).split(".").slice(1).join(".").includes("actors");
+
+/**
+ * The actors of an actor dump, summarised for matching their embedded items: `[{ id, name, items }]`, each item an
+ * `itemSummary` whose `docId` is `<actor id>.<item id>`. A document that embeds no items is left out.
+ */
+export function actorSummaries(docs, origin) {
+  return docs.filter((d) => Array.isArray(d.items)).map((d) => ({
+    id: d._id, name: d.name,
+    items: d.items.map((i) => ({ ...itemSummary(i, origin), docId: `${d._id}.${i._id}` }))
+  }));
+}
+
+/**
+ * The documents of the other official packages, by document id: `Map<docId, [{ package, type, activities, effects }]>`,
+ * `activities` and `effects` being the ids the document holds. `files` are dump file names of the folder
+ * (`<package>.<pack>.json`); actor packs are left out (an actor id is no item), and so is every document that is not of a type
+ * the pipeline knows (a journal page sharing the id is no reprint). Used to tell whether a package reprints a document with the
+ * same ids; `settle.mjs reprintsOf` keeps only the types of the record's kind.
+ */
+export function reprintIndex(dumpsDir, files) {
+  const index = new Map();
+  for (const file of files) {
+    if (isActorFile(file)) continue;
+    const pkg = file.split(".")[0];
+    for (const doc of readDump(join(dumpsDir, file))) {
+      if (typeof doc?._id !== "string" || !isKnown(doc)) continue;
+      const row = {
+        package: pkg, type: doc.type, activities: Object.keys(doc.system?.activities ?? {}).sort(),
+        effects: (doc.effects ?? []).map((e) => e._id).filter(Boolean).sort()
+      };
+      index.set(doc._id, [...(index.get(doc._id) ?? []), row]);
+    }
+  }
+  return index;
+}
+
+/**
+ * The raw documents of dump files, by id: `Map<docId, document[]>`, only documents of a type the pipeline knows (never a
+ * journal entry or page). In an actor pack the documents are the items embedded in the actors, keyed `<actor id>.<item id>`.
+ * Look a document up with findDocument.
+ */
+export function docIndex(dumpsDir, files) {
+  const index = new Map();
+  const add = (id, doc) => {
+    if (typeof id === "string" && isKnown(doc)) index.set(id, [...(index.get(id) ?? []), doc]);
+  };
+  for (const file of files) {
+    for (const doc of readDump(join(dumpsDir, file))) {
+      if (!isActorFile(file)) add(doc?._id, doc);
+      else if (isKnown(doc)) for (const item of doc.items ?? []) add(`${doc._id}.${item?._id}`, item);
+    }
+  }
+  return index;
+}
+
+/**
+ * The document of `docIndex` with this id and, when `sha` is given (an item's `data.sha256`), this data fingerprint; without
+ * one, the document of the id when every document of the id has the same data (copies of one item). Null when there is no
+ * such document or several different ones could be meant: never another document.
+ */
+export function findDocument(index, docId, sha) {
+  const docs = index.get(docId) ?? [];
+  if (typeof sha === "string") return docs.find((d) => dataFingerprint(d) === sha) ?? null;
+  return docs.length && docs.every((d) => dataFingerprint(d) === dataFingerprint(docs[0])) ? docs[0] : null;
 }

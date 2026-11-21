@@ -1,0 +1,5 @@
+{ "class": [ { "name": "Zzmage", "source": "XZZ", "page": 80 } ],
+  "classFeature": [
+    { "name": "Spark Casting", "source": "XZZ", "page": 81, "className": "Zzmage", "classSource": "XZZ", "level": 1,
+      "entries": ["Cast with sparks."] }
+  ] }

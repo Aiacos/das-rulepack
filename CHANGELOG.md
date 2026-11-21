@@ -7,6 +7,11 @@
   modules; no rulebook text is stored, only names, pages, identifiers and SHA-256 fingerprints. CI runs the tests, the gates and
   the generated-file checks against the latest DAS · Core release. First run: the 391 spells of the 2024 Player's Handbook
   (`docs/pilot-xphb-spells.md`); the 24 shipped rules register exactly what they did.
+- Rulebook pipeline, every kind of entry: inventory for feats, options, class and subclass features, species, backgrounds,
+  items and monsters (one record per stat-block feature); `npm run resolve` to settle an ambiguous match by hand; reprints
+  of an official item in another official package are recorded and checked; batches for readers come with a structure
+  file written outside the repository. Six 2024-era rulebooks are inventoried — 4,892 entries, see
+  `docs/coverage-5e24.md`; nothing new is registered by the module.
 - README: three official Foundry sourcebooks the rulebook catalogue does not contain are in the table of official modules:
   Ravenloft: The Horrors Within (RHW), Arcana Unleashed (AU) and Dungeons & Dragons: World of Warcraft (WOW). Each is
   measured from the module's own compendia and counted like any other book; species traits are a part of their own (RHW,

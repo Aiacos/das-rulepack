@@ -2,9 +2,9 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord } from "./schema.mjs";
+import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord } from "./schema.mjs";
 
-export { VERDICTS, STATES, ORIGINS, MATCHES, validateRecord };
+export { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord };
 
 // Accents are dropped before slugging (NFD, then the combining marks removed): "Flèche" is "fleche", not "fl-che".
 export const slug = (s) => String(s).normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/['’]/g, "")
@@ -20,8 +20,25 @@ export function groupBy(list, keyOf) {
   }, new Map());
 }
 
-export function keyOf({ book, kind, name, creature }) {
-  return [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : []), slug(name)].join(":");
+// `owner` ("Class" or "Class/Subclass": each part is slugged) is part of the key of features, species (traits) and monsters;
+// `level` is part of the key of features only (a spell's level or an item's rarity never is); `section` (trait, action...)
+// that of monsters, after the creature. They come between the kind and the name, joined by "/". `occurrence` (2, 3, ...)
+// numbers a name repeated within one creature and section: "name#2". A name or an owner part that slugs to nothing cannot
+// make a key.
+const OWNED_KINDS = ["feature", "species", "monster"];
+export function keyOf({ book, kind, name, creature, owner, section, level, occurrence }) {
+  const head = [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : [])];
+  // A creature's name is one part, whatever characters it holds; a class/subclass owner is split at "/".
+  const ownerParts = !owner || !OWNED_KINDS.includes(kind) ? []
+    : kind === "monster" ? [slug(owner)] : String(owner).split("/").map(slug);
+  if (kind === "monster" && !section) throw new Error("keyOf: a monster feature needs its section");
+  const levelParts = kind === "feature" && level != null ? [String(level)] : [];
+  const sectionParts = kind === "monster" && section ? [slug(section)] : [];
+  const tail = slug(name) && Number.isInteger(occurrence) && occurrence > 1 ? `${slug(name)}#${occurrence}` : slug(name);
+  if (!tail) throw new Error(`keyOf: the name ${JSON.stringify(name)} has no letters or digits`);
+  if (ownerParts.some((p) => !p)) throw new Error(`keyOf: the owner ${JSON.stringify(owner)} has an empty part`);
+  const scoped = [...(ownerParts.length ? [ownerParts.join("/")] : []), ...sectionParts, ...levelParts, tail];
+  return `${head.join(":")}:${scoped.join("/")}`;
 }
 
 export function canonical(value) {
@@ -43,6 +60,33 @@ export const legacyFingerprint = (record) =>
 
 const REQUIRED_GATES = ["schema", "validator", "ids", "fixes", "text"];
 
+/**
+ * The items the gates check, as `evidence.gates.items` records them: per origin the rule names, the data fingerprint of the
+ * record's matched item of that origin (an origin whose item has no data, a legacy record's, is left out).
+ */
+export function gatedItems(record) {
+  const out = {};
+  const origins = Array.isArray(record?.rule?.origins) ? record.rule.origins : [];
+  for (const origin of origins) {
+    const item = (record.items ?? [])
+      .find((i) => i?.origin === origin && i.match === "matched" && typeof i.data?.sha256 === "string");
+    if (item) out[origin] = item.data.sha256;
+  }
+  return out;
+}
+
+/**
+ * True when gate evidence stands for the record as it is: the fingerprint of its rule, and for every origin the rule names the
+ * same matched item (by data fingerprint) as when the gates ran. Moving an item to another document, or changing its data,
+ * makes the evidence stale whoever did it.
+ */
+export function evidenceIsCurrent(record, gates) {
+  if (!gates || gates.rule !== ruleFingerprint(record.rule)) return false;
+  const recorded = gates.items ?? {};
+  if (recorded === null || typeof recorded !== "object" || Array.isArray(recorded)) return false;
+  return canonical(recorded) === canonical(gatedItems(record));
+}
+
 // The state is always derived from the evidence, never read from a stored field. `core` is accepted for the callers that
 // know which engine they gate against; the gates carry their own fingerprint of the rule, which is what staleness hangs on.
 export function stateOf(record, { core } = {}) {
@@ -50,7 +94,7 @@ export function stateOf(record, { core } = {}) {
   if (!record.rule) return "triaged";
   const gates = record.evidence?.gates;
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
-  if (gates?.rule !== ruleFingerprint(record.rule) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
+  if (!evidenceIsCurrent(record, gates) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
   if (!record.evidence.reviewed?.agrees) return "gated";
   return isPlayed(record.evidence.played) ? "played" : "reviewed";
 }

@@ -1,0 +1,6 @@
+{ "feat": [
+  { "name": "Moss Stride", "source": "XZZ", "page": 31, "srd52": true, "category": "G",
+    "entries": ["You step across {@condition Prone|XZZ} ground without a sound.", { "type": "list", "items": ["Quiet", "Swift"] }] },
+  { "name": "Moss Stride", "source": "QZZ", "page": 9, "entries": ["Another book's feat of the same name."] },
+  { "name": "Hollow Echo", "source": "XZZ", "page": 32, "entries": ["Ring a {@item brass bell|XZZ} for 1d4 rounds."] }
+] }

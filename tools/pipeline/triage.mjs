@@ -3,26 +3,82 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { VERDICTS, slug, validateRecord } from "./registry.mjs";
-import { RULE_VERDICTS } from "./schema.mjs";
+import { HINTS, RULE_VERDICTS } from "./schema.mjs";
 import { hasText } from "./text.mjs";
+
+// The hint a record can carry for its reader (`record.hint`): `core-generic` says DAS · Core has an entry under the
+// identifier, but one too generic to settle the record by itself (a monster feature, or a shared identifier).
+export { HINTS };
 
 export const QUEUE_THRESHOLD = 0.7;
 export const MAX_WHY = 200;
 export const MAX_QUOTE_WORDS = 11;
 
-// Core and "no text" are decided here; SRD content that Core lacks is a finding for upstream, so it is left to a reader.
-// `record.srd` is the flag the inventory stored; it changes nothing here today, because both outcomes are "ask a reader".
-// `textDir` is the text cache.
-export function autoTriage(record, { coreIdentifiers, textDir } = {}) {
-  if (record.verdict) return null;
-  if (coreIdentifiers.has(record.identifier ?? slug(record.name))) {
-    return { verdict: "core", why: "DAS · Core has an entry", by: "rule" };
+// The kinds whose record with no text and no item is a placeholder ("Subclass Feature" lines and the like): nothing to read,
+// nothing to automate. A species is described by its traits and a monster feature by its stat block: never placeholders.
+const PLACEHOLDER_KINDS = ["item", "feature", "option", "feat", "background", "spell"];
+const WHY = Object.freeze({
+  core: "DAS · Core has an entry under this identifier",
+  none: "no text and no item in any origin",
+  noOwnText: "the rulebook entry has no text of its own",
+  notCached: "the rulebook text is not in the cache"
+});
+
+const identifierOf = (r) => r.identifier ?? slug(r.name);
+const countKey = (kind, identifier) => `${kind}|${identifier}`;
+
+/**
+ * What autoTriage needs to know of the whole registry: how many records of each kind use each identifier
+ * (`identifierCounts`, keyed "<kind>|<identifier>") and which species have trait records of their own (`traitOwners`, keyed
+ * "<book>|<species name>").
+ */
+export function triageContext(records) {
+  const identifierCounts = new Map();
+  const traitOwners = new Set();
+  for (const r of records) {
+    const id = countKey(r.kind, identifierOf(r));
+    identifierCounts.set(id, (identifierCounts.get(id) ?? 0) + 1);
+    if (r.kind === "species" && r.owner) traitOwners.add(`${r.book}|${r.owner}`);
   }
-  if (!record.text || !hasText(textDir, record.text.sha256)) {
-    return { verdict: "unverifiable", why: "The rulebook text is not in the cache", by: "rule" };
-  }
-  return null; // SRD or not, a reader decides from here
+  return { identifierCounts, traitOwners };
 }
+
+/**
+ * The rule-based part of triage for a record without a verdict: `{ verdict, why, by: "rule", hint? }`, `{ hint }` (no verdict,
+ * a hint for the reader) or null (nothing: a reader decides). `coreIdentifiers` are DAS · Core's; `textDir` is the text cache;
+ * `identifierCounts` and `traitOwners` come from triageContext over the whole registry.
+ * - `core` only for the one record of its kind that uses an identifier the engine has, never for a monster feature; otherwise
+ *   the record is hinted `core-generic` and goes on through the rules below.
+ * - No text in the dataset: a species described by its traits is left alone; with an item in some origin, `unverifiable`;
+ *   with none, `none` for the kinds whose such records are placeholders.
+ * - A text fingerprint missing from the cache: `unverifiable`.
+ * SRD content that Core lacks is a finding for upstream, not a rule for this pack: it is left to a reader like the rest.
+ */
+export function autoTriage(record, { coreIdentifiers, textDir, identifierCounts, traitOwners } = {}) {
+  if (!(identifierCounts instanceof Map)) throw new Error("autoTriage needs identifierCounts (triageContext of the registry)");
+  if (record.verdict) return null;
+  const identifier = identifierOf(record);
+  let hint;
+  if (coreIdentifiers.has(identifier)) {
+    if (record.kind !== "monster" && identifierCounts.get(countKey(record.kind, identifier)) === 1) {
+      return { verdict: "core", why: WHY.core, by: "rule" };
+    }
+    hint = "core-generic";
+  }
+  const hinted = (outcome) => (hint ? { ...outcome, hint } : outcome);
+  const nothing = hint ? { hint } : null;
+  if (!record.text) {
+    if (record.kind === "species" && !record.owner && traitOwners?.has(`${record.book}|${record.name}`)) return nothing;
+    const hasItem = (record.items ?? []).some((i) => i?.match === "matched" || i?.match === "ambiguous");
+    if (hasItem) return hinted({ verdict: "unverifiable", why: WHY.noOwnText, by: "rule" });
+    return PLACEHOLDER_KINDS.includes(record.kind) ? hinted({ verdict: "none", why: WHY.none, by: "rule" }) : nothing;
+  }
+  if (!hasText(textDir, record.text.sha256)) return hinted({ verdict: "unverifiable", why: WHY.notCached, by: "rule" });
+  return nothing; // SRD or not, a reader decides from here
+}
+
+// A verdict the rule-based step set: `evidence.triaged.by` is "rule" (ingest always records a confidence, the rule never).
+export const setByRule = (r) => r.evidence?.triaged?.by === "rule" && !("confidence" in r.evidence.triaged);
 
 // Whitespace-normalised, lower-cased words; punctuation around a word does not count, so "mu." matches "mu".
 const EDGES = /^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu;
@@ -41,6 +97,8 @@ export function quotes(why, text) {
 }
 
 export const BY = /^[a-z0-9][a-z0-9._-]{0,63}$/i;
+// "rule" names the rule-based step in `evidence.triaged.by`: no reader or person may sign with it.
+export const isReaderHandle = (by) => typeof by === "string" && BY.test(by) && by.toLowerCase() !== "rule";
 const ENGINE_KEY = /^[A-Za-z][A-Za-z0-9.]{0,63}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const RESULT_FIELDS = ["key", "verdict", "why", "keys", "similar", "confidence"];
@@ -49,7 +107,7 @@ const MAX_SIMILAR = 5;
 
 const isList = (v, max, ok) => Array.isArray(v) && v.length <= max && v.every((x) => typeof x === "string" && ok(x));
 // `why` is one line of printable characters: no control or format character, no line or paragraph separator.
-const ONE_LINE = /^[^\p{C}\p{Zl}\p{Zp}]*$/u;
+export const ONE_LINE = /^[^\p{C}\p{Zl}\p{Zp}]*$/u;
 export const MAX_ECHO = 80;
 // What a rejection repeats of a reader's own strings: at most MAX_ECHO characters.
 export const clip = (s) => String(s).slice(0, MAX_ECHO);
@@ -92,7 +150,7 @@ function problem(record, result, { overwrite, textOf, known, entryKeys }) {
 // `queued` instead of being applied. `rejected` is [{ key, reason }]; `applied` the keys that were changed. `entryKeys` (a Set,
 // core.entryKeys) are the engine's entry keys: without it, no result may name `keys`.
 export function ingest(records, results, { textDir, by, at = new Date().toISOString(), overwrite = false, entryKeys }) {
-  if (typeof by !== "string" || !BY.test(by)) throw new Error(`by must match ${BY}`);
+  if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
   const textOf = (r) => {
@@ -117,8 +175,9 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
       });
       continue;
     }
+    const { textChangedAt, ...settled } = record;
     const next = {
-      ...record, verdict: result.verdict, why: result.why,
+      ...settled, verdict: result.verdict, why: result.why,
       evidence: {
         ...record.evidence,
         triaged: {
@@ -134,6 +193,7 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
       continue;
     }
     Object.assign(record, next);
+    delete record.textChangedAt;
     applied.push(result.key);
   }
   return { records: out, applied, queued, rejected };

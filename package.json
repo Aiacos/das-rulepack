@@ -11,6 +11,7 @@
     "triage": "node tools/pipeline/cli.mjs triage",
     "batch": "node tools/pipeline/cli.mjs batch",
     "ingest": "node tools/pipeline/cli.mjs ingest",
+    "resolve": "node tools/pipeline/cli.mjs resolve",
     "gates": "node tools/pipeline/cli.mjs gates",
     "build:rules": "node tools/pipeline/cli.mjs generate"
   },
