@@ -77,7 +77,7 @@ describe("matchOrigin: features and traits of one name", () => {
   });
   it("tells a class feature from a subclass feature of the same name", () => {
     const classLevel = cand("Ember Path", { docId: "c", ...grant({ class: "zzfighter", level: 3 }) });
-    expect(matchOrigin(entry, [classLevel])).toEqual({ match: "absent" });
+    expect(matchOrigin(entry, [classLevel])).toMatchObject({ match: "ambiguous", differences: ["owner"] });
     const plain = { ...entry, owner: "Zzfighter" };
     expect(matchOrigin(plain, [classLevel]).item).toBe(classLevel);
   });
@@ -107,7 +107,25 @@ describe("matchOrigin: features and traits of one name", () => {
     const mine = cand("Dim Sight", { docId: "m", ...grant({ race: "Glimmerkin" }) });
     const theirs = cand("Dim Sight", { docId: "t", ...grant({ race: "Plainfolk" }) });
     expect(matchOrigin(e, [theirs, mine]).item).toBe(mine);
-    expect(matchOrigin(e, [theirs])).toEqual({ match: "absent" });
+    expect(matchOrigin(e, [theirs])).toMatchObject({ match: "ambiguous", differences: ["owner"], candidates: [theirs] });
+  });
+  it("is ambiguous on owner, never matched or absent, when a lone candidate states another class", () => {
+    const other = cand("Ember Path", { docId: "o", requirements: "Zzmage 3" });
+    expect(matchOrigin(entry, [other])).toEqual({ match: "ambiguous", candidates: [other], differences: ["owner"] });
+    const viaSubtype = cand("Ember Path", { docId: "p", featType: { value: "class", subtype: "Zzmage" } });
+    expect(matchOrigin(entry, [viaSubtype]).differences).toEqual(["owner"]);
+  });
+  it("treats a general, origin, fighting style or epic boon feat as another owner than a class feature", () => {
+    for (const value of ["general", "origin", "fightingStyle", "epicBoon"]) {
+      const feat = cand("Ember Path", { featType: { value, subtype: "" } });
+      expect(matchOrigin(entry, [feat]), value).toMatchObject({ match: "ambiguous", differences: ["owner"] });
+    }
+    const classFeat = cand("Ember Path", { featType: { value: "class", subtype: "" } });
+    expect(matchOrigin(entry, [classFeat]).match).toBe("matched");
+  });
+  it("matches a candidate granted by the owner's class even when the grant is at another level (deliberate)", () => {
+    const granted = cand("Ember Path", { ...grant({ class: "zzfighter", subclass: ["ember"], level: 5 }) });
+    expect(matchOrigin(entry, [granted]).item).toBe(granted);
   });
 });
 

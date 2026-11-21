@@ -47,11 +47,12 @@ function loadRegistry(dir) {
 // The actor packs hold creatures, not items: they feed only the monsters (`actors`), and only when those are read.
 function loadDumps(dir, book, { actors = false } = {}) {
   // The class, subclass and race documents of a package say which feature documents they grant.
-  const read = (origin, files) => files.filter((f) => !isActorFile(f)).flatMap((f) => {
-    const docs = readDump(join(dir, f));
+  // The grants are indexed across every file of the package: a feature of one file is granted by a class document of another.
+  const read = (origin, files) => {
+    const docs = files.filter((f) => !isActorFile(f)).flatMap((f) => readDump(join(dir, f)));
     const grants = grantIndex(docs);
     return docs.map((d) => itemSummary(d, origin, grants));
-  });
+  };
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
   const official = officialFilesFor(dir, packages, book);
   return {
@@ -113,18 +114,20 @@ function inventoryCommand(args) {
     reports[k] = out.report;
   }
 
+  // Nothing is written when entries collide, unless the person accepted that.
+  const collided = Object.values(reports).some((r) => r.collisions?.length);
+  console.log(JSON.stringify(kind === "all" ? reports : reports[kind], null, 2));
+  if (collided && !allowCollisions) {
+    console.error("Entries with one key were found (see collisions); nothing was written: pass --allow-collisions to accept them");
+    process.exitCode = 1;
+    return;
+  }
   const touched = new Set();
   const before = new Map(previous.map((r) => [r.key, canonical(r)]));
   for (const r of records) if (before.get(r.key) !== canonical(r)) touched.add(r.book);
   for (const code of touched) {
     const { note } = books.find((b) => b.book === code) ?? {};
     saveBook(REGISTRY, { book: code, note, records: records.filter((r) => r.book === code) });
-  }
-  console.log(JSON.stringify(kind === "all" ? reports : reports[kind], null, 2));
-  const collided = Object.values(reports).some((r) => r.collisions?.length);
-  if (collided && !allowCollisions) {
-    console.error("Entries with one key were found (see collisions); pass --allow-collisions to accept them");
-    process.exitCode = 1;
   }
 }
 

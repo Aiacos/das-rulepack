@@ -74,33 +74,44 @@ function distinct(candidates) {
 const words = (text) => `-${slug(text)}-`;
 const mentions = (text, part) => Boolean(text) && Boolean(slug(part)) && words(text).includes(words(part));
 
+// The feat types of a document (`system.type.value`) that are what a feature or a trait is, and so say nothing against it.
+const OWNED_FEAT_TYPES = { feature: ["class", "subclass"], species: ["race"] };
+
 // How a feature or trait document stands to the owner of the entry ("Class", "Class/Subclass" or a species):
-// "agrees" (a class, subclass or race document grants it, or its requirements or subtype name the owner), "disagrees" (the
-// documents that grant it are all of other owners) or "neutral" (nothing says).
+// - "agrees": a class, subclass or race document grants it, or its requirements or subtype name the owner;
+// - "disagrees": the document states an owner (a grant, non-empty requirements, a subtype, or a feat type that is not a class
+//   feature, e.g. general, origin, fighting style, epic boon) and none of what it states agrees;
+// - "neutral": it states nothing.
+// The level of a grant is deliberately not part of this: a document granted by the right owner at another level than the
+// entry's is still the same feature (the dataset and the module can place it differently); the level only breaks ties.
 function ownerStanding(entry, candidate) {
   const [first, second] = String(entry.owner).split("/");
   const grants = candidate.grantedBy ?? [];
-  const agrees = (g) => {
+  const agreesGrant = (g) => {
     if (entry.kind === "species") return g.race !== undefined && matchName(g.race).full === matchName(first).full;
     if (g.race !== undefined || !g.class || slug(g.class) !== slug(first)) return false;
     if (!second) return g.subclass === undefined;
     return (g.subclass ?? []).some((n) => slug(n) === slug(second) || mentions(n, second) || mentions(second, n));
   };
-  if (grants.some(agrees)) return "agrees";
-  if (grants.length) return "disagrees";
-  const stated = [candidate.requirements, candidate.featType?.subtype];
   const named = entry.kind === "species" ? [first] : [first, ...(second ? [second] : [])];
-  return stated.some((t) => named.some((n) => mentions(t, n))) ? "agrees" : "neutral";
+  const names = (text) => named.some((n) => mentions(text, n));
+  const type = candidate.featType;
+  const wrongType = Boolean(type?.value) && !(OWNED_FEAT_TYPES[entry.kind] ?? []).includes(type.value);
+  const stated = grants.length > 0 || Boolean(candidate.requirements) || Boolean(type?.subtype) || wrongType;
+  const agrees = grants.some(agreesGrant) || names(candidate.requirements) || names(type?.subtype);
+  if (agrees && !wrongType) return "agrees";
+  return stated ? "disagrees" : "neutral";
 }
 
-// Several same-name candidates of an owned entry: the ones that agree on the owner win; the ones that disagree are dropped.
+// Several same-name candidates of an owned entry: the ones that agree on the owner win, then the ones that state nothing;
+// the ones that disagree are dropped. `disagreed` is true when there were candidates and every one of them disagrees.
 function ofOwner(entry, candidates) {
-  if (!entry.owner) return candidates;
+  if (!entry.owner) return { list: candidates, disagreed: false };
   const standing = candidates.map((c) => [c, ownerStanding(entry, c)]);
   const agreeing = standing.filter(([, s]) => s === "agrees");
   const kept = agreeing.length ? agreeing : standing.filter(([, s]) => s === "neutral");
   const sameLevel = kept.filter(([c]) => entry.level !== undefined && c.grantedBy?.some((g) => g.level === entry.level));
-  return (sameLevel.length ? sameLevel : kept).map(([c]) => c);
+  return { list: (sameLevel.length ? sameLevel : kept).map(([c]) => c), disagreed: candidates.length > 0 && !kept.length };
 }
 
 const docTypesOf = (entry) => {
@@ -126,7 +137,10 @@ function sameName(entry, candidates) {
 export function matchOrigin(entry, candidates) {
   const types = docTypesOf(entry);
   const typed = distinct(candidates).filter((c) => types.includes(c.type));
-  const same = ofOwner(entry, sameName(entry, typed));
+  const named = sameName(entry, typed);
+  const { list: same, disagreed } = ofOwner(entry, named);
+  // Same name, but every document states another owner: not a match, and not nothing either.
+  if (disagreed) return { match: "ambiguous", candidates: named, differences: ["owner"] };
   if (!same.length) return { match: "absent" };
 
   const exact = same.filter((c) => c.rules === entry.edition);

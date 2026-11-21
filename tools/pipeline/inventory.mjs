@@ -93,7 +93,7 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
   const byIdentity = new Map(records.map((r) => [identityOfRecord(r), r]));
   const report = {
     added: 0, kept: 0, skipped: 0, textChanged: [], dataChanged: [], ambiguous: [], noOfficial: [], differing: [], noPage: [],
-    collisions: []
+    collisions: [], textVanished: []
   };
   // Monsters also report the creatures read (with the ones that have no feature of their own), the `_copy` ones, and the
   // creatures with no actor of their name in the official dump.
@@ -138,6 +138,7 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
       report.kept += 1;
       const also = (existing.alsoIn ??= []);
       if (entry.page && !also.some((a) => a.book === book)) also.push({ book, page: entry.page });
+      if (!entry.page) report.noPage.push(existing.key);
       continue;
     }
     if (existing && existing.key !== key) {
@@ -154,7 +155,13 @@ export function inventory({ book, kind, dataset, creatures, dumps, textDir, prev
     let record = existing;
     if (existing) {
       report.kept += 1;
-      const textChanged = existing.text && existing.text.sha256 !== sha256;
+      // A text that was fingerprinted and is now empty is kept as it was (and listed): the gates still stand on it.
+      const vanished = Boolean(existing.text) && !sha256;
+      if (vanished) {
+        delete fresh.text;
+        report.textVanished.push(existing.key);
+      }
+      const textChanged = existing.text && !vanished && existing.text.sha256 !== sha256;
       const dataChanged = dataFingerprints(existing.items) !== dataFingerprints(items);
       // A record that has a rule keeps its identifier: the rule is registered under it.
       if (existing.rule) delete fresh.identifier;

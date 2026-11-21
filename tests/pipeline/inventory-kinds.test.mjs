@@ -94,6 +94,22 @@ describe("inventory of the other kinds", () => {
     expect(report.skipped).toBe(1);
   });
 
+  it("keeps a stored text fingerprint and the gates when the text is now empty, and lists the key", () => {
+    const [first] = run().records;
+    const worked = { ...first, evidence: { gates: { passed: ["text"] } } };
+    const { records, report } = run({ previous: [worked], dataset: [entry({ text: "" })] });
+    expect(records[0].text).toEqual(first.text);
+    expect(records[0].evidence.gates).toEqual({ passed: ["text"] });
+    expect(report.textVanished).toEqual([first.key]);
+    expect(report.textChanged).toEqual([]);
+  });
+
+  it("lists a reprint without a page under noPage", () => {
+    const [first] = run().records;
+    const { report } = run({ book: "TS2", dataset: [entry({ book: "TS2", page: undefined })], previous: [first] });
+    expect(report.noPage).toEqual([first.key]);
+  });
+
   it("does not merge two entries with one key: the second gets no record and both are reported", () => {
     const { records, report } = run({ dataset: [entry({ page: 5 }), entry({ page: 9, text: "Other." })] });
     expect(records).toHaveLength(1);
@@ -203,6 +219,26 @@ describe("pipeline CLI: inventory of every kind", () => {
     expect(readFileSync(registryFile("XZZ"), "utf8")).toBe(third);
   });
 
+  it("reads the grants across every file of the package: a class document of one file grants a feature of another", () => {
+    write("data/class/class-zzdruid.json", { classFeature: [
+      { name: "Ember Drive", source: "TCE", page: 5, className: "Zzdruid", classSource: "TCE", level: 3, entries: ["Invented."] }
+    ] });
+    const feat = (id, name = "Ember Drive") => ({
+      _id: id, name, type: "feat", effects: [], system: { identifier: "ember-drive", source: { rules: "2014" },
+        type: { value: "class", subtype: "" }, activities: {} }
+    });
+    write("dumps/dnd-tashas-cauldron.features.json", [feat("featdoc000000001"), feat("featdoc000000002")]);
+    write("dumps/dnd-tashas-cauldron.classes.json", [{
+      _id: "classdoc00000001", name: "Zzdruid", type: "class", system: { identifier: "zzdruid", advancement: {
+        a: { type: "ItemGrant", level: 3, configuration: { items: [{ uuid: "Compendium.x.features.Item.featdoc000000002" }] } }
+      } }
+    }]);
+    const r = cli("inventory", "TCE", "feature");
+    expect(r.status, r.stderr).toBe(0);
+    const [record] = records("TCE").filter((x) => x.kind === "feature");
+    expect(record.items.find((i) => i.origin === "official")).toMatchObject({ match: "matched", docId: "featdoc000000002" });
+  });
+
   it("exits 1 on a key collision unless --allow-collisions is passed, and lists it in the report", () => {
     write("data/feats.json", { feat: [
       { name: "Twin Feat", source: "XZZ", page: 1, entries: ["One."] },
@@ -212,6 +248,8 @@ describe("pipeline CLI: inventory of every kind", () => {
     expect(r.status).toBe(1);
     expect(JSON.parse(r.stdout).collisions).toHaveLength(1);
     expect(r.stderr).toMatch(/allow-collisions/);
+    // A refused run writes nothing at all.
+    expect(existsSync(join(tmp, "registry"))).toBe(false);
     expect(cli("inventory", "XZZ", "feat", "--allow-collisions").status).toBe(0);
     expect(records("XZZ").filter((x) => x.name === "Twin Feat")).toHaveLength(1);
   });
