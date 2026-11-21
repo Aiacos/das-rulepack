@@ -1,0 +1,1129 @@
+{
+  "book": "AWM",
+  "records": [
+    {
+      "key": "awm:monster:big-water-slurpent/action/constrict",
+      "name": "Constrict",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Big Water Slurpent",
+      "section": "action",
+      "identifier": "constrict",
+      "page": 29,
+      "srd": false,
+      "text": {
+        "sha256": "0f8dae3b0b0d7b8de6d4e1d203179577c89b6886950ce03ed2f59e3877f335bc",
+        "source": "5etools",
+        "chars": 319
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:big-water-slurpent/trait/invisible-in-water",
+      "name": "Invisible in Water",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Big Water Slurpent",
+      "section": "trait",
+      "identifier": "invisible-in-water",
+      "page": 29,
+      "srd": false,
+      "text": {
+        "sha256": "495763d9327c186617596a78380b44b841f2b17ac33e00f2ce6af9b3d7209dae",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:big-water-slurpent/trait/water-bound",
+      "name": "Water Bound",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Big Water Slurpent",
+      "section": "trait",
+      "identifier": "water-bound",
+      "page": 29,
+      "srd": false,
+      "text": {
+        "sha256": "587621cb7624a7b8438def471b9755841d885bb4901be43a9dce44bc793c6c4e",
+        "source": "5etools",
+        "chars": 102
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:birdsquirrel/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Birdsquirrel",
+      "section": "action",
+      "identifier": "bite",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "8fb2605c33a293877a1bb4c885111bfcb472d10c53c3204381d0cbc51b0221a4",
+        "source": "5etools",
+        "chars": 64
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:birdsquirrel/action/claws",
+      "name": "Claws",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Birdsquirrel",
+      "section": "action",
+      "identifier": "claws",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "993ea0623f98c0813e8624e0210081f63d0764caa8c91dd6804e80e273e82351",
+        "source": "5etools",
+        "chars": 64
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:birdsquirrel/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Birdsquirrel",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "b5cdcd691adac37ef1f04ac145dd0d662e82e7a9b84047f9e098a43f54e9e7df",
+        "source": "5etools",
+        "chars": 73
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:birdsquirrel/trait/pack-tactics",
+      "name": "Pack Tactics",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Birdsquirrel",
+      "section": "trait",
+      "identifier": "pack-tactics",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "955041bb6664204ef712ee7861aada002f516125224957a9e3e6de2c52112e19",
+        "source": "5etools",
+        "chars": 175
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:boontu-monkey/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Boontu Monkey",
+      "section": "action",
+      "identifier": "bite",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "729f375fdd05b6547d2d9a11e03c579f1ff7b50006aac547e1937cec256d3009",
+        "source": "5etools",
+        "chars": 66
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:boontu-monkey/trait/pack-tactics",
+      "name": "Pack Tactics",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Boontu Monkey",
+      "section": "trait",
+      "identifier": "pack-tactics",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "7c6a38709547d87e72fc12c817e79a97fc97434ba1a3089fd52d198e05389561",
+        "source": "5etools",
+        "chars": 181
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:crystal-cave-merfolk/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Crystal Cave Merfolk",
+      "section": "action",
+      "identifier": "bite",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "ed205b8929639112fd95fa65d4aba3c482bf39096a75677a4f0b5787d7c4439f",
+        "source": "5etools",
+        "chars": 49
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:crystal-cave-merfolk/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Crystal Cave Merfolk",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "6c7202455847811c2ff894d8e2ea45a47ff3715ea990d5a1a5794a43be816007",
+        "source": "5etools",
+        "chars": 38
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:crystal-cave-merfolk/trait/siren-song",
+      "name": "Siren Song",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Crystal Cave Merfolk",
+      "section": "trait",
+      "identifier": "siren-song",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "3a0c60e92eb1a088fad75e35d69e4e7624dbef2633c0ed758d26aab229938e79",
+        "source": "5etools",
+        "chars": 156
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dankwood-hag/action/claws",
+      "name": "Claws",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dankwood Hag",
+      "section": "action",
+      "identifier": "claws",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "d4642bf614057fae541939af4e535b7a6beed37ac22ac64494329134b2d3fdf8",
+        "source": "5etools",
+        "chars": 54
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dankwood-hag/action/illusory-appearance",
+      "name": "Illusory Appearance",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dankwood Hag",
+      "section": "action",
+      "identifier": "illusory-appearance",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "63f39689ca301c01dc621f034325387a52aef42f6b67fe627780bb259d329488",
+        "source": "5etools",
+        "chars": 251
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dankwood-hag/action/invisible-passage",
+      "name": "Invisible Passage",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dankwood Hag",
+      "section": "action",
+      "identifier": "invisible-passage",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "2660d24838a4c3c6f594c6e06241f581e1a5787f66fa4c85945183ca9f6db836",
+        "source": "5etools",
+        "chars": 201
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dankwood-hag/trait/amphibious",
+      "name": "Amphibious",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dankwood Hag",
+      "section": "trait",
+      "identifier": "amphibious",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "366fd22c7cc8fc4d40cda604e323f25464406548e1c74dc45795d8e952d718f9",
+        "source": "5etools",
+        "chars": 34
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dankwood-hag/trait/innate-spellcasting",
+      "name": "Innate Spellcasting",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dankwood Hag",
+      "section": "trait",
+      "identifier": "innate-spellcasting",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "f0c8756f85bbe6e4bd97a2383f310109ac83f3e09f98a492973ba35845fd3d5c",
+        "source": "5etools",
+        "chars": 148
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dankwood-hag/trait/mimicry-green-hag",
+      "name": "Mimicry (Green Hag)",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dankwood Hag",
+      "section": "trait",
+      "identifier": "mimicry-green-hag",
+      "page": 31,
+      "srd": false,
+      "text": {
+        "sha256": "b1c5fe4241f1dba1db8653b449960f32efd5d5b2ce628952f96a0497a7df9ee0",
+        "source": "5etools",
+        "chars": 159
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dum-dum-goblin/action/catch-me-if-you-can",
+      "name": "Catch me if you can!",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dum-Dum Goblin",
+      "section": "action",
+      "identifier": "catch-me-if-you-can",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "27970b665a1c6b0baf656193cf6eda884237cc4becae0ca087b154dd5bfd2141",
+        "source": "5etools",
+        "chars": 120
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dum-dum-goblin/action/scimitar",
+      "name": "Scimitar",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dum-Dum Goblin",
+      "section": "action",
+      "identifier": "scimitar",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "567871fbb0da090e4e999fe1466126ea941623d6b73fd456b595dff32096180f",
+        "source": "5etools",
+        "chars": 52
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dum-dum-goblin/action/shortbow",
+      "name": "Shortbow",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dum-Dum Goblin",
+      "section": "action",
+      "identifier": "shortbow",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "41f09fee3688370733d48320a30589342ceb774b2d6793ae805e8ec361bae084",
+        "source": "5etools",
+        "chars": 53
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dum-dum-goblin/trait/nimble-escape",
+      "name": "Nimble Escape",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dum-Dum Goblin",
+      "section": "trait",
+      "identifier": "nimble-escape",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "8b89d8670fc4c44860a1d95b9997287c66a68f24db085cbe1d43fbbed50c189c",
+        "source": "5etools",
+        "chars": 88
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dwarf/action/shortbow",
+      "name": "Shortbow",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dwarf",
+      "section": "action",
+      "identifier": "shortbow",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "0964e20300fb0fe36f71ecf1ed60a77326d6215dda5911fea948914ec84042f1",
+        "source": "5etools",
+        "chars": 53
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:dwarf/trait/dwarven-resilience",
+      "name": "Dwarven Resilience",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Dwarf",
+      "section": "trait",
+      "identifier": "dwarven-resilience",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "387264999cb25efae5bd04164cbe0fecc0bf39102a273df5b09428cefa290752",
+        "source": "5etools",
+        "chars": 95
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:great-kroom-purple-worm/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Great Kroom, Purple Worm",
+      "section": "action",
+      "identifier": "bite",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "8b315965517b463fbfadaa3b4860e5ba5e59b8794ae01a8623f18d204a788cf5",
+        "source": "5etools",
+        "chars": 118
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:great-kroom-purple-worm/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Great Kroom, Purple Worm",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "c5fffc791e18287af36917a080776424f747952c50e9646eb89fbc17931a5624",
+        "source": "5etools",
+        "chars": 27
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:great-kroom-purple-worm/action/tail-stinger",
+      "name": "Tail Stinger",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Great Kroom, Purple Worm",
+      "section": "action",
+      "identifier": "tail-stinger",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "fb97a9035e0652ca0e252c758d589a5389901b4dbb0d0f78730a7d7fc7a1f99c",
+        "source": "5etools",
+        "chars": 130
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:great-kroom-purple-worm/trait/tunneler",
+      "name": "Tunneler",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Great Kroom, Purple Worm",
+      "section": "trait",
+      "identifier": "tunneler",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "990f3890fe4c9fd8f97e6b68c4dd3dd9195864f7cec3fdf5422f8bf5d0a34d30",
+        "source": "5etools",
+        "chars": 113
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hangry-otyugh/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hangry Otyugh",
+      "section": "action",
+      "identifier": "bite",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "7bd47ccd104863ffdff5e576b9ef12d12ed19105b182c44d5a3302ec6fe11125",
+        "source": "5etools",
+        "chars": 152
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hangry-otyugh/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hangry Otyugh",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "9108e2adbae2e2b772996f392d4490d6cd9f26b3a2a888a89334b2ba0a77c8e2",
+        "source": "5etools",
+        "chars": 31
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hangry-otyugh/action/slam",
+      "name": "Slam!",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hangry Otyugh",
+      "section": "action",
+      "identifier": "slam",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "6472600b4f03faa9cd7f436eb1c6735dd55e3ff6c444b1d8d285e672d6c3a55d",
+        "source": "5etools",
+        "chars": 56
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hangry-otyugh/action/tentacle",
+      "name": "Tentacle",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hangry Otyugh",
+      "section": "action",
+      "identifier": "tentacle",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "e161e8fb37281ba811bce7c532dc57896c409ddb9a16bcaca6a2162748e8eac3",
+        "source": "5etools",
+        "chars": 144
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hangry-otyugh/trait/limited-telepathy",
+      "name": "Limited Telepathy",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hangry Otyugh",
+      "section": "trait",
+      "identifier": "limited-telepathy",
+      "page": 33,
+      "srd": false,
+      "text": {
+        "sha256": "3f44315fb9ababe0ee4dacf435dcca6ed04af37112e0165744585a6a7a7c86c5",
+        "source": "5etools",
+        "chars": 217
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hill-giant-blorbo/action/greatclub",
+      "name": "Greatclub",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hill Giant, Blorbo",
+      "section": "action",
+      "identifier": "greatclub",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "333ce3f9e2f2ebfa6765b3b66c357be36551ca58eeba4d964c17d653727d59b2",
+        "source": "5etools",
+        "chars": 57
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hill-giant-blorbo/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hill Giant, Blorbo",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "90be31b1946b47f4c0282a76f7941fdc1000798faf6f90d662aeef17093a95e8",
+        "source": "5etools",
+        "chars": 38
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:hill-giant-blorbo/action/rock",
+      "name": "Rock",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Hill Giant, Blorbo",
+      "section": "action",
+      "identifier": "rock",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "a43e0b6aeb06c84eef6a87a9e1617d82d2c2c8d06f3fda0fb871d30696d08ff9",
+        "source": "5etools",
+        "chars": 58
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:saleeth-the-couatl/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Saleeth the Couatl",
+      "section": "action",
+      "identifier": "bite",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "3811364140a1d4c61a265819574474fe520563671b027b9cff0ad20180cbc0d7",
+        "source": "5etools",
+        "chars": 192
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:saleeth-the-couatl/action/change-shape",
+      "name": "Change Shape",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Saleeth the Couatl",
+      "section": "action",
+      "identifier": "change-shape",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "b1db73c812600d7c4d5296b26f637fba5515ba84041bbdab395032afa2e6305a",
+        "source": "5etools",
+        "chars": 689
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:saleeth-the-couatl/action/constrict",
+      "name": "Constrict",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Saleeth the Couatl",
+      "section": "action",
+      "identifier": "constrict",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "f1bab6ba53a642ccb4da6fd8883c29b03af9bf5b08ea68956f02acd8da948f5c",
+        "source": "5etools",
+        "chars": 175
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:saleeth-the-couatl/trait/innate-spellcasting",
+      "name": "Innate Spellcasting",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Saleeth the Couatl",
+      "section": "trait",
+      "identifier": "innate-spellcasting",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "af26d0169ed6097b93fb5428a4fa15cc08c241bf3a539a90508e5ced5058a772",
+        "source": "5etools",
+        "chars": 322
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:saleeth-the-couatl/trait/magic-weapons",
+      "name": "Magic Weapons",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Saleeth the Couatl",
+      "section": "trait",
+      "identifier": "magic-weapons",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "8715ee62cc7c8d38ee50ff31eabcf530167973e87d8ad8335968835e752896af",
+        "source": "5etools",
+        "chars": 40
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:monster:saleeth-the-couatl/trait/shielded-mind",
+      "name": "Shielded Mind",
+      "kind": "monster",
+      "book": "AWM",
+      "edition": "2014",
+      "owner": "Saleeth the Couatl",
+      "section": "trait",
+      "identifier": "shielded-mind",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "6f5f2328ba47682e61c152136f854fb635c7185b746dde9e0138312beeb8f879",
+        "source": "5etools",
+        "chars": 123
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "awm:species:goblin-dankwood",
+      "name": "Goblin (Dankwood)",
+      "kind": "species",
+      "book": "AWM",
+      "edition": "2014",
+      "copyOf": "Goblin",
+      "identifier": "goblin-dankwood",
+      "page": 35,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
