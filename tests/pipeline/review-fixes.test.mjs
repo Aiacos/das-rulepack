@@ -106,6 +106,19 @@ describe("I2: rule-based triage on shared identifiers", () => {
     const feat = rec("shared-one", { kind: "feat", key: "tst:feat:shared-one" });
     expect(triage(a, [a, feat])?.verdict).toBe("core");
   });
+
+  it("counts an identifier per edition and gives core by rule to 2024 records only", () => {
+    const now = rec("shared-one", { key: "tst:spell:now", edition: "2024" });
+    const old = rec("shared-one", { key: "old:spell:old", book: "OLD", edition: "2014" });
+    // The 2014 twin does not take the verdict away from the 2024 record...
+    expect(triage(now, [now, old])?.verdict).toBe("core");
+    // ...and gets a hint, not a verdict: the engine's entry was written for the 2024 rules.
+    expect(triage(old, [now, old])).toEqual({ hint: "core-generic" });
+    expect(triage(old, [old])).toEqual({ hint: "core-generic" });
+    // Two 2024 records still share it.
+    const twin = rec("shared-one", { key: "two:spell:twin", book: "TWO", edition: "2024" });
+    expect(triage(now, [now, twin, old])).toEqual({ hint: "core-generic" });
+  });
   it("never gives core to a monster feature: a hint instead", () => {
     const m = rec("in-core", { kind: "monster", owner: "Invented Beast", section: "trait" });
     expect(triage(m)).toEqual({ hint: "core-generic" });

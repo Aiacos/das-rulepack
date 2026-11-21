@@ -16,9 +16,9 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | | Count |
 |---|---|
 | Entries inventoried (six books) | 4,892 |
-| Joined to an item of the official module | 4,299 |
-| Ambiguous against the official module (wait for `npm run resolve`) | 168 |
-| No item in the official module | 425 |
+| Joined to an item of the official module | 4,304 |
+| Ambiguous against the official module (wait for `npm run resolve`) | 164 |
+| No item in the official module | 424 |
 | Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 678 |
 | Verdict `none` (nothing to automate in combat) | 1,298 |
 | Verdict `data` (the item's own data is enough) | 1,252 |
@@ -50,10 +50,10 @@ the name ("+1", a quantity): 55.
 | feat | 77 | 77 / 0 / 0 | 0 / 2 / 75 | 46 | 17 | 9 | 3 | 0 | 0 | 0 | 2 | 0 |
 | option | 58 | 58 / 0 / 0 | 0 / 0 / 58 | 33 | 2 | 14 | 8 | 0 | 0 | 0 | 1 | 0 |
 | feature | 592 | 409 / 60 / 123 | 0 / 0 / 592 | 149 | 250 | 44 | 126 | 0 | 0 | 0 | 23 | 0 |
-| species | 48 | 32 / 4 / 12 | 0 / 0 / 48 | 8 | 15 | 7 | 5 | 0 | 0 | 0 | 3 | 10 |
+| species | 48 | 40 / 0 / 8 | 0 / 0 / 48 | 8 | 15 | 7 | 5 | 0 | 0 | 0 | 3 | 10 |
 | background | 16 | 16 / 0 / 0 | 0 / 0 / 16 | 0 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 217 | 159 / 16 / 42 | 188 / 8 / 21 | 19 | 115 | 0 | 2 | 0 | 0 | 79 | 2 | 0 |
-| monster | 62 | 61 / 0 / 1 | 0 / 0 / 62 | 0 | 4 | 21 | 37 | 0 | 0 | 0 | 0 | 0 |
+| monster | 62 | 58 / 0 / 4 | 51 / 0 / 11 | 0 | 4 | 21 | 37 | 0 | 0 | 0 | 0 | 0 |
 
 Records in `registry/xphb.json`: 1461 inventoried.
 
@@ -62,7 +62,7 @@ Records in `registry/xphb.json`: 1461 inventoried.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | item | 593 | 349 / 51 / 193 | 462 / 30 / 101 | 146 | 207 | 84 | 80 | 0 | 0 | 36 | 40 | 0 |
-| monster | 3 | 3 / 0 / 0 | 0 / 0 / 3 | 0 | 0 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
+| monster | 3 | 3 / 0 / 0 | 0 / 2 / 1 | 0 | 0 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
 
 Records in `registry/xdmg.json`: 596 inventoried.
 
@@ -71,7 +71,7 @@ Records in `registry/xdmg.json`: 596 inventoried.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | item | 1 | 0 / 0 / 1 | 0 / 0 / 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-| monster | 2146 | 2114 / 28 / 4 | 0 / 0 / 2146 | 0 | 434 | 851 | 759 | 0 | 0 | 0 | 102 | 0 |
+| monster | 2146 | 2114 / 28 / 4 | 1626 / 288 / 232 | 0 | 434 | 851 | 759 | 0 | 0 | 0 | 102 | 0 |
 
 Records in `registry/xmm.json`: 2147 inventoried.
 
@@ -86,7 +86,7 @@ Records in `registry/xmm.json`: 2147 inventoried.
 | species | 24 | 22 / 0 / 2 | 0 / 0 / 24 | 0 | 10 | 4 | 5 | 0 | 0 | 0 | 0 | 5 |
 | background | 17 | 17 / 0 / 0 | 0 / 0 / 17 | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 6 | 5 / 1 / 0 | 6 / 0 / 0 | 0 | 1 | 1 | 4 | 0 | 0 | 0 | 0 | 0 |
-| monster | 118 | 114 / 4 / 0 | 0 / 0 / 118 | 0 | 0 | 59 | 52 | 0 | 0 | 0 | 7 | 0 |
+| monster | 118 | 114 / 4 / 0 | 16 / 0 / 102 | 0 | 0 | 59 | 52 | 0 | 0 | 0 | 7 | 0 |
 
 Records in `registry/efa.json`: 258 inventoried.
 
@@ -107,7 +107,7 @@ Records in `registry/frhof.json`: 153 inventoried.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | item | 18 | 9 / 1 / 8 | 9 / 4 / 5 | 0 | 7 | 1 | 6 | 0 | 0 | 0 | 4 | 0 |
-| monster | 259 | 253 / 3 / 3 | 0 / 0 / 259 | 0 | 52 | 93 | 97 | 0 | 0 | 0 | 17 | 0 |
+| monster | 259 | 253 / 3 / 3 | 75 / 7 / 177 | 0 | 52 | 93 | 97 | 0 | 0 | 0 | 17 | 0 |
 
 Records in `registry/fraif.json`: 277 inventoried.
 

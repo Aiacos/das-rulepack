@@ -25,18 +25,18 @@ const WHY = Object.freeze({
 });
 
 const identifierOf = (r) => r.identifier ?? slug(r.name);
-const countKey = (kind, identifier) => `${kind}|${identifier}`;
+const countKey = (kind, identifier, edition) => `${kind}|${identifier}|${edition ?? ""}`;
 
 /**
  * What autoTriage needs to know of the whole registry: how many records of each kind use each identifier
- * (`identifierCounts`, keyed "<kind>|<identifier>") and which species have trait records of their own (`traitOwners`, keyed
- * "<book>|<species name>").
+ * (`identifierCounts`, keyed "<kind>|<identifier>|<edition>") and which species have trait records of their own
+ * (`traitOwners`, keyed "<book>|<species name>").
  */
 export function triageContext(records) {
   const identifierCounts = new Map();
   const traitOwners = new Set();
   for (const r of records) {
-    const id = countKey(r.kind, identifierOf(r));
+    const id = countKey(r.kind, identifierOf(r), r.edition);
     identifierCounts.set(id, (identifierCounts.get(id) ?? 0) + 1);
     if (r.kind === "species" && r.owner) traitOwners.add(`${r.book}|${r.owner}`);
   }
@@ -47,8 +47,9 @@ export function triageContext(records) {
  * The rule-based part of triage for a record without a verdict: `{ verdict, why, by: "rule", hint? }`, `{ hint }` (no verdict,
  * a hint for the reader) or null (nothing: a reader decides). `coreIdentifiers` are DAS · Core's; `textDir` is the text cache;
  * `identifierCounts` and `traitOwners` come from triageContext over the whole registry.
- * - `core` only for the one record of its kind that uses an identifier the engine has, never for a monster feature; otherwise
- *   the record is hinted `core-generic` and goes on through the rules below.
+ * - `core` only for the one 2024 record of its kind that uses an identifier the engine has (the engine's entries are written
+ *   for the 2024 rules: a 2014 twin neither takes the verdict away nor gets it), never for a monster feature; otherwise the
+ *   record is hinted `core-generic` and goes on through the rules below.
  * - No text in the dataset: a species described by its traits is left alone; with an item in some origin, `unverifiable`;
  *   with none, `none` for the kinds whose such records are placeholders.
  * - A text fingerprint missing from the cache: `unverifiable`.
@@ -60,7 +61,8 @@ export function autoTriage(record, { coreIdentifiers, textDir, identifierCounts,
   const identifier = identifierOf(record);
   let hint;
   if (coreIdentifiers.has(identifier)) {
-    if (record.kind !== "monster" && identifierCounts.get(countKey(record.kind, identifier)) === 1) {
+    if (record.kind !== "monster" && record.edition === "2024"
+      && identifierCounts.get(countKey(record.kind, identifier, record.edition)) === 1) {
       return { verdict: "core", why: WHY.core, by: "rule" };
     }
     hint = "core-generic";

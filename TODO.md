@@ -101,3 +101,16 @@ Zones and recurring damage, to study against the engine's zone rules:
 
 Not planned: spells whose imported data contradicts the text in a way a rule cannot repair (Feeblemind: full damage on a
 successful save; Mental Prison: the 10d10 rolled with the 5d10).
+
+## Pipeline — after the 2026-11-21 re-inventory (DDB Importer's monsters, Player's Handbook 3.0.0, Forge of the Artificer 2.0.0)
+
+- [ ] Monster features now carry a `ddb-importer` item: 4,180 matched (880 on an SRD actor, `book-unknown`), 1,148 ambiguous
+      (445 `book`, 429 `edition`, 252 `actor`), 7,313 with no DDB actor's item. Cut batches for the matched ones that have no
+      official item (older books) and have them read.
+- [ ] VGM and MTF match nothing: DDB Importer's dump has their creatures only under the later reprint's abbreviation
+      (ambiguous `book`, by design). Decide whether a reprint actor may serve the older book's record after comparing the data.
+- [ ] D&D Beyond abbreviations left out of `docs/ddb-books.json` because the dataset code was not confirmed: ToD, WGtE, RtHW, PAitM.
+- [ ] Player's Handbook 3.0.0 changed 772 official items and Forge of the Artificer 2.0.0 changed 176: 344 + 160 of them carry
+      a reader's verdict made on the older structure. Re-read first the 104 whose activity or effect ids changed.
+- [ ] Rule-based `core` is now counted per edition and given to 2024 records only: 44 records of 2014 books went from `core`
+      to no verdict with `hint: "core-generic"` and wait for a reader.

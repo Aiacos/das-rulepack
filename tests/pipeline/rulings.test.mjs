@@ -189,6 +189,6 @@ describe("ruling F: a placeholder with no text and no item is none, by rule", ()
       .toBe("unverifiable");
   });
   it("never overrides core, and leaves a record with text to a reader", () => {
-    expect(triage({ ...base, identifier: "in-core", items: [] })?.verdict).toBe("core");
+    expect(triage({ ...base, identifier: "in-core", edition: "2024", items: [] })?.verdict).toBe("core");
   });
 });

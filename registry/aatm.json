@@ -19,6 +19,23 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "entrap",
+          "docId": "ddbAniCof3920396.pFx7kcVPUsfTu84i",
+          "activities": [
+            "attackEntraction",
+            "checkEscapCheckI",
+            "damageOngoiDama1"
+          ],
+          "effects": [
+            "2Khjb07dgNcNFP84"
+          ],
+          "data": {
+            "sha256": "541d363f62a25798f14c74580f8eb7532969458c4234f262d5abed55fbde5314"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -45,6 +62,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "multiattack",
+          "docId": "ddbAniCof3920396.q46IV85N0rKy3wOF",
+          "activities": [
+            "utilityMulaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ddf72e55f06561069334e784624f4902e3bffa01fa5d0bc0fd8f0878e0981c64"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -70,6 +100,19 @@
         "chars": 70
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "slam",
+          "docId": "ddbAniCof3920396.t93Rv3h3UnhJYilr",
+          "activities": [
+            "attackSlamaction"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ea3ab09c7e1f6849ae008007608c05cc7a5e0a7ca1abffd90892e464e272bcfb"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -98,6 +141,17 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "false-appearance",
+          "docId": "ddbAniCof3920396.IvUDPZLIbV6MTUFv",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "55522765969ea4bcc8de784aa24138c32ce5a20d516857bb6694e5557cb5e05a"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -123,6 +177,17 @@
         "chars": 126
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "spider-climb",
+          "docId": "ddbAniCof3920396.oLrORxQl7kxFBfJo",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "cfb7121f1b67c4aab3a4b430c1b84f6b5d75fba9aa969a4f1f28ff257080e3b5"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
