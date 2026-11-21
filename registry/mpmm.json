@@ -40720,6 +40720,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -40770,6 +40776,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -40819,6 +40831,10 @@
         {
           "book": "VGM",
           "page": 104
+        },
+        {
+          "book": "DMG",
+          "page": 286
         }
       ],
       "state": "inventoried"
@@ -40850,6 +40866,10 @@
         {
           "book": "VGM",
           "page": 104
+        },
+        {
+          "book": "DMG",
+          "page": 286
         }
       ],
       "state": "inventoried"
@@ -40907,6 +40927,10 @@
         {
           "book": "VGM",
           "page": 104
+        },
+        {
+          "book": "DMG",
+          "page": 286
         }
       ],
       "state": "inventoried"
@@ -41000,6 +41024,10 @@
         {
           "book": "VGM",
           "page": 104
+        },
+        {
+          "book": "DMG",
+          "page": 286
         }
       ],
       "state": "inventoried"
@@ -42933,6 +42961,10 @@
         {
           "book": "GGR",
           "page": 16
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -42989,6 +43021,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43083,6 +43119,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "triaged"
@@ -43377,6 +43417,10 @@
         {
           "book": "ERLW",
           "page": 26
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43433,6 +43477,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43535,6 +43583,10 @@
         {
           "book": "VGM",
           "page": 109
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43616,6 +43668,10 @@
         {
           "book": "VGM",
           "page": 109
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43673,6 +43729,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43704,6 +43764,10 @@
         {
           "book": "VGM",
           "page": 119
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43780,6 +43844,10 @@
         {
           "book": "VGM",
           "page": 111
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43848,6 +43916,10 @@
         {
           "book": "VGM",
           "page": 111
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -43910,6 +43982,10 @@
         {
           "book": "VGM",
           "page": 111
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -44142,6 +44218,10 @@
         {
           "book": "EGW",
           "page": 178
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -44203,6 +44283,10 @@
         {
           "book": "ERLW",
           "page": 31
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"

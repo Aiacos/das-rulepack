@@ -17792,6 +17792,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 286
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -18035,6 +18041,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -18235,6 +18247,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -18410,6 +18428,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -18485,6 +18509,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -18516,6 +18546,12 @@
         }
       },
       "why": "DAS · Core has an entry under this identifier",
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "triaged"
     },
     {
@@ -18566,6 +18602,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -18666,6 +18708,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "DMG",
+          "page": 282
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -18776,6 +18824,10 @@
         {
           "book": "ERLW",
           "page": 31
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
@@ -18807,6 +18859,10 @@
         {
           "book": "ERLW",
           "page": 31
+        },
+        {
+          "book": "DMG",
+          "page": 282
         }
       ],
       "state": "inventoried"
