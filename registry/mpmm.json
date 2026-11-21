@@ -41278,6 +41278,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 15
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -41303,6 +41309,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 15
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -41353,6 +41365,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 15
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -41378,6 +41396,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 15
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -42901,6 +42925,10 @@
         {
           "book": "ERLW",
           "page": 26
+        },
+        {
+          "book": "GGR",
+          "page": 16
         }
       ],
       "state": "inventoried"
@@ -43950,6 +43978,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 18
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -43975,6 +44009,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 18
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44000,6 +44040,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 18
+        }
+      ],
       "state": "inventoried"
     },
     {
@@ -44025,6 +44071,12 @@
       ],
       "verdict": null,
       "evidence": {},
+      "alsoIn": [
+        {
+          "book": "GGR",
+          "page": 18
+        }
+      ],
       "state": "inventoried"
     },
     {
