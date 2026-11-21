@@ -140,8 +140,9 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    without a rule are ignored (many features and traits share a name). A registered table is merged over the engine's own
    entries identifier by identifier, so an identifier or alias equal to a DAS · Core identifier (`content/index.mjs`
    `SHIPPED` and `SRD_ALIASES` of the clone) fails unless it is the record's own identifier and the rule says `inCore: true`
-   (set by a person): it would patch the engine's entry for every item of that name. An alias never may. A data fix without `from` must at least find its path on the document
-   (`fixes: <path> does not exist`). The schema gate also checks `sources`: every key must be the docId (or
+   (set by a person): it would patch the engine's entry for every item of that name. An alias never may.
+   A data fix without `from` must at least find its path on the document (`fixes: <path> does not exist`).
+   The schema gate also checks `sources`: every key must be the docId (or
    an `alsoDocIds`) of the record's matched official item and every value the record's identifier
    (`sources: <docId> is not an item of this record`). `generate` fails naming the record on the same check, and refuses two
    emitted rules with one identifier. A
