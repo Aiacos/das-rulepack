@@ -1,0 +1,242 @@
+{
+  "book": "DOD",
+  "records": [
+    {
+      "key": "dod:monster:yarnspinner/action/bite",
+      "name": "Bite",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "action",
+      "identifier": "bite",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "0048e4dc8b26e79f6eb4fd9c9b90f8d696f95d9a265cae09facdb3915512c53a",
+        "source": "5etools",
+        "chars": 98
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/action/multiattack",
+      "name": "Multiattack",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "action",
+      "identifier": "multiattack",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "69476a030ece99e0f927ab1770b18cd295e44b80fe40a30cefe2d9781fccf03f",
+        "source": "5etools",
+        "chars": 69
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/action/web",
+      "name": "Web",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "action",
+      "identifier": "web",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "99afece33eb25a187378970a3550712a346532f503b25664e6c0f7f6f80ace5d",
+        "source": "5etools",
+        "chars": 270
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/trait/fey-rebirth",
+      "name": "Fey Rebirth",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "trait",
+      "identifier": "fey-rebirth",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "1eb038be4f59b61b5fb959dbc01e37e27e38673b889a47ed5c683c940b0d2a72",
+        "source": "5etools",
+        "chars": 130
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/trait/legendary-resistance",
+      "name": "Legendary Resistance",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "trait",
+      "identifier": "legendary-resistance",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "f610454071152c60c847452b9cf48add4f62051d0945993733611075d000133c",
+        "source": "5etools",
+        "chars": 70
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/trait/spellcasting",
+      "name": "Spellcasting",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "trait",
+      "identifier": "spellcasting",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "74fe984dca60cf824dc593fb41807922bf9d753c3d07a6e4a55e5fd14949eb3d",
+        "source": "5etools",
+        "chars": 262
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/trait/spider-climb",
+      "name": "Spider Climb",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "trait",
+      "identifier": "spider-climb",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "7749d9298e29d4bffdd5b95caf0e9228f7e30b528d48d46611e208c003d1fe1c",
+        "source": "5etools",
+        "chars": 118
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/trait/web-walker",
+      "name": "Web Walker",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "trait",
+      "identifier": "web-walker",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "69c0592f98a51c71b6e9c244ddb89e66052efac3b6d86bf22e525675da7b6920",
+        "source": "5etools",
+        "chars": 60
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "dod:monster:yarnspinner/trait/web-weaver",
+      "name": "Web Weaver",
+      "kind": "monster",
+      "book": "DOD",
+      "edition": "2014",
+      "owner": "Yarnspinner",
+      "section": "trait",
+      "identifier": "web-weaver",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "b9c4c2ff2628197d6a63f2052e16b79917e3d9ac620f2a27831d66fff0372e56",
+        "source": "5etools",
+        "chars": 659
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
