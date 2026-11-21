@@ -215,10 +215,10 @@
       "evidence": {
         "triaged": {
           "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
+          "at": "2026-11-21T19:42:44.281Z"
         }
       },
-      "why": "placeholder: no text and no item",
+      "why": "no text and no item in any origin",
       "state": "triaged"
     },
     {
@@ -237,6 +237,23 @@
         "chars": 1008
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "harper-pin-gold",
+              "docId": "aifHarperPinGold"
+            },
+            {
+              "identifier": "harper-pins",
+              "docId": "aifHarperPins000"
+            }
+          ],
+          "differences": [
+            "variant"
+          ]
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -263,6 +280,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "mechanical-wonder",
+              "docId": "MzMxrBatFMBOlQAm"
+            }
+          ],
+          "differences": [
+            "variant"
+          ]
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -287,6 +317,19 @@
         "chars": 941
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "mechanical-wonder",
+              "docId": "MzMxrBatFMBOlQAm"
+            }
+          ],
+          "differences": [
+            "variant"
+          ]
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -313,6 +356,19 @@
       },
       "items": [
         {
+          "origin": "ddb-importer",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "mechanical-wonder",
+              "docId": "MzMxrBatFMBOlQAm"
+            }
+          ],
+          "differences": [
+            "variant"
+          ]
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -337,6 +393,19 @@
         "chars": 832
       },
       "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "ambiguous",
+          "candidates": [
+            {
+              "identifier": "mechanical-wonder",
+              "docId": "MzMxrBatFMBOlQAm"
+            }
+          ],
+          "differences": [
+            "variant"
+          ]
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -367,10 +436,10 @@
       "evidence": {
         "triaged": {
           "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
+          "at": "2026-11-21T19:42:44.281Z"
         }
       },
-      "why": "placeholder: no text and no item",
+      "why": "no text and no item in any origin",
       "state": "triaged"
     },
     {
@@ -526,10 +595,10 @@
       "evidence": {
         "triaged": {
           "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
+          "at": "2026-11-21T19:42:44.281Z"
         }
       },
-      "why": "placeholder: no text and no item",
+      "why": "no text and no item in any origin",
       "state": "triaged"
     },
     {
@@ -659,10 +728,10 @@
       "evidence": {
         "triaged": {
           "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
+          "at": "2026-11-21T19:42:44.281Z"
         }
       },
-      "why": "placeholder: no text and no item",
+      "why": "no text and no item in any origin",
       "state": "triaged"
     },
     {
@@ -1563,15 +1632,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:ancient-deep-dragon/legendary/pounce",
@@ -2654,15 +2718,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:beast-of-malar/trait/regeneration",
@@ -2699,15 +2758,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:biha-babir/action/marine-burst",
@@ -3902,15 +3956,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:dead-three-scion/trait/culling-aura",
@@ -4025,15 +4074,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:dead-three-scion/trait/spellcasting",
@@ -5856,15 +5900,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:manshoon/trait/protective-magic",
@@ -6111,15 +6150,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:nimblewright-guard/trait/evasion",
@@ -6154,15 +6188,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:nimblewright-hulk/action/halting-slam",
@@ -6316,15 +6345,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:nimblewright-hulk/trait/magic-resistance",
@@ -6359,15 +6383,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:nimblewright-steed/action/hooves",
@@ -6483,15 +6502,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:phaerimm-agent/action/dread-stinger",
@@ -6684,15 +6698,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:phaerimm-agent/trait/protective-magic",
@@ -6889,15 +6898,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:phaerimm-hatchling/trait/spellcasting",
@@ -7329,15 +7333,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:rusted-behemoth/action/multiattack",
@@ -8164,15 +8163,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:sammaster-dracolich-form/trait/soul-gem",
@@ -8609,15 +8603,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:sammaster-lich-form/trait/protective-magic",
@@ -10945,15 +10934,10 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:zlan/trait/legendary-resistance",
@@ -11027,19 +11011,14 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
-      "evidence": {
-        "triaged": {
-          "by": "rule",
-          "at": "2026-11-21T19:09:32.863Z"
-        }
-      },
-      "why": "DAS · Core has an entry",
-      "state": "triaged"
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
     },
     {
       "key": "fraif:monster:zlan/trait/next-of-the-seven-6-year",
-      "name": "Next of the Seven (6/Year)",
+      "name": "Next of the Seven",
       "kind": "monster",
       "book": "FRAIF",
       "edition": "2024",
