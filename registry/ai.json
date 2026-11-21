@@ -36,7 +36,23 @@
       },
       "legacy": true,
       "legacyStatus": "validated",
-      "evidence": {},
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.622Z",
+          "core": "0.289.0",
+          "rule": "3ab9a63fb57af2329d35d36333482b51dad700e5dacb083fe25d3d24b094869a",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
       "order": 0,
       "note": "Incite Greed (AI p.76): the effect lets its bearer repeat the save at the end of each of its turns.",
       "state": "drafted"

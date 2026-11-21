@@ -27,7 +27,23 @@
       },
       "legacy": true,
       "legacyStatus": "played",
-      "evidence": {},
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.622Z",
+          "core": "0.289.0",
+          "rule": "409d59b79eb81d1e404a0329d9b6e4ec3e05c09eab313342ce90a99556b4c60d",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
       "order": 0,
       "note": "Raulothim's Psychic Lance (FTD p.21): the Incapacitated effect ends at the start of the caster's next turn.",
       "state": "drafted"

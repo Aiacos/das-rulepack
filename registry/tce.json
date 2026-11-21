@@ -23,7 +23,23 @@
       },
       "legacy": true,
       "legacyStatus": "played",
-      "evidence": {},
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.623Z",
+          "core": "0.289.0",
+          "rule": "dd1a11a9a05e32b8c0bbe3b9264d37f1c4a13d003a9236e2fd26d3d7c47e5e63",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
       "order": 0,
       "note": "Booming Blade and Green-Flame Blade have no entry: the whole rule is in scripts/blade-cantrips.mjs (Foundry glue) and\nscripts/core/blade-cantrips.mjs (pure rules), which recognise the two spells by their identifier.",
       "state": "drafted"
@@ -49,7 +65,23 @@
       },
       "legacy": true,
       "legacyStatus": "played",
-      "evidence": {},
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.623Z",
+          "core": "0.289.0",
+          "rule": "b6e9ed2bea1e7992666ec2c1cebacfcb82197871b8acc536ddaf3f7c5202fb39",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
       "order": 1,
       "state": "drafted"
     },
@@ -101,7 +133,23 @@
       },
       "legacy": true,
       "legacyStatus": "played",
-      "evidence": {},
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.623Z",
+          "core": "0.289.0",
+          "rule": "25cff01c130de2042b1f55b1129f475edb91ce620f38e5b985f82d7f3cf7917b",
+          "passed": [
+            "schema",
+            "validator",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "fixes",
+            "text"
+          ]
+        }
+      },
       "order": 2,
       "note": "Lightning Lure (TCE p.107, SCAG): a failed save pulls the target up to 10 ft toward the caster. The damage is\nleft as rolled: the engine applies it wherever the target ends. The imported item gives the save an area of\nsize zero, so no creature is ever in it: the target is corrected to one creature in the item's data (by the\nactive GM when the item is created, and by the world diagnostic for items already on a sheet).",
       "state": "drafted"
@@ -150,7 +198,23 @@
       },
       "legacy": true,
       "legacyStatus": "played",
-      "evidence": {},
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.623Z",
+          "core": "0.289.0",
+          "rule": "358d2b2719e4f4831e5ab55946d83aa3ccc8128d8b58fe3db1ed6d74f8769286",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
       "order": 4,
       "note": "Tasha's Caustic Brew (TCE p.115): no damage on the cast. The item's data puts the 2d4 on the saving throw: it\nis rolled at the start of each of the bearer's turns instead, and the bearer can spend an action to end the\neffect.",
       "state": "drafted"
@@ -182,7 +246,23 @@
       },
       "legacy": true,
       "legacyStatus": "played",
-      "evidence": {},
+      "evidence": {
+        "gates": {
+          "at": "2026-11-21T17:17:44.623Z",
+          "core": "0.289.0",
+          "rule": "1db194ff78879592403980f28fcb9268bc06f1fcd893360aaa6fef8d513aaf48",
+          "passed": [
+            "schema",
+            "validator",
+            "fixes",
+            "unique"
+          ],
+          "noted": [
+            "ids",
+            "text"
+          ]
+        }
+      },
       "order": 3,
       "note": "Tasha's Mind Whip (TCE p.115): the effect takes away its bearer's reactions and holds it to an action OR a\nbonus action, and ends at the end of the bearer's turn. Giving both up to move instead is left to the table.",
       "state": "drafted"

@@ -2,6 +2,17 @@
 
 Data for every non-official spell imported by DDB Importer (activity and effect ids, text): `../darshyne-das/audit/ddb-only-spells.json`.
 
+## Rulebook pipeline
+
+After the pilot (`docs/pilot-xphb-spells.md`):
+
+- [ ] Reader batches for the 114 XPHB spells left without a verdict (`npm run batch -- triage XPHB --out <dir>`, then
+      `npm run ingest`); 110 of them are SRD entries with no DAS · Core entry, which are findings for upstream.
+- [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`, difference: school) waits for a person.
+- [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
+- [ ] The stages not built: drafting, independent review, scenario generation and play, drift.
+- [ ] The other kinds (features, feats, options, items, monsters) and the other books: inventory supports spells only.
+
 ## Shadow Blade
 
 - [ ] Detect a dropped blade (item deleted or unequipped by the player).

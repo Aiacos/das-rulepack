@@ -718,6 +718,10 @@ tools/books-progress.mjs   writes the generated blocks of this README and of doc
 tests/
 ```
 
+The rulebook pipeline keeps one record per rulebook entry in `registry/<book>.json` (names, pages, identifiers and
+fingerprints, no rulebook text) and is run from `tools/pipeline/`; how to run it is in [docs/PIPELINE.md](docs/PIPELINE.md). The
+book modules under `scripts/rules/books/` are generated from `registry/` (`npm run build:rules`), not written by hand.
+
 `scripts/rules/books/<code>.mjs` is the single source of truth for "which book does this rule come from, and what is its
 status": each rule is declared there once, with its metadata and, when it has one, the entry registered with DAS · Core.
 
