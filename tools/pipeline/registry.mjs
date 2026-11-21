@@ -12,7 +12,7 @@ export function keyOf({ book, kind, name, creature }) {
   return [book.toLowerCase(), slug(kind), ...(creature ? [slug(creature)] : []), slug(name)].join(":");
 }
 
-function canonical(value) {
+export function canonical(value) {
   if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
   if (value !== null && typeof value === "object") {
     const keys = Object.keys(value).filter((k) => value[k] !== undefined).sort();

@@ -23,6 +23,9 @@ describe("plainText", () => {
     ];
     expect(plainText(entries)).toBe("A x bold one Two 2");
   });
+  it("keeps a bare number node inside entries", () => {
+    expect(plainText(["Range", 30, { type: "entries", entries: [5, "ft"] }])).toBe("Range 30 5 ft");
+  });
   it("accepts a single string and empty input", () => {
     expect(plainText("a  b")).toBe("a b");
     expect(plainText(undefined)).toBe("");
@@ -64,6 +67,10 @@ describe("readSpells", () => {
   it("marks a 2014 file with srd set", () => {
     const [s] = readSpells(dir, "YZZ");
     expect(s).toMatchObject({ edition: "2014", srd: true, book: "YZZ" });
+  });
+  it("marks a non-X book as 2024 when an entry carries basicRules2024", () => {
+    const [s] = readSpells(fixtures, "WZZ");
+    expect(s).toMatchObject({ book: "WZZ", edition: "2024", srd: false });
   });
   it("fails clearly when the file is missing", () => {
     expect(() => readSpells(dir, "NOPE")).toThrow(/spells-nope\.json/);

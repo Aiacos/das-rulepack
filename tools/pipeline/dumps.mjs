@@ -1,15 +1,7 @@
 // Reader for the compendium dumps (RULEPACK_DUMPS: <package>.<pack>.json, each a JSON array of Foundry documents).
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
-
-const canonical = (v) => {
-  if (Array.isArray(v)) return `[${v.map(canonical).join(",")}]`;
-  if (v !== null && typeof v === "object") {
-    const keys = Object.keys(v).filter((k) => v[k] !== undefined).sort();
-    return `{${keys.map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`).join(",")}}`;
-  }
-  return JSON.stringify(v);
-};
+import { canonical } from "./registry.mjs";
 
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 const sortedUnique = (list) => [...new Set(list)].sort();
