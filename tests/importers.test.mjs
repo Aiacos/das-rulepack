@@ -1,9 +1,12 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { PLUTONIUM, registerImporters } from "../scripts/importers.mjs";
 
-const lang = code => JSON.parse(readFileSync(resolve(import.meta.dirname, `../lang/${code}.json`), "utf8"));
+const HERE = dirname(fileURLToPath(import.meta.url));
+
+const lang = code => JSON.parse(readFileSync(resolve(HERE, `../lang/${code}.json`), "utf8"));
 
 beforeEach(() => { globalThis.game = { i18n: { localize: key => lang("en")[key] ?? key } }; });
 

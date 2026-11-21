@@ -1,8 +1,11 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { BLADE_CANTRIPS, hitDice, moveDice, hitFormula, leapFormula, feetBetween, gapFeet, withinLeap, movedEnough, hitTargets }
   from "../scripts/core/blade-cantrips.mjs";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
 
 const grid = { size: 100, distance: 5 };
 const at = (i, j, width=1, height=1) => ({ x: i * 100, y: j * 100, width, height });
@@ -62,7 +65,7 @@ describe("Booming Blade and Green-Flame Blade (TCE p.106-107)", () => {
 });
 
 describe("translations", () => {
-  const read = lang => JSON.parse(readFileSync(resolve(import.meta.dirname, `../lang/${lang}.json`), "utf8"));
+  const read = lang => JSON.parse(readFileSync(resolve(HERE, `../lang/${lang}.json`), "utf8"));
   it("English and Italian have the same keys and placeholders", () => {
     const en = read("en"), it_ = read("it");
     expect(Object.keys(it_).sort()).toEqual(Object.keys(en).sort());
@@ -74,7 +77,7 @@ describe("translations", () => {
   it("every key used in the scripts exists", () => {
     const en = read("en");
     for ( const file of ["shadow-blade.mjs", "blade-cantrips.mjs"] ) {
-      const source = readFileSync(resolve(import.meta.dirname, "../scripts", file), "utf8");
+      const source = readFileSync(resolve(HERE, "../scripts", file), "utf8");
       for ( const [, key] of source.matchAll(/loc\("([A-Za-z.]+)"/g) ) expect(en[`DASRULEPACK.${key}`], `${file}: ${key}`).toBeTruthy();
       for ( const [, key] of source.matchAll(/"(DASRULEPACK\.[A-Za-z.]+)"/g) ) expect(en[key], `${file}: ${key}`).toBeTruthy();
     }

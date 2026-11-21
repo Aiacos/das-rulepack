@@ -1,13 +1,15 @@
 import { describe, it, expect } from "vitest";
 import { existsSync } from "node:fs";
-import { resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { SPELLS, SENSES, FEATURES, TABLE } from "../scripts/rules/index.mjs";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
 
 // The rules are validated by DAS · Core's own validator, from a clone of the engine: DAS_CORE, or the sibling folders used in
 // this workspace. Without a clone the contract tests are skipped locally and fail in CI.
 const candidates = [process.env.DAS_CORE, "../../darshyne-das/dnd5e-combat", "../../dnd5e-combat", "../core"]
-  .filter(Boolean).map(p => resolve(import.meta.dirname, p));
+  .filter(Boolean).map(p => resolve(HERE, p));
 const CORE = candidates.find(p => existsSync(resolve(p, "module/scripts/core/content.mjs")));
 
 describe("rule table", () => {

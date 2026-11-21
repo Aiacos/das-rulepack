@@ -1,12 +1,15 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 import { README, RULES_DOC, DOCS_URL, GENERATED, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, parts, PARTS, renderBooks,
   renderRules, renderSummary }
   from "../tools/books-progress.mjs";
 import { RULES } from "../scripts/rules/index.mjs";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
 
 const book = code => CATALOG.books.find(b => b.code === code);
 
@@ -181,12 +184,14 @@ describe("progress by rulebook", () => {
     const { existsSync } = require("node:fs");
     const anchor = heading => heading.trim().toLowerCase().replace(/[^\p{L}\p{N}\p{M}\uFE0F _-]/gu, "").replaceAll(" ", "-");
     for ( const file of ["README.md", "CHANGELOG.md", "TODO.md", "docs/RULES.md", "docs/GM-CLIENT.md"] ) {
-      const path = resolve(import.meta.dirname, "..", file);
+      const path = resolve(HERE, "..", file);
       const text = readFileSync(path, "utf8");
       const anchors = [...text.matchAll(/^#{1,6} (.+)$/gm)].map(([, heading]) => anchor(heading));
       for ( const [, target] of text.matchAll(/\]\(([^)\s]+)\)/g) ) {
         if ( target.startsWith("#") ) expect(anchors, `${file}: ${target}`).toContain(decodeURIComponent(target.slice(1)));
-        else if ( target.startsWith(DOCS_URL) ) expect(existsSync(resolve(import.meta.dirname, "../docs", target.slice(DOCS_URL.length))), `${file}: ${target}`).toBe(true);
+        else if ( target.startsWith(DOCS_URL) ) {
+          expect(existsSync(resolve(HERE, "../docs", target.slice(DOCS_URL.length))), `${file}: ${target}`).toBe(true);
+        }
         else if ( !/^https?:/.test(target) ) expect(existsSync(resolve(path, "..", target)), `${file}: ${target}`).toBe(true);
       }
     }
