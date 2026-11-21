@@ -1,0 +1,1851 @@
+{
+  "book": "AAG",
+  "records": [
+    {
+      "key": "aag:background:astral-drifter",
+      "name": "Astral Drifter",
+      "kind": "background",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "astral-drifter",
+      "page": 7,
+      "srd": false,
+      "text": {
+        "sha256": "65e577267e7200f0e9f662b7808f9353c8443719e9aa71b4feddea9bc326f189",
+        "source": "5etools",
+        "chars": 897
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:background:wildspacer",
+      "name": "Wildspacer",
+      "kind": "background",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "wildspacer",
+      "page": 8,
+      "srd": false,
+      "text": {
+        "sha256": "89ed93d6eb9f7549f131eb0ac89c9b0c716d7c424d0641801bf6615915721fef",
+        "source": "5etools",
+        "chars": 878
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:basic-fishing-equipment",
+      "name": "Basic Fishing Equipment",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "basic-fishing-equipment",
+      "page": 21,
+      "srd": false,
+      "text": {
+        "sha256": "d2ad065151c17a643009e6eeadf79fd3a7ac48a38ba196124b29a05afb7f9051",
+        "source": "5etools",
+        "chars": 484
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "basic-fishing-equipment",
+          "docId": "gYcZYgeY67erpLZI",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "30edb50fdb4f17f636fdefa005a307d5ef7ecd90029b91159fea3ac8b8ec44cc"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:bombard",
+      "name": "Bombard",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "bombard",
+      "page": 26,
+      "srd": false,
+      "text": {
+        "sha256": "9d682cebf093a8b98c898f8b0908a25c6f7cb8c75c7543c31533785c551ed308",
+        "source": "5etools",
+        "chars": 561
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "bombard",
+          "docId": "i1QDBdybjFH5ZMlu",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "17d91e0adcacd19965b9359430e5b37cf334e042988e7ebb409963dda20504a2"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:damselfly-ship",
+      "name": "Damselfly Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "damselfly-ship",
+      "page": 28,
+      "srd": false,
+      "text": {
+        "sha256": "e46f11b688a2f44956a11fc1d72fdf73527681e04428652eac456bce1509d4ea",
+        "source": "5etools",
+        "chars": 887
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "damselfly-ship",
+          "docId": "VVShkVMEQ4DJiu5X",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "a82f5d3f37c17c26d2ba7d45b02acfd5c8d16c16e41b904dc11c52d00fa045da"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:fish-suit",
+      "name": "Fish Suit",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "very rare",
+      "identifier": "fish-suit",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "ad6523d68c281f51867b179a7157938d737f25f01cdb4c375ecbc1b5bd211eb9",
+        "source": "5etools",
+        "chars": 397
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "fish-suit",
+          "docId": "CRqteg4jU8Yu5JWh",
+          "activities": [
+            "utilityFishSuitI"
+          ],
+          "effects": [
+            "jmzINZUKXxhsQUyH"
+          ],
+          "data": {
+            "sha256": "7e2856200b979c70e146540b1c6fa8e27f0343ab0c21aa5dd6cdc06d1e42be11"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:flying-fish-ship",
+      "name": "Flying Fish Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "flying-fish-ship",
+      "page": 30,
+      "srd": false,
+      "text": {
+        "sha256": "62b945ed463bcb5f76aa05a4e866497192fb6973c4dfec246c37ef40e95f1add",
+        "source": "5etools",
+        "chars": 456
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "flying-fish-ship",
+          "docId": "l1EjwiM51c5Vn1M7",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "088312382b11476745b98abcf3a670de6594353a7fa3bacaee71201960f11517"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:hammerhead-ship",
+      "name": "Hammerhead Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "hammerhead-ship",
+      "page": 32,
+      "srd": false,
+      "text": {
+        "sha256": "60de9c08ba438f26bc2d5391db74d559177eb048d67bc865a2b6f635506532bf",
+        "source": "5etools",
+        "chars": 351
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "hammerhead-ship",
+          "docId": "amdsDqaRvmk1mmw8",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "6d1380d105f802da11c790501217b57aea0737e0a46d6bad7a002f1c912eb594"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:lamprey-ship",
+      "name": "Lamprey Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "lamprey-ship",
+      "page": 34,
+      "srd": false,
+      "text": {
+        "sha256": "a74c139aca3226d119650273c47e5e8015f0a2efb5d7754dc542ff68c66f5f98",
+        "source": "5etools",
+        "chars": 585
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "lamprey-ship",
+          "docId": "SRAaYCFXVBCS9C4f",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "5bab24f41345c8be1e09125a37368be2e5258816c391105e22ce529d049c6f61"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:living-ship",
+      "name": "Living Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "living-ship",
+      "page": 36,
+      "srd": false,
+      "text": {
+        "sha256": "7a9f1bf914dfba8beaa3be461ea1c3f82717673243eb19cc8290555bd95e9fca",
+        "source": "5etools",
+        "chars": 965
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "living-ship",
+          "docId": "9KDBsNiNRT4Az4aW",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "6ee9f33c1046e15469404d50feb23e6ad0ba2f28a1bb575c4b863ba180c20765"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:nautiloid",
+      "name": "Nautiloid",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "nautiloid",
+      "page": 38,
+      "srd": false,
+      "text": {
+        "sha256": "551c56983a7c92865940e692953c77abf0dbc7658c259b650eb9965dca6750c5",
+        "source": "5etools",
+        "chars": 696
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "nautiloid",
+          "docId": "jXpd7H0ebBHW6OPr",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "426dc48f74a0b63a7574931524fa992e707b0e8d87a6e09690aa1433ae4e8865"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:nightspider",
+      "name": "Nightspider",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "nightspider",
+      "page": 40,
+      "srd": false,
+      "text": {
+        "sha256": "2db8141290e3ece1cd781f11d845eeadc2e5a4ba688a61e875534ef088025ca2",
+        "source": "5etools",
+        "chars": 709
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "nightspider",
+          "docId": "cAyY4nRJxnXQ1emA",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "1ed1b5afe5c26a6a577e1a14c68b91d966fa8a7f4cae648ada63b2715dd2a3e8"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:scorpion-ship",
+      "name": "Scorpion Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "scorpion-ship",
+      "page": 42,
+      "srd": false,
+      "text": {
+        "sha256": "80bad27af1fb600fdaa8b3f9058f5efad42ad11f1603af6b431679293f0dcb86",
+        "source": "5etools",
+        "chars": 506
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "scorpion-ship",
+          "docId": "1ZC8w9o8STn2bRIg",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "e7c236dc00b30476458c1d209fa9936214ccb4efab54bbb11dad79d685958de0"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:shrike-ship",
+      "name": "Shrike Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "shrike-ship",
+      "page": 44,
+      "srd": false,
+      "text": {
+        "sha256": "641b0e82566a9a705044b1416ca89b2eb52788cf775ba97dcf53c9b2b4686584",
+        "source": "5etools",
+        "chars": 484
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "shrike-ship",
+          "docId": "4pFVrOVVUWEeYYxC",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "d2fd860cb0c46030b1f2f60ccf6bbdf31fcef40d6740bc7f313904e8ca64562b"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:space-galleon",
+      "name": "Space Galleon",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "space-galleon",
+      "page": 46,
+      "srd": false,
+      "text": {
+        "sha256": "3fb69a95771109e4d5a0458cc040b38aec14910e7f1aba928549386f12afc67e",
+        "source": "5etools",
+        "chars": 535
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "space-galleon",
+          "docId": "rnERh9yV2pEvVmS8",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "fc509a18d01a1cfa2d1ae2ad44e45b3e1b9402dfe2875f6272f68ddabf175b98"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:spelljamming-helm",
+      "name": "Spelljamming Helm",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "rare",
+      "identifier": "spelljamming-helm",
+      "page": 23,
+      "srd": false,
+      "text": {
+        "sha256": "205dd8421e579066707f26ecb86936ac7d4fb499b30e88ad516b71a28d8cef63",
+        "source": "5etools",
+        "chars": 2021
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "spelljamming-helm",
+          "docId": "56B0Sa6yZ7JARyqN",
+          "activities": [
+            "utilitySpellHelm"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "97b8a9ea757da8ad8a645777acc85a5d336db744a963e8472625a0d5a2a6d908"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:squid-ship",
+      "name": "Squid Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "squid-ship",
+      "page": 48,
+      "srd": false,
+      "text": {
+        "sha256": "512c7806b99a08403b6f84672bc3a6d133a286ab7b049c3ae155deb827296390",
+        "source": "5etools",
+        "chars": 414
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "squid-ship",
+          "docId": "GuM9U3Kfw60eV0VS",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "874fe50f232d3fc34c40d1f09867f8434eadf9dbffb0e2a76273d6ee33dd7a48"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:star-moth",
+      "name": "Star Moth",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "star-moth",
+      "page": 50,
+      "srd": false,
+      "text": {
+        "sha256": "f5874e7146ebb13528c6bf452c22c2c942a5ef8bbf20230d77af8b56d57a70bd",
+        "source": "5etools",
+        "chars": 504
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "star-moth",
+          "docId": "t2DRktRSFWmkkRcD",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "7d078e7d334d282e516ac484cf87c073ad55eeaea3c6819098ff2a0ee69583c9"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:turtle-ship",
+      "name": "Turtle Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "turtle-ship",
+      "page": 52,
+      "srd": false,
+      "text": {
+        "sha256": "f3fb3a979df7a45810b0945ba74a60fcc067d7d1e86e63149cd61cb829157239",
+        "source": "5etools",
+        "chars": 722
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "turtle-ship",
+          "docId": "uQu65issd5ymDIEU",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "f8b52e0a0c377b3136f7599c146781d9d667545685c7ef804d23f57c44836d2c"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:tyrant-ship",
+      "name": "Tyrant Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "tyrant-ship",
+      "page": 54,
+      "srd": false,
+      "text": {
+        "sha256": "d0d42851bb8e374f9def4c1d02c7f9a953735d2b901bff0d717db677e1df9fdf",
+        "source": "5etools",
+        "chars": 700
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "tyrant-ship",
+          "docId": "WV4dct3EpwvaFCbg",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "e0784cc51bf24334a0604a32bb6122683ae7720772cfa7f4376e31302a87bfaa"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:wasp-ship",
+      "name": "Wasp Ship",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "none",
+      "identifier": "wasp-ship",
+      "page": 56,
+      "srd": false,
+      "text": {
+        "sha256": "9ccfd02974d9568e9cbfe98f3863b391c5abbc82d035e1be9e5999ca3078991e",
+        "source": "5etools",
+        "chars": 475
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "wasp-ship",
+          "docId": "zqk0tkIxTtgLWuPd",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "d1745bb3f1ec69b104b09cc4a315a19aa70a782a0a4fb49bfc1d7fa529aeb6eb"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:item:wildspace-orrery",
+      "name": "Wildspace Orrery",
+      "kind": "item",
+      "book": "AAG",
+      "edition": "2014",
+      "rarity": "uncommon",
+      "identifier": "wildspace-orrery",
+      "page": 23,
+      "srd": false,
+      "text": {
+        "sha256": "f29aea46e5b72d5cffb3819fac98e636180ef0f94a9a8ad90df1687e24996f97",
+        "source": "5etools",
+        "chars": 328
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "wildspace-orrery",
+          "docId": "TOeMscLWnSsu71GO",
+          "activities": [
+            "utilityWildsOrre"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "2135d8132dff6d9ec20ff26355388ba82944e85dc3b003ee24bef38e6b3c8b6f"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf",
+      "name": "Astral Elf",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "astral-elf",
+      "page": 10,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf/astral-fire",
+      "name": "Astral Fire",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Astral Elf",
+      "identifier": "astral-fire",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "5fd31d60ee59c67db97ec25c349b0dd0b9c3d0993a0f17a5a502424af6782700",
+        "source": "5etools",
+        "chars": 200
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf/astral-trance",
+      "name": "Astral Trance",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Astral Elf",
+      "identifier": "astral-trance",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "f03c4258be91209a26c37867d127cc3babffe74fdb3da1b4602cec66e241d9f0",
+        "source": "5etools",
+        "chars": 542
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf/creature-type",
+      "name": "Creature Type",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Astral Elf",
+      "identifier": "creature-type",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "e145ace84c86788d625016ffbd6a3887b04cc9b188ab59589552de88f3318190",
+        "source": "5etools",
+        "chars": 113
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Astral Elf",
+      "identifier": "darkvision",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "c08b9211dae8e109c393cf5dc044bd52e508d1f9c750bd38b36f76e20b421945",
+        "source": "5etools",
+        "chars": 180
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf/fey-ancestry",
+      "name": "Fey Ancestry",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Astral Elf",
+      "identifier": "fey-ancestry",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "cf71d4f514675948fe51a2f43949e233e6cdb798e5fa4050144bf68095ab08cb",
+        "source": "5etools",
+        "chars": 95
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "hint": "core-generic",
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf/keen-senses",
+      "name": "Keen Senses",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Astral Elf",
+      "identifier": "keen-senses",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "12982e37c572d47f3d1770eb9187364a4a09a70d59360362cf8e6d955de1b8a8",
+        "source": "5etools",
+        "chars": 45
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:astral-elf/starlight-step",
+      "name": "Starlight Step",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Astral Elf",
+      "identifier": "starlight-step",
+      "page": 10,
+      "srd": false,
+      "text": {
+        "sha256": "ceebb588688037130b6edfba521f3e15ff73332ad0f8042e8fb947253ddae8aa",
+        "source": "5etools",
+        "chars": 231
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome",
+      "name": "Autognome",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "autognome",
+      "page": 11,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome/armored-casing",
+      "name": "Armored Casing",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Autognome",
+      "identifier": "armored-casing",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "059c749c579fd6460282a94a7d05880836a9551f5a6d325ff2b298f9656f0604",
+        "source": "5etools",
+        "chars": 148
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome/built-for-success",
+      "name": "Built for Success",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Autognome",
+      "identifier": "built-for-success",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "a76ec20f1ffc4ef38e88406268e80e7f0a91de57bb07e9ef40e213c0cd4aade0",
+        "source": "5etools",
+        "chars": 306
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome/creature-type",
+      "name": "Creature Type",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Autognome",
+      "identifier": "creature-type",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "9b65c5d2f710935665c9fa9813433c7e3206f34478c70ba9b66e25b2504ef29d",
+        "source": "5etools",
+        "chars": 20
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome/healing-machine",
+      "name": "Healing Machine",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Autognome",
+      "identifier": "healing-machine",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "e7bfaf2d81ef71721c687003f8a55bf7f13c00027d7e28086977eb6fdf116f86",
+        "source": "5etools",
+        "chars": 397
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome/mechanical-nature",
+      "name": "Mechanical Nature",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Autognome",
+      "identifier": "mechanical-nature",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "0d957515f8720bcc0bcfd2bc186f97cd2283a12deddad3d40aed13600d55064a",
+        "source": "5etools",
+        "chars": 180
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome/sentrys-rest",
+      "name": "Sentry's Rest",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Autognome",
+      "identifier": "sentrys-rest",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "9081c72e1ba89eeebc45c7ad8793774f36fb8a372bba8d087720fcf64612e911",
+        "source": "5etools",
+        "chars": 167
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:autognome/specialized-design",
+      "name": "Specialized Design",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Autognome",
+      "identifier": "specialized-design",
+      "page": 11,
+      "srd": false,
+      "text": {
+        "sha256": "a9b39e1ef14b079f50e32118df29bdcbdc43dedf9e124d4b84f0c8ff2be0dd58",
+        "source": "5etools",
+        "chars": 84
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:giff",
+      "name": "Giff",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "giff",
+      "page": 12,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:giff/astral-spark",
+      "name": "Astral Spark",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Giff",
+      "identifier": "astral-spark",
+      "page": 12,
+      "srd": false,
+      "text": {
+        "sha256": "ac2ba6add45ec4f8063ce6c2513835edce5c2e2db7e4db71dd4ae1a87945ad59",
+        "source": "5etools",
+        "chars": 464
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:giff/firearms-mastery",
+      "name": "Firearms Mastery",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Giff",
+      "identifier": "firearms-mastery",
+      "page": 12,
+      "srd": false,
+      "text": {
+        "sha256": "3ebc8f039c5960675d91c69cb04f44662549e1f1321000ee1911449604ab00c4",
+        "source": "5etools",
+        "chars": 298
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:giff/hippo-build",
+      "name": "Hippo Build",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Giff",
+      "identifier": "hippo-build",
+      "page": 12,
+      "srd": false,
+      "text": {
+        "sha256": "ebeb9515fce7039346a6c9bae7d8cb296ac6186d7a92fce7b7a6da20f1bbb2e5",
+        "source": "5etools",
+        "chars": 205
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:hadozee",
+      "name": "Hadozee",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "hadozee",
+      "page": 13,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:hadozee/dexterous-feet",
+      "name": "Dexterous Feet",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Hadozee",
+      "identifier": "dexterous-feet",
+      "page": 13,
+      "srd": false,
+      "text": {
+        "sha256": "10a683fdd3227fbdec6283873ca56c0d73c608850cb69875ae91132df362bbee",
+        "source": "5etools",
+        "chars": 138
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:hadozee/glide",
+      "name": "Glide",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Hadozee",
+      "identifier": "glide",
+      "page": 13,
+      "srd": false,
+      "text": {
+        "sha256": "c3678b7a8cd0a822f73ce58f80294d1de4aff54c0269052ee7edd7e4d8cf6840",
+        "source": "5etools",
+        "chars": 251
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:hadozee/hadozee-dodge",
+      "name": "Hadozee Dodge",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Hadozee",
+      "identifier": "hadozee-dodge",
+      "page": 13,
+      "srd": false,
+      "text": {
+        "sha256": "eed0ffaebd49680eca7eb4bbe44dade30092c315351f51cf731537501e47f099",
+        "source": "5etools",
+        "chars": 396
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:hadozee/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Hadozee",
+      "identifier": "size",
+      "page": 13,
+      "srd": false,
+      "text": {
+        "sha256": "5bb0e3578b4c898d1aa5e2f5f11bb977db5958955da3d7c1d4f33887c3fd67d1",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid",
+      "name": "Plasmoid",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "plasmoid",
+      "page": 14,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid/amorphous",
+      "name": "Amorphous",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Plasmoid",
+      "identifier": "amorphous",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "692b901119ee2a4b6fecf1ba053338446d2368a8d9b8fe115936ec5e140c9d58",
+        "source": "5etools",
+        "chars": 183
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid/creature-type",
+      "name": "Creature Type",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Plasmoid",
+      "identifier": "creature-type",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "a93f7c671e2bd3f4963d49c3a7c4693cfcb10ff93c33873b18bbae7977731ffc",
+        "source": "5etools",
+        "chars": 16
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Plasmoid",
+      "identifier": "darkvision",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "c08b9211dae8e109c393cf5dc044bd52e508d1f9c750bd38b36f76e20b421945",
+        "source": "5etools",
+        "chars": 180
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid/hold-breath",
+      "name": "Hold Breath",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Plasmoid",
+      "identifier": "hold-breath",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "57d4e89bb5c562f9d383a02dbbea9d6a60c873f4de82abfbf72ed564c2fe49d9",
+        "source": "5etools",
+        "chars": 36
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid/natural-resilience",
+      "name": "Natural Resilience",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Plasmoid",
+      "identifier": "natural-resilience",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "da1494f21dd86a06269da2dbb2ee995cde5c188bb902be6ad32d3a7788652ecc",
+        "source": "5etools",
+        "chars": 110
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid/shape-self",
+      "name": "Shape Self",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Plasmoid",
+      "identifier": "shape-self",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "048f2105e7ed983192d3481015efc23140296ea765234090c1c85825dac009aa",
+        "source": "5etools",
+        "chars": 658
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:plasmoid/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Plasmoid",
+      "identifier": "size",
+      "page": 14,
+      "srd": false,
+      "text": {
+        "sha256": "5bb0e3578b4c898d1aa5e2f5f11bb977db5958955da3d7c1d4f33887c3fd67d1",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen",
+      "name": "Thri-kreen",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "thri-kreen",
+      "page": 15,
+      "srd": false,
+      "text": null,
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen/chameleon-carapace",
+      "name": "Chameleon Carapace",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Thri-kreen",
+      "identifier": "chameleon-carapace",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "1e5abe787fb188cf62cd4ab384a2f28180e0aefb7d279a25d79d0ffce7552317",
+        "source": "5etools",
+        "chars": 303
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen/creature-type",
+      "name": "Creature Type",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Thri-kreen",
+      "identifier": "creature-type",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "0cf94f8fd3d415c7450d1b4b7fe0e79c14d2891fe0537b213925a37e4fcde826",
+        "source": "5etools",
+        "chars": 22
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen/darkvision",
+      "name": "Darkvision",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Thri-kreen",
+      "identifier": "darkvision",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "c08b9211dae8e109c393cf5dc044bd52e508d1f9c750bd38b36f76e20b421945",
+        "source": "5etools",
+        "chars": 180
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen/secondary-arms",
+      "name": "Secondary Arms",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Thri-kreen",
+      "identifier": "secondary-arms",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "dee463206c6cf95f37664188b829bd659d6d6066dc669f114c397f1b8b601d78",
+        "source": "5etools",
+        "chars": 235
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen/size",
+      "name": "Size",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Thri-kreen",
+      "identifier": "size",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "5bb0e3578b4c898d1aa5e2f5f11bb977db5958955da3d7c1d4f33887c3fd67d1",
+        "source": "5etools",
+        "chars": 71
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen/sleepless",
+      "name": "Sleepless",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Thri-kreen",
+      "identifier": "sleepless",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "3d9c83aa47891470d3d8d26798db3f5d541836b1533d8e6703381cebf9705c32",
+        "source": "5etools",
+        "chars": 156
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:species:thri-kreen/thri-kreen-telepathy",
+      "name": "Thri-kreen Telepathy",
+      "kind": "species",
+      "book": "AAG",
+      "edition": "2014",
+      "owner": "Thri-kreen",
+      "identifier": "thri-kreen-telepathy",
+      "page": 15,
+      "srd": false,
+      "text": {
+        "sha256": "ab8722e80aed35a8fcde482aa10d31c4916cbfef5b2359a8bc3bac1e23397945",
+        "source": "5etools",
+        "chars": 606
+      },
+      "items": [
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:spell:air-bubble",
+      "name": "Air Bubble",
+      "kind": "spell",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "air-bubble",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "fac59b5018aa400ec84b3fea48f7b5b67974cbc8dce2f87ffb969b790c49d6c9",
+        "source": "5etools",
+        "chars": 372
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "air-bubble",
+          "docId": "ddbAirBubble14II",
+          "activities": [
+            "utilityAirBubblI"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "d75ca59ef95869d6e560b8adad0f193d545740c1dcefc679c7b5e63bc12a22fc"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    },
+    {
+      "key": "aag:spell:create-spelljamming-helm",
+      "name": "Create Spelljamming Helm",
+      "kind": "spell",
+      "book": "AAG",
+      "edition": "2014",
+      "identifier": "create-spelljamming-helm",
+      "page": 22,
+      "srd": false,
+      "text": {
+        "sha256": "1d8f3ad70ceba1f3a693310428017d6ed6bcf2317200641559fb56b7b278b081",
+        "source": "5etools",
+        "chars": 179
+      },
+      "items": [
+        {
+          "origin": "ddb-importer",
+          "match": "matched",
+          "identifier": "create-spelljamming-helm",
+          "docId": "ddbCreatSpeHel14",
+          "activities": [
+            "utilityCreSpeHel"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "79f8cfbe9c8aefcb7543e31ca08a69f6b9fb5eb1ceb1a2cfb181311d73e733a6"
+          }
+        },
+        {
+          "origin": "plutonium",
+          "match": "unchecked"
+        }
+      ],
+      "verdict": null,
+      "evidence": {},
+      "state": "inventoried"
+    }
+  ]
+}
