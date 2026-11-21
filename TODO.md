@@ -39,14 +39,19 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       queue with low-confidence verdicts.
 - [ ] The three XPHB feature rules (Dreadful Strikes, Inspiring Smite, Psychic Veil) and the rules of FTD, MPMM, AI and PHB
       are still legacy records without item data: their keys carry no owner, or their book has no dump of that kind.
-- [ ] A rule whose named origin has `identifierDiffers` (16 spells: the official module and DDB Importer name them
-      differently) needs a second identifier before it can pass the ids gate.
+- [x] A rule whose named origin has `identifierDiffers` (16 spells: the official module and DDB Importer name them
+      differently) needs a second identifier before it can pass the ids gate: `rule.alsoAs` (Ruling R2), checked by the ids
+      and `unique` gates; filled by `ingest --draft` (not built yet).
 - [x] A record that has a rule keeps its identifier and page on re-inventory; `generate` emits `SOURCES` (empty today).
-- [ ] Before the first drafted rule: a rule for a monster feature needs an identifier scoped to its creature (many
-      creatures share a feature name, and the engine knows a generic entry under it: `hint: "core-generic"`); a data fix
-      on an item embedded in an actor (`<actor id>.<item id>`) has no document the data-fix gate can read yet.
-- [ ] Before the first non-legacy rule is gated: the ids gate does not find ids inside `#id`, `a/b` or `@UUID[…]` strings; a data
-      fix without `from` on a mistyped path passes.
+- [x] Before the first drafted rule: a rule for a monster feature needs an identifier scoped to its creature
+      (`<book>-<creature>-<feature>`, bound by its embedded item id when no other creature shares it, Ruling R3).
+- [ ] A monster feature whose official embedded item id is shared by several creatures (1,480 of XMM's 2,146 features)
+      needs `<actor id>.<item id>` sources, which the engine reads but external registration refuses: an upstream issue (no
+      book named). A data fix on an item embedded in an actor has no document the data-fix gate can read yet.
+- [x] Before the first non-legacy rule is gated: the ids gate finds ids inside `#id`, `a/b` and `@UUID[…]` strings; a data
+      fix without `from` on a mistyped path fails.
+- [ ] The TCE legacy rules name `ddb-importer` alone while their official item is matched: the ids gate holds legacy records
+      to the first checks only; their new rules will list the official origin or say why it is uncovered.
 - [ ] Before a release built from the registry: run the local gates (dumps and text cache) and fail on any registry difference;
       `ingest` saves the books and the queue in two steps.
 - [ ] The 24 migrated rules have no item data attached (`ids`, `fixes`, `text` are notes): attach DDB Importer items by

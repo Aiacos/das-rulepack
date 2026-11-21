@@ -31,8 +31,9 @@ export const SENSES = entriesOf("sense");
 /** Class features where an entry of DAS · Core is completed, key by key. */
 export const FEATURES = entriesOf("feature");
 
-/** The table registered with DAS · Core: every rule that has an entry, by identifier. */
-export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.entry).map(rule => [rule.identifier, rule.entry])));
+/** The table registered with DAS · Core: every rule that has an entry, by identifier and by each of its aliases (`alsoAs`). */
+export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.entry)
+  .flatMap(rule => [rule.identifier, ...(rule.alsoAs ?? [])].map(identifier => [identifier, rule.entry]))));
 
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as `sources`. */
 export const SOURCES = Object.freeze({});

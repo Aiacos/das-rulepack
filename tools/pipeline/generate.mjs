@@ -61,8 +61,16 @@ export function ruleFromRecord(record, { legacy } = {}) {
   for (const f of ["catalog", "inCore"]) if (f in rule) out[f] = rule[f];
   out.adds = rule.adds;
   for (const f of ["code", "entry"]) if (f in rule) out[f] = structuredClone(rule[f]);
+  // Ruling R2: the other identifiers the entry is registered under (left out when there are none).
+  const aliases = aliasesOf(record);
+  if (aliases.length) out.alsoAs = aliases;
+  // Ruling R5: the matched origins the rule does not cover, shown in docs/RULES.md (left out when there are none).
+  if (Array.isArray(rule.uncovered) && rule.uncovered.length) out.uncovered = structuredClone(rule.uncovered);
   return out;
 }
+
+// The aliases of a record's rule, in their order.
+const aliasesOf = (record) => (Array.isArray(record.rule?.alsoAs) ? record.rule.alsoAs.map((a) => a.identifier) : []);
 
 /**
  * The `sources` of the records whose rule is emitted: `{ docId: identifier }`, what the pack registers beside its table so that
@@ -161,8 +169,9 @@ export const SENSES = entriesOf("sense");
 /** Class features where an entry of DAS · Core is completed, key by key. */
 export const FEATURES = entriesOf("feature");
 
-/** The table registered with DAS · Core: every rule that has an entry, by identifier. */
-export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.entry).map(rule => [rule.identifier, rule.entry])));
+/** The table registered with DAS · Core: every rule that has an entry, by identifier and by each of its aliases (\`alsoAs\`). */
+export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.entry)
+  .flatMap(rule => [rule.identifier, ...(rule.alsoAs ?? [])].map(identifier => [identifier, rule.entry]))));
 
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as \`sources\`. */
 export const SOURCES = Object.freeze(${sourcesLiteral(sources)});
@@ -202,12 +211,13 @@ export function generate({ registry, out, check = false }) {
         }
       } catch (e) { refused.push(e.message); }
     }
-    // Two emitted rules must never register one identifier.
+    // Two emitted rules must never register one identifier, aliases included.
     for (const r of records) {
       if (!ruleFromRecord(r, { legacy })) continue;
-      const id = String(r.identifier).trim().toLowerCase();
-      if (emitted.has(id)) refused.push(`${r.key}: shares the identifier ${id} with ${emitted.get(id)}`);
-      else emitted.set(id, r.key);
+      for (const id of new Set([r.identifier, ...aliasesOf(r)].map((x) => String(x).trim().toLowerCase()))) {
+        if (emitted.has(id)) refused.push(`${r.key}: shares the identifier ${id} with ${emitted.get(id)}`);
+        else emitted.set(id, r.key);
+      }
     }
   }
   if (refused.length) throw new Error(`Refusing to generate: ${refused.join("; ")}`);

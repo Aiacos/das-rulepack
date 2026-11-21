@@ -140,7 +140,7 @@ describe("sources", () => {
     const stale = { ...records[0], sources: { [OFF]: "old" } };
     expect(run({ official: [summary("official", OFF)] }, [stale]).records[0].sources).toBeUndefined();
   });
-  it("never binds a monster feature's docId (<actor>.<item>)", () => {
+  it("never binds a monster feature's docId (<actor>.<item>); a ruled one is bound by its embedded item id", () => {
     const monster = { name: "Claw", kind: "monster", owner: "Wolf", section: "action", book: "TST", page: 1, edition: "2024",
       srd: false, text: "t", creatureIndex: 0 };
     const embedded = summary("official", "Ac00Ac11Ac22Ac33.Bb00Bb11Bb22Bb33", { name: "Claw", type: "feat", identifier: "claw-x" });
@@ -151,8 +151,9 @@ describe("sources", () => {
       rule: { handledIn: "code", adds: "x", origins: ["official"] } }));
     const again = inventory({ book: "TST", kind: "monster", dataset: [monster], dumps: { official: [], "ddb-importer": [],
       actors: [{ id: "Ac00Ac11Ac22Ac33", name: "Wolf", items: [embedded] }] }, textDir, previous: ruled }).records[0];
-    expect(again.sources).toBeUndefined();
-    expect(officialOf(again).identifierDiffers).toBe(true);
+    expect(again.sources).toEqual({ Bb00Bb11Bb22Bb33: "claw" });
+    expect(officialOf(again).identifierDiffers).toBeUndefined();
+    expect(validateRecord(again)).toEqual([]);
   });
 });
 
@@ -254,7 +255,8 @@ describe("reprints that lose ids fail closed", () => {
     const ctx = { core: { vocabulary: new Set() } };
     const r = mk({ package: "p", docId: OFF, sameIds: false, missing: [ACT] });
     const ddb = { ...r.items[0], origin: "ddb-importer", docId: DDB };
-    const ddbOnly = { ...r, rule: { ...rule, origins: ["ddb-importer"] }, items: [...r.items, ddb] };
+    const uncovered = [{ origin: "official", because: "checked on the imported item only" }];
+    const ddbOnly = { ...r, rule: { ...rule, origins: ["ddb-importer"], uncovered }, items: [...r.items, ddb] };
     expect(checkIds(ddbOnly, ctx).failures).toEqual([]);
   });
 });

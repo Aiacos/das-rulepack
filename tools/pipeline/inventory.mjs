@@ -1,7 +1,7 @@
 // Inventory: one registry record per rulebook entry, with the same item as found in each source ("origin").
 import { keyOf, slug, canonical, groupBy } from "./registry.mjs";
 import { cacheText, textFingerprint } from "./text.mjs";
-import { fittingDocTypes, identityOf, matchOrigin } from "./match.mjs";
+import { fittingDocTypes, identityOf, matchName, matchOrigin } from "./match.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
 import { actorCandidates, baseFeatureName, ddbActorCandidates } from "./monsters.mjs";
 import { itemOf, keepSettled, reprintsOf, bindSources, canonicalIdentifier } from "./settle.mjs";
@@ -253,6 +253,16 @@ export function inventory({
     if (unknownBook) o.differences = [...(o.differences ?? []), "book-unknown"];
   }
   const numbers = monsters ? numberOccurrences(dataset, records, book) : [];
+  // Ruling R3: the creatures of the package that embed each item id. A ruled feature is bound by its embedded item id only
+  // when no actor of another creature embeds it (same-name actors with one creature's items are that creature).
+  const creaturesOfId = new Map();
+  for (const actor of monsters ? dumps.actors ?? [] : []) {
+    for (const i of actor.items ?? []) {
+      const id = String(i.docId).split(".").pop();
+      creaturesOfId.set(id, (creaturesOfId.get(id) ?? new Set()).add(matchName(actor.name).full));
+    }
+  }
+  const sharedEmbedded = (id, owner) => [...(creaturesOfId.get(id) ?? [])].some((c) => c !== matchName(owner).full);
   // A creature whose name slugs to nothing is one skip, however many features it has.
   if (monsters) {
     const names = creatures ? creatures.map((c) => c.name) : [...new Set(dataset.map((e) => e.owner))];
@@ -361,7 +371,8 @@ export function inventory({
       report.added += 1;
     }
     // Identifiers and what was settled by hand follow the items; a record with neither carries neither field.
-    const sources = bindSources(record.items, record.identifier);
+    const monster = monsters ? { ruled: Boolean(record.rule), sharedId: (id) => sharedEmbedded(id, record.owner) } : undefined;
+    const sources = bindSources(record.items, record.identifier, { monster });
     for (const [field, value] of [["sources", sources], ["resolutions", resolutions]]) {
       if (Object.keys(value).length) record[field] = value;
       else delete record[field];

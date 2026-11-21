@@ -230,7 +230,9 @@ export function renderRules() {
       const name = rule.origin ? `${rule.name} (${rule.origin})` : rule.name;
       const pages = [`p.${rule.page}`, ...(rule.alsoIn ?? []).map(other => `${other.book} p.${other.page}`)].join("; ");
       const where = (rule.handledIn === "code") ? `code${rule.entry ? " + table" : ""}` : "table";
-      out.push(`| ${name} | ${KIND[rule.kind]} | ${pages} | ${rule.adds} | ${where} | ${STATUS[rule.status]} |`);
+      // Ruling R5: an origin whose item the rule does not reach is said, with why.
+      const gaps = (rule.uncovered ?? []).map(u => ` Not covered on ${u.origin}: ${u.because}.`).join("");
+      out.push(`| ${name} | ${KIND[rule.kind]} | ${pages} | ${rule.adds}${gaps} | ${where} | ${STATUS[rule.status]} |`);
     }
     out.push("");
   }

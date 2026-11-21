@@ -22,6 +22,8 @@
  *                                from `kind`; null when the catalogue has no such entry (a creature's trait, for instance).
  * @property {boolean} [inCore]   DAS · Core has an entry under this rule's name, which the progress table already counts in the
  *                                engine's column: the pack's rule completes it, or serves another identifier of the same name.
+ * @property {string[]} [alsoAs]  Other identifiers the entry is registered under: an origin's item that names it otherwise.
+ * @property {{origin: string, because: string}[]} [uncovered]  Origins whose item the rule does not reach, and why.
  */
 
 /** What a rule is about. */
