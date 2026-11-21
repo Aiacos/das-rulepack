@@ -1,5 +1,5 @@
 // Command line of the rulebook pipeline: `npm run pipeline -- <subcommand> ...`. Later tasks add one function each to COMMANDS.
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { canonical, isReservedBook, loadBook, saveBook } from "./registry.mjs";
@@ -9,6 +9,8 @@ import { inventory } from "./inventory.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
+import { autoTriage, ingest } from "./triage.mjs";
+import { cutBatches, DEFAULT_BATCH_SIZE } from "./batch.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const REGISTRY = process.env.RULEPACK_REGISTRY || join(ROOT, "registry");
@@ -154,7 +156,92 @@ function generateCommand(args) {
   }
 }
 
-export const COMMANDS = { inventory: inventoryCommand, gates: gatesCommand, generate: generateCommand };
+function loadBookOrFail(code) {
+  if (!code) throw new UsageError("A book code is required");
+  const found = loadRegistry(REGISTRY).find((b) => b.book.toLowerCase() === code.toLowerCase());
+  if (!found) throw new UsageError(`The registry has no book ${code}`);
+  return found;
+}
+
+async function triageCommand([book, ...rest]) {
+  if (!book || rest.length) throw new UsageError("Usage: triage <BOOK>");
+  const coreDir = need("DAS_CORE");
+  const textDir = need("RULEPACK_TEXT");
+  const found = loadBookOrFail(book);
+  const { identifiers } = await loadCore(coreDir);
+  const at = new Date().toISOString();
+  const counts = {};
+  const records = found.records.map((r) => {
+    const t = autoTriage(r, { coreIdentifiers: identifiers, textDir });
+    if (!t) return r;
+    counts[t.verdict] = (counts[t.verdict] ?? 0) + 1;
+    return { ...r, verdict: t.verdict, why: t.why, evidence: { ...r.evidence, triaged: { by: t.by, at } } };
+  });
+  saveBook(REGISTRY, { book: found.book, note: found.note, records });
+  for (const [verdict, n] of Object.entries(counts)) console.log(`${verdict}: ${n}`);
+  console.log(`left: ${records.filter((r) => !r.verdict).length}`);
+}
+
+function batchCommand([stage, book, ...rest]) {
+  const usage = "Usage: batch triage <BOOK> --out <dir> [--size <n>]";
+  if (stage !== "triage" || !book) throw new UsageError(usage);
+  const opts = {};
+  for (let i = 0; i < rest.length; i += 2) {
+    if (!["--out", "--size"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
+    opts[rest[i].slice(2)] = rest[i + 1];
+  }
+  if (!opts.out) throw new UsageError(usage);
+  const size = opts.size === undefined ? DEFAULT_BATCH_SIZE : Number(opts.size);
+  if (!Number.isInteger(size) || size < 1) throw new UsageError("--size must be a positive integer");
+  const batches = cutBatches(loadBookOrFail(book).records, { size });
+  mkdirSync(opts.out, { recursive: true });
+  for (const b of batches) writeFileSync(join(opts.out, `${b.id}.json`), `${JSON.stringify(b, null, 2)}\n`);
+  console.log(`${batches.length} batches written to ${opts.out}`);
+}
+
+function readJson(file, what) {
+  try { return JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new UsageError(`${what} ${file}: ${e.message}`); }
+}
+
+// registry/queue.json: results that wait for a person. Merged by key; a key that was applied now leaves the queue.
+function mergeQueue(dir, queued, applied) {
+  const file = join(dir, "queue.json");
+  const current = existsSync(file) ? readJson(file, "queue") : [];
+  if (!Array.isArray(current)) throw new UsageError(`${file}: must be an array`);
+  const byKey = new Map(current.filter((q) => !applied.includes(q.key)).map((q) => [q.key, q]));
+  for (const q of queued) byKey.set(q.key, q);
+  const next = [...byKey.values()].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  if (next.length || existsSync(file)) {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(file, `${JSON.stringify(next, null, 2)}\n`);
+  }
+}
+
+function ingestCommand([file, ...rest]) {
+  if (!file || rest.length) throw new UsageError("Usage: ingest <results-file>");
+  const textDir = need("RULEPACK_TEXT");
+  const input = readJson(file, "results file");
+  if (typeof input?.batch !== "string" || typeof input?.by !== "string" || !Array.isArray(input?.results)) {
+    throw new UsageError(`${file}: must be { batch: string, by: string, results: [...] }`);
+  }
+  const books = loadRegistry(REGISTRY);
+  const out = ingest(books.flatMap((b) => b.records), input.results, {
+    textDir, by: input.by, overwrite: input.overwrite === true
+  });
+  const touched = new Set(out.records.filter((r) => out.applied.includes(r.key)).map((r) => r.book));
+  for (const b of books) {
+    if (!touched.has(b.book)) continue;
+    saveBook(REGISTRY, { book: b.book, note: b.note, records: out.records.filter((r) => r.book === b.book) });
+  }
+  if (out.queued.length || out.applied.length) mergeQueue(REGISTRY, out.queued, out.applied);
+  console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
+  if (out.rejected.length) process.exitCode = 1;
+}
+
+export const COMMANDS = {
+  inventory: inventoryCommand, gates: gatesCommand, generate: generateCommand, triage: triageCommand, batch: batchCommand,
+  ingest: ingestCommand
+};
 
 export async function main(argv) {
   const [name, ...args] = argv;

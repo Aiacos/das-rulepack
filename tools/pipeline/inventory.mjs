@@ -64,7 +64,9 @@ export function inventory({ book, kind, dataset, dumps, textDir, previous }) {
     const sha256 = cacheText(textDir, entry.text);
     const text = { sha256, source: "5etools", chars: entry.text.length };
     const items = itemsFor(entry, dumps);
-    const fresh = { identifier: canonicalIdentifier(items, entry.name), page: entry.page, text, items };
+    const fresh = {
+      identifier: canonicalIdentifier(items, entry.name), page: entry.page, srd: Boolean(entry.srd), text, items
+    };
 
     let record = existing;
     if (existing) {

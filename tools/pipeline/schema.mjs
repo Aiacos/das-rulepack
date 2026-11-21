@@ -63,6 +63,7 @@ export function validateRecord(record) {
   if ("rule" in record) checkRule(record.rule, record.verdict, errors);
   else if (record.verdict === "entry") errors.push("rule.entry: required when the verdict is entry");
   if ("legacy" in record && typeof record.legacy !== "boolean") errors.push("legacy: must be a boolean");
+  if ("srd" in record && typeof record.srd !== "boolean") errors.push("srd: must be a boolean");
   if ("legacyStatus" in record && !LEGACY_STATUSES.includes(record.legacyStatus)) {
     errors.push(`legacyStatus: must be one of ${LEGACY_STATUSES.join(", ")}`);
   }
