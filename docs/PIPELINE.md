@@ -34,8 +34,8 @@ Every command is an npm script: `npm run <name> -- <arguments>`.
 | 1 | Inventory | `npm run inventory -- <BOOK> <kind|all> [--allow-collisions]` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 1b | Settle a match | `npm run resolve -- <key> <origin> --doc <docId> --because "<one line>"` (see "Settling matches") | `RULEPACK_DUMPS` (`--doc`) | a person |
 | 2a | Triage by rule | `npm run triage -- <BOOK>` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
-| 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--size 40]` | nothing | a person |
-| 2c | Read a batch | (no command: a reader agent reads a file) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
+| 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
+| 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
@@ -63,9 +63,25 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      is a finding for upstream, not a rule for this pack). It records `evidence.triaged = { by: "rule", at }`, saves the
      book and prints a count per verdict and how many records are left.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
-     kind, `--size` entries each (default 40). A batch is `{ id, stage: "triage", entries: [{ key, name, kind, edition,
-     textSha, items }] }`; `items` are the item summaries without their `data`. Text is referenced by `textSha` and never
+     kind (`--kind` keeps one kind), `--size` entries each (default 40). When `<dir>` already holds batch files of the book,
+     numbering continues after the highest number there: an id is never reused. A batch is `{ id, stage: "triage", entries:
+     [{ key, name, kind, edition, textSha, owner?, level?, section?, rarity?, page?, srd?, items }] }`; the optional fields are
+     the record's own (where a feature sits, its page, the SRD flag) and are left out when the record has none; `items` are the
+     item summaries without their `data` (a matched item keeps its `differences`). Text is referenced by `textSha` and never
      embedded, so a batch file is safe to commit.
+   - `batch triage ... --structure <private dir>` also writes `<private dir>/<batch id>.structure.json`:
+     `{ batch, entries: { <key>: { <origin>: <structure> | null } } }`, one origin per matched item (`null` when the dumps do
+     not hold its document, always so for `plutonium`); an entry with no matched item is left out. It needs `RULEPACK_DUMPS`.
+     For a monster feature the document is the item embedded in the actor (`<actor id>.<item id>`). The structure
+     (`tools/pipeline/structure.mjs`) is built from a whitelist: `level`, `school`, `rarity`, `duration`, `concentration`,
+     `uses` (`max`, recovery periods), per activity its `id`, a `label` (the name without markup, 40 characters at most),
+     `type`, `activation`, `save` (abilities and DC), `onSave`, `damage` and `healing` parts (`number`, `denomination`,
+     `types`), `template`, `affects`, the ids of its `effects` and what it `consumes`, and per effect `id`, `name`,
+     `statuses`, the `changes` as a list of changed KEYS (never their values), `transfer` and `duration`. No description,
+     chat text, flag or prose value is ever copied: a string that is not a plain value (enumeration, id, key, short formula)
+     is dropped. It is still derived from premium data, so the command REFUSES (exit 2, nothing written) a `--structure`
+     folder inside the repository (real paths, so also through a symlink), inside the registry folder or equal to or around
+     `--out`. Never commit a structure file.
    - `ingest` takes what the readers wrote (see below).
 4. **Gates** check every record deterministically and write their outcome into `evidence.gates`: the gates that were
    checked and passed in `passed`, those that could only leave a note in `noted`. The ids gate fails closed: every
@@ -106,12 +122,30 @@ rule), `code` (needs a script), `engine` (needs something the engine lacks), `un
 
 ## 📖 Brief for a triage reader agent
 
-The Claude Code session gives each reader agent one batch file and this brief.
+The Claude Code session gives each reader agent one batch file, its structure file and this brief.
 
 > You triage the entries of one batch file, `<dir>/<book>-triage-<NNN>.json`.
 >
-> **What you may read.** The batch file, and the text cache `$RULEPACK_TEXT`: the text of an entry is the file
-> `<textSha>.txt`. Nothing else.
+> **What you may read.** The batch file; its structure file `<private dir>/<book>-triage-<NNN>.structure.json`; and the text
+> cache `$RULEPACK_TEXT`: the text of an entry is the file `<textSha>.txt`. Nothing else.
+>
+> **How you work.** For each entry, read the rule text by its `textSha`, then compare it with the structure of each origin
+> (`official`, `ddb-importer`, `plutonium`) under the entry's key in the structure file. The structure says what the item's own
+> data carries (activities, saves, damage, templates, effects with the keys they change, uses, duration, concentration); the
+> text says what the rule is. A `null` origin has a matched item whose document could not be read; an origin missing from the
+> structure file has no matched item. The batch entry gives `owner`, `level`, `section`, `rarity`, `page` and `srd` where they
+> apply, and per item its `match` and `differences`. When the origins differ, say in `why` which origin lacks what.
+>
+> **What the engine does without an entry** (so the data resolves it: `data`, or `none` when the text adds nothing to combat):
+> attack rolls; saving throws; damage and healing, with half or none on a successful save as the activity says; applying an
+> activity's effects on a hit or a failed save; statuses, with the standard condition rules; durations; passive effects that
+> transfer to the bearer; concentration; uses and their recovery; templates and targeting; summon and cast activities.
+>
+> **What needs an entry** (`entry`, or `code` when a declarative rule cannot say it): a saving throw repeated each turn;
+> damage at the start of a turn or on entering an area; an effect that ends on a stated event; a rider that applies once per
+> turn; an aura; advantage or disadvantage in a stated circumstance; a rule limited to a creature type; a choice made at the
+> moment of use; a data fix, when the item's data lacks what the text needs (an activity, an effect or a value that is missing
+> or wrong in every origin).
 >
 > **What you decide.** For each entry, one verdict:
 > `data` (the item's own activities and effects already do what the text says), `none` (nothing in the text acts in
@@ -120,7 +154,7 @@ The Claude Code session gives each reader agent one batch file and this brief.
 > settled it, and a result with `core` is rejected.
 >
 > **No text, no verdict.** If the text file is missing or unreadable, answer `unverifiable`, whatever you know of the rules.
-> Never decide from memory of the book.
+> Never decide from memory of the book, and never from the structure alone: it shows what the data does, not what the rule is.
 >
 > **Write one file** `<batch id>.results.json` outside the repository:
 >
@@ -141,7 +175,8 @@ The Claude Code session gives each reader agent one batch file and this brief.
 > character.
 >
 > **Limits.** `why` is your own words: never quote the rulebook, and in no case 12 or more consecutive words of the text
-> (a longer quotation is rejected). No server, no network, no git, no edits to the repository.
+> (a longer quotation is rejected), and never copy a structure file's content beyond ids and keys: it is private. No server,
+> no network, no git, no edits to the repository.
 >
 > **Confidence** is a number from 0 to 1. 1 means certain; 0.7 is the line: at 0.7 or more you would stand behind the
 > verdict if nobody checked it; below 0.7 you are guessing, or the text is ambiguous, and a person will look at it instead.

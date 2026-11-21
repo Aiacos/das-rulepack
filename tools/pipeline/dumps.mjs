@@ -146,3 +146,19 @@ export function reprintIndex(dumpsDir, files) {
   }
   return index;
 }
+
+/**
+ * The raw documents of dump files, by id: `Map<docId, document>`; the first of a document id wins (copies of one item share
+ * their data). In an actor pack the documents are the items embedded in the actors, keyed `<actor id>.<item id>`.
+ */
+export function docIndex(dumpsDir, files) {
+  const index = new Map();
+  const add = (id, doc) => { if (typeof id === "string" && !index.has(id)) index.set(id, doc); };
+  for (const file of files) {
+    for (const doc of readDump(join(dumpsDir, file))) {
+      if (isActorFile(file)) for (const item of doc.items ?? []) add(`${doc._id}.${item._id}`, item);
+      else add(doc?._id, doc);
+    }
+  }
+  return index;
+}

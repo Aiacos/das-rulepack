@@ -1,12 +1,12 @@
 // Command line of the rulebook pipeline: `npm run pipeline -- <subcommand> ...`. Later tasks add one function each to COMMANDS.
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { basename, dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BOOK_CODE, canonical, groupBy, isReservedBook, loadBook, loadLegacy, saveBook } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
 import {
-  actorSummaries, dumpsFor, grantIndex, isActorFile, itemSummary, officialFilesFor, readDump, reprintIndex
+  actorSummaries, docIndex, dumpsFor, grantIndex, isActorFile, itemSummary, officialFilesFor, readDump, reprintIndex
 } from "./dumps.mjs";
 import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { poolOf } from "./settle.mjs";
@@ -15,7 +15,8 @@ import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
 import { autoTriage, clip, ingest, BY } from "./triage.mjs";
-import { cutBatches, DEFAULT_BATCH_SIZE } from "./batch.mjs";
+import { cutBatches, DEFAULT_BATCH_SIZE, highestBatches } from "./batch.mjs";
+import { structureOf } from "./structure.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const REGISTRY = process.env.RULEPACK_REGISTRY || join(ROOT, "registry");
@@ -251,21 +252,88 @@ async function triageCommand([book, ...rest]) {
   console.log(`left: ${records.filter((r) => !r.verdict).length}`);
 }
 
+// The real path of `p`, also when it does not exist yet: the nearest existing ancestor is resolved (symlinks included).
+function realPathOf(p) {
+  let current = resolve(p);
+  const rest = [];
+  while (!existsSync(current)) {
+    rest.unshift(basename(current));
+    current = dirname(current);
+  }
+  return join(realpathSync(current), ...rest);
+}
+const isInside = (path, dir) => path === dir || path.startsWith(dir.endsWith(sep) ? dir : dir + sep);
+
+// The structure folder holds data derived from premium items: never inside the repository, the registry or the batch folder.
+function checkStructureDir(dir, out) {
+  const real = realPathOf(dir);
+  for (const [what, guarded] of [["the repository", ROOT], ["the registry folder", REGISTRY], ["the batch folder", out]]) {
+    if (isInside(real, realPathOf(guarded))) throw new UsageError(`--structure ${dir} is inside ${what}: choose a private folder`);
+  }
+  if (isInside(realPathOf(out), real)) throw new UsageError(`--structure ${dir} holds the batch folder: choose a private folder`);
+}
+
+// Per batch entry and matched origin, the structure of the item's document (null when the dumps do not hold it).
+// A monster feature's document is the item embedded in the actor (`<actor id>.<item id>`).
+function structuresOf(batch, records, dumpsDir) {
+  const byKey = new Map(records.map((r) => [r.key, r]));
+  const indexes = new Map();
+  const docs = (book, origin, kind) => {
+    const id = `${book}/${origin}/${kind === "monster"}`;
+    if (!indexes.has(id)) {
+      const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+      const files = origin === "official" ? officialFilesFor(dumpsDir, packages, book)
+        : origin === "ddb-importer" ? dumpsFor(dumpsDir, "ddb-importer") : [];
+      indexes.set(id, docIndex(dumpsDir, files.filter((f) => isActorFile(f) === (kind === "monster"))));
+    }
+    return indexes.get(id);
+  };
+  const entries = {};
+  for (const e of batch.entries) {
+    const r = byKey.get(e.key);
+    const perOrigin = {};
+    for (const item of r.items.filter((i) => i.match === "matched")) {
+      const doc = docs(r.book, item.origin, r.kind).get(item.docId);
+      perOrigin[item.origin] = doc ? structureOf(doc) : null;
+    }
+    if (Object.keys(perOrigin).length) entries[e.key] = perOrigin;
+  }
+  return { batch: batch.id, entries };
+}
+
 function batchCommand([stage, book, ...rest]) {
-  const usage = "Usage: batch triage <BOOK> --out <dir> [--size <n>]";
+  const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>]";
   if (stage !== "triage" || !book) throw new UsageError(usage);
   const opts = {};
   for (let i = 0; i < rest.length; i += 2) {
-    if (!["--out", "--size"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
+    if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
   }
   if (!opts.out) throw new UsageError(usage);
   const size = opts.size === undefined ? DEFAULT_BATCH_SIZE : Number(opts.size);
   if (!Number.isInteger(size) || size < 1) throw new UsageError("--size must be a positive integer");
-  const batches = cutBatches(loadBookOrFail(book).records, { size });
+  if (opts.kind !== undefined && !INVENTORY_KINDS.includes(opts.kind)) {
+    throw new UsageError(`--kind "${clip(opts.kind)}" is unknown: ${INVENTORY_KINDS.join(", ")}`);
+  }
+  const found = loadBookOrFail(book);
+  const dumpsDir = opts.structure === undefined ? null : need("RULEPACK_DUMPS");
+  if (dumpsDir !== null) {
+    checkStructureDir(opts.structure, opts.out);
+    if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+  }
+  const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out)) : {};
+  const batches = cutBatches(found.records, { size, kind: opts.kind, after });
   mkdirSync(opts.out, { recursive: true });
-  for (const b of batches) writeFileSync(join(opts.out, `${b.id}.json`), `${JSON.stringify(b, null, 2)}\n`);
-  console.log(`${batches.length} batches written to ${opts.out}`);
+  if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
+  for (const b of batches) {
+    writeFileSync(join(opts.out, `${b.id}.json`), `${JSON.stringify(b, null, 2)}\n`);
+    if (dumpsDir !== null) {
+      const file = join(opts.structure, `${b.id}.structure.json`);
+      writeFileSync(file, `${JSON.stringify(structuresOf(b, found.records, dumpsDir), null, 2)}\n`);
+    }
+  }
+  const withStructure = dumpsDir === null ? "" : `, structure files to ${opts.structure}`;
+  console.log(`${batches.length} batches written to ${opts.out}${withStructure}`);
 }
 
 function readJson(file, what) {

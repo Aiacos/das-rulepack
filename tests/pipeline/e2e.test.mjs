@@ -68,8 +68,14 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("pipeline end to end", () => {
     twice(["triage", "XZZ"], 0);
     expect(loadBook(registry, "XZZ").records.every((r) => r.verdict === null)).toBe(true);
 
-    twice(["batch", "triage", "XZZ", "--out", batches], 0);
+    expect(run("batch", "triage", "XZZ", "--out", batches).status).toBe(0);
     expect(readdirSync(batches)).toEqual(["xzz-triage-001.json"]);
+    // Again: the first batch stays as it is and the new one gets the next number (an id is never reused).
+    const kept = readFileSync(join(batches, "xzz-triage-001.json"), "utf8");
+    expect(run("batch", "triage", "XZZ", "--out", batches).status).toBe(0);
+    expect(readFileSync(join(batches, "xzz-triage-001.json"), "utf8")).toBe(kept);
+    expect(readdirSync(batches)).toEqual(["xzz-triage-001.json", "xzz-triage-002.json"]);
+    rmSync(join(batches, "xzz-triage-002.json"));
     const batch = JSON.parse(readFileSync(join(batches, "xzz-triage-001.json"), "utf8"));
     expect(batch.entries.map((e) => e.key).sort()).toEqual(NAMES.map(keyOf).sort());
 
