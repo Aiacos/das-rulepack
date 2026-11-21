@@ -12,14 +12,15 @@ what an entry needs, not that it is done, and only the last column counts rules 
 | Entries | 19,143 |
 | Joined to an item of the official Foundry module | 4,703 |
 | Joined to an item imported by DDB Importer (spells and items only) | 2,327 |
-| Verdict `core` · `none` · `data` | 724 · 1,504 · 1,252 |
-| Verdict `entry` (a rule is needed and not written yet) | 1,317 |
-| Verdict `unverifiable` (no text) | 271 |
-| Waiting for a person in `registry/queue.json` | 233 |
-| No verdict yet | 13,837 |
+| Verdict `core` · `none` · `data` | 724 · 1,784 · 1,318 |
+| Verdict `entry` (a rule is needed and not written yet) | 1,838 |
+| Verdict `unverifiable` (no text) | 272 |
+| Waiting for a person in `registry/queue.json` | 322 |
+| No verdict yet | 12,880 |
 | Rules the module registers | 24 |
 
-Books published in or after 2024 were read entry by entry by reader agents (`docs/coverage-5e24.md` has their detail);
+Books published in or after 2024, and Tasha's and Xanathar's, were read entry by entry by reader agents
+(`docs/coverage-5e24.md` has the detail of the 2024-era ones);
 the older books are inventoried and triaged by rule only, so nearly all their entries have no verdict yet. Most older
 books have no official Foundry module: their "official item" column is 0 by lack of a module, and DDB Importer has local
 dumps for spells and items only.
@@ -59,14 +60,14 @@ dumps for spells and items only.
 | Explorer's Guide to Wildemount (`EGW`) | 2020 | 305 | 0 | 0 | 0 | 38 | 0 | 0 | 0 | 0 | 267 | 0 |
 | Muk's Guide to Everything He Learned From Tasha (`MGELFT`) | 2020 | 27 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 27 | 0 |
 | Mythic Odysseys of Theros (`MOT`) | 2020 | 346 | 0 | 12 | 1 | 0 | 0 | 0 | 0 | 0 | 345 | 0 |
-| Tasha's Cauldron of Everything (`TCE`) | 2020 | 608 | 404 | 75 | 6 | 7 | 0 | 3 | 8 | 0 | 582 | 5 |
+| Tasha's Cauldron of Everything (`TCE`) | 2020 | 608 | 404 | 75 | 6 | 159 | 51 | 318 | 9 | 63 | 0 | 5 |
 | Acquisitions Incorporated (`AI`) | 2019 | 164 | 0 | 29 | 1 | 0 | 0 | 1 | 0 | 0 | 162 | 1 |
 | Adventure with Muk (`AWM`) | 2019 | 43 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 43 | 0 |
 | Eberron: Rising from the Last War (`ERLW`) | 2019 | 371 | 0 | 21 | 0 | 7 | 0 | 0 | 0 | 0 | 364 | 0 |
 | Guildmasters' Guide to Ravnica (`GGR`) | 2018 | 509 | 0 | 34 | 0 | 8 | 0 | 0 | 0 | 0 | 501 | 0 |
 | Mordenkainen's Tome of Foes (`MTF`) | 2018 | 999 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 998 | 0 |
 | One Grung Above (`OGA`) | 2017 | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 0 |
-| Xanathar's Guide to Everything (`XGE`) | 2017 | 405 | 0 | 118 | 6 | 12 | 0 | 11 | 0 | 0 | 375 | 12 |
+| Xanathar's Guide to Everything (`XGE`) | 2017 | 405 | 0 | 118 | 6 | 140 | 15 | 217 | 0 | 26 | 0 | 12 |
 | Volo's Guide to Monsters (`VGM`) | 2016 | 738 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 736 | 0 |
 | Sword Coast Adventurer's Guide (`SCAG`) | 2015 | 101 | 0 | 12 | 1 | 3 | 0 | 0 | 0 | 0 | 97 | 0 |
 | Dungeon Master's Guide (2014) (`DMG`) | 2014 | 588 | 0 | 271 | 2 | 54 | 0 | 0 | 16 | 0 | 516 | 0 |

@@ -376,6 +376,510 @@
     "reason": "low-confidence"
   },
   {
+    "key": "tce:feat:metamagic-adept",
+    "verdict": "none",
+    "why": "Choose two metamagic options and gain 2 sorcery points; build choice and resource, option effects belong to their own items.",
+    "confidence": 0.65,
+    "by": "reader-tce-001",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:artificer/armorer/3/armor-model",
+    "verdict": "entry",
+    "why": "Model choice grants weapon traits and Intelligence for attacks; data has partial effects and a reaction save.",
+    "confidence": 0.65,
+    "by": "reader-tce-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:artificer/artillerist/3/eldritch-cannon",
+    "verdict": "entry",
+    "why": "Cannon summon with limited uses and slot option exists, but activation, move and type choices need a rule.",
+    "confidence": 0.65,
+    "by": "reader-tce-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:artificer/battle-smith/3/steel-defender",
+    "verdict": "data",
+    "why": "Summon activity carries the defender; initiative and command rules are the summon system's job.",
+    "confidence": 0.65,
+    "by": "reader-tce-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:bard/creation/6/animating-performance",
+    "verdict": "data",
+    "why": "Summon activity with slot option carries the animated item; command rules come from the summon system.",
+    "confidence": 0.65,
+    "by": "reader-tce-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:cleric/2/channel-divinity-harness-divine-power",
+    "verdict": "entry",
+    "why": "Bonus action to regain a spell slot limited by proficiency-based level; no item data, choice at use time.",
+    "confidence": 0.65,
+    "by": "reader-tce-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:druid/2/wild-companion",
+    "verdict": "data",
+    "why": "Summon activity with duration formula already present; the familiar spell itself is cast by the summon.",
+    "confidence": 0.6,
+    "by": "reader-tce-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:druid/wildfire/2/summon-wildfire-spirit",
+    "verdict": "data",
+    "why": "Summon activity plus save-for-damage activity in the data already cover the summon and its arrival blast.",
+    "confidence": 0.65,
+    "by": "reader-tce-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:expert-sidekick/20/inspiring-help-improvement",
+    "verdict": "entry",
+    "why": "No item data. Raises the die of another sidekick feature to 2d6; a rule must scale that die.",
+    "confidence": 0.6,
+    "by": "reader-tce-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:fighter/rune-knight/15/master-of-runes",
+    "verdict": "entry",
+    "why": "Doubles rune uses and adds short rest recovery for runes; data has no activity or uses for it.",
+    "confidence": 0.6,
+    "by": "reader-tce-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:fighter/rune-knight/3/rune-carver",
+    "verdict": "none",
+    "why": "Choice and inscription of runes at a rest; the rune effects themselves are separate entries.",
+    "confidence": 0.65,
+    "by": "reader-tce-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:paladin/glory/3/peerless-athlete",
+    "verdict": "entry",
+    "why": "No item data. Bonus action buff with advantage on two skills, carrying and jump bonus; circumstantial rule.",
+    "confidence": 0.65,
+    "by": "reader-tce-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:ranger/3/primal-awareness",
+    "verdict": "none",
+    "why": "Grants extra spells cast once per rest; the spells carry the combat effects.",
+    "confidence": 0.65,
+    "by": "reader-tce-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:ranger/6/deft-explorer-improvement",
+    "verdict": "entry",
+    "why": "No item data. Passive speed increase and new climb and swim speeds; a data fix is needed.",
+    "confidence": 0.6,
+    "by": "reader-tce-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:rogue/soulknife/3/psionic-power",
+    "verdict": "entry",
+    "why": "Dice pool is in data but recovery is empty and the bonus action regain once per short rest is missing; die size scales by level.",
+    "confidence": 0.65,
+    "by": "reader-tce-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:warrior-sidekick/2/second-wind",
+    "verdict": "entry",
+    "why": "No item data: bonus action self-heal with level-scaled dice and a rest-limited use; needs an activity plus use tracking.",
+    "confidence": 0.6,
+    "by": "reader-tce-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:warrior-sidekick/20/second-wind-improvement",
+    "verdict": "entry",
+    "why": "No item data: raises the use count of the Second Wind feature at top level; needs a data fix to its uses.",
+    "confidence": 0.6,
+    "by": "reader-tce-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:feature:warrior-sidekick/6/extra-attack",
+    "verdict": "entry",
+    "why": "No item data: extra attacks with Attack action, scaling at a later level, exclusive with Multiattack; needs a rule.",
+    "confidence": 0.65,
+    "by": "reader-tce-006",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:acid-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:barrier-tattoo-large",
+    "verdict": "entry",
+    "why": "No item data; unarmored AC formula that still allows a shield needs a rule",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:barrier-tattoo-medium",
+    "verdict": "entry",
+    "why": "No item data; unarmored AC formula that still allows a shield needs a rule",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:barrier-tattoo-small",
+    "verdict": "entry",
+    "why": "No item data; unarmored AC formula that still allows a shield needs a rule",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:cold-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:crystalline-chronicle",
+    "verdict": "none",
+    "why": "Spell swap and casting without components have no combat effect the engine tracks",
+    "confidence": 0.65,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:elemental-essence-shard",
+    "verdict": "entry",
+    "why": "Random essence property used when a Metamagic option is applied; choice at use, data lacks it",
+    "confidence": 0.65,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:feywild-shard",
+    "verdict": "entry",
+    "why": "Wild surge roll on Metamagic use with concentration waived and a once per dawn limit unless Wild Magic",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:fire-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:force-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:lightning-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:lyre-of-building",
+    "verdict": "data",
+    "why": "Cast activities cover the spells; object damage immunity reaction has no creature combat effect",
+    "confidence": 0.65,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:masquerade-tattoo",
+    "verdict": "none",
+    "why": "No item data; disguise and tattoo shaping are out of combat",
+    "confidence": 0.65,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:mighty-servant-of-leuk-o",
+    "verdict": "entry",
+    "why": "Piloted construct commands, reaction attacks, charm on damage and a self-destruct save; complex, partly in data",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:necrotic-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:outer-essence-shard",
+    "verdict": "entry",
+    "why": "Random shard property used on Metamagic use; choice at use time, data lacks it",
+    "confidence": 0.65,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:poison-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:psychic-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:radiant-absorbing-tattoo",
+    "verdict": "unverifiable",
+    "why": "Text is only a reference stub to a shared entry and has no rule content to judge",
+    "confidence": 0.5,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:revelers-concertina",
+    "verdict": "data",
+    "why": "Spell save DC bonus and Otto's dance cast are in data; limit to bard spells is minor",
+    "confidence": 0.65,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:spellwrought-tattoo-1st-level",
+    "verdict": "entry",
+    "why": "No item data; holds a spell cast with fixed ability modifier, DC and attack bonus",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:spellwrought-tattoo-2nd-level",
+    "verdict": "entry",
+    "why": "No item data; holds a spell cast with fixed ability modifier, DC and attack bonus",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:spellwrought-tattoo-3rd-level",
+    "verdict": "entry",
+    "why": "No item data; holds a spell cast with fixed ability modifier, DC and attack bonus",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:item:spellwrought-tattoo-4th-level",
+    "verdict": "entry",
+    "why": "No item data; holds a spell cast with fixed ability modifier, DC and attack bonus",
+    "confidence": 0.6,
+    "by": "reader-tce-007",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:aberrant-spirit/action/eye-ray-beholderkin-only",
+    "verdict": "data",
+    "why": "no item data; plain ranged spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:aberrant-spirit/action/psychic-slam-star-spawn-only",
+    "verdict": "data",
+    "why": "no item data; plain melee spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:bestial-spirit/action/maul",
+    "verdict": "data",
+    "why": "no item data; plain melee spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:celestial-spirit/action/healing-touch",
+    "verdict": "data",
+    "why": "no item data; healing activity with a level-scaled formula on a touched creature; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:celestial-spirit/action/radiant-bow-avenger-only",
+    "verdict": "data",
+    "why": "no item data; plain ranged spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:construct-spirit/action/slam",
+    "verdict": "data",
+    "why": "no item data; plain melee spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:dancing-item/trait/immutable-form",
+    "verdict": "none",
+    "why": "immunity to form-altering effects; no combat action or roll to automate",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:elemental-spirit/trait/amorphous-form-air-fire-and-water-only",
+    "verdict": "none",
+    "why": "no item data; squeezing through narrow spaces; no combat roll or resource involved",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:fey-spirit/action/shortsword",
+    "verdict": "data",
+    "why": "no item data; melee spell attack with two damage parts; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:fiendish-spirit/action/bite-demon-only",
+    "verdict": "data",
+    "why": "no item data; plain melee spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:fiendish-spirit/trait/devils-sight-devil-only",
+    "verdict": "none",
+    "why": "no item data; darkvision unaffected by magical darkness; no roll or resource to automate",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:juvenile-mimic/action/shape-shift",
+    "verdict": "none",
+    "why": "form change with no mechanical statistics change; nothing for combat automation to compute",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:juvenile-mimic/trait/false-appearance-object-form-only",
+    "verdict": "none",
+    "why": "passive disguise while motionless; only matters outside rolls, nothing to automate",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:juvenile-mimic/trait/spider-climb",
+    "verdict": "none",
+    "why": "climbing ability on difficult surfaces with no check; movement flavor, nothing to automate",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:mighty-servant-of-leuk-o/trait/immutable-existence",
+    "verdict": "none",
+    "why": "immunity to form-altering or plane-shifting effects; no action or roll to automate",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:mighty-servant-of-leuk-o/trait/standing-leap",
+    "verdict": "none",
+    "why": "fixed jump distances, not used in combat rolls; nothing to automate",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:shadow-spirit/action/chilling-rend",
+    "verdict": "data",
+    "why": "no item data; plain melee spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:shadow-spirit/bonus/shadow-stealth-fear-only",
+    "verdict": "entry",
+    "why": "no item data; bonus action Hide, only while in dim light or darkness",
+    "confidence": 0.65,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:monster:undead-spirit/action/grave-bolt-skeletal-only",
+    "verdict": "data",
+    "why": "no item data; plain ranged spell attack with damage scaling by summon level; activity should carry it",
+    "confidence": 0.6,
+    "by": "reader-tce-009",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:option:enhanced-arcane-focus",
+    "verdict": "entry",
+    "why": "Spell attack bonus is carried, but ignoring cover on spell attacks and the level-10 increase are not expressed in data.",
+    "confidence": 0.65,
+    "by": "reader-tce-010",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "tce:option:homunculus-servant",
+    "verdict": "data",
+    "why": "Summon activity exists for the creature; its turn rules are covered by the summon and companion handling.",
+    "confidence": 0.65,
+    "by": "reader-tce-010",
+    "reason": "low-confidence"
+  },
+  {
     "key": "xdmg:item:1-rod-of-the-pact-keeper",
     "verdict": "entry",
     "why": "Data adds the bonus to all spells; text limits the DC bonus to Warlock spells. Slot regain has activities and uses.",
@@ -693,6 +1197,214 @@
     "why": "No item data; text is only a cross reference stub, so nothing to judge.",
     "confidence": 0.5,
     "by": "reader-xdmg-005",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:barbarian/storm-herald/6/desert",
+    "verdict": "entry",
+    "why": "no item data; fire resistance only if environment chosen, plus action to ignite objects; choice-dependent",
+    "confidence": 0.65,
+    "by": "reader-xge-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:barbarian/storm-herald/6/sea",
+    "verdict": "entry",
+    "why": "no item data; lightning resistance if environment chosen, swim speed and underwater breathing",
+    "confidence": 0.65,
+    "by": "reader-xge-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:barbarian/storm-herald/6/tundra",
+    "verdict": "entry",
+    "why": "no item data; cold resistance if environment chosen, action to freeze water; choice-dependent",
+    "confidence": 0.65,
+    "by": "reader-xge-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:bard/swords/6/extra-attack",
+    "verdict": "data",
+    "why": "no item data; plain extra attack, engine handles attack count from the standard feature; low certainty",
+    "confidence": 0.65,
+    "by": "reader-xge-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:fighter/arcane-archer/3/arcane-shot-options",
+    "verdict": "entry",
+    "why": "no item data; defines the option list and save DC for Arcane Shot; options need rules, text here is the lead-in",
+    "confidence": 0.65,
+    "by": "reader-xge-002",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:fighter/samurai/18/strength-before-death",
+    "verdict": "code",
+    "why": "no item data; extra turn on dropping to 0 HP via reaction interrupts turn order; needs scripting",
+    "confidence": 0.6,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:monk/drunken-master/6/leap-to-your-feet",
+    "verdict": "none",
+    "why": "no item data; stand-up movement cost reduction; minor movement rule, no automation need",
+    "confidence": 0.6,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:monk/drunken-master/6/tipsy-sway",
+    "verdict": "none",
+    "why": "no item data; intro line only; benefits are in separate text",
+    "confidence": 0.65,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:monk/kensei/3/path-of-the-kensei",
+    "verdict": "none",
+    "why": "no item data; weapon and tool choices, proficiencies; kensei weapon selection is character building",
+    "confidence": 0.65,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:paladin/redemption/3/emissary-of-peace",
+    "verdict": "entry",
+    "why": "no item data; bonus action: +5 to Persuasion checks for 10 minutes; no combat impact, uses channel divinity",
+    "confidence": 0.6,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:ranger/monster-slayer/3/hunters-sense",
+    "verdict": "none",
+    "why": "no item data; information gathering action about resistances; no automatable combat effect",
+    "confidence": 0.65,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:rogue/inquisitive/13/unerring-eye",
+    "verdict": "none",
+    "why": "no item data; out-of-combat sensing of illusions with limited uses; no damage or condition effect",
+    "confidence": 0.65,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:rogue/inquisitive/3/eye-for-detail",
+    "verdict": "none",
+    "why": "no item data; bonus action Perception or Investigation check, exploration utility",
+    "confidence": 0.65,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:rogue/inquisitive/9/steady-eye",
+    "verdict": "none",
+    "why": "no item data; passive advantage on exploration checks, not combat",
+    "confidence": 0.65,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:rogue/mastermind/13/misdirection",
+    "verdict": "code",
+    "why": "no item data; reaction to redirect an attack to a creature providing cover; retargeting an attack needs scripting",
+    "confidence": 0.6,
+    "by": "reader-xge-003",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:sorcerer/shadow/1/eyes-of-the-dark",
+    "verdict": "entry",
+    "why": "no item data; Darkvision plus a spell castable with sorcery points or a slot with extra see-through benefit; choice at use.",
+    "confidence": 0.65,
+    "by": "reader-xge-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:sorcerer/shadow/6/hound-of-ill-omen",
+    "verdict": "entry",
+    "why": "no item data; Bonus action summon for sorcery points using modified dire wolf stats, temp HP and movement and attack limits; may need script.",
+    "confidence": 0.65,
+    "by": "reader-xge-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:feature:warlock/celestial/10/celestial-resilience",
+    "verdict": "entry",
+    "why": "no item data; Temp HP granted on finishing a rest to self and chosen creatures; rest-triggered, little combat relevance, unsure.",
+    "confidence": 0.6,
+    "by": "reader-xge-004",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:ceremony",
+    "verdict": "entry",
+    "why": "Rites grant timed d4 bonus to checks or saves and an AC bonus while near each other; data has no effects. Mostly out of combat.",
+    "confidence": 0.6,
+    "by": "reader-xge-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:druid-grove",
+    "verdict": "entry",
+    "why": "Warded area with fog, entangling growth, guardian trees and immunity for designated creatures; data has no activity or effect.",
+    "confidence": 0.65,
+    "by": "reader-xge-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:find-greater-steed",
+    "verdict": "entry",
+    "why": "Summons a bonded mount with chosen creature type and shared self-spells; data lacks a summon activity.",
+    "confidence": 0.6,
+    "by": "reader-xge-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:gust",
+    "verdict": "entry",
+    "why": "Push up to 5 feet on a failed Strength save for Medium or smaller; forced movement and size limit are not in data.",
+    "confidence": 0.65,
+    "by": "reader-xge-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:mass-polymorph",
+    "verdict": "entry",
+    "why": "Transforms many targets with temporary HP from the new form and revert at zero; data has only a save.",
+    "confidence": 0.65,
+    "by": "reader-xge-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:mind-spike",
+    "verdict": "entry",
+    "why": "Failed save also keeps the caster aware of the target and negates hiding or invisibility benefit; data has only the damage save.",
+    "confidence": 0.65,
+    "by": "reader-xge-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:summon-lesser-demons",
+    "verdict": "entry",
+    "why": "Hostile summoned demons rolled from a table, acting as a group with a circle protection; data lacks summon details.",
+    "confidence": 0.65,
+    "by": "reader-xge-008",
+    "reason": "low-confidence"
+  },
+  {
+    "key": "xge:spell:tiny-servant",
+    "verdict": "entry",
+    "why": "Animates an object into a controlled creature with stats; data lacks a summon activity.",
+    "confidence": 0.65,
+    "by": "reader-xge-008",
     "reason": "low-confidence"
   },
   {

@@ -8,7 +8,7 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 
 - [x] Triage of the 114 XPHB spells left by the rule: 97 verdicts applied (95 from the SRD 5.2 reading of November 2026, 2
       by a reader agent), see `docs/pilot-xphb-spells.md`.
-- [ ] `registry/queue.json`: 233 entries wait for a person (low-confidence readings and `engine` verdicts).
+- [ ] `registry/queue.json`: 322 entries wait for a person (low-confidence readings and `engine` verdicts).
 - [ ] 6 spells without a verdict: Blight, Control Water, Time Stop, Zone of Truth (fixes proposed to DAS · Core), and
       Leomund's Secret Chest and Leomund's Tiny Hut (the official module's identifier differs from the SRD one the engine
       uses — to be checked in play, then reported upstream).
@@ -29,7 +29,7 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] Ravenloft: The Horrors Within is not in the dataset (no text to fingerprint); Arcana Unleashed and World of Warcraft
       have a local dump since 2026-11-21 but are not in the dataset.
 - [x] The older books are inventoried and triaged by rule (2026-11-21): 39 books, 19,143 entries, `docs/coverage.md`.
-- [ ] Reader batches for the older books: 13,837 entries without a verdict (the 2014 Monster Manual and Mordenkainen Presents
+- [ ] Reader batches for the older books (Tasha's and Xanathar's are read, 2026-11-21): 12,880 entries without a verdict (the 2014 Monster Manual and Mordenkainen Presents
       alone are 3,880), after a second-reader sample has measured how reliable one reading is.
 - [ ] The three XPHB feature rules (Dreadful Strikes, Inspiring Smite, Psychic Veil) and the rules of FTD, MPMM, AI and PHB
       are still legacy records without item data: their keys carry no owner, or their book has no dump of that kind.
