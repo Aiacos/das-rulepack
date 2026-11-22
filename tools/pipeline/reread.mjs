@@ -14,6 +14,9 @@
 // - below the threshold: nothing changes; the record can be cut again.
 // A second reread of a provisional `core` fails closed: anything but an agreeing covered answer at the threshold (something
 // beyond, something unexpressed, or an unsure answer, whatever it says) gives the record back its previous verdict.
+// A restate (Ruling R31) reads ONCE more a first reread that found only what the vocabulary could not state then
+// (`unexpressed` names a reason of RESTATABLE, which trigger conditions now state, Ruling R30), the same reading
+// notwithstanding; the reread it stores carries `restated: true`, so a restate never cuts it again.
 import { createHash } from "node:crypto";
 import { canonical, groupBy, validateRecord } from "./registry.mjs";
 import { BY, REREAD_BEYOND_MAX, REREAD_WHY, isReaderHandle, unexpressedProblem } from "./schema.mjs";
@@ -28,6 +31,8 @@ export const REREAD_BATCH_SIZE = 30;
 export const REREAD_RESULT_FIELDS = Object.freeze(["key", "covered", "beyond", "unexpressed", "why", "confidence"]);
 /** The outcome a second reread below the threshold records (`evidence.triaged.reread.second.outcome`). */
 export const SECOND_UNSURE = "second-unsure";
+/** The `unexpressed` reasons the vocabulary states since trigger conditions (Ruling R30): a restate reads them again (R31). */
+export const RESTATABLE = Object.freeze(["target-size", "target-state", "trigger-filter"]);
 const SHOWN_PROBLEMS = 4;
 const SHOWN_PROBLEM_CHARS = 200;
 
@@ -72,6 +77,19 @@ export function beyondOf(r) {
   return null;
 }
 
+/**
+ * Whether a record's first reread can be restated (Ruling R31): `covered: false`, its `unexpressed` names a reason of
+ * RESTATABLE, and it is not itself a restate (`restated: true`).
+ */
+export function restatable(r) {
+  const reread = rereadOf(r);
+  return reread !== null && reread.covered === false && reread.restated !== true && Array.isArray(reread.unexpressed)
+    && reread.unexpressed.some((x) => RESTATABLE.includes(x));
+}
+const refuseRestateSecond = ({ restate, second }) => {
+  if (restate && second) throw new Error("restate and second cannot be used together: a restate reads first rereads only");
+};
+
 const officialOf = (r) => (Array.isArray(r?.items) ? r.items : []).find((i) => i?.origin === "official" && i.match === "matched");
 // What a reader needs besides the text, as a triage entry gives it (batch.mjs): never the hint, nor anything of a verdict.
 const READER_FIELDS = ["owner", "level", "section", "rarity", "page", "srd"];
@@ -89,9 +107,12 @@ const entryOf = (r, fp) => ({
  * in the dumps (`readingOf(record)` undefined), the engine reads nothing of it (null or empty), or a reread already judged it
  * against the reading of today. A record in drafts-queue.json is a candidate. Second reread (`second`): only a provisional
  * `core` of a first reread, left out when a second reader settled it, either way ("second reread done") or the engine reads it
- * otherwise now.
+ * otherwise now. Restate (`restate`, Ruling R31): only a restatable record is a candidate ("not restatable" otherwise), and
+ * a reread for the reading of today does not leave it out; every other check holds. `restate` with `second` throws.
  */
-export function rereadSkipReason(r, { readingOf, reviewQueued = new Set(), triageQueued = new Set(), second = false, core }) {
+export function rereadSkipReason(r, options) {
+  const { readingOf, reviewQueued = new Set(), triageQueued = new Set(), second = false, restate = false, core } = options;
+  refuseRestateSecond(options);
   if (second) {
     // A record a second reader settled, either way (confirmed, or back to entry), is never cut again.
     if (r?.kind !== "monster" || rereadOf(r)?.covered !== true) return "not a reread core";
@@ -99,6 +120,7 @@ export function rereadSkipReason(r, { readingOf, reviewQueued = new Set(), triag
     if (r.verdict !== "core") return "not a reread core";
   } else {
     if (r?.kind !== "monster" || r.verdict !== "entry") return "not a monster entry";
+    if (restate && !restatable(r)) return "not restatable";
     if (r.rule) return "already ruled";
     if (r.legacy === true) return "legacy";
     if (reviewQueued.has(r.key)) return "in review-queue.json";
@@ -111,17 +133,18 @@ export function rereadSkipReason(r, { readingOf, reviewQueued = new Set(), triag
   if (!isReading(reading)) return "engine reads nothing";
   const fp = readingFingerprint(reading, core);
   if (second) return sameSha(rereadOf(r).reading, fp) ? null : "reading changed since the first reread";
-  return sameSha(rereadOf(r)?.reading, fp) ? "reread for the current reading" : null;
+  return !restate && sameSha(rereadOf(r)?.reading, fp) ? "reread for the current reading" : null;
 }
 
 /**
- * Reread batches `{ id, stage: "reread", second?, core, entries }` (ids `<book>-reread-<NNN>`, or `<book>-reread-second-<NNN>`
- * for a second reread, numbered after `after`), and `leftOut`, the count of each reason a candidate was left out. `readingOf`
- * gives the engine's reading of a record's official item (undefined when it is not in the dumps); `core` is loadCore's (its
- * version names the reading).
+ * Reread batches `{ id, stage: "reread", second?, restate?, core, entries }` (ids `<book>-reread-<NNN>`, a restate's too,
+ * or `<book>-reread-second-<NNN>` for a second reread, numbered after `after`), and `leftOut`, the count of each reason a
+ * candidate was left out. `readingOf` gives the engine's reading of a record's official item (undefined when it is not in the
+ * dumps); `core` is loadCore's (its version names the reading).
  */
 export function cutRereadBatches(records, options) {
-  const { size = REREAD_BATCH_SIZE, after = {}, readingOf, core, second = false } = options;
+  const { size = REREAD_BATCH_SIZE, after = {}, readingOf, core, second = false, restate = false } = options;
+  refuseRestateSecond(options);
   if (typeof readingOf !== "function") throw new TypeError("cutRereadBatches needs readingOf (the engine's reading, R29)");
   const leftOut = {};
   const open = [];
@@ -139,7 +162,8 @@ export function cutRereadBatches(records, options) {
       counts.set(book, n);
       const id = `${book}-${series}-${String(n).padStart(3, "0")}`;
       const entries = ofBook.slice(i, i + size).map((r) => entryOf(r, readingFingerprint(readingOf(r), core)));
-      batches.push({ id, stage: "reread", ...(second ? { second: true } : {}), core: core?.version, entries });
+      const mark = second ? { second: true } : restate ? { restate: true } : {};
+      batches.push({ id, stage: "reread", ...mark, core: core?.version, entries });
     }
   }
   return { batches, leftOut: Object.fromEntries(Object.entries(leftOut).sort()) };
@@ -228,7 +252,7 @@ function missingProblem(result, ctx) {
 // One result: `{ reject }`, `{ unsure }`, `{ already }` (a second reread a second reader settled: confirmed or reverted), or
 // `{ apply: { next, outcome } }` (outcome: covered, beyond, agreed, disagreed, unsureReverted).
 function takeResult(result, ctx) {
-  const { byKey, offered, current, textOf, core, by, at, seen, second, reviewQueued, triageQueued } = ctx;
+  const { byKey, offered, current, textOf, core, by, at, seen, second, restate, reviewQueued, triageQueued } = ctx;
   if (!isObject(result)) return { reject: "result must be an object" };
   const forbidden = forbiddenKeyIn(result);
   if (forbidden) return { reject: `a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden})` };
@@ -250,6 +274,10 @@ function takeResult(result, ctx) {
     if (record.rule) return { reject: "the record has a rule: its comparison with the reading is the gates' (evidence.reading)" };
     if (record.legacy === true) return { reject: "legacy record: it leaves legacy through a person" };
     if (record.verdict !== "entry") return { reject: `the verdict is ${record.verdict}, not entry: a reread reads entry records` };
+    if (restate && !restatable(record)) {
+      return { reject: `not restatable: a restate reads a first reread whose unexpressed names ${RESTATABLE.join(", ")},`
+        + " once (Ruling R31)" };
+    }
     if (reviewQueued.has(record.key)) return { reject: "the record waits for a person in review-queue.json" };
     if (triageQueued.has(record.key)) return { reject: "the record waits for a person in queue.json" };
   }
@@ -263,7 +291,7 @@ function takeResult(result, ctx) {
   if (second && !sameSha(rereadOf(record).reading, fp)) {
     return { reject: "stale: the first reread judged another reading (cut a new reread batch)" };
   }
-  if (!second && sameSha(rereadOf(record)?.reading, fp)) {
+  if (!second && !restate && sameSha(rereadOf(record)?.reading, fp)) {
     return { reject: "already reread for this reading: only an unsure or stale reread is read again" };
   }
   if (typeof result.covered !== "boolean") return { reject: "covered must be true or false" };
@@ -287,7 +315,7 @@ function takeResult(result, ctx) {
   // A second reader below the threshold: what it said is not taken, only that it was unsure (fail closed, below).
   const reading = unsure ? { by, at, confidence: result.confidence, reading: fingerprint, outcome: SECOND_UNSURE }
     : { by, at, confidence: result.confidence, reading: fingerprint, covered: result.covered,
-      ...(result.covered ? {} : { ...found("beyond"), ...found("unexpressed") }) };
+      ...(result.covered ? {} : { ...found("beyond"), ...found("unexpressed") }), ...(restate ? { restated: true } : {}) };
   const { hint, textChangedAt, ...rest } = record;
   if (second) {
     const { provisional, ...first } = rereadOf(record);
@@ -322,7 +350,9 @@ function takeResult(result, ctx) {
  * `current`: a Map of key to `{ reading, structure }`, the engine's reading of the official item now and the item's
  * structure (structure.mjs structureOf); `core` loadCore's (the version, the enumerations `beyond` is checked against).
  * `draftsQueue` (drafts-queue.json) says which covered keys leave that queue; `reviewQueued`, `triageQueued` (Sets of keys)
- * are records a person holds. With `second`, the results are a second reread of provisional `core` records.
+ * are records a person holds. With `second`, the results are a second reread of provisional `core` records. With `restate`
+ * (Ruling R31; not with `second`), only restatable records are taken, the same reading notwithstanding, and the reread
+ * stored carries `restated: true` (an unsure answer leaves the record as it was).
  * Returns `{ records, covered, beyond, unsure, dequeued, rejected }`, or with `second` `{ records, agreed, disagreed,
  * unsureReverted, alreadyConfirmed, alreadyReverted, rejected }` (`rejected`: `{ key, reason }`; any exception on one result
  * is that result's rejection). With `second`, a record a second reader already settled is listed in `alreadyConfirmed` or
@@ -330,15 +360,16 @@ function takeResult(result, ctx) {
  */
 export function ingestRereads(records, results, options = {}) {
   const { textDir, by, at = new Date().toISOString(), core, offered, current, draftsQueue = [], second = false,
-    reviewQueued = new Set(), triageQueued = new Set() } = options;
+    restate = false, reviewQueued = new Set(), triageQueued = new Set() } = options;
+  refuseRestateSecond(options);
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core !== "object") throw new TypeError("ingestRereads needs core (loadCore: version and enumerations)");
   if (!(offered instanceof Map)) throw new TypeError("ingestRereads needs offered (a Map of the batch file's keys to readings)");
   if (!(current instanceof Map)) throw new TypeError("ingestRereads needs current (a Map of key to { reading, structure })");
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
-  const ctx = { byKey, offered, current, textOf: cachedText(textDir), core, by, at, seen: new Set(), second, reviewQueued,
-    triageQueued };
+  const ctx = { byKey, offered, current, textOf: cachedText(textDir), core, by, at, seen: new Set(), second, restate,
+    reviewQueued, triageQueued };
   const done = { covered: [], beyond: [], agreed: [], disagreed: [], unsureReverted: [] };
   const already = { confirmed: [], reverted: [] };
   const unsure = [];
