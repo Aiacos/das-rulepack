@@ -10,10 +10,11 @@ import * as mpmm from "./books/mpmm.mjs";
 import * as phb from "./books/phb.mjs";
 import * as tce from "./books/tce.mjs";
 import * as xge from "./books/xge.mjs";
+import * as xmm from "./books/xmm.mjs";
 import * as xphb from "./books/xphb.mjs";
 
 /** The book modules, each `{ BOOK, RULES }`. */
-export const BOOKS = Object.freeze([ai, ftd, mpmm, phb, tce, xge, xphb]);
+export const BOOKS = Object.freeze([ai, ftd, mpmm, phb, tce, xge, xmm, xphb]);
 
 /** Every rule of the pack, with its book, page, kind and status. @type {readonly import("./book.mjs").Rule[]} */
 export const RULES = Object.freeze(BOOKS.flatMap(module => module.RULES));
@@ -36,4 +37,21 @@ export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.
   .flatMap(rule => [rule.identifier, ...(rule.alsoAs ?? [])].map(identifier => [identifier, rule.entry]))));
 
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as `sources`. */
-export const SOURCES = Object.freeze({});
+export const SOURCES = Object.freeze({
+  "3YYshLRIcL7GvBG2": "xmm-graveyard-revenant-suffocate",
+  "Ml3peAqEgqgm95nj": "xmm-dracolich-terrifying-presence",
+  "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
+  "mmHasten00000000": "xmm-clay-golem-hasten",
+  "mmHypnoticGaze00": "xmm-ultroloth-hypnotic-gaze",
+  "mmRumblingMoveme": "xmm-elemental-cataclysm-rumbling-movement",
+  "mmSacredWeapon00": "xmm-empyrean-sacred-weapon",
+  "mmSleepGaze00000": "xmm-jackalwere-sleep-gaze",
+  "mmSporeBomb00000": "xmm-violet-fungus-necrohulk-spore-bomb",
+  "mmTacticalCharge": "xmm-warrior-commander-tactical-charge",
+  "mmTelekineticThr": "xmm-poltergeist-telekinetic-thrust",
+  "mmToxicInk000000": "xmm-kraken-toxic-ink",
+  "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze",
+  "mmWateryRush0000": "xmm-lacedon-ghoul-watery-rush",
+  "mmWhirlwind00000": "xmm-air-elemental-whirlwind",
+  "yO5Jxg4POQGRLlXI": "xmm-flumph-stench-spray"
+});

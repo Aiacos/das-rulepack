@@ -7603,9 +7603,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.286Z",
+          "core": "0.290.0",
+          "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
+          "item": "e6d3d0570e5db94d0db9eed256359c7754a0b55555855458f47968f281d7da31",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [
+            "triggers"
+          ],
+          "changes": [],
+          "triggers": "same"
+        },
         "gates": {
-          "at": "2026-11-22T04:20:06.240Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.287Z",
+          "core": "0.290.0",
           "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
           "emits": "0b881334ac379758228c26648043ba92ee9b9aeb51743310c33612caf49f732f",
           "passed": [
@@ -10415,9 +10429,24 @@
           "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
           "confidence": 0.8
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.295Z",
+          "core": "0.290.0",
+          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
+          "item": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [
+            "actionOrBonus",
+            "noReactions"
+          ],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.582Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.295Z",
+          "core": "0.290.0",
           "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
           "emits": "0bdca73972d5d791ec5d3e61d82b1d34877e9df19038231b8a423c14a7e29b81",
           "passed": [
@@ -14018,9 +14047,21 @@
           "core": "0.289.0",
           "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.300Z",
+          "core": "0.290.0",
+          "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
+          "item": "70c42e73b4637906ea0604e237cdfc230d1122ac0f1ce0fb5f75ceea7a61c192",
+          "delta": [],
+          "same": [
+            "noOpportunity"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.584Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.300Z",
+          "core": "0.290.0",
           "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
           "emits": "888d72fbe0f76f4130b7bfc930db8a323cbf727c52f45bb7677c2484daab1c64",
           "passed": [
@@ -18936,9 +18977,21 @@
           "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.305Z",
+          "core": "0.290.0",
+          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
+          "item": "5852337695aa2a0f4cb0659bba364b870e1da6459f8f24147199350df68870da",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.586Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.305Z",
+          "core": "0.290.0",
           "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
           "emits": "85fa4f59b3173a39998063e214d9579e3b711a7253fbaec4d0d7dc08054f9a31",
           "passed": [
@@ -19271,9 +19324,21 @@
           "core": "0.289.0",
           "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.307Z",
+          "core": "0.290.0",
+          "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
+          "item": "04c5fa09b957db3e3972c708fe05e0efe1fe38ab44b38922f25f944c2dca5461",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.586Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.307Z",
+          "core": "0.290.0",
           "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
           "emits": "91b11abf82e4a7a8c1515de6f879af0be9cd6545a1abc98a0efb23b5b3195401",
           "passed": [
@@ -20655,9 +20720,21 @@
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.310Z",
+          "core": "0.290.0",
+          "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
+          "item": "65e432e0047388d2e26a926c056bc36cd7b439c37ce1de365f0feab5f3abd4ab",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.587Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.310Z",
+          "core": "0.290.0",
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
           "emits": "2ddf1b46cd761cc9bb4bc03aa5c762894f72c45cb09afbd59b4b2c5264df22be",
           "passed": [
@@ -21992,9 +22069,21 @@
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.312Z",
+          "core": "0.290.0",
+          "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
+          "item": "7980ebdac1c7339b7ad44e14e53eecea8b792f126f2360895c8638a2704daed1",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.588Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.312Z",
+          "core": "0.290.0",
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
           "emits": "48ae8e154febb5053c5a1b2eb90b7c1d31aaab20d16bf17e967ee3912e85bca3",
           "passed": [
@@ -26056,9 +26145,21 @@
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.316Z",
+          "core": "0.290.0",
+          "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
+          "item": "a8229c266fe5ed511237683c7e9d09b814f3161c6f4fa44cc5da5f8a8cc60d63",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.590Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.316Z",
+          "core": "0.290.0",
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
           "emits": "baaf5438a7f842638b8cb365b83b32e8bb32fc380a0caf5aff0936492128e13b",
           "passed": [
@@ -28339,9 +28440,21 @@
           "core": "0.289.0",
           "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.319Z",
+          "core": "0.290.0",
+          "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f",
+          "item": "4251045e121dd32ec962a53057556e2672ac18016b80316aed958cc15351d2ca",
+          "delta": [],
+          "same": [
+            "triggers"
+          ],
+          "changes": [],
+          "triggers": "same"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.094Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.320Z",
+          "core": "0.290.0",
           "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f",
           "emits": "d5c23aed305e0eb76381fb9ace44144c95ae7779002d0579e33a87f378f98791",
           "passed": [
@@ -30102,9 +30215,21 @@
           "core": "0.289.0",
           "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.321Z",
+          "core": "0.290.0",
+          "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c",
+          "item": "8034b529a3b4ac72e33357cdcd67268d416555371b31a187dc98d1a587956d53",
+          "delta": [],
+          "same": [
+            "noOpportunity"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.096Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.321Z",
+          "core": "0.290.0",
           "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c",
           "emits": "4a8f3c79e1a60c5516f5f934c9b2db1378064d9f9bd457c489c28a94c3faf40c",
           "passed": [
@@ -30427,9 +30552,22 @@
           "core": "0.289.0",
           "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.322Z",
+          "core": "0.290.0",
+          "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634",
+          "item": "fa51c7733e53f2303ad0c6b9cc497a10cc0ac949be0168ac3d6cef0c0b6a9f07",
+          "delta": [],
+          "same": [
+            "effectEnds",
+            "noOpportunity"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.096Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.322Z",
+          "core": "0.290.0",
           "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634",
           "emits": "ce9743accb8fad921d548f432ad43ac6ec7a8fe07a83dd4c81724fc322d5450a",
           "passed": [
@@ -30835,9 +30973,21 @@
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
           "confidence": 0.75
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.325Z",
+          "core": "0.290.0",
+          "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
+          "item": "3428fc9b756aef8eb23544398df49403169dc48188cabacd4dc6dc3e649ac873",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.097Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.325Z",
+          "core": "0.290.0",
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
           "emits": "34d114a9e1025b95454a9dd1063113545861c9093392c78e7d44fcae83fc0dc0",
           "passed": [
@@ -31160,9 +31310,23 @@
           "person": true,
           "because": "effectDurations"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.327Z",
+          "core": "0.290.0",
+          "rule": "aa73674451f070fba2b951a1ad5090c2d347b0e0c3ffde41e3ef253204512bef",
+          "item": "ef4e3b7de1ce73ac21af8305642a413b6d48485e7ad697ce76e5e2a35768b119",
+          "delta": [
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.099Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.327Z",
+          "core": "0.290.0",
           "rule": "aa73674451f070fba2b951a1ad5090c2d347b0e0c3ffde41e3ef253204512bef",
           "emits": "293671177568ff2b189a11e3c6c58f10014a40619f8d59d20f4a29c4550a8d8a",
           "passed": [
@@ -32269,9 +32433,21 @@
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
           "confidence": 0.75
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.328Z",
+          "core": "0.290.0",
+          "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
+          "item": "b7673def13b3026a6369169687f8b2fe37679a545a63ac0f96c722766c9e86a1",
+          "delta": [
+            "noOpportunity"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.100Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.328Z",
+          "core": "0.290.0",
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
           "emits": "ad83220e13a6900c7fd15d34abd266933dfaa396339ca1e81ad1150901f6c238",
           "passed": [
@@ -33952,9 +34128,21 @@
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
           "confidence": 0.8
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.329Z",
+          "core": "0.290.0",
+          "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
+          "item": "c6993ece5b0c1367e128982cb1149ae06dc3958567cc73820ed721a0b8bb1ad1",
+          "delta": [],
+          "same": [
+            "noOpportunity"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.101Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.329Z",
+          "core": "0.290.0",
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
           "emits": "1478d4a51b04bda4b990a7eefafb74774b104b41f4f3755d3a792a1cd0f04be5",
           "passed": [
@@ -39842,9 +40030,21 @@
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
           "confidence": 0.8
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.331Z",
+          "core": "0.290.0",
+          "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
+          "item": "d4bed35ba23259fb0b908636d8f33994884c5e96d5c37c4dda2774010ac749f7",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.103Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.331Z",
+          "core": "0.290.0",
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
           "emits": "ce5c0390b3560b4ff23d2eef57459e173cee23469df09dc5c9347cca4da60902",
           "passed": [
@@ -40722,9 +40922,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.333Z",
+          "core": "0.290.0",
+          "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
+          "item": "230e43ffcfdcf867ce4c4c18e31a2004b42ffda98a4e44bbb03a1467cad0e801",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.069Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.333Z",
+          "core": "0.290.0",
           "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
           "emits": "cb5d7c967be2ff633ba3d89d6ba5b73b5eb9b2b67dbc27daef7023d27db77b09",
           "passed": [
@@ -41321,9 +41535,21 @@
           "core": "0.289.0",
           "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.335Z",
+          "core": "0.290.0",
+          "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6",
+          "item": "17b03925ed2afbc0d39e5e95df8dc9fb3dc10dcce2a74321ac4cf04c2e8571f6",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.105Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.335Z",
+          "core": "0.290.0",
           "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6",
           "emits": "7d7c18adf01d4ea57f270437f116508b6b6c34c668579dd28f75c4458f2685cb",
           "passed": [
@@ -42060,9 +42286,23 @@
           "person": true,
           "because": "effectDurations"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.336Z",
+          "core": "0.290.0",
+          "rule": "646210646e2f691ef83983d3ed13bbcd082d0f38c590c8e5a1d6aafa4d347c70",
+          "item": "d110e6fcd3a1f7f05ca5127c3ac8a90ec3941bf0e1154c2b4048f2f1a0d7c1bc",
+          "delta": [
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.106Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.336Z",
+          "core": "0.290.0",
           "rule": "646210646e2f691ef83983d3ed13bbcd082d0f38c590c8e5a1d6aafa4d347c70",
           "emits": "a27accdbbf15b05a9e137e70721573f4625f3b6babf13a381752301b72c7ebb9",
           "passed": [
@@ -42656,9 +42896,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.337Z",
+          "core": "0.290.0",
+          "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
+          "item": "40306fb6e167aa57efac9fff53b7e6bd7453476e76666cf4654a6aafac9a9abd",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.072Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.337Z",
+          "core": "0.290.0",
           "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
           "emits": "58ab13921040d117e87d9fb1c25be5aefaf8745dab22a57eb8c0b4448895d45b",
           "passed": [
@@ -43487,9 +43741,24 @@
           "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.338Z",
+          "core": "0.290.0",
+          "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
+          "item": "d3f50d321f27f050385607bced4c43e8baaa12a464b0686a10597b5bcb924fa2",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [
+            "actionOrBonus",
+            "noReactions"
+          ],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.108Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.338Z",
+          "core": "0.290.0",
           "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
           "emits": "356c19f107234ea483cbea8953c3625f6c131855aef31a3ace87dfe359bc6301",
           "passed": [
@@ -46192,9 +46461,21 @@
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.340Z",
+          "core": "0.290.0",
+          "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
+          "item": "e060d50193eb5d685cc0bc72c9fdad5140fe0a161ecf4f68a92f9feefcfd1d54",
+          "delta": [
+            "noOpportunity"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.109Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.340Z",
+          "core": "0.290.0",
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
           "emits": "ddb9bdff82c74b53de5716816582b53589cb9594abde65f3c5cd565b98e434e9",
           "passed": [
@@ -47467,9 +47748,23 @@
           "person": true,
           "because": "ignoresResistance"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.342Z",
+          "core": "0.290.0",
+          "rule": "289674df4b31bf8dcca46fcedbd9e3657bf728b1edd62013076fb6f3ea4ba6a3",
+          "item": "826e9a044d57ee1e594b879c6d1a0a85d57d94fd19d7a22c51b2a111492c88ec",
+          "delta": [
+            "ignoresResistance"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.110Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.342Z",
+          "core": "0.290.0",
           "rule": "289674df4b31bf8dcca46fcedbd9e3657bf728b1edd62013076fb6f3ea4ba6a3",
           "emits": "d921f052c47d89c0fe6c6de2b2050399279f4333160e73532f7edfc839733918",
           "passed": [
@@ -50190,9 +50485,21 @@
           "core": "0.289.0",
           "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.344Z",
+          "core": "0.290.0",
+          "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f",
+          "item": "a71f373bb7fcb499137c581fc6acecc293c89c711985a550e8729ff4f572b3d3",
+          "delta": [],
+          "same": [
+            "triggers"
+          ],
+          "changes": [],
+          "triggers": "same"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.112Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.344Z",
+          "core": "0.290.0",
           "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f",
           "emits": "1b37cd564f0fa2d8b2beeb9293fca0766c72e23e4a94a43401717dfbff229369",
           "passed": [
@@ -51502,9 +51809,21 @@
           "person": true,
           "because": "effectDurations"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.345Z",
+          "core": "0.290.0",
+          "rule": "bc1aaf3646f10ec1a9a2db77fb7031301643ae87678dca1d37d962676cccb22d",
+          "item": "b7424869015d026d2b5e02ec7cb6e9d316e322345e7bd17981046e1d08bdb576",
+          "delta": [
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.113Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.345Z",
+          "core": "0.290.0",
           "rule": "bc1aaf3646f10ec1a9a2db77fb7031301643ae87678dca1d37d962676cccb22d",
           "emits": "14f0fd7d9c1c00eed4b929eb2a6ac7c081408a740dccc35d33ef803ada6b0f63",
           "passed": [
@@ -53296,9 +53615,21 @@
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
           "confidence": 0.8
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.346Z",
+          "core": "0.290.0",
+          "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
+          "item": "2a7672e9a760a2a080dd43214f20f318608cda1025a87e2b8890536ee9bbb5d5",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.114Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.347Z",
+          "core": "0.290.0",
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
           "emits": "bb1c126f6bb5e8661bcbac1b5bdd9a2ad3ec3a66c35eab84f3fc2eb235eb45ac",
           "passed": [
@@ -53762,9 +54093,23 @@
           "person": true,
           "because": "onHit"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.348Z",
+          "core": "0.290.0",
+          "rule": "a6651715bcb7a0b4507f53a9671f066e0e6bc940af94babb2758058f45e47532",
+          "item": "dd7549190039031d64f42b829e30b319dbee6077fd1dc63d91482554413fefba",
+          "delta": [
+            "onHit"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.115Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.348Z",
+          "core": "0.290.0",
           "rule": "a6651715bcb7a0b4507f53a9671f066e0e6bc940af94babb2758058f45e47532",
           "emits": "b5959d7702e8b1f6fd4b1b62bc73b4f6d29f17616644d50640cfa953d92b682b",
           "passed": [
@@ -53972,9 +54317,21 @@
           "core": "0.289.0",
           "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.349Z",
+          "core": "0.290.0",
+          "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64",
+          "item": "3440d808bcf057ac1e5363b37d182984bd89233da085ebbcca7f1abb8e9cf149",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.116Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.349Z",
+          "core": "0.290.0",
           "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64",
           "emits": "00bebd057449396ebfb8b14b1f4e09a25d072d5fbfd644a35eef556f6e3f06d4",
           "passed": [
@@ -54562,9 +54919,23 @@
           "person": true,
           "because": "onHit"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.350Z",
+          "core": "0.290.0",
+          "rule": "b072b27e5dc8dbc1bbcf868bda895ad0ae4a7592374b40f0346a1736997b2840",
+          "item": "a31c1433e441c1e974e31a3ddb488211efe9cdbca95f1dd003dd13b367ae9194",
+          "delta": [
+            "onHit"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.116Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.350Z",
+          "core": "0.290.0",
           "rule": "b072b27e5dc8dbc1bbcf868bda895ad0ae4a7592374b40f0346a1736997b2840",
           "emits": "06469e3ccd9ddf3c6eb651123cae5f8a263769274165bdf1e75ce6660dacd6f3",
           "passed": [
@@ -54786,9 +55157,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.352Z",
+          "core": "0.290.0",
+          "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
+          "item": "7e3f9e72a420e8007cb46d1a16803c515cf020d0093929939d406dff849dada2",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.081Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.352Z",
+          "core": "0.290.0",
           "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
           "emits": "7e4ac2fe468965dfd72941f05b92ca20cf236c3801dec60f3d2388017fcb7bf6",
           "passed": [
@@ -59700,9 +60085,23 @@
           "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.355Z",
+          "core": "0.290.0",
+          "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
+          "item": "eda43c12d0da79d2083b0e264d8182362423209f4ac33a280ba0d70c7785b450",
+          "delta": [
+            "effectStatuses"
+          ],
+          "same": [],
+          "changes": [
+            "effectEnds"
+          ],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.120Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.355Z",
+          "core": "0.290.0",
           "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
           "emits": "4c66a0bbeac820a554fa39f3d85194d1505748ae61ff9a936ecaebd898b810a8",
           "passed": [
@@ -60751,9 +61150,21 @@
           "core": "0.289.0",
           "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.357Z",
+          "core": "0.290.0",
+          "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875",
+          "item": "9a5df39d1830e007e7662f33b31266a6f11ebbc283e1bf448d9b77a411d4924e",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.121Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.357Z",
+          "core": "0.290.0",
           "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875",
           "emits": "770cb30c1848dc81b6e6b66728bb9909683b8be059e1e84ba993363d56ee8c81",
           "passed": [
@@ -64167,9 +64578,21 @@
           "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.359Z",
+          "core": "0.290.0",
+          "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
+          "item": "457138ec6ffdead909abbd916e1ef424824462e90426084e0b11465355244aa8",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.122Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.359Z",
+          "core": "0.290.0",
           "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
           "emits": "874e368206f76d7259367dd763b5fe5ac72580caa291394e09fc7c5ed706f17a",
           "passed": [
@@ -64661,9 +65084,23 @@
           "person": true,
           "because": "effectDurations"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.360Z",
+          "core": "0.290.0",
+          "rule": "b2d23d966d7408b0e07247bb5215f71b0e9fa1ae64038dc2567b43b8f05ded27",
+          "item": "4ad1813785034993a025476f3696e9069178fba30bf483ecf83408b35b6df47f",
+          "delta": [
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.123Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.360Z",
+          "core": "0.290.0",
           "rule": "b2d23d966d7408b0e07247bb5215f71b0e9fa1ae64038dc2567b43b8f05ded27",
           "emits": "a3bebba059d84d60e8f4c6d11f39d0bbe2c1539b22d4e097be6db9075b9a57fb",
           "passed": [
@@ -64827,9 +65264,21 @@
           "person": true,
           "because": "actionEnds"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.361Z",
+          "core": "0.290.0",
+          "rule": "4469b99a209164a66139284a634dc515826b33bb594de35ee4836de91d6e7109",
+          "item": "28263736d66e75e307017a4490e99c7649945e62a47cbe3fecd26fcc4ac33086",
+          "delta": [
+            "actionEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.124Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.361Z",
+          "core": "0.290.0",
           "rule": "4469b99a209164a66139284a634dc515826b33bb594de35ee4836de91d6e7109",
           "emits": "e0f8b435bad2210c563d8474e0eaca995c4da73bd54369a777ab83e4bdb486a3",
           "passed": [
@@ -65170,9 +65619,21 @@
           "core": "0.289.0",
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.363Z",
+          "core": "0.290.0",
+          "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
+          "item": "28d1efe644909060354a6118990481b5978264166c0caa87708808c45a08f581",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.124Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.363Z",
+          "core": "0.290.0",
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
           "emits": "679219a94dd9ce6d3e86e7c9c43010110500b71e19abc4a9b6fb653795b03db4",
           "passed": [
@@ -66196,9 +66657,21 @@
           "core": "0.289.0",
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.364Z",
+          "core": "0.290.0",
+          "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
+          "item": "0d5ebbe7c4c04d1f29ba206770b4aa72ab7f7b185dac827d3d788170fc21b295",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.125Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.364Z",
+          "core": "0.290.0",
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
           "emits": "c2c63eb74e8507fe5dcc6ef9571d7f9cab9ef0434f181a9013706d361d9e78fd",
           "passed": [
@@ -66715,9 +67188,25 @@
           "person": true,
           "because": "actionEnds"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.366Z",
+          "core": "0.290.0",
+          "rule": "1079969876bf38f33b81d2db5de3fbae2691c805ee67f4562b569dd1cd7e7cac",
+          "item": "83696e62b652f4e72811bee60c7afbac3fc9a5f5c173f7b72d0ff7a0526bec10",
+          "delta": [
+            "actionEnds",
+            "effectDurations",
+            "onHit"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.126Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.366Z",
+          "core": "0.290.0",
           "rule": "1079969876bf38f33b81d2db5de3fbae2691c805ee67f4562b569dd1cd7e7cac",
           "emits": "92dc48ec78b6c24da8aae3ef54fb1aab5bea3b6ffcbe8e6540f210a88fd5aa07",
           "passed": [
@@ -68840,9 +69329,22 @@
           "person": true,
           "because": "targets"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.369Z",
+          "core": "0.290.0",
+          "rule": "8dbd41b1762199a12c9bc09875daf6cfc409be0f193bb660d60b55cba95fc5aa",
+          "item": "517159710324e7b8031a04596ca506b093db7224e9af2b76e272664ddbd136f7",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "targets",
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.128Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.369Z",
+          "core": "0.290.0",
           "rule": "8dbd41b1762199a12c9bc09875daf6cfc409be0f193bb660d60b55cba95fc5aa",
           "emits": "9fa9e46ed7c5407054a251dbd77a929c40a949feb85eba48c0b2d04403312528",
           "passed": [
@@ -72687,9 +73189,22 @@
           "core": "0.289.0",
           "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.371Z",
+          "core": "0.290.0",
+          "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147",
+          "item": "c427894fde6fe9466070583026319dc8729baf1bd12b666c5f03a5fdf4225bc7",
+          "delta": [],
+          "same": [
+            "effectEnds",
+            "noReactions"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.129Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.371Z",
+          "core": "0.290.0",
           "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147",
           "emits": "912591e7b446250a9f7735faa963ea10919883f9d9d4d5c7534367ee3cfef494",
           "passed": [
@@ -75207,9 +75722,22 @@
           "person": true,
           "because": "actionEnds"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.374Z",
+          "core": "0.290.0",
+          "rule": "a98b8f8ac03d7264f7b5427cbe29cf452697cb83192c006b168ac94b86743b3f",
+          "item": "dd475da7652f2b9b88c52fa48cddc27643da928ec54ea45a349fe979c143278f",
+          "delta": [
+            "actionEnds",
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.130Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.374Z",
+          "core": "0.290.0",
           "rule": "a98b8f8ac03d7264f7b5427cbe29cf452697cb83192c006b168ac94b86743b3f",
           "emits": "80aebb272f585443b881e5932362b718b1cd9d9748a0b9ebc8ea70c4a332194e",
           "passed": [
@@ -76873,9 +77401,21 @@
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
           "confidence": 0.8
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.376Z",
+          "core": "0.290.0",
+          "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
+          "item": "0e385537001c9edd837443b004764a46a489349eb1d8a1df9cf879c91fe36990",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.131Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.376Z",
+          "core": "0.290.0",
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
           "emits": "98daa0234007c179f5675ca5e49da3ed3c316dcfee3e22aa6bf44ac6a6b8e478",
           "passed": [
@@ -78159,9 +78699,21 @@
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
           "confidence": 0.8
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.377Z",
+          "core": "0.290.0",
+          "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
+          "item": "70ed136753fdee784872fc3e354c2ad5dd3c71e1a47a1ca6cc1e2ef097adc2f1",
+          "delta": [],
+          "same": [
+            "triggers"
+          ],
+          "changes": [],
+          "triggers": "same"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.132Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.377Z",
+          "core": "0.290.0",
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
           "emits": "b2ba583b7dfd0fcf39b59ceaf868e4b8b137ee84b6644533a93faf9ac92cec64",
           "passed": [
@@ -78684,9 +79236,21 @@
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
           "confidence": 0.7
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.378Z",
+          "core": "0.290.0",
+          "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
+          "item": "d5e259770d542f1849a160739e15078503745287b5df1c94ab4eaaa29625d137",
+          "delta": [
+            "noOpportunity"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.133Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.378Z",
+          "core": "0.290.0",
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
           "emits": "225b96ebbe1e6392af03cd8a3d82c9fcc0d15fbeb741e6581db789bfcec61e19",
           "passed": [
@@ -79451,9 +80015,21 @@
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
           "confidence": 0.9
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.379Z",
+          "core": "0.290.0",
+          "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
+          "item": "765bb31da980f5320d8ca6522d70591cbabb59db973493524f8753a36f54b678",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.133Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.379Z",
+          "core": "0.290.0",
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
           "emits": "01566f44304e903c54ace20843d750ffacde3782e252f7d09b19246d153e99cb",
           "passed": [
@@ -82093,9 +82669,21 @@
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
           "confidence": 0.8
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.381Z",
+          "core": "0.290.0",
+          "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
+          "item": "f2d80e0d3cdfe0983ead627c9c04d501e662fb13db2619cc84723c32db99bbf7",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.134Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.381Z",
+          "core": "0.290.0",
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
           "emits": "8649ab20e211dae8d6691d8b375de8c1c4091c098e926ccb136ea1788dc2ad88",
           "passed": [
@@ -82600,9 +83188,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.382Z",
+          "core": "0.290.0",
+          "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
+          "item": "75fc0363978f7eb45e8c08a8b4f297f5792c85e0e810a44ab295aa6ffcae47b9",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.111Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.383Z",
+          "core": "0.290.0",
           "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
           "emits": "fea735a5c39512929fdbb2dfab173fff6a31c742b7e1caabcb84cf5c37db6fbe",
           "passed": [
@@ -84070,9 +84672,21 @@
           "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.384Z",
+          "core": "0.290.0",
+          "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
+          "item": "ba08e89be1db1390b3cea0b4941f3110fb4db6ab9ed076141b75d7663764093e",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.136Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.384Z",
+          "core": "0.290.0",
           "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
           "emits": "85eeaaed6d319f722f4fd2557018dd9a4509b92f8c87f243d52d85d33322b45a",
           "passed": [
@@ -84249,9 +84863,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.387Z",
+          "core": "0.290.0",
+          "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
+          "item": "c33f5a8b5d645026b9870693c00eeb2296495ac19a2b64f219575a313dac0bb4",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.112Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.387Z",
+          "core": "0.290.0",
           "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
           "emits": "2a2e90c7af3bf55fab0ba1d81bc465db1a82fa095c5a104401a8e91ee3757060",
           "passed": [
@@ -84627,9 +85255,21 @@
           "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.388Z",
+          "core": "0.290.0",
+          "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
+          "item": "692decbe8ae9fa41d7f35a3bc0d45d8077566b3b3b5c282921be7f1468876b0d",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.137Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.388Z",
+          "core": "0.290.0",
           "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
           "emits": "a8e799c00f14485160aa97297c2fd12f9e22a54444fb1420473d77301ee6cdb8",
           "passed": [
@@ -86870,9 +87510,23 @@
           "person": true,
           "because": "effectDurations"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.390Z",
+          "core": "0.290.0",
+          "rule": "792c6686cbe13c60e0255b10479db355c3ba36046647f77c3cf23e85fe79ae2b",
+          "item": "8fd883af6dd4999092467e4713da90eade3aaad62518f4a4d0a937dc30b87bbb",
+          "delta": [
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.138Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.390Z",
+          "core": "0.290.0",
           "rule": "792c6686cbe13c60e0255b10479db355c3ba36046647f77c3cf23e85fe79ae2b",
           "emits": "cd8a9e4edfdef85254bf88ff023f6872f47831a3646b19f5caa6a34c8d40dbf1",
           "passed": [
@@ -93303,9 +93957,23 @@
           "core": "0.289.0",
           "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.393Z",
+          "core": "0.290.0",
+          "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377",
+          "item": "85d1d6f07b708fb11b2c800052abbbb5c60c58e23bcbb04f1e280ab0ee7bb660",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.140Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.393Z",
+          "core": "0.290.0",
           "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377",
           "emits": "fe67374ae3143dd492a548c964c62f9d0b32a85ac51da9a28eb2da11caed3013",
           "passed": [
@@ -98184,9 +98852,22 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.395Z",
+          "core": "0.290.0",
+          "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
+          "item": "24212f888cea83de578f9f7b3f85ab31186a9bdaabb94739c261c01e6fef2ca3",
+          "delta": [
+            "saveDamage",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.118Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.396Z",
+          "core": "0.290.0",
           "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
           "emits": "fbde54887d46d65ebbca4f16aecc03b7d3226ec75857cc18685d5da9620100f0",
           "passed": [
@@ -100809,9 +101490,23 @@
           "person": true,
           "because": "effectDurations"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.398Z",
+          "core": "0.290.0",
+          "rule": "a4185148eec22b7efc4a82955adf6d5c4b14a982b4fd4089cfff8529bd90d342",
+          "item": "49a6c220f308435f3522155555a11be5a611efeab4b52bc3003000fb5c6c111d",
+          "delta": [
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.142Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.398Z",
+          "core": "0.290.0",
           "rule": "a4185148eec22b7efc4a82955adf6d5c4b14a982b4fd4089cfff8529bd90d342",
           "emits": "97f9a0871677a17262c6dd22ae87df6f621952f7bff2e942ecd2d52be21df5c9",
           "passed": [
@@ -103051,9 +103746,23 @@
           "person": true,
           "because": "effectDurations"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.400Z",
+          "core": "0.290.0",
+          "rule": "01533f83cbb655a96bea53d554e9c79d6ab4d55c7cac788fe37c0b67bb606f7d",
+          "item": "81134f270c57102f53441193a27f682fc86efc5430a15e07247276169e0a9fa2",
+          "delta": [
+            "effectDurations"
+          ],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.144Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.400Z",
+          "core": "0.290.0",
           "rule": "01533f83cbb655a96bea53d554e9c79d6ab4d55c7cac788fe37c0b67bb606f7d",
           "emits": "2d7c7f436008f51b9a172a430d6971e2b5b8fed877f22d927d4417afa6a49e9b",
           "passed": [
@@ -103733,9 +104442,21 @@
           "core": "0.289.0",
           "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.401Z",
+          "core": "0.290.0",
+          "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
+          "item": "7f7a4797b5d697a1ee70068b22a210b79830c0670bada3f1c145b36b466f71ec",
+          "delta": [
+            "noOpportunity"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.144Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.401Z",
+          "core": "0.290.0",
           "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
           "emits": "7b9964af66fc67942935c349adeb3bf6cbb9ff9f98b2350218232129997f9bbe",
           "passed": [
@@ -106085,9 +106806,21 @@
           "core": "0.289.0",
           "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.403Z",
+          "core": "0.290.0",
+          "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b",
+          "item": "de4ffe61c93fd68c8e004b106acac02e6c450966b75e2306169190764caa313d",
+          "delta": [],
+          "same": [
+            "noOpportunity"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.145Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.403Z",
+          "core": "0.290.0",
           "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b",
           "emits": "0321dcbdc4a174d514a9e37dac5e1290357a5ddb9105aeb177043387da4b2a44",
           "passed": [
@@ -107964,9 +108697,23 @@
           "person": true,
           "because": "targets"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.405Z",
+          "core": "0.290.0",
+          "rule": "38ab072a86e2d5b92ce054ac2538e26012e7c33fa8b6a84cca6b1b738d4134f9",
+          "item": "431970b816ca39f488cf1b6f26056a473891e0845571df2162381fdae160ad8f",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [
+            "targets"
+          ],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.146Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.405Z",
+          "core": "0.290.0",
           "rule": "38ab072a86e2d5b92ce054ac2538e26012e7c33fa8b6a84cca6b1b738d4134f9",
           "emits": "ef0bc7f23130eb4c169ff84da08d3c7fe618566bc27cd3dc41a207cab0df6188",
           "passed": [
@@ -109251,9 +109998,21 @@
           "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.406Z",
+          "core": "0.290.0",
+          "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
+          "item": "7a3bd3409ff0a533ce62615002d9171c7f99ce355f35d5c82bfca031efe40013",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.147Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.406Z",
+          "core": "0.290.0",
           "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
           "emits": "409483253649c2bad07058328465361c5d3cab9eec3e0f20d60f20564fcaf6a7",
           "passed": [
@@ -109701,9 +110460,21 @@
           "core": "0.289.0",
           "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.408Z",
+          "core": "0.290.0",
+          "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30",
+          "item": "68cc859c9ed4d1fd29188ccf600b3cb7ac8b54553f103b3400f4fb1adcbc497f",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.148Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.408Z",
+          "core": "0.290.0",
           "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30",
           "emits": "3abdb44586528e04fe591ec69f2a7c8a0a7a0f5c74c178a9b25ed24a9e0db608",
           "passed": [
@@ -110588,9 +111359,21 @@
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
           "confidence": 0.9
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.409Z",
+          "core": "0.290.0",
+          "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
+          "item": "fdc240828265e4588d205b9f850f81ade0d0ddfc691a3bed046934ed5c4d3b20",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.150Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.409Z",
+          "core": "0.290.0",
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
           "emits": "9ac5e9a4da4ba6e2ab432464adc8456f118a29d914198b56d04717416020482c",
           "passed": [
@@ -111756,9 +112539,21 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.410Z",
+          "core": "0.290.0",
+          "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
+          "item": "39a5651ebd1c0eb86c30ac5e5e966c815062ac5bf6caf6917618e81a1f390788",
+          "delta": [],
+          "same": [
+            "saveDamage"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.127Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.411Z",
+          "core": "0.290.0",
           "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
           "emits": "be37a10c6259776347357ef7c0176b654852141ebd880947c43c9bd5b053f648",
           "passed": [
@@ -112141,9 +112936,21 @@
           "core": "0.289.0",
           "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.411Z",
+          "core": "0.290.0",
+          "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf",
+          "item": "ed4b9fe678d46651cbdab4d67f31c05bbb54ab8f302387c4dc89b5f3c8623850",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.151Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.412Z",
+          "core": "0.290.0",
           "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf",
           "emits": "b9adb7bbd85bb78878498d9d282d247bb15f632c33ce1419d5734766951ce6db",
           "passed": [
@@ -117217,9 +118024,24 @@
           "core": "0.289.0",
           "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.414Z",
+          "core": "0.290.0",
+          "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29",
+          "item": "c0283cdba0512b5e36991fab2fc4324be8600f55727d854387c272e4dc24ce65",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [
+            "actionOrBonus",
+            "noReactions"
+          ],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.153Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.414Z",
+          "core": "0.290.0",
           "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29",
           "emits": "f3e57e34d7b16cad2000690cce51eafd6cc3c9e05f7ff464427472c8ac6f96d5",
           "passed": [
@@ -118280,9 +119102,21 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.416Z",
+          "core": "0.290.0",
+          "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
+          "item": "8a30e9528e428eb8e6b4c3e321f7ff2994ef40c13150e680ad0fd44430378f25",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.131Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.416Z",
+          "core": "0.290.0",
           "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
           "emits": "39c82d3f5d08f0202055ff33e3e1c3b5ba89ec451c3aef97f113c7aabe22d5fd",
           "passed": [
@@ -120147,9 +120981,21 @@
           "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.417Z",
+          "core": "0.290.0",
+          "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
+          "item": "d1691ba30514d408b522b27adfbb867b1d9d986dfdec425dad19af43f841bdd1",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.155Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.417Z",
+          "core": "0.290.0",
           "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
           "emits": "f81c95b6e51c0a64a85d73d22bdd4ed62f4c4d9625958b9288d6c5c28d028e4a",
           "passed": [
@@ -120923,9 +121769,21 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.419Z",
+          "core": "0.290.0",
+          "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
+          "item": "268b521fc5a619d98d6585359cf9df05c04a1f63e9852c69396da987232c0978",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.133Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.419Z",
+          "core": "0.290.0",
           "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
           "emits": "91f794ae2377e39359348fe89ace131554b36cad02810991104ac6fcb8621a0e",
           "passed": [
@@ -122322,9 +123180,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.421Z",
+          "core": "0.290.0",
+          "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
+          "item": "66af846a435c351889e7cc2602925ce298cbc0e1289400c7e741082ddb80d1f4",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.134Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.421Z",
+          "core": "0.290.0",
           "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
           "emits": "a3c54bc1997d75a99323754ac571d3c6dae8504bddedefcbbe97b54433cc2843",
           "passed": [
@@ -123210,9 +124082,21 @@
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.421Z",
+          "core": "0.290.0",
+          "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
+          "item": "1a76e0d4e6f49eb7b839ecf4b344fde631f670cbfcfae0bf9782a13d6964e687",
+          "delta": [],
+          "same": [
+            "noOpportunity"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.157Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.422Z",
+          "core": "0.290.0",
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
           "emits": "18c27986c1fad4dca79d553210bdbd197c93f4431b1e9802dc3830f4f68a3558",
           "passed": [
@@ -126324,9 +127208,23 @@
             ]
           }
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.423Z",
+          "core": "0.290.0",
+          "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
+          "item": "10c2b78bfc5dee68165f3a7645da060afa08688b2b521e8ac7c1bc0c05e706b6",
+          "delta": [
+            "saveDamage"
+          ],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:30:30.136Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.424Z",
+          "core": "0.290.0",
           "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
           "emits": "3e79e725d2cc1e9800e7ef65c5f45c1a45e6e4faaa51667f790f6e4d4401851f",
           "passed": [
@@ -126794,9 +127692,21 @@
           "core": "0.289.0",
           "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.425Z",
+          "core": "0.290.0",
+          "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f",
+          "item": "2d1ade2680ae5ad4a492492a629388a84dbcec91d0ee1b40559f457a5440fedc",
+          "delta": [],
+          "same": [],
+          "changes": [
+            "triggers"
+          ],
+          "triggers": "drops"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.159Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.425Z",
+          "core": "0.290.0",
           "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f",
           "emits": "16bcd10193b6994994564393e0778f5811e49447d3c1799979196f8bf153808a",
           "passed": [
@@ -126955,9 +127865,21 @@
           "core": "0.289.0",
           "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.426Z",
+          "core": "0.290.0",
+          "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f",
+          "item": "5e0a9f8a8bf509577e5be2072e68de84ac02cff4ceb2eed02f22dabd6d5d7089",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.159Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.426Z",
+          "core": "0.290.0",
           "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f",
           "emits": "b577e4d9fd9cb75f34f2c6460113b0a7ea4e8fd9c3861c9d4d5cf12dfd353632",
           "passed": [
@@ -127656,9 +128578,21 @@
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.427Z",
+          "core": "0.290.0",
+          "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
+          "item": "f39e3add98de4d8984b479b2ccabd4f9002ab95491b95bde4f7df84b79978de5",
+          "delta": [
+            "noOpportunity"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.160Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.427Z",
+          "core": "0.290.0",
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
           "emits": "346771c4d7fcf93436230335f400d3c7b91a0bc3240b5b5a42a4475da7afa3b4",
           "passed": [
@@ -130029,9 +130963,21 @@
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
           "confidence": 0.85
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.428Z",
+          "core": "0.290.0",
+          "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
+          "item": "c4fc55b09eeffd34245294f9d3c2c4f3ab98074ba97127bfee27eb23eff26e81",
+          "delta": [],
+          "same": [
+            "noOpportunity"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.160Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.428Z",
+          "core": "0.290.0",
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
           "emits": "c59d820fb4927ba4ecf85abd2912ba053d9ae6e2f98fab1d1706b51844ec5f80",
           "passed": [
@@ -133428,9 +134374,21 @@
           "core": "0.289.0",
           "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26"
         },
+        "reading": {
+          "at": "2026-11-22T06:14:53.430Z",
+          "core": "0.290.0",
+          "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26",
+          "item": "b97f74a0e8ad6bc12b1795e96b98731bee49e26d624fbc76294d556bf38124b6",
+          "delta": [],
+          "same": [
+            "effectEnds"
+          ],
+          "changes": [],
+          "triggers": "none"
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.162Z",
-          "core": "0.289.0",
+          "at": "2026-11-22T06:14:53.430Z",
+          "core": "0.290.0",
           "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26",
           "emits": "3f00c0962a039395467a6c8c838ed2e48b569fe1816069640aa77eaf35133f98",
           "passed": [
