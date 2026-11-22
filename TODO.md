@@ -161,4 +161,12 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       records are missed for that reason). "Handled in code" can mean handled in part: `spell-breaker` and `war-bond` are.
 - [ ] The larger remedy for wrong `entry` verdicts is a re-read with the engine in view: give a reader the engine's notes and
       the code path next to the text (a new reading stage), instead of matching identifiers.
+- [x] Second and third pilots on XMM monster features (2026-11-22, `docs/pilot-m3.md`, rules on branch `pilot/m3-xmm`):
+      14 rules gated, 7 reviewed (5 by agreement in the third pilot), 6 in the review queue; one played live by hand.
+- [ ] Decide what a partial rule is (refused, or accepted with its uncovered part declared as data).
+- [ ] Define the timing words of the vocabulary against the engine's behaviour (`bearerTurnEnd`, `casterTurnEnd`,
+      `currentTurnEnd`), with an example each.
+- [ ] Tests that pin the 24 legacy rules (registered set, states, round trip) must derive what they expect from the
+      registry: 7 fail on `pilot/m3-xmm`, so no new rule can land on `master` yet.
+- [ ] Scenario interpreter for moves; match the runner's resolution to the target by token id.
 
