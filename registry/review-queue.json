@@ -343,6 +343,193 @@
     }
   },
   {
+    "key": "xdmg:item:cloak-of-invisibility",
+    "reason": "dataFixes",
+    "by": "reviewer-y001",
+    "why": "Spending a charge makes the wearer invisible; ending it by lowering the hood has no word here",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-y001",
+      "rule": "6945e2af40dca8023fb061be0a520dbeb906126f0f49bbde4b0e65447d17bf3a",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "condition": {
+              "applied": "invisible"
+            }
+          }
+        }
+      ],
+      "implied": [],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "6945e2af40dca8023fb061be0a520dbeb906126f0f49bbde4b0e65447d17bf3a",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "condition": {
+              "applied": "invisible"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "uses": {
+              "spent": 1
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.uses.spent=1"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xdmg:item:rival-coin",
+    "reason": "disagreement",
+    "by": "reviewer-y001",
+    "why": "Heads: Wis save, half psychic on success, one-shot attack disadvantage to the target's next turn end; tails self-harm not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-y002",
+      "rule": "eb40fd1103fe463c31496e500ea2ebf4f8b70c83d4f173d118bb89b7ebd0fce4",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd",
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "roll": {
+              "mode": "disadvantage",
+              "on": "attack",
+              "for": "target"
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "eb40fd1103fe463c31496e500ea2ebf4f8b70c83d4f173d118bb89b7ebd0fce4",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "uses": {
+              "spent": 1
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "psychic"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5,
+              "type": "psychic"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "roll": {
+              "mode": "disadvantage",
+              "on": "attack",
+              "for": "target"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=bearerTurnEnd"
+      ],
+      "onlyReview": [
+        "expect.uses.spent=1"
+      ],
+      "baseline": [
+        "expect.damage.fraction=1;expect.damage.type=psychic;given.roll=failedSave"
+      ],
+      "detail": [
+        {
+          "draft": "expect.damage.fraction=0.5;given.roll=savedSave",
+          "review": "expect.damage.fraction=0.5;expect.damage.type=psychic;given.roll=savedSave"
+        }
+      ],
+      "left": [
+        {
+          "leaves": "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=failedSave",
+          "review": "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=failedSave"
+        }
+      ]
+    }
+  },
+  {
     "key": "xmm:monster:aboleth/action/dominate-mind",
     "reason": "disagreement",
     "by": "reviewer-x001",

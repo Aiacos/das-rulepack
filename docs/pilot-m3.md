@@ -540,3 +540,11 @@ were offered once more, blind (`--reoffer`, Ruling R39): 195 entries in 11 batch
 Of the 26, a blind review agreed on 9 (7 exactly), which ship, 5 of them as partial rules; 17 went to the review queue (12
 disagreements, 5 with a key no assertion checks). The pack ships 49 rules; the drafts queue went from 206 to 180.
 
+# The 2024 Dungeon Master's Guide: a full drafting run (2026-11-22)
+
+The 66 magic items of the book that need a rule and have a matched item were drafted, in 5 batches: 2 drafts accepted by the
+gates, 64 declined (most: no key for the main effect, or the item's data already does the main part and the rest is a table
+matter; 5 need code). A blind review settled neither draft (one disagreement, one with a data fix no assertion checks). No
+rule of this book ships. What triage left as "needs a rule" in the three core books is mostly the hard tail: vehicles,
+artifacts, random effect tables, a check chained to a cast. Bulk drafting is not run again on it.
+

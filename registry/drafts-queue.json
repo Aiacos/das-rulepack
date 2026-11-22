@@ -1,5 +1,453 @@
 [
   {
+    "key": "xdmg:item:1-rod-of-the-pact-keeper",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "official item ambiguous; limiting the spell bonus to warlock spells has no drafter key or fact",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:1-wand-of-the-war-mage",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "the attack bonus is the effect data; disregarding cover on spell attacks has no drafter key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:1-wraps-of-unarmed-power",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "a damage type picked at each strike and a bonus on unarmed strikes, which are no item: no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:2-rod-of-the-pact-keeper",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "official item ambiguous; limiting the spell bonus to warlock spells has no drafter key or fact",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:2-wand-of-the-war-mage",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "the attack bonus is the effect data; disregarding cover on spell attacks has no drafter key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:2-wraps-of-unarmed-power",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "a damage type picked at each strike and a bonus on unarmed strikes, which are no item: no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:3-rod-of-the-pact-keeper",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "official item ambiguous; limiting the spell bonus to warlock spells has no drafter key or fact",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:3-wand-of-the-war-mage",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "the attack bonus is the effect data; disregarding cover on spell attacks has no drafter key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:3-wraps-of-unarmed-power",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "a damage type picked at each strike and a bonus on unarmed strikes, which are no item: no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:apparatus-of-kwalish",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "a piloted vehicle run by a lever table: no drafter key says levers, the vehicle or its pressure damage",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:axe-of-the-dwarvish-lords",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "data has the attacks, summon and blessings; the natural-20 bonus needs a critical fact not offered, and a giant bonus limited to thrown hits would also fire on melee",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:bag-of-devouring",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "no activity; being drawn in and destroyed is a chance roll and a death at turn start: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:book-of-exalted-deeds",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "halo light would follow the always-on effects too; attackers of two creature types rolling at disadvantage has no key; the rest is out of combat",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:book-of-vile-darkness",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "vile speech damage is the item's own; its 15 ft area, the fiend and undead exemption and the self damage have no assertable key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:brooch-of-shielding",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "force resistance is the item's effect; immunity to one named spell's damage has no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:clockwork-amulet",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "replacing the attack d20 by a fixed 10 at the roller's choice has no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:dark-shard-amulet",
+    "reason": "code",
+    "by": "drafter-y001",
+    "why": "the cantrip is cast only after a passed check: a chained check then cast needs a script",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:dust-of-dryness",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "the save, necrotic damage and half on a success are the item's data; who may be targeted is the user's pick",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-ivory-goats",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "the fear aura comes from a summoned mount and only while ridden, with a day of immunity: no key or fact gates it",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:figurine-of-wondrous-power-obsidian-steed",
+    "reason": "code",
+    "by": "drafter-y003",
+    "why": "a random chance per use that the summoned steed disobeys, with a planar transport, needs a script",
+    "confidence": 0.7
+  },
+  {
+    "key": "xdmg:item:hat-of-many-spells",
+    "reason": "code",
+    "by": "drafter-y001",
+    "why": "slot spend, a check by spell level, a rest limit and a random failure table: needs a script",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:hat-of-wizardry",
+    "reason": "code",
+    "by": "drafter-y001",
+    "why": "the cantrip is cast only after a passed check: a chained check then cast needs a script",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:instrument-of-the-bards-anstruth-harp",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:instrument-of-the-bards-canaith-mandolin",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:instrument-of-the-bards-cli-lyre",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:instrument-of-the-bards-doss-lute",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:instrument-of-the-bards-fochlucan-bandore",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:instrument-of-the-bards-mac-fuirmidh-cittern",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:instrument-of-the-bards-ollamh-harp",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:javelin-of-lightning",
+    "reason": "person",
+    "by": "drafter-y001",
+    "why": "the attack offers both damage types and the bolt is a save activity with half on a success: the item's data does it",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:lute-of-thunderous-thumping",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "the extra thunder and a separate bard attack are already in the data; the sung-attack and class limit have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:natures-mantle",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "hiding as a bonus action while lightly obscured has no drafter key; the official item has nothing to bind",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:necklace-of-fireballs",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "throwing several beads at once to raise the fireball dice is a use-time count with no key or fixable path",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:potion-of-fire-breath",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "the save and half damage are the item's data; the three-breath count and hour limit are not visible to fix",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:potion-of-speed",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "the haste comes from the cast activity; dropping concentration and the lethargy has no drafter key or fix path",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:quaals-feather-token-whip",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "a summoned whip that attacks and moves on bonus actions: summons have no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:ring-of-shooting-stars",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "sphere damage scales with a table not in the text and spheres discharge by proximity: no key; stars are data",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:ring-of-spell-storing",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "storing and casting spells with the original caster's numbers has no drafter key; no activity to bind",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:saddle-of-the-cavalier",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "disadvantage on attacks against the mount and no forced dismount have no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:spell-scroll-cantrip",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-1",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-2",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-3",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-4",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-5",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-6",
+    "reason": "person",
+    "by": "drafter-y004",
+    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-7",
+    "reason": "person",
+    "by": "drafter-y004",
+    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-8",
+    "reason": "person",
+    "by": "drafter-y004",
+    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:spell-scroll-level-9",
+    "reason": "person",
+    "by": "drafter-y004",
+    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
+    "confidence": 0.85
+  },
+  {
+    "key": "xdmg:item:sphere-of-annihilation",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "a controlled sphere that moves into spaces has no zone or key; obliteration at 0 hit points is a death trigger",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:staff-of-the-adder",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "the snake head's own hit points, wisdom attack and destruction have no drafter key or fix path",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:staff-of-the-woodlands",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "spell attack bonus and spells are already in the data; tree form is out of combat",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:sword-of-answering",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "a reaction attack when damaged, with advantage and ignoring immunity, has no reaction shape or key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:thunderous-greatclub",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "strength, extra thunder and the prone saves are the item's data; object damage and the concentration rider have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:tome-of-the-stilled-tongue",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "casting a written spell without a slot or components has no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:trident-of-fish-command",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "the swim speed limit on the beast target has no condition or key; the cast and charges are data",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:wand-of-fireballs",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "spending extra charges to cast at a higher level needs a consumption scaling the fix paths do not allow",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:wand-of-lightning-bolts",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "spending extra charges to cast at a higher level needs a consumption scaling the fix paths do not allow",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:wand-of-magic-missiles",
+    "reason": "person",
+    "by": "drafter-y002",
+    "why": "spending extra charges to cast at a higher level needs a consumption scaling the fix paths do not allow",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:wand-of-orcus",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "combat parts (mace damage with necrotic, AC bonus) are the item data; attunement death save, Orcus charge discount and undead call have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:item:wave",
+    "reason": "person",
+    "by": "drafter-y003",
+    "why": "the extra necrotic applies only on a natural 20, a fact no drafter condition offers; the rest is the item data and its cast activities",
+    "confidence": 0.75
+  },
+  {
+    "key": "xdmg:item:wind-fan",
+    "reason": "code",
+    "by": "drafter-y003",
+    "why": "a failure chance that grows with each use before dawn and destroys the fan needs state across uses",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:monster:avatar-of-death/action/multiattack",
+    "reason": "engine",
+    "by": "drafter-y005",
+    "why": "no key sets how many scythe swings one action grants, least of all a count derived from the summoner's proficiency",
+    "confidence": 0.8
+  },
+  {
+    "key": "xdmg:monster:avatar-of-death/trait/incorporeal-movement",
+    "reason": "person",
+    "by": "drafter-y005",
+    "why": "the self force damage hinges on stopping within an object, a state no condition fact names; passing through bodies has no key either",
+    "confidence": 0.85
+  },
+  {
     "key": "xmm:monster:aberrant-cultist/action/tentacle-lash",
     "reason": "person",
     "by": "drafter-q001",
