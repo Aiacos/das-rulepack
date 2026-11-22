@@ -302,4 +302,6 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] Next keys by what the sampled spells lacked: a change of form, a barrier, effects chosen at casting.
 - [x] Creature-scoped bindings (R35) and a two-batch sample of the 456 unblocked XMM features: 6 rules drafted and gated,
       all 6 in the review queue; R12 no-go for the other 21 batches.
+- [x] The item summary now shows dnd5e's own change of form (`transform`: preset, what is kept, temporary hit points):
+      readers and drafters had been declining form changes as "no key" although the item's data does them.
 

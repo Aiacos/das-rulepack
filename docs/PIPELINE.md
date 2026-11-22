@@ -179,7 +179,9 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      (`tools/pipeline/structure.mjs`) is built from a whitelist: `level`, `school`, `rarity`, `duration`, `concentration`,
      `uses` (`max`, recovery periods), per activity its `id`, a `label` (the name without markup, 40 characters at most),
      `type`, `activation`, `save` (abilities and DC), `onSave`, `damage` and `healing` parts (`number`, `denomination`,
-     `types`), `template`, `affects`, the ids of its `effects` and what it `consumes`, and per effect `id`, `name`,
+     `types`), `template`, `affects`, for a change of form its `transform` (`mode`, `preset`, what the creature `keeps`,
+     `tempHp`: the new form's hit points come as temporary ones), the ids of its `effects` and what it `consumes`, and per
+     effect `id`, `name`,
      `statuses`, the `changes` as a list of changed KEYS (never their values), `transfer` and `duration`. No description,
      chat text, flag or prose value is ever copied: a string that is not a plain value (enumeration, id, key, short formula)
      is dropped. It is still derived from premium data, so the command REFUSES (exit 2, nothing written) a `--structure`
