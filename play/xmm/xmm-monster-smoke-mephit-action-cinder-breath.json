@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-smoke-mephit-action-cinder-breath",
+  "key": "xmm:monster:smoke-mephit/action/cinder-breath",
+  "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmSmokeMephit000.mmCinderBreath00",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "tb7VfYTYKzOxuE5S"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=blinded;given.roll=failedSave"
+    },
+    {
+      "use": "tb7VfYTYKzOxuE5S"
+    },
+    {
+      "check": "expect.ends=casterTurnEnd"
+    },
+    {
+      "use": "tb7VfYTYKzOxuE5S"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=casterTurnEnd;given.roll=failedSave"
+    }
+  ]
+}

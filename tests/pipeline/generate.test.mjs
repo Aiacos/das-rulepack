@@ -83,7 +83,7 @@ describe("recordFromRule / ruleFromRecord", () => {
     expect(recordFromRule({ ...rules()[0], book: "XMM" }, undefined, undefined, 2022).edition).toBe("2014");
   });
 
-  it("legacy keeps the old status; once gated it follows the state; lower states are not emitted", () => {
+  it("legacy keeps the old status; once reviewed it follows the state; lower states are not emitted", () => {
     const r = recordFromRule(rules()[2]);
     const legacy = legacyOf([r]);
     expect(ruleFromRecord(r, { legacy }).status).toBe("pending");
@@ -91,7 +91,8 @@ describe("recordFromRule / ruleFromRecord", () => {
     const fresh = { ...r, legacy: undefined, legacyStatus: undefined };
     const gates = { at: "d", core: "c", rule: ruleFingerprint(r.rule), emits: emittedFingerprint(fresh), passed };
     expect(ruleFromRecord(fresh)).toBeNull();
-    expect(ruleFromRecord({ ...fresh, evidence: { gates } }).status).toBe("validated");
+    // Ruling R27: gated and never reviewed, the rule is held for a person.
+    expect(ruleFromRecord({ ...fresh, evidence: { gates } })).toBeNull();
     // A review and a play count for the rule they are stamped with (`rule`), not for an edited one.
     const reviewed = { by: "reader-2", at: "d", agrees: true, rule: gates.rule, confidence: 0.9 };
     expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed } }).status).toBe("validated");

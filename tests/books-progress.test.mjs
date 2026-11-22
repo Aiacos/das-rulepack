@@ -5,8 +5,9 @@ import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 import { README, RULES_DOC, DOCS_URL, GENERATED, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, parts, PARTS, renderBooks,
-  renderRules, renderSummary }
+  renderRules, renderSummary, heldRules, kindLabel }
   from "../tools/books-progress.mjs";
+import { HELD_REASONS } from "../tools/pipeline/generate.mjs";
 import { RULES } from "../scripts/rules/index.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -153,9 +154,17 @@ describe("progress by rulebook", () => {
     expect(block.split("| ↳ their features |").length - 1).toBe(CATALOG.books.filter(x => x.kinds.monster).length);
   });
 
-  it("lists every rule of the pack once in the table of rules", () => {
+  it("lists every rule of the pack once in the table of rules, and every rule held for a person once (Ruling R27)", () => {
     const block = renderRules();
-    for ( const rule of RULES ) expect(block.split(`| ${rule.name}`).length - 1, rule.identifier).toBe(1);
+    // As shown: the name, with its origin (a creature, a subclass…) when it has one, so "Claw (Ghast)" is not "Claw (Ghoul)".
+    const shown = rule => (rule.origin ? `${rule.name} (${rule.origin})` : rule.name);
+    for ( const rule of RULES ) expect(block.split(`| ${shown(rule)} |`).length - 1, rule.identifier).toBe(1);
+    const held = heldRules();
+    for ( const row of held ) {
+      expect(block.split(`| ${shown(row)} | ${kindLabel(row.kind)} | p.${row.page} | Held: ${HELD_REASONS[row.because]} |`)
+        .length - 1, row.name).toBe(1);
+    }
+    expect(block.split("| Held: ").length - 1).toBe(held.length);
   });
 
   it("README.md and docs/RULES.md are up to date (otherwise: npm run books)", () => {

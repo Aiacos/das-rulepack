@@ -1,0 +1,38 @@
+{
+  "scenario": "xmm/xmm-monster-merfolk-wavebender-action-aquatic-burst",
+  "key": "xmm:monster:merfolk-wavebender/action/aquatic-burst",
+  "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmMerfolkWaveben.mmAquaticBurst00",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "PXOjhjDQE9dup2V7"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.condition.applied=prone;given.roll=hit"
+    }
+  ]
+}

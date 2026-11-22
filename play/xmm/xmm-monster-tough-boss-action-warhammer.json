@@ -1,0 +1,40 @@
+{
+  "scenario": "xmm/xmm-monster-tough-boss-action-warhammer",
+  "key": "xmm:monster:tough-boss/action/warhammer",
+  "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.move.distance.mode",
+    "setup.item"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmToughBoss00000.iD5121TXziB6ZcSt",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "jf99rIxqlwX1YLPc"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.move.distance=10;expect.move.mode=push;given.roll=hit"
+    }
+  ]
+}

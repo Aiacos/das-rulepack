@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-swarm-of-ravens-action-cacophony",
+  "key": "xmm:monster:swarm-of-ravens/action/cacophony",
+  "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmSwarmOfRavens0.mmCacophony00000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "pyvvXqoxJsjkkP38"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=deafened;given.roll=failedSave"
+    },
+    {
+      "use": "pyvvXqoxJsjkkP38"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    },
+    {
+      "use": "pyvvXqoxJsjkkP38"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=failedSave"
+    }
+  ]
+}

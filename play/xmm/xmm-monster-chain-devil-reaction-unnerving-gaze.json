@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-chain-devil-reaction-unnerving-gaze",
+  "key": "xmm:monster:chain-devil/reaction/unnerving-gaze",
+  "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmChainDevil0000.mmUnnervingGaze0",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "btp6NZvx465nxWTF"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=frightened;given.roll=failedSave"
+    },
+    {
+      "use": "btp6NZvx465nxWTF"
+    },
+    {
+      "check": "expect.ends=currentTurnEnd"
+    },
+    {
+      "use": "btp6NZvx465nxWTF"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=currentTurnEnd;given.roll=failedSave"
+    }
+  ]
+}

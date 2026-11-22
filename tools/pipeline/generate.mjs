@@ -1,9 +1,13 @@
 // Registry records -> the Rule objects of the pack, and the generated scripts/rules/books/*.mjs and scripts/rules/index.mjs.
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { NOT_BOOKS, hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy, stateOf } from "./registry.mjs";
+import {
+  NOT_BOOKS, hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy, loadQueue, ruleFingerprint, stateOf
+} from "./registry.mjs";
 import { editionOf } from "./edition.mjs";
-import { RULE_VERDICTS } from "./schema.mjs";
+import { RULE_VERDICTS, draftedForPersonReasons } from "./schema.mjs";
+import { REVIEW_REASONS, queueHolds } from "./review.mjs";
+import { QUEUE_THRESHOLD } from "./intake.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems } from "./identifiers.mjs";
 import { isPartial, leftCounts } from "./leaves.mjs";
@@ -41,17 +45,90 @@ export function recordFromRule(rule, order, note, year) {
 const STATUS_OF_STATE = { played: "played", reviewed: "validated", gated: "validated" };
 
 /**
- * The Rule a record registers, or null: while the record has not reached `gated`, when its verdict is not entry or code, and
- * when it says `legacy: true` without legacy standing (`legacy`: legacy.json as a Map, see registry.mjs loadLegacy). A legacy
- * record keeps its old status, or "played" once a complete play is recorded.
+ * Ruling R27: why a rule that passed its gates is HELD (not registered with DAS · Core) until a person settles it, as the
+ * closed list docs/RULES.md prints. `queued`: a review-queue entry about the rule as it is whose reason is neither a review
+ * reason nor the record's own stamp (a hand edit): it waits for a person all the same.
  */
-export function ruleFromRecord(record, { legacy } = {}) {
-  if (!record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
-  let status;
-  if (record.legacy === true) {
-    if (!hasLegacyStanding(record, legacy)) return null;
-    status = isPlayed(record.evidence?.played) ? "played" : record.legacyStatus;
-  } else status = STATUS_OF_STATE[stateOf(record)];
+export const HELD_REASONS = Object.freeze({
+  "not-reviewed": "not reviewed yet",
+  "review-stale": "its review is about an older rule",
+  disagreement: "review disagrees",
+  "low-confidence": "reviewer unsure",
+  "free-text": "review holds free text",
+  unexpressed: "reviewer could not express it",
+  queued: "waits for a person"
+});
+
+const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const isEmptyList = (v) => Array.isArray(v) && v.length === 0;
+// The review queue by record key: a list of entries (review-queue.json, registry.mjs loadQueue) or a Map already made.
+const queueMap = (queue) => (queue instanceof Map ? queue : new Map((Array.isArray(queue) ? queue : []).map((e) => [e?.key, e])));
+
+// What the stored comparison of a current queue entry says, as a held reason, or null when the review agreed in full: the
+// assertions matched (`agrees: true`, nothing only on one side, the reviewer expressed the entry) at a confidence the review
+// ingest takes (QUEUE_THRESHOLD). Any field absent or of another type fails closed (`disagreement`).
+function comparisonHeld(entry) {
+  const review = isObject(entry.review) ? entry.review : {};
+  if (Array.isArray(review.assert) && review.assert.length === 0) return "unexpressed";
+  if (!Array.isArray(review.assert) || !Array.isArray(review.onlyDraft) || !Array.isArray(review.onlyReview)) {
+    return "disagreement";
+  }
+  if (!isEmptyList(review.onlyDraft) || !isEmptyList(review.onlyReview)) return "disagreement";
+  // Nothing on one side only, yet no agreement: a free text on a side (review.mjs compareAsserts `free`).
+  if (review.agrees === false) return "free-text";
+  if (review.agrees !== true) return "disagreement";
+  const c = entry.confidence;
+  return typeof c === "number" && c >= QUEUE_THRESHOLD && c <= 1 ? null : "low-confidence";
+}
+
+/**
+ * Ruling R27, the one decision of what is registered with the engine. `null` when the record registers nothing whatever its
+ * review: no rule, a verdict other than entry or code, `legacy: true` without standing (generate refuses it), or not gated.
+ * Otherwise `{ emitted: true, because }` — `legacy` (standing, as before the ruling, whatever its state), `reviewed` (a review
+ * about the rule as it is agrees: an agent's, exact or tolerated, or an owner's review-accept), `stamp-agreed` (the record
+ * waits in review-queue.json, about the rule as it is, only because of its own stamp, `evidence.drafted.because` with
+ * `person: true`, and the stored comparison agrees in full: comparisonHeld) — or `{ emitted: false, because }`, a key of
+ * HELD_REASONS: a gated rule never reviewed, queued as disagreement, low-confidence, free-text or unexpressed, or whose queue
+ * entry is about an older rule. `queue`: review-queue.json (a list or a Map by key); left out, nothing can be confirmed
+ * from it and a stamped rule is held.
+ */
+export function emissionOf(record, { legacy, queue } = {}) {
+  if (!isObject(record) || !record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
+  if (record.legacy === true) return hasLegacyStanding(record, legacy) ? { emitted: true, because: "legacy" } : null;
+  const state = stateOf(record);
+  if (state === "reviewed" || state === "played") return { emitted: true, because: "reviewed" };
+  if (state !== "gated") return null;
+  const held = (because) => ({ emitted: false, because });
+  const entry = queueMap(queue).get(record.key);
+  if (isObject(entry)) {
+    const fingerprint = ruleFingerprint(record.rule);
+    if (!queueHolds(entry, record) || entry.draft?.rule !== fingerprint) return held("review-stale");
+    if (REVIEW_REASONS.includes(entry.reason)) return held(entry.reason);
+    const drafted = record.evidence?.drafted;
+    const stamped = draftedForPersonReasons().includes(entry.reason) && isObject(drafted) && drafted.person === true
+      && drafted.because === entry.reason;
+    if (!stamped) return held("queued");
+    const why = comparisonHeld(entry);
+    return why ? held(why) : { emitted: true, because: "stamp-agreed" };
+  }
+  // A review about the rule as it is that says it does not agree (stateOf leaves such a record gated).
+  const reviewed = record.evidence?.reviewed;
+  if (isObject(reviewed) && reviewed.agrees === false && reviewed.rule === ruleFingerprint(record.rule)) {
+    return held("disagreement");
+  }
+  return held("not-reviewed");
+}
+
+/**
+ * The Rule a record registers, or null: whenever emissionOf does not emit it (Ruling R27: not gated, held for a person,
+ * a verdict other than entry or code, `legacy: true` without legacy standing; `legacy`: legacy.json as a Map, see
+ * registry.mjs loadLegacy; `queue`: review-queue.json). A legacy record keeps its old status, or "played" once a complete
+ * play is recorded.
+ */
+export function ruleFromRecord(record, { legacy, queue } = {}) {
+  if (emissionOf(record, { legacy, queue })?.emitted !== true) return null;
+  const status = record.legacy === true
+    ? (isPlayed(record.evidence?.played) ? "played" : record.legacyStatus) : STATUS_OF_STATE[stateOf(record)];
   if (!status) return null;
   const { rule } = record;
   if (record.page === null || record.page === undefined) {
@@ -82,12 +159,13 @@ const aliasesOf = (record) => (Array.isArray(record.rule?.alsoAs) ? record.rule.
  * The `sources` of the records whose rule is emitted: `{ docId: identifier }`, what the pack registers beside its table so that
  * the engine knows an item by its document id. A record that registers no rule binds nothing.
  */
-export function sourcesOf(records, { legacy } = {}) {
+export function sourcesOf(records, { legacy, queue } = {}) {
   const out = {};
+  const byKey = queueMap(queue);
   for (const record of records) {
     const problems = sourceProblems(record);
     if (problems.length) throw new Error(`${record.key}: ${problems.join("; ")}`);
-    if (!record.sources || !ruleFromRecord(record, { legacy })) continue;
+    if (!record.sources || !ruleFromRecord(record, { legacy, queue: byKey })) continue;
     for (const [docId, identifier] of Object.entries(record.sources)) {
       if (out[docId] !== undefined && out[docId] !== identifier) {
         throw new Error(`${record.key}: the document ${docId} is bound to ${identifier} and to ${out[docId]}`);
@@ -107,10 +185,11 @@ const byOrder = (a, b) => {
 const indent = (text, pad) => text.split("\n").map((l) => pad + l).join("\n");
 
 // The text of scripts/rules/books/<code>.mjs, or null when no record of the book is emitted.
-export function bookModuleSource(code, records, note, { legacy } = {}) {
+export function bookModuleSource(code, records, note, { legacy, queue } = {}) {
   const blocks = [];
+  const byKey = queueMap(queue);
   for (const record of [...records].sort(byOrder)) {
-    const rule = ruleFromRecord(record, { legacy });
+    const rule = ruleFromRecord(record, { legacy, queue: byKey });
     if (!rule) continue;
     const { book, ...rest } = rule;
     const note = record.note ? `${record.note.split("\n").map((l) => `  // ${l}`.trimEnd()).join("\n")}\n` : "";
@@ -188,13 +267,16 @@ export const SOURCES = Object.freeze(${sourcesLiteral(sources)});
  * Writes (or, with `check`, only compares) the generated files under `out`: books/<code>.mjs for every registry book that has an
  * emitted rule, and index.mjs. Generated files of books/ that no registry book accounts for are removed (reported when checking).
  * Throws, before writing anything, when a record says `legacy: true` without legacy standing (registry/legacy.json), or has a
- * rule under a verdict other than entry or code.
+ * rule under a verdict other than entry or code, or review-queue.json is invalid. A rule emissionOf holds is not written
+ * (Ruling R27); it still owns its identifier for the unique gate and `batch draft` (gates.mjs identifierTwins).
  * @returns {{ written: string[], differing: string[] }}  Paths relative to `out`.
  */
 export function generate({ registry, out, check = false }) {
   const files = existsSync(registry)
     ? readdirSync(registry).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f)).sort() : [];
   const legacy = existsSync(registry) ? loadLegacy(registry) : new Map();
+  // Ruling R27: what review-queue.json says decides which gated rules are held (emissionOf).
+  const queue = queueMap(existsSync(registry) ? loadQueue(registry, "review") : []);
   const wanted = new Map();
   const refused = [];
   const sources = {};
@@ -210,11 +292,11 @@ export function generate({ registry, out, check = false }) {
       const problems = r.rule ? identifierProblems(r) : [];
       if (problems.length) refused.push(`${r.key}: ${problems.join("; ")}`);
     }
-    const source = bookModuleSource(book, records, note, { legacy });
+    const source = bookModuleSource(book, records, note, { legacy, queue });
     if (source) wanted.set(`books/${code}.mjs`, source);
     if (!refused.length) {
       try {
-        for (const [docId, identifier] of Object.entries(sourcesOf(records, { legacy }))) {
+        for (const [docId, identifier] of Object.entries(sourcesOf(records, { legacy, queue }))) {
           if (sources[docId] !== undefined && sources[docId] !== identifier) refused.push(`${docId}: bound to two identifiers`);
           sources[docId] = identifier;
         }
@@ -222,7 +304,7 @@ export function generate({ registry, out, check = false }) {
     }
     // Two emitted rules must never register one identifier, aliases included.
     for (const r of records) {
-      if (!ruleFromRecord(r, { legacy })) continue;
+      if (!ruleFromRecord(r, { legacy, queue })) continue;
       for (const id of new Set([r.identifier, ...aliasesOf(r)].map((x) => String(x).trim().toLowerCase()))) {
         if (emitted.has(id)) refused.push(`${r.key}: shares the identifier ${id} with ${emitted.get(id)}`);
         else emitted.set(id, r.key);
@@ -255,4 +337,28 @@ export function generate({ registry, out, check = false }) {
     if (!check) rmSync(join(out, path));
   }
   return { written, differing: check ? differing : [] };
+}
+
+/**
+ * Ruling R27, read back from the generated modules: one line for each record emissionOf holds whose book module registers it
+ * all the same (its identifier or an alias, in the module of its book). `modules`: `{ <BOOK>: RULES }`, the RULES export of
+ * each generated book module there is. `gates --ci` fails on any line, so a held rule added to a module by hand is seen there
+ * as well as by `build:rules -- --check`.
+ */
+export function shippedHeld(records, { legacy, queue, modules = {} } = {}) {
+  const byKey = queueMap(queue);
+  const out = [];
+  for (const record of records) {
+    const emission = emissionOf(record, { legacy, queue: byKey });
+    const rules = Object.hasOwn(modules, record.book) ? modules[record.book] : null;
+    if (!emission || emission.emitted || !Array.isArray(rules)) continue;
+    const mine = new Set([record.identifier, ...aliasesOf(record)].map((x) => String(x).trim().toLowerCase()));
+    const registered = rules.some((rule) => [rule?.identifier, ...(Array.isArray(rule?.alsoAs) ? rule.alsoAs : [])]
+      .some((x) => mine.has(String(x).trim().toLowerCase())));
+    if (registered) {
+      out.push(`emit: ${record.key} is held (${HELD_REASONS[emission.because]}) but the generated module of ${record.book}`
+        + " registers it");
+    }
+  }
+  return out;
 }

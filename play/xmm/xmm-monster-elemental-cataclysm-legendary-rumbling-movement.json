@@ -1,0 +1,46 @@
+{
+  "scenario": "xmm/xmm-monster-elemental-cataclysm-legendary-rumbling-movement",
+  "key": "xmm:monster:elemental-cataclysm/legendary/rumbling-movement",
+  "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.denies",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmElementalCatac.mmRumblingMoveme",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "6LnRjVsoOrDcYSqw"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=prone;given.roll=failedSave"
+    },
+    {
+      "use": "6LnRjVsoOrDcYSqw"
+    },
+    {
+      "check": "expect.denies=opportunityAttacks"
+    }
+  ]
+}

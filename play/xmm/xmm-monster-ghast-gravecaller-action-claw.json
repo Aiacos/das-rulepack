@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-ghast-gravecaller-action-claw",
+  "key": "xmm:monster:ghast-gravecaller/action/claw",
+  "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmGhastGravecall.pF4ucCgUSL6IY7YA",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "W1T7dZnG8GMMwyEP"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.condition.applied=paralyzed;given.roll=hit"
+    },
+    {
+      "use": "W1T7dZnG8GMMwyEP"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd"
+    },
+    {
+      "use": "W1T7dZnG8GMMwyEP"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd;given.roll=hit"
+    }
+  ]
+}

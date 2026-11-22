@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-demilich-legendary-grave-dust-flight",
+  "key": "xmm:monster:demilich/legendary/grave-dust-flight",
+  "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmDemilich000000.4e4ia1FS6ln2GnGF",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "jjHZ0sa9Ihw0qnC5"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=blinded;given.roll=failedSave"
+    },
+    {
+      "use": "jjHZ0sa9Ihw0qnC5"
+    },
+    {
+      "check": "expect.ends=casterTurnEnd"
+    },
+    {
+      "use": "jjHZ0sa9Ihw0qnC5"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=casterTurnEnd;given.roll=failedSave"
+    }
+  ]
+}

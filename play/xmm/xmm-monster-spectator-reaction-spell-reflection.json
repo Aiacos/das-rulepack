@@ -1,0 +1,48 @@
+{
+  "scenario": "xmm/xmm-monster-spectator-reaction-spell-reflection",
+  "key": "xmm:monster:spectator/reaction/spell-reflection",
+  "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect.damage.type",
+    "setup.item"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmSpectator00000.mmSpellReflectio",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "ZYmB6aUHCqkMh0Ji"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0;given.roll=savedSave"
+    },
+    {
+      "use": "ZYmB6aUHCqkMh0Ji"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.damage.fraction=1;expect.damage.type=force;given.roll=failedSave"
+    }
+  ]
+}

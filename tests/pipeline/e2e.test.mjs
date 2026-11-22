@@ -117,6 +117,16 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("pipeline end to end", () => {
       .find((r) => r.key === keyOf("Tide Clasp")).state).toBe("gated");
     twice(["gates", "--ci"], 0);
 
+    // Ruling R27: gated and never reviewed, the rule is held for a person: no module is written for its book.
+    twice(["generate"], 0);
+    expect(existsSync(join(env.RULEPACK_RULES, "books", "xzz.mjs"))).toBe(false);
+    // A review that agrees about the rule as it is (the review stage has its own tests): now the rule ships.
+    const gatedBook = loadBook(registry, "XZZ");
+    const reviewed = (r) => ({ ...r, evidence: { ...r.evidence, reviewed: { by: "reviewer-1", at: "2026-11-22T00:00:00.000Z",
+      agrees: true, rule: r.evidence.gates.rule, confidence: 0.9 } } });
+    saveBook(registry, { ...gatedBook,
+      records: gatedBook.records.map((r) => (r.key !== keyOf("Tide Clasp") ? r : reviewed(r))) });
+    twice(["gates", "--ci"], 0);
     twice(["generate"], 0);
     twice(["generate", "--check"], 0);
     const src = readFileSync(join(env.RULEPACK_RULES, "books", "xzz.mjs"), "utf8");

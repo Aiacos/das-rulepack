@@ -29,7 +29,7 @@ describe("kinds of the module", () => {
     expect(() => kindLabel("constructor")).toThrow(/constructor/);
   });
 
-  it("a gated monster rule is emitted with a module kind", () => {
+  it("a reviewed monster rule is emitted with a module kind", () => {
     const record = {
       key: "tst:monster:wyrmling/action/gust", identifier: "tst-wyrmling-gust", name: "Gust", kind: "monster", book: "TST",
       page: 3, edition: "2024", text: null, items: [], verdict: "entry",
@@ -40,6 +40,10 @@ describe("kinds of the module", () => {
     };
     record.evidence.gates = { at: "2026-11-22", core: "1.0.0", rule: ruleFingerprint(record.rule),
       emits: emittedFingerprint(record), passed: ["schema", "validator", "ids", "fixes", "text", "unique"] };
+    // Ruling R27: gated alone, it is held for a person; a review that agrees emits it.
+    expect(ruleFromRecord(record, { legacy: new Map() })).toBeNull();
+    record.evidence.reviewed = { by: "reviewer-1", at: "2026-11-22", agrees: true, rule: record.evidence.gates.rule,
+      confidence: 0.9 };
     const rule = ruleFromRecord(record, { legacy: new Map() });
     expect(rule.kind).toBe("monster");
     expect(KINDS).toContain(rule.kind);

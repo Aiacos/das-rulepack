@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-lich-action-paralyzing-touch",
+  "key": "xmm:monster:lich/action/paralyzing-touch",
+  "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmLich0000000000.9p8yotv4r7nt3NWl",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "rb8gqaec8uNffDCN"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.condition.applied=paralyzed;given.roll=hit"
+    },
+    {
+      "use": "rb8gqaec8uNffDCN"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    },
+    {
+      "use": "rb8gqaec8uNffDCN"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=hit"
+    }
+  ]
+}

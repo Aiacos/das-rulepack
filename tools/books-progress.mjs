@@ -17,7 +17,8 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 import { RULES } from "../scripts/rules/index.mjs";
 import { unaccountedOrigins } from "./pipeline/identifiers.mjs";
-import { NOT_BOOKS } from "./pipeline/registry.mjs";
+import { NOT_BOOKS, loadLegacy, loadQueue } from "./pipeline/registry.mjs";
+import { HELD_REASONS, emissionOf } from "./pipeline/generate.mjs";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../..");
 const read = file => JSON.parse(readFileSync(resolve(ROOT, file), "utf8"));
@@ -260,6 +261,45 @@ export function toleratedReviews(dir = resolve(ROOT, "registry")) {
 }
 
 /**
+ * Ruling R27: the rules registry/ holds for a person (drafted and gated, not registered with DAS · Core: generate.mjs
+ * emissionOf), in registry order, as `{ book, name, kind, page, because }` (`because` a key of HELD_REASONS; `origin` when the
+ * rule has one). The pack's modules do not carry them, so they are read here, with legacy.json and review-queue.json.
+ */
+export function heldRules(dir = resolve(ROOT, "registry")) {
+  const legacy = loadLegacy(dir);
+  const queue = new Map(loadQueue(dir, "review").map(e => [e.key, e]));
+  const out = [];
+  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !NOT_BOOKS.includes(f)).sort() ) {
+    for ( const { state, ...r } of JSON.parse(readFileSync(resolve(dir, f), "utf8")).records ?? [] ) {
+      const emission = emissionOf(r, { legacy, queue });
+      if ( !emission || emission.emitted ) continue;
+      out.push({ book: r.book, name: r.name, ...(r.rule.origin ? { origin: r.rule.origin } : {}), kind: r.kind, page: r.page,
+        because: emission.because });
+    }
+  }
+  return out;
+}
+
+/** The held rules of a book as rows of docs/RULES.md, after the table of the rules it ships; [] when it holds none. */
+export function heldTable(rows) {
+  if ( !rows.length ) return [];
+  const out = ["Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.", "",
+    "| Held rule | Kind | Page | Status |", "|---|---|---|---|"];
+  for ( const row of rows ) {
+    const name = row.origin ? `${row.name} (${row.origin})` : row.name;
+    out.push(`| ${name} | ${kindLabel(row.kind)} | p.${row.page} | Held: ${HELD_REASONS[row.because]} |`);
+  }
+  return [...out, ""];
+}
+
+/** The held rules counted by reason, for the closing line: " 3 more held for a person (review disagrees 2, …)." or "". */
+export function heldLine(rows) {
+  if ( !rows.length ) return "";
+  const counts = Object.keys(HELD_REASONS).map(k => [k, rows.filter(r => r.because === k).length]).filter(([, n]) => n);
+  return ` ${rows.length} more held for a person, not shipped (${counts.map(([k, n]) => `${HELD_REASONS[k]} ${n}`).join(", ")}).`;
+}
+
+/**
  * Ruling R25: what a partial rule leaves to the table, for its row of docs/RULES.md (its `partial` counts by reason), or "".
  */
 export function partialNote(rule) {
@@ -274,7 +314,7 @@ export function partialNote(rule) {
  * The closing line of the rules block: the counts by status, plays by hand, reviews with R24 tolerances and partial rules
  * (Ruling R25) apart.
  */
-export function countsLine(rules, { handPlayed = () => false, tolerated = new Set() } = {}) {
+export function countsLine(rules, { handPlayed = () => false, tolerated = new Set(), held = [] } = {}) {
   const count = status => rules.filter(rule => rule.status === status).length;
   const waiting = count("pending") ? `, ${count("pending")} pending` : "";
   const hand = rules.filter(handPlayed).length;
@@ -283,7 +323,7 @@ export function countsLine(rules, { handPlayed = () => false, tolerated = new Se
   const tolerance = loose ? ` ${loose} of them reviewed with Ruling R24 tolerances (not an exact agreement).` : "";
   const partial = rules.filter(rule => partialNote(rule)).length;
   const partly = partial ? ` ${partial} of them partial (part of the entry left to the table).` : "";
-  return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}${partly}`;
+  return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}${partly}${heldLine(held)}`;
 }
 
 const STATUS = { played: "Played", validated: "Validated", pending: "Pending" };
@@ -298,7 +338,8 @@ export function kindLabel(kind) {
 
 /** The block between `<!-- auto:rules -->` and `<!-- /auto:rules -->`: the pack's rules, book by book. */
 export function renderRules() {
-  const books = CATALOG.books.filter(book => RULES.some(rule => rule.book === book.code))
+  const held = heldRules();
+  const books = CATALOG.books.filter(book => [...RULES, ...held].some(rule => rule.book === book.code))
     .sort((a, b) => (Number(!foundryPackage(a.code)) - Number(!foundryPackage(b.code))) || byYear(a, b));
   const out = [];
   const unaccounted = unaccountedByRule();
@@ -309,8 +350,10 @@ export function renderRules() {
     const pkg = foundryPackage(book.code);
     out.push(`### ${book.code} · ${book.name}${/\(\d{4}\)$/.test(book.name) ? "" : ` (${book.year})`}`, "");
     out.push(pkg ? `Published as an official Foundry VTT module (\`${pkg}\`).` : "Not published on Foundry.", "");
-    out.push("| Rule | Kind | Page | What the module adds | Handled in | Status |", "|---|---|---|---|---|---|");
-    for ( const rule of RULES.filter(r => r.book === book.code) ) {
+    const shipped = RULES.filter(r => r.book === book.code);
+    const head = ["| Rule | Kind | Page | What the module adds | Handled in | Status |", "|---|---|---|---|---|---|"];
+    if ( shipped.length ) out.push(...head);
+    for ( const rule of shipped ) {
       const name = rule.origin ? `${rule.name} (${rule.origin})` : rule.name;
       const pages = [`p.${rule.page}`, ...(rule.alsoIn ?? []).map(other => `${other.book} p.${other.page}`)].join("; ");
       // Ruling R25: a partial rule says so where it is handled, and what it leaves to the table beside what it adds.
@@ -323,9 +366,10 @@ export function renderRules() {
       const adds = `${rule.adds}${gaps}${partial}`;
       out.push(`| ${name} | ${kindLabel(rule.kind)} | ${pages} | ${adds} | ${where} | ${statusOf(rule)} |`);
     }
-    out.push("");
+    if ( shipped.length ) out.push("");
+    out.push(...heldTable(held.filter(row => row.book === book.code)));
   }
-  out.push(countsLine(RULES, { handPlayed, tolerated: toleratedReviews() }));
+  out.push(countsLine(RULES, { handPlayed, tolerated: toleratedReviews(), held }));
   return out.join("\n");
 }
 

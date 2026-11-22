@@ -1,0 +1,47 @@
+{
+  "scenario": "xmm/xmm-monster-giant-ape-action-boulder-toss",
+  "key": "xmm:monster:giant-ape/action/boulder-toss",
+  "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "setup.item"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmGiantApe000000.mmBoulderToss000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "jpC3fk7LJlhH4CDr"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=prone;given.roll=failedSave"
+    },
+    {
+      "use": "jpC3fk7LJlhH4CDr"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    }
+  ]
+}

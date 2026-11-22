@@ -1,0 +1,74 @@
+{
+  "scenario": "xmm/xmm-monster-dire-worg-action-dreadful-howl",
+  "key": "xmm:monster:dire-worg/action/dreadful-howl",
+  "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.damage.type",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 3,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmDireWorg000000.mmDreadfulHowl00",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "xToMbcg9i9oSf06f"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=frightened;given.roll=failedSave"
+    },
+    {
+      "use": "xToMbcg9i9oSf06f"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;expect.damage.type=psychic;given.roll=savedSave"
+    },
+    {
+      "use": "xToMbcg9i9oSf06f"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    },
+    {
+      "use": "xToMbcg9i9oSf06f"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    },
+    {
+      "use": "xToMbcg9i9oSf06f"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=failedSave"
+    }
+  ]
+}
