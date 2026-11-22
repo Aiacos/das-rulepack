@@ -216,6 +216,21 @@ describe("draftVocabulary: the type of every allowed fix path", () => {
     return { where, leaf, d, fix: { path, ...(where === "effect" ? { effect: "Ef00Ef11Ef22Ef33" } : {}) } };
   }));
 
+  it("says how a fix is written, with examples the drafter check accepts", () => {
+    expect(Object.keys(v.fixes.shape)).toEqual(["activity", "item", "effect"]);
+    expect(v.fixes.shape.activity.path).toBe("system.activities.<activity id>.<a leaf of paths.activity>");
+    expect(v.fixes.shape.effect.effect).toBe("<effect id>");
+    expect(v.fixes.examples.length).toBe(3);
+    for (const fix of v.fixes.examples) {
+      const problems = checkDraftKeys({ dataFixes: [fix] }, { origins: ["official"], kind: "spell" });
+      expect(problems.filter((x) => x.startsWith("dataFixes")), JSON.stringify(fix)).toEqual([]);
+    }
+    // The form two drafters guessed (the leaf alone, the id beside it) is not one of them, and is refused.
+    const guessed = { activity: ACT, path: "save.ability", from: [], value: ["str"] };
+    const refused = checkDraftKeys({ dataFixes: [guessed] }, { origins: ["official"], kind: "spell" });
+    expect(refused.join(" ")).toMatch(/not an allowed leaf/);
+  });
+
   it("describes every path of FIX_PATHS, and only those", () => {
     for (const [where, paths] of Object.entries(v.fixes.paths)) {
       expect(Object.keys(v.fixes.types[where]).sort(), where).toEqual([...paths].sort());

@@ -43,7 +43,9 @@ function activityOf(id, a, base) {
   out.activation = plain(a?.activation?.type) ?? "";
   if (isObject(a?.save)) {
     const dc = isObject(a.save.dc) ? pick(a.save.dc, ["calculation", "formula"]) : plain(a.save.dc);
-    out.save = clean({ ability: plainList(a.save.ability), dc });
+    // dnd5e keeps one save ability as a bare string in older data (a list in newer): one ability, not none.
+    const ability = typeof a.save.ability === "string" && a.save.ability ? [a.save.ability] : a.save.ability;
+    out.save = clean({ ability: plainList(ability), dc });
   }
   const onSave = plain(a?.damage?.onSave);
   if (onSave) out.onSave = onSave;
