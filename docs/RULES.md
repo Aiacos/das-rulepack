@@ -35,6 +35,13 @@ Published as an official Foundry VTT module (`dnd-players-handbook`).
 | Psychic Veil (Soulknife 13) | Feature | p.135 | A missed attack no longer drops the invisibility; an attack that hits and deals damage still does. | code + table | Played |
 | Inspiring Smite (Oath of Glory 3) | Feature | p.114 | The Temporary Hit Points are divided among the chosen creatures as the paladin likes, where the engine splits them evenly. | table | Played |
 | Dreadful Strikes (Fey Wanderer 3) | Feature | p.124 | The extra Psychic die is once per turn for each target, not once per turn for the ranger. | code + table | Played |
+| Zone of Truth | Spell | p.343 | The 15-foot sphere is laid, and a creature coming in or beginning its turn there saves again, once per turn. Not covered on ddb-importer: its save is a second, special activity after a utility cast; the replay is bound to one origin. Partial: 1 expectation left to the table (out-of-combat 1). | table, partial | Validated |
+
+Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
+
+| Held rule | Kind | Page | Status |
+|---|---|---|---|
+| Control Water | Spell | p.256 | Held: review disagrees |
 
 ### FRAIF · Forgotten Realms: Adventures in Faerûn (2025)
 
@@ -180,7 +187,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-41 rules: 16 played, 25 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 14 of them partial (part of the entry left to the table). 52 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 8, reviewer unsure 2).
+42 rules: 16 played, 26 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 15 of them partial (part of the entry left to the table). 53 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 9, reviewer unsure 2).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

@@ -73,5 +73,46 @@ export const RULES = book(BOOK, [
     "entry": {
       "triggers": []
     }
+  },
+
+  {
+    "identifier": "zone-of-truth",
+    "name": "Zone of Truth",
+    "page": 343,
+    "kind": "spell",
+    "status": "validated",
+    "handledIn": "table",
+    "adds": "The 15-foot sphere is laid, and a creature coming in or beginning its turn there saves again, once per turn.",
+    "entry": {
+      "triggers": [
+        {
+          "on": [
+            "enter",
+            "turnStart"
+          ],
+          "do": [
+            {
+              "type": "replay"
+            }
+          ]
+        }
+      ],
+      "selfZone": {
+        "dnd5eactivity000": {
+          "type": "sphere",
+          "size": 15,
+          "units": "ft"
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "its save is a second, special activity after a utility cast; the replay is bound to one origin"
+      }
+    ],
+    "partial": {
+      "out-of-combat": 1
+    }
   }
 ]);

@@ -424,3 +424,21 @@ drafted have no closed reason at all. Outside the closed fields, the drafters' o
 the 206 queued entries (FRAIF 2, XMM 15; a keyword search read by eye). On a copy of the registry after `npm run gates`,
 the 40 shipped rules keep their states and the generated modules, README and RULES.md do not change.
 
+# Zone and aura keys, and the sample again (2026-11-22)
+
+With the zone, aura and automatic-save keys (Ruling R33), the same kind of sample was drafted again.
+
+| Book | Entries | Drafted | Accepted by the gates | After a blind review |
+|---|---|---|---|---|
+| FRAIF (magic items) | 2 | 2 | 2 | 1 shipped (partial), 1 to the review queue |
+| XPHB (the same 9 spells) | 9 | 2 | 2 | 1 shipped with a key no assertion can check (queued for a person too), 1 to the review queue |
+| EFA (a spell) | 1 | 0 | – | – |
+
+4 drafts of 12 against 3 of 16 before; 7 of the 9 spells still have no key for their main effect (changes of form, warded
+areas chosen at casting, barriers, possession). Still under the 70 % of Ruling R12: the other batches were not run.
+
+Two faults of the pipeline itself came out of this sample and were fixed. The drafter vocabulary listed the leaves a data fix
+may touch without saying how its path is written, and its example was empty: it now carries the written shape and three
+examples the drafter check accepts. And the item summary shown to readers and drafters read a save ability stored as a bare
+string as none (845 activities in the dumps): two drafts "fixed" a gap that was not there, and the fixes gate stopped both.
+
