@@ -808,3 +808,9 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   R35.
 - Leaving legacy for the 24 migrated rules; the 437 triage-queue entries for a person; the 168 ambiguous official matches.
 - Play from a player's client (`players: true` scenarios) beyond what the pilot shows is needed.
+
+- **R36 (2026-11-22).** CI runs against the engine's latest release, which can predate a capability the registry was gated
+  with on the engine's main branch. Under `--ci`, an `<actor id>.<item id>` source the release refuses is not a failure; a
+  full run of the gates still fails it, and the shipped module skips such a rule on an older engine by itself. The two
+  engine tests of the capability follow what the clone has instead of pinning it true. Cost if wrong: CI would stay green
+  for a rule no released engine can bind; the rule is still skipped at registration, never bound to the wrong creature.

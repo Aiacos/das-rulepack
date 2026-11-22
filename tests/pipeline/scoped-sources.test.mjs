@@ -29,6 +29,7 @@ const PROBE_NEW = (sources) => Object.keys(sources)
 
 const CORE_DIR = process.env.DAS_CORE && existsSync(join(process.env.DAS_CORE, "module/scripts/core/content.mjs"))
   ? process.env.DAS_CORE : null;
+const HAS_KEY_LOOKUP = !!CORE_DIR && existsSync(join(CORE_DIR, "module/scripts/core/source-keys.mjs"));
 
 describe("the capability is read from the engine itself (loadCore, no version sniffing)", () => {
   it("is true only when the engine's validateSources accepts a key of two 16-character ids", () => {
@@ -39,9 +40,11 @@ describe("the capability is read from the engine itself (loadCore, no version sn
     expect(actorItemSourcesOf(() => "not a list")).toBe(false);
   });
 
-  it.skipIf(!CORE_DIR)("is true on the current clone of DAS · Core (DAS_CORE)", async () => {
+  // CI checks the pack against the engine's latest RELEASE, which may predate the change: the capability is then false, and
+  // true as soon as the clone carries the engine's own key lookup (both arrived upstream together).
+  it.skipIf(!CORE_DIR)("on the clone of DAS · Core (DAS_CORE), it is true exactly when the engine has its key lookup", async () => {
     const core = await loadCore(CORE_DIR);
-    expect(core.actorItemSources).toBe(true);
+    expect(core.actorItemSources).toBe(HAS_KEY_LOOKUP);
   });
 });
 
@@ -118,13 +121,15 @@ describe("inventory binds a shared embedded id by <actor id>.<item id>, to the c
     expect(gateUnique(twice, { core: stubCore(true) }).join("\n")).toMatch(new RegExp(`${WOLF}\\.${BITE}`));
   });
 
-  it("an engine that refuses actor.item sources fails the rule at the validator gate (also under --ci): it stays drafted", () => {
+  it("a refusing engine fails the rule at the validator gate; under --ci (the latest release) it does not", () => {
     const next = run(rule(run(), ["Dire Wolf"]));
     const wolf = of(next, "Dire Wolf");
     expect(gateValidator(wolf, { core: stubCore(false) })).toContain(`validator: sources ${WOLF}.${BITE}: ${ACTOR_ITEM_REFUSED}`);
     expect(gateValidator(wolf, { core: stubCore(true) })).toEqual([]);
     const ci = { core: stubCore(false), documents: {}, ci: true, legacy: new Map() };
-    expect(runGates(next, ci).failures[wolf.key].validator.join("\n")).toContain(ACTOR_ITEM_REFUSED);
+    expect(runGates(next, ci).failures[wolf.key]?.validator ?? []).toEqual([]);
+    const full = { core: stubCore(false), documents: {}, legacy: new Map() };
+    expect(JSON.stringify(runGates(next, full).failures[wolf.key] ?? {})).toContain(ACTOR_ITEM_REFUSED);
     expect(stateOf(wolf)).toBe("drafted");
   });
 });
@@ -244,7 +249,7 @@ describe("the engine's reading and the carry use the item of the creature the ru
   });
 });
 
-describe.skipIf(!CORE_DIR)("the engine's own key lookup (core/source-keys.mjs sourceKeys) with the pack's sources", () => {
+describe.skipIf(!HAS_KEY_LOOKUP)("the engine's own key lookup (core/source-keys.mjs sourceKeys) with the pack's sources", () => {
   it("finds the wolf's feature, in the compendium and as a world copy, and never the bear's", async () => {
     const { sourceKeys } = await import(pathToFileURL(join(CORE_DIR, "module/scripts/core/source-keys.mjs")).href);
     const SOURCES = { [`${WOLF}.${BITE}`]: "tst-dire-wolf-bite" };
