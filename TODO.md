@@ -349,4 +349,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 
 - [x] Two more plays recorded (Death Cultist, Death Slaad). The Death Slaad scenario failed 2 runs of 4 at "effect gone":
       two direct reproductions show the engine ends all four effects at the turn start; the runner is at fault, cause open.
-- [ ] Scenario runner: the intermittent "effect not gone" on the Death Slaad scenario.
+- [x] Scenario runner: the intermittent "effect not gone" was Bloodied (a status the system adds at the hit, no origin) taken
+      for the use's effect; the runner now also confirms a turn really changed, and names what stayed on a failure.

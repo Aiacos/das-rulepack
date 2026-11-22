@@ -319,6 +319,21 @@ async function combatReady(env, roles, n) {
   return env.combat.ok;
 }
 
+// One turn on, and seen to be: next-turn is asked, then the current combatant is read until it has changed (a creature that
+// cannot act, or a window the engine opens at a turn's end, can delay it); asked once more when it has not. False when the
+// turn still has not changed.
+async function advance(ctx) {
+  const before = await currentToken(ctx);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await ctx.nextTurn();
+    for (let k = 0; k < 12; k++) {
+      await pause(500);
+      if ((await currentToken(ctx)) !== before) { await pause(1000); return true; }
+    }
+  }
+  return false;
+}
+
 // The start of a new turn of the caster (its budget fresh, a new turn for an effect's placement).
 async function casterTurn(ctx, roles) {
   for (let i = 0; i < 4; i++) {
@@ -478,18 +493,30 @@ async function checkMove(ctx, { n, move, roles, spot }) {
     + ` ${gap0} → ${gap1} from the caster${note})`);
 }
 
+// An effect still on the target, for a failure message: its own name and the end of its origin.
+const stayed = (x) => `${String(x.name ?? "?").slice(0, 30)} from ${String(x.origin ?? "?").slice(-40)}`;
+
 // An effect the use left on the target ends at its turn boundary: still there just before it, gone just after.
 async function checkEnds(ctx, { n, ends, roles, before }) {
   const { target, itemId } = roles;
   const fresh = (await ctx.effects(target)).filter((x) => !before.has(idOf(x)) && !x.disabled);
   const own = fresh.filter((x) => String(x.origin ?? "").includes(`Item.${itemId}`));
-  const placed = new Set((own.length ? own : fresh).map(idOf));
+  // Not the item's by its id: then whatever the use placed, which has an origin. A status the system adds by itself when the
+  // hit lands (Bloodied under half the hit points) has none, and is not the use's effect: it would never end at a turn.
+  const sourced = fresh.filter((x) => typeof x.origin === "string" && x.origin);
+  const placed = new Set((own.length ? own : sourced.length ? sourced : fresh).map(idOf));
   if (!placed.size) return ctx.expect(false, `check ${n}: no effect of the use on the target, nothing to end at ${ends}`);
   const present = async () => (await ctx.effects(target)).some((x) => placed.has(idOf(x)) && !x.disabled);
-  for (let k = 0; k < TURNS_BEFORE[ends]; k++) { await ctx.nextTurn(); await pause(1500); }
+  for (let k = 0; k < TURNS_BEFORE[ends]; k++) await advance(ctx);
   ctx.expect(await present(), `check ${n}: its effect is still there just before ${ends} (${TURNS_BEFORE[ends]} turn(s) on)`);
-  await ctx.nextTurn();
+  const turned = await advance(ctx);
   let gone = false;
   for (let k = 0; k < 10 && !gone; k++) { await pause(500); gone = !(await present()); }
-  ctx.expect(gone, `check ${n}: its effect is gone at ${ends}`);
+  // A turn that did not change is said: the effect was then never given its boundary, and the check proves nothing of it.
+  // What is still there is named (an effect's own name, as the item gives it): a failure then says which effect stayed.
+  const left = gone ? [] : (await ctx.effects(target)).filter((x) => placed.has(idOf(x)) && !x.disabled);
+  const note = `${turned ? "" : " (the turn did not change after next-turn)"}`
+    + `${left.length ? ` (still there: ${left.map(stayed).join("; ")}` : ""}`
+    + `${left.length ? `; placed ${placed.size}, own ${own.length}, fresh ${fresh.length})` : ""}`;
+  ctx.expect(gone, `check ${n}: its effect is gone at ${ends}${note}`);
 }

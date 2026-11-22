@@ -498,6 +498,22 @@ describe("steps.mjs: expect.ends (turn by turn, in a combat)", () => {
     });
   }
 
+  it("a status the system adds by itself at the hit (no origin: Bloodied) is not the effect whose end is checked", async () => {
+    // Seen live: the hit left the target under half its hit points, dnd5e added Bloodied, which never ends at a turn, and
+    // the check took it for the use's effect one run in four.
+    const withBloodied = (w, params, n) => {
+      if (n === 1) {
+        w.addEffect("TkTarget00000000", { ends: "casterTurnStart", caster: params.tokenId, statuses: ["frightened"],
+          origin: "Actor.x.Item.y.Activity.z" });
+        w.addEffect("TkTarget00000000", { name: "Bloodied", statuses: ["bloodied"] });
+      }
+      return { resolution: { targets: [part({ save: saveOutcome(n, [1]) })] } };
+    };
+    const f = world({ onUse: withBloodied });
+    await play(record("casterTurnStart"), structureFor({ types: [] }), f);
+    expect(verdicts(f.log)).toEqual(["pass", "pass"]);
+  });
+
   it("an effect that ends a turn too early fails before its moment; one that never ends fails after", async () => {
     const early = world({ onUse: applies("casterTurnEnd"), endsAt: () => true });
     await play(record("casterTurnEnd"), structureFor({ types: [] }), early);
