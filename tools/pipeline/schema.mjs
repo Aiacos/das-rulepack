@@ -1,5 +1,7 @@
 // The record format of the rulebook registry: the closed vocabularies and the structural validator.
-import { assertProblems, isCanonicalAssertion, isPlainLine } from "./assert.mjs";
+import { assertProblems, isCanonicalAssertion, isPlainLine, unassertableKeys } from "./assert.mjs";
+import { DRAFT_KEYS } from "./draft-keys.mjs";
+import { leavesConflicts, leavesProblems } from "./leaves.mjs";
 
 export const ADDS_MAX = 200;
 
@@ -161,10 +163,18 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
   // milestone on; a legacy rule predates it.
   // `given.origin` may name only an origin the rule covers.
   if (has(rule, "assert")) {
-    errors.push(...assertProblems(rule.assert, Array.isArray(rule.origins) ? { origins: rule.origins } : {}));
+    // An agent's words (fix round 1 of Ruling R25: no `excludes`), unless the rule is a legacy one.
+    const origins = Array.isArray(rule.origins) ? { origins: rule.origins } : {};
+    errors.push(...assertProblems(rule.assert, { agent: !legacy, ...origins }));
   }
   if (!legacy && !(Array.isArray(rule.assert) && rule.assert.length)) {
     errors.push("rule.assert: required, at least one { given, expect } (a legacy rule may have none)");
+  }
+  // Ruling R25: what the rule leaves to the table, as data (leaves.mjs): the same checks as `assert`, no free text, at most
+  // LEAVES_MAX items, never something the rule itself states or implies, never on a rule that asserts nothing of its own.
+  if (has(rule, "leaves")) {
+    errors.push(...leavesProblems(rule.leaves, Array.isArray(rule.origins) ? { origins: rule.origins } : {}),
+      ...leavesConflicts(rule));
   }
   if (!Array.isArray(rule.origins)) errors.push("rule.origins: must be an array");
   else for (const o of rule.origins) if (!ORIGINS.includes(o)) errors.push(`rule.origins: unknown origin ${JSON.stringify(o)}`);
@@ -251,10 +261,10 @@ function checkEvidence(evidence, errors, legacy, verdict) {
       if (!isHex64(p.rule)) errors.push("evidence.person.rule: must be 64 hex characters (the fingerprint of the rule signed)");
     }
   }
-  // `person: true` with a `because` of DRAFTED_FOR_PERSON: the draft ingest says the rule goes to a person at review whatever
-  // a reviewer says (Ruling R15: `noReactions`). The two go together.
+  // `person: true` with a `because` of draftedForPersonReasons(): the draft ingest says the rule goes to a person at review
+  // whatever a reviewer says (Ruling R15, generalised: a key the vocabulary cannot assert). The two go together.
   checkStamped(evidence, "drafted", { by: isReaderHandle, at: isString, core: isString, rule: isHex64 }, {}, errors,
-    { person: (v) => v === true, because: (v) => DRAFTED_FOR_PERSON.includes(v) });
+    { person: (v) => v === true, because: (v) => draftedForPersonReasons().includes(v) });
   const drafted = evidence.drafted;
   if (isObject(drafted) && has(drafted, "person") !== has(drafted, "because")) {
     errors.push("evidence.drafted: person and because go together");
@@ -288,17 +298,26 @@ export const isWorld = (v) => typeof v === "string" && BY.test(v);
 // of REVIEW_TOLERANCES), every string a canonical assertion of the closed vocabulary, at least one of the two lists non-empty.
 // It is part of the gates' `emits` (registry.mjs emittedFingerprint), so a hand edit that removes or changes it is seen.
 export const REVIEW_TOLERANCES = Object.freeze(["baseline", "detail"]);
-const isTolerated = (v) => isObject(v) && Object.keys(v).length === 2 && REVIEW_TOLERANCES.every((k) => Array.isArray(v[k]))
-  && (v.baseline.length + v.detail.length > 0) && v.baseline.every((c) => isCanonicalAssertion(c))
-  && v.detail.every((p) => Array.isArray(p) && p.length === 2 && p.every((c) => isCanonicalAssertion(c)));
+// Ruling R25: `left`, the [leaves, review] pairs of an agreement that matched review assertions with what the rule declares it
+// leaves to the table (a partial rule). Optional (absent from agreements before it), never empty when present.
+export const PARTIAL_TOLERANCE = "left";
+const isPairList = (l) => Array.isArray(l) && l.every((p) => Array.isArray(p) && p.length === 2
+  && p.every((c) => isCanonicalAssertion(c)));
+const isTolerated = (v) => isObject(v) && REVIEW_TOLERANCES.every((k) => Object.hasOwn(v, k) && Array.isArray(v[k]))
+  && Object.keys(v).every((k) => REVIEW_TOLERANCES.includes(k) || k === PARTIAL_TOLERANCE)
+  && (!Object.hasOwn(v, PARTIAL_TOLERANCE) || (isPairList(v.left) && v.left.length > 0))
+  && (v.baseline.length + v.detail.length + (Object.hasOwn(v, PARTIAL_TOLERANCE) ? v.left.length : 0) > 0)
+  && v.baseline.every((c) => isCanonicalAssertion(c)) && isPairList(v.detail);
 const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
 // The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
 const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
-  confidence: "a number from 0 to 1", person: "true", because: "one of the reasons a draft goes to a person (DRAFTED_FOR_PERSON)",
+  confidence: "a number from 0 to 1", person: "true", because:
+    "one of the reasons a draft goes to a person (draftedForPersonReasons)",
   "reviewed.because": "one line of printable ASCII, at most 120 characters",
-  "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]] } (Ruling R24), not both empty",
+  "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]], left?: [[leaves, review]] } (Rulings R24,"
+    + " R25), not all empty",
   "played.because": "one line of printable ASCII, at most 120 characters", "played.by": "an owner's handle, not an agent's",
   "played.manual": "true", "played.client": `one of ${["gm", "player"].join(", ")}`,
   "played.scenario": "a scenario id <book>/<slug> (scenarios.mjs)", "played.core": "an engine version (1.2.3)",
@@ -306,17 +325,23 @@ const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex charact
 
 /**
  * Why a drafted rule goes to a person at review whatever the reviewer says (`evidence.drafted.because`, with `person: true`):
- * `noReactions` (Ruling R15: the assertion vocabulary has no word for a lost reaction), `official-uncovered` (Ruling R21: the
- * rule leaves the official item uncovered and names another origin only).
+ * the name of a drafter key the assertion vocabulary cannot say all of (Ruling R15, generalised by fix round 1 of R25:
+ * assert.mjs unassertableKeys, IMPLIES_NOTHING), `other-key` for a key outside DRAFT_KEYS (a rule a person signed), or
+ * `official-uncovered` (Ruling R21: the rule leaves the official item uncovered and names another origin only). `noReactions`
+ * stays a valid stamp: it was written before fix round 1, when the vocabulary had no word for a lost reaction.
  */
-export const DRAFTED_FOR_PERSON = Object.freeze(["noReactions", "official-uncovered"]);
+// A function, not a constant: DRAFT_KEYS comes from draft-keys.mjs, whose imports lead back here (read once all are loaded).
+let FOR_PERSON;
+export const draftedForPersonReasons = () =>
+  (FOR_PERSON ??= Object.freeze(["official-uncovered", "other-key", ...Object.keys(DRAFT_KEYS)]));
 /**
- * The `evidence.drafted.because` a rule calls for, or null (draft.mjs stamps it; the schema requires it). When both apply,
- * `noReactions` is the one written (one reason is enough to send the record to a person).
+ * The `evidence.drafted.because` a rule calls for, or null (draft.mjs stamps it; the schema requires it): the first key, in
+ * name order, the vocabulary cannot assert; else `official-uncovered` (one reason is enough to send the record to a person).
  */
 export function draftedForPerson(rule) {
   if (!isObject(rule)) return null;
-  if (isObject(rule.entry) && Object.hasOwn(rule.entry, "noReactions")) return "noReactions";
+  const [key] = unassertableKeys(rule.entry);
+  if (key !== undefined) return Object.hasOwn(DRAFT_KEYS, key) ? key : "other-key";
   const uncovered = Array.isArray(rule.uncovered) ? rule.uncovered : [];
   return uncovered.some((u) => isObject(u) && u.origin === "official") ? "official-uncovered" : null;
 }

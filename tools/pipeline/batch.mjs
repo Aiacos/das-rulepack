@@ -13,6 +13,9 @@ import * as assertVocabulary from "./assert.mjs";
 import { isFormula } from "./assert.mjs";
 import { DDB_MONSTER_UNCOVERED, monsterIdentifier, sourceKeysOf } from "./identifiers.mjs";
 import { sharedEmbeddedId } from "./settle.mjs";
+import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
+import { LEAVES_MAX, LEAVE_REASONS, UNEXPRESSED_MAX } from "./leaves.mjs";
+import * as sh from "./shapes.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
 
@@ -315,6 +318,9 @@ export function cutDraftBatches(records, options = {}) {
   return batches;
 }
 
+// The fields of an assertion shape but `free` (Ruling R25: no free text in leaves).
+const withoutFree = (fields) => Object.fromEntries(Object.entries(fields).filter(([k]) => k !== "free"));
+
 /** `<book>-draft-report.json`: counts only (no key, no name): the batches, the entries cut, each reason with its count. */
 export const draftReport = (book, batches, leftOut, whyWithheld = 0) => ({
   book, batches: batches.length, cut: batches.reduce((n, b) => n + b.entries.length, 0),
@@ -344,7 +350,8 @@ export function draftVocabulary(core) {
       rolls: copy(assertVocabulary.ROLLS), fractions: copy(assertVocabulary.FRACTIONS),
       rollModes: copy(assertVocabulary.ROLL_MODES), rollOn: copy(assertVocabulary.ROLL_ON),
       rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
-      givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.EXPECT_FIELDS)
+      givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.AGENT_EXPECT_FIELDS),
+      denies: copy(assertVocabulary.DENIES)
     },
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
     draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),
@@ -358,7 +365,23 @@ export function draftVocabulary(core) {
     },
     limits: {
       addsMax: ADDS_MAX, originMax: ORIGIN_MAX, freeMax: assertVocabulary.FREE_MAX, quoteWords: 8, entryWords: ENTRY_WORD_BUDGET
-    }
+    },
+    // Ruling R25: what a partial rule leaves to the table (`rule.leaves`), as data: an assertion of the shapes above without
+    // `free` (and an optional `because`), or an `unexpressed` reason with a count. The drafter's only.
+    leaves: {
+      max: LEAVES_MAX, because: [...LEAVE_REASONS], unexpressedMax: UNEXPRESSED_MAX,
+      shapes: {
+        assertion: resolveShape(sh.object({
+          given: sh.object({}, withoutFree(assertShapes().given)),
+          expect: sh.object({}, withoutFree(assertShapes().expect), { atLeastOne: true })
+        }, { because: sh.values(LEAVE_REASONS) }), engineLists),
+        unexpressed: resolveShape(sh.object({ unexpressed: sh.values(LEAVE_REASONS),
+          count: Object.freeze({ type: "number", min: 1, max: UNEXPRESSED_MAX, int: true, formula: false }) }), engineLists)
+      }
+    },
+    // What each closed word means, and where the meaning comes from (definitions.mjs): one reading for drafter and reviewer.
+    definitions: definitionsFor(),
+    endsExamples: JSON.parse(JSON.stringify(ENDS_EXAMPLES))
   };
 }
 
@@ -422,10 +445,11 @@ export const reviewReport = (book, batches, leftOut) => ({
  * engine words it names, with the limits of its strings. No drafter key, no example rule: engine data only.
  */
 export function reviewVocabulary(core) {
-  const { engine, assert, limits } = draftVocabulary(core);
+  const { engine, assert, limits, endsExamples } = draftVocabulary(core);
   const words = ["moments", "statuses", "creatureTypes", "moveModes", "effectEnds", "damageTypes"];
   return {
     engine: Object.fromEntries(words.map((w) => [w, engine[w]])), assert,
-    limits: { freeMax: limits.freeMax, quoteWords: limits.quoteWords, whyMax: MAX_WHY }
+    limits: { freeMax: limits.freeMax, quoteWords: limits.quoteWords, whyMax: MAX_WHY },
+    definitions: definitionsFor({ review: true }), endsExamples
   };
 }

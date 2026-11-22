@@ -6,6 +6,7 @@ import { editionOf } from "./edition.mjs";
 import { RULE_VERDICTS } from "./schema.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems } from "./identifiers.mjs";
+import { isPartial, leftCounts } from "./leaves.mjs";
 
 // legacy.json and the queues (registry.mjs NOT_BOOKS) sit beside the books and are not books.
 export { NOT_BOOKS };
@@ -68,6 +69,9 @@ export function ruleFromRecord(record, { legacy } = {}) {
   if (aliases.length) out.alsoAs = aliases;
   // Ruling R5: the matched origins the rule does not cover, shown in docs/RULES.md (left out when there are none).
   if (Array.isArray(rule.uncovered) && rule.uncovered.length) out.uncovered = structuredClone(rule.uncovered);
+  // Ruling R25: a partial rule says how many expectations it leaves to the table, by reason (docs/RULES.md). `leaves` itself
+  // is emitted nowhere: the entry is what is registered, and it is the rule's own.
+  if (isPartial(rule)) out.partial = leftCounts(rule.leaves);
   return out;
 }
 

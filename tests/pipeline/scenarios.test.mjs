@@ -234,7 +234,8 @@ describe("play/lib/steps.mjs scenario(json): what the engine's runner plays", ()
     const full = { given: {}, expect: { damage: { fraction: 1 } } };
     const prone = { given: {}, expect: { condition: { applied: "prone" } } };
     const run = async (assert, over) => {
-      const s = scenarioOf(reviewed({ rule: rule({ entry: { actionOrBonus: true }, origins: ["official"],
+      // grantsResistances implies nothing (assert.mjs IMPLIES_NOTHING; actionOrBonus did before fix round 1 of Ruling R25).
+      const s = scenarioOf(reviewed({ rule: rule({ entry: { grantsResistances: ["fire"] }, origins: ["official"],
         uncovered: [{ origin: "ddb-importer", because: "no activity" }], assert }) }), { packOf });
       expect(s.manual).toBe(false);
       const f = fakeContext(over);

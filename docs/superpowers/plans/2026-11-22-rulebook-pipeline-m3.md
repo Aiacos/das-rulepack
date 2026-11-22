@@ -187,6 +187,49 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   accepted without a step even when the text gives it on another roll than the structure's activity suggests (a person reads
   the queue only when the review differs); a two-type activity whose review gives one untyped fraction now disagrees (more
   queue, not less safety); `DAMAGE_ROLLS` classifies `atTurnStart`, `onHit`, `dataFixes` by hand.
+- **R25 — Partial rules: what a rule leaves to the table is data** (pilot 3, XMM: drafters wrote rules that automate part of
+  an entry and said so in `why`; the blind review then stated everything the text requires and the difference was queued as
+  a disagreement; extends R24). A rule may carry `rule.leaves`, at most 6 items (`tools/pipeline/leaves.mjs`), each an
+  assertion `{ given, expect, because? }` of the `assert` vocabulary with no `free` (what is true at the table but done by
+  hand) or `{ unexpressed, count }` (count 1 to 6) for what even assertions cannot say; `because` / `unexpressed` from the
+  closed `LEAVE_REASONS` (`no-key`, `target-size`, `target-state`, `immunity-after-save`, `healing-block`, `out-of-combat`,
+  `table-ruling`: the reasons the pilot's `why` strings repeat; a creature-type exemption appeared twice and is left under
+  `no-key`). The schema checks it like `assert` (own keys, closed words, origins; the validator gate checks the engine's
+  words) and refuses a leaves assertion the rule states or implies (same up to optional detail), a leaves damage of another
+  fraction than the rule's for the same situation, a duplicate, and any `leaves` on a rule whose own assertions (stated and
+  implied) are none or only the item's damage on a hit or failed save. `leaves` is in the rule fingerprint, emitted nowhere
+  at runtime; the generated rule carries `partial` (counts by reason) for docs/RULES.md ("partial" where it is handled, the
+  counts beside what it adds, partial rules counted apart). Review: agreement iff every draft assertion is matched and every
+  review assertion is matched, baseline, or matched by a `leaves` assertion (`left`, same matching as R24); an `unexpressed`
+  item matches nothing, a leave the review omits is fine; the reviewer never sees `leaves`. An agreement that used `left` is
+  "reviewed, partial": `evidence.reviewed.tolerated.left` holds the `[leaves, review]` pairs (schema-held, part of `emits`,
+  so the gates run again); every partial rule's agreement is automatic, not queued, and `ingest --draft` / `--review` list
+  partial keys for the owner. The drafter brief says a rule that would leave out the main effect (the first expectation
+  of the primary roll; test: what stays automated is only what the item's data already does) is a `person` answer.
+  Wrong: (a) a drafter who lists in `leaves` what a reviewer will say turns a gap into an agreement: what the rule automates
+  is still matched one to one, but what it leaves is never automated, and only docs/RULES.md and the ingest summaries tell
+  the table (cost: an owner's reading of each partial rule, not enforced); (b) "main effect" is a brief rule, not a check:
+  a rule that keeps a side rider and leaves the main effect passes the schema when it asserts anything of its own (review
+  then agrees through `left`); (c) `unexpressed` counts are unchecked claims; (d) a leaves assertion with a word the
+  vocabulary marks unverified (`excludes`) matches a reviewer's only when both chose the same word.
+  **Fix round 1.** (1) What an entry implies covers what its keys do (`assert.mjs` `IMPLIED`, one function per drafter key):
+  `resave` → `ends: savedSave`, `effectEnds` → `ends: <word>`, `noReactions` / `actionOrBonus` → the new `expect.denies`
+  (`reactions`, `actionAndBonus`), `noOpportunity` → `denies: opportunityAttacks` (not while flying), `effectStatuses` →
+  `condition.applied`, each on the roll that applies its effect in the official structure (every situation without it);
+  `saveDisadvantageFor`, `rollDisadvantage` → rolls with disadvantage. The 17 other drafter keys are in `IMPLIES_NOTHING`,
+  each with why (a test fails on a key in neither); a rule using one, or an unsayable part of an implied one, is stamped for a
+  person at review with the key's name (**Ruling R15 generalised**; `noReactions` now implies an assertion, its old stamps
+  stay valid). `denies` is the only new word: the three meanings pilot 3 needed. (2) A leave the rule already contradicts for
+  a situation it covers (another fraction, move mode, roll mode, or turn ending of EFFECT_ENDS) fails the schema, as does a
+  leave the rule states or implies for every situation (`given: {}` covers any). A second condition, or an event ending
+  beside a timed one, stays allowed: an effect may end at a time and on an event. (3) `excludes` maps to no notion of the
+  engine (the engine's "the bearer excluded" is a zone's, `targets` limits by creature type), so agents may no longer write
+  it (refused in a drafter's `assert` and `leaves` and a reviewer's `assert`); stored data still reads. Wrong: (e) a key in
+  `IMPLIES_NOTHING` sends every rule that uses it to a person (`effectDurations`, `usageLimits`, `onHit`...): slower volume,
+  until a word is added; (f) an implied assertion read without the structure holds in every situation, so a schema check
+  run without dumps may refuse a leave that is only true on another roll than the rule's (more refusals, never fewer); (g) the
+  pilot records that used `excludes` (one drafted rule) or a key now unassertable without its stamp (one) fail the schema
+  until redrafted or restamped.
 
 ## What a drafter may write (engine limits)
 

@@ -101,7 +101,10 @@ describe("normaliseAssert and impliedAsserts", () => {
       "expect.move.distance=10;expect.move.mode=push;given.roll=failedSave"
     ]);
     expect(impliedAsserts({ triggers: triggers[0] })).toHaveLength(2);
-    expect(impliedAsserts({ noReactions: true, effectEnds: { [ACT]: "bearerTurnEnd" } })).toEqual([]);
+    // Fix round 1 of Ruling R25: noReactions and effectEnds say what they do (every situation, without the structure).
+    expect(impliedAsserts({ noReactions: true, effectEnds: { [ACT]: "bearerTurnEnd" } }))
+      .toEqual(["expect.denies=reactions", "expect.ends=bearerTurnEnd"]);
+    expect(impliedAsserts({ effectDurations: { [ACT]: { seconds: 6 } }, grantsResistances: ["fire"] })).toEqual([]);
     expect(impliedAsserts(null)).toEqual([]);
   });
 });

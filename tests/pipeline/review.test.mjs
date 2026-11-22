@@ -130,7 +130,8 @@ describe("compareAsserts: what agreement is (Ruling R9)", () => {
   });
   it("is data: canonical assertion strings, no prose", () => {
     const c = compareAsserts(draft([HALF]), [PRONE, HALF]);
-    expect(Object.keys(c).sort()).toEqual(["agrees", "baseline", "detail", "free", "implied", "onlyDraft", "onlyReview"]);
+    expect(Object.keys(c).sort()).toEqual(["agrees", "baseline", "detail", "free", "implied", "left", "onlyDraft",
+      "onlyReview"]);
     const all = [...c.onlyDraft, ...c.onlyReview, ...c.implied, ...c.baseline];
     for (const s of all) expect(s).toMatch(/^[a-z.]+=[^;]+(;[a-z.]+=[^;]+)*$/i);
   });
@@ -208,10 +209,10 @@ describe("ingestReviews", () => {
     expect(out.disagreed[0].review.agrees).toBe(true);
   });
 
-  it("a rule stamped for a person (noReactions, official-uncovered) is queued even when the review agrees", () => {
-    const nr = gated({ rule: rule({ entry: { noReactions: [E_OFF] }, origins: ["official"],
+  it("a rule stamped for a person (a key no word says, official-uncovered) is queued even when the review agrees", () => {
+    const nr = gated({ rule: rule({ entry: { effectDurations: { [E_OFF]: { seconds: 60 } } }, origins: ["official"],
       uncovered: [{ origin: "ddb-importer", because: "its item has no effect" }], assert: [PRONE] }) },
-    { drafted: { person: true, because: "noReactions" } });
+    { drafted: { person: true, because: "effectDurations" } });
     const ou = gated({ key: "tst:spell:cold-snap", rule: rule({ entry: { saveDamage: { [A_DDB]: "half" } },
       origins: ["ddb-importer"], uncovered: [{ origin: "official", because: "nothing to bind" }] }) },
     { drafted: { person: true, because: "official-uncovered" } });
@@ -219,7 +220,7 @@ describe("ingestReviews", () => {
     const out = run([nr, ou], [review(nr, { assert: [PRONE] }), review(ou)]);
     expect(out.rejected).toEqual([]);
     expect(out.agreed).toEqual([]);
-    expect(out.disagreed.map((q) => [q.reason, q.review.agrees])).toEqual([["noReactions", true],
+    expect(out.disagreed.map((q) => [q.reason, q.review.agrees])).toEqual([["effectDurations", true],
       ["official-uncovered", true]]);
     for (const r of out.records) expect(r.evidence.reviewed).toBeUndefined();
   });
@@ -426,7 +427,7 @@ describe("pipeline CLI: batch review, ingest --review, review-accept", () => {
     expect(batch.entries.map((e) => e.key)).toEqual(records.map((x) => x.key).sort());
     expect(JSON.stringify(batch)).not.toMatch(/drafter-zz9|saveDamage|Zorbly/);
     const vocabulary = JSON.parse(readFileSync(join(out, "review-vocabulary.json"), "utf8"));
-    expect(Object.keys(vocabulary).sort()).toEqual(["assert", "engine", "limits"]);
+    expect(Object.keys(vocabulary).sort()).toEqual(["assert", "definitions", "endsExamples", "engine", "limits"]);
     expect(JSON.parse(readFileSync(join(out, "tst-review-report.json"), "utf8"))).toMatchObject({ book: "TST", cut: 2 });
     expect(existsSync(join(tmp, "private", "tst-review-001.structure.json"))).toBe(true);
     const next = cli(["batch", "review", "TST", "--out", out, "--structure", join(tmp, "private")]);

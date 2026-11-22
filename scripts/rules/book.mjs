@@ -24,10 +24,15 @@
  *                                engine's column: the pack's rule completes it, or serves another identifier of the same name.
  * @property {string[]} [alsoAs]  Other identifiers the entry is registered under: an origin's item that names it otherwise.
  * @property {{origin: string, because: string}[]} [uncovered]  Origins whose item the rule does not reach, and why.
+ * @property {Object<string, number>} [partial]  A partial rule (Ruling R25): how many expectations of the entry it leaves to
+ *                                the table, by reason (no-key, target-size...). Shown in docs/RULES.md; never registered.
  */
 
-/** What a rule is about. */
-export const KINDS = Object.freeze(["spell", "feature", "sense"]);
+/**
+ * What a rule is about: every kind a ruled record of registry/ may have (tools/pipeline/schema.mjs KINDS; a test holds the two
+ * lists equal). `monster` is a feature of a creature's stat block; `sense` exists only in legacy rules.
+ */
+export const KINDS = Object.freeze(["spell", "feat", "option", "feature", "species", "background", "item", "monster", "sense"]);
 
 /**
  * How far a rule was checked.

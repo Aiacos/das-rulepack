@@ -18,6 +18,7 @@ import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
 import { checkDraftKeys, isStructural, singleSlotKeys } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
+import { leavesProblems } from "./leaves.mjs";
 
 export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
@@ -121,6 +122,12 @@ export function gateValidator(record, { core }) {
     ? assertProblems(record.rule.assert, {
       vocabulary: core, ...(Array.isArray(record.rule.origins) ? { origins: record.rule.origins } : {})
     }).map((e) => `validator: ${e}`) : [];
+  // Ruling R25: the words of what the rule leaves to the table, against the same enumerations.
+  if (Array.isArray(record.rule.leaves)) {
+    asserts.push(...leavesProblems(record.rule.leaves, {
+      vocabulary: core, ...(Array.isArray(record.rule.origins) ? { origins: record.rule.origins } : {})
+    }).map((e) => `validator: ${e}`));
+  }
   const { entry, error } = entryOf(record.rule);
   if (error) return [`validator: ${error}`, ...asserts];
   if (!entry) return asserts;

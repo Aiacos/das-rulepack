@@ -18,7 +18,12 @@ export const ROLL_FOR = Object.freeze(["self", "target", "ally", "enemy"]);
 // Who an assertion is about (`expect.affects`), and who it leaves out (`expect.excludes`, the same words).
 export const AFFECTS = Object.freeze(["target", "allies", "enemies", "self"]);
 export const GIVEN_FIELDS = Object.freeze(["roll", "moment", "origin", "targetType", "free"]);
-export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll", "affects", "excludes", "move", "uses", "free"]);
+export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll", "affects", "excludes", "move", "uses", "denies",
+  "free"]);
+// Fix round 1 of Ruling R25: `excludes` maps to no notion of the engine and pilot 3 used it two ways, so no agent may write it
+// (a drafter's assert and leaves, a reviewer's assert: `assertProblems(…, { agent: true })`); stored data that holds it (a
+// review-queue entry, a tolerated pair) is still read. What it was bent to say has its own word now: `denies`.
+export const AGENT_EXPECT_FIELDS = Object.freeze(EXPECT_FIELDS.filter((f) => f !== "excludes"));
 
 // Own properties only: a key named like an inherited one (`constructor`, `toString`...) is never taken for a known key.
 const has = (o, k) => Object.hasOwn(o, k);
@@ -51,9 +56,10 @@ const list = (v) => (Array.isArray(v) ? v : v instanceof Set ? [...v] : null);
 /**
  * The problems of a `rule.assert` list, each prefixed with its path (`rule.assert[i].expect.damage.fraction: …`).
  * `vocabulary`: `{ moments, statuses, creatureTypes, moveModes, effectEnds, damageTypes }` (arrays or Sets; any may be absent),
- * `origins`: the origins an assertion may name (default schema.mjs ORIGINS).
+ * `origins`: the origins an assertion may name (default schema.mjs ORIGINS). `agent`: what an agent wrote (a draft, a review):
+ * `excludes` is then refused (AGENT_EXPECT_FIELDS).
  */
-export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS, at = "rule.assert" } = {}) {
+export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS, at = "rule.assert", agent = false } = {}) {
   if (!Array.isArray(assertions)) return [`${at}: must be an array of { given, expect }`];
   const errors = [];
   // A word of an engine enumeration: checked against it when it is known, else only as a non-empty string.
@@ -72,6 +78,10 @@ export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS,
     const { given, expect } = a;
     for (const k of Object.keys(given)) if (!GIVEN_FIELDS.includes(k)) errors.push(`${here}.given.${k}: unknown field`);
     for (const k of Object.keys(expect)) if (!EXPECT_FIELDS.includes(k)) errors.push(`${here}.expect.${k}: unknown field`);
+    if (agent && has(expect, "excludes")) {
+      errors.push(`${here}.expect.excludes: not an agent's word (no engine notion; denies says what a move provokes or a creature`
+        + " loses)");
+    }
     // `free` never counts as agreement: an assertion made of it alone says nothing a review or a scenario can check.
     if (!Object.keys(expect).some((k) => k !== "free")) errors.push(`${here}.expect: at least one closed field besides free`);
     for (const [part, o] of [["given", given], ["expect", expect]]) {
@@ -125,6 +135,7 @@ function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
     }
   }
   for (const k of ["affects", "excludes"]) if (has(expect, k)) oneOf(expect[k], AFFECTS, `${at}.${k}`);
+  if (has(expect, "denies")) oneOf(expect.denies, DENIES, `${at}.denies`);
   if (has(expect, "move")) {
     const m = expect.move;
     if (!isObject(m) || !onlyKeys(m, ["mode", "distance"])) errors.push(`${at}.move: must be { mode, distance? }`);
@@ -172,47 +183,198 @@ const typesOf = (structure, id) => {
 const typed = (given, fraction, types) => (types.length
   ? types.map((type) => ({ given, expect: { damage: { fraction, type } } })) : [{ given, expect: { damage: { fraction } } }]);
 
+// The roll on which an effect of the item is applied (fix round 1 of Ruling R25): read from the official structure, an effect
+// linked to an attack activity is applied on a hit, one linked to a save activity on a failed save (on a saved save when the
+// entry lists it in `savedEffects`). [null] when the structure does not say (no structure, an effect no activity links):
+// the assertion then holds in every situation (`given: {}`).
+const activitiesOf = (structure) => (Array.isArray(structure?.activities) ? structure.activities : []);
+function rollsOfEffect(id, entry, structure) {
+  const saved = Array.isArray(entry?.savedEffects) ? entry.savedEffects : [];
+  const rolls = new Set();
+  for (const a of activitiesOf(structure)) {
+    if (!(Array.isArray(a?.effects) && a.effects.includes(id))) continue;
+    if (a.type === "attack") rolls.add("hit");
+    else if (a.type === "save") rolls.add(saved.includes(id) ? "savedSave" : "failedSave");
+  }
+  return rolls.size ? [...rolls].sort() : [null];
+}
+// The effects a WHOLE value names (`true`: every effect the item's activities apply; a list: those ids).
+const effectsOf = (value, structure) => (Array.isArray(value) ? value.filter(isWord)
+  : value === true ? [...new Set(activitiesOf(structure).flatMap((a) => (Array.isArray(a?.effects) ? a.effects : [])))] : []);
+const givenOfRoll = (roll) => (roll === null ? {} : { roll });
+// One assertion per roll an effect is applied on.
+const onEffect = (id, entry, structure, expect) =>
+  rollsOfEffect(id, entry, structure).map((r) => ({ given: givenOfRoll(r), expect }));
+// A WHOLE value (`true` or effect ids): one assertion per effect and roll; `true` with no effect known: every situation.
+const onEffects = (value, entry, structure, expect) => {
+  const ids = effectsOf(value, structure);
+  if (!ids.length) return value === true ? [{ given: {}, expect }] : [];
+  return ids.flatMap((id) => onEffect(id, entry, structure, expect));
+};
+const asDeclarations = (v) => (Array.isArray(v) ? v : isObject(v) ? [v] : []);
+const asSteps = (d) => (Array.isArray(d?.do) ? d.do : [d?.do]);
+
 /**
- * What an entry says by itself, in canonical form (normaliseAssert): a review must assert it too (Ruling R9). `saveDamage`
- * (a saved save: half or no damage), `halfOnMiss` (a miss: half), `noDamage` (the activity's own damage is not rolled), each
- * with the damage types of its activity when `structure` (the official item's, structure.mjs structureOf) gives them (one
- * assertion per type; `halfOnMiss`: the types of the item's attack activities); and the `status` and `move` steps of
- * `triggers` on every roll moment they are declared on (`on` one of ROLLS: hit, failedSave, savedSave...), with the mode,
- * distance and status the step holds. Every other key implies nothing (`noReactions` included: the assertion vocabulary has
- * no word for a lost reaction).
+ * What the words of `expect.denies` say (fix round 1 of Ruling R25, the words pilot 3 needed): the movement of the creature
+ * that used the item provokes no opportunity attacks (engine key noOpportunity); the bearer of the item's effect cannot take
+ * reactions (noReactions); it takes an action or a bonus action on its turn, not both (actionOrBonus).
+ */
+export const DENIES = Object.freeze(["opportunityAttacks", "reactions", "actionAndBonus"]);
+
+// What each drafter key says by itself (`(value, entry, structure) → { asserts, unassertable? }`): an assertion of the closed
+// vocabulary for what the key does, and `unassertable` when part of what it does has no word (the draft is then stamped for
+// a person at review, schema.mjs draftedForPerson). Read off the engine's documentation of each key
+// (module/scripts/core/content.mjs) and the drafter's shapes (draft-keys.mjs DRAFT_SHAPES).
+const IMPLIED = {
+  // A saved save: half or no damage, typed by the activity's damage (Ruling R24, fix round 1).
+  saveDamage: (v, _e, structure) => ({ asserts: isObject(v) ? Object.entries(v).filter(([, x]) => x === "half" || x === "none")
+    .flatMap(([id, x]) => typed({ roll: "savedSave" }, x === "half" ? 0.5 : 0, typesOf(structure, id))) : [] }),
+  halfOnMiss: (v, _e, structure) => {
+    if (v !== true) return { asserts: [] };
+    const attacks = activitiesOf(structure).filter((a) => a?.type === "attack");
+    return { asserts: typed({ roll: "miss" }, 0.5, [...new Set(attacks.flatMap((a) => typesOf(structure, a.id)))].sort()) };
+  },
+  noDamage: (v, _e, structure) => ({ asserts: Array.isArray(v) ? v.flatMap((id) => typed({}, 0, typesOf(structure, id))) : [] }),
+  // The `status` and `move` steps on a roll moment (Ruling R24, fix round 1, L1); a `resave` through an effect: the effect
+  // ends when its bearer saves, on the roll that applied it (`keep`: it stays, no word; `advantage`: no word). Any other step,
+  // or a status or move on a moment that is no roll, has no word.
+  triggers: (v, entry, structure) => {
+    const asserts = [];
+    let unassertable = false;
+    for (const d of asDeclarations(v)) {
+      const rolls = (Array.isArray(d?.on) ? d.on : [d?.on]).filter((on) => ROLLS.includes(on));
+      for (const step of asSteps(d)) {
+        if ((step?.type === "status" && isWord(step.status)) || (step?.type === "move" && isWord(step.mode))) {
+          if (!rolls.length) unassertable = true;
+          for (const roll of rolls) {
+            if (step.type === "status") asserts.push({ given: { roll }, expect: { condition: { applied: step.status } } });
+            else {
+              // A step without a distance implies no distance: never an undefined field.
+              const move = step.distance === undefined ? { mode: step.mode } : { mode: step.mode, distance: step.distance };
+              asserts.push({ given: { roll }, expect: { move } });
+            }
+          }
+        } else if (step?.type === "resave" && isObject(step) && Object.keys(step).every((k) => k === "type")) {
+          const from = isWord(d?.fromEffect) ? onEffect(d.fromEffect, entry, structure, { ends: "savedSave" })
+            : [{ given: {}, expect: { ends: "savedSave" } }];
+          asserts.push(...from);
+        } else unassertable = true;
+      }
+    }
+    return { asserts, unassertable };
+  },
+  effectEnds: (v, entry, structure) => ({ asserts: isObject(v)
+    ? Object.entries(v).filter(([, w]) => isWord(w)).flatMap(([id, w]) => onEffect(id, entry, structure, { ends: w })) : [] }),
+  noReactions: (v, entry, structure) => ({
+    asserts: onEffects(v, entry, structure, { denies: "reactions" }) }),
+  actionOrBonus: (v, entry, structure) => ({
+    asserts: onEffects(v, entry, structure, { denies: "actionAndBonus" }) }),
+  // Always, after the use, while an effect of the item lasts: the move provokes none. While flying: no word for flying.
+  noOpportunity: (v) => (v === "flying" ? { asserts: [], unassertable: true }
+    : { asserts: [{ given: {}, expect: { denies: "opportunityAttacks" } }] }),
+  saveDisadvantageFor: (v) => ({ asserts: (Array.isArray(v) ? v.filter(isWord) : [])
+    .map((t) => ({ given: { targetType: t }, expect: { roll: { mode: "disadvantage", on: "save", for: "target" } } })) }),
+  // The bearer of the item makes those rolls with disadvantage (the drafter's shape has no `if`).
+  rollDisadvantage: (v) => ({ asserts: (Array.isArray(v?.on) ? v.on : []).filter((o) => ROLL_ON.includes(o))
+    .map((on) => ({ given: {}, expect: { roll: { mode: "disadvantage", on, for: "self" } } })) }),
+  // The statuses the entry adds to an effect of the item, applied on the roll that applies it.
+  effectStatuses: (v, entry, structure) => ({ asserts: isObject(v) ? Object.entries(v).flatMap(([id, x]) => {
+    const statuses = Array.isArray(x) ? x : Array.isArray(x?.set) ? x.set : [];
+    return statuses.filter(isWord).flatMap((st) => onEffect(id, entry, structure, { condition: { applied: st } }));
+  }) : [] })
+};
+/** The drafter keys whose effect is said by an implied assertion (IMPLIED). */
+export const IMPLIED_KEYS = Object.freeze(Object.keys(IMPLIED));
+/**
+ * The drafter keys that imply nothing, each with why: what they do has no word of the assertion vocabulary. A rule that uses
+ * one cannot be checked by review for that part, so its draft is stamped for a person at review (Ruling R15, generalised:
+ * `evidence.drafted.because` is the key's name, schema.mjs draftedForPerson). tests/pipeline/implied.test.mjs fails when a
+ * DRAFT_KEYS key is in neither table.
+ */
+export const IMPLIES_NOTHING = Object.freeze({
+  endsWhen: "its endings (armor donned, distance from the caster, 0 hit points, a spell, magical healing) have no moment word",
+  actionEnds: "an action that ends the effect has no word",
+  breaksOn: "the effect ends on its bearer's own act (attacking, dealing damage, casting): no moment word names those",
+  noOpportunityAttacks: "the bearer makes no opportunity attacks: denies says what a move provokes, not what a creature makes",
+  saveAdvantage: "advantage only against what imposes those conditions: no word for the condition guarded against",
+  rollBonus: "a die added to a roll after seeing it: no word for a bonus",
+  effectDurations: "a duration in time: no word for a length of time",
+  savedEffects: "it moves an effect to the saved save; what the effect does is the item's data, said through other keys",
+  atTurnStart: "an activity used at the start of a turn while concentration lasts: no word",
+  usageLimits: "a limit on use (once per turn, its cost, the lowest slot): no word",
+  ignoresResistance: "no word for resistance",
+  grantsResistances: "no word for resistance",
+  grantsConditionImmunities: "no word for an immunity to a condition",
+  difficultTerrain: "no word for terrain",
+  targets: "who the action may affect by creature type: no word for an unaffected creature",
+  onHit: "a hit that forces a saving throw: no word for a save being made",
+  dataFixes: "it rewrites the item's data; what the data then does is not an assertion of the rule"
+});
+
+/**
+ * What an entry says by itself, in canonical form (normaliseAssert): a review must assert it too (Ruling R9), and a rule's
+ * `leaves` may not list it (Ruling R25). One function per drafter key (IMPLIED); `structure` (the official item's,
+ * structure.mjs structureOf) gives damage types and the roll each effect is applied on: without it an effect's assertion
+ * holds in every situation (`given: {}`). The keys of IMPLIES_NOTHING, and keys no table knows, imply nothing.
  */
 export function impliedAsserts(entry, { structure = null } = {}) {
   if (!isObject(entry)) return [];
   const out = [];
-  if (isObject(entry.saveDamage)) {
-    for (const [id, v] of Object.entries(entry.saveDamage)) {
-      if (v === "half" || v === "none") out.push(...typed({ roll: "savedSave" }, v === "half" ? 0.5 : 0, typesOf(structure, id)));
-    }
-  }
-  if (entry.halfOnMiss === true) {
-    const attacks = (Array.isArray(structure?.activities) ? structure.activities : []).filter((a) => a?.type === "attack");
-    const types = [...new Set(attacks.flatMap((a) => typesOf(structure, a.id)))].sort();
-    out.push(...typed({ roll: "miss" }, 0.5, types));
-  }
-  if (Array.isArray(entry.noDamage) && entry.noDamage.length) {
-    for (const id of entry.noDamage) out.push(...typed({}, 0, typesOf(structure, id)));
-  }
-  const declarations = Array.isArray(entry.triggers) ? entry.triggers : isObject(entry.triggers) ? [entry.triggers] : [];
-  for (const d of declarations) {
-    const rolls = (Array.isArray(d?.on) ? d.on : [d?.on]).filter((on) => ROLLS.includes(on));
-    for (const roll of rolls) {
-      for (const step of Array.isArray(d.do) ? d.do : [d.do]) {
-        if (step?.type === "status" && isWord(step.status)) {
-          out.push({ given: { roll }, expect: { condition: { applied: step.status } } });
-        } else if (step?.type === "move" && isWord(step.mode)) {
-          // A step without a distance implies no distance: never an undefined field.
-          const move = step.distance === undefined ? { mode: step.mode } : { mode: step.mode, distance: step.distance };
-          out.push({ given: { roll }, expect: { move } });
-        }
-      }
-    }
+  for (const [key, value] of Object.entries(entry)) {
+    if (Object.hasOwn(IMPLIED, key)) out.push(...IMPLIED[key](value, entry, structure).asserts);
   }
   return normaliseAssert(out);
+}
+
+/**
+ * The keys of an entry, sorted, the assertion vocabulary cannot say all of (fix round 1 of Ruling R25): a key of
+ * IMPLIES_NOTHING, a key no table knows, or an IMPLIED key whose value has a part with no word (a trigger step other than a
+ * status or move on a roll or a plain resave; noOpportunity while flying). Own properties only.
+ */
+export function unassertableKeys(entry) {
+  if (!isObject(entry)) return [];
+  return Object.keys(entry).filter((key) => !Object.hasOwn(IMPLIED, key)
+    || IMPLIED[key](entry[key], entry, null).unassertable === true).sort();
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------
+// Canonical assertions compared (review.mjs compareAsserts, Ruling R24; leaves.mjs, Ruling R25).
+
+/** True when a canonical assertion holds a `free` text (given or expect). */
+export const isFreeCanonical = (canonical) =>
+  canonical.split(";").some((pair) => pair === "given.free=*" || pair === "expect.free=*");
+
+// Ruling R24. The fields of each expectation kind that are optional detail: one side may state them and the other not. Every
+// other field is identity (damage `fraction`; move `mode`; condition `applied` / `ended`; roll `mode` / `on` / `for`; `ends`,
+// `affects`, `excludes`, `uses`), and every `given` field is identity: a given stated on one side only is another situation.
+export const OPTIONAL_DETAIL = Object.freeze({ damage: Object.freeze(["type"]), move: Object.freeze(["distance"]) });
+
+// One canonical assertion as `path → value` pairs (the value as the canonical string spells it: 20 and "20" are one).
+export const pairsOf = (canonical) =>
+  new Map(canonical.split(";").map((p) => [p.slice(0, p.indexOf("=")), p.slice(p.indexOf("=") + 1)]));
+const isDetailPath = (path) => {
+  const [part, kind, field, ...rest] = path.split(".");
+  return part === "expect" && !rest.length && Object.hasOwn(OPTIONAL_DETAIL, kind) && OPTIONAL_DETAIL[kind].includes(field);
+};
+const kindsOf = (pairs) => [...new Set([...pairs.keys()].filter((p) => p.startsWith("expect.")).map((p) => p.split(".")[1]))]
+  .sort().join(",");
+export const givenOf = (pairs) => [...pairs].filter(([p]) => p.startsWith("given.")).map((x) => x.join("=")).sort().join(";");
+
+/**
+ * True when two canonical assertions say the same thing up to optional detail (Ruling R24): the same `given`, the same
+ * expectation kinds, every field both state equal, and every field one side states alone a detail of its kind. A `free` text
+ * on either side is never matched this way.
+ */
+export function sameUpToDetail(x, y) {
+  if (isFreeCanonical(x) || isFreeCanonical(y)) return x === y;
+  const a = pairsOf(x);
+  const b = pairsOf(y);
+  if (givenOf(a) !== givenOf(b) || kindsOf(a) !== kindsOf(b)) return false;
+  for (const path of new Set([...a.keys(), ...b.keys()])) {
+    if (a.has(path) && b.has(path)) { if (a.get(path) !== b.get(path)) return false; }
+    else if (!isDetailPath(path)) return false;
+  }
+  return true;
 }
 
 const ASSERT_PART = /^[A-Za-z]{1,24}$/;
@@ -259,7 +421,7 @@ export const assertShapes = () => Object.freeze({
     condition: sh.object({}, { applied: sh.word("statuses"), ended: sh.word("statuses") }, { atLeastOne: true }),
     ends: sh.oneOf(sh.word("effectEnds"), sh.word("moments")),
     roll: sh.object({ mode: sh.values(ROLL_MODES), on: sh.values(ROLL_ON), for: sh.values(ROLL_FOR) }),
-    affects: sh.values(AFFECTS), excludes: sh.values(AFFECTS),
+    affects: sh.values(AFFECTS), denies: sh.values(DENIES),
     move: sh.object({ mode: sh.word("moveModes") }, { distance: Object.freeze({ type: "distance" }) }),
     uses: sh.object({ spent: Object.freeze({ type: "number", min: 1, int: true, formula: false }) }),
     free: Object.freeze({ type: "line", max: FREE_MAX })
