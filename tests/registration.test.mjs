@@ -15,7 +15,8 @@ beforeAll(async () => {
   globalThis.Hooks = { once: (name, fn) => once.set(name, fn), on: () => {} };
   // The engine's shipped table, as the pack reads it when it registers (scripts/carry.mjs): a stand-in holding the keys the
   // rules carry over, each with a value that names it. Without it a carrying rule is not registered at all (tested apart).
-  globalThis.game = { modules: { get: () => ({ api: { content: { builtin: BUILTIN } } }) } };
+  // And its `validateSources` as the engine of today writes it (Ruling R35: a key of one id, or `<actor id>.<item id>`).
+  globalThis.game = { modules: { get: () => ({ api: { content: { builtin: BUILTIN, validateSources: VALIDATE_SOURCES } } }) } };
   await import("../scripts/main.mjs");
   once.get("dnd5e-combat.registerContent")((src, tbl, opts) => { calls++; source = src; table = tbl; options = opts; });
 });
@@ -46,6 +47,9 @@ const LEGACY_IDENTIFIERS = [
   "watery-sphere",
   "zephyr-strike"
 ];
+const ID16 = /^[A-Za-z0-9]{16}$/;
+const VALIDATE_SOURCES = (sources) => Object.keys(sources)
+  .filter((k) => k.split(".").length > 2 || !k.split(".").every((p) => ID16.test(p))).map((k) => `sources.${k}: refused`);
 // What a rule's `carries` adds to its entry at registration, with the stand-in above: `{ <key>: "engine:<from>.<key>" }`.
 const BUILTIN = {};
 for (const rule of RULES.filter((r) => r.carries)) {

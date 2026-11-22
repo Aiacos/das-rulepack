@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { ingestDrafts, ruleOriginLabel } from "../../tools/pipeline/draft.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { embeddedIndex } from "../../tools/pipeline/settle.mjs";
-import { SHARED_EMBEDDED } from "../../tools/pipeline/identifiers.mjs";
+import { ACTOR_ITEM_REFUSED } from "../../tools/pipeline/identifiers.mjs";
 import {
   emittedFingerprint, loadQueue, ruleFingerprint, saveBook, saveQueue, stateOf, validateRecord, writeFilesAtomically
 } from "../../tools/pipeline/registry.mjs";
@@ -304,7 +304,8 @@ describe("ingestDrafts: one rejection per reason", () => {
     rejects(result({ rule: rule({ assert: [{ given: {}, expect: { condition: { applied: "glowing" } } }] }) }),
       /status of the engine/);
   });
-  it("a monster feature whose embedded item id another creature shares", () => {
+  // Ruling R35: rejected only on an engine that refuses `<actor id>.<item id>` sources (this stand-in says nothing of them).
+  it("a monster feature whose embedded item id another creature shares, on an engine that refuses actor.item sources", () => {
     const own = "Bt11Bt22Bt33Bt44";
     const m = record({
       key: "tst:monster:glimmer-drake/action/bite", kind: "monster", name: "Bite", owner: "Glimmer Drake", section: "action",
@@ -315,7 +316,7 @@ describe("ingestDrafts: one rejection per reason", () => {
       { name: "Frost Drake", items: [{ docId: `Ac99Ac22Ac33Ac44.${own}` }] }
     ])]]);
     const res = result({ key: m.key, rule: rule({ entry: { saveDamage: { [A_OFF]: "half" } }, origins: ["official"] }) });
-    const out = rejects(res, new RegExp(SHARED_EMBEDDED.slice(0, 30)), [m], { embedded });
+    const out = rejects(res, new RegExp(ACTOR_ITEM_REFUSED.slice(0, 30)), [m], { embedded });
     expect(out.records[0]).toEqual(m);
     expect(run([m], [res]).rejected[0].reason).toMatch(/actors of TST's package/);
   });

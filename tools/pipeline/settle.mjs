@@ -3,7 +3,7 @@
 import { slug } from "./registry.mjs";
 import { matchName } from "./match.mjs";
 import { ddbItemsOf } from "./monsters.mjs";
-import { sourceKeysOf } from "./identifiers.mjs";
+import { actorItemKeyOf, embeddedIdOf, sourceKeysOf } from "./identifiers.mjs";
 
 export function itemOf(origin, outcome) {
   if (outcome.match === "matched") {
@@ -123,8 +123,10 @@ export const sharedEmbeddedId = (index, id, owner) => [...(index.get(id) ?? [])]
  * A monster feature (`monster`: { ruled, scoped, sharedId(itemId) }) is bound only once it has a rule and its creature-scoped
  * identifier (`scoped`, Ruling R3): by the id of its
  * embedded item (the part after "." of `<actor id>.<item id>`) when no actor of another creature of the package embeds that
- * id; a shared id is flagged `embeddedShared` (the engine reads `<actor id>.<item id>` sources, external registration refuses
- * them), and the item `identifierDiffers`.
+ * id; a shared id is flagged `embeddedShared` and bound by the whole `<actor id>.<item id>` (Ruling R35: the engine looks that
+ * key up first, so it reaches this creature's feature only); whether the engine in use accepts such a key is the gates'
+ * (gates.mjs gateValidator) and the draft stages' to say. A shared id with no `<actor id>.<item id>` to bind, or a rule
+ * not under the scoped identifier, binds nothing: the item `identifierDiffers`.
  * Mutates `items`; returns the sources (empty when there are none).
  */
 export function bindSources(items, identifier, { monster } = {}) {
@@ -137,11 +139,14 @@ export function bindSources(items, identifier, { monster } = {}) {
     // still be checked for a shared embedded id (the identifier gate fails the bare name itself).
     if (monster) {
       if (!monster.ruled && item.identifier === identifier) continue;
-      const [own] = sourceKeysOf(item, "monster");
+      const own = embeddedIdOf(item);
       if (item.origin === "official" && monster.ruled && KEBAB.test(identifier) && own) {
-        if (monster.sharedId(own)) item.embeddedShared = true;
-        // Only the creature-scoped identifier is ever bound: a source under the bare name would reach every creature.
-        else if (monster.scoped) { sources[own] = identifier; continue; }
+        const shared = monster.sharedId(own);
+        if (shared) item.embeddedShared = true;
+        // Only the creature-scoped identifier is ever bound: a source under the bare name would reach every creature, and a
+        // shared id only by its creature's `<actor id>.<item id>` (R35).
+        const key = shared ? actorItemKeyOf(item) : own;
+        if (monster.scoped && key) { sources[key] = identifier; continue; }
       }
       if (item.identifier !== identifier) item.identifierDiffers = true;
       continue;
@@ -164,8 +169,9 @@ export const canonicalIdentifier = (items, name, kind) =>
 
 /**
  * What is wrong with the `sources` of a record: each key must be the docId, or one of the alsoDocIds, of its matched official
- * item (for a monster feature, its embedded item id), and each value its own identifier (the engine would otherwise know a
- * document by an identifier the record does not register). Messages start with "sources:".
+ * item (for a monster feature, its embedded item id; when other creatures embed it, `embeddedShared`, its `<actor id>.<item
+ * id>` and never the bare id, which would bind them all: Ruling R35), and each value its own identifier (the engine would
+ * otherwise know a document by an identifier the record does not register). Messages start with "sources:".
  */
 export function sourceProblems(record) {
   if (!record?.sources || typeof record.sources !== "object" || Array.isArray(record.sources)) return [];
@@ -175,7 +181,10 @@ export function sourceProblems(record) {
   const out = [];
   for (const [docId, identifier] of Object.entries(record.sources)) {
     const shown = docId.slice(0, 80);
-    if (!own.has(docId)) out.push(`sources: ${shown} is not an item of this record`);
+    if (!own.has(docId) && official?.embeddedShared && docId === embeddedIdOf(official)) {
+      out.push(`sources: ${shown} is an embedded item id other creatures share: it would bind all of them (bind`
+        + " <actor id>.<item id>)");
+    } else if (!own.has(docId)) out.push(`sources: ${shown} is not an item of this record`);
     else if (identifier !== record.identifier) out.push(`sources: ${shown} is bound to an identifier other than the record's`);
   }
   return out;

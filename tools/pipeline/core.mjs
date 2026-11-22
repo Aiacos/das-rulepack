@@ -4,8 +4,8 @@
 // FACTS) and the closed value lists of those arguments (FACT_ARG_OPTIONS); and (Ruling R33) the moments of an emanation
 // (core/emanation.mjs EMANATION_MOMENTS), who an aura's copy goes to (AURA_AFFECTS) and the fields the zone and aura validators
 // accept (`zoneFields`, read from their own lists); and (Ruling R34) the words of a choice (core/content/enums.mjs
-// CHOICE_EFFECTS) and the fields the choice, barrier, globe and wardsConditions validators accept (`wardFields`). Nothing here
-// writes to the clone.
+// CHOICE_EFFECTS) and the fields the choice, barrier, globe and wardsConditions validators accept (`wardFields`); and (Ruling
+// R35) whether its `validateSources` accepts `<actor id>.<item id>` keys (`actorItemSources`). Nothing here writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -100,6 +100,24 @@ export function wardFieldsOf({ annex, extras, entry }) {
   return Object.values(out).every((v) => Array.isArray(v) && v.length) ? out : null;
 }
 
+// Ruling R35: a key of two document ids, `<actor id>.<item id>`, that binds one creature's embedded feature. Invented ids.
+const ACTOR_ITEM_PROBE = "Pr0bePr0bePr0beA.Pr0bePr0bePr0beI";
+
+/**
+ * Ruling R35: whether the engine's own `validateSources` accepts an `<actor id>.<item id>` key (it returns its errors, an empty
+ * list for a valid table). Asked of the engine itself, never inferred from its version (the capability came without one).
+ * False when the function is missing, throws or answers anything but an empty list.
+ */
+export function actorItemSourcesOf(validateSources) {
+  if (typeof validateSources !== "function") return false;
+  try {
+    const errors = validateSources({ [ACTOR_ITEM_PROBE]: "probe" });
+    return Array.isArray(errors) && errors.length === 0;
+  } catch {
+    return false;
+  }
+}
+
 export async function loadCore(dir) {
   const files = [
     "core/content.mjs", "core/content/enums.mjs", "core/triggers.mjs", "core/data-fixes.mjs", "content/index.mjs",
@@ -108,7 +126,7 @@ export async function loadCore(dir) {
   for (const f of files) {
     if (!existsSync(join(dir, "module", "scripts", f))) throw new Error(`DAS_CORE ${dir}: module/scripts/${f} is missing`);
   }
-  const { validateEntry, mergeEntries } = await load(dir, "core/content.mjs");
+  const { validateEntry, mergeEntries, validateSources } = await load(dir, "core/content.mjs");
   const { matchesFrom, getPath } = await load(dir, "core/data-fixes.mjs");
   const { SHIPPED, SRD_ALIASES, SOURCES } = await load(dir, "content/index.mjs");
   // Ruling R29: the engine's own reading of a monster feature (its pure text layer) and its merge of entry layers. Optional
@@ -215,6 +233,8 @@ export async function loadCore(dir) {
     monsterTextLayer: typeof layer.monsterTextLayer === "function" ? layer.monsterTextLayer : null,
     mergeEntries: typeof mergeEntries === "function" ? mergeEntries : null,
     sources: SOURCES && typeof SOURCES === "object" ? { ...SOURCES } : {},
+    // Ruling R35: the engine accepts `<actor id>.<item id>` sources from a module (actorItemSourcesOf).
+    actorItemSources: actorItemSourcesOf(validateSources),
     get runtimeIdentifiers() { return scanned().runtimeIdentifiers; },
     get systemHandled() { return scanned().systemHandled; },
     get handled() { return scanned().handled; },

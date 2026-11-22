@@ -463,3 +463,22 @@ sample can size the pool. Outside the closed fields, the drafters' own `why` in 
 as the main rider, 1 pick between two conditions, 1 possible pick per creature, and 1 missing automatic failure. On a copy
 of the registry after `npm run gates`, the 42 shipped rules keep their states and the generated modules, README and RULES.md
 do not change.
+
+# One creature's feature when many share its item id (2026-11-22, Ruling R35)
+
+DAS · Core now accepts a source key of two ids, `<actor id>.<item id>`, and looks it up before the bare item id, so a rule
+can bind one creature's feature even when hundreds of creatures embed the same item. The pipeline asks the engine whether it
+accepts such a key (its own `validateSources`, not its version) and, when it does, no longer leaves those features out; a
+feature whose item id is its creature's alone keeps the bare-id source. Counted on a copy of the registry, which does not
+change:
+
+| Book | Left out of a draft cut before (shared id) | Cut now | Now "reread first" | Left out of a reread cut before |
+|---|---|---|---|---|
+| XMM | 457 | 455 | 2 | 0 (rereads never left them out) |
+| XPHB | 33 | 33 | 0 | 0 |
+| EFA | 2 | 2 | 0 | 0 |
+| FRAIF | 0 | 0 | 0 | 0 |
+
+None of them is drafted yet. `npm run gates` on the copy changes no record; the 42 shipped rules keep their states and the
+generated modules, README and RULES.md do not change. On an older DAS · Core the module registers none of these rules and
+says so in one console line.

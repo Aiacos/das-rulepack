@@ -579,7 +579,12 @@ export function validateRecord(record) {
     const s = record.sources;
     if (!isObject(s)) errors.push("sources: must be an object of document id to identifier");
     else for (const [id, identifier] of Object.entries(s)) {
-      if (!DOC_ID.test(id)) errors.push(`sources: ${JSON.stringify(id)} is not a 16-character document id`);
+      // Ruling R35: a monster feature whose embedded item id other creatures share is bound by `<actor id>.<item id>`.
+      const actorItem = record.kind === "monster" && id.split(".").length === 2 && id.split(".").every((p) => DOC_ID.test(p));
+      if (!DOC_ID.test(id) && !actorItem) {
+        errors.push(`sources: ${JSON.stringify(id)} is not a 16-character document id`
+          + `${record.kind === "monster" ? " (or <actor id>.<item id>)" : ""}`);
+      }
       if (typeof identifier !== "string" || !KEBAB.test(identifier)) errors.push(`sources.${id}: must be a kebab-case identifier`);
     }
   }

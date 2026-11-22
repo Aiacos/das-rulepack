@@ -47,9 +47,10 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [x] A record that has a rule keeps its identifier and page on re-inventory; `generate` emits `SOURCES` (empty today).
 - [x] Before the first drafted rule: a rule for a monster feature needs an identifier scoped to its creature
       (`<book>-<creature>-<feature>`, bound by its embedded item id when no other creature shares it, Ruling R3).
-- [ ] A monster feature whose official embedded item id is shared by several creatures (1,480 of XMM's 2,146 features)
-      needs `<actor id>.<item id>` sources, which the engine reads but external registration refuses: an upstream issue (no
-      book named). A data fix on an item embedded in an actor has no document the data-fix gate can read yet.
+- [x] A monster feature whose official embedded item id is shared by several creatures (1,480 of XMM's 2,146 features)
+      is bound by `<actor id>.<item id>`, which DAS · Core now accepts (Ruling R35; the module skips them on an older one).
+- [ ] A data fix on an item embedded in an actor has no document the data-fix gate can read yet.
+- [ ] Draft the monster features that were left out for a shared embedded id (XMM 455, XPHB 33, EFA 2 now cut).
 - [x] Before the first non-legacy rule is gated: the ids gate finds ids inside `#id`, `a/b` and `@UUID[…]` strings; a data
       fix without `from` on a mistyped path fails.
 - [ ] The TCE legacy rules name `ddb-importer` alone while their official item is matched: the ids gate holds legacy records
@@ -268,8 +269,8 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       r2 XMM second pass, FRAIF), then recount confirmed and provisional `core`.
 - [ ] Hand a reread's `unexpressed` reasons to the drafter (today `beyondEngine` carries the `beyond` assertions only).
 - [ ] Reread the monster features of the other books with official actor dumps (FRAIF 32, EFA 13, XPHB 7 with a reading).
-- [ ] Draft the 60 "beyond the engine" records as additions over the reading (most have a shared embedded id: they wait on
-      upstream for a creature-scoped binding).
+- [ ] Draft the 60 "beyond the engine" records as additions over the reading (most have a shared embedded id: bound by
+      `<actor id>.<item id>` since Ruling R35).
 - [x] Rereads, second round (2026-11-22): `core` confirmed for 80 XMM, 11 FRAIF, 5 EFA, 1 XPHB monster features; a second
       reread now fails closed and a reader can answer "missing, but the vocabulary cannot say it".
 - [ ] 4 XMM provisional `core` wait for a second reader; 51 XMM rereads stay undecided (no word for what is missing).

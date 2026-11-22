@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { aliasFor, GENERIC_IDENTIFIERS, monsterIdentifier } from "../../tools/pipeline/identifiers.mjs";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
-import { checkIds, gateSchema } from "../../tools/pipeline/gates.mjs";
+import { checkIds, gateSchema, gateValidator } from "../../tools/pipeline/gates.mjs";
 import { stateOf, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { ASSERT } from "./fixtures/assert.mjs";
 
@@ -101,7 +101,8 @@ describe("inventory binds a ruled monster feature to its embedded item id", () =
     expect(checkIds(again, { core: { vocabulary: new Set() } }).failures).toEqual([]);
   });
 
-  it("shared embedded id stays drafted", () => {
+  // Ruling R35: bound by `<actor id>.<item id>`, the creature's own feature only; the gates say whether the engine accepts it.
+  it("shared embedded id binds <actor id>.<item id>, and stays drafted on an engine that refuses it", () => {
     const actors = [
       { id: WOLF, name: "Dire Wolf", items: [embedded(WOLF)] }, { id: BEAR, name: "Cave Bear", items: [embedded(BEAR)] }
     ];
@@ -110,13 +111,16 @@ describe("inventory binds a ruled monster feature to its embedded item id", () =
     const next = run(actors, dataset, ruled(first, "Dire Wolf")).records;
     const wolf = next.find((r) => r.owner === "Dire Wolf");
     const bear = next.find((r) => r.owner === "Cave Bear");
-    expect(wolf.sources).toBeUndefined();
-    expect(wolf.items.find((i) => i.origin === "official")).toMatchObject({ embeddedShared: true, identifierDiffers: true });
+    expect(wolf.sources).toEqual({ [`${WOLF}.${BITE}`]: "tst-dire-wolf-bite" });
+    const official = wolf.items.find((i) => i.origin === "official");
+    expect(official.embeddedShared).toBe(true);
+    expect(official.identifierDiffers).toBeUndefined();
     expect(validateRecord(wolf)).toEqual([]);
-    // No source is bound (the bare-name case, where the fixture does not scope the identifier: identifiers-gates.test.mjs).
-    expect(next.flatMap((r) => Object.values(r.sources ?? {}))).toEqual([]);
-    expect(checkIds(wolf, { core: { vocabulary: new Set() } }).failures)
-      .toContain("ids: shared embedded item id: waits on upstream (engine: actor.item sources, refused by external registration)");
+    // Only the wolf's feature is bound (the bare-name case, unbound: identifiers-gates.test.mjs).
+    expect(next.flatMap((r) => Object.values(r.sources ?? {}))).toEqual(["tst-dire-wolf-bite"]);
+    expect(checkIds(wolf, { core: { vocabulary: new Set() } }).failures).toEqual([]);
+    expect(gateValidator(wolf, { core: { facts: [], validateEntry: () => [] } }).join("\n"))
+      .toMatch(/refuses <actor id>\.<item id> sources/);
     expect(stateOf(wolf)).toBe("drafted");
     // An unruled feature is not marked: only a rule needs the binding.
     expect(bear.items.find((i) => i.origin === "official").embeddedShared).toBeUndefined();
