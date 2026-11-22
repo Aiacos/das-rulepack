@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { REVIEW_RESULT_FIELDS, compareAsserts, ingestReviews } from "../../tools/pipeline/review.mjs";
 import { cutReviewBatches, reviewSkipReason } from "../../tools/pipeline/batch.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
-import { normaliseAssert } from "../../tools/pipeline/assert.mjs";
+import { atomise, normaliseAssert } from "../../tools/pipeline/assert.mjs";
 import {
   emittedFingerprint, gatedItems, loadBook, loadQueue, queueText, ruleFingerprint, saveBook, saveQueue, stateOf,
   validateQueueEntry, validateRecord
@@ -116,8 +116,11 @@ describe("compareAsserts: what agreement is (Ruling R9)", () => {
     for (const v of variants) {
       const c = compareAsserts(none, [v]);
       expect(c.agrees).toBe(false);
-      expect(c.onlyDraft).toEqual(normaliseAssert([base]));
-      expect(c.onlyReview).toEqual(normaliseAssert([v]));
+      // Atoms are compared: only the expectations that differ are left on each side, never the ones both state.
+      const [d, r] = [normaliseAssert(atomise([base])), normaliseAssert(atomise([v]))];
+      expect(c.onlyDraft).toEqual(d.filter((x) => !r.includes(x)));
+      expect(c.onlyReview).toEqual(r.filter((x) => !d.includes(x)));
+      expect(c.onlyDraft.length + c.onlyReview.length).toBeGreaterThan(0);
     }
     const quarter = compareAsserts(draft([HALF]), [{ ...HALF, expect: { damage: { fraction: 0 } } }]);
     expect(quarter.agrees).toBe(false);

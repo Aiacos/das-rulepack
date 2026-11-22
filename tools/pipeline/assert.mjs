@@ -166,6 +166,22 @@ function canonicalOf(assertion) {
   return pairs.sort().join(";");
 }
 
+/**
+ * The atoms of a list of assertions: one assertion per expectation, each under the same `given`. A reader may say "frightened,
+ * until the start of the caster's turn" as one assertion with two expectations or as two assertions: both say the same thing,
+ * and agreement at review compares atoms (review.mjs compareAsserts). An assertion with a `free` text is kept whole: it goes
+ * to a person as it is.
+ */
+export function atomise(assertions) {
+  if (!Array.isArray(assertions)) return [];
+  return assertions.flatMap((a) => {
+    const expect = isObject(a?.expect) ? a.expect : null;
+    const kinds = expect ? Object.keys(expect) : [];
+    if (kinds.length < 2 || kinds.includes("free") || (isObject(a.given) && Object.hasOwn(a.given, "free"))) return [a];
+    return kinds.map((k) => ({ ...a, expect: { [k]: expect[k] } }));
+  });
+}
+
 /** The canonical forms of a list of assertions, deduplicated and sorted: two lists that say the same thing compare equal. */
 export function normaliseAssert(assertions) {
   if (!Array.isArray(assertions)) return [];
