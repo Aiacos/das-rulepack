@@ -341,3 +341,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       read three ways, 2 unsure. 53 rules ship.
 - [ ] The 12 rules with two reviewers against the draft: write them again from the two reviews' common reading.
 
+- [x] Four more plays recorded, among them the first rules bound to one creature by an actor.item source.

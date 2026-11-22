@@ -42,7 +42,7 @@ Install and enable DAS · Core (`dnd5e-combat`) first: the pack only adds rules 
 ## ✨ What it covers
 
 <!-- auto:summary -->
-**53 rules** from **9 rulebooks**: 29 played in a running world, 24 validated by the engine's
+**53 rules** from **9 rulebooks**: 33 played in a running world, 20 validated by the engine's
 validator but not played.
 The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md)**.
 <!-- /auto:summary -->

@@ -3811,6 +3811,14 @@
             "onlyDraft": [],
             "onlyReview": []
           }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-brass-dragon-legendary-scorching-sands",
+          "client": "gm",
+          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89"
         }
       },
       "why": "Data has half damage on save the text does not give; speed halving needs correct timed effect until end of next turn",
@@ -3853,7 +3861,7 @@
         ],
         "origin": "Adult Brass Dragon"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:adult-brass-dragon/trait/legendary-resistance",
@@ -4965,6 +4973,14 @@
             "onlyDraft": [],
             "onlyReview": []
           }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-copper-dragon-action-slowing-breath",
+          "client": "gm",
+          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537"
         }
       },
       "why": "Multi-part restriction: no reactions, halved speed, action or bonus action not both; data has half damage the text lacks and no restriction",
@@ -5001,7 +5017,7 @@
         ],
         "origin": "Adult Copper Dragon"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:adult-copper-dragon/legendary/giggling-magic",
@@ -69618,6 +69634,14 @@
             "onlyDraft": [],
             "onlyReview": []
           }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-gray-slaad-action-chaos-claw",
+          "client": "gm",
+          "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09"
         }
       },
       "why": "Random condition from a d4 until the start of its next turn, on hit; data has four statuses with no roll or timed end.",
@@ -69656,7 +69680,7 @@
         ],
         "origin": "Gray Slaad"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:gray-slaad/action/multiattack",
@@ -70677,6 +70701,14 @@
             "onlyDraft": [],
             "onlyReview": []
           }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-green-slaad-action-chaos-staff",
+          "client": "gm",
+          "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4"
         }
       },
       "why": "Random condition from a d4 until the start of its next turn, on hit; data has four statuses with no roll or timed end.",
@@ -70715,7 +70747,7 @@
         ],
         "origin": "Green Slaad"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:green-slaad/action/multiattack",
