@@ -4,7 +4,8 @@
 // Ruling R9): agreement makes the record `reviewed`, anything else waits for a person in registry/review-queue.json. A review
 // never changes the rule, and nothing here writes `evidence` other than `reviewed` (never `evidence.person`).
 import { ruleFingerprint, stateOf } from "./registry.mjs";
-import { BY, REVIEW_TOLERANCES, isReaderHandle } from "./schema.mjs";
+import { BY, REVIEW_TOLERANCES, SECOND_REVIEWED_REASONS, SECOND_REVIEW_RESULTS, SECOND_REVIEW_VIA,
+  isReaderHandle } from "./schema.mjs";
 import {
   OPTIONAL_DETAIL, assertProblems, atomise, givenOf, impliedAsserts, isFreeCanonical as isFree, normaliseAssert, pairsOf,
   sameUpToDetail
@@ -198,8 +199,45 @@ export const queueHolds = (entry, record) =>
   isObject(entry?.review) && typeof entry.review.rule === "string" && isObject(record?.rule)
   && entry.review.rule === ruleFingerprint(record.rule);
 
+// Ruling R40: the reasons of a review-queue entry a blind second review may settle (never a draft's stamp for a person,
+// never free text or an entry the reviewer could not express), and what the mark of a second review that did not confirm
+// the rule says of its result (`second.result`): an answer read, an answer rejected, or no answer for an offered entry.
+export const SECOND_REVIEW_REASONS = SECOND_REVIEWED_REASONS;
+export { SECOND_REVIEW_RESULTS, SECOND_REVIEW_VIA };
+export const NOT_SECOND_REVIEWABLE = "not in review-queue.json";
+
+/**
+ * Why a review-queue `entry` is not open to a second review of `record` (Ruling R40), or null when it is: `not in
+ * review-queue.json` (no entry or no record), `other reason` (a reason outside SECOND_REVIEW_REASONS: a draft's stamp,
+ * free text, unexpressed), `second review done` (the entry carries a `second` mark), `owner` (a rule an owner wrote or
+ * signed: no `evidence.drafted`, an `evidence.person`, a drafter handle of `owners`, a draft stamped for a person, or a
+ * `draft.person` on the entry), `stale` (the entry's draft or review is not about the rule as it is), then the plain review
+ * cut's own reasons (batch.mjs reviewSkipReason: legacy, not gated, no text, no assertion). `owners`: docs/owners.json.
+ */
+export function secondReviewSkipReason(entry, record, { owners } = {}) {
+  if (!Array.isArray(owners)) throw new TypeError("secondReviewSkipReason needs owners (the handles of docs/owners.json)");
+  if (!isObject(entry) || !isObject(record) || entry.key !== record.key) return NOT_SECOND_REVIEWABLE;
+  if (!SECOND_REVIEW_REASONS.includes(entry.reason)) return "other reason";
+  if (Object.hasOwn(entry, "second")) return "second review done";
+  const drafted = record.evidence?.drafted;
+  const isOwner = (h) => typeof h === "string" && owners.some((o) => o.toLowerCase() === h.toLowerCase());
+  if (!isObject(drafted) || isOwner(drafted.by) || drafted.person === true || record.evidence?.person !== undefined
+    || entry.draft?.person !== undefined) {
+    return "owner";
+  }
+  if (!isObject(record.rule) || !queueHolds(entry, record) || entry.draft?.rule !== ruleFingerprint(record.rule)) {
+    return "stale";
+  }
+  if (record.legacy === true) return "legacy";
+  const state = stateOf(record);
+  if (state !== "gated") return `not gated (${state})`;
+  if (!record.text) return "no text";
+  if (!Array.isArray(record.rule.assert) || !record.rule.assert.length) return "no assertion";
+  return null;
+}
+
 // Why a result cannot be taken at all, before its assertions are looked at, or null.
-function resultProblem(record, result, { offered, queued, by }) {
+function resultProblem(record, result, { offered, queued, by, second, owners }) {
   const extra = unknownFields(result, REVIEW_RESULT_FIELDS);
   if (extra.length) return `unknown field ${echo(extra[0])}`;
   if (!record) return `unknown key ${echo(result.key)}`;
@@ -215,7 +253,14 @@ function resultProblem(record, result, { offered, queued, by }) {
     return "stale: the rule changed after the batch was cut (cut a new review batch for the rule as it is)";
   }
   const held = queued.get(result.key);
-  if (held && queueHolds(held, record)) return "the record waits for a person in review-queue.json";
+  if (second) {
+    // Ruling R40: only an entry still open to a second review, read by someone other than its first reviewer.
+    const why = secondReviewSkipReason(held, record, { owners });
+    if (why) return `not open to a second review: ${why}`;
+    if (typeof held.by === "string" && held.by.toLowerCase() === by.toLowerCase()) {
+      return "the second reviewer signed the first review of the entry (case aside): a second review must be independent";
+    }
+  } else if (held && queueHolds(held, record)) return "the record waits for a person in review-queue.json";
   const state = stateOf(record);
   if (state !== "gated") return `the state is ${state}, not gated: only gated rules are reviewed`;
   if (authorsOf(record).some((h) => h.toLowerCase() === by.toLowerCase())) {
@@ -255,14 +300,14 @@ function quotationProblem(why, assertions, text, draftAssertions) {
 
 // One result: `{ reject: reason }`, `{ queue: entry }` or `{ apply: { record, next } }`. May throw (the caller catches).
 function takeResult(result, ctx) {
-  const { byKey, offered, queued, textOf, core, by, at, seen, structures } = ctx;
+  const { byKey, offered, queued, textOf, core, by, at, seen, structures, second, owners } = ctx;
   if (!isObject(result)) return { reject: "result must be an object" };
   const forbidden = forbiddenKeyIn(result);
   if (forbidden) return { reject: `a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden})` };
-  if (seen.has(result.key)) return { reject: "the key appears twice in this file" };
+  if (seen.has(result.key)) return { reject: "the key appears twice in this file", duplicate: true };
   seen.add(result.key);
   const record = byKey.get(result.key);
-  const reason = resultProblem(record, result, { offered, queued, by });
+  const reason = resultProblem(record, result, { offered, queued, by, second, owners });
   if (reason) return { reject: reason };
   if (Object.hasOwn(result, "outcome") && !REVIEW_OUTCOMES.includes(result.outcome)) {
     return { reject: `unknown outcome ${echo(result.outcome)} (${REVIEW_OUTCOMES.join(" or ")})` };
@@ -292,6 +337,10 @@ function takeResult(result, ctx) {
   const signed = record.evidence?.person;
   // Rulings R15, R21: a draft stamped for a person goes to one whatever the review says, with the comparison attached.
   const forPerson = drafted.person === true ? drafted.because : null;
+  if (second) {
+    return secondOutcome(record, result, { entry: queued.get(result.key), comparison, assertions, unexpressed, by, at,
+      structure: structures.get(result.key) ?? null });
+  }
   const queueReason = forPerson ?? (unexpressed ? "unexpressed"
     : comparison.onlyDraft.length || comparison.onlyReview.length ? "disagreement"
       : comparison.free ? "free-text" : result.confidence < QUEUE_THRESHOLD ? "low-confidence" : null);
@@ -307,6 +356,11 @@ function takeResult(result, ctx) {
         detail: comparison.detail, ...(comparison.left.length ? { left: comparison.left } : {}) }
     } };
   }
+  return confirm(record, comparison, { by, at, confidence: result.confidence });
+}
+
+// An agreement: `evidence.reviewed` written on a copy of the record (`extra`: what a second review adds, Ruling R40).
+function confirm(record, comparison, { by, at, confidence, extra = {} }) {
   const next = structuredClone(record);
   // Ruling R24 (fix round 1, V): an agreement that tolerated anything keeps what it tolerated, as canonical strings: the
   // review assertions taken as baseline and the [draft, review] pairs matched up to detail. Part of `emits`: the gates run
@@ -316,10 +370,41 @@ function takeResult(result, ctx) {
   const tolerated = comparison.baseline.length || comparison.detail.length || comparison.left.length
     ? { baseline: [...comparison.baseline], detail: comparison.detail.map((p) => [p.draft, p.review]),
       ...(comparison.left.length ? { left: comparison.left.map((p) => [p.leaves, p.review]) } : {}) } : null;
-  next.evidence = { ...next.evidence, reviewed: { by, at, agrees: true, rule: fingerprint, confidence: result.confidence,
-    ...(tolerated ? { tolerated } : {}) } };
+  next.evidence = { ...next.evidence, reviewed: { by, at, agrees: true, rule: ruleFingerprint(record.rule), confidence,
+    ...(tolerated ? { tolerated } : {}), ...extra } };
   return { apply: { record, next, tolerated: tolerated !== null, partial: isPartial(record.rule) } };
 }
+
+/**
+ * Ruling R40: what a second review of a queued entry does. Agreement with the DRAFT (compareAsserts, as the first review)
+ * at or above QUEUE_THRESHOLD confirms the rule as an agreeing first review would, plus `via: "second-review"` and `first`
+ * (the first review as data: its handle, confidence, reason, its assertions and what was on one side only, as canonical
+ * strings; its `why` stays in the results file that the queue entry came from). Anything else keeps the entry as it was plus
+ * a `second` mark (secondMark).
+ */
+function secondOutcome(record, result, { entry, comparison, assertions, unexpressed, by, at, structure }) {
+  const agrees = !unexpressed && comparison.agrees;
+  if (agrees && result.confidence >= QUEUE_THRESHOLD) {
+    const review = isObject(entry.review) ? entry.review : {};
+    const list = (v) => (Array.isArray(v) ? [...v] : []);
+    const first = { by: entry.by, confidence: entry.confidence, reason: entry.reason,
+      assert: normaliseAssert(atomise(list(review.assert))), onlyDraft: list(review.onlyDraft),
+      onlyReview: list(review.onlyReview) };
+    return confirm(record, comparison, { by, at, confidence: result.confidence,
+      extra: { via: SECOND_REVIEW_VIA, first } });
+  }
+  // Two reviewers against the draft: the second reads what the first read (the same comparison, the first review as the
+  // stated side, the item's structure for the baseline).
+  const firstAssert = Array.isArray(entry.review?.assert) ? entry.review.assert : [];
+  const withFirst = !agrees && !unexpressed && firstAssert.length > 0
+    && compareAsserts({ assert: firstAssert }, assertions, { structure }).agrees;
+  return { mark: secondMark(entry, { by, at, agrees: agrees ? "unsure" : false, result: "read",
+    confidence: result.confidence, assert: structuredClone(assertions), onlyDraft: comparison.onlyDraft,
+    onlyReview: comparison.onlyReview, ...(withFirst ? { withFirst: true } : {}) }) };
+}
+
+// The entry as it was, plus the mark of the second review (`second`); never cut by a second review again.
+const secondMark = (entry, mark) => ({ ...structuredClone(entry), second: mark });
 
 /**
  * Applies reviewer results to a copy of `records` (Task 6, docs/PIPELINE.md "Ingesting reviews"). For each result:
@@ -348,23 +433,33 @@ function takeResult(result, ctx) {
  * baseline of R24 is decided from: a record without one gets no baseline.
  * `queue` is review-queue.json. Any exception on one result becomes its rejection (`internal: …`). A rejection repeats at most
  * 80 characters of any reviewer string. Inputs unchanged.
+ * With `second: true` (Ruling R40; `owners`: docs/owners.json, required) the results are a second review of queue entries
+ * (secondReviewSkipReason): the record must be such an entry, the reviewer not its first reviewer; an agreement with the
+ * draft at or above 0.7 is applied as above plus `via` and `first` (secondOutcome); every other offered entry still open
+ * to a second review, a result rejected or none included, is returned in `marked`, the entry with its `second` mark. Nothing
+ * goes to `disagreed`.
  */
 export function ingestReviews(records, results, options = {}) {
-  const { textDir, by, at = new Date().toISOString(), core, queue = [], offered, structures = new Map() } = options;
+  const { textDir, by, at = new Date().toISOString(), core, queue = [], offered, structures = new Map(), second = false,
+    owners } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core !== "object") throw new TypeError("ingestReviews needs core (loadCore: the engine's enumerations)");
   if (!(offered instanceof Map)) throw new TypeError("ingestReviews needs offered (a Map of the batch file's keys to rules)");
   if (!(structures instanceof Map)) throw new TypeError("structures must be a Map of record key to the official structure");
+  if (second && !Array.isArray(owners)) throw new TypeError("a second review needs owners (the handles of docs/owners.json)");
   const out = structuredClone(records);
   const context = {
     byKey: new Map(out.map((r) => [r.key, r])), offered, queued: new Map(queue.map((q) => [q?.key, q])),
-    textOf: cachedText(textDir), core, by, at, seen: new Set(), structures
+    textOf: cachedText(textDir), core, by, at, seen: new Set(), structures, second: second === true, owners
   };
   const agreed = [];
   const tolerated = [];
   const partial = [];
   const disagreed = [];
   const rejected = [];
+  const marked = [];
+  // Ruling R40: the offered keys whose answer was rejected (marked `rejected` below unless another answer settled them).
+  const refused = new Set();
   for (const result of Array.isArray(results) ? results : []) {
     let outcome;
     try { outcome = takeResult(result, context); } catch (e) { outcome = { reject: `internal: ${clip(e?.message ?? e)}` }; }
@@ -372,7 +467,9 @@ export function ingestReviews(records, results, options = {}) {
       let key = null;
       try { key = typeof result?.key === "string" ? clip(result.key) : null; } catch { key = null; }
       rejected.push({ key, reason: clipEchoes(outcome.reject, result) });
+      if (!outcome.duplicate && typeof key === "string" && offered.has(key)) refused.add(key);
     } else if (outcome.queue) disagreed.push(outcome.queue);
+    else if (outcome.mark) marked.push(outcome.mark);
     else {
       const { record, next } = outcome.apply;
       Object.keys(record).forEach((k) => delete record[k]);
@@ -382,5 +479,15 @@ export function ingestReviews(records, results, options = {}) {
       if (outcome.apply.partial) partial.push(next.key);
     }
   }
-  return { records: out, agreed, tolerated, partial, disagreed, rejected };
+  if (context.second) {
+    // Every other offered entry still open to a second review (an answer rejected, or none) is kept marked, so that a
+    // second review is offered once (Ruling R40).
+    const settled = new Set([...agreed, ...marked.map((q) => q.key)]);
+    for (const key of offered.keys()) {
+      const entry = context.queued.get(key);
+      if (settled.has(key) || secondReviewSkipReason(entry, context.byKey.get(key), { owners }) !== null) continue;
+      marked.push(secondMark(entry, { by, at, agrees: "unsure", result: refused.has(key) ? "rejected" : "missing" }));
+    }
+  }
+  return { records: out, agreed, tolerated, partial, disagreed, rejected, marked };
 }

@@ -31,7 +31,7 @@ import {
 } from "./batch.mjs";
 import { draftKeysFor } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
-import { ingestReviews, queueHolds } from "./review.mjs";
+import { ingestReviews, queueHolds, secondReviewSkipReason } from "./review.mjs";
 import { REREAD_BATCH_SIZE, cutRereadBatches, ingestRereads, readingFingerprint, rereadReport } from "./reread.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { AGENT_HANDLE } from "./schema.mjs";
@@ -623,7 +623,7 @@ async function batchCommand([stage, book, ...rest]) {
     + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
     + " [--redraft | --reoffer]"
     + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT: monster features are checked against the actors of the book's package)"
-    + "\n       batch review <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
+    + "\n       batch review <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>] [--second]"
     + " (needs DAS_CORE and RULEPACK_DUMPS)\n       " + REREAD_USAGE;
   if (stage === "reread" && book) return rereadBatchCommand(book, rest);
   if (!["triage", "draft", "review"].includes(stage) || !book) throw new UsageError(usage);
@@ -637,10 +637,13 @@ async function batchCommand([stage, book, ...rest]) {
   // Ruling R39: `--reoffer` cuts, once, the drafts-queue entries a drafter declined whose record is still an unruled entry.
   const reoffer = rest.includes("--reoffer");
   if ((draft || review) && (withoutItems || second)) throw new UsageError(usage);
+  // Ruling R40: `--second` cuts, once, the review-queue entries a blind second review may settle (review.mjs).
+  const secondReview = rest.includes("--second");
+  if (secondReview && !review) throw new UsageError(`--second goes with batch review only\n${usage}`);
   if (redraft && !draft) throw new UsageError(`--redraft goes with batch draft only\n${usage}`);
   if (reoffer && !draft) throw new UsageError(`--reoffer goes with batch draft only\n${usage}`);
   if (reoffer && redraft) throw new UsageError(`--reoffer and --redraft cannot be used together\n${usage}`);
-  rest = rest.filter((a) => !["--without-items", "--queued", "--redraft", "--reoffer"].includes(a));
+  rest = rest.filter((a) => !["--without-items", "--queued", "--redraft", "--reoffer", "--second"].includes(a));
   for (let i = 0; i < rest.length; i += 2) {
     if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
@@ -660,7 +663,7 @@ async function batchCommand([stage, book, ...rest]) {
     checkStructureDir(opts.structure, opts.out);
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   }
-  const series = draft ? "draft" : review ? "review" : second ? "second" : "triage";
+  const series = draft ? "draft" : review ? (secondReview ? "review-second" : "review") : second ? "second" : "triage";
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
   let batches;
   let core = null;
@@ -717,12 +720,24 @@ async function batchCommand([stage, book, ...rest]) {
     core = await loadCore(need("DAS_CORE"));
     checkQueues(REGISTRY);
     const queue = loadQueue(REGISTRY, "review");
-    batches = cutReviewBatches(found.records, { size, kind: opts.kind, after, queue });
-    for (const r of found.records.filter((x) => x.rule && (!opts.kind || x.kind === opts.kind))) {
-      const why = reviewSkipReason(r, { queue });
-      if (why) left[why] = (left[why] ?? 0) + 1;
+    const owners = secondReview ? ownerHandles() : undefined;
+    batches = cutReviewBatches(found.records, { size, kind: opts.kind, after, queue, second: secondReview, owners });
+    if (secondReview) {
+      // Ruling R40: what is left out is counted over the book's review-queue entries (nothing else is ever cut).
+      const byKey = new Map(found.records.map((r) => [r.key, r]));
+      const ofBook = queue.filter((q) => byKey.has(q.key) && (!opts.kind || byKey.get(q.key).kind === opts.kind));
+      for (const q of ofBook) {
+        const why = secondReviewSkipReason(q, byKey.get(q.key), { owners });
+        if (why) left[why] = (left[why] ?? 0) + 1;
+      }
+      for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} queue entries (${why})`);
+    } else {
+      for (const r of found.records.filter((x) => x.rule && (!opts.kind || x.kind === opts.kind))) {
+        const why = reviewSkipReason(r, { queue });
+        if (why) left[why] = (left[why] ?? 0) + 1;
+      }
+      for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} ruled records (${why})`);
     }
-    for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} ruled records (${why})`);
   } else {
     // A second reading is cut from the queue entries that have no second reading yet; a normal batch leaves the whole queue out.
     const cutOptions = second
@@ -766,7 +781,8 @@ async function batchCommand([stage, book, ...rest]) {
   }
   if (review) {
     write(join(opts.out, "review-vocabulary.json"), reviewVocabulary(core));
-    write(join(opts.out, `${found.book.toLowerCase()}-review-report.json`), reviewReport(found.book, batches, left));
+    const mark = secondReview ? "-second" : "";
+    write(join(opts.out, `${found.book.toLowerCase()}-review${mark}-report.json`), reviewReport(found.book, batches, left));
   }
   const withStructure = dumpsDir === null ? "" : `, structure files to ${opts.structure}`;
   console.log(`${batches.length} batches written to ${opts.out}${withStructure}`);
@@ -1036,11 +1052,14 @@ async function ingestCommand(args) {
   if (args.includes("--reread")) return ingestRereadCommand(args);
   const usage = "Usage: ingest <results-file> [--overwrite | --second | --third"
     + " | --draft [--redraft | --reoffer] --batch <batch file>"
-    + " | --review --batch <batch file> | --reread [--second | --restate] --batch <batch file>]"
+    + " | --review [--second] --batch <batch file> | --reread [--second | --restate] --batch <batch file>]"
     + " | ingest --settle-unsure [--min <n>]"
     + " (--draft and --review need RULEPACK_DUMPS: the official item's structure backs a condition and gives the item's"
     + " own damage, Ruling R24)";
-  const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
+  // Ruling R40: `--review --second` takes the results of a batch cut with `batch review --second`, and only those.
+  const reviewSecond = args.includes("--review") && args.includes("--second");
+  const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"]
+    .filter((m) => args.includes(m) && !(reviewSecond && m === "--second"));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const [mode] = modes;
   // Ruling R32: `--redraft` takes the results of a batch cut with `batch draft --redraft`, and only those.
@@ -1056,7 +1075,9 @@ async function ingestCommand(args) {
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === "--min") { min = args[(i += 1)] ?? ""; continue; }
     if (args[i] === "--batch") { batchFile = args[(i += 1)] ?? ""; continue; }
-    if (!modes.includes(args[i]) && args[i] !== "--redraft" && args[i] !== "--reoffer") rest.push(args[i]);
+    if (!modes.includes(args[i]) && !["--redraft", "--reoffer", ...(reviewSecond ? ["--second"] : [])].includes(args[i])) {
+      rest.push(args[i]);
+    }
   }
   if (min !== null && mode !== "--settle-unsure") throw new UsageError("--min goes with --settle-unsure only");
   if (batchFile !== null && mode !== "--draft" && mode !== "--review") {
@@ -1092,8 +1113,8 @@ async function ingestCommand(args) {
     // Ruling R24: the baseline is decided from the official item's structure, read from the dumps as `batch review` does.
     const dumpsDir = need("RULEPACK_DUMPS");
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
-    const offered = offeredReviews(input.batch, batchFile);
-    return ingestReviewCommand(input, { textDir, core: await loadCore(coreDir), offered, dumpsDir });
+    const offered = offeredReviews(input.batch, batchFile, reviewSecond);
+    return ingestReviewCommand(input, { textDir, core: await loadCore(coreDir), offered, dumpsDir, second: reviewSecond });
   }
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
@@ -1176,12 +1197,19 @@ function ingestDraftCommand(input, { textDir, core, offered, redraft = false, re
 
 // The keys a review batch file offers, each with the fingerprint of the rule its entry carried: the batch id must be the results
 // file's `batch`, of the form `<book>-review-<NNN>`, its stage `review`, every entry a key of that book with a 64-hex `rule`.
-function offeredReviews(id, file) {
-  const m = /^([a-z][a-z0-9]{1,9})-review-(\d{3,})$/.exec(String(id));
-  if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a review batch id (<book>-review-<NNN>)`);
+// With `second` (Ruling R40) the id is `<book>-review-second-<NNN>` and the batch must carry `second: true`; without it, a
+// batch so marked is refused.
+function offeredReviews(id, file, second = false) {
+  const m = new RegExp(`^([a-z][a-z0-9]{1,9})-review-${second ? "second-" : ""}(\\d{3,})$`).exec(String(id));
+  const shape = second ? "<book>-review-second-<NNN>" : "<book>-review-<NNN>";
+  if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a ${second ? "second " : ""}review batch id (${shape})`);
   const batch = readJson(file, "batch file");
   if (batch?.id !== id || batch?.stage !== "review" || !Array.isArray(batch?.entries)) {
     throw new UsageError(`${file}: not the review batch ${id} (its id, stage "review" and entries)`);
+  }
+  if ((batch.second === true) !== second) {
+    throw new UsageError(`${file}: ${second ? "not a second review batch" : "a second review batch"} (a batch cut with`
+      + " batch review --second is ingested with --review --second, and only it)");
   }
   const ok = (e) => typeof e?.key === "string" && e.key.startsWith(`${m[1]}:`) && typeof e.rule === "string"
     && /^[0-9a-f]{64}$/.test(e.rule);
@@ -1207,7 +1235,7 @@ function officialStructures(records, keys, dumpsDir, { reach = false } = {}) {
 // `ingest <results-file> --review --batch <batch file>`: independent reviews. Agreements write `evidence.reviewed`; the rest
 // (disagreement, free text, low confidence, a draft stamped for a person) goes to registry/review-queue.json; books and that
 // queue are saved in one step.
-function ingestReviewCommand(input, { textDir, core, offered, dumpsDir }) {
+function ingestReviewCommand(input, { textDir, core, offered, dumpsDir, second = false }) {
   checkQueues(REGISTRY);
   const books = loadRegistry(REGISTRY);
   const all = books.flatMap((b) => b.records);
@@ -1215,8 +1243,10 @@ function ingestReviewCommand(input, { textDir, core, offered, dumpsDir }) {
   const keys = input.results.map((r) => r?.key).filter((k) => typeof k === "string" && offered.has(k));
   const structures = officialStructures(all, keys, dumpsDir);
   const out = ingestReviews(all, input.results, {
-    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "review"), offered, structures
+    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "review"), offered, structures,
+    ...(second ? { second, owners: ownerHandles() } : {})
   });
+  if (second) return secondReviewDone(books, out);
   if (!commitIngest(books, out.records, out.agreed, out.disagreed, out.agreed, { queue: "review" })) return;
   const reasons = {};
   for (const q of out.disagreed) reasons[q.reason] = (reasons[q.reason] ?? 0) + 1;
@@ -1228,6 +1258,20 @@ function ingestReviewCommand(input, { textDir, core, offered, dumpsDir }) {
   if (out.tolerated.length) {
     console.error(`${out.tolerated.length} agreement(s) used Ruling R24 tolerances: run npm run gates (they stay drafted until`
       + " the gates pass again on evidence.reviewed.tolerated)");
+  }
+  if (out.rejected.length) process.exitCode = 1;
+}
+
+// Ruling R40: the second review's outcome saved in one step: a confirmed rule leaves review-queue.json, every other offered
+// entry still open to it is written back as it was plus its `second` mark.
+function secondReviewDone(books, out) {
+  if (!commitIngest(books, out.records, out.agreed, out.marked, out.agreed, { queue: "review" })) return;
+  console.log(JSON.stringify({ confirmed: out.agreed.length, confirmedExact: out.agreed.length - out.tolerated.length,
+    confirmedTolerated: out.tolerated.length, regate: out.tolerated, partial: out.partial, marked: out.marked.length,
+    withFirst: out.marked.filter((q) => q.second.withFirst === true).length, rejected: out.rejected }, null, 2));
+  if (out.tolerated.length) {
+    console.error(`${out.tolerated.length} confirmation(s) used Ruling R24 tolerances: run npm run gates (they stay drafted`
+      + " until the gates pass again on evidence.reviewed.tolerated)");
   }
   if (out.rejected.length) process.exitCode = 1;
 }

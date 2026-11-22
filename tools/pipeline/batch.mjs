@@ -1,7 +1,7 @@
 // Batch files for reader agents. The tools never call a model: they cut the work into files and ingest what comes back.
 // Text is referenced by fingerprint (`textSha`), never embedded, so a batch file is safe to commit.
 import { groupBy, ruleFingerprint, stateOf } from "./registry.mjs";
-import { queueHolds } from "./review.mjs";
+import { queueHolds, secondReviewSkipReason } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
 import { ADDS_MAX, ORIGIN_MAX, isReaderHandle } from "./schema.mjs";
 import {
@@ -598,10 +598,17 @@ export function reviewSkipReason(r, { queue = [] } = {}) {
  * Review batches `{ id: "<book>-review-<NNN>", stage: "review", entries }`: the records reviewSkipReason accepts, per book,
  * one kind per batch (kinds in DRAFT_KIND_ORDER), cut at `size` (Ruling R8: 30). `queue` is review-queue.json; `after` ({ book:
  * highest number }) makes the numbering continue.
+ * With `second` (Ruling R40; `owners`: docs/owners.json, required), only the records whose review-queue entry is open to a
+ * second review (review.mjs secondReviewSkipReason), in batches `{ id: "<book>-review-second-<NNN>", stage: "review",
+ * second: true, entries }` numbered on their own (`after` then holds the `-review-second-` numbers). The entries are those of
+ * a plain cut: nothing of the draft, of the first review or of the queue entry goes in.
  */
 export function cutReviewBatches(records, options = {}) {
-  const { size = REVIEW_BATCH_SIZE, kind, after = {}, queue = [] } = options;
-  const open = records.filter((r) => (!kind || r.kind === kind) && reviewSkipReason(r, { queue }) === null);
+  const { size = REVIEW_BATCH_SIZE, kind, after = {}, queue = [], second = false, owners } = options;
+  if (second && !Array.isArray(owners)) throw new TypeError("a second review cut needs owners (docs/owners.json)");
+  const queued = new Map(queue.map((q) => [q?.key, q]));
+  const open = records.filter((r) => (!kind || r.kind === kind) && (second
+    ? secondReviewSkipReason(queued.get(r.key), r, { owners }) === null : reviewSkipReason(r, { queue }) === null));
   const rank = (k) => (DRAFT_KIND_ORDER.includes(k) ? DRAFT_KIND_ORDER.indexOf(k) : DRAFT_KIND_ORDER.length);
   const batches = [];
   const counts = new Map(Object.entries(after));
@@ -611,9 +618,9 @@ export function cutReviewBatches(records, options = {}) {
       for (let i = 0; i < ofKind.length; i += size) {
         const n = (counts.get(book) ?? 0) + 1;
         counts.set(book, n);
-        const id = `${book}-review-${String(n).padStart(3, "0")}`;
+        const id = `${book}-review-${second ? "second-" : ""}${String(n).padStart(3, "0")}`;
         const entries = ofKind.slice(i, i + size).map((r) => ({ ...entryOf(r, { rulable: true }), rule: ruleFingerprint(r.rule) }));
-        batches.push({ id, stage: "review", entries });
+        batches.push({ id, stage: "review", ...(second ? { second: true } : {}), entries });
       }
     }
   }

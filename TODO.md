@@ -103,6 +103,9 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       11 of them whole; 3 parries the engine already reads (the weapon-held limit stays unsayable). Measure Ruling R12.
 - [ ] Reoffer the drafters' declines (Ruling R39, built 2026-11-22: `batch draft <BOOK> --reoffer`, `ingest --draft --reoffer`,
       once, blind, `reoffered: true` on the entry kept): XMM 192 entries in 10 batches, FRAIF 3 in 1; measure Ruling R12.
+- [ ] Second review of the review queue (Ruling R40, built 2026-11-22: `batch review <BOOK> --second`, `ingest --review
+      --second`, once, blind; confirmed when it agrees with the draft, else `second` on the entry kept): XMM 38 entries in 2
+      batches, XPHB 1, XDMG 1, FRAIF 1 (the 34 disagreements and 7 low-confidence entries); run them, read the `withFirst` ones.
 - [ ] Upstream requests (no book named): a step that teleports the TARGET of a hit or a failed save; damage doubled
       against objects and structures; a hit that misses only when the attacker fails a save (as `cancelForSelf`'s
       `ifSourceFails`, at `isHit`); a free counterattack tied to the AC reaction just taken.

@@ -888,3 +888,30 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   reoffer drafted a better rule below the threshold; (d) owners are told apart by `docs/owners.json` and the handle's
   `drafter` prefix: an entry hand-written under a drafter-looking handle would be reoffered; (e) the mark does not name the
   vocabulary it was offered against, so a later growth of the vocabulary needs its own ruling to reoffer again.
+- **R40 (2026-11-22). A review disagreement or an unsure review is broken by a blind second review, once.** The 41
+  review-queue entries queued `disagreement` (34) or `low-confidence` (7) waited for a person although, for triage, a blind
+  third reading already settles two readers who disagree. `batch review --second` cuts the entries `review.mjs`
+  `secondReviewSkipReason` accepts — one of those two reasons, no `second` mark, drafted by an agent (no `evidence.person`,
+  no owner's drafter handle, no stamp for a person), the entry's draft and review about the rule as it is, gated — as
+  ordinary blind review entries, in batches marked `second: true`, numbered `<book>-review-second-<NNN>`, report
+  `<book>-review-second-report.json`; the reviewer brief is unchanged. `ingest --review --second` (refused on a batch without
+  the mark, the mark refused without the flag) compares with the SAME comparison as a first review: an agreement with the
+  draft at or above 0.7 confirms the rule as an agreeing first review does, plus `evidence.reviewed.via: "second-review"` and
+  `first` (the first review as data), and the entry leaves the queue; anything else (a disagreement, an agreement below the
+  threshold, an unexpressed answer, a rejected result, an offered entry left unanswered) keeps the entry as it was plus
+  `second: { by, at, agrees: false | "unsure", result, ... }`, final, with `withFirst: true` when the second review's
+  assertions agree with the first's. The bar is two independent readings of three agreeing: the draft and one reviewer.
+  `docs/RULES.md` counts the shipped rules so settled. Measured (repository registry unchanged, cut into a scratch folder
+  against the engine's main branch): XMM 38 entries in 2 batches (21 other reasons left out), XPHB 1 (1), XDMG 1 (1),
+  FRAIF 1 (2): the 41 entries. *Cost if wrong:* (a) the draft is one of the two readings that agree, and it is not
+  independent of its own errors: a draft and a second reviewer who share a misreading (the same words of the vocabulary read
+  the same wrong way, the same item structure misleading both) ship it over a first reviewer who read it right, with no
+  person in the loop and no third review to outvote them; (b) the first review's disagreement is kept as data
+  (`evidence.reviewed.first`) but nothing reads it again: a confirmed rule is `reviewed` like any other, and only the
+  RULES.md count says how many stand on a tie-break; (c) the mark is one-shot and a rejected or missing answer burns it (a
+  results file signed with the first reviewer's handle, or a text missing from the cache, leaves the entry for a person
+  without a second reading; a new ruling must clear the marks); (d) a `low-confidence` entry is one the first reviewer
+  agreed with, unsure: a second agreement settles it on two agents' word where a person was the bar; (e) the second
+  reviewer's `why` is not stored on the mark (data only), so a person reads the first `why` and the second's assertions,
+  and must open the results file for its words; (f) `withFirst` uses the comparison's direction (the first review as the
+  stated side), so two reviews that agree only up to a detail the second pins and the first does not are not called agreeing.
