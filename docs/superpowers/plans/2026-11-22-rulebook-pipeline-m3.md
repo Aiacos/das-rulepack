@@ -212,6 +212,24 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   a rule that keeps a side rider and leaves the main effect passes the schema when it asserts anything of its own (review
   then agrees through `left`); (c) `unexpressed` counts are unchecked claims; (d) a leaves assertion with a word the
   vocabulary marks unverified (`excludes`) matches a reviewer's only when both chose the same word.
+  **Fix round 1.** (1) What an entry implies covers what its keys do (`assert.mjs` `IMPLIED`, one function per drafter key):
+  `resave` → `ends: savedSave`, `effectEnds` → `ends: <word>`, `noReactions` / `actionOrBonus` → the new `expect.denies`
+  (`reactions`, `actionAndBonus`), `noOpportunity` → `denies: opportunityAttacks` (not while flying), `effectStatuses` →
+  `condition.applied`, each on the roll that applies its effect in the official structure (every situation without it);
+  `saveDisadvantageFor`, `rollDisadvantage` → rolls with disadvantage. The 17 other drafter keys are in `IMPLIES_NOTHING`,
+  each with why (a test fails on a key in neither); a rule using one, or an unsayable part of an implied one, is stamped for a
+  person at review with the key's name (**Ruling R15 generalised**; `noReactions` now implies an assertion, its old stamps
+  stay valid). `denies` is the only new word: the three meanings pilot 3 needed. (2) A leave the rule already contradicts for
+  a situation it covers (another fraction, move mode, roll mode, or turn ending of EFFECT_ENDS) fails the schema, as does a
+  leave the rule states or implies for every situation (`given: {}` covers any). A second condition, or an event ending
+  beside a timed one, stays allowed: an effect may end at a time and on an event. (3) `excludes` maps to no notion of the
+  engine (the engine's "the bearer excluded" is a zone's, `targets` limits by creature type), so agents may no longer write
+  it (refused in a drafter's `assert` and `leaves` and a reviewer's `assert`); stored data still reads. Wrong: (e) a key in
+  `IMPLIES_NOTHING` sends every rule that uses it to a person (`effectDurations`, `usageLimits`, `onHit`...): slower volume,
+  until a word is added; (f) an implied assertion read without the structure holds in every situation, so a schema check
+  run without dumps may refuse a leave that is only true on another roll than the rule's (more refusals, never fewer); (g) the
+  pilot records that used `excludes` (one drafted rule) or a key now unassertable without its stamp (one) fail the schema
+  until redrafted or restamped.
 
 ## What a drafter may write (engine limits)
 

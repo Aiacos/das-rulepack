@@ -350,7 +350,8 @@ export function draftVocabulary(core) {
       rolls: copy(assertVocabulary.ROLLS), fractions: copy(assertVocabulary.FRACTIONS),
       rollModes: copy(assertVocabulary.ROLL_MODES), rollOn: copy(assertVocabulary.ROLL_ON),
       rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
-      givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.EXPECT_FIELDS)
+      givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.AGENT_EXPECT_FIELDS),
+      denies: copy(assertVocabulary.DENIES)
     },
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
     draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),

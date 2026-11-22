@@ -21,7 +21,7 @@ export const REVIEW_RESULT_FIELDS = Object.freeze(["key", "rule", "outcome", "as
 // What a reviewer answers: assertions (the default, `outcome` left out), or `person` with no assertion when the closed
 // vocabulary cannot say what the entry does (pilot 2: a `free`-only assertion is refused, it says nothing checkable).
 export const REVIEW_OUTCOMES = Object.freeze(["assert", "person"]);
-// The reasons a review-queue entry carries besides a draft's stamp for a person (schema.mjs DRAFTED_FOR_PERSON).
+// The reasons a review-queue entry carries besides a draft's stamp for a person (schema.mjs draftedForPersonReasons).
 export const REVIEW_REASONS = Object.freeze(["disagreement", "free-text", "low-confidence", "unexpressed"]);
 // What an agreement may have tolerated (Ruling R24), as `evidence.reviewed.tolerated` records it (schema.mjs).
 export { REVIEW_TOLERANCES };
@@ -273,7 +273,7 @@ function takeResult(result, ctx) {
     return { reject: "assert: required, a non-empty array of { given, expect } (or outcome person, with no assert)" };
   }
   const assertions = unexpressed ? [] : result.assert;
-  const problems = assertProblems(assertions, { vocabulary: core, at: "assert" });
+  const problems = assertProblems(assertions, { vocabulary: core, at: "assert", agent: true });
   if (problems.length) {
     const shown = problems.slice(0, SHOWN_PROBLEMS).map((p) => p.slice(0, SHOWN_PROBLEM_CHARS));
     const more = problems.length > SHOWN_PROBLEMS ? ` (and ${problems.length - SHOWN_PROBLEMS} more)` : "";

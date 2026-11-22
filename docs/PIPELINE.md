@@ -235,11 +235,12 @@ The state is derived from the evidence and written by the tools; nobody types it
 | `played` | a scenario passed in a running world, on the rule as it is |
 
 Evidence about the rule carries its fingerprint (`rule`, `registry.mjs` `ruleFingerprint`): `evidence.drafted: { by, at, core,
-rule, person?, because? }` (`person: true` with `because` from `schema.mjs` `DRAFTED_FOR_PERSON`, `noReactions` or
-`official-uncovered`: the draft goes to a person at review; the schema requires the stamp on a drafted rule whose entry has
-`noReactions` or that leaves `official` uncovered, and the gate evidence fingerprint `emits` covers it, so dropping it fails the
-schema and makes the record `drafted`), `evidence.reviewed: { by, at, agrees, rule, confidence, because? }` (`because`: the
-line of a person's `review-accept`), `evidence.played: { at, core, world, scenario, client?, rule, manual?, by?,
+rule, person?, because? }` (`person: true` with `because` from `schema.mjs` `draftedForPersonReasons()`: the name of a key
+the assertion vocabulary cannot say all of, `other-key`, or `official-uncovered`; `noReactions` stays valid on stamps written
+before fix round 1 of Ruling R25: the draft goes to a person at review; the schema requires the stamp on a drafted rule whose
+entry has such a key or that leaves `official` uncovered, and the gate evidence fingerprint `emits` covers it, so dropping it
+fails the schema and makes the record `drafted`), `evidence.reviewed: { by, at, agrees, rule, confidence, because? }`
+(`because`: the line of a person's `review-accept`), `evidence.played: { at, core, world, scenario, client?, rule, manual?, by?,
 because? }` (`scenario` a scenario id `<book>/<slug>`, `core` an engine version, `world` a handle, `client` `gm` or `player`;
 `manual`, `by` (an owner) and `because` together, for a checklist played by hand; no other field). `by` a reader handle,
 `confidence` from 0 to 1 elsewhere. A review or a play counts only while its `rule` is the fingerprint of the current
@@ -252,7 +253,8 @@ the stamp existed (no `rule`): it counts as it did; one that carries a stamp is 
   (`tools/pipeline/assert.mjs`): what the rule says happens, so that a draft and a review can be compared and a scenario can
   check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free? }`; `expect: { damage?:
   { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode: advantage|disadvantage, on:
-  attack|save|check, for: self|target|ally|enemy }, affects?, excludes? (target|allies|enemies|self), move?: { mode,
+  attack|save|check, for: self|target|ally|enemy }, affects? (target|allies|enemies|self), denies?
+  (opportunityAttacks|reactions|actionAndBonus), move?: { mode,
   distance? }, uses?: { spent }, free? }`. Any other field is refused; `free` is one printable line of at most 120
   characters and never stands alone (every assertion has a closed `expect` field); `given.origin` is one of the rule's
   `origins`; `move.distance` is a non-negative number or a formula of at most 24 characters made of digits, spaces,
@@ -267,9 +269,19 @@ the stamp existed (no `rule`): it counts as it did; one that carries a stamp is 
   checks the shape; the validator gate checks `moment` (MOMENTS), `targetType` (CREATURE_TYPES), the statuses of `condition`
   (the conditions `core/monster-text.mjs` names), `ends` (EFFECT_ENDS or a moment), `move.mode` (MOVE_MODES) and
   `damage.type` (DAMAGE_TYPES) against the clone (`loadCore`). `normaliseAssert` gives the sorted canonical forms of a list
-  (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry)` what an entry says by itself:
-  `saveDamage` (a saved save: half or no damage), `halfOnMiss`, `noDamage`, and a `triggers` declaration on `failedSave` with a
-  `status` or `move` step (Rulings R15, R16: `noReactions` implies nothing, so such a rule always goes to a person at review).
+  (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry, { structure })` what an
+  entry says by itself, one function per drafter key (`assert.mjs` `IMPLIED`, fix round 1 of Ruling R25): `saveDamage`,
+  `halfOnMiss`, `noDamage` (fractions); `triggers` (`status` and `move` steps on a roll; a plain `resave` through an effect:
+  `ends: savedSave`); `effectEnds` (`ends: <word>`), `noReactions` and `actionOrBonus` (`denies: reactions` /
+  `actionAndBonus`), `effectStatuses` (`condition.applied`), each on the roll that applies its effect in the official
+  structure (a hit for an attack's, a failed save for a save's, a saved save for `savedEffects`; every situation, `given: {}`,
+  without it); `noOpportunity` (`denies: opportunityAttacks`, but not while flying); `saveDisadvantageFor` and
+  `rollDisadvantage` (rolls with disadvantage). The other drafter keys imply nothing, each with why (`IMPLIES_NOTHING`), and a
+  test fails on a drafter key in neither table. A rule using a key, or a part of one (a trigger step other than those; a
+  `resave` with options; `noOpportunity: "flying"`), the vocabulary cannot say (`unassertableKeys`) is stamped for a person
+  at review (Ruling R15 generalised: `because` is the key's name). **`excludes` is not an agent's word** (fix round 1): no
+  notion of the engine maps to it and pilot 3 used it two ways, so a drafter's `assert` and `leaves` and a reviewer's
+  `assert` that hold it are refused; stored data (a review-queue entry) is still read. What it was bent to say is `denies`.
 - **Partial rules** (Ruling R25, `tools/pipeline/leaves.mjs`). A rule may declare what its entry expects and it does not
   automate, as data: `rule.leaves`, at most 6 items, each an assertion `{ given, expect, because? }` of the vocabulary above
   (no `free` anywhere) of what would be true at the table but is done by hand, or `{ unexpressed, count }` (count 1 to 6) for
@@ -487,7 +499,7 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > same kind. Write only what a shape allows.
 >
 > **What the words mean.** `definitions` in `draft-vocabulary.json` gives the meaning of every word of the closed lists you
-> choose from (`ends`, `roll`, `moment`, `moveMode`, `affects`, `excludes`, `rollMode`, `rollOn`, `rollFor`, `fraction`), each
+> choose from (`ends`, `roll`, `moment`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`, `rollFor`, `fraction`), each
 > with where it comes from (`from`: the engine file, or this pack's vocabulary). Read a word there before you use it, never
 > from its spelling. The turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end on the turn the effect was
 > placed in ("until the end of its next turn"), `currentTurnEnd` ends that very turn ("until the end of the turn in
@@ -520,8 +532,11 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > item has today, taken from the structure) and a `value` of the leaf's type; never on a monster feature; never `create`.
 >
 > **What goes to a person.** Anything the allowlist cannot express is `outcome: "person"` with a one-line `why`: never force
-> it into an allowed key. `noReactions` is always for a person at review (Ruling R15): write it if it is the right key, and
-> say in `why` that it needs the person. A rule that needs state across turns, a prompt to a player or a fact the engine lacks
+> it into an allowed key. A key the vocabulary cannot assert (`IMPLIES_NOTHING`: `effectDurations`, `usageLimits`,
+> `breaksOn`...) sends the rule to a person at review: write it if it is the right key. Never write `excludes`: say a move
+> that provokes no opportunity attacks, a lost reaction or the action-or-bonus limit with `denies`, and know that the keys
+> `noOpportunity`, `noReactions`, `actionOrBonus`, `effectEnds` and a `resave` step already say them (`leaves` may not list
+> what they do). A rule that needs state across turns, a prompt to a player or a fact the engine lacks
 > is `code`; one that needs an engine key that does not exist is `engine`, with what is missing in `why`.
 >
 > **Partial rules: say what you leave out, as data (`leaves`, Ruling R25).** A rule may automate part of an entry. Then list
@@ -667,7 +682,8 @@ handle of `docs/owners.json`, Ruling R23).
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Say what must be
 > true at the table when the item is used, as assertions in the closed vocabulary: `[{ given, expect }]` with the fields of
 > `assert.shapes` (`given`: `roll`, `moment`, `origin`, `targetType`; `expect`: `damage` with its `fraction`, `condition`
-> applied or ended, `ends`, `roll` with advantage or disadvantage, `affects`, `excludes`, `move`, `uses`). State every
+> applied or ended, `ends`, `roll` with advantage or disadvantage, `affects`, `denies`, `move`, `uses`; never `excludes`, which
+> is refused). State every
 > consequence the text gives that the vocabulary can say, each once: a saved save that halves the damage, a failed save that
 > leaves a condition, a miss that halves, an effect that ends at a moment. Leave out what the vocabulary cannot say; never
 > force it. Read each word's meaning in `definitions` of `review-vocabulary.json` (the same definitions the drafter has, with
@@ -815,8 +831,9 @@ against the official item's structure (below). For each result:
   (Ruling R2: the identifier of a matched item that differs from the record's), `origin` (Ruling R17: the last part of the
   owner and, for a feature, the level), and for a monster feature its identifier `monsterIdentifier` (`<book>-<creature>-
   <feature>`) with its embedded item id bound in `sources`; `evidence.drafted = { by, at, core, rule }` (`rule` the rule's
-  fingerprint), plus `person: true, because: "noReactions"` when the entry uses `noReactions` (Ruling R15: the review sends
-  every record with that stamp to `review-queue.json`, whatever the reviewer says), or `because: "official-uncovered"` when the
+  fingerprint), plus `person: true, because: "<key>"` when the entry uses a key the vocabulary cannot assert (Ruling R15
+  generalised, `schema.mjs` `draftedForPerson`: the review sends every record with that stamp to `review-queue.json`,
+  whatever the reviewer says), or `because: "official-uncovered"` when the
   rule lists `official` under `uncovered` (Ruling R21: allowed, since some official items carry nothing to bind, and read by
   a person at review). Nothing else of the evidence changes. The
   state is `drafted`; `npm run gates` (local, with dumps and text) takes it to `gated` or prints why not.
@@ -895,7 +912,7 @@ For each result:
   merged by key, sorted; nothing is written on the
   record; `loadQueue` and `gates`, `--ci` included, hold `draft` and `review` to that shape: closed keys, valid assertions
   with the engine's words, canonical assertion strings that read back as such, so a hand-edited entry with prose fails): a
-  record whose draft is stamped for a person (`evidence.drafted.person`, reason `noReactions` or `official-uncovered`, Rulings
+  record whose draft is stamped for a person (`evidence.drafted.person`, reason the key name or `official-uncovered`, Rulings
   R15, R21), **whatever the review says, agreement included** (`review.agrees` then says so); otherwise `unexpressed`
   (outcome `person`, `review.assert` stored as `[]`), `disagreement`, `free-text` (everything matches but a side holds a free
   text) or `low-confidence` (agreement below 0.7).

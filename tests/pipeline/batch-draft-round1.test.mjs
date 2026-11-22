@@ -86,7 +86,7 @@ describe("I2a: value shapes", () => {
     const given = v.assert.shapes.given; const expectShapes = v.assert.shapes.expect;
     expect(Object.keys(given).sort()).toEqual(["free", "moment", "origin", "roll", "targetType"]);
     expect(Object.keys(expectShapes).sort())
-      .toEqual(["affects", "condition", "damage", "ends", "excludes", "free", "move", "roll", "uses"]);
+      .toEqual(["affects", "condition", "damage", "denies", "ends", "free", "move", "roll", "uses"]);
     let n = 0;
     for (const [field, shape] of Object.entries(given)) {
       for (const value of variants(shape)) {

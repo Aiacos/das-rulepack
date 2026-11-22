@@ -110,8 +110,9 @@ describe("ingestDrafts: applied", () => {
     expect(out.records[0].rule.origin).toBe("Fey Wanderer 3");
   });
 
-  it("accepts noReactions (a person reads it at review, Ruling R15)", () => {
-    const entry = { noReactions: [E_OFF] };
+  it("accepts a key the vocabulary cannot assert (a person reads it at review, Ruling R15 generalised)", () => {
+    // Fix round 1 of Ruling R25: noReactions now implies `denies: reactions`; effectDurations implies nothing.
+    const entry = { effectDurations: { [E_OFF]: { seconds: 60 } } };
     const out = run([record()], [result({ rule: rule({
       entry, origins: ["official"], uncovered: [{ origin: "ddb-importer", because: "its item has no effect" }],
       assert: [{ given: { roll: "failedSave" }, expect: { affects: "target" } }]
@@ -120,18 +121,22 @@ describe("ingestDrafts: applied", () => {
     const next = out.records[0];
     expect(next.rule.entry).toEqual(entry);
     // Stamped for Task 6: the review sends it to a person whatever the reviewer says.
-    expect(next.evidence.drafted).toMatchObject({ person: true, because: "noReactions" });
+    expect(next.evidence.drafted).toMatchObject({ person: true, because: "effectDurations" });
     expect(validateRecord(next)).toEqual([]);
     // The stamp cannot be dropped silently: the schema requires it while the key is there, and the gate evidence covers it.
     const { person, because, ...bare } = next.evidence.drafted;
     const stripped = { ...next, evidence: { ...next.evidence, drafted: bare } };
-    expect(validateRecord(stripped).join(" ")).toMatch(/needs person: true, because: "noReactions"/);
+    expect(validateRecord(stripped).join(" ")).toMatch(/needs person: true, because: "effectDurations"/);
     expect(emittedFingerprint(stripped)).not.toBe(emittedFingerprint(next));
     expect(validateRecord({ ...next, evidence: { ...next.evidence, drafted: { ...bare, person: true } } }).join(" "))
       .toMatch(/person and because go together/);
     expect(validateRecord({ ...next, evidence: { ...next.evidence, drafted: { ...bare, person: true, because: "other" } } })
-      .join(" ")).toMatch(/DRAFTED_FOR_PERSON/);
-    // A rule without noReactions carries no stamp.
+      .join(" ")).toMatch(/draftedForPersonReasons/);
+    // A rule whose keys the vocabulary says carries no stamp (noReactions included, since fix round 1).
+    expect(run([record()], [result({ rule: rule({ entry: { noReactions: [E_OFF] }, origins: ["official"],
+      uncovered: [{ origin: "ddb-importer", because: "its item has no effect" }],
+      assert: [{ given: { roll: "failedSave" }, expect: { denies: "reactions" } }] }) })]).records[0].evidence.drafted)
+      .not.toHaveProperty("person");
     expect(run([record()], [result()]).records[0].evidence.drafted).not.toHaveProperty("person");
   });
 

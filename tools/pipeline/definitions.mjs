@@ -4,7 +4,7 @@
 // DEFINITION_SOURCES); a word whose meaning neither the engine nor this pack establishes is "unverified", never guessed.
 // tests/pipeline/definitions.test.mjs fails when a word of these lists has no definition: the engine's lists through loadCore,
 // and a committed copy of them.
-import { AFFECTS, FRACTIONS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON } from "./assert.mjs";
+import { AFFECTS, DENIES, FRACTIONS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON } from "./assert.mjs";
 import { LEAVE_REASONS } from "./leaves.mjs";
 
 /** Where a meaning comes from: a file of the DAS · Core clone (`module/scripts/...`), or this pack's own vocabulary. */
@@ -97,10 +97,17 @@ const DEFINED = {
     enemies: def("The enemies (hostile creatures) of the creature that used the item.", "engine core/content/enums.mjs"),
     self: def("The creature that used the item itself.", PACK_FROM)
   },
-  // `expect.excludes` (assert.mjs: who an assertion leaves out, the words of `affects`). What "left out" covers beside a
-  // moment is defined nowhere: the pilot's drafter and reviewer each used it for something else (no opportunity attack by
-  // enemies, none against the user), so its words stay unverified until the vocabulary has a word for that meaning.
-  excludes: { target: "unverified", allies: "unverified", enemies: "unverified", self: "unverified" },
+  // `expect.denies` (fix round 1 of Ruling R25; assert.mjs DENIES): what a creature is denied, each word the meaning of the
+  // engine key that does it (core/content.mjs noOpportunity, noReactions, actionOrBonus). How long: the `ends` of the effect.
+  // (`expect.excludes` is no longer an agent's word: no engine notion maps to it, and pilot 3 used it two ways.)
+  denies: {
+    opportunityAttacks: def("The movement of the creature that used the item provokes no opportunity attacks.",
+      "engine core/content.mjs"),
+    reactions: def("The creature that bears the item's effect cannot take reactions while the effect lasts.",
+      "engine core/content.mjs"),
+    actionAndBonus: def("The creature that bears the item's effect takes an action or a bonus action on its turn, not both.",
+      "engine core/content.mjs")
+  },
   // `expect.roll` (assert.mjs ROLL_MODES, ROLL_ON, ROLL_FOR).
   rollMode: {
     advantage: def("The roll is made with advantage.", PACK_FROM),
@@ -140,8 +147,8 @@ const DEFINED = {
 };
 
 const deepFreeze = (o) => Object.freeze(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Object.freeze({ ...v })])));
-/** The definitions, by list (`ends`, `roll`, `moment`, `moveMode`, `affects`, `excludes`, `rollMode`, `rollOn`, `rollFor`,
- * `fraction`), each word to `{ means, from }` or "unverified". */
+/** The definitions, by list (`ends`, `roll`, `moment`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`, `rollFor`,
+ * `fraction`, `leavesBecause`), each word to `{ means, from }` or "unverified". */
 export const DEFINITIONS = deepFreeze(DEFINED);
 
 /**
@@ -177,7 +184,7 @@ export function definitionsFor({ review = false } = {}) {
 
 // The engine's list each map covers (loadCore names), and the pack's own.
 const ENGINE_LISTS = Object.freeze({ ends: "effectEnds", moment: "moments", moveMode: "moveModes" });
-const PACK_LISTS = Object.freeze({ roll: ROLLS, affects: AFFECTS, excludes: AFFECTS, rollMode: ROLL_MODES, rollOn: ROLL_ON,
+const PACK_LISTS = Object.freeze({ roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON,
   rollFor: ROLL_FOR, fraction: FRACTIONS, leavesBecause: LEAVE_REASONS });
 
 /**

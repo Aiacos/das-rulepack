@@ -63,7 +63,7 @@ export function leavesProblems(leaves, { vocabulary = {}, origins, at = "rule.le
       if (isObject(item[part]) && has(item[part], "free")) errors.push(`${here}.${part}.free: no free text in leaves (Ruling R25)`);
     }
     const assertion = { given: item.given, expect: item.expect };
-    errors.push(...assertProblems([assertion], { vocabulary, ...(origins ? { origins } : {}), at: here })
+    errors.push(...assertProblems([assertion], { vocabulary, ...(origins ? { origins } : {}), at: here, agent: true })
       .map((e) => e.replace(`${here}[0]`, here)));
     const c = normaliseAssert([assertion])[0];
     if (c !== undefined && seen.has(c)) errors.push(`${here}: listed twice`);
@@ -80,11 +80,45 @@ const isBaselineShape = (c) => {
     && [...p.keys()].every((k) => k.startsWith("given.") || k === "expect.damage.fraction" || k === "expect.damage.type");
 };
 
+/** The engine's turn words (EFFECT_ENDS, committed copy; tests/pipeline/definitions.mjs pins it to the clone's list). */
+export const TURN_ENDS = Object.freeze(["casterTurnStart", "casterTurnEnd", "bearerTurnStart", "bearerTurnEnd", "currentTurnEnd"]);
+
+// The given of `own` covers the given of `leave`: every situation `own` states, `leave` states too (an own assertion that
+// holds in every situation, `given: {}`, covers any).
+const coversGiven = (own, leave) => [...own].filter(([k]) => k.startsWith("given."))
+  .every(([k, v]) => leave.get(k) === v);
+// The same assertion with the given of another (to compare an own assertion that covers a leave's situation).
+const withGivenOf = (c, from) => [...pairsOf(c)].filter(([k]) => !k.startsWith("given."))
+  .concat([...pairsOf(from)].filter(([k]) => k.startsWith("given."))).map(([k, v]) => `${k}=${v}`).sort().join(";");
 /**
- * The problems of a rule's leaves against the rule itself (Ruling R25), or []: a rule that has leaves but whose own assertions
- * (stated, and implied by its entry, assert.mjs impliedAsserts) are none or only the item's own damage (an empty rule with
- * excuses); a leaves assertion the rule states or implies (the same up to optional detail, review.mjs's matching: it is not
- * left out); a leaves damage the rule gives another fraction of, for the same situation (and type, when both give one).
+ * The fields of one expectation kind that hold one value per situation (fix round 1 of Ruling R25): another value for a
+ * situation the rule covers is a contradiction, "the rule already says otherwise". A damage fraction (of one type, when both
+ * give one); a move mode; a roll mode for the same roll and roller; a turn ending (one of TURN_ENDS: an effect has one timed
+ * end, while it may also end on an event, a moment). A second condition, or an event ending beside a timed one, is not one.
+ */
+function saysOtherwise(own, leave) {
+  const kind = (m) => [...new Set([...m.keys()].filter((k) => k.startsWith("expect.")).map((k) => k.split(".")[1]))];
+  const [k] = kind(leave);
+  if (kind(leave).length !== 1 || kind(own).length !== 1 || kind(own)[0] !== k) return false;
+  const differ = (f) => own.has(f) && leave.has(f) && own.get(f) !== leave.get(f);
+  const same = (f) => own.get(f) === leave.get(f);
+  if (k === "damage") {
+    const typeOk = !own.has("expect.damage.type") || !leave.has("expect.damage.type") || same("expect.damage.type");
+    return typeOk && differ("expect.damage.fraction");
+  }
+  if (k === "move") return differ("expect.move.mode");
+  if (k === "roll") return same("expect.roll.on") && same("expect.roll.for") && differ("expect.roll.mode");
+  if (k === "ends") return TURN_ENDS.includes(own.get("expect.ends")) && TURN_ENDS.includes(leave.get("expect.ends"))
+    && differ("expect.ends");
+  return false;
+}
+
+/**
+ * The problems of a rule's leaves against the rule itself (Ruling R25 and its fix round 1), or []: a rule that has leaves but
+ * whose own assertions (stated, and implied by its entry, assert.mjs impliedAsserts) are none or only the item's own damage
+ * (an empty rule with excuses); a leaves assertion the rule states or implies, for that situation or for every situation (the
+ * same up to optional detail, review.mjs's matching: the rule does it, it is not left out); a leaves assertion the rule
+ * contradicts for a situation it covers (saysOtherwise: "the rule already says otherwise").
  */
 export function leavesConflicts(rule) {
   if (!isObject(rule) || !has(rule, "leaves") || !Array.isArray(rule.leaves) || !rule.leaves.length) return [];
@@ -98,20 +132,14 @@ export function leavesConflicts(rule) {
     if (!isObject(item) || isUnexpressed(item)) return;
     const c = normaliseAssert([{ given: item.given, expect: item.expect }])[0];
     if (c === undefined) return;
-    if (own.some((x) => sameUpToDetail(x, c))) {
+    const leave = pairsOf(c);
+    const covering = own.filter((x) => coversGiven(pairsOf(x), leave));
+    if (covering.some((x) => sameUpToDetail(withGivenOf(x, c), c))) {
       errors.push(`rule.leaves[${i}]: the rule states or implies it (its assert or its entry): it is not left out`);
-      return;
+    } else if (covering.some((x) => saysOtherwise(pairsOf(x), leave))) {
+      errors.push(`rule.leaves[${i}]: the rule already says otherwise for that situation (another fraction, mode or turn`
+        + " ending)");
     }
-    const p = pairsOf(c);
-    if (!p.has("expect.damage.fraction")) return;
-    const otherwise = own.some((x) => {
-      const q = pairsOf(x);
-      const type = (m) => m.get("expect.damage.type");
-      return givenOf(q) === givenOf(p) && q.has("expect.damage.fraction")
-        && q.get("expect.damage.fraction") !== p.get("expect.damage.fraction")
-        && (type(q) === undefined || type(p) === undefined || type(q) === type(p));
-    });
-    if (otherwise) errors.push(`rule.leaves[${i}]: the rule says otherwise of that damage (another fraction, same situation)`);
   });
   return errors;
 }

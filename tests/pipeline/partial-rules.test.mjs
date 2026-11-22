@@ -39,15 +39,16 @@ const STRUCTURE = { activities: [{ id: A_OFF, type: "save", activation: "bonus",
   damage: [{ number: 2, denomination: 6, types: ["bludgeoning"] }], effects: [E_OFF] }],
 effects: [{ id: E_OFF, statuses: ["prone"] }] };
 
-// The pilot's centaur-like case (invented names): the rule knocks prone on a failed save (the item's own effect) and makes the
-// move provoke no opportunity attacks; it leaves out "no damage on a saved save" and "the move provokes none" as no-key.
+// The pilot's centaur-like case (invented names): the rule says prone on a failed save; it leaves out "no damage on a saved
+// save" and "the move provokes no opportunity attacks" as no-key (an entry with noOpportunity would do the second itself:
+// fix round 1, below).
 const PRONE = a(FS, { condition: { applied: "prone" } });
 const NONE_ON_SAVE = a(SS, { damage: { fraction: 0 } }, { because: "no-key" });
-const NO_OA = a({ moment: "leavesReach" }, { excludes: "self" }, { because: "no-key" });
-const CHARGE = { entry: { noOpportunity: "afterUse" }, assert: [PRONE], leaves: [NONE_ON_SAVE, NO_OA] };
+const NO_OA = a({}, { denies: "opportunityAttacks" }, { because: "no-key" });
+const CHARGE = { entry: {}, assert: [PRONE], leaves: [NONE_ON_SAVE, NO_OA] };
 const CHARGE_REVIEW = [
   a(FS, { damage: { fraction: 1, type: "bludgeoning" } }), PRONE, a(SS, { damage: { fraction: 0 } }),
-  a({ moment: "leavesReach" }, { excludes: "self" })
+  a({}, { denies: "opportunityAttacks" })
 ];
 
 let textDir;
@@ -73,7 +74,7 @@ const runReview = (records, results) => ingestReviews(records, results, {
   textDir, by: "reviewer-1", at: AT, core, offered: new Map(records.map((r) => [r.key, ruleFingerprint(r.rule)])),
   structures: new Map(records.map((r) => [r.key, STRUCTURE]))
 });
-const schemaOf = (leaves, over = {}) => validateRecord(monster({ entry: { noOpportunity: "afterUse" }, assert: [PRONE], leaves,
+const schemaOf = (leaves, over = {}) => validateRecord(monster({ entry: {}, assert: [PRONE], leaves,
   ...over }));
 
 describe("rule.leaves: schema", () => {
@@ -155,6 +156,13 @@ describe("compareAsserts with leaves (Ruling R25)", () => {
       { leaves: c1(NO_OA), review: c1(CHARGE_REVIEW[3]) }, { leaves: c1(NONE_ON_SAVE), review: c1(CHARGE_REVIEW[2]) }
     ].sort((x, y) => (x.leaves < y.leaves ? -1 : 1)));
   });
+  it("fix round 1: with noOpportunity in the entry the review's no-opportunity assertion is matched, not left", () => {
+    const own = { entry: { noOpportunity: "afterUse" }, assert: [PRONE], leaves: [NONE_ON_SAVE] };
+    const c = compareAsserts(own, CHARGE_REVIEW, { structure: STRUCTURE });
+    expect(c).toMatchObject({ agrees: true, onlyDraft: [], onlyReview: [] });
+    expect(c.implied).toEqual([c1(a({}, { denies: "opportunityAttacks" }))]);
+    expect(c.left).toEqual([{ leaves: c1(NONE_ON_SAVE), review: c1(CHARGE_REVIEW[2]) }]);
+  });
   it("without leaves the same review is a disagreement", () => {
     const c = compareAsserts({ ...CHARGE, leaves: undefined }, CHARGE_REVIEW, { structure: STRUCTURE });
     expect(c.agrees).toBe(false);
@@ -229,7 +237,7 @@ describe("ingestReviews with leaves", () => {
     const r = gated(monster({ ...CHARGE, leaves: [...CHARGE.leaves, { unexpressed: "healing-block", count: 1 }] }));
     const [batch] = cutReviewBatches([r]);
     const text = JSON.stringify(batch);
-    expect(text).not.toMatch(/leaves|no-key|healing-block|leavesReach|excludes|noOpportunity|Zorbly/);
+    expect(text).not.toMatch(/leaves|no-key|healing-block|denies|opportunityAttacks|Zorbly/);
     const vocabulary = JSON.stringify(reviewVocabulary({ ...core, stepTypes: [], abilities: [], shipped: {} }));
     expect(vocabulary).not.toMatch(/"leaves"|leavesBecause|no-key|healing-block/);
   });
@@ -244,14 +252,16 @@ describe("leaves at draft time, in the vocabulary and in the outputs", () => {
     const result = (leaves) => ({ key: base.key, outcome: "rule", why: "prone; the rest by hand", confidence: 0.9,
       rule: { handledIn: "table", adds: "Prone on a failed save.", entry: { noOpportunity: "afterUse" }, origins: ["official"],
         assert: [PRONE], leaves } });
+    // Fix round 1: noOpportunity says the move provokes none, so the rule does it: only the saved save is left out.
     const opts = { textDir, by: "drafter-1", at: AT, core, offered: new Set([base.key]), structures: new Map([[base.key,
       STRUCTURE]]) };
-    const ok = ingestDrafts([base], [result(CHARGE.leaves)], opts);
+    const ok = ingestDrafts([base], [result([NONE_ON_SAVE])], opts);
     expect(ok.rejected).toEqual([]);
-    expect(ok.records[0].rule.leaves).toEqual(CHARGE.leaves);
+    expect(ok.records[0].rule.leaves).toEqual([NONE_ON_SAVE]);
     expect(ok.partial).toEqual([base.key]);
-    const bad = ingestDrafts([base], [result([PRONE])], opts);
-    expect(bad.rejected[0].reason).toMatch(/states or implies/);
+    for (const leaves of [[PRONE], [NONE_ON_SAVE, NO_OA]]) {
+      expect(ingestDrafts([base], [result(leaves)], opts).rejected[0].reason).toMatch(/states or implies/);
+    }
   });
   it("the drafter's vocabulary explains leaves; definitions name every reason", () => {
     const v = draftVocabulary({ ...core, stepTypes: [], abilities: [], shipped: {} });

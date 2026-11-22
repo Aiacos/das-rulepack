@@ -6,7 +6,8 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { DEFINITIONS, DEFINITION_SOURCES, ENDS_EXAMPLES, definitionsFor, undefinedWords } from
   "../../tools/pipeline/definitions.mjs";
-import { AFFECTS, FRACTIONS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON } from "../../tools/pipeline/assert.mjs";
+import { AFFECTS, DENIES, FRACTIONS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON } from "../../tools/pipeline/assert.mjs";
+import { LEAVE_REASONS, TURN_ENDS } from "../../tools/pipeline/leaves.mjs";
 import { draftVocabulary, reviewVocabulary } from "../../tools/pipeline/batch.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
 
@@ -20,8 +21,8 @@ const COMMITTED = {
     "enemyTurnEnd", "isTargeted", "isAttacked", "enemyAttacks", "allyAttacks", "gainsCondition", "allyIsHit", "allyIsDamaged",
     "enemyAttacked", "falls", "allyFalls", "savesAgainst", "inArea"]
 };
-const PACK = { roll: ROLLS, affects: AFFECTS, excludes: AFFECTS, rollMode: ROLL_MODES, rollOn: ROLL_ON, rollFor: ROLL_FOR,
-  fraction: FRACTIONS.map(String) };
+const PACK = { roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON, rollFor: ROLL_FOR,
+  fraction: FRACTIONS.map(String), leavesBecause: LEAVE_REASONS };
 
 const isDefinition = (d) => d === "unverified" || (d !== null && typeof d === "object" && Object.keys(d).length === 2
   && typeof d.means === "string" && /^[\x20-\x7e]{10,240}$/.test(d.means) && DEFINITION_SOURCES.includes(d.from));
@@ -91,6 +92,8 @@ describe.skipIf(!CORE)("definitions against the DAS_CORE clone", () => {
     const core = await loadCore(CORE);
     expect(undefinedWords(core)).toEqual([]);
     expect([...core.effectEnds].sort()).toEqual([...COMMITTED.ends].sort());
+    // The turn words leaves.mjs holds a rule to (one timed ending per effect) are the engine's.
+    expect([...TURN_ENDS].sort()).toEqual([...core.effectEnds].sort());
     expect([...core.moveModes].sort()).toEqual([...COMMITTED.moveMode].sort());
     expect([...core.moments].sort()).toEqual([...COMMITTED.moment].sort());
   });

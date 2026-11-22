@@ -83,7 +83,7 @@ export const emittedFingerprint = (record) => ruleFingerprint({
   forPerson: forPersonOf(record?.evidence?.drafted), reviewedBecause: record?.evidence?.reviewed?.because,
   reviewedTolerated: record?.evidence?.reviewed?.tolerated, playedBecause: record?.evidence?.played?.because
 });
-// The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs DRAFTED_FOR_PERSON), or undefined when it has none.
+// The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs draftedForPersonReasons), or undefined when it has none.
 const forPersonOf = (d) =>
   (d !== null && typeof d === "object" && (d.person !== undefined || d.because !== undefined)
     ? { person: d.person, because: d.because } : undefined);
