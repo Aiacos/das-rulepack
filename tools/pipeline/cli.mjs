@@ -27,7 +27,7 @@ import {
 import {
   cutBatches, cutDraftBatches, cutReviewBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason,
   draftVocabulary, highestBatches, identifierClashReasons, REVIEW_BATCH_SIZE, reviewReport, reviewSkipReason, reviewVocabulary,
-  rulableOrigin
+  rereadVocabulary, rulableOrigin
 } from "./batch.mjs";
 import { DRAFT_KEYS } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
@@ -813,7 +813,7 @@ async function rereadBatchCommand(book, rest) {
     write(join(opts.out, `${b.id}.json`), { ...b, vocabulary: "reread-vocabulary.json" });
     write(join(opts.structure, `${b.id}.structure.json`), structures[i]);
   });
-  write(join(opts.out, "reread-vocabulary.json"), reviewVocabulary(core));
+  write(join(opts.out, "reread-vocabulary.json"), rereadVocabulary(core));
   write(join(opts.out, `${found.book.toLowerCase()}-${series}-report.json`), rereadReport(found.book, batches, leftOut));
   for (const [why, n] of Object.entries(leftOut)) console.log(`left out: ${n} records (${why})`);
   console.log(`${batches.length} batches (${batches.reduce((n, b) => n + b.entries.length, 0)} entries) written to ${opts.out},`
@@ -932,7 +932,8 @@ function offeredRereads(id, file, second) {
 
 // `ingest <results-file> --reread [--second] --batch <batch file>` (reread.mjs ingestRereads): a covered reading turns the
 // record to `core` (and takes it out of drafts-queue.json), one that found something beyond the engine hints it
-// `beyond-engine`; with `--second`, a second reading of a provisional `core` agrees or gives the record back its verdict.
+// `beyond-engine`; with `--second`, a second reading of a provisional `core` agrees or (fail closed: a disagreement or an
+// unsure second reader) gives the record back its verdict; a record a second reader already settled is reported, not rejected.
 // The engine's reading of each record is computed again (DAS_CORE, RULEPACK_DUMPS): a batch cut against another is stale.
 async function ingestRereadCommand(args) {
   const usage = "Usage: ingest <results-file> --reread [--second] --batch <batch file>"
@@ -974,15 +975,17 @@ async function ingestRereadCommand(args) {
     textDir, by: input.by, core, offered, current, second, draftsQueue: loadQueue(REGISTRY, "drafts"),
     reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY)
   });
-  const changed = second ? [...out.agreed, ...out.disagreed] : [...out.covered, ...out.beyond];
+  const changed = second ? [...out.agreed, ...out.disagreed, ...out.unsureReverted] : [...out.covered, ...out.beyond];
   if (!commitIngest(books, out.records, changed, [], second ? [] : out.dequeued, { queue: "drafts" })) return;
   const counts = second
-    ? { agreed: out.agreed.length, disagreed: out.disagreed.length, unsure: out.unsure, rejected: out.rejected }
+    ? { agreed: out.agreed.length, disagreed: out.disagreed.length, "unsure-reverted": out.unsureReverted.length,
+      "already confirmed": out.alreadyConfirmed.length, "already reverted": out.alreadyReverted.length, rejected: out.rejected }
     : { covered: out.covered.length, beyond: out.beyond.length, unsure: out.unsure, dequeued: out.dequeued.length,
       rejected: out.rejected };
   console.log(JSON.stringify(counts, null, 2));
-  if (second && out.disagreed.length) {
-    console.error(`${out.disagreed.length} record(s) back to entry: their drafts-queue entries are not restored (draftable again)`);
+  const reverted = second ? out.disagreed.length + out.unsureReverted.length : 0;
+  if (reverted) {
+    console.error(`${reverted} record(s) back to entry: their drafts-queue entries are not restored (draftable again)`);
   }
   if (out.rejected.length) process.exitCode = 1;
 }

@@ -132,17 +132,36 @@ const DEFINED = {
     2: def("Twice the rolled damage.", PACK_FROM)
   },
   // `rule.leaves[].because` and `.unexpressed` (Ruling R25, leaves.mjs LEAVE_REASONS): why a partial rule leaves an
-  // expectation of its entry to the table. The drafter's only: a reviewer never sees what a draft leaves out.
+  // expectation of its entry to the table; and a reread's `unexpressed` (reread.mjs): what is missing from both the item's
+  // data and the engine's reading that no assertion can state. The drafter's and the rereader's: a reviewer never sees what a
+  // draft leaves out.
   leavesBecause: {
-    "no-key": def("No key a drafter may write expresses it (nor anything the entry implies).", LEAVES_FROM),
+    "no-key": def("No key a drafter may write, and no assertion, expresses it (nor anything the entry implies).", LEAVES_FROM),
     "target-size": def("It holds only for targets of some sizes, and no allowed key limits targets by size.", LEAVES_FROM),
     "target-state": def("It holds only for targets in some state (grappled, cursed, engulfed by the user), which no allowed key"
       + " tests.", LEAVES_FROM),
     "immunity-after-save": def("A temporary immunity to the effect once the target saves or the effect ends.", LEAVES_FROM),
     "healing-block": def("The target cannot regain hit points while the effect lasts.", LEAVES_FROM),
     "out-of-combat": def("It acts outside combat: long durations, travel, exploration or social play.", LEAVES_FROM),
-    "table-ruling": def("The table decides when it happens or what it covers (a trigger no moment names, a choice).",
-      LEAVES_FROM)
+    "table-ruling": def("The table decides when it happens or what it covers (a trigger no moment names).", LEAVES_FROM),
+    "max-hp-reduction": def("The target's hit point maximum goes down by an amount, until a rest or a cure restores it.",
+      LEAVES_FROM),
+    "ongoing-effect": def("A state kept from turn to turn (damage each turn, a tally, a growing effect) that no ending or"
+      + " moment states.", LEAVES_FROM),
+    "use-time-choice": def("The user chooses at use time between options (which effect, which target, where it lands).",
+      LEAVES_FROM),
+    "death-trigger": def("It happens when a creature dies or drops to 0 hit points, which no moment names.", LEAVES_FROM),
+    "form-change": def("The creature changes form or shape (a polymorph, a split, a transformation into another creature).",
+      LEAVES_FROM),
+    "use-limit": def("A limit on how often it is used (once per round, not again before the user's next turn) no uses says.",
+      LEAVES_FROM),
+    "trigger-filter": def("Its trigger is narrower than any moment (melee attacks only, while a weapon is held, a damage type).",
+      LEAVES_FROM),
+    "save-margin": def("The result depends on how much the saving throw fails by (fails by 5 or more, for instance).",
+      LEAVES_FROM),
+    "follow-up-action": def("It lets or makes the creature take a further attack or action right after (a chained strike).",
+      LEAVES_FROM),
+    "self-healing": def("The user regains hit points from what it deals or drains, which no assertion states.", LEAVES_FROM)
   }
 };
 

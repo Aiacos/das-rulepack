@@ -12,7 +12,9 @@ import {
 } from "../../tools/pipeline/reread.mjs";
 import { saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { HINTS, engineReadingPrepass, setByRule } from "../../tools/pipeline/triage.mjs";
-import { ENGINE_READS_FIRST, cutDraftBatches, draftSkipReason } from "../../tools/pipeline/batch.mjs";
+import { ENGINE_READS_FIRST, cutDraftBatches, draftSkipReason, rereadVocabulary } from "../../tools/pipeline/batch.mjs";
+import { LEAVE_REASONS } from "../../tools/pipeline/leaves.mjs";
+import { beyondOf } from "../../tools/pipeline/reread.mjs";
 import { runGates } from "../../tools/pipeline/gates.mjs";
 import { dataFingerprint } from "../../tools/pipeline/dumps.mjs";
 
@@ -140,6 +142,24 @@ describe("batch reread: what is cut", () => {
     expect(leftOut).toEqual({ "second reread done": 1, "reading changed since the first reread": 1 });
     expect(JSON.stringify(batches)).not.toContain("rereader-1");
   });
+
+  it("--second never cuts again a record a second reader settled, either way (confirmed, disagreed, unsure-reverted)", () => {
+    const first = { by: "rereader-1", at: AT, confidence: 0.9, reading: FP, covered: true };
+    const back = (n, second) => monster(n, { hint: "beyond-engine", evidence: { triaged: { ...monster(n).evidence.triaged,
+      reread: { ...first, second } } } });
+    const list = [
+      back(1, { by: "rereader-2", at: AT, confidence: 0.8, reading: FP, covered: false, beyond: [shove] }),
+      back(2, { by: "rereader-2", at: AT, confidence: 0.8, reading: FP, covered: false, unexpressed: ["target-size"] }),
+      back(3, { by: "rereader-2", at: AT, confidence: 0.6, reading: FP, outcome: "second-unsure" })
+    ];
+    for (const r of list) expect(validateRecord(r)).toEqual([]);
+    const { batches, leftOut } = cutRereadBatches(list, options({ second: true, reviewQueued: new Set(),
+      triageQueued: new Set() }));
+    expect(batches).toEqual([]);
+    expect(leftOut).toEqual({ "second reread done": 3 });
+    // Nor does a first reread cut them again while the engine reads them as the readers judged.
+    expect(cutRereadBatches(list, options({ reviewQueued: new Set(), triageQueued: new Set() })).batches).toEqual([]);
+  });
 });
 
 describe("ingest --reread", () => {
@@ -204,6 +224,56 @@ describe("ingest --reread", () => {
     expect(out.rejected[1].reason).toMatch(/item's own data already/);
     expect(out.rejected[2].reason).toMatch(/item's own data already/);
     expect(out.records.map((r) => r.verdict)).toEqual(["entry", "entry", "entry"]);
+  });
+
+  const unexpressed = (n, list, over = {}) => ({ key: keyOf(n), covered: false, unexpressed: list,
+    why: "the flat fall spares the large ones, which no assertion says", confidence: 0.8, ...over });
+
+  it("unexpressed: something missing the vocabulary cannot state: entry stays, hint beyond-engine, the reasons as data", () => {
+    const out = run([monster(2), monster(3)], [unexpressed(2, ["target-size", "use-limit"]),
+      { ...beyond(3, [shove]), unexpressed: ["death-trigger"] }]);
+    expect(out.rejected).toEqual([]);
+    expect(out.beyond).toEqual([keyOf(2), keyOf(3)]);
+    expect(out.dequeued).toEqual([]);
+    const [r, both] = out.records;
+    expect(r.verdict).toBe("entry");
+    expect(r.why).toBe(monster(2).why);
+    expect(r.hint).toBe("beyond-engine");
+    expect(r.evidence.triaged).toEqual({ ...monster(2).evidence.triaged,
+      reread: { by: "rereader-1", at: AT, confidence: 0.8, reading: FP, covered: false,
+        unexpressed: ["target-size", "use-limit"] } });
+    expect(both.evidence.triaged.reread).toMatchObject({ covered: false, beyond: [shove], unexpressed: ["death-trigger"] });
+    for (const x of out.records) expect(validateRecord(x)).toEqual([]);
+    expect(beyondOf(r)).toBeNull();
+    expect(beyondOf(both)).toEqual([shove]);
+    expect(draftSkipReason(r, { embedded: new Map(), readingOf: () => READING })).toBeNull();
+  });
+
+  it("unexpressed: one closed list of distinct reasons, only with covered: false; covered: false needs one or the other", () => {
+    const records = [1, 2, 3, 4, 5, 6, 9].map((n) => monster(n));
+    const out = run(records, [
+      unexpressed(1, []), unexpressed(2, ["too big to say"]), unexpressed(3, ["target-size", "target-size"]),
+      covered(4, { unexpressed: ["target-size"] }), { key: keyOf(5), covered: false, why: "something is missing", confidence: 0.8 },
+      unexpressed(6, "target-size"), unexpressed(9, ["constructor"])
+    ]);
+    expect(out.beyond).toEqual([]);
+    const reasons = out.rejected.map((x) => x.reason);
+    expect(reasons[0]).toMatch(/unexpressed: a non-empty list/);
+    expect(reasons[1]).toMatch(/unexpressed\[0\]: must be one of/);
+    expect(reasons[2]).toMatch(/unexpressed: each reason once/);
+    expect(reasons[3]).toMatch(/covered: true carries no unexpressed/);
+    expect(reasons[4]).toMatch(/covered: false needs beyond .* or unexpressed/);
+    expect(reasons[5]).toMatch(/unexpressed: a non-empty list/);
+    expect(reasons[6]).toMatch(/unexpressed\[0\]: must be one of/);
+    expect(out.rejected).toHaveLength(7);
+    expect(out.records).toEqual(records);
+  });
+
+  it("unexpressed below 0.7 on a first reread: nothing changes, listed unsure", () => {
+    const records = [monster(2)];
+    const out = run(records, [unexpressed(2, ["target-size"], { confidence: 0.6 })]);
+    expect(out.unsure).toEqual([keyOf(2)]);
+    expect(out.records).toEqual(records);
   });
 
   it("below 0.7: nothing changes on the record, listed unsure", () => {
@@ -314,16 +384,71 @@ describe("ingest --reread --second: the safety net for core", () => {
     expect(validateRecord(r)).toEqual([]);
   });
 
-  it("unsure: nothing changes; rejects the first reader's handle, a record a first reread did not set to core", () => {
+  it("rejects the first reader's handle, a record a first reread did not set to core", () => {
     const records = [...firstCore(), monster(2)];
-    const unsure = base(records, [{ key: keyOf(1), covered: false, beyond: [shove], why: "maybe", confidence: 0.5 }],
-      { by: "rereader-2", second: true });
-    expect(unsure.unsure).toEqual([keyOf(1)]);
-    expect(unsure.records).toEqual(records);
     const out = base(records, [{ key: keyOf(1), covered: true, why: "same", confidence: 0.9 },
       { key: keyOf(2), covered: true, why: "same", confidence: 0.9 }], { by: "REREADER-1", second: true });
     expect(out.rejected[0].reason).toMatch(/another reader than the first/);
     expect(out.rejected[1].reason).toMatch(/not a provisional core of a first reread/);
+  });
+
+  // Fail closed: only an agreeing covered: true at 0.7 or more keeps the core.
+  const restoredBase = () => ({ verdict: "entry", why: monster(1).why, hint: "beyond-engine" });
+  const firstReading = { by: "rereader-1", at: AT, confidence: 0.9, reading: FP, covered: true };
+
+  it("disagreement by unexpressed: back to entry, the second's reasons kept as data", () => {
+    const out = base(firstCore(), [{ key: keyOf(1), covered: false, unexpressed: ["target-size"],
+      why: "the fall spares the large ones", confidence: 0.8 }], { by: "rereader-2", second: true });
+    expect(out.disagreed).toEqual([keyOf(1)]);
+    const r = out.records[0];
+    expect(r).toMatchObject(restoredBase());
+    expect(r.evidence.triaged.reread).toEqual({ ...firstReading, second: { by: "rereader-2", at: AT, confidence: 0.8,
+      reading: FP, covered: false, unexpressed: ["target-size"] } });
+    expect(validateRecord(r)).toEqual([]);
+  });
+
+  it("unsure (below 0.7, whatever it says): back to entry, recorded as second-unsure with the handle and confidence", () => {
+    for (const said of [{ covered: true }, { covered: false, beyond: [shove] }, { covered: false, unexpressed: ["use-limit"] }]) {
+      const out = base(firstCore(), [{ key: keyOf(1), ...said, why: "something may be missing", confidence: 0.6 }],
+        { by: "rereader-2", second: true });
+      expect(out.rejected).toEqual([]);
+      expect(out.unsureReverted).toEqual([keyOf(1)]);
+      expect(out.agreed).toEqual([]);
+      expect(out.disagreed).toEqual([]);
+      expect(out).not.toHaveProperty("unsure");
+      const r = out.records[0];
+      expect(r).toMatchObject(restoredBase());
+      expect(r.evidence.triaged).toEqual({ ...monster(1).evidence.triaged, reread: { ...firstReading,
+        second: { by: "rereader-2", at: AT, confidence: 0.6, reading: FP, outcome: "second-unsure" } } });
+      expect(validateRecord(r)).toEqual([]);
+    }
+  });
+
+  it("an unsure answer is still checked: a malformed one is rejected, the core stays provisional", () => {
+    const out = base(firstCore(), [{ key: keyOf(1), covered: true, why: "two\nlines", confidence: 0.5 }],
+      { by: "rereader-2", second: true });
+    expect(out.rejected[0].reason).toMatch(/single line/);
+    expect(out.records).toEqual(firstCore());
+  });
+
+  it("ingesting the same file again: a confirmed record is reported already confirmed, a reverted one already reverted", () => {
+    const records = [...firstCore(), ...base([monster(2)], [{ key: keyOf(2), covered: true, why: "the engine reads all of it",
+      confidence: 0.9 }], { by: "rereader-1" }).records, ...base([monster(3)], [{ key: keyOf(3), covered: true,
+      why: "the engine reads all of it", confidence: 0.9 }], { by: "rereader-1" }).records];
+    const file = [{ key: keyOf(1), covered: true, why: "nothing beyond the fall", confidence: 0.8 },
+      { key: keyOf(2), covered: true, why: "maybe the large ones", confidence: 0.6 },
+      { key: keyOf(3), covered: false, beyond: [shove], why: "the shove is not read", confidence: 0.8 }];
+    const once = base(records, file, { by: "rereader-2", second: true });
+    expect(once).toMatchObject({ agreed: [keyOf(1)], unsureReverted: [keyOf(2)], disagreed: [keyOf(3)], rejected: [],
+      alreadyConfirmed: [], alreadyReverted: [] });
+    const twice = base(once.records, file, { by: "rereader-2", second: true });
+    expect(twice).toMatchObject({ agreed: [], unsureReverted: [], disagreed: [], rejected: [],
+      alreadyConfirmed: [keyOf(1)], alreadyReverted: [keyOf(2), keyOf(3)] });
+    expect(twice.records).toEqual(once.records);
+    // A later file of another reader over the same records changes nothing either.
+    const other = base(once.records, file, { by: "rereader-7", second: true });
+    expect(other.records).toEqual(once.records);
+    expect(other.rejected).toEqual([]);
   });
 });
 
@@ -358,6 +483,48 @@ describe("evidence.triaged.reread: a closed shape the schema holds (gates --ci i
     expect(validateRecord(monster(1, { evidence: { triaged: { reread: { ...beyond,
       beyond: [{ ...shove, expect: { ...shove.expect, free: "words" } }] } } } })).join(" ")).toMatch(/free/);
     expect(validateRecord(monster(1, { evidence: { triaged: { reread: first } } })).join(" ")).toMatch(/reread/);
+  });
+
+  it("unexpressed reasons and the second-unsure outcome: closed shapes", () => {
+    const beyondRead = { by: "rereader-1", at: AT, confidence: 0.9, reading: FP, covered: false };
+    const asEntry = (reread) => validateRecord(monster(1, { evidence: { triaged: { reread } } })).join(" ");
+    expect(asEntry({ ...beyondRead, unexpressed: ["target-size"] })).toBe("");
+    expect(asEntry({ ...beyondRead, unexpressed: ["target-size"], beyond: [shove] })).toBe("");
+    expect(asEntry(beyondRead)).toMatch(/beyond or unexpressed/);
+    expect(asEntry({ ...beyondRead, unexpressed: [] })).toMatch(/unexpressed/);
+    expect(asEntry({ ...beyondRead, unexpressed: ["huge"] })).toMatch(/unexpressed/);
+    expect(asEntry({ ...beyondRead, unexpressed: ["target-size", "target-size"] })).toMatch(/unexpressed/);
+    expect(validateRecord(clean(coreRecord({ ...first, unexpressed: ["target-size"] }))).join(" ")).toMatch(/unexpressed/);
+    const { provisional, ...agreed } = first;
+    const unsure = { by: "rereader-2", at: AT, confidence: 0.6, reading: FP, outcome: "second-unsure" };
+    expect(asEntry({ ...agreed, second: unsure })).toBe("");
+    expect(validateRecord(clean(coreRecord({ ...agreed, second: unsure }))).join(" ")).toMatch(/no core/);
+    expect(asEntry({ ...agreed, second: { ...unsure, outcome: "maybe" } })).toMatch(/outcome/);
+    expect(asEntry({ ...agreed, second: { ...unsure, covered: true } })).toMatch(/outcome/);
+    const { outcome, ...noOutcome } = unsure;
+    expect(asEntry({ ...agreed, second: noOutcome })).toMatch(/covered/);
+    expect(asEntry({ ...beyondRead, beyond: [shove], outcome: "second-unsure" })).toMatch(/outcome/);
+  });
+});
+
+describe("the reader's vocabulary and brief", () => {
+  it("one closed list of reasons for leaves and rereads, defined in the reread vocabulary", () => {
+    for (const reason of ["target-size", "target-state", "immunity-after-save", "healing-block", "max-hp-reduction",
+      "ongoing-effect", "use-time-choice", "death-trigger", "form-change", "use-limit", "trigger-filter", "save-margin"]) {
+      expect(LEAVE_REASONS).toContain(reason);
+    }
+    const v = rereadVocabulary({ ...core, stepTypes: [], abilities: [], shipped: {} });
+    expect(v.unexpressed).toEqual([...LEAVE_REASONS]);
+    expect(Object.keys(v.definitions.leavesBecause).sort()).toEqual([...LEAVE_REASONS].sort());
+  });
+
+  it("the brief gives the three answers and says plainly that something missing is never covered", () => {
+    const doc = readFileSync(join(import.meta.dirname, "../../docs/PIPELINE.md"), "utf8");
+    const brief = doc.slice(doc.indexOf("### 📖 Brief for a reread agent"), doc.indexOf("## 📖 Brief for a drafter agent"));
+    const plainly = "if something is missing, the answer is never covered, whatever your confidence";
+    expect(brief.replace(/\n> ?/g, " ")).toContain(plainly);
+    expect(brief).toContain("\"unexpressed\"");
+    expect(brief).toMatch(/Worked example: unexpressed/);
   });
 });
 
@@ -524,11 +691,18 @@ describe("batch reread and ingest --reread on the command line", () => {
         results: [{ key: gust, covered: false, beyond: [noReactions], why: "it also takes away reactions", confidence: 0.8 }] }),
       "--reread", "--second", "--batch", secondFile]);
       expect(second.status, second.stderr).toBe(0);
-      expect(JSON.parse(second.stdout)).toMatchObject({ agreed: 0, disagreed: 1, unsure: [], rejected: [] });
+      expect(JSON.parse(second.stdout)).toEqual({ agreed: 0, disagreed: 1, "unsure-reverted": 0, "already confirmed": 0,
+        "already reverted": 0, rejected: [] });
       const [back] = registry();
       expect(back).toMatchObject({ verdict: "entry", why: "a reader asked for a rule", hint: "beyond-engine" });
       expect(back.evidence.triaged.reread.second.beyond).toEqual([noReactions]);
       expect(JSON.parse(readFileSync(join(tmp, "registry", "drafts-queue.json"), "utf8"))).toEqual([]);
+      const replay = cli(["ingest", join(out, "xmm-reread-second-001.results.json"), "--reread", "--second", "--batch",
+        secondFile]);
+      expect(replay.status, replay.stderr).toBe(0);
+      expect(JSON.parse(replay.stdout)).toMatchObject({ disagreed: 0, "already reverted": 1, rejected: [] });
+      expect(registry()[0]).toEqual(back);
+      expect(JSON.parse(readFileSync(join(out, "reread-vocabulary.json"), "utf8")).unexpressed).toContain("target-size");
       const wrong = cli(["ingest", results("w", { batch: "xmm-reread-second-001", by: "rereader-3", results: [] }), "--reread",
         "--batch", batchFile]);
       expect(wrong.status).toBe(2);

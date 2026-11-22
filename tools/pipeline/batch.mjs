@@ -468,3 +468,13 @@ export function reviewVocabulary(core) {
     definitions: definitionsFor({ review: true }), endsExamples
   };
 }
+
+/**
+ * What a rereader may write (`reread-vocabulary.json`): the reviewer's (reviewVocabulary), and `unexpressed`, the reasons of
+ * leaves.mjs LEAVE_REASONS (the one list a partial rule's leaves use too), each defined in `definitions.leavesBecause`.
+ */
+export function rereadVocabulary(core) {
+  const review = reviewVocabulary(core);
+  return { ...review, unexpressed: [...LEAVE_REASONS],
+    definitions: { ...review.definitions, leavesBecause: definitionsFor().leavesBecause } };
+}
