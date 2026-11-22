@@ -272,6 +272,16 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    shipped monster rule is its **delta** (`generate.mjs` `ruleFromRecord`, which `build:rules`, `tests/derived.mjs` and
    `docs/RULES.md` share): a `same` key is redundant and is left out, so the engine ends with the same merged entry as with
    the whole rule. `emissionOf` reads only the stored evidence: CI, which has no dumps, decides from the registry alone.
+   **Rebinding** (R29, fix round 1): a monster rule's `sources` bind the item to the rule's own identifier, so the engine
+   stops applying its shipped entry under the item's original identifier and reads the text under the new one. The gates
+   therefore compare `before` (text layer under the original identifier + the engine's shipped entry for it) with `after`
+   (text layer under the rule's identifier + what the pack registers) and store `original`, `carried`, `dropped` and `code`
+   in `evidence.reading`. The keys the rebinding loses that come from the shipped entry are carried over: the module rule
+   names them (`carries: { from, keys }`, shown in `docs/RULES.md` as "Carries over N engine keys") and `scripts/carry.mjs`
+   takes their values from the engine's shipped table (`api.content.builtin`) when the pack registers, leaving the rule out
+   when the running engine lacks one. A key that cannot be carried (its value names the original identifier) or an original
+   identifier the engine handles in code holds the rule: "its identifier would drop engine behaviour". Outside monster
+   features, the unique gate refuses `sources` that bind an item of an engine identifier to another identifier.
 
 ## 📋 Record states
 

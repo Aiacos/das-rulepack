@@ -6,13 +6,14 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  READING_TRIGGERS, compareWithReading, currentReading, engineReading, readingEvidence, readingProblems, textLayerInput
+  READING_TRIGGERS, compareWithReading, currentReading, engineComparison, engineReading, readingEvidence, readingProblems,
+  textLayerInput
 } from "../../tools/pipeline/engine-reading.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
 import { ruleFingerprint, saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { dataFingerprint } from "../../tools/pipeline/dumps.mjs";
 import { readingOfRecord } from "../../tools/pipeline/cli.mjs";
-import { runGates } from "../../tools/pipeline/gates.mjs";
+import { gateUnique, rebindingClashes, runGates } from "../../tools/pipeline/gates.mjs";
 import { HINTS, engineReadingPrepass } from "../../tools/pipeline/triage.mjs";
 
 const SAVE = "Sv00Sv11Sv22Sv33";
@@ -384,5 +385,129 @@ describe.skipIf(!CORE_DIR)("the engine's reading on the command line and in the 
     const e = readingOfRecord(r, { official: { [r.items[0].docId]: docs.push } }, core);
     expect(e).toMatchObject({ core: core.version, delta: ["halfOnMiss"], same: [], changes: [], triggers: "none" });
     expect(readingOfRecord(r, { official: {} }, core)).toBeNull();
+  });
+});
+
+// Fix round 1 (Ruling R29, amended): a monster rule binds its item to a creature-scoped identifier through `sources`. The
+// engine then knows the item by that identifier: its shipped entry under the item's original identifier no longer applies,
+// and its text layer is read under the new identifier. What the engine ends with WITHOUT the pack (`before`) is compared
+// with what it ends with WITH it (`after`), whatever the rule declares.
+describe("engineComparison: before (original identifier, shipped entry) and after (the pack's identifier, delta + carried)", () => {
+  const merging = { version: "9.9.9", mergeEntries: (layers) => Object.assign({}, ...layers.filter(Boolean)),
+    runtimeIdentifiers: new Map(), systemHandled: new Map(), sources: {} };
+  const own = (id) => [{ on: "preAttackRoll", if: { "activity.identifier": id }, do: [{ type: "advantage" }] }];
+  const read = (input) => (input.html === NOTHING ? null
+    : { breaksOn: ["attack"], ...(input.identifier ? { triggers: own(input.identifier) } : {}) });
+  const core = (shipped = {}, over = {}) => ({ ...merging, monsterTextLayer: read, shipped, ...over });
+  const doc = () => item({ html: PUSH, activities: saveActivity(), effects: [proneEffect] });
+  const rec = (entry = { halfOnMiss: true }) => ({ ...ruled(entry), identifier: "tst-glimmer-drake-gust-slam" });
+
+  it("carries over a shipped key the rebinding would drop, and the after entry keeps every key of before", () => {
+    const c = engineComparison(doc(), rec(), core({ "gust-slam": { magical: true } }));
+    expect(c.original).toBe("gust-slam");
+    expect(c.before.magical).toBe(true);
+    expect(c.comparison.delta).toEqual(["halfOnMiss"]);
+    expect(c.carried).toEqual(["magical"]);
+    expect(c.dropped).toEqual([]);
+    expect(c.code).toBe(false);
+    expect(c.after).toMatchObject({ magical: true, halfOnMiss: true, breaksOn: ["attack"] });
+  });
+
+  it("reads a text-layer trigger naming the identifier under the new one: no loss, nothing carried", () => {
+    const c = engineComparison(doc(), rec(), core());
+    expect(c.before.triggers[0].if["activity.identifier"]).toBe("gust-slam");
+    expect(c.after.triggers[0].if["activity.identifier"]).toBe("tst-glimmer-drake-gust-slam");
+    expect(c.carried).toEqual([]);
+    expect(c.dropped).toEqual([]);
+  });
+
+  it("compares the rule with before: a key the shipped entry already has the same is no delta", () => {
+    const c = engineComparison(doc(), rec({ magical: true }), core({ "gust-slam": { magical: true } }));
+    expect(c.comparison.same).toEqual(["magical"]);
+    expect(c.comparison.delta).toEqual([]);
+  });
+
+  it("drops (cannot carry) a shipped key whose value names the original identifier, or an identifier handled in code", () => {
+    const named = core({ "gust-slam": { effectChanges: { "source.hasFeature": "gust-slam" } } });
+    expect(engineComparison(doc(), rec(), named).dropped).toEqual(["effectChanges"]);
+    const inCode = engineComparison(doc(), rec(), core({}, { runtimeIdentifiers: new Map([["gust-slam", []]]) }));
+    expect(inCode.code).toBe(true);
+  });
+
+  it("loses nothing under the item's own identifier (no rebinding): the engine merges its entry with the pack's", () => {
+    const own = { ...rec(), identifier: "gust-slam" };
+    const c = engineComparison(doc(), own, core({ "gust-slam": { magical: true } }));
+    expect(c.carried).toEqual([]);
+    expect(c.dropped).toEqual([]);
+    expect(c.after).toMatchObject({ magical: true, halfOnMiss: true });
+  });
+
+  it("stores original, carried and dropped in evidence.reading (closed shape), and the older shape still validates", () => {
+    const r = rec();
+    const c = engineComparison(doc(), r, core({ "gust-slam": { magical: true } }));
+    const e = readingEvidence(r, c, { at: "2026-11-22T00:00:00.000Z", core: merging });
+    expect(e).toMatchObject({ original: "gust-slam", carried: ["magical"], dropped: [], delta: ["halfOnMiss"] });
+    expect(readingProblems(e)).toEqual([]);
+    expect(readingProblems({ ...e, carried: ["magical"], dropped: ["magical"] })).not.toEqual([]);
+    expect(readingProblems({ ...e, original: "Not An Id" })).not.toEqual([]);
+    expect(readingProblems({ ...e, code: "yes" })).not.toEqual([]);
+    const { original, carried, dropped, ...older } = e;
+    expect(readingProblems(older)).toEqual([]);
+  });
+});
+
+describe.skipIf(!CORE_DIR)("rebinding with the real engine (synthetic shipped entry)", () => {
+  it("before has the shipped key, after without carrying lacks it: it is carried; one naming the identifier holds", async () => {
+    const real = await loadCore(CORE_DIR);
+    const doc = item({ html: PUSH, activities: saveActivity(), effects: [proneEffect], identifier: "tst-invented-x" });
+    const r = { ...ruled({ halfOnMiss: true }), identifier: "tst-glimmer-drake-gust-slam" };
+    const c = engineComparison(doc, r, { ...real, shipped: { "tst-invented-x": { magical: true } } });
+    expect(c.before.magical).toBe(true);
+    expect(real.mergeEntries([engineReading(doc, real, { identifier: r.identifier }), { halfOnMiss: true }]).magical)
+      .toBeUndefined();
+    expect(c.carried).toEqual(["magical"]);
+    expect(c.after.magical).toBe(true);
+    const held = engineComparison(doc, r, { ...real,
+      shipped: { "tst-invented-x": { effectChanges: { "source.hasFeature": "tst-invented-x" } } } });
+    expect(held.dropped).toEqual(["effectChanges"]);
+  });
+});
+
+// Fix round 1, step 3: a rule registered under the item's OWN identifier (or an alias equal to it) rebinds nothing: the
+// engine merges the pack's entry over its own key by key (content/index.mjs rebuild: mergeEntries([CONTENT[id], entry])).
+// Only `sources` can bind an item to another identifier; for a rule that is not a monster feature's, binding an item whose
+// own identifier is one the engine handles would drop the engine's entry for it, so the unique gate refuses it.
+describe("rebinding outside monster features (the unique gate)", () => {
+  const spell = (over = {}) => ({
+    key: "tst:spell:glimmer-ring", identifier: "glimmer-ring", name: "Glimmer Ring", kind: "spell", book: "TST", page: 3,
+    edition: "2024", text: null, verdict: "entry", evidence: {},
+    items: [{ origin: "official", match: "matched", identifier: "glimmer-ring", docId: "Of00Of11Of22Of33", activities: [],
+      effects: [], data: { sha256: "b".repeat(64) } }],
+    rule: { handledIn: "table", adds: "x", entry: { halfOnMiss: true }, origins: ["official"], assert: [] }, ...over
+  });
+
+  it("finds nothing for a rule under the item's own identifier, nor for monster features (their reading decides)", () => {
+    expect(rebindingClashes([spell()], new Set(["glimmer-ring"]))).toEqual([]);
+    const monsterRecord = { ...spell({ kind: "monster", identifier: "tst-x-glimmer-ring", sources: { Of00Of11Of22Of33:
+      "tst-x-glimmer-ring" } }) };
+    expect(rebindingClashes([monsterRecord], new Set(["glimmer-ring"]))).toEqual([]);
+  });
+
+  it("refuses sources that bind an item of an engine identifier to another identifier", () => {
+    const r = spell({ identifier: "tst-glimmer-ring", sources: { Of00Of11Of22Of33: "tst-glimmer-ring" } });
+    const [[record, message]] = rebindingClashes([r], new Set(["glimmer-ring"]));
+    expect(record.key).toBe(r.key);
+    expect(message).toMatch(/glimmer-ring/);
+    expect(rebindingClashes([r], new Set())).toEqual([]);
+    expect(gateUnique([r], { core: { identifiers: new Set(["glimmer-ring"]) } }).join(" ")).toMatch(/rebinds/);
+  });
+});
+
+describe.skipIf(!CORE_DIR)("the engine's own merge of a pack entry under an identifier it ships", () => {
+  it("keeps every shipped key the pack does not declare", async () => {
+    const real = await loadCore(CORE_DIR);
+    const [id, shipped] = Object.entries(real.shipped).find(([, e]) => Object.keys(e).length >= 1);
+    const merged = real.mergeEntries([shipped, { halfOnMiss: true }]);
+    for (const key of Object.keys(shipped)) if (key !== "halfOnMiss") expect(merged[key], id).toEqual(shipped[key]);
   });
 });

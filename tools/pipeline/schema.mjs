@@ -198,7 +198,12 @@ export const VIA = Object.freeze(["third-reading", "bulk-unsure"]);
 /** How a rule's `triggers` stand against the engine's reading (Ruling R29; engine-reading.mjs compareWithReading). */
 export const READING_TRIGGERS = Object.freeze(["superset", "drops", "none", "same"]);
 const ENTRY_KEY = /^[a-z][A-Za-z0-9]{0,63}$/;
-const READING_FIELDS = ["at", "core", "rule", "item", "delta", "same", "changes", "triggers"];
+const READING_FIELDS = ["at", "core", "rule", "item", "delta", "same", "changes", "triggers", "original", "carried", "dropped",
+  "code"];
+// Fix round 1: the rebinding fields (`original`, `carried`, `dropped`, `code`) are optional, so that a reading written before
+// them still validates; `npm run gates` writes them for every monster rule.
+const READING_OPTIONAL = ["original", "carried", "dropped", "code"];
+const IDENTIFIER = /^[a-z0-9][a-z0-9-]{0,95}$/;
 const READING_LISTS = ["delta", "same", "changes"];
 
 /**
@@ -207,7 +212,7 @@ const READING_LISTS = ["delta", "same", "changes"];
  * disjoint lists of entry keys and a trigger outcome consistent with where `triggers` is listed.
  */
 export function readingProblems(reading) {
-  const shape = `{ ${READING_FIELDS.join(", ")} }`;
+  const shape = `{ ${READING_FIELDS.map((f) => (READING_OPTIONAL.includes(f) ? `${f}?` : f)).join(", ")} }`;
   if (!isObject(reading)) return [`evidence.reading: must be ${shape}`];
   const errors = [];
   for (const f of Object.keys(reading)) {
@@ -228,6 +233,26 @@ export function readingProblems(reading) {
     for (const k of list) {
       if (seen.has(k)) errors.push(`evidence.reading.${f}: ${k} is in two lists`);
       seen.add(k);
+    }
+  }
+  if (has(reading, "original") && !(typeof reading.original === "string" && IDENTIFIER.test(reading.original))) {
+    errors.push("evidence.reading.original: must be a kebab-case identifier");
+  }
+  if (has(reading, "code") && reading.code !== true) errors.push("evidence.reading.code: must be true when present");
+  if (Array.isArray(reading.carried) && reading.carried.length && !has(reading, "original")) {
+    errors.push("evidence.reading.carried: needs original (the identifier the keys are carried from)");
+  }
+  const rebound = new Set();
+  for (const f of ["carried", "dropped"]) {
+    if (!has(reading, f)) continue;
+    const list = reading[f];
+    if (!Array.isArray(list) || !list.every((k) => typeof k === "string" && ENTRY_KEY.test(k))) {
+      errors.push(`evidence.reading.${f}: must be a list of entry keys`);
+      continue;
+    }
+    for (const k of list) {
+      if (rebound.has(k)) errors.push(`evidence.reading.${f}: ${k} is carried and dropped`);
+      rebound.add(k);
     }
   }
   if (!READING_TRIGGERS.includes(reading.triggers)) {

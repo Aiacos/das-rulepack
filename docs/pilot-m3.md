@@ -269,3 +269,12 @@ queued and ruled ones included, counted from the dumps):
 The pre-pass itself hints only the unruled records that wait in no queue (XMM: 145 of the 287; the rest are the 250 records
 of the drafts and review queues and the 39 ruled ones outside them). What the engine reads is not the whole text: "reads
 something" is a hint for the reader, not a `core` verdict.
+
+**Fix round 1 — the rebinding.** A live check of the 16 shipped deltas found that 0 changed a text-layer key but 2 items
+lost a key the engine had without the pack (`usageLimits`, `magical`): binding the item to the rule's own identifier stops
+the engine's shipped entry under the item's original identifier from applying. Offline (DAS · Core 0.290.0, after
+`npm run gates` on a copy), comparing what the engine ends with without and with the pack: the same two keys are carried
+over (empyrean sacred weapon `usageLimits`, poltergeist telekinetic thrust `magical`), 11 other shipped rules carry nothing,
+and 3 (elemental cataclysm, lacedon ghoul, warrior commander) only repeat a `noOpportunity` the engine ships under the
+original identifier: they become "the engine already does it". New totals of the 75: 13 ship, 25 change the reading, 29
+add nothing, 6 review disagrees, 2 reviewer unsure. None holds for "its identifier would drop engine behaviour".

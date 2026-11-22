@@ -201,4 +201,9 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       20 drop an engine trigger (9 a size-limited push): redraft them as supersets of the engine's triggers, or drop them.
 - [ ] A `shallow` key that only adds fields (Ruling R29, cost b) is held as a change: decide whether to count it as adds.
 - [ ] Recompute `evidence.reading` when the engine the world runs changes (the evidence names the clone's version only).
+- [x] Fix round 1 (R29): the rebinding of a monster item to the rule's identifier drops the engine's shipped entry; the
+      gates compare before/after, the rule carries over what is lost (`carries`, resolved at registration). On a copy:
+      13 ship (2 carry a key), 29 add nothing, 25 change the reading, 8 held by R27.
+- [ ] Run `npm run gates` on the registry again (writes `original`/`carried`), then `build:rules`, `books`, `scenarios`;
+      replay the live check of the shipped rules (13).
 

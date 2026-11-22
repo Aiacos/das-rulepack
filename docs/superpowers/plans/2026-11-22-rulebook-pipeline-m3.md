@@ -288,6 +288,32 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   change and held, although the engine would keep the fields it read: some rules that only add wait for a person; (c) a
   rule held "the engine already does it" keeps its identifier and its place in the registry until a person sets `core`.
 
+  **Fix round 1 (a live check of the 16 shipped deltas: 2 items lost an engine key).** A monster rule binds its item to
+  its creature-scoped identifier through `sources`; the engine (`identifierOf`) then knows the item by that identifier, so
+  its shipped entry under the item's original identifier (the `module` layer, `CONTENT[original]`) no longer applies, and
+  the text layer is read under the new identifier. Inside `monsterTextLayer` the identifier only names the item in what it
+  derives ("this attack" conditions, `activity.identifier`; the mark of an immunity after a success, `immune:<id>`; both
+  need one to exist) and `swallow` comes from the shipped entry of that identifier. So the comparison is now between
+  `before` (text layer under the original identifier merged with the engine's shipped entry for it) and `after` (text
+  layer under the pack's identifier merged with the emitted entry), whatever the rule declares (`engineComparison`). The
+  emitted entry is `delta + carried`: `carried`, the keys of `before` the rebinding loses that come from the shipped entry,
+  are named in the rule (`carries: { from, keys }`) and their values are taken from the engine's own shipped table when the
+  pack registers (`scripts/carry.mjs`, `api.content.builtin`: nothing of the engine is copied into the repository; a key the
+  running engine no longer ships leaves the rule unregistered). Carrying is faithful for a key whose value does not name the
+  original identifier; a text-layer key that names it is re-derived under the new identifier with the same meaning (the
+  condition and the mark follow the item's identifier), and `swallow` is restored by carrying it. A key that cannot be
+  carried (a shipped value naming the original identifier, a text-layer key that differs otherwise) or an original
+  identifier the engine handles in code holds the rule: "its identifier would drop engine behaviour" (`engine-rebinding`).
+  `evidence.reading` gains `original`, `carried`, `dropped` and `code` (optional, so that a reading written before still
+  validates and counts until `npm run gates` rewrites it). A rule ships only when `after` keeps every key of `before`
+  unchanged and its delta is not empty. A rule under the item's own identifier rebinds nothing (the engine merges the
+  pack's entry over its own key by key); outside monster features the unique gate now refuses `sources` that bind an item of
+  an engine identifier to another one (none in the registry). On a copy (DAS · Core 0.290.0): 13 ship (2 carry a key:
+  `usageLimits`, `magical`), 25 change the reading, 29 add nothing (3 earlier shipped rules only repeated a shipped
+  `noOpportunity`), 8 are held by R27. *Cost if wrong:* a carried value is the running engine's, so a change of its meaning
+  upstream changes the rule's behaviour unseen until a live check; and the rule is lost entirely, not degraded, when the
+  engine stops shipping a carried key.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
