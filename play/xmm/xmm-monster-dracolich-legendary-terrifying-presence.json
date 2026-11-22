@@ -1,0 +1,64 @@
+{
+  "scenario": "xmm/xmm-monster-dracolich-legendary-terrifying-presence",
+  "key": "xmm:monster:dracolich/legendary/terrifying-presence",
+  "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmDracolich00000.Ml3peAqEgqgm95nj",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "SVb8yS9ewkeZpP2R"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=frightened;given.roll=failedSave"
+    },
+    {
+      "use": "SVb8yS9ewkeZpP2R"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0;given.roll=savedSave"
+    },
+    {
+      "use": "SVb8yS9ewkeZpP2R"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd"
+    },
+    {
+      "use": "SVb8yS9ewkeZpP2R"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd;given.roll=failedSave"
+    }
+  ]
+}

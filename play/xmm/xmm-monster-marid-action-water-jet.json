@@ -1,0 +1,58 @@
+{
+  "scenario": "xmm/xmm-monster-marid-action-water-jet",
+  "key": "xmm:monster:marid/action/water-jet",
+  "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.move.distance.mode",
+    "setup.item"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmMarid000000000.mmWaterJet000000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "CY2HqHThU06Jf0Bw"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=prone;given.roll=failedSave"
+    },
+    {
+      "use": "CY2HqHThU06Jf0Bw"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    },
+    {
+      "use": "CY2HqHThU06Jf0Bw"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.move.distance=20;expect.move.mode=push;given.roll=failedSave"
+    }
+  ]
+}

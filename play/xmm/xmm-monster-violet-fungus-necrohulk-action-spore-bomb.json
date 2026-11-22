@@ -1,0 +1,64 @@
+{
+  "scenario": "xmm/xmm-monster-violet-fungus-necrohulk-action-spore-bomb",
+  "key": "xmm:monster:violet-fungus-necrohulk/action/spore-bomb",
+  "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmVioletFungusNe.mmSporeBomb00000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "cmFbJQhqZiLBF9Ij"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=poisoned;given.roll=failedSave"
+    },
+    {
+      "use": "cmFbJQhqZiLBF9Ij"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    },
+    {
+      "use": "cmFbJQhqZiLBF9Ij"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    },
+    {
+      "use": "cmFbJQhqZiLBF9Ij"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=failedSave"
+    }
+  ]
+}

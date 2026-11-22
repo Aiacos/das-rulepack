@@ -1,0 +1,37 @@
+{
+  "scenario": "xmm/xmm-monster-weretiger-bonus-prowl-tiger-or-hybrid-form-only",
+  "key": "xmm:monster:weretiger/bonus/prowl-tiger-or-hybrid-form-only",
+  "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.denies",
+    "setup.item"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmWeretiger00000.4XnVTvvmrKKbIP8n",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "rJZ08yOwJQS9Ic7i"
+    },
+    {
+      "check": "expect.denies=opportunityAttacks"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "scenario": "xmm/xmm-monster-unicorn-legendary-charging-horn",
+  "key": "xmm:monster:unicorn/legendary/charging-horn",
+  "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.denies",
+    "setup.item"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmUnicorn0000000.mmChargingHorn00",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "7p8mgAgWVbmb8gpV"
+    },
+    {
+      "check": "expect.denies=opportunityAttacks"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "scenario": "xmm/xmm-monster-merfolk-wavebender-reaction-watery-rebuke",
+  "key": "xmm:monster:merfolk-wavebender/reaction/watery-rebuke",
+  "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.move.distance.mode",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmMerfolkWaveben.mmWateryRebuke00",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "nCfH0YgOhJR2wIKd"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0;given.roll=savedSave"
+    },
+    {
+      "use": "nCfH0YgOhJR2wIKd"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.move.distance=30;expect.move.mode=push;given.roll=failedSave"
+    }
+  ]
+}

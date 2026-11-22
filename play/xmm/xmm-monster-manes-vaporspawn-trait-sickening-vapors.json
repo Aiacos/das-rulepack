@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-manes-vaporspawn-trait-sickening-vapors",
+  "key": "xmm:monster:manes-vaporspawn/trait/sickening-vapors",
+  "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmManesVaporspaw.mmSickeningVapor",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "a9NAwfq8B1qvfEi7"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=incapacitated;given.roll=failedSave"
+    },
+    {
+      "use": "a9NAwfq8B1qvfEi7"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd"
+    },
+    {
+      "use": "a9NAwfq8B1qvfEi7"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd;given.roll=failedSave"
+    }
+  ]
+}

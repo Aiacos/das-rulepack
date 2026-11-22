@@ -1,0 +1,29 @@
+{
+  "scenario": "xmm/xmm-monster-tree-blight-action-grasping-root",
+  "key": "xmm:monster:tree-blight/action/grasping-root",
+  "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "setup.item",
+    "use"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmTreeBlight0000.mmGraspingRoot00",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": []
+}

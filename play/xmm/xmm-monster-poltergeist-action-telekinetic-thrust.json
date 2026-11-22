@@ -1,0 +1,49 @@
+{
+  "scenario": "xmm/xmm-monster-poltergeist-action-telekinetic-thrust",
+  "key": "xmm:monster:poltergeist/action/telekinetic-thrust",
+  "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.move.distance.mode",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmPoltergeist000.mmTelekineticThr",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "qHeMp7n2VPHtGbDS"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0;given.roll=savedSave"
+    },
+    {
+      "use": "qHeMp7n2VPHtGbDS"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.move.distance=30;expect.move.mode=push;given.roll=failedSave"
+    }
+  ]
+}

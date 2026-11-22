@@ -1,0 +1,37 @@
+{
+  "scenario": "xmm/xmm-monster-colossus-legendary-stomp",
+  "key": "xmm:monster:colossus/legendary/stomp",
+  "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.denies",
+    "setup.item"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmColossus000000.mmStomp000000000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "wnJIBmd5ciJqOdsV"
+    },
+    {
+      "check": "expect.denies=opportunityAttacks"
+    }
+  ]
+}

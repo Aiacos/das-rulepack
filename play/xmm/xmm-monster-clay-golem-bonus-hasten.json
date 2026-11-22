@@ -1,0 +1,37 @@
+{
+  "scenario": "xmm/xmm-monster-clay-golem-bonus-hasten",
+  "key": "xmm:monster:clay-golem/bonus/hasten",
+  "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.denies",
+    "setup.item"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmClayGolem00000.mmHasten00000000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "1xqzKzUEPSEDWHta"
+    },
+    {
+      "check": "expect.denies=opportunityAttacks"
+    }
+  ]
+}
