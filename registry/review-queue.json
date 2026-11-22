@@ -1,0 +1,122 @@
+[
+  {
+    "key": "xmm:monster:animal-lord/legendary/feral-strike",
+    "reason": "low-confidence",
+    "by": "reviewer-q001",
+    "why": "Movement of the user provokes no opportunity attacks; the follow-up Rend attack is not expressible.",
+    "confidence": 0.6,
+    "draft": {
+      "by": "drafter-q001",
+      "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        }
+      ],
+      "implied": [
+        "expect.denies=opportunityAttacks"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:balor/trait/death-throes",
+    "reason": "disagreement",
+    "by": "reviewer-q001",
+    "why": "Area save on death: full fire and force on failure, half on success; revival elsewhere is narrative.",
+    "confidence": 0.9,
+    "draft": {
+      "by": "drafter-q001",
+      "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
+      "assert": [
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.damage.fraction=0.5;expect.damage.type=fire;given.roll=savedSave",
+        "expect.damage.fraction=0.5;expect.damage.type=force;given.roll=savedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.damage.fraction=0.5;expect.damage.type=force;given.roll=savedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [
+        "expect.damage.fraction=1;given.roll=failedSave"
+      ],
+      "detail": [
+        {
+          "draft": "expect.damage.fraction=0.5;expect.damage.type=fire;given.roll=savedSave",
+          "review": "expect.damage.fraction=0.5;given.roll=savedSave"
+        }
+      ]
+    }
+  }
+]

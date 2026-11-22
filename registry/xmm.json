@@ -7587,11 +7587,27 @@
           "core": "0.289.0",
           "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d"
         },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T04:19:43.298Z",
+          "agrees": true,
+          "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [],
+            "detail": [
+              [
+                "expect.damage.fraction=0.5;given.roll=savedSave",
+                "expect.damage.fraction=0.5;expect.damage.type=thunder;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:16:14.580Z",
+          "at": "2026-11-22T04:20:06.240Z",
           "core": "0.289.0",
           "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
-          "emits": "696ec124c349b1dddbaa1742dd3e7911a278006b53d43eba00e4ff81b37799ad",
+          "emits": "0b881334ac379758228c26648043ba92ee9b9aeb51743310c33612caf49f732f",
           "passed": [
             "schema",
             "validator",
@@ -7674,7 +7690,7 @@
         ],
         "origin": "Air Elemental"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:air-elemental/trait/air-form",
@@ -10392,6 +10408,13 @@
           "core": "0.289.0",
           "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98"
         },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T04:19:43.298Z",
+          "agrees": true,
+          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
+          "confidence": 0.8
+        },
         "gates": {
           "at": "2026-11-22T04:16:14.582Z",
           "core": "0.289.0",
@@ -10465,7 +10488,7 @@
         ],
         "origin": "Ancient Copper Dragon"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:ancient-copper-dragon/legendary/giggling-magic",
@@ -18906,6 +18929,13 @@
           "core": "0.289.0",
           "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e"
         },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T04:19:43.298Z",
+          "agrees": true,
+          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:16:14.586Z",
           "core": "0.289.0",
@@ -18986,7 +19016,7 @@
         ],
         "origin": "Balor"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:balor/action/lightning-blade",
@@ -20618,6 +20648,13 @@
           "core": "0.289.0",
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c"
         },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T04:19:43.298Z",
+          "agrees": true,
+          "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:16:14.587Z",
           "core": "0.289.0",
@@ -20689,7 +20726,7 @@
         ],
         "origin": "Banshee"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:banshee/action/multiattack",
@@ -21948,6 +21985,13 @@
           "core": "0.289.0",
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c"
         },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T04:19:43.298Z",
+          "agrees": true,
+          "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:16:14.588Z",
           "core": "0.289.0",
@@ -22015,7 +22059,7 @@
         ],
         "origin": "Bearded Devil"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:bearded-devil/action/infernal-glaive",
@@ -26005,6 +26049,13 @@
           "core": "0.289.0",
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3"
         },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T04:19:43.298Z",
+          "agrees": true,
+          "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:16:14.590Z",
           "core": "0.289.0",
@@ -26072,7 +26123,7 @@
         ],
         "origin": "Bone Devil"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:bone-devil/action/multiattack",

@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-bone-devil-action-infernal-sting",
+  "key": "xmm:monster:bone-devil/action/infernal-sting",
+  "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmBoneDevil00000.mmInfernalSting0",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "nc4l1efsfjkTcPyT"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.condition.applied=poisoned;given.roll=hit"
+    },
+    {
+      "use": "nc4l1efsfjkTcPyT"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    },
+    {
+      "use": "nc4l1efsfjkTcPyT"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=hit"
+    }
+  ]
+}

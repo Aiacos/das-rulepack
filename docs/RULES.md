@@ -36,6 +36,21 @@ Published as an official Foundry VTT module (`dnd-players-handbook`).
 | Inspiring Smite (Oath of Glory 3) | Feature | p.114 | The Temporary Hit Points are divided among the chosen creatures as the paladin likes, where the engine splits them evenly. | table | Played |
 | Dreadful Strikes (Fey Wanderer 3) | Feature | p.124 | The extra Psychic die is once per turn for each target, not once per turn for the ranger. | code + table | Played |
 
+### XMM · Monster Manual (2025)
+
+Published as an official Foundry VTT module (`dnd-monster-manual`).
+
+| Rule | Kind | Page | What the module adds | Handled in | Status |
+|---|---|---|---|---|---|
+| Whirlwind (Air Elemental) | Monster feature | p.13 | A failed save also shoves the target 20 feet away from the elemental; a success halves the damage. Partial: 1 expectation left to the table (target-size 1). | table, partial | Validated |
+| Slowing Breath (Ancient Copper Dragon) | Monster feature | p.80 | Failing creatures lose reactions and get only an action or a bonus action, through the end of their next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Feral Strike (Animal Lord) | Monster feature | p.15 | After this legendary action the lord's movement provokes no opportunity attacks. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
+| Flame Whip (Balor) | Monster feature | p.26 | A hit drags the target 25 feet toward the balor. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (target-size 1). | table, partial | Validated |
+| Death Throes (Balor) | Monster feature | p.26 | A successful save against the explosion halves its damage. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). | table, partial | Validated |
+| Horrify (Banshee) | Monster feature | p.29 | The fear ends as the banshee starts its following turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (immunity-after-save 1, table-ruling 1). | table, partial | Validated |
+| Beard (Bearded Devil) | Monster feature | p.33 | The poison wears off as the devil begins its following turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (healing-block 1). | table, partial | Validated |
+| Infernal Sting (Bone Devil) | Monster feature | p.52 | The poison wears off as the devil begins its following turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (healing-block 1). | table, partial | Validated |
+
 ### PHB · Player's Handbook (2014)
 
 Not published on Foundry.
@@ -87,7 +102,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-24 rules: 16 played, 8 validated.
+32 rules: 16 played, 16 validated. 1 of them reviewed with Ruling R24 tolerances (not an exact agreement). 7 of them partial (part of the entry left to the table).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell
