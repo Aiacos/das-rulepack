@@ -328,12 +328,15 @@ ones.
   (`tools/pipeline/assert.mjs`): what the rule says happens, so that a draft and a review can be compared and a scenario can
   check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free?, targetSizeAtMost?,
   targetStatus?, selfStatus?, targetWithin?, targetHp?: bloodied|wounded, targetHpAtMost?, onOwnTurn?: true, damageType?,
-  activity?: attack|melee|weapon|spell }` (the fields after `free` say a trigger's condition, Ruling R30, below; `moment` is a
-  moment of the engine or, Ruling R33, an aura moment `ownTurnStart|ownTurnEnd`); `expect: {
+  activity?: attack|melee|weapon|spell, spellLevelAtMost?: 0..9 }` (the fields after `free` say a trigger's condition, Ruling
+  R30, below; `moment` is a moment of the engine or, Ruling R33, an aura moment `ownTurnStart|ownTurnEnd`; Ruling R34:
+  `spellLevelAtMost` only with `bars: spells`); `expect: {
   damage?: { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode:
   advantage|disadvantage|autoSuccess, on: attack|save|check, for: self|target|ally|enemy }, affects?
-  (target|allies|enemies|self), denies? (opportunityAttacks|reactions|actionAndBonus), move?: { mode, distance? }, uses?: {
-  spent }, subjected?: activity (Ruling R33: only with a zone or aura moment, and no roll), free? }`. Any other field is
+  (target|allies|enemies|self), denies? (opportunityAttacks|reactions|actionAndBonus|healing|tempHp), move?: { mode,
+  distance? }, uses?: { spent }, subjected?: activity (Ruling R33: only with a zone or aura moment, and no roll), chooses?:
+  oneEffect|oneEffectPerTarget|effectByRoll, bars?: entry|melee|actions|spells (Ruling R34: both said once for the use,
+  never with a roll or a moment), free? }`. Any other field is
   refused; `free` is one printable line of at most 120 characters and never stands alone (every assertion has a closed `expect`
   field); `given.origin` is one of the rule's
   `origins`; `move.distance` is a non-negative number or a formula of at most 24 characters made of digits, spaces,
@@ -356,8 +359,13 @@ ones.
   the `given` of each of them, and one whose condition has a part with no given word implies nothing and is unassertable);
   `emanation` (`subjected: activity` at its moment, `affects: enemies` beside it when only enemies; its radius, `sees` and
   `whileActive` are unassertable), `zoneAffects` (`affects: enemies|allies`), `saveAutoSuccess` (`roll: { mode: autoSuccess,
-  on: save, for: target }` given each `targetType`; `fighting` and `sizeAtLeast` are unassertable); `effectEnds` (`ends:
-  <word>`), `noReactions` and `actionOrBonus` (`denies: reactions` / `actionAndBonus`), `effectStatuses`
+  on: save, for: target }` given each `targetType`; `fighting` and `sizeAtLeast` are unassertable); Ruling R34: `choice`
+  (`chooses: oneEffect`, `oneEffectPerTarget` with `perTarget`, `effectByRoll` with `roll`; `order` and a pool alone are
+  unassertable), `barrier` (`bars: entry` and `bars: melee`, and `bars: actions` when it `shields`; one that names creature
+  types implies nothing; its radius is unassertable), `globe` (`bars: spells` given `spellLevelAtMost: <maxLevel>`; its
+  radius is unassertable); `effectEnds` (`ends:
+  <word>`), `noReactions`, `actionOrBonus`, `blocksHealing` and `blocksTempHp` (`denies: reactions` / `actionAndBonus` /
+  `healing` / `tempHp`; `blocksTempHp: true` is unassertable, it also covers the creature that carries the item), `effectStatuses`
   (`condition.applied`), each on the roll that applies its effect in the official structure (a hit for an attack's, a
   failed save for a save's, a saved save for `savedEffects`; every situation,
   `given: {}`, without it); `noOpportunity` (`denies: opportunityAttacks`, but not while flying); `saveDisadvantageFor` and
@@ -414,6 +422,37 @@ ones.
   accepts, read from its own lists), and a DAS_CORE test pins every drafter shape, word and exclusion to them: a field the
   engine adds or renames fails the suite. Scenarios: a zone or aura moment is `manual`, named `given.moment.<word>` beside
   `expect.subjected` (the runner lays no lasting area and passes no turn with a creature inside).
+- **Choices, barriers and wards** (Ruling R34, `tools/pipeline/wards.mjs`). Seven engine keys join `DRAFT_KEYS` in the same
+  closed, typed form (`DRAFT_SHAPES`, enforced by `checkDraftKeys` through `wardProblemsOf`; the validator gate checks the
+  creature types and statuses against the engine), each with what it does at the table and the engine file that says so
+  (`WARD_KEYS`, in `draft-vocabulary.json` `wards.keys`): `choice: { effects: "one", pool? } | { effects: "one", perTarget:
+  true, pool? } | { effects: "one", roll: true, order?: [<effect id>], pool? } | { pool }` (`pool: { <activity id>: [<effect
+  id>] }`; at the use, the user picks one of the activity's own effects and only it is applied: once, per target that failed
+  its save, or by a die; the options are labelled by the effects' own names, the engine asks its own question; `activityMap`);
+  `barrier: { radius: 5..300, units: "ft", onlyTypes? | exceptTypes?: [creature types], shields?: true, endsOnContact?:
+  true }` (while a creature carries an effect of the item, an emanation around it, moving with it: a creature outside, not
+  the bearer, not excepted, cannot walk in, nor hit a creature inside with a melee attack without reach; `shields`: nothing
+  it does from outside affects a creature inside; `endsOnContact`: the item's effects on the bearer end when it moves so that
+  such a creature is inside); `globe: { radius: 5..300, units: "ft", maxLevel: 0..9 }` (a spell of that level or lower cast
+  from outside affects no creature inside); `wardsConditions: { types: [creature types], statuses: [statuses] }` (the bearer
+  of an effect of the item cannot be given those conditions by a creature of those types); `wardsAtZero: true` (the first
+  time damage would drop the bearer to 0 hit points, it drops to 1 and the effect ends); `blocksHealing: true | [<effect id>]`
+  and `blocksTempHp: true | [<effect id>]` (the bearer regains no hit points / gains no temporary ones; `blocksTempHp:
+  true` also the creature that carries the item; `effectMap`). Refused with why (`EXCLUDED_WARD`): `choice.prompt` (free
+  text), `choice.outcome` and `choice.grapple` (damage or a grapple in its place: no word), `globe.everywhere` (the antimagic
+  field, which the system's own antimagic status also does). Not admitted, with why (`NOT_ADMITTED`, `wards.notAdmitted`):
+  `changesForm` (the token becomes the FIRST profile of the item's transform activity with that form's maximum hit points,
+  or keeps its own: no temporary hit points, no pick among forms), `formLock`, `walls`, `wallSide`, `encloses`,
+  `wardsDetection`. The engine has no automatic FAILURE of a save by creature type (only `saveAutoSuccess`,
+  `saveAutoSuccessAgainst: ["magic"]` and the consent of `willingFails`): an upstream gap, not a key. **One way to say
+  it**: `chooses` and `bars` hold for the use of the item, `given: {}` (or `spellLevelAtMost` for a globe), never with a roll or
+  a moment (refused); a barrier that stops only some creature types has no given word for them: its rule asserts no `bars`
+  and goes to a person. `loadCore` gives the engine's `choiceEffects` and `wardFields` (the fields of the choice, barrier,
+  globe and wardsConditions validators, read from their own lists), and a DAS_CORE test fails on a field in neither a
+  shape nor `EXCLUDED_WARD`, on a key of `NOT_ADMITTED` the engine drops, and on a value the pack assumes refused that the
+  engine accepts. Scenarios: `expect.chooses`, `expect.bars`, `given.spellLevelAtMost`, `expect.denies.healing` and
+  `expect.denies.tempHp` are manual (the runner picks no option, moves no creature in, casts no spell from outside, heals
+  nobody); the three older denials keep their interpreter.
 - **Partial rules** (Ruling R25, `tools/pipeline/leaves.mjs`). A rule may declare what its entry expects and it does not
   automate, as data: `rule.leaves`, at most 6 items, each an assertion `{ given, expect, because? }` of the vocabulary above
   (no `free` anywhere) of what would be true at the table but is done by hand, or `{ unexpressed, count }` (count 1 to 6) for
@@ -643,8 +682,8 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 > - `covered: false` with `beyond` when the text requires something more that an assertion can say: `beyond` lists it, as
 >   assertions of the closed vocabulary (`assert.shapes` of `reread-vocabulary.json`: `given` with `roll`, `moment`,
 >   `origin`, `targetType` and the limits `targetSizeAtMost`, `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`,
->   `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`; `expect` with `damage`, `condition`, `ends`, `roll`,
->   `affects`, `denies`, `move`, `uses`, `subjected`), one
+>   `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`, `spellLevelAtMost`; `expect` with `damage`, `condition`, `ends`,
+>   `roll`, `affects`, `denies`, `move`, `uses`, `subjected`, `chooses`, `bars`), one
 >   per thing the engine does not do, at most 6. Read each word in `definitions` of `reread-vocabulary.json`, never from its
 >   spelling (the turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end the turn of placement,
 >   `currentTurnEnd` does; `endsExamples` shows each); a word marked `"unverified"` has no established meaning: do not use
@@ -660,6 +699,13 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   or an area that acts at a moment (Ruling R33): `{ "given": { "moment": "turnStart" }, "expect": { "subjected":
 >   "activity" } }` for a creature that starts its own turn within it, `ownTurnEnd` / `ownTurnStart` for the bearer's turn
 >   (`definitions.auraMoment`), `enter` / `turnEnd` for an area; what the activity then does is said with the roll alone.
+>   So are (Ruling R34) a pick of one of the activity's own effects at use (`{ "given": {}, "expect": { "chooses":
+>   "oneEffect" } }`, `oneEffectPerTarget` for one pick per target that failed, `effectByRoll` for a die), what an
+>   emanation around the bearer keeps out (`bars`: `entry`, `melee`, `actions`; `spells` with `{ "spellLevelAtMost": <n> }`
+>   in `given`), and a creature that regains no hit points or gains no temporary ones (`denies`: `healing`, `tempHp`, on
+>   the roll that applies the effect): a healing block is then `beyond`, not `unexpressed`. Not sayable still: a barrier
+>   that stops only some creature types (`no-key`), a change of form (`form-change`), a choice of anything but one of the
+>   activity's effects (a damage type, a direction, a target: `use-time-choice`), an automatic failure by creature type.
 >   `beyond` and `unexpressed` may be given together: list as assertions what an assertion can say, and name the reason
 >   for the rest. `unexpressed` is never a way to avoid thinking: if an assertion can say it, say it in `beyond`.
 >
@@ -720,6 +766,18 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 > ```
 >
 > Had `engineReads` been `{ "emanation": { "on": "turnStart" } }`, the entry would be covered.
+>
+> **Worked example: beyond, a healing block** (invented). The text of "Rotting Grip" says: on a failed Constitution save the
+> target is poisoned for a minute and cannot regain hit points while poisoned. The structure has one `save` activity whose
+> effect carries `poisoned`; `engineReads` is null:
+>
+> ```json
+> { "key": "tst:monster:bog-wight/action/rotting-grip", "covered": false, "confidence": 0.8,
+>   "beyond": [ { "given": { "roll": "failedSave" }, "expect": { "denies": "healing" } } ],
+>   "why": "the poison is the item's, but nothing stops the poisoned target from regaining hit points" }
+> ```
+>
+> Had `engineReads` been `{ "blocksHealing": true }`, the entry would be covered.
 >
 > **Worked example: unexpressed** (invented). The text of "Gale Tumble" says: Strength save; on a failure, the target is
 > knocked prone, but only if it is Medium or smaller; this cannot be used again until the start of the user's next turn.
@@ -821,9 +879,11 @@ origins side by side), `idList`, `id`, `oneOf` (any alternative), `tagged` (an o
 `true`, `number`, `formula`, `line`, `distance`, `facts` (a trigger's condition: 1 to `max` of the named facts as keys, each
 with its argument's shape). `conditions` gives the same facts with the given field that says each, and the facts left out
 with why (Ruling R30). `zones` gives the zone and aura keys with what each does (`keys`), the moments a replay and an
-emanation may name, the aura moment words, and what the engine also takes with why not (`excluded`; Ruling R33). Tests
+emanation may name, the aura moment words, and what the engine also takes with why not (`excluded`; Ruling R33). `wards`
+gives the choice, barrier and ward keys with what each does (`keys`), what the engine also takes with why not (`excluded`),
+and the keys of that territory a drafter may not write, with why (`notAdmitted`; Ruling R34). Tests
 build a value from every alternative of every shape and have the validators (`assertProblems`, the engine's `validateEntry`,
-and for the zone keys `checkDraftKeys`) accept it.
+and for the zone and ward keys `checkDraftKeys`) accept it.
 
 The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
 
@@ -849,8 +909,8 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > same kind. Write only what a shape allows.
 >
 > **What the words mean.** `definitions` in `draft-vocabulary.json` gives the meaning of every word of the closed lists you
-> choose from (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`,
-> `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`), each
+> choose from (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `chooses`, `bars`, `moveMode`, `affects`, `denies`,
+> `rollMode`, `rollOn`, `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`), each
 > with where it comes from (`from`: the engine file, or this pack's vocabulary). Read a word there before you use it, never
 > from its spelling. The turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end on the turn the effect was
 > placed in ("until the end of its next turn"), `currentTurnEnd` ends that very turn ("until the end of the turn in
@@ -926,6 +986,45 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > Had the text said "at the end of each of the caster's turns, each creature within 10 feet of the caster takes fire
 > damage", it would be an aura of the caster, `{ "emanation": { "on": "ownTurnEnd" } }`, asserted with `"moment":
 > "ownTurnEnd"`, not `turnEnd`.
+>
+> **A choice, a barrier, a ward (Ruling R34).** `wards.keys` of `draft-vocabulary.json` says what each key does;
+> `wards.notAdmitted` the keys you may not write and why. "The caster picks one of these effects" where each option is an
+> effect of the activity in the structure is `choice: { "effects": "one" }` (`"perTarget": true` for a pick per target that
+> failed its save, `"roll": true` with `"order"` for a die, `"pool"` for effects of the item the activity does not link),
+> asserted `{ "given": {}, "expect": { "chooses": "oneEffect" } }` (or `oneEffectPerTarget`, `effectByRoll`); never a
+> `prompt` (free text: the engine asks its own question and shows each effect's name), and never for a choice of a damage
+> type, a direction or a target (those are `person`). A barrier around the bearer of the item's effect is `barrier: {
+> "radius": <feet>, "units": "ft" }` (`shields`, `onlyTypes` / `exceptTypes`, `endsOnContact` as `wards.keys` says), asserted
+> `bars: entry` and `bars: melee` (and `bars: actions` with `shields`), each `{ "given": {}, ... }`; one limited to some
+> creature types asserts no `bars` (no word says which) and goes to a person. A ward against spells of a level or lower is
+> `globe: { "radius": <feet>, "units": "ft", "maxLevel": <n> }`, asserted `{ "given": { "spellLevelAtMost": <n> }, "expect":
+> { "bars": "spells" } }`. "Cannot regain hit points" while an effect lasts is `blocksHealing` (`true`, or the effect ids),
+> asserted `denies: healing` on the roll that applies the effect; "cannot gain temporary hit points" is `blocksTempHp`
+> (`denies: tempHp`). `wardsConditions` and `wardsAtZero` have no word: write them when they are the key, and the rule goes
+> to a person. A change of form (`changesForm`: no temporary hit points, the first form only), walls, an enclosure and an
+> automatic FAILURE of a save by creature type have no drafter key: answer `person` (or `engine` for the failure: the engine
+> has only `saveAutoSuccess`). A radius is never asserted.
+>
+> Worked example (invented). The text of "Veil of Thorns" says: for the duration, a 10-foot barrier of thorns surrounds the
+> caster and moves with it; no creature can enter it or reach through it with a melee weapon, and the caster cannot regain
+> hit points while it lasts. The structure has one `utility` activity with a self range, concentration and one effect on the
+> caster:
+>
+> ```json
+> { "key": "tst:spell:veil-of-thorns", "outcome": "rule", "confidence": 0.8,
+>   "why": "a barrier carried by the caster's effect; the healing block rides on the same effect",
+>   "rule": { "handledIn": "table", "adds": "No creature walks into the veil or strikes into it; the caster heals none.",
+>     "entry": { "barrier": { "radius": 10, "units": "ft" }, "blocksHealing": ["Ef31Ef42Ef53Ef64"] },
+>     "origins": ["official"],
+>     "assert": [
+>       { "given": {}, "expect": { "bars": "entry" } }, { "given": {}, "expect": { "bars": "melee" } },
+>       { "given": {}, "expect": { "denies": "healing" } } ] } }
+> ```
+>
+> Had the text said "the caster chooses one of three wards: fire, cold or lightning" and the structure held three effects
+> on the activity, the entry would be `{ "choice": { "effects": "one" } }`, asserted `{ "given": {}, "expect": { "chooses":
+> "oneEffect" } }`; had it said "a spell of 3rd level or lower cast from outside cannot affect anything inside", `{ "globe":
+> { "radius": 10, "units": "ft", "maxLevel": 3 } }` with `{ "given": { "spellLevelAtMost": 3 }, "expect": { "bars": "spells" } }`.
 >
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`,
@@ -1103,9 +1202,10 @@ handle of `docs/owners.json`, Ruling R23).
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Say what must be
 > true at the table when the item is used, as assertions in the closed vocabulary: `[{ given, expect }]` with the fields of
 > `assert.shapes` (`given`: `roll`, `moment`, `origin`, `targetType`, and the situations a limit names: `targetSizeAtMost`,
-> `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`;
-> `expect`: `damage` with its `fraction`, `condition` applied or ended, `ends`, `roll` with advantage, disadvantage or
-> `autoSuccess`, `affects`, `denies`, `move`, `uses`, `subjected`; never `excludes`, which is refused).
+> `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`,
+> `spellLevelAtMost`; `expect`: `damage` with its `fraction`, `condition` applied or ended, `ends`, `roll` with advantage,
+> disadvantage or `autoSuccess`, `affects`, `denies`, `move`, `uses`, `subjected`, `chooses`, `bars`; never `excludes`,
+> which is refused).
 > When the text limits a consequence ("if the
 > target is Large or smaller", "on a melee attack", "a creature it is grappling"), state the limit in the same assertion's
 > `given` (`{ "roll": "failedSave", "targetSizeAtMost": "lg" }`): a limit stated on one side only is a disagreement, so
@@ -1134,6 +1234,19 @@ handle of `docs/owners.json`, Ruling R23).
 > "turnStart" }, "expect": { "subjected": "activity" } }, { "given": { "roll": "failedSave" }, "expect": { "condition": {
 > "applied": "frightened" } } }]`; "at the end of each of the hound's turns, each creature within 10 feet takes fire damage"
 > gives `{ "given": { "moment": "ownTurnEnd" }, "expect": { "subjected": "activity" } }`.
+>
+> **Choices, barriers and wards** (Ruling R34). Say each of these once for the use of the item, with an empty `given`
+> (never a roll, never a moment; read `definitions.chooses` and `definitions.bars`). "The user picks one of the effects"
+> where the structure's activity holds those effects is `{ "chooses": "oneEffect" }`; one pick per target that failed its
+> save, `oneEffectPerTarget`; a die that picks it, `effectByRoll`. A pick of a damage type, a direction or a target is none of
+> these: do not use `chooses` for it. Around the creature that carries the item's effect: "no creature can enter" is `{ "bars":
+> "entry" }`, "cannot reach through with a melee attack" (reach weapons excepted) `{ "bars": "melee" }`, "cannot affect
+> anything inside" `{ "bars": "actions" }`, "a spell of 5th level or lower cast from outside has no effect inside" `{ "given":
+> { "spellLevelAtMost": 5 }, "expect": { "bars": "spells" } }` (the level as the text gives it, a cantrip 0). When only some
+> kinds of creature are kept out (or some pass), no word says which: do not assert `bars` for it. "Cannot regain hit points"
+> while an effect lasts is `{ "denies": "healing" }` on the roll that applies the effect (`{ "roll": "failedSave" }` for a
+> save's); "cannot gain temporary hit points", `{ "denies": "tempHp" }`. Invented example: "For the spell's duration, a
+> 10-foot barrier moves with you; creatures can't enter it" gives `{ "given": {}, "expect": { "bars": "entry" } }`.
 >
 > You never see whether the draft declared part of the entry as left to the table (`leaves`): state everything the text
 > requires, as always; the comparison takes care of what the draft says it does not automate.
@@ -1631,6 +1744,11 @@ setup, steps }`:
   `ownTurnEnd`) is manual, `given.moment.<word>` in `manualBecause` beside `expect.subjected` and `advance`: the runner lays
   no lasting area, places no creature in it and passes no turn to watch the activity used again. An automatic success
   (`roll.mode: autoSuccess`) is `expect.roll`, as every roll mode.
+- Ruling R34, choices, barriers and wards: `expect.chooses` (the runner answers no question), `expect.bars` (it walks no
+  creature into an emanation, attacks from no outside square, casts no spell from outside), `given.spellLevelAtMost`, and
+  the denials `expect.denies.healing` / `expect.denies.tempHp` (it deals no damage and heals nobody after the use) are
+  manual, named so in `manualBecause`; such a check counts for nothing in `checks`. The three denials `play/lib/steps.mjs`
+  observes (`opportunityAttacks`, `reactions`, `actionAndBonus`) keep their interpreter.
 
 **What the interpreter checks** (`play/lib/steps.mjs`; no check passes on nothing — a missing resolution for the target fails
 it, so does a use the engine refuses, at once; a target is found in the resolution by its token's uuid, never by name: the

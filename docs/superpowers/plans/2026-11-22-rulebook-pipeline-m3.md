@@ -425,6 +425,52 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   `readEmanationText`), which a rule neither states nor controls; (f) a shipped engine entry whose shape a drafter may not
   write is no longer offered whole as a key example (its zone key or replay declaration is dropped from the example).
 
+- **R34 — choices, barriers and wards are drafter keys, in a closed form; a change of form is not.** After R33, 7 of the 9
+  sampled spells still had no key for their main effect; the drafters named a change of form (with temporary hit points
+  from the new form, ended at will), a barrier that bars entry or low-level spells, a warded area whose effects are picked
+  at casting, and an automatic failure of a save by creature type. Read in the engine (validators, runtime, shipped entries),
+  seven keys are admitted (`tools/pipeline/wards.mjs` `WARD_KEYS`): `choice` (one of the activity's own effects picked at
+  use, only it applied: once, per target that failed, or by a die in the order of `order`; a `pool` of the item's effects
+  the activity does not link; options labelled by the effects' own names, so no label is needed), `barrier` (an emanation
+  of 5 to 300 ft around the bearer of the item's effect: no walking in, no melee hit from outside without reach; `shields`,
+  nothing from outside affects inside; `onlyTypes` / `exceptTypes`; `endsOnContact`), `globe` (no spell of `maxLevel` 0 to 9
+  or lower cast from outside affects inside), `wardsConditions` (creature types and statuses), `wardsAtZero`,
+  `blocksHealing` and `blocksTempHp` (`true` or effect ids). Refused with why (`EXCLUDED_WARD`): `choice.prompt` (free text),
+  `choice.outcome` / `choice.grapple` (damage or a grapple instead: no word), `globe.everywhere` (the antimagic field, which
+  the system's own status also does). Not admitted, with why (`NOT_ADMITTED`): `changesForm` — the engine swaps the token
+  to the FIRST profile of the item's transform activity and sets that form's maximum hit points (or keeps the current ones):
+  no temporary hit points, no pick among forms, so the drafters' change of form is another rule; `formLock`, `walls`,
+  `wallSide` (geometry decided by keys a drafter does not write, or other items by identifier), `encloses` (precise, no
+  sampled need), `wardsDetection` (any string: no list of the engine to pin). **Engine gap**: no key fails a save
+  automatically for a kind of creature (only `saveAutoSuccess`, `saveAutoSuccessAgainst: ["magic"]`, the consent of
+  `willingFails`); it is an upstream request, not a pack key. The assertion vocabulary grows by `expect.chooses`
+  (`oneEffect`, `oneEffectPerTarget`, `effectByRoll`), `expect.bars` (`entry`, `melee`, `actions`, `spells`), both said once
+  for the use (never with a roll or a moment), `given.spellLevelAtMost` (0 to 9, only with `bars: spells`), and the denials
+  `healing` and `tempHp`. `impliedAsserts`: a choice its word; a barrier with no creature types `entry` and `melee` (and
+  `actions` when it shields), one with them nothing (the assertion without its limit would say more than the key); a globe
+  `bars: spells` at its level; `blocksHealing` / `blocksTempHp` a denial on the roll that applies each effect. Unassertable,
+  so stamped for a person (R15): every barrier and globe (a radius has no word), a die's `order`, a pool alone,
+  `blocksTempHp: true` (also the creature that carries the item), `wardsConditions`, `wardsAtZero`. `loadCore` gives
+  `choiceEffects` and `wardFields` (the four validators' own field lists, read as text) and a DAS_CORE test fails on a
+  field in neither a shape nor `EXCLUDED_WARD`, on a refused key the engine drops, and on a value assumed refused that the
+  engine accepts. Scenarios: the new words are manual; only the three denials the runner observes keep an interpreter.
+  Measured (repository registry unchanged; a copy gated: 19 143 records, 0 failing, the 42 shipped rules and every other
+  rule keep their states, the generated modules, README and RULES.md are byte-identical): in closed fields the pool is
+  near nil — of the reread reasons, `healing-block` appears in no reread and in 3 XMM partial rules' `leaves`, all three
+  items the engine already reads as `blocksHealing`; `use-time-choice` in 2 XMM rereads (both queued) and 1 FRAIF rule's
+  `leaves`, which a person must read to tell an effect pick from another choice; `form-change` (3 XMM rereads, 1 FRAIF
+  rule) stays unstatable. The drafts queue's `reason` has no word for any of it, and the entries of FRAIF, EFA and XPHB not
+  yet drafted, the 9 sampled spells among them (not ingested), carry no closed reason: only a new drafting sample can size
+  the pool. *Cost if wrong:* (a) `chooses: oneEffect` says THAT one effect is picked, not which options: a draft whose
+  `pool` adds or misses an effect compares equal to a review that names none; (b) the engine's barrier always bars both
+  walking in and melee: a text that bars only one makes the rule say more than the text, which a reviewer stating only one
+  catches as a disagreement (a person's), and a reviewer who copies the key's pair would not; (c) a barrier limited to some
+  creature types (every barrier the engine ships) asserts nothing, so review checks nothing of it and a person reads every
+  such rule; (d) `blocksTempHp: true` also blocks the item's holder, which a drafter reading "the target" may not mean: the
+  stamp sends it to a person, who must catch it; (e) `chooses` and `bars` are never played (manual scenarios), so a wrong
+  `perTarget` or radius reaches the table unless a person plays it; (f) leaving `changesForm` out keeps the commonest
+  sampled main effect (a change of form) at `person`, and the automatic failure at `engine`, until upstream adds them.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
@@ -438,10 +484,14 @@ in `module/scripts/core/content/entry.mjs` and drops any key it cannot confirm:
 (`single`), and `dataFixes` (official origin only, `from` mandatory, never on a monster feature: the data-fix gate has no
 document for `<actor id>.<item id>` yet). Since R33: `emanation` and `aura` (`single`), `selfZone` (`activityMap`),
 `zoneAffects`, `zoneEffects`, `zoneLasts`, `zoneMax`, `saveAutoSuccess`, `willingFails` (`none`), each in the closed shape
-of `DRAFT_SHAPES`, and a `triggers` declaration that replays the item's activity at the zone moments.
+of `DRAFT_SHAPES`, and a `triggers` declaration that replays the item's activity at the zone moments. Since R34: `choice`
+(`activityMap`), `blocksHealing`, `blocksTempHp` (`effectMap`), `barrier`, `globe`, `wardsConditions`, `wardsAtZero`
+(`none`), each in its closed shape; `changesForm`, `formLock`, `walls`, `wallSide`, `encloses` and `wardsDetection` stay out,
+each with why (`wards.mjs` `NOT_ADMITTED`).
 
 Outside the list, the engine has keys but the drafter does not use them in this milestone: geometry (`walls`, `summon`,
-`teleport`, `light`…; the zone and aura keys of R33 are in the list), `gmAlert` (prose), `choice`, `metamagic`, `sense` and
+`teleport`, `light`…; the zone and aura keys of R33 and the barrier keys of R34 are in the list), `gmAlert` (prose),
+`metamagic`, `sense` and
 class-mechanic keys (`smite`, `rage`, `sneakAttack`…), which Core owns for the SRD. Those records go to the drafts queue as
 `outcome: "person"`. A rule that needs a fact the engine's `adapter/facts.mjs` does not provide (light level, say), state across
 turns no key models, or a prompt to the player, is `outcome: "code"` (a script like Shadow Blade: a person writes it). A rule that

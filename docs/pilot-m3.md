@@ -442,3 +442,24 @@ may touch without saying how its path is written, and its example was empty: it 
 examples the drafter check accepts. And the item summary shown to readers and drafters read a save ability stored as a bare
 string as none (845 activities in the dumps): two drafts "fixed" a gap that was not there, and the fixes gate stopped both.
 
+# Choices, barriers and wards for drafters (2026-11-22, Ruling R34)
+
+After R33, 7 of the 9 sampled spells still had no key for their main effect. Seven engine keys of that territory are now
+drafter keys in closed shapes (`tools/pipeline/wards.mjs`): `choice` (one of the activity's own effects picked at use),
+`barrier`, `globe`, `wardsConditions`, `wardsAtZero`, `blocksHealing`, `blocksTempHp`, with the words `expect.chooses`,
+`expect.bars`, `given.spellLevelAtMost` and `denies: healing|tempHp`. A change of form is not among them: the engine's
+`changesForm` takes the first form of a transform and that form's maximum hit points, never temporary ones; and the engine
+has no automatic failure of a save by creature type at all (an upstream request).
+
+| Book | Drafts-queue entries | Reread `unexpressed`: `healing-block`; `use-time-choice` (to read) | Partial rules' `leaves` |
+|---|---|---|---|
+| XMM | 203 | 0; 2 (both queued) | `healing-block` 3, all three already read by the engine |
+| FRAIF | 3 | 0; 0 | `use-time-choice` 1 (to read) |
+| XPHB, EFA | 0 | 0; 0 | none |
+
+`form-change` (3 XMM rereads, 1 FRAIF rule) stays unstatable. The queue's `reason` has no word for any of it, and the
+entries not yet drafted (the 9 sampled spells among them: not in the registry) carry no closed reason: only a new drafting
+sample can size the pool. Outside the closed fields, the drafters' own `why` in the queue names, read by eye, 1 healing block
+as the main rider, 1 pick between two conditions, 1 possible pick per creature, and 1 missing automatic failure. On a copy
+of the registry after `npm run gates`, the 42 shipped rules keep their states and the generated modules, README and RULES.md
+do not change.
