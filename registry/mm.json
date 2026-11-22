@@ -55096,7 +55096,7 @@
           "similar": []
         }
       },
-      "why": "Paralysis with a save repeated at the end of each of its turns; data has the status but no repeated save.",
+      "why": "Paralysis with a retry each turn of the victim; the data gives the status but no repeated save.",
       "state": "triaged"
     },
     {

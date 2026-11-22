@@ -4272,7 +4272,7 @@
           "similar": []
         }
       },
-      "why": "Extra damage only if the sable surprises a creature and hits in first round; data activity lacks the condition",
+      "why": "Bonus damage only when the sable has surprised the target and strikes during round one; the data activity has no such condition.",
       "state": "triaged"
     },
     {

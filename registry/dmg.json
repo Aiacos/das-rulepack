@@ -21279,7 +21279,7 @@
         }
       },
       "hint": "core-generic",
-      "why": "Paralysis with a repeated save at end of each of the target's turns; data has a one-shot save.",
+      "why": "Paralysis whose save is retried every turn by the target, so the effect can end early; the data only has a single save.",
       "state": "triaged"
     },
     {

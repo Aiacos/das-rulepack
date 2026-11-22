@@ -1692,7 +1692,7 @@
           "similar": []
         }
       },
-      "why": "Attack rider: a creature hit cannot regain hit points until the start of the monster's next turn; data lacks it.",
+      "why": "Attack with a rider: a creature struck gets no healing until the monster's following turn begins; the data omits it.",
       "state": "triaged"
     },
     {

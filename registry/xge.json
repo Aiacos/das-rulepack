@@ -7739,7 +7739,7 @@
         }
       },
       "hint": "core-generic",
-      "why": "no item data; Radiant resistance plus adding Cha to one radiant or fire damage roll of a spell.",
+      "why": "no item data; resistance to radiant, and a Charisma bonus on the damage roll of a radiant or fire spell against one target.",
       "state": "triaged"
     },
     {

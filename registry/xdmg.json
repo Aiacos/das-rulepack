@@ -32807,7 +32807,7 @@
           "similar": []
         }
       },
-      "why": "Self damage applies only if it ends its turn inside an object; the data has an untriggered self-damage activity and no end-of-turn condition. Movement through creatures is a terrain rule.",
+      "why": "Force damage to itself only when its turn finishes within a solid object; the data has an unconditioned self-damage activity. Passing through creatures is a terrain rule.",
       "state": "triaged"
     }
   ]
