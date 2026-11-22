@@ -482,7 +482,9 @@ describe("pipeline CLI: ingest --draft", () => {
   beforeEach(() => {
     tmp = mkdtempSync(join(tmpdir(), "draft-cli-"));
     registry = join(tmp, "registry");
-    env = { PATH: process.env.PATH, RULEPACK_TEXT: textDir, RULEPACK_REGISTRY: registry,
+    // Fix round 1 (Ruling R24): ingest --draft reads the official structures from the dumps (an empty folder: none).
+    mkdirSync(join(tmp, "dumps"), { recursive: true });
+    env = { PATH: process.env.PATH, RULEPACK_TEXT: textDir, RULEPACK_REGISTRY: registry, RULEPACK_DUMPS: join(tmp, "dumps"),
       ...(process.env.DAS_CORE ? { DAS_CORE: process.env.DAS_CORE } : {}) };
     saveBook(registry, { book: "TST", records: [record(), record({ key: "tst:spell:cold-snap", name: "Cold Snap",
       identifier: "tst-cold-snap" })] });
@@ -537,7 +539,6 @@ describe("pipeline CLI: ingest --draft", () => {
     expect(again.stdout).toMatch(/drafts-queue/);
 
     const dumps = join(tmp, "dumps");
-    mkdirSync(dumps);
     const gates = cli(["gates"], { RULEPACK_DUMPS: dumps });
     expect(gates.stdout + gates.stderr).not.toMatch(/FAIL tst:spell:frost-glimmer/);
     const gated = JSON.parse(readFileSync(join(registry, "tst.json"), "utf8")).records
@@ -560,7 +561,7 @@ describe("pipeline CLI: ingest --draft", () => {
     expect(JSON.parse(r.stdout).rejected[0].reason).toMatch(/not offered by this batch/);
   });
 
-  withCore("a monster result without the dumps is a usage error", () => {
+  withCore("a result without the dumps is a usage error (a monster's, and since fix round 1 any)", () => {
     const m = record({ key: "tst:monster:glimmer-drake/action/bite", kind: "monster", name: "Bite", owner: "Glimmer Drake",
       section: "action", identifier: "bite" });
     saveBook(registry, { book: "TST", records: [m] });

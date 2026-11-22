@@ -111,6 +111,12 @@ export function unaccountedOrigins(record) {
 }
 
 /**
+ * Why a monster feature's DDB Importer item is never covered (Ruling R3): `rule.uncovered[].because` of that origin, which
+ * `ingest --draft` adds when the drafter left it out (draft.mjs), and the reason `aliasFor` gives for it.
+ */
+export const DDB_MONSTER_UNCOVERED = "DDB Importer monster features: world ids and generic identifiers";
+
+/**
  * The alias a rule needs to reach the item of `origin` (Ruling R2): `{ identifier }`, or `{ uncovered: because }` when no
  * alias may be registered (the origin goes to `rule.uncovered`), or null when the item is already reached (same identifier,
  * or bound by a source). Never an alias: a monster feature's item (its identifier is scoped to the creature, R3), an empty or
@@ -120,7 +126,7 @@ export function aliasFor(record, origin, { coreIdentifiers = new Set() } = {}) {
   const item = matchedOf(record, origin);
   if (!item) return { uncovered: `no matched ${origin} item` };
   if (record.kind === "monster" && origin === "ddb-importer") {
-    return { uncovered: "DDB Importer monster features: world ids and generic identifiers" };
+    return { uncovered: DDB_MONSTER_UNCOVERED };
   }
   if (item.embeddedShared) return { uncovered: SHARED_EMBEDDED };
   if (norm(item.identifier) === norm(record.identifier) || boundBySource(record, item)) return null;

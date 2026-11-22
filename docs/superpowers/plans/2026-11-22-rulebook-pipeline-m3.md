@@ -64,7 +64,10 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   inventory through `sources` to the embedded item id of its official item when that id is unique among the package's actors.
   A shared embedded id needs an `<actor id>.<item id>` source, which the engine reads (`identifierOf`, §334) but external
   registration refuses (`validateSources` accepts 16-character ids only): such features stay `drafted` until upstream accepts
-  it (an issue with no book named). DDB Importer monster features are always `uncovered` (world ids, generic identifiers).
+  it (an issue with no book named). DDB Importer monster features are always `uncovered` (world ids, generic identifiers):
+  `batch draft` and `batch review` offer that item as `{ origin, match, uncovered: "always" }` with no ids and no structure,
+  and `ingest --draft` adds its `uncovered` line (`DDB_MONSTER_UNCOVERED`) when a drafter leaves it out (pilot 2: 8 of 12
+  monster rules named it and were rejected).
   Wrong if the engine changes its source lookup: those rules silently stop applying (play would show it).
 - **R4 — Ids gate on side-by-side ids.** Every id of the entry must belong to the matched item of at least one listed origin, and
   each listed origin must contribute at least one id when the entry has any. Keys whose slot holds one id (`DRAFT_KEYS` slot
@@ -147,6 +150,43 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   quotation of `why` included, applies. Wrong: whoever runs the CLI can sign a file as an owner and settle any queued
   entry, the disagreements of two readers included (the same trust model as R20: a visible claim in a reviewed commit, not
   a signature).
+
+- **R24 — Agreement tolerates optional detail and the item's own damage** (pilot 2, XMM: two reviews that described the
+  drafted mechanics were queued as disagreements; refines R9). Each side is read as its strongest assertions (one that says
+  less than another of its side is absorbed by it). A draft assertion is matched by a distinct review assertion that is equal
+  or the same up to optional detail: the same `given` (every given field is identity), the same expectation kinds, every
+  field both state equal, the fields one side states alone being optional detail of their kind (damage `type`, move
+  `distance`; every other field is identity: `fraction`, move `mode`, condition `applied`/`ended`, roll `mode`/`on`/`for`,
+  `ends`, `affects`, `excludes`, `uses`). A review-only `damage.fraction = 1` given `hit` or `failedSave` alone is the item's
+  baseline, not a disagreement, when the official item's structure (read from the dumps by `ingest --review`, as `batch review
+  --structure` writes it) has an attack (for `hit`) or save (for `failedSave`) activity that deals damage, of the stated type
+  if any, and the draft says nothing of the damage in that situation or in every situation. Agreement: every draft assertion
+  matched, every review assertion matched or baseline, no `free`. The comparison keeps `baseline` and `detail` (canonical
+  strings) beside `onlyDraft`/`onlyReview`; `evidence.reviewed.tolerated` (`baseline`, `detail`: closed, sorted) says which
+  tolerance an agreement used. A reviewer that can express nothing of an entry answers `outcome: "person"` (no `assert`),
+  queued as `unexpressed`; a `free`-only assertion stays refused. Wrong: (a) a drafter who forgot a damage type or a
+  distance the text gives is not caught at review when the reviewer gives it (play still checks the entry, which carries the
+  distance it moves; a wrong type is caught only by play); (b) a draft that should have reduced or replaced the activity's own
+  damage on a hit or failed save, and does not say so, agrees with a reviewer who reads full damage — the draft's silence is
+  taken as "the item's data stands", which is what the entry does at the table; (c) the baseline trusts the official
+  structure: an official item whose activity deals damage on a roll where the text says it does not makes a reviewer's
+  wrong "full damage" pass (the drafter's rule would have to say the opposite for it to be seen).
+  **Fix round 1** (a review of R24 found three leaks and a visibility gap). (L1) `impliedAsserts` now says the `move` and
+  `status` steps of `triggers` on every roll moment (hit, failedSave, savedSave...), with their distance, and the distance
+  tolerance runs one way only: a review distance is taken only where the draft side pins the same one (an entry step);
+  `ingest --draft` rejects a stated move or condition on a roll that neither an entry step nor, for a condition, an effect of
+  the item's activity of that roll backs ("the entry does nothing of the kind on <roll>"; fail closed without the structure,
+  so `ingest --draft` needs `RULEPACK_DUMPS`). (L2) implied `saveDamage` / `halfOnMiss` / `noDamage` carry their activity's
+  damage types from the official structure, and a type must match exactly for a given whose draft-side fractions differ.
+  (L3) no baseline on a roll whose damage the entry touches (`DAMAGE_ROLLS`, one line per drafter key, a test fails when a key
+  is added without one; an unknown key touches every roll; `saveDamage` is classified as touching the saved save only, since
+  it sets that fraction and is itself implied and must be matched). (V) `evidence.reviewed.tolerated` stores the tolerated
+  baseline strings and `[draft, review]` pairs, schema-held and part of `emits`: a tolerated agreement leaves the record
+  `drafted` until the gates run again (the command says so), and RULES.md counts such reviews apart. Remaining cost: a
+  reviewer less specific than the draft (no type, no distance) still agrees; a condition the item's own effect applies is
+  accepted without a step even when the text gives it on another roll than the structure's activity suggests (a person reads
+  the queue only when the review differs); a two-type activity whose review gives one untyped fraction now disagrees (more
+  queue, not less safety); `DAMAGE_ROLLS` classifies `atTurnStart`, `onHit`, `dataFixes` by hand.
 
 ## What a drafter may write (engine limits)
 

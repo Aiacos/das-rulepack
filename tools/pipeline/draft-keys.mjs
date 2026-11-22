@@ -112,6 +112,62 @@ export const DRAFT_SHAPES = Object.freeze({
   dataFixes: Object.freeze({ type: "see", at: "fixes" })
 });
 
+// Ruling R24, fix round 1 (L3): the rolls on which each drafter key changes the damage the item's own activity deals, so that
+// a review's "full damage on this roll" is never taken for the item's baseline where the rule touches it. A function of the
+// key's value: a list of rolls (assert.mjs ROLLS), ALL_ROLLS, or []. A key added to DRAFT_KEYS without a line here fails a
+// test (tests/pipeline/review-calibration.test.mjs); a key that is not in this table is taken as touching every roll.
+export const ALL_ROLLS = "all";
+const ROLL_MOMENTS = ["hit", "miss", "crit", "failedSave", "savedSave"];
+// The trigger steps that never change damage: a condition, a move, a repeated save. Every other step type (damage, halve,
+// reduce, uncrit, miss, reroll, bonus, absorb...) is taken as touching it.
+const DAMAGE_FREE_STEPS = new Set(["status", "move", "resave"]);
+const none = () => [];
+const all = () => ALL_ROLLS;
+function triggerRolls(value) {
+  const declarations = Array.isArray(value) ? value : [value];
+  const rolls = new Set();
+  for (const d of declarations) {
+    const steps = Array.isArray(d?.do) ? d.do : [d?.do];
+    if (steps.every((st) => isObject(st) && DAMAGE_FREE_STEPS.has(st.type))) continue;
+    for (const on of Array.isArray(d?.on) ? d.on : [d?.on]) {
+      if (!ROLL_MOMENTS.includes(on)) return ALL_ROLLS;
+      rolls.add(on);
+    }
+  }
+  return [...rolls];
+}
+export const DAMAGE_ROLLS = Object.freeze({
+  triggers: triggerRolls,
+  saveDamage: () => ["savedSave"],
+  halfOnMiss: () => ["miss"],
+  noDamage: all,
+  effectEnds: none, endsWhen: none, actionEnds: none, breaksOn: none, noReactions: none, actionOrBonus: none,
+  noOpportunity: none, noOpportunityAttacks: none, saveAdvantage: none, saveDisadvantageFor: none,
+  // The drafter's `rollBonus.on` names attack, save, check and initiative rolls: never damage; anything else is taken as damage.
+  rollBonus: (v) => ((Array.isArray(v?.on) ? v.on : []).every((o) => ["save", "check", "attack", "initiative"].includes(o))
+    ? [] : ALL_ROLLS),
+  rollDisadvantage: none, effectStatuses: none, effectDurations: none, savedEffects: none,
+  // An activity used at the start of a turn, or forced as a save by a hit: its damage is dealt outside the item's own roll.
+  atTurnStart: all,
+  usageLimits: none,
+  ignoresResistance: all,
+  grantsResistances: none, grantsConditionImmunities: none, difficultTerrain: none, targets: none,
+  onHit: () => ["hit"],
+  // A data fix may rewrite the activity's damage parts.
+  dataFixes: all
+});
+/** The rolls on which an entry changes the item's own damage (DAMAGE_ROLLS; an unknown key: every roll). */
+export function damageRollsOf(entry) {
+  if (!isObject(entry)) return [];
+  const rolls = new Set();
+  for (const [key, value] of Object.entries(entry)) {
+    const touched = has(DAMAGE_ROLLS, key) ? DAMAGE_ROLLS[key](value) : ALL_ROLLS;
+    if (touched === ALL_ROLLS) return ALL_ROLLS;
+    for (const r of touched) rolls.add(r);
+  }
+  return [...rolls];
+}
+
 /** The entry keys whose slot holds one id (Ruling R4: such a key, when it holds an id, names one origin only). */
 export const singleSlotKeys = (entry) =>
   Object.keys(entry ?? {}).filter((k) => has(DRAFT_KEYS, k) && DRAFT_KEYS[k].slot === "single");

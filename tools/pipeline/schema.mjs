@@ -1,5 +1,5 @@
 // The record format of the rulebook registry: the closed vocabularies and the structural validator.
-import { assertProblems, isPlainLine } from "./assert.mjs";
+import { assertProblems, isCanonicalAssertion, isPlainLine } from "./assert.mjs";
 
 export const ADDS_MAX = 200;
 
@@ -262,7 +262,7 @@ function checkEvidence(evidence, errors, legacy, verdict) {
   const confidence = (v) => typeof v === "number" && v >= 0 && v <= 1;
   // `because`: the one line a person gives when they accept a review-queue entry (`review-accept`); a reviewer writes none.
   checkStamped(evidence, "reviewed", { by: isReaderHandle, at: isString, agrees: (v) => typeof v === "boolean", rule: isHex64,
-    confidence }, { rule: legacy, confidence: legacy }, errors, { because: (v) => isPlainLine(v, 120) });
+    confidence }, { rule: legacy, confidence: legacy }, errors, { because: (v) => isPlainLine(v, 120), tolerated: isTolerated });
   // A play (Ruling R10; played.mjs): read from the runner's log, or recorded by an owner who played a checklist by hand
   // (`manual: true` with `by` and `because`, the only prose: part of `emits`, read by the text gate). Every other field has
   // a shape that holds no prose: a scenario id, an engine version, a world handle, a client, a fingerprint.
@@ -284,6 +284,13 @@ export const isScenarioId = (v) => typeof v === "string" && SCENARIO_ID.test(v);
 export const isCoreVersion = (v) => typeof v === "string" && CORE_VERSION.test(v);
 export const isWorld = (v) => typeof v === "string" && BY.test(v);
 
+// Ruling R24 (fix round 1, V): what an agreement tolerated, `{ baseline: [review], detail: [[draft, review]] }` (the names
+// of REVIEW_TOLERANCES), every string a canonical assertion of the closed vocabulary, at least one of the two lists non-empty.
+// It is part of the gates' `emits` (registry.mjs emittedFingerprint), so a hand edit that removes or changes it is seen.
+export const REVIEW_TOLERANCES = Object.freeze(["baseline", "detail"]);
+const isTolerated = (v) => isObject(v) && Object.keys(v).length === 2 && REVIEW_TOLERANCES.every((k) => Array.isArray(v[k]))
+  && (v.baseline.length + v.detail.length > 0) && v.baseline.every((c) => isCanonicalAssertion(c))
+  && v.detail.every((p) => Array.isArray(p) && p.length === 2 && p.every((c) => isCanonicalAssertion(c)));
 const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
 // The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
@@ -291,6 +298,7 @@ const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
   confidence: "a number from 0 to 1", person: "true", because: "one of the reasons a draft goes to a person (DRAFTED_FOR_PERSON)",
   "reviewed.because": "one line of printable ASCII, at most 120 characters",
+  "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]] } (Ruling R24), not both empty",
   "played.because": "one line of printable ASCII, at most 120 characters", "played.by": "an owner's handle, not an agent's",
   "played.manual": "true", "played.client": `one of ${["gm", "player"].join(", ")}`,
   "played.scenario": "a scenario id <book>/<slug> (scenarios.mjs)", "played.core": "an engine version (1.2.3)",

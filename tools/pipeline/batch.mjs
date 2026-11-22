@@ -11,7 +11,7 @@ import { resolveShape } from "./shapes.mjs";
 import { FIX_ENUMS, describeFixTypes } from "./fix-types.mjs";
 import * as assertVocabulary from "./assert.mjs";
 import { isFormula } from "./assert.mjs";
-import { monsterIdentifier, sourceKeysOf } from "./identifiers.mjs";
+import { DDB_MONSTER_UNCOVERED, monsterIdentifier, sourceKeysOf } from "./identifiers.mjs";
 import { sharedEmbeddedId } from "./settle.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
@@ -20,10 +20,20 @@ const summary = ({ data, ...item }) => item;
 // What a reader needs besides the text: where the entry sits (owner, level, section), its rarity, page and SRD flag, and the
 // hint of the rule-based triage (`core-generic`: the engine has a generic entry of that identifier; the text still decides).
 const READER_FIELDS = ["owner", "level", "section", "rarity", "page", "srd", "hint"];
-const entryOf = (r) => ({
+/**
+ * False for an origin a rule of this record can never name (Ruling R3: a monster feature's DDB Importer item, world ids and
+ * generic identifiers): `batch draft` and `batch review` offer it as `{ origin, match, uncovered: "always" }`, with none of
+ * its ids, and write no structure for it. Its ids are left out, not only flagged, so a drafter has nothing it could copy into
+ * an entry; the origin is still listed so a drafter sees it exists and why it is never named (ingest --draft adds its
+ * `uncovered` line itself, draft.mjs).
+ */
+export const rulableOrigin = (r, origin) => !(r?.kind === "monster" && origin === "ddb-importer");
+// `rulable`: the draft and review cut, where an origin no rule can name is offered without its ids (rulableOrigin).
+const entryOf = (r, { rulable = false } = {}) => ({
   key: r.key, name: r.name, kind: r.kind, edition: r.edition, textSha: r.text.sha256,
   ...Object.fromEntries(READER_FIELDS.filter((f) => r[f] !== undefined && r[f] !== null).map((f) => [f, r[f]])),
-  items: r.items.map(summary)
+  items: r.items.map((i) => (rulable && !rulableOrigin(r, i.origin)
+    ? { origin: i.origin, match: i.match, uncovered: "always" } : summary(i)))
 });
 
 // The highest batch number per book among file names of a folder (`<book>-triage-<NNN>.json`; structure files do not count).
@@ -249,7 +259,7 @@ function examplesFor(r, { candidates, resolve, keyExamples, common }) {
 }
 
 const draftEntryOf = (r, examples, why) => ({
-  ...entryOf(r), identifier: r.kind === "monster" ? monsterIdentifier(r) : r.identifier,
+  ...entryOf(r, { rulable: true }), identifier: r.kind === "monster" ? monsterIdentifier(r) : r.identifier,
   keys: r.evidence?.triaged?.keys ?? [], similar: r.evidence?.triaged?.similar ?? [],
   ...(why ? { why } : {}), examples
 });
@@ -339,6 +349,9 @@ export function draftVocabulary(core) {
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
     draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),
     keyExamples: keyExamplesOf(core),
+    // Ruling R3: a monster feature names the official origin only; its DDB Importer item is uncovered with this reason
+    // (ingest --draft adds the line when it is left out, and rejects a rule that names ddb-importer in `origins`).
+    monsters: { origins: ["official"], uncovered: [{ origin: "ddb-importer", because: DDB_MONSTER_UNCOVERED }] },
     fixes: {
       paths: JSON.parse(JSON.stringify(FIX_PATHS)), enums: JSON.parse(JSON.stringify(FIX_ENUMS)), types: describeFixTypes(),
       max: MAX_FIXES
@@ -390,7 +403,7 @@ export function cutReviewBatches(records, options = {}) {
         const n = (counts.get(book) ?? 0) + 1;
         counts.set(book, n);
         const id = `${book}-review-${String(n).padStart(3, "0")}`;
-        const entries = ofKind.slice(i, i + size).map((r) => ({ ...entryOf(r), rule: ruleFingerprint(r.rule) }));
+        const entries = ofKind.slice(i, i + size).map((r) => ({ ...entryOf(r, { rulable: true }), rule: ruleFingerprint(r.rule) }));
         batches.push({ id, stage: "review", entries });
       }
     }

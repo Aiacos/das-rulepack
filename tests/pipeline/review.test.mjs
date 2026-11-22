@@ -130,8 +130,9 @@ describe("compareAsserts: what agreement is (Ruling R9)", () => {
   });
   it("is data: canonical assertion strings, no prose", () => {
     const c = compareAsserts(draft([HALF]), [PRONE, HALF]);
-    expect(Object.keys(c).sort()).toEqual(["agrees", "free", "implied", "onlyDraft", "onlyReview"]);
-    for (const s of [...c.onlyDraft, ...c.onlyReview, ...c.implied]) expect(s).toMatch(/^[a-z.]+=[^;]+(;[a-z.]+=[^;]+)*$/i);
+    expect(Object.keys(c).sort()).toEqual(["agrees", "baseline", "detail", "free", "implied", "onlyDraft", "onlyReview"]);
+    const all = [...c.onlyDraft, ...c.onlyReview, ...c.implied, ...c.baseline];
+    for (const s of all) expect(s).toMatch(/^[a-z.]+=[^;]+(;[a-z.]+=[^;]+)*$/i);
   });
 });
 
@@ -230,7 +231,7 @@ describe("ingestReviews", () => {
       expect(out.agreed).toEqual([]);
       expect(reasonOf(out)).toMatch(/unknown field/);
     }
-    expect(REVIEW_RESULT_FIELDS).toEqual(["key", "rule", "assert", "why", "confidence"]);
+    expect(REVIEW_RESULT_FIELDS).toEqual(["key", "rule", "outcome", "assert", "why", "confidence"]);
     const inherited = Object.create({ evidence: {} });
     Object.assign(inherited, review(r));
     expect(run([r], [inherited]).agreed).toEqual([r.key]);
