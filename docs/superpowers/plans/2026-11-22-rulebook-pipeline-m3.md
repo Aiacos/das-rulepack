@@ -522,10 +522,14 @@ document for `<actor id>.<item id>` yet). Since R33: `emanation` and `aura` (`si
 of `DRAFT_SHAPES`, and a `triggers` declaration that replays the item's activity at the zone moments. Since R34: `choice`
 (`activityMap`), `blocksHealing`, `blocksTempHp` (`effectMap`), `barrier`, `globe`, `wardsConditions`, `wardsAtZero`
 (`none`), each in its closed shape; `changesForm`, `formLock`, `walls`, `wallSide`, `encloses` and `wardsDetection` stay out,
-each with why (`wards.mjs` `NOT_ADMITTED`).
+each with why (`wards.mjs` `NOT_ADMITTED`). Since R38: four reaction declarations of `triggers` (an AC bonus against one hit,
+a hit turned into a miss at `isHit`, a melee counterattack at `isMissed`, damage `to: "source"` by an activity of the item),
+`reactions`, `light` (`none`), `teleport`, `swapPlaces` (`single`), each in its closed shape; `counter`, `damageShield`,
+`carriedLight`, `transpose`, `afterTeleport`, `forOneAttack` stay out, each with why (`reactions.mjs`).
 
 Outside the list, the engine has keys but the drafter does not use them in this milestone: geometry (`walls`, `summon`,
-`teleport`, `light`…; the zone and aura keys of R33 and the barrier keys of R34 are in the list), `gmAlert` (prose),
+`teleport`, `light`…; the zone and aura keys of R33, the barrier keys of R34 and `teleport`, `swapPlaces`, `light`,
+`reactions` of R38 are in the list), `gmAlert` (prose),
 `metamagic`, `sense` and
 class-mechanic keys (`smite`, `rage`, `sneakAttack`…), which Core owns for the SRD. Those records go to the drafts queue as
 `outcome: "person"`. A rule that needs a fact the engine's `adapter/facts.mjs` does not provide (light level, say), state across
@@ -827,3 +831,36 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   kept its sources, so the item was rebound to an identifier with no entry. Cost if wrong: a rule with the key ships while
   every released engine refuses it, so it does nothing until DAS · Core is updated (said once in the console); a drafter
   on an older engine answers `engine` for a text the key would say, and that record waits for a redraft.
+- **R38 (2026-11-22). Reactions, teleports and light are drafter keys, in a closed form; a reaction word is said at its
+  moment.** The drafts queue's `why` lines (206) decline, read by eye, parries, a hit turned into a miss, a counterattack after
+  a miss, a self teleport, a reaction on every turn and a glow "for want of a key"; the engine has each (content/triggers.mjs
+  `parry`, content/monsters.mjs `reactive`, core/content/annex.mjs validateTeleport and validateLight). Admitted, in the
+  closed shapes of `reactions.mjs` and `draft-keys.mjs`: four `triggers` declarations, steps in order (shape type `tuple`),
+  a condition of one attack fact (`activity.isAttack|isMelee|isWeapon|isSpell`: at a hit the engine's target is the
+  reactor) — `isHit` `use` + `penalty` (`@prof` or 1 to 10, the AC raised against that attack), `isHit` `use` + `miss`,
+  `isMissed` `use` with `target: source, weapon: true`, `isHit` `damage` `to: source` by an activity of the item; and
+  `reactions: { perRound: 2..20 }`, `teleport` (activity, or a distance of 5 to 300 ft; `then`, `after: attack`),
+  `swapPlaces: { activity }`, `light: { on: effect, bright?, dim?, units: ft }`. Every other field is refused with why
+  (`EXCLUDED_REACTION`: a declaration's `via`, `free`…, a damage formula, passengers, a light of an area…), and the keys and
+  hit steps of the territory not admitted are named with why (`counter`, `damageShield`, `carriedLight`, `transpose`,
+  `afterTeleport`, `forOneAttack`; `halve`, `uncrit`, `reduce`, `reroll`, `resist`, `save`). Words: `acBonus`
+  (proficiency or 1..10), `hitBecomes: miss`, `attackerTakes: activity` (at `isHit`), `counterattack: meleeWeapon` (at
+  `isMissed`), never with a roll; `reactionsPerRound` once for the item; `teleports: self|swapsWithTarget` at the use or on a
+  hit or a miss; `sheds: light`. Unassertable, so stamped (R15): a teleport's own distance or arrival activity, every light
+  (radii). `loadCore` reads the validators' own lists (`reactionFields`, `stepFields`, `declarationFields`,
+  `hitWindowSteps`) and a DAS_CORE test fails on a field or hit step in neither a shape nor a table with why. Every admitted
+  key and step is in the engine's latest release: nothing is gated (R37's mechanism stays for keys that are not). Engine
+  gaps: a teleport of the TARGET, damage doubled against objects, a miss only on the attacker's failed save. Measured
+  (repository registry unchanged; a copy gated: 19 143 records, 0 failing, the 101 ruled records keep their states and
+  emission, registry, generated modules, README and RULES.md byte-identical): 19 of the 206 queue entries name a mechanic
+  this makes writable, about 11 whole (a reading of free `why` lines, not a closed field). *Cost if wrong:* (a) a reaction
+  declaration costs the creature's one reaction: a text whose single reaction raises AC and then counterattacks cannot be
+  written (a second `use` would never be offered), and a drafter who writes both ships a counterattack that never fires —
+  the brief says so, review cannot see it (both words agree), play is manual; (b) "while holding a weapon" is dropped by
+  every parry (the engine itself does not check it): a disarmed creature still parries; (c) `acBonus: proficiency` against a
+  printed number compare unequal: a reviewer who reads "+3" where the drafter wrote `@prof` disagrees, more for a person;
+  (d) `reactionsPerRound: 20` stands for "one on every turn", the engine's own reading, which allows more than one a round
+  in a combat of many creatures exactly as the text does but never two in one turn; (e) `teleports: self` says nothing of
+  how far: a draft with a wrong `distance` agrees with any review (stamped, a person reads it); (f) a light's `dim` is the
+  outer radius as Foundry counts it, a drafter reading "dim light for an additional 10 feet" as `dim: 10` halves it unseen
+  by review (stamped, a person reads every light); (g) nothing here is played: every new word is manual.

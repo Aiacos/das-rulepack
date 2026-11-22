@@ -78,7 +78,7 @@ describe("I2b: examples reach every entry, even when triage left keys empty", ()
 });
 
 describe("I2a: value shapes", () => {
-  const lists = { moments: ["failedSave"], statuses: ["prone"], creatureTypes: ["undead"], moveModes: ["push"],
+  const lists = { moments: ["failedSave", "isHit", "isMissed"], statuses: ["prone"], creatureTypes: ["undead"], moveModes: ["push"],
     effectEnds: ["bearerTurnEnd"], damageTypes: ["fire"], sizes: ["med", "lg"] };
   const vocabulary = { ...lists };
   it("every given and expect field has a shape, and values built from it pass assertProblems", () => {
@@ -87,8 +87,9 @@ describe("I2a: value shapes", () => {
     expect(Object.keys(given).sort()).toEqual(["activity", "damageType", "free", "moment", "onOwnTurn", "origin", "roll",
       "selfStatus", "spellLevelAtMost", "targetHp", "targetHpAtMost", "targetSizeAtMost", "targetStatus", "targetType",
       "targetWithin"]);
-    expect(Object.keys(expectShapes).sort()).toEqual(["affects", "bars", "chooses", "condition", "damage", "denies", "ends", "free",
-      "move", "roll", "subjected", "uses"]);
+    expect(Object.keys(expectShapes).sort()).toEqual(["acBonus", "affects", "attackerTakes", "bars", "chooses", "condition",
+      "counterattack", "damage", "denies", "ends", "free", "hitBecomes", "move", "reactionsPerRound", "roll", "sheds", "subjected",
+      "teleports", "uses"]);
     let n = 0;
     for (const [field, shape] of Object.entries(given)) {
       for (const value of variants(shape)) {
@@ -104,7 +105,9 @@ describe("I2a: value shapes", () => {
         n++;
         const expectSide = field === "free" ? { free: value, damage: { fraction: 1 } } : { [field]: value };
         // Ruling R33: `subjected` goes with a zone or aura moment (a rule across fields, outside the declarative shape).
-        const given = field === "subjected" ? { moment: "ownTurnEnd" } : {};
+        // Ruling R38: a reaction word goes with its own moment.
+        const given = field === "subjected" ? { moment: "ownTurnEnd" } : field === "counterattack" ? { moment: "isMissed" }
+          : ["acBonus", "hitBecomes", "attackerTakes"].includes(field) ? { moment: "isHit" } : {};
         const problems = assertProblems([{ given, expect: expectSide }], { vocabulary });
         expect(problems, `${field} ${JSON.stringify(value)}`).toEqual([]);
       }

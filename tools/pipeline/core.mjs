@@ -6,7 +6,9 @@
 // accept (`zoneFields`, read from their own lists); and (Ruling R34) the words of a choice (core/content/enums.mjs
 // CHOICE_EFFECTS) and the fields the choice, barrier, globe and wardsConditions validators accept (`wardFields`); and (Ruling
 // R35) whether its `validateSources` accepts `<actor id>.<item id>` keys (`actorItemSources`); and (Ruling R37) whether it
-// knows the entry key `saveAutoFail` (`saveAutoFail`). Nothing here writes to the clone.
+// knows the entry key `saveAutoFail` (`saveAutoFail`); and (Ruling R38) the fields the reactions, teleport and light
+// validators accept (`reactionFields`), the fields of a step type and of a declaration (`stepFields`, `declarationFields`)
+// and the steps allowed with a reaction at a hit (`hitWindowSteps`). Nothing here writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -99,6 +101,91 @@ export function wardFieldsOf({ annex, extras, entry }) {
     wardsConditions: listAfter(entry, '"wardsConditions" in entry', /\[([^\]]*)\]\.includes\(k\)/)
   };
   return Object.values(out).every((v) => Array.isArray(v) && v.length) ? out : null;
+}
+
+/**
+ * Ruling R38: the fields the engine's validators of the `reactions`, `teleport` and `light` keys accept, read as text from
+ * their own lists (core/content/entry.mjs `reactions`, annex.mjs validateTeleport and validateLight: the loop over the
+ * value's own keys, not an inner one), and the anchors a light may have (core/light.mjs LIGHT_ON): `{ reactions, teleport,
+ * light, lightOn }`, or null when one is not found (a test then fails).
+ */
+export function reactionFieldsOf({ entry, annex, light }) {
+  const out = {
+    reactions: listAfter(entry, '("reactions" in entry)', /\[([^\]]*)\]\.includes\(k\)/),
+    teleport: listAfter(annex, "export function validateTeleport",
+      /Object\.keys\(teleport\)\s*\)\s*\{?\s*if \( !\[([^\]]*)\]\.includes\(key\)/),
+    light: listAfter(annex, "export function validateLight", /Object\.keys\(l\)\s*\)\s*\{?\s*if \( !\[([^\]]*)\]\.includes\(key\)/),
+    lightOn: listAfter(light, "export const LIGHT_ON", /\[([^\]]*)\]/)
+  };
+  return Object.values(out).every((v) => Array.isArray(v) && v.length) ? out : null;
+}
+
+// The body of one function of a source text: from its declaration to the next top-level `function`, or null.
+function bodyOf(source, name) {
+  const start = String(source ?? "").search(new RegExp(`\\bfunction ${name}\\(`));
+  if (start < 0) return null;
+  const rest = source.slice(start + 1);
+  const next = rest.search(/\n(?:export )?function /);
+  return next < 0 ? source.slice(start) : source.slice(start, start + 1 + next);
+}
+const fieldsIn = (line, into) => {
+  for (const m of line.matchAll(/"(\w+)" in step\b/g)) into.add(m[1]);
+  for (const m of line.matchAll(/\bstep\.(\w+)/g)) if (m[1] !== "type") into.add(m[1]);
+};
+/**
+ * Ruling R38: the fields of one step type the engine's validateStep reads (core/content/steps.mjs), as text. The body is cut
+ * into statements (lines joined until one ends with `;`, `{` or `}`); a statement belongs to the step types it names
+ * (`step.type === "<type>"`, or a quoted list that `.includes(step.type)`), else to those of the block it sits in (a block
+ * opened by a statement that names types, such as `if ( step.type === "damage" ) {`); a statement under no type at all
+ * reads a field of every step (`margin`). Its fields: `"<field>" in step` and `step.<field>`. Sorted; null when validateStep
+ * is not found.
+ */
+export function stepFieldsOf(source, type) {
+  const body = bodyOf(source, "validateStep");
+  if (body === null) return null;
+  const statements = [];
+  let pending = "";
+  for (const line of body.split("\n").slice(1)) {
+    pending += ` ${line.trim()}`;
+    if (/[;{}]$/.test(line.trim())) { statements.push(pending); pending = ""; }
+  }
+  const own = new Set();
+  const common = new Set();
+  const stack = [];
+  for (const statement of statements) {
+    const named = [...statement.matchAll(/step\.type === "(\w+)"/g)].map((m) => m[1]);
+    const listed = [...statement.matchAll(/\[([^\]]*)\]\.includes\(step\.type\)/g)]
+      .flatMap((m) => [...m[1].matchAll(/"(\w+)"/g)].map((x) => x[1]));
+    const inner = [...stack].reverse().find((t) => t !== null) ?? null;
+    const types = named.length || listed.length ? [...named, ...listed] : inner;
+    if (types === null) { if (!/step\.type/.test(statement)) fieldsIn(statement, common); }
+    else if (types.includes(type)) fieldsIn(statement, own);
+    // Braces of code only: a template's `${…}` and a string's braces are left out.
+    const code = statement.replace(/\$\{[^}]*\}/g, "").replace(/`[^`]*`|"[^"]*"/g, "");
+    const delta = (code.match(/\{/g) ?? []).length - (code.match(/\}/g) ?? []).length;
+    for (let i = 0; i < delta; i++) stack.push(types);
+    for (let i = 0; i > delta; i--) stack.pop();
+  }
+  return [...new Set([...own, ...common])].sort();
+}
+/**
+ * Ruling R38: the fields of a `triggers` declaration the engine reads (core/content/steps.mjs validateTrigger, as text):
+ * `on`, `if`, `do`, `via` (its canonical form) and every `"<field>" in declaration` it tests. Sorted; null when not found.
+ */
+export function declarationFieldsOf(source) {
+  const body = bodyOf(source, "validateTrigger");
+  if (body === null) return null;
+  const out = new Set(["on", "if", "do", "via"]);
+  for (const m of body.matchAll(/"(\w+)" in declaration\b/g)) out.add(m[1]);
+  return [...out].sort();
+}
+/**
+ * Ruling R38: the step types the engine allows only with a reaction at a hit (core/content/steps.mjs validateTrigger: the
+ * quoted list checked against HIT_WINDOWS), or null when not found.
+ */
+export function hitWindowStepsOf(source) {
+  const m = String(source ?? "").match(/\[([^\]]*)\]\.includes\(s\.type\)[^\n]*HIT_WINDOWS/);
+  return m ? [...m[1].matchAll(/"(\w+)"/g)].map((x) => x[1]) : null;
 }
 
 // Ruling R35: a key of two document ids, `<actor id>.<item id>`, that binds one creature's embedded feature. Invented ids.
@@ -225,6 +312,22 @@ export async function loadCore(dir) {
     }
     return wardFields;
   };
+  // Ruling R38: the reaction, teleport and light field lists, and the step and declaration fields of validateStep and
+  // validateTrigger (the reaction tests fail when they are missing).
+  const contentText = (f) => {
+    const path = join(dir, "module", "scripts", "core", "content", f);
+    return existsSync(path) ? readFileSync(path, "utf8") : "";
+  };
+  const lightPath = join(dir, "module", "scripts", "core", "light.mjs");
+  let reactionFields;
+  const readReactionFields = () => {
+    if (reactionFields === undefined) {
+      reactionFields = reactionFieldsOf({ entry: contentText("entry.mjs"), annex: contentText("annex.mjs"),
+        light: existsSync(lightPath) ? readFileSync(lightPath, "utf8") : "" });
+    }
+    return reactionFields;
+  };
+  const stepsText = contentText("steps.mjs");
   const vocabulary = vocabularyOf([enums, triggers], facts);
 
   const aliases = SRD_ALIASES ?? {};
@@ -264,7 +367,9 @@ export async function loadCore(dir) {
     damageTypes: [...lists.damageTypes], abilities: [...lists.abilities],
     factKinds, sizes: [...argLists.sizes], activityTypes: [...argLists.activityTypes], distanceUnits: [...argLists.distanceUnits],
     emanationMoments, auraAffects, get zoneFields() { return readZoneFields(); },
-    choiceEffects, get wardFields() { return readWardFields(); }
+    choiceEffects, get wardFields() { return readWardFields(); },
+    get reactionFields() { return readReactionFields(); }, stepFields: (type) => stepFieldsOf(stepsText, type),
+    declarationFields: declarationFieldsOf(stepsText), hitWindowSteps: hitWindowStepsOf(stepsText)
   };
 }
 

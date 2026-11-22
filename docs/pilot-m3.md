@@ -500,3 +500,29 @@ found right after the page reload, and held when played again. Of the 42 rules t
 ones, 12 from the pipeline) and 14 validated; the other 17 recorded plays are on rules still held for a person. Scenarios
 with a zone moment, a size limit or a pull out of reach stay manual and are not played.
 
+
+# Reactions, teleports and light for drafters (2026-11-22, Ruling R38)
+
+The drafters' own `why` lines in the drafts queue (206 entries) declined parries, a hit turned into a miss, a counterattack
+after a miss, a self teleport, a reaction on every turn and a glow for want of a key: the engine has each. Four reaction
+declarations of `triggers` and four keys (`reactions`, `teleport`, `swapPlaces`, `light`) are now drafter keys in closed
+shapes (`tools/pipeline/reactions.mjs`), with seven assertion words (`acBonus`, `hitBecomes`, `counterattack`,
+`attackerTakes`, `reactionsPerRound`, `teleports`, `sheds`). Every key and step is in the engine's latest release as well
+as its main branch. Counted by reading the 206 `why` lines (not a closed field; the repository's registry read, not
+changed):
+
+| Mechanic named in a `why` line | Entries | Writable whole, by that reading |
+|---|---|---|
+| AC raised against one hit (a parry) | 12 | 7 (3 the engine already reads, 1 lasts past the hit, 1 also counterattacks) |
+| A counterattack after a miss | 1 (+1 with a parry) | 0 (both answer a miss inside the AC reaction: a second use) |
+| A hit turned into a miss | 2 | 1 (the other only on the attacker's failed save) |
+| A self teleport | 1 | 1 |
+| Reactions a round | 2 | 1 (the other only for opportunity attacks; the engine ships the first under its identifier) |
+| A light on the creature | 1 | 1 |
+| **Total** | **19** | **about 11** |
+
+Not writable, and why: advantage on the next attack (3: the engine's way names the item by identifier), an immunity after
+a save (4: a mark's free name), damage dealt back on a failed save against magic (1: no such moment), a teleport of the
+target (2) and damage doubled against objects (1): engine gaps. On a copy of the registry after `npm run gates`
+(19 143 records, 0 failing), the 101 ruled records keep their states and emission, and the registry, generated modules,
+README and RULES.md are byte-identical.

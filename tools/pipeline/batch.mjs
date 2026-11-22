@@ -5,11 +5,15 @@ import { queueHolds } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
 import {
-  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, draftKeysFor, entryWords, isStructural,
-  wardProblemsOf, zoneProblemsOf
+  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, REACTION_DECLARATION, draftKeysFor,
+  entryWords, isStructural, reactionProblemsOf, wardProblemsOf, zoneProblemsOf
 } from "./draft-keys.mjs";
 import { AURA_MOMENTS, EMANATION_ON, EXCLUDED_ZONE, ZONE_KEYS, ZONE_MOMENTS, replays } from "./zones.mjs";
 import { EXCLUDED_WARD, NOT_ADMITTED, WARD_KEYS } from "./wards.mjs";
+import {
+  EXCLUDED_REACTION, NOT_ADMITTED_REACTION, NOT_ADMITTED_STEPS, REACTION_DECLARATIONS, REACTION_FACTS, REACTION_KEYS,
+  REACTION_MOMENTS, isReactionDeclaration
+} from "./reactions.mjs";
 import { DRAFT_FACTS, EXCLUDED_FACTS, MAX_CONDITION_FACTS } from "./conditions.mjs";
 import { assertShapes } from "./assert.mjs";
 import { identifierClashes, quotationCheck } from "./gates.mjs";
@@ -251,8 +255,13 @@ function fitZones(entry) {
   for (const key of Object.keys(WARD_KEYS)) {
     if (Object.hasOwn(out, key) && wardProblemsOf({ [key]: out[key] }).length) delete out[key];
   }
+  // Ruling R38: the same for a reaction, teleport or light key (passengers, a light of an area, a lost reaction only).
+  for (const key of Object.keys(REACTION_KEYS)) {
+    if (Object.hasOwn(out, key) && reactionProblemsOf({ [key]: out[key] }).length) delete out[key];
+  }
   if (Array.isArray(out.triggers)) {
-    const fit = out.triggers.filter((d) => !replays(d) || !zoneProblemsOf({ triggers: [d] }).length);
+    const fit = out.triggers.filter((d) => (!replays(d) || !zoneProblemsOf({ triggers: [d] }).length)
+      && (!isReactionDeclaration(d) || !reactionProblemsOf({ triggers: [d] }).length));
     if (fit.length) out.triggers = fit;
     else delete out.triggers;
   }
@@ -452,7 +461,11 @@ export function draftVocabulary(core) {
       rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
       givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.AGENT_EXPECT_FIELDS),
       denies: copy(assertVocabulary.DENIES), subjected: copy(assertVocabulary.SUBJECTED), auraMoments: copy(AURA_MOMENTS),
-      chooses: copy(assertVocabulary.CHOOSES), bars: copy(assertVocabulary.BARS)
+      chooses: copy(assertVocabulary.CHOOSES), bars: copy(assertVocabulary.BARS),
+      // Ruling R38.
+      hitBecomes: copy(assertVocabulary.HIT_BECOMES), counterattack: copy(assertVocabulary.COUNTERATTACKS),
+      attackerTakes: copy(assertVocabulary.ATTACKER_TAKES), teleports: copy(assertVocabulary.TELEPORTS),
+      sheds: copy(assertVocabulary.SHEDS)
     },
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
     draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).filter(([k]) => Object.hasOwn(offered, k))
@@ -476,6 +489,15 @@ export function draftVocabulary(core) {
     // Ruling R34: the choice, barrier and ward keys (wards.mjs): what each does at the table and where that was read, what
     // the engine also takes with why not (`excluded`), and the keys of the same territory a drafter may not write, with why.
     wards: { keys: JSON.parse(JSON.stringify(WARD_KEYS)), excluded: { ...EXCLUDED_WARD }, notAdmitted: { ...NOT_ADMITTED } },
+    // Ruling R38: the reaction, teleport and light keys and the four reaction declarations (reactions.mjs): what each does at
+    // the table and where that was read, the declaration's shape (also among the `triggers` alternatives), the moments and
+    // the facts a reaction's condition may name, what the engine also takes with why not, and the keys and step types of the
+    // territory a drafter may not write, with why.
+    reactions: {
+      keys: JSON.parse(JSON.stringify(REACTION_KEYS)), declarations: JSON.parse(JSON.stringify(REACTION_DECLARATIONS)),
+      declaration: resolveShape(REACTION_DECLARATION, engineLists), moments: copy(REACTION_MOMENTS), facts: copy(REACTION_FACTS),
+      excluded: { ...EXCLUDED_REACTION }, notAdmitted: { ...NOT_ADMITTED_REACTION, ...NOT_ADMITTED_STEPS }
+    },
     keyExamples: keyExamplesOf(core),
     // Ruling R3: a monster feature names the official origin only; its DDB Importer item is uncovered with this reason
     // (ingest --draft adds the line when it is left out, and rejects a rule that names ddb-importer in `origins`).

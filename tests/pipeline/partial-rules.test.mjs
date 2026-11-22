@@ -26,7 +26,7 @@ const A_OFF = "Af11Bf22Cf33Df44";
 const E_OFF = "Ef11Ef22Ef33Ef44";
 const core = {
   version: "9.9.9", facts: ["actor.prone"], identifiers: new Set(), vocabulary: new Set(), validateEntry: () => [],
-  moments: ["failedSave", "savedSave", "hit", "leavesReach", "isDamaged"], statuses: ["prone", "restrained"],
+  moments: ["failedSave", "savedSave", "hit", "leavesReach", "isDamaged", "isHit", "isMissed"], statuses: ["prone", "restrained"],
   creatureTypes: ["undead"], moveModes: ["push"], effectEnds: ["bearerTurnEnd", "currentTurnEnd"],
   damageTypes: ["bludgeoning", "thunder"]
 };
@@ -294,8 +294,12 @@ describe("leaves at draft time, in the vocabulary and in the outputs", () => {
     expect(values.length).toBeGreaterThan(20);
     // Ruling R33: `subjected` goes with a zone or aura moment (a rule across fields, outside the declarative shape).
     // Ruling R34: a spell level goes with what a globe bars; a choice and a barrier are said with no moment and no roll.
+    // Ruling R38: a reaction word goes with its own moment.
+    const at = (x) => (Object.hasOwn(x.expect ?? {}, "counterattack") ? "isMissed"
+      : ["acBonus", "hitBecomes", "attackerTakes"].some((k) => Object.hasOwn(x.expect ?? {}, k)) ? "isHit" : null);
     const fit = (x) => (x.expect?.subjected ? { ...x, given: { ...x.given, moment: "ownTurnEnd" } }
-      : Object.hasOwn(x.given ?? {}, "spellLevelAtMost") ? { ...x, expect: { bars: "spells" } } : x);
+      : Object.hasOwn(x.given ?? {}, "spellLevelAtMost") ? { ...x, expect: { bars: "spells" } }
+        : at(x) ? { ...x, given: { ...x.given, moment: at(x) } } : x);
     for (const value of values.map(fit)) {
       expect(leavesProblems([value], { vocabulary: core }), JSON.stringify(value)).toEqual([]);
     }

@@ -5,8 +5,8 @@
 // tests/pipeline/definitions.test.mjs fails when a word of these lists has no definition: the engine's lists through loadCore,
 // and a committed copy of them.
 import {
-  ACTIVITY_GIVENS, AFFECTS, BARS, CHOOSES, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, SUBJECTED,
-  TARGET_HP
+  ACTIVITY_GIVENS, AFFECTS, ATTACKER_TAKES, BARS, CHOOSES, COUNTERATTACKS, DENIES, FRACTIONS, GIVEN_FIELDS, HIT_BECOMES, ROLLS,
+  ROLL_FOR, ROLL_MODES, ROLL_ON, SHEDS, SUBJECTED, TARGET_HP, TELEPORTS
 } from "./assert.mjs";
 import { AURA_MOMENTS } from "./zones.mjs";
 import { LEAVE_REASONS } from "./leaves.mjs";
@@ -22,7 +22,10 @@ export const DEFINITION_SOURCES = Object.freeze([
   // Ruling R34: choices, barriers and wards.
   "engine adapter/usage.mjs", "engine adapter/barriers.mjs", "engine adapter/eligibility.mjs", "engine runtime/cantrips.mjs",
   // Ruling R37: an automatic failure by creature type.
-  "engine core/conditions.mjs"
+  "engine core/conditions.mjs",
+  // Ruling R38: reactions, teleports and light.
+  "engine runtime/reactions.mjs", "engine adapter/reactions.mjs", "engine core/turn.mjs", "engine runtime/teleport.mjs",
+  "engine runtime/maneuver-dice.mjs", "engine adapter/lights.mjs"
 ]);
 
 const def = (means, from) => Object.freeze({ means, from });
@@ -165,6 +168,42 @@ const DEFINED = {
     spells: def("A spell cast from outside the emanation affects no creature inside it (of the level given.spellLevelAtMost"
       + " or lower).", "engine adapter/eligibility.mjs")
   },
+  // Ruling R38 (assert.mjs, reactions.mjs): what a reaction does to the attack that set it off, said at its moment
+  // (`given.moment` isHit or isMissed, the creature being the one that carries the item and reacts), with no roll.
+  acBonus: {
+    proficiency: def("Taking its reaction, the creature adds its proficiency bonus to its AC against that attack alone; the"
+      + " hit is judged again and may become a miss.", "engine runtime/reactions.mjs"),
+    number: def("Written as an integer from 1 to 10: the creature adds that number to its AC against that attack alone, by its"
+      + " reaction; the hit is judged again and may become a miss.", "engine runtime/reactions.mjs")
+  },
+  hitBecomes: {
+    miss: def("Taking its reaction, the creature makes that attack miss instead of hitting.", "engine runtime/reactions.mjs")
+  },
+  counterattack: {
+    meleeWeapon: def("When the attack misses it, the creature may take its reaction to attack the attacker with one of its own"
+      + " melee weapons.", "engine adapter/reactions.mjs")
+  },
+  attackerTakes: {
+    activity: def("When an attack hits the creature, the attacker takes the damage of an activity of the item (no reaction"
+      + " is used; the activity's data gives the damage).", "engine core/content.mjs")
+  },
+  // `expect.reactionsPerRound` (Ruling R38): said once for the item.
+  reactionsPerRound: {
+    number: def("Written as an integer from 2 to 20: the creature that carries the item has that many reactions each round,"
+      + " never more than one in a turn (20 is a reaction on every turn).", "engine core/turn.mjs")
+  },
+  // `expect.teleports` (Ruling R38): at the use of the item, or on a hit or a miss of its attack (given.roll).
+  teleports: {
+    self: def("The creature that used the item teleports to an unoccupied space it can see, which it picks.",
+      "engine runtime/teleport.mjs"),
+    swapsWithTarget: def("The creature that used the item and the creature it targets, within 5 feet, swap places.",
+      "engine runtime/maneuver-dice.mjs")
+  },
+  // `expect.sheds` (Ruling R38): on the roll that applies the item's effect, or every situation.
+  sheds: {
+    light: def("The creature that bears the item's effect sheds bright light, and dim light beyond it, while the effect"
+      + " lasts.", "engine adapter/lights.mjs")
+  },
   // `expect.roll` (assert.mjs ROLL_MODES, ROLL_ON, ROLL_FOR).
   rollMode: {
     advantage: def("The roll is made with advantage.", PACK_FROM),
@@ -306,8 +345,9 @@ const DEFINED = {
 
 const deepFreeze = (o) => Object.freeze(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Object.freeze({ ...v })])));
 /** The definitions, by list (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `chooses`, `bars`, `moveMode`, `affects`,
- * `denies`, `rollMode`, `rollOn`, `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`, `leavesBecause`),
- * each word to `{ means, from }` or "unverified". */
+ * `denies`, `acBonus`, `hitBecomes`, `counterattack`, `attackerTakes`, `reactionsPerRound`, `teleports`, `sheds`, `rollMode`,
+ * `rollOn`, `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`, `leavesBecause`), each word to
+ * `{ means, from }` or "unverified" (`acBonus.number` and `reactionsPerRound.number` define their integers). */
 export const DEFINITIONS = deepFreeze(DEFINED);
 
 /**
@@ -347,7 +387,8 @@ const ENGINE_LISTS = Object.freeze({ ends: "effectEnds", moment: "moments", move
 const PACK_LISTS = Object.freeze({ roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON,
   rollFor: ROLL_FOR, fraction: FRACTIONS, leavesBecause: LEAVE_REASONS, given: GIVEN_FIELDS, targetHp: TARGET_HP,
   activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS), auraMoment: AURA_MOMENTS, subjected: SUBJECTED, chooses: CHOOSES,
-  bars: BARS });
+  bars: BARS, hitBecomes: HIT_BECOMES, counterattack: COUNTERATTACKS, attackerTakes: ATTACKER_TAKES, teleports: TELEPORTS,
+  sheds: SHEDS });
 
 /**
  * The words with no definition, as `<list>.<word>` (own properties only): of the engine's lists given in `core` (loadCore:

@@ -21,6 +21,14 @@ export function variants(d) {
       return d.pick !== undefined ? [d.pick, ...d.values.filter((v) => v !== d.pick)] : [...d.values];
     case "either": case "oneOf": return d.of.flatMap(variants);
     case "list": return variants(d.item).map((v) => [v]);
+    // Ruling R38: every place at its first variant, then each place through its variants, the others at their first.
+    case "tuple": {
+      const all = d.items.map(variants);
+      const first = all.map((v) => v[0]);
+      const out = [first];
+      all.forEach((vs, i) => vs.slice(1).forEach((v) => out.push(first.map((f, j) => (j === i ? v : f)))));
+      return out;
+    }
     case "idList": return [[d.ids === "effect" ? EFF : ACT]];
     case "idMap": return variants(d.value).map((v) => ({ [d.ids === "effect" ? EFF : ACT]: v }));
     // A condition (Ruling R30): each fact alone with each of its argument's variants, and the first `max` facts together.
