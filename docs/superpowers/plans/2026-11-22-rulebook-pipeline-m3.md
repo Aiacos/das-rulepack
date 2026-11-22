@@ -949,3 +949,39 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   one stands against the second review; (f) the confirmed review is signed by the first reviewer and dated at the ingest,
   not when the review was written; (g) a `redrafted: true` mark also keeps R32 from redrafting the new rule later, even if
   it changes the engine's reading.
+- **R42 (2026-11-23). A non-monster `entry` is reread, blind and twice, against the engine's own class of its item.** The
+  features, spells, items, feats, species and options triaged `entry` ("needs a pack rule") were judged by readers who never
+  saw what DAS · Core does with the item, and the engine has gained many rules since. The engine classifies every item itself
+  (its automation badge: `rule` with the rule keys it recognises, `auto`, `passive`, `manual`, `none`); a live sweep of a test
+  world writes that class per record into a private file (`RULEPACK_ENGINE_VIEW`, never in the repository, checked whole by
+  `reread-items.mjs` `parseEngineView`). `batch reread <BOOK> --items [--second]` cuts the unruled, non-legacy, unqueued
+  non-monster `entry` records with text, a matched official item in the dumps and a level in the view, as triage entries
+  without the hint plus `engineView: { level, rules }`, the definitions of the level and of each rule key named (a drafter
+  key's short definition where one exists, otherwise "an engine rule of that name, not described here") and the view's
+  fingerprint (`{ core: DAS_CORE's version, sha: SHA-256 of level and rules }`). The reader answers `covered: true` with
+  `coveredBy` (`engine`: a rule of the engine does it; `data`: the item's own activities and effects on the common path do it;
+  `nothing`: the text asks nothing to automate in combat), or `covered: false` with `beyond` / `unexpressed` (the monster
+  reread's closed vocabulary), with a confidence and an own-words `why`. `ingest --reread --items` makes a covered answer at
+  0.7 or more a provisional verdict set by rule (`engine`: `core`, `data`: `data`, `nothing`: `none`, with `was` and a fixed
+  why, `schema.mjs` `ITEM_REREAD_WHY`) and takes the record out of the drafts queue; a level that contradicts `coveredBy` is
+  refused (`engine` needs `rule`, `data` needs `rule`, `auto` or `passive`; on `manual` or `none` only `nothing` can be
+  covered). A blind second reader with another handle must agree on `covered` and on `coveredBy` to confirm; anything else
+  gives the record back its `entry` (fail closed), `hint: "beyond-engine"` when it found something beyond. Not covered
+  keeps `entry` with the hint and the data, which `batch draft` hands the drafter as `beyondEngine` (now for every kind). The
+  schema holds `evidence.triaged.reread.view` and `coveredBy` and ties them to the verdict under `gates --ci`, which never
+  reads the view; the local gates note "stale: read again" for a view judged by an older engine than `DAS_CORE`'s, or, with
+  the file given, a view that classifies the item otherwise or has no level for it. Measured (repository registry
+  unchanged, cut into a scratch folder against the engine's main branch, DAS · Core 0.290.0): XPHB 112 entries in 4 batches
+  (rule 16, auto 44, passive 3, manual 49; 3 ruled and 30 with no matched official item left out), XDMG 43 in 2 (rule 4,
+  auto 32, passive 1, manual 2, none 4; 2 ruled, 41 no matched official item), EFA 49 in 2 (rule 1, auto 22, passive 14,
+  manual 12; 4 no matched official item): the 204 records of the view. *Cost if wrong:* a covered answer rests on the
+  engine's own classification plus two readers, and a wrong one hides a missing rule: the record leaves the drafts queue as
+  `core`, `data` or `none` and nothing automates what the text asks, with no gate to say so (only a play or a person finds
+  it). In particular (a) the level is the sweep's, of the engine the test world ran, while the fingerprint names the
+  `DAS_CORE` clone's version: a world on another engine than the clone makes the two disagree unseen; (b) `rule` lists rule
+  keys, not what they do: most keys have no definition here (of the 20 keys in the view, only `globe`), so a reader may take
+  a rule for more than it does; (c) `data` trusts that the common path plays the item's data as written, which the view
+  says per item but not per activity (an `auto` item whose one activity the engine skips reads as covered); (d) two readers
+  who share a misreading confirm it, as in R40 and R41; (e) a change of engine version makes every item reread stale and
+  cut again (reader time), since the view cannot be recomputed offline; (f) a revert does not restore the drafts-queue
+  entry (as for monster rereads).

@@ -227,7 +227,7 @@ function beyondProblem(beyond, { reading, structure, core }) {
 }
 
 // The triage evidence a reread starts from: the reader's (an older reread left out: this one supersedes it), or null.
-function readerTriaged(r) {
+export function readerTriaged(r) {
   const triaged = r?.evidence?.triaged;
   if (!isObject(triaged)) return null;
   const { reread, ...rest } = triaged;
@@ -235,8 +235,9 @@ function readerTriaged(r) {
 }
 
 // What a `covered: false` answer found missing, or why it cannot stand: `beyond` (assertions), `unexpressed` (reasons of
-// LEAVE_REASONS), or both; one of them at least.
-function missingProblem(result, ctx) {
+// LEAVE_REASONS), or both; one of them at least. `ctx`: `{ reading, structure, core }` (an item reread, reread-items.mjs,
+// has no reading: null, so only the item's own data bounds `beyond`).
+export function missingProblem(result, ctx) {
   const hasBeyond = Object.hasOwn(result, "beyond");
   const hasUnexpressed = Object.hasOwn(result, "unexpressed");
   if (!hasBeyond && !hasUnexpressed) {
@@ -264,13 +265,15 @@ function takeResult(result, ctx) {
   if (!record) return { reject: `unknown key ${echo(result.key)}` };
   if (!offered.has(result.key)) return { reject: "not offered by this batch (its key is not an entry of the batch file)" };
   if (second && record.kind === "monster" && settledBySecond(record)) return { already: settledBySecond(record) };
+  if (record.kind !== "monster") {
+    return { reject: "not a monster feature: this reread reads monster features only (an item is reread with --items)" };
+  }
   if (second) {
     if (!isProvisionalCore(record)) return { reject: "not a provisional core of a first reread: a second reread reads only those" };
     if (rereadOf(record).by.toLowerCase() === by.toLowerCase()) {
       return { reject: "the second rereader must be another reader than the first (case aside)" };
     }
   } else {
-    if (record.kind !== "monster") return { reject: "not a monster feature: a reread reads monster features only" };
     if (record.rule) return { reject: "the record has a rule: its comparison with the reading is the gates' (evidence.reading)" };
     if (record.legacy === true) return { reject: "legacy record: it leaves legacy through a person" };
     if (record.verdict !== "entry") return { reject: `the verdict is ${record.verdict}, not entry: a reread reads entry records` };

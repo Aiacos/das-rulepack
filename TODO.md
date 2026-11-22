@@ -291,6 +291,15 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] Re-ingest the existing second-reread results files under the fail-closed rule on the registry (XMM 001-004, the
       r2 XMM second pass, FRAIF), then recount confirmed and provisional `core`.
 - [ ] Hand a reread's `unexpressed` reasons to the drafter (today `beyondEngine` carries the `beyond` assertions only).
+- [x] The item reread (Ruling R42, 2026-11-23): `batch reread <BOOK> --items [--second]` cuts the non-monster `entry`
+      records against the engine's own class of the item (the private `RULEPACK_ENGINE_VIEW`), `ingest --reread --items`
+      sets a provisional `core`, `data` or `none` by `coveredBy`, a blind second reader confirms or it fails closed
+      (`docs/PIPELINE.md`, "Rereading items against the engine's view"). Dry cut: XPHB 112, XDMG 43, EFA 49 (the 204).
+- [ ] Run the item reread on XPHB, XDMG and EFA, then the second item reread of every covered answer; count confirmed and
+      provisional apart, per `coveredBy`.
+- [ ] Definitions for the engine rule keys the view names (19 of its 20 keys have none: `usageLimits`, `triggers`,
+      `rollBonus`...), read from the engine, so that a `rule` level says what it does.
+- [ ] Record the engine version of the world a view was swept on in the view file, and check it against `DAS_CORE`'s.
 - [ ] Reread the monster features of the other books with official actor dumps (FRAIF 32, EFA 13, XPHB 7 with a reading).
 - [ ] Draft the 60 "beyond the engine" records as additions over the reading (most have a shared embedded id: bound by
       `<actor id>.<item id>` since Ruling R35).
@@ -351,3 +360,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       two direct reproductions show the engine ends all four effects at the turn start; the runner is at fault, cause open.
 - [x] Scenario runner: the intermittent "effect not gone" was Bloodied (a status the system adds at the hit, no origin) taken
       for the use's effect; the runner now also confirms a turn really changed, and names what stayed on a failure.
+- [ ] Item reread: the engine entry passed through the view to the reader has no unit test of its own yet.

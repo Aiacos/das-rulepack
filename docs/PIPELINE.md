@@ -22,6 +22,7 @@ text itself lives in a local cache outside the repository.
 | `RULEPACK_REGISTRY` | optional: the registry folder, default `registry/` of this repository |
 | `RULEPACK_RULES` | optional: where `build:rules` writes the generated modules, default `scripts/rules/` of this repository |
 | `RULEPACK_PLAY` | optional: where `scenarios` writes the play data and `played` reads it, default `play/` of this repository |
+| `RULEPACK_ENGINE_VIEW` | the engine's class of each item (R42): a private file of a live sweep, never in the repository |
 
 A command that needs a variable that is not set exits with code 2 and names it. Nothing under `tools/` calls a model, a
 network service or a Foundry server.
@@ -913,6 +914,140 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 > on a first reread, nothing is written and the entry is cut again later; on a second reread, the first reader's `core` is
 > not confirmed and the entry goes back to the drafters. Say 0.6 when unsure rather than rounding up: `covered: true` takes
 > work away from the pack, a second reader checks it, but a wrong one is a feature nobody automates.
+
+## 🔁 Rereading items against the engine's view (Ruling R42)
+
+Triage gave the verdict `entry` ("needs a pack rule") to features, spells, items, feats, species and options without seeing
+what DAS · Core does with the item, and the engine has gained many rules since. The engine classifies every item itself
+(its automation badge): `rule` (it has its own rule for the item, with the list of rule keys it recognises), `auto` (its
+common path resolves the item's activities: a roll, an effect, a summon, a transformation, a cast), `passive` (transferred
+effects only), `manual` (nothing) or `none` (gear with nothing to play). A live sweep of a test world writes that class per
+record into a private file, `RULEPACK_ENGINE_VIEW`: `{ "<record key>": { level, rules, layers, identifier, pack } |
+{ missing: true } }` (never in the repository; `reread-items.mjs` `parseEngineView` checks it whole and refuses a file with
+one entry out of that shape). The item reread is the monster reread's discipline applied to that class: one reader blind to
+every earlier verdict, a blind second reader for every covered answer, fail closed, one decision per view
+(`tools/pipeline/reread-items.mjs`).
+
+`npm run batch -- reread <BOOK> --items --out <dir> --structure <private dir> [--size 30] [--second]` needs `DAS_CORE`,
+`RULEPACK_DUMPS` and `RULEPACK_ENGINE_VIEW` (a usage error, exit 2, names them otherwise; `--items` with `--restate` is one
+too). The flag is `--items` because what is reread is the item the engine classifies, as against the monster feature whose
+text the engine reads (the plain `batch reread`), and because the batches, the report and the vocabulary carry the same word
+(`<book>-reread-items-<NNN>`). It cuts the records that are not monster features, have the verdict `entry`, carry no rule,
+are not legacy, are in neither `review-queue.json` nor `queue.json`, have text and a matched official item in the dumps,
+**and that the view holds with a level**. Left out, counted in `<dir>/<book>-reread-items-report.json` (counts only; also
+printed): `already ruled`, `legacy`, `in review-queue.json`, `in queue.json`, `no text`, `no matched official item`, `not in
+the engine view`, `missing from the engine view` (`{ missing: true }`), `official item not in the dumps`, `reread for the
+current view`; the report also counts the entries cut per engine level (`byLevel`). An entry is what a triage entry carries
+(`key`, `name`, `kind`, `edition`, `textSha`, `owner`, `level`, `section`, `rarity`, `page`, `srd` where the record has them,
+`items` without their data) **without the hint**, plus `engineView: { level, rules }`, `engineWords` (the definition of the
+level, and of each rule key named: the short definition of a drafter key where one exists, `zones.mjs` / `wards.mjs` /
+`reactions.mjs`, otherwise "an engine rule of that name, not described here") and `view: { core, sha }`, the view's
+fingerprint (the engine version of `DAS_CORE` and the SHA-256 of the level and the rules; `layers`, `identifier` and `pack`
+never go in). `<private dir>/<id>.structure.json` holds the item structures as for triage (premium-derived: never commit
+it); `<dir>/reread-items-vocabulary.json` is the monster rereader's vocabulary plus `engineLevels`, `coveredBy` and
+`coveredByLevels` (below). A record whose item reread judged the view of today (same `sha`, an engine no older than today's)
+is not cut again; an unsure one (nothing stored) or a stale one is.
+
+`--second` cuts `<book>-reread-items-second-<NNN>` (report `<book>-reread-items-second-report.json`) from the records a
+first item reread covered (verdict `core`, `data` or `none`, provisional) and no second reader has settled (`second reread
+done` otherwise), while the view is still the one the first judged (`view changed since the first reread` otherwise). Its
+entries are exactly the first's: nothing of the first answer goes in. Give it to a reader with another handle.
+
+### 📖 Brief for an item reread agent
+
+The Claude Code session gives each item reread agent one batch file, its structure file, `reread-items-vocabulary.json` and
+this brief; the second reader gets a `-reread-items-second-` batch and the same brief, and never the first reader's results.
+
+> You reread the entries of one batch file, `<dir>/<book>-reread-items-<NNN>.json` (or `<book>-reread-items-second-<NNN>.json`:
+> the same work, done blind). Each entry is a feature, spell, item, feat, species or option. DAS · Core, the combat engine,
+> classifies each item by itself; its class of this one is `engineView`: `level` (`rule`, `auto`, `passive`, `manual` or
+> `none`, each defined in `engineWords.level` and in `engineLevels` of the vocabulary) and `rules`, the rule keys of the
+> engine's own rule for the item (each defined in `engineWords.rules`, or said to be undescribed). The question is one:
+> **does the item's data, played by the engine, together with the engine's rule for it, already do everything the text asks
+> in combat?**
+>
+> **What you may read.** The batch file; its structure file `<private dir>/<book>-reread-items-<NNN>.structure.json`;
+> `reread-items-vocabulary.json` beside the batch; and the text cache `$RULEPACK_TEXT` (`<textSha>.txt`). Nothing else:
+> never anything under `registry/`, another batch, a results file, the engine view file or the engine's code. No network, no
+> game server, no git, no edits to the repository: you write one results file and nothing more. You are not told what
+> anyone decided before about these entries, and you must not look for it.
+>
+> **How you work.** Read the text, then the official structure (its activities: type, damage, save, `onSave`, the effects
+> each applies; its effects: statuses, the keys their changes touch, `transfer`), then `engineView`. What the item's data
+> does, the engine plays on `auto` (and on `rule`); a `passive` item acts through its transferred effects only; on `rule`
+> the engine also does what each rule key says. Compare what the text asks in combat with that. There are four answers:
+> - `covered: true` with `"coveredBy": "engine"` when a rule of the engine (a key of `rules`, level `rule`) does what the data
+>   alone would not, and nothing is left;
+> - `covered: true` with `"coveredBy": "data"` when the item's own activities and effects, on the engine's common path, do
+>   all of it (level `rule`, `auto` or `passive`);
+> - `covered: true` with `"coveredBy": "nothing"` when the text asks nothing to automate in combat (a choice of build, a
+>   proficiency, travel, a conversation, a description), whatever the level;
+> - `covered: false`, with `beyond` (assertions of the closed vocabulary, as in the monster reread brief above: one per thing
+>   not done, at most 6, no `free`, no `excludes`) and/or `unexpressed` (reasons of the closed list, each defined in
+>   `definitions.leavesBecause`), when the text asks something in combat that neither the data nor the engine's rule does.
+>
+> **Plainly: if the text asks for something in combat and the engine view is `manual`, the answer is never covered.** On
+> `manual` and `none` the engine does nothing: only `"coveredBy": "nothing"` can be covered there, and only when the text
+> truly asks nothing in a fight; the ingest refuses `engine` on any level but `rule` and `data` on `manual` or `none`
+> (`coveredByLevels` of the vocabulary). A level does not decide alone either way: `rule` does not mean the rule does all the
+> text asks (read each key's definition; an undescribed key is not evidence that something is done), and `auto` means the
+> data is played, not that the data says everything the text says. If something is missing, the answer is never covered,
+> whatever your confidence.
+>
+> **What is not beyond**: what the item's own data already does (an effect's status on the roll that applies it, an
+> attack's damage on a hit, a save's half on a success when `onSave` says so); the ingest rejects such an assertion.
+>
+> **Worked example: covered by the engine** (invented). The text of "Ember Ward" says: once per turn, when the bearer is
+> hit, it may reduce the damage by its proficiency bonus. The structure has one `utility` activity with a reaction
+> activation; `engineView` is `{ "level": "rule", "rules": ["usageLimits", "damageReduction"] }`, `damageReduction`
+> undescribed, `usageLimits` the once-per-turn limit. The rule names both things the text asks and the data alone would do
+> neither:
+>
+> ```json
+> { "key": "tst:feat:ember-ward", "covered": true, "coveredBy": "engine", "confidence": 0.75,
+>   "why": "the engine's own rule limits it to once a turn and lowers the damage; the data alone would not" }
+> ```
+>
+> **Worked example: covered by the data** (invented). The text of "Cinder Bolt" says: a ranged spell attack, fire damage on
+> a hit, and the target sheds dim light until the end of its next turn. The structure has one `attack` activity with fire
+> damage whose effect gives a light and ends on the target's next turn end; `engineView` is `{ "level": "auto", "rules": []
+> }`. The attack, the damage and the effect are the data, and the engine plays them:
+>
+> ```json
+> { "key": "tst:spell:cinder-bolt", "covered": true, "coveredBy": "data", "confidence": 0.85,
+>   "why": "the attack, its damage and the timed glow are all the item's own data, played as written" }
+> ```
+>
+> **Worked example: covered by nothing** (invented). The text of "Lamplighter's Knack" says: the character learns to read
+> one more script and gains proficiency with tinker's tools. `engineView` is `{ "level": "manual", "rules": [] }`. Nothing
+> of it acts in a fight:
+>
+> ```json
+> { "key": "tst:feat:lamplighters-knack", "covered": true, "coveredBy": "nothing", "confidence": 0.9,
+>   "why": "a language and a tool proficiency: nothing to play in a fight" }
+> ```
+>
+> **Worked example: not covered, on manual** (invented). The text of "Frost Hop" says: as a bonus action the bearer leaps
+> 10 feet, and the next creature it hits this turn is pushed 5 feet. `engineView` is `{ "level": "manual", "rules": [] }`:
+>
+> ```json
+> { "key": "tst:feature:frost-hop", "covered": false, "confidence": 0.8,
+>   "beyond": [ { "given": { "roll": "hit" }, "expect": { "move": { "mode": "push", "distance": 5 } } } ],
+>   "unexpressed": ["follow-up-action"],
+>   "why": "the engine plays nothing of it: the leap and the push after it are both missing" }
+> ```
+>
+> **No text, no answer.** If the text file is missing or unreadable, leave the entry out of the results. Never decide from
+> memory of the book, and never from the structure or the level alone.
+>
+> **Write one file** `<batch id>.results.json` outside the repository, `{ "batch": "<batch id>", "by": "<your handle>",
+> "results": [ … ] }`, one result per entry with `key` unchanged and only the fields `key`, `covered`, `coveredBy` (with
+> `covered: true` only, and always then), `beyond`, `unexpressed` (with `covered: false` only, one of them at least), `why`
+> and `confidence`. `why` is one line of your own words, at most 200 characters, never 8 or more consecutive words of the
+> text. `by` is a short handle such as `rereader-items-3`, never a person's name, and for a second reread never the first
+> reader's. **Confidence** is 0 to 1; 0.7 is the line: below it, on a first reread, nothing is written and the entry is cut
+> again; on a second reread, the first reader's answer is not confirmed and the record goes back to `entry`. A covered answer
+> takes work away from the pack and a wrong one hides a missing rule: say 0.6 when unsure rather than rounding up.
 
 ## 📖 Brief for a drafter agent
 
@@ -1948,6 +2083,45 @@ never a failure) for a record whose engine reading of today has another `sha` th
 that reads the feature differently makes the reread visibly stale. A stale `entry` is cut again by `batch reread`; a stale
 `core` is not (it is no
 `entry` any more): the note is there for a person.
+
+### Ingesting item rereads (Ruling R42)
+
+`npm run ingest -- <results-file> --reread --items [--second] --batch <batch file>` takes what an item reread agent wrote
+(`reread-items.mjs` `ingestItemRereads`); it needs `RULEPACK_TEXT`, `DAS_CORE`, `RULEPACK_DUMPS` and `RULEPACK_ENGINE_VIEW`
+(the view and the item's structure are read again). `--items` without `--reread`, or with `--restate`, is a usage error. The
+whole file is refused as for a monster reread, and when its `batch` is not `<book>-reread-items-<NNN>` (or
+`<book>-reread-items-second-<NNN>` with `--second`) or the batch file does not have that id, stage `reread`, `items: true`
+(`second: true` exactly with `--second`) and entries that are keys of that book with their `view`; a monster reread batch is
+refused here and an item batch by the plain `--reread`. Per result:
+
+- **Rejected**: every check of the monster reread that applies (fields, keys, the record a non-monster `entry` without rule,
+  legacy or queue, `beyond` and `unexpressed`, the item's own data, confidence, why, text), with `coveredBy` among the fields
+  (`by` never is); a monster feature; **stale**: no level for the item in the view now, or a view or an engine other than the
+  one the batch entry was cut against; already reread for that view; `covered: true` without a `coveredBy` of `engine`,
+  `data`, `nothing`, or with one the level contradicts (`engine` needs `rule`; `data` needs `rule`, `auto` or `passive`:
+  `coveredByLevels`); `coveredBy` with `covered: false`.
+- **Unsure** (below 0.7): nothing changes.
+- **Covered** (at least 0.7): the verdict of `coveredBy` (`engine`: `core`, `data`: `data`, `nothing`: `none`), `why` its fixed
+  line (`schema.mjs` `ITEM_REREAD_WHY`), a stale `beyond-engine` hint removed (any other hint kept), and `evidence.triaged =
+  { by: "rule", at, was, reread: { by, at, confidence, view, covered: true, coveredBy, provisional: true } }`; the record
+  leaves `drafts-queue.json`.
+- **Not covered** (at least 0.7): the verdict stays `entry`, `hint: "beyond-engine"`, `reread: { by, at, confidence, view,
+  covered: false, beyond?, unexpressed? }` beside the reader's triage evidence; `batch draft` hands the drafter `beyondEngine`
+  from `beyond`, as for a monster feature.
+
+**Second item reread** (`--second`): a blind second reader must agree on `covered` **and** on `coveredBy` at 0.7 or more to
+confirm (`reread.second = { by, at, confidence, view, covered: true, coveredBy }`, `provisional` goes). Anything else fails
+closed: another `coveredBy`, `covered: false`, or an unsure answer (`outcome: "second-unsure"`) gives the record back what it
+was (`was`: `entry`, its why, the reader's triage evidence), with `hint: "beyond-engine"` only when the second found something
+beyond; the drafts-queue entry is not restored. A settled record is reported (`already confirmed`, `already reverted`).
+
+The schema holds the shape (a reread has `reading` or `view`, never both; `coveredBy` only on an item reread with `covered:
+true`, and always then; a second of the same kind) and ties it to the verdict under `gates --ci` too: covered by the first
+and by an agreeing second goes with the verdict of `coveredBy`, by rule, its `was` (allowed with `data` and `none` for an
+item reread) and the fixed why; otherwise the verdict is none of `core`, `data`, `none`. The local `npm run gates` notes
+(never fails) `reread: stale: ... read again` for an item reread judged by an engine older than `DAS_CORE`'s, or, when
+`RULEPACK_ENGINE_VIEW` is given, whose view has no level for the item now or another `sha`; without the file it says the
+view cannot be checked. `gates --ci` never reads the file.
 
 ### Written criteria for the two boundaries
 
