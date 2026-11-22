@@ -345,3 +345,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       FRAIF 1 (5 of the 12 have both reviewers at or above 0.7); run them.
 
 - [x] Four more plays recorded, among them the first rules bound to one creature by an actor.item source.
+- [x] Redraft against two standing reviews (R41): 2 of 12 confirmed and shipped. 55 rules ship.
+

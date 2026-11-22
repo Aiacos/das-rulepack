@@ -563,3 +563,19 @@ Three independent readings of the same feature agree on the draft in one case ou
 half. For these features the closed vocabulary leaves too much room: what stays in the queue is for a person, and the 12
 with two reviewers against the draft are the first to write again. The pack ships 53 rules.
 
+# Redrafts against two standing reviews (2026-11-22)
+
+The 12 rules two blind reviewers had read the same way, against the draft, were drafted again, blind, and compared with both
+reviews as stored (Ruling R41).
+
+| Outcome | Rules |
+|---|---|
+| The new draft agrees with both reviewers: confirmed, shipped | 2 |
+| It agrees with both, but a reviewer was unsure | 1 |
+| It still differs from both | 5 |
+| Declined by the drafter | 3 |
+| Rejected (a leave for something the rule states) | 1 |
+
+The pack ships 55 rules. Where three blind readings were made of one feature, they agree all three in few cases: what
+remains in the review queue is for a person.
+

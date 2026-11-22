@@ -1,0 +1,42 @@
+{
+  "scenario": "xmm/xmm-monster-death-slaad-action-chaos-blade",
+  "key": "xmm:monster:death-slaad/action/chaos-blade",
+  "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmDeathSlaad0000.yDu5v2Fj4bPhdXgS",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmDeathSlaad0000",
+      "id": "yDu5v2Fj4bPhdXgS"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "5crQOQ7WFvdEx8FM": 10
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "5crQOQ7WFvdEx8FM"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=hit"
+    }
+  ]
+}

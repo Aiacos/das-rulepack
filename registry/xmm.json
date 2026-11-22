@@ -889,15 +889,16 @@
           }
         },
         "drafted": {
-          "by": "drafter-x001",
-          "at": "2026-11-22T19:47:12.026Z",
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
           "core": "0.290.0",
-          "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052"
+          "rule": "07d0ae021deaad2a8222f9962cde847eeafcceeab686f860678c831f61c3ccc1",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.553Z",
+          "at": "2026-11-22T22:21:35.203Z",
           "core": "0.290.0",
-          "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052",
+          "rule": "07d0ae021deaad2a8222f9962cde847eeafcceeab686f860678c831f61c3ccc1",
           "item": "130f98a4adc959db1b714b3af0df861f42511104896d78b1c7107e2b93887a75",
           "delta": [
             "triggers"
@@ -914,9 +915,9 @@
           ]
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.553Z",
+          "at": "2026-11-22T22:21:35.203Z",
           "core": "0.290.0",
-          "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052",
+          "rule": "07d0ae021deaad2a8222f9962cde847eeafcceeab686f860678c831f61c3ccc1",
           "emits": "91692169b991b74e815d378cf50512037dd31bc3cbdc155bbf0e58ef7b0af369",
           "passed": [
             "schema",
@@ -938,7 +939,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "A failed save leaves the target charmed; taking damage still lets it save again.",
+        "adds": "A failed save leaves the target charmed; it saves again each time it is damaged.",
         "entry": {
           "triggers": [
             {
@@ -3762,6 +3763,32 @@
           "core": "0.290.0",
           "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89"
         },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
+          "confidence": 0.7,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-w001",
+            "confidence": 0.65,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=bearerTurnEnd;given.roll=failedSave"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-brass-dragon-legendary-scorching-sands",
+          "client": "gm",
+          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89"
+        },
         "reading": {
           "at": "2026-11-22T11:21:21.514Z",
           "core": "0.290.0",
@@ -3793,32 +3820,6 @@
           "items": {
             "official": "36ddf8804decd6ee43442be9e8eea48f6608b08e4ca982d1870af1e4517eb701"
           }
-        },
-        "reviewed": {
-          "by": "reviewer-z001",
-          "at": "2026-11-22T21:52:05.872Z",
-          "agrees": true,
-          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
-          "confidence": 0.7,
-          "via": "second-review",
-          "first": {
-            "by": "reviewer-w001",
-            "confidence": 0.65,
-            "reason": "low-confidence",
-            "assert": [
-              "expect.ends=bearerTurnEnd;given.roll=failedSave"
-            ],
-            "onlyDraft": [],
-            "onlyReview": []
-          }
-        },
-        "played": {
-          "at": "2026-11-22T22:00:30.382Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-adult-brass-dragon-legendary-scorching-sands",
-          "client": "gm",
-          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89"
         }
       },
       "why": "Data has half damage on save the text does not give; speed halving needs correct timed effect until end of next turn",
@@ -4924,6 +4925,32 @@
           "core": "0.290.0",
           "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537"
         },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
+          "confidence": 0.75,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-w001",
+            "confidence": 0.65,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=bearerTurnEnd;given.roll=failedSave"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-copper-dragon-action-slowing-breath",
+          "client": "gm",
+          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537"
+        },
         "reading": {
           "at": "2026-11-22T11:21:21.518Z",
           "core": "0.290.0",
@@ -4955,32 +4982,6 @@
           "items": {
             "official": "40d479eb5a876e31c85abf8875e30dd96aab3a1d0355e0a6720755c8bc72e71d"
           }
-        },
-        "reviewed": {
-          "by": "reviewer-z001",
-          "at": "2026-11-22T21:52:05.872Z",
-          "agrees": true,
-          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
-          "confidence": 0.75,
-          "via": "second-review",
-          "first": {
-            "by": "reviewer-w001",
-            "confidence": 0.65,
-            "reason": "low-confidence",
-            "assert": [
-              "expect.ends=bearerTurnEnd;given.roll=failedSave"
-            ],
-            "onlyDraft": [],
-            "onlyReview": []
-          }
-        },
-        "played": {
-          "at": "2026-11-22T22:00:30.382Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-adult-copper-dragon-action-slowing-breath",
-          "client": "gm",
-          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537"
         }
       },
       "why": "Multi-part restriction: no reactions, halved speed, action or bonus action not both; data has half damage the text lacks and no restriction",
@@ -7585,15 +7586,16 @@
           "similar": []
         },
         "drafted": {
-          "by": "drafter-w002",
-          "at": "2026-11-22T11:21:12.182Z",
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
           "core": "0.290.0",
-          "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72"
+          "rule": "56a1343d2437229e1d25dc75eeca09428e528afa65e5ceba816ca513ce9597ba",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T11:21:21.527Z",
+          "at": "2026-11-22T22:21:35.219Z",
           "core": "0.290.0",
-          "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+          "rule": "56a1343d2437229e1d25dc75eeca09428e528afa65e5ceba816ca513ce9597ba",
           "item": "3b9bc71d00148010e998400234a1287b1308962c523b0ad84cf563c3475b028a",
           "delta": [
             "triggers"
@@ -7606,9 +7608,9 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T11:21:21.528Z",
+          "at": "2026-11-22T22:21:35.220Z",
           "core": "0.290.0",
-          "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+          "rule": "56a1343d2437229e1d25dc75eeca09428e528afa65e5ceba816ca513ce9597ba",
           "emits": "82e5627901a2cfd63e05630d6b8b4a52326b9a27fa693bab8af6a269ffce8708",
           "passed": [
             "schema",
@@ -7629,7 +7631,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "A failed save pushes the target 30 feet away from the dragon.",
+        "adds": "A failed save shoves the creature 30 feet away from the dragon.",
         "entry": {
           "triggers": [
             {
@@ -39856,15 +39858,32 @@
           }
         },
         "drafted": {
-          "by": "drafter-x003",
-          "at": "2026-11-22T19:47:15.987Z",
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
           "core": "0.290.0",
-          "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a"
+          "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f",
+          "redrafted": true
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T22:21:10.880Z",
+          "agrees": true,
+          "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f",
+          "confidence": 0.8,
+          "via": "redraft-against-reviews",
+          "second": {
+            "by": "reviewer-z001",
+            "at": "2026-11-22T21:52:05.872Z",
+            "confidence": 0.75,
+            "assert": [
+              "expect.ends=bearerTurnEnd;given.roll=hit"
+            ]
+          }
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.621Z",
+          "at": "2026-11-22T22:21:35.284Z",
           "core": "0.290.0",
-          "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a",
+          "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f",
           "item": "a370ad912fbaf0effc2136ba7029558760868b5b254fb77d776930f581542bf0",
           "delta": [
             "effectEnds"
@@ -39877,9 +39896,9 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.621Z",
+          "at": "2026-11-22T22:21:35.284Z",
           "core": "0.290.0",
-          "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a",
+          "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f",
           "emits": "25064a8ec92d4bf9f3c159cafa8d795f5ceb87837ac2b8715e43a6a3f123a0de",
           "passed": [
             "schema",
@@ -39901,7 +39920,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "The no-healing effect from a hit lasts through the end of the target's following turn.",
+        "adds": "The healing block on the struck creature lapses when its next turn ends.",
         "entry": {
           "effectEnds": {
             "rWqB3N3piOf9afmQ": "bearerTurnEnd"
@@ -39918,14 +39937,6 @@
             "expect": {
               "ends": "bearerTurnEnd"
             }
-          },
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "denies": "healing"
-            }
           }
         ],
         "uncovered": [
@@ -39936,7 +39947,7 @@
         ],
         "origin": "Death Cultist"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:death-cultist/action/multiattack",
@@ -41570,15 +41581,32 @@
           }
         },
         "drafted": {
-          "by": "drafter-x003",
-          "at": "2026-11-22T19:47:15.987Z",
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
           "core": "0.290.0",
-          "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80"
+          "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa",
+          "redrafted": true
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T22:21:10.880Z",
+          "agrees": true,
+          "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa",
+          "confidence": 0.8,
+          "via": "redraft-against-reviews",
+          "second": {
+            "by": "reviewer-z001",
+            "at": "2026-11-22T21:52:05.872Z",
+            "confidence": 0.75,
+            "assert": [
+              "expect.ends=casterTurnStart;given.roll=hit"
+            ]
+          }
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.623Z",
+          "at": "2026-11-22T22:21:35.288Z",
           "core": "0.290.0",
-          "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80",
+          "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa",
           "item": "167048b117ceafbb2681dd7f35aeca4a0eeb00e7e1d6311134112a085866b045",
           "delta": [
             "effectEnds"
@@ -41591,9 +41619,9 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.623Z",
+          "at": "2026-11-22T22:21:35.288Z",
           "core": "0.290.0",
-          "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80",
+          "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa",
           "emits": "287f96b0e4227dc5bd06496969685f54fcace0805202aa03b479988c443b82f1",
           "passed": [
             "schema",
@@ -41615,7 +41643,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "The rolled condition from a hit lasts until the slaad's following turn starts.",
+        "adds": "Whichever rolled condition lands ends as the slaad's next turn starts.",
         "entry": {
           "effectEnds": {
             "1vrQDUhLrUP4jRKw": "casterTurnStart",
@@ -41635,17 +41663,11 @@
             "expect": {
               "ends": "casterTurnStart"
             }
-          },
-          {
-            "given": {},
-            "expect": {
-              "chooses": "effectByRoll"
-            }
           }
         ],
         "origin": "Death Slaad"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:death-slaad/action/multiattack",
@@ -52303,6 +52325,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T19:58:27.775Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ettin-action-morningstar",
+          "client": "gm",
+          "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8"
+        },
         "reading": {
           "at": "2026-11-22T19:47:47.640Z",
           "core": "0.290.0",
@@ -52334,14 +52364,6 @@
           "items": {
             "official": "56111d6d0e0ba8b5e406901c4dc64734b2e8d0d5b59f28c6085420a1df9c7ff1"
           }
-        },
-        "played": {
-          "at": "2026-11-22T19:58:27.775Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ettin-action-morningstar",
-          "client": "gm",
-          "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8"
         }
       },
       "why": "Disadvantage on the next attack roll until end of next turn is a limited-window rider; data effect has no changes.",
@@ -67321,13 +67343,14 @@
           }
         },
         "drafted": {
-          "by": "drafter-x005",
-          "at": "2026-11-22T19:47:19.727Z",
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
           "core": "0.290.0",
-          "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf"
+          "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.664Z",
+          "at": "2026-11-22T22:21:35.349Z",
           "core": "0.290.0",
           "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
           "item": "dd3677a70fe0d5b85279cfa0af50f022ae3e193550af9e03b7155216dc3f3c31",
@@ -67342,7 +67365,7 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.664Z",
+          "at": "2026-11-22T22:21:35.350Z",
           "core": "0.290.0",
           "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
           "emits": "fed9ef8d6e75848d1191073ae7bdd3925dff5367a8d0464e1c999cec9c553c13",
@@ -69585,6 +69608,32 @@
           "core": "0.289.0",
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09"
         },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
+          "confidence": 0.75,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-v002",
+            "confidence": 0.55,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=casterTurnStart;given.roll=hit"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-gray-slaad-action-chaos-claw",
+          "client": "gm",
+          "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.255Z",
           "core": "0.290.0",
@@ -69616,32 +69665,6 @@
           "items": {
             "official": "28d1efe644909060354a6118990481b5978264166c0caa87708808c45a08f581"
           }
-        },
-        "reviewed": {
-          "by": "reviewer-z001",
-          "at": "2026-11-22T21:52:05.872Z",
-          "agrees": true,
-          "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
-          "confidence": 0.75,
-          "via": "second-review",
-          "first": {
-            "by": "reviewer-v002",
-            "confidence": 0.55,
-            "reason": "low-confidence",
-            "assert": [
-              "expect.ends=casterTurnStart;given.roll=hit"
-            ],
-            "onlyDraft": [],
-            "onlyReview": []
-          }
-        },
-        "played": {
-          "at": "2026-11-22T22:00:30.382Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-gray-slaad-action-chaos-claw",
-          "client": "gm",
-          "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09"
         }
       },
       "why": "Random condition from a d4 until the start of its next turn, on hit; data has four statuses with no roll or timed end.",
@@ -70652,6 +70675,32 @@
           "core": "0.289.0",
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4"
         },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
+          "confidence": 0.75,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-v002",
+            "confidence": 0.55,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=casterTurnStart;given.roll=hit"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
+        },
+        "played": {
+          "at": "2026-11-22T22:00:30.382Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-green-slaad-action-chaos-staff",
+          "client": "gm",
+          "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.257Z",
           "core": "0.290.0",
@@ -70683,32 +70732,6 @@
           "items": {
             "official": "0d5ebbe7c4c04d1f29ba206770b4aa72ab7f7b185dac827d3d788170fc21b295"
           }
-        },
-        "reviewed": {
-          "by": "reviewer-z001",
-          "at": "2026-11-22T21:52:05.872Z",
-          "agrees": true,
-          "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
-          "confidence": 0.75,
-          "via": "second-review",
-          "first": {
-            "by": "reviewer-v002",
-            "confidence": 0.55,
-            "reason": "low-confidence",
-            "assert": [
-              "expect.ends=casterTurnStart;given.roll=hit"
-            ],
-            "onlyDraft": [],
-            "onlyReview": []
-          }
-        },
-        "played": {
-          "at": "2026-11-22T22:00:30.382Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-green-slaad-action-chaos-staff",
-          "client": "gm",
-          "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4"
         }
       },
       "why": "Random condition from a d4 until the start of its next turn, on hit; data has four statuses with no roll or timed end.",
@@ -99616,15 +99639,16 @@
           }
         },
         "drafted": {
-          "by": "drafter-x007",
-          "at": "2026-11-22T19:47:23.332Z",
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
           "core": "0.290.0",
-          "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f"
+          "rule": "2508f73287ae57585ac25af09d9591f9d3df4d395d5063e079b4300be3cac29c",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.707Z",
+          "at": "2026-11-22T22:21:35.414Z",
           "core": "0.290.0",
-          "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f",
+          "rule": "2508f73287ae57585ac25af09d9591f9d3df4d395d5063e079b4300be3cac29c",
           "item": "060a2060348130ace0c1955ed7111a8308801f585bd6ed97267de6ebe83aa199",
           "delta": [
             "effectEnds"
@@ -99637,9 +99661,9 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.707Z",
+          "at": "2026-11-22T22:21:35.414Z",
           "core": "0.290.0",
-          "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f",
+          "rule": "2508f73287ae57585ac25af09d9591f9d3df4d395d5063e079b4300be3cac29c",
           "emits": "d17b3b5c160000792bf0781b78133c1b3aafde7ca6f3b1817fea4fa3c9eb147c",
           "passed": [
             "schema",
@@ -99661,7 +99685,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "The charm or fright from a failed save ends as the performer's next turn closes.",
+        "adds": "The chosen condition ends when the performer's next turn ends.",
         "entry": {
           "effectEnds": {
             "B0TLqMl9FuCT8wcy": "casterTurnEnd",
@@ -101607,15 +101631,16 @@
           }
         },
         "drafted": {
-          "by": "drafter-x007",
-          "at": "2026-11-22T19:47:23.332Z",
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
           "core": "0.290.0",
-          "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae"
+          "rule": "2975f7e1b26a68dda2d228eef470a2346acd33e9e03be1887d0351eed20e862d",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.709Z",
+          "at": "2026-11-22T22:21:35.419Z",
           "core": "0.290.0",
-          "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae",
+          "rule": "2975f7e1b26a68dda2d228eef470a2346acd33e9e03be1887d0351eed20e862d",
           "item": "38ac743ec72e2af93a404c644520ec215e729e826721fcf2180df5d569252932",
           "delta": [
             "effectEnds"
@@ -101628,9 +101653,9 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.710Z",
+          "at": "2026-11-22T22:21:35.420Z",
           "core": "0.290.0",
-          "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae",
+          "rule": "2975f7e1b26a68dda2d228eef470a2346acd33e9e03be1887d0351eed20e862d",
           "emits": "9f5260e54d81158ccdbf0ff6e8eae020f08c5f842f53fc97a4752a8a35e29972",
           "passed": [
             "schema",
@@ -101652,7 +101677,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "The +4 AC from the stance lapses when the pirate's next turn begins.",
+        "adds": "The raised AC from the stance holds until the pirate's next turn begins.",
         "entry": {
           "effectEnds": {
             "VMUZlPyqf0UEnat3": "casterTurnStart"
@@ -101663,7 +101688,10 @@
         ],
         "assert": [
           {
-            "given": {},
+            "given": {
+              "moment": "isHit",
+              "activity": "melee"
+            },
             "expect": {
               "ends": "casterTurnStart"
             }
@@ -101672,6 +101700,10 @@
         "leaves": [
           {
             "unexpressed": "trigger-filter",
+            "count": 1
+          },
+          {
+            "unexpressed": "no-key",
             "count": 1
           }
         ],
@@ -110013,15 +110045,16 @@
           "similar": []
         },
         "drafted": {
-          "by": "drafter-v010",
-          "at": "2026-11-22T04:26:52.168Z",
-          "core": "0.289.0",
-          "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103"
+          "by": "drafter-k001",
+          "at": "2026-11-22T22:21:10.880Z",
+          "core": "0.290.0",
+          "rule": "5457783ffd4f4715f0399862f8ba2838ad99bcea79efa395fd2c192abf382aee",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.308Z",
+          "at": "2026-11-22T22:21:35.440Z",
           "core": "0.290.0",
-          "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
+          "rule": "5457783ffd4f4715f0399862f8ba2838ad99bcea79efa395fd2c192abf382aee",
           "item": "7f7a4797b5d697a1ee70068b22a210b79830c0670bada3f1c145b36b466f71ec",
           "delta": [],
           "same": [
@@ -110036,9 +110069,9 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.401Z",
+          "at": "2026-11-22T22:21:35.440Z",
           "core": "0.290.0",
-          "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
+          "rule": "5457783ffd4f4715f0399862f8ba2838ad99bcea79efa395fd2c192abf382aee",
           "emits": "7b9964af66fc67942935c349adeb3bf6cbb9ff9f98b2350218232129997f9bbe",
           "passed": [
             "schema",
@@ -110060,7 +110093,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "The roc's flight from this bonus action provokes no opportunity attacks.",
+        "adds": "The roc's flight after the swoop draws no opportunity attacks.",
         "entry": {
           "noOpportunity": "afterUse"
         },
@@ -110069,9 +110102,7 @@
         ],
         "assert": [
           {
-            "given": {
-              "origin": "official"
-            },
+            "given": {},
             "expect": {
               "denies": "opportunityAttacks"
             }
@@ -110089,10 +110120,6 @@
           },
           {
             "unexpressed": "target-state",
-            "count": 1
-          },
-          {
-            "unexpressed": "no-key",
             "count": 1
           }
         ],

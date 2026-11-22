@@ -170,6 +170,47 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-death-cultist-dread-scythe",
+    "name": "Dread Scythe",
+    "page": 86,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Death Cultist",
+    "adds": "The healing block on the struck creature lapses when its next turn ends.",
+    "entry": {
+      "effectEnds": {
+        "rWqB3N3piOf9afmQ": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-death-slaad-chaos-blade",
+    "name": "Chaos Blade",
+    "page": 287,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Death Slaad",
+    "adds": "Whichever rolled condition lands ends as the slaad's next turn starts.",
+    "entry": {
+      "effectEnds": {
+        "1vrQDUhLrUP4jRKw": "casterTurnStart",
+        "Nx6syaxPX3i62Lja": "casterTurnStart",
+        "ccUmT0yvSuG8yECl": "casterTurnStart",
+        "Cqw097SSxXrnYYKh": "casterTurnStart"
+      }
+    }
+  },
+
+  {
     "identifier": "xmm-dire-worg-dreadful-howl",
     "name": "Dreadful Howl",
     "page": 335,

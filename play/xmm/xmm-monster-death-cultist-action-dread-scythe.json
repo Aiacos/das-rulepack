@@ -1,0 +1,42 @@
+{
+  "scenario": "xmm/xmm-monster-death-cultist-action-dread-scythe",
+  "key": "xmm:monster:death-cultist/action/dread-scythe",
+  "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmDeathCultist00.mmDreadScythe000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmDeathCultist00",
+      "id": "mmDreadScythe000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "Ms2TnkLM4dznQ0sc": 10
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "Ms2TnkLM4dznQ0sc"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd;given.roll=hit"
+    }
+  ]
+}
