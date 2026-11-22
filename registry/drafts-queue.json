@@ -246,5 +246,1318 @@
     "by": "drafter-q002",
     "why": "a charge through spaces with per-creature saves, a pull, and grapple or prone by state: no keys for these",
     "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:brazen-gorgon/trait/flame-aura",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "an emanation pulse at the end of the owner's turns: no drafter key places it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:bugbear-stalker/action/morningstar",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "advantage only against a target this creature grapples: triggers here take no condition",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:bugbear-stalker/bonus/quick-grapple",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "the save already applies the grapple; only the size limit is missing and no key tests size",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:bugbear-warrior/action/grab",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "the hit already applies the grapple; only the size limit is missing and no key tests size",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:bugbear-warrior/action/light-hammer",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "advantage only against a target this creature grapples: triggers here take no condition",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:chain-devil/action/chain",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "the hit already applies grapple and restraint; only the size limit is missing and no key tests size",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:clay-golem/trait/acid-absorption",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "turning one damage type into healing: no drafter key expresses it",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:cloaker/action/attach",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "the hit already blinds; attaching, damage sharing and detaching have no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:cloaker/trait/phantasms",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "the cast spell ending in bright light at turn start or end: no drafter key says it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:cockatrice-regent/reaction/magical-backlash",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "the save and its damage are already in the item's data; the trigger is the reaction itself",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:colossus/action/divine-beam",
+    "reason": "person",
+    "by": "drafter-v001",
+    "why": "damage and halving are already in data; turning the slain to dust has no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:cyclops-oracle/reaction/portent",
+    "reason": "code",
+    "by": "drafter-v002",
+    "why": "replaces a d20 test of self or a seen ally with a fresh roll at the user's choice: needs a prompt and a roll swap",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:cyclops-sentry/action/stone-club",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "item data already knocks the target prone; only the size cap is missing and no drafter key limits a status by size",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:cyclops-sentry/reaction/limited-foresight",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "reaction that hampers the incoming attack and gives timed advantage against the attacker: no drafter step for either",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:darkmantle/action/crush",
+    "reason": "code",
+    "by": "drafter-v002",
+    "why": "attachment state that follows the target, a conditional blind tied to advantage, and a detach check: needs state across turns",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:darkmantle/action/darkness-aura",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "concentration zone of magical darkness that defeats darkvision and light: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-cultist/action/dread-scythe",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "main rider is a healing block; no drafter key enforces it, so a rule would only time an empty effect",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:death-knight-aspirant/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "reaction raising AC against one triggering melee hit: no drafter key for an AC bump on a hit",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-knight-aspirant/trait/magic-resistance",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "advantage on saves versus spells and magic: saveAdvantage only lists conditions; likely a generic Core trait",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:death-knight-aspirant/trait/marshal-undead",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "aura giving chosen undead allies advantage on attacks and saves, off while incapacitated: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-knight/legendary/dread-authority",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "data already casts the spell; the lockout until the user's next turn starts has no usage-limit word",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:death-knight/legendary/fell-word",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "data rolls the save and damage; the main rider lowers maximum hit points, which no drafter key does",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-knight/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "reaction raising AC against one triggering melee hit: no drafter key for an AC bump on a hit",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-knight/trait/legendary-resistance",
+    "reason": "code",
+    "by": "drafter-v002",
+    "why": "a chosen switch of a failed save to a success, spending a resource: needs a prompt at save time",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:death-knight/trait/magic-resistance",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "advantage on saves versus spells and magic: saveAdvantage only lists conditions; likely a generic Core trait",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:death-knight/trait/marshal-undead",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "aura giving chosen undead allies advantage on attacks and saves, off while incapacitated: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-slaad/action/chaos-blade",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "one condition picked by a d4 roll; data applies all four and no drafter key selects one at random",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-tyrant/bonus/negative-energy-cone",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "cone that blocks healing and raises corpses as zombies: no drafter key for either",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-tyrant/trait/legendary-resistance",
+    "reason": "code",
+    "by": "drafter-v002",
+    "why": "a chosen switch of a failed save to a success, spending a resource: needs a prompt at save time",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:demilich/legendary/energy-drain",
+    "reason": "person",
+    "by": "drafter-v002",
+    "why": "main effect lowers maximum hit points on a failed save: no drafter key; plus a repeat lockout",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:demilich/trait/legendary-resistance",
+    "reason": "code",
+    "by": "drafter-v003",
+    "why": "turning a failed save into a success is a choice made when the save fails: a prompt",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:dire-worg/bonus/warp-step",
+    "reason": "engine",
+    "by": "drafter-v003",
+    "why": "teleport of the user plus a willing companion: no teleport step exists",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:displacer-beast/trait/avoidance",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "changes how incoming half-damage saves resolve for the bearer, off while incapacitated: no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:displacer-beast/trait/displacement",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "attacks against the bearer are hindered unless it is incapacitated: no drafter key for that",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:dracolich/legendary/pounce",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "a half-speed move then another attack of the creature: no key chains them",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:dracolich/legendary/sickening-ray",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "the only addition is a lockout until the next turn starts, which no key says; the cast is data",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:dracolich/trait/legendary-resistance",
+    "reason": "code",
+    "by": "drafter-v003",
+    "why": "turning a failed save into a success is a choice made when the save fails: a prompt",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:dracolich/trait/life-suppression",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "an aura that blocks healing is the whole effect and no key says it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:dracolich/trait/magic-resistance",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "advantage on saves against magic in general: a generic trait no drafter key states",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:earth-elemental/action/rock-launch",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "the only gap is a size limit on the prone, which no key can set; the rest is data",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:elemental-cataclysm/action/cataclysmic-event",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "one of four effects picked by a die, with burning, zero speed, a cloud and burial: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:elemental-cataclysm/action/elemental-burst",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "the data already lists the damage types to pick from; nothing remains for a rule",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:elemental-cultist/action/elemental-claw",
+    "reason": "person",
+    "by": "drafter-v003",
+    "why": "a forced move whose direction the user picks, limited by target size: no key fits",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:elemental-cultist/action/elemental-flail",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the item's attack already offers all five damage types to pick from; nothing to add",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:elemental-cultist/reaction/elemental-absorption",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "resistance to a single damage instance on a damage reaction: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:empyrean-iota/action/otherworldly-strike",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the item's attack already offers both damage types to pick from; nothing to add",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:empyrean/action/divine-ray",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the item's attack already offers both damage types to pick from; nothing to add",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:empyrean/legendary/bolster",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the main effect, advantage on all d20 rolls for self and nearby allies, has no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:erinyes/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "an armor class bonus as a reaction to a melee hit: no drafter key; Core may treat it generically",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:ettercap/action/web-strand",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the item already restrains on a failed save; ending it when the web object is destroyed has no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:ettin/action/battleaxe",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the item already knocks prone on a hit; the size limit has no drafter key, so a rule would add nothing",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:ettin/action/morningstar",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the main effect, a one-attack penalty for the target, has no drafter key; only a duration could be written",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:fire-elemental/trait/fire-form",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "damage when the creature moves into another's space, once per turn: no moment or key for it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:fire-elemental/trait/water-susceptibility",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "damage from moving through or being doused with water: no moment or key for it",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:flameskull/trait/magic-resistance",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "advantage on saves against magic is a generic trait Core handles; no drafter key for it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:flaming-skeleton/trait/death-burst",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the save fires when the creature dies: no death moment among the drafter keys",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:flesh-golem/trait/aversion-to-fire",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "a penalty after taking one damage type needs a damage-type test the trigger steps lack",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:flumph/trait/prone-deficiency",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the main effect, a die roll on becoming prone that may incapacitate, has no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:frost-giant/bonus/war-cry",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "the main effect beyond the item's temporary hit points, attack advantage, has no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:gelatinous-cube/trait/ooze-cube",
+    "reason": "person",
+    "by": "drafter-v004",
+    "why": "shared space, engulf on entry, cover inside and a pull-out check: none of it fits a drafter key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:ghast/trait/stench",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "a start-of-turn save in an aura that moves with the creature, plus a day-long immunity: no drafter key; Core's generic handling may cover it",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:ghost/action/possession",
+    "reason": "code",
+    "by": "drafter-v005",
+    "why": "body control, untargetable ghost, borrowed stats and an end on zero hit points or a bonus action: state across turns",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:ghost/trait/incorporeal-movement",
+    "reason": "engine",
+    "by": "drafter-v005",
+    "why": "moving through creatures and objects, and damage for ending a turn inside an object: no engine fact for being inside an object",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:giant-axe-beak/action/sharpened-beak",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "the item already holds the splash damage as its own activity; picking the second creature is the table's: nothing for a key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:giant-spider/action/web",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "the item already restrains; ending it by destroying the web, with its own defenses, has no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:gibbering-mouther/action/blinding-spittle",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "the blinded effect is not linked to the save and the save DC uses the wrong ability: data fixes, refused on monster features",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:gibbering-mouther/trait/aberrant-ground",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "difficult ground in an aura that moves with the creature: no drafter key is known to follow the creature",
+    "confidence": 0.7
+  },
+  {
+    "key": "xmm:monster:gibbering-mouther/trait/gibbering",
+    "reason": "code",
+    "by": "drafter-v005",
+    "why": "an aura with a start-of-turn save and a random behaviour table for the turn: needs a script",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:gladiator/action/shield-bash",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "the item already knocks prone on a failed save; only the size limit remains, which no key tests",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:gladiator/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "a reaction raising AC against one melee hit: no drafter step; Core's generic handling may cover it",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:gnoll-demoniac/action/hunger-of-yeenoghu",
+    "reason": "person",
+    "by": "drafter-v005",
+    "why": "a lingering dark zone with turn-start and entry saves, difficult ground and a temporary hit point grant: beyond drafter keys",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:gnoll-pack-lord/action/incite-rampage",
+    "reason": "code",
+    "by": "drafter-v005",
+    "why": "grants another creature a reaction attack: a prompt to that creature's controller",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:gnoll-warrior/bonus/rampage",
+    "reason": "code",
+    "by": "drafter-v005",
+    "why": "triggered by damaging a bloodied creature, then a move and an attack: a prompt, needs a script",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:goblin-boss/action/scimitar",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:goblin-boss/action/shortbow",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:goblin-boss/reaction/redirect-attack",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "swapping places and retargeting the attack: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:goblin-hexer/reaction/jinx",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "turning the hit into a miss on a failed save: no drafter step",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:goblin-warrior/action/scimitar",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:goblin-warrior/action/shortbow",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:gorgon/action/petrifying-breath",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "outcome depends on the margin of failure and the resave happens once: no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:gulthias-blight/action/life-draining-root",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "per-turn damage tied to the grip, hit point maximum loss and the blight's healing: no drafter key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:half-dragon/action/dragons-breath",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "data already rolls the save at half; the damage type is a per-creature choice",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:half-dragon/trait/draconic-origin",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "one resistance chosen per creature while data grants all five; no data fix on monster features",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:haunting-revenant/action/invitation",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "teleporting into the creature and being held inside it: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:haunting-revenant/trait/haunted-zone",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "a save that makes a spell fail when cast in the space: no drafter step",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:helmed-horror/trait/spell-immunity",
+    "reason": "person",
+    "by": "drafter-v006",
+    "why": "immunity to spells the creator picks: no key and nothing in the data",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:hill-giant/action/tree-club",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "the attack already applies prone; only a size limit remains, which no drafter key gates",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:hobgoblin-warlord/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "an armor class bonus against the triggering hit: no drafter step raises AC",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:hook-horror/action/hook",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "forced movement whose direction the attacker picks, size-gated; no key offers that choice",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:horned-devil/action/infernal-tail",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "a lasting wound with per-turn hit point loss and several closing events needs tracked state",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:hydra/trait/multiple-heads",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "head count, regrowth and fire blocking need state across turns",
+    "confidence": 0.95
+  },
+  {
+    "key": "xmm:monster:hydra/trait/reactive-heads",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "extra reactions limited to opportunity attacks: no engine key for reaction counts",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:incubus/bonus/nightmare",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "the outcome of a failed save depends on the target's hit points; no key branches on that",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:intellect-devourer/action/steal-body",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "possession and adopting the host's statistics need code",
+    "confidence": 0.95
+  },
+  {
+    "key": "xmm:monster:invisible-stalker/action/vortex",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "save and grapple are in the data; the damage each stalker turn and the spell ban need grapple state",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:iron-golem/trait/fire-absorption",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "healing from a damage type: no drafter key converts damage to healing",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:knight/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "an armor class bonus against the triggering hit: no drafter step raises AC",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:kraken/action/fling",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "save, half damage and prone are in the data; the throw needs a grappled target and a chosen space",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:kuo-toa-whip/action/pincer-staff",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "the attack already grapples; the size limit and the self-lockout have no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:kuo-toa/reaction/sticky-shield",
+    "reason": "person",
+    "by": "drafter-v007",
+    "why": "a stuck weapon and a grapple that depends on the attacker's choice need state",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:lich/legendary/deathly-teleport",
+    "reason": "engine",
+    "by": "drafter-v008",
+    "why": "main effect is a self teleport; no step moves the user, area damage is already data",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:lich/legendary/disrupt-life",
+    "reason": "person",
+    "by": "drafter-v008",
+    "why": "half on a save is already data; excluding one creature type and the once-per-round lockout have no fitting key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:magmin/action/touch",
+    "reason": "engine",
+    "by": "drafter-v008",
+    "why": "the rider sets the target burning, a hazard with no status or step in the engine",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:magmin/bonus/ignited-illumination",
+    "reason": "engine",
+    "by": "drafter-v008",
+    "why": "toggles light emission on the user; no key handles light",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:marilith/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v008",
+    "why": "a reaction raising armor class against one incoming melee hit; no drafter key for it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:marilith/trait/reactive",
+    "reason": "engine",
+    "by": "drafter-v008",
+    "why": "one reaction allowed on each turn instead of per round; the engine has no such allowance",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:mimic/trait/adhesive-object-form-only",
+    "reason": "person",
+    "by": "drafter-v008",
+    "why": "a passive grapple on contact with escape at disadvantage; no roll of the item to hang it on",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:mind-flayer-arcanist/action/arcane-tentacles",
+    "reason": "engine",
+    "by": "drafter-v008",
+    "why": "main rider teleports the target by choice and a kill at zero hit points; no such steps",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:mind-flayer/action/extract-brain",
+    "reason": "engine",
+    "by": "drafter-v008",
+    "why": "half on a save is data; the grappled-target limit and the kill at zero hit points have no step",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:mummy-lord/legendary/glare",
+    "reason": "person",
+    "by": "drafter-v008",
+    "why": "main effect runs another feature of the creature, plus a lockout until its turn begins; no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:mummy-lord/legendary/necrotic-strike",
+    "reason": "person",
+    "by": "drafter-v008",
+    "why": "a choice between two other attacks of the creature; the item only spends a use",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:mummy-lord/reaction/whirlwind-of-sand",
+    "reason": "person",
+    "by": "drafter-v008",
+    "why": "main effect is armor class against the triggering hit plus a self teleport; no drafter key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:nalfeshnee/bonus/horror-nimbus",
+    "reason": "person",
+    "by": "drafter-v008",
+    "why": "damage and fright are data; ending on damage taken or lost sight and the day of immunity have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:nalfeshnee/reaction/pursuit",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "a reaction teleport whose landing must sit near the moving creature: no drafter key places a teleport",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:nightmare/trait/confer-fire-resistance",
+    "reason": "code",
+    "by": "drafter-v009",
+    "why": "the resistance goes to whoever rides the mount, only while mounted: needs a rider relation the keys lack",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:noble/reaction/parry",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "an AC bump against the single triggering hit: no drafter step changes AC for one attack",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:nycaloth/bonus/shadowy-teleport",
+    "reason": "person",
+    "by": "drafter-v009",
+    "why": "invisibility is in the data; the teleport has no key and the breaksOn words have no definition to check the early end against",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:octopus/reaction/ink-cloud",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "an obscuring cube plus a free swim move as a reaction: no drafter key makes vision zones or self moves",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:performer-legend/action/majestic-song",
+    "reason": "code",
+    "by": "drafter-v009",
+    "why": "the user picks one of two conditions per use and the data applies both: needs a prompt",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:performer-legend/reaction/warding-charm",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "the main effect turns a landed hit into a miss; no drafter step can do that",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:piercer/action/drop",
+    "reason": "person",
+    "by": "drafter-v009",
+    "why": "the data already rolls the save and its damage; the self fall reduction and the beneath-only target have no key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:pirate-admiral/action/scimitar",
+    "reason": "code",
+    "by": "drafter-v009",
+    "why": "the user picks one of two conditions per hit and the data applies both: needs a prompt",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:pirate-admiral/reaction/defensive-stance",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "a melee-only AC bump including the triggering hit; the data effect is passive and covers all attacks",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:pirate-captain/action/rapier",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "advantage for the user's next attack this turn: drafter trigger steps cannot grant advantage",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:pirate-captain/reaction/riposte",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "an AC bump against one hit then a free counterattack on the miss: no drafter key for either",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:pit-fiend/trait/fear-aura",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "a save forced on each enemy starting its turn near the creature, with a day of immunity: no drafter key for an aura save",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:primeval-owlbear/action/ravage",
+    "reason": "person",
+    "by": "drafter-v009",
+    "why": "the data offers a separate charging attack with the extra damage and prone; size and straight-line charge are the user's choice; its base dice look off versus the text",
+    "confidence": 0.7
+  },
+  {
+    "key": "xmm:monster:psychic-gray-ooze/reaction/mind-corrosion",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "damage dealt back to the creature whose magic the ooze failed against; the activity targets itself and no moment names that trigger",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:questing-knight/trait/aura-of-bravery",
+    "reason": "engine",
+    "by": "drafter-v009",
+    "why": "condition immunity for chosen creatures while inside a moving emanation: no drafter key makes an aura",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:rakshasa/trait/greater-magic-resistance",
+    "reason": "person",
+    "by": "drafter-v009",
+    "why": "the item has no activity or effect to bind; auto success against magic is a Core-generic matter",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:red-slaad/action/injecting-claw",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "the item's save already applies the curse; the rest is a slow gestation over days with a type and prior-curse gate, no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:revenant/bonus/vow-of-revenge",
+    "reason": "code",
+    "by": "drafter-v010",
+    "why": "the item applies the curse; ending it when the bonus action is reused on someone else needs state across uses",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:rust-monster/action/antennae",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "targets a worn object; a stacking gear penalty with destruction thresholds has no drafter key, and the effect is not linked to the save",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:rust-monster/reaction/reflexive-antennae",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "a reaction that runs another feature of the creature: no drafter key uses another item",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:sahuagin-baron/reaction/fiendish-blood",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "the item's save already deals the acid and applies the slowing curse; the invisibility denial and the fiend sensing have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:salamander-inferno-master/action/inferno-blast",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "burning on the bearer's turn start with exhaustion per tick needs a step bound to the bearer that drafter keys lack; the rest is data",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:satyr-revelmaster/action/fey-melody",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "a song picked at use time, a charm broken by damage and fear ended by losing sight: no drafter key binds these per song",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:scout-captain/bonus/aim",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "advantage on the user's next attack this turn: no drafter key grants it, and the effect has no change",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:sea-hag/action/death-glare",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "only a frightened target, and dropping to zero under a hit point threshold: drafter keys have no condition nor such a step",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:shadow-dragon/legendary/veil-of-shadow",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "the damage is data; running another feature and the lockout until its next turn have no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:shadow/action/draining-swipe",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "the strength loss is in the item's effects; death at zero and the later rising have no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:shadow/trait/sunlight-weakness",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "the penalty holds only in sunlight; drafter shapes carry no condition, and the item has no activity nor effect",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:shield-guardian/trait/bound",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "sharing half the wearer's damage within range has no drafter key, and the item has no activity nor effect",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:shield-guardian/trait/spell-storing",
+    "reason": "person",
+    "by": "drafter-v010",
+    "why": "storing and later casting a spell has no drafter key; no activity nor effect",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:shrieker-fungus/reaction/shriek",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "an alarm noise with no combat effect; the utility activity is all there is to it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:solar/action/slaying-bow",
+    "reason": "engine",
+    "by": "drafter-v011",
+    "why": "main effect is an outright kill under a hit point threshold: no step kills a creature",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:solar/legendary/blinding-gaze",
+    "reason": "low-confidence",
+    "by": "drafter-v011",
+    "why": "blindness is in the data; the rule sets its one-minute length, the reuse lockout is left out",
+    "confidence": 0.65,
+    "draft": {
+      "handledIn": "table",
+      "adds": "The blindness lasts one minute.",
+      "entry": {
+        "effectDurations": {
+          "F9aWhTVh3huuys3p": {
+            "seconds": 60
+          }
+        }
+      },
+      "origins": [
+        "official"
+      ],
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "blinded"
+            }
+          }
+        }
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:solar/legendary/radiant-teleport",
+    "reason": "engine",
+    "by": "drafter-v011",
+    "why": "the save and half damage are in the data; the self teleport before the burst has no step",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:sphinx-of-secrets/action/curse-of-the-riddle",
+    "reason": "code",
+    "by": "drafter-v011",
+    "why": "the curse's penalties, the save on each magic action and the end on a new curse need state no key holds",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:sphinx-of-wonder/reaction/burst-of-ingenuity",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "a reaction adding a flat bonus to another creature's roll: no drafter key sets it",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:sprite/action/heart-sight",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "the failed save only reveals information, and the automatic failure by creature type has no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:steam-mephit/trait/blurred-form",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "attackers' disadvantage against the bearer unless it is incapacitated: no drafter key says it",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:stone-giant/action/boulder",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "damage and prone are in the data; only the size limit remains, which no key expresses",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:stone-giant/reaction/deflect-missile",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "a damage-reducing reaction with a follow-up save when reduced to zero: no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:succubus/action/draining-kiss",
+    "reason": "engine",
+    "by": "drafter-v011",
+    "why": "damage and half on a save are in the data; the hit point maximum loss has no step",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:swarm-of-crawling-claws/action/swarm-of-grasping-hands",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "damage and prone are in the data; only the size limit remains, which no key expresses",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:swarm-of-stirges/action/swarm-of-proboscises",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "damage and grapple are in the data; the size and space limit and the tick while held have no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:tarrasque/legendary/onslaught",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "a move and a chosen attack: a choice at the table, nothing to automate",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:tarrasque/legendary/world-shaking-movement",
+    "reason": "person",
+    "by": "drafter-v011",
+    "why": "lost concentration and size-limited prone after a move, with a reuse lockout: no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:tarrasque/trait/reflective-carapace",
+    "reason": "code",
+    "by": "drafter-v012",
+    "why": "a d6 roll on being targeted by some spells, with a chance to send the spell back: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:tarrasque/trait/siege-monster",
+    "reason": "engine",
+    "by": "drafter-v012",
+    "why": "doubled damage against objects and structures: no key multiplies damage by target kind",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:treant/action/animate-trees",
+    "reason": "code",
+    "by": "drafter-v012",
+    "why": "summoned trees with a lifetime tied to distance, death and a day, acting right after the summoner: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:troll/trait/loathsome-limbs",
+    "reason": "code",
+    "by": "drafter-v012",
+    "why": "limb loss after heavy slashing while bloodied, a new creature, exhaustion per limb and regrowth on healing: needs code",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:ultroloth/action/mercurial-whip",
+    "reason": "engine",
+    "by": "drafter-v012",
+    "why": "the only addition is a teleport of the target on a hit: no teleport step among the drafter keys",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:vampire-familiar/action/umbral-dagger",
+    "reason": "code",
+    "by": "drafter-v012",
+    "why": "the poison and paralysis hold only when the hit drops the target to 0, paralysis lasting while poisoned: no drafter key tests it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:vampire-nightbringer/trait/sunlight-hypersensitivity",
+    "reason": "person",
+    "by": "drafter-v012",
+    "why": "radiant damage at turn start and disadvantage both depend on standing in sunlight; drafter keys take no such condition",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:vampire-umbral-lord/bonus/sanguine-drain",
+    "reason": "engine",
+    "by": "drafter-v012",
+    "why": "lowered hit point maximum and healing equal to the damage: no key; the item already deals the damage",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:vampire-umbral-lord/legendary/umbral-strike",
+    "reason": "person",
+    "by": "drafter-v012",
+    "why": "plain movement then one attack of a choice: nothing a key adds beyond the use the data spends",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:vampire-umbral-lord/trait/shadow-escape",
+    "reason": "code",
+    "by": "drafter-v012",
+    "why": "teleport home at 0 hit points unless in water or sunlight, else destroyed, then an hour of paralysis: needs code",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:vampire/legendary/deathless-strike",
+    "reason": "person",
+    "by": "drafter-v012",
+    "why": "plain movement then one attack: nothing a key adds beyond the use the data spends",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:vampire/trait/misty-escape",
+    "reason": "code",
+    "by": "drafter-v012",
+    "why": "turning to mist at 0 hit points with a two-hour journey, then paralysis until healed: needs code",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:vine-blight/action/constricting-vine",
+    "reason": "person",
+    "by": "drafter-v012",
+    "why": "the item applies the grapple; damage on the held creature turns and the lock on repeat attacks have no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:violet-fungus-necrohulk/bonus/absorb-body",
+    "reason": "code",
+    "by": "drafter-v012",
+    "why": "a grafted state that drags the target along, weakens its saves, heals on death and can be broken by others: needs code",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:warrior-commander/action/greatsword",
+    "reason": "code",
+    "by": "drafter-v013",
+    "why": "the user picks one of two riders on each hit, one being an ally's reactive move: needs a prompt",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:warrior-commander/reaction/counterattack",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "an armor bonus against the triggering attack and a riposte on a miss: no drafter step; the data effect is always on",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:warrior-veteran/reaction/parry",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "an armor bonus against the triggering melee attack only: no drafter step for it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:water-elemental/action/whelm",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "data already deals the damage and applies both conditions; size, capacity, suffocation and the grapple-bound damage have no drafter key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:water-elemental/trait/freeze",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "a slow placed when cold damage is taken, with a duration: no drafter key applies an effect on that moment",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:water-weird/action/surge",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "data already applies both conditions on a hit; the size limit and the tie to the grapple have no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:water-weird/trait/invisible-in-water",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "invisibility only while submerged: no fact or key tests immersion, and the item holds nothing",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:wereboar/action/tusk-boar-or-hybrid-form-only",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "the extra damage and prone hang on target size and a straight charge: no drafter key can gate them",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:will-o-wisp/bonus/consume-life",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "the zero hit point target limit and the healing on a kill have no drafter key; data already applies the death",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:winged-kobold/action/chromatic-spittle",
+    "reason": "person",
+    "by": "drafter-v013",
+    "why": "data already lists the five damage types, so the user picks one when rolling",
+    "confidence": 0.8
   }
 ]
