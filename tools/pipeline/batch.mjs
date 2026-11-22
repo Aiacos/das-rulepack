@@ -15,6 +15,7 @@ import { DDB_MONSTER_UNCOVERED, monsterIdentifier, sourceKeysOf } from "./identi
 import { sharedEmbeddedId } from "./settle.mjs";
 import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
 import { LEAVES_MAX, LEAVE_REASONS, UNEXPRESSED_MAX } from "./leaves.mjs";
+import { beyondOf } from "./reread.mjs";
 import * as sh from "./shapes.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
@@ -92,6 +93,9 @@ const matchedItems = (r) => (r.items ?? []).filter((i) => i?.match === "matched"
 // A record no drafter can take to `gated` (the `unique` gate would fail it whatever is drafted): a person decides.
 export const CORE_IDENTIFIER = "identifier is DAS · Core's: a person decides inCore";
 export const SHARED_IDENTIFIER = "identifier shared with another record";
+// A monster feature the engine reads something of (Ruling R29) that no reread found going beyond that reading: a drafter
+// would mostly repeat the engine. It goes to a reread first (reread.mjs); `hint: "beyond-engine"` lets it through.
+export const ENGINE_READS_FIRST = "engine reads it: reread first";
 // Ruling R22: a rule of another edition already holds the identifier: an edition-scoped one (bound through sources) is needed.
 export const EDITION_IDENTIFIER = "identifier ruled for another edition: needs an edition-scoped identifier";
 // The records that register an identifier with the engine, or will once drafted (verdict entry), under the identifier they
@@ -125,7 +129,7 @@ export function identifierClashReasons(records, coreIdentifiers, { pending } = {
  * embeds. The last is decided here from `embedded` (settle.mjs embeddedIndex of the package's actors), with the test inventory
  * binds by: the record's own `embeddedShared` flag exists only once a rule is bound. A monster is not decided without it.
  */
-export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new Map() } = {}) {
+export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new Map(), readingOf } = {}) {
   if (r.rule) return "already ruled";
   if (queued.has(r.key)) return "queued";
   if (!r.text) return "no text";
@@ -143,6 +147,12 @@ export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new
     if (!own.length) return "monster feature: official item has no embedded id";
     if (official.some((i) => i.embeddedShared) || own.some((id) => sharedEmbeddedId(embedded, id, r.owner))) {
       return "monster feature: shared embedded id, waits on upstream";
+    }
+    // `readingOf(record)`: the engine's reading of the official item (null when it reads nothing, undefined when the item is
+    // not in the dumps); `batch draft` always gives it.
+    if (typeof readingOf === "function" && r.hint !== "beyond-engine") {
+      const reading = readingOf(r);
+      if (reading !== null && typeof reading === "object" && Object.keys(reading).length) return ENGINE_READS_FIRST;
     }
   }
   // `clashes` (identifierClashReasons of the whole registry): the unique gate would fail it whatever is drafted.
@@ -261,11 +271,16 @@ function examplesFor(r, { candidates, resolve, keyExamples, common }) {
   return out;
 }
 
-const draftEntryOf = (r, examples, why) => ({
-  ...entryOf(r, { rulable: true }), identifier: r.kind === "monster" ? monsterIdentifier(r) : r.identifier,
-  keys: r.evidence?.triaged?.keys ?? [], similar: r.evidence?.triaged?.similar ?? [],
-  ...(why ? { why } : {}), examples
-});
+// `beyondEngine`: what a reread found the text asks beyond the engine's reading (reread.mjs beyondOf), as assertions of the
+// closed vocabulary with no free text: a hint of what the rule is to add.
+const draftEntryOf = (r, examples, why) => {
+  const beyond = r.kind === "monster" ? beyondOf(r) : null;
+  return {
+    ...entryOf(r, { rulable: true }), identifier: r.kind === "monster" ? monsterIdentifier(r) : r.identifier,
+    keys: r.evidence?.triaged?.keys ?? [], similar: r.evidence?.triaged?.similar ?? [],
+    ...(why ? { why } : {}), ...(beyond ? { beyondEngine: structuredClone(beyond) } : {}), examples
+  };
+};
 
 // The triage `why` is the reader's own words, ingest refuses 8 or more consecutive words of the text; an older `why` may
 // predate that limit, so a drafter gets it only when it passes the check a rule's strings face (gates.mjs quotationCheck).
@@ -292,10 +307,10 @@ function whyFor(r, textOf, report) {
 export function cutDraftBatches(records, options = {}) {
   const {
     size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded, textOf, report = {},
-    clashes = new Map()
+    clashes = new Map(), readingOf
   } = options;
   const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind)
-    && draftSkipReason(r, { queued, embedded, clashes }) === null);
+    && draftSkipReason(r, { queued, embedded, clashes, readingOf }) === null);
   const pool = exampleCandidates(records, { core, ...(ruled ? { ruled } : {}), ...(gated ? { gated } : {}) });
   const official = (r) => matchedItems(r).some((i) => i.origin === "official");
   const rank = (k) => (DRAFT_KIND_ORDER.includes(k) ? DRAFT_KIND_ORDER.indexOf(k) : DRAFT_KIND_ORDER.length);

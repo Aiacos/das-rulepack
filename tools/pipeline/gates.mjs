@@ -19,6 +19,7 @@ import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from
 import { checkDraftKeys, isStructural, singleSlotKeys } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
+import { rereadStaleNote } from "./reread.mjs";
 
 export const GATES = GATE_NAMES;
 // What stateOf requires in `passed` for a rule to count as gated.
@@ -571,6 +572,13 @@ export function runGates(records, context) {
       }
     } else if (sound && record.text) run("text", context.ci ? [] : checkText(record, context));
     add(failures, key, "unique", unique.get(key) ?? []);
+    // A reread (reread.mjs) judged against another reading than the engine's of today: a local note, never a failure (CI has
+    // no dumps; the schema holds the evidence's shape in both modes). `rereadReadingOf(record)`: the readingFingerprint of
+    // today, null when the engine reads nothing, undefined when the item is not in the dumps.
+    if (!context.ci && typeof context.rereadReadingOf === "function" && isObject(record.evidence?.triaged?.reread)) {
+      const note = rereadStaleNote(record, context.rereadReadingOf(record));
+      if (note) run("reread", { failures: [], notes: [note] });
+    }
 
     if (!record.rule || context.ci) return record;
     const { gates, reading: wasRead, ...evidence } = record.evidence ?? {};

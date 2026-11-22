@@ -191,7 +191,7 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       the triage, draft and review cuts, the three briefs, and `triage <BOOK> --engine-reading` (hint `engine-reads`, no
       verdict change). XMM: the engine reads something of 287 of 816 monster `entry` records (`docs/pilot-m3.md`).
 - [ ] Re-triage the hinted monster `entry` records with `engineReads` in view (XMM 145 outside the queues; FRAIF 32, EFA 13,
-      XPHB 7), then the queued ones (the drafts and review queues hold 250 XMM monster records).
+      XPHB 7), then the queued ones (the drafts and review queues hold 250 XMM monster records). Tooling: the reread stage.
 - [x] Compare the 75 monster rules with the engine's reading (2026-11-22, R29): the engine merges a module entry key by key
       (`triggers` whole); `evidence.reading` stores the comparison, a monster rule ships as its delta only. On a copy: 16
       would ship, 25 change the reading, 25 add nothing, 9 held by R27.
@@ -210,6 +210,15 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       keys a rebinding would drop; 13 of 75 shipped, checked live (no engine key lost or changed).
 - [ ] Re-triage the monster `entry` records with `engineReads` in the batch (816 in XMM, 287 with a reading): most of the
       29 "the engine already does it" rules point at records whose verdict should be `core`.
+- [x] The reread stage (2026-11-22): `batch reread <BOOK>` (unruled monster `entry` records the engine reads, drafts-queued
+      ones included, blind to earlier verdicts) and `ingest --reread` (covered: provisional `core` by rule, out of the drafts
+      queue; beyond: `hint: "beyond-engine"` and the assertions as data); `--second` for the blind safety net; `batch draft`
+      leaves out what the engine reads until a reread finds it goes beyond (`docs/PIPELINE.md`, "Rereading monster features").
+- [ ] Run the reread on XMM (dry cut: 8 batches, 220 records, 75 of them in the drafts queue), then the second reread of
+      every `core` it sets; then FRAIF, EFA, XPHB. Count confirmed and provisional `core` apart (`reread.provisional`).
+- [ ] The 39 ruled XMM monster records outside the queues are not reread (their rule's `evidence.reading` decides): decide
+      whether "the engine already does it" rules should be dropped and their records reread.
+- [ ] A reread `core` gone stale (the gates note a new engine reading): decide who restores it or cuts it again.
 - [ ] The 25 rules that change the engine's reading: redraft them as additions (never restating `triggers`), or drop them.
 - [ ] The reading is computed from the engine release the tools point at; record and check the engine version at
       registration (a newer engine may read more, making a shipped delta redundant: redundant is harmless, but say so).

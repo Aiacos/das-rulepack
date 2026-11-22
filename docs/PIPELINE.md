@@ -40,6 +40,9 @@ excepted.
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`, and `DAS_CORE` for monster features) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
+| 2e | Cut reread batches | `npm run batch -- reread <BOOK> --out <dir> --structure <private dir> [--size 30] [--second]` (see "Rereading monster features") | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
+| 2f | Reread a batch | (no command: a reread agent reads files, blind to every earlier verdict) | `RULEPACK_TEXT` | the Claude Code session, via reread agents |
+| 2g | Ingest rereads | `npm run ingest -- <results-file> --reread [--second] --batch <batch file>` (see "Ingesting rereads") | `RULEPACK_TEXT`, `DAS_CORE`, `RULEPACK_DUMPS` | the Claude Code session |
 | 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
 | 3c | Ingest drafts | `npm run ingest -- <results-file> --draft --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
@@ -118,7 +121,9 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      (`evidence.triaged.by` is `"rule"`, with no confidence): a verdict the rules give again keeps its date, one they give
      differently is rewritten, and one they no longer give is cleared (`verdict` back to null, `why` and `evidence.triaged`
      removed, and the count printed as `cleared`). A verdict set by `ingest` and a record that has a `rule` are never
-     touched, except a pre-pass `core` the rules no longer give: its previous verdict comes back (below, `restored`).
+     touched, except a pre-pass `core` the rules no longer give: its previous verdict comes back (below, `restored`). A
+     `core` a reread set (by rule, with `evidence.triaged.reread`: a reader's judgement) is not the rules' and is never
+     touched either (`triage.mjs` `setByRule`).
      `by: "rule"` is reserved: `ingest` refuses a results file signed with it.
    - `triage <BOOK> --core-prepass [--report <file>]` is the **pre-pass**: the `core` rule above (its four sources) and
      nothing else, over the records whose verdict is `entry` or none, whoever set it (a reader's `entry` included: the
@@ -142,11 +147,14 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      effect ids, `onSave`, range, template and target as the data writes them; effects with their statuses and changes); it
      throws a clear error when the clone does not export it. For each monster record with the verdict `entry` (set by anyone),
      no rule and no queue entry, a non-empty reading sets `hint: "engine-reads"` and nothing else: the verdict stays, since
-     whether the reading covers the whole text is a reader's judgement; an empty reading takes a stale hint away. A record
+     whether the reading covers the whole text is a reader's judgement; an empty reading takes a stale hint away; a record a
+     reread hinted `beyond-engine` keeps that hint, which says more. A record
      that carries a rule is left to the comparison of its rule (`evidence.reading`, below). It prints the records hinted
      (with the entry keys the engine reads) and the counts (reads something, reads nothing, official item not in the
      dumps, ruled); `--report <file>` (outside the registry folder) writes them as JSON, keys and entry keys only. It cannot
      be combined with `--redo-rule` or `--core-prepass`. Running it again changes nothing.
+   - `batch reread` is the **reread** of monster `entry` verdicts given before triage knew the engine's reading (section
+     "Rereading monster features" below).
    - `batch triage` leaves out the records with no matched item in any origin (a reader has nothing to compare the text
      with); `--without-items` cuts them too.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
@@ -309,6 +317,9 @@ because? }` (`scenario` a scenario id `<book>/<slug>`, `core` an engine version,
 rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a review or a play written before
 the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it. A ruled monster feature also
 carries `evidence.reading` (Ruling R29, written by the gates: stage 4); it does not change the state, only what is emitted.
+A monster record a reread judged carries `evidence.triaged.reread` (`{ by, at, confidence, reading: { core, sha }, covered,
+beyond?, provisional?, second? }`, section "Ingesting rereads"); a reread `core` that no second reread has confirmed has
+`provisional: true`, which is what a count of `core` verdicts reads to tell the confirmed from the provisional ones.
 
 ## 🧾 Rule vocabulary
 
@@ -497,6 +508,121 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 > verdict if nobody checked it; below 0.7 you are guessing, or the text is ambiguous, and a person will look at it instead.
 > Say 0.6 when unsure rather than rounding up.
 
+## 🔁 Rereading monster features
+
+Triage gave the verdict `entry` to monster features without knowing that DAS · Core reads monster features from their
+English text by itself (Ruling R29). On the 2024 Monster Manual that was 816 records, 287 of which the engine reads
+something of. Some of those verdicts are right (the text asks for more than the engine reads), many are not (the engine
+already does it: the verdict should be `core`), and only a reader comparing the text with the engine's reading can tell.
+The reread is that reading, blind to every earlier verdict, reason and drafter answer (`tools/pipeline/reread.mjs`).
+
+`npm run batch -- reread <BOOK> --out <dir> --structure <private dir> [--size 30]` needs `DAS_CORE` and `RULEPACK_DUMPS`
+(a usage error, exit 2, names them otherwise): the engine's reading of each record is computed at cut time
+(`engine-reading.mjs` `engineReading`, under the identifier the engine sees without the pack). It cuts
+`<dir>/<book>-reread-<NNN>.json`, numbered after the highest `-reread-` number of the batch and results files of `<dir>` (an
+id whose results file exists is never reused), from the records that are of kind `monster`, have the verdict `entry`, carry
+no rule, are not legacy, are in neither `review-queue.json` nor `queue.json`, have text and a matched official item in the
+dumps, and whose engine reading is **not empty**. A record in `drafts-queue.json` is cut (that is most of them). A record whose
+stored reread (`evidence.triaged.reread`) judged the reading of today (same `sha`, below) is not cut again: only an unsure
+(nothing stored) or a stale one is. A batch is `{ id, stage: "reread", core, vocabulary: "reread-vocabulary.json", entries }`;
+an entry is what a triage entry carries (`key`, `name`, `kind`, `edition`, `textSha`, `owner`, `section`, `page`, `srd`
+where the record has them, `items` without their data) **without the hint**, plus `reading: { core, sha }`, the fingerprint of
+the engine reading the entry was cut against (the engine version and the SHA-256 of the reading's canonical form,
+`readingFingerprint`). Nothing of an earlier verdict, why, confidence, reader or drafter handle, or drafts-queue answer goes
+in. `<private dir>/<id>.structure.json` holds the item structures, with `engineReads` in the official one, as for triage
+(premium-derived: never inside the repository, the registry or `--out`; never commit it). `<dir>/reread-vocabulary.json` is the
+reviewer's vocabulary (the assertion shapes, the engine words, `definitions`, `endsExamples`). `<dir>/<book>-reread-report.json`
+holds counts only: the batches, the entries cut, each reason a candidate was left out (`already ruled`, `legacy`,
+`in review-queue.json`, `in queue.json`, `no text`, `no matched official item`, `official item not in the dumps`,
+`engine reads nothing`, `reread for the current reading`), also printed on the console.
+
+`--second` cuts `<book>-reread-second-<NNN>` (its own numbering, `second: true` in the batch, report
+`<book>-reread-second-report.json`) from the records a first reread set to `core` and no second reread has read
+(`second reread done` otherwise), when the engine still reads them as the first reread judged them (`reading changed since
+the first reread` otherwise). Give it to a reader with another handle than the first: the ingest refuses the same one.
+
+### 📖 Brief for a reread agent
+
+The Claude Code session gives each reread agent one batch file, its structure file, `reread-vocabulary.json` and this brief.
+
+> You reread the entries of one batch file, `<dir>/<book>-reread-<NNN>.json` (or `<book>-reread-second-<NNN>.json`: the same
+> work, done blind). Each entry is a monster feature. DAS · Core, the combat engine, reads monster features from their
+> English text by itself; what it reads of this one is `engineReads`, in the official origin of the entry in the structure
+> file: an entry of ids and engine words (`triggers` with their `on`, `if` and `do` steps, `effectEnds`, `saveDamage`,
+> `blocksHealing`...). The question is one: **does the text require anything in combat that neither the item's own data
+> nor `engineReads` gives?**
+>
+> **What you may read.** The batch file; its structure file `<private dir>/<book>-reread-<NNN>.structure.json`;
+> `reread-vocabulary.json` beside the batch; and the text cache `$RULEPACK_TEXT` (the text of an entry is `<textSha>.txt`).
+> Nothing else: never open anything under `registry/` (the queues included), any other batch or any results file. No
+> network, no game server, no git, no edits to the repository: you write one results file and nothing more. You are not told
+> what anyone decided before about these entries, and you must not look for it.
+>
+> **How you work.** For each entry read the text, then the official structure: its activities (type, save, damage parts,
+> `onSave`, the effects each applies) and its effects (statuses, the keys their changes touch); then `engineReads`. What the
+> item's data does, the engine does without any entry (an attack, a save, its damage, half on a save when `onSave` says so,
+> the effects an activity applies with their statuses, durations, uses). What `engineReads` says, the engine adds by itself.
+> Compare what remains of the text with both:
+> - `covered: true` when everything the text requires in combat is in the item's data or in `engineReads`. What does not act
+>   in combat (a description, a smell, something done outside a fight) does not count.
+> - `covered: false` when the text requires something more: then `beyond` lists it, as assertions of the closed vocabulary
+>   (`assert.shapes` of `reread-vocabulary.json`: `given` with `roll`, `moment`, `origin`, `targetType`; `expect` with
+>   `damage`, `condition`, `ends`, `roll`, `affects`, `denies`, `move`, `uses`), one per thing the engine does not do, at
+>   most 6. Read each word in `definitions` of `reread-vocabulary.json`, never from its spelling (the turn words are the
+>   trap: `bearerTurnEnd` and `casterTurnEnd` never end the turn of placement, `currentTurnEnd` does; `endsExamples` shows
+>   each); a word marked `"unverified"` has no established meaning: do not use it. No `free` text anywhere in `beyond`, and
+>   no `excludes`.
+>
+> **What is not beyond** (the written criteria, section "Written criteria for the two boundaries", apply). A rider the
+> item's own data already does is not beyond (its effect already applies the condition on that roll; its save already
+> halves); something `engineReads` already says is not beyond (a `status` or `move` step of its `triggers` on that roll, a
+> `resave` that ends the effect, an `effectEnds` ending...). The ingest rejects a `beyond` assertion that either already
+> implies. A requirement the closed vocabulary cannot say at all (a choice at use time, a state kept across turns) is beyond
+> too, but cannot be listed: say `covered: false` only when you can list at least one assertion of what is beyond;
+> otherwise lower your confidence below 0.7 and say in `why` what cannot be expressed.
+>
+> **Worked example: covered** (invented). The text of "Cinder Shove" says: Dexterity save; on a failure, fire damage and the
+> target falls prone; on a success, half damage. The structure has one `save` activity with fire damage and `onSave:
+> "half"`, no effect; `engineReads` is `{ "triggers": [{ "on": "failedSave", "do": [{ "type": "status", "status": "prone"
+> }] }] }`. The damage and the half are the item's data, the fall is in `engineReads`: nothing is left.
+>
+> ```json
+> { "key": "tst:monster:cinder-imp/action/cinder-shove", "covered": true, "confidence": 0.9,
+>   "why": "damage and half on a save are the item's; the engine reads the fall on a failed save" }
+> ```
+>
+> **Worked example: beyond** (invented). The text of "Frost Clamp" says: on a hit the target is grappled, and while it is
+> grappled it cannot take reactions. The structure has one `attack` activity whose effect has the status `grappled`;
+> `engineReads` is `{ "effectEnds": { "<that effect's id>": "bearerTurnEnd" } }`. The grapple is the item's data; the lost
+> reactions are neither the data nor the reading:
+>
+> ```json
+> { "key": "tst:monster:rime-crab/action/frost-clamp", "covered": false, "confidence": 0.85,
+>   "beyond": [ { "given": { "roll": "hit" }, "expect": { "denies": "reactions" } } ],
+>   "why": "the grapple is the item's effect; the engine does not take its reactions away" }
+> ```
+>
+> **No text, no answer.** If the text file is missing or unreadable, leave the entry out of the results. Never decide from
+> memory of the book, and never from the structure alone.
+>
+> **Write one file** `<batch id>.results.json` outside the repository:
+>
+> ```json
+> { "batch": "<batch id>", "by": "<your agent handle>",
+>   "results": [ { "key": "…", "covered": true, "why": "one line", "confidence": 0.9 },
+>                { "key": "…", "covered": false, "beyond": [ { "given": { }, "expect": { } } ], "why": "one line",
+>                  "confidence": 0.8 } ] }
+> ```
+>
+> One result per entry, `key` unchanged; no other field (never `verdict`, `hint`, `reading`, `evidence` or `by` inside a
+> result: a result that carries one is rejected, and a file with another top-level field is refused whole). `beyond` only
+> with `covered: false`, and always with it. `why` is one line of your own words, at most 200 characters: never the book's
+> (8 or more consecutive words of the text are rejected), never a structure file's content beyond ids and keys. `by` is a
+> short handle such as `rereader-3`, never a person's name (it is written into the public registry), and for a second reread
+> never the first reader's. **Confidence** is 0 to 1; 0.7 is the line: below it nothing is written and the entry is cut again
+> later. Say 0.6 when unsure rather than rounding up: `covered: true` takes work away from the pack, a second reader checks
+> it, but a wrong one is a feature nobody automates.
+
 ## 📖 Brief for a drafter agent
 
 `batch draft <BOOK> --out <dir> --structure <private dir>` cuts the records with verdict `entry` and no `rule`: 20 entries per
@@ -504,7 +630,9 @@ batch (`--size`), one kind per batch, kinds in the order spell, feat, option, sp
 records with a matched official item first. A record is left out (and counted on the console, by reason) when it is already
 ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, is a monster feature that can never pass the
 gates (no creature to scope it to; "no official item"; "official item has no embedded id"; "shared embedded id, waits on
-upstream"), or is one the `unique` gate would fail whatever is drafted: "identifier is DAS · Core's: a person decides inCore",
+upstream"; "engine reads it: reread first": the engine reads something of it, Ruling R29, and no reread found the text going
+beyond that reading: `hint: "beyond-engine"` lets it through), or is one the `unique` gate would fail whatever is drafted:
+"identifier is DAS · Core's: a person decides inCore",
 "identifier shared with another record" (another record of the same edition that has a rule or the verdict `entry` registers it,
 a monster feature counted under its creature-scoped identifier) and "identifier ruled for another edition: needs an
 edition-scoped identifier" (Ruling R22: a twin of another edition alone is no clash until it has a rule; `batch.mjs`
@@ -524,7 +652,9 @@ structure file holds no structure for it: `batch.mjs` `rulableOrigin`), `keys` a
 `why` and `examples` (at most three `{ identifier, entry }`, drafter keys only, stripped to ids, engine words,
 formulas and numbers: no `adds`, `free` or label: first the triage `similar`, then the shipped rules that share `keys`, then the
 canonical example of each key the shipped rules of the record's kind use most, so an entry has examples even when triage left
-`keys` and `similar` empty). The triage `why` is kept only when it passes the quotation check of a rule's strings (8 consecutive
+`keys` and `similar` empty), and for a monster feature a reread found going beyond the engine's reading `beyondEngine`: the
+assertions that reread named (data, no free text; the second reread's when it disagreed with a covered first). The triage
+`why` is kept only when it passes the quotation check of a rule's strings (8 consecutive
 words of the text, `gates.mjs` `quotationCheck`); otherwise the entry is cut without `why` and counted ("why withheld: quotes
 the source"). It needs the text, hence `RULEPACK_TEXT` at cut time (without the text of an entry its `why` is withheld). The
 text is never in the batch: it is in the private cache, named by `textSha`. `batch draft` also writes
@@ -590,7 +720,9 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > with the same value (it is dropped as redundant), never change one of its values (the rule is held for a person), and if
 > you write `triggers` while `engineReads` has some, your list must contain every one of its triggers unchanged, conditions
 > such as `target.sizeAtMost` included, plus yours. When `engineReads` already does all the text says, answer `person` with
-> the reason "the engine already reads it".
+> the reason "the engine already reads it". A monster feature the engine reads something of reaches you only after a reread
+> found the text going beyond that reading: `beyondEngine` lists what it found, as assertions (a hint of what your rule is
+> to add and assert, not a rule).
 >
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
@@ -1087,6 +1219,65 @@ two bulk rules. Both are options of `ingest`; `--third`, `--second`, `--overwrit
   and reported on stderr, with exit code 1.
 - `evidence.triaged.second` and `evidence.triaged.via` are validated by the schema: `second` is `{ by, confidence }` like
   `first` and needs it; `via` is `"third-reading"` or `"bulk-unsure"` and needs both.
+
+### Ingesting rereads
+
+`npm run ingest -- <results-file> --reread --batch <batch file>` takes what a reread agent wrote (the results of the reread
+brief above; `tools/pipeline/reread.mjs` `ingestRereads`). `--reread` with `--overwrite`, `--third`, `--settle-unsure`,
+`--draft`, `--review` or `--min` is a usage error; `--second` with it means a second reread (below). `--batch` is required. It
+needs `RULEPACK_TEXT`, `DAS_CORE` and `RULEPACK_DUMPS`: the engine's reading of each record answered is computed again from the
+dumps, with the item's structure. The whole file is refused (exit 2, nothing written) when it is not `{ batch, by, results }`,
+has another top-level field, `by` is not a handle or is an owner's (`docs/owners.json`: a reread is an agent stage, Ruling
+R23), it holds a key named `__proto__`, `constructor` or `prototype`, a queue file of the registry is invalid, its `batch` is
+not a reread batch id (`<book>-reread-<NNN>`, or `<book>-reread-second-<NNN>` with `--second`), or the batch file does not
+have that id, stage `reread` (`second: true` exactly with `--second`) and entries that are keys of that book with their
+reading. For each result:
+
+- **Rejected** (`{ key, reason }`; nothing of it written; never stops the others, an unexpected exception included): a field
+  other than `key`, `covered`, `beyond`, `why`, `confidence`; a key twice; a key that is no record or not an entry of the batch;
+  a record that is not a monster feature, has a rule, is legacy, whose verdict is not `entry`, or that waits in
+  `review-queue.json` or `queue.json`; an official item not in the dumps, or one the engine reads nothing of now; **stale**: the
+  reading of today is not the one the batch entry was cut against (cut a new batch); a record already reread for that very
+  reading; `covered` not a boolean; `beyond` with `covered: true`, or missing, empty or longer than 6 with `covered: false`;
+  an assertion of `beyond` that `assertProblems` refuses (the engine's words, the agent form: no `excludes`, no `free`-only
+  assertion), or that holds a `free` text at all (it is stored as data and handed to drafters); **an atom of `beyond` that the
+  engine's reading already implies** (`impliedAsserts(reading, { structure })`, equal up to optional detail, Ruling R24's
+  `sameUpToDetail`: a reader cannot claim as missing what the engine does), **or that the item's own data already does**
+  (`itemAsserts`: the statuses of its effects on the roll that applies them, an attack's full damage on a hit, a save's on a
+  failed save, the half or none of its `onSave`); a confidence outside 0..1; a `why` that is not one line of at most 200
+  printable characters or quotes 8 consecutive words of the text; no text in the cache.
+- **Unsure** (confidence below 0.7): nothing changes on the record and nothing is queued; the key is listed in `unsure` and
+  the record is cut again by the next `batch reread`.
+- **Covered** (`covered: true`, at least 0.7): the verdict becomes `core`, `why` the fixed line "DAS · Core reads this
+  feature's text and a reader found nothing beyond it" (`REREAD_WHY`), the hint goes, and `evidence.triaged = { by: "rule",
+  at, was: { verdict, why, triaged }, reread: { by, at, confidence, reading, covered: true, provisional: true } }`: `was` is
+  what the record was, in the shape the pre-pass uses (the reader's triage evidence, an older reread left out), `reading` the
+  fingerprint of the reading judged. If the key is in `drafts-queue.json`, its entry is removed (it no longer needs a rule).
+- **Beyond** (`covered: false`, at least 0.7): the verdict stays `entry`, the record gains `hint: "beyond-engine"`, and
+  `evidence.triaged.reread = { by, at, confidence, reading, covered: false, beyond }` beside the reader's triage evidence. A
+  drafts-queue entry stays as it is (the drafter's answer still stands) and gains nothing.
+
+It prints `{ covered, beyond, unsure, dequeued, rejected }` (`unsure` the keys) and exits with 1 when anything was rejected;
+the books and `drafts-queue.json` are written in one step (`commitIngest`).
+
+**Second reread** (`--reread --second`, from a `batch reread ... --second` batch): `core` takes work away, so a covered reread
+stays provisional until a second, blind reader with another handle (case aside) agrees. Only a record whose verdict a first
+reread set to `core`, `provisional`, with no second reread, judged against the same reading as the first, is taken; every
+other check above applies. Agreement (`covered: true`, at least 0.7): `reread.second = { by, at, confidence, reading, covered:
+true }`, `provisional` goes. Disagreement (`covered: false` with its `beyond`, at least 0.7): the verdict goes back to what it
+was (`was`: `entry` and its why, the reader's triage evidence), `hint: "beyond-engine"`, and `reread` keeps both readings
+(`second` with its `beyond`). **The drafts-queue entry removed by the first reread is not restored**: the record is simply
+draftable again (the command says so on stderr). Below 0.7: nothing changes. It prints `{ agreed, disagreed, unsure,
+rejected }`.
+
+The schema holds `evidence.triaged.reread` (closed keys, a reader handle, a date, a confidence, `reading: { core: an engine
+version, sha: 64 hex }`, `beyond` as above with no `free`), and ties it to the record, also under `gates --ci`: a reread
+covered by the first reader and by the second, if any, goes with the verdict `core` by rule, its `was` and the fixed why, and
+is `provisional: true` exactly while there is no second; otherwise the verdict is not `core`; only a covered first reread has
+a second one. The local `npm run gates` (it needs the dumps) prints a note (`reread: stale, ...`, never a failure) for a
+record whose engine reading of today has another `sha` than the one a reread judged: a later engine that reads the feature
+differently makes the reread visibly stale. A stale `entry` is cut again by `batch reread`; a stale `core` is not (it is no
+`entry` any more): the note is there for a person.
 
 ### Written criteria for the two boundaries
 
