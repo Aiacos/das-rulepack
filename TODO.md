@@ -145,12 +145,20 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 
 ## Milestone 3 — after the first pilot (2026-11-22, `docs/pilot-m3.md`: 1 rule from 46 entries, decision: revise)
 
-- [ ] Triage pre-pass: `core` for what the engine already does (identifiers recognised by its runtime code, features whose
-      parts ship under other identifiers, what its content notes leave to the system). Re-run it over every `entry` record.
+- [x] Triage pre-pass: `core` for what the engine already does (identifiers recognised by its runtime code, features whose
+      parts ship under other identifiers, what its content notes leave to the system): `triage <BOOK> --core-prepass`
+      (`docs/PIPELINE.md`). Still to do: run it on the registry (a dry run turns 12 XPHB `entry` records to `core`); the
+      engine's notes that name features in French prose only cannot be read by it.
 - [ ] Widen the drafter vocabulary: the full `triggers` shape, then `emanation`, `duringRage`, `barrier`, `globe`,
       `targets.requires`, `spellDamageTypes`, `usageLimits.whileEffect` (each through the same review as the first 28 keys).
 - [ ] Decide whether typed data fixes may apply to a monster feature bound by a unique embedded id.
 - [ ] A verdict for "needs engine support" entries and a grouped list of the missing capabilities for upstream.
 - [ ] Second pilot on the 2024 Monster Manual's draftable monster features (294).
 - [ ] Tasks 7 (scenarios; in progress) and 8 (stale re-reads) of the plan; volume only after a pilot that passes R12.
+- [x] Pre-pass run on every book (2026-11-22): 12 `entry` records became `core`, all in XPHB (11 identifiers the engine
+      handles in its code, 1 feature whose six options each have an engine entry). The yield is small: what the engine leaves
+      to the game system is said only in the prose of its notes, with no identifier to match (5 of the pilot's 11 named
+      records are missed for that reason). "Handled in code" can mean handled in part: `spell-breaker` and `war-bond` are.
+- [ ] The larger remedy for wrong `entry` verdicts is a re-read with the engine in view: give a reader the engine's notes and
+      the code path next to the text (a new reading stage), instead of matching identifiers.
 

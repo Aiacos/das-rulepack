@@ -414,10 +414,20 @@ const editionMessage = (id, record, first) => `unique: ${record.key}: ${id} is r
   + ` ${first.edition}): a rule for edition ${record.edition} needs an edition-scoped identifier bound through sources (R22)`;
 const coreMessage = (record, id) => `unique: ${record.key}: ${id} is a DAS · Core identifier (an entry there would be patched`
   + " for every item of that name; set rule.inCore only on purpose)";
+const handledMessage = (record, id) => `unique: ${record.key}: ${id} is handled by DAS · Core outside its table (in code, or left`
+  + " to the game system): a rule would stack on it (set rule.inCore only on purpose)";
+
+/**
+ * The identifiers a rule may not register without `rule.inCore`: every one DAS · Core handles (`core.handled`: its table, its
+ * code, what its content notes leave to the system, core.mjs loadCore), or its table alone for a core that has no `handled`.
+ */
+export const engineIdentifiers = (core) => core?.handled ?? core?.identifiers;
 
 // A registered table is merged over the engine's entries identifier by identifier: a rule under one of the engine's
-// identifiers patches the engine's entry, allowed only for its own identifier with `rule.inCore: true` (set by a person).
-function coreCollisions(records, identifiers, registers = hasRule) {
+// identifiers patches the engine's entry, allowed only for its own identifier with `rule.inCore: true` (set by a person). A
+// rule under one the engine handles in code, or leaves to the system, would stack on that behaviour: held the same way.
+// `identifiers` is the set to hold (engineIdentifiers); `table` the engine's table, which says which message applies.
+function coreCollisions(records, identifiers, registers = hasRule, table = identifiers) {
   const out = [];
   if (!identifiers?.size) return out;
   for (const record of records) {
@@ -425,7 +435,9 @@ function coreCollisions(records, identifiers, registers = hasRule) {
     // `inCore` is a person's decision about the record's own identifier; an alias never patches an entry of the engine.
     const own = norm(record.identifier);
     for (const id of registeredBy(record)) {
-      if (identifiers.has(id) && !(id === own && record.rule?.inCore === true)) out.push([record, coreMessage(record, id), id]);
+      if (identifiers.has(id) && !(id === own && record.rule?.inCore === true)) {
+        out.push([record, (table?.has(id) ? coreMessage : handledMessage)(record, id), id]);
+      }
     }
   }
   return out;
@@ -451,12 +463,13 @@ export function identifierClashes(records, { coreIdentifiers, registers = hasRul
 /**
  * Two ruled records of one edition that register one identifier (own or alias) would register one entry twice, always a
  * failure; across editions the later rule fails (Ruling R22, identifierTwins); so does an identifier or alias equal to a
- * DAS · Core identifier (`core.identifiers`) without `rule.inCore`. Unruled records are ignored.
+ * DAS · Core identifier (engineIdentifiers: its table, its code, what it leaves to the system) without `rule.inCore`.
+ * Unruled records are ignored.
  */
 export const gateUnique = (records, { core } = {}) => [
   ...identifierTwins(records).shared.map(([id, group]) => uniqueMessage(id, group)),
   ...identifierTwins(records).later.map(([id, record, first]) => editionMessage(id, record, first)),
-  ...coreCollisions(records, core?.identifiers).map(([, m]) => m)
+  ...coreCollisions(records, engineIdentifiers(core), hasRule, core?.identifiers).map(([, m]) => m)
 ];
 
 const uniqueFailuresByKey = (records, core) => {
@@ -465,7 +478,7 @@ const uniqueFailuresByKey = (records, core) => {
   const { shared, later } = identifierTwins(records);
   for (const [id, group] of shared) for (const { key } of group) add(key, uniqueMessage(id, group));
   for (const [id, record, first] of later) add(record.key, editionMessage(id, record, first));
-  for (const [record, m] of coreCollisions(records, core?.identifiers)) add(record.key, m);
+  for (const [record, m] of coreCollisions(records, engineIdentifiers(core), hasRule, core?.identifiers)) add(record.key, m);
   return byKey;
 };
 

@@ -92,7 +92,9 @@ const asRegistered = (r) => {
  * Map of record key to CORE_IDENTIFIER, SHARED_IDENTIFIER (a twin of the same edition) or EDITION_IDENTIFIER (a rule of
  * another edition holds it, Ruling R22) for the records whose identifier (or alias) the `unique` gate would hold against
  * them (gates.mjs identifierClashes / identifierTwins, the gate's own functions), counting every record that has a rule or
- * the verdict entry; `pending` (keys) are drafts being ingested, ranked after every existing rule. `coreIdentifiers` is core.identifiers. Used by `batch draft` (left out) and `ingest --draft` (queued).
+ * the verdict entry; `pending` (keys) are drafts being ingested, ranked after every existing rule. `coreIdentifiers` is
+ * gates.mjs engineIdentifiers(core): the table, the code and the system identifiers. Used by `batch draft` (left out) and
+ * `ingest --draft` (queued).
  */
 export function identifierClashReasons(records, coreIdentifiers, { pending } = {}) {
   const registering = records.filter(willRegister).map(asRegistered);

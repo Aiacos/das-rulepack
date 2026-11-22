@@ -5,7 +5,9 @@ import { ruleFingerprint } from "./registry.mjs";
 import { BY, ORIGINS, ORIGIN_MAX, draftedForPerson, isReaderHandle } from "./schema.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { checkDraftKeys } from "./draft-keys.mjs";
-import { RULE_QUOTE_WORDS, checkIds, checkText, gateSchema, gateValidator, quotationCheck, ruleProse } from "./gates.mjs";
+import {
+  RULE_QUOTE_WORDS, checkIds, checkText, engineIdentifiers, gateSchema, gateValidator, quotationCheck, ruleProse
+} from "./gates.mjs";
 import { identifierClashReasons } from "./batch.mjs";
 import { SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, sharedEmbeddedId } from "./settle.mjs";
@@ -75,7 +77,7 @@ function draftedRecord(record, draft, { core, embedded, by, at }) {
   const origins = Array.isArray(rule.origins) ? rule.origins : [];
   const alsoAs = [];
   for (const origin of origins) {
-    const alias = aliasFor(next, origin, { coreIdentifiers: core.identifiers });
+    const alias = aliasFor(next, origin, { coreIdentifiers: engineIdentifiers(core) });
     // Ruling R3: a monster feature whose embedded item id another creature shares cannot be ruled until upstream accepts
     // `<actor id>.<item id>` sources; any other origin aliasFor cannot reach belongs in rule.uncovered.
     if (alias?.uncovered === SHARED_EMBEDDED) return { problem: `identifier: ${SHARED_EMBEDDED}: the feature cannot be ruled yet` };
@@ -230,7 +232,7 @@ function takeResult(result, ctx) {
   // The unique gate would fail it whatever a drafter writes (a DAS · Core identifier, one shared with another record that
   // has a rule or the verdict entry): a person decides (batch.mjs identifierClashReasons, the gate's own functions).
   const others = ctx.out.map((r) => (r === record ? drafted.record : r));
-  const clash = identifierClashReasons(others, core.identifiers, { pending: new Set([result.key]) }).get(result.key);
+  const clash = identifierClashReasons(others, engineIdentifiers(core), { pending: new Set([result.key]) }).get(result.key);
   if (clash) return entry(clash, result.rule);
   if (result.confidence < QUEUE_THRESHOLD) return entry("low-confidence", result.rule);
   return { apply: { record, next: drafted.record } };

@@ -4000,17 +4000,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-002",
-          "at": "2026-11-21T19:50:45.039Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Damage modifier added only to the light-weapon extra attack; circumstance-limited, data lacks any effect.",
+            "triaged": {
+              "by": "reader-xphb-002",
+              "at": "2026-11-21T19:50:45.039Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Damage modifier added only to the light-weapon extra attack; circumstance-limited, data lacks any effect.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -6346,17 +6354,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-003",
-          "at": "2026-11-21T19:50:45.335Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Die given to ally, one at a time, spent when failing a D20 Test within an hour; data has uses and an effect but not the reaction use.",
+            "triaged": {
+              "by": "reader-xphb-003",
+              "at": "2026-11-21T19:50:45.335Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Die given to ally, one at a time, spent when failing a D20 Test within an hour; data has uses and an effect but not the reaction use.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -8457,17 +8473,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-004",
-          "at": "2026-11-21T19:50:45.648Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Upgrades damage die of Divine Strike and adds a temp HP rider on cantrip damage, depending on prior option; data has only a loose heal activity.",
+            "triaged": {
+              "by": "reader-xphb-004",
+              "at": "2026-11-21T19:50:45.648Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Upgrades damage die of Divine Strike and adds a temp HP rider on cantrip damage, depending on prior option; data has only a loose heal activity.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -14407,17 +14431,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-007",
-          "at": "2026-11-21T19:50:46.560Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Disadvantage on next spell save after a weapon hit, limited to until end of next turn; a Struck effect has no keys.",
+            "triaged": {
+              "by": "reader-xphb-007",
+              "at": "2026-11-21T19:50:46.560Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Disadvantage on next spell save after a weapon hit, limited to until end of next turn; a Struck effect has no keys.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -14679,26 +14711,34 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "third-t1",
-          "at": "2026-11-21T23:14:37.952Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-007",
-            "confidence": 0.65
-          },
-          "second": {
-            "by": "second-s46",
-            "confidence": 0.65
-          },
-          "via": "third-reading"
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Bond lasts until broken, two weapons max, summon one at a time, no disarm unless Incapacitated; uses lack recovery. Entry: restriction missing.",
+            "triaged": {
+              "by": "third-t1",
+              "at": "2026-11-21T23:14:37.952Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-007",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s46",
+                "confidence": 0.65
+              },
+              "via": "third-reading"
+            }
+          }
         }
       },
-      "why": "Bond lasts until broken, two weapons max, summon one at a time, no disarm unless Incapacitated; uses lack recovery. Entry: restriction missing.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -15652,24 +15692,32 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T23:14:46.522Z",
-          "confidence": 0.65,
-          "first": {
-            "by": "reader-xphb-007",
-            "confidence": 0.6
-          },
-          "second": {
-            "by": "second-s46",
-            "confidence": 0.65
-          },
-          "via": "bulk-unsure"
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Widens Deflect Attacks to every damage type; data lacks any change, the reaction's damage-type limit must be lifted by a rule.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T23:14:46.522Z",
+              "confidence": 0.65,
+              "first": {
+                "by": "reader-xphb-007",
+                "confidence": 0.6
+              },
+              "second": {
+                "by": "second-s46",
+                "confidence": 0.65
+              },
+              "via": "bulk-unsure"
+            }
+          }
         }
       },
-      "why": "Widens Deflect Attacks to every damage type; data lacks any change, the reaction's damage-type limit must be lifted by a rule.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -22116,17 +22164,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Darkvision is carried by an effect; being invisible to darkvision-reliant creatures while in darkness is a situational rule data lacks.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Darkvision is carried by an effect; being invisible to darkvision-reliant creatures while in darkness is a situational rule data lacks.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -24129,17 +24185,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-011",
-          "at": "2026-11-21T19:50:47.770Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Disadvantage on saves against own spell when caster is Invisible, same turn; conditional, data has nothing",
+            "triaged": {
+              "by": "reader-xphb-011",
+              "at": "2026-11-21T19:50:47.770Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Disadvantage on saves against own spell when caster is Invisible, same turn; conditional, data has nothing",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -30012,17 +30076,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-013",
-          "at": "2026-11-21T19:50:48.383Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "data lacks it: bonus action Dispel Magic, proficiency on its check, slot refund on failure",
+            "triaged": {
+              "by": "reader-xphb-013",
+              "at": "2026-11-21T19:50:48.383Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "data lacks it: bonus action Dispel Magic, proficiency on its check, slot refund on failure",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -47206,17 +47278,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-020",
-          "at": "2026-11-21T19:50:50.519Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks anything; modifies the number of extra attacks of another invocation.",
+            "triaged": {
+              "by": "reader-xphb-020",
+              "at": "2026-11-21T19:50:50.519Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Data lacks anything; modifies the number of extra attacks of another invocation.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -49101,17 +49181,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-020",
-          "at": "2026-11-21T19:50:50.519Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks the extra attack for the pact weapon; no activity or effect carries it.",
+            "triaged": {
+              "by": "reader-xphb-020",
+              "at": "2026-11-21T19:50:50.519Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Data lacks the extra attack for the pact weapon; no activity or effect carries it.",
+      "why": "DAS · Core handles this identifier in code",
       "state": "triaged"
     },
     {
@@ -50567,17 +50655,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-021",
-          "at": "2026-11-21T19:50:50.831Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T02:38:58.262Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice of boons with rider damage on hit, a teleport and a prone rider, limited uses; data has no activity or effect.",
+            "triaged": {
+              "by": "reader-xphb-021",
+              "at": "2026-11-21T19:50:50.831Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Choice of boons with rider damage on hit, a teleport and a prone rider, limited uses; data has no activity or effect.",
+      "why": "every option of this feature is handled by DAS · Core",
       "state": "triaged"
     },
     {
