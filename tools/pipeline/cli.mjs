@@ -635,10 +635,12 @@ async function ingestCommand(args) {
   const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
   if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
   if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
-  // One check for every mode: an owner signs only by hand (evidence.person) or through review-accept, never in a results file.
-  if (isOwner(input.by)) {
-    throw new UsageError(`${file}: by ${JSON.stringify(clip(input.by))} is an owner of docs/owners.json: a results file is an`
-      + " agent's, signed with an agent handle");
+  // Ruling R23: an owner settles the triage queue through the plain ingest (with or without --overwrite); the agent stages
+  // (--second, --third, --draft, --review) never take an owner's file.
+  const owner = isOwner(input.by);
+  if (owner && mode !== undefined && mode !== "--overwrite") {
+    throw new UsageError(`${file}: by ${JSON.stringify(clip(input.by))} is an owner of docs/owners.json: ${mode} is an`
+      + " agent stage, its results file is signed with an agent handle (an owner settles the triage queue with plain ingest)");
   }
   const forbidden = forbiddenKeyIn(input);
   if (forbidden) {
@@ -657,7 +659,7 @@ async function ingestCommand(args) {
   if (second) return ingestSecondCommand(books, input, { textDir, entryKeys });
   if (third) return ingestThirdCommand(books, input, { textDir, entryKeys });
   const out = ingest(books.flatMap((b) => b.records), input.results, {
-    textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY)
+    textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY), owner
   });
   if (!commitIngest(books, out.records, out.applied, out.queued, out.applied)) return;
   console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));

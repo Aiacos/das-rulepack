@@ -140,6 +140,14 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   the older printing that carries the same identifier (as the engine's own entries already do); until that record gets its
   own scoped rule, the 2024 rule stands in for it.
 
+- **R23 — An owner settles the triage queue through a results file.** The plain `ingest` (with or without `--overwrite`)
+  takes a results file signed with a handle of `docs/owners.json` as a person's decision, also for an entry that has a
+  `second` or `third` reading (applied; the earlier readings kept in `evidence.triaged.first` / `second`; the entry leaves
+  the queue); `--second`, `--third`, `--draft` and `--review` refuse an owner's handle (agent stages). Every other check, the
+  quotation of `why` included, applies. Wrong: whoever runs the CLI can sign a file as an owner and settle any queued
+  entry, the disagreements of two readers included (the same trust model as R20: a visible claim in a reviewed commit, not
+  a signature).
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed

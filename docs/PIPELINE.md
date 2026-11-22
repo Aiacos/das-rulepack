@@ -519,14 +519,15 @@ the gates do not pass is not worth reviewing; a `reviewed` or `played` one is do
 wrote (no `evidence.drafted`) is cut like any gated rule. A batch `<dir>/<book>-review-<NNN>.json` is `{ id, stage:
 "review", entries, vocabulary: "review-vocabulary.json" }`; an entry is exactly a triage entry (`key`, `name`, `kind`,
 `edition`, `textSha`, the record's `owner`, `level`, `section`, `rarity`, `page`, `srd`, `hint` where it has them, and
-`items` without their data: the matched origins with their activity and effect ids) plus `rule`, the fingerprint of the rule under review. **Nothing of the draft goes
-in**: no entry, no assertion, no `adds`, no `origins` or `uncovered`, no drafter handle, no triage `keys`, `similar` or `why`.
+`items` without their data: the matched origins with their activity and effect ids) plus `rule`, the fingerprint of the
+rule under review. **Nothing of the draft goes in**: no entry, no assertion, no `adds`, no `origins` or `uncovered`, no
+drafter handle, no triage `keys`, `similar` or `why`.
 `<dir>/review-vocabulary.json` holds the assertion vocabulary (`assert` of `draft-vocabulary.json`), the engine words it names
 and the limits of the strings; `<private dir>/<id>.structure.json` the item structures, as for triage (never commit it).
 Numbering continues per series (`-review-`), as for the other batches. The Claude Code session gives each reviewer agent one
 batch file, its structure file and this brief, and an agent handle that is none of the rule's authors' (`evidence.drafted.by`,
-`evidence.person.by`; never an owner's: a results file signed with a handle of `docs/owners.json` is refused, whatever the
-ingest mode).
+`evidence.person.by`; never an owner's: `--second`, `--third`, `--draft` and `--review` refuse a results file signed with a
+handle of `docs/owners.json`, Ruling R23).
 
 > You review the entries of one batch file, `<dir>/<book>-review-<NNN>.json`, **blind**: you are not shown the rule that was
 > drafted, and you must not look for it.
@@ -604,10 +605,15 @@ What the session does with the output:
    are applied: only entries without a verdict are cut) rather than patching the results by hand.
 2. `registry/queue.json` is the list for a person. For each entry, a person decides the verdict. The tools do not apply
    queued verdicts. To settle a low-confidence one, the person checks it and ingests a results file with the verdict they
-   chose, at confidence 1 and `"by": "<a handle>"` (a short handle, not their name: it lands in a public file; not a handle
-   of `docs/owners.json`, which every ingest mode refuses: an owner signs only by hand or through `review-accept`), with
+   chose, at confidence 1 and `"by": "<their handle>"` (a short handle, not their name: it lands in a public file), with
    `--overwrite` if the record already has a verdict; applying a verdict removes the key from the queue. An `engine` verdict
    is never applied by `ingest`: it waits in the queue until a person records the upstream issue and sets the record.
+   **Rule (Ruling R23):** a results file signed with a handle of `docs/owners.json` is a person's decision, taken only by
+   the plain `ingest` (with or without `--overwrite`), where it also settles an entry that has a `second` or `third`
+   reading (the verdict is applied, `evidence.triaged.by` is the owner, the earlier readings are kept as
+   `evidence.triaged.first` and `second`, and the entry leaves the queue), while every agent stage (`--second`, `--third`,
+   `--draft`, `--review`) refuses it and an agent-signed file is still rejected for such an entry; every other check,
+   the quotation of `why` included, applies to the owner as to a reader.
 3. A batch with an unusual share of rejections or queued results is redone, not patched.
 4. Before a person reads the queue, a second reader may read it (below). Give a second reading to a reader with a different
    handle (`by`) than the first one's: the tool rejects the same handle.

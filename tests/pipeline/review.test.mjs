@@ -590,11 +590,11 @@ describe("fix round 1: CLI", () => {
     expect(loadQueue(registry, "review")).toHaveLength(1);
   });
 
-  withCore("an owner's handle never comes in through a results file, whatever the mode", () => {
+  withCore("an owner's handle never comes in through an agent stage's results file", () => {
     const batchFile = (id, stage) => write(`${id}.json`, { id, stage, entries: records.map((r) => ({ key: r.key,
       rule: ruleFingerprint(r.rule) })) });
+    // Ruling R23: the plain ingest (the triage queue settled by a person) takes an owner's file; the agent stages never do.
     const cases = [
-      [write("t.json", { batch: "tst-triage-001", by: "owner", results: [] }), []],
       [write("s.json", { batch: "tst-second-001", by: "owner", results: [] }), ["--second"]],
       [write("th.json", { batch: "tst-third-001", by: "owner", results: [] }), ["--third"]],
       [write("d.json", { batch: "tst-draft-001", by: "owner", results: [] }), ["--draft", "--batch",
