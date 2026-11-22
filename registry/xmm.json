@@ -8135,18 +8135,31 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.85,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "7db2a555d9200c77aee748872333e39a2ef7bb7cc5a74bd97387a19635415048"
             },
             "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "prone"
+                  }
+                }
+              }
+            ],
             "unexpressed": [
-              "target-size",
               "follow-up-action"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -22870,8 +22883,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
             "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
@@ -22881,7 +22894,8 @@
             "unexpressed": [
               "ongoing-effect",
               "target-state"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -25117,19 +25131,19 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.7,
             "reading": {
               "core": "0.290.0",
               "sha": "3ccbf02c279175207f1d785ac6e0aa34a58037f937cfee6ff224cdc5ba94caa4"
             },
             "covered": false,
             "unexpressed": [
-              "form-change",
               "trigger-filter",
-              "table-ruling"
-            ]
+              "form-change"
+            ],
+            "restated": true
           }
         }
       },
@@ -39223,9 +39237,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
@@ -39233,7 +39247,8 @@
             "covered": false,
             "unexpressed": [
               "trigger-filter"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -48865,17 +48880,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.85,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.8,
             "reading": {
               "core": "0.290.0",
               "sha": "447dbb06f4d001dd42e3c59a873eb4ca02b571c2bf06e94baaf4920cc07766c8"
             },
             "covered": false,
-            "unexpressed": [
-              "target-size"
-            ]
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "huge"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "prone"
+                  }
+                }
+              }
+            ],
+            "restated": true
           }
         }
       },
@@ -50124,9 +50150,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
@@ -50134,7 +50160,8 @@
             "covered": false,
             "unexpressed": [
               "trigger-filter"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -59490,8 +59517,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
             "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
@@ -59501,7 +59528,8 @@
             "unexpressed": [
               "trigger-filter",
               "no-key"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -60887,17 +60915,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
             "confidence": 0.8,
             "reading": {
               "core": "0.290.0",
               "sha": "ba28665de8a9ccc65f7a08d7a39e3ec95d98afbf13cb650d0c1b5932730354ac"
             },
             "covered": false,
-            "unexpressed": [
-              "target-size"
-            ]
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "huge"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "grappled"
+                  }
+                }
+              }
+            ],
+            "restated": true
           }
         }
       },
@@ -61847,17 +61886,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.85,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.8,
             "reading": {
               "core": "0.290.0",
               "sha": "54792044a662ae166e83739f0757827f197981b94991d2a7d4f7fb776324e85f"
             },
             "covered": false,
-            "unexpressed": [
-              "target-size"
-            ]
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "med"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "prone"
+                  }
+                }
+              }
+            ],
+            "restated": true
           }
         }
       },
@@ -64318,9 +64368,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
@@ -64328,7 +64378,8 @@
             "covered": false,
             "unexpressed": [
               "trigger-filter"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -65631,19 +65682,19 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "26a74bba5e7f8ed95223dd8506b9612d1b628003771fafd37e2d0ee5ab995d62"
             },
             "covered": false,
             "unexpressed": [
-              "no-key",
-              "use-time-choice",
-              "target-size"
-            ]
+              "target-size",
+              "no-key"
+            ],
+            "restated": true
           }
         }
       },
@@ -66636,17 +66687,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.85,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.8,
             "reading": {
               "core": "0.290.0",
               "sha": "447dbb06f4d001dd42e3c59a873eb4ca02b571c2bf06e94baaf4920cc07766c8"
             },
             "covered": false,
-            "unexpressed": [
-              "target-size"
-            ]
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "prone"
+                  }
+                }
+              }
+            ],
+            "restated": true
           }
         }
       },
@@ -74072,9 +74134,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
@@ -74082,7 +74144,8 @@
             "covered": false,
             "unexpressed": [
               "trigger-filter"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -74717,8 +74780,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
             "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
@@ -74728,7 +74791,8 @@
             "unexpressed": [
               "ongoing-effect",
               "target-state"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -76705,18 +76769,39 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "24c5bdcc336b4eb2268abeb5add44c96a06f138526960a0d64aba8d7c363fd00"
             },
             "covered": false,
-            "unexpressed": [
-              "target-state",
-              "no-key"
-            ]
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetHpAtMost": 20
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "unconscious"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetHpAtMost": 20
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 0
+                  }
+                }
+              }
+            ],
+            "restated": true
           }
         }
       },
@@ -77302,18 +77387,31 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "716ce5278b527382a6140b0419cac458220d31b3ca175481640310f8d9b95650"
             },
             "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "grappled"
+                  }
+                }
+              }
+            ],
             "unexpressed": [
-              "target-size",
               "no-key"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -79324,9 +79422,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
@@ -79334,7 +79432,8 @@
             "covered": false,
             "unexpressed": [
               "trigger-filter"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -81570,19 +81669,32 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.7,
             "reading": {
               "core": "0.290.0",
               "sha": "a2c9694452cc8b51f3568a9d7cf268b95ee509848d0b131f8b454a21b1657df0"
             },
             "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isMissed",
+                  "activity": "weapon",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "grappled"
+                  }
+                }
+              }
+            ],
             "unexpressed": [
-              "trigger-filter",
-              "use-time-choice",
               "no-key"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -85192,17 +85304,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.85,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.8,
             "reading": {
               "core": "0.290.0",
               "sha": "447dbb06f4d001dd42e3c59a873eb4ca02b571c2bf06e94baaf4920cc07766c8"
             },
             "covered": false,
-            "unexpressed": [
-              "target-size"
-            ]
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "huge"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "prone"
+                  }
+                }
+              }
+            ],
+            "restated": true
           }
         }
       },
@@ -86834,9 +86957,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-22T07:26:44.235Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
@@ -86844,7 +86967,8 @@
             "covered": false,
             "unexpressed": [
               "trigger-filter"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -93673,17 +93797,18 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.7,
             "reading": {
               "core": "0.290.0",
               "sha": "0ff9372e021b16fd31c05265b5762388d75639a42445318fc95ba5342e7e9146"
             },
             "covered": false,
             "unexpressed": [
-              "trigger-filter"
-            ]
+              "no-key"
+            ],
+            "restated": true
           }
         }
       },
@@ -95863,18 +95988,19 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.7,
             "reading": {
               "core": "0.290.0",
               "sha": "3ccbf02c279175207f1d785ac6e0aa34a58037f937cfee6ff224cdc5ba94caa4"
             },
             "covered": false,
             "unexpressed": [
-              "form-change",
-              "trigger-filter"
-            ]
+              "trigger-filter",
+              "form-change"
+            ],
+            "restated": true
           }
         }
       },
@@ -100230,18 +100356,19 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "bbc711e4a8d73461cca8f5bdfa6320acf7720aa41ea44c9f2edab04588eabd1a"
             },
             "covered": false,
             "unexpressed": [
-              "follow-up-action",
-              "trigger-filter"
-            ]
+              "trigger-filter",
+              "follow-up-action"
+            ],
+            "restated": true
           }
         }
       },
@@ -120968,9 +121095,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "a21b309b9fceae0ae77ae1e5f6307cd57e08310c446596bc12ed14a9a82acd4c"
@@ -120979,7 +121106,8 @@
             "unexpressed": [
               "trigger-filter",
               "follow-up-action"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -123851,18 +123979,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "04457fe3359ffa3890b1b74e09e274e081dba1ad35f9be923154ec3ac237cbd7"
             },
             "covered": false,
-            "unexpressed": [
-              "target-size",
-              "target-state"
-            ]
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "med"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "grappled"
+                  }
+                }
+              }
+            ],
+            "restated": true
           }
         }
       },
@@ -131924,18 +132062,31 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "1ee1d894952df62a63a10bc98bd122e1750036cc8e3956341db3f3f01b403bd9"
             },
             "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "grappled"
+                  }
+                }
+              }
+            ],
             "unexpressed": [
-              "target-size",
               "use-limit"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -134113,9 +134264,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
@@ -134123,7 +134274,8 @@
             "covered": false,
             "unexpressed": [
               "trigger-filter"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -134354,18 +134506,42 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
+            "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
               "sha": "897fc8af7548b5a4d8fef98fde9acb50429ab702302a060ba85b457d033ca0f0"
             },
             "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "grappled"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "restrained"
+                  }
+                }
+              }
+            ],
             "unexpressed": [
-              "target-size",
               "no-key"
-            ]
+            ],
+            "restated": true
           }
         }
       },
@@ -139143,8 +139319,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-22T07:26:45.531Z",
+            "by": "reread-z001",
+            "at": "2026-11-22T08:13:55.506Z",
             "confidence": 0.75,
             "reading": {
               "core": "0.290.0",
@@ -139153,7 +139329,8 @@
             "covered": false,
             "unexpressed": [
               "target-state"
-            ]
+            ],
+            "restated": true
           }
         }
       },
