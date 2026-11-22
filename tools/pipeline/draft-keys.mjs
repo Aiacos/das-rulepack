@@ -9,6 +9,7 @@
 // every key and slot against the engine.
 import { FIX_ENUMS, FIX_TYPES, typeProblem } from "./fix-types.mjs";
 import { splitWords } from "./text.mjs";
+import * as sh from "./shapes.mjs";
 
 export const SLOTS = Object.freeze(["activityMap", "effectMap", "single", "none"]);
 
@@ -47,6 +48,68 @@ export const DRAFT_KEYS = Object.freeze({
   // A fix is applied to the item data of its path: official origin only, a typed `value` and `from` (fix-types.mjs), no
   // `create`, never a monster feature (the data-fix gate has no document for `<actor id>.<item id>` yet).
   dataFixes: slot("single")
+});
+
+// The value shape of every DRAFT_KEYS key (shapes.mjs): what the engine's validator accepts from a drafter, with the ids where
+// the slot says. The vocabulary file gives them to drafters; tests/pipeline/batch-draft-round1.test.mjs builds a value from every
+// alternative of every shape and has the engine's validateEntry accept it (DAS_CORE), so a shape cannot drift from the engine.
+// A shape lists the common alternatives, not every option of the engine: a text that needs more goes to a person.
+const { values, word, object, list, idMap, idList, id, oneOf, tagged, TRUE, NUMBER, FORMULA } = sh;
+const WHOLE = oneOf(TRUE, idList("effect"));
+const STEP_ON_OUTCOME = tagged("type", {
+  status: object({ status: word("statuses") }),
+  damage: object({ formula: FORMULA, damageType: word("damageTypes") }, { onSave: values(["half", "none"]) }),
+  move: object({ mode: word("moveModes"), distance: Object.freeze({ type: "number", formula: false }), units: values(["ft"]) })
+});
+const STEP_RESAVE = tagged("type", { resave: object({}, { advantage: TRUE, keep: TRUE }) });
+export const DRAFT_SHAPES = Object.freeze({
+  // `on` may be any moment of the engine and a step must fit it (outcome steps at hit or failedSave, resave at a turn moment):
+  // the two alternatives are the common ones, the others go to a person.
+  triggers: list(oneOf(
+    object({ on: Object.freeze({ ...word("moments", "failedSave"), sampleOnly: true }), do: list(STEP_ON_OUTCOME) }),
+    object({ on: Object.freeze({ ...word("moments", "endOfTurn"), sampleOnly: true }), via: values(["effect"]),
+      do: list(STEP_RESAVE) }, { fromEffect: id("effect") })
+  )),
+  saveDamage: idMap("activity", values(["half", "none"])),
+  halfOnMiss: TRUE,
+  noDamage: idList("activity"),
+  effectEnds: idMap("effect", word("effectEnds")),
+  endsWhen: object({}, {
+    armor: values(["any", "heavy"]), zeroHp: TRUE, unaffected: values(["failedSave", "noHits", "noTargets"]),
+    apart: object({ distance: Object.freeze({ type: "number", formula: false }), units: values(["ft"]) },
+      { at: values(["move", "casterTurnEnd"]) }),
+    spell: TRUE, healedByMagic: TRUE
+  }, { atLeastOne: true }),
+  actionEnds: idMap("effect", object({ by: values(["bearer", "other"]) },
+    { roll: values(["check"]), verb: values(["wake"]), status: values(["prone"]), spell: TRUE, turnStart: TRUE })),
+  breaksOn: list(values(["attack", "damage", "spell", "save", "forcesSave"])),
+  noReactions: WHOLE,
+  actionOrBonus: WHOLE,
+  noOpportunity: values(["always", "flying", "afterUse", "whileEffect"]),
+  noOpportunityAttacks: WHOLE,
+  saveAdvantage: list(word("statuses")),
+  saveDisadvantageFor: list(word("creatureTypes")),
+  rollBonus: object({ activity: id("activity"), on: list(values(["save", "check", "attack", "initiative"])) },
+    { luck: TRUE, succeed: TRUE }),
+  rollDisadvantage: object({ on: list(values(["check", "save"])) }),
+  effectStatuses: idMap("effect", oneOf(list(word("statuses")), object({ set: list(word("statuses")) }))),
+  effectDurations: idMap("effect", oneOf(object({ seconds: Object.freeze({ type: "number", formula: false }) }),
+    object({ formula: FORMULA, units: values(["seconds", "minutes", "hours"]) }))),
+  savedEffects: idList("effect"),
+  atTurnStart: object({ activity: id("activity") }),
+  usageLimits: idMap("activity", object({}, {
+    oncePerTurn: TRUE, lowestSlot: TRUE, noDialog: TRUE, unmoved: TRUE, cost: values(["action", "bonus", "reaction", "free"])
+  }, { atLeastOne: true })),
+  ignoresResistance: object({ types: list(word("damageTypes")) }, { from: idList("activity") }),
+  grantsResistances: list(word("damageTypes")),
+  grantsConditionImmunities: list(word("statuses")),
+  difficultTerrain: object({}, { cost: Object.freeze({ type: "number", min: 2, formula: false }),
+    lingers: values(["casterNextTurnEnd"]) }, { atLeastOne: true }),
+  targets: object({}, { types: list(word("creatureTypes")) }, { atLeastOne: true }),
+  onHit: object({ save: id("activity") }, { whileEnchanted: id("effect") }),
+  // A data fix is described by `fixes` of the vocabulary: its `path` is one of `fixes.paths`, its `value` and `from` have the
+  // type `fixes.types` gives for that path.
+  dataFixes: Object.freeze({ type: "see", at: "fixes" })
 });
 
 /** The entry keys whose slot holds one id (Ruling R4: such a key, when it holds an id, names one origin only). */

@@ -98,6 +98,24 @@ export function reprintsOf(item, index, previous, types) {
 }
 
 /**
+ * Ruling R3: the creatures of a package that embed each item id, `Map<item id, Set<creature name>>`, from the package's actors
+ * (`actorSummaries`; an embedded item's `docId` is `<actor id>.<item id>`). Same-name actors are one creature.
+ */
+export function embeddedIndex(actors) {
+  const index = new Map();
+  for (const actor of actors ?? []) {
+    for (const i of actor.items ?? []) {
+      const id = String(i.docId).split(".").pop();
+      index.set(id, (index.get(id) ?? new Set()).add(matchName(actor.name).full));
+    }
+  }
+  return index;
+}
+
+/** True when an actor of another creature than `owner` embeds the item id (the one test `bindSources` and `batch draft` share). */
+export const sharedEmbeddedId = (index, id, owner) => [...(index.get(id) ?? [])].some((c) => c !== matchName(owner).full);
+
+/**
  * Binds the identifiers: an item whose identifier is not the record's gets its document id in `sources` ({ docId: identifier },
  * what the engine registers with `register(source, table, { sources })`). The engine takes a 16-character document id as key,
  * so only the official packages' documents qualify: a DDB Importer item lives in a world, where the id is the world's own;

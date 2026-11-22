@@ -4,7 +4,7 @@ import { cacheText, textFingerprint } from "./text.mjs";
 import { fittingDocTypes, identityOf, matchName, matchOrigin } from "./match.mjs";
 import { KIND_TABLE } from "./kinds.mjs";
 import { actorCandidates, baseFeatureName, ddbActorCandidates } from "./monsters.mjs";
-import { itemOf, keepSettled, reprintsOf, bindSources, canonicalIdentifier } from "./settle.mjs";
+import { itemOf, keepSettled, reprintsOf, bindSources, canonicalIdentifier, embeddedIndex, sharedEmbeddedId } from "./settle.mjs";
 import { monsterIdentifier } from "./identifiers.mjs";
 
 // The creature-scoped identifier of a monster record, or null when it has none (a name that slugs to nothing).
@@ -259,14 +259,8 @@ export function inventory({
   const numbers = monsters ? numberOccurrences(dataset, records, book) : [];
   // Ruling R3: the creatures of the package that embed each item id. A ruled feature is bound by its embedded item id only
   // when no actor of another creature embeds it (same-name actors with one creature's items are that creature).
-  const creaturesOfId = new Map();
-  for (const actor of monsters ? dumps.actors ?? [] : []) {
-    for (const i of actor.items ?? []) {
-      const id = String(i.docId).split(".").pop();
-      creaturesOfId.set(id, (creaturesOfId.get(id) ?? new Set()).add(matchName(actor.name).full));
-    }
-  }
-  const sharedEmbedded = (id, owner) => [...(creaturesOfId.get(id) ?? [])].some((c) => c !== matchName(owner).full);
+  const embedded = embeddedIndex(monsters ? dumps.actors ?? [] : []);
+  const sharedEmbedded = (id, owner) => sharedEmbeddedId(embedded, id, owner);
   // A creature whose name slugs to nothing is one skip, however many features it has.
   if (monsters) {
     const names = creatures ? creatures.map((c) => c.name) : [...new Set(dataset.map((e) => e.owner))];
