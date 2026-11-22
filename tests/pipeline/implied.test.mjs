@@ -90,7 +90,7 @@ describe("the stamp for a person, generalised (Ruling R15)", () => {
     expect(draftedForPerson({ entry: { usageLimits: { [SAVE]: { oncePerTurn: true } }, effectDurations: {} } }))
       .toBe("effectDurations");
     expect(draftedForPerson({ entry: { noReactions: true, effectEnds: { [E_SAVE]: "bearerTurnEnd" } } })).toBe(null);
-    expect(draftedForPerson({ entry: { globe: {} } })).toBe("other-key");
+    expect(draftedForPerson({ entry: { walls: {} } })).toBe("other-key");
     expect(draftedForPerson({ entry: {}, uncovered: [{ origin: "official", because: "x" }] })).toBe("official-uncovered");
     for (const key of Object.keys(IMPLIES_NOTHING)) expect(draftedForPersonReasons(), key).toContain(key);
     // A stamp written before fix round 1 keeps its reason.
@@ -100,7 +100,7 @@ describe("the stamp for a person, generalised (Ruling R15)", () => {
 
 describe("the new words, and excludes taken from the agents", () => {
   it("denies is a closed expectation with its definitions", () => {
-    expect(DENIES).toEqual(["opportunityAttacks", "reactions", "actionAndBonus"]);
+    expect(DENIES).toEqual(["opportunityAttacks", "reactions", "actionAndBonus", "healing", "tempHp"]);
     expect(Object.keys(DEFINITIONS.denies).sort()).toEqual([...DENIES].sort());
     expect(assertProblems([{ given: {}, expect: { denies: "reactions" } }])).toEqual([]);
     expect(assertProblems([{ given: {}, expect: { denies: "speech" } }]).join(" ")).toMatch(/denies/);

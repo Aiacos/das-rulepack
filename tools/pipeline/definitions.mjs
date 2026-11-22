@@ -5,7 +5,8 @@
 // tests/pipeline/definitions.test.mjs fails when a word of these lists has no definition: the engine's lists through loadCore,
 // and a committed copy of them.
 import {
-  ACTIVITY_GIVENS, AFFECTS, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, SUBJECTED, TARGET_HP
+  ACTIVITY_GIVENS, AFFECTS, BARS, CHOOSES, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, SUBJECTED,
+  TARGET_HP
 } from "./assert.mjs";
 import { AURA_MOMENTS } from "./zones.mjs";
 import { LEAVE_REASONS } from "./leaves.mjs";
@@ -17,7 +18,9 @@ export const DEFINITION_SOURCES = Object.freeze([
   "engine runtime/engine-commands.mjs", "pack tools/pipeline/assert.mjs", "pack tools/pipeline/leaves.mjs",
   "engine adapter/facts.mjs", "pack tools/pipeline/conditions.mjs",
   // Ruling R33: zones and auras.
-  "engine core/emanation.mjs", "engine core/area.mjs", "engine core/action.mjs"
+  "engine core/emanation.mjs", "engine core/area.mjs", "engine core/action.mjs",
+  // Ruling R34: choices, barriers and wards.
+  "engine adapter/usage.mjs", "engine adapter/barriers.mjs", "engine adapter/eligibility.mjs", "engine runtime/cantrips.mjs"
 ]);
 
 const def = (means, from) => Object.freeze({ means, from });
@@ -132,7 +135,33 @@ const DEFINED = {
     reactions: def("The creature that bears the item's effect cannot take reactions while the effect lasts.",
       "engine core/content.mjs"),
     actionAndBonus: def("The creature that bears the item's effect takes an action or a bonus action on its turn, not both.",
-      "engine core/content.mjs")
+      "engine core/content.mjs"),
+    // Ruling R34: runtime/cantrips.mjs onPreApplyDamage (blocksHealing, blocksTempHp).
+    healing: def("The creature that bears the item's effect regains no hit points while the effect lasts.",
+      "engine runtime/cantrips.mjs"),
+    tempHp: def("The creature that bears the item's effect gains no temporary hit points while the effect lasts.",
+      "engine runtime/cantrips.mjs")
+  },
+  // `expect.chooses` (Ruling R34, assert.mjs CHOOSES; the engine's `choice`): said once for the use, with no roll or moment.
+  chooses: {
+    oneEffect: def("At the use, its user picks one of the activity's effects; only that one is applied, to every target.",
+      "engine adapter/usage.mjs"),
+    oneEffectPerTarget: def("Once the saves are made, the user picks one of the activity's effects for each target that"
+      + " failed its save (each affected target when there is no save); only that one is applied to it.",
+    "engine core/action.mjs"),
+    effectByRoll: def("A die picks one of the activity's effects, one face per effect; only that one is applied.",
+      "engine adapter/usage.mjs")
+  },
+  // `expect.bars` (Ruling R34, assert.mjs BARS; the engine's `barrier` and `globe`): an emanation around the creature that
+  // bears the item's effect, moving with it. Said once for the use, with no roll or moment.
+  bars: {
+    entry: def("A creature outside the emanation cannot walk into it (a teleport or a forced move is not stopped).",
+      "engine adapter/barriers.mjs"),
+    melee: def("A creature outside the emanation cannot hit a creature inside with a melee attack, unless its weapon has"
+      + " reach.", "engine adapter/barriers.mjs"),
+    actions: def("Nothing a creature outside the emanation does affects a creature inside it.", "engine adapter/barriers.mjs"),
+    spells: def("A spell cast from outside the emanation affects no creature inside it (of the level given.spellLevelAtMost"
+      + " or lower).", "engine adapter/eligibility.mjs")
   },
   // `expect.roll` (assert.mjs ROLL_MODES, ROLL_ON, ROLL_FOR).
   rollMode: {
@@ -185,7 +214,10 @@ const DEFINED = {
       FACTS_FROM),
     damageType: def("Only when the damage just taken includes this type (fact damage.hasType; a list of types in the"
       + " condition is one assertion per type).", FACTS_FROM),
-    activity: def("Only when the activity that sets off the trigger is of this kind (see the activity words).", FACTS_FROM)
+    activity: def("Only when the activity that sets off the trigger is of this kind (see the activity words).", FACTS_FROM),
+    // Ruling R34: only with `expect.bars: spells` (a globe's maxLevel).
+    spellLevelAtMost: def("Only for a spell of this level or lower, 0 (a cantrip) to 9: what a globe keeps out.",
+      "engine adapter/eligibility.mjs")
   },
   // `given.targetSizeAtMost` (core/recipes.mjs FACT_ARG_OPTIONS.size; adapter/facts.mjs compares the rank of dnd5e's size).
   size: {
@@ -268,9 +300,9 @@ const DEFINED = {
 };
 
 const deepFreeze = (o) => Object.freeze(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Object.freeze({ ...v })])));
-/** The definitions, by list (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `moveMode`, `affects`, `denies`, `rollMode`,
- * `rollOn`, `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`, `leavesBecause`), each word to
- * `{ means, from }` or "unverified". */
+/** The definitions, by list (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `chooses`, `bars`, `moveMode`, `affects`,
+ * `denies`, `rollMode`, `rollOn`, `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`, `leavesBecause`),
+ * each word to `{ means, from }` or "unverified". */
 export const DEFINITIONS = deepFreeze(DEFINED);
 
 /**
@@ -309,7 +341,8 @@ export function definitionsFor({ review = false } = {}) {
 const ENGINE_LISTS = Object.freeze({ ends: "effectEnds", moment: "moments", moveMode: "moveModes", size: "sizes" });
 const PACK_LISTS = Object.freeze({ roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON,
   rollFor: ROLL_FOR, fraction: FRACTIONS, leavesBecause: LEAVE_REASONS, given: GIVEN_FIELDS, targetHp: TARGET_HP,
-  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS), auraMoment: AURA_MOMENTS, subjected: SUBJECTED });
+  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS), auraMoment: AURA_MOMENTS, subjected: SUBJECTED, chooses: CHOOSES,
+  bars: BARS });
 
 /**
  * The words with no definition, as `<list>.<word>` (own properties only): of the engine's lists given in `core` (loadCore:

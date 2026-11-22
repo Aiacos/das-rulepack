@@ -293,7 +293,9 @@ describe("leaves at draft time, in the vocabulary and in the outputs", () => {
     const values = [...variants(v.leaves.shapes.assertion), ...variants(v.leaves.shapes.unexpressed)];
     expect(values.length).toBeGreaterThan(20);
     // Ruling R33: `subjected` goes with a zone or aura moment (a rule across fields, outside the declarative shape).
-    const fit = (x) => (x.expect?.subjected ? { ...x, given: { ...x.given, moment: "ownTurnEnd" } } : x);
+    // Ruling R34: a spell level goes with what a globe bars; a choice and a barrier are said with no moment and no roll.
+    const fit = (x) => (x.expect?.subjected ? { ...x, given: { ...x.given, moment: "ownTurnEnd" } }
+      : Object.hasOwn(x.given ?? {}, "spellLevelAtMost") ? { ...x, expect: { bars: "spells" } } : x);
     for (const value of values.map(fit)) {
       expect(leavesProblems([value], { vocabulary: core }), JSON.stringify(value)).toEqual([]);
     }

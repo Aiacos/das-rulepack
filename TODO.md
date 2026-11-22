@@ -76,6 +76,20 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       the activity used again; until then every zone or aura moment is manual (`given.moment.<word>`).
 - [ ] Zone words still missing: an emanation on death or 0 hit points (`death-trigger`), a replay per square travelled
       (`moves`), a replay under a condition, a radius formula (class scales), `aura.changes`.
+- [x] Choices, barriers and wards (Ruling R34): seven engine keys (`choice`, `barrier`, `globe`, `wardsConditions`,
+      `wardsAtZero`, `blocksHealing`, `blocksTempHp`) in closed shapes (`wards.mjs`); `expect.chooses`, `expect.bars`,
+      `given.spellLevelAtMost`, `denies: healing|tempHp`; pinned to the engine's own field lists by a DAS_CORE test;
+      `changesForm`, `formLock`, `walls`, `wallSide`, `encloses`, `wardsDetection` left out with why.
+- [ ] Size the R34 pool with a drafting sample: the 9 XPHB spells again (none is in the registry), then the next FRAIF, EFA
+      and XPHB batches; closed fields give only 2 XMM rereads and 1 FRAIF partial rule naming `use-time-choice`, to read for
+      a pick among the activity's effects. Measure Ruling R12 before any volume.
+- [ ] Upstream requests (no book named): an automatic FAILURE of a save by creature type (only `saveAutoSuccess` exists);
+      a change of form that gives temporary hit points from the new form and lets the user pick among the transform's
+      profiles (`changesForm` takes the first profile and that form's maximum hit points).
+- [ ] Ward words still missing: a barrier limited to creature types (a given for the barred creature's type), the radius of
+      a barrier or globe, a choice's `order` (which face gives which effect), `wardsConditions` (a source's type), `wardsAtZero`.
+- [ ] Scenarios for wards: answer the choice question, walk a creature into a barrier, cast from outside a globe, heal a
+      creature that bears a `blocksHealing` effect; until then `chooses`, `bars` and `denies: healing|tempHp` are manual.
 - [ ] Scenarios: a size-limited assertion stages only a target that satisfies the limit; the other side (a target too
       large) and the other condition fields (`targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`,
       `onOwnTurn`, `damageType`, `activity`) have no interpreter, and `targetType` is still checked on its positive side only.

@@ -148,7 +148,9 @@ describe("the given fields that mirror the facts", () => {
     for (const [field, shape] of Object.entries(given)) {
       for (const value of variants(resolveShape(shape, { ...vocabulary, moments: vocabulary.moments }))) {
         n++;
-        const a = [{ given: { [field]: value }, expect: { condition: { applied: "prone" } } }];
+        // Ruling R34: a spell level goes with what a globe bars (a rule across fields, outside the declarative shape).
+        const a = [{ given: { [field]: value }, expect: field === "spellLevelAtMost" ? { bars: "spells" }
+          : { condition: { applied: "prone" } } }];
         expect(assertProblems(a, { vocabulary }), `${field} ${JSON.stringify(value)}`).toEqual([]);
       }
     }
