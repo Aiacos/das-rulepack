@@ -256,13 +256,37 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   which is the part of the entry the vocabulary could not check (`leaves` and the stamp say so in `docs/RULES.md` only).
 
 - **R28 — no monster rule is registered until it is compared with what the engine reads.** DAS · Core derives entries
-  for monster features from their English text by itself (its "text" layer, `core/monster-text.mjs`); an entry registered by
-  a module replaces that reading for the item. Measured live on the first 43 shipped monster rules: for 41 of them the
-  engine already had an entry from the text; 17 pack rules were identical to it, 13 changed keys it had (some for the worse:
-  a size limit the engine reads and the draft lacked), 18 added a key. `emissionOf` therefore holds every rule of kind
+  for monster features from their English text by itself (its "text" layer: the readers of `core/monster-text.mjs`, put
+  together by `core/monster-layer.mjs` `monsterTextLayer`); an entry registered by a module is merged over that reading key
+  by key (`mergeEntries([text, enchant, module, world, item])`: `triggers` replaced whole, `shallow` keys field by field, the
+  others replaced), so it overrides the reading key by key, not wholesale (corrected the same day; R29). Measured live on
+  the first 43 shipped monster rules: for 41 of them the engine already had an entry from the text; 17 pack rules were
+  identical to it, 13 changed keys it had (some for the worse: a size limit the engine reads and the draft lacked), 18
+  added a key. `emissionOf` therefore holds every rule of kind
   `monster` ("engine-text"); `monsterRules: true` lifts it, for the tests of the mechanics only. *Cost if wrong:* the few
   rules that add something real (a damage fraction on a successful save the engine does not read) are not shipped either,
   until the comparison exists. Triage of monster features must change too: `entry` was decided without the text layer.
+
+- **R29 — a monster rule ships only as its delta against the engine's reading** (refines R28). The comparison is computed
+  offline: `tools/pipeline/engine-reading.mjs` imports the engine's pure `monsterTextLayer` from `DAS_CORE` and builds its
+  arguments from the official item of the dumps as `adapter/content.mjs` `textLayer` does, then compares the rule key by key
+  (`same`, `adds`, `changes`; for `triggers`: `same`, `superset`, `drops`, `none`) and merges with the engine's own
+  `mergeEntries`. CI has neither dumps nor a world, so `npm run gates` (local) stores the result as `evidence.reading`
+  (`{ at, core, rule, item, delta, same, changes, triggers }`, a closed shape bound to the rule's and the item's
+  fingerprints), and `emissionOf` reads only that: no current reading holds the rule ("engine-text"), a key that changes the
+  reading holds it ("changes the engine's reading: a person decides"; a `triggers` list that keeps every engine trigger is
+  no change), an empty delta holds it ("the engine already does it": a candidate for `core`), and the rest goes through R27.
+  The module entry is the delta: the `adds` keys, and `triggers` whole when it is a superset (the engine replaces that key
+  whole); a `same` key is redundant and left out. Triage gets the reading too: `engineReads` in the structure files of the
+  triage, draft and review cuts (the three briefs: judge, write, assert only what goes beyond it), and the hint
+  `engine-reads` from `triage <BOOK> --engine-reading` on unruled monster `entry` records (no verdict change). On XMM (DAS ·
+  Core 0.289.0, the clone; `docs/pilot-m3.md`): of the 75 rules, 16 would ship, 25 change the reading, 25 add nothing, 9 are
+  held by R27. *Cost if wrong:* (a) the reading is the clone's, not the one the world runs: a newer engine that reads more
+  makes a delta key redundant (harmless: the merge gives the same entry) or turns an `adds` into a change the evidence does
+  not show until `npm run gates` runs against that engine; the evidence names the engine version so a person can see it is
+  old; (b) a `shallow` key (`effectEnds`, `saveDamage`, `effectDurations`, `targets`…) that only adds fields is counted as a
+  change and held, although the engine would keep the fields it read: some rules that only add wait for a person; (c) a
+  rule held "the engine already does it" keeps its identifier and its place in the registry until a person sets `core`.
 
 ## What a drafter may write (engine limits)
 

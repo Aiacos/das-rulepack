@@ -194,8 +194,10 @@ recorded after the test world reports the right version, or redone then.
 # Correction (2026-11-22, same day): the engine already reads monster features
 
 Checked live after the plays: DAS · Core derives entries for monster features from their English text by itself (pushes
-with a size limit, conditions, healing blocks, the endings of effects), and a rule registered by a module REPLACES that
-reading for the item. With the pack's 43 monster rules registered and then unregistered on the test world:
+with a size limit, conditions, healing blocks, the endings of effects). A rule registered by a module does not replace that
+reading wholesale: the engine merges the layers key by key (`mergeEntries([text, enchant, module, world, item])`), so the
+module's entry overrides the reading KEY BY KEY, and `triggers` as a whole list (a later layer replaces that key whole).
+With the pack's 43 monster rules registered and then unregistered on the test world:
 
 | What the pack rule does to the engine's own reading | Rules |
 |---|---|
@@ -205,8 +207,8 @@ reading for the item. With the pack's 43 monster rules registered and then unreg
 
 For 41 of the 43 items the engine had an entry from the text; for 2 it had none. The 38 scenarios that held live prove the
 behaviour at the table, not that the pack's rule added anything: the engine alone would probably have passed most of them.
-Worse, a rule that replaces the engine's reading can lose what the engine reads and the drafter could not express (a size
-limit on a push).
+Worse, a rule whose key replaces the engine's (a `triggers` list replaces the engine's list whole) can lose what the
+engine reads and the drafter could not express (a size limit on a push).
 
 **Ruling R28: every monster rule is held out of the module** until it is compared with the engine's reading (0 of the 75
 shipped now; they stay in the registry). What this changes upstream of the drafting: the `entry` verdicts of monster
@@ -215,3 +217,55 @@ input before any monster feature is drafted again. What stands: the tooling (gat
 rules, automatic scenarios), which is kind-independent, and the finding that the pack's field is what the engine does not
 read: non-monster entries and the entries of sources the engine's text reader does not cover.
 
+
+# The engine's reading, computed offline (2026-11-22, Ruling R29)
+
+The comparison above was measured live. It is now computed offline: `tools/pipeline/engine-reading.mjs` imports the engine's
+own pure text-layer function from a clone (`DAS_CORE`, here DAS · Core 0.289.0) and gives it the official item of the dumps
+as the engine's adapter gives it the live item; `npm run gates` stores the comparison on the record (`evidence.reading`).
+
+| The 43 rules that had shipped | Live (integration build) | Offline (the clone) |
+|---|---|---|
+| The engine reads something of the item | 41 | 37 |
+| Identical to the reading for every key the rule declares | 17 | 14 |
+| Only adds keys | 13 | 16 |
+| Changes a key the engine had (of them, also adds one) | 13 (5) | 13 (5) |
+
+The difference is not hidden: the clone reads nothing of 6 of the 43 items where the live engine missed 2, and a rule on an
+item read as nothing only adds; the three rules that move from "identical" to "only adds" are most likely among those four
+(not checked one by one: the live log names no items). The live world ran the engine's integration build (the release plus
+open pull requests), and its item data may differ from the dumps. The changes count is the same, 13. Of the 13, 10
+change `triggers` and every one of them drops a trigger the engine read (none keeps them all); 9 of the 10 drop a push
+limited by the target's size (`target.sizeAtMost`), no other condition is dropped; 3 change another key (two the lost
+reactions and the action-or-bonus restriction, one the ending of an effect).
+
+| All 75 monster rules (offline) | Rules |
+|---|---|
+| Identical to the reading | 25 |
+| Only adds keys | 25 |
+| Changes a key (of them, also adds one) | 25 (12) |
+| ... `triggers` dropping an engine trigger / keeping them all | 20 / 0 |
+| ... dropping a size-limited push | 9 |
+
+**Emission under R29**, on a copy of the registry after `npm run gates`: of the 75, **16 would ship** (as their delta: the
+keys the engine does not read), **25 are held because they change the engine's reading** (a person decides), **25 are held
+because the engine already does all they say** (candidates for `core`), and **9 stay held by R27** (7 review disagrees, 2
+reviewer unsure). The repository's registry is not changed by this: every monster rule stays held ("engine-text") until
+`npm run gates` writes the evidence.
+
+**Triage with the engine's reading** (`triage <BOOK> --engine-reading`; every monster record with the verdict `entry`,
+queued and ruled ones included, counted from the dumps):
+
+| Book | Monster `entry` records | The engine reads something | Reads nothing | Official item not in the dumps |
+|---|---|---|---|---|
+| XMM | 816 | 287 | 521 | 8 |
+| FRAIF | 110 | 32 | 75 | 3 |
+| TCE | 57 | 0 | 18 | 39 |
+| EFA | 53 | 13 | 38 | 2 |
+| XPHB | 37 | 7 | 28 | 2 |
+| XDMG | 2 | 0 | 2 | 0 |
+| FRHOF | 0 | 0 | 0 | 0 |
+
+The pre-pass itself hints only the unruled records that wait in no queue (XMM: 145 of the 287; the rest are the 250 records
+of the drafts and review queues and the 39 ruled ones outside them). What the engine reads is not the whole text: "reads
+something" is a hint for the reader, not a `core` verdict.
