@@ -11,6 +11,7 @@ import {
 import { identifierClashReasons } from "./batch.mjs";
 import { DDB_MONSTER_UNCOVERED, SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, sharedEmbeddedId } from "./settle.mjs";
+import { isPartial } from "./leaves.mjs";
 import {
   QUEUE_THRESHOLD, cachedText, clip, clipEchoes, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
 } from "./intake.mjs";
@@ -20,7 +21,8 @@ export const DRAFT_OUTCOMES = Object.freeze(["rule", "person", "code", "engine"]
 // The fields of one result, and of its `rule` (docs/PIPELINE.md, "Brief for a drafter agent"). Everything else (`verdict`,
 // `identifier`, `sources`, `alsoAs`, `inCore`, `code`, `origin`, any `evidence`) the tools derive or a person writes.
 export const DRAFT_RESULT_FIELDS = Object.freeze(["key", "outcome", "why", "confidence", "rule"]);
-export const DRAFT_RULE_FIELDS = Object.freeze(["handledIn", "adds", "entry", "origins", "uncovered", "assert"]);
+// `leaves` (Ruling R25): what the rule leaves to the table, as data (leaves.mjs).
+export const DRAFT_RULE_FIELDS = Object.freeze(["handledIn", "adds", "entry", "origins", "uncovered", "assert", "leaves"]);
 // How many of a rejected rule's problems a rejection repeats (each clipped).
 const SHOWN_PROBLEMS = 4;
 const SHOWN_PROBLEM_CHARS = 200;
@@ -196,7 +198,8 @@ function ruleProblems(candidate, { core, textDir }) {
  * - applied otherwise: `rule` written with `alsoAs` and `origin` derived, a monster feature's creature-scoped identifier and
  *   its source bound, `evidence.drafted = { by, at, core, rule }` (plus `person: true, because: "noReactions"` for an entry
  *   with noReactions, Ruling R15, or `because: "official-uncovered"` for a rule that leaves official uncovered, R21). The
- *   state is `drafted` until `gates` passes.
+ *   state is `drafted` until `gates` passes. An applied rule with `leaves` (Ruling R25: a partial rule) is also listed in
+ *   `partial`.
  * `queue` is drafts-queue.json; `embedded` a Map of book code to settle.mjs embeddedIndex of its package's actors,
  * needed for a monster feature's rule (without it that result is rejected). Any exception on one result becomes its rejection
  * (`internal: …`), never the file's. A rejection repeats at most 80 characters of any drafter string. Inputs unchanged.
@@ -213,6 +216,7 @@ export function ingestDrafts(records, results, options = {}) {
     textOf: cachedText(textDir), textDir, core, embedded, by, at, seen: new Set(), structures
   };
   const applied = [];
+  const partial = [];
   const queued = [];
   const rejected = [];
   for (const result of Array.isArray(results) ? results : []) {
@@ -229,9 +233,10 @@ export function ingestDrafts(records, results, options = {}) {
       Object.keys(record).forEach((k) => delete record[k]);
       Object.assign(record, next);
       applied.push(next.key);
+      if (isPartial(next.rule)) partial.push(next.key);
     }
   }
-  return { records: out, applied, queued, rejected };
+  return { records: out, applied, partial, queued, rejected };
 }
 
 // Why `origins` is not a non-empty list of distinct known origins, or null (checked before anything that relies on it).

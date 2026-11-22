@@ -767,7 +767,9 @@ async function ingestCommand(args) {
     textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY), owner
   });
   if (!commitIngest(books, out.records, out.applied, out.queued, out.applied)) return;
-  console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
+  // Ruling R25: the partial rules applied (with `leaves`) are listed so that the owner can read them.
+  console.log(JSON.stringify({ applied: out.applied.length, partial: out.partial, queued: out.queued.length,
+    rejected: out.rejected }, null, 2));
   if (out.rejected.length) process.exitCode = 1;
 }
 
@@ -867,7 +869,7 @@ function ingestReviewCommand(input, { textDir, core, offered, dumpsDir }) {
   // Ruling R24: an agreement that tolerated anything stores it in evidence.reviewed.tolerated, which the gates fingerprint
   // (emits): those records are `drafted` until `npm run gates` runs again, and counted apart from exact agreements.
   console.log(JSON.stringify({ agreed: out.agreed.length, agreedExact: out.agreed.length - out.tolerated.length,
-    agreedTolerated: out.tolerated.length, regate: out.tolerated, queued: out.disagreed.length, reasons,
+    agreedTolerated: out.tolerated.length, regate: out.tolerated, partial: out.partial, queued: out.disagreed.length, reasons,
     rejected: out.rejected }, null, 2));
   if (out.tolerated.length) {
     console.error(`${out.tolerated.length} agreement(s) used Ruling R24 tolerances: run npm run gates (they stay drafted until`

@@ -258,7 +258,7 @@ describe("draftVocabulary", () => {
   it("holds engine words only, whatever the records are", () => {
     const v = draftVocabulary(core);
     expect(Object.keys(v).sort()).toEqual(["assert", "definitions", "draftKeys", "draftShapes", "endsExamples", "engine", "fixes",
-      "keyExamples", "limits", "monsters"]);
+      "keyExamples", "leaves", "limits", "monsters"]);
     expect(v.draftKeys.saveDamage).toEqual({ slot: "activityMap" });
     expect(v.engine).toMatchObject({ moments: ["failedSave"], stepTypes: ["status"], statuses: ["prone"], facts: ["actor.prone"] });
     expect(v.assert.rolls).toContain("failedSave");

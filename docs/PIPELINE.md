@@ -270,6 +270,17 @@ the stamp existed (no `rule`): it counts as it did; one that carries a stamp is 
   (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry)` what an entry says by itself:
   `saveDamage` (a saved save: half or no damage), `halfOnMiss`, `noDamage`, and a `triggers` declaration on `failedSave` with a
   `status` or `move` step (Rulings R15, R16: `noReactions` implies nothing, so such a rule always goes to a person at review).
+- **Partial rules** (Ruling R25, `tools/pipeline/leaves.mjs`). A rule may declare what its entry expects and it does not
+  automate, as data: `rule.leaves`, at most 6 items, each an assertion `{ given, expect, because? }` of the vocabulary above
+  (no `free` anywhere) of what would be true at the table but is done by hand, or `{ unexpressed, count }` (count 1 to 6) for
+  what even the assertions cannot say. `because` and `unexpressed` are words of `LEAVE_REASONS`: `no-key`, `target-size`,
+  `target-state`, `immunity-after-save`, `healing-block`, `out-of-combat`, `table-ruling`. The schema checks it like `assert`
+  (own keys, closed words; the validator gate checks the engine's words) and refuses a leaves assertion the rule states or
+  implies (the same up to optional detail), a leaves damage the rule gives another fraction of for the same situation, an
+  item listed twice, and any `leaves` on a rule whose own assertions (stated and implied) are none or only the item's own
+  damage on a hit or failed save. `leaves` is part of the rule fingerprint and is emitted nowhere at runtime: the generated
+  rule carries `partial` (counts by reason, `unstated` for an assertion without `because`), and docs/RULES.md says "partial"
+  where the rule is handled, what it leaves to the table beside what it adds, and counts partial rules apart.
 - **Quotations.** The text gate reads the record's cached text and fails a rule whose `origin`, `adds`, any `assert[].given.free` /
   `assert[].expect.free` or any `uncovered[].because` repeats 8 or more consecutive words of it, each field alone and all of
   them together in order (a quote split across fields). Both sides are normalised: NFKC, lower case, and every run of
@@ -513,6 +524,41 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > say in `why` that it needs the person. A rule that needs state across turns, a prompt to a player or a fact the engine lacks
 > is `code`; one that needs an engine key that does not exist is `engine`, with what is missing in `why`.
 >
+> **Partial rules: say what you leave out, as data (`leaves`, Ruling R25).** A rule may automate part of an entry. Then list
+> in `rule.leaves` every expectation of the text the rule does not automate: an assertion `{ given, expect, because? }` of
+> the same vocabulary as `assert` (no `free`: what would be true at the table but must be done by hand), or `{ "unexpressed":
+> <reason>, "count": n }` for what even the assertions cannot say (a day of immunity, no regaining hit points, a halved
+> speed). `because` and `unexpressed` are words of `leaves.because` in `draft-vocabulary.json` (`definitions.leavesBecause`
+> says what each means; `leaves.shapes` gives both item shapes); at most 6 items. Never list what the rule itself states or
+> implies (rejected). **Leaving something out silently is the worst outcome**: the reviewer, who does not see your rule,
+> states everything the text requires, and an expectation found neither in your `assert` nor in your `leaves` is a
+> disagreement sent to a person. `why` stays one line and does not replace `leaves`.
+>
+> **A rule that would leave out the main effect is not partial: answer `person`.** The main effect is the first expectation
+> the text gives for its primary roll (what a hit or a failed save does). The test: if what would remain automated is only
+> something the item's own data already does (its activity's damage, the condition its save already applies), answer
+> `person`. A rule whose `assert`, with what its entry implies, is empty or only the item's own damage cannot carry `leaves`.
+>
+> Worked example (invented). The text of "Tusk Rush" says that on a failed save the target is pushed 10 feet and knocked
+> prone (the item's save already applies prone), only when it is Large or smaller; that it then has disadvantage on its next
+> attack roll; and that its speed is halved until its next turn. The push is automated (`triggers`); the rest is not:
+>
+> ```json
+> { "key": "tst:monster:tusked-strider/action/tusk-rush", "outcome": "rule", "confidence": 0.85,
+>   "why": "push on a failed save; the size limit, the attack penalty and the slow are left to the table",
+>   "rule": { "handledIn": "table", "adds": "A failed save also pushes the target 10 feet away.",
+>     "entry": { "triggers": [{ "on": "failedSave", "do": [{ "type": "move", "mode": "push", "distance": 10, "units": "ft" }] }] },
+>     "origins": ["official"],
+>     "assert": [
+>       { "given": { "roll": "failedSave" }, "expect": { "move": { "mode": "push", "distance": 10 } } },
+>       { "given": { "roll": "failedSave" }, "expect": { "condition": { "applied": "prone" } } } ],
+>     "leaves": [
+>       { "given": { "roll": "failedSave" }, "expect": { "roll": { "mode": "disadvantage", "on": "attack", "for": "target" } },
+>         "because": "no-key" },
+>       { "unexpressed": "target-size", "count": 1 },
+>       { "unexpressed": "no-key", "count": 1 } ] } }
+> ```
+>
 > **No text, no rule.** If the text file is missing or unreadable, answer `person` with `why: "no text"`. Never draft from
 > memory of the book, and never from the structure alone. (The ingest rejects any result for an entry whose text is not in
 > the cache, this one included: the session sees the entry in `rejected` and finds out why the text is missing.)
@@ -579,7 +625,8 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > }
 > ```
 >
-> `outcome` is `rule`, `person`, `code` or `engine`; only `rule` carries a `rule`. One result per entry, `key` unchanged;
+> `outcome` is `rule`, `person`, `code` or `engine`; only `rule` carries a `rule` (whose fields are `handledIn`, `adds`, `entry`,
+> `origins`, `uncovered`, `assert` and `leaves`). One result per entry, `key` unchanged;
 > `batch` is the batch id, and a result for a key the batch does not hold is rejected. You never set `verdict`, `identifier`,
 > `sources`, `alsoAs`, `inCore`, `code`, `origin` or any `evidence`: the tools derive them (a result or a rule that carries one
 > is rejected). `by` is a short handle such as `drafter-3`, never a person's name (the registry is public). Confidence is 0 to
@@ -630,6 +677,9 @@ handle of `docs/owners.json`, Ruling R23).
 > goes to a person. A `damage` `type` and a `move` `distance` are optional detail: give them when the text does, they are
 > compared only when both sides state them. Saying that a hit or a failed save deals the item's own damage in full is
 > allowed but not needed.
+>
+> You never see whether the draft declared part of the entry as left to the table (`leaves`): state everything the text
+> requires, as always; the comparison takes care of what the draft says it does not automate.
 >
 > **An entry the vocabulary cannot express at all.** An assertion made of only a `free` text is refused (it says nothing a
 > tool can check), and so is an empty `assert`. Answer such an entry with `"outcome": "person"`, no `assert`, and a `why`
@@ -727,10 +777,10 @@ against the official item's structure (below). For each result:
 
 - **Rejected** (listed in `rejected` as `{ key, reason }`; nothing of it is kept, the record stays as it was and is cut again
   by the next `batch draft`): a field other than `key`, `outcome`, `why`, `confidence`, `rule`, or in `rule` other than
-  `handledIn`, `adds`, `entry`, `origins`, `uncovered`, `assert` (so `evidence`, `verdict`, `identifier`, `sources`, `alsoAs`,
-  `inCore`, `code`, `origin` are refused: the tools derive them, and no ingest ever writes `evidence.person`); a key twice in
-  the file; a key that is no record; a key that is not an entry of the batch file ("not offered by this batch"); a record
-  waiting in `drafts-queue.json`, a legacy record, a record that already has a
+  `handledIn`, `adds`, `entry`, `origins`, `uncovered`, `assert`, `leaves` (so `evidence`, `verdict`, `identifier`,
+  `sources`, `alsoAs`, `inCore`, `code`, `origin` are refused: the tools derive them, and no ingest ever writes
+  `evidence.person`); a key twice in the file; a key that is no record; a key that is not an entry of the batch file ("not
+  offered by this batch"); a record waiting in `drafts-queue.json`, a legacy record, a record that already has a
   rule, or one whose verdict is not `entry`; an unknown outcome; a confidence outside 0..1; a `why` that is not one line of at
   most 200 printable characters or that quotes 8 words of the text; no text in the cache; a `rule` on an outcome other than
   `rule`, or none on `rule`; `handledIn` other than `table` (a code rule is a person's, Ruling R18); `origins` that is not a
@@ -771,7 +821,8 @@ against the official item's structure (below). For each result:
   a person at review). Nothing else of the evidence changes. The
   state is `drafted`; `npm run gates` (local, with dumps and text) takes it to `gated` or prints why not.
 
-It prints `{ applied, queued, rejected }` and exits with 1 when anything was rejected. The touched books and the queue are
+It prints `{ applied, partial, queued, rejected }` (`partial`: the keys applied with `leaves`, Ruling R25, for the owner to
+read) and exits with 1 when anything was rejected. The touched books and the queue are
 written in one step (every file is checked first, then written under a temporary name and renamed over the old one,
 `registry.mjs` `writeFilesAtomically`), as every `ingest` now does: an invalid book or queue, or a failing write, leaves
 every file as it was.
@@ -815,6 +866,12 @@ comparison is kept as canonical assertion strings: `onlyDraft` (what the review 
 `baseline` (review assertions taken as the item's baseline) and `detail` (`{ draft, review }` pairs matched up to detail,
 absorbed ones included), so a person sees what was tolerated. A result with `"outcome": "person"` (no `assert`) says the
 reviewer could not express the entry: it is queued as `unexpressed`.
+**Partial rules** (Ruling R25, extends R24): a review assertion neither matched nor baseline may be matched by an assertion
+of the rule's `leaves` (what the rule declares it leaves to the table), by the same rules (one to one, up to optional detail
+in the safe direction, each side read as its strongest assertions); it is then `left` (`{ leaves, review }` pairs), not
+`onlyReview`. Agreement: every draft assertion matched, and every review assertion matched, baseline or left. An
+`unexpressed` item matches nothing; a leave the review does not mention is fine (the reviewer may have missed it). The
+reviewer never sees `leaves`: the review batch carries nothing of the draft.
 
 For each result:
 
@@ -833,8 +890,9 @@ For each result:
   any string the reviewer wrote. An `outcome` other than `assert` (the default) or `person`, an `assert` given with `person`,
   an empty `assert` and an assertion made of a `free` text alone are rejected.
 - **Queued** in `registry/review-queue.json` (`{ key, reason, by, why, confidence, draft: { by?, person?, rule, assert,
-  implied }, review: { rule, assert, agrees, onlyDraft, onlyReview, baseline, detail } }` — `baseline` and `detail` are
-  absent from entries queued before Ruling R24 — merged by key, sorted; nothing is written on the
+  implied, leaves? }, review: { rule, assert, agrees, onlyDraft, onlyReview, baseline, detail, left? } }` — `baseline` and
+  `detail` are absent from entries queued before Ruling R24; `leaves` and `left` (Ruling R25) only when there are some —
+  merged by key, sorted; nothing is written on the
   record; `loadQueue` and `gates`, `--ci` included, hold `draft` and `review` to that shape: closed keys, valid assertions
   with the engine's words, canonical assertion strings that read back as such, so a hand-edited entry with prose fails): a
   record whose draft is stamped for a person (`evidence.drafted.person`, reason `noReactions` or `official-uncovered`, Rulings
@@ -842,14 +900,16 @@ For each result:
   (outcome `person`, `review.assert` stored as `[]`), `disagreement`, `free-text` (everything matches but a side holds a free
   text) or `low-confidence` (agreement below 0.7).
 - **Agreed** otherwise: `evidence.reviewed = { by, at, agrees: true, rule, confidence, tolerated? }`, `rule` the rule's
-  fingerprint, `tolerated` (only when Ruling R24 tolerated anything) `{ baseline: [review], detail: [[draft, review]] }`, the
-  canonical strings of what was tolerated, held by the schema (each a canonical assertion of the closed vocabulary, not both
-  lists empty). `tolerated` is part of the gates' `emits` (`registry.mjs` `emittedFingerprint`), so a hand edit that removes
-  or changes it is seen: right after such an agreement the record is **`drafted`** until `npm run gates` passes again, then
-  `reviewed` (an exact agreement is `reviewed` at once). A review never changes the rule.
+  fingerprint, `tolerated` (only when Ruling R24 or R25 tolerated anything) `{ baseline: [review], detail: [[draft,
+  review]], left?: [[leaves, review]] }`, the canonical strings of what was tolerated, held by the schema (each a canonical
+  assertion of the closed vocabulary, not all lists empty). An agreement with `left` is "reviewed, partial". `tolerated` is
+  part of the gates' `emits` (`registry.mjs` `emittedFingerprint`), so a hand edit that removes or changes it is seen:
+  right after such an agreement the record is **`drafted`** until `npm run gates` passes again, then `reviewed` (an exact
+  agreement is `reviewed` at once). A review never changes the rule.
 
-It prints `{ agreed, agreedExact, agreedTolerated, regate, queued, reasons, rejected }` (`regate`: the keys that agreed
-through R24's tolerances, with a line on stderr saying to run `npm run gates`) and exits with 1 when anything was rejected.
+It prints `{ agreed, agreedExact, agreedTolerated, regate, partial, queued, reasons, rejected }` (`regate`: the keys that
+agreed through R24's or R25's tolerances, with a line on stderr saying to run `npm run gates`; `partial`: the agreed keys
+whose rule has `leaves`, listed for the owner to read, never queued) and exits with 1 when anything was rejected.
 `docs/RULES.md` counts the rules that stand reviewed through tolerances apart from exact agreements (`books-progress.mjs`
 `toleratedReviews`). The touched books and the queue
 are written in one step, as every `ingest` (`writeFilesAtomically`).

@@ -130,7 +130,8 @@ describe("compareAsserts: what agreement is (Ruling R9)", () => {
   });
   it("is data: canonical assertion strings, no prose", () => {
     const c = compareAsserts(draft([HALF]), [PRONE, HALF]);
-    expect(Object.keys(c).sort()).toEqual(["agrees", "baseline", "detail", "free", "implied", "onlyDraft", "onlyReview"]);
+    expect(Object.keys(c).sort()).toEqual(["agrees", "baseline", "detail", "free", "implied", "left", "onlyDraft",
+      "onlyReview"]);
     const all = [...c.onlyDraft, ...c.onlyReview, ...c.implied, ...c.baseline];
     for (const s of all) expect(s).toMatch(/^[a-z.]+=[^;]+(;[a-z.]+=[^;]+)*$/i);
   });

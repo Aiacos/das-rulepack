@@ -14,6 +14,8 @@ import { isFormula } from "./assert.mjs";
 import { DDB_MONSTER_UNCOVERED, monsterIdentifier, sourceKeysOf } from "./identifiers.mjs";
 import { sharedEmbeddedId } from "./settle.mjs";
 import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
+import { LEAVES_MAX, LEAVE_REASONS, UNEXPRESSED_MAX } from "./leaves.mjs";
+import * as sh from "./shapes.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
 
@@ -316,6 +318,9 @@ export function cutDraftBatches(records, options = {}) {
   return batches;
 }
 
+// The fields of an assertion shape but `free` (Ruling R25: no free text in leaves).
+const withoutFree = (fields) => Object.fromEntries(Object.entries(fields).filter(([k]) => k !== "free"));
+
 /** `<book>-draft-report.json`: counts only (no key, no name): the batches, the entries cut, each reason with its count. */
 export const draftReport = (book, batches, leftOut, whyWithheld = 0) => ({
   book, batches: batches.length, cut: batches.reduce((n, b) => n + b.entries.length, 0),
@@ -359,6 +364,19 @@ export function draftVocabulary(core) {
     },
     limits: {
       addsMax: ADDS_MAX, originMax: ORIGIN_MAX, freeMax: assertVocabulary.FREE_MAX, quoteWords: 8, entryWords: ENTRY_WORD_BUDGET
+    },
+    // Ruling R25: what a partial rule leaves to the table (`rule.leaves`), as data: an assertion of the shapes above without
+    // `free` (and an optional `because`), or an `unexpressed` reason with a count. The drafter's only.
+    leaves: {
+      max: LEAVES_MAX, because: [...LEAVE_REASONS], unexpressedMax: UNEXPRESSED_MAX,
+      shapes: {
+        assertion: resolveShape(sh.object({
+          given: sh.object({}, withoutFree(assertShapes().given)),
+          expect: sh.object({}, withoutFree(assertShapes().expect), { atLeastOne: true })
+        }, { because: sh.values(LEAVE_REASONS) }), engineLists),
+        unexpressed: resolveShape(sh.object({ unexpressed: sh.values(LEAVE_REASONS),
+          count: Object.freeze({ type: "number", min: 1, max: UNEXPRESSED_MAX, int: true, formula: false }) }), engineLists)
+      }
     },
     // What each closed word means, and where the meaning comes from (definitions.mjs): one reading for drafter and reviewer.
     definitions: definitionsFor(),

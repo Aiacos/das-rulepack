@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync 
 import { join } from "node:path";
 import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, isReaderHandle, validateRecord } from "./schema.mjs";
 import { assertProblems, assertionOfCanonical, isCanonicalAssertion } from "./assert.mjs";
+import { leavesProblems } from "./leaves.mjs";
 
 export { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord };
 
@@ -279,13 +280,21 @@ function reviewEntryProblems(entry, vocabulary) {
     check(v);
   };
   const asserts = (v, at) => errors.push(...assertProblems(v, { vocabulary, at }));
-  part("draft", ["by", "person", "rule", "assert", "implied"], (d) => {
+  part("draft", ["by", "person", "rule", "assert", "implied", "leaves"], (d) => {
     for (const f of ["by", "person"]) if (Object.hasOwn(d, f) && !isReaderHandle(d[f])) errors.push(`draft.${f}: a handle`);
     asserts(d.assert, "draft.assert");
     errors.push(...canonicalListProblems(d.implied, "draft.implied", vocabulary));
+    // Ruling R25: the rule's leaves, as data (leaves.mjs).
+    if (Object.hasOwn(d, "leaves")) errors.push(...leavesProblems(d.leaves, { vocabulary, at: "draft.leaves" }));
   });
   // `baseline` and `detail` (Ruling R24: what the comparison tolerated) are absent from entries queued before it.
-  part("review", ["rule", "assert", "agrees", "onlyDraft", "onlyReview", "baseline", "detail"], (r) => {
+  part("review", ["rule", "assert", "agrees", "onlyDraft", "onlyReview", "baseline", "detail", "left"], (r) => {
+    if (Object.hasOwn(r, "left")) {
+      const pair = (p) => isPlainObject(p) && Object.keys(p).length === 2 && Object.hasOwn(p, "leaves")
+        && Object.hasOwn(p, "review");
+      if (!Array.isArray(r.left) || !r.left.every(pair)) errors.push("review.left: must be an array of { leaves, review }");
+      else r.left.forEach((p, i) => errors.push(...canonicalListProblems([p.leaves, p.review], `review.left[${i}]`, vocabulary)));
+    }
     asserts(r.assert, "review.assert");
     if (typeof r.agrees !== "boolean") errors.push("review.agrees: must be a boolean");
     for (const f of ["onlyDraft", "onlyReview"]) errors.push(...canonicalListProblems(r[f], `review.${f}`, vocabulary));

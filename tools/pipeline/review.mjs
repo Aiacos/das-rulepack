@@ -5,9 +5,12 @@
 // never changes the rule, and nothing here writes `evidence` other than `reviewed` (never `evidence.person`).
 import { ruleFingerprint, stateOf } from "./registry.mjs";
 import { BY, REVIEW_TOLERANCES, isReaderHandle } from "./schema.mjs";
-import { assertProblems, impliedAsserts, normaliseAssert } from "./assert.mjs";
+import {
+  OPTIONAL_DETAIL, assertProblems, givenOf, impliedAsserts, isFreeCanonical as isFree, normaliseAssert, pairsOf, sameUpToDetail
+} from "./assert.mjs";
 import { RULE_QUOTE_WORDS, quotationCheck } from "./gates.mjs";
 import { ALL_ROLLS, damageRollsOf } from "./draft-keys.mjs";
+import { isPartial, leavesAssertions } from "./leaves.mjs";
 import {
   QUEUE_THRESHOLD, cachedText, clip, clipEchoes, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
 } from "./intake.mjs";
@@ -27,39 +30,8 @@ const SHOWN_PROBLEM_CHARS = 200;
 const HEX64 = /^[0-9a-f]{64}$/;
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
-const isFree = (canonical) => canonical.split(";").some((pair) => pair === "given.free=*" || pair === "expect.free=*");
-
-// Ruling R24. The fields of each expectation kind that are optional detail: one side may state them and the other not. Every
-// other field is identity (damage `fraction`; move `mode`; condition `applied` / `ended`; roll `mode` / `on` / `for`; `ends`,
-// `affects`, `excludes`, `uses`), and every `given` field is identity: a given stated on one side only is another situation.
-export const OPTIONAL_DETAIL = Object.freeze({ damage: Object.freeze(["type"]), move: Object.freeze(["distance"]) });
-
-// One canonical assertion as `path → value` pairs (the value as the canonical string spells it: 20 and "20" are one).
-const pairsOf = (canonical) => new Map(canonical.split(";").map((p) => [p.slice(0, p.indexOf("=")), p.slice(p.indexOf("=") + 1)]));
-const isDetailPath = (path) => {
-  const [part, kind, field, ...rest] = path.split(".");
-  return part === "expect" && !rest.length && Object.hasOwn(OPTIONAL_DETAIL, kind) && OPTIONAL_DETAIL[kind].includes(field);
-};
-const kindsOf = (pairs) => [...new Set([...pairs.keys()].filter((p) => p.startsWith("expect.")).map((p) => p.split(".")[1]))]
-  .sort().join(",");
-const givenOf = (pairs) => [...pairs].filter(([p]) => p.startsWith("given.")).map((x) => x.join("=")).sort().join(";");
-
-/**
- * True when two canonical assertions say the same thing up to optional detail (Ruling R24): the same `given`, the same
- * expectation kinds, every field both state equal, and every field one side states alone a detail of its kind. A `free` text
- * on either side is never matched this way.
- */
-export function sameUpToDetail(x, y) {
-  if (isFree(x) || isFree(y)) return x === y;
-  const a = pairsOf(x);
-  const b = pairsOf(y);
-  if (givenOf(a) !== givenOf(b) || kindsOf(a) !== kindsOf(b)) return false;
-  for (const path of new Set([...a.keys(), ...b.keys()])) {
-    if (a.has(path) && b.has(path)) { if (a.get(path) !== b.get(path)) return false; }
-    else if (!isDetailPath(path)) return false;
-  }
-  return true;
-}
+// Ruling R24's matching up to optional detail lives in assert.mjs (the schema reads it for Ruling R25); exported here as before.
+export { OPTIONAL_DETAIL, sameUpToDetail };
 /**
  * True when a review assertion `r` matches a draft-side assertion `d` (stated or implied) up to detail, in the safe direction
  * only (fix round 1): a detail the draft states and the review leaves out is tolerated (the reviewer is less specific); a
@@ -156,8 +128,9 @@ const byDraft = (x, y) => (x.draft < y.draft ? -1 : x.draft > y.draft ? 1 : x.re
 
 /**
  * The comparison of a drafted rule (`{ entry, assert }`) with a review's assertions (Rulings R9, R24), as data:
- * `{ agrees, onlyDraft, onlyReview, free, implied, baseline, detail }`, lists of canonical assertion strings (assert.mjs
- * normaliseAssert) and `detail` a list of `{ draft, review }` pairs of them.
+ * `{ agrees, onlyDraft, onlyReview, free, implied, baseline, detail, left }`, lists of canonical assertion strings (assert.mjs
+ * normaliseAssert), `detail` a list of `{ draft, review }` pairs of them and `left` (Ruling R25) of `{ leaves, review }` pairs:
+ * the review assertions matched by what the rule declares it leaves to the table (`rule.leaves`), which do not disagree.
  * The draft says `normaliseAssert(rule.assert) ∪ impliedAsserts(rule.entry)`; the review says `normaliseAssert(review)`.
  * Each side is read as its strongest assertions (one that says less than another of its side is absorbed by it). Then every
  * draft assertion must be matched by a distinct review assertion, equal or the same up to optional detail (sameUpToDetail:
@@ -194,12 +167,24 @@ export function compareAsserts(rule, review, { structure = null } = {}) {
     if (partner !== undefined) { reviewMatched.add(y); detail.push({ draft: partner, review: y }); }
   }
   const onlyDraft = draft.filter((x) => !matched.has(x));
-  const left = reviewed.filter((y) => !reviewMatched.has(y));
-  const baseline = left.filter(baselineOf);
-  const onlyReview = left.filter((y) => !baseline.includes(y));
+  const unmatched = reviewed.filter((y) => !reviewMatched.has(y));
+  const baseline = unmatched.filter(baselineOf);
+  // Ruling R25: a review assertion neither matched nor baseline may be what the rule declares it leaves to the table
+  // (`rule.leaves`), matched by the same rules (one to one, up to optional detail in the safe direction, each side read as
+  // its strongest assertions). `unexpressed` items match nothing; a leave the review does not mention is fine.
+  const leavesSide = absorb(leavesAssertions(rule));
+  const open = r.kept.filter((y) => unmatched.includes(y) && !baseline.includes(y));
+  const byLeave = matchUpToDetail(leavesSide.kept, open, () => false, strictTypes);
+  const leftOf = new Map([...byLeave].map(([l, y]) => [y, l]));
+  for (const [y, by] of r.absorbedBy) {
+    if (unmatched.includes(y) && !baseline.includes(y) && leftOf.has(by)) leftOf.set(y, leftOf.get(by));
+  }
+  const left = [...leftOf].map(([y, l]) => ({ leaves: l, review: y }))
+    .sort((x, y) => (x.leaves < y.leaves ? -1 : x.leaves > y.leaves ? 1 : x.review < y.review ? -1 : 1));
+  const onlyReview = unmatched.filter((y) => !baseline.includes(y) && !leftOf.has(y));
   return {
     agrees: !onlyDraft.length && !onlyReview.length && !free, onlyDraft, onlyReview, free, implied, baseline,
-    detail: detail.filter((p) => p.draft !== p.review).sort(byDraft)
+    detail: detail.filter((p) => p.draft !== p.review).sort(byDraft), left
   };
 }
 
@@ -313,21 +298,25 @@ function takeResult(result, ctx) {
       key: result.key, reason: queueReason, by, why: result.why, confidence: result.confidence,
       draft: { ...(typeof drafted.by === "string" ? { by: drafted.by } : {}),
         ...(typeof signed?.by === "string" ? { person: signed.by } : {}), rule: fingerprint,
-        assert: structuredClone(record.rule.assert ?? []), implied: comparison.implied },
+        assert: structuredClone(record.rule.assert ?? []), implied: comparison.implied,
+        ...(isPartial(record.rule) ? { leaves: structuredClone(record.rule.leaves) } : {}) },
       review: { rule: fingerprint, assert: structuredClone(assertions), agrees: comparison.agrees,
         onlyDraft: comparison.onlyDraft, onlyReview: comparison.onlyReview, baseline: comparison.baseline,
-        detail: comparison.detail }
+        detail: comparison.detail, ...(comparison.left.length ? { left: comparison.left } : {}) }
     } };
   }
   const next = structuredClone(record);
   // Ruling R24 (fix round 1, V): an agreement that tolerated anything keeps what it tolerated, as canonical strings: the
   // review assertions taken as baseline and the [draft, review] pairs matched up to detail. Part of `emits`: the gates run
   // again before the record stands as reviewed (registry.mjs emittedFingerprint).
-  const tolerated = comparison.baseline.length || comparison.detail.length
-    ? { baseline: [...comparison.baseline], detail: comparison.detail.map((p) => [p.draft, p.review]) } : null;
+  // Ruling R25: an agreement that matched review assertions with the rule's leaves is "reviewed, partial": the [leaves,
+  // review] pairs are kept under `left`, with the same protection.
+  const tolerated = comparison.baseline.length || comparison.detail.length || comparison.left.length
+    ? { baseline: [...comparison.baseline], detail: comparison.detail.map((p) => [p.draft, p.review]),
+      ...(comparison.left.length ? { left: comparison.left.map((p) => [p.leaves, p.review]) } : {}) } : null;
   next.evidence = { ...next.evidence, reviewed: { by, at, agrees: true, rule: fingerprint, confidence: result.confidence,
     ...(tolerated ? { tolerated } : {}) } };
-  return { apply: { record, next, tolerated: tolerated !== null } };
+  return { apply: { record, next, tolerated: tolerated !== null, partial: isPartial(record.rule) } };
 }
 
 /**
@@ -350,8 +339,9 @@ function takeResult(result, ctx) {
  *   tolerances), hold a free text (`free-text`) or the confidence is below 0.7 (`low-confidence`);
  * - agreed otherwise: `evidence.reviewed = { by, at, agrees: true, rule, confidence, tolerated? }`, `rule` the rule's
  *   fingerprint, `tolerated` (only when R24 tolerated anything) `{ baseline: [review], detail: [[draft, review]] }` as
- *   canonical strings; such keys are also listed in `tolerated` of the return value (their gate evidence goes stale: `emits`
- *   covers the field). The rule is never changed.
+ *   canonical strings, plus `left: [[leaves, review]]` when review assertions were matched by the rule's `leaves` (Ruling
+ *   R25, "reviewed, partial"); such keys are also listed in `tolerated` of the return value (their gate evidence goes stale:
+ *   `emits` covers the field), and every agreed key whose rule has `leaves` in `partial`. The rule is never changed.
  * `structures` (a Map of record key to the official item's structure, structure.mjs structureOf; default empty) is what the
  * baseline of R24 is decided from: a record without one gets no baseline.
  * `queue` is review-queue.json. Any exception on one result becomes its rejection (`internal: …`). A rejection repeats at most
@@ -370,6 +360,7 @@ export function ingestReviews(records, results, options = {}) {
   };
   const agreed = [];
   const tolerated = [];
+  const partial = [];
   const disagreed = [];
   const rejected = [];
   for (const result of Array.isArray(results) ? results : []) {
@@ -386,7 +377,8 @@ export function ingestReviews(records, results, options = {}) {
       Object.assign(record, next);
       agreed.push(next.key);
       if (outcome.apply.tolerated) tolerated.push(next.key);
+      if (outcome.apply.partial) partial.push(next.key);
     }
   }
-  return { records: out, agreed, tolerated, disagreed, rejected };
+  return { records: out, agreed, tolerated, partial, disagreed, rejected };
 }

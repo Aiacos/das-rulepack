@@ -259,7 +259,21 @@ export function toleratedReviews(dir = resolve(ROOT, "registry")) {
   return out;
 }
 
-/** The closing line of the rules block: the counts by status, plays by hand and reviews with R24 tolerances apart. */
+/**
+ * Ruling R25: what a partial rule leaves to the table, for its row of docs/RULES.md (its `partial` counts by reason), or "".
+ */
+export function partialNote(rule) {
+  const counts = Object.entries(rule.partial ?? {});
+  if ( !counts.length ) return "";
+  const total = counts.reduce((n, [, c]) => n + c, 0);
+  const reasons = counts.map(([reason, n]) => `${reason} ${n}`).join(", ");
+  return ` Partial: ${total} expectation${total === 1 ? "" : "s"} left to the table (${reasons}).`;
+}
+
+/**
+ * The closing line of the rules block: the counts by status, plays by hand, reviews with R24 tolerances and partial rules
+ * (Ruling R25) apart.
+ */
 export function countsLine(rules, { handPlayed = () => false, tolerated = new Set() } = {}) {
   const count = status => rules.filter(rule => rule.status === status).length;
   const waiting = count("pending") ? `, ${count("pending")} pending` : "";
@@ -267,7 +281,9 @@ export function countsLine(rules, { handPlayed = () => false, tolerated = new Se
   const played = `${count("played")} played${hand ? ` (${hand} by hand)` : ""}`;
   const loose = rules.filter(rule => tolerated.has(`${rule.book}|${rule.identifier}`)).length;
   const tolerance = loose ? ` ${loose} of them reviewed with Ruling R24 tolerances (not an exact agreement).` : "";
-  return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}`;
+  const partial = rules.filter(rule => partialNote(rule)).length;
+  const partly = partial ? ` ${partial} of them partial (part of the entry left to the table).` : "";
+  return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}${partly}`;
 }
 
 const STATUS = { played: "Played", validated: "Validated", pending: "Pending" };
@@ -297,12 +313,15 @@ export function renderRules() {
     for ( const rule of RULES.filter(r => r.book === book.code) ) {
       const name = rule.origin ? `${rule.name} (${rule.origin})` : rule.name;
       const pages = [`p.${rule.page}`, ...(rule.alsoIn ?? []).map(other => `${other.book} p.${other.page}`)].join("; ");
-      const where = (rule.handledIn === "code") ? `code${rule.entry ? " + table" : ""}` : "table";
+      // Ruling R25: a partial rule says so where it is handled, and what it leaves to the table beside what it adds.
+      const partial = partialNote(rule);
+      const where = `${(rule.handledIn === "code") ? `code${rule.entry ? " + table" : ""}` : "table"}${partial ? ", partial" : ""}`;
       // Ruling R5: an origin whose item the rule does not reach is said, with why.
       const gaps = [...(rule.uncovered ?? []).map(u => ` Not covered on ${u.origin}: ${u.because}.`),
         ...(unaccounted.get(`${rule.book}|${rule.identifier}`) ?? []).map(o => ` Not checked on ${o} (the rule predates it).`)]
         .join("");
-      out.push(`| ${name} | ${kindLabel(rule.kind)} | ${pages} | ${rule.adds}${gaps} | ${where} | ${statusOf(rule)} |`);
+      const adds = `${rule.adds}${gaps}${partial}`;
+      out.push(`| ${name} | ${kindLabel(rule.kind)} | ${pages} | ${adds} | ${where} | ${statusOf(rule)} |`);
     }
     out.push("");
   }

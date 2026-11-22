@@ -215,6 +215,46 @@ export function impliedAsserts(entry, { structure = null } = {}) {
   return normaliseAssert(out);
 }
 
+// ---------------------------------------------------------------------------------------------------------------------------
+// Canonical assertions compared (review.mjs compareAsserts, Ruling R24; leaves.mjs, Ruling R25).
+
+/** True when a canonical assertion holds a `free` text (given or expect). */
+export const isFreeCanonical = (canonical) =>
+  canonical.split(";").some((pair) => pair === "given.free=*" || pair === "expect.free=*");
+
+// Ruling R24. The fields of each expectation kind that are optional detail: one side may state them and the other not. Every
+// other field is identity (damage `fraction`; move `mode`; condition `applied` / `ended`; roll `mode` / `on` / `for`; `ends`,
+// `affects`, `excludes`, `uses`), and every `given` field is identity: a given stated on one side only is another situation.
+export const OPTIONAL_DETAIL = Object.freeze({ damage: Object.freeze(["type"]), move: Object.freeze(["distance"]) });
+
+// One canonical assertion as `path → value` pairs (the value as the canonical string spells it: 20 and "20" are one).
+export const pairsOf = (canonical) =>
+  new Map(canonical.split(";").map((p) => [p.slice(0, p.indexOf("=")), p.slice(p.indexOf("=") + 1)]));
+const isDetailPath = (path) => {
+  const [part, kind, field, ...rest] = path.split(".");
+  return part === "expect" && !rest.length && Object.hasOwn(OPTIONAL_DETAIL, kind) && OPTIONAL_DETAIL[kind].includes(field);
+};
+const kindsOf = (pairs) => [...new Set([...pairs.keys()].filter((p) => p.startsWith("expect.")).map((p) => p.split(".")[1]))]
+  .sort().join(",");
+export const givenOf = (pairs) => [...pairs].filter(([p]) => p.startsWith("given.")).map((x) => x.join("=")).sort().join(";");
+
+/**
+ * True when two canonical assertions say the same thing up to optional detail (Ruling R24): the same `given`, the same
+ * expectation kinds, every field both state equal, and every field one side states alone a detail of its kind. A `free` text
+ * on either side is never matched this way.
+ */
+export function sameUpToDetail(x, y) {
+  if (isFreeCanonical(x) || isFreeCanonical(y)) return x === y;
+  const a = pairsOf(x);
+  const b = pairsOf(y);
+  if (givenOf(a) !== givenOf(b) || kindsOf(a) !== kindsOf(b)) return false;
+  for (const path of new Set([...a.keys(), ...b.keys()])) {
+    if (a.has(path) && b.has(path)) { if (a.get(path) !== b.get(path)) return false; }
+    else if (!isDetailPath(path)) return false;
+  }
+  return true;
+}
+
 const ASSERT_PART = /^[A-Za-z]{1,24}$/;
 const isPlain = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 /** One canonical assertion string (normaliseAssert: sorted `path=value` pairs) read back as an assertion, or null. */

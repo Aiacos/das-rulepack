@@ -1,5 +1,6 @@
 // The record format of the rulebook registry: the closed vocabularies and the structural validator.
 import { assertProblems, isCanonicalAssertion, isPlainLine } from "./assert.mjs";
+import { leavesConflicts, leavesProblems } from "./leaves.mjs";
 
 export const ADDS_MAX = 200;
 
@@ -166,6 +167,12 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
   if (!legacy && !(Array.isArray(rule.assert) && rule.assert.length)) {
     errors.push("rule.assert: required, at least one { given, expect } (a legacy rule may have none)");
   }
+  // Ruling R25: what the rule leaves to the table, as data (leaves.mjs): the same checks as `assert`, no free text, at most
+  // LEAVES_MAX items, never something the rule itself states or implies, never on a rule that asserts nothing of its own.
+  if (has(rule, "leaves")) {
+    errors.push(...leavesProblems(rule.leaves, Array.isArray(rule.origins) ? { origins: rule.origins } : {}),
+      ...leavesConflicts(rule));
+  }
   if (!Array.isArray(rule.origins)) errors.push("rule.origins: must be an array");
   else for (const o of rule.origins) if (!ORIGINS.includes(o)) errors.push(`rule.origins: unknown origin ${JSON.stringify(o)}`);
   if (verdict === "entry" && !isObject(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
@@ -288,9 +295,16 @@ export const isWorld = (v) => typeof v === "string" && BY.test(v);
 // of REVIEW_TOLERANCES), every string a canonical assertion of the closed vocabulary, at least one of the two lists non-empty.
 // It is part of the gates' `emits` (registry.mjs emittedFingerprint), so a hand edit that removes or changes it is seen.
 export const REVIEW_TOLERANCES = Object.freeze(["baseline", "detail"]);
-const isTolerated = (v) => isObject(v) && Object.keys(v).length === 2 && REVIEW_TOLERANCES.every((k) => Array.isArray(v[k]))
-  && (v.baseline.length + v.detail.length > 0) && v.baseline.every((c) => isCanonicalAssertion(c))
-  && v.detail.every((p) => Array.isArray(p) && p.length === 2 && p.every((c) => isCanonicalAssertion(c)));
+// Ruling R25: `left`, the [leaves, review] pairs of an agreement that matched review assertions with what the rule declares it
+// leaves to the table (a partial rule). Optional (absent from agreements before it), never empty when present.
+export const PARTIAL_TOLERANCE = "left";
+const isPairList = (l) => Array.isArray(l) && l.every((p) => Array.isArray(p) && p.length === 2
+  && p.every((c) => isCanonicalAssertion(c)));
+const isTolerated = (v) => isObject(v) && REVIEW_TOLERANCES.every((k) => Object.hasOwn(v, k) && Array.isArray(v[k]))
+  && Object.keys(v).every((k) => REVIEW_TOLERANCES.includes(k) || k === PARTIAL_TOLERANCE)
+  && (!Object.hasOwn(v, PARTIAL_TOLERANCE) || (isPairList(v.left) && v.left.length > 0))
+  && (v.baseline.length + v.detail.length + (Object.hasOwn(v, PARTIAL_TOLERANCE) ? v.left.length : 0) > 0)
+  && v.baseline.every((c) => isCanonicalAssertion(c)) && isPairList(v.detail);
 const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
 // The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
@@ -298,7 +312,8 @@ const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
   confidence: "a number from 0 to 1", person: "true", because: "one of the reasons a draft goes to a person (DRAFTED_FOR_PERSON)",
   "reviewed.because": "one line of printable ASCII, at most 120 characters",
-  "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]] } (Ruling R24), not both empty",
+  "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]], left?: [[leaves, review]] } (Rulings R24,"
+    + " R25), not all empty",
   "played.because": "one line of printable ASCII, at most 120 characters", "played.by": "an owner's handle, not an agent's",
   "played.manual": "true", "played.client": `one of ${["gm", "player"].join(", ")}`,
   "played.scenario": "a scenario id <book>/<slug> (scenarios.mjs)", "played.core": "an engine version (1.2.3)",

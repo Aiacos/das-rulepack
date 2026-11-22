@@ -5,17 +5,19 @@
 // tests/pipeline/definitions.test.mjs fails when a word of these lists has no definition: the engine's lists through loadCore,
 // and a committed copy of them.
 import { AFFECTS, FRACTIONS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON } from "./assert.mjs";
+import { LEAVE_REASONS } from "./leaves.mjs";
 
 /** Where a meaning comes from: a file of the DAS · Core clone (`module/scripts/...`), or this pack's own vocabulary. */
 export const DEFINITION_SOURCES = Object.freeze([
   "engine core/effect-ends.mjs", "engine core/triggers.mjs", "engine core/content.mjs", "engine core/content/enums.mjs",
-  "engine runtime/engine-commands.mjs", "pack tools/pipeline/assert.mjs"
+  "engine runtime/engine-commands.mjs", "pack tools/pipeline/assert.mjs", "pack tools/pipeline/leaves.mjs"
 ]);
 
 const def = (means, from) => Object.freeze({ means, from });
 const ENDS_FROM = "engine core/effect-ends.mjs";
 const MOMENT_FROM = "engine core/triggers.mjs";
 const PACK_FROM = "pack tools/pipeline/assert.mjs";
+const LEAVES_FROM = "pack tools/pipeline/leaves.mjs";
 
 // "The user": the creature that used the item (the engine's caster or origin). "The bearer": the creature that carries the
 // effect. "The creature" in a moment: the creature the declaration belongs to (the item's user, or the bearer when an effect
@@ -121,6 +123,19 @@ const DEFINED = {
     0.5: def("Half the rolled damage.", PACK_FROM),
     1: def("The rolled damage in full.", PACK_FROM),
     2: def("Twice the rolled damage.", PACK_FROM)
+  },
+  // `rule.leaves[].because` and `.unexpressed` (Ruling R25, leaves.mjs LEAVE_REASONS): why a partial rule leaves an
+  // expectation of its entry to the table. The drafter's only: a reviewer never sees what a draft leaves out.
+  leavesBecause: {
+    "no-key": def("No key a drafter may write expresses it (nor anything the entry implies).", LEAVES_FROM),
+    "target-size": def("It holds only for targets of some sizes, and no allowed key limits targets by size.", LEAVES_FROM),
+    "target-state": def("It holds only for targets in some state (grappled, cursed, engulfed by the user), which no allowed key"
+      + " tests.", LEAVES_FROM),
+    "immunity-after-save": def("A temporary immunity to the effect once the target saves or the effect ends.", LEAVES_FROM),
+    "healing-block": def("The target cannot regain hit points while the effect lasts.", LEAVES_FROM),
+    "out-of-combat": def("It acts outside combat: long durations, travel, exploration or social play.", LEAVES_FROM),
+    "table-ruling": def("The table decides when it happens or what it covers (a trigger no moment names, a choice).",
+      LEAVES_FROM)
   }
 };
 
@@ -150,16 +165,20 @@ export const ENDS_EXAMPLES = Object.freeze([
     reaction: "currentTurnEnd" }
 ].map((e) => Object.freeze(e)));
 
-/** The definitions as the vocabulary files hold them (plain JSON). `review`: the reviewer's file (the same lists). */
+/**
+ * The definitions as the vocabulary files hold them (plain JSON). `review`: the reviewer's file, without `leavesBecause`
+ * (Ruling R25: a reviewer is blind to what a draft leaves out, and never writes `leaves`).
+ */
 export function definitionsFor({ review = false } = {}) {
-  void review;
-  return JSON.parse(JSON.stringify(DEFINITIONS));
+  const out = JSON.parse(JSON.stringify(DEFINITIONS));
+  if (review) delete out.leavesBecause;
+  return out;
 }
 
 // The engine's list each map covers (loadCore names), and the pack's own.
 const ENGINE_LISTS = Object.freeze({ ends: "effectEnds", moment: "moments", moveMode: "moveModes" });
 const PACK_LISTS = Object.freeze({ roll: ROLLS, affects: AFFECTS, excludes: AFFECTS, rollMode: ROLL_MODES, rollOn: ROLL_ON,
-  rollFor: ROLL_FOR, fraction: FRACTIONS });
+  rollFor: ROLL_FOR, fraction: FRACTIONS, leavesBecause: LEAVE_REASONS });
 
 /**
  * The words with no definition, as `<list>.<word>` (own properties only): of the engine's lists given in `core` (loadCore:
