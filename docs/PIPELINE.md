@@ -122,7 +122,10 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    document id unless it is a word of the engine's own vocabulary (entry keys, enumeration values, fact and moment names
    of the `DAS_CORE` clone). The ids of several origins sit side by side (Ruling R4): every id must be an activity or effect
    of the matched item of at least one origin the rule names (`ids: <id> belongs to no origin of the rule`), and each origin
-   named must contribute one when the entry has any (`ids: <origin> contributes no id`); an item saved under several ids,
+   named must contribute one when the entry has any (`ids: <origin> contributes no id`). A key whose slot holds one id
+   (`tools/pipeline/draft-keys.mjs`, slot `single`: `triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`) names one
+   origin only when it holds an id: a rule that names two fails (`ids: <key> holds one id: it may name one origin only (the
+   others go in rule.uncovered)`); a legacy record is not held to it. An item saved under several ids,
    `alsoDocIds`, has the same ids in every copy (identical data implies it). Every matched origin (a Plutonium `unchecked`
    item is not) is named in `origins` or listed in `rule.uncovered: [{ origin, because }]` with one line saying why
    (Ruling R5; `ids: <origin> is matched but neither in origins nor uncovered`). The item of every origin named must be
@@ -143,6 +146,7 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    entries identifier by identifier, so an identifier or alias equal to a DAS · Core identifier (`content/index.mjs`
    `SHIPPED` and `SRD_ALIASES` of the clone) fails unless it is the record's own identifier and the rule says `inCore: true`
    (set by a person): it would patch the engine's entry for every item of that name. An alias never may.
+   The validator gate also checks the rule's assertions (`rule.assert`, below) against the enumerations of the clone.
    A data fix without `from` must at least find its path on the document (`fixes: <path> does not exist`).
    The schema gate also checks `sources`: every key must be the docId (or
    an `alsoDocIds`) of the record's matched official item and every value the record's identifier
@@ -168,8 +172,98 @@ The state is derived from the evidence and written by the tools; nobody types it
 | `triaged` | a verdict is set |
 | `drafted` | a rule is written, but the gates have not passed on it (or the rule changed since) |
 | `gated` | every required gate passed on the current rule |
-| `reviewed` | an independent reading agrees |
-| `played` | a scenario passed in a running world |
+| `reviewed` | an independent reading agrees, about the rule as it is |
+| `played` | a scenario passed in a running world, on the rule as it is |
+
+Evidence about the rule carries its fingerprint (`rule`, `registry.mjs` `ruleFingerprint`): `evidence.drafted: { by, at, core,
+rule }`, `evidence.reviewed: { by, at, agrees, rule, confidence }`, `evidence.played: { at, core, world, scenario, client?,
+rule }` (no other field; `by` a reader handle, `confidence` from 0 to 1). A review or a play counts only while its `rule` is
+the fingerprint of the current rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a
+review or a play written before the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it.
+
+## 🧾 Rule vocabulary
+
+- **Assertions.** Every rule outside the legacy ones has `rule.assert`, a non-empty array of `{ given, expect }`
+  (`tools/pipeline/assert.mjs`): what the rule says happens, so that a draft and a review can be compared and a scenario can
+  check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free? }`; `expect: { damage?:
+  { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode: advantage|disadvantage, on:
+  attack|save|check, for: self|target|ally|enemy }, affects?, excludes? (target|allies|enemies|self), move?: { mode,
+  distance? }, uses?: { spent }, free? }`. Any other field is refused; `free` is one printable line of at most 120
+  characters and never stands alone (every assertion has a closed `expect` field); `given.origin` is one of the rule's
+  `origins`; `move.distance` is a non-negative number or a formula of at most 24 characters made of digits, spaces,
+  `+ - * / ( ) .` and the references `@mod`, `@prof`, `@item.…`, `@abilities.…`, `@attributes.…`, `@details.…`, `@scale.…`,
+  `@flags.…` (no other word). Every text of a rule (`adds` ≤ 200, `free` ≤ 120, `uncovered[].because` ≤ 200,
+  `evidence.person.because` ≤ 120) is one line of printable ASCII (0x20–0x7E): no control, format or look-alike character.
+  From this milestone on `rule.catalog` is a kebab/dot identifier of at most 64 characters, `rule.origin` a display label
+  of where the rule comes from in the book (owner and level, "Fey Wanderer 3"; one line of printable ASCII, at most 60
+  characters; Ruling R17), and `rule.code` the script of a `code` verdict, `scripts/<kebab>(/<kebab>)*.mjs`, at most 96
+  characters, which the schema gate (also under `--ci`) requires to be a file of the repository (Ruling R18). The legacy
+  rules are exempt; their values pass these formats anyway. The schema
+  checks the shape; the validator gate checks `moment` (MOMENTS), `targetType` (CREATURE_TYPES), the statuses of `condition`
+  (the conditions `core/monster-text.mjs` names), `ends` (EFFECT_ENDS or a moment), `move.mode` (MOVE_MODES) and
+  `damage.type` (DAMAGE_TYPES) against the clone (`loadCore`). `normaliseAssert` gives the sorted canonical forms of a list
+  (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry)` what an entry says by itself:
+  `saveDamage` (a saved save: half or no damage), `halfOnMiss`, `noDamage`, and a `triggers` declaration on `failedSave` with a
+  `status` or `move` step (Rulings R15, R16: `noReactions` implies nothing, so such a rule always goes to a person at review).
+- **Quotations.** The text gate reads the record's cached text and fails a rule whose `origin`, `adds`, any `assert[].given.free` /
+  `assert[].expect.free` or any `uncovered[].because` repeats 8 or more consecutive words of it, each field alone and all of
+  them together in order (a quote split across fields). Both sides are normalised: NFKC, lower case, and every run of
+  characters that are not letters or digits separates words (hyphens, slashes, zero-width characters). A text not in the
+  cache fails; a legacy rule with standing is not held to it. Under `--ci` there is no text cache: what holds there is the
+  gate evidence, whose rule fingerprint covers all of that prose, so a rule edited after a local run fails `--ci` until the
+  gates pass on it again; the schema's limits run in both modes.
+- **Drafter keys** (Ruling R6). `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`) lists the entry keys a drafter may write, each
+  with the slot its ids sit in (`activityMap`, `effectMap`: ids as an object's keys or a list, origins side by side; `single`:
+  one id, one origin; `none`), read off each key's validator in the clone; `tests/pipeline/draft-keys.test.mjs` checks every
+  key against the engine's `ENTRY_KEYS` and validator. `checkDraftKeys(entry, { origins, kind })` (both required: it throws
+  without them) refuses any other key (the record goes to the drafts queue as outcome `person`) and, in `dataFixes`: a
+  `create` (an effect to create goes to a person); a path outside the allowlist `FIX_PATHS` (exact case; `<id>` is 16 letters
+  and digits): `system.activities.<id>.` + `range.(value|units|long)`, `target.template.(type|size|units|count)`,
+  `target.affects.(type|count|choice)`, `duration.(value|units|concentration)`, `activation.(type|value)`,
+  `save.(ability|dc.calculation|dc.formula)`, `damage.(onSave|parts|includeBase)`, `healing.(number|denomination|bonus|types)`,
+  `consumption.(targets|spellSlot)`, `uses.(max|recovery)`, `effects`, `attack.bonus`, `spell.challenge`; on the item
+  `system.uses.(max|recovery|autoDestroy)`, `system.duration.(value|units)`, `system.range.(value|units)`, `system.target.`
+  + the target leaves above, `system.properties`, `system.attunement`, `system.damage.base.denomination`; on an effect
+  (`effect: <id>`) `duration.(seconds|rounds|turns|value|units|expiry)`, `statuses`, `system.changes`, `changes`,
+  `transfer`, `disabled`. Each leaf has a TYPE (`tools/pipeline/fix-types.mjs` `FIX_TYPES`) and `value` and `from` must
+  both have it; there is no free string type: a number (a finite number, a numeric string, or a formula of at most 24
+  characters of digits, operators, parentheses, spaces and the `@` references of `move.distance`); a word of a closed list
+  for that leaf (`FIX_ENUMS`: units, activation, template and target types, abilities, dc calculations, `onSave`, recovery
+  periods and types, damage and healing types, statuses, item properties, attunement, expiry, change types; damage types,
+  abilities and statuses are the engine's own, checked against the clone by a test); a boolean; or a list of at most 12
+  typed objects with closed keys (`damage.parts`: `{ number, denomination, bonus, types, scaling? }`; `consumption.targets`:
+  `{ type, value, target?, scaling? }`, `target` a 16-character id or a dotted attribute path; `uses.recovery`: `{ period,
+  type, formula? }`; `effects`: `{ _id, onSave?, level? }`; `changes` / `system.changes`: `{ key, value, type? | mode?,
+  priority? }`, `key` a dotted attribute path of at most 64 characters; `statuses`, `system.properties`, `healing.types`:
+  lists of words). `from: []` is a guard only for a list leaf ("it was empty"); null and empty strings are never one.
+  At most 12 fixes per rule, one per (target, path); no `create`; an origin other than official alone and a monster feature
+  are refused. Many of the engine's own fixes fall outside these types (null guards, `custom` damage parts, words as change
+  values): such fixes are a person's.
+  **It is a gate**: the schema gate (which runs under `--ci`) applies it to every non-legacy rule, unless a person signed
+  the rule: `evidence.person: { by, because, rule }`, `rule` the fingerprint of the rule as signed, `by` an owner listed in
+  `docs/owners.json` (never an agent's handle: `reader…`, `drafter…`, `reviewer…`, `second…`, `third…`, anything with
+  `agent`). A signature of an earlier rule (the rule was edited since) or by someone not listed does not apply: the drafter
+  limits do again. `evidence.person` is part of what the gate evidence fingerprints (`emits`), so adding or changing it
+  after the gates makes the record `drafted` and fails `--ci` until the gates run again.
+  `docs/owners.json` is protected by code review only, and `evidence.person` is a visible, reviewable claim, not a
+  cryptographic signature (Ruling R20). **No ingest ever writes
+  `evidence.person`** (a results file that carries `evidence` is rejected: unknown field); a person types it. The fixes gate
+  fails an effect to `create` without a valid signature (`fixes: create goes to a person`). A legacy rule with standing
+  keeps its behaviour.
+- **Identifiers and inherited names** (Rulings R19, fix round 5). A key set is tested on own properties only, so a key named
+  `constructor`, `toString`, `__proto__`... never passes for a known key; `__proto__`, `constructor` and `prototype` are
+  refused as keys anywhere in an entry. A dotted path (change key, consumption target, formula reference) has at most 6
+  segments of at most 24 characters; an entry may hold at most 60 distinct words of 3 letters or more in its strings, ids
+  and the pack's closed vocabularies (`draft-keys.mjs` `CLOSED_WORDS`) left out; one effect's changes go through `changes`
+  or `system.changes`, not both. The quotation check reads every string of the entry too (keys and values, structure-only
+  strings and the roots of `@` references left out), with the words split at dots, camelCase and digit boundaries.
+- **Queues** (Ruling R7). `registry/drafts-queue.json` and `registry/review-queue.json` sit beside `queue.json`: arrays of
+  `{ key, reason, by, why, confidence, draft?, review? }`, sorted by key (`registry.mjs` `loadQueue`, `saveQueue`,
+  `validateQueueEntry`). With `legacy.json` they are the files of `NOT_BOOKS` (`registry.mjs`): `generate`, the CLI,
+  `books-progress` and every other reader of `registry/*.json` leave them out, and no book code may take their names.
+  `loadQueue` refuses a file that does not parse or an entry that is not valid (record key shape, known fields), and
+  `gates` (with or without `--ci`) loads every queue first, `queue.json` included (`validateTriageQueueEntry`: key shape,
+  known fields with `second` and `third`, verdicts, confidences, reader handles): a broken one exits 2 naming the file.
 
 Besides the state, a record may carry the flag `legacy` (a rule that predates the pipeline). Verdicts: `core` (DAS · Core
 has the entry), `data` (the item's own data resolves it), `none` (nothing to automate in combat), `entry` (a declarative

@@ -7,11 +7,12 @@ import { matchOrigin } from "../../tools/pipeline/match.mjs";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { autoTriage, triageContext } from "../../tools/pipeline/triage.mjs";
 import { validateRecord } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented entries, invented ids.
 const ruled = (key, over = {}) => ({
   key, name: key, kind: "feature", book: "TST", page: 1, edition: "2024", identifier: "shared-name", text: null, items: [],
-  verdict: "entry", evidence: {}, rule: { handledIn: "table", adds: "x", entry: {}, origins: ["official"] }, ...over
+  verdict: "entry", evidence: {}, rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: {}, origins: ["official"] }, ...over
 });
 
 describe("ruling A: unique applies only to records that have a rule", () => {
@@ -118,7 +119,7 @@ describe("ruling D: re-inventory keeps the page of a record that has a rule", ()
   });
   it("keeps the stored page and lists the key under pageChanged", () => {
     const first = run(10, []).records;
-    const rule = { handledIn: "table", adds: "x", entry: {}, origins: ["official"] };
+    const rule = { handledIn: "table", assert: ASSERT, adds: "x", entry: {}, origins: ["official"] };
     const withRule = first.map((r) => ({ ...r, verdict: "entry", rule }));
     const again = run(12, withRule);
     expect(again.records[0].page).toBe(10);

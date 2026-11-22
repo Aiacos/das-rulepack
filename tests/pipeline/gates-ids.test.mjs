@@ -6,6 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { checkFixes, checkIds, gateSchema, gateUnique, idsIn, runGates } from "../../tools/pipeline/gates.mjs";
 import { legacyFingerprint, ruleFingerprint, saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { generate } from "../../tools/pipeline/generate.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented spells and invented ids.
 const OFF = "Of00Of11Of22Of33";
@@ -23,7 +24,7 @@ const rec = (entry, origins, over = {}) => ({
   key: "tst:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "TST", page: 3, edition: "2024", text: null,
   identifier: "glimmer-bolt", verdict: "entry", evidence: {},
   items: [item("official", [A_OFF]), item("ddb-importer", [A_DDB]), { origin: "plutonium", match: "unchecked" }],
-  rule: { handledIn: "table", adds: "x", entry, origins }, ...over
+  rule: { handledIn: "table", assert: ASSERT, adds: "x", entry, origins }, ...over
 });
 const sideBySide = { saveDamage: { [A_OFF]: "half", [A_DDB]: "half" } };
 

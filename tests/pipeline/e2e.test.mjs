@@ -7,6 +7,7 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { loadBook, saveBook } from "../../tools/pipeline/registry.mjs";
+import { ASSERT, sign } from "./fixtures/assert.mjs";
 
 const CORE_DIR = process.env.DAS_CORE && existsSync(join(process.env.DAS_CORE, "module/scripts/core/content.mjs"))
   ? process.env.DAS_CORE : null;
@@ -102,9 +103,11 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("pipeline end to end", () => {
     // A person drafts the rule of the `entry` record (drafting is not built yet).
     const book = loadBook(registry, "XZZ");
     const fix = { path: `system.activities.${ACT}.activation.type`, value: "bonus", from: "action" };
-    const records = book.records.map((r) => (r.key !== keyOf("Tide Clasp") ? r : {
-      ...r, rule: { handledIn: "table", adds: "Cast as a bonus action.", entry: { dataFixes: [fix] }, origins: ["ddb-importer"] }
-    }));
+    // A data fix on the DDB Importer item is a person's (drafters fix the official item only): signed `evidence.person`.
+    const records = book.records.map((r) => (r.key !== keyOf("Tide Clasp") ? r : sign({
+      ...r, rule: { handledIn: "table", assert: ASSERT, adds: "Cast as a bonus action.", entry: { dataFixes: [fix] },
+        origins: ["ddb-importer"] }
+    })));
     saveBook(registry, { ...book, records });
 
     twice(["gates"], 0);

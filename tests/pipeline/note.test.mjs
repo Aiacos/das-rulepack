@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { loadBook, saveBook } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: an invented spell in an invented book.
 const NOTE = "Test Book (2030).\n\nA book-level comment that survives every load and save.";
@@ -64,7 +65,7 @@ describe("the book-level note", () => {
     expect(cli(["inventory", "TCE", "spell"]).status).toBe(0);
     const file = read();
     file.records[0].verdict = "entry";
-    file.records[0].rule = { handledIn: "table", adds: "Nothing.", entry: { triggers: [] }, origins: ["official"] };
+    file.records[0].rule = { handledIn: "table", assert: ASSERT, adds: "Nothing.", entry: { triggers: [] }, origins: ["official"] };
     writeFileSync(join(tmp, "registry", "tce.json"), JSON.stringify({ ...file, note: NOTE }));
     cli(["gates"]);
     const after = read();

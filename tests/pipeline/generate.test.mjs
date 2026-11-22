@@ -66,8 +66,12 @@ describe("recordFromRule / ruleFromRecord", () => {
     const gates = { at: "d", core: "c", rule: ruleFingerprint(r.rule), emits: emittedFingerprint(fresh), passed };
     expect(ruleFromRecord(fresh)).toBeNull();
     expect(ruleFromRecord({ ...fresh, evidence: { gates } }).status).toBe("validated");
-    expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed: { agrees: true } } }).status).toBe("validated");
-    expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed: { agrees: true }, played: PLAY } }).status).toBe("played");
+    // A review and a play count for the rule they are stamped with (`rule`), not for an edited one.
+    const reviewed = { by: "reader-2", at: "d", agrees: true, rule: gates.rule, confidence: 0.9 };
+    expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed } }).status).toBe("validated");
+    expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed, played: { ...PLAY, rule: gates.rule } } }).status)
+      .toBe("played");
+    expect(ruleFromRecord({ ...fresh, evidence: { gates, reviewed, played: PLAY } }).status).toBe("validated");
     expect(ruleFromRecord({ ...r, evidence: { played: PLAY } }, { legacy }).status).toBe("played");
   });
 

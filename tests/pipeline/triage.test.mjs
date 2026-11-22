@@ -7,6 +7,7 @@ import { autoTriage, ingest, triageContext, QUEUE_THRESHOLD } from "../../tools/
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented spells.
 const BODY = "Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma";
@@ -218,7 +219,8 @@ describe("ingest", () => {
   });
 
   it("keeps a drafted rule's verdict entry or code, even with overwrite, and rejects what would make it invalid", () => {
-    const drafted = (verdict, rule) => record("Dim Glow", { verdict, rule: { adds: "x", origins: ["official"], ...rule } });
+    const drafted = (verdict, rule) => record("Dim Glow", { verdict, rule: { adds: "x", origins: ["official"],
+        assert: ASSERT, ...rule } });
     const table = drafted("entry", { handledIn: "table", entry: { triggers: [] } });
     for (const verdict of ["unverifiable", "none", "data", "engine"]) {
       const out = run([table], [ok("tst:spell:dim-glow", { verdict })], { overwrite: true });

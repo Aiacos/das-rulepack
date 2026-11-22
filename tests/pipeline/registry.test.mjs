@@ -6,13 +6,14 @@ import {
   VERDICTS, STATES, ORIGINS, MATCHES, keyOf, slug, groupBy, validateRecord, ruleFingerprint, emittedFingerprint, stateOf,
   loadBook, saveBook
 } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented spells, no real book content.
 const minimal = () => ({
   key: "xphb:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "XPHB", page: 12, edition: "2024",
   text: null, items: [], verdict: null, evidence: {}
 });
-const rule = () => ({ handledIn: "table", adds: "Glimmer Bolt", entry: { aura: true }, origins: ["official"] });
+const rule = () => ({ handledIn: "table", assert: ASSERT, adds: "Glimmer Bolt", entry: { aura: true }, origins: ["official"] });
 const GATES = ["schema", "validator", "ids", "fixes", "text"];
 const gated = (r) => ({
   ...r,
@@ -120,8 +121,9 @@ describe("validateRecord", () => {
   it("validates the shapes of evidence.gates, evidence.reviewed and evidence.played", () => {
     const ok = (evidence) => validateRecord({ ...minimal(), evidence });
     const gates = { at: "2026-11-21", core: "1.0.0", rule: "a".repeat(64), passed: ["schema", "validator"], noted: ["ids"] };
-    const reviewed = { by: "reader-2", at: "2026-11-21", agrees: true };
-    const played = { at: "2026-11-21", core: "1.0.0", world: "test-world", scenario: "glimmer-1", client: "gm" };
+    const reviewed = { by: "reader-2", at: "2026-11-21", agrees: true, rule: "b".repeat(64), confidence: 0.8 };
+    const played = { at: "2026-11-21", core: "1.0.0", world: "test-world", scenario: "glimmer-1", client: "gm",
+      rule: "b".repeat(64) };
     expect(ok({ gates, reviewed, played, triaged: { by: "rule", at: "x" } })).toEqual([]);
     const bad = [
       { gates: true }, { gates: { ...gates, at: "" } }, { gates: { ...gates, rule: "abc" } },
@@ -176,9 +178,10 @@ describe("stateOf", () => {
     expect(stateOf(drafted, { core })).toBe("drafted");
     const g = gated(drafted);
     expect(stateOf(g, { core })).toBe("gated");
-    const reviewed = { ...g, evidence: { ...g.evidence, reviewed: { agrees: true } } };
+    const stamp = ruleFingerprint(g.rule);
+    const reviewed = { ...g, evidence: { ...g.evidence, reviewed: { agrees: true, rule: stamp } } };
     expect(stateOf(reviewed, { core })).toBe("reviewed");
-    const play = { at: "2026-11-22", core: "1.0.0", world: "test-world", scenario: "glimmer-1" };
+    const play = { at: "2026-11-22", core: "1.0.0", world: "test-world", scenario: "glimmer-1", rule: stamp };
     const played = { ...reviewed, evidence: { ...reviewed.evidence, played: play } };
     expect(stateOf(played, { core })).toBe("played");
     const partial = { ...reviewed, evidence: { ...reviewed.evidence, played: { at: "2026-11-22" } } };

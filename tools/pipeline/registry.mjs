@@ -2,7 +2,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord } from "./schema.mjs";
+import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, isReaderHandle, validateRecord } from "./schema.mjs";
 
 export { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord };
 
@@ -64,9 +64,14 @@ const REQUIRED_GATES = ["schema", "validator", "ids", "fixes", "text"];
 // stands on all of it, so that an identifier or a source edited after the gates makes the record `drafted` again. `note` and
 // `order` (a comment, a position in the module) do not change what is registered.
 const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", "sources"];
-/** The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of. */
-export const emittedFingerprint = (record) =>
-  ruleFingerprint(Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])));
+/**
+ * The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of, and of
+ * `evidence.person` (the signature that lets the gates pass what a drafter may not write: adding or changing it after the
+ * gates makes their evidence stale). Absent, it leaves the hash as it was (`canonical` drops undefined fields).
+ */
+export const emittedFingerprint = (record) => ruleFingerprint({
+  ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person
+});
 
 /**
  * The items the gates check, as `evidence.gates.items` records them: per origin the rule names, the data fingerprint of the
@@ -96,6 +101,13 @@ export function evidenceIsCurrent(record, gates) {
   return canonical(recorded) === canonical(gatedItems(record));
 }
 
+// Evidence about the rule (a review, a play) counts only while its `rule` is the fingerprint of the rule as it is: editing the
+// rule makes it stale. A legacy record keeps today's behaviour: a review or a play written before the stamp existed (no `rule`)
+// still counts; one that carries a stamp is held to it. `record.legacy` is the record's own flag (stateOf has no legacy.json):
+// a forged flag earns nothing, since the legacy gate fails it and generate refuses it (legacyProblem).
+const aboutThisRule = (record, evidence) =>
+  typeof evidence?.rule === "string" ? evidence.rule === ruleFingerprint(record.rule) : record.legacy === true;
+
 // The state is always derived from the evidence, never read from a stored field. `core` is accepted for the callers that
 // know which engine they gate against; the gates carry their own fingerprint of the rule, which is what staleness hangs on.
 export function stateOf(record, { core } = {}) {
@@ -104,8 +116,9 @@ export function stateOf(record, { core } = {}) {
   const gates = record.evidence?.gates;
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
   if (!evidenceIsCurrent(record, gates) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
-  if (!record.evidence.reviewed?.agrees) return "gated";
-  return isPlayed(record.evidence.played) ? "played" : "reviewed";
+  const { reviewed, played } = record.evidence;
+  if (reviewed?.agrees !== true || !aboutThisRule(record, reviewed)) return "gated";
+  return isPlayed(played) && aboutThisRule(record, played) ? "played" : "reviewed";
 }
 
 // A play counts only with what it was played on: a hand-typed `played: {}` or `played: true` does not.
@@ -149,8 +162,13 @@ export function loadBook(dir, code) {
   return { book, ...(note === undefined ? {} : { note }), records: records.map(({ state, ...record }) => record) };
 }
 
-// legacy.json and queue.json live beside the books in the registry folder, so no book may take those names.
-export const RESERVED_BOOKS = Object.freeze(["legacy", "queue"]);
+// The queues a person reads, beside queue.json (Ruling R7): drafts that are not rules (outcome person, code, engine, low
+// confidence) and reviews that do not agree. Each is an array of { key, reason, by, why, confidence, draft?, review? }.
+export const QUEUE_FILES = Object.freeze({ drafts: "drafts-queue.json", review: "review-queue.json" });
+// The files of the registry folder that are not books: every reader of registry/*.json leaves them out.
+export const NOT_BOOKS = Object.freeze(["legacy.json", "queue.json", ...Object.values(QUEUE_FILES)]);
+// legacy.json and the queues live beside the books in the registry folder, so no book may take those names.
+export const RESERVED_BOOKS = Object.freeze(NOT_BOOKS.map((f) => f.slice(0, -5)));
 export const isReservedBook = (code) => RESERVED_BOOKS.includes(String(code).toLowerCase());
 
 // A book code: an upper-case letter, then 1 to 9 upper-case letters or digits. Its lower-case form names the file, and
@@ -181,4 +199,96 @@ export function saveBook(dir, { book, note, records }) {
   const out = { book, ...(note === undefined ? {} : { note }), records: withState };
   mkdirSync(dir, { recursive: true });
   writeFileSync(fileOf(dir, book), `${JSON.stringify(out, null, 2)}\n`);
+}
+
+const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review"];
+// The shape of a record key (keyOf): `<book>:<kind>:<scoped name>`, lower case.
+export const RECORD_KEY = /^[a-z][a-z0-9]{1,9}:[a-z]+:[a-z0-9][a-z0-9/#-]*$/;
+
+/** The problems of one entry of drafts-queue.json or review-queue.json, or []. */
+export function validateQueueEntry(entry) {
+  if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return ["entry: must be an object"];
+  const errors = [];
+  if (typeof entry.key !== "string" || !RECORD_KEY.test(entry.key)) errors.push("key: must be a record key (<book>:<kind>:<name>)");
+  for (const f of ["reason", "why"]) {
+    if (typeof entry[f] !== "string" || !entry[f]) errors.push(`${f}: must be a non-empty string`);
+  }
+  if (!isReaderHandle(entry.by)) errors.push("by: must be a reader handle (not \"rule\")");
+  const c = entry.confidence;
+  if (!(typeof c === "number" && c >= 0 && c <= 1)) errors.push("confidence: must be a number from 0 to 1");
+  for (const f of ["draft", "review"]) {
+    if (f in entry && (entry[f] === null || typeof entry[f] !== "object" || Array.isArray(entry[f]))) {
+      errors.push(`${f}: must be an object`);
+    }
+  }
+  for (const f of Object.keys(entry)) if (!QUEUE_FIELDS.includes(f)) errors.push(`${f}: unknown field`);
+  return errors;
+}
+
+const TRIAGE_QUEUE_FIELDS = ["key", "verdict", "why", "confidence", "by", "reason", "second", "third"];
+const READING_FIELDS = ["verdict", "why", "confidence", "by"];
+const isConfidence = (c) => typeof c === "number" && c >= 0 && c <= 1;
+
+// One reading of a queue.json entry: its own, or its `second` / `third`.
+function readingProblems(r, at, fields, errors) {
+  if (!VERDICTS.includes(r.verdict)) errors.push(`${at}verdict: must be one of ${VERDICTS.join(", ")}`);
+  if (typeof r.why !== "string" || !r.why) errors.push(`${at}why: must be a non-empty string`);
+  if (!isConfidence(r.confidence)) errors.push(`${at}confidence: must be a number from 0 to 1`);
+  if (!isReaderHandle(r.by)) errors.push(`${at}by: must be a reader handle (not "rule")`);
+  for (const f of Object.keys(r)) if (!fields.includes(f)) errors.push(`${at}${f}: unknown field`);
+}
+
+/** The problems of one entry of registry/queue.json (triage results waiting for a person), or []. */
+export function validateTriageQueueEntry(entry) {
+  if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return ["entry: must be an object"];
+  const errors = [];
+  if (typeof entry.key !== "string" || !RECORD_KEY.test(entry.key)) errors.push("key: must be a record key (<book>:<kind>:<name>)");
+  if (typeof entry.reason !== "string" || !entry.reason) errors.push("reason: must be a non-empty string");
+  readingProblems(entry, "", TRIAGE_QUEUE_FIELDS, errors);
+  for (const f of ["second", "third"]) {
+    if (!(f in entry)) continue;
+    const r = entry[f];
+    if (r === null || typeof r !== "object" || Array.isArray(r)) errors.push(`${f}: must be { ${READING_FIELDS.join(", ")} }`);
+    else readingProblems(r, `${f}.`, READING_FIELDS, errors);
+  }
+  return errors;
+}
+
+const queueFile = (dir, name) => {
+  if (!Object.hasOwn(QUEUE_FILES, name)) {
+    throw new Error(`unknown queue ${JSON.stringify(name)} (${Object.keys(QUEUE_FILES).join(", ")})`);
+  }
+  return join(dir, QUEUE_FILES[name]);
+};
+
+/**
+ * The entries of a queue (`name`: drafts or review); a missing file is an empty queue. Throws, naming the file, on a file
+ * that does not parse, is no array, or holds an entry that validateQueueEntry refuses.
+ */
+export function loadQueue(dir, name) {
+  const file = queueFile(dir, name);
+  if (!existsSync(file)) return [];
+  let list;
+  try { list = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new Error(`${file}: ${e.message}`); }
+  if (!Array.isArray(list)) throw new Error(`${file}: must be an array of queue entries`);
+  list.forEach((e, i) => {
+    const errors = validateQueueEntry(e);
+    if (errors.length) throw new Error(`${file}: entry ${i}: ${errors.join("; ")}`);
+  });
+  return list;
+}
+
+/** Writes a queue, every entry checked, sorted by key; one key appears once. */
+export function saveQueue(dir, name, entries) {
+  const file = queueFile(dir, name);
+  const keys = new Set();
+  for (const e of entries) {
+    const errors = validateQueueEntry(e);
+    if (errors.length) throw new Error(`${QUEUE_FILES[name]}: ${e?.key ?? "entry"}: ${errors.join("; ")}`);
+    if (keys.has(e.key)) throw new Error(`${QUEUE_FILES[name]}: ${e.key} is listed twice`);
+    keys.add(e.key);
+  }
+  const sorted = [...entries].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(file, `${JSON.stringify(sorted, null, 2)}\n`);
 }

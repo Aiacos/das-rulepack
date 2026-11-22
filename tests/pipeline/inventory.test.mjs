@@ -6,6 +6,7 @@ import { spawnSync } from "node:child_process";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { textFingerprint } from "../../tools/pipeline/text.mjs";
 import { validateRecord, keyOf } from "../../tools/pipeline/registry.mjs";
+import { ASSERT } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented spells.
 const entry = (over = {}) => ({
@@ -119,7 +120,8 @@ describe("inventory records", () => {
 describe("inventory over previous records", () => {
   it("is idempotent and preserves triage work", () => {
     const first = run().records;
-    const worked = [{ ...first[0], verdict: "data", why: "table row", rule: { handledIn: "table", adds: "x", origins: [] },
+    const worked = [{ ...first[0], verdict: "data", why: "table row", rule: { handledIn: "table", assert: ASSERT, adds: "x",
+        origins: [] },
       evidence: { reviewed: { agrees: true }, gates: { rule: "f", passed: ["schema"] } } }];
     const again = run({ previous: worked });
     expect(again.report).toEqual({

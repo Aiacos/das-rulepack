@@ -18,6 +18,19 @@ export function factNames(source) {
   return [...new Set([...source.slice(start).matchAll(FACT_KEY)].map((m) => m[1]))];
 }
 
+const CONDITIONS = /\bconst CONDITIONS\s*=\s*\[([^\]]*)\]/;
+export const MIN_STATUSES = 10;
+
+/**
+ * The statuses (conditions) the engine names: `core/monster-text.mjs` lists them in a module-private CONDITIONS array, so it
+ * is read as text, as the facts are. The engine has no exported closed list of statuses.
+ */
+export function statusNames(source) {
+  const m = source.match(CONDITIONS);
+  if (!m) throw new Error("core/monster-text.mjs: CONDITIONS was not found");
+  return [...new Set([...m[1].matchAll(/"([a-z]+)"/g)].map((x) => x[1]))];
+}
+
 const load = (dir, path) => import(pathToFileURL(join(dir, "module", "scripts", path)).href);
 
 /**
@@ -41,7 +54,7 @@ export function vocabularyOf(modules, facts) {
 export async function loadCore(dir) {
   const files = [
     "core/content.mjs", "core/content/enums.mjs", "core/triggers.mjs", "core/data-fixes.mjs", "content/index.mjs",
-    "adapter/facts.mjs", "../module.json"
+    "adapter/facts.mjs", "core/eligibility.mjs", "core/monster-text.mjs", "../module.json"
   ];
   for (const f of files) {
     if (!existsSync(join(dir, "module", "scripts", f))) throw new Error(`DAS_CORE ${dir}: module/scripts/${f} is missing`);
@@ -73,9 +86,23 @@ export async function loadCore(dir) {
     throw new Error(`DAS_CORE ${dir}: core/triggers.mjs does not export MOMENTS`);
   }
   const entryKeys = new Set(enums.ENTRY_KEYS);
+  // The enumerations rule assertions are checked against (assert.mjs).
+  const { CREATURE_TYPES } = await load(dir, "core/eligibility.mjs");
+  const statuses = statusNames(readFileSync(join(dir, "module", "scripts", "core", "monster-text.mjs"), "utf8"));
+  if (statuses.length < MIN_STATUSES) throw new Error(`DAS_CORE ${dir}: only ${statuses.length} statuses found`);
+  const lists = { creatureTypes: CREATURE_TYPES, moveModes: enums.MOVE_MODES, effectEnds: enums.EFFECT_ENDS,
+    damageTypes: enums.DAMAGE_TYPES, abilities: enums.ABILITIES };
+  for (const [name, value] of Object.entries(lists)) {
+    if (!Array.isArray(value) || !value.length) throw new Error(`DAS_CORE ${dir}: the engine does not export ${name}`);
+  }
+  const moments = Object.keys(triggers.MOMENTS);
   const vocabulary = vocabularyOf([enums, triggers], facts);
 
   const aliases = SRD_ALIASES ?? {};
   const identifiers = new Set([...Object.keys(SHIPPED), ...Object.keys(aliases), ...Object.values(aliases)]);
-  return { validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary };
+  return {
+    validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary, moments, statuses,
+    creatureTypes: [...lists.creatureTypes], moveModes: [...lists.moveModes], effectEnds: [...lists.effectEnds],
+    damageTypes: [...lists.damageTypes], abilities: [...lists.abilities]
+  };
 }

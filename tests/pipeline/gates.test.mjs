@@ -10,6 +10,7 @@ import { loadCore } from "../../tools/pipeline/core.mjs";
 import {
   idsIn, gateSchema, gateValidator, gateIds, gateFixes, gateText, gateUnique, runGates
 } from "../../tools/pipeline/gates.mjs";
+import { ASSERT, sign } from "./fixtures/assert.mjs";
 
 // Synthetic fixtures only: invented spells and invented ids, no real book content.
 const ACT = "Ab12Cd34Ef56Gh78";
@@ -41,7 +42,7 @@ const item = (extra = {}) => ({
 const rec = (over = {}) => ({
   key: "tst:spell:glimmer-bolt", name: "Glimmer Bolt", kind: "spell", book: "TST", page: 12, edition: "2014",
   text: null, items: [item()], verdict: "entry", evidence: {}, identifier: "glimmer-bolt",
-  rule: { handledIn: "table", adds: "A bolt that glimmers.", entry: entryWith(), origins: ["ddb-importer"] },
+  rule: { handledIn: "table", assert: ASSERT, adds: "A bolt that glimmers.", entry: entryWith(), origins: ["ddb-importer"] },
   ...over
 });
 const withEntry = (entry, over = {}) => rec({ rule: { ...rec().rule, entry }, ...over });
@@ -133,7 +134,8 @@ describe("gateValidator", () => {
   });
 
   it("has nothing to validate on a rule without an entry", () => {
-    expect(gateValidator(rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } }), ctx())).toEqual([]);
+    expect(gateValidator(rec({ verdict: "code", rule: { handledIn: "code", assert: ASSERT, adds: "x",
+        origins: [] } }), ctx())).toEqual([]);
   });
 });
 
@@ -163,7 +165,9 @@ describe("gateIds", () => {
   it("checks every origin the rule names", () => {
     const r = withEntry(entryWith(), { items: [item(), item({ origin: "official", activities: [], effects: [] })] });
     r.rule.origins = ["ddb-importer", "official"];
-    expect(gateIds(r, ctx())).toEqual(["ids: official contributes no id"]);
+    // A trigger's ids sit in fields of one id (draft-keys.mjs slot `single`, Ruling R4): one origin only, too.
+    expect(gateIds(r, ctx())).toEqual(["ids: official contributes no id",
+      "ids: triggers holds one id: it may name one origin only (the others go in rule.uncovered)"]);
   });
 
   it("fails ids with no origin to check them against", () => {
@@ -171,7 +175,7 @@ describe("gateIds", () => {
     expect(gateIds(r, ctx())).toEqual(["ids: rule names no origin"]);
     const noIds = withEntry({ aura: true }); noIds.rule.origins = [];
     expect(gateIds(noIds, ctx())).toEqual(["ids: rule names no origin"]);
-    const code = rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } });
+    const code = rec({ verdict: "code", rule: { handledIn: "code", assert: ASSERT, adds: "x", origins: [] } });
     expect(gateIds(code, ctx())).toEqual([]);
     expect(runGates([withText(r)], ctx()).failures[r.key].ids).toEqual(["ids: rule names no origin"]);
   });
@@ -199,13 +203,13 @@ describe("gateIds", () => {
   });
 
   it("notes a code rule without entry as having nothing to check: noted, not passed; a table rule needs an entry", () => {
-    const code = withText(rec({ verdict: "code", rule: { handledIn: "code", adds: "x", origins: [] } }));
+    const code = withText(rec({ verdict: "code", rule: { handledIn: "code", assert: ASSERT, adds: "x", origins: [] } }));
     const { failures, notes, updated } = runGates([code], ctx());
     expect(failures).toEqual({});
     expect(notes[code.key].ids).toEqual(["ids: nothing to check (code rule without entry)"]);
     expect(updated[0].evidence.gates.noted).toEqual(["ids"]);
     expect(updated[0].evidence.gates.passed).not.toContain("ids");
-    const table = rec({ rule: { handledIn: "table", adds: "x", origins: ["ddb-importer"] } });
+    const table = rec({ rule: { handledIn: "table", assert: ASSERT, adds: "x", origins: ["ddb-importer"] } });
     expect(gateIds(table, ctx())).toEqual(["ids: a table rule has no entry"]);
   });
 
@@ -220,6 +224,7 @@ describe("gateFixes", () => {
     effects: [{ _id: EFF, transfer: false, changes: [{ key: "a", value: "1" }] }] };
   const documents = { "ddb-importer": { [DOC]: doc } };
   const fixed = (...dataFixes) => withEntry(entryWith({ dataFixes }));
+  const signed = sign;
   const path = `system.activities.${ACT}.activation.type`;
 
   it("passes a fix that is applicable (from matches)", () => {
@@ -251,11 +256,13 @@ describe("gateFixes", () => {
   it("skips a { effect, create } item, which has no path, before the path check", () => {
     const create = { effect: NOPE, create: { name: "x" }, unless: EFF };
     expect("path" in create).toBe(false);
-    expect(gateFixes(fixed(create), ctx({ documents }))).toEqual([]);
+    // An effect to create is a person's (Ruling R6): signed, it is skipped; unsigned, it fails.
+    expect(gateFixes(signed(fixed(create)), ctx({ documents }))).toEqual([]);
+    expect(gateFixes(fixed(create), ctx({ documents }))).toEqual(["fixes: create goes to a person"]);
   });
 
   it("reports nothing for an effect to create", () => {
-    expect(gateFixes(fixed({ effect: NOPE, create: { name: "x" } }), ctx({ documents }))).toEqual([]);
+    expect(gateFixes(signed(fixed({ effect: NOPE, create: { name: "x" } })), ctx({ documents }))).toEqual([]);
   });
 
   it("has no failure for an empty dataFixes list, even without a document", () => {
@@ -355,7 +362,8 @@ describe("runGates", () => {
   it("removes the evidence of a record that fails, and a changed entry makes it a draft again", () => {
     const passed = runGates([good()], ctx()).updated[0];
     expect(stateOf(passed)).toBe("gated");
-    const edited = { ...passed, rule: { ...passed.rule, entry: entryWith({ extra: NOPE }) } };
+    // `extra` is no drafter key: a person's rule (signed) reaches the ids gate.
+    const edited = sign({ ...passed, rule: { ...passed.rule, entry: entryWith({ extra: NOPE }) } });
     expect(stateOf(edited)).toBe("drafted");
     const { failures, updated } = runGates([edited], ctx());
     expect(failures[edited.key].ids).toEqual([`ids: ${NOPE} belongs to no origin of the rule`]);
@@ -383,7 +391,7 @@ describe("runGates", () => {
   });
 
   it("does not run the other gates on a record that fails the schema", () => {
-    const bad = rec({ page: 0, rule: { handledIn: "table", adds: "x", entry: 5, origins: "ddb-importer" } });
+    const bad = rec({ page: 0, rule: { handledIn: "table", assert: ASSERT, adds: "x", entry: 5, origins: "ddb-importer" } });
     const { failures } = runGates([bad], ctx());
     expect(Object.keys(failures[bad.key])).toEqual(["schema"]);
   });
@@ -591,7 +599,7 @@ describe("gates CLI", () => {
     });
 
     it("--ci fails on an invalid entry", () => {
-      saveBook(registry(), { book: "TST", records: [withEntry({ recastt: true })] });
+      saveBook(registry(), { book: "TST", records: [sign(withEntry({ recastt: true }))] });
       const r = cli(["gates", "--ci"], env());
       expect(r.status).toBe(1);
       expect(r.stderr).toMatch(/FAIL tst:spell:glimmer-bolt: validator/);
@@ -630,9 +638,9 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("gates CLI: the document of a matc
     writeJson(join(dumps, "ddb.a.json"), [stale]);
     writeJson(join(dumps, "ddb.b.json"), [matched]);
     const env = { RULEPACK_REGISTRY: registry, DAS_CORE: CORE_DIR, RULEPACK_DUMPS: dumps, RULEPACK_TEXT: text };
-    const withData = (data) => withEntry({ dataFixes: [{ path: "system.x", value: 2, from: 1 }] }, {
+    const withData = (data) => sign(withEntry({ dataFixes: [{ path: "system.x", value: 2, from: 1 }] }, {
       text: { sha256: sha, source: "5etools", chars: 30 }, items: [item({ activities: [], effects: [], data: { sha256: data } })]
-    });
+    }));
     saveBook(registry, { book: "TST", records: [withData(itemSummary(matched, "ddb-importer").data)] });
     const ok = cli(["gates"], env);
     expect(ok.status, ok.stderr).toBe(0);

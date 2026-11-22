@@ -4,7 +4,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { KIND_TABLE } from "../../tools/pipeline/kinds.mjs";
 import { KINDS, validateRecord } from "../../tools/pipeline/schema.mjs";
-import { keyOf, KINDS as REGISTRY_KINDS } from "../../tools/pipeline/registry.mjs";
+import { keyOf, KINDS as REGISTRY_KINDS, NOT_BOOKS } from "../../tools/pipeline/registry.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const minimal = () => ({
@@ -61,8 +61,7 @@ describe("keyOf with owner and level", () => {
   it("keeps all 24 legacy keys", () => {
     const legacy = Object.keys(JSON.parse(readFileSync(join(root, "registry", "legacy.json"), "utf8")));
     expect(legacy).toHaveLength(24);
-    const notBooks = ["legacy.json", "queue.json"];
-    const books = readdirSync(join(root, "registry")).filter((f) => f.endsWith(".json") && !notBooks.includes(f));
+    const books = readdirSync(join(root, "registry")).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f));
     const records = books
       .flatMap((f) => JSON.parse(readFileSync(join(root, "registry", f), "utf8")).records);
     for (const key of legacy) {
