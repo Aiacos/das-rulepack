@@ -427,8 +427,10 @@ dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-de
 `<dir>/draft-vocabulary.json` (engine words only, and for every allowed data-fix path its type as a declarative description,
 `fixes.types`, generated from the table that also checks it: safe to commit). A batch is `{ id, stage: "draft", allowed,
 vocabulary, entries }`; `allowed` is `DRAFT_KEYS` with the slot each key's ids sit in. An entry is the triage entry plus
-`identifier` (a monster feature's is scoped to its creature: `<book>-<creature>-<feature>`), `keys` and `similar` (the triage
-reader's hints), `why` and `examples` (at most three `{ identifier, entry }`, drafter keys only, stripped to ids, engine words,
+`identifier` (a monster feature's is scoped to its creature: `<book>-<creature>-<feature>`; its DDB Importer item, which no rule
+can name, Ruling R3, is offered as `{ origin: "ddb-importer", match, uncovered: "always" }` with none of its ids, and the
+structure file holds no structure for it: `batch.mjs` `rulableOrigin`), `keys` and `similar` (the triage reader's hints),
+`why` and `examples` (at most three `{ identifier, entry }`, drafter keys only, stripped to ids, engine words,
 formulas and numbers: no `adds`, `free` or label: first the triage `similar`, then the shipped rules that share `keys`, then the
 canonical example of each key the shipped rules of the record's kind use most, so an entry has examples even when triage left
 `keys` and `similar` empty). The triage `why` is kept only when it passes the quotation check of a rule's strings (8 consecutive
@@ -472,7 +474,11 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Take every id (an
 > activity or an effect) from the structure file or the batch entry's `items`, never from memory. Write `rule.entry` with the
 > keys of `allowed` only, and an `assert` list that says in the closed vocabulary what happens (`given`/`expect` of
-> `draft-vocabulary.json`; `free` never counts as agreement). The `examples` show the shape; they are not this entry's rule.
+> `draft-vocabulary.json`; `free` never counts as agreement). A `move` or an applied `condition` you assert on a roll must be
+> done by the rule (a `triggers` step on that roll: a `move` of that mode and distance, a `status`) or, for a condition, by the
+> item itself (an effect with that status linked to its attack or save activity in the structure file): otherwise the
+> result is rejected ("the entry does nothing of the kind on <roll>").
+> The `examples` show the shape; they are not this entry's rule.
 >
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
@@ -480,6 +486,11 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > (`plutonium` `unchecked` excepted) is either in `origins` or in `uncovered: [{ origin, because }]`. `origins` lists each
 > origin once. Leaving `official` uncovered (naming only `ddb-importer`) is allowed when the official item has nothing to
 > bind; such a rule is read by a person at review.
+>
+> **Monster features name `official` only.** An item marked `"uncovered": "always"` (a monster feature's DDB Importer item:
+> world ids, generic identifiers) is never in `origins` and has no ids to take: a rule that names it is rejected. Leave it
+> out of `uncovered` too: the tool adds `{ "origin": "ddb-importer", "because": "DDB Importer monster features: world ids and
+> generic identifiers" }` itself (`draft-vocabulary.json` `monsters` gives the same line).
 >
 > **`dataFixes`** only on the typed leaves of `fixes.paths`, official origin only, with a real `from` guard (the value the
 > item has today, taken from the structure) and a `value` of the leaf's type; never on a monster feature; never `create`.
@@ -571,7 +582,8 @@ the gates do not pass is not worth reviewing; a `reviewed` or `played` one is do
 wrote (no `evidence.drafted`) is cut like any gated rule. A batch `<dir>/<book>-review-<NNN>.json` is `{ id, stage:
 "review", entries, vocabulary: "review-vocabulary.json" }`; an entry is exactly a triage entry (`key`, `name`, `kind`,
 `edition`, `textSha`, the record's `owner`, `level`, `section`, `rarity`, `page`, `srd`, `hint` where it has them, and
-`items` without their data: the matched origins with their activity and effect ids) plus `rule`, the fingerprint of the
+`items` without their data: the matched origins with their activity and effect ids; a monster feature's DDB Importer item as
+`{ origin, match, uncovered: "always" }`, with no ids and no structure, as for a drafter) plus `rule`, the fingerprint of the
 rule under review. **Nothing of the draft goes in**: no entry, no assertion, no `adds`, no `origins` or `uncovered`, no
 drafter handle, no triage `keys`, `similar` or `why`.
 `<dir>/review-vocabulary.json` holds the assertion vocabulary (`assert` of `draft-vocabulary.json`), the engine words it names
@@ -598,7 +610,14 @@ handle of `docs/owners.json`, Ruling R23).
 > consequence the text gives that the vocabulary can say, each once: a saved save that halves the damage, a failed save that
 > leaves a condition, a miss that halves, an effect that ends at a moment. Leave out what the vocabulary cannot say; never
 > force it. `free` (one line, at most 120 characters, your own words) never counts as agreement: an assertion that carries one
-> goes to a person.
+> goes to a person. A `damage` `type` and a `move` `distance` are optional detail: give them when the text does, they are
+> compared only when both sides state them. Saying that a hit or a failed save deals the item's own damage in full is
+> allowed but not needed.
+>
+> **An entry the vocabulary cannot express at all.** An assertion made of only a `free` text is refused (it says nothing a
+> tool can check), and so is an empty `assert`. Answer such an entry with `"outcome": "person"`, no `assert`, and a `why`
+> that says what cannot be expressed: it goes to a person (`review-queue.json`, reason `unexpressed`). Use it only when no
+> consequence of the text can be said; when some can, assert those and leave the rest out.
 >
 > **Write one file** `<batch id>.results.json` outside the repository:
 >
@@ -611,6 +630,13 @@ handle of `docs/owners.json`, Ruling R23).
 > ```
 >
 > Note that the example shows the shape only: an invented entry and an uncommon combination, no entry's answer.
+>
+> The other form, for an entry nothing of which can be expressed:
+>
+> ```json
+> { "key": "tst:spell:glimmerwhisk", "rule": "<the entry's rule, unchanged>", "outcome": "person", "confidence": 0.6,
+>   "why": "one line: what the vocabulary cannot say" }
+> ```
 >
 > One result per entry, `key` and `rule` copied from the entry unchanged. No other field: never `evidence`, `verdict`,
 > `agrees` or `by` inside a result (the tools derive them; a result that carries one is rejected). Never rulebook text: `why`
@@ -678,8 +704,9 @@ brief above; `tools/pipeline/draft.mjs` `ingestDrafts`). `--batch` is required: 
 refused (exit 2, nothing written) when it is not `{ batch, by, results }`, has another top-level field, `by` is not a handle
 (`drafter-3`), it holds a key named `__proto__`, `constructor` or `prototype` anywhere, a queue file of the registry is
 invalid, its `batch` is not a draft batch id `<book>-draft-<NNN>`, or the batch file does not have that id, stage `draft`,
-and entries that are all keys of that book. Monster features need `RULEPACK_DUMPS` (the actors of the book's package
-tell whether another creature shares the feature's embedded item id). For each result:
+and entries that are all keys of that book. It needs `RULEPACK_DUMPS`: monster features need the actors of the book's package
+(they tell whether another creature shares the feature's embedded item id), and every rule's stated conditions are checked
+against the official item's structure (below). For each result:
 
 - **Rejected** (listed in `rejected` as `{ key, reason }`; nothing of it is kept, the record stays as it was and is cut again
   by the next `batch draft`): a field other than `key`, `outcome`, `why`, `confidence`, `rule`, or in `rule` other than
@@ -699,7 +726,13 @@ tell whether another creature shares the feature's embedded item id). For each r
   (shape, `assert` present and valid, identifiers, sources), the drafter limits (`checkDraftKeys`: a key outside
   `DRAFT_KEYS`, a `create` fix, a fix path or type outside the allowlist, the word budget), the engine's `validateEntry` with
   the real fact list and the assertions against the engine's enumerations, the ids gate (Rulings R4, R5) and the quotation
-  check of every string of the rule. Up to four of the problems are named. The `fixes` gate is not run here: `gates` runs it.
+  check of every string of the rule; and (Ruling R24, fix round 1) a stated `move` or applied `condition` on a roll that
+  nothing backs (`draft.mjs` `unbackedProblems`, "the entry does nothing of the kind on <roll>"): a move needs a `triggers`
+  step on that roll of that mode (and distance, when the assertion gives one); a condition needs a `status` step on that roll,
+  or an effect carrying that status (its own `statuses`, or the entry's `effectStatuses`) linked to an activity of the roll's
+  type in the official structure (attack for hit, miss and crit; save for failedSave; for savedSave, only an effect the entry
+  lists in `savedEffects`). The structure says nothing of movement, and without the structure nothing is backed by the item
+  (fail closed). Up to four of the problems are named. The `fixes` gate is not run here: `gates` runs it.
   Any unexpected exception while one result is read becomes that result's rejection (`internal: <first 80 characters>`):
   it never stops the others. A rejection repeats at most 80 characters of any string the drafter wrote.
 - **Queued** in `registry/drafts-queue.json` (`{ key, reason, by, why, confidence, draft? }`, merged by key, sorted): outcome
@@ -733,15 +766,38 @@ every file as it was.
 is a usage error. The whole file is refused (exit 2, nothing written) when it is not `{ batch, by, results }`, has another
 top-level field, `by` is not a handle, it holds a key named `__proto__`, `constructor` or `prototype`, a queue file of the
 registry is invalid, its `batch` is not a review batch id `<book>-review-<NNN>`, or the batch file does not have that id, stage
-`review`, and entries that are all keys of that book with a 64-hex `rule`.
+`review`, and entries that are all keys of that book with a 64-hex `rule`. It needs `RULEPACK_DUMPS` (a usage error says so):
+the official structure of each record answered, read as `batch review --structure` reads it, decides the baseline below.
 
-**Agreement** (Ruling R9, `review.mjs` `compareAsserts`, data only). The draft says `normaliseAssert(rule.assert)` plus
-`impliedAsserts(rule.entry)`; the review says `normaliseAssert(assert)`. They agree when the two sets are equal and neither side
-holds a `free` text. Tolerated: order, duplicates, an implied assertion the draft did not write in `assert` (its entry says
-it) and the review states. Not tolerated: any assertion on one side only, so a review that misses an expectation (an implied
-one included), returns fewer than the rule asserts or more, or gives another moment, roll, target, condition, fraction, ending
-or move, disagrees. The comparison is kept as canonical assertion strings: `onlyDraft` (what the review misses) and
-`onlyReview` (what it adds).
+**Agreement** (Rulings R9 and R24, `review.mjs` `compareAsserts`, data only). The draft says `normaliseAssert(rule.assert)`
+plus `impliedAsserts(rule.entry, { structure })`: the saved-save, miss and no-damage fractions of `saveDamage`, `halfOnMiss`
+and `noDamage`, each with the damage types of its activity in the official structure (one assertion per type; untyped
+without the structure), and the `status` and `move` steps of `triggers` on every roll moment they are declared on (`hit`,
+`failedSave`, `savedSave`...), with the mode, distance and status the step holds. The review says `normaliseAssert(assert)`.
+Each side is read as its strongest assertions: one that says less than another of its own side (`push` beside `push 20`) is
+absorbed by it and shares its fate. They agree when every draft assertion is matched by a distinct review assertion, every
+review assertion is matched or is the item's baseline, and neither side holds a `free` text. A match is either equality or
+**the same up to optional detail** (`draftMatches`): the same `given` (every given field is identity), the same expectation
+kinds, every field both state equal, and every field one side states alone an optional detail of its kind (`OPTIONAL_DETAIL`:
+damage `type`, move `distance`; identity everywhere else: damage `fraction`, move `mode`, condition `applied` / `ended`, roll
+`mode` / `on` / `for`, `ends`, `affects`, `excludes`, `uses`), **in the safe direction only**: a detail the draft states and
+the review leaves out is tolerated; a `distance` the review states and the draft side does not pin is not ("the rule pins no
+distance": the draft side pins one through an entry step, whose implied assertion absorbs a stated move without distance); and
+when two or more draft-side damage assertions of one `given` differ in fraction, a damage `type` must match exactly for that
+`given` (which activity gets which result). Two details both stated and different never match; 20 and `"20"` are one value.
+**Baseline** (`isBaseline`): a review-only `damage.fraction = 1`, with or without a `type`, given `hit` or `failedSave` alone,
+is what the item's own data already does when the official item's structure has an activity of that roll that deals damage
+(an `attack` for `hit`, a `save` for `failedSave`; of that type when one is stated), the draft says nothing of the damage in
+that situation or in every situation, and the entry changes no damage on that roll (`draft-keys.mjs` `DAMAGE_ROLLS`, one line
+per drafter key: a damage-touching `triggers` step on that roll — anything but `status`, `move`, `resave` — or on a moment
+that is no roll; `saveDamage` on the saved save; `halfOnMiss` on the miss; `onHit` on the hit; `noDamage`, `ignoresResistance`,
+`atTurnStart`, `dataFixes`, a `rollBonus` on anything but attack, save, check or initiative, and any key not in the table, on
+every roll); no other review-only assertion is ever baseline, and a draft assertion is never ignored. Still not tolerated: any
+other assertion on one side only, another moment, roll, target, condition, fraction, ending, move mode or given. The
+comparison is kept as canonical assertion strings: `onlyDraft` (what the review misses), `onlyReview` (what it adds),
+`baseline` (review assertions taken as the item's baseline) and `detail` (`{ draft, review }` pairs matched up to detail,
+absorbed ones included), so a person sees what was tolerated. A result with `"outcome": "person"` (no `assert`) says the
+reviewer could not express the entry: it is queued as `unexpressed`.
 
 For each result:
 
@@ -757,18 +813,28 @@ For each result:
   the cache; a `why`, a `free`, or `why` and every free text the queue entry would store (the draft's and the review's)
   together, in the stored order, its reverse, and with `why` first or last, quoting 8 words of the text. Any
   unexpected exception on one result is that result's rejection (`internal: …`). A rejection repeats at most 80 characters of
-  any string the reviewer wrote.
+  any string the reviewer wrote. An `outcome` other than `assert` (the default) or `person`, an `assert` given with `person`,
+  an empty `assert` and an assertion made of a `free` text alone are rejected.
 - **Queued** in `registry/review-queue.json` (`{ key, reason, by, why, confidence, draft: { by?, person?, rule, assert,
-  implied }, review: { rule, assert, agrees, onlyDraft, onlyReview } }`, merged by key, sorted; nothing is written on the
+  implied }, review: { rule, assert, agrees, onlyDraft, onlyReview, baseline, detail } }` — `baseline` and `detail` are
+  absent from entries queued before Ruling R24 — merged by key, sorted; nothing is written on the
   record; `loadQueue` and `gates`, `--ci` included, hold `draft` and `review` to that shape: closed keys, valid assertions
   with the engine's words, canonical assertion strings that read back as such, so a hand-edited entry with prose fails): a
   record whose draft is stamped for a person (`evidence.drafted.person`, reason `noReactions` or `official-uncovered`, Rulings
-  R15, R21), **whatever the review says, agreement included** (`review.agrees` then says so); otherwise `disagreement`,
-  `free-text` (the sets are equal but a side holds a free text) or `low-confidence` (agreement below 0.7).
-- **Agreed** otherwise: `evidence.reviewed = { by, at, agrees: true, rule, confidence }`, `rule` the rule's fingerprint; the
-  state is `reviewed`. A review never changes the rule.
+  R15, R21), **whatever the review says, agreement included** (`review.agrees` then says so); otherwise `unexpressed`
+  (outcome `person`, `review.assert` stored as `[]`), `disagreement`, `free-text` (everything matches but a side holds a free
+  text) or `low-confidence` (agreement below 0.7).
+- **Agreed** otherwise: `evidence.reviewed = { by, at, agrees: true, rule, confidence, tolerated? }`, `rule` the rule's
+  fingerprint, `tolerated` (only when Ruling R24 tolerated anything) `{ baseline: [review], detail: [[draft, review]] }`, the
+  canonical strings of what was tolerated, held by the schema (each a canonical assertion of the closed vocabulary, not both
+  lists empty). `tolerated` is part of the gates' `emits` (`registry.mjs` `emittedFingerprint`), so a hand edit that removes
+  or changes it is seen: right after such an agreement the record is **`drafted`** until `npm run gates` passes again, then
+  `reviewed` (an exact agreement is `reviewed` at once). A review never changes the rule.
 
-It prints `{ agreed, queued, reasons, rejected }` and exits with 1 when anything was rejected. The touched books and the queue
+It prints `{ agreed, agreedExact, agreedTolerated, regate, queued, reasons, rejected }` (`regate`: the keys that agreed
+through R24's tolerances, with a line on stderr saying to run `npm run gates`) and exits with 1 when anything was rejected.
+`docs/RULES.md` counts the rules that stand reviewed through tolerances apart from exact agreements (`books-progress.mjs`
+`toleratedReviews`). The touched books and the queue
 are written in one step, as every `ingest` (`writeFilesAtomically`).
 
 A person settles a review-queue entry in one of two ways. Editing the rule makes every evidence stale (the record is

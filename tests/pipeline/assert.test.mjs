@@ -89,12 +89,14 @@ describe("normaliseAssert and impliedAsserts", () => {
     expect(impliedAsserts({ saveDamage: { [ACT]: "half" } })).toEqual(["expect.damage.fraction=0.5;given.roll=savedSave"]);
   });
 
-  it("impliedAsserts of halfOnMiss, noDamage and triggers on failedSave; none for the other keys", () => {
+  it("impliedAsserts of halfOnMiss, noDamage and triggers on every roll moment; none for the other keys", () => {
     expect(impliedAsserts({ halfOnMiss: true })).toEqual(["expect.damage.fraction=0.5;given.roll=miss"]);
     expect(impliedAsserts({ noDamage: [ACT] })).toEqual(["expect.damage.fraction=0"]);
     const triggers = [{ on: "failedSave", do: [{ type: "status", status: "prone" },
       { type: "move", mode: "push", distance: 10, units: "ft" }] }, { on: ["hit"], do: [{ type: "status", status: "blinded" }] }];
+    // Fix round 1 (Ruling R24, L1): a step on hit is implied too, not only one on failedSave.
     expect(impliedAsserts({ triggers })).toEqual([
+      "expect.condition.applied=blinded;given.roll=hit",
       "expect.condition.applied=prone;given.roll=failedSave",
       "expect.move.distance=10;expect.move.mode=push;given.roll=failedSave"
     ]);
