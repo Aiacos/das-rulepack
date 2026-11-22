@@ -149,9 +149,11 @@ describe("drafts-queue.json and review-queue.json", () => {
     expect(() => loadQueue(dir, "review")).toThrow(/array/);
   });
 
-  it("generate ignores drafts-queue.json and review-queue.json", () => {
+  it("generate reads no book from drafts-queue.json and review-queue.json", () => {
     const registry = join(dir, "registry");
+    // Ruling R27: emitted once a review agrees (an entry of review-queue.json about another record changes nothing).
     const record = gatedRecord();
+    record.evidence.reviewed = reviewed(ruleFingerprint(record.rule));
     saveBook(registry, { book: "TST", records: [record] });
     const out = join(dir, "rules");
     const before = generate({ registry, out });

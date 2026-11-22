@@ -8,6 +8,7 @@ import { BLADE_CANTRIPS } from "../scripts/core/blade-cantrips.mjs";
 import { SPELL_IDENTIFIER } from "../scripts/core/shadow-blade.mjs";
 import { DREADFUL_STRIKES } from "../scripts/core/dreadful-strikes.mjs";
 import { PSYCHIC_VEIL } from "../scripts/core/psychic-veil.mjs";
+import { HELD_REASONS } from "../tools/pipeline/generate.mjs";
 import { fromRegistry, newRulesByBook } from "./derived.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -42,8 +43,11 @@ function rulesDocCounts() {
   for ( const line of block.split("\n") ) {
     const heading = /^### ([A-Z][A-Z0-9]+) · /.exec(line);
     if ( heading ) { code = heading[1]; continue; }
-    if ( !code || !line.startsWith("| ") || line.startsWith("| Rule |") ) continue;
-    const status = STATUS_OF[line.split("|").at(-2).trim()];
+    if ( !code || !line.startsWith("| ") || line.startsWith("| Rule |") || line.startsWith("| Held rule |") ) continue;
+    // Ruling R27: a held rule's row says why it is held (generate.mjs HELD_REASONS), counted as `held:<reason>`.
+    const cell = line.split("|").at(-2).trim();
+    const reason = Object.entries(HELD_REASONS).find(([, label]) => cell === `Held: ${label}`)?.[0];
+    const status = reason ? `held:${reason}` : STATUS_OF[cell];
     expect(status, line).toBeTruthy();
     (out[code] ??= {})[status] = (out[code][status] ?? 0) + 1;
   }
@@ -93,8 +97,21 @@ describe("per-book rule modules", () => {
         if ( extra ) (beyond[code] ??= {})[status] = extra;
       }
     }
-    expect(beyond).toEqual(newRulesByBook(derived.emitted, derived.isLegacy));
+    // The held rules (Ruling R27) are listed too, each with why, and none of them ships.
+    const expected = newRulesByBook(derived.emitted, derived.isLegacy);
+    for ( const { record, because } of derived.held ) {
+      (expected[record.book] ??= {})[`held:${because}`] = (expected[record.book][`held:${because}`] ?? 0) + 1;
+    }
+    expect(beyond).toEqual(expected);
     expect(Object.values(legacy).flatMap(Object.values).reduce((a, b) => a + b, 0)).toBe(24);
+  });
+
+  // Ruling R27: a rule held for a person is in no module and in the registered table under none of its identifiers.
+  it("ships no rule that registry/ holds for a person", () => {
+    for ( const { record } of derived.held ) {
+      expect(RULES.some(rule => (rule.book === record.book) && (rule.identifier === record.identifier)), record.key).toBe(false);
+      expect(Object.hasOwn(TABLE, record.identifier), record.key).toBe(false);
+    }
   });
 
   it("no identifier is declared twice, so no rule can silently replace another", () => {

@@ -220,6 +220,17 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    an empty object for the 24
    rules of today. `scripts/main.mjs` hands it to the engine as `register(source, table, { sources })` only when it is not
    empty, so with no sources the call is the two-argument call it has always been.
+   **What is emitted** (Ruling R27, `generate.mjs` `emissionOf`, the one function `build:rules`, `sourcesOf`,
+   `docs/RULES.md`, `tests/derived.mjs` and `gates --ci` use): a legacy rule with standing, as before; otherwise only an
+   uncontested rule, one whose review about the rule as it is agrees (an agent's agreement, exact or tolerated, or an
+   owner's `review-accept`), or one that waits in `review-queue.json`, about the rule as it is, only because of its own stamp
+   (`evidence.drafted.because`) while the stored comparison agrees in full (`review.agrees: true`, nothing in `onlyDraft` or
+   `onlyReview`, a non-empty `review.assert`, confidence at least 0.7; a field absent fails closed). A gated rule never
+   reviewed, queued as `disagreement`, `low-confidence`, `free-text` or `unexpressed`, or whose queue entry is about an older
+   rule is **held**: not registered with the engine, listed in `docs/RULES.md` with its reason (`HELD_REASONS`), left out of
+   the README's counts, given no scenario; `gates --ci` fails when a generated module registers one (as does
+   `build:rules -- --check`). A held rule still owns its identifier (the `unique` gate and `batch draft` count every record
+   that has a rule).
 
 ## 📋 Record states
 
@@ -1187,8 +1198,8 @@ code"), and `build:rules` fails naming a record found that way instead of silent
 
 A rule leaves legacy by being redone through the pipeline: inventory gives it text and item data, a person drafts or
 edits its `rule`, removes `legacy` and `legacyStatus` and its key from `legacy.json`, and from then on it ships only once
-the gates pass on it (`gated`, status `validated`). Editing a legacy record in place without that, in anything the module
-emits, is refused.
+the gates pass on it and it is uncontested (Ruling R27: reviewed, or stamped and agreed; status `validated`). Editing a
+legacy record in place without that, in anything the module emits, is refused.
 
 **The tests and the legacy rules.** The tests that check what the module ships do it in two halves. The 24 legacy rules
 are pinned as they were: their registered identifiers (written out in `tests/registration.test.mjs`) and entries (its

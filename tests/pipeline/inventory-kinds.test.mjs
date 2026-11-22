@@ -80,7 +80,7 @@ describe("inventory of the other kinds", () => {
       const r = { ...run().records[0], page, verdict: "code", rule, identifier: "moss-stride" };
       const passed = ["schema", "validator", "ids", "fixes", "text"];
       const gates = { at: "t", core: "1", rule: ruleFingerprint(rule), emits: emittedFingerprint(r), passed };
-      return { ...r, evidence: { gates, reviewed: { by: "r", at: "t", agrees: true } } };
+      return { ...r, evidence: { gates, reviewed: { by: "r", at: "t", agrees: true, rule: gates.rule, confidence: 0.9 } } };
     };
     expect(ruleFromRecord(gated(31)).page).toBe(31);
     expect(() => ruleFromRecord(gated(null))).toThrow(/tst:feat:moss-stride.*no page/);

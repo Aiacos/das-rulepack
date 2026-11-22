@@ -237,6 +237,24 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   were only this. *Cost if wrong:* the link between an ending and the condition it ends is lost when a text gives two
   conditions with two endings under the same roll; both sides would then have to state both pairs for a difference to show.
 
+- **R27 — A contested rule is held, not shipped.** Passing the gates no longer puts a rule in the module: a non-legacy
+  record is emitted (registered with DAS · Core) only when a review about the rule as it is agrees (`evidence.reviewed`
+  current with `agrees: true`: an agent's agreement, exact or tolerated, or an owner's `review-accept`), or when it waits in
+  `review-queue.json`, about the rule as it is, only because of its own stamp (the reason is the record's
+  `evidence.drafted.because` with `person: true`: a key the vocabulary cannot assert, `noReactions`, `official-uncovered`)
+  and the stored comparison agrees in full (`review.agrees: true`, `onlyDraft` and `onlyReview` empty, `review.assert` not
+  empty, confidence at least 0.7; any field absent or of another type holds it). Everything else that passed the gates is
+  held, with a closed reason (`generate.mjs` `HELD_REASONS`): never reviewed, queued as `disagreement`, `low-confidence`,
+  `free-text` or `unexpressed`, a stamped review that did not agree, or a queue entry about an older rule. Legacy rules
+  with standing are emitted as before, whatever their state. One function decides (`generate.mjs` `emissionOf`), used by
+  `build:rules`, `sourcesOf`, `docs/RULES.md` (each held rule listed with why; the README counts shipped rules only),
+  `tests/derived.mjs` and `gates --ci` (which fails when a generated module registers a held rule). A held rule still owns
+  its identifier: the `unique` gate and `batch draft` count every record that has a rule (`identifierTwins`), so no second
+  record is drafted under it. Scenarios stay for `reviewed` rules only, so a held rule gets none (and neither does a shipped
+  stamped-but-agreed rule, which is `gated`). *Cost if wrong:* rules that are right wait out of the module until a person
+  reads them (XMM on this branch: 32 of 75 held); a stamped rule whose reviewer agreed ships before a person reads the stamp,
+  which is the part of the entry the vocabulary could not check (`leaves` and the stamp say so in `docs/RULES.md` only).
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed

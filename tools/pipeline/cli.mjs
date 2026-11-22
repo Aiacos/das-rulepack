@@ -1,7 +1,7 @@
 // Command line of the rulebook pipeline: `npm run pipeline -- <subcommand> ...`. Later tasks add one function each to COMMANDS.
 import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, resolve, sep } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   BOOK_CODE, NOT_BOOKS, QUEUE_FILES, bookFile, bookText, canonical, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue,
   queuePath, queueText, ruleFingerprint, saveBook, stateOf, validateTriageQueueEntry, writeFilesAtomically
@@ -18,7 +18,7 @@ import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve
 import { undefinedWords } from "./definitions.mjs";
 import { loadCore } from "./core.mjs";
 import { engineIdentifiers, quotationCheck, ruleProse, runGates } from "./gates.mjs";
-import { generate } from "./generate.mjs";
+import { generate, shippedHeld } from "./generate.mjs";
 import {
   autoTriage, choiceOptions, clip, corePrepass, ingest, ingestSecond, ingestThird, isReaderHandle, restorePrepass, setByRule,
   settleUnsure, triageContext, BY
@@ -221,7 +221,7 @@ function gatesCommand(args) {
   const coreDir = need("DAS_CORE");
   const dumpsDir = ci ? null : need("RULEPACK_DUMPS");
   const textDir = ci ? null : need("RULEPACK_TEXT");
-  return loadCore(coreDir).then((core) => {
+  return loadCore(coreDir).then(async (core) => {
     // Again with the engine's enumerations: a word of a review-queue entry's assertions must be one of the engine's.
     try { checkQueues(REGISTRY, core); } catch (e) {
       console.error(e.message);
@@ -229,6 +229,8 @@ function gatesCommand(args) {
     }
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
     const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci, legacy: legacyOf(REGISTRY) });
+    // Ruling R27 (--ci): no generated module registers a rule that is held for a person.
+    const held = ci ? await heldInModules(records, books) : [];
     if (!ci) {
       const before = new Map(records.map((r) => [r.key, canonical(r)]));
       const byBook = groupBy(updated, (r) => r.book);
@@ -243,10 +245,28 @@ function gatesCommand(args) {
     const lines = (byKey) => Object.entries(byKey).flatMap(([key, gates]) => Object.values(gates).flat().map((m) => [key, m]));
     for (const [key, m] of lines(notes)) console.log(`note ${key}: ${m}`);
     for (const [key, m] of lines(failures)) console.error(`FAIL ${key}: ${m}`);
+    for (const line of held) console.error(`FAIL ${line}`);
     const failed = Object.keys(failures).length;
-    console.log(`${records.length} records, ${failed} failing${ci ? " (ci: schema, validator, unique, evidence)" : ""}.`);
-    if (failed) process.exitCode = 1;
+    console.log(`${records.length} records, ${failed} failing${ci ? " (ci: schema, validator, unique, evidence)" : ""}`
+      + `${held.length ? `, ${held.length} held rule(s) in the generated modules` : ""}.`);
+    if (failed || held.length) process.exitCode = 1;
   });
+}
+
+// Ruling R27: the held rules that a generated book module (RULEPACK_RULES, default scripts/rules/) registers all the same,
+// one line each (generate.mjs shippedHeld). A module that cannot be imported is a line too.
+async function heldInModules(records, books) {
+  const modules = {};
+  const lines = [];
+  for (const { book } of books) {
+    const file = join(RULES_OUT, "books", `${book.toLowerCase()}.mjs`);
+    if (!existsSync(file)) continue;
+    try { modules[book] = (await import(pathToFileURL(file).href)).RULES; } catch (e) {
+      lines.push(`emit: ${RULES_LABEL}/books/${book.toLowerCase()}.mjs cannot be read: ${e.message}`);
+    }
+  }
+  const queue = loadQueue(REGISTRY, "review");
+  return [...lines, ...shippedHeld(records, { legacy: legacyOf(REGISTRY), queue, modules })];
 }
 
 function generateCommand(args) {
