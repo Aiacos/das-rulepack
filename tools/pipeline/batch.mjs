@@ -13,6 +13,7 @@ import * as assertVocabulary from "./assert.mjs";
 import { isFormula } from "./assert.mjs";
 import { DDB_MONSTER_UNCOVERED, monsterIdentifier, sourceKeysOf } from "./identifiers.mjs";
 import { sharedEmbeddedId } from "./settle.mjs";
+import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
 
@@ -358,7 +359,10 @@ export function draftVocabulary(core) {
     },
     limits: {
       addsMax: ADDS_MAX, originMax: ORIGIN_MAX, freeMax: assertVocabulary.FREE_MAX, quoteWords: 8, entryWords: ENTRY_WORD_BUDGET
-    }
+    },
+    // What each closed word means, and where the meaning comes from (definitions.mjs): one reading for drafter and reviewer.
+    definitions: definitionsFor(),
+    endsExamples: JSON.parse(JSON.stringify(ENDS_EXAMPLES))
   };
 }
 
@@ -422,10 +426,11 @@ export const reviewReport = (book, batches, leftOut) => ({
  * engine words it names, with the limits of its strings. No drafter key, no example rule: engine data only.
  */
 export function reviewVocabulary(core) {
-  const { engine, assert, limits } = draftVocabulary(core);
+  const { engine, assert, limits, endsExamples } = draftVocabulary(core);
   const words = ["moments", "statuses", "creatureTypes", "moveModes", "effectEnds", "damageTypes"];
   return {
     engine: Object.fromEntries(words.map((w) => [w, engine[w]])), assert,
-    limits: { freeMax: limits.freeMax, quoteWords: limits.quoteWords, whyMax: MAX_WHY }
+    limits: { freeMax: limits.freeMax, quoteWords: limits.quoteWords, whyMax: MAX_WHY },
+    definitions: definitionsFor({ review: true }), endsExamples
   };
 }

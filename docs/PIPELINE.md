@@ -444,11 +444,15 @@ and no actor in its dumps. The numbering continues after the highest `<book>-dra
 
 `draft-vocabulary.json` also holds `draftShapes` (the value shape of every drafter key), `assert.shapes` (the value shape of
 every `given` and `expect` field), `fixes.types` (the type of every data-fix path) and `keyExamples` (the canonical example of
-each key: the shortest shipped entry that uses it). Shapes are declarative: `enum` (one of `values`), `object` (`keys`
-required, `optional`, closed), `list` (non-empty), `idMap` (an object keyed by ids of the named kind, origins side by side),
-`idList`, `id`, `oneOf` (any alternative), `tagged` (an object whose `type` picks its other fields), `true`, `number`,
-`formula`, `line`, `distance`. Tests build a value from every alternative of every shape and have the validators (`assertProblems`,
-the engine's `validateEntry`) accept it.
+each key: the shortest shipped entry that uses it), `definitions` (`tools/pipeline/definitions.mjs`: the meaning of each word
+of the closed lists an agent picks from, in our own words, with the engine file or pack module it was read from, or
+`"unverified"`; `batch draft` and `batch review` refuse to write anything while a word of the engine's `EFFECT_ENDS`, `MOMENTS`
+or `MOVE_MODES` has none, and a test fails on it) and `endsExamples` (one invented pattern per `EFFECT_ENDS` word, with the
+word it takes on the user's own turn and as a reaction on another's turn). Shapes are declarative: `enum` (one of `values`),
+`object` (`keys` required, `optional`, closed), `list` (non-empty), `idMap` (an object keyed by ids of the named kind,
+origins side by side), `idList`, `id`, `oneOf` (any alternative), `tagged` (an object whose `type` picks its other fields),
+`true`, `number`, `formula`, `line`, `distance`. Tests build a value from every alternative of every shape and have the
+validators (`assertProblems`, the engine's `validateEntry`) accept it.
 
 The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
 
@@ -470,6 +474,15 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > `rule.entry`, `assert.shapes.given.<field>` and `assert.shapes.expect.<field>` for an assertion, `fixes.paths` and
 > `fixes.types` for `dataFixes`, `keyExamples.<key>` for a worked example of a key. The entry's `examples` are rules of the
 > same kind. Write only what a shape allows.
+>
+> **What the words mean.** `definitions` in `draft-vocabulary.json` gives the meaning of every word of the closed lists you
+> choose from (`ends`, `roll`, `moment`, `moveMode`, `affects`, `excludes`, `rollMode`, `rollOn`, `rollFor`, `fraction`), each
+> with where it comes from (`from`: the engine file, or this pack's vocabulary). Read a word there before you use it, never
+> from its spelling. The turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end on the turn the effect was
+> placed in ("until the end of its next turn"), `currentTurnEnd` ends that very turn ("until the end of the turn in
+> progress"); `endsExamples` gives one invented pattern per word, with the word for an effect placed on the user's own turn
+> (`ownTurn`) and for one placed as a reaction on another creature's turn (`reaction`). A word marked `"unverified"` has no
+> established meaning: avoid it, and if the entry cannot be said without it, answer `person`.
 >
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Take every id (an
 > activity or an effect) from the structure file or the batch entry's `items`, never from memory. Write `rule.entry` with the
@@ -586,8 +599,9 @@ wrote (no `evidence.drafted`) is cut like any gated rule. A batch `<dir>/<book>-
 `{ origin, match, uncovered: "always" }`, with no ids and no structure, as for a drafter) plus `rule`, the fingerprint of the
 rule under review. **Nothing of the draft goes in**: no entry, no assertion, no `adds`, no `origins` or `uncovered`, no
 drafter handle, no triage `keys`, `similar` or `why`.
-`<dir>/review-vocabulary.json` holds the assertion vocabulary (`assert` of `draft-vocabulary.json`), the engine words it names
-and the limits of the strings; `<private dir>/<id>.structure.json` the item structures, as for triage (never commit it).
+`<dir>/review-vocabulary.json` holds the assertion vocabulary (`assert` of `draft-vocabulary.json`), the engine words it names,
+the limits of the strings, and the same `definitions` and `endsExamples` as the drafter's; `<private dir>/<id>.structure.json`
+the item structures, as for triage (never commit it).
 Numbering continues per series (`-review-`), as for the other batches. The Claude Code session gives each reviewer agent one
 batch file, its structure file and this brief, and an agent handle that is none of the rule's authors' (`evidence.drafted.by`,
 `evidence.person.by`; never an owner's: `--second`, `--third`, `--draft` and `--review` refuse a results file signed with a
@@ -609,7 +623,10 @@ handle of `docs/owners.json`, Ruling R23).
 > applied or ended, `ends`, `roll` with advantage or disadvantage, `affects`, `excludes`, `move`, `uses`). State every
 > consequence the text gives that the vocabulary can say, each once: a saved save that halves the damage, a failed save that
 > leaves a condition, a miss that halves, an effect that ends at a moment. Leave out what the vocabulary cannot say; never
-> force it. `free` (one line, at most 120 characters, your own words) never counts as agreement: an assertion that carries one
+> force it. Read each word's meaning in `definitions` of `review-vocabulary.json` (the same definitions the drafter has, with
+> `endsExamples` for the turn words: `bearerTurnEnd` / `casterTurnEnd` never end the turn of placement, `currentTurnEnd` ends
+> it), never from its spelling; a word marked `"unverified"` has no established meaning, so leave out an assertion that
+> needs it. `free` (one line, at most 120 characters, your own words) never counts as agreement: an assertion that carries one
 > goes to a person. A `damage` `type` and a `move` `distance` are optional detail: give them when the text does, they are
 > compared only when both sides state them. Saying that a hit or a failed save deals the item's own damage in full is
 > allowed but not needed.

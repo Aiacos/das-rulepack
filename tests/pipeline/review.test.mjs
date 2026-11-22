@@ -426,7 +426,7 @@ describe("pipeline CLI: batch review, ingest --review, review-accept", () => {
     expect(batch.entries.map((e) => e.key)).toEqual(records.map((x) => x.key).sort());
     expect(JSON.stringify(batch)).not.toMatch(/drafter-zz9|saveDamage|Zorbly/);
     const vocabulary = JSON.parse(readFileSync(join(out, "review-vocabulary.json"), "utf8"));
-    expect(Object.keys(vocabulary).sort()).toEqual(["assert", "engine", "limits"]);
+    expect(Object.keys(vocabulary).sort()).toEqual(["assert", "definitions", "endsExamples", "engine", "limits"]);
     expect(JSON.parse(readFileSync(join(out, "tst-review-report.json"), "utf8"))).toMatchObject({ book: "TST", cut: 2 });
     expect(existsSync(join(tmp, "private", "tst-review-001.structure.json"))).toBe(true);
     const next = cli(["batch", "review", "TST", "--out", out, "--structure", join(tmp, "private")]);

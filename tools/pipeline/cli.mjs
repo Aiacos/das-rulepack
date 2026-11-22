@@ -15,6 +15,7 @@ import {
 import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { embeddedIndex, poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
+import { undefinedWords } from "./definitions.mjs";
 import { loadCore } from "./core.mjs";
 import { engineIdentifiers, quotationCheck, ruleProse, runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
@@ -590,6 +591,11 @@ async function batchCommand([stage, book, ...rest]) {
       ? { only: new Set(queueEntries(REGISTRY).filter((q) => !q.second).map((q) => q.key)), series }
       : { queued: queuedKeys(REGISTRY) };
     batches = cutBatches(found.records, { size, kind: opts.kind, after, withoutItems, ...cutOptions });
+  }
+  // A word an agent may choose that has no definition (a new engine word, definitions.mjs): nothing is written until it has one.
+  const undefinedOnes = draft || review ? undefinedWords(core) : [];
+  if (undefinedOnes.length) {
+    throw new UsageError(`words without a definition (tools/pipeline/definitions.mjs): ${undefinedOnes.slice(0, 8).join(", ")}`);
   }
   // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
   const structures = dumpsDir === null ? []
