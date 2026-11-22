@@ -603,3 +603,37 @@ describe("fix round 1, V: reviews with tolerances are counted apart", () => {
       .toBe("3 rules: 1 played, 2 validated. 2 of them reviewed with Ruling R24 tolerances (not an exact agreement).");
   });
 });
+
+describe("agreement compares atoms: one expectation per assertion", () => {
+  // No entry here: only how stated assertions compare (an entry would add its implied ones on the draft side).
+  const rule = (assert) => ({ entry: {}, assert });
+  const split = [{ given: { roll: "failedSave" }, expect: { condition: { applied: "frightened" } } },
+    { given: { roll: "failedSave" }, expect: { ends: "casterTurnStart" } }];
+  const joined = [{ given: { roll: "failedSave" }, expect: { condition: { applied: "frightened" }, ends: "casterTurnStart" } }];
+  it("a review that joins two expectations in one assertion agrees with a draft that states them apart", () => {
+    const c = compareAsserts(rule(split), joined);
+    expect([c.agrees, c.onlyDraft, c.onlyReview]).toEqual([true, [], []]);
+  });
+  it("and the other way round", () => {
+    const c = compareAsserts(rule(joined), split);
+    expect([c.agrees, c.onlyDraft, c.onlyReview]).toEqual([true, [], []]);
+  });
+  it("a joined review with another ending still disagrees, on the ending alone", () => {
+    const other = [{ given: { roll: "failedSave" }, expect: { condition: { applied: "frightened" }, ends: "currentTurnEnd" } }];
+    const c = compareAsserts(rule(split), other);
+    expect(c.agrees).toBe(false);
+    expect(c.onlyDraft).toEqual(["expect.ends=casterTurnStart;given.roll=failedSave"]);
+    expect(c.onlyReview).toEqual(["expect.ends=currentTurnEnd;given.roll=failedSave"]);
+  });
+  it("a joined review with one expectation the draft lacks disagrees on that one", () => {
+    const more = [{ given: { roll: "failedSave" }, expect: { condition: { applied: "frightened" }, ends: "casterTurnStart",
+      denies: "reactions" } }];
+    const c = compareAsserts(rule(split), more);
+    expect(c.agrees).toBe(false);
+    expect(c.onlyReview).toEqual(["expect.denies=reactions;given.roll=failedSave"]);
+  });
+  it("an assertion with a free text is not split: it still goes to a person whole", () => {
+    const withFree = [{ given: { roll: "failedSave" }, expect: { condition: { applied: "frightened" }, free: "x" } }];
+    expect(compareAsserts(rule(split), withFree).agrees).toBe(false);
+  });
+});

@@ -231,6 +231,12 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   pilot records that used `excludes` (one drafted rule) or a key now unassertable without its stamp (one) fail the schema
   until redrafted or restamped.
 
+- **R26 — agreement compares atoms.** Before comparing, each assertion is split into one assertion per expectation under
+  the same `given` (`assert.mjs` `atomise`): "frightened, until the start of the caster's turn" said as one assertion or as
+  two is the same statement. An assertion with a `free` text is not split. Found by the fourth pilot: 4 of 5 disagreements
+  were only this. *Cost if wrong:* the link between an ending and the condition it ends is lost when a text gives two
+  conditions with two endings under the same roll; both sides would then have to state both pairs for a difference to show.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
