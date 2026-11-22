@@ -2,15 +2,15 @@
 // gates' own functions before it is written, or a reason for a person in registry/drafts-queue.json. Nothing here reads
 // rulebook text except to check that a drafter did not quote it; nothing here writes `evidence` other than `drafted`.
 import { ruleFingerprint } from "./registry.mjs";
-import { BY, ORIGIN_MAX, draftedForPerson, isReaderHandle } from "./schema.mjs";
+import { BY, ORIGINS, ORIGIN_MAX, draftedForPerson, isReaderHandle } from "./schema.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { checkDraftKeys } from "./draft-keys.mjs";
-import { checkIds, checkText, gateSchema, gateValidator } from "./gates.mjs";
+import { RULE_QUOTE_WORDS, checkIds, checkText, gateSchema, gateValidator, quotationCheck, ruleProse } from "./gates.mjs";
 import { identifierClashReasons } from "./batch.mjs";
 import { SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, sharedEmbeddedId } from "./settle.mjs";
 import {
-  QUEUE_THRESHOLD, cachedText, clip, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
+  MAX_ECHO, QUEUE_THRESHOLD, cachedText, clip, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
 } from "./intake.mjs";
 
 /** What a drafter answers for an entry: a rule, or why a person (or a script, or the engine) is needed instead. */
@@ -40,10 +40,11 @@ export function ruleOriginLabel(record) {
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 
 // Why a result cannot be taken at all (before its rule is looked at), or null.
-function resultProblem(record, result, { queuedKeys }) {
+function resultProblem(record, result, { queuedKeys, offered }) {
   const extra = unknownFields(result, DRAFT_RESULT_FIELDS);
   if (extra.length) return `unknown field ${echo(extra[0])}`;
   if (!record) return `unknown key ${echo(result.key)}`;
+  if (!offered.has(result.key)) return "not offered by this batch (its key is not an entry of the batch file)";
   if (queuedKeys.has(result.key)) return "the record waits for a person in drafts-queue.json";
   if (record.legacy === true) return "legacy record: it leaves legacy through a person, never through a draft";
   if (record.rule) return "the record already has a rule";
@@ -58,7 +59,9 @@ function draftedRecord(record, draft, { core, embedded, by, at }) {
   const next = structuredClone(record);
   if (record.kind === "monster") {
     const index = embedded?.get(record.book);
-    if (!index) throw new TypeError(`ingestDrafts: a monster feature needs the actors of ${record.book}'s package (embedded)`);
+    if (!index) {
+      return { problem: `monster feature: the actors of ${record.book}'s package are needed to tell a shared embedded id` };
+    }
     let scoped;
     try { scoped = monsterIdentifier(record); } catch (e) { return { problem: `identifier: ${e.message}` }; }
     next.identifier = scoped;
@@ -85,8 +88,9 @@ function draftedRecord(record, draft, { core, embedded, by, at }) {
   const label = ruleOriginLabel(record);
   if (label !== undefined) rule.origin = label;
   next.rule = rule;
-  // Ruling R15: a rule the assertion vocabulary cannot fully say (noReactions) goes to a person at review: stamped here.
-  const forPerson = draftedForPerson(rule.entry);
+  // Rulings R15, R21: a rule the assertion vocabulary cannot fully say (noReactions), or one that leaves the official item
+  // uncovered, goes to a person at review: stamped here.
+  const forPerson = draftedForPerson(rule);
   next.evidence = {
     ...next.evidence,
     drafted: { by, at, core: core.version, rule: ruleFingerprint(rule), ...(forPerson ? { person: true, because: forPerson } : {}) }
@@ -113,87 +117,140 @@ function ruleProblems(candidate, { core, textDir }) {
  * Applies drafter results to a copy of `records` (Task 5, docs/PIPELINE.md "Ingesting drafts"). For each result:
  * - rejected (listed in `rejected` as `{ key, reason }`, nothing of it kept) when it is not an object or holds a key named
  *   __proto__, constructor or prototype; has a field outside DRAFT_RESULT_FIELDS (`evidence` included) or its rule one outside
- *   DRAFT_RULE_FIELDS; repeats a key of the file; names no record, a record waiting in drafts-queue.json, a legacy record, one
+ *   DRAFT_RULE_FIELDS; repeats a key of the file; names no record, a key the batch did not offer (`offered`, required: the
+ *   keys of the batch file's entries), a record waiting in drafts-queue.json, a legacy record, one
  *   that already has a rule or whose verdict is not `entry`; has an unknown outcome, a confidence outside 0..1, a `why` that is
  *   not one line of at most 200 characters or quotes 8 words of the text; the record's text is not in the cache; a `rule` on
- *   an outcome other than `rule`, or none on `rule`; a rule that is not `handledIn: "table"`, names an origin aliasFor cannot
- *   reach, or fails the schema (assert included), the drafter limits (checkDraftKeys), the engine's validateEntry, the ids gate
- *   (R4, R5, a shared embedded id) or the quotation check of its prose and entry strings;
+ *   an outcome other than `rule`, or none on `rule`; a rule that is not `handledIn: "table"`, whose `origins` is not a
+ *   non-empty list of distinct known origins, that is for a monster feature without the actors index, names an origin
+ *   aliasFor cannot reach, or fails the schema (assert included), the drafter limits (checkDraftKeys), the engine's
+ *   validateEntry, the ids gate (R4, R5, a shared embedded id) or the quotation check of its prose and entry strings;
  * - queued (`queued`, entries of drafts-queue.json) when the outcome is `person`, `code` or `engine` (reason: the outcome); a
  *   rule that passed every check but that the unique gate would fail whatever is drafted (batch.mjs CORE_IDENTIFIER,
- *   SHARED_IDENTIFIER); or one with a confidence below 0.7 (`low-confidence`); a queued rule is kept as `draft`;
+ *   SHARED_IDENTIFIER); or one with a confidence below 0.7 (`low-confidence`); a queued rule is kept as `draft`, unless `why`
+ *   and the draft together quote 8 words of the text (either order): then the result is rejected;
  * - applied otherwise: `rule` written with `alsoAs` and `origin` derived, a monster feature's creature-scoped identifier and
  *   its source bound, `evidence.drafted = { by, at, core, rule }` (plus `person: true, because: "noReactions"` for an entry
- *   with noReactions, Ruling R15). The state is `drafted` until `gates` passes.
- * `queue` is drafts-queue.json; `embedded` a Map of book code to settle.mjs embeddedIndex of its package's actors, required
- * when a result is for a monster feature. The inputs are not changed.
+ *   with noReactions, Ruling R15, or `because: "official-uncovered"` for a rule that leaves official uncovered, R21). The
+ *   state is `drafted` until `gates` passes.
+ * `queue` is drafts-queue.json; `embedded` a Map of book code to settle.mjs embeddedIndex of its package's actors,
+ * needed for a monster feature's rule (without it that result is rejected). Any exception on one result becomes its rejection
+ * (`internal: …`), never the file's. A rejection repeats at most 80 characters of any drafter string. Inputs unchanged.
  */
-export function ingestDrafts(records, results, { textDir, by, at = new Date().toISOString(), core, queue = [], embedded } = {}) {
+export function ingestDrafts(records, results, options = {}) {
+  const { textDir, by, at = new Date().toISOString(), core, queue = [], embedded, offered } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core.validateEntry !== "function") throw new TypeError("ingestDrafts needs core (loadCore)");
+  if (!(offered instanceof Set)) throw new TypeError("ingestDrafts needs offered (a Set of the batch file's entry keys)");
   const out = structuredClone(records);
-  const byKey = new Map(out.map((r) => [r.key, r]));
-  const queuedKeys = new Set(queue.map((q) => q?.key));
-  const textOf = cachedText(textDir);
+  const context = {
+    out, byKey: new Map(out.map((r) => [r.key, r])), queuedKeys: new Set(queue.map((q) => q?.key)), offered,
+    textOf: cachedText(textDir), textDir, core, embedded, by, at, seen: new Set()
+  };
   const applied = [];
   const queued = [];
   const rejected = [];
-  const seen = new Set();
-  const reject = (result, reason) => rejected.push({ key: typeof result?.key === "string" ? clip(result.key) : null, reason });
   for (const result of Array.isArray(results) ? results : []) {
-    if (!isObject(result)) { reject(result, "result must be an object"); continue; }
-    const forbidden = forbiddenKeyIn(result);
-    if (forbidden) { reject(result, `a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden})`); continue; }
-    if (seen.has(result.key)) { reject(result, "the key appears twice in this file"); continue; }
-    seen.add(result.key);
-    const record = byKey.get(result.key);
-    const reason = resultProblem(record, result, { queuedKeys });
-    if (reason) { reject(result, reason); continue; }
-    const text = textOf(record);
-    if (text === null) { reject(result, "no text in the cache: nothing to check the result against"); continue; }
-    const quoted = whyQuotes(result.why, text);
-    if (quoted) { reject(result, quoted); continue; }
-    const entry = (reasonOf, extra = {}) => ({
-      key: result.key, reason: reasonOf, by, why: result.why, confidence: result.confidence, ...extra
-    });
-    if (result.outcome !== "rule") {
-      if (Object.hasOwn(result, "rule")) {
-        reject(result, `only outcome rule carries a rule (outcome ${result.outcome})`);
-        continue;
-      }
-      queued.push(entry(result.outcome));
-      continue;
+    let outcome;
+    // One result never aborts the file: anything unexpected is that result's rejection.
+    try { outcome = takeResult(result, context); } catch (e) { outcome = { reject: `internal: ${clip(e?.message ?? e)}` }; }
+    if (outcome.reject !== undefined) {
+      let key = null;
+      try { key = typeof result?.key === "string" ? clip(result.key) : null; } catch { key = null; }
+      rejected.push({ key, reason: clipEchoes(outcome.reject, result) });
+    } else if (outcome.queue) queued.push(outcome.queue);
+    else {
+      const { record, next } = outcome.apply;
+      Object.keys(record).forEach((k) => delete record[k]);
+      Object.assign(record, next);
+      applied.push(next.key);
     }
-    if (!isObject(result.rule)) { reject(result, "outcome rule needs a rule object"); continue; }
-    const extra = unknownFields(result.rule, DRAFT_RULE_FIELDS);
-    if (extra.length) { reject(result, `unknown field ${echo(`rule.${extra[0]}`)}`); continue; }
-    if (result.rule.handledIn !== "table") {
-      reject(result, "rule.handledIn: a drafter writes table rules only (a code rule is a person's)");
-      continue;
-    }
-    const drafted = draftedRecord(record, result.rule, { core, embedded, by, at });
-    if (drafted.problem) { reject(result, drafted.problem); continue; }
-    const problems = ruleProblems(drafted.record, { core, textDir });
-    if (problems.length) {
-      const shown = problems.slice(0, SHOWN_PROBLEMS).map((p) => p.slice(0, SHOWN_PROBLEM_CHARS));
-      const more = problems.length > SHOWN_PROBLEMS ? ` (and ${problems.length - SHOWN_PROBLEMS} more)` : "";
-      reject(result, `${shown.join("; ")}${more}`);
-      continue;
-    }
-    // The unique gate would fail it whatever a drafter writes (a DAS · Core identifier, one shared with another record that
-    // has a rule or the verdict entry): a person decides (batch.mjs identifierClashReasons, the gate's own functions).
-    const clash = identifierClashReasons(out.map((r) => (r === record ? drafted.record : r)), core.identifiers).get(result.key);
-    if (clash) {
-      queued.push(entry(clash, { draft: structuredClone(result.rule) }));
-      continue;
-    }
-    if (result.confidence < QUEUE_THRESHOLD) {
-      queued.push(entry("low-confidence", { draft: structuredClone(result.rule) }));
-      continue;
-    }
-    Object.keys(record).forEach((k) => delete record[k]);
-    Object.assign(record, drafted.record);
-    applied.push(result.key);
   }
   return { records: out, applied, queued, rejected };
+}
+
+// Why `origins` is not a non-empty list of distinct known origins, or null (checked before anything that relies on it).
+function originsProblem(origins) {
+  if (!Array.isArray(origins) || !origins.length) return "rule.origins: must be a non-empty array of origins";
+  if (!origins.every((o) => ORIGINS.includes(o))) return `rule.origins: every origin must be one of ${ORIGINS.join(", ")}`;
+  if (new Set(origins).size !== origins.length) return "rule.origins: an origin is listed twice";
+  return null;
+}
+
+// A queued result must not carry a quotation split between its `why` and its draft: both orders are read (why first, last).
+function splitQuotation(why, draft, text) {
+  const prose = isObject(draft) ? ruleProse(draft).map(([, v]) => v) : [];
+  if (!prose.length) return null;
+  const quotes = quotationCheck(text);
+  return quotes([why, ...prose].join(" ")) || quotes([...prose, why].join(" "))
+    ? `why and the draft together quote ${RULE_QUOTE_WORDS} or more consecutive words of the text` : null;
+}
+
+// One result: `{ reject: reason }`, `{ queue: entry }` or `{ apply: { record, next } }`. May throw (the caller catches).
+function takeResult(result, ctx) {
+  const { byKey, queuedKeys, offered, textOf, textDir, core, embedded, by, at, seen } = ctx;
+  if (!isObject(result)) return { reject: "result must be an object" };
+  const forbidden = forbiddenKeyIn(result);
+  if (forbidden) return { reject: `a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden})` };
+  if (seen.has(result.key)) return { reject: "the key appears twice in this file" };
+  seen.add(result.key);
+  const record = byKey.get(result.key);
+  const reason = resultProblem(record, result, { queuedKeys, offered });
+  if (reason) return { reject: reason };
+  const text = textOf(record);
+  if (text === null) return { reject: "no text in the cache: nothing to check the result against" };
+  const quoted = whyQuotes(result.why, text);
+  if (quoted) return { reject: quoted };
+  const entry = (reasonOf, draft) => {
+    const split = splitQuotation(result.why, draft, text);
+    if (split) return { reject: split };
+    return { queue: { key: result.key, reason: reasonOf, by, why: result.why, confidence: result.confidence,
+      ...(draft ? { draft: structuredClone(draft) } : {}) } };
+  };
+  if (result.outcome !== "rule") {
+    if (Object.hasOwn(result, "rule")) return { reject: `only outcome rule carries a rule (outcome ${result.outcome})` };
+    return entry(result.outcome);
+  }
+  if (!isObject(result.rule)) return { reject: "outcome rule needs a rule object" };
+  const extra = unknownFields(result.rule, DRAFT_RULE_FIELDS);
+  if (extra.length) return { reject: `unknown field ${echo(`rule.${extra[0]}`)}` };
+  if (result.rule.handledIn !== "table") {
+    return { reject: "rule.handledIn: a drafter writes table rules only (a code rule is a person's)" };
+  }
+  const badOrigins = originsProblem(result.rule.origins);
+  if (badOrigins) return { reject: badOrigins };
+  const drafted = draftedRecord(record, result.rule, { core, embedded, by, at });
+  if (drafted.problem) return { reject: drafted.problem };
+  const problems = ruleProblems(drafted.record, { core, textDir });
+  if (problems.length) {
+    const shown = problems.slice(0, SHOWN_PROBLEMS).map((p) => p.slice(0, SHOWN_PROBLEM_CHARS));
+    const more = problems.length > SHOWN_PROBLEMS ? ` (and ${problems.length - SHOWN_PROBLEMS} more)` : "";
+    return { reject: `${shown.join("; ")}${more}` };
+  }
+  // The unique gate would fail it whatever a drafter writes (a DAS · Core identifier, one shared with another record that
+  // has a rule or the verdict entry): a person decides (batch.mjs identifierClashReasons, the gate's own functions).
+  const others = ctx.out.map((r) => (r === record ? drafted.record : r));
+  const clash = identifierClashReasons(others, core.identifiers).get(result.key);
+  if (clash) return entry(clash, result.rule);
+  if (result.confidence < QUEUE_THRESHOLD) return entry("low-confidence", result.rule);
+  return { apply: { record, next: drafted.record } };
+}
+
+// A rejection repeats at most MAX_ECHO characters of any string the drafter supplied (a key or a value of the result), as the
+// other ingests do (intake.mjs clip): a longer one is cut wherever a message quotes it.
+function clipEchoes(reason, result) {
+  const long = new Set();
+  const walk = (node, depth) => {
+    if (depth > 32) return;
+    if (typeof node === "string") { if (node.length > MAX_ECHO) long.add(node); return; }
+    if (node === null || typeof node !== "object") return;
+    for (const k of Object.keys(node)) {
+      if (k.length > MAX_ECHO) long.add(k);
+      walk(node[k], depth + 1);
+    }
+  };
+  try { walk(result, 0); } catch { /* a result that throws on reading is already the reason */ }
+  let out = String(reason);
+  for (const s of [...long].sort((a, b) => b.length - a.length)) out = out.split(s).join(clip(s));
+  return out;
 }

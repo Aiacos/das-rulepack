@@ -319,7 +319,11 @@ const nGrams = (words, n) => {
   for (let i = 0; i + n <= words.length; i++) out.push(words.slice(i, i + n).join(" "));
   return out;
 };
-function ruleProse(rule) {
+/**
+ * The prose of a rule the quotation check reads, as `[where, string]` pairs in order: `origin`, `adds`, the `free` of its
+ * assertions, the `because` of its uncovered origins, then every non-structural string of its entry (keys and values).
+ */
+export function ruleProse(rule) {
   if (!isObject(rule)) return [];
   const out = [["rule.origin", rule.origin], ["rule.adds", rule.adds]].filter(([, v]) => typeof v === "string");
   (Array.isArray(rule.assert) ? rule.assert : []).forEach((a, i) => {

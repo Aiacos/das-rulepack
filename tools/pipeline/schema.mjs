@@ -262,12 +262,20 @@ const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex charact
 
 /**
  * Why a drafted rule goes to a person at review whatever the reviewer says (`evidence.drafted.because`, with `person: true`):
- * `noReactions` (Ruling R15: the assertion vocabulary has no word for a lost reaction).
+ * `noReactions` (Ruling R15: the assertion vocabulary has no word for a lost reaction), `official-uncovered` (Ruling R21: the
+ * rule leaves the official item uncovered and names another origin only).
  */
-export const DRAFTED_FOR_PERSON = Object.freeze(["noReactions"]);
-/** The `evidence.drafted.because` a rule's entry calls for, or null (draft.mjs stamps it; the schema requires it). */
-export const draftedForPerson = (entry) =>
-  (isObject(entry) && Object.hasOwn(entry, "noReactions") ? "noReactions" : null);
+export const DRAFTED_FOR_PERSON = Object.freeze(["noReactions", "official-uncovered"]);
+/**
+ * The `evidence.drafted.because` a rule calls for, or null (draft.mjs stamps it; the schema requires it). When both apply,
+ * `noReactions` is the one written (one reason is enough to send the record to a person).
+ */
+export function draftedForPerson(rule) {
+  if (!isObject(rule)) return null;
+  if (isObject(rule.entry) && Object.hasOwn(rule.entry, "noReactions")) return "noReactions";
+  const uncovered = Array.isArray(rule.uncovered) ? rule.uncovered : [];
+  return uncovered.some((u) => isObject(u) && u.origin === "official") ? "official-uncovered" : null;
+}
 
 // One rule-stamped evidence object: `fields` (name → check) are required unless `optional[name]`; `extra` are optional ones.
 // No other field is allowed.
@@ -304,9 +312,9 @@ export function validateRecord(record) {
   // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
   if (has(record, "rule")) {
     checkRule(record.rule, record.verdict, errors, record.identifier, record.legacy === true);
-    // A drafted rule that calls for a person at review carries the stamp (Ruling R15): it cannot be dropped while the key is
-    // there (a person who writes such a rule by hand has no `drafted` evidence and is not held to it).
-    const wanted = isObject(record.rule) ? draftedForPerson(record.rule.entry) : null;
+    // A drafted rule that calls for a person at review carries the stamp (Rulings R15, R21): it cannot be dropped while the
+    // reason is there (a person who writes such a rule by hand has no `drafted` evidence and is not held to it).
+    const wanted = draftedForPerson(record.rule);
     const drafted = isObject(record.evidence) ? record.evidence.drafted : undefined;
     if (wanted && record.legacy !== true && isObject(drafted) && !(drafted.person === true && drafted.because === wanted)) {
       errors.push(`evidence.drafted: a drafted rule with ${wanted} needs person: true, because: "${wanted}" (Ruling R15)`);

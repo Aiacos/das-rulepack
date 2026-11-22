@@ -55,7 +55,10 @@ const rule = (over = {}) => ({
 const result = (over = {}) => ({
   key: "tst:spell:frost-glimmer", outcome: "rule", why: "half on a save", confidence: 0.9, rule: rule(), ...over
 });
-const run = (records, results, opts = {}) => ingestDrafts(records, results, { textDir, by: "drafter-1", at: AT, core, ...opts });
+// By default the batch offered every record of the call (`offered`: the keys of the batch file's entries).
+const run = (records, results, opts = {}) => ingestDrafts(records, results, {
+  textDir, by: "drafter-1", at: AT, core, offered: new Set(records.map((r) => r.key)), ...opts
+});
 const reasonOf = (out) => out.rejected.map((r) => r.reason).join(" | ");
 
 describe("ingestDrafts: applied", () => {
@@ -306,7 +309,83 @@ describe("ingestDrafts: one rejection per reason", () => {
     const res = result({ key: m.key, rule: rule({ entry: { saveDamage: { [A_OFF]: "half" } }, origins: ["official"] }) });
     const out = rejects(res, new RegExp(SHARED_EMBEDDED.slice(0, 30)), [m], { embedded });
     expect(out.records[0]).toEqual(m);
-    expect(() => run([m], [res])).toThrow(/embedded/);
+    expect(run([m], [res]).rejected[0].reason).toMatch(/actors of TST's package/);
+  });
+});
+
+describe("fix round 1", () => {
+  const rejected = (out) => {
+    expect(out.applied).toEqual([]);
+    expect(out.queued).toEqual([]);
+    expect(out.rejected).toHaveLength(1);
+    return out.rejected[0].reason;
+  };
+
+  it("rejects a missing or malformed rule.origins without aborting the other results", () => {
+    const other = record({ key: "tst:spell:cold-snap", name: "Cold Snap", identifier: "tst-cold-snap" });
+    for (const origins of [undefined, null, {}, "official", [], ["official", "official"], ["elsewhere"]]) {
+      const bad = result({ rule: rule({ origins }) });
+      if (origins === undefined) delete bad.rule.origins;
+      const out = run([record(), other], [bad, { key: other.key, outcome: "person", why: "w", confidence: 0.9 }]);
+      expect(out.rejected.map((x) => x.reason).join(" ")).toMatch(/rule\.origins/);
+      expect(out.queued.map((q) => q.key)).toEqual([other.key]);
+    }
+  });
+
+  it("turns any unexpected exception on one result into its rejection", () => {
+    const boom = result();
+    Object.defineProperty(boom, "confidence", { enumerable: true, get() { throw new Error("engineered failure"); } });
+    const other = record({ key: "tst:spell:cold-snap", name: "Cold Snap", identifier: "tst-cold-snap" });
+    const out = run([record(), other], [boom, { key: other.key, outcome: "person", why: "w", confidence: 0.9 }]);
+    expect(out.rejected).toEqual([{ key: "tst:spell:frost-glimmer", reason: "internal: engineered failure" }]);
+    expect(out.queued.map((q) => q.key)).toEqual([other.key]);
+  });
+
+  it("rejects a quotation split between why and the queued draft (either order)", () => {
+    // words 1-4 of the text in why, 5-8 in adds; then the reverse.
+    const split = result({ confidence: 0.5, why: "alpha beta gamma delta",
+      rule: rule({ adds: "Epsilon zeta eta theta." }) });
+    expect(rejected(run([record()], [split]))).toMatch(/why and the draft together quote/);
+    const reverse = result({ confidence: 0.5, why: "epsilon zeta eta theta", rule: rule({ adds: "Alpha beta gamma delta." }) });
+    expect(rejected(run([record()], [reverse]))).toMatch(/why and the draft together quote/);
+    // The same check on a queue entry for a DAS · Core identifier.
+    const r = record({ identifier: "in-core", items: [item("official", { identifier: "in-core" }),
+      item("ddb-importer", { identifier: "in-core" })] });
+    expect(rejected(run([r], [{ ...split, confidence: 0.9 }]))).toMatch(/why and the draft together quote/);
+    // Apart, both halves are fine.
+    expect(run([record()], [result({ confidence: 0.5, why: "alpha beta gamma delta" })]).queued).toHaveLength(1);
+  });
+
+  it("rejects a result the batch did not offer", () => {
+    expect(rejected(run([record()], [result()], { offered: new Set() }))).toMatch(/not offered by this batch/);
+    expect(() => ingestDrafts([record()], [result()], { textDir, by: "drafter-1", core })).toThrow(/offered/);
+  });
+
+  it("echoes at most 80 characters of any drafter string", () => {
+    const long = `k${"x".repeat(150)}`;
+    const reason = rejected(run([record()], [result({ rule: rule({ entry: { ...rule().entry, [long]: true } }) })]));
+    expect(reason).not.toContain(long.slice(0, 81));
+    expect(reason).toContain(long.slice(0, 80));
+    expect(rejected(run([record()], [result({ [long]: 1 })]))).not.toContain(long.slice(0, 81));
+  });
+
+  it("rejects a monster result when the actors index is missing, without throwing", () => {
+    const m = record({ key: "tst:monster:glimmer-drake/action/bite", kind: "monster", name: "Bite", owner: "Glimmer Drake",
+      section: "action", identifier: "bite",
+      items: [item("official", { identifier: "bite", docId: "Ac11Ac22Ac33Ac44.Bt11Bt22Bt33Bt44" })] });
+    const res = result({ key: m.key, rule: rule({ entry: { saveDamage: { [A_OFF]: "half" } }, origins: ["official"] }) });
+    expect(rejected(run([m], [res]))).toMatch(/actors of TST's package/);
+  });
+
+  it("stamps a rule that leaves official uncovered for a person at review (Ruling R21)", () => {
+    const out = run([record()], [result({ rule: rule({ entry: { saveDamage: { [A_DDB]: "half" } }, origins: ["ddb-importer"],
+      uncovered: [{ origin: "official", because: "its item carries no activity to bind" }] }) })]);
+    expect(out.rejected).toEqual([]);
+    const next = out.records[0];
+    expect(next.evidence.drafted).toMatchObject({ person: true, because: "official-uncovered" });
+    expect(validateRecord(next)).toEqual([]);
+    const { person, because, ...bare } = next.evidence.drafted;
+    expect(validateRecord({ ...next, evidence: { ...next.evidence, drafted: bare } }).join(" ")).toMatch(/official-uncovered/);
   });
 });
 
@@ -341,6 +420,12 @@ describe("pipeline CLI: ingest --draft", () => {
   const cli = (args, over = {}) =>
     spawnSync("node", ["tools/pipeline/cli.mjs", ...args], { encoding: "utf8", env: { ...env, ...over } });
   const file = (body) => { const f = join(tmp, "draft.results.json"); writeFileSync(f, JSON.stringify(body)); return f; };
+  // The batch file a results file answers (only `id`, `stage` and the entries' keys are read by the ingest).
+  const batch = (id, keys = ["tst:spell:frost-glimmer", "tst:spell:cold-snap"]) => {
+    const f = join(tmp, `${id}.json`);
+    writeFileSync(f, JSON.stringify({ id, stage: "draft", entries: keys.map((key) => ({ key })) }));
+    return f;
+  };
   const withCore = it.skipIf(!process.env.DAS_CORE);
 
   beforeEach(() => {
@@ -355,17 +440,19 @@ describe("pipeline CLI: ingest --draft", () => {
 
   it("--draft with --second, --third, --overwrite or --review is a usage error", () => {
     for (const other of ["--second", "--third", "--overwrite", "--review", "--settle-unsure"]) {
-      const r = cli(["ingest", file({ batch: "tst-draft-001", by: "drafter-1", results: [] }), "--draft", other]);
+      const r = cli(["ingest", file({ batch: "tst-draft-001", by: "drafter-1", results: [] }), "--draft", "--batch",
+        batch("tst-draft-001"), other]);
       expect(r.status).toBe(2);
     }
   });
 
   withCore("refuses a results file with an unknown top-level field or a __proto__ key, writing nothing", () => {
     const before = readFileSync(join(registry, "tst.json"), "utf8");
-    expect(cli(["ingest", file({ batch: "b", by: "drafter-1", results: [], evidence: {} }), "--draft"]).status).toBe(2);
+    expect(cli(["ingest", file({ batch: "tst-draft-001", by: "drafter-1", results: [], evidence: {} }), "--draft", "--batch",
+      batch("tst-draft-001")]).status).toBe(2);
     const proto = join(tmp, "proto.json");
-    writeFileSync(proto, '{"batch":"b","by":"drafter-1","results":[{"key":"x","__proto__":{"a":1}}]}');
-    const r = cli(["ingest", proto, "--draft"]);
+    writeFileSync(proto, '{"batch":"tst-draft-001","by":"drafter-1","results":[{"key":"x","__proto__":{"a":1}}]}');
+    const r = cli(["ingest", proto, "--draft", "--batch", batch("tst-draft-001")]);
     expect(r.status).toBe(2);
     expect(r.stderr).toMatch(/__proto__/);
     expect(readFileSync(join(registry, "tst.json"), "utf8")).toBe(before);
@@ -379,7 +466,8 @@ describe("pipeline CLI: ingest --draft", () => {
       { key: "tst:spell:cold-snap", outcome: "person", why: "a zone: no drafter key", confidence: 0.9 },
       { key: "tst:spell:nothing", outcome: "person", why: "x", confidence: 0.9 }
     ];
-    const r = cli(["ingest", file({ batch: "tst-draft-001", by: "drafter-1", results }), "--draft"]);
+    const r = cli(["ingest", file({ batch: "tst-draft-001", by: "drafter-1", results }), "--draft", "--batch",
+      batch("tst-draft-001")]);
     expect(r.status, r.stderr).toBe(1);
     const printed = JSON.parse(r.stdout);
     expect(printed).toMatchObject({ applied: 1, queued: 1 });
@@ -393,7 +481,7 @@ describe("pipeline CLI: ingest --draft", () => {
     ]);
     // A second results file for the queued record is rejected; nothing changes.
     const second = { batch: "tst-draft-002", by: "drafter-2", results: [{ ...results[0], key: "tst:spell:cold-snap" }] };
-    const again = cli(["ingest", file(second), "--draft"]);
+    const again = cli(["ingest", file(second), "--draft", "--batch", batch("tst-draft-002", ["tst:spell:cold-snap"])]);
     expect(again.status).toBe(1);
     expect(again.stdout).toMatch(/drafts-queue/);
 
@@ -406,11 +494,37 @@ describe("pipeline CLI: ingest --draft", () => {
     expect(gated.state).toBe("gated");
   });
 
+  withCore("--draft needs --batch, a batch file of the same id and book; a key the batch did not offer is rejected", () => {
+    const body = { batch: "tst-draft-001", by: "drafter-1", results: [] };
+    expect(cli(["ingest", file(body), "--draft"]).stderr).toMatch(/--batch/);
+    expect(cli(["ingest", file(body), "--draft"]).status).toBe(2);
+    expect(cli(["ingest", file(body), "--draft", "--batch", batch("tst-draft-002")]).status).toBe(2);
+    expect(cli(["ingest", file({ ...body, batch: "tst-triage-001" }), "--draft", "--batch", batch("tst-triage-001")]).status)
+      .toBe(2);
+    expect(cli(["ingest", file(body), "--draft", "--batch", batch("tst-draft-001", ["xzz:spell:other"])]).status).toBe(2);
+    const offered = batch("tst-draft-001", ["tst:spell:frost-glimmer"]);
+    const r = cli(["ingest", file({ ...body, results: [{ key: "tst:spell:cold-snap", outcome: "person", why: "w",
+      confidence: 0.9 }] }), "--draft", "--batch", offered]);
+    expect(r.status).toBe(1);
+    expect(JSON.parse(r.stdout).rejected[0].reason).toMatch(/not offered by this batch/);
+  });
+
+  withCore("a monster result without the dumps is a usage error", () => {
+    const m = record({ key: "tst:monster:glimmer-drake/action/bite", kind: "monster", name: "Bite", owner: "Glimmer Drake",
+      section: "action", identifier: "bite" });
+    saveBook(registry, { book: "TST", records: [m] });
+    const body = { batch: "tst-draft-001", by: "drafter-1", results: [{ key: m.key, outcome: "person", why: "w", confidence: 1 }] };
+    const r = cli(["ingest", file(body), "--draft", "--batch", batch("tst-draft-001", [m.key])], { RULEPACK_DUMPS: "" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toMatch(/RULEPACK_DUMPS/);
+  });
+
   it("writes nothing when the drafts queue on disk is invalid", () => {
     saveQueue(registry, "drafts", []);
     writeFileSync(join(registry, "drafts-queue.json"), "[{\"key\":1}]\n");
     const before = readFileSync(join(registry, "tst.json"), "utf8");
-    const r = cli(["ingest", file({ batch: "tst-draft-001", by: "drafter-1", results: [] }), "--draft"]);
+    const r = cli(["ingest", file({ batch: "tst-draft-001", by: "drafter-1", results: [] }), "--draft", "--batch",
+      batch("tst-draft-001")]);
     expect(r.status).not.toBe(0);
     expect(readFileSync(join(registry, "tst.json"), "utf8")).toBe(before);
     expect(existsSync(join(registry, "tst.json"))).toBe(true);

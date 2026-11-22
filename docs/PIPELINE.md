@@ -40,7 +40,7 @@ excepted.
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
-| 3c | Ingest drafts | `npm run ingest -- <results-file> --draft` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
+| 3c | Ingest drafts | `npm run ingest -- <results-file> --draft --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
@@ -415,7 +415,9 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
 > holds one id: name one origin only and put the others in `uncovered` with a one-line reason. Every matched origin
-> (`plutonium` `unchecked` excepted) is either in `origins` or in `uncovered: [{ origin, because }]`.
+> (`plutonium` `unchecked` excepted) is either in `origins` or in `uncovered: [{ origin, because }]`. `origins` lists each
+> origin once. Leaving `official` uncovered (naming only `ddb-importer`) is allowed when the official item has nothing to
+> bind; such a rule is read by a person at review.
 >
 > **`dataFixes`** only on the typed leaves of `fixes.paths`, official origin only, with a real `from` guard (the value the
 > item has today, taken from the structure) and a `value` of the leaf's type; never on a monster feature; never `create`.
@@ -491,10 +493,11 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > }
 > ```
 >
-> `outcome` is `rule`, `person`, `code` or `engine`; only `rule` carries a `rule`. One result per entry, `key` unchanged. You
-> never set `verdict`, `identifier`, `sources`, `alsoAs`, `inCore`, `code`, `origin` or any `evidence`: the tools derive them (a
-> result or a rule that carries one is rejected). `by` is a
-> short handle such as `drafter-3`, never a person's name (the registry is public). Confidence is 0 to 1; 0.7 is the line.
+> `outcome` is `rule`, `person`, `code` or `engine`; only `rule` carries a `rule`. One result per entry, `key` unchanged;
+> `batch` is the batch id, and a result for a key the batch does not hold is rejected. You never set `verdict`, `identifier`,
+> `sources`, `alsoAs`, `inCore`, `code`, `origin` or any `evidence`: the tools derive them (a result or a rule that carries one
+> is rejected). `by` is a short handle such as `drafter-3`, never a person's name (the registry is public). Confidence is 0 to
+> 1; 0.7 is the line.
 
 ## 📥 Ingesting results
 
@@ -544,21 +547,27 @@ What the session does with the output:
 
 ### Ingesting drafts
 
-`npm run ingest -- <results-file> --draft` takes what a drafter wrote (the results format of the drafter brief above;
-`tools/pipeline/draft.mjs` `ingestDrafts`). `--draft` with `--overwrite`, `--second`, `--third`, `--settle-unsure` or
-`--review` is a usage error. The whole file is refused (exit 2, nothing written) when it is not `{ batch, by, results }`, has
-another top-level field, `by` is not a handle (`drafter-3`), it holds a key named `__proto__`, `constructor` or `prototype`
-anywhere, or a queue file of the registry is invalid. Monster features need `RULEPACK_DUMPS` (the actors of the book's package
+`npm run ingest -- <results-file> --draft --batch <batch file>` takes what a drafter wrote (the results format of the drafter
+brief above; `tools/pipeline/draft.mjs` `ingestDrafts`). `--batch` is required: it is the batch file the results answer.
+`--draft` with `--overwrite`, `--second`, `--third`, `--settle-unsure` or `--review` is a usage error. The whole file is
+refused (exit 2, nothing written) when it is not `{ batch, by, results }`, has another top-level field, `by` is not a handle
+(`drafter-3`), it holds a key named `__proto__`, `constructor` or `prototype` anywhere, a queue file of the registry is
+invalid, its `batch` is not a draft batch id `<book>-draft-<NNN>`, or the batch file does not have that id, stage `draft`,
+and entries that are all keys of that book. Monster features need `RULEPACK_DUMPS` (the actors of the book's package
 tell whether another creature shares the feature's embedded item id). For each result:
 
 - **Rejected** (listed in `rejected` as `{ key, reason }`; nothing of it is kept, the record stays as it was and is cut again
   by the next `batch draft`): a field other than `key`, `outcome`, `why`, `confidence`, `rule`, or in `rule` other than
   `handledIn`, `adds`, `entry`, `origins`, `uncovered`, `assert` (so `evidence`, `verdict`, `identifier`, `sources`, `alsoAs`,
   `inCore`, `code`, `origin` are refused: the tools derive them, and no ingest ever writes `evidence.person`); a key twice in
-  the file; a key that is no record; a record waiting in `drafts-queue.json`, a legacy record, a record that already has a
+  the file; a key that is no record; a key that is not an entry of the batch file ("not offered by this batch"); a record
+  waiting in `drafts-queue.json`, a legacy record, a record that already has a
   rule, or one whose verdict is not `entry`; an unknown outcome; a confidence outside 0..1; a `why` that is not one line of at
   most 200 printable characters or that quotes 8 words of the text; no text in the cache; a `rule` on an outcome other than
-  `rule`, or none on `rule`; `handledIn` other than `table` (a code rule is a person's, Ruling R18); an origin of `origins`
+  `rule`, or none on `rule`; `handledIn` other than `table` (a code rule is a person's, Ruling R18); `origins` that is not a
+  non-empty list of distinct known origins (checked before anything that relies on it); a monster feature whose book's
+  actors were not given (the library rejects the result; the command needs `RULEPACK_DUMPS` and stops with a usage error
+  without it); an origin of `origins`
   that no identifier can reach (`aliasFor`: a generic or DAS · Core identifier, a DDB Importer monster feature: it belongs in
   `uncovered`); a monster feature whose official embedded item id another creature of the package embeds (Ruling R3: it
   cannot be ruled yet); and every failure the gates' own functions find on the record as it would be written: the schema
@@ -566,19 +575,24 @@ tell whether another creature shares the feature's embedded item id). For each r
   `DRAFT_KEYS`, a `create` fix, a fix path or type outside the allowlist, the word budget), the engine's `validateEntry` with
   the real fact list and the assertions against the engine's enumerations, the ids gate (Rulings R4, R5) and the quotation
   check of every string of the rule. Up to four of the problems are named. The `fixes` gate is not run here: `gates` runs it.
+  Any unexpected exception while one result is read becomes that result's rejection (`internal: <first 80 characters>`):
+  it never stops the others. A rejection repeats at most 80 characters of any string the drafter wrote.
 - **Queued** in `registry/drafts-queue.json` (`{ key, reason, by, why, confidence, draft? }`, merged by key, sorted): outcome
   `person`, `code` or `engine` (the reason is the outcome); a rule that passed every check above but that the `unique` gate
   would fail whatever is drafted ("identifier is DAS · Core's: a person decides inCore", "identifier shared with another
   record": the same test as `batch draft`'s, on the record as it would be written, aliases included; the rule kept as
-  `draft`); a rule that passed every check with a confidence below 0.7 (`low-confidence`, the rule kept as `draft`). The
-  verdict is not changed. A queued record is not cut by `batch draft` again, and a later result for it is rejected: a person
-  settles it.
+  `draft`); a rule that passed every check with a confidence below 0.7 (`low-confidence`, the rule kept as `draft`). A result is
+  queued only if its `why` and the strings of its draft together, in either order, do not quote 8 words of the text (`why` and
+  the rule are each checked alone, the queue entry holds both): a hit rejects it. The verdict is not changed. A queued record is
+  not cut by `batch draft` again, and a later result for it is rejected: a person settles it.
 - **Applied** otherwise: `rule` is written as the drafter wrote it plus what the tools derive: `alsoAs` from `aliasFor`
   (Ruling R2: the identifier of a matched item that differs from the record's), `origin` (Ruling R17: the last part of the
   owner and, for a feature, the level), and for a monster feature its identifier `monsterIdentifier` (`<book>-<creature>-
   <feature>`) with its embedded item id bound in `sources`; `evidence.drafted = { by, at, core, rule }` (`rule` the rule's
   fingerprint), plus `person: true, because: "noReactions"` when the entry uses `noReactions` (Ruling R15: the review sends
-  every record with that stamp to `review-queue.json`, whatever the reviewer says). Nothing else of the evidence changes. The
+  every record with that stamp to `review-queue.json`, whatever the reviewer says), or `because: "official-uncovered"` when the
+  rule lists `official` under `uncovered` (Ruling R21: allowed, since some official items carry nothing to bind, and read by
+  a person at review). Nothing else of the evidence changes. The
   state is `drafted`; `npm run gates` (local, with dumps and text) takes it to `gated` or prints why not.
 
 It prints `{ applied, queued, rejected }` and exits with 1 when anything was rejected. The touched books and the queue are

@@ -555,18 +555,25 @@ function commitIngest(books, all, changed, queued, applied, { queue: kind = "tri
 
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
-  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft] | ingest --settle-unsure [--min <n>]";
+  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>]"
+    + " | ingest --settle-unsure [--min <n>]";
   const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const [mode] = modes;
   if (mode === "--review") throw new UsageError("ingest --review is not built yet");
   const rest = [];
   let min = null;
+  let batchFile = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === "--min") { min = args[(i += 1)] ?? ""; continue; }
+    if (args[i] === "--batch") { batchFile = args[(i += 1)] ?? ""; continue; }
     if (!modes.includes(args[i])) rest.push(args[i]);
   }
   if (min !== null && mode !== "--settle-unsure") throw new UsageError("--min goes with --settle-unsure only");
+  if (batchFile !== null && mode !== "--draft") throw new UsageError("--batch goes with --draft only");
+  if (mode === "--draft" && !batchFile) {
+    throw new UsageError(`${usage}\n--draft needs --batch <the batch file the results answer>`);
+  }
   if (mode === "--settle-unsure") {
     const n = min === null ? 0.6 : (min.trim() === "" || min !== min.trim() ? NaN : Number(min));
     if (rest.length || !(n >= 0.5 && n < 0.7)) {
@@ -593,7 +600,10 @@ async function ingestCommand(args) {
   if (forbidden) {
     throw new UsageError(`${file}: a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden}): not a results file`);
   }
-  if (mode === "--draft") return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir) });
+  if (mode === "--draft") {
+    const offered = offeredKeys(input.batch, batchFile);
+    return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered });
+  }
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
   if (second) return ingestSecondCommand(books, input, { textDir, entryKeys });
@@ -609,11 +619,27 @@ async function ingestCommand(args) {
 // `ingest <results-file> --draft`: drafted rules. Applied rules are written with the state `drafted` (`gates` decides the rest);
 // person, code and engine outcomes and low-confidence rules go to registry/drafts-queue.json; books and that queue are saved in
 // one step. A monster feature needs the actors of its book's package (RULEPACK_DUMPS) to tell a shared embedded id.
-function ingestDraftCommand(input, { textDir, core }) {
+// The keys a draft batch file offers: its id must be the results file's `batch`, of the form `<book>-draft-<NNN>`, its stage
+// `draft`, and every entry a key of that book.
+function offeredKeys(id, file) {
+  const m = /^([a-z][a-z0-9]{1,9})-draft-(\d{3,})$/.exec(String(id));
+  if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a draft batch id (<book>-draft-<NNN>)`);
+  const batch = readJson(file, "batch file");
+  if (batch?.id !== id || batch?.stage !== "draft" || !Array.isArray(batch?.entries)) {
+    throw new UsageError(`${file}: not the draft batch ${id} (its id, stage "draft" and entries)`);
+  }
+  const keys = batch.entries.map((e) => e?.key);
+  if (!keys.every((k) => typeof k === "string" && k.startsWith(`${m[1]}:`))) {
+    throw new UsageError(`${file}: every entry of ${id} must be a key of book ${m[1].toUpperCase()}`);
+  }
+  return new Set(keys);
+}
+
+function ingestDraftCommand(input, { textDir, core, offered }) {
   checkQueues(REGISTRY);
   const books = loadRegistry(REGISTRY);
   const all = books.flatMap((b) => b.records);
-  const keys = new Set(input.results.map((r) => r?.key));
+  const keys = new Set(input.results.map((r) => r?.key).filter((k) => offered.has(k)));
   const monsterBooks = [...new Set(all.filter((r) => r.kind === "monster" && keys.has(r.key)).map((r) => r.book))];
   const embedded = new Map();
   if (monsterBooks.length) {
@@ -630,7 +656,7 @@ function ingestDraftCommand(input, { textDir, core }) {
     }
   }
   const out = ingestDrafts(all, input.results, {
-    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded
+    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded, offered
   });
   if (!commitIngest(books, out.records, out.applied, out.queued, out.applied, { queue: "drafts" })) return;
   console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
