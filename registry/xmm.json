@@ -30828,6 +30828,13 @@
           "core": "0.289.0",
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
+          "confidence": 0.75
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.097Z",
           "core": "0.289.0",
@@ -30899,7 +30906,7 @@
         ],
         "origin": "Chain Devil"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:chain-devil/trait/diabolical-restoration",
@@ -32255,6 +32262,13 @@
           "core": "0.289.0",
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
+          "confidence": 0.75
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.100Z",
           "core": "0.289.0",
@@ -32308,7 +32322,7 @@
         ],
         "origin": "Clay Golem"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:clay-golem/trait/acid-absorption",
@@ -33931,6 +33945,13 @@
           "core": "0.289.0",
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
+          "confidence": 0.8
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.101Z",
           "core": "0.289.0",
@@ -33989,7 +34010,7 @@
         ],
         "origin": "Colossus"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:colossus/trait/immutable-form",
@@ -39814,6 +39835,13 @@
           "core": "0.289.0",
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
+          "confidence": 0.8
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.103Z",
           "core": "0.289.0",
@@ -39886,7 +39914,7 @@
         ],
         "origin": "Demilich"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:demilich/legendary/necrosis",
@@ -40678,11 +40706,27 @@
           "core": "0.289.0",
           "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [],
+            "detail": [
+              [
+                "expect.damage.fraction=0.5;expect.damage.type=psychic;given.roll=savedSave",
+                "expect.damage.fraction=0.5;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.104Z",
+          "at": "2026-11-22T04:30:30.069Z",
           "core": "0.289.0",
           "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
-          "emits": "135eecbfbcfc0ff57cd2c020e8985cfe4f3dd17e2c2b85f5236e7b6b668bcc6c",
+          "emits": "cb5d7c967be2ff633ba3d89d6ba5b73b5eb9b2b67dbc27daef7023d27db77b09",
           "passed": [
             "schema",
             "validator",
@@ -40753,7 +40797,7 @@
         ],
         "origin": "Dire Worg"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:dire-worg/action/multiattack",
@@ -42596,11 +42640,27 @@
           "core": "0.289.0",
           "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [],
+            "detail": [
+              [
+                "expect.damage.fraction=0;expect.damage.type=psychic;given.roll=savedSave",
+                "expect.damage.fraction=0;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.107Z",
+          "at": "2026-11-22T04:30:30.072Z",
           "core": "0.289.0",
           "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
-          "emits": "82cf7af10241eab2bb46fcd8c093fd9271789c6f7c423b4bc6fe3d3e710e2b6a",
+          "emits": "58ab13921040d117e87d9fb1c25be5aefaf8745dab22a57eb8c0b4448895d45b",
           "passed": [
             "schema",
             "validator",
@@ -42676,7 +42736,7 @@
         ],
         "origin": "Dracolich"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:dracolich/trait/legendary-resistance",
@@ -43420,6 +43480,13 @@
           "core": "0.289.0",
           "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.108Z",
           "core": "0.289.0",
@@ -43504,7 +43571,7 @@
         ],
         "origin": "Dretch"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:dretch/action/rend",
@@ -46118,6 +46185,13 @@
           "core": "0.289.0",
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.109Z",
           "core": "0.289.0",
@@ -46186,7 +46260,7 @@
         ],
         "origin": "Elemental Cataclysm"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:elemental-cataclysm/trait/control-weather",
@@ -53215,6 +53289,13 @@
           "core": "0.289.0",
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
+          "confidence": 0.8
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.114Z",
           "core": "0.289.0",
@@ -53282,7 +53363,7 @@
         ],
         "origin": "Ghast Gravecaller"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:ghast-gravecaller/action/horrific-necrosis",
@@ -54689,11 +54770,27 @@
           "core": "0.289.0",
           "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
+          "confidence": 0.75,
+          "tolerated": {
+            "baseline": [],
+            "detail": [
+              [
+                "expect.damage.fraction=0.5;expect.damage.type=bludgeoning;given.roll=savedSave",
+                "expect.damage.fraction=0.5;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.117Z",
+          "at": "2026-11-22T04:30:30.081Z",
           "core": "0.289.0",
           "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
-          "emits": "fd464a1a1a4c3018accc3d9527c97532d87e87815504668eeca72df6a85fee5b",
+          "emits": "7e4ac2fe468965dfd72941f05b92ca20cf236c3801dec60f3d2388017fcb7bf6",
           "passed": [
             "schema",
             "validator",
@@ -54769,7 +54866,7 @@
         ],
         "origin": "Giant Ape"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:giant-ape/action/fist",
@@ -59596,6 +59693,13 @@
           "core": "0.289.0",
           "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62"
         },
+        "reviewed": {
+          "by": "reviewer-v001",
+          "at": "2026-11-22T04:29:59.513Z",
+          "agrees": true,
+          "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.120Z",
           "core": "0.289.0",
@@ -59673,7 +59777,7 @@
         ],
         "origin": "Githyanki Dracomancer"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:githyanki-dracomancer/action/multiattack",
@@ -64056,6 +64160,13 @@
           "core": "0.289.0",
           "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.122Z",
           "core": "0.289.0",
@@ -64136,7 +64247,7 @@
         ],
         "origin": "Goristro"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:goristro/action/multiattack",
@@ -76755,6 +76866,13 @@
           "core": "0.289.0",
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
+          "confidence": 0.8
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.131Z",
           "core": "0.289.0",
@@ -76830,7 +76948,7 @@
         ],
         "origin": "Kraken"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:kraken/trait/amphibious",
@@ -78034,6 +78152,13 @@
           "core": "0.289.0",
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
+          "confidence": 0.8
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.132Z",
           "core": "0.289.0",
@@ -78105,7 +78230,7 @@
         ],
         "origin": "Kuo-toa"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:kuo-toa/reaction/sticky-shield",
@@ -78552,6 +78677,13 @@
           "core": "0.289.0",
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
+          "confidence": 0.7
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.133Z",
           "core": "0.289.0",
@@ -78610,7 +78742,7 @@
         ],
         "origin": "Lacedon Ghoul"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:lamia/action/claw",
@@ -79312,6 +79444,13 @@
           "core": "0.289.0",
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
+          "confidence": 0.9
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.133Z",
           "core": "0.289.0",
@@ -79373,7 +79512,7 @@
         ],
         "origin": "Lich"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:lich/legendary/deathly-teleport",
@@ -81947,6 +82086,13 @@
           "core": "0.289.0",
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
+          "confidence": 0.8
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.134Z",
           "core": "0.289.0",
@@ -82013,7 +82159,7 @@
         ],
         "origin": "Manes Vaporspawn"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:manes/action/claw",
@@ -82436,11 +82582,29 @@
           "core": "0.289.0",
           "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=cold;given.roll=failedSave"
+            ],
+            "detail": [
+              [
+                "expect.damage.fraction=0.5;given.roll=savedSave",
+                "expect.damage.fraction=0.5;expect.damage.type=cold;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.135Z",
+          "at": "2026-11-22T04:30:30.111Z",
           "core": "0.289.0",
           "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
-          "emits": "7d3f08a7f353e68e241cb21117f929efcf99ec30580b9b4f508c903c15c5f7ee",
+          "emits": "fea735a5c39512929fdbb2dfab173fff6a31c742b7e1caabcb84cf5c37db6fbe",
           "passed": [
             "schema",
             "validator",
@@ -82529,7 +82693,7 @@
         ],
         "origin": "Marid"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:marid/trait/amphibious",
@@ -83899,6 +84063,13 @@
           "core": "0.289.0",
           "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.136Z",
           "core": "0.289.0",
@@ -83960,7 +84131,7 @@
         ],
         "origin": "Merfolk Wavebender"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:merfolk-wavebender/action/multiattack",
@@ -84060,11 +84231,29 @@
           "core": "0.289.0",
           "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
+          "confidence": 0.8,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=cold;given.roll=failedSave"
+            ],
+            "detail": [
+              [
+                "expect.damage.fraction=0;expect.damage.type=cold;given.roll=savedSave",
+                "expect.damage.fraction=0;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.136Z",
+          "at": "2026-11-22T04:30:30.112Z",
           "core": "0.289.0",
           "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
-          "emits": "2517bb45936fba84aec0dccf5895c3068e3b210c00fc16236681b3700c65c10e",
+          "emits": "2a2e90c7af3bf55fab0ba1d81bc465db1a82fa095c5a104401a8e91ee3757060",
           "passed": [
             "schema",
             "validator",
@@ -84141,7 +84330,7 @@
         ],
         "origin": "Merfolk Wavebender"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:merfolk-wavebender/trait/amphibious",
@@ -84431,6 +84620,13 @@
           "core": "0.289.0",
           "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.137Z",
           "core": "0.289.0",
@@ -84501,7 +84697,7 @@
         ],
         "origin": "Merrow"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:merrow/action/multiattack",
@@ -97970,11 +98166,29 @@
           "core": "0.289.0",
           "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7"
         },
+        "reviewed": {
+          "by": "reviewer-v002",
+          "at": "2026-11-22T04:30:00.951Z",
+          "agrees": true,
+          "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=force;given.roll=failedSave"
+            ],
+            "detail": [
+              [
+                "expect.damage.fraction=0;expect.damage.type=force;given.roll=savedSave",
+                "expect.damage.fraction=0;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.141Z",
+          "at": "2026-11-22T04:30:30.118Z",
           "core": "0.289.0",
           "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
-          "emits": "04454ee3024aa1fb2962fedbb4e6af73112ef9d740945958608bdcf184792db1",
+          "emits": "fbde54887d46d65ebbca4f16aecc03b7d3226ec75857cc18685d5da9620100f0",
           "passed": [
             "schema",
             "validator",
@@ -98048,7 +98262,7 @@
         ],
         "origin": "Poltergeist"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:poltergeist/bonus/vanish",
@@ -109030,6 +109244,13 @@
           "core": "0.289.0",
           "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.147Z",
           "core": "0.289.0",
@@ -109100,7 +109321,7 @@
         ],
         "origin": "Shambling Mound"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:shambling-mound/action/engulf",
@@ -110360,6 +110581,13 @@
           "core": "0.289.0",
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
+          "confidence": 0.9
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.150Z",
           "core": "0.289.0",
@@ -110421,7 +110649,7 @@
         ],
         "origin": "Smoke Mephit"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:smoke-mephit/action/claw",
@@ -111512,11 +111740,27 @@
           "core": "0.289.0",
           "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
+          "confidence": 0.8,
+          "tolerated": {
+            "baseline": [],
+            "detail": [
+              [
+                "expect.damage.fraction=0;expect.damage.type=force;given.roll=savedSave",
+                "expect.damage.fraction=0;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.150Z",
+          "at": "2026-11-22T04:30:30.127Z",
           "core": "0.289.0",
           "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
-          "emits": "3f723ca6382b161c54ebf0ddf883da6de01999edee14dabf58dcd9c00669d633",
+          "emits": "be37a10c6259776347357ef7c0176b654852141ebd880947c43c9bd5b053f648",
           "passed": [
             "schema",
             "validator",
@@ -111582,7 +111826,7 @@
         ],
         "origin": "Spectator"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:specter/action/life-drain",
@@ -118015,11 +118259,32 @@
           "core": "0.289.0",
           "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [],
+            "detail": [],
+            "left": [
+              [
+                "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=failedSave",
+                "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=failedSave"
+              ],
+              [
+                "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=check;given.roll=failedSave",
+                "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=check;given.roll=failedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.154Z",
+          "at": "2026-11-22T04:30:30.131Z",
           "core": "0.289.0",
           "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
-          "emits": "005ed8df142296929579ca8a0a3e3e216b2c4cb4c244863d6d540f547c19a161",
+          "emits": "39c82d3f5d08f0202055ff33e3e1c3b5ba89ec451c3aef97f113c7aabe22d5fd",
           "passed": [
             "schema",
             "validator",
@@ -118104,7 +118369,7 @@
         ],
         "origin": "Swarm of Ravens"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:swarm-of-ravens/trait/swarm",
@@ -119875,6 +120140,13 @@
           "core": "0.289.0",
           "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.155Z",
           "core": "0.289.0",
@@ -119945,7 +120217,7 @@
         ],
         "origin": "Tough Boss"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:tough-boss/trait/pack-tactics",
@@ -120634,11 +120906,28 @@
           "core": "0.289.0",
           "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
+          "confidence": 0.8,
+          "tolerated": {
+            "baseline": [],
+            "detail": [],
+            "left": [
+              [
+                "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.moment=startOfTurn",
+                "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.moment=startOfTurn"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.155Z",
+          "at": "2026-11-22T04:30:30.133Z",
           "core": "0.289.0",
           "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
-          "emits": "2f9a225596220db08411dd555383658246f695f7d2d1b6597036e7b9cc0f5c05",
+          "emits": "91f794ae2377e39359348fe89ace131554b36cad02810991104ac6fcb8621a0e",
           "passed": [
             "schema",
             "validator",
@@ -120720,7 +121009,7 @@
         ],
         "origin": "Tree Blight"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:tree-blight/action/multiattack",
@@ -122015,11 +122304,29 @@
           "core": "0.289.0",
           "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
+          "confidence": 0.9,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=psychic;given.roll=failedSave"
+            ],
+            "detail": [
+              [
+                "expect.damage.fraction=0;expect.damage.type=psychic;given.roll=savedSave",
+                "expect.damage.fraction=0;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.156Z",
+          "at": "2026-11-22T04:30:30.134Z",
           "core": "0.289.0",
           "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
-          "emits": "ab7f04bd60d687990c23d410b407ee54664ee7deead1307600d31bf7a7d328e9",
+          "emits": "a3c54bc1997d75a99323754ac571d3c6dae8504bddedefcbbe97b54433cc2843",
           "passed": [
             "schema",
             "validator",
@@ -122089,7 +122396,7 @@
         ],
         "origin": "Ultroloth"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:ultroloth/action/mercurial-whip",
@@ -122896,6 +123203,13 @@
           "core": "0.289.0",
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.157Z",
           "core": "0.289.0",
@@ -122950,7 +123264,7 @@
         ],
         "origin": "Unicorn"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:unicorn/legendary/shimmering-shield",
@@ -125992,11 +126306,29 @@
           "core": "0.289.0",
           "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
+          "confidence": 0.9,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=necrotic;given.roll=failedSave"
+            ],
+            "detail": [
+              [
+                "expect.damage.fraction=0.5;expect.damage.type=necrotic;given.roll=savedSave",
+                "expect.damage.fraction=0.5;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T04:27:18.158Z",
+          "at": "2026-11-22T04:30:30.136Z",
           "core": "0.289.0",
           "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
-          "emits": "e03630ca9d08f327ab7079d4cbb11c62accc7a9ab597315ee8f607c455c311b9",
+          "emits": "3e79e725d2cc1e9800e7ef65c5f45c1a45e6e4faaa51667f790f6e4d4401851f",
           "passed": [
             "schema",
             "validator",
@@ -126072,7 +126404,7 @@
         ],
         "origin": "Violet Fungus Necrohulk"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:violet-fungus-necrohulk/bonus/absorb-body",
@@ -127317,6 +127649,13 @@
           "core": "0.289.0",
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.160Z",
           "core": "0.289.0",
@@ -127371,7 +127710,7 @@
         ],
         "origin": "Warrior Commander"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:warrior-commander/reaction/counterattack",
@@ -129683,6 +130022,13 @@
           "core": "0.289.0",
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd"
         },
+        "reviewed": {
+          "by": "reviewer-v003",
+          "at": "2026-11-22T04:30:02.189Z",
+          "agrees": true,
+          "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T04:27:18.160Z",
           "core": "0.289.0",
@@ -129737,7 +130083,7 @@
         ],
         "origin": "Weretiger"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:weretiger/bonus/shape-shift",

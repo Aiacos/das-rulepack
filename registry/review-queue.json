@@ -118,5 +118,2649 @@
         }
       ]
     }
+  },
+  {
+    "key": "xmm:monster:bulette/action/deadly-leap",
+    "reason": "disagreement",
+    "by": "reviewer-v001",
+    "why": "Failed Dex save: full damage and knocked prone; a success halves damage and shoves the target 5 ft away.",
+    "confidence": 0.85,
+    "draft": {
+      "by": "drafter-v001",
+      "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f",
+      "assert": [
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "move": {
+              "mode": "push",
+              "distance": 5
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.move.distance=5;expect.move.mode=push;given.roll=savedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        },
+        {
+          "unexpressed": "target-size",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "move": {
+              "mode": "push",
+              "distance": 5
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0.5;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:centaur-trooper/bonus/trampling-charge",
+    "reason": "disagreement",
+    "by": "reviewer-v001",
+    "why": "The charge move draws no opportunity attacks; a failed Str save knocks prone with damage, success takes nothing.",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v001",
+      "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.denies=opportunityAttacks"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        },
+        {
+          "unexpressed": "target-size",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:centaur-warden/bonus/entangling-trail",
+    "reason": "disagreement",
+    "by": "reviewer-v001",
+    "why": "Move draws no opportunity attacks; failed Str save deals damage and restrains to end of target next turn; success nothing.",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v001",
+      "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.denies=opportunityAttacks",
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            },
+            "ends": "bearerTurnEnd"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:chasme/bonus/drone",
+    "reason": "effectDurations",
+    "by": "reviewer-v001",
+    "why": "Failed Con save knocks unconscious, ended by taking damage; repeat saves, demon immunity and holy water are not expressible.",
+    "confidence": 0.7,
+    "draft": {
+      "by": "drafter-v001",
+      "rule": "aa73674451f070fba2b951a1ad5090c2d347b0e0c3ffde41e3ef253204512bef",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "unconscious"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "moment": "isDamaged"
+          },
+          "expect": {
+            "condition": {
+              "ended": "unconscious"
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        },
+        {
+          "unexpressed": "target-state",
+          "count": 1
+        },
+        {
+          "unexpressed": "immunity-after-save",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "aa73674451f070fba2b951a1ad5090c2d347b0e0c3ffde41e3ef253204512bef",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "unconscious"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "isDamaged"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.ends=isDamaged;given.roll=failedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:djinni/action/create-whirlwind",
+    "reason": "disagreement",
+    "by": "reviewer-v001",
+    "why": "Failed Str save restrains; thunder damage at the start of the bearer turn; repeat save and dragging along not expressible.",
+    "confidence": 0.6,
+    "draft": {
+      "by": "drafter-v003",
+      "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "moment": "startOfTurn"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "thunder"
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 2
+        },
+        {
+          "unexpressed": "table-ruling",
+          "count": 2
+        }
+      ]
+    },
+    "review": {
+      "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "startOfTurn"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "thunder"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.damage.fraction=1;expect.damage.type=thunder;given.moment=startOfTurn",
+          "review": "expect.damage.fraction=1;expect.damage.type=thunder;given.moment=startOfTurn"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:doppelganger/action/unsettling-visage",
+    "reason": "effectDurations",
+    "by": "reviewer-v001",
+    "why": "Failed Wis save frightens; the repeat save each turn and the one-minute cap cannot be stated.",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v003",
+      "rule": "646210646e2f691ef83983d3ed13bbcd082d0f38c590c8e5a1d6aafa4d347c70",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "target-state",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "646210646e2f691ef83983d3ed13bbcd082d0f38c590c8e5a1d6aafa4d347c70",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:empyrean/action/sacred-weapon",
+    "reason": "ignoresResistance",
+    "by": "reviewer-v001",
+    "why": "Hit stuns until the empyrean next turn starts; the option to refuse the stun for extra force damage is not expressible.",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v004",
+      "rule": "289674df4b31bf8dcca46fcedbd9e3657bf728b1edd62013076fb6f3ea4ba6a3",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnStart;given.roll=hit"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "289674df4b31bf8dcca46fcedbd9e3657bf728b1edd62013076fb6f3ea4ba6a3",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            },
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:fire-giant/action/hammer-throw",
+    "reason": "disagreement",
+    "by": "reviewer-v001",
+    "why": "Hit shoves the target up to 15 ft away and gives it disadvantage on its next attack, lasting to end of its next turn.",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v004",
+      "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "move": {
+              "mode": "push",
+              "distance": 15
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.move.distance=15;expect.move.mode=push;given.roll=hit"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "roll": {
+              "mode": "disadvantage",
+              "on": "attack",
+              "for": "target"
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "move": {
+              "mode": "push",
+              "distance": 15
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "roll": {
+              "mode": "disadvantage",
+              "on": "attack",
+              "for": "target"
+            },
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.ends=bearerTurnEnd;given.roll=hit"
+      ],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=hit",
+          "review": "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=hit"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:flumph/action/stench-spray",
+    "reason": "effectDurations",
+    "by": "reviewer-v001",
+    "why": "Failed Dex save poisons the target; the hours-long stench, the aura on others and bathing removal are not expressible.",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v004",
+      "rule": "bc1aaf3646f10ec1a9a2db77fb7031301643ae87678dca1d37d962676cccb22d",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        }
+      ],
+      "implied": [],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        },
+        {
+          "unexpressed": "out-of-combat",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "bc1aaf3646f10ec1a9a2db77fb7031301643ae87678dca1d37d962676cccb22d",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:ghast/action/claw",
+    "reason": "onHit",
+    "by": "reviewer-v001",
+    "why": "After a hit, a failed Con save paralyzes until end of target next turn; undead are not subject to it.",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v005",
+      "rule": "a6651715bcb7a0b4507f53a9671f066e0e6bc940af94babb2758058f45e47532",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "affects": "target"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "a6651715bcb7a0b4507f53a9671f066e0e6bc940af94babb2758058f45e47532",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            },
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.affects=target;given.roll=hit"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:ghost/action/horrific-visage",
+    "reason": "disagreement",
+    "by": "reviewer-v001",
+    "why": "Failed Wis save: psychic damage and frightened until the ghost next turn starts; success takes nothing, immunity not expressible.",
+    "confidence": 0.85,
+    "draft": {
+      "by": "drafter-v005",
+      "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "psychic"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnStart;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 2
+        },
+        {
+          "unexpressed": "immunity-after-save",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            },
+            "ends": "casterTurnStart"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.damage.fraction=1;expect.damage.type=psychic;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.damage.fraction=0;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:ghoul/action/claw",
+    "reason": "onHit",
+    "by": "reviewer-v001",
+    "why": "After a hit, a failed Con save paralyzes until end of target next turn; undead and elves excepted.",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v005",
+      "rule": "b072b27e5dc8dbc1bbcf868bda895ad0ae4a7592374b40f0346a1736997b2840",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "affects": "target"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 2
+        }
+      ]
+    },
+    "review": {
+      "rule": "b072b27e5dc8dbc1bbcf868bda895ad0ae4a7592374b40f0346a1736997b2840",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            },
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.affects=target;given.roll=hit"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:githzerai-psion/action/psychic-warp",
+    "reason": "disagreement",
+    "by": "reviewer-v002",
+    "why": "Hit gives a chosen rider: charm lasting to the user next turn start, or knocking down (size gated, choice not expressible)",
+    "confidence": 0.6,
+    "draft": {
+      "by": "drafter-v005",
+      "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnStart;given.roll=hit"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          },
+          "because": "target-size"
+        }
+      ]
+    },
+    "review": {
+      "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "charmed"
+            },
+            "ends": "casterTurnStart"
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.condition.applied=charmed;given.roll=hit"
+      ],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.condition.applied=prone;given.roll=hit",
+          "review": "expect.condition.applied=prone;given.roll=hit"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:graveyard-revenant/action/haunting-glare",
+    "reason": "effectDurations",
+    "by": "reviewer-v002",
+    "why": "Failed save paralyzes; the repeat save each turn end and one minute cap are not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v006",
+      "rule": "b2d23d966d7408b0e07247bb5215f71b0e9fa1ae64038dc2567b43b8f05ded27",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ]
+    },
+    "review": {
+      "rule": "b2d23d966d7408b0e07247bb5215f71b0e9fa1ae64038dc2567b43b8f05ded27",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:graveyard-revenant/action/suffocate",
+    "reason": "actionEnds",
+    "by": "reviewer-v002",
+    "why": "Hit grapples (size gated); suffocation and the two-target cap are not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v006",
+      "rule": "4469b99a209164a66139284a634dc515826b33bb594de35ee4836de91d6e7109",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "grappled"
+            }
+          }
+        }
+      ],
+      "implied": [],
+      "leaves": [
+        {
+          "unexpressed": "target-size",
+          "count": 1
+        },
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "4469b99a209164a66139284a634dc515826b33bb594de35ee4836de91d6e7109",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "grappled"
+            }
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:gray-slaad/action/chaos-claw",
+    "reason": "low-confidence",
+    "by": "reviewer-v002",
+    "why": "Hit gives one of four random conditions lasting to the user next turn start; the d4 pick is not expressible",
+    "confidence": 0.55,
+    "draft": {
+      "by": "drafter-v006",
+      "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnStart;given.roll=hit"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:green-slaad/action/chaos-staff",
+    "reason": "low-confidence",
+    "by": "reviewer-v002",
+    "why": "Hit gives one of four random conditions lasting to the user next turn start; the d4 pick is not expressible",
+    "confidence": 0.55,
+    "draft": {
+      "by": "drafter-v006",
+      "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnStart;given.roll=hit"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:grell/action/paralyzing-tentacles",
+    "reason": "actionEnds",
+    "by": "reviewer-v002",
+    "why": "Hit grapples (size gated) and forces a Con save; failure poisons and paralyzes; repeat save not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v006",
+      "rule": "1079969876bf38f33b81d2db5de3fbae2691c805ee67f4562b569dd1cd7e7cac",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "affects": "target"
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "grappled"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "target-size",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "1079969876bf38f33b81d2db5de3fbae2691c805ee67f4562b569dd1cd7e7cac",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "grappled"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.affects=target;given.roll=hit",
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:harpy/action/luring-song",
+    "reason": "targets",
+    "by": "reviewer-v002",
+    "why": "Failed save charms and incapacitates; concentration end, forced approach, type filter, immunity not expressible",
+    "confidence": 0.65,
+    "draft": {
+      "by": "drafter-v006",
+      "rule": "8dbd41b1762199a12c9bc09875daf6cfc409be0f193bb660d60b55cba95fc5aa",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave",
+            "targetType": "humanoid"
+          },
+          "expect": {
+            "condition": {
+              "applied": "charmed"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 3
+        },
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        },
+        {
+          "unexpressed": "immunity-after-save",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "8dbd41b1762199a12c9bc09875daf6cfc409be0f193bb660d60b55cba95fc5aa",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "charmed"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.condition.applied=charmed;given.roll=failedSave;given.targetType=humanoid",
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.condition.applied=charmed;given.roll=failedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:ice-devil/action/ice-spear",
+    "reason": "disagreement",
+    "by": "reviewer-v002",
+    "why": "Hit removes reactions and bonus actions and limits move or act until the end of the target next turn; speed cut in data",
+    "confidence": 0.65,
+    "draft": {
+      "by": "drafter-v007",
+      "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "denies": "reactions"
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.denies=reactions;given.roll=hit",
+        "expect.ends=bearerTurnEnd;given.roll=hit"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 2
+        }
+      ]
+    },
+    "review": {
+      "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "denies": "reactions",
+            "ends": "bearerTurnEnd"
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "denies": "actionAndBonus",
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.denies=actionAndBonus;given.roll=hit"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:jackalwere/action/sleep-gaze",
+    "reason": "actionEnds",
+    "by": "reviewer-v002",
+    "why": "Failed save knocks the target out until it is damaged; ten-minute cap, waking by others, type autosave not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v007",
+      "rule": "a98b8f8ac03d7264f7b5427cbe29cf452697cb83192c006b168ac94b86743b3f",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "unconscious"
+            }
+          }
+        }
+      ],
+      "implied": [],
+      "leaves": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "isDamaged"
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "immunity-after-save",
+          "count": 1
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "a98b8f8ac03d7264f7b5427cbe29cf452697cb83192c006b168ac94b86743b3f",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "unconscious"
+            },
+            "ends": "isDamaged"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.ends=isDamaged;given.roll=failedSave",
+          "review": "expect.ends=isDamaged;given.roll=failedSave"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:modron-pentadrone/action/paralysis-gas",
+    "reason": "effectDurations",
+    "by": "reviewer-v002",
+    "why": "Failed save paralyzes; the repeat save each turn end and one minute cap are not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v008",
+      "rule": "792c6686cbe13c60e0255b10479db355c3ba36046647f77c3cf23e85fe79ae2b",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ]
+    },
+    "review": {
+      "rule": "792c6686cbe13c60e0255b10479db355c3ba36046647f77c3cf23e85fe79ae2b",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:otyugh/action/tentacle-slam",
+    "reason": "disagreement",
+    "by": "reviewer-v002",
+    "why": "Failure: full bludgeoning damage and stun until the user next turn start; success: half damage, no stun",
+    "confidence": 0.85,
+    "draft": {
+      "by": "drafter-v009",
+      "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.damage.fraction=0.5;given.roll=savedSave",
+        "expect.ends=casterTurnStart;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "target-state",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "bludgeoning"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            },
+            "ends": "casterTurnStart"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5,
+              "type": "bludgeoning"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.roll=failedSave"
+      ],
+      "baseline": [],
+      "detail": [
+        {
+          "draft": "expect.damage.fraction=0.5;given.roll=savedSave",
+          "review": "expect.damage.fraction=0.5;expect.damage.type=bludgeoning;given.roll=savedSave"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:quasit/action/scare",
+    "reason": "effectDurations",
+    "by": "reviewer-v002",
+    "why": "Failed save frightens; the repeat save each turn end and one minute cap are not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v009",
+      "rule": "a4185148eec22b7efc4a82955adf6d5c4b14a982b4fd4089cfff8529bd90d342",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "savedSave"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ]
+    },
+    "review": {
+      "rule": "a4185148eec22b7efc4a82955adf6d5c4b14a982b4fd4089cfff8529bd90d342",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:revenant/action/vengeful-glare",
+    "reason": "effectDurations",
+    "by": "reviewer-v003",
+    "why": "Failed save frightens; repeat save at end of each own turn ends it; cursed targets are also paralyzed (curse not expressible)",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v010",
+      "rule": "01533f83cbb655a96bea53d554e9c79d6ab4d55c7cac788fe37c0b67bb606f7d",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          },
+          "because": "target-state"
+        }
+      ]
+    },
+    "review": {
+      "rule": "01533f83cbb655a96bea53d554e9c79d6ab4d55c7cac788fe37c0b67bb606f7d",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "endOfTurn",
+            "roll": "savedSave"
+          },
+          "expect": {
+            "condition": {
+              "ended": "frightened"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.condition.ended=frightened;given.moment=endOfTurn;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:roc/bonus/swoop",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "Flight provokes no opportunity attacks and the grappled creature is let go",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v010",
+      "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
+      "assert": [
+        {
+          "given": {
+            "origin": "official"
+          },
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        }
+      ],
+      "implied": [
+        "expect.denies=opportunityAttacks"
+      ],
+      "leaves": [
+        {
+          "given": {},
+          "expect": {
+            "condition": {
+              "ended": "grappled"
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "target-state",
+          "count": 1
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "condition": {
+              "ended": "grappled"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.denies=opportunityAttacks;given.origin=official"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.condition.ended=grappled",
+          "review": "expect.condition.ended=grappled"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:salamander-inferno-master/bonus/blazing-movement",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "Move with no opportunity attacks; fire aura damages a creature whose space it enters, at most once per turn",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v010",
+      "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b",
+      "assert": [
+        {
+          "given": {
+            "origin": "official"
+          },
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        }
+      ],
+      "implied": [
+        "expect.denies=opportunityAttacks"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "fire"
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        },
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "fire"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.denies=opportunityAttacks;given.origin=official"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.damage.fraction=1;expect.damage.type=fire;given.moment=enter",
+          "review": "expect.damage.fraction=1;expect.damage.type=fire;given.moment=enter"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:sea-hag/trait/vile-appearance",
+    "reason": "targets",
+    "by": "reviewer-v003",
+    "why": "Beasts and humanoids starting their turn nearby who fail are frightened until their next turn starts; success grants a day of immunity",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v010",
+      "rule": "38ab072a86e2d5b92ce054ac2538e26012e7c33fa8b6a84cca6b1b738d4134f9",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnStart;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        },
+        {
+          "unexpressed": "immunity-after-save",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "38ab072a86e2d5b92ce054ac2538e26012e7c33fa8b6a84cca6b1b738d4134f9",
+      "assert": [
+        {
+          "given": {
+            "moment": "turnStart",
+            "roll": "failedSave",
+            "targetType": "beast"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "turnStart",
+            "roll": "failedSave",
+            "targetType": "humanoid"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnStart"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.condition.applied=frightened;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.condition.applied=frightened;given.moment=turnStart;given.roll=failedSave;given.targetType=beast",
+        "expect.condition.applied=frightened;given.moment=turnStart;given.roll=failedSave;given.targetType=humanoid"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:shield-guardian/reaction/protection",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "Reaction when the amulet wearer is hit: AC bonus for the wearer lasting until the guardian next starts its turn",
+    "confidence": 0.7,
+    "draft": {
+      "by": "drafter-v010",
+      "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30",
+      "assert": [
+        {
+          "given": {
+            "origin": "official"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnStart"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30",
+      "assert": [
+        {
+          "given": {
+            "moment": "allyIsHit"
+          },
+          "expect": {
+            "affects": "target"
+          }
+        },
+        {
+          "given": {
+            "moment": "allyIsHit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=casterTurnStart",
+        "expect.ends=casterTurnStart;given.origin=official"
+      ],
+      "onlyReview": [
+        "expect.affects=target;given.moment=allyIsHit",
+        "expect.ends=casterTurnStart;given.moment=allyIsHit"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:sphinx-of-lore/action/mind-rending-roar",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "Enemies only; failure deals psychic and incapacitates until the sphinx next starts its turn; success takes nothing",
+    "confidence": 0.9,
+    "draft": {
+      "by": "drafter-v011",
+      "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "psychic"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnStart;given.roll=failedSave"
+      ]
+    },
+    "review": {
+      "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "psychic"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "affects": "enemies"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.affects=enemies;given.roll=failedSave",
+        "expect.damage.fraction=0;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:swarm-of-dretches/trait/fetid-aura",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "Start of turn in the aura and failed save: poisoned until its next turn starts, no reactions, action or bonus action only",
+    "confidence": 0.85,
+    "draft": {
+      "by": "drafter-v011",
+      "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnStart"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "denies": "actionAndBonus"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "denies": "reactions"
+          }
+        }
+      ],
+      "implied": [
+        "expect.denies=actionAndBonus;given.roll=failedSave",
+        "expect.denies=reactions;given.roll=failedSave",
+        "expect.ends=bearerTurnStart;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29",
+      "assert": [
+        {
+          "given": {
+            "moment": "turnStart",
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnStart"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "denies": "reactions"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "denies": "actionAndBonus"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.condition.applied=poisoned;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.condition.applied=poisoned;given.moment=turnStart;given.roll=failedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:vrock/action/spores",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "Failure poisons; save again at end of each own turn to end it; poison damage at start of each turn while poisoned; holy water ends it",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-v013",
+      "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "endOfTurn"
+          },
+          "expect": {
+            "ends": "savedSave"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "moment": "startOfTurn"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "poison"
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "table-ruling",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "endOfTurn",
+            "roll": "savedSave"
+          },
+          "expect": {
+            "condition": {
+              "ended": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "startOfTurn"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "poison"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=savedSave;given.moment=endOfTurn",
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.condition.ended=poisoned;given.moment=endOfTurn;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.damage.fraction=1;expect.damage.type=poison;given.moment=startOfTurn",
+          "review": "expect.damage.fraction=1;expect.damage.type=poison;given.moment=startOfTurn"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:vrock/action/stunning-screech",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "Failure deals thunder and stuns until the end of the vrock next turn; success takes nothing; demons always succeed",
+    "confidence": 0.85,
+    "draft": {
+      "by": "drafter-v013",
+      "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "casterTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=casterTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "thunder"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "casterTurnEnd"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0;given.roll=savedSave"
+      ],
+      "baseline": [
+        "expect.damage.fraction=1;expect.damage.type=thunder;given.roll=failedSave"
+      ],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:yochlol/reaction/toxic-escape",
+    "reason": "disagreement",
+    "by": "reviewer-v003",
+    "why": "When hit it halves the damage to itself and teleports; nearby creatures that fail are poisoned and incapacitated until their next turn ends",
+    "confidence": 0.7,
+    "draft": {
+      "by": "drafter-v013",
+      "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "given": {
+            "moment": "isHit"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          },
+          "because": "no-key"
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26",
+      "assert": [
+        {
+          "given": {
+            "moment": "isHit"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "isHit"
+          },
+          "expect": {
+            "affects": "self"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.affects=self;given.moment=isHit"
+      ],
+      "baseline": [],
+      "detail": [],
+      "left": [
+        {
+          "leaves": "expect.damage.fraction=0.5;given.moment=isHit",
+          "review": "expect.damage.fraction=0.5;given.moment=isHit"
+        }
+      ]
+    }
   }
 ]
