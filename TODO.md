@@ -65,6 +65,17 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       `DRAFT_FACTS`), said in `given` by nine new fields; review, the engine's readings and scenarios read them.
 - [ ] Redraft the pool R30 makes statable: 29 XMM monster features whose reread named `target-size` (11), `target-state`
       (5) or `trigger-filter` (14) among `unexpressed` (no other book has any); reread or draft them again.
+- [x] Zones and auras (Ruling R33): nine engine keys (`emanation`, `aura`, `zoneAffects`, `zoneEffects`, `selfZone`,
+      `zoneLasts`, `zoneMax`, `saveAutoSuccess`, `willingFails`) and a zone `replay` trigger, in closed shapes
+      (`zones.mjs`); `given.moment` takes `ownTurnStart` / `ownTurnEnd`, `expect.subjected: activity`, roll mode
+      `autoSuccess`; pinned to the engine's own field lists by a DAS_CORE test.
+- [ ] Draft the zone pool with R33 (no restate pass is due: no reread reason names an area): the 8 rereads whose `beyond`
+      has a zone moment (XMM 7, XPHB 1), the 17 drafts-queue entries whose drafter named an aura or zone (2 FRAIF, 15 XMM),
+      then the next sample of FRAIF, EFA and XPHB spells and items; measure Ruling R12 again before any volume.
+- [ ] Scenarios for zones: lay the activity's area, place the target inside, pass its turn (or the bearer's) and watch
+      the activity used again; until then every zone or aura moment is manual (`given.moment.<word>`).
+- [ ] Zone words still missing: an emanation on death or 0 hit points (`death-trigger`), a replay per square travelled
+      (`moves`), a replay under a condition, a radius formula (class scales), `aura.changes`.
 - [ ] Scenarios: a size-limited assertion stages only a target that satisfies the limit; the other side (a target too
       large) and the other condition fields (`targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`,
       `onOwnTurn`, `damageType`, `activity`) have no interpreter, and `targetType` is still checked on its positive side only.

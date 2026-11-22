@@ -405,3 +405,22 @@ states), 13 declined (most: no key says the main effect; 2: code). One in sixtee
 other 23 batches were not run. Only the batch with drafts was ingested; the other two samples were not, so their entries stay
 draftable. The accepted rule (a magic item) agreed with a blind review within the tolerances and ships as a partial rule.
 
+# Zones and auras for drafters (2026-11-22, Ruling R33)
+
+The commonest reason in the sample above was an area or an aura that acts on a creature over time. Nine engine keys and a
+zone `replay` trigger are now drafter keys, in closed shapes (`tools/pipeline/zones.mjs`), with three assertion words
+(the aura moments of `given.moment`, `expect.subjected`, the roll mode `autoSuccess`). Counted from closed fields only, the
+repository's registry read and not changed:
+
+| Book | Drafts-queue entries | of them, a reread `beyond` at a zone moment | Records with such a `beyond` (unruled `entry`) |
+|---|---|---|---|
+| XMM | 203 | 3 | 7 |
+| FRAIF | 3 | 0 | 0 |
+| XPHB | 0 | 0 | 1 |
+
+The moments named: `turnStart` 7, `enter` 1. The queue's `reason` (`person` 167, `code` 23, `engine` 14, `low-confidence`
+2) has no area word, and no reread `unexpressed` reason is about an area; the 306 entries of FRAIF, EFA and XPHB not yet
+drafted have no closed reason at all. Outside the closed fields, the drafters' own `why` names an aura or a zone for 17 of
+the 206 queued entries (FRAIF 2, XMM 15; a keyword search read by eye). On a copy of the registry after `npm run gates`,
+the 40 shipped rules keep their states and the generated modules, README and RULES.md do not change.
+

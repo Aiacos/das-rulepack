@@ -328,10 +328,12 @@ ones.
   (`tools/pipeline/assert.mjs`): what the rule says happens, so that a draft and a review can be compared and a scenario can
   check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free?, targetSizeAtMost?,
   targetStatus?, selfStatus?, targetWithin?, targetHp?: bloodied|wounded, targetHpAtMost?, onOwnTurn?: true, damageType?,
-  activity?: attack|melee|weapon|spell }` (the fields after `free` say a trigger's condition, Ruling R30, below); `expect: {
-  damage?: { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode: advantage|disadvantage, on:
-  attack|save|check, for: self|target|ally|enemy }, affects? (target|allies|enemies|self), denies?
-  (opportunityAttacks|reactions|actionAndBonus), move?: { mode, distance? }, uses?: { spent }, free? }`. Any other field is
+  activity?: attack|melee|weapon|spell }` (the fields after `free` say a trigger's condition, Ruling R30, below; `moment` is a
+  moment of the engine or, Ruling R33, an aura moment `ownTurnStart|ownTurnEnd`); `expect: {
+  damage?: { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode:
+  advantage|disadvantage|autoSuccess, on: attack|save|check, for: self|target|ally|enemy }, affects?
+  (target|allies|enemies|self), denies? (opportunityAttacks|reactions|actionAndBonus), move?: { mode, distance? }, uses?: {
+  spent }, subjected?: activity (Ruling R33: only with a zone or aura moment, and no roll), free? }`. Any other field is
   refused; `free` is one printable line of at most 120 characters and never stands alone (every assertion has a closed `expect`
   field); `given.origin` is one of the rule's
   `origins`; `move.distance` is a non-negative number or a formula of at most 24 characters made of digits, spaces,
@@ -350,10 +352,14 @@ ones.
   (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry, { structure })` what an
   entry says by itself, one function per drafter key (`assert.mjs` `IMPLIED`, fix round 1 of Ruling R25): `saveDamage`,
   `halfOnMiss`, `noDamage` (fractions); `triggers` (`status` and `move` steps on a roll; a plain `resave` through an effect:
-  `ends: savedSave`; a declaration's `if` goes into the `given` of each of them, and one whose condition has a part with no
-  given word implies nothing and is unassertable); `effectEnds` (`ends: <word>`), `noReactions` and `actionOrBonus` (`denies:
-  reactions` / `actionAndBonus`), `effectStatuses` (`condition.applied`), each on the roll that applies its effect in the
-  official structure (a hit for an attack's, a failed save for a save's, a saved save for `savedEffects`; every situation,
+  `ends: savedSave`; a `replay` on zone moments: `subjected: activity` at each, Ruling R33; a declaration's `if` goes into
+  the `given` of each of them, and one whose condition has a part with no given word implies nothing and is unassertable);
+  `emanation` (`subjected: activity` at its moment, `affects: enemies` beside it when only enemies; its radius, `sees` and
+  `whileActive` are unassertable), `zoneAffects` (`affects: enemies|allies`), `saveAutoSuccess` (`roll: { mode: autoSuccess,
+  on: save, for: target }` given each `targetType`; `fighting` and `sizeAtLeast` are unassertable); `effectEnds` (`ends:
+  <word>`), `noReactions` and `actionOrBonus` (`denies: reactions` / `actionAndBonus`), `effectStatuses`
+  (`condition.applied`), each on the roll that applies its effect in the official structure (a hit for an attack's, a
+  failed save for a save's, a saved save for `savedEffects`; every situation,
   `given: {}`, without it); `noOpportunity` (`denies: opportunityAttacks`, but not while flying); `saveDisadvantageFor` and
   `rollDisadvantage` (rolls with disadvantage). The other drafter keys imply nothing, each with why (`IMPLIES_NOTHING`), and a
   test fails on a drafter key in neither table. A rule using a key, or a part of one (a trigger step other than those; a
@@ -381,6 +387,33 @@ ones.
   given: a draft with a size limit and a review without one disagree, and sizes compare as values (`lg` and `huge` are two
   situations). The engine's readings go through the same `impliedAsserts`: its `all` is read as the facts together, so a
   size-limited push it reads implies the conditioned assertion, and a reread that states it is told it is not beyond.
+- **Zones and auras** (Ruling R33, `tools/pipeline/zones.mjs`). Nine engine keys join `DRAFT_KEYS`, each in a closed, typed
+  form (`DRAFT_SHAPES`, enforced by `checkDraftKeys` through `shapes.mjs` `shapeProblems`: own keys only, bounded numbers, ids
+  of the item's own activities and effects, closed words; the validator gate checks the engine's words), each with what it
+  does at the table and the engine file that says so (`ZONE_KEYS`, in `draft-vocabulary.json` `zones.keys`):
+  `emanation: { on: ownTurnEnd|ownTurnStart|turnStart, affects?: any|enemy, sees?: true, activity?: <id>, whileActive?:
+  true, radius?: 5..300 with units: "ft" }` (an aura that acts: at the bearer's turn end or start, or when a creature starts
+  its own turn within it, the item's activity is used on each creature reached; `single` slot);
+  `aura: { affects?: ally|enemy|any, includeSelf?: true, effect?: <id>, types?: [creature types], whileActive?: true,
+  radius?: 5..300 with units: "ft" }` (an effect of the item copied onto the creatures near the bearer while they stay; the
+  item's own template, when it has one, gives the radius and who instead; `single`); `zoneAffects: enemy|ally`;
+  `zoneEffects: true`; `selfZone: { <activity id>: { type: radius|sphere|circle|cube|square, size: 5..300, units: "ft" } }`
+  (`activityMap`); `zoneLasts: { seconds: 6..86400 }`; `zoneMax: 1..20`; `saveAutoSuccess: { types?, fighting?: true,
+  sizeAtLeast? }` (at least one); `willingFails: true`. And `triggers` gains a third shape, a zone that uses the item's
+  activity again (`{ on: enter|turnStart|turnEnd or a list of them, do: [{ type: "replay", activity?: <id> }] }`: replay
+  steps only, at zone moments only, no `if`). What the engine also takes and a drafter may not is refused with why
+  (`EXCLUDED_ZONE`): `aura.changes` (free key and value strings), `aura.radiusFormula` and `emanation.radiusFormula` (free
+  formulas), `aura.affects: summoner`, `emanation.atStart`, `emanation.on: death` (a death trigger), a replay `on: moves` (once
+  per square: no word for how often) or under an `if`. **One way to say it**: the moment goes with `expect.subjected:
+  activity`, one assertion per moment (`{ "given": { "moment": "turnEnd" }, "expect": { "subjected": "activity" } }`), never
+  with a roll (refused); what the activity then does is said as for any use of the item, with the roll alone (`{ "given": {
+  "roll": "failedSave" }, ... }`), not repeated per moment (allowed, as stored rereads hold it, but compared as another
+  situation). `turnStart` / `turnEnd` are a creature's OWN turn inside the zone or aura; `ownTurnStart` / `ownTurnEnd` the
+  turn of the aura's bearer (`definitions.auraMoment`). The radius of an area or aura is the item's data or the entry's, never
+  asserted. `loadCore` gives the engine's `emanationMoments`, `auraAffects` and `zoneFields` (the fields each zone validator
+  accepts, read from its own lists), and a DAS_CORE test pins every drafter shape, word and exclusion to them: a field the
+  engine adds or renames fails the suite. Scenarios: a zone or aura moment is `manual`, named `given.moment.<word>` beside
+  `expect.subjected` (the runner lays no lasting area and passes no turn with a creature inside).
 - **Partial rules** (Ruling R25, `tools/pipeline/leaves.mjs`). A rule may declare what its entry expects and it does not
   automate, as data: `rule.leaves`, at most 6 items, each an assertion `{ given, expect, because? }` of the vocabulary above
   (no `free` anywhere) of what would be true at the table but is done by hand, or `{ unexpressed, count }` (count 1 to 6) for
@@ -611,7 +644,7 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   assertions of the closed vocabulary (`assert.shapes` of `reread-vocabulary.json`: `given` with `roll`, `moment`,
 >   `origin`, `targetType` and the limits `targetSizeAtMost`, `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`,
 >   `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`; `expect` with `damage`, `condition`, `ends`, `roll`,
->   `affects`, `denies`, `move`, `uses`), one
+>   `affects`, `denies`, `move`, `uses`, `subjected`), one
 >   per thing the engine does not do, at most 6. Read each word in `definitions` of `reread-vocabulary.json`, never from its
 >   spelling (the turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end the turn of placement,
 >   `currentTurnEnd` does; `endsExamples` shows each); a word marked `"unverified"` has no established meaning: do not use
@@ -623,7 +656,10 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   across turns, a choice at use time, a death or zero-hit-point trigger, a change of form, a limit on how often it is used, a
 >   trigger filter no `activity` or `damageType` word says, a result by how much a save fails, a follow-up action, the user
 >   healing itself...). A limit to targets of a size or smaller, of a type, in a condition, bloodied, within a distance, or to a
->   melee attack, an attack, a weapon or a spell, IS sayable: put it in the `given` of a `beyond` assertion.
+>   melee attack, an attack, a weapon or a spell, IS sayable: put it in the `given` of a `beyond` assertion. So is an aura
+>   or an area that acts at a moment (Ruling R33): `{ "given": { "moment": "turnStart" }, "expect": { "subjected":
+>   "activity" } }` for a creature that starts its own turn within it, `ownTurnEnd` / `ownTurnStart` for the bearer's turn
+>   (`definitions.auraMoment`), `enter` / `turnEnd` for an area; what the activity then does is said with the roll alone.
 >   `beyond` and `unexpressed` may be given together: list as assertions what an assertion can say, and name the reason
 >   for the rest. `unexpressed` is never a way to avoid thinking: if an assertion can say it, say it in `beyond`.
 >
@@ -672,6 +708,18 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >     "distance": 10 } } } ],
 >   "why": "the engine reads nothing of it: the push of large or smaller targets on a hit is missing" }
 > ```
+>
+> **Worked example: beyond, an aura** (invented). The text of "Ember Halo" says: a creature that starts its turn within
+> 10 feet of the salamander takes fire damage. The structure has one `damage` activity with fire damage and a range of
+> 10 feet; `engineReads` is null. Nothing makes the activity act at that moment:
+>
+> ```json
+> { "key": "tst:monster:ash-salamander/trait/ember-halo", "covered": false, "confidence": 0.8,
+>   "beyond": [ { "given": { "moment": "turnStart" }, "expect": { "subjected": "activity" } } ],
+>   "why": "the damage is the item's, but nothing uses it on a creature starting its turn near the salamander" }
+> ```
+>
+> Had `engineReads` been `{ "emanation": { "on": "turnStart" } }`, the entry would be covered.
 >
 > **Worked example: unexpressed** (invented). The text of "Gale Tumble" says: Strength save; on a failure, the target is
 > knocked prone, but only if it is Medium or smaller; this cannot be used again until the start of the user's next turn.
@@ -772,8 +820,10 @@ word it takes on the user's own turn and as a reaction on another's turn). Shape
 origins side by side), `idList`, `id`, `oneOf` (any alternative), `tagged` (an object whose `type` picks its other fields),
 `true`, `number`, `formula`, `line`, `distance`, `facts` (a trigger's condition: 1 to `max` of the named facts as keys, each
 with its argument's shape). `conditions` gives the same facts with the given field that says each, and the facts left out
-with why (Ruling R30). Tests build a value from every alternative of every shape and have the
-validators (`assertProblems`, the engine's `validateEntry`) accept it.
+with why (Ruling R30). `zones` gives the zone and aura keys with what each does (`keys`), the moments a replay and an
+emanation may name, the aura moment words, and what the engine also takes with why not (`excluded`; Ruling R33). Tests
+build a value from every alternative of every shape and have the validators (`assertProblems`, the engine's `validateEntry`,
+and for the zone keys `checkDraftKeys`) accept it.
 
 The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
 
@@ -797,8 +847,8 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > same kind. Write only what a shape allows.
 >
 > **What the words mean.** `definitions` in `draft-vocabulary.json` gives the meaning of every word of the closed lists you
-> choose from (`ends`, `roll`, `moment`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`, `rollFor`, `fraction`,
-> `given`, `size`, `targetHp`, `activity`, `fact`), each
+> choose from (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`,
+> `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`), each
 > with where it comes from (`from`: the engine file, or this pack's vocabulary). Read a word there before you use it, never
 > from its spelling. The turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end on the turn the effect was
 > placed in ("until the end of its next turn"), `currentTurnEnd` ends that very turn ("until the end of the turn in
@@ -836,8 +886,48 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > `target-state`, `trigger-filter`), or answer `person` when it is the main effect. A limit the engine already reads (an
 > `if` in `engineReads`) is kept unchanged in your list, never dropped.
 >
+> **A zone or an aura: say when a creature is subjected (Ruling R33).** `zones.keys` of `draft-vocabulary.json` says what
+> each zone and aura key does. An area that lasts and acts again on a creature that enters it, or starts or ends its own
+> turn in it, is a `triggers` declaration `{ "on": [ ...those moments ], "do": [{ "type": "replay" }] }` (the item's
+> activity is used again on that creature, once per turn; `"activity": "<id>"` names another activity of the item to use
+> instead). An aura around the creature that carries the item is `emanation` (it acts at the bearer's turn end or start,
+> `ownTurnEnd` / `ownTurnStart`, or when a creature starts its own turn within it, `turnStart`) or, for an effect held while
+> near the bearer, `aura`. Assert each moment once with `"expect": { "subjected": "activity" }` and that moment alone in
+> `given`; say what the activity then does with the roll alone (`{ "roll": "failedSave" }`), as for any use of the item,
+> not once per moment. `turnEnd` is each creature's own turn in the area; `ownTurnEnd` the bearer's (`definitions.auraMoment`
+> and `definitions.moment`): read both before choosing. "Creatures of your choice", "only enemies" is `zoneAffects: "enemy"`
+> (an area) or `affects: "enemy"` (an emanation); "a construct succeeds automatically" is `saveAutoSuccess: { "types":
+> ["construct"] }`, asserted `{ "given": { "targetType": "construct" }, "expect": { "roll": { "mode": "autoSuccess", "on":
+> "save", "for": "target" } } }`. Never a `changes` list, a radius formula, an emanation on death, a replay `on: "moves"`
+> or under an `if` (`zones.excluded` says why): those are a person's. `selfZone`, `zoneLasts`, `zoneMax`, `zoneEffects`,
+> `aura`, `willingFails`, an emanation's `radius`, `sees` or `whileActive`, and `saveAutoSuccess.fighting` / `sizeAtLeast`
+> have no assertion word: write them when they are the right key, and know the rule then goes to a person at review.
+>
+> Worked example (invented). The text of "Cinder Haze" says the caster fills a 20-foot sphere with embers for the
+> spell's duration; a creature that enters it or ends its turn there makes a Constitution save, and is poisoned until the
+> start of its next turn on a failure. The structure has one `save` activity with a sphere template, concentration, and
+> an effect carrying `poisoned`:
+>
+> ```json
+> { "key": "tst:spell:cinder-haze", "outcome": "rule", "confidence": 0.85,
+>   "why": "the sphere replays its save on entering and at the end of a turn inside; poisoned is the item's effect",
+>   "rule": { "handledIn": "table", "adds": "A creature entering the haze or ending its turn there saves again.",
+>     "entry": { "triggers": [{ "on": ["enter", "turnEnd"], "do": [{ "type": "replay" }] }],
+>                "effectEnds": { "Ef21Ef32Ef43Ef54": "bearerTurnStart" } },
+>     "origins": ["official"],
+>     "assert": [
+>       { "given": { "moment": "enter" }, "expect": { "subjected": "activity" } },
+>       { "given": { "moment": "turnEnd" }, "expect": { "subjected": "activity" } },
+>       { "given": { "roll": "failedSave" }, "expect": { "condition": { "applied": "poisoned" } } } ] } }
+> ```
+>
+> Had the text said "at the end of each of the caster's turns, each creature within 10 feet of the caster takes fire
+> damage", it would be an aura of the caster, `{ "emanation": { "on": "ownTurnEnd" } }`, asserted with `"moment":
+> "ownTurnEnd"`, not `turnEnd`.
+>
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
-> list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
+> list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`,
+> `emanation`, `aura`)
 > holds one id: name one origin only and put the others in `uncovered` with a one-line reason. Every matched origin
 > (`plutonium` `unchecked` excepted) is either in `origins` or in `uncovered: [{ origin, because }]`. `origins` lists each
 > origin once. Leaving `official` uncovered (naming only `ddb-importer`) is allowed when the official item has nothing to
@@ -1012,8 +1102,9 @@ handle of `docs/owners.json`, Ruling R23).
 > true at the table when the item is used, as assertions in the closed vocabulary: `[{ given, expect }]` with the fields of
 > `assert.shapes` (`given`: `roll`, `moment`, `origin`, `targetType`, and the situations a limit names: `targetSizeAtMost`,
 > `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`;
-> `expect`: `damage` with its `fraction`, `condition` applied or ended, `ends`, `roll` with advantage or disadvantage,
-> `affects`, `denies`, `move`, `uses`; never `excludes`, which is refused). When the text limits a consequence ("if the
+> `expect`: `damage` with its `fraction`, `condition` applied or ended, `ends`, `roll` with advantage, disadvantage or
+> `autoSuccess`, `affects`, `denies`, `move`, `uses`, `subjected`; never `excludes`, which is refused).
+> When the text limits a consequence ("if the
 > target is Large or smaller", "on a melee attack", "a creature it is grappling"), state the limit in the same assertion's
 > `given` (`{ "roll": "failedSave", "targetSizeAtMost": "lg" }`): a limit stated on one side only is a disagreement, so
 > leave none out and add none the text does not give. State every
@@ -1026,6 +1117,21 @@ handle of `docs/owners.json`, Ruling R23).
 > goes to a person. A `damage` `type` and a `move` `distance` are optional detail: give them when the text does, they are
 > compared only when both sides state them. Saying that a hit or a failed save deals the item's own damage in full is
 > allowed but not needed.
+>
+> **Zones and auras** (Ruling R33). When the text makes an area or an aura act on a creature at a moment, say each moment
+> once: `{ "given": { "moment": "<word>" }, "expect": { "subjected": "activity" } }`, the moment alone in `given`. The words:
+> `enter` (it enters the area), `turnStart` / `turnEnd` (it starts / ends its OWN turn inside the area or the aura),
+> `ownTurnStart` / `ownTurnEnd` (the creature that carries the aura starts / ends ITS turn, and every creature within is
+> subjected then); read `definitions.moment` and `definitions.auraMoment`. What the activity does to the creature (the save's
+> condition, half damage on a success) is said with the roll alone, `{ "roll": "failedSave" }`, once, as for any use of the
+> item: never repeated per moment. "Only enemies" or "creatures of your choice" is `{ "given": {}, "expect": { "affects":
+> "enemies" } }` for an area, and the same with the aura's moment in `given` for an aura that acts. "Constructs succeed
+> automatically" is `{ "given": { "targetType": "construct" }, "expect": { "roll": { "mode": "autoSuccess", "on": "save",
+> "for": "target" } } }`. The radius or size of an area is the item's data: never state it. Invented example: "Each creature
+> that starts its turn within 10 feet of the hound must succeed on a save or be frightened" gives `[{ "given": { "moment":
+> "turnStart" }, "expect": { "subjected": "activity" } }, { "given": { "roll": "failedSave" }, "expect": { "condition": {
+> "applied": "frightened" } } }]`; "at the end of each of the hound's turns, each creature within 10 feet takes fire damage"
+> gives `{ "given": { "moment": "ownTurnEnd" }, "expect": { "subjected": "activity" } }`.
 >
 > You never see whether the draft declared part of the entry as left to the table (`leaves`): state everything the text
 > requires, as always; the comparison takes care of what the draft says it does not automate.
@@ -1519,6 +1625,10 @@ setup, steps }`:
   that type is small enough). Every other condition field (`targetStatus`, `selfStatus`, `targetWithin`, `targetHp`,
   `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`) is `given.<field>`: manual. `given.targetType` keeps its staging
   of the positive side only, as before.
+- Ruling R33, zones and auras: an assertion at a zone or aura moment (`enter`, `turnStart`, `turnEnd`, `ownTurnStart`,
+  `ownTurnEnd`) is manual, `given.moment.<word>` in `manualBecause` beside `expect.subjected` and `advance`: the runner lays
+  no lasting area, places no creature in it and passes no turn to watch the activity used again. An automatic success
+  (`roll.mode: autoSuccess`) is `expect.roll`, as every roll mode.
 
 **What the interpreter checks** (`play/lib/steps.mjs`; no check passes on nothing — a missing resolution for the target fails
 it, so does a use the engine refuses, at once; a target is found in the resolution by its token's uuid, never by name: the
