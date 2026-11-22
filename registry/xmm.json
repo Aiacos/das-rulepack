@@ -7587,11 +7587,33 @@
           "core": "0.289.0",
           "rule": "1fe13c65a3ca30dc97b262543a57566893cbfe7f6d56c361139d16c807a78904"
         },
+        "reviewed": {
+          "by": "reviewer-m001",
+          "at": "2026-11-22T03:16:50.755Z",
+          "agrees": true,
+          "rule": "1fe13c65a3ca30dc97b262543a57566893cbfe7f6d56c361139d16c807a78904",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=thunder;given.roll=failedSave"
+            ],
+            "detail": [
+              [
+                "expect.damage.fraction=0.5;given.roll=savedSave",
+                "expect.damage.fraction=0.5;expect.damage.type=thunder;given.roll=savedSave"
+              ],
+              [
+                "expect.move.mode=push;given.roll=failedSave",
+                "expect.move.distance=20;expect.move.mode=push;given.roll=failedSave"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T02:42:50.159Z",
+          "at": "2026-11-22T03:16:59.607Z",
           "core": "0.289.0",
           "rule": "1fe13c65a3ca30dc97b262543a57566893cbfe7f6d56c361139d16c807a78904",
-          "emits": "696ec124c349b1dddbaa1742dd3e7911a278006b53d43eba00e4ff81b37799ad",
+          "emits": "9078351d34e0c7961908fa0fd5b3041da76f3683a9e4bc25881d8d04f903b666",
           "passed": [
             "schema",
             "validator",
@@ -7667,7 +7689,7 @@
         ],
         "origin": "Air Elemental"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:air-elemental/trait/air-form",
@@ -18818,11 +18840,30 @@
           "core": "0.289.0",
           "rule": "dfb06fde2a91290498ff7fae9b2fca337345791510a5db5badac64e4e22d8ca9"
         },
+        "reviewed": {
+          "by": "reviewer-m001",
+          "at": "2026-11-22T03:16:50.755Z",
+          "agrees": true,
+          "rule": "dfb06fde2a91290498ff7fae9b2fca337345791510a5db5badac64e4e22d8ca9",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=fire;given.roll=hit",
+              "expect.damage.fraction=1;expect.damage.type=force;given.roll=hit"
+            ],
+            "detail": [
+              [
+                "expect.move.mode=pull;given.roll=hit",
+                "expect.move.distance=25;expect.move.mode=pull;given.roll=hit"
+              ]
+            ]
+          }
+        },
         "gates": {
-          "at": "2026-11-22T02:42:50.164Z",
+          "at": "2026-11-22T03:16:59.613Z",
           "core": "0.289.0",
           "rule": "dfb06fde2a91290498ff7fae9b2fca337345791510a5db5badac64e4e22d8ca9",
-          "emits": "85fa4f59b3173a39998063e214d9579e3b711a7253fbaec4d0d7dc08054f9a31",
+          "emits": "cc7d24fc26b95f38e191cbd73adee5a8c3ac9d8c7849f3cda6cde757aa7e002d",
           "passed": [
             "schema",
             "validator",
@@ -18891,7 +18932,7 @@
         ],
         "origin": "Balor"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:balor/action/lightning-blade",
