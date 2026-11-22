@@ -386,7 +386,7 @@ async function checkOne(env, roles, { use, force, observe, check, n }) {
       free: denies === "opportunityAttacks" ? await disengaged(ctx, caster) : null };
     const area = (json.setup.area ?? []).includes(use) ? { area: { shape: "rectangle", ...(await ctx.box(target)) } } : {};
     const used = await ctx.use({ tokenId: caster.id, itemId, activityId: use, targetTokenIds: [target.id],
-      ...(roles.monster ? { consume: false } : {}), ...area });
+      ...(roles.monster || json.setup.item?.kind === "item" ? { consume: false } : {}), ...area });
     if (used?.used === false || !used?.usageMessageId) {
       throw new Error(`check ${n}: the use of activity ${use} was refused (${used?.reason ?? used?.error ?? "no usage message"})`);
     }
