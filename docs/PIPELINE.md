@@ -40,9 +40,9 @@ excepted.
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`, and `DAS_CORE` for monster features) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
-| 2e | Cut reread batches | `npm run batch -- reread <BOOK> --out <dir> --structure <private dir> [--size 30] [--second]` (see "Rereading monster features") | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
+| 2e | Cut reread batches | `npm run batch -- reread <BOOK> --out <dir> --structure <private dir> [--size 30] [--second \| --restate]` (see "Rereading monster features") | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
 | 2f | Reread a batch | (no command: a reread agent reads files, blind to every earlier verdict) | `RULEPACK_TEXT` | the Claude Code session, via reread agents |
-| 2g | Ingest rereads | `npm run ingest -- <results-file> --reread [--second] --batch <batch file>` (see "Ingesting rereads") | `RULEPACK_TEXT`, `DAS_CORE`, `RULEPACK_DUMPS` | the Claude Code session |
+| 2g | Ingest rereads | `npm run ingest -- <results-file> --reread [--second \| --restate] --batch <batch file>` (see "Ingesting rereads") | `RULEPACK_TEXT`, `DAS_CORE`, `RULEPACK_DUMPS` | the Claude Code session |
 | 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
 | 3c | Ingest drafts | `npm run ingest -- <results-file> --draft --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
@@ -572,6 +572,16 @@ holds counts only: the batches, the entries cut, each reason a candidate was lef
 reread done` otherwise: confirmed, or back to `entry` by a disagreement or an unsure second reader), when the engine still
 reads them as the first reread judged them (`reading changed since the first reread` otherwise). Give it to a reader with
 another handle than the first: the ingest refuses the same one.
+
+`--restate` (Ruling R31; never with `--second`, a usage error) reads ONCE more the first rereads the vocabulary has since
+caught up with: `covered: false`, an `unexpressed` naming `target-size`, `target-state` or `trigger-filter` (`RESTATABLE`,
+statable since trigger conditions, Ruling R30), and no `restated: true` (`restatable`). Only those are cut (every other
+monster entry is left out as `not restatable`), the same reading notwithstanding; every other check above holds. The batches
+keep the `-reread-` numbering, carry `restate: true`, and the report is `<book>-reread-restate-report.json`. They are
+ingested with `--reread --restate` only (a restate batch without it, or a plain one with it, is refused): a record that is no
+longer restatable is rejected, the same-reading refusal does not apply, and the reread stored, whatever it answers (beyond,
+unexpressed, or covered: the provisional `core` below), replaces the old one and carries `restated: true`, so a restate never
+cuts it again; an unsure answer leaves the record as it was.
 
 ### 📖 Brief for a reread agent
 
@@ -1356,7 +1366,8 @@ reading. For each result:
   what the record was, in the shape the pre-pass uses (the reader's triage evidence, an older reread left out), `reading` the
   fingerprint of the reading judged. If the key is in `drafts-queue.json`, its entry is removed (it no longer needs a rule).
 - **Beyond** (`covered: false`, at least 0.7): the verdict stays `entry`, the record gains `hint: "beyond-engine"`, and
-  `evidence.triaged.reread = { by, at, confidence, reading, covered: false, beyond?, unexpressed? }` beside the reader's
+  `evidence.triaged.reread = { by, at, confidence, reading, covered: false, beyond?, unexpressed?, restated? }` beside the
+  reader's
   triage evidence: `beyond` the assertions, `unexpressed` the reasons for what is missing and no assertion can state (data;
   `batch draft` hands the drafter `beyondEngine` from `beyond` only). A drafts-queue entry stays as it is (the drafter's
   answer still stands) and gains nothing.

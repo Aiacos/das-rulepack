@@ -366,3 +366,19 @@ What readers could not state in the closed vocabulary, by reason (one feature ma
 With the drafts queue's ranking (advantage or a bonus under a condition, state kept across turns, the size limit, an
 armour-class bonus against one hit), this is the list for the wider vocabulary: a trigger filter and a size limit come first.
 
+# Trigger conditions and the restate pass (2026-11-22)
+
+The drafter vocabulary gained conditions on a trigger (14 closed engine facts) and the assertion vocabulary the matching
+`given` fields (Ruling R30). The 29 Monster Manual features whose reread had named a size limit, a target state or a trigger
+filter were read once more (`--restate`, Ruling R31): all 29 answered with confidence, none covered.
+
+| Outcome of the restate pass | Features |
+|---|---|
+| Now stated as assertions | 12 |
+| of which with a size limit on the target | 11 |
+| Still only a reason | 17 |
+
+What is still not statable among them: a trigger filter 12 (nearly all the same one: a reaction that needs a melee weapon in
+hand, where "melee" can be said and "in hand" cannot, so readers left the whole limit unstated), no key 6, a follow-up action
+3, a target state 3, others 1 or 2. The size limit went from 11 to 1.
+

@@ -251,4 +251,8 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       monster features `core` by two readers and 136 `entry` beyond the engine. Reasons ranked in `docs/pilot-m3.md`.
 - [ ] Wider vocabulary, in this order: a filter on a trigger (melee only, a kind of attack), a size limit on targets (the
       engine has the fact `target.sizeAtMost` for a trigger's `if`), a use limit per round or turn.
+- [x] Trigger conditions (R30) and one restate pass (R31) over the 29 XMM features: 12 now stated (11 with a size limit),
+      17 still a reason. Size limit 11 -> 1.
+- [ ] A reaction limited to "a melee weapon in hand": decide whether the brief should state the melee part and leave the
+      rest (11 features, one pattern), then the next keys: follow-up action, state across turns.
 

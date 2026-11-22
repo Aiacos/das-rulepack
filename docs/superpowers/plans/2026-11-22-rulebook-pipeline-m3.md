@@ -347,6 +347,21 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   does in part (more work for drafters, never less checking); (d) `targetType` from a condition shares the old positive-only
   staging of `saveDisadvantageFor`: a scenario of a type-limited trigger checks the right type only.
 
+- **R31 — one restate pass per vocabulary change.** A first reread that found only what the vocabulary could not state is
+  never cut again for the same reading, so when the vocabulary grows (R30 made `target-size`, `target-state` and
+  `trigger-filter` statable in part) those verdicts would stand on yesterday's words. `batch reread --restate` cuts, once, the
+  first rereads with `covered: false` whose `unexpressed` names one of those reasons (`reread.mjs` `RESTATABLE`,
+  `restatable`), bypassing only the same-reading check; `ingest --reread --restate` replaces the reread whatever it answers
+  and marks it `restated: true` (the schema allows it on a first reread only, `true` only), so it is never restated again.
+  A covered answer takes the normal provisional `core` path, still subject to a second reread; an unsure one changes
+  nothing. A later vocabulary change that makes other reasons statable gets its own pass: `RESTATABLE` is changed, and the
+  mark cleared for the records it concerns, by a decision recorded as a new ruling. *Cost if wrong:* (a) the mark is
+  one-shot: a restate whose reader was wrong but sure is not restated again without a new ruling, so a record may stay
+  `entry` (more work for drafters) or turn provisional `core` (caught only by the second reread); (b) a reason that stays
+  unsayable (a size relative to the user's, a ranged-only filter) is read again for nothing, a cost of reader time only;
+  (c) the mark does not name the vocabulary it was judged against, so a reader cannot tell from the record alone which
+  change it answered.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed

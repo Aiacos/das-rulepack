@@ -270,11 +270,13 @@ export function readingProblems(reading) {
 }
 
 // A reread (reread.mjs): `{ by, at, confidence, reading: { core, sha }, covered, beyond?, unexpressed?, provisional?,
-// second? }`, `second` the same without `provisional` and `second`, or `{ by, at, confidence, reading, outcome:
-// "second-unsure" }` (a second reader below the threshold: the core is not confirmed). With `covered: false`, `beyond` (a list
-// of assertions of the closed vocabulary, as an agent writes them, with no `free` anywhere) or `unexpressed` (distinct
-// reasons of LEAVE_REASONS: what is missing that no assertion can state), or both: data, never prose.
-const REREAD_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "unexpressed", "provisional", "second"];
+// second?, restated? }`, `second` the same without `provisional`, `second` and `restated`, or `{ by, at, confidence,
+// reading, outcome: "second-unsure" }` (a second reader below the threshold: the core is not confirmed). With `covered:
+// false`, `beyond` (a list of assertions of the closed vocabulary, as an agent writes them, with no `free` anywhere) or
+// `unexpressed` (distinct reasons of LEAVE_REASONS: what is missing that no assertion can state), or both: data, never prose.
+// `restated: true`: the first reread a restate wrote (reread.mjs, Ruling R31), never cut again by a restate.
+const REREAD_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "unexpressed", "provisional", "second",
+  "restated"];
 const REREAD_SECOND_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "unexpressed", "outcome"];
 export const REREAD_BEYOND_MAX = 6;
 /** The closed outcomes of a second reread that carry no answer (reread.mjs): an unsure second reader. */
@@ -342,6 +344,7 @@ function rereadProblems(triaged, verdict, why) {
   if (!isObject(r)) return errors;
   if (has(r, "second")) errors.push(...rereadReadingProblems(r.second, `${at}.second`, REREAD_SECOND_FIELDS));
   if (has(r, "provisional") && r.provisional !== true) errors.push(`${at}.provisional: must be true when present`);
+  if (has(r, "restated") && r.restated !== true) errors.push(`${at}.restated: must be true when present`);
   if (r.covered === false && has(r, "second")) errors.push(`${at}.second: only a covered first reread is read again`);
   if (r.covered === true && has(r, "second") === has(r, "provisional")) {
     errors.push(`${at}.provisional: a covered reread is provisional until a second reread, and only then`);

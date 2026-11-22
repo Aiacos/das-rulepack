@@ -760,17 +760,21 @@ const memoByKey = (f) => {
   };
 };
 
-const REREAD_USAGE = "batch reread <BOOK> --out <dir> --structure <private dir> [--size <n>] [--second]"
+const REREAD_USAGE = "batch reread <BOOK> --out <dir> --structure <private dir> [--size <n>] [--second | --restate]"
   + " (needs DAS_CORE and RULEPACK_DUMPS: the engine's reading of each monster feature is computed at cut time)";
 
 // `batch reread <BOOK> --out <dir> --structure <private dir> [--size <n>] [--second]` (reread.mjs): the unruled monster
 // `entry` records the engine reads something of, for a reader blind to every earlier verdict; with `--second`, the provisional
 // `core` records of a first reread, for another reader. Writes the batches, their structure files (with `engineReads`), the
 // vocabulary of the assertions (`reread-vocabulary.json`: the review's) and `<book>-reread[-second]-report.json` (counts).
+// With `--restate` (Ruling R31), the first rereads whose `unexpressed` the vocabulary now states (reread.mjs restatable), once:
+// the batches keep the reread series, marked `restate: true`; the report is `<book>-reread-restate-report.json`.
 async function rereadBatchCommand(book, rest) {
   const usage = `Usage: ${REREAD_USAGE}`;
   const second = rest.includes("--second");
-  const args = rest.filter((a) => a !== "--second");
+  const restate = rest.includes("--restate");
+  if (second && restate) throw new UsageError("--restate and --second cannot be used together: a restate reads first rereads");
+  const args = rest.filter((a) => a !== "--second" && a !== "--restate");
   const opts = {};
   for (let i = 0; i < args.length; i += 2) {
     if (!["--out", "--size", "--structure"].includes(args[i]) || args[i + 1] === undefined) throw new UsageError(usage);
@@ -802,7 +806,7 @@ async function rereadBatchCommand(book, rest) {
   const series = second ? "reread-second" : "reread";
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
   const { batches, leftOut } = cutRereadBatches(found.records, {
-    size, after, readingOf, core, second, reviewQueued, triageQueued
+    size, after, readingOf, core, second, restate, reviewQueued, triageQueued
   });
   // Every structure is computed before anything is written.
   const structures = batches.map((b) => structuresOf(b, found.records, dumpsDir, { engine: core }));
@@ -814,7 +818,8 @@ async function rereadBatchCommand(book, rest) {
     write(join(opts.structure, `${b.id}.structure.json`), structures[i]);
   });
   write(join(opts.out, "reread-vocabulary.json"), rereadVocabulary(core));
-  write(join(opts.out, `${found.book.toLowerCase()}-${series}-report.json`), rereadReport(found.book, batches, leftOut));
+  const report = `${found.book.toLowerCase()}-${series}${restate ? "-restate" : ""}-report.json`;
+  write(join(opts.out, report), rereadReport(found.book, batches, leftOut));
   for (const [why, n] of Object.entries(leftOut)) console.log(`left out: ${n} records (${why})`);
   console.log(`${batches.length} batches (${batches.reduce((n, b) => n + b.entries.length, 0)} entries) written to ${opts.out},`
     + ` structure files to ${opts.structure}`);
@@ -913,14 +918,17 @@ function readResultsFile(file, mode) {
 
 // The keys a reread batch file offers, each with the fingerprint of the reading its entry was cut against: the batch id must
 // be the results file's `batch`, `<book>-reread-<NNN>` (or `<book>-reread-second-<NNN>` with `second`), its stage `reread`,
-// `second` as the command says, and every entry a key of that book with a reading `{ core, sha }`.
-function offeredRereads(id, file, second) {
+// `second` and `restate` as the command says, and every entry a key of that book with a reading `{ core, sha }`.
+function offeredRereads(id, file, second, restate = false) {
   const m = new RegExp(`^([a-z][a-z0-9]{1,9})-reread-${second ? "second-" : ""}(\\d{3,})$`).exec(String(id));
   const shape = second ? "<book>-reread-second-<NNN>" : "<book>-reread-<NNN>";
   if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a ${second ? "second " : ""}reread batch id (${shape})`);
   const batch = readJson(file, "batch file");
-  if (batch?.id !== id || batch?.stage !== "reread" || (batch.second === true) !== second || !Array.isArray(batch?.entries)) {
-    throw new UsageError(`${file}: not the reread batch ${id} (its id, stage "reread"${second ? ", second" : ""} and entries)`);
+  if (batch?.id !== id || batch?.stage !== "reread" || (batch.second === true) !== second
+    || (batch.restate === true) !== restate || !Array.isArray(batch?.entries)) {
+    const marks = `${second ? ", second" : ""}${restate ? ", restate" : ""}`;
+    throw new UsageError(`${file}: not the reread batch ${id} (its id, stage "reread"${marks} and entries; a restate batch`
+      + " is ingested with --restate, and only it)");
   }
   const ok = (e) => typeof e?.key === "string" && e.key.startsWith(`${m[1]}:`) && e.reading !== null
     && typeof e.reading === "object" && typeof e.reading.sha === "string" && /^[0-9a-f]{64}$/.test(e.reading.sha);
@@ -934,18 +942,22 @@ function offeredRereads(id, file, second) {
 // record to `core` (and takes it out of drafts-queue.json), one that found something beyond the engine hints it
 // `beyond-engine`; with `--second`, a second reading of a provisional `core` agrees or (fail closed: a disagreement or an
 // unsure second reader) gives the record back its verdict; a record a second reader already settled is reported, not rejected.
+// With `--restate` (a batch cut with --restate, Ruling R31), the restatable records are read again, the same reading
+// notwithstanding, and the reread stored is marked `restated: true`.
 // The engine's reading of each record is computed again (DAS_CORE, RULEPACK_DUMPS): a batch cut against another is stale.
 async function ingestRereadCommand(args) {
-  const usage = "Usage: ingest <results-file> --reread [--second] --batch <batch file>"
+  const usage = "Usage: ingest <results-file> --reread [--second | --restate] --batch <batch file>"
     + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT)";
   const others = ["--third", "--overwrite", "--settle-unsure", "--draft", "--review", "--min"].filter((m) => args.includes(m));
   if (others.length) throw new UsageError(`--reread and ${others.join(" and ")} cannot be used together`);
   const second = args.includes("--second");
+  const restate = args.includes("--restate");
+  if (second && restate) throw new UsageError("--restate and --second cannot be used together: a restate reads first rereads");
   const rest = [];
   let batchFile = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === "--batch") { batchFile = args[(i += 1)] ?? ""; continue; }
-    if (args[i] !== "--reread" && args[i] !== "--second") rest.push(args[i]);
+    if (!["--reread", "--second", "--restate"].includes(args[i])) rest.push(args[i]);
   }
   const [file, ...extraArgs] = rest;
   if (!file || extraArgs.length || !batchFile) {
@@ -956,7 +968,7 @@ async function ingestRereadCommand(args) {
   const dumpsDir = need("RULEPACK_DUMPS");
   if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   const input = readResultsFile(file, "--reread");
-  const { book, offered } = offeredRereads(input.batch, batchFile, second);
+  const { book, offered } = offeredRereads(input.batch, batchFile, second, restate);
   checkQueues(REGISTRY);
   const core = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
@@ -972,7 +984,7 @@ async function ingestRereadCommand(args) {
     current.set(key, { reading: engineReading(doc, core, { actorId }), structure: structureOf(doc) });
   }
   const out = ingestRereads(all, input.results, {
-    textDir, by: input.by, core, offered, current, second, draftsQueue: loadQueue(REGISTRY, "drafts"),
+    textDir, by: input.by, core, offered, current, second, restate, draftsQueue: loadQueue(REGISTRY, "drafts"),
     reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY)
   });
   const changed = second ? [...out.agreed, ...out.disagreed, ...out.unsureReverted] : [...out.covered, ...out.beyond];
@@ -994,7 +1006,8 @@ async function ingestRereadCommand(args) {
 async function ingestCommand(args) {
   if (args.includes("--reread")) return ingestRereadCommand(args);
   const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>"
-    + " | --review --batch <batch file> | --reread [--second] --batch <batch file>] | ingest --settle-unsure [--min <n>]"
+    + " | --review --batch <batch file> | --reread [--second | --restate] --batch <batch file>]"
+    + " | ingest --settle-unsure [--min <n>]"
     + " (--draft and --review need RULEPACK_DUMPS: the official item's structure backs a condition and gives the item's"
     + " own damage, Ruling R24)";
   const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
