@@ -6,7 +6,8 @@ import { DRAFT_KEYS, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStru
 import { FIX_ENUMS, describeFixTypes } from "./fix-types.mjs";
 import * as assertVocabulary from "./assert.mjs";
 import { isFormula } from "./assert.mjs";
-import { monsterIdentifier } from "./identifiers.mjs";
+import { monsterIdentifier, sourceKeysOf } from "./identifiers.mjs";
+import { sharedEmbeddedId } from "./settle.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
 
@@ -73,9 +74,12 @@ const matchedItems = (r) => (r.items ?? []).filter((i) => i?.match === "matched"
 /**
  * Why an `entry` record is not cut into a draft batch, or null when it is: `already ruled`, `queued` (in drafts-queue.json),
  * `no text`, `no matched item` (a drafter has no ids to take), `monster feature that cannot be scoped` (no creature or name,
- * so no identifier can be made: identifiers.mjs monsterIdentifier).
+ * so no identifier can be made: identifiers.mjs monsterIdentifier), and the monster features the gates would fail whatever is
+ * drafted: no official item, an official item with no embedded id, or an embedded id that another creature of the package
+ * embeds. The last is decided here from `embedded` (settle.mjs embeddedIndex of the package's actors), with the test inventory
+ * binds by: the record's own `embeddedShared` flag exists only once a rule is bound. A monster is not decided without it.
  */
-export function draftSkipReason(r, { queued = new Set() } = {}) {
+export function draftSkipReason(r, { queued = new Set(), embedded } = {}) {
   if (r.rule) return "already ruled";
   if (queued.has(r.key)) return "queued";
   if (!r.text) return "no text";
@@ -88,7 +92,12 @@ export function draftSkipReason(r, { queued = new Set() } = {}) {
     // The gates would fail it whatever is drafted (gates.mjs `ids`: SHARED_EMBEDDED; an official item is what the ids bind to).
     const official = matchedItems(r).filter((i) => i.origin === "official");
     if (!official.length) return "monster feature: no official item";
-    if (official.some((i) => i.embeddedShared)) return "monster feature: shared embedded id, waits on upstream";
+    if (!embedded) throw new TypeError("draftSkipReason: a monster feature needs the actors of the book's package (embedded)");
+    const own = official.flatMap((i) => sourceKeysOf(i, "monster"));
+    if (!own.length) return "monster feature: official item has no embedded id";
+    if (official.some((i) => i.embeddedShared) || own.some((id) => sharedEmbeddedId(embedded, id, r.owner))) {
+      return "monster feature: shared embedded id, waits on upstream";
+    }
   }
   return null;
 }
@@ -172,13 +181,14 @@ const draftEntryOf = (r, examples) => ({
  * Draft batches `{ id: "<book>-draft-<NNN>", stage: "draft", entries }`: the `entry` records with no rule that draftSkipReason
  * accepts, per book, one kind per batch (kinds in DRAFT_KIND_ORDER), records with a matched official item first, cut at `size`.
  * `queued` (keys of drafts-queue.json) are left out; `after` ({ book: highest number }) makes the numbering continue.
+ * `embedded` (settle.mjs embeddedIndex of the package's actors) is required when a monster feature is among the records.
  * `core` is loadCore's result (`shipped`, for the examples); `ruled` the records examples may come from (default: `records`),
  * `gated(record)` which of them stand gated.
  */
 export function cutDraftBatches(records, options = {}) {
-  const { size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated } = options;
+  const { size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded } = options;
   const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind)
-    && draftSkipReason(r, { queued }) === null);
+    && draftSkipReason(r, { queued, embedded }) === null);
   const pool = exampleCandidates(records, { core, ...(ruled ? { ruled } : {}), ...(gated ? { gated } : {}) });
   const official = (r) => matchedItems(r).some((i) => i.origin === "official");
   const rank = (k) => (DRAFT_KIND_ORDER.includes(k) ? DRAFT_KIND_ORDER.indexOf(k) : DRAFT_KIND_ORDER.length);

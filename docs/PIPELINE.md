@@ -348,8 +348,12 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 per batch (`--size`), one kind per batch, kinds in the order spell, feat, option, species, background, item, feature,
 monster, records with a matched official item first. A record is left out (and counted on the console, by reason) when it is
 already ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, or is a monster feature that can
-never pass the gates (no creature to scope it to; "no official item"; "shared embedded id, waits on upstream"). It writes
-`<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`), `<private
+never pass the gates (no creature to scope it to; "no official item"; "official item has no embedded id"; "shared embedded
+id, waits on upstream"). The last is decided by `batch draft` itself, as inventory decides it when it binds a rule
+(`settle.mjs` `embeddedIndex`, `sharedEmbeddedId`): a feature is cut only when its official embedded item id is unique among
+the actors of the book's package, which `batch draft` reads from `RULEPACK_DUMPS` (always needed, as `--structure` is
+mandatory; the usage error says so). The record's own `embeddedShared` flag is no help: it is written only once a rule is
+bound. It writes `<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`), `<private
 dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-derived, private) and
 `<dir>/draft-vocabulary.json` (engine words only, and for every allowed data-fix path its type as a declarative description,
 `fixes.types`, generated from the table that also checks it: safe to commit). A batch is `{ id, stage: "draft", allowed,

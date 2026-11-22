@@ -4,6 +4,7 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { cutDraftBatches, draftSkipReason, draftVocabulary } from "../../tools/pipeline/batch.mjs";
+import { embeddedIndex } from "../../tools/pipeline/settle.mjs";
 import { DRAFT_KEYS, checkDraftKeys } from "../../tools/pipeline/draft-keys.mjs";
 import { typeProblem } from "../../tools/pipeline/fix-types.mjs";
 import { saveBook, saveQueue } from "../../tools/pipeline/registry.mjs";
@@ -57,8 +58,8 @@ describe("cutDraftBatches", () => {
   it("leaves out a monster feature that cannot be scoped to its creature", () => {
     const m = rec(1, { kind: "monster", key: "tst:monster:a/b", name: "Bite", owner: "Beast" });
     const bad = rec(2, { kind: "monster", key: "tst:monster:c/d", name: "Claw" });
-    expect(draftSkipReason(bad, {})).toBe("monster feature that cannot be scoped");
-    const [b] = cutDraftBatches([m, bad], { core });
+    expect(draftSkipReason(bad, { embedded: embeddedIndex([]) })).toBe("monster feature that cannot be scoped");
+    const [b] = cutDraftBatches([m, bad], { core, embedded: embeddedIndex([]) });
     expect(b.entries.map((e) => [e.key, e.identifier])).toEqual([["tst:monster:a/b", "tst-beast-bite"]]);
   });
 
@@ -67,12 +68,42 @@ describe("cutDraftBatches", () => {
     const shared = rec(1, { ...base, key: "tst:monster:a/b", items: [item({ embeddedShared: true })] });
     const ddbOnly = rec(2, { ...base, key: "tst:monster:c/d", items: [item({ origin: "ddb-importer" })] });
     const fine = rec(3, { ...base, key: "tst:monster:e/f" });
-    expect([shared, ddbOnly, fine].map((r) => draftSkipReason(r, {}))).toEqual([
+    expect([shared, ddbOnly, fine].map((r) => draftSkipReason(r, { embedded: embeddedIndex([]) }))).toEqual([
       "monster feature: shared embedded id, waits on upstream", "monster feature: no official item", null
     ]);
-    expect(cutDraftBatches([shared, ddbOnly, fine], { core })[0].entries.map((e) => e.key)).toEqual(["tst:monster:e/f"]);
+    const cut = cutDraftBatches([shared, ddbOnly, fine], { core, embedded: embeddedIndex([]) });
+    expect(cut[0].entries.map((e) => e.key)).toEqual(["tst:monster:e/f"]);
     // Only monsters: a spell with a shared flag or without an official item is still drafted.
     expect(draftSkipReason(rec(4, { items: [item({ origin: "ddb-importer" })] }), {})).toBeNull();
+  });
+
+  describe("a monster feature's shared embedded id is decided from the actors, not from a flag on the record", () => {
+    const own = "Ab12Cd34Ef56Gh78";
+    const mon = (n, over = {}) => rec(n, {
+      kind: "monster", name: "Bite", owner: "Beast", key: `tst:monster:beast/bite${n}`,
+      items: [item({ docId: `Ac00Ac11Ac22Ac33.${own}` })], ...over
+    });
+    const actor = (name, ...ids) => ({ id: "Xx", name, items: ids.map((i) => ({ docId: `Xx.${i}` })) });
+    it("is cut when no other creature embeds the id; same-name actors are the same creature", () => {
+      const embedded = embeddedIndex([actor("Beast", own), actor("Beast", own, "Zz11Zz22Zz33Zz44")]);
+      expect(draftSkipReason(mon(1), { embedded })).toBeNull();
+      expect(mon(1).items[0]).not.toHaveProperty("embeddedShared");
+    });
+    it("is left out when another creature embeds it, though the record carries no flag", () => {
+      const embedded = embeddedIndex([actor("Beast", own), actor("Other Beast", own)]);
+      expect(draftSkipReason(mon(1), { embedded })).toBe("monster feature: shared embedded id, waits on upstream");
+      expect(cutDraftBatches([mon(1), mon(2, { items: [item({ docId: "Ac00Ac11Ac22Ac33.Qq11Qq22Qq33Qq44" })] })],
+        { core, embedded }).flatMap((b) => b.entries.map((e) => e.key))).toEqual(["tst:monster:beast/bite2"]);
+    });
+    it("is left out when its official item has no embedded id of 16 characters", () => {
+      expect(draftSkipReason(mon(1, { items: [item({ docId: "short" })] }), { embedded: embeddedIndex([]) }))
+        .toBe("monster feature: official item has no embedded id");
+    });
+    it("cannot be decided without the actors: the cut refuses rather than guess", () => {
+      expect(() => draftSkipReason(mon(1), {})).toThrow(/actors/);
+      expect(() => cutDraftBatches([mon(1)], { core })).toThrow(/actors/);
+      expect(cutDraftBatches([rec(1)], { core }).length).toBe(1);
+    });
   });
 
   it("puts records with a matched official item first, one kind per batch, kinds in the ruled order", () => {

@@ -13,7 +13,7 @@ import {
   reprintIndex
 } from "./dumps.mjs";
 import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
-import { poolOf } from "./settle.mjs";
+import { embeddedIndex, poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
 import { loadCore } from "./core.mjs";
 import { runGates } from "./gates.mjs";
@@ -393,7 +393,8 @@ function queueEntries(dir) {
 
 async function batchCommand([stage, book, ...rest]) {
   const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>] "
-    + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]";
+    + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
+    + " (needs DAS_CORE and RULEPACK_DUMPS: monster features are checked against the actors of the book's package)";
   if (!["triage", "draft"].includes(stage) || !book) throw new UsageError(usage);
   const draft = stage === "draft";
   const opts = {};
@@ -423,15 +424,21 @@ async function batchCommand([stage, book, ...rest]) {
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
   let batches;
   let core = null;
+  let embedded;
   if (draft) {
     core = await loadCore(need("DAS_CORE"));
     checkQueues(REGISTRY);
     const queued = new Set(loadQueue(REGISTRY, "drafts").map((q) => q.key));
     const every = loadRegistry(REGISTRY).flatMap((b) => b.records);
-    batches = cutDraftBatches(found.records, { size, kind: opts.kind, after, queued, core, ruled: every });
+    // A monster feature's shared embedded id is decided from the actors of the book's package (the test inventory binds by).
+    const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+    const actors = officialFilesFor(dumpsDir, packages, found.book).filter(isActorFile)
+      .flatMap((f) => actorSummaries(readDump(join(dumpsDir, f)), "official"));
+    embedded = embeddedIndex(actors);
+    batches = cutDraftBatches(found.records, { size, kind: opts.kind, after, queued, core, ruled: every, embedded });
     const left = {};
     for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
-      const why = draftSkipReason(r, { queued });
+      const why = draftSkipReason(r, { queued, embedded });
       if (why) left[why] = (left[why] ?? 0) + 1;
     }
     for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);
