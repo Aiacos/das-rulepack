@@ -347,3 +347,6 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Four more plays recorded, among them the first rules bound to one creature by an actor.item source.
 - [x] Redraft against two standing reviews (R41): 2 of 12 confirmed and shipped. 55 rules ship.
 
+- [x] Two more plays recorded (Death Cultist, Death Slaad). The Death Slaad scenario failed 2 runs of 4 at "effect gone":
+      two direct reproductions show the engine ends all four effects at the turn start; the runner is at fault, cause open.
+- [ ] Scenario runner: the intermittent "effect not gone" on the Death Slaad scenario.

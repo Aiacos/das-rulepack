@@ -39911,6 +39911,14 @@
           "items": {
             "official": "a370ad912fbaf0effc2136ba7029558760868b5b254fb77d776930f581542bf0"
           }
+        },
+        "played": {
+          "at": "2026-11-22T22:38:11.904Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-death-cultist-action-dread-scythe",
+          "client": "gm",
+          "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f"
         }
       },
       "why": "Target cannot regain HP until end of its next turn; data effect has no changes to enforce it.",
@@ -39947,7 +39955,7 @@
         ],
         "origin": "Death Cultist"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:death-cultist/action/multiattack",
@@ -41634,6 +41642,14 @@
           "items": {
             "official": "167048b117ceafbb2681dd7f35aeca4a0eeb00e7e1d6311134112a085866b045"
           }
+        },
+        "played": {
+          "at": "2026-11-22T22:38:12.268Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-death-slaad-action-chaos-blade",
+          "client": "gm",
+          "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa"
         }
       },
       "why": "Random condition from a d4 until next turn; data applies all four effects instead of one rolled.",
@@ -41667,7 +41683,7 @@
         ],
         "origin": "Death Slaad"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:death-slaad/action/multiattack",

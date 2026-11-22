@@ -85,8 +85,8 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 | Slowing Breath (Ancient Copper Dragon) | Monster feature | p.80 | The slowing effect from the breath lasts until the affected creature finishes its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Played |
 | Unnerving Gaze (Chain Devil) | Monster feature | p.68 | The fear ends at the end of the turn it was imposed in. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (immunity-after-save 1, table-ruling 1). | table, partial | Played |
 | Hasten (Clay Golem) | Monster feature | p.72 | After using it, the golem's movement provokes no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
-| Dread Scythe (Death Cultist) | Monster feature | p.86 | The healing block on the struck creature lapses when its next turn ends. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
-| Chaos Blade (Death Slaad) | Monster feature | p.287 | Whichever rolled condition lands ends as the slaad's next turn starts. | table | Validated |
+| Dread Scythe (Death Cultist) | Monster feature | p.86 | The healing block on the struck creature lapses when its next turn ends. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Played |
+| Chaos Blade (Death Slaad) | Monster feature | p.287 | Whichever rolled condition lands ends as the slaad's next turn starts. | table | Played |
 | Dreadful Howl (Dire Worg) | Monster feature | p.335 | The fear ends when the worg's following turn begins; a save halves the damage. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
 | Terrifying Presence (Dracolich) | Monster feature | p.102 | The fear ends when the target's following turn ends; a save avoids the damage. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
 | Sacred Weapon (Empyrean) | Monster feature | p.113 | The stun ends when the user's next turn begins; the extra damage ignores resistance. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). Carries over 1 engine key (usageLimits). | table, partial | Validated |
@@ -230,7 +230,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-55 rules: 33 played, 22 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 4 of them settled by a second review (Ruling R40). 2 of them settled by a redraft that agrees with two reviews (Ruling R41). 24 of them partial (part of the entry left to the table). 74 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 3).
+55 rules: 35 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 4 of them settled by a second review (Ruling R40). 2 of them settled by a redraft that agrees with two reviews (Ruling R41). 24 of them partial (part of the entry left to the table). 74 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 3).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell
