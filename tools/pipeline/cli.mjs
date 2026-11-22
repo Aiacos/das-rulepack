@@ -21,7 +21,10 @@ import { generate } from "./generate.mjs";
 import {
   autoTriage, clip, ingest, ingestSecond, ingestThird, isReaderHandle, setByRule, settleUnsure, triageContext, BY
 } from "./triage.mjs";
-import { cutBatches, DEFAULT_BATCH_SIZE, highestBatches } from "./batch.mjs";
+import {
+  cutBatches, cutDraftBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftSkipReason, draftVocabulary, highestBatches
+} from "./batch.mjs";
+import { DRAFT_KEYS } from "./draft-keys.mjs";
 import { structureOf } from "./structure.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -388,20 +391,22 @@ function queueEntries(dir) {
   return queue.filter((q) => q !== null && typeof q === "object" && typeof q.key === "string");
 }
 
-function batchCommand([stage, book, ...rest]) {
+async function batchCommand([stage, book, ...rest]) {
   const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>] "
-    + "[--without-items] [--queued]";
-  if (stage !== "triage" || !book) throw new UsageError(usage);
+    + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]";
+  if (!["triage", "draft"].includes(stage) || !book) throw new UsageError(usage);
+  const draft = stage === "draft";
   const opts = {};
   const withoutItems = rest.includes("--without-items");
   const second = rest.includes("--queued");
+  if (draft && (withoutItems || second)) throw new UsageError(usage);
   rest = rest.filter((a) => a !== "--without-items" && a !== "--queued");
   for (let i = 0; i < rest.length; i += 2) {
     if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
   }
-  if (!opts.out) throw new UsageError(usage);
-  const size = opts.size === undefined ? DEFAULT_BATCH_SIZE : Number(opts.size);
+  if (!opts.out || (draft && !opts.structure)) throw new UsageError(usage);
+  const size = opts.size === undefined ? (draft ? DRAFT_BATCH_SIZE : DEFAULT_BATCH_SIZE) : Number(opts.size);
   if (!Number.isInteger(size) || size < 1) throw new UsageError("--size must be a positive integer");
   if (opts.kind !== undefined && !INVENTORY_KINDS.includes(opts.kind)) {
     throw new UsageError(`--kind "${clip(opts.kind)}" is unknown: ${INVENTORY_KINDS.join(", ")}`);
@@ -414,23 +419,39 @@ function batchCommand([stage, book, ...rest]) {
     checkStructureDir(opts.structure, opts.out);
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   }
-  const series = second ? "second" : "triage";
+  const series = draft ? "draft" : second ? "second" : "triage";
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
-  // A second reading is cut from the queue entries that have no second reading yet; a normal batch leaves the whole queue out.
-  const cutOptions = second
-    ? { only: new Set(queueEntries(REGISTRY).filter((q) => !q.second).map((q) => q.key)), series }
-    : { queued: queuedKeys(REGISTRY) };
-  const batches = cutBatches(found.records, { size, kind: opts.kind, after, withoutItems, ...cutOptions });
+  let batches;
+  let core = null;
+  if (draft) {
+    core = await loadCore(need("DAS_CORE"));
+    checkQueues(REGISTRY);
+    const queued = new Set(loadQueue(REGISTRY, "drafts").map((q) => q.key));
+    const every = loadRegistry(REGISTRY).flatMap((b) => b.records);
+    batches = cutDraftBatches(found.records, { size, kind: opts.kind, after, queued, core, ruled: every });
+    const left = {};
+    for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
+      const why = draftSkipReason(r, { queued });
+      if (why) left[why] = (left[why] ?? 0) + 1;
+    }
+    for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);
+  } else {
+    // A second reading is cut from the queue entries that have no second reading yet; a normal batch leaves the whole queue out.
+    const cutOptions = second
+      ? { only: new Set(queueEntries(REGISTRY).filter((q) => !q.second).map((q) => q.key)), series }
+      : { queued: queuedKeys(REGISTRY) };
+    batches = cutBatches(found.records, { size, kind: opts.kind, after, withoutItems, ...cutOptions });
+  }
   // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
   const structures = dumpsDir === null ? [] : batches.map((b) => structuresOf(b, found.records, dumpsDir));
   mkdirSync(opts.out, { recursive: true });
   if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
+  const write = (file, data) => writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
   batches.forEach((b, i) => {
-    writeFileSync(join(opts.out, `${b.id}.json`), `${JSON.stringify(b, null, 2)}\n`);
-    if (dumpsDir !== null) {
-      writeFileSync(join(opts.structure, `${b.id}.structure.json`), `${JSON.stringify(structures[i], null, 2)}\n`);
-    }
+    write(join(opts.out, `${b.id}.json`), draft ? { ...b, allowed: DRAFT_KEYS, vocabulary: "draft-vocabulary.json" } : b);
+    if (dumpsDir !== null) write(join(opts.structure, `${b.id}.structure.json`), structures[i]);
   });
+  if (draft) write(join(opts.out, "draft-vocabulary.json"), draftVocabulary(core));
   const withStructure = dumpsDir === null ? "" : `, structure files to ${opts.structure}`;
   console.log(`${batches.length} batches written to ${opts.out}${withStructure}`);
 }

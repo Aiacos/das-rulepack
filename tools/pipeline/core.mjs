@@ -95,13 +95,17 @@ export async function loadCore(dir) {
   for (const [name, value] of Object.entries(lists)) {
     if (!Array.isArray(value) || !value.length) throw new Error(`DAS_CORE ${dir}: the engine does not export ${name}`);
   }
+  if (!Array.isArray(enums.STEP_TYPES) || !enums.STEP_TYPES.length) {
+    throw new Error(`DAS_CORE ${dir}: core/content/enums.mjs does not export STEP_TYPES`);
+  }
   const moments = Object.keys(triggers.MOMENTS);
   const vocabulary = vocabularyOf([enums, triggers], facts);
 
   const aliases = SRD_ALIASES ?? {};
   const identifiers = new Set([...Object.keys(SHIPPED), ...Object.keys(aliases), ...Object.values(aliases)]);
   return {
-    validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary, moments, statuses,
+    validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary, moments, statuses, shipped: SHIPPED,
+    stepTypes: [...enums.STEP_TYPES],
     creatureTypes: [...lists.creatureTypes], moveModes: [...lists.moveModes], effectEnds: [...lists.effectEnds],
     damageTypes: [...lists.damageTypes], abilities: [...lists.abilities]
   };

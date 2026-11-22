@@ -38,6 +38,8 @@ excepted.
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
+| 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
+| 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
@@ -89,6 +91,7 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      record has none; `items` are the item summaries without their `data` (a matched item keeps its `differences`). Text is
      referenced by `textSha` and never embedded, so a batch file is safe to commit. `--out` (and `--structure`) must be a
      folder or not exist yet: an existing file is a usage error.
+   - `batch draft` is stage 3a, described in "Brief for a drafter agent" below.
    - `batch triage ... --structure <private dir>` also writes `<private dir>/<batch id>.structure.json`:
      `{ batch, entries: { <key>: { <origin>: <structure> | null } } }`, one origin per matched item (`null` when the dumps do
      not hold its document, always so for `plutonium`); an entry with no matched item is left out. It needs `RULEPACK_DUMPS`.
@@ -339,6 +342,76 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 > verdict if nobody checked it; below 0.7 you are guessing, or the text is ambiguous, and a person will look at it instead.
 > Say 0.6 when unsure rather than rounding up.
 
+## 📖 Brief for a drafter agent
+
+`batch draft <BOOK> --out <dir> --structure <private dir>` cuts the records with verdict `entry` and no `rule`: 20 entries
+per batch (`--size`), one kind per batch, kinds in the order spell, feat, option, species, background, item, feature,
+monster, records with a matched official item first. A record is left out (and counted on the console, by reason) when it
+is already ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, or is a monster feature with no
+creature to scope it to. It writes `<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`),
+`<private dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-derived, private) and
+`<dir>/draft-vocabulary.json` (engine words only: safe to commit). A batch is `{ id, stage: "draft", allowed, vocabulary,
+entries }`; `allowed` is `DRAFT_KEYS` with the slot each key's ids sit in. An entry is the triage entry plus `identifier` (a
+monster feature's is scoped to its creature: `<book>-<creature>-<feature>`), `keys` and `similar` (the triage reader's
+hints), `why` (the triage reason) and `examples` (at most two `{ identifier, entry }`, drafter keys only, from DAS · Core or
+the pack's gated rules). The text is never in the batch: it is in the private cache, named by `textSha`.
+
+The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
+
+> You draft rules for the entries of one batch file, `<dir>/<book>-draft-<NNN>.json`. A rule is a small declarative table
+> entry, not a copy of the book.
+>
+> **What you may read.** The batch file; its structure file `<private dir>/<book>-draft-<NNN>.structure.json`;
+> `draft-vocabulary.json` beside the batch; and the text cache `$RULEPACK_TEXT`: the text of an entry is the file
+> `<textSha>.txt`. Nothing else. Never open anything under `registry/` (the queues included), nor the results files of other
+> drafters. No network, no game server, no git, no edits to the repository: you write one results file and nothing more.
+>
+> **What you write.** Only the fields the batch asks for, in a results file. Never rulebook text: every string of a rule is
+> checked for 8 or more consecutive words of the source, alone and together, and the free words of an entry (outside ids and
+> the closed vocabularies) are capped at 60 per rule. `adds` is one plain line of at most 200 characters, `origin` a label of
+> at most 60 ("Fey Wanderer 3"), `assert[].free` at most 120: your own words, never the book's.
+>
+> **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Take every id (an
+> activity or an effect) from the structure file or the batch entry's `items`, never from memory. Write `rule.entry` with the
+> keys of `allowed` only, and an `assert` list that says in the closed vocabulary what happens (`given`/`expect` of
+> `draft-vocabulary.json`; `free` never counts as agreement). The `examples` show the shape; they are not this entry's rule.
+>
+> **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
+> list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
+> holds one id: name one origin only and put the others in `uncovered` with a one-line reason. Every matched origin
+> (`plutonium` `unchecked` excepted) is either in `origins` or in `uncovered: [{ origin, because }]`.
+>
+> **`dataFixes`** only on the typed leaves of `fixes.paths`, official origin only, with a real `from` guard (the value the
+> item has today, taken from the structure) and a `value` of the leaf's type; never on a monster feature; never `create`.
+>
+> **What goes to a person.** Anything the allowlist cannot express is `outcome: "person"` with a one-line `why`: never force
+> it into an allowed key. `noReactions` is always for a person at review (Ruling R15): write it if it is the right key, and
+> say in `why` that it needs the person. A rule that needs state across turns, a prompt to a player or a fact the engine lacks
+> is `code`; one that needs an engine key that does not exist is `engine`, with what is missing in `why`.
+>
+> **No text, no rule.** If the text file is missing or unreadable, answer `person` with `why: "no text"`. Never draft from
+> memory of the book, and never from the structure alone.
+>
+> **Write one file** `<batch id>.results.json` outside the repository:
+>
+> ```json
+> {
+>   "batch": "<batch id>",
+>   "by": "<your agent handle>",
+>   "results": [
+>     { "key": "…", "outcome": "rule", "why": "one line", "confidence": 0.9,
+>       "rule": { "handledIn": "table", "adds": "one line", "entry": { }, "origins": ["official"],
+>                 "uncovered": [{ "origin": "ddb-importer", "because": "one line" }],
+>                 "assert": [{ "given": { }, "expect": { } }] } },
+>     { "key": "…", "outcome": "person", "why": "one line", "confidence": 0.8 }
+>   ]
+> }
+> ```
+>
+> `outcome` is `rule`, `person`, `code` or `engine`; only `rule` carries a `rule`. One result per entry, `key` unchanged. You
+> never set `verdict`, `identifier`, `sources`, `alsoAs`, `inCore`, `code` or any `evidence`: the tools derive them. `by` is a
+> short handle such as `drafter-3`, never a person's name (the registry is public). Confidence is 0 to 1; 0.7 is the line.
+
 ## 📥 Ingesting results
 
 The main session runs `npm run ingest -- <results-file>` for each results file. The command:
@@ -512,7 +585,7 @@ emits, is refused.
 
 Only inventory, triage (rule-based, batch files, ingest), resolve, gates and generation exist. These stages of the design do not:
 
-- **Draft**: writing `rule` for the `entry` and `code` verdicts.
+- **Draft**: ingesting the drafters' results (`ingest --draft`); the batches and the brief exist (stage 3a).
 - **Review**: the independent second reading and its comparison with the draft.
 - **Play**: scenario generation and runs on a test world.
 - **Drift**: recomputing fingerprints and reopening the records whose inputs changed.

@@ -1,6 +1,11 @@
 // Batch files for reader agents. The tools never call a model: they cut the work into files and ingest what comes back.
 // Text is referenced by fingerprint (`textSha`), never embedded, so a batch file is safe to commit.
-import { groupBy } from "./registry.mjs";
+import { groupBy, stateOf } from "./registry.mjs";
+import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
+import { DRAFT_KEYS, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords } from "./draft-keys.mjs";
+import { FIX_ENUMS } from "./fix-types.mjs";
+import * as assertVocabulary from "./assert.mjs";
+import { monsterIdentifier } from "./identifiers.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
 
@@ -50,4 +55,140 @@ export function cutBatches(records, options = {}) {
     }
   }
   return batches;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------
+// Draft batches (stage 3). A drafter turns an `entry` record into a rule from the batch file, the private structure file and
+// the text cache alone, so the batch carries what it needs: the record's identity, the text fingerprint (never the text), the
+// matched origins with their activity and effect ids, the triage `why`, `keys` and `similar`, and up to two example rules.
+export const DRAFT_BATCH_SIZE = 20;
+// Ruling R13: single-item kinds with activity-id maps first, class features next, monsters last.
+export const DRAFT_KIND_ORDER = Object.freeze(["spell", "feat", "option", "species", "background", "item", "feature", "monster"]);
+const MAX_EXAMPLES = 2;
+const EXAMPLE_STRING_MAX = 100;
+
+const matchedItems = (r) => (r.items ?? []).filter((i) => i?.match === "matched");
+
+/**
+ * Why an `entry` record is not cut into a draft batch, or null when it is: `already ruled`, `queued` (in drafts-queue.json),
+ * `no text`, `no matched item` (a drafter has no ids to take), `monster feature that cannot be scoped` (no creature or name,
+ * so no identifier can be made: identifiers.mjs monsterIdentifier).
+ */
+export function draftSkipReason(r, { queued = new Set() } = {}) {
+  if (r.rule) return "already ruled";
+  if (queued.has(r.key)) return "queued";
+  if (!r.text) return "no text";
+  if (!matchedItems(r).length) return "no matched item";
+  if (r.kind === "monster") {
+    if (typeof r.owner !== "string" || !r.owner || typeof r.name !== "string" || !r.name) {
+      return "monster feature that cannot be scoped";
+    }
+    try { monsterIdentifier(r); } catch { return "monster feature that cannot be scoped"; }
+  }
+  return null;
+}
+
+// What a drafter sees of an example rule: the drafter keys only (no prose key of the engine), short strings, within the word
+// budget. null when nothing of it is left or it would not pass for a drafter's own entry.
+function exampleEntry(entry) {
+  if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return null;
+  const kept = Object.fromEntries(Object.entries(entry).filter(([k]) => Object.hasOwn(DRAFT_KEYS, k)));
+  if (!Object.keys(kept).length) return null;
+  const long = (n) => (typeof n === "string" ? n.length > EXAMPLE_STRING_MAX
+    : Array.isArray(n) ? n.some(long) : n !== null && typeof n === "object" ? Object.entries(n).some(([k, v]) => long(k) || long(v))
+      : false);
+  return long(kept) || entryWords(kept).size > ENTRY_WORD_BUDGET ? null : kept;
+}
+
+// The candidates examples are taken from: DAS · Core's shipped entries, then the pack's rules that stand gated.
+const standsGated = (r) => stateOf(r) !== "drafted" && stateOf(r) !== "triaged";
+function exampleCandidates(records, { core, ruled = records, gated = standsGated }) {
+  const out = new Map();
+  for (const [identifier, entry] of Object.entries(core?.shipped ?? {})) out.set(identifier, entry);
+  for (const r of ruled) if (r.rule?.entry && gated(r)) out.set(r.identifier, r.rule.entry);
+  const byKey = new Map(ruled.concat(records).map((r) => [r.key, r.identifier]));
+  const candidates = [...out].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+    .map(([identifier, entry]) => ({ identifier, entry: exampleEntry(entry) })).filter((c) => c.entry);
+  return { candidates, resolve: (s) => byKey.get(s) ?? s };
+}
+
+function examplesFor(r, { candidates, resolve }) {
+  const triaged = r.evidence?.triaged ?? {};
+  const byIdentifier = new Map(candidates.map((c) => [c.identifier, c]));
+  const picked = [];
+  for (const s of triaged.similar ?? []) {
+    const c = byIdentifier.get(resolve(s));
+    if (c && !picked.includes(c)) picked.push(c);
+  }
+  if (picked.length < MAX_EXAMPLES) {
+    const wanted = new Set((triaged.keys ?? []).map((k) => String(k).split(".")[0]));
+    const scored = candidates.filter((c) => !picked.includes(c))
+      .map((c) => ({ c, n: Object.keys(c.entry).filter((k) => wanted.has(k)).length })).filter((x) => x.n > 0)
+      .sort((a, b) => b.n - a.n);
+    for (const { c } of scored) if (picked.length < MAX_EXAMPLES) picked.push(c);
+  }
+  return picked.slice(0, MAX_EXAMPLES).map(({ identifier, entry }) => ({ identifier, entry }));
+}
+
+const draftEntryOf = (r, examples) => ({
+  ...entryOf(r), identifier: r.kind === "monster" ? monsterIdentifier(r) : r.identifier,
+  keys: r.evidence?.triaged?.keys ?? [], similar: r.evidence?.triaged?.similar ?? [],
+  ...(r.why ? { why: r.why } : {}), examples
+});
+
+/**
+ * Draft batches `{ id: "<book>-draft-<NNN>", stage: "draft", entries }`: the `entry` records with no rule that draftSkipReason
+ * accepts, per book, one kind per batch (kinds in DRAFT_KIND_ORDER), records with a matched official item first, cut at `size`.
+ * `queued` (keys of drafts-queue.json) are left out; `after` ({ book: highest number }) makes the numbering continue.
+ * `core` is loadCore's result (`shipped`, for the examples); `ruled` the records examples may come from (default: `records`),
+ * `gated(record)` which of them stand gated.
+ */
+export function cutDraftBatches(records, options = {}) {
+  const { size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated } = options;
+  const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind)
+    && draftSkipReason(r, { queued }) === null);
+  const pool = exampleCandidates(records, { core, ...(ruled ? { ruled } : {}), ...(gated ? { gated } : {}) });
+  const official = (r) => matchedItems(r).some((i) => i.origin === "official");
+  const rank = (k) => (DRAFT_KIND_ORDER.includes(k) ? DRAFT_KIND_ORDER.indexOf(k) : DRAFT_KIND_ORDER.length);
+  const batches = [];
+  const counts = new Map(Object.entries(after));
+  for (const [book, ofBook] of groupBy(open, (r) => r.book.toLowerCase())) {
+    const kinds = [...groupBy(ofBook, (r) => r.kind)].sort(([a], [b]) => rank(a) - rank(b) || (a < b ? -1 : a > b ? 1 : 0));
+    for (const [, ofKind] of kinds) {
+      const sorted = [...ofKind.filter(official), ...ofKind.filter((r) => !official(r))];
+      for (let i = 0; i < sorted.length; i += size) {
+        const n = (counts.get(book) ?? 0) + 1;
+        counts.set(book, n);
+        const id = `${book}-draft-${String(n).padStart(3, "0")}`;
+        batches.push({ id, stage: "draft", entries: sorted.slice(i, i + size).map((r) => draftEntryOf(r, examplesFor(r, pool))) });
+      }
+    }
+  }
+  return batches;
+}
+
+/**
+ * The words a drafter may use, from the engine and this pack's own limits (`draft-vocabulary.json`, written with each cut):
+ * no record, no text, no dump content, so it is safe to commit. `core` is loadCore's result.
+ */
+export function draftVocabulary(core) {
+  const copy = (l) => [...(l ?? [])];
+  return {
+    draftKeys: Object.fromEntries(Object.entries(DRAFT_KEYS).map(([k, v]) => [k, { ...v }])),
+    engine: {
+      moments: copy(core.moments), stepTypes: copy(core.stepTypes), facts: copy(core.facts), statuses: copy(core.statuses),
+      creatureTypes: copy(core.creatureTypes), moveModes: copy(core.moveModes), effectEnds: copy(core.effectEnds),
+      damageTypes: copy(core.damageTypes), abilities: copy(core.abilities)
+    },
+    assert: {
+      rolls: copy(assertVocabulary.ROLLS), fractions: copy(assertVocabulary.FRACTIONS),
+      rollModes: copy(assertVocabulary.ROLL_MODES), rollOn: copy(assertVocabulary.ROLL_ON),
+      rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
+      givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.EXPECT_FIELDS)
+    },
+    fixes: { paths: JSON.parse(JSON.stringify(FIX_PATHS)), enums: JSON.parse(JSON.stringify(FIX_ENUMS)), max: MAX_FIXES },
+    limits: {
+      addsMax: ADDS_MAX, originMax: ORIGIN_MAX, freeMax: assertVocabulary.FREE_MAX, quoteWords: 8, entryWords: ENTRY_WORD_BUDGET
+    }
+  };
 }
