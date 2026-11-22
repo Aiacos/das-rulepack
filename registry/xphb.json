@@ -48760,17 +48760,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-020",
-          "at": "2026-11-21T19:50:50.519Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T18:51:44.982Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Free self-cast only while in dim light or darkness; data cast activity has no such condition.",
+            "triaged": {
+              "by": "reader-xphb-020",
+              "at": "2026-11-21T19:50:50.519Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Free self-cast only while in dim light or darkness; data cast activity has no such condition.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -54024,17 +54032,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-022",
-          "at": "2026-11-21T19:50:51.160Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T18:51:44.982Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Plants auto-fail the save and a non-creature plant just dies with no save; data has only a plain save-for-half (official save ability empty).",
+            "triaged": {
+              "by": "reader-xphb-022",
+              "at": "2026-11-21T19:50:51.160Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Plants auto-fail the save and a non-creature plant just dies with no save; data has only a plain save-for-half (official save ability empty).",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
