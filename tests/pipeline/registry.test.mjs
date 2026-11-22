@@ -122,7 +122,7 @@ describe("validateRecord", () => {
     const ok = (evidence) => validateRecord({ ...minimal(), evidence });
     const gates = { at: "2026-11-21", core: "1.0.0", rule: "a".repeat(64), passed: ["schema", "validator"], noted: ["ids"] };
     const reviewed = { by: "reader-2", at: "2026-11-21", agrees: true, rule: "b".repeat(64), confidence: 0.8 };
-    const played = { at: "2026-11-21", core: "1.0.0", world: "test-world", scenario: "glimmer-1", client: "gm",
+    const played = { at: "2026-11-21", core: "1.0.0", world: "test-world", scenario: "tst/glimmer-1", client: "gm",
       rule: "b".repeat(64) };
     expect(ok({ gates, reviewed, played, triaged: { by: "rule", at: "x" } })).toEqual([]);
     const bad = [
@@ -181,7 +181,7 @@ describe("stateOf", () => {
     const stamp = ruleFingerprint(g.rule);
     const reviewed = { ...g, evidence: { ...g.evidence, reviewed: { agrees: true, rule: stamp } } };
     expect(stateOf(reviewed, { core })).toBe("reviewed");
-    const play = { at: "2026-11-22", core: "1.0.0", world: "test-world", scenario: "glimmer-1", rule: stamp };
+    const play = { at: "2026-11-22", core: "1.0.0", world: "test-world", scenario: "tst/glimmer-1", rule: stamp };
     const played = { ...reviewed, evidence: { ...reviewed.evidence, played: play } };
     expect(stateOf(played, { core })).toBe("played");
     const partial = { ...reviewed, evidence: { ...reviewed.evidence, played: { at: "2026-11-22" } } };

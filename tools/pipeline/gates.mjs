@@ -290,7 +290,7 @@ export function checkText(record, context = {}) {
   // check (its `adds` is held by its legacy fingerprint, and checking it would change its evidence): it is not held to it.
   if (!record.rule || isLegacy(record, context)) return out;
   const quotes = quotationCheck(readText(textDir, record.text.sha256));
-  // With the rule's prose, the lines a person wrote about it (evidence.person.because, evidence.reviewed.because): both are
+  // With the rule's prose, the lines a person wrote about it (evidence.person/reviewed/played.because): all are
   // part of `emits`, so a line written after the gates ran makes their evidence stale until this check reads it.
   const prose = [...ruleProse(record.rule), ...evidenceProse(record)];
   for (const [where, value] of prose) {
@@ -322,10 +322,10 @@ const nGrams = (words, n) => {
   return out;
 };
 /** The lines a person wrote on a record's evidence, as `[where, string]` pairs: `evidence.person.because`, then
- * `evidence.reviewed.because` (review-accept). */
+ * `evidence.reviewed.because` (review-accept), then `evidence.played.because` (a checklist played by hand). */
 export function evidenceProse(record) {
   const evidence = isObject(record?.evidence) ? record.evidence : {};
-  return ["person", "reviewed"].filter((k) => typeof evidence[k]?.because === "string")
+  return ["person", "reviewed", "played"].filter((k) => typeof evidence[k]?.because === "string")
     .map((k) => [`evidence.${k}.because`, evidence[k].because]);
 }
 

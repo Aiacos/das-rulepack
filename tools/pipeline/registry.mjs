@@ -69,13 +69,16 @@ const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", 
  * The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of, and of
  * `evidence.person` (the signature that lets the gates pass what a drafter may not write: adding or changing it after the
  * gates makes their evidence stale), and of the draft's `evidence.drafted.person` / `because` stamp (Ruling R15: removing it
- * makes the evidence stale too), and of `evidence.reviewed.because` (the line of a person's review-accept, written after the
- * gates: the text gate must read it before the evidence stands again, under --ci too). Absent, they leave the hash as it was
- * (`canonical` drops undefined fields).
+ * makes the evidence stale too), and of `evidence.reviewed.because` and `evidence.played.because` (the lines of a person's
+ * review-accept and hand play, written after the gates: the text gate must read them before the evidence stands again,
+ * under --ci too). Absent, they leave the hash as it was (`canonical` drops undefined fields). The rest of `evidence.played`
+ * (written from the runner's log) is held by the schema to ids, a version, a world handle and fingerprints: no prose can
+ * sit there, so it does not touch this fingerprint and a play from the log keeps the gates standing.
  */
 export const emittedFingerprint = (record) => ruleFingerprint({
   ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person,
-  forPerson: forPersonOf(record?.evidence?.drafted), reviewedBecause: record?.evidence?.reviewed?.because
+  forPerson: forPersonOf(record?.evidence?.drafted), reviewedBecause: record?.evidence?.reviewed?.because,
+  playedBecause: record?.evidence?.played?.because
 });
 // The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs DRAFTED_FOR_PERSON), or undefined when it has none.
 const forPersonOf = (d) =>
@@ -255,7 +258,7 @@ const HEX = /^[0-9a-f]{64}$/;
 const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const ASSERT_PART = /^[A-Za-z]{1,24}$/;
 // One canonical assertion string (assert.mjs normaliseAssert: sorted `path=value` pairs) read back as an assertion, or null.
-function assertionOfCanonical(canonical) {
+export function assertionOfCanonical(canonical) {
   if (typeof canonical !== "string" || !canonical || canonical.length > 400) return null;
   const out = { given: {}, expect: {} };
   for (const pair of canonical.split(";")) {
