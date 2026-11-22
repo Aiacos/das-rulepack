@@ -7526,7 +7526,7 @@
       "edition": "2024",
       "owner": "Air Elemental",
       "section": "action",
-      "identifier": "whirlwind",
+      "identifier": "xmm-air-elemental-whirlwind",
       "page": 13,
       "srd": true,
       "text": {
@@ -7580,10 +7580,101 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q001",
+          "at": "2026-11-22T04:16:02.532Z",
+          "core": "0.289.0",
+          "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.580Z",
+          "core": "0.289.0",
+          "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
+          "emits": "696ec124c349b1dddbaa1742dd3e7911a278006b53d43eba00e4ff81b37799ad",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "e6d3d0570e5db94d0db9eed256359c7754a0b55555855458f47968f281d7da31"
+          }
         }
       },
       "why": "Recharge save for damage, push and Prone limited to Medium or smaller targets in its space; size limit and push not in data.",
-      "state": "triaged"
+      "sources": {
+        "mmWhirlwind00000": "xmm-air-elemental-whirlwind"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A failed save also shoves the target 20 feet away from the elemental; a success halves the damage.",
+        "entry": {
+          "saveDamage": {
+            "GQzr4EMMm6kkZVdC": "half"
+          },
+          "triggers": [
+            {
+              "on": "failedSave",
+              "do": [
+                {
+                  "type": "move",
+                  "mode": "push",
+                  "distance": 20,
+                  "units": "ft"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "move": {
+                "mode": "push",
+                "distance": 20
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "prone"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "target-size",
+            "count": 1
+          }
+        ],
+        "origin": "Air Elemental"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:air-elemental/trait/air-form",
@@ -10241,7 +10332,7 @@
       "edition": "2024",
       "owner": "Ancient Copper Dragon",
       "section": "action",
-      "identifier": "slowing-breath",
+      "identifier": "xmm-ancient-copper-dragon-slowing-breath",
       "page": 80,
       "srd": true,
       "text": {
@@ -10278,7 +10369,8 @@
           ],
           "data": {
             "sha256": "d733c9e6878aa60c33616d53713062a768db6ba92b213f584171176a49f2724b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -10293,10 +10385,87 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q001",
+          "at": "2026-11-22T04:16:02.532Z",
+          "core": "0.289.0",
+          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.582Z",
+          "core": "0.289.0",
+          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
+          "emits": "0bdca73972d5d791ec5d3e61d82b1d34877e9df19038231b8a423c14a7e29b81",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a"
+          }
         }
       },
       "why": "Data halves speed only; text also bars reactions and limits to one action or bonus action until end of next turn",
-      "state": "triaged"
+      "sources": {
+        "BqtNDu2WFDju2dM6": "xmm-ancient-copper-dragon-slowing-breath"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Failing creatures lose reactions and get only an action or a bonus action, through the end of their next turn.",
+        "entry": {
+          "noReactions": [
+            "ztGUDHGfoUxlUY53"
+          ],
+          "actionOrBonus": [
+            "ztGUDHGfoUxlUY53"
+          ],
+          "effectEnds": {
+            "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "denies": "reactions"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "denies": "actionAndBonus"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Ancient Copper Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:ancient-copper-dragon/legendary/giggling-magic",
@@ -13763,7 +13932,7 @@
       "edition": "2024",
       "owner": "Animal Lord",
       "section": "legendary",
-      "identifier": "feral-strike",
+      "identifier": "xmm-animal-lord-feral-strike",
       "page": 15,
       "srd": false,
       "text": {
@@ -13819,11 +13988,62 @@
             "by": "reader-xmm-004",
             "confidence": 0.65
           }
+        },
+        "drafted": {
+          "by": "drafter-q001",
+          "at": "2026-11-22T04:16:02.532Z",
+          "core": "0.289.0",
+          "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.584Z",
+          "core": "0.289.0",
+          "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
+          "emits": "888d72fbe0f76f4130b7bfc930db8a323cbf727c52f45bb7677c2484daab1c64",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "70c42e73b4637906ea0604e237cdfc230d1122ac0f1ce0fb5f75ceea7a61c192"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Movement free of opportunity attacks plus an attack; data lacks both, only a use expenditure.",
-      "state": "triaged"
+      "sources": {
+        "mmFeralStrike000": "xmm-animal-lord-feral-strike"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "After this legendary action the lord's movement provokes no opportunity attacks.",
+        "entry": {
+          "noOpportunity": "afterUse"
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "denies": "opportunityAttacks"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          }
+        ],
+        "origin": "Animal Lord"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:animal-lord/legendary/radiant-strike",
@@ -18626,7 +18846,7 @@
       "edition": "2024",
       "owner": "Balor",
       "section": "action",
-      "identifier": "flame-whip",
+      "identifier": "xmm-balor-flame-whip",
       "page": 26,
       "srd": true,
       "text": {
@@ -18663,7 +18883,8 @@
           ],
           "data": {
             "sha256": "840961bf7890a98d1eed8fa81dc8abc6b0753081a2a0fee0e52942897711b29d"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -18678,10 +18899,94 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q001",
+          "at": "2026-11-22T04:16:02.532Z",
+          "core": "0.289.0",
+          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.586Z",
+          "core": "0.289.0",
+          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
+          "emits": "85fa4f59b3173a39998063e214d9579e3b711a7253fbaec4d0d7dc08054f9a31",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "5852337695aa2a0f4cb0659bba364b870e1da6459f8f24147199350df68870da"
+          }
         }
       },
       "why": "Pull up to 25 feet and prone, limited to Huge or smaller targets; data has only the prone effect.",
-      "state": "triaged"
+      "sources": {
+        "mmFlameWhip00000": "xmm-balor-flame-whip"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A hit drags the target 25 feet toward the balor.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "hit",
+              "do": [
+                {
+                  "type": "move",
+                  "mode": "pull",
+                  "distance": 25,
+                  "units": "ft"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "move": {
+                "mode": "pull",
+                "distance": 25
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "condition": {
+                "applied": "prone"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "target-size",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Balor"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:balor/action/lightning-blade",
@@ -18880,7 +19185,7 @@
       "edition": "2024",
       "owner": "Balor",
       "section": "trait",
-      "identifier": "death-throes",
+      "identifier": "xmm-balor-death-throes",
       "page": 26,
       "srd": true,
       "text": {
@@ -18913,7 +19218,8 @@
           "effects": [],
           "data": {
             "sha256": "2783076865cde47d801a808da4133a99eeae866d76c5e9ac219f78dd5aae1b4d"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -18928,11 +19234,78 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q001",
+          "at": "2026-11-22T04:16:02.532Z",
+          "core": "0.289.0",
+          "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.586Z",
+          "core": "0.289.0",
+          "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
+          "emits": "91b11abf82e4a7a8c1515de6f879af0be9cd6545a1abc98a0efb23b5b3195401",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "04c5fa09b957db3e3972c708fe05e0efe1fe38ab44b38922f25f944c2dca5461"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Explosion on death plus revival elsewhere; triggered by dying, activation empty in the data.",
-      "state": "triaged"
+      "sources": {
+        "mmDeathThroes000": "xmm-balor-death-throes"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A successful save against the explosion halves its damage.",
+        "entry": {
+          "saveDamage": {
+            "jTq2czA8KQITUK4c": "half"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "table-ruling",
+            "count": 1
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Balor"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:balor/trait/fire-aura",
@@ -20185,7 +20558,7 @@
       "edition": "2024",
       "owner": "Banshee",
       "section": "action",
-      "identifier": "horrify",
+      "identifier": "xmm-banshee-horrify",
       "page": 29,
       "srd": false,
       "text": {
@@ -20222,7 +20595,8 @@
           ],
           "data": {
             "sha256": "d14861daade9e9952353b1f217d4d551d8d654f8f36468504679497565d444d1"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -20237,10 +20611,85 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q002",
+          "at": "2026-11-22T04:16:05.429Z",
+          "core": "0.289.0",
+          "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.587Z",
+          "core": "0.289.0",
+          "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
+          "emits": "2ddf1b46cd761cc9bb4bc03aa5c762894f72c45cb09afbd59b4b2c5264df22be",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "65e432e0047388d2e26a926c056bc36cd7b439c37ce1de365f0feab5f3abd4ab"
+          }
         }
       },
       "why": "Frightened to a turn start plus 24-hour immunity to this banshee; the immunity rider is not in data.",
-      "state": "triaged"
+      "sources": {
+        "BgXdOU6xf5CiGoyc": "xmm-banshee-horrify"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The fear ends as the banshee starts its following turn.",
+        "entry": {
+          "effectEnds": {
+            "rttbSuOfCKb1TjGs": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "frightened"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "immunity-after-save",
+            "count": 1
+          },
+          {
+            "unexpressed": "table-ruling",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Banshee"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:banshee/action/multiattack",
@@ -21439,7 +21888,7 @@
       "edition": "2024",
       "owner": "Bearded Devil",
       "section": "action",
-      "identifier": "beard",
+      "identifier": "xmm-bearded-devil-beard",
       "page": 33,
       "srd": true,
       "text": {
@@ -21476,7 +21925,8 @@
           ],
           "data": {
             "sha256": "ad4084ac4ff373f7cce4538a0f4ba26ef469f79ad1902762fb550cf23e134ae3"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -21491,10 +21941,81 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q002",
+          "at": "2026-11-22T04:16:05.429Z",
+          "core": "0.289.0",
+          "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.588Z",
+          "core": "0.289.0",
+          "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
+          "emits": "48ae8e154febb5053c5a1b2eb90b7c1d31aaab20d16bf17e967ee3912e85bca3",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7980ebdac1c7339b7ad44e14e53eecea8b792f126f2360895c8638a2704daed1"
+          }
         }
       },
       "why": "Poisoned until next turn start plus no healing while it lasts; data has only the bare condition without the rider or duration.",
-      "state": "triaged"
+      "sources": {
+        "mmBeard000000000": "xmm-bearded-devil-beard"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The poison wears off as the devil begins its following turn.",
+        "entry": {
+          "effectEnds": {
+            "dnpr0RaXDWfSZOYz": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "condition": {
+                "applied": "poisoned"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "healing-block",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Bearded Devil"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:bearded-devil/action/infernal-glaive",
@@ -25424,7 +25945,7 @@
       "edition": "2024",
       "owner": "Bone Devil",
       "section": "action",
-      "identifier": "infernal-sting",
+      "identifier": "xmm-bone-devil-infernal-sting",
       "page": 52,
       "srd": true,
       "text": {
@@ -25461,7 +25982,8 @@
           ],
           "data": {
             "sha256": "b6f5bcd6da7fffcfb986d55d445ec7e6683b9c9dff7ee7baaf96c13064d03be3"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -25476,10 +25998,81 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q002",
+          "at": "2026-11-22T04:16:05.429Z",
+          "core": "0.289.0",
+          "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3"
+        },
+        "gates": {
+          "at": "2026-11-22T04:16:14.590Z",
+          "core": "0.289.0",
+          "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
+          "emits": "baaf5438a7f842638b8cb365b83b32e8bb32fc380a0caf5aff0936492128e13b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "a8229c266fe5ed511237683c7e9d09b814f3161c6f4fa44cc5da5f8a8cc60d63"
+          }
         }
       },
       "why": "Poisoned lasts until the devil's next turn start and blocks healing meanwhile; data has only a plain Poisoned effect, no expiry or heal block.",
-      "state": "triaged"
+      "sources": {
+        "mmInfernalSting0": "xmm-bone-devil-infernal-sting"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The poison wears off as the devil begins its following turn.",
+        "entry": {
+          "effectEnds": {
+            "96f41YwmHtjW8P0o": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "condition": {
+                "applied": "poisoned"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "healing-block",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Bone Devil"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:bone-devil/action/multiattack",

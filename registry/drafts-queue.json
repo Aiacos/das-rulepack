@@ -1,0 +1,250 @@
+[
+  {
+    "key": "xmm:monster:aberrant-cultist/action/tentacle-lash",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "item effect already grapples and restrains on hit; size gate and restraint tied to the grapple have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:aboleth/action/dominate-mind",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "charm effect is not linked to the save activity and monster data fixes are barred; control, range and distance repeats need code",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:aboleth/legendary/psychic-drain",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "gated on the user holding a charmed or grappled creature and chains another action: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:aboleth/trait/mucus-cloud",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "underwater-only aura with a lasting curse, healing block and timed acid out of water; the main curse needs state the keys lack",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:air-elemental/action/thunderous-slam",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "the attack activity already carries the thunder damage; nothing left for a rule",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:animal-lord/action/animal-spirit",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "the rider depends on which lord variant is used: a choice no key can make; damage is already in the data",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:animal-lord/trait/lordly-presence",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "aura at enemy turn start whose outcome depends on the lord variant: a choice no key can make",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:animated-rug-of-smothering/action/smother",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "grapple instead of damage by choice, size gate, per-turn damage while grappled and damage sharing: needs code",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:arch-hag/action/spectral-claw",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "the item effect already knocks prone on hit; only the size gate remains and no key expresses it",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:arch-hag/bonus/witch-strike",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "hits only creatures carrying the hag's curse within range: target state no key tests",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:arch-hag/legendary/malicious-magic",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "lockout until the start of the hag's next turn is cross-turn state, not a per-turn limit key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:arch-hag/trait/spiteful-escape",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "triggered at zero hit points with a distance condition, survival, teleport and a lasting curse: needs code",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:arch-hag/trait/tongue-twister",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "curse follows the counterspell's failed save and bars verbal spells: no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:balor/action/lightning-blade",
+    "reason": "low-confidence",
+    "by": "drafter-q001",
+    "why": "no reactions on a hit; the item has no effect to carry it, so its end at the balor's next turn start is left out",
+    "confidence": 0.65,
+    "draft": {
+      "handledIn": "table",
+      "adds": "A hit stops the target from reacting.",
+      "entry": {
+        "noReactions": true
+      },
+      "origins": [
+        "official"
+      ],
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "denies": "reactions"
+          }
+        }
+      ],
+      "leaves": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          },
+          "because": "no-key"
+        }
+      ]
+    }
+  },
+  {
+    "key": "xmm:monster:bandit-captain/reaction/parry",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "an armor class raise against one incoming hit: no drafter key or step raises defense",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:bandit-crime-lord/bonus/deadly-aim",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "self advantage on one later attack plus bonus poison only if it lands: no key carries either",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:banshee/action/deathly-wail",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "main effect is a drop to zero below a hit point threshold, with a sunlight gate and type exclusions: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:banshee/trait/incorporeal-movement",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "passing through creatures and objects and harm when stopping inside one: no activity and no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:barbed-devil/trait/barbed-hide",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "turn-start damage must pick only creatures in a grapple with the devil; no drafter key selects them",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:barlgura/action/thrash",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "the item already knocks prone on a hit; only the size cap is missing and no key limits by size",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:bearded-devil/action/infernal-glaive",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "the wound is ongoing state with several ways to close and the item has no effect to carry it",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:beholder-zombie/action/eye-rays",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "random ray without repeats, several riders, and a wrong damage type no monster data fix may correct",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:beholder-zombie/trait/undead-fortitude",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "a save against dropping to zero with exceptions: no activity and no drafter key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:beholder/bonus/antimagic-cone",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "a cone suppressing magic: no drafter key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:berserker-commander/action/greataxe",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "the extra thunder may go to a nearby creature instead: a use-time choice no key expresses; data hits the target",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:berserker-commander/bonus/frenzied-rush",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "main effect is allies moving by reaction without provoking; only the user's own safe move has a key",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:black-pudding/action/dissolving-pseudopod",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "the item already applies the armor penalty; stacking, nonmagical armor, destruction and repair have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:blob-of-annihilation/legendary/decay",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "damage to engulfed creatures only is data; the engulfed filter and the per-round reuse limit have no key",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:blob-of-annihilation/trait/astral-implosion",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "death trigger ejecting engulfed creatures to another plane: no activity and no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:blue-slaad/action/mutating-claw",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "the follow-up save is limited to uncursed humanoids and every curse consequence lies beyond the keys",
+    "confidence": 0.75
+  },
+  {
+    "key": "xmm:monster:brazen-gorgon/action/smelting-charge",
+    "reason": "person",
+    "by": "drafter-q002",
+    "why": "a charge through spaces with per-creature saves, a pull, and grapple or prone by state: no keys for these",
+    "confidence": 0.85
+  }
+]
