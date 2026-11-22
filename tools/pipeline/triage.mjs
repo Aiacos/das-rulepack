@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { VERDICTS, slug, validateRecord } from "./registry.mjs";
 import { BY, HINTS, RULE_VERDICTS, isReaderHandle } from "./schema.mjs";
 import { hasText } from "./text.mjs";
+import { quotationCheck, RULE_QUOTE_WORDS } from "./gates.mjs";
 
 // The hint a record can carry for its reader (`record.hint`): `core-generic` says DAS · Core has an entry under the
 // identifier, but one too generic to settle the record by itself (a monster feature, or a shared identifier).
@@ -12,7 +13,6 @@ export { HINTS };
 
 export const QUEUE_THRESHOLD = 0.7;
 export const MAX_WHY = 200;
-export const MAX_QUOTE_WORDS = 11;
 
 // The kinds whose record with no text and no item is a placeholder ("Subclass Feature" lines and the like): nothing to read,
 // nothing to automate. A species is described by its traits and a monster feature by its stat block: never placeholders.
@@ -82,22 +82,6 @@ export function autoTriage(record, { coreIdentifiers, textDir, identifierCounts,
 // A verdict the rule-based step set: `evidence.triaged.by` is "rule" (ingest always records a confidence, the rule never).
 export const setByRule = (r) => r.evidence?.triaged?.by === "rule" && !("confidence" in r.evidence.triaged);
 
-// Whitespace-normalised, lower-cased words; punctuation around a word does not count, so "mu." matches "mu".
-const EDGES = /^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu;
-const words = (s) => String(s).toLowerCase().split(/\s+/).map((w) => w.replace(EDGES, "")).filter(Boolean);
-
-// True when `why` repeats more than MAX_QUOTE_WORDS consecutive words of `text` (whitespace and case do not count).
-export function quotes(why, text) {
-  const n = MAX_QUOTE_WORDS + 1;
-  const source = words(text);
-  const mine = words(why);
-  if (mine.length < n || source.length < n) return false;
-  const grams = new Set();
-  for (let i = 0; i + n <= source.length; i++) grams.add(source.slice(i, i + n).join(" "));
-  for (let i = 0; i + n <= mine.length; i++) if (grams.has(mine.slice(i, i + n).join(" "))) return true;
-  return false;
-}
-
 export { BY, isReaderHandle };
 const ENGINE_KEY = /^[A-Za-z][A-Za-z0-9.]{0,63}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -139,10 +123,12 @@ function problem(record, result, { overwrite, textOf, known, entryKeys }) {
   }
   const text = textOf(record);
   if (text === null) return result.verdict === "unverifiable" ? null : "no text, no verdict: only unverifiable is allowed";
-  if (quotes(result.why, text)) return `why contains a quotation of ${MAX_QUOTE_WORDS + 1} or more consecutive words of the text`;
+  // One limit and one normaliser for every prose of the registry: the gates' (gates.mjs quotationCheck, RULE_QUOTE_WORDS).
+  const quotes = quotationCheck(text);
+  if (quotes(result.why)) return `why contains a quotation of ${RULE_QUOTE_WORDS} or more consecutive words of the text`;
   // `similar` entries that are not record keys could carry a quotation as kebab-case identifiers.
   const spelled = (result.similar ?? []).filter((s) => !known.has(s)).join(" ").replaceAll("-", " ");
-  if (quotes(spelled, text)) return `similar contains a quotation of ${MAX_QUOTE_WORDS + 1} or more consecutive words of the text`;
+  if (quotes(spelled)) return `similar contains a quotation of ${RULE_QUOTE_WORDS} or more consecutive words of the text`;
   return null;
 }
 
