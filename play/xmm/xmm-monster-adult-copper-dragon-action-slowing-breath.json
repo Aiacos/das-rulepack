@@ -1,0 +1,44 @@
+{
+  "scenario": "xmm/xmm-monster-adult-copper-dragon-action-slowing-breath",
+  "key": "xmm:monster:adult-copper-dragon/action/slowing-breath",
+  "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmAdultCopperDra.mmSlowingBreath0",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmAdultCopperDra",
+      "id": "mmSlowingBreath0"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "teMMQNDDIE9XkPN3": null
+    },
+    "area": [
+      "teMMQNDDIE9XkPN3"
+    ]
+  },
+  "steps": [
+    {
+      "use": "teMMQNDDIE9XkPN3"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd;given.roll=failedSave"
+    }
+  ]
+}
