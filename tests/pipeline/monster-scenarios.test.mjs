@@ -145,10 +145,17 @@ describe("scenarioOf for a monster feature", () => {
 });
 
 describe("reachesOf: the reach of each activity, in feet", () => {
-  it("an activity's own range in feet, else the item's reach or normal range, else null", () => {
+  it("an activity's own range in feet, else what the engine judges the item's attack on, else null", () => {
+    // A weapon with a reach and a range: the engine judges an attack that is not ranged on the reach alone (no attack mode
+    // is passed by its test tool), so a target placed at the normal range is out of range.
     const doc = { system: { range: { value: 20, reach: 5, units: "ft" }, activities: {
       a: { _id: ACT, range: { units: "self" } }, b: { _id: ACT2, range: { value: "15", units: "ft" } } } } };
-    expect(reachesOf(doc)).toEqual({ [ACT]: 20, [ACT2]: 15 });
+    expect(reachesOf(doc)).toEqual({ [ACT]: 5, [ACT2]: 15 });
+    const ranged = { system: { range: { value: 20, reach: 5, units: "ft" }, activities: {
+      a: { _id: ACT, range: { units: "self" }, attack: { type: { value: "ranged" } } } } } };
+    expect(reachesOf(ranged)).toEqual({ [ACT]: 20 });
+    const noReach = { system: { range: { value: 30, units: "ft" }, activities: { a: { _id: ACT, range: { units: "self" } } } } };
+    expect(reachesOf(noReach)).toEqual({ [ACT]: 30 });
     const self = { system: { activities: { a: { _id: ACT, range: { units: "self", value: "0" } } } } };
     expect(reachesOf(self)).toEqual({ [ACT]: null });
   });

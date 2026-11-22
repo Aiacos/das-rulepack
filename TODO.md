@@ -258,3 +258,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 
 - [x] Draft round 5 (XMM, 12 features drafted with trigger conditions available): 1 rule shipped after an exact blind
       review, 10 to the drafts queue (7 no key, 3 would change the engine trigger), 1 rejected for a quoted why.
+- [x] Scenario reach: a weapon attack that is not ranged is judged by the engine on its reach, not its range; the Merrow
+      harpoon pull scenario is now manual (`setup.reach`) instead of stopping on an out-of-range prompt.

@@ -104,18 +104,23 @@ const feet = (v) => {
 
 /**
  * How far each activity of a document reaches, in feet, by activity id (null when unknown): the activity's own range when it
- * is given in feet, else for an activity that takes the item's range (units `self` or none: a monster's weapon attack) the
- * larger of the item's reach and normal range in feet. Numbers only: what play/lib/steps.mjs needs to start a pull in reach.
+ * is given in feet, else for an activity that takes the item's range (units `self` or none: a monster's weapon attack) what
+ * the engine judges it on when no attack mode is given: the item's normal range for a ranged attack, else its reach, else its
+ * normal range. Numbers only: what play/lib/steps.mjs needs to start a pull in reach.
  */
 export function reachesOf(doc) {
   const system = isObject(doc?.system) ? doc.system : {};
   const item = isObject(system.range) && system.range.units === "ft" ? system.range : null;
-  const itemReach = item ? Math.max(feet(item.reach) ?? 0, feet(item.value) ?? 0) || null : null;
+  const itemReach = (a) => {
+    if (!item) return null;
+    const ranged = a?.attack?.type?.value === "ranged";
+    return (ranged ? null : feet(item.reach)) ?? feet(item.value) ?? null;
+  };
   const out = {};
   for (const [id, a] of Object.entries(isObject(system.activities) ? system.activities : {})) {
     const range = isObject(a?.range) ? a.range : {};
     const own = range.units === "ft" ? feet(range.value) : null;
-    out[plain(a?._id) ?? id] = own ?? (!range.units || range.units === "self" ? itemReach : null);
+    out[plain(a?._id) ?? id] = own ?? (!range.units || range.units === "self" ? itemReach(a) : null);
   }
   return out;
 }
