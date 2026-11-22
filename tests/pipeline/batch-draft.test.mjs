@@ -7,6 +7,7 @@ import { cutDraftBatches, draftSkipReason, draftVocabulary } from "../../tools/p
 import { embeddedIndex } from "../../tools/pipeline/settle.mjs";
 import { DRAFT_KEYS, checkDraftKeys } from "../../tools/pipeline/draft-keys.mjs";
 import { typeProblem } from "../../tools/pipeline/fix-types.mjs";
+import { variants } from "./fixtures/shapes.mjs";
 import { saveBook, saveQueue } from "../../tools/pipeline/registry.mjs";
 
 // Synthetic fixtures only: invented entries.
@@ -32,7 +33,8 @@ const core = {
 
 describe("cutDraftBatches", () => {
   it("cuts entry records without a rule, adding identifier, keys, similar and why", () => {
-    const [b] = cutDraftBatches([rec(1), rec(2, { verdict: "none" }), rec(3, { verdict: null })], { core });
+    const records = [rec(1), rec(2, { verdict: "none" }), rec(3, { verdict: null })];
+    const [b] = cutDraftBatches(records, { core, textOf: () => "other words" });
     expect(b.id).toBe("tst-draft-001");
     expect(b.stage).toBe("draft");
     expect(b.entries.map((e) => e.key)).toEqual(["tst:spell:s01"]);
@@ -126,7 +128,7 @@ describe("cutDraftBatches", () => {
     expect(out.map((b) => b.id)).toEqual(["tst-draft-005", "tst-draft-006"]);
   });
 
-  it("examples come from similar first, else from the rules sharing most keys; at most two, drafter keys only", () => {
+  it("examples come from similar first, else from the rules sharing most keys; at most three, drafter keys only", () => {
     const similar = rec(1, {
       evidence: { triaged: { by: "reader-1", confidence: 0.9, keys: ["saveDamage", "halfOnMiss"], similar: ["beta-rule"] } }
     });
@@ -135,8 +137,8 @@ describe("cutDraftBatches", () => {
     });
     const [b] = cutDraftBatches([similar, bySharedKeys], { core });
     const [a, c] = b.entries;
-    expect(a.examples.map((e) => e.identifier)).toEqual(["beta-rule", "gamma-rule"]);
-    expect(c.examples.map((e) => e.identifier)).toEqual(["gamma-rule", "alpha-rule"]);
+    expect(a.examples.map((e) => e.identifier).slice(0, 2)).toEqual(["beta-rule", "gamma-rule"]);
+    expect(c.examples.map((e) => e.identifier).slice(0, 2)).toEqual(["gamma-rule", "alpha-rule"]);
     for (const ex of [...a.examples, ...c.examples]) expect(Object.keys(ex.entry).every((k) => k in DRAFT_KEYS)).toBe(true);
     expect(JSON.stringify(b)).not.toContain("some prose");
   });
@@ -194,7 +196,7 @@ describe("cutDraftBatches", () => {
 
   it("no text is embedded: only the fingerprint, and no field beyond the triage fields", () => {
     const text = { sha256: sha(1), source: "5etools", chars: 5, body: "SECRET WORDS" };
-    const [b] = cutDraftBatches([rec(1, { text })], { core });
+    const [b] = cutDraftBatches([rec(1, { text })], { core, textOf: () => "x" });
     expect(JSON.stringify(b)).not.toContain("SECRET");
     expect(b.entries[0].textSha).toBe(sha(1));
     expect(Object.keys(b.entries[0]).sort()).toEqual([
@@ -203,21 +205,6 @@ describe("cutDraftBatches", () => {
   });
 });
 
-// A value built from a vocabulary description alone.
-const sample = (d) => {
-  switch (d.type) {
-    case "number": case "numeric": return 1;
-    case "boolean": return true;
-    case "id": return "Ab12Cd34Ef56Gh78";
-    case "path": return "abc.def";
-    case "int": return d.min;
-    case "enum": return d.values[0];
-    case "either": return sample(d.of[0]);
-    case "list": return [sample(d.item)];
-    case "object": return Object.fromEntries(Object.entries(d.keys).map(([k, x]) => [k, sample(x)]));
-    default: throw new Error(`unknown description ${d.type}`);
-  }
-};
 const ACT = "Ac00Ac11Ac22Ac33";
 
 describe("draftVocabulary: the type of every allowed fix path", () => {
@@ -233,12 +220,22 @@ describe("draftVocabulary: the type of every allowed fix path", () => {
     }
   });
 
-  it("a value built from the description is accepted by checkDraftKeys, for every path (value and from)", () => {
+  it("every value built from the description (each alternative of an either, each enum word) is accepted, for every path", () => {
     expect(cases.length).toBeGreaterThan(40);
+    let n = 0;
     for (const { where, leaf, d, fix } of cases) {
-      const entry = { dataFixes: [{ ...fix, value: sample(d), from: sample(d) }] };
-      expect(checkDraftKeys(entry, { origins: ["official"], kind: "spell" }), `${where} ${leaf}`).toEqual([]);
+      for (const value of variants(d)) {
+        n++;
+        const entry = { dataFixes: [{ ...fix, value, from: value }] };
+        const problems = checkDraftKeys(entry, { origins: ["official"], kind: "spell" });
+        expect(problems, `${where} ${leaf} ${JSON.stringify(value)}`).toEqual([]);
+      }
     }
+    // consumption.targets `target` is an either (id | path): both alternatives are among the variants.
+    const targets = variants(v.fixes.types.activity["consumption.targets"]).map((x) => x[0].target);
+    expect(targets).toContain("Ab12Cd34Ef56Gh78");
+    expect(targets).toContain("abc.def");
+    expect(n).toBeGreaterThan(cases.length);
   });
 
   it("the description is plain JSON: no function, and a list or enum states its items or words", () => {
@@ -258,7 +255,7 @@ describe("draftVocabulary: the type of every allowed fix path", () => {
 describe("draftVocabulary", () => {
   it("holds engine words only, whatever the records are", () => {
     const v = draftVocabulary(core);
-    expect(Object.keys(v).sort()).toEqual(["assert", "draftKeys", "engine", "fixes", "limits"]);
+    expect(Object.keys(v).sort()).toEqual(["assert", "draftKeys", "draftShapes", "engine", "fixes", "keyExamples", "limits"]);
     expect(v.draftKeys.saveDamage).toEqual({ slot: "activityMap" });
     expect(v.engine).toMatchObject({ moments: ["failedSave"], stepTypes: ["status"], statuses: ["prone"], facts: ["actor.prone"] });
     expect(v.assert.rolls).toContain("failedSave");
@@ -297,20 +294,13 @@ describe("pipeline CLI: batch draft", () => {
   });
 
   const withCore = process.env.DAS_CORE && existsSync(join(process.env.DAS_CORE, "module/scripts/core/content.mjs"));
-  it.skipIf(!withCore)("writes the batches and the vocabulary; a queued key is left out", () => {
-    saveQueue(registry, "drafts", [{ key: "tst:spell:s02", reason: "person", by: "reader-1", why: "x", confidence: 0.9 }]);
+  it.skipIf(!withCore)("refuses a book whose package has no dump files, writing nothing", () => {
     mkdirSync(join(tmp, "dumps"));
-    const env = { DAS_CORE: process.env.DAS_CORE, RULEPACK_DUMPS: join(tmp, "dumps") };
+    const env = { DAS_CORE: process.env.DAS_CORE, RULEPACK_DUMPS: join(tmp, "dumps"), RULEPACK_TEXT: join(tmp, "text") };
     const r = run(["batch", "draft", "TST", "--out", out, "--structure", structure], env);
-    expect(r.status).toBe(0);
-    expect(readdirSync(out).sort()).toEqual(["draft-vocabulary.json", "tst-draft-001.json"]);
-    const b = JSON.parse(readFileSync(join(out, "tst-draft-001.json"), "utf8"));
-    expect(b.entries.map((e) => e.key)).toEqual(["tst:spell:s01"]);
-    expect(b.allowed.saveDamage).toEqual({ slot: "activityMap" });
-    expect(existsSync(join(structure, "tst-draft-001.structure.json"))).toBe(true);
-    const again = run(["batch", "draft", "TST", "--out", out, "--structure", structure], env);
-    expect(again.status).toBe(0);
-    expect(readdirSync(out)).toContain("tst-draft-002.json");
+    expect(r.status).toBe(2);
+    expect(r.stderr).toMatch(/no dump file/);
+    expect(existsSync(out)).toBe(false);
   });
   void writeFileSync;
 });

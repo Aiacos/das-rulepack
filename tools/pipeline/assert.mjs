@@ -7,6 +7,7 @@
 // non-empty strings, which is what the record schema can check on its own.
 // (schema.mjs imports this module too: ORIGINS is read only when a list is checked, after both are loaded.)
 import { ORIGINS } from "./schema.mjs";
+import * as sh from "./shapes.mjs";
 
 export const FREE_MAX = 120;
 export const ROLLS = Object.freeze(["hit", "miss", "crit", "failedSave", "savedSave"]);
@@ -194,3 +195,26 @@ export function impliedAsserts(entry) {
   }
   return normaliseAssert(out);
 }
+
+/**
+ * The value shape of every field of an assertion (shapes.mjs), what `assertProblems` accepts, for the drafter's vocabulary.
+ * Engine words are named (`engine`) and resolved by the vocabulary from the engine's lists. A test builds a value from each
+ * shape and has assertProblems accept it.
+ */
+// A function, not a constant: ORIGINS comes from schema.mjs, which imports this module (read only once both are loaded).
+export const assertShapes = () => Object.freeze({
+  given: Object.freeze({
+    roll: sh.values(ROLLS), moment: sh.word("moments"), origin: sh.values(ORIGINS), targetType: sh.word("creatureTypes"),
+    free: Object.freeze({ type: "line", max: FREE_MAX })
+  }),
+  expect: Object.freeze({
+    damage: sh.object({ fraction: sh.values(FRACTIONS) }, { type: sh.word("damageTypes") }),
+    condition: sh.object({}, { applied: sh.word("statuses"), ended: sh.word("statuses") }, { atLeastOne: true }),
+    ends: sh.oneOf(sh.word("effectEnds"), sh.word("moments")),
+    roll: sh.object({ mode: sh.values(ROLL_MODES), on: sh.values(ROLL_ON), for: sh.values(ROLL_FOR) }),
+    affects: sh.values(AFFECTS), excludes: sh.values(AFFECTS),
+    move: sh.object({ mode: sh.word("moveModes") }, { distance: Object.freeze({ type: "distance" }) }),
+    uses: sh.object({ spent: Object.freeze({ type: "number", min: 1, int: true, formula: false }) }),
+    free: Object.freeze({ type: "line", max: FREE_MAX })
+  })
+});

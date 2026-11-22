@@ -2,7 +2,10 @@
 // Text is referenced by fingerprint (`textSha`), never embedded, so a batch file is safe to commit.
 import { groupBy, stateOf } from "./registry.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
-import { DRAFT_KEYS, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural } from "./draft-keys.mjs";
+import { DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural } from "./draft-keys.mjs";
+import { assertShapes } from "./assert.mjs";
+import { quotationCheck } from "./gates.mjs";
+import { resolveShape } from "./shapes.mjs";
 import { FIX_ENUMS, describeFixTypes } from "./fix-types.mjs";
 import * as assertVocabulary from "./assert.mjs";
 import { isFormula } from "./assert.mjs";
@@ -25,7 +28,7 @@ const entryOf = (r) => ({
 export function highestBatches(files, series = "triage") {
   const highest = {};
   for (const f of files) {
-    const m = new RegExp(`^(.+)-${series}-(\\d+)\\.json$`).exec(f);
+    const m = new RegExp(`^(.+)-${series}-(\\d+)(?:\\.results)?\\.json$`).exec(f);
     if (m) highest[m[1]] = Math.max(highest[m[1]] ?? 0, Number(m[2]));
   }
   return highest;
@@ -66,7 +69,7 @@ export function cutBatches(records, options = {}) {
 export const DRAFT_BATCH_SIZE = 20;
 // Ruling R13: single-item kinds with activity-id maps first, class features next, monsters last.
 export const DRAFT_KIND_ORDER = Object.freeze(["spell", "feat", "option", "species", "background", "item", "feature", "monster"]);
-const MAX_EXAMPLES = 2;
+const MAX_EXAMPLES = 3;
 const EXAMPLE_STRING_MAX = 100;
 
 const matchedItems = (r) => (r.items ?? []).filter((i) => i?.match === "matched");
@@ -150,10 +153,45 @@ function exampleCandidates(records, { core, ruled = records, gated = standsGated
   const byKey = new Map(ruled.concat(records).map((r) => [r.key, r.identifier]));
   const candidates = [...out].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
     .map(([identifier, entry]) => ({ identifier, entry: exampleEntry(entry, wordsOf(core)) })).filter((c) => c.entry);
-  return { candidates, resolve: (s) => byKey.get(s) ?? s };
+  // The canonical example of each key, and which keys the shipped rules of each kind of record use most (ties: by name).
+  const keyExamples = keyExamplesOf(core);
+  const shipped = core?.shipped ?? {};
+  const byKind = new Map();
+  for (const r of ruled.concat(records)) {
+    if (!Object.hasOwn(shipped, r.identifier)) continue;
+    const count = byKind.get(r.kind) ?? new Map();
+    for (const k of Object.keys(exampleEntry(shipped[r.identifier], wordsOf(core)) ?? {})) count.set(k, (count.get(k) ?? 0) + 1);
+    byKind.set(r.kind, count);
+  }
+  const overall = new Map();
+  for (const entry of Object.values(shipped)) {
+    for (const k of Object.keys(exampleEntry(entry, wordsOf(core)) ?? {})) overall.set(k, (overall.get(k) ?? 0) + 1);
+  }
+  const common = (kind) => {
+    const count = byKind.get(kind)?.size ? byKind.get(kind) : overall;
+    return [...count].sort(([a, x], [b, y]) => y - x || (a < b ? -1 : a > b ? 1 : 0)).map(([k]) => k);
+  };
+  return { candidates, resolve: (s) => byKey.get(s) ?? s, keyExamples, common };
 }
 
-function examplesFor(r, { candidates, resolve }) {
+/**
+ * The canonical example of each drafter key: the shortest of DAS · Core's shipped entries that use it (ties: by identifier),
+ * stripped to ids, engine words, formulas and numbers. `{ <key>: { identifier, entry } }`, only for the keys some entry uses.
+ */
+export function keyExamplesOf(core) {
+  const words = wordsOf(core);
+  const stripped = Object.entries(core?.shipped ?? {}).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+    .map(([identifier, entry]) => ({ identifier, entry: exampleEntry(entry, words) })).filter((c) => c.entry);
+  const out = {};
+  for (const key of Object.keys(DRAFT_KEYS)) {
+    const best = stripped.filter((c) => Object.hasOwn(c.entry, key))
+      .sort((a, b) => JSON.stringify(a.entry).length - JSON.stringify(b.entry).length)[0];
+    if (best) out[key] = { identifier: best.identifier, entry: best.entry };
+  }
+  return out;
+}
+
+function examplesFor(r, { candidates, resolve, keyExamples, common }) {
   const triaged = r.evidence?.triaged ?? {};
   const byIdentifier = new Map(candidates.map((c) => [c.identifier, c]));
   const picked = [];
@@ -168,25 +206,48 @@ function examplesFor(r, { candidates, resolve }) {
       .sort((a, b) => b.n - a.n);
     for (const { c } of scored) if (picked.length < MAX_EXAMPLES) picked.push(c);
   }
-  return picked.slice(0, MAX_EXAMPLES).map(({ identifier, entry }) => ({ identifier, entry }));
+  const out = picked.slice(0, MAX_EXAMPLES).map(({ identifier, entry }) => ({ identifier, entry }));
+  // Whatever triage left in `keys` and `similar`, an entry gets the canonical examples of the keys the shipped rules of its
+  // kind use most.
+  for (const key of common(r.kind)) {
+    if (out.length >= MAX_EXAMPLES) break;
+    const example = keyExamples[key];
+    if (example && !out.some((o) => o.identifier === example.identifier)) out.push(example);
+  }
+  return out;
 }
 
-const draftEntryOf = (r, examples) => ({
+const draftEntryOf = (r, examples, why) => ({
   ...entryOf(r), identifier: r.kind === "monster" ? monsterIdentifier(r) : r.identifier,
   keys: r.evidence?.triaged?.keys ?? [], similar: r.evidence?.triaged?.similar ?? [],
-  ...(r.why ? { why: r.why } : {}), examples
+  ...(why ? { why } : {}), examples
 });
+
+// The triage `why` is the reader's own words, accepted up to 11 consecutive words of the text: a drafter gets it only when it
+// passes the check a rule's strings face (8 words, gates.mjs quotationCheck). Without the text it is withheld (fail closed).
+function whyFor(r, textOf, report) {
+  if (!r.why) return undefined;
+  let text = null;
+  try { text = typeof textOf === "function" ? textOf(r) : null; } catch { text = null; }
+  if (typeof text === "string" && !quotationCheck(text)(r.why)) return r.why;
+  report.whyWithheld = (report.whyWithheld ?? 0) + 1;
+  return undefined;
+}
 
 /**
  * Draft batches `{ id: "<book>-draft-<NNN>", stage: "draft", entries }`: the `entry` records with no rule that draftSkipReason
  * accepts, per book, one kind per batch (kinds in DRAFT_KIND_ORDER), records with a matched official item first, cut at `size`.
  * `queued` (keys of drafts-queue.json) are left out; `after` ({ book: highest number }) makes the numbering continue.
  * `embedded` (settle.mjs embeddedIndex of the package's actors) is required when a monster feature is among the records.
- * `core` is loadCore's result (`shipped`, for the examples); `ruled` the records examples may come from (default: `records`),
+ * `textOf(record)` gives the cached text (the `why` of an entry is kept only when it does not quote it; `report.whyWithheld`
+ * counts the others). `core` is loadCore's result (`shipped`, for the examples); `ruled` the records examples may come from
+ * (default: `records`),
  * `gated(record)` which of them stand gated.
  */
 export function cutDraftBatches(records, options = {}) {
-  const { size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded } = options;
+  const {
+    size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded, textOf, report = {}
+  } = options;
   const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind)
     && draftSkipReason(r, { queued, embedded }) === null);
   const pool = exampleCandidates(records, { core, ...(ruled ? { ruled } : {}), ...(gated ? { gated } : {}) });
@@ -202,12 +263,20 @@ export function cutDraftBatches(records, options = {}) {
         const n = (counts.get(book) ?? 0) + 1;
         counts.set(book, n);
         const id = `${book}-draft-${String(n).padStart(3, "0")}`;
-        batches.push({ id, stage: "draft", entries: sorted.slice(i, i + size).map((r) => draftEntryOf(r, examplesFor(r, pool))) });
+        const entries = sorted.slice(i, i + size)
+          .map((r) => draftEntryOf(r, examplesFor(r, pool), whyFor(r, textOf, report)));
+        batches.push({ id, stage: "draft", entries });
       }
     }
   }
   return batches;
 }
+
+/** `<book>-draft-report.json`: counts only (no key, no name): the batches, the entries cut, each reason with its count. */
+export const draftReport = (book, batches, leftOut, whyWithheld = 0) => ({
+  book, batches: batches.length, cut: batches.reduce((n, b) => n + b.entries.length, 0),
+  leftOut: Object.fromEntries(Object.entries(leftOut).sort()), whyWithheld
+});
 
 /**
  * The words a drafter may use, from the engine and this pack's own limits (`draft-vocabulary.json`, written with each cut):
@@ -215,6 +284,10 @@ export function cutDraftBatches(records, options = {}) {
  */
 export function draftVocabulary(core) {
   const copy = (l) => [...(l ?? [])];
+  const engineLists = {
+    moments: copy(core.moments), statuses: copy(core.statuses), creatureTypes: copy(core.creatureTypes),
+    moveModes: copy(core.moveModes), effectEnds: copy(core.effectEnds), damageTypes: copy(core.damageTypes)
+  };
   return {
     draftKeys: Object.fromEntries(Object.entries(DRAFT_KEYS).map(([k, v]) => [k, { ...v }])),
     engine: {
@@ -223,11 +296,16 @@ export function draftVocabulary(core) {
       damageTypes: copy(core.damageTypes), abilities: copy(core.abilities)
     },
     assert: {
+      shapes: Object.fromEntries(Object.entries(assertShapes()).map(([part, fields]) => [part,
+        Object.fromEntries(Object.entries(fields).map(([k, s]) => [k, resolveShape(s, engineLists)]))])),
       rolls: copy(assertVocabulary.ROLLS), fractions: copy(assertVocabulary.FRACTIONS),
       rollModes: copy(assertVocabulary.ROLL_MODES), rollOn: copy(assertVocabulary.ROLL_ON),
       rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
       givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.EXPECT_FIELDS)
     },
+    // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
+    draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),
+    keyExamples: keyExamplesOf(core),
     fixes: {
       paths: JSON.parse(JSON.stringify(FIX_PATHS)), enums: JSON.parse(JSON.stringify(FIX_ENUMS)), types: describeFixTypes(),
       max: MAX_FIXES

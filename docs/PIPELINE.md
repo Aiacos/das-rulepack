@@ -38,7 +38,7 @@ excepted.
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
-| 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
+| 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
@@ -359,9 +359,25 @@ dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-de
 `fixes.types`, generated from the table that also checks it: safe to commit). A batch is `{ id, stage: "draft", allowed,
 vocabulary, entries }`; `allowed` is `DRAFT_KEYS` with the slot each key's ids sit in. An entry is the triage entry plus
 `identifier` (a monster feature's is scoped to its creature: `<book>-<creature>-<feature>`), `keys` and `similar` (the triage
-reader's hints), `why` (the triage reason) and `examples` (at most two `{ identifier, entry }`, drafter keys only, from DAS ·
-Core or the pack's gated rules, stripped to ids, engine words, formulas and numbers: no `adds`, `free` or label). The text is
-never in the batch: it is in the private cache, named by `textSha`.
+reader's hints), `why` and `examples` (at most three `{ identifier, entry }`, drafter keys only, stripped to ids, engine
+words, formulas and numbers: no `adds`, `free` or label: first the triage `similar`, then the shipped rules that share
+`keys`, then the canonical example of each key the shipped rules of the record's kind use most, so an entry has examples even
+when triage left `keys` and `similar` empty). The triage `why` is kept only when it passes the quotation check of a rule's
+strings (8 consecutive words of the text, `gates.mjs` `quotationCheck`); otherwise the entry is cut without `why` and counted
+("why withheld: quotes the source"). It needs the text, hence `RULEPACK_TEXT` at cut time (without the text of an entry its
+`why` is withheld). The text is never in the batch: it is in the private cache, named by `textSha`. `batch draft` also writes
+`<dir>/<book>-draft-report.json`: the batches, the entries cut, each reason a record was left out with its count, and the `why`
+withheld (counts only). It refuses, writing nothing, a book whose package has no dump files, or that has monster records to cut
+and no actor in its dumps. The numbering continues after the highest `<book>-draft-<NNN>` among the batch files and the
+`<book>-draft-<NNN>.results.json` files of `<dir>`.
+
+`draft-vocabulary.json` also holds `draftShapes` (the value shape of every drafter key), `assert.shapes` (the value shape of
+every `given` and `expect` field), `fixes.types` (the type of every data-fix path) and `keyExamples` (the canonical example of
+each key: the shortest shipped entry that uses it). Shapes are declarative: `enum` (one of `values`), `object` (`keys`
+required, `optional`, closed), `list` (non-empty), `idMap` (an object keyed by ids of the named kind, origins side by side),
+`idList`, `id`, `oneOf` (any alternative), `tagged` (an object whose `type` picks its other fields), `true`, `number`,
+`formula`, `line`, `distance`. Tests build a value from every alternative of every shape and have the validators (`assertProblems`,
+the engine's `validateEntry`) accept it.
 
 The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
 
@@ -377,6 +393,11 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > checked for 8 or more consecutive words of the source, alone and together, and the free words of an entry (outside ids and
 > the closed vocabularies) are capped at 60 per rule. `adds` is one plain line of at most 200 characters, `origin` a label of
 > at most 60 ("Fey Wanderer 3"), `assert[].free` at most 120: your own words, never the book's.
+>
+> **Where the shapes are.** `draft-vocabulary.json` says how to write each value: `draftShapes.<key>` for a key of
+> `rule.entry`, `assert.shapes.given.<field>` and `assert.shapes.expect.<field>` for an assertion, `fixes.paths` and
+> `fixes.types` for `dataFixes`, `keyExamples.<key>` for a worked example of a key. The entry's `examples` are rules of the
+> same kind. Write only what a shape allows.
 >
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Take every id (an
 > activity or an effect) from the structure file or the batch entry's `items`, never from memory. Write `rule.entry` with the
@@ -398,6 +419,52 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 >
 > **No text, no rule.** If the text file is missing or unreadable, answer `person` with `why: "no text"`. Never draft from
 > memory of the book, and never from the structure alone.
+>
+> **One entry, end to end** (invented names). Input, abridged:
+>
+> ```json
+> { "key": "tst:spell:frost-lash", "name": "Frost Lash", "kind": "spell", "identifier": "frost-lash", "keys": ["saveDamage"],
+>   "items": [
+>     { "origin": "official", "match": "matched", "identifier": "frost-lash", "docId": "Of00Of11Of22Of33",
+>       "activities": ["Sv11Sv22Sv33Sv44"], "effects": ["Ef11Ef22Ef33Ef44"] },
+>     { "origin": "ddb-importer", "match": "matched", "identifier": "frost-lash", "docId": "ddbFrostLash0001",
+>       "activities": ["ddbFrostSave0001"], "effects": [] },
+>     { "origin": "plutonium", "match": "unchecked" } ] }
+> ```
+>
+> The text says the target takes half damage on a successful save and falls prone on a failed one. Both origins hold an
+> activity that rolls the save, so `saveDamage` (an `activityMap`) lists both side by side; `triggers` has no id slot. The
+> result:
+>
+> ```json
+> { "key": "tst:spell:frost-lash", "outcome": "rule", "why": "half on a save, prone on a failed save", "confidence": 0.9,
+>   "rule": { "handledIn": "table", "adds": "A save halves the damage; a failed save leaves the target prone.",
+>     "entry": { "saveDamage": { "Sv11Sv22Sv33Sv44": "half", "ddbFrostSave0001": "half" },
+>                "triggers": [{ "on": "failedSave", "do": [{ "type": "status", "status": "prone" }] }] },
+>     "origins": ["official", "ddb-importer"],
+>     "assert": [
+>       { "given": { "roll": "savedSave" }, "expect": { "damage": { "fraction": 0.5 } } },
+>       { "given": { "roll": "failedSave" }, "expect": { "condition": { "applied": "prone" } } } ] } }
+> ```
+>
+> A second entry whose text makes the hit force a save (`onHit`, a `single` slot: one id, so one origin) is drafted for the
+> origin that has the activity and says why the other is not covered:
+>
+> ```json
+> { "key": "tst:item:frost-brand", "outcome": "rule", "why": "a hit forces a save", "confidence": 0.8,
+>   "rule": { "handledIn": "table", "adds": "A hit makes the target save.", "entry": { "onHit": { "save": "Sv11Sv22Sv33Sv44" } },
+>     "origins": ["official"],
+>     "uncovered": [{ "origin": "ddb-importer", "because": "onHit holds one activity id; this item has its own" }],
+>     "assert": [{ "given": { "roll": "hit" }, "expect": { "affects": "target" } }] } }
+> ```
+>
+> A third entry, whose text needs a zone that follows the caster (no drafter key says it), is answered to a person, with no
+> `rule`:
+>
+> ```json
+> { "key": "tst:spell:drifting-fog", "outcome": "person", "confidence": 0.9,
+>   "why": "a zone that follows the caster: no drafter key" }
+> ```
 >
 > **Write one file** `<batch id>.results.json` outside the repository:
 >

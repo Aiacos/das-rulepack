@@ -256,11 +256,14 @@ distance; a directory or a symlink named like a script passing the `rule.code` e
   mandatory; same path guards as triage).
 - `cutDraftBatches(records, { size = 20, kind, after, queued, core }) → [{ id: "<book>-draft-<NNN>", stage: "draft", entries }]`
   — records with `verdict: "entry"`, no `rule`, text present, at least one matched item, not in `drafts-queue.json`; official
-  matched first (Ruling R8). Entry: the triage batch entry plus `identifier`, `keys` and `similar` of `evidence.triaged`, and
-  `examples`: at most two `{ identifier, entry }` from Core's `SHIPPED` or the pack's gated rules (the triage `similar` first,
-  else the ones sharing most top-level keys with `keys`).
+  matched first (Ruling R8). Entry: the triage batch entry plus `identifier`, `keys` and `similar` of `evidence.triaged`, `why`
+  only when it passes the 8-word quotation check against the cached text (`gates.mjs` `quotationCheck`; withheld and counted
+  otherwise, and always without the text: fail closed), and `examples`: at most three `{ identifier, entry }` stripped to ids,
+  engine words, formulas and numbers, from Core's `SHIPPED` or the pack's gated rules (the triage `similar` first, then the
+  ones sharing most top-level keys with `keys`, then the canonical example of the keys most used by shipped rules of the kind).
 - `<dir>/draft-vocabulary.json` written with each cut: `DRAFT_KEYS`, moments, step types, facts, statuses, the `assert`
-  vocabulary — engine data only, safe to commit.
+  vocabulary, the value shape of every key and assertion field, the type of every fix path, one canonical example per key —
+  engine data only, safe to commit. `<dir>/<book>-draft-report.json`: counts only (cut, each reason left out, `why` withheld).
 - Brief (in `docs/PIPELINE.md`): what a drafter reads (batch, structure, text cache, vocabulary; never `registry/`), the results
   format `{ batch, by, results: [{ key, outcome: "rule"|"person"|"code"|"engine", why, confidence, rule? }] }` with `rule: {
   handledIn: "table", adds, entry, origins, uncovered?, assert }`, ids taken only from the structure file, origins side by side,
@@ -269,6 +272,9 @@ distance; a directory or a symlink named like a script passing the `rule.code` e
 - [ ] Failing tests: `cuts entry records without a rule`, `leaves queued and ruled records out`, `numbering continues per series`,
       `examples come from similar first`, `no text is embedded`, `vocabulary file has no premium data` (only engine words);
       implement; `npm test` PASS; commit `Pipeline: draft batches and the drafter brief`.
+
+**Parked** (review findings of Task 4 kept for later): structure files are named by batch id only (`<id>.structure.json`), so
+two books or runs sharing one `--structure` folder can overwrite each other (as for triage).
 
 ### Task 5: `ingest --draft`
 

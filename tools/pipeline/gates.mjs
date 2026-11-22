@@ -289,8 +289,7 @@ export function checkText(record, context = {}) {
   // its source, field by field nor all of it together (a quote split across fields). A legacy rule with standing predates the
   // check (its `adds` is held by its legacy fingerprint, and checking it would change its evidence): it is not held to it.
   if (!record.rule || isLegacy(record, context)) return out;
-  const source = new Set(nGrams(wordsOf(readText(textDir, record.text.sha256)), RULE_QUOTE_WORDS));
-  const quotes = (prose) => nGrams(wordsOf(prose), RULE_QUOTE_WORDS).some((g) => source.has(g));
+  const quotes = quotationCheck(readText(textDir, record.text.sha256));
   const prose = ruleProse(record.rule);
   for (const [where, value] of prose) {
     if (quotes(value)) out.failures.push(`text: ${where} quotes ${RULE_QUOTE_WORDS} or more consecutive words of the source text`);
@@ -307,6 +306,14 @@ export function checkText(record, context = {}) {
 export const RULE_QUOTE_WORDS = 8;
 const REFERENCE_ROOT = /@(?:mod|prof|item|abilities|attributes|details|scale|flags)\b/g;
 const wordsOf = splitWords;
+/**
+ * `(prose) => boolean`: true when the prose repeats RULE_QUOTE_WORDS or more consecutive words of `sourceText`. The check the
+ * gates apply to a rule's strings, also used by `batch draft` for the triage `why` it hands to a drafter.
+ */
+export function quotationCheck(sourceText) {
+  const source = new Set(nGrams(wordsOf(sourceText), RULE_QUOTE_WORDS));
+  return (prose) => nGrams(wordsOf(prose), RULE_QUOTE_WORDS).some((gram) => source.has(gram));
+}
 const nGrams = (words, n) => {
   const out = [];
   for (let i = 0; i + n <= words.length; i++) out.push(words.slice(i, i + n).join(" "));
