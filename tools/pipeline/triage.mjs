@@ -474,3 +474,38 @@ export function restorePrepass(record) {
     evidence: { ...others, ...(was.triaged ? { triaged: was.triaged } : {}) }
   };
 }
+
+/**
+ * Ruling R29, `triage <BOOK> --engine-reading`: for each monster record with the verdict `entry` (whoever set it), no rule and
+ * no queue entry, the engine's own reading of its official item (`readingOf(record)`: the entry, null when the engine reads
+ * nothing, undefined when the item is not in the dumps). A non-empty reading sets `hint: "engine-reads"` — never the verdict:
+ * whether the reading covers the whole text is a reader's judgement — and an empty one takes a stale hint away. A record that
+ * carries a rule is left to the comparison of its rule (`evidence.reading`, written by the gates) and only listed.
+ * @returns {{ records, hinted: {key, keys}[], cleared: string[], none: string[], unread: string[], ruled: string[] }}
+ */
+export function engineReadingPrepass(records, { readingOf, queued = new Set() } = {}) {
+  const out = { hinted: [], cleared: [], none: [], unread: [], ruled: [] };
+  const next = records.map((r) => {
+    if (r?.kind !== "monster" || r.verdict !== "entry" || r.legacy === true || queued.has(r.key)) return r;
+    if (r.rule) {
+      out.ruled.push(r.key);
+      return r;
+    }
+    const reading = readingOf(r);
+    if (reading === undefined) {
+      out.unread.push(r.key);
+      return r;
+    }
+    const keys = reading && typeof reading === "object" ? Object.keys(reading).sort() : [];
+    if (keys.length) {
+      out.hinted.push({ key: r.key, keys });
+      return r.hint === "engine-reads" ? r : { ...r, hint: "engine-reads" };
+    }
+    out.none.push(r.key);
+    if (r.hint !== "engine-reads") return r;
+    out.cleared.push(r.key);
+    const { hint, ...rest } = r;
+    return rest;
+  });
+  return { records: next, ...out };
+}

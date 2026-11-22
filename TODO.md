@@ -187,9 +187,18 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       then advantage or a bonus under a condition (23), state kept across turns (21), an armour-class bonus against one hit
       (14), a reaction that alters a roll (13), a choice at use time (11). 8 queued entries are `data`, 4 are `none`.
 - [x] R28 (2026-11-22): every monster rule is held; the engine reads monster features from their text itself.
-- [ ] Give triage the engine's own reading of a monster feature (what its text layer derives for the official item) and
-      re-triage the monster `entry` records with it: most are probably `core`.
-- [ ] For the 75 monster rules in the registry: compare each with the engine's reading (identical / adds / changes) and
-      keep only what adds something the engine does not read, as a rule that MERGES with the reading instead of replacing it
-      (check how the engine merges a module entry over its text layer, key by key).
+- [x] Give triage the engine's own reading of a monster feature (2026-11-22, R29): `engineReads` in the structure files of
+      the triage, draft and review cuts, the three briefs, and `triage <BOOK> --engine-reading` (hint `engine-reads`, no
+      verdict change). XMM: the engine reads something of 287 of 816 monster `entry` records (`docs/pilot-m3.md`).
+- [ ] Re-triage the hinted monster `entry` records with `engineReads` in view (XMM 145 outside the queues; FRAIF 32, EFA 13,
+      XPHB 7), then the queued ones (the drafts and review queues hold 250 XMM monster records).
+- [x] Compare the 75 monster rules with the engine's reading (2026-11-22, R29): the engine merges a module entry key by key
+      (`triggers` whole); `evidence.reading` stores the comparison, a monster rule ships as its delta only. On a copy: 16
+      would ship, 25 change the reading, 25 add nothing, 9 held by R27.
+- [ ] Run `npm run gates` on the registry (writes `evidence.reading`), then `npm run build:rules`, `npm run books`,
+      `npm run scenarios -- XMM`, and commit: until then every monster rule stays held ("engine-text").
+- [ ] The 25 rules "the engine already does it": a person sets `core` (or drops the rule). The 25 that change the reading:
+      20 drop an engine trigger (9 a size-limited push): redraft them as supersets of the engine's triggers, or drop them.
+- [ ] A `shallow` key that only adds fields (Ruling R29, cost b) is held as a change: decide whether to count it as adds.
+- [ ] Recompute `evidence.reading` when the engine the world runs changes (the evidence names the clone's version only).
 

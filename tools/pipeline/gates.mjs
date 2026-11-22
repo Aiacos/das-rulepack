@@ -548,7 +548,15 @@ export function runGates(records, context) {
     add(failures, key, "unique", unique.get(key) ?? []);
 
     if (!record.rule || context.ci) return record;
-    const { gates, ...evidence } = record.evidence ?? {};
+    const { gates, reading: wasRead, ...evidence } = record.evidence ?? {};
+    // Ruling R29: a monster rule's comparison with the engine's own reading (`readingOf`: from the dumps and DAS_CORE, which
+    // CI has not), stored as evidence like the other dump-dependent checks; its date is kept while it says the same.
+    // Whatever the gates find, so that a failing rule's comparison is current too. Null (unread): removed, fail closed.
+    if (record.kind === "monster" && typeof context.readingOf === "function") {
+      const read = context.readingOf(record);
+      const same = read && isObject(wasRead) && canonical({ ...wasRead, at: null }) === canonical({ ...read, at: null });
+      if (read) evidence.reading = same ? wasRead : read;
+    } else if (wasRead !== undefined) evidence.reading = wasRead;
     if (failures[key]) return { ...record, evidence };
     const noted = GATES.filter((g) => notes[key]?.[g]);
     const passed = GATES.filter((g) => !noted.includes(g));

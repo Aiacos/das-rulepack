@@ -36,7 +36,8 @@ excepted.
 | 1 | Inventory | `npm run inventory -- <BOOK> <kind|all> [--allow-collisions]` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 1b | Settle a match | `npm run resolve -- <key> <origin> --doc <docId> --because "<one line>"` (see "Settling matches") | `RULEPACK_DUMPS` (`--doc`) | a person |
 | 2a | Triage by rule | `npm run triage -- <BOOK> [--redo-rule \| --core-prepass [--report <file>]]` | `DAS_CORE`, `RULEPACK_TEXT` (`RULEPACK_DUMPS`: a feature's options) | a person |
-| 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
+| 2a' | Engine reading | `npm run triage -- <BOOK> --engine-reading [--report <file>]` | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
+| 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`, and `DAS_CORE` for monster features) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
@@ -132,6 +133,20 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      outside the registry folder) also writes them as JSON, with the engine's version, the previous verdict and its author,
      and the file and line of the engine that justify each (for parts, each option with its own). Running it again changes
      nothing. It cannot be combined with `--redo-rule`.
+   - `triage <BOOK> --engine-reading [--report <file>]` (Ruling R29) gives triage **the engine's own reading of a monster
+     feature**. DAS · Core reads monster features from their English text by itself (its "text" layer, the pure
+     `monsterTextLayer` of `core/monster-layer.mjs`): pushes with a size limit, conditions, healing blocks, repeated saves, the
+     endings of effects. `tools/pipeline/engine-reading.mjs` `engineReading` imports that function from `DAS_CORE` at run time
+     (as `loadCore` imports the validator; nothing is copied) and builds its arguments from the official item of the dumps
+     exactly as the engine's `textLayer(item)` builds them from the live item (description, activities with their activation,
+     effect ids, `onSave`, range, template and target as the data writes them; effects with their statuses and changes); it
+     throws a clear error when the clone does not export it. For each monster record with the verdict `entry` (set by anyone),
+     no rule and no queue entry, a non-empty reading sets `hint: "engine-reads"` and nothing else: the verdict stays, since
+     whether the reading covers the whole text is a reader's judgement; an empty reading takes a stale hint away. A record
+     that carries a rule is left to the comparison of its rule (`evidence.reading`, below). It prints the records hinted
+     (with the entry keys the engine reads) and the counts (reads something, reads nothing, official item not in the
+     dumps, ruled); `--report <file>` (outside the registry folder) writes them as JSON, keys and entry keys only. It cannot
+     be combined with `--redo-rule` or `--core-prepass`. Running it again changes nothing.
    - `batch triage` leaves out the records with no matched item in any origin (a reader has nothing to compare the text
      with); `--without-items` cuts them too.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
@@ -163,6 +178,11 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      folder inside the repository (real paths, so also through a symlink: each existing part of a path is resolved before
      the next one is applied), inside the registry folder or equal to or around `--out`, and a `--structure` or `--out`
      path with a `..` segment. Never commit a structure file.
+     For a monster feature the official item's structure also carries `engineReads` (Ruling R29): the engine's own reading
+     of it (`engine-reading.mjs` `engineReading`), an entry object of ids and engine words (no prose), or `null` when the
+     engine reads nothing; computed under the identifier the engine would see (the rule's own when the record has one). The
+     triage, draft and review cuts all write it, so a triage cut with `--structure` needs `DAS_CORE` as soon as it holds a
+     monster feature (a usage error otherwise, nothing written).
    - `ingest` takes what the readers wrote (see below).
 4. **Gates** check every record deterministically and write their outcome into `evidence.gates`: the gates that were
    checked and passed in `passed`, those that could only leave a note in `noted`, and in `items` the data fingerprint of
@@ -213,6 +233,20 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    identifier checks of any record that has a rule (`identifierProblems`, whatever its state), and refuses two
    emitted rules with one identifier. A
    code rule without an entry has nothing to check there (`ids: nothing to check (code rule without entry)`, noted).
+   For a ruled monster feature the local run (not `--ci`: it needs the dumps) also writes **`evidence.reading`** (Ruling
+   R29): the rule compared with the engine's own reading of its official item (`engine-reading.mjs` `compareWithReading`,
+   on the document the data-fix gate reads). The engine merges a module's entry over its reading **key by key**
+   (`mergeEntries([text, enchant, module, world, item])`, the strategy of each key in `core/content/merge.mjs` `MERGE`:
+   `triggers` replaced whole, `shallow` keys field by field, the others replaced): a pack rule overrides the reading key by
+   key, it does not replace it wholesale. Each key the rule declares is `same` (deep-equal to the reading's), `adds` (the
+   reading has no such key) or `changes`; for `triggers` the outcome says whether the rule's list keeps every trigger the
+   engine read (`superset`) or drops one (`drops`; a size limit such as `target.sizeAtMost` is the costly case), or is
+   `same`, or `none` (the rule has no triggers). The evidence is `{ at, core, rule, item, delta, same, changes, triggers }`:
+   the engine version, the fingerprints of the rule and of the official item's data, the keys the pack registers (`delta`:
+   the `adds` keys, and `triggers` when it is a superset), the keys the engine already reads the same, the keys that change
+   the reading otherwise, and the trigger outcome. A closed shape the schema gate checks (also under `--ci`); it keeps its
+   date while it says the same, and is removed when the item is not in the dumps. It is current only while `rule` and `item`
+   are the record's and its three lists hold exactly the keys of `rule.entry`.
 7. **Generate** writes the book modules under `scripts/rules/` from the registry (a rule with aliases carries
    `alsoAs: [<identifier>]`, and one with uncovered origins `uncovered`, shown in `docs/RULES.md`); `TABLE` in `index.mjs`
    registers each entry under its identifier and under each alias; and in `index.mjs` the export `SOURCES`
@@ -231,6 +265,13 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    the README's counts, given no scenario; `gates --ci` fails when a generated module registers one (as does
    `build:rules -- --check`). A held rule still owns its identifier (the `unique` gate and `batch draft` count every record
    that has a rule).
+   **Monster rules** (Rulings R28, R29): emitted only through a current `evidence.reading` (none, or a stale one, holds the
+   rule: "the engine already reads this feature's text: to be compared first"); a rule with a key in `changes` is held
+   ("changes the engine's reading: a person decides"), one whose `delta` is empty is held ("the engine already does it":
+   a candidate for the verdict `core`), and what remains goes through the R27 decision above. The module entry of a
+   shipped monster rule is its **delta** (`generate.mjs` `ruleFromRecord`, which `build:rules`, `tests/derived.mjs` and
+   `docs/RULES.md` share): a `same` key is redundant and is left out, so the engine ends with the same merged entry as with
+   the whole rule. `emissionOf` reads only the stored evidence: CI, which has no dumps, decides from the registry alone.
 
 ## 📋 Record states
 
@@ -256,7 +297,8 @@ because? }` (`scenario` a scenario id `<book>/<slug>`, `core` an engine version,
 `manual`, `by` (an owner) and `because` together, for a checklist played by hand; no other field). `by` a reader handle,
 `confidence` from 0 to 1 elsewhere. A review or a play counts only while its `rule` is the fingerprint of the current
 rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a review or a play written before
-the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it.
+the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it. A ruled monster feature also
+carries `evidence.reading` (Ruling R29, written by the gates: stage 4); it does not change the state, only what is emitted.
 
 ## 🧾 Rule vocabulary
 
@@ -390,6 +432,11 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 > or a monster feature): it says nothing about this entry, so judge it against its text like any other.
 > An entry with `hint: "core-parts"` is a feature whose options (or a species whose traits) DAS · Core partly handles: judge
 > what the handled parts leave out.
+> **A monster feature** carries `engineReads` in its official structure: what DAS · Core already reads from the feature's
+> own text, by itself (an entry of ids and engine words; `null` when it reads nothing; an entry with `hint: "engine-reads"`
+> has a non-empty one). Judge ONLY what goes beyond `engineReads`: when the engine's reading already does everything the
+> text says, the verdict is not `entry` (say `data` or `none` as for any entry the engine resolves, and say in `why` that
+> the engine reads it); `entry` only for what the text says and `engineReads` lacks, named in `why`.
 >
 > **What the engine does without an entry** (so the data resolves it: `data`, or `none` when the text adds nothing to combat):
 > attack rolls; saving throws; damage and healing, with half or none on a successful save as the activity says; applying an
@@ -526,6 +573,14 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > item itself (an effect with that status linked to its attack or save activity in the structure file): otherwise the
 > result is rejected ("the entry does nothing of the kind on <roll>").
 > The `examples` show the shape; they are not this entry's rule.
+>
+> **Monster features: only what the engine does not read.** The official structure of a monster feature carries
+> `engineReads`, what DAS · Core already reads from the feature's text by itself; the engine merges your rule over it key by
+> key (a `triggers` list replaces its list whole). Write ONLY what goes beyond `engineReads`: never repeat one of its keys
+> with the same value (it is dropped as redundant), never change one of its values (the rule is held for a person), and if
+> you write `triggers` while `engineReads` has some, your list must contain every one of its triggers unchanged, conditions
+> such as `target.sizeAtMost` included, plus yours. When `engineReads` already does all the text says, answer `person` with
+> the reason "the engine already reads it".
 >
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
@@ -689,6 +744,10 @@ handle of `docs/owners.json`, Ruling R23).
 > network, no game server, no git, no edits to the repository: you write one results file and nothing more. This
 > prohibition is the only barrier between you and the drafted rule (the files are readable): a reviewer that opens them
 > invalidates its own review, and must say so instead of answering.
+>
+> **Monster features.** Their official structure carries `engineReads`, what DAS · Core already reads from the feature's
+> text by itself. Assert ONLY what goes beyond `engineReads`: what the engine already reads is not the rule's to claim, and
+> an assertion of it is compared against a rule that leaves it out.
 >
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Say what must be
 > true at the table when the item is used, as assertions in the closed vocabulary: `[{ given, expect }]` with the fields of

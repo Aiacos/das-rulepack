@@ -11,6 +11,7 @@ import { QUEUE_THRESHOLD } from "./intake.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems } from "./identifiers.mjs";
 import { isPartial, leftCounts } from "./leaves.mjs";
+import { currentReading, deltaEntry } from "./engine-reading.mjs";
 
 // legacy.json and the queues (registry.mjs NOT_BOOKS) sit beside the books and are not books.
 export { NOT_BOOKS };
@@ -51,6 +52,8 @@ const STATUS_OF_STATE = { played: "played", reviewed: "validated", gated: "valid
  */
 export const HELD_REASONS = Object.freeze({
   "engine-text": "the engine already reads this feature's text: to be compared first",
+  "engine-changes": "changes the engine's reading: a person decides",
+  "engine-already": "the engine already does it",
   "not-reviewed": "not reviewed yet",
   "review-stale": "its review is about an older rule",
   disagreement: "review disagrees",
@@ -91,16 +94,24 @@ function comparisonHeld(entry) {
  * `person: true`, and the stored comparison agrees in full: comparisonHeld) — or `{ emitted: false, because }`, a key of
  * HELD_REASONS: a gated rule never reviewed, queued as disagreement, low-confidence, free-text or unexpressed, or whose queue
  * entry is about an older rule. `queue`: review-queue.json (a list or a Map by key); left out, nothing can be confirmed
- * from it and a stamped rule is held.
+ * from it and a stamped rule is held. A monster rule (Rulings R28, R29) is first held by its stored comparison with the
+ * engine's reading (`evidence.reading`): `engine-text` (none current), `engine-changes`, `engine-already`.
  */
 export function emissionOf(record, { legacy, queue, monsterRules = false } = {}) {
   if (!isObject(record) || !record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
   if (record.legacy === true) return hasLegacyStanding(record, legacy) ? { emitted: true, because: "legacy" } : null;
-  // Ruling R28: DAS · Core derives entries for monster features from their English text by itself (its "text" layer). A pack
-  // rule under the same item replaces that reading: 17 of the first 43 repeated it and 13 changed it, some for the worse (a
-  // size limit lost). Until a rule is compared with what the engine reads, no monster rule is registered.
+  // Rulings R28 and R29: DAS · Core derives entries for monster features from their English text by itself (its "text"
+  // layer), and merges a pack rule over that reading key by key (`triggers` replaced whole). A monster rule is registered only
+  // through the comparison stored on it (`evidence.reading`, about the rule and the item as they are; written by `npm run
+  // gates`): none current holds it ("engine-text"), a key that changes the reading holds it for a person (a superset
+  // `triggers` is no change), and nothing left to add holds it as done by the engine. What remains is its delta, then R27.
   // `monsterRules: true` lifts the hold: only the tests of the mechanics pass it.
-  if (record.kind === "monster" && monsterRules !== true) return { emitted: false, because: "engine-text" };
+  if (record.kind === "monster" && monsterRules !== true) {
+    const reading = currentReading(record);
+    if (!reading) return { emitted: false, because: "engine-text" };
+    if (reading.changes.length) return { emitted: false, because: "engine-changes" };
+    if (!reading.delta.length) return { emitted: false, because: "engine-already" };
+  }
   const state = stateOf(record);
   if (state === "reviewed" || state === "played") return { emitted: true, because: "reviewed" };
   if (state !== "gated") return null;
@@ -147,6 +158,8 @@ export function ruleFromRecord(record, { legacy, queue, monsterRules = false } =
   for (const f of ["catalog", "inCore"]) if (f in rule) out[f] = rule[f];
   out.adds = rule.adds;
   for (const f of ["code", "entry"]) if (f in rule) out[f] = structuredClone(rule[f]);
+  // Ruling R29: a monster rule registers only its delta against the engine's reading (emissionOf checked it stands).
+  if (record.kind === "monster" && monsterRules !== true && out.entry) out.entry = deltaEntry(rule.entry, currentReading(record));
   // Ruling R2: the other identifiers the entry is registered under (left out when there are none).
   const aliases = aliasesOf(record);
   if (aliases.length) out.alsoAs = aliases;

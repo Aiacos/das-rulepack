@@ -12,6 +12,7 @@ import {
   HELD_REASONS, bookModuleSource, emissionOf, generate, recordFromRule, ruleFromRecord, shippedHeld, sourcesOf
 } from "../../tools/pipeline/generate.mjs";
 import { normaliseAssert } from "../../tools/pipeline/assert.mjs";
+import { compareWithReading, readingEvidence } from "../../tools/pipeline/engine-reading.mjs";
 import { heldRules } from "../../tools/books-progress.mjs";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../../..");
@@ -62,14 +63,17 @@ const disagreeing = { agrees: false, onlyDraft: CANON, onlyReview: CANON_OTHER, 
 describe("emissionOf (Ruling R27): one function decides what is registered with the engine", () => {
   it("closes the reasons a rule is held, each with its label", () => {
     expect(Object.keys(HELD_REASONS).sort()).toEqual(
-      ["disagreement", "engine-text", "free-text", "low-confidence", "not-reviewed", "queued", "review-stale", "unexpressed"]);
+      ["disagreement", "engine-already", "engine-changes", "engine-text", "free-text", "low-confidence", "not-reviewed", "queued",
+        "review-stale", "unexpressed"]);
+    expect(HELD_REASONS["engine-changes"]).toBe("changes the engine's reading: a person decides");
+    expect(HELD_REASONS["engine-already"]).toBe("the engine already does it");
     expect(HELD_REASONS["not-reviewed"]).toBe("not reviewed yet");
     expect(HELD_REASONS.disagreement).toBe("review disagrees");
     expect(HELD_REASONS["low-confidence"]).toBe("reviewer unsure");
     expect(Object.isFrozen(HELD_REASONS)).toBe(true);
   });
 
-  it("holds every monster rule, even a reviewed one: the engine reads those features' text itself (Ruling R28)", () => {
+  it("holds a monster rule with no stored reading, even a reviewed one: the engine reads its text (Rulings R28, R29)", () => {
     const r = gated("Glimmer");
     r.kind = "monster";
     r.evidence.reviewed = { by: "reviewer-1", at: "2026-11-22", agrees: true, rule: r.evidence.gates.rule, confidence: 0.9 };
@@ -276,5 +280,73 @@ describe("generate and the gates with held rules", () => {
       writeFileSync(file, shipped);
       expect(cli(["gates", "--ci"]).stderr).not.toContain("emit:");
     }
+  });
+});
+
+// Ruling R29: a monster rule is emitted only as its delta against the engine's reading, from the evidence stored on it.
+describe("emissionOf for monster rules (Ruling R29): the delta against the engine's own reading", () => {
+  const merging = { version: "9.9.9", mergeEntries: (layers) => Object.assign({}, ...layers.filter(Boolean)) };
+  const push = { on: "failedSave", if: { "target.sizeAtMost": "med" }, do: [{ type: "move", mode: "push", distance: 10 }] };
+  const resave = { on: "turnEnd", via: "effect", do: [{ type: "resave" }] };
+  // A reviewed monster rule with `entry`, compared with `reading` (stored as evidence.reading unless `stored` is false).
+  function monster(entry, reading, { stored = true } = {}) {
+    const r = gated("Glimmer");
+    r.kind = "monster";
+    r.rule.entry = entry;
+    regate(agreed(regate(r)));
+    if (stored) r.evidence.reading = readingEvidence(r, compareWithReading(entry, reading, merging), { at: AT, core: merging });
+    return r;
+  }
+
+  it("holds a monster rule with no current reading, as before (engine-text): none, stale rule, stale item", () => {
+    expect(emissionOf(monster({ halfOnMiss: true }, null, { stored: false }), { queue: [] }))
+      .toEqual({ emitted: false, because: "engine-text" });
+    const edited = monster({ halfOnMiss: true }, null);
+    edited.rule.entry.noOpportunity = "afterUse";
+    regate(agreed(edited));
+    expect(emissionOf(edited, { queue: [] })).toEqual({ emitted: false, because: "engine-text" });
+    const moved = monster({ halfOnMiss: true }, null);
+    moved.items[0].data.sha256 = "e".repeat(64);
+    regate(moved);
+    expect(emissionOf(moved, { queue: [] })?.because).toBe("engine-text");
+  });
+
+  it("emits only the keys the engine does not read, and a superset trigger list whole", () => {
+    const r = monster({ saveDamage: { [ACT]: "half" }, triggers: [push, resave], halfOnMiss: true },
+      { saveDamage: { [ACT]: "half" }, triggers: [push] });
+    expect(r.evidence.reading.delta).toEqual(["halfOnMiss", "triggers"]);
+    expect(emissionOf(r, { queue: [] })).toEqual({ emitted: true, because: "reviewed" });
+    expect(ruleFromRecord(r, { queue: [] }).entry).toEqual({ halfOnMiss: true, triggers: [push, resave] });
+    const source = bookModuleSource("TST", [r], undefined, { queue: [] });
+    expect(source).toContain('"halfOnMiss": true');
+    expect(source).not.toContain('"saveDamage"');
+  });
+
+  it("holds a rule that changes the engine's reading, a trigger it drops included: a person decides", () => {
+    const lost = { on: "failedSave", do: [{ type: "move", mode: "push", distance: 10 }] };
+    expect(emissionOf(monster({ triggers: [lost], halfOnMiss: true }, { triggers: [push] }), { queue: [] }))
+      .toEqual({ emitted: false, because: "engine-changes" });
+    expect(emissionOf(monster({ blocksHealing: false }, { blocksHealing: true }), { queue: [] }))
+      .toEqual({ emitted: false, because: "engine-changes" });
+  });
+
+  it("holds a rule the engine already reads in full: nothing to register", () => {
+    const r = monster({ triggers: [push] }, { triggers: [push], blocksHealing: true });
+    expect(r.evidence.reading.delta).toEqual([]);
+    expect(emissionOf(r, { queue: [] })).toEqual({ emitted: false, because: "engine-already" });
+    expect(ruleFromRecord(r, { queue: [] })).toBeNull();
+  });
+
+  it("then applies Ruling R27 to a delta that stands: a rule never reviewed is still held for it", () => {
+    const r = monster({ halfOnMiss: true }, null);
+    delete r.evidence.reviewed;
+    regate(r);
+    expect(emissionOf(r, { queue: [] })).toEqual({ emitted: false, because: "not-reviewed" });
+  });
+
+  it("emits the whole entry for the tests of the mechanics (monsterRules: true), the reading aside", () => {
+    const r = monster({ saveDamage: { [ACT]: "half" }, halfOnMiss: true }, { saveDamage: { [ACT]: "half" } });
+    expect(ruleFromRecord(r, { queue: [], monsterRules: true }).entry).toEqual({ saveDamage: { [ACT]: "half" },
+      halfOnMiss: true });
   });
 });
