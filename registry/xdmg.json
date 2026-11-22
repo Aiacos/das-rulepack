@@ -6035,10 +6035,74 @@
           "confidence": 0.7,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-y001",
+          "at": "2026-11-22T21:24:55.187Z",
+          "core": "0.290.0",
+          "rule": "6945e2af40dca8023fb061be0a520dbeb906126f0f49bbde4b0e65447d17bf3a",
+          "person": true,
+          "because": "dataFixes"
+        },
+        "gates": {
+          "at": "2026-11-22T21:25:05.936Z",
+          "core": "0.290.0",
+          "rule": "6945e2af40dca8023fb061be0a520dbeb906126f0f49bbde4b0e65447d17bf3a",
+          "emits": "1c2df9af1d541e910bc1093482fcbff85c12461ffae0ad499e76cca30cc4c1a0",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "0044b895d923cd8bee5187c9f5052e37a251f51dd9ed365c5a623118a661d42e"
+          }
         }
       },
       "why": "Invisibility effect with charges exists; ending early when the hood is lowered needs an event rule.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The invisibility comes only from raising the hood, not passively while the cloak is carried.",
+        "entry": {
+          "dataFixes": [
+            {
+              "effect": "sSsgrnNQCK4vurTm",
+              "path": "transfer",
+              "from": true,
+              "value": false
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "its effect is already applied by the activity alone; the fix holds one origin"
+          }
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "condition": {
+                "applied": "invisible"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "table-ruling",
+            "count": 1
+          }
+        ]
+      },
+      "state": "gated"
     },
     {
       "key": "xdmg:item:cloak-of-many-fashions",
@@ -23987,10 +24051,87 @@
           "confidence": 0.78,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-y002",
+          "at": "2026-11-22T21:24:57.014Z",
+          "core": "0.290.0",
+          "rule": "eb40fd1103fe463c31496e500ea2ebf4f8b70c83d4f173d118bb89b7ebd0fce4"
+        },
+        "gates": {
+          "at": "2026-11-22T21:25:05.939Z",
+          "core": "0.290.0",
+          "rule": "eb40fd1103fe463c31496e500ea2ebf4f8b70c83d4f173d118bb89b7ebd0fce4",
+          "emits": "17889f56cbf6ed23568ff1be580b0bbca30cdb54fa6704240617f4fb1e7fcaec",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "034a4f0b3ab9b7bb2cf4f4c79adf2baf120ea2aafa54848f829658d622dc52bb",
+            "ddb-importer": "dbb263cc7b3480d57ebff722f06f4a0d6c901bd9cc7623b91e4f776ec2bbf0a4"
+          }
         }
       },
       "why": "Coin toss picks heads or tails at use; heads imposes disadvantage on the next attack, but the official effect has no changes.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The heads marker on a failed save ends at the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "Spy20nvaXnxmIv3K": "bearerTurnEnd",
+            "82YxxmFQ7eEFSH8w": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official",
+          "ddb-importer"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "roll": {
+                "mode": "disadvantage",
+                "on": "attack",
+                "for": "target"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          }
+        ]
+      },
+      "state": "gated"
     },
     {
       "key": "xdmg:item:robe-of-eyes",

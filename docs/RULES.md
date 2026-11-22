@@ -26,6 +26,17 @@ Published as an official Foundry VTT module (`dnd-tashas-cauldron`).
 | Tasha's Mind Whip | Spell | p.115 | No reactions until the end of the target's next turn; on that turn, an action or a bonus action, not both. Not checked on official (the rule predates it). | table | Played |
 | Tasha's Caustic Brew | Spell | p.115 | No damage on the cast; 2d4 acid at the start of each of the target's turns; an action ends it. Not checked on official (the rule predates it). | table | Played |
 
+### XDMG · Dungeon Master's Guide (2024)
+
+Published as an official Foundry VTT module (`dnd-dungeon-masters-guide`).
+
+Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
+
+| Held rule | Kind | Page | Status |
+|---|---|---|---|
+| Cloak of Invisibility | Item | p.244 | Held: review disagrees |
+| Rival Coin | Item | p.296 | Held: review disagrees |
+
 ### XPHB · Player's Handbook (2024)
 
 Published as an official Foundry VTT module (`dnd-players-handbook`).
@@ -219,7 +230,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-49 rules: 29 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 21 of them partial (part of the entry left to the table). 78 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 7).
+49 rules: 29 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 21 of them partial (part of the entry left to the table). 80 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 24, reviewer unsure 7).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell
