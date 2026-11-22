@@ -4,6 +4,7 @@
 //   { type: "enum", values | engine: "<engine list>", pick? }    one word (`pick`: the typical one)
 //   { type: "object", keys: {…required}, optional: {…}, atLeastOne? }   closed keys
 //   { type: "list", item }               a non-empty list
+//   { type: "tuple", items: [shape, …] }  a list of exactly those places, each of its own shape (Ruling R38: a reaction's steps)
 //   { type: "idMap", ids: "activity"|"effect", value }   an object keyed by document ids: origins side by side
 //   { type: "idList", ids }  { type: "id", ids }   ids of a document kind (taken from the structure file, 16 characters)
 //   { type: "oneOf", of: [shape, …] }    any one of the alternatives
@@ -15,6 +16,7 @@ export const word = (engine, pick) => freeze({ type: "enum", engine, ...(pick ==
 export const values = (list, pick) => freeze({ type: "enum", values: freeze([...list]), ...(pick === undefined ? {} : { pick }) });
 export const object = (keys, optional = {}, extra = {}) => freeze({ type: "object", keys, optional, ...extra });
 export const list = (item) => freeze({ type: "list", item });
+export const tuple = (...items) => freeze({ type: "tuple", items: freeze(items) });
 export const idMap = (ids, value) => freeze({ type: "idMap", ids, value });
 export const idList = (ids) => freeze({ type: "idList", ids });
 export const id = (ids) => freeze({ type: "id", ids });
@@ -72,6 +74,13 @@ export function shapeProblems(value, shape, { at = "value", vocabulary = {} } = 
       case "list":
         if (!Array.isArray(v) || !v.length) { out.push(`${here}: must be a non-empty list`); return; }
         v.forEach((x, i) => go(x, s.item, `${here}[${i}]`));
+        return;
+      case "tuple":
+        if (!Array.isArray(v) || v.length !== s.items.length) {
+          out.push(`${here}: must be a list of exactly ${s.items.length}`);
+          return;
+        }
+        v.forEach((x, i) => go(x, s.items[i], `${here}[${i}]`));
         return;
       case "idList":
         if (!Array.isArray(v) || !v.length) { out.push(`${here}: must be a non-empty list of ids`); return; }
@@ -139,6 +148,7 @@ export function resolveShape(shape, lists) {
       if (s[f]) out[f] = Object.fromEntries(Object.entries(s[f]).map(([k, v]) => [k, go(v)]));
     }
     if (s.item) out.item = go(s.item);
+    if (s.items) out.items = s.items.map(go);
     if (s.value) out.value = go(s.value);
     if (s.of) out.of = s.of.map(go);
     return out;

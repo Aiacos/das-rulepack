@@ -17,6 +17,10 @@ import {
   ZONE_MOMENTS, ZONE_SECONDS, replays
 } from "./zones.mjs";
 import { CHOICE_EFFECTS, EXCLUDED_WARD, SPELL_LEVELS, WARD_KEYS } from "./wards.mjs";
+import {
+  EXCLUDED_REACTION, NOT_ADMITTED_STEPS, PENALTY_FORMULAS, PER_ROUND, REACTION_FACTS, REACTION_KEYS, REACTION_MOMENTS,
+  isReactionDeclaration, reactionKind
+} from "./reactions.mjs";
 
 export const SLOTS = Object.freeze(["activityMap", "effectMap", "single", "none"]);
 
@@ -75,14 +79,19 @@ export const DRAFT_KEYS = Object.freeze({
   wardsConditions: slot("none"),
   wardsAtZero: slot("none"),
   blocksHealing: slot("effectMap"),
-  blocksTempHp: slot("effectMap")
+  blocksTempHp: slot("effectMap"),
+  // Ruling R38 (reactions.mjs): `teleport.activity` and `.then`, `swapPlaces.activity` hold one id each.
+  reactions: slot("none"),
+  teleport: slot("single"),
+  swapPlaces: slot("single"),
+  light: slot("none")
 });
 
 // The value shape of every DRAFT_KEYS key (shapes.mjs): what the engine's validator accepts from a drafter, with the ids where
 // the slot says. The vocabulary file gives them to drafters; tests/pipeline/batch-draft-round1.test.mjs builds a value from every
 // alternative of every shape and has the engine's validateEntry accept it (DAS_CORE), so a shape cannot drift from the engine.
 // A shape lists the common alternatives, not every option of the engine: a text that needs more goes to a person.
-const { values, word, object, list, idMap, idList, id, oneOf, tagged, TRUE, NUMBER, FORMULA } = sh;
+const { values, word, object, list, idMap, idList, id, oneOf, tagged, tuple, TRUE, NUMBER, FORMULA } = sh;
 const WHOLE = oneOf(TRUE, idList("effect"));
 const STEP_ON_OUTCOME = tagged("type", {
   status: object({ status: word("statuses") }),
@@ -111,6 +120,21 @@ const argShape = ({ arg }) => (arg.kind === "true" ? TRUE : arg.kind === "enum" 
     : object({ distance: INT(arg.min, arg.max), units: values(arg.units) }));
 export const CONDITION_SHAPE = sh.facts(Object.freeze(Object.fromEntries(Object.entries(DRAFT_FACTS)
   .map(([name, f]) => [name, argShape(f)]))), MAX_CONDITION_FACTS);
+// Ruling R38: the four reaction declarations a drafter may write (reactions.mjs REACTION_DECLARATIONS), each a moment, its
+// steps in their order (a tuple) and a condition on the attack alone (REACTION_FACTS): an AC bonus against the hit, a hit
+// turned into a miss, a melee counterattack after a miss, the item's damage dealt back to the attacker.
+// Each of those facts is said by the one given field `activity`, so a reaction's condition holds one of them.
+const REACTION_IF = sh.facts(Object.freeze(Object.fromEntries(REACTION_FACTS.map((f) => [f, CONDITION_SHAPE.facts[f]]))), 1);
+const USE_STEP = object({ type: values(["use"]) }, { activity: id("activity") });
+const reactionOn = (moment, ...steps) => object({ on: values([moment]), do: tuple(...steps) }, { if: REACTION_IF });
+export const REACTION_DECLARATION = oneOf(
+  reactionOn("isHit", USE_STEP, object({ type: values(["penalty"]), formula: values(PENALTY_FORMULAS, "@prof") })),
+  reactionOn("isHit", USE_STEP, object({ type: values(["miss"]) })),
+  reactionOn("isMissed", object({ type: values(["use"]), target: values(["source"]), weapon: TRUE }, { activity: id("activity") })),
+  reactionOn("isHit", object({ type: values(["damage"]), to: values(["source"]), activity: id("activity") }))
+);
+// Ruling R38: a teleport of the user, after the attack or at the use, with an activity on arrival.
+const TELEPORT_OPTIONS = Object.freeze({ then: id("activity"), after: values(["attack"]) });
 export const DRAFT_SHAPES = Object.freeze({
   // `on` may be any moment of the engine and a step must fit it (outcome steps at hit or failedSave, resave at a turn moment):
   // the two alternatives are the common ones, the others go to a person. `if` (Ruling R30): the facts that must hold.
@@ -120,7 +144,9 @@ export const DRAFT_SHAPES = Object.freeze({
     object({ on: Object.freeze({ ...word("moments", "endOfTurn"), sampleOnly: true }), via: values(["effect"]),
       do: list(STEP_RESAVE) }, { fromEffect: id("effect"), if: CONDITION_SHAPE }),
     // Ruling R33: a zone that uses the item's activity again on a creature that enters it, or starts or ends its turn in it.
-    REPLAY_DECLARATION
+    REPLAY_DECLARATION,
+    // Ruling R38: the four reactions.
+    ...REACTION_DECLARATION.of
   )),
   saveDamage: idMap("activity", values(["half", "none"])),
   halfOnMiss: TRUE,
@@ -194,7 +220,16 @@ export const DRAFT_SHAPES = Object.freeze({
   wardsConditions: object({ types: list(word("creatureTypes")), statuses: list(word("statuses")) }),
   wardsAtZero: TRUE,
   blocksHealing: WHOLE,
-  blocksTempHp: WHOLE
+  blocksTempHp: WHOLE,
+  // Ruling R38 (reactions.mjs REACTION_KEYS says what each does; EXCLUDED_REACTION what the engine also takes and a drafter
+  // may not). A teleport names its activity, or gives its own distance (then any use of the item teleports).
+  reactions: object({ perRound: INT(PER_ROUND.min, PER_ROUND.max) }),
+  teleport: oneOf(object({ activity: id("activity") }, TELEPORT_OPTIONS),
+    object({ distance: FEET, units: FT }, { activity: id("activity"), ...TELEPORT_OPTIONS })),
+  swapPlaces: object({ activity: id("activity") }),
+  // A light on the bearer of the item's effects: a bright radius (and the outer dim one), or a dim radius alone.
+  light: oneOf(object({ on: values(["effect"]), bright: FEET, units: FT }, { dim: FEET }),
+    object({ on: values(["effect"]), dim: FEET, units: FT }))
 });
 
 // Ruling R24, fix round 1 (L3): the rolls on which each drafter key changes the damage the item's own activity deals, so that
@@ -212,6 +247,8 @@ function triggerRolls(value) {
   const declarations = Array.isArray(value) ? value : [value];
   const rolls = new Set();
   for (const d of declarations) {
+    // Ruling R38: an AC bonus or a miss changes the attacker's roll, never the item's own damage.
+    if (["acBonus", "hitBecomesMiss"].includes(reactionKind(d))) continue;
     const steps = Array.isArray(d?.do) ? d.do : [d?.do];
     if (steps.every((st) => isObject(st) && DAMAGE_FREE_STEPS.has(st.type))) continue;
     for (const on of Array.isArray(d?.on) ? d.on : [d?.on]) {
@@ -246,7 +283,9 @@ export const DAMAGE_ROLLS = Object.freeze({
   aura: none, zoneAffects: none, zoneEffects: none, selfZone: none, zoneLasts: none, zoneMax: none, saveAutoSuccess: none,
   saveAutoFail: none, willingFails: none,
   // Ruling R34: which effect passes, who may come near or be reached, what the bearer is spared: never the damage of a roll.
-  choice: none, barrier: none, globe: none, wardsConditions: none, wardsAtZero: none, blocksHealing: none, blocksTempHp: none
+  choice: none, barrier: none, globe: none, wardsConditions: none, wardsAtZero: none, blocksHealing: none, blocksTempHp: none,
+  // Ruling R38: how many reactions, where the user goes, the light it sheds: never the damage of a roll.
+  reactions: none, teleport: none, swapPlaces: none, light: none
 });
 /** The rolls on which an entry changes the item's own damage (DAMAGE_ROLLS; an unknown key: every roll). */
 export function damageRollsOf(entry) {
@@ -420,6 +459,60 @@ export function wardProblemsOf(entry, { vocabulary = {} } = {}) {
 }
 
 /**
+ * Ruling R38: the problems of an entry's reaction, teleport and light keys (reactions.mjs REACTION_KEYS) against their drafter
+ * shapes, and of every `triggers` declaration of the reaction territory (reactions.mjs isReactionDeclaration: a reaction
+ * moment, a `use`, `penalty` or `miss` step, damage dealt to the attacker) against REACTION_DECLARATION: one of four moments
+ * and step sequences, a condition on the attack alone (REACTION_FACTS). What the engine also takes and a drafter may not (a
+ * declaration carried by an effect, a free use, a damage formula, a light of an area, passengers…) is named with why
+ * (EXCLUDED_REACTION), and so is a step the engine allows at a hit and a drafter may not write (NOT_ADMITTED_STEPS). Own
+ * properties only. No engine word is involved: the same with or without the vocabulary.
+ */
+export function reactionProblemsOf(entry) {
+  if (!isObject(entry)) return [];
+  const out = [];
+  for (const key of Object.keys(REACTION_KEYS)) {
+    if (has(entry, key)) out.push(...keyProblems(entry[key], key, EXCLUDED_REACTION, {}));
+  }
+  if (!has(entry, "triggers")) return out;
+  declarationsOf(entry.triggers).forEach((d, i) => {
+    if (!isReactionDeclaration(d)) return;
+    const at = `triggers[${i}]`;
+    const named = [];
+    for (const f of Object.keys(d)) {
+      const what = `triggers.reaction.${f}`;
+      if (has(EXCLUDED_REACTION, what)) named.push(`${at}.${f}: not a drafter's field (${EXCLUDED_REACTION[what]})`);
+    }
+    const steps = has(d, "do") ? (Array.isArray(d.do) ? d.do : [d.do]) : [];
+    steps.forEach((s, j) => {
+      if (!isObject(s) || !has(s, "type")) return;
+      if (has(NOT_ADMITTED_STEPS, s.type)) {
+        named.push(`${at}: not a reaction a drafter may write (${s.type}: ${NOT_ADMITTED_STEPS[s.type]})`);
+        return;
+      }
+      for (const f of Object.keys(s)) {
+        const what = `step.${s.type}.${f}`;
+        if (has(EXCLUDED_REACTION, what)) named.push(`${at}.do[${j}].${f}: not a drafter's field (${EXCLUDED_REACTION[what]})`);
+      }
+    });
+    if (has(d, "if") && isObject(d.if)) {
+      for (const f of Object.keys(d.if)) {
+        if (!REACTION_FACTS.includes(f)) {
+          named.push(`${at}.if.${f}: not a fact of a reaction (at ${REACTION_MOMENTS.join(" or ")} the engine's target is the`
+            + ` creature that reacts: only ${REACTION_FACTS.join(", ")})`);
+        }
+      }
+    }
+    if (named.length) { out.push(...named); return; }
+    const shape = shapeProblems(d, REACTION_DECLARATION, { at });
+    if (shape.length) {
+      out.push(`${at}: not a reaction a drafter may write (an AC bonus, a hit turned into a miss, a melee counterattack or`
+        + " damage dealt back, each in its shape)", ...shape);
+    }
+  });
+  return out;
+}
+
+/**
  * Why a drafter may not write this entry, or []: a key outside DRAFT_KEYS, a trigger's condition outside DRAFT_FACTS and its
  * typed arguments (conditionProblemsOf, Ruling R30), a zone or aura key outside its closed shape (zoneProblemsOf, Ruling
  * R33), a choice, barrier or ward key outside its closed shape (wardProblemsOf, Ruling R34), and the limits of `dataFixes`
@@ -447,6 +540,7 @@ export function checkDraftKeys(entry, { origins, kind, core } = {}) {
   problems.push(...conditionProblemsOf(entry));
   problems.push(...zoneProblemsOf(entry));
   problems.push(...wardProblemsOf(entry));
+  problems.push(...reactionProblemsOf(entry));
   problems.push(...forbiddenKeys(entry));
   if (core !== undefined) problems.push(...capabilityProblems(entry, core));
   const words = entryWords(entry);
@@ -489,7 +583,10 @@ const CLOSED_WORDS = new Set([
   "on", "do", "replay", "radius", "sees", "activity", "whileActive", "includeSelf", "size", "seconds", "fighting", "sizeAtLeast",
   // Ruling R34: the fields and words of the choice, barrier and ward keys.
   ...CHOICE_EFFECTS, "effects", "pool", "perTarget", "roll", "order", "exceptTypes", "onlyTypes", "shields", "endsOnContact",
-  "maxLevel", "statuses"
+  "maxLevel", "statuses",
+  // Ruling R38: the moments, steps, fields and words of the reaction, teleport and light keys.
+  ...REACTION_MOMENTS, "use", "penalty", "miss", "damage", "source", "weapon", "to", "prof", "perRound", "then", "after",
+  "bright", "dim"
 ]);
 /** True when every token of `s` is a 16-character id or a word of CLOSED_WORDS: structure, not words (a key, a path). */
 export const isStructural = (s) => String(s).split(/[^A-Za-z0-9_]+/).every((t) => !t || ID16.test(t) || CLOSED_WORDS.has(t));

@@ -133,7 +133,12 @@ describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
     wardsConditions: { wardsConditions: { types: ["fiend"], statuses: ["charmed"] } },
     wardsAtZero: { wardsAtZero: true },
     blocksHealing: { blocksHealing: [E_OFF, E_DDB] },
-    blocksTempHp: { blocksTempHp: [E_OFF, E_DDB] }
+    blocksTempHp: { blocksTempHp: [E_OFF, E_DDB] },
+    // Ruling R38.
+    reactions: { reactions: { perRound: 3 } },
+    teleport: { teleport: { activity: A_OFF } },
+    swapPlaces: { swapPlaces: { activity: A_OFF } },
+    light: { light: { on: "effect", bright: 10, dim: 20, units: "ft" } }
   };
 
   it("every drafter key the engine in use knows is an entry key of the engine (Ruling R37: the others are not)", async () => {

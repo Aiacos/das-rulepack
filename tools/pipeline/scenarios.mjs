@@ -20,6 +20,7 @@ import { DENIES, impliedAsserts, normaliseAssert, pairsOf, sameUpToDetail } from
 import { leavesAssertions, TURN_ENDS } from "./leaves.mjs";
 import { SIZES } from "./conditions.mjs";
 import { AURA_MOMENTS, ZONE_MOMENTS } from "./zones.mjs";
+import { REACTION_MOMENTS } from "./reactions.mjs";
 
 // The denials play/lib/steps.mjs observes (an engine stat, or the caster's freed turn). Ruling R34: `healing` and `tempHp`
 // have no interpreter (the runner deals no damage and heals nobody after the use): `expect.denies.<word>`, manual.
@@ -110,6 +111,9 @@ function uninterpreted(a, origin) {
     // Ruling R33: a zone or aura moment needs an area laid and a creature in it when a turn passes, which the interpreter
     // does not stage: named by its word.
     if (k === "moment" && [...ZONE_MOMENTS, ...AURA_MOMENTS].includes(v)) { out.push(`given.moment.${v}`); continue; }
+    // Ruling R38: a reaction moment needs an attack against the creature that carries the item and its reaction taken (a
+    // prompt), which the interpreter does not stage: named by its word.
+    if (k === "moment" && REACTION_MOMENTS.includes(v)) { out.push(`given.moment.${v}`); continue; }
     out.push(k === "roll" ? `force.${v}` : `given.${k}`);
   }
   for (const [k, v] of Object.entries(a.expect)) {

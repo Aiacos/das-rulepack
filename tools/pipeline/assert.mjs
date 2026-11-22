@@ -11,6 +11,7 @@ import * as sh from "./shapes.mjs";
 import { HP_AT_MOST, WITHIN_FT, givensOfCondition } from "./conditions.mjs";
 import { AURA_MOMENTS, EMANATION_ON, ZONE_MOMENTS } from "./zones.mjs";
 import { SPELL_LEVELS } from "./wards.mjs";
+import { AC_BONUS, PER_ROUND, acBonusOf, isReactionDeclaration, reactionKind } from "./reactions.mjs";
 
 export const FREE_MAX = 120;
 export const ROLLS = Object.freeze(["hit", "miss", "crit", "failedSave", "savedSave"]);
@@ -33,7 +34,8 @@ export const CONDITION_GIVENS = Object.freeze(["targetSizeAtMost", "targetType",
 export const GIVEN_FIELDS = Object.freeze(["roll", "moment", "origin", "targetType", "free",
   ...CONDITION_GIVENS.filter((f) => f !== "targetType"), "spellLevelAtMost"]);
 export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll", "affects", "excludes", "move", "uses", "denies",
-  "subjected", "chooses", "bars", "free"]);
+  "subjected", "chooses", "bars", "acBonus", "hitBecomes", "counterattack", "attackerTakes", "reactionsPerRound", "teleports",
+  "sheds", "free"]);
 /**
  * Ruling R33: what a creature is subjected to at a zone or aura moment (`expect.subjected`, with `given.moment`): the item's
  * activity is used on it (its saving throw, its damage, its effects, as the item's data gives them).
@@ -50,8 +52,24 @@ export const CHOOSES = Object.freeze(["oneEffect", "oneEffectPerTarget", "effect
  * outside (of the level `given.spellLevelAtMost` or lower).
  */
 export const BARS = Object.freeze(["entry", "melee", "actions", "spells"]);
-// The expectations said once for the use of the item, never on a roll or at a moment (Ruling R34).
-const ONCE = Object.freeze(["chooses", "bars"]);
+/**
+ * Ruling R38: what a reaction does to the attack that set it off, each said at its own moment (`given.moment`, isHit or
+ * isMissed) and never with a roll: `acBonus`, the creature's AC raised against that attack (the word `proficiency`, or 1 to
+ * 10); `hitBecomes: miss`, that hit misses instead; `counterattack: meleeWeapon`, after a miss, an attack with one of its
+ * melee weapons against the attacker; `attackerTakes: activity`, the attacker that hit takes the damage of the item's
+ * activity. `reactionsPerRound` (2 to 20, once for the item): its reactions each round, one a turn at most. `teleports`: the
+ * user teleports (`self`) or swaps places with its target (`swapsWithTarget`), at the use or on a hit or a miss. `sheds:
+ * light`: the bearer of the item's effect sheds light.
+ */
+export const HIT_BECOMES = Object.freeze(["miss"]);
+export const COUNTERATTACKS = Object.freeze(["meleeWeapon"]);
+export const ATTACKER_TAKES = Object.freeze(["activity"]);
+export const TELEPORTS = Object.freeze(["self", "swapsWithTarget"]);
+export const SHEDS = Object.freeze(["light"]);
+// The moment each reaction word is said at (Ruling R38).
+const AT_MOMENT = Object.freeze({ acBonus: "isHit", hitBecomes: "isHit", attackerTakes: "isHit", counterattack: "isMissed" });
+// The expectations said once for the use of the item, never on a roll or at a moment (Rulings R34, R38).
+const ONCE = Object.freeze(["chooses", "bars", "reactionsPerRound"]);
 // Fix round 1 of Ruling R25: `excludes` maps to no notion of the engine and pilot 3 used it two ways, so no agent may write it
 // (a drafter's assert and leaves, a reviewer's assert: `assertProblems(…, { agent: true })`); stored data that holds it (a
 // review-queue entry, a tolerated pair) is still read. What it was bent to say has its own word now: `denies`.
@@ -138,6 +156,17 @@ export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS,
         errors.push(`${here}.expect.${k}: said once for the use of the item, never with given.roll or given.moment`);
       }
     }
+    // Ruling R38: a reaction word at its own moment, with no roll; a teleport on a hit or a miss at most, a light on a roll at
+    // most: never at a moment.
+    for (const [k, moment] of Object.entries(AT_MOMENT)) {
+      if (has(expect, k) && (given.moment !== moment || has(given, "roll"))) {
+        errors.push(`${here}.expect.${k}: only with given.moment: ${moment} and no roll`);
+      }
+    }
+    if (has(expect, "teleports") && (has(given, "moment") || (has(given, "roll") && !["hit", "miss"].includes(given.roll)))) {
+      errors.push(`${here}.expect.teleports: at the use (no roll) or on a hit or a miss, never at a moment`);
+    }
+    if (has(expect, "sheds") && has(given, "moment")) errors.push(`${here}.expect.sheds: never at a moment`);
     if (has(given, "spellLevelAtMost")) {
       if (!inRange(given.spellLevelAtMost, SPELL_LEVELS)) {
         errors.push(`${here}.given.spellLevelAtMost: must be an integer from ${SPELL_LEVELS.min} to ${SPELL_LEVELS.max}`);
@@ -213,6 +242,15 @@ function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
   if (has(expect, "subjected")) oneOf(expect.subjected, SUBJECTED, `${at}.subjected`);
   if (has(expect, "chooses")) oneOf(expect.chooses, CHOOSES, `${at}.chooses`);
   if (has(expect, "bars")) oneOf(expect.bars, BARS, `${at}.bars`);
+  // Ruling R38.
+  if (has(expect, "acBonus") && !(expect.acBonus === AC_BONUS.word || inRange(expect.acBonus, AC_BONUS))) {
+    errors.push(`${at}.acBonus: must be ${AC_BONUS.word} or an integer from ${AC_BONUS.min} to ${AC_BONUS.max}`);
+  }
+  if (has(expect, "reactionsPerRound") && !inRange(expect.reactionsPerRound, PER_ROUND)) {
+    errors.push(`${at}.reactionsPerRound: must be an integer from ${PER_ROUND.min} to ${PER_ROUND.max}`);
+  }
+  for (const [k, words] of [["hitBecomes", HIT_BECOMES], ["counterattack", COUNTERATTACKS], ["attackerTakes", ATTACKER_TAKES],
+    ["teleports", TELEPORTS], ["sheds", SHEDS]]) if (has(expect, k)) oneOf(expect[k], words, `${at}.${k}`);
   if (has(expect, "move")) {
     const m = expect.move;
     if (!isObject(m) || !onlyKeys(m, ["mode", "distance"])) errors.push(`${at}.move: must be { mode, distance? }`);
@@ -341,6 +379,13 @@ const IMPLIED = {
     for (const d of asDeclarations(v)) {
       const condition = givensOfCondition(isObject(d) && Object.hasOwn(d, "if") ? d.if : undefined);
       if (condition.unassertable) { unassertable = true; continue; }
+      // Ruling R38: a reaction in the drafter's shape says one word at its moment; one outside it says nothing it does.
+      if (isReactionDeclaration(d)) {
+        const said = reactionAtom(d);
+        if (!said) { unassertable = true; continue; }
+        for (const g of condition.givens) asserts.push({ given: { moment: said.moment, ...g }, expect: said.expect });
+        continue;
+      }
       const own = [];
       const rolls = (Array.isArray(d?.on) ? d.on : [d?.on]).filter((on) => ROLLS.includes(on));
       for (const step of asSteps(d)) {
@@ -439,12 +484,58 @@ const IMPLIED = {
   blocksHealing: (v, entry, structure) => ({ asserts: onEffects(v, entry, structure, { denies: "healing" }) }),
   blocksTempHp: (v, entry, structure) => ({ asserts: onEffects(v, entry, structure, { denies: "tempHp" }),
     unassertable: v === true }),
+  // Ruling R38: reactions a round; a teleport of the user (at the use, or once its attack is judged: on a hit and on a miss),
+  // whose own distance and arrival activity have no word; a swap with the target; a light on the bearer of the item's
+  // effects, on the roll that applies them, whose radii have no word.
+  reactions: (v) => (isObject(v) && inRange(v.perRound, PER_ROUND)
+    ? { asserts: [{ given: {}, expect: { reactionsPerRound: v.perRound } }],
+      unassertable: Object.keys(v).some((k) => k !== "perRound") }
+    : { asserts: [], unassertable: true }),
+  teleport: (v) => {
+    if (!isObject(v)) return { asserts: [], unassertable: true };
+    const rolls = v.after === "attack" ? ["hit", "miss"] : [null];
+    return { asserts: rolls.map((r) => ({ given: givenOfRoll(r), expect: { teleports: "self" } })),
+      unassertable: Object.keys(v).some((k) => !["activity", "after"].includes(k)) };
+  },
+  swapPlaces: (v) => (isObject(v) && Object.keys(v).every((k) => k === "activity")
+    ? { asserts: [{ given: {}, expect: { teleports: "swapsWithTarget" } }] } : { asserts: [], unassertable: true }),
+  light: (v, entry, structure) => (isObject(v) && v.on === "effect"
+    ? { asserts: onEffects(true, entry, structure, { sheds: "light" }), unassertable: true }
+    : { asserts: [], unassertable: true }),
   // The statuses the entry adds to an effect of the item, applied on the roll that applies it.
   effectStatuses: (v, entry, structure) => ({ asserts: isObject(v) ? Object.entries(v).flatMap(([id, x]) => {
     const statuses = Array.isArray(x) ? x : Array.isArray(x?.set) ? x.set : [];
     return statuses.filter(isWord).flatMap((st) => onEffect(id, entry, structure, { condition: { applied: st } }));
   }) : [] })
 };
+/**
+ * Ruling R38: the one word a reaction declaration in the drafter's shape says, with its moment (the condition's givens are
+ * added by the caller), or null for a declaration outside the shape (a free use, an effect's, a formula, another step...).
+ */
+function reactionAtom(d) {
+  const kind = reactionKind(d);
+  if (!kind || Object.keys(d).some((k) => !["on", "do", "if"].includes(k))) return null;
+  const steps = asSteps(d);
+  const only = (s, keys) => isObject(s) && Object.keys(s).every((k) => keys.includes(k));
+  if (kind === "acBonus") {
+    const bonus = isObject(steps[1]) ? acBonusOf(steps[1].formula) : null;
+    return bonus !== null && only(steps[0], ["type", "activity"]) && only(steps[1], ["type", "formula"])
+      ? { moment: "isHit", expect: { acBonus: bonus } } : null;
+  }
+  if (kind === "hitBecomesMiss") {
+    return only(steps[0], ["type", "activity"]) && only(steps[1], ["type"])
+      ? { moment: "isHit", expect: { hitBecomes: "miss" } } : null;
+  }
+  if (kind === "counterattack") {
+    const [s] = steps;
+    return only(s, ["type", "target", "weapon", "activity"]) && s.target === "source" && s.weapon === true
+      ? { moment: "isMissed", expect: { counterattack: "meleeWeapon" } } : null;
+  }
+  const [s] = steps;
+  return only(s, ["type", "to", "activity"]) && s.to === "source" && isWord(s.activity)
+    ? { moment: "isHit", expect: { attackerTakes: "activity" } } : null;
+}
+
 /** The drafter keys whose effect is said by an implied assertion (IMPLIED). */
 export const IMPLIED_KEYS = Object.freeze(Object.keys(IMPLIED));
 /**
@@ -604,6 +695,12 @@ export const assertShapes = () => Object.freeze({
     roll: sh.object({ mode: sh.values(ROLL_MODES), on: sh.values(ROLL_ON), for: sh.values(ROLL_FOR) }),
     affects: sh.values(AFFECTS), denies: sh.values(DENIES), subjected: sh.values(SUBJECTED),
     chooses: sh.values(CHOOSES), bars: sh.values(BARS),
+    // Ruling R38.
+    acBonus: sh.oneOf(Object.freeze({ type: "number", min: AC_BONUS.min, max: AC_BONUS.max, int: true, formula: false }),
+      sh.values([AC_BONUS.word])),
+    hitBecomes: sh.values(HIT_BECOMES), counterattack: sh.values(COUNTERATTACKS), attackerTakes: sh.values(ATTACKER_TAKES),
+    reactionsPerRound: Object.freeze({ type: "number", min: PER_ROUND.min, max: PER_ROUND.max, int: true, formula: false }),
+    teleports: sh.values(TELEPORTS), sheds: sh.values(SHEDS),
     move: sh.object({ mode: sh.word("moveModes") }, { distance: Object.freeze({ type: "distance" }) }),
     uses: sh.object({ spent: Object.freeze({ type: "number", min: 1, int: true, formula: false }) }),
     free: Object.freeze({ type: "line", max: FREE_MAX })
