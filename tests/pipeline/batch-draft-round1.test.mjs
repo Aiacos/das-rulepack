@@ -85,14 +85,17 @@ describe("I2a: value shapes", () => {
     const v = draftVocabulary(core, {});
     const given = v.assert.shapes.given; const expectShapes = v.assert.shapes.expect;
     expect(Object.keys(given).sort()).toEqual(["activity", "damageType", "free", "moment", "onOwnTurn", "origin", "roll",
-      "selfStatus", "targetHp", "targetHpAtMost", "targetSizeAtMost", "targetStatus", "targetType", "targetWithin"]);
-    expect(Object.keys(expectShapes).sort())
-      .toEqual(["affects", "condition", "damage", "denies", "ends", "free", "move", "roll", "subjected", "uses"]);
+      "selfStatus", "spellLevelAtMost", "targetHp", "targetHpAtMost", "targetSizeAtMost", "targetStatus", "targetType",
+      "targetWithin"]);
+    expect(Object.keys(expectShapes).sort()).toEqual(["affects", "bars", "chooses", "condition", "damage", "denies", "ends", "free",
+      "move", "roll", "subjected", "uses"]);
     let n = 0;
     for (const [field, shape] of Object.entries(given)) {
       for (const value of variants(shape)) {
         n++;
-        const problems = assertProblems([{ given: { [field]: value }, expect: { damage: { fraction: 1 } } }], { vocabulary });
+        // Ruling R34: a spell level goes with what a globe bars (a rule across fields, outside the declarative shape).
+        const expectSide = field === "spellLevelAtMost" ? { bars: "spells" } : { damage: { fraction: 1 } };
+        const problems = assertProblems([{ given: { [field]: value }, expect: expectSide }], { vocabulary });
         expect(problems, field).toEqual([]);
       }
     }

@@ -10,6 +10,7 @@ import { ORIGINS } from "./schema.mjs";
 import * as sh from "./shapes.mjs";
 import { HP_AT_MOST, WITHIN_FT, givensOfCondition } from "./conditions.mjs";
 import { AURA_MOMENTS, EMANATION_ON, ZONE_MOMENTS } from "./zones.mjs";
+import { SPELL_LEVELS } from "./wards.mjs";
 
 export const FREE_MAX = 120;
 export const ROLLS = Object.freeze(["hit", "miss", "crit", "failedSave", "savedSave"]);
@@ -27,15 +28,29 @@ export const TARGET_HP = Object.freeze(["bloodied", "wounded"]);
 export const ACTIVITY_GIVENS = Object.freeze(["attack", "melee", "weapon", "spell"]);
 export const CONDITION_GIVENS = Object.freeze(["targetSizeAtMost", "targetType", "targetStatus", "selfStatus", "targetWithin",
   "targetHp", "targetHpAtMost", "onOwnTurn", "damageType", "activity"]);
+// Ruling R34: `spellLevelAtMost`, only for a spell of this level or lower (what a globe bars).
 export const GIVEN_FIELDS = Object.freeze(["roll", "moment", "origin", "targetType", "free",
-  ...CONDITION_GIVENS.filter((f) => f !== "targetType")]);
+  ...CONDITION_GIVENS.filter((f) => f !== "targetType"), "spellLevelAtMost"]);
 export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll", "affects", "excludes", "move", "uses", "denies",
-  "subjected", "free"]);
+  "subjected", "chooses", "bars", "free"]);
 /**
  * Ruling R33: what a creature is subjected to at a zone or aura moment (`expect.subjected`, with `given.moment`): the item's
  * activity is used on it (its saving throw, its damage, its effects, as the item's data gives them).
  */
 export const SUBJECTED = Object.freeze(["activity"]);
+/**
+ * Ruling R34: what the user of the item chooses at its use (`expect.chooses`, the engine's `choice`): one of the activity's
+ * effects, only that one applied — once for every target, once per target that failed its save, or picked by a die.
+ */
+export const CHOOSES = Object.freeze(["oneEffect", "oneEffectPerTarget", "effectByRoll"]);
+/**
+ * Ruling R34: what an emanation around the bearer of the item's effect keeps out (`expect.bars`, the engine's `barrier` and
+ * `globe`): a creature walking in, a melee attack from outside without reach, any action from outside, a spell cast from
+ * outside (of the level `given.spellLevelAtMost` or lower).
+ */
+export const BARS = Object.freeze(["entry", "melee", "actions", "spells"]);
+// The expectations said once for the use of the item, never on a roll or at a moment (Ruling R34).
+const ONCE = Object.freeze(["chooses", "bars"]);
 // Fix round 1 of Ruling R25: `excludes` maps to no notion of the engine and pilot 3 used it two ways, so no agent may write it
 // (a drafter's assert and leaves, a reviewer's assert: `assertProblems(…, { agent: true })`); stored data that holds it (a
 // review-queue entry, a tolerated pair) is still read. What it was bent to say has its own word now: `denies`.
@@ -115,6 +130,19 @@ export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS,
       errors.push(`${here}.expect.subjected: only with a zone or aura moment in given.moment and no roll (${[...ZONE_MOMENTS,
         ...AURA_MOMENTS].join(", ")})`);
     }
+    // Ruling R34: a choice and a barrier hold for the use of the item, whatever its roll and at no moment; a spell level
+    // bounds what a globe bars and nothing else.
+    for (const k of ONCE) {
+      if (has(expect, k) && (has(given, "roll") || has(given, "moment"))) {
+        errors.push(`${here}.expect.${k}: said once for the use of the item, never with given.roll or given.moment`);
+      }
+    }
+    if (has(given, "spellLevelAtMost")) {
+      if (!inRange(given.spellLevelAtMost, SPELL_LEVELS)) {
+        errors.push(`${here}.given.spellLevelAtMost: must be an integer from ${SPELL_LEVELS.min} to ${SPELL_LEVELS.max}`);
+      }
+      if (expect.bars !== "spells") errors.push(`${here}.given.spellLevelAtMost: only with expect.bars: spells`);
+    }
     if (has(given, "origin")) {
       if (!origins.includes(given.origin)) errors.push(`${here}.given.origin: must be an origin (${origins.join(", ")})`);
     }
@@ -182,6 +210,8 @@ function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
   for (const k of ["affects", "excludes"]) if (has(expect, k)) oneOf(expect[k], AFFECTS, `${at}.${k}`);
   if (has(expect, "denies")) oneOf(expect.denies, DENIES, `${at}.denies`);
   if (has(expect, "subjected")) oneOf(expect.subjected, SUBJECTED, `${at}.subjected`);
+  if (has(expect, "chooses")) oneOf(expect.chooses, CHOOSES, `${at}.chooses`);
+  if (has(expect, "bars")) oneOf(expect.bars, BARS, `${at}.bars`);
   if (has(expect, "move")) {
     const m = expect.move;
     if (!isObject(m) || !onlyKeys(m, ["mode", "distance"])) errors.push(`${at}.move: must be { mode, distance? }`);
@@ -281,7 +311,8 @@ const asSteps = (d) => (Array.isArray(d?.do) ? d.do : [d?.do]);
  * that used the item provokes no opportunity attacks (engine key noOpportunity); the bearer of the item's effect cannot take
  * reactions (noReactions); it takes an action or a bonus action on its turn, not both (actionOrBonus).
  */
-export const DENIES = Object.freeze(["opportunityAttacks", "reactions", "actionAndBonus"]);
+// Ruling R34: the bearer regains no hit points (blocksHealing), gains no temporary hit points (blocksTempHp).
+export const DENIES = Object.freeze(["opportunityAttacks", "reactions", "actionAndBonus", "healing", "tempHp"]);
 
 // What each drafter key says by itself (`(value, entry, structure) → { asserts, unassertable? }`): an assertion of the closed
 // vocabulary for what the key does, and `unassertable` when part of what it does has no word (the draft is then stamped for
@@ -374,6 +405,32 @@ const IMPLIED = {
     return { asserts: types.map((t) => ({ given: { targetType: t }, expect: { roll: { mode: "autoSuccess", on: "save",
       for: "target" } } })), unassertable: Object.keys(v).some((k) => k !== "types") };
   },
+  // Ruling R34: one effect of the activity chosen at its use (once, per target, by a die). Its pool is the item's own effects
+  // (the same choice); which face of a die gives which effect (`order`) has no word; a pool alone chooses nothing.
+  choice: (v) => {
+    if (!isObject(v) || v.effects !== "one") return { asserts: [], unassertable: true };
+    const word = v.perTarget === true ? "oneEffectPerTarget" : v.roll === true ? "effectByRoll" : "oneEffect";
+    return { asserts: [{ given: {}, expect: { chooses: word } }],
+      unassertable: Object.keys(v).some((k) => !["effects", "perTarget", "roll", "pool"].includes(k)) };
+  },
+  // A barrier keeps a creature from walking in and from a melee hit without reach, `shields` from any action from outside.
+  // Its radius has no word (always stamped); a barrier that names creature types implies nothing: no given word says which
+  // creatures it stops, and the assertion without that limit would say more than the key does.
+  barrier: (v) => {
+    const byType = isObject(v) && (Object.hasOwn(v, "exceptTypes") || Object.hasOwn(v, "onlyTypes"));
+    if (!isObject(v) || byType) return { asserts: [], unassertable: true };
+    const words = ["entry", "melee", ...(v.shields === true ? ["actions"] : [])];
+    return { asserts: words.map((bars) => ({ given: {}, expect: { bars } })), unassertable: true };
+  },
+  // A globe: a spell of its level or lower cast from outside affects nobody inside. Its radius has no word.
+  globe: (v) => (isObject(v) && Number.isInteger(v.maxLevel)
+    ? { asserts: [{ given: { spellLevelAtMost: v.maxLevel }, expect: { bars: "spells" } }], unassertable: true }
+    : { asserts: [], unassertable: true }),
+  // The bearer of the item's effects (all, or those) regains no hit points / gains no temporary ones, on the roll that applies
+  // them. `blocksTempHp: true` also covers the creature that carries the item itself, which no word names.
+  blocksHealing: (v, entry, structure) => ({ asserts: onEffects(v, entry, structure, { denies: "healing" }) }),
+  blocksTempHp: (v, entry, structure) => ({ asserts: onEffects(v, entry, structure, { denies: "tempHp" }),
+    unassertable: v === true }),
   // The statuses the entry adds to an effect of the item, applied on the roll that applies it.
   effectStatuses: (v, entry, structure) => ({ asserts: isObject(v) ? Object.entries(v).flatMap(([id, x]) => {
     const statuses = Array.isArray(x) ? x : Array.isArray(x?.set) ? x.set : [];
@@ -412,7 +469,10 @@ export const IMPLIES_NOTHING = Object.freeze({
   zoneLasts: "a duration in time for the area: no word for a length of time",
   zoneMax: "a cap on how many creatures the area affects: no word for a count of creatures",
   zoneEffects: "effects held while inside the area and lost on leaving it: no word for leaving an area",
-  willingFails: "a willing target fails without rolling: no given word for a creature's consent"
+  willingFails: "a willing target fails without rolling: no given word for a creature's consent",
+  // Ruling R34.
+  wardsConditions: "conditions warded off when they come from creatures of some types: no word for an immunity or a source",
+  wardsAtZero: "the bearer drops to 1 hit point instead of 0, once: no word for hit points"
 });
 
 /**
@@ -525,7 +585,9 @@ export const assertShapes = () => Object.freeze({
     targetSizeAtMost: sh.word("sizes"), targetStatus: sh.word("statuses"), selfStatus: sh.word("statuses"),
     targetWithin: Object.freeze({ type: "number", ...WITHIN_FT, int: true, formula: false }), targetHp: sh.values(TARGET_HP),
     targetHpAtMost: Object.freeze({ type: "number", ...HP_AT_MOST, int: true, formula: false }), onOwnTurn: sh.TRUE,
-    damageType: sh.word("damageTypes"), activity: sh.values(ACTIVITY_GIVENS)
+    damageType: sh.word("damageTypes"), activity: sh.values(ACTIVITY_GIVENS),
+    // Ruling R34: what a globe bars, by spell level.
+    spellLevelAtMost: Object.freeze({ type: "number", ...SPELL_LEVELS, int: true, formula: false })
   }),
   expect: Object.freeze({
     damage: sh.object({ fraction: sh.values(FRACTIONS) }, { type: sh.word("damageTypes") }),
@@ -533,6 +595,7 @@ export const assertShapes = () => Object.freeze({
     ends: sh.oneOf(sh.word("effectEnds"), sh.word("moments")),
     roll: sh.object({ mode: sh.values(ROLL_MODES), on: sh.values(ROLL_ON), for: sh.values(ROLL_FOR) }),
     affects: sh.values(AFFECTS), denies: sh.values(DENIES), subjected: sh.values(SUBJECTED),
+    chooses: sh.values(CHOOSES), bars: sh.values(BARS),
     move: sh.object({ mode: sh.word("moveModes") }, { distance: Object.freeze({ type: "distance" }) }),
     uses: sh.object({ spent: Object.freeze({ type: "number", min: 1, int: true, formula: false }) }),
     free: Object.freeze({ type: "line", max: FREE_MAX })

@@ -16,6 +16,7 @@ import {
   AURA_AFFECTS, EMANATION_AFFECTS, EMANATION_ON, EXCLUDED_ZONE, RADIUS_FT, TEMPLATE_TYPES, ZONE_AFFECTS, ZONE_KEYS, ZONE_MAX,
   ZONE_MOMENTS, ZONE_SECONDS, replays
 } from "./zones.mjs";
+import { CHOICE_EFFECTS, EXCLUDED_WARD, SPELL_LEVELS, WARD_KEYS } from "./wards.mjs";
 
 export const SLOTS = Object.freeze(["activityMap", "effectMap", "single", "none"]);
 
@@ -63,7 +64,16 @@ export const DRAFT_KEYS = Object.freeze({
   zoneLasts: slot("none"),
   zoneMax: slot("none"),
   saveAutoSuccess: slot("none"),
-  willingFails: slot("none")
+  willingFails: slot("none"),
+  // Ruling R34 (wards.mjs): `choice.pool` is keyed by activity ids (its lists and `order` hold effect ids, side by side);
+  // `blocksHealing` and `blocksTempHp` are true or a list of effect ids.
+  choice: slot("activityMap"),
+  barrier: slot("none"),
+  globe: slot("none"),
+  wardsConditions: slot("none"),
+  wardsAtZero: slot("none"),
+  blocksHealing: slot("effectMap"),
+  blocksTempHp: slot("effectMap")
 });
 
 // The value shape of every DRAFT_KEYS key (shapes.mjs): what the engine's validator accepts from a drafter, with the ids where
@@ -90,6 +100,10 @@ const FT = values(["ft"]);
 // An emanation or an aura with no radius takes the item's own template or range; one with a radius gives it in feet.
 const withRadius = (required, optional) => oneOf(object(required, optional),
   object({ ...required, radius: FEET, units: FT }, optional));
+// Ruling R34: the emanation of a barrier or a globe, in feet (required: the engine has no default), and a choice's pool.
+const AROUND = Object.freeze({ radius: FEET, units: FT });
+const BARRIER_OPTIONS = Object.freeze({ shields: TRUE, endsOnContact: TRUE });
+const POOL = idMap("activity", idList("effect"));
 const argShape = ({ arg }) => (arg.kind === "true" ? TRUE : arg.kind === "enum" ? word(arg.list)
   : arg.kind === "int" ? INT(arg.min, arg.max) : arg.kind === "enumList" ? list(word(arg.list))
     : object({ distance: INT(arg.min, arg.max), units: values(arg.units) }));
@@ -158,7 +172,25 @@ export const DRAFT_SHAPES = Object.freeze({
   zoneMax: INT(ZONE_MAX.min, ZONE_MAX.max),
   saveAutoSuccess: object({}, { types: list(word("creatureTypes")), fighting: TRUE, sizeAtLeast: word("sizes") },
     { atLeastOne: true }),
-  willingFails: TRUE
+  willingFails: TRUE,
+  // Ruling R34 (wards.mjs WARD_KEYS says what each does; EXCLUDED_WARD what the engine also takes and a drafter may not).
+  // A choice of one effect: once, per target (which the engine prefers to a roll, so never both), or by a die whose faces
+  // follow `order`; or a pool alone (effects linked to an activity, nothing to choose).
+  choice: oneOf(
+    object({ effects: values(CHOICE_EFFECTS) }, { pool: POOL }),
+    object({ effects: values(CHOICE_EFFECTS), perTarget: TRUE }, { pool: POOL }),
+    object({ effects: values(CHOICE_EFFECTS), roll: TRUE }, { order: idList("effect"), pool: POOL }),
+    object({ pool: POOL })
+  ),
+  // Only some creatures are stopped (`onlyTypes`) or some pass (`exceptTypes`): one or the other, never both. (The named
+  // alternatives first: on a tie, shapeProblems reports the first, so a wrong creature type is named as such.)
+  barrier: oneOf(object({ ...AROUND, onlyTypes: list(word("creatureTypes")) }, BARRIER_OPTIONS),
+    object({ ...AROUND, exceptTypes: list(word("creatureTypes")) }, BARRIER_OPTIONS), object(AROUND, BARRIER_OPTIONS)),
+  globe: object({ ...AROUND, maxLevel: INT(SPELL_LEVELS.min, SPELL_LEVELS.max) }),
+  wardsConditions: object({ types: list(word("creatureTypes")), statuses: list(word("statuses")) }),
+  wardsAtZero: TRUE,
+  blocksHealing: WHOLE,
+  blocksTempHp: WHOLE
 });
 
 // Ruling R24, fix round 1 (L3): the rolls on which each drafter key changes the damage the item's own activity deals, so that
@@ -208,7 +240,9 @@ export const DAMAGE_ROLLS = Object.freeze({
   // shape who is affected, where and how long, never the damage of a roll.
   emanation: all,
   aura: none, zoneAffects: none, zoneEffects: none, selfZone: none, zoneLasts: none, zoneMax: none, saveAutoSuccess: none,
-  willingFails: none
+  willingFails: none,
+  // Ruling R34: which effect passes, who may come near or be reached, what the bearer is spared: never the damage of a roll.
+  choice: none, barrier: none, globe: none, wardsConditions: none, wardsAtZero: none, blocksHealing: none, blocksTempHp: none
 });
 /** The rolls on which an entry changes the item's own damage (DAMAGE_ROLLS; an unknown key: every roll). */
 export function damageRollsOf(entry) {
@@ -300,21 +334,27 @@ export function conditionProblemsOf(entry, { vocabulary = {} } = {}) {
   });
 }
 
-// The fields and values a zone key or a replay declaration may not hold, named with why (zones.mjs EXCLUDED_ZONE), own keys only.
-function excludedIn(value, key, at) {
+// The fields and values a key may not hold, named with why (zones.mjs EXCLUDED_ZONE, wards.mjs EXCLUDED_WARD), own keys only.
+function excludedIn(value, key, at, table = EXCLUDED_ZONE) {
   if (!isObject(value)) return [];
   const out = [];
   for (const [field, v] of Object.entries(value)) {
-    const why = has(EXCLUDED_ZONE, `${key}.${field}`) ? EXCLUDED_ZONE[`${key}.${field}`] : null;
+    const why = has(table, `${key}.${field}`) ? table[`${key}.${field}`] : null;
     if (why) out.push(`${at}.${field}: not a drafter's field (${why})`);
     for (const x of Array.isArray(v) ? v : [v]) {
       const what = `${key}.${field}.${x}`;
-      if (typeof x === "string" && has(EXCLUDED_ZONE, what)) {
-        out.push(`${at}.${field}: "${x}" is not a drafter's value (${EXCLUDED_ZONE[what]})`);
+      if (typeof x === "string" && has(table, what)) {
+        out.push(`${at}.${field}: "${x}" is not a drafter's value (${table[what]})`);
       }
     }
   }
   return out;
+}
+// The shape problems of one key's value, less those of a field already named with why (not repeated as an unknown one).
+function keyProblems(value, key, table, vocabulary) {
+  const named = excludedIn(value, key, key, table);
+  const shape = shapeProblems(value, DRAFT_SHAPES[key], { at: key, vocabulary });
+  return [...named, ...shape.filter((p) => !named.some((n) => p.startsWith(n.slice(0, n.indexOf(":")))))];
 }
 
 /**
@@ -330,11 +370,7 @@ export function zoneProblemsOf(entry, { vocabulary: given = {} } = {}) {
   const vocabulary = { sizes: SIZES, ...given };
   const out = [];
   for (const key of Object.keys(ZONE_KEYS)) {
-    if (!has(entry, key)) continue;
-    const named = excludedIn(entry[key], key, key);
-    const shape = shapeProblems(entry[key], DRAFT_SHAPES[key], { at: key, vocabulary });
-    // A field already named with why is not repeated as an unknown one.
-    out.push(...named, ...shape.filter((p) => !named.some((n) => p.startsWith(n.slice(0, n.indexOf(":"))))));
+    if (has(entry, key)) out.push(...keyProblems(entry[key], key, EXCLUDED_ZONE, vocabulary));
   }
   if (has(entry, "triggers")) {
     declarationsOf(entry.triggers).forEach((d, i) => {
@@ -349,9 +385,23 @@ export function zoneProblemsOf(entry, { vocabulary: given = {} } = {}) {
 }
 
 /**
+ * Ruling R34: the problems of an entry's choice, barrier and ward keys (wards.mjs WARD_KEYS) against their drafter shapes
+ * (DRAFT_SHAPES, shapes.mjs shapeProblems: closed fields, bounded numbers, ids of the item's own activities and effects, closed
+ * words). What the engine takes and a drafter may not (a choice's prompt or outcome, a globe everywhere) is named with why
+ * (EXCLUDED_WARD). `vocabulary` (loadCore's lists) checks the engine's words (creature types, statuses); without it a word
+ * need only be a word.
+ */
+export function wardProblemsOf(entry, { vocabulary = {} } = {}) {
+  if (!isObject(entry)) return [];
+  return Object.keys(WARD_KEYS).filter((key) => has(entry, key))
+    .flatMap((key) => keyProblems(entry[key], key, EXCLUDED_WARD, vocabulary));
+}
+
+/**
  * Why a drafter may not write this entry, or []: a key outside DRAFT_KEYS, a trigger's condition outside DRAFT_FACTS and its
  * typed arguments (conditionProblemsOf, Ruling R30), a zone or aura key outside its closed shape (zoneProblemsOf, Ruling
- * R33), and the limits of `dataFixes` (no `create`, a
+ * R33), a choice, barrier or ward key outside its closed shape (wardProblemsOf, Ruling R34), and the limits of `dataFixes`
+ * (no `create`, a
  * path of FIX_PATHS, `value` and `from` of the leaf's type, at most MAX_FIXES fixes and one per path, official origin only,
  * never a monster feature).
  * `origins` (the rule's) and `kind` (the record's) are required: without them the limits could not be applied, so the call
@@ -373,6 +423,7 @@ export function checkDraftKeys(entry, { origins, kind } = {}) {
   }
   problems.push(...conditionProblemsOf(entry));
   problems.push(...zoneProblemsOf(entry));
+  problems.push(...wardProblemsOf(entry));
   problems.push(...forbiddenKeys(entry));
   const words = entryWords(entry);
   if (words.size > ENTRY_WORD_BUDGET) {
@@ -411,7 +462,10 @@ const CLOSED_WORDS = new Set([
   ...Object.keys(DRAFT_FACTS).flatMap((f) => [f, ...f.split(".")]), ...SIZES, "if", "distance", "units", "ft",
   // Ruling R33: the fields and words of the zone and aura keys.
   ...ZONE_MOMENTS, ...EMANATION_ON, ...EMANATION_AFFECTS, ...AURA_AFFECTS, ...ZONE_AFFECTS, ...TEMPLATE_TYPES,
-  "on", "do", "replay", "radius", "sees", "activity", "whileActive", "includeSelf", "size", "seconds", "fighting", "sizeAtLeast"
+  "on", "do", "replay", "radius", "sees", "activity", "whileActive", "includeSelf", "size", "seconds", "fighting", "sizeAtLeast",
+  // Ruling R34: the fields and words of the choice, barrier and ward keys.
+  ...CHOICE_EFFECTS, "effects", "pool", "perTarget", "roll", "order", "exceptTypes", "onlyTypes", "shields", "endsOnContact",
+  "maxLevel", "statuses"
 ]);
 /** True when every token of `s` is a 16-character id or a word of CLOSED_WORDS: structure, not words (a key, a path). */
 export const isStructural = (s) => String(s).split(/[^A-Za-z0-9_]+/).every((t) => !t || ID16.test(t) || CLOSED_WORDS.has(t));

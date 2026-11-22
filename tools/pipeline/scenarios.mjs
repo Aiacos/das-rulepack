@@ -21,6 +21,10 @@ import { leavesAssertions, TURN_ENDS } from "./leaves.mjs";
 import { SIZES } from "./conditions.mjs";
 import { AURA_MOMENTS, ZONE_MOMENTS } from "./zones.mjs";
 
+// The denials play/lib/steps.mjs observes (an engine stat, or the caster's freed turn). Ruling R34: `healing` and `tempHp`
+// have no interpreter (the runner deals no damage and heals nobody after the use): `expect.denies.<word>`, manual.
+const PLAYED_DENIES = Object.freeze(DENIES.filter((d) => ["opportunityAttacks", "reactions", "actionAndBonus"].includes(d)));
+
 // The arena the scenarios play in (DAS_CORE tools/lib/stages.mjs ARENE_SORTS): its caster token, and the token near which
 // the target is placed (20 ft away: in range of everything but touch). A monster feature's creature is cast near it too.
 export const ARENA = Object.freeze({ scene: "Arène des sorts", caster: "Lanceur", near: "Cible" });
@@ -113,7 +117,8 @@ function uninterpreted(a, origin) {
     if (k === "condition" && isObject(v) && Object.keys(v).every((f) => f === "applied" || f === "ended")) continue;
     if (k === "affects" && v === "target") continue;
     if (k === "ends" && isTurnEnd(v)) continue;
-    if (k === "denies" && DENIES.includes(v)) continue;
+    if (k === "denies" && PLAYED_DENIES.includes(v)) continue;
+    if (k === "denies" && DENIES.includes(v)) { out.push(`expect.denies.${v}`); continue; }
     if (k === "move" && measurable(v)) continue;
     if (k === "move" && isObject(v)) {
       out.push(MEASURED_MOVES.includes(v.mode) ? "expect.move.distance" : `expect.move.mode.${v.mode}`);
@@ -155,7 +160,7 @@ export const expectsOf = (a) => {
   const condition = isObject(e.condition) ? e.condition : {};
   return (Object.hasOwn(e, "damage") ? 1 : 0) + (Object.hasOwn(condition, "applied") ? 1 : 0)
     + (Object.hasOwn(condition, "ended") ? 1 : 0) + (measurable(e.move) ? 1 : 0) + (isTurnEnd(e.ends) ? 2 : 0)
-    + (DENIES.includes(e.denies) ? 1 : 0);
+    + (PLAYED_DENIES.includes(e.denies) ? 1 : 0);
 };
 
 // An assertion whose fact is an effect the use leaves on the target (an ending, a denial on the bearer, a condition): with no

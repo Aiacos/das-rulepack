@@ -20,13 +20,13 @@ describe("DRAFT_KEYS and checkDraftKeys", () => {
     expect(Object.isFrozen(DRAFT_KEYS)).toBe(true);
   });
 
-  it("checkDraftKeys refuses gmAlert and globe", () => {
+  it("checkDraftKeys refuses gmAlert and walls", () => {
     const spell = { origins: ["official"], kind: "spell" };
     expect(checkDraftKeys({ saveDamage: { [A_OFF]: "half" } }, spell)).toEqual([]);
-    const problems = checkDraftKeys({ gmAlert: "read the text", globe: { radius: 10 }, saveDamage: { [A_OFF]: "half" } }, spell);
+    const problems = checkDraftKeys({ gmAlert: "read the text", walls: { sight: true }, saveDamage: { [A_OFF]: "half" } }, spell);
     expect(problems).toHaveLength(2);
     expect(problems.join("; ")).toMatch(/gmAlert: not a drafter key/);
-    expect(problems.join("; ")).toMatch(/globe: not a drafter key/);
+    expect(problems.join("; ")).toMatch(/walls: not a drafter key/);
     expect(checkDraftKeys(null, spell)).toEqual(["entry: must be an object"]);
   });
 
@@ -124,7 +124,15 @@ describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
     zoneLasts: { zoneLasts: { seconds: 600 } },
     zoneMax: { zoneMax: 6 },
     saveAutoSuccess: { saveAutoSuccess: { types: ["construct"] } },
-    willingFails: { willingFails: true }
+    willingFails: { willingFails: true },
+    // Ruling R34: choices, barriers and wards.
+    choice: { choice: { effects: "one", pool: { [A_OFF]: [E_OFF], [A_DDB]: [E_DDB] } } },
+    barrier: { barrier: { radius: 10, units: "ft", exceptTypes: ["undead"] } },
+    globe: { globe: { radius: 10, units: "ft", maxLevel: 5 } },
+    wardsConditions: { wardsConditions: { types: ["fiend"], statuses: ["charmed"] } },
+    wardsAtZero: { wardsAtZero: true },
+    blocksHealing: { blocksHealing: [E_OFF, E_DDB] },
+    blocksTempHp: { blocksTempHp: [E_OFF, E_DDB] }
   };
 
   it("every drafter key is an entry key of the engine", async () => {
@@ -145,7 +153,9 @@ describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
       expect(validateEntry(entry, { facts: {} }), key).toEqual([]);
       const { slot } = DRAFT_KEYS[key];
       const count = holds(entry[key]);
-      if (slot === "activityMap" || slot === "effectMap") expect(count, key).toBe(2);
+      // Ruling R34: a choice's pool holds the activity ids as keys and effect ids in its lists: two of each, side by side.
+      if (key === "choice") expect(count, key).toBe(4);
+      else if (slot === "activityMap" || slot === "effectMap") expect(count, key).toBe(2);
       else if (slot === "single") expect(count, key).toBe(1);
       else expect(count, key).toBe(0);
     }

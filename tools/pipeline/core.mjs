@@ -3,7 +3,9 @@
 // vocabulary; and (Ruling R30) the facts a condition may name with the subject and argument kind of each (core/recipes.mjs
 // FACTS) and the closed value lists of those arguments (FACT_ARG_OPTIONS); and (Ruling R33) the moments of an emanation
 // (core/emanation.mjs EMANATION_MOMENTS), who an aura's copy goes to (AURA_AFFECTS) and the fields the zone and aura validators
-// accept (`zoneFields`, read from their own lists). Nothing here writes to the clone.
+// accept (`zoneFields`, read from their own lists); and (Ruling R34) the words of a choice (core/content/enums.mjs
+// CHOICE_EFFECTS) and the fields the choice, barrier, globe and wardsConditions validators accept (`wardFields`). Nothing here
+// writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -78,6 +80,22 @@ export function zoneFieldsOf({ steps, annex, entry }) {
     saveAutoSuccess: listAfter(entry, '"saveAutoSuccess" in entry', /const keys = \[([^\]]*)\]/),
     templateTypes: listAfter(entry, '"selfZone" in entry', /\[([^\]]*)\]\.includes\(t\.type\)/),
     zoneAffects: listAfter(entry, '("zoneAffects" in entry)', /\[([^\]]*)\]\.includes\(entry\.zoneAffects\)/)
+  };
+  return Object.values(out).every((v) => Array.isArray(v) && v.length) ? out : null;
+}
+
+/**
+ * Ruling R34: the fields the engine's validators of the choice, barrier, globe and wardsConditions keys accept, read as text
+ * from their own lists (core/content/annex.mjs validateChoice, extras.mjs `barrier` and `globe`, entry.mjs
+ * `wardsConditions`): `{ choice, globe, barrier, wardsConditions }`, or null when one of them is not found (a test then
+ * fails: the pack's shapes were checked against lists the engine no longer writes so).
+ */
+export function wardFieldsOf({ annex, extras, entry }) {
+  const out = {
+    choice: listAfter(annex, "export function validateChoice", /\[([^\]]*)\]\.includes\(key\)/),
+    globe: listAfter(extras, '("globe" in entry)', /Object\.keys\(entry\.globe\)\.every\(k => \[([^\]]*)\]/),
+    barrier: listAfter(extras, '("barrier" in entry)', /Object\.keys\(entry\.barrier\)\.every\(k => \[([^\]]*)\]/),
+    wardsConditions: listAfter(entry, '"wardsConditions" in entry', /\[([^\]]*)\]\.includes\(k\)/)
   };
   return Object.values(out).every((v) => Array.isArray(v) && v.length) ? out : null;
 }
@@ -158,6 +176,19 @@ export async function loadCore(dir) {
     }
     return zoneFields;
   };
+  // Ruling R34: the same for the choice, barrier and ward keys (the ward tests fail when they are missing).
+  const choiceEffects = Array.isArray(enums.CHOICE_EFFECTS) ? [...enums.CHOICE_EFFECTS] : [];
+  let wardFields;
+  const readWardFields = () => {
+    if (wardFields === undefined) {
+      const text = (f) => {
+        const path = join(dir, "module", "scripts", "core", "content", f);
+        return existsSync(path) ? readFileSync(path, "utf8") : "";
+      };
+      wardFields = wardFieldsOf({ annex: text("annex.mjs"), extras: text("extras.mjs"), entry: text("entry.mjs") });
+    }
+    return wardFields;
+  };
   const vocabulary = vocabularyOf([enums, triggers], facts);
 
   const aliases = SRD_ALIASES ?? {};
@@ -192,7 +223,8 @@ export async function loadCore(dir) {
     creatureTypes: [...lists.creatureTypes], moveModes: [...lists.moveModes], effectEnds: [...lists.effectEnds],
     damageTypes: [...lists.damageTypes], abilities: [...lists.abilities],
     factKinds, sizes: [...argLists.sizes], activityTypes: [...argLists.activityTypes], distanceUnits: [...argLists.distanceUnits],
-    emanationMoments, auraAffects, get zoneFields() { return readZoneFields(); }
+    emanationMoments, auraAffects, get zoneFields() { return readZoneFields(); },
+    choiceEffects, get wardFields() { return readWardFields(); }
   };
 }
 

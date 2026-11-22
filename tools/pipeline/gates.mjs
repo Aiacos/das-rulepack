@@ -16,7 +16,9 @@ import { GATE_NAMES } from "./schema.mjs";
 import { hasText, readText, splitWords } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
-import { checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys, zoneProblemsOf } from "./draft-keys.mjs";
+import {
+  checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys, wardProblemsOf, zoneProblemsOf
+} from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
 import { rereadStaleNote } from "./reread.mjs";
@@ -141,6 +143,9 @@ export function gateValidator(record, context) {
     // Ruling R33: the same for the words of a zone or aura key (creature types, sizes).
     const zone = new Set(zoneProblemsOf(entry));
     asserts.push(...zoneProblemsOf(entry, { vocabulary: core }).filter((e) => !zone.has(e)).map((e) => `validator: ${e}`));
+    // Ruling R34: and for a choice, barrier or ward key (creature types, statuses).
+    const ward = new Set(wardProblemsOf(entry));
+    asserts.push(...wardProblemsOf(entry, { vocabulary: core }).filter((e) => !ward.has(e)).map((e) => `validator: ${e}`));
   }
   // The engine looks a fact up as a key of the object it is given.
   const facts = Object.fromEntries(core.facts.map((name) => [name, true]));

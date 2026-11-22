@@ -5,9 +5,11 @@ import { queueHolds } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
 import {
-  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural, zoneProblemsOf
+  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural, wardProblemsOf,
+  zoneProblemsOf
 } from "./draft-keys.mjs";
 import { AURA_MOMENTS, EMANATION_ON, EXCLUDED_ZONE, ZONE_KEYS, ZONE_MOMENTS, replays } from "./zones.mjs";
+import { EXCLUDED_WARD, NOT_ADMITTED, WARD_KEYS } from "./wards.mjs";
 import { DRAFT_FACTS, EXCLUDED_FACTS, MAX_CONDITION_FACTS } from "./conditions.mjs";
 import { assertShapes } from "./assert.mjs";
 import { identifierClashes, quotationCheck } from "./gates.mjs";
@@ -237,6 +239,10 @@ function fitZones(entry) {
   for (const key of Object.keys(ZONE_KEYS)) {
     if (Object.hasOwn(out, key) && zoneProblemsOf({ [key]: out[key] }).length) delete out[key];
   }
+  // Ruling R34: the same for a choice, barrier or ward key (a globe everywhere, a choice's prompt or outcome).
+  for (const key of Object.keys(WARD_KEYS)) {
+    if (Object.hasOwn(out, key) && wardProblemsOf({ [key]: out[key] }).length) delete out[key];
+  }
   if (Array.isArray(out.triggers)) {
     const fit = out.triggers.filter((d) => !replays(d) || !zoneProblemsOf({ triggers: [d] }).length);
     if (fit.length) out.triggers = fit;
@@ -434,7 +440,8 @@ export function draftVocabulary(core) {
       rollModes: copy(assertVocabulary.ROLL_MODES), rollOn: copy(assertVocabulary.ROLL_ON),
       rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
       givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.AGENT_EXPECT_FIELDS),
-      denies: copy(assertVocabulary.DENIES), subjected: copy(assertVocabulary.SUBJECTED), auraMoments: copy(AURA_MOMENTS)
+      denies: copy(assertVocabulary.DENIES), subjected: copy(assertVocabulary.SUBJECTED), auraMoments: copy(AURA_MOMENTS),
+      chooses: copy(assertVocabulary.CHOOSES), bars: copy(assertVocabulary.BARS)
     },
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
     draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),
@@ -453,6 +460,9 @@ export function draftVocabulary(core) {
       keys: JSON.parse(JSON.stringify(ZONE_KEYS)), zoneMoments: copy(ZONE_MOMENTS), emanationOn: copy(EMANATION_ON),
       auraMoments: copy(AURA_MOMENTS), excluded: { ...EXCLUDED_ZONE }
     },
+    // Ruling R34: the choice, barrier and ward keys (wards.mjs): what each does at the table and where that was read, what
+    // the engine also takes with why not (`excluded`), and the keys of the same territory a drafter may not write, with why.
+    wards: { keys: JSON.parse(JSON.stringify(WARD_KEYS)), excluded: { ...EXCLUDED_WARD }, notAdmitted: { ...NOT_ADMITTED } },
     keyExamples: keyExamplesOf(core),
     // Ruling R3: a monster feature names the official origin only; its DDB Importer item is uncovered with this reason
     // (ingest --draft adds the line when it is left out, and rejects a rule that names ddb-importer in `origins`).
