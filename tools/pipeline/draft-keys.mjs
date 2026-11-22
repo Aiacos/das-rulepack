@@ -10,6 +10,7 @@
 import { FIX_ENUMS, FIX_TYPES, typeProblem } from "./fix-types.mjs";
 import { splitWords } from "./text.mjs";
 import * as sh from "./shapes.mjs";
+import { DRAFT_FACTS, MAX_CONDITION_FACTS, SIZES, conditionProblems } from "./conditions.mjs";
 
 export const SLOTS = Object.freeze(["activityMap", "effectMap", "single", "none"]);
 
@@ -62,13 +63,22 @@ const STEP_ON_OUTCOME = tagged("type", {
   move: object({ mode: word("moveModes"), distance: Object.freeze({ type: "number", formula: false }), units: values(["ft"]) })
 });
 const STEP_RESAVE = tagged("type", { resave: object({}, { advantage: TRUE, keep: TRUE }) });
+// Ruling R30: the shape of each allowed fact's argument (conditions.mjs DRAFT_FACTS: an engine list, a bounded integer or
+// distance, or true), and the condition itself: one object of 1 to MAX_CONDITION_FACTS of them.
+const INT = (min, max) => Object.freeze({ type: "number", min, max, int: true, formula: false });
+const argShape = ({ arg }) => (arg.kind === "true" ? TRUE : arg.kind === "enum" ? word(arg.list)
+  : arg.kind === "int" ? INT(arg.min, arg.max) : arg.kind === "enumList" ? list(word(arg.list))
+    : object({ distance: INT(arg.min, arg.max), units: values(arg.units) }));
+export const CONDITION_SHAPE = sh.facts(Object.freeze(Object.fromEntries(Object.entries(DRAFT_FACTS)
+  .map(([name, f]) => [name, argShape(f)]))), MAX_CONDITION_FACTS);
 export const DRAFT_SHAPES = Object.freeze({
   // `on` may be any moment of the engine and a step must fit it (outcome steps at hit or failedSave, resave at a turn moment):
-  // the two alternatives are the common ones, the others go to a person.
+  // the two alternatives are the common ones, the others go to a person. `if` (Ruling R30): the facts that must hold.
   triggers: list(oneOf(
-    object({ on: Object.freeze({ ...word("moments", "failedSave"), sampleOnly: true }), do: list(STEP_ON_OUTCOME) }),
+    object({ on: Object.freeze({ ...word("moments", "failedSave"), sampleOnly: true }), do: list(STEP_ON_OUTCOME) },
+      { if: CONDITION_SHAPE }),
     object({ on: Object.freeze({ ...word("moments", "endOfTurn"), sampleOnly: true }), via: values(["effect"]),
-      do: list(STEP_RESAVE) }, { fromEffect: id("effect") })
+      do: list(STEP_RESAVE) }, { fromEffect: id("effect"), if: CONDITION_SHAPE })
   )),
   saveDamage: idMap("activity", values(["half", "none"])),
   halfOnMiss: TRUE,
@@ -227,8 +237,28 @@ function fixProblems(fixes) {
   return problems;
 }
 
+const declarationsOf = (triggers) => (Array.isArray(triggers) ? triggers : isObject(triggers) ? [triggers] : []);
 /**
- * Why a drafter may not write this entry, or []: a key outside DRAFT_KEYS, and the limits of `dataFixes` (no `create`, a
+ * Ruling R30: the problems of the conditions of an entry's triggers (conditions.mjs conditionProblems), each at
+ * `triggers[i].if`, and a declaration that writes the recipe's clause list as `condition` (the engine's trigger reads `if`
+ * only: it would ignore the list silently). `vocabulary` (loadCore's lists) checks the words against the engine (the
+ * validator gate); without it, their shape only (the schema gate, checkDraftKeys).
+ */
+export function conditionProblemsOf(entry, { vocabulary = {} } = {}) {
+  if (!isObject(entry) || !has(entry, "triggers")) return [];
+  return declarationsOf(entry.triggers).flatMap((d, i) => {
+    if (!isObject(d)) return [];
+    const at = `triggers[${i}]`;
+    return [
+      ...(has(d, "condition") ? [`${at}.condition: not read by the engine's trigger (a condition is written as if)`] : []),
+      ...(has(d, "if") ? conditionProblems(d.if, { vocabulary, at: `${at}.if` }) : [])
+    ];
+  });
+}
+
+/**
+ * Why a drafter may not write this entry, or []: a key outside DRAFT_KEYS, a trigger's condition outside DRAFT_FACTS and its
+ * typed arguments (conditionProblemsOf, Ruling R30), and the limits of `dataFixes` (no `create`, a
  * path of FIX_PATHS, `value` and `from` of the leaf's type, at most MAX_FIXES fixes and one per path, official origin only,
  * never a monster feature).
  * `origins` (the rule's) and `kind` (the record's) are required: without them the limits could not be applied, so the call
@@ -248,6 +278,7 @@ export function checkDraftKeys(entry, { origins, kind } = {}) {
     if (!(origins.length === 1 && origins[0] === "official")) problems.push("dataFixes: official origin only");
     if (kind === "monster") problems.push("dataFixes: never on a monster feature");
   }
+  problems.push(...conditionProblemsOf(entry));
   problems.push(...forbiddenKeys(entry));
   const words = entryWords(entry);
   if (words.size > ENTRY_WORD_BUDGET) {
@@ -281,7 +312,9 @@ const CLOSED_WORDS = new Set([
   ...Object.values(FIX_PATHS).flat().flatMap((p) => p.split(".")),
   ...["path", "value", "from", "effect", "create", "unless", "key", "type", "mode", "priority", "target", "scaling", "formula",
     "number", "denomination", "bonus", "types", "period", "_id", "onSave", "level", "min", "max", "attack", "save",
-    "override", "system", "activities"]
+    "override", "system", "activities"],
+  // Ruling R30: the facts of a condition, their segments, and the words of their arguments' closed lists.
+  ...Object.keys(DRAFT_FACTS).flatMap((f) => [f, ...f.split(".")]), ...SIZES, "if", "distance", "units", "ft"
 ]);
 /** True when every token of `s` is a 16-character id or a word of CLOSED_WORDS: structure, not words (a key, a path). */
 export const isStructural = (s) => String(s).split(/[^A-Za-z0-9_]+/).every((t) => !t || ID16.test(t) || CLOSED_WORDS.has(t));

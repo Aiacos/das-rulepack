@@ -9,6 +9,7 @@
 //   { type: "oneOf", of: [shape, …] }    any one of the alternatives
 //   { type: "tagged", tag, variants: { <word>: object shape } }   an object whose `tag` field picks its other fields
 //   { type: "true" }  { type: "number", min? }  { type: "formula" }  { type: "line", max }  { type: "distance" }
+//   { type: "facts", facts: { "<fact>": shape }, max }   a trigger's condition (Ruling R30): 1 to `max` of the facts as keys
 const freeze = (o) => Object.freeze(o);
 export const word = (engine, pick) => freeze({ type: "enum", engine, ...(pick === undefined ? {} : { pick }) });
 export const values = (list, pick) => freeze({ type: "enum", values: freeze([...list]), ...(pick === undefined ? {} : { pick }) });
@@ -19,6 +20,7 @@ export const idList = (ids) => freeze({ type: "idList", ids });
 export const id = (ids) => freeze({ type: "id", ids });
 export const oneOf = (...of) => freeze({ type: "oneOf", of });
 export const tagged = (tag, variants) => freeze({ type: "tagged", tag, variants });
+export const facts = (byName, max) => freeze({ type: "facts", facts: byName, max });
 export const TRUE = freeze({ type: "true" });
 export const NUMBER = freeze({ type: "number" });
 export const FORMULA = freeze({ type: "formula" });
@@ -35,7 +37,7 @@ export function resolveShape(shape, lists) {
       return { ...rest, values: [...lists[engine]] };
     }
     const out = { ...s };
-    for (const f of ["keys", "optional", "variants"]) {
+    for (const f of ["keys", "optional", "variants", "facts"]) {
       if (s[f]) out[f] = Object.fromEntries(Object.entries(s[f]).map(([k, v]) => [k, go(v)]));
     }
     if (s.item) out.item = go(s.item);

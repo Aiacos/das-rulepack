@@ -4,7 +4,10 @@ import { groupBy, ruleFingerprint, stateOf } from "./registry.mjs";
 import { queueHolds } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
-import { DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural } from "./draft-keys.mjs";
+import {
+  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural
+} from "./draft-keys.mjs";
+import { DRAFT_FACTS, EXCLUDED_FACTS, MAX_CONDITION_FACTS } from "./conditions.mjs";
 import { assertShapes } from "./assert.mjs";
 import { identifierClashes, quotationCheck } from "./gates.mjs";
 import { resolveShape } from "./shapes.mjs";
@@ -350,14 +353,15 @@ export function draftVocabulary(core) {
   const copy = (l) => [...(l ?? [])];
   const engineLists = {
     moments: copy(core.moments), statuses: copy(core.statuses), creatureTypes: copy(core.creatureTypes),
-    moveModes: copy(core.moveModes), effectEnds: copy(core.effectEnds), damageTypes: copy(core.damageTypes)
+    moveModes: copy(core.moveModes), effectEnds: copy(core.effectEnds), damageTypes: copy(core.damageTypes),
+    sizes: copy(core.sizes)
   };
   return {
     draftKeys: Object.fromEntries(Object.entries(DRAFT_KEYS).map(([k, v]) => [k, { ...v }])),
     engine: {
       moments: copy(core.moments), stepTypes: copy(core.stepTypes), facts: copy(core.facts), statuses: copy(core.statuses),
       creatureTypes: copy(core.creatureTypes), moveModes: copy(core.moveModes), effectEnds: copy(core.effectEnds),
-      damageTypes: copy(core.damageTypes), abilities: copy(core.abilities)
+      damageTypes: copy(core.damageTypes), abilities: copy(core.abilities), sizes: copy(core.sizes)
     },
     assert: {
       shapes: Object.fromEntries(Object.entries(assertShapes()).map(([part, fields]) => [part,
@@ -370,6 +374,15 @@ export function draftVocabulary(core) {
     },
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
     draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),
+    // Ruling R30: what a trigger's `if` may name (conditions.mjs): each allowed fact with its subject, the given field that
+    // says it in an assertion and its argument's shape (engine words resolved), at most `max` per trigger; the facts left out
+    // with why.
+    conditions: {
+      max: MAX_CONDITION_FACTS,
+      facts: Object.fromEntries(Object.entries(DRAFT_FACTS).map(([name, f]) => [name, { subject: f.subject, given: f.given,
+        ...(Object.hasOwn(f, "value") ? { value: f.value } : {}), arg: resolveShape(CONDITION_SHAPE.facts[name], engineLists) }])),
+      excluded: { ...EXCLUDED_FACTS }
+    },
     keyExamples: keyExamplesOf(core),
     // Ruling R3: a monster feature names the official origin only; its DDB Importer item is uncovered with this reason
     // (ingest --draft adds the line when it is left out, and rejects a rule that names ddb-importer in `origins`).
@@ -461,7 +474,7 @@ export const reviewReport = (book, batches, leftOut) => ({
  */
 export function reviewVocabulary(core) {
   const { engine, assert, limits, endsExamples } = draftVocabulary(core);
-  const words = ["moments", "statuses", "creatureTypes", "moveModes", "effectEnds", "damageTypes"];
+  const words = ["moments", "statuses", "creatureTypes", "moveModes", "effectEnds", "damageTypes", "sizes"];
   return {
     engine: Object.fromEntries(words.map((w) => [w, engine[w]])), assert,
     limits: { freeMax: limits.freeMax, quoteWords: limits.quoteWords, whyMax: MAX_WHY },

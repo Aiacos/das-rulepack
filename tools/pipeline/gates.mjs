@@ -16,7 +16,7 @@ import { GATE_NAMES } from "./schema.mjs";
 import { hasText, readText, splitWords } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
-import { checkDraftKeys, isStructural, singleSlotKeys } from "./draft-keys.mjs";
+import { checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
 import { rereadStaleNote } from "./reread.mjs";
@@ -116,7 +116,8 @@ function draftProblems(record, context) {
   return checkDraftKeys(entry, { origins: originsOf(record.rule), kind: record.kind });
 }
 
-export function gateValidator(record, { core }) {
+export function gateValidator(record, context) {
+  const { core } = context;
   if (!record.rule) return [];
   // The rule's assertions, against the engine's enumerations (the schema gate checked their shape without them).
   const asserts = Array.isArray(record.rule.assert)
@@ -132,6 +133,12 @@ export function gateValidator(record, { core }) {
   const { entry, error } = entryOf(record.rule);
   if (error) return [`validator: ${error}`, ...asserts];
   if (!entry) return asserts;
+  // Ruling R30: the words of a trigger's condition against the engine's lists, for the rules the drafter limits hold
+  // (draftProblems): only what the lists add, the shape being the schema gate's (checkDraftKeys).
+  if (!isLegacy(record, context) && !signedByOwner(record, context)) {
+    const shape = new Set(conditionProblemsOf(entry));
+    asserts.push(...conditionProblemsOf(entry, { vocabulary: core }).filter((e) => !shape.has(e)).map((e) => `validator: ${e}`));
+  }
   // The engine looks a fact up as a key of the object it is given.
   const facts = Object.fromEntries(core.facts.map((name) => [name, true]));
   try {

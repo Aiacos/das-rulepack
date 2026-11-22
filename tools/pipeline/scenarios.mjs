@@ -18,6 +18,7 @@
 import { assertionOfCanonical, ruleFingerprint, slug, stateOf } from "./registry.mjs";
 import { DENIES, impliedAsserts, normaliseAssert, pairsOf, sameUpToDetail } from "./assert.mjs";
 import { leavesAssertions, TURN_ENDS } from "./leaves.mjs";
+import { SIZES } from "./conditions.mjs";
 
 // The arena the scenarios play in (DAS_CORE tools/lib/stages.mjs ARENE_SORTS): its caster token, and the token near which
 // the target is placed (20 ft away: in range of everything but touch). A monster feature's creature is cast near it too.
@@ -31,6 +32,16 @@ export const TARGETS = Object.freeze({
   plant: "mmShriekerFungus", undead: "mmZombie00000000"
 });
 export const DEFAULT_TARGET = "humanoid";
+// Ruling R30: the size of each of those creatures (`system.traits.size` of the SRD 2024 actors, `dnd5e.actors24`, and of the
+// Monster Manual 2025's: checked against the dumps by tests/pipeline/trigger-conditions.test.mjs), so that an assertion
+// limited to targets of a size or smaller (`given.targetSizeAtMost`) gets a target that satisfies it. The other side, a
+// target too large, is a second play with another creature: a person's (`given.targetSizeAtMost.unmet`).
+export const TARGET_SIZES = Object.freeze({
+  mmOtyugh00000000: "lg", mmWolf0000000000: "med", mmPegasus0000000: "lg", mmAnimatedArmor0: "med", mmRedDragonWyrml: "med",
+  mmFireElemental0: "lg", mmDryad000000000: "med", mmImp00000000000: "tiny", mmOgre0000000000: "lg", mmBanditCaptain0: "med",
+  mmOwlbear0000000: "lg", mmOchreJelly0000: "lg", mmShriekerFungus: "med", mmZombie00000000: "med"
+});
+const rankOf = (size) => SIZES.indexOf(size);
 // The rolls the interpreter can wait for (a crit is too rare to wait for), and how many uses it tries before failing (the
 // engine's own scenarios try 20 times: a DC 13 save a creature makes on 8 or more fails one time in five).
 export const FORCEABLE = Object.freeze(["hit", "miss", "failedSave", "savedSave"]);
@@ -88,6 +99,8 @@ function uninterpreted(a, origin) {
   for (const [k, v] of Object.entries(a.given)) {
     if (k === "roll" && FORCEABLE.includes(v)) continue;
     if (k === "targetType" && Object.hasOwn(TARGETS, v)) continue;
+    // The positive side is staged by the choice of the target (targetOf); a target that does not satisfy it is not played.
+    if (k === "targetSizeAtMost") { out.push("given.targetSizeAtMost.unmet"); continue; }
     if (k === "origin" && v === origin) continue;
     out.push(k === "roll" ? `force.${v}` : `given.${k}`);
   }
@@ -108,6 +121,23 @@ function uninterpreted(a, origin) {
   // Who an assertion is about is a qualifier: a check needs something to look at.
   if (!expectsOf(a) && !out.some((p) => p.startsWith("expect."))) out.push("expect");
   return out;
+}
+
+/**
+ * The creature type of the one target a scenario places (Ruling R30): the type the assertions name (one at most; the
+ * default otherwise) whose creature (TARGETS) is no larger than every `given.targetSizeAtMost` they state; with no type
+ * named, the default type first, then the others in TARGETS order. `{ type, fits }`: `fits` false when no creature of the
+ * allowed types satisfies the limits (the scenario's positive side is then a person's too).
+ */
+export function targetOf(types, limits) {
+  const ranks = [...limits].map(rankOf);
+  const limit = ranks.length ? Math.min(...ranks) : SIZES.length;
+  const candidates = types.size > 1 ? [] : types.size === 1 ? [...types]
+    : [DEFAULT_TARGET, ...Object.keys(TARGETS).filter((t) => t !== DEFAULT_TARGET)];
+  const fits = (t) => Object.hasOwn(TARGETS, t) && rankOf(TARGET_SIZES[TARGETS[t]]) <= limit;
+  const fit = ranks.some((r) => r < 0) ? undefined : candidates.find(fits);
+  const fallback = types.size === 1 ? [...types][0] : DEFAULT_TARGET;
+  return { type: fit ?? fallback, fits: fit !== undefined || !ranks.length };
 }
 
 /**
@@ -165,7 +195,8 @@ function playedActivities(entry, activities, checks, structure) {
  * `setup.item` is the official item (else the first origin the rule names) by docId: for a monster feature (docId
  * `<actor id>.<item id>`) the creature is cast for the run from `actor` and its own item `id` is used (`setup.caster` null);
  * for anything else, the item is lent to the arena's caster from its compendium `uuid` when `packOf` (docId →
- * "<package>.<pack>", from the dumps) knows it. `setup.target` is an SRD 2024 creature of the type the assertions name;
+ * "<package>.<pack>", from the dumps) knows it. `setup.target` is an SRD 2024 creature of the type the assertions name, no
+ * larger than the size they limit targets to (targetOf);
  * `setup.reach` the reach in feet of each activity played (null: unknown, the target is then placed adjacent); `setup.area`
  * the activities with an area template (used on an area laid over the target). `structure` is the official item's
  * (structure.mjs structureOf, with `reach` per activity from structure.mjs reachesOf), or null.
@@ -203,6 +234,7 @@ export function scenarioOf(record, { packOf, structure = null } = {}) {
   const shape = new Map((Array.isArray(own?.activities) ? own.activities : []).map((a) => [a?.id, a]));
   const reachOf = (id) => (Number.isFinite(shape.get(id)?.reach) ? shape.get(id).reach : null);
   const types = new Set();
+  const limits = new Set();
   const steps = [];
   let expected = 0;
   for (const activity of played) {
@@ -211,6 +243,7 @@ export function scenarioOf(record, { packOf, structure = null } = {}) {
       if (tied.has(c) && !tied.get(c).has(activity)) continue;
       const a = assertionOfCanonical(c) ?? { given: {}, expect: { unreadable: true } };
       if (Object.hasOwn(a.given, "targetType")) types.add(a.given.targetType);
+      if (Object.hasOwn(a.given, "targetSizeAtMost")) limits.add(a.given.targetSizeAtMost);
       for (const why of uninterpreted(a, origin)) because.add(why);
       const move = a.expect.move;
       // A pull starts its distance plus one square away from the caster: within the activity's reach, when it is known.
@@ -228,7 +261,8 @@ export function scenarioOf(record, { packOf, structure = null } = {}) {
   }
   // One target per scenario: assertions about two creature types are two plays, which a person runs.
   if (types.size > 1) because.add("given.targetType");
-  const type = types.size === 1 ? [...types][0] : DEFAULT_TARGET;
+  const { type, fits } = targetOf(types, limits);
+  if (!fits) because.add("given.targetSizeAtMost");
   const manualBecause = [...because].sort();
   const monster = record.kind === "monster";
   return {

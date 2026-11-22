@@ -79,12 +79,13 @@ describe("I2b: examples reach every entry, even when triage left keys empty", ()
 
 describe("I2a: value shapes", () => {
   const lists = { moments: ["failedSave"], statuses: ["prone"], creatureTypes: ["undead"], moveModes: ["push"],
-    effectEnds: ["bearerTurnEnd"], damageTypes: ["fire"] };
+    effectEnds: ["bearerTurnEnd"], damageTypes: ["fire"], sizes: ["med", "lg"] };
   const vocabulary = { ...lists };
   it("every given and expect field has a shape, and values built from it pass assertProblems", () => {
     const v = draftVocabulary(core, {});
     const given = v.assert.shapes.given; const expectShapes = v.assert.shapes.expect;
-    expect(Object.keys(given).sort()).toEqual(["free", "moment", "origin", "roll", "targetType"]);
+    expect(Object.keys(given).sort()).toEqual(["activity", "damageType", "free", "moment", "onOwnTurn", "origin", "roll",
+      "selfStatus", "targetHp", "targetHpAtMost", "targetSizeAtMost", "targetStatus", "targetType", "targetWithin"]);
     expect(Object.keys(expectShapes).sort())
       .toEqual(["affects", "condition", "damage", "denies", "ends", "free", "move", "roll", "uses"]);
     let n = 0;
@@ -116,11 +117,13 @@ describe.skipIf(!process.env.DAS_CORE)("I2a: the draft shapes against the engine
     const real = await loadCore(process.env.DAS_CORE);
     const v = draftVocabulary({ ...real }, {});
     const { validateEntry } = await import(`${process.env.DAS_CORE}/module/scripts/core/content.mjs`);
+    // Ruling R30: a trigger's condition names facts; the engine looks a fact up as a key of the object it is given (gates.mjs).
+    const facts = Object.fromEntries(real.facts.map((name) => [name, true]));
     let n = 0;
     for (const [key, shape] of Object.entries(v.draftShapes)) {
       for (const value of variants(shape)) {
         n++;
-        expect(validateEntry({ [key]: value }, { facts: {} }), `${key} ${JSON.stringify(value)}`).toEqual([]);
+        expect(validateEntry({ [key]: value }, { facts }), `${key} ${JSON.stringify(value)}`).toEqual([]);
       }
     }
     expect(n).toBeGreaterThan(60);

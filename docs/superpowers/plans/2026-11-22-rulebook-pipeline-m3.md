@@ -314,13 +314,47 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   upstream changes the rule's behaviour unseen until a live check; and the rule is lost entirely, not degraded, when the
   engine stops shipping a carried key.
 
+- **R30 — a trigger may carry a condition over closed facts, and the assertions say it in `given`.** The third rereads
+  ranked what readers could not state: a filter on the trigger (melee only, a kind of attack) 14, a limit on the target's
+  size 11, an effect only on a target in a given state 5; the engine already has the mechanism (a declaration's `if`, a
+  structure of facts, `core/triggers.mjs` `holds`; the facts with the subject and argument kind of each in
+  `core/recipes.mjs` `FACTS`, read at run time by `loadCore`). A drafter's `triggers` declaration may now carry `if` in the
+  form the engine's own content uses most (168 of 179 conditions: one object whose keys must all hold; never `all`, `any`,
+  `not`, a list, or the recipe's `condition: [{ fact, arg }]`, which a trigger ignores), with 1 to 3 facts of a closed
+  allowlist (`tools/pipeline/conditions.mjs` `DRAFT_FACTS`: `target.sizeAtMost`, `target.creatureType`, `target.hasStatus`,
+  `source.hasStatus`, `target.within`, `target.bloodied`, `target.wounded`, `target.hpAtMost`, `source.onOwnTurn`,
+  `damage.hasType`, `activity.isAttack`, `isMelee`, `isWeapon`, `isSpell`), each argument typed (an engine list, a bounded
+  integer, a distance of 5 to 300 ft, `true`) and no two facts said by one given field; every other fact of the engine's
+  list is in `EXCLUDED_FACTS` with why (an identifier or free string, a constant of the item or its creature, vision that
+  holds when it cannot be told, nothing asked for), and a test fails on an engine fact in neither table or on an allowed
+  fact whose subject or argument kind the engine changed. Each allowed fact has a `given` field (`targetSizeAtMost`,
+  `targetType`, `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`, `onOwnTurn`, `damageType`,
+  `activity`), defined in `definitions.given`; `impliedAsserts` carries a declaration's condition into the given of each
+  assertion it implies, for a rule and for the engine's own reading alike (its `all` read as the facts together), and a
+  condition with a part that has no word implies nothing (never the unconditioned assertion) and stamps the key for a
+  person. In review every given stays identity, sizes compared as values. `target-size`, `target-state` and
+  `trigger-filter` stay in `LEAVE_REASONS` for what is still unsayable (a size relative to the user's, a target engulfed by
+  the user, a ranged attack only). A scenario stages the positive side of a size limit (a target no larger, from the
+  creatures it already casts) and is manual for the other side and for every other condition field. Measured on a copy
+  (DAS · Core 0.290.0): nothing of the 75 monster rules moves (25 change the engine's reading, 20 of them dropping a
+  trigger, 9 of those a size-limited one: 7 a push, 2 a condition; 13 ship, the same 13); 29 XMM monster features whose
+  reread named one of the three reasons are the pool this makes statable. *Cost if wrong:* (a) a condition limits what a
+  trigger does, so a wrong fact or argument makes a rule silently do less than the text (a push that never fires): review
+  catches it only when the reviewer states the limit the same way, and the scenario never plays the side where the rule
+  must not act; (b) `given` grows by nine fields, so a drafter and a reviewer may state the same limit through two facts
+  (`targetHp: "bloodied"` against `targetHpAtMost`) and disagree where they mean one thing: more queued for a person;
+  (c) a reading's condition the vocabulary cannot say now implies nothing, so a reread may name as beyond what the engine
+  does in part (more work for drafters, never less checking); (d) `targetType` from a condition shares the old positive-only
+  staging of `saveDisadvantageFor`: a scenario of a type-limited trigger checks the right type only.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
 by id: origins side by side), `single` (one id: one origin), `none`. Task 3 step 1 confirms every slot against the key's validator
 in `module/scripts/core/content/entry.mjs` and drops any key it cannot confirm:
-`triggers` (moments and step types of `MOMENTS` / `STEP_TYPES`), `saveDamage`, `halfOnMiss`, `noDamage`, `effectEnds`,
-`endsWhen`, `actionEnds`, `breaksOn`, `noReactions`, `actionOrBonus`, `noOpportunity`, `noOpportunityAttacks`, `saveAdvantage`,
+`triggers` (moments and step types of `MOMENTS` / `STEP_TYPES`; since R30 a condition `if` of `DRAFT_FACTS`),
+`saveDamage`, `halfOnMiss`, `noDamage`, `effectEnds`, `endsWhen`, `actionEnds`, `breaksOn`, `noReactions`, `actionOrBonus`,
+`noOpportunity`, `noOpportunityAttacks`, `saveAdvantage`,
 `saveDisadvantageFor`, `rollBonus`, `rollDisadvantage`, `effectStatuses`, `effectDurations`, `savedEffects`, `atTurnStart`,
 `usageLimits`, `ignoresResistance`, `grantsResistances`, `grantsConditionImmunities`, `difficultTerrain`, `targets`, `onHit`
 (`single`), and `dataFixes` (official origin only, `from` mandatory, never on a monster feature: the data-fix gate has no

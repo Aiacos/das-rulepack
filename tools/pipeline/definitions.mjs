@@ -4,13 +4,17 @@
 // DEFINITION_SOURCES); a word whose meaning neither the engine nor this pack establishes is "unverified", never guessed.
 // tests/pipeline/definitions.test.mjs fails when a word of these lists has no definition: the engine's lists through loadCore,
 // and a committed copy of them.
-import { AFFECTS, DENIES, FRACTIONS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON } from "./assert.mjs";
+import {
+  ACTIVITY_GIVENS, AFFECTS, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, TARGET_HP
+} from "./assert.mjs";
 import { LEAVE_REASONS } from "./leaves.mjs";
+import { DRAFT_FACTS } from "./conditions.mjs";
 
 /** Where a meaning comes from: a file of the DAS · Core clone (`module/scripts/...`), or this pack's own vocabulary. */
 export const DEFINITION_SOURCES = Object.freeze([
   "engine core/effect-ends.mjs", "engine core/triggers.mjs", "engine core/content.mjs", "engine core/content/enums.mjs",
-  "engine runtime/engine-commands.mjs", "pack tools/pipeline/assert.mjs", "pack tools/pipeline/leaves.mjs"
+  "engine runtime/engine-commands.mjs", "pack tools/pipeline/assert.mjs", "pack tools/pipeline/leaves.mjs",
+  "engine adapter/facts.mjs", "pack tools/pipeline/conditions.mjs"
 ]);
 
 const def = (means, from) => Object.freeze({ means, from });
@@ -18,6 +22,8 @@ const ENDS_FROM = "engine core/effect-ends.mjs";
 const MOMENT_FROM = "engine core/triggers.mjs";
 const PACK_FROM = "pack tools/pipeline/assert.mjs";
 const LEAVES_FROM = "pack tools/pipeline/leaves.mjs";
+const FACTS_FROM = "engine adapter/facts.mjs";
+const CONDITIONS_FROM = "pack tools/pipeline/conditions.mjs";
 
 // "The user": the creature that used the item (the engine's caster or origin). "The bearer": the creature that carries the
 // effect. "The creature" in a moment: the creature the declaration belongs to (the item's user, or the bearer when an effect
@@ -131,15 +137,87 @@ const DEFINED = {
     1: def("The rolled damage in full.", PACK_FROM),
     2: def("Twice the rolled damage.", PACK_FROM)
   },
+  // The fields of an assertion's `given` (assert.mjs GIVEN_FIELDS): the situation in which the expectation holds. Ruling R30:
+  // the fields from targetSizeAtMost on say a trigger's condition, each the meaning of the engine fact it mirrors
+  // (adapter/facts.mjs factsFor; conditions.mjs DRAFT_FACTS names which).
+  given: {
+    roll: def("The outcome of the item's own roll on which the expectation holds (see the roll words).", PACK_FROM),
+    moment: def("The moment of the engine at which the expectation holds (see the moment words).", MOMENT_FROM),
+    origin: def("The origin of the item the expectation is about, one of the rule's origins.", PACK_FROM),
+    targetType: def("Only when the target is of this creature type (fact target.creatureType).", FACTS_FROM),
+    free: def("One line for a person: it never counts as agreement and nothing checks it.", PACK_FROM),
+    targetSizeAtMost: def("Only when the target is this size or smaller, sizes ranked tiny, sm, med, lg, huge, grg (fact"
+      + " target.sizeAtMost).", FACTS_FROM),
+    targetStatus: def("Only when the target already has this condition as the trigger fires (fact target.hasStatus).",
+      FACTS_FROM),
+    selfStatus: def("Only when the creature that used the item has this condition as the trigger fires (fact"
+      + " source.hasStatus).", FACTS_FROM),
+    targetWithin: def("Only when the target is within this many feet of the creature that used the item (fact"
+      + " target.within).", FACTS_FROM),
+    targetHp: def("Only when the target is bloodied or wounded, as the word says (facts target.bloodied, target.wounded).",
+      FACTS_FROM),
+    targetHpAtMost: def("Only when the target has this many hit points or fewer (fact target.hpAtMost).", FACTS_FROM),
+    onOwnTurn: def("Only during a turn of the creature that used the item, in a started combat (fact source.onOwnTurn).",
+      FACTS_FROM),
+    damageType: def("Only when the damage just taken includes this type (fact damage.hasType; a list of types in the"
+      + " condition is one assertion per type).", FACTS_FROM),
+    activity: def("Only when the activity that sets off the trigger is of this kind (see the activity words).", FACTS_FROM)
+  },
+  // `given.targetSizeAtMost` (core/recipes.mjs FACT_ARG_OPTIONS.size; adapter/facts.mjs compares the rank of dnd5e's size).
+  size: {
+    tiny: def("A Tiny creature: the smallest size.", FACTS_FROM),
+    sm: def("A Small creature, or a Tiny one when the size is a limit.", FACTS_FROM),
+    med: def("A Medium creature, or a smaller one when the size is a limit.", FACTS_FROM),
+    lg: def("A Large creature, or a smaller one when the size is a limit.", FACTS_FROM),
+    huge: def("A Huge creature, or a smaller one when the size is a limit.", FACTS_FROM),
+    grg: def("A Gargantuan creature: the largest size, so as a limit it holds for every creature.", FACTS_FROM)
+  },
+  // `given.targetHp` (assert.mjs TARGET_HP; adapter/facts.mjs isBloodied, isWounded against the effective maximum).
+  targetHp: {
+    bloodied: def("The target has more than 0 and at most half its hit point maximum (fact target.bloodied).", FACTS_FROM),
+    wounded: def("The target has fewer hit points than its maximum (fact target.wounded).", FACTS_FROM)
+  },
+  // `given.activity` (assert.mjs ACTIVITY_GIVENS): the facts activity.isAttack, isMelee, isWeapon, isSpell.
+  activity: {
+    attack: def("The activity makes an attack roll (fact activity.isAttack), melee or ranged.", FACTS_FROM),
+    melee: def("A melee attack: an attack activity of melee type, not made in a thrown or ranged mode (fact"
+      + " activity.isMelee).", FACTS_FROM),
+    weapon: def("The activity belongs to a weapon item (fact activity.isWeapon), whatever kind of activity.", FACTS_FROM),
+    spell: def("The activity casts a spell, from a spell or a scroll (fact activity.isSpell).", FACTS_FROM)
+  },
+  // The facts a drafter may put in a trigger's `if` (Ruling R30, conditions.mjs DRAFT_FACTS): what each holds for, and its
+  // argument. The drafter's only: a reviewer writes no entry.
+  fact: {
+    "target.sizeAtMost": def("The target is this size or smaller; argument: a size word (not the user's own size).",
+      CONDITIONS_FROM),
+    "target.creatureType": def("The target is of this creature type; argument: a creature type word.", CONDITIONS_FROM),
+    "target.hasStatus": def("The target has this condition; argument: a status word.", CONDITIONS_FROM),
+    "source.hasStatus": def("The creature that used the item has this condition; argument: a status word.",
+      CONDITIONS_FROM),
+    "target.within": def("The target is within a distance of the user; argument: { distance: feet 5 to 300, units: ft }.",
+      CONDITIONS_FROM),
+    "target.bloodied": def("The target is bloodied; argument: true.", CONDITIONS_FROM),
+    "target.wounded": def("The target is below its hit point maximum; argument: true.", CONDITIONS_FROM),
+    "target.hpAtMost": def("The target has at most this many hit points; argument: an integer from 1 to 999.",
+      CONDITIONS_FROM),
+    "source.onOwnTurn": def("It is a turn of the creature that used the item; argument: true.", CONDITIONS_FROM),
+    "damage.hasType": def("The damage just taken includes one of these types; argument: a list of 1 to 5 damage types.",
+      CONDITIONS_FROM),
+    "activity.isAttack": def("The triggering activity makes an attack roll; argument: true.", CONDITIONS_FROM),
+    "activity.isMelee": def("The triggering activity is a melee attack; argument: true.", CONDITIONS_FROM),
+    "activity.isWeapon": def("The triggering activity belongs to a weapon; argument: true.", CONDITIONS_FROM),
+    "activity.isSpell": def("The triggering activity casts a spell; argument: true.", CONDITIONS_FROM)
+  },
   // `rule.leaves[].because` and `.unexpressed` (Ruling R25, leaves.mjs LEAVE_REASONS): why a partial rule leaves an
   // expectation of its entry to the table; and a reread's `unexpressed` (reread.mjs): what is missing from both the item's
   // data and the engine's reading that no assertion can state. The drafter's and the rereader's: a reviewer never sees what a
   // draft leaves out.
   leavesBecause: {
     "no-key": def("No key a drafter may write, and no assertion, expresses it (nor anything the entry implies).", LEAVES_FROM),
-    "target-size": def("It holds only for targets of some sizes, and no allowed key limits targets by size.", LEAVES_FROM),
-    "target-state": def("It holds only for targets in some state (grappled, cursed, engulfed by the user), which no allowed key"
-      + " tests.", LEAVES_FROM),
+    "target-size": def("A size limit the vocabulary still cannot say: relative to the user's size, or not on a trigger"
+      + " (a size limit on a trigger is the condition target.sizeAtMost, given targetSizeAtMost).", LEAVES_FROM),
+    "target-state": def("A target state still not sayable: engulfed or grappled by the user, cursed, marked (a condition or"
+      + " bloodied is a trigger's condition: targetStatus, targetHp).", LEAVES_FROM),
     "immunity-after-save": def("A temporary immunity to the effect once the target saves or the effect ends.", LEAVES_FROM),
     "healing-block": def("The target cannot regain hit points while the effect lasts.", LEAVES_FROM),
     "out-of-combat": def("It acts outside combat: long durations, travel, exploration or social play.", LEAVES_FROM),
@@ -155,8 +233,8 @@ const DEFINED = {
       LEAVES_FROM),
     "use-limit": def("A limit on how often it is used (once per round, not again before the user's next turn) no uses says.",
       LEAVES_FROM),
-    "trigger-filter": def("Its trigger is narrower than any moment (melee attacks only, while a weapon is held, a damage type).",
-      LEAVES_FROM),
+    "trigger-filter": def("A trigger filter no fact of the condition says still (while a weapon is held, a ranged attack only,"
+      + " a weapon property); melee, attack, weapon, spell or a damage type is the condition.", LEAVES_FROM),
     "save-margin": def("The result depends on how much the saving throw fails by (fails by 5 or more, for instance).",
       LEAVES_FROM),
     "follow-up-action": def("It lets or makes the creature take a further attack or action right after (a chained strike).",
@@ -167,7 +245,8 @@ const DEFINED = {
 
 const deepFreeze = (o) => Object.freeze(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Object.freeze({ ...v })])));
 /** The definitions, by list (`ends`, `roll`, `moment`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`, `rollFor`,
- * `fraction`, `leavesBecause`), each word to `{ means, from }` or "unverified". */
+ * `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`, `leavesBecause`), each word to `{ means, from }` or
+ * "unverified". */
 export const DEFINITIONS = deepFreeze(DEFINED);
 
 /**
@@ -193,22 +272,24 @@ export const ENDS_EXAMPLES = Object.freeze([
 
 /**
  * The definitions as the vocabulary files hold them (plain JSON). `review`: the reviewer's file, without `leavesBecause`
- * (Ruling R25: a reviewer is blind to what a draft leaves out, and never writes `leaves`).
+ * (Ruling R25: a reviewer is blind to what a draft leaves out, and never writes `leaves`) and without `fact` (Ruling R30:
+ * the facts of a trigger's condition are an entry's; a reviewer says the condition in `given`).
  */
 export function definitionsFor({ review = false } = {}) {
   const out = JSON.parse(JSON.stringify(DEFINITIONS));
-  if (review) delete out.leavesBecause;
+  if (review) { delete out.leavesBecause; delete out.fact; }
   return out;
 }
 
 // The engine's list each map covers (loadCore names), and the pack's own.
-const ENGINE_LISTS = Object.freeze({ ends: "effectEnds", moment: "moments", moveMode: "moveModes" });
+const ENGINE_LISTS = Object.freeze({ ends: "effectEnds", moment: "moments", moveMode: "moveModes", size: "sizes" });
 const PACK_LISTS = Object.freeze({ roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON,
-  rollFor: ROLL_FOR, fraction: FRACTIONS, leavesBecause: LEAVE_REASONS });
+  rollFor: ROLL_FOR, fraction: FRACTIONS, leavesBecause: LEAVE_REASONS, given: GIVEN_FIELDS, targetHp: TARGET_HP,
+  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS) });
 
 /**
  * The words with no definition, as `<list>.<word>` (own properties only): of the engine's lists given in `core` (loadCore:
- * effectEnds, moments, moveModes) and of the pack's own lists. [] when every word is defined.
+ * effectEnds, moments, moveModes, sizes) and of the pack's own lists. [] when every word is defined.
  */
 export function undefinedWords(core = {}) {
   const out = [];

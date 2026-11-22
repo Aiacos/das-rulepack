@@ -326,12 +326,14 @@ ones.
 
 - **Assertions.** Every rule outside the legacy ones has `rule.assert`, a non-empty array of `{ given, expect }`
   (`tools/pipeline/assert.mjs`): what the rule says happens, so that a draft and a review can be compared and a scenario can
-  check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free? }`; `expect: { damage?:
-  { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode: advantage|disadvantage, on:
+  check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free?, targetSizeAtMost?,
+  targetStatus?, selfStatus?, targetWithin?, targetHp?: bloodied|wounded, targetHpAtMost?, onOwnTurn?: true, damageType?,
+  activity?: attack|melee|weapon|spell }` (the fields after `free` say a trigger's condition, Ruling R30, below); `expect: {
+  damage?: { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode: advantage|disadvantage, on:
   attack|save|check, for: self|target|ally|enemy }, affects? (target|allies|enemies|self), denies?
-  (opportunityAttacks|reactions|actionAndBonus), move?: { mode,
-  distance? }, uses?: { spent }, free? }`. Any other field is refused; `free` is one printable line of at most 120
-  characters and never stands alone (every assertion has a closed `expect` field); `given.origin` is one of the rule's
+  (opportunityAttacks|reactions|actionAndBonus), move?: { mode, distance? }, uses?: { spent }, free? }`. Any other field is
+  refused; `free` is one printable line of at most 120 characters and never stands alone (every assertion has a closed `expect`
+  field); `given.origin` is one of the rule's
   `origins`; `move.distance` is a non-negative number or a formula of at most 24 characters made of digits, spaces,
   `+ - * / ( ) .` and the references `@mod`, `@prof`, `@item.…`, `@abilities.…`, `@attributes.…`, `@details.…`, `@scale.…`,
   `@flags.…` (no other word). Every text of a rule (`adds` ≤ 200, `free` ≤ 120, `uncovered[].because` ≤ 200,
@@ -341,22 +343,44 @@ ones.
   characters; Ruling R17), and `rule.code` the script of a `code` verdict, `scripts/<kebab>(/<kebab>)*.mjs`, at most 96
   characters, which the schema gate (also under `--ci`) requires to be a file of the repository (Ruling R18). The legacy
   rules are exempt; their values pass these formats anyway. The schema
-  checks the shape; the validator gate checks `moment` (MOMENTS), `targetType` (CREATURE_TYPES), the statuses of `condition`
+  checks the shape; the validator gate checks `moment` (MOMENTS), `targetType` (CREATURE_TYPES), `targetSizeAtMost` (the
+  engine's sizes), `targetStatus` / `selfStatus` / the statuses of `condition`
   (the conditions `core/monster-text.mjs` names), `ends` (EFFECT_ENDS or a moment), `move.mode` (MOVE_MODES) and
   `damage.type` (DAMAGE_TYPES) against the clone (`loadCore`). `normaliseAssert` gives the sorted canonical forms of a list
   (`path=value` pairs; a free text is `*`, it never counts as agreement); `impliedAsserts(entry, { structure })` what an
   entry says by itself, one function per drafter key (`assert.mjs` `IMPLIED`, fix round 1 of Ruling R25): `saveDamage`,
   `halfOnMiss`, `noDamage` (fractions); `triggers` (`status` and `move` steps on a roll; a plain `resave` through an effect:
-  `ends: savedSave`); `effectEnds` (`ends: <word>`), `noReactions` and `actionOrBonus` (`denies: reactions` /
-  `actionAndBonus`), `effectStatuses` (`condition.applied`), each on the roll that applies its effect in the official
-  structure (a hit for an attack's, a failed save for a save's, a saved save for `savedEffects`; every situation, `given: {}`,
-  without it); `noOpportunity` (`denies: opportunityAttacks`, but not while flying); `saveDisadvantageFor` and
+  `ends: savedSave`; a declaration's `if` goes into the `given` of each of them, and one whose condition has a part with no
+  given word implies nothing and is unassertable); `effectEnds` (`ends: <word>`), `noReactions` and `actionOrBonus` (`denies:
+  reactions` / `actionAndBonus`), `effectStatuses` (`condition.applied`), each on the roll that applies its effect in the
+  official structure (a hit for an attack's, a failed save for a save's, a saved save for `savedEffects`; every situation,
+  `given: {}`, without it); `noOpportunity` (`denies: opportunityAttacks`, but not while flying); `saveDisadvantageFor` and
   `rollDisadvantage` (rolls with disadvantage). The other drafter keys imply nothing, each with why (`IMPLIES_NOTHING`), and a
   test fails on a drafter key in neither table. A rule using a key, or a part of one (a trigger step other than those; a
   `resave` with options; `noOpportunity: "flying"`), the vocabulary cannot say (`unassertableKeys`) is stamped for a person
   at review (Ruling R15 generalised: `because` is the key's name). **`excludes` is not an agent's word** (fix round 1): no
   notion of the engine maps to it and pilot 3 used it two ways, so a drafter's `assert` and `leaves` and a reviewer's
   `assert` that hold it are refused; stored data (a review-queue entry) is still read. What it was bent to say is `denies`.
+- **Trigger conditions** (Ruling R30, `tools/pipeline/conditions.mjs`). A drafter's trigger declaration may carry `if`, the
+  engine's condition: ONE object whose keys are facts that must all hold (the form the engine's own content uses; no
+  `all` / `any` / `not`, no list, no recipe-style `condition: [{ fact, arg }]`, which the trigger would ignore), 1 to 3 facts
+  of `DRAFT_FACTS`, no two said by the same given field, each argument typed: `target.sizeAtMost` (a size word, never
+  `"source"`) → `given.targetSizeAtMost`; `target.creatureType` (a creature type) → `targetType`; `target.hasStatus` /
+  `source.hasStatus` (a status) → `targetStatus` / `selfStatus`; `target.within` (`{ distance: 5..300, units: "ft" }`) →
+  `targetWithin` (feet); `target.bloodied` / `target.wounded` (`true`) → `targetHp`; `target.hpAtMost` (an integer 1..999)
+  → `targetHpAtMost`; `source.onOwnTurn` (`true`) → `onOwnTurn`; `damage.hasType` (a list of 1 to 5 damage types) →
+  `damageType`, one assertion per type; `activity.isAttack`, `isMelee`, `isWeapon`, `isSpell` (`true`) → `activity`
+  `attack`, `melee`, `weapon`, `spell`. The facts and the kind of each argument are the engine's (`core/recipes.mjs`
+  `FACTS`, loaded by `loadCore` as `factKinds`, with the closed lists `sizes`, `activityTypes`, `distanceUnits`); a test
+  pins every allowed fact, its subject and argument kind to the clone, and requires every other fact of that list in
+  `EXCLUDED_FACTS` with why (an identifier or free string: `*.hasEffect`, `target.hasEffectFrom`, `activity.identifier`,
+  `source.classLevelAtLeast`; a constant of the item or its creature: `activity.dealsType`, `source.creatureType`; one fact
+  per given field: `activity.type`; vision, which holds by default when it cannot be told: `source.seesTarget`,
+  `target.seesSource`; not asked for: `source.allyNearTarget`, `target.hasTempHp`). `checkDraftKeys` enforces the shape
+  (schema gate), the validator gate the words against the engine's lists. In review a `given` field is identity, as every
+  given: a draft with a size limit and a review without one disagree, and sizes compare as values (`lg` and `huge` are two
+  situations). The engine's readings go through the same `impliedAsserts`: its `all` is read as the facts together, so a
+  size-limited push it reads implies the conditioned assertion, and a reread that states it is told it is not beyond.
 - **Partial rules** (Ruling R25, `tools/pipeline/leaves.mjs`). A rule may declare what its entry expects and it does not
   automate, as data: `rule.leaves`, at most 6 items, each an assertion `{ given, expect, because? }` of the vocabulary above
   (no `free` anywhere) of what would be true at the table but is done by hand, or `{ unexpressed, count }` (count 1 to 6) for
@@ -364,7 +388,9 @@ ones.
   `target-state`, `immunity-after-save`, `healing-block`, `out-of-combat`, `table-ruling`, `max-hp-reduction`,
   `ongoing-effect`, `use-time-choice`, `death-trigger`, `form-change`, `use-limit`, `trigger-filter`, `save-margin`,
   `follow-up-action`, `self-healing` (each defined in `definitions.leavesBecause`; the same single list a reread's
-  `unexpressed` uses, section "Ingesting rereads"). The schema checks it like `assert`
+  `unexpressed` uses, section "Ingesting rereads"). Since Ruling R30, `target-size`, `target-state` and `trigger-filter` are
+  for what a trigger's condition still cannot say (a size relative to the user's, a target engulfed or grappled by the user,
+  a ranged attack only, a weapon property); older data keeps them as they were written. The schema checks it like `assert`
   (own keys, closed words; the validator gate checks the engine's words) and refuses a leaves assertion the rule states or
   implies (the same up to optional detail), a leaves damage the rule gives another fraction of for the same situation, an
   item listed twice, and any `leaves` on a rule whose own assertions (stated and implied) are none or only the item's own
@@ -573,17 +599,21 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   in combat (a description, a smell, something done outside a fight) does not count.
 > - `covered: false` with `beyond` when the text requires something more that an assertion can say: `beyond` lists it, as
 >   assertions of the closed vocabulary (`assert.shapes` of `reread-vocabulary.json`: `given` with `roll`, `moment`,
->   `origin`, `targetType`; `expect` with `damage`, `condition`, `ends`, `roll`, `affects`, `denies`, `move`, `uses`), one
+>   `origin`, `targetType` and the limits `targetSizeAtMost`, `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`,
+>   `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`; `expect` with `damage`, `condition`, `ends`, `roll`,
+>   `affects`, `denies`, `move`, `uses`), one
 >   per thing the engine does not do, at most 6. Read each word in `definitions` of `reread-vocabulary.json`, never from its
 >   spelling (the turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end the turn of placement,
 >   `currentTurnEnd` does; `endsExamples` shows each); a word marked `"unverified"` has no established meaning: do not use
 >   it. No `free` text anywhere in `beyond`, and no `excludes`.
 > - `covered: false` with `unexpressed` when the text requires something in combat that neither the item's data nor
 >   `engineReads` gives, and no assertion can say it: `unexpressed` lists why, as distinct reasons of the closed list
->   `unexpressed` of `reread-vocabulary.json` (each defined in `definitions.leavesBecause`: a limit on the target's size, a
->   target in some state, an immunity after a save, a healing block, a lower hit point maximum, an effect kept across
->   turns, a choice at use time, a death or zero-hit-point trigger, a change of form, a limit on how often it is used, a
->   trigger narrower than any moment, a result by how much a save fails, a follow-up action, the user healing itself...).
+>   `unexpressed` of `reread-vocabulary.json` (each defined in `definitions.leavesBecause`: a size limit relative to the user's,
+>   a target state no given field names, an immunity after a save, a healing block, a lower hit point maximum, an effect kept
+>   across turns, a choice at use time, a death or zero-hit-point trigger, a change of form, a limit on how often it is used, a
+>   trigger filter no `activity` or `damageType` word says, a result by how much a save fails, a follow-up action, the user
+>   healing itself...). A limit to targets of a size or smaller, of a type, in a condition, bloodied, within a distance, or to a
+>   melee attack, an attack, a weapon or a spell, IS sayable: put it in the `given` of a `beyond` assertion.
 >   `beyond` and `unexpressed` may be given together: list as assertions what an assertion can say, and name the reason
 >   for the rest. `unexpressed` is never a way to avoid thinking: if an assertion can say it, say it in `beyond`.
 >
@@ -593,8 +623,11 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >
 > **What is not beyond** (the written criteria, section "Written criteria for the two boundaries", apply). A rider the
 > item's own data already does is not beyond (its effect already applies the condition on that roll; its save already
-> halves); something `engineReads` already says is not beyond (a `status` or `move` step of its `triggers` on that roll, a
-> `resave` that ends the effect, an `effectEnds` ending...). The ingest rejects a `beyond` assertion that either already
+> halves); something `engineReads` already says is not beyond (a `status` or `move` step of its `triggers` on that roll,
+> with the limit its `if` names, a `resave` that ends the effect, an `effectEnds` ending...). A trigger's `if` is read as
+> the `given` of what it does: `{ "on": "failedSave", "if": { "target.sizeAtMost": "lg" }, "do": [ a push ] }` says "on a
+> failed save, a Large or smaller target is pushed", and a limit the text gives that the reading lacks, or another size,
+> is beyond. The ingest rejects a `beyond` assertion that either already
 > implies. A requirement the closed vocabulary cannot say at all (a choice at use time, a state kept across turns) is beyond
 > too: name it in `unexpressed`.
 >
@@ -619,16 +652,28 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   "why": "the grapple is the item's effect; the engine does not take its reactions away" }
 > ```
 >
+> **Worked example: beyond, with a limit** (invented). The text of "Ember Lash" says: on a hit, a target that is Large or
+> smaller is pushed 10 feet. The structure has one `attack` activity with fire damage and no effect; `engineReads` is
+> null. The push and its size limit are one assertion:
+>
+> ```json
+> { "key": "tst:monster:cinder-drake/action/ember-lash", "covered": false, "confidence": 0.85,
+>   "beyond": [ { "given": { "roll": "hit", "targetSizeAtMost": "lg" }, "expect": { "move": { "mode": "push",
+>     "distance": 10 } } } ],
+>   "why": "the engine reads nothing of it: the push of large or smaller targets on a hit is missing" }
+> ```
+>
 > **Worked example: unexpressed** (invented). The text of "Gale Tumble" says: Strength save; on a failure, the target is
 > knocked prone, but only if it is Medium or smaller; this cannot be used again until the start of the user's next turn.
 > The structure has one `save` activity with no damage and no effect; `engineReads` is `{ "triggers": [{ "on":
-> "failedSave", "do": [{ "type": "status", "status": "prone" }] }] }`. The fall is in `engineReads`; the size limit and the
-> once-per-round limit are neither the data nor the reading, and no assertion says them:
+> "failedSave", "if": { "target.sizeAtMost": "med" }, "do": [{ "type": "status", "status": "prone" }] }] }`. The fall
+> and its size limit are in `engineReads`; the once-per-round limit is neither the data nor the reading, and no assertion
+> says it:
 >
 > ```json
 > { "key": "tst:monster:storm-goat/action/gale-tumble", "covered": false, "confidence": 0.8,
->   "unexpressed": ["target-size", "use-limit"],
->   "why": "the engine reads the fall, but not that big targets are spared, nor the wait before it is used again" }
+>   "unexpressed": ["use-limit"],
+>   "why": "the engine reads the size-limited fall, but not the wait before it is used again" }
 > ```
 >
 > **No text, no answer.** If the text file is missing or unreadable, leave the entry out of the results. Never decide from
@@ -641,7 +686,7 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   "results": [ { "key": "…", "covered": true, "why": "one line", "confidence": 0.9 },
 >                { "key": "…", "covered": false, "beyond": [ { "given": { }, "expect": { } } ], "why": "one line",
 >                  "confidence": 0.8 },
->                { "key": "…", "covered": false, "unexpressed": [ "target-size" ], "why": "one line",
+>                { "key": "…", "covered": false, "unexpressed": [ "use-limit" ], "why": "one line",
 >                  "confidence": 0.8 } ] }
 > ```
 >
@@ -704,7 +749,9 @@ or `MOVE_MODES` has none, and a test fails on it) and `endsExamples` (one invent
 word it takes on the user's own turn and as a reaction on another's turn). Shapes are declarative: `enum` (one of `values`),
 `object` (`keys` required, `optional`, closed), `list` (non-empty), `idMap` (an object keyed by ids of the named kind,
 origins side by side), `idList`, `id`, `oneOf` (any alternative), `tagged` (an object whose `type` picks its other fields),
-`true`, `number`, `formula`, `line`, `distance`. Tests build a value from every alternative of every shape and have the
+`true`, `number`, `formula`, `line`, `distance`, `facts` (a trigger's condition: 1 to `max` of the named facts as keys, each
+with its argument's shape). `conditions` gives the same facts with the given field that says each, and the facts left out
+with why (Ruling R30). Tests build a value from every alternative of every shape and have the
 validators (`assertProblems`, the engine's `validateEntry`) accept it.
 
 The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
@@ -729,7 +776,8 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > same kind. Write only what a shape allows.
 >
 > **What the words mean.** `definitions` in `draft-vocabulary.json` gives the meaning of every word of the closed lists you
-> choose from (`ends`, `roll`, `moment`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`, `rollFor`, `fraction`), each
+> choose from (`ends`, `roll`, `moment`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`, `rollFor`, `fraction`,
+> `given`, `size`, `targetHp`, `activity`, `fact`), each
 > with where it comes from (`from`: the engine file, or this pack's vocabulary). Read a word there before you use it, never
 > from its spelling. The turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end on the turn the effect was
 > placed in ("until the end of its next turn"), `currentTurnEnd` ends that very turn ("until the end of the turn in
@@ -755,6 +803,17 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > the reason "the engine already reads it". A monster feature the engine reads something of reaches you only after a reread
 > found the text going beyond that reading: `beyondEngine` lists what it found, as assertions (a hint of what your rule is
 > to add and assert, not a rule).
+>
+> **A trigger that holds only sometimes: its condition (`if`).** When the text limits a trigger step to some targets or
+> situations, write the limit as the declaration's `if`: one object whose keys are facts of `conditions.facts` (all must
+> hold), at most 3, each with the argument its shape gives (`"target.sizeAtMost": "lg"` for "Large or smaller";
+> `"activity.isMelee": true` for "a melee attack"; `"target.hasStatus": "grappled"` for "a creature it is grappling"...),
+> and assert each consequence with the given field of that fact (`conditions.facts.<fact>.given`: `targetSizeAtMost: "lg"`,
+> `activity: "melee"`, `targetStatus: "grappled"`), beside its `roll`. Never `all`, `any`, `not`, a list or a `condition`
+> key: the tool refuses them. What no fact says (a size relative to the user's, a target the user engulfed, a ranged attack
+> only, while a weapon is held) is not a condition: leave the step out and name it in `leaves` (`target-size`,
+> `target-state`, `trigger-filter`), or answer `person` when it is the main effect. A limit the engine already reads (an
+> `if` in `engineReads`) is kept unchanged in your list, never dropped.
 >
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
@@ -794,25 +853,30 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > something the item's own data already does (its activity's damage, the condition its save already applies), answer
 > `person`. A rule whose `assert`, with what its entry implies, is empty or only the item's own damage cannot carry `leaves`.
 >
-> Worked example (invented). The text of "Tusk Rush" says that on a failed save the target is pushed 10 feet and knocked
-> prone (the item's save already applies prone), only when it is Large or smaller; that it then has disadvantage on its next
-> attack roll; and that its speed is halved until its next turn. The push is automated (`triggers`); the rest is not:
+> Worked example (invented). The text of "Tusk Rush" says that on a failed save a target that is Large or smaller is pushed
+> 10 feet and knocked prone (the item's save applies no effect); that it then has disadvantage on its next attack roll; and
+> that its speed is halved until its next turn. The size-limited push and fall are automated (`triggers` with `if`, each
+> asserted with `targetSizeAtMost` beside the roll: one assertion each, not two); the rest is not:
 >
 > ```json
 > { "key": "tst:monster:tusked-strider/action/tusk-rush", "outcome": "rule", "confidence": 0.85,
->   "why": "push on a failed save; the size limit, the attack penalty and the slow are left to the table",
->   "rule": { "handledIn": "table", "adds": "A failed save also pushes the target 10 feet away.",
->     "entry": { "triggers": [{ "on": "failedSave", "do": [{ "type": "move", "mode": "push", "distance": 10, "units": "ft" }] }] },
+>   "why": "push and fall on a failed save, Large or smaller only; the attack penalty and the slow are left to the table",
+>   "rule": { "handledIn": "table", "adds": "A failed save pushes a Large or smaller target 10 feet and knocks it prone.",
+>     "entry": { "triggers": [{ "on": "failedSave", "if": { "target.sizeAtMost": "lg" },
+>       "do": [{ "type": "move", "mode": "push", "distance": 10, "units": "ft" }, { "type": "status", "status": "prone" }] }] },
 >     "origins": ["official"],
 >     "assert": [
->       { "given": { "roll": "failedSave" }, "expect": { "move": { "mode": "push", "distance": 10 } } },
->       { "given": { "roll": "failedSave" }, "expect": { "condition": { "applied": "prone" } } } ],
+>       { "given": { "roll": "failedSave", "targetSizeAtMost": "lg" }, "expect": { "move": { "mode": "push", "distance": 10 } } },
+>       { "given": { "roll": "failedSave", "targetSizeAtMost": "lg" }, "expect": { "condition": { "applied": "prone" } } } ],
 >     "leaves": [
 >       { "given": { "roll": "failedSave" }, "expect": { "roll": { "mode": "disadvantage", "on": "attack", "for": "target" } },
 >         "because": "no-key" },
->       { "unexpressed": "target-size", "count": 1 },
 >       { "unexpressed": "no-key", "count": 1 } ] } }
 > ```
+>
+> Had the text said "a target no larger than the strider", the limit would be relative to the user's size, which no fact
+> says: no `if`, the push left out as `{ "unexpressed": "target-size", "count": 1 }` (or `person`, the push being the main
+> effect).
 >
 > **No text, no rule.** If the text file is missing or unreadable, answer `person` with `why: "no text"`. Never draft from
 > memory of the book, and never from the structure alone. (The ingest rejects any result for an entry whose text is not in
@@ -925,9 +989,13 @@ handle of `docs/owners.json`, Ruling R23).
 >
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Say what must be
 > true at the table when the item is used, as assertions in the closed vocabulary: `[{ given, expect }]` with the fields of
-> `assert.shapes` (`given`: `roll`, `moment`, `origin`, `targetType`; `expect`: `damage` with its `fraction`, `condition`
-> applied or ended, `ends`, `roll` with advantage or disadvantage, `affects`, `denies`, `move`, `uses`; never `excludes`, which
-> is refused). State every
+> `assert.shapes` (`given`: `roll`, `moment`, `origin`, `targetType`, and the situations a limit names: `targetSizeAtMost`,
+> `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`;
+> `expect`: `damage` with its `fraction`, `condition` applied or ended, `ends`, `roll` with advantage or disadvantage,
+> `affects`, `denies`, `move`, `uses`; never `excludes`, which is refused). When the text limits a consequence ("if the
+> target is Large or smaller", "on a melee attack", "a creature it is grappling"), state the limit in the same assertion's
+> `given` (`{ "roll": "failedSave", "targetSizeAtMost": "lg" }`): a limit stated on one side only is a disagreement, so
+> leave none out and add none the text does not give. State every
 > consequence the text gives that the vocabulary can say, each once: a saved save that halves the damage, a failed save that
 > leaves a condition, a miss that halves, an effect that ends at a moment. Leave out what the vocabulary cannot say; never
 > force it. Read each word's meaning in `definitions` of `review-vocabulary.json` (the same definitions the drafter has, with
@@ -1408,6 +1476,15 @@ setup, steps }`:
   `force.crit`, `advance`, `expect.ends.savedSave`, `expect.ends.isDamaged`, `expect.move.mode.random`, `expect.move.distance`
   (a formula), `expect.roll`, `expect.uses`, `setup.item`, `setup.reach` (a pull whose start, its distance plus 5 ft, is beyond
   the activity's reach), `use`…). A manual scenario's JSON is a checklist for a person.
+- Ruling R30, a trigger's condition: an assertion limited to targets of a size or smaller gets a target that satisfies it
+  (`setup.target`: of the creature type the assertions name, else the default type first, no larger than the smallest limit;
+  `TARGET_SIZES`, the size of each `TARGETS` creature, checked against `dnd5e.actors24` of the dumps by a test: Imp tiny;
+  Wolf, Animated Armor, Red Dragon Wyrmling, Dryad, Bandit Captain, Shrieker Fungus, Zombie medium; Otyugh, Pegasus, Fire
+  Elemental, Ogre, Owlbear, Ochre Jelly large), and is manual all the same: `given.targetSizeAtMost.unmet`, a target too
+  large, is a second play the runner's one-target scenario does not make (`given.targetSizeAtMost` too when no creature of
+  that type is small enough). Every other condition field (`targetStatus`, `selfStatus`, `targetWithin`, `targetHp`,
+  `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`) is `given.<field>`: manual. `given.targetType` keeps its staging
+  of the positive side only, as before.
 
 **What the interpreter checks** (`play/lib/steps.mjs`; no check passes on nothing — a missing resolution for the target fails
 it, so does a use the engine refuses, at once; a target is found in the resolution by its token's uuid, never by name: the
