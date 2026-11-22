@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { BOOKS, SOURCES } from "../scripts/rules/index.mjs";
+import { BOOKS, RULES, SOURCES } from "../scripts/rules/index.mjs";
 import { ROOT, fromRegistry } from "./derived.mjs";
 
 // What the pack hands to DAS · Core, taken at the real registration point: main.mjs is loaded with a stand-in for Foundry's
@@ -13,6 +13,9 @@ const derived = fromRegistry();
 beforeAll(async () => {
   const once = new Map();
   globalThis.Hooks = { once: (name, fn) => once.set(name, fn), on: () => {} };
+  // The engine's shipped table, as the pack reads it when it registers (scripts/carry.mjs): a stand-in holding the keys the
+  // rules carry over, each with a value that names it. Without it a carrying rule is not registered at all (tested apart).
+  globalThis.game = { modules: { get: () => ({ api: { content: { builtin: BUILTIN } } }) } };
   await import("../scripts/main.mjs");
   once.get("dnd5e-combat.registerContent")((src, tbl, opts) => { calls++; source = src; table = tbl; options = opts; });
 });
@@ -43,6 +46,14 @@ const LEGACY_IDENTIFIERS = [
   "watery-sphere",
   "zephyr-strike"
 ];
+// What a rule's `carries` adds to its entry at registration, with the stand-in above: `{ <key>: "engine:<from>.<key>" }`.
+const BUILTIN = {};
+for (const rule of RULES.filter((r) => r.carries)) {
+  BUILTIN[rule.carries.from] ??= {};
+  for (const key of rule.carries.keys) BUILTIN[rule.carries.from][key] = `engine:${rule.carries.from}.${key}`;
+}
+const carriedOf = (rule) => Object.fromEntries((rule?.carries?.keys ?? []).map((k) => [k, BUILTIN[rule.carries.from][k]]));
+const ruleOf = (id) => RULES.find((r) => r.identifier === id || (r.alsoAs ?? []).includes(id));
 const pick = (object, keys) => Object.fromEntries(keys.map((k) => [k, object[k]]));
 const registeredBy = (rules) => rules.filter((r) => r.entry).flatMap((r) => [r.identifier, ...(r.alsoAs ?? [])]).sort();
 
@@ -76,7 +87,7 @@ describe("what is registered with DAS · Core", () => {
   });
 
   it("every entry is the entry of its rule in registry/, the legacy ones included", () => {
-    for (const [id, entry] of Object.entries(derived.table)) expect(table[id], id).toEqual(entry);
+    for (const [id, entry] of Object.entries(derived.table)) expect(table[id], id).toEqual({ ...entry, ...carriedOf(ruleOf(id)) });
   });
 
   it("the sources passed beside the table are those registry/ binds, and only when there are some", () => {
@@ -110,7 +121,9 @@ describe("the book modules reach the registration", () => {
       expect(BOOKS, f).toContain(module);
       for (const rule of module.RULES.filter((r) => r.entry)) {
         for (const id of [rule.identifier, ...(rule.alsoAs ?? [])]) {
-          expect(table[id], `${f}: ${id}`).toBe(rule.entry);
+          // A rule that carries engine keys registers a copy of its entry with them; the others register the entry itself.
+          if (rule.carries) expect(table[id], `${f}: ${id}`).toEqual({ ...rule.entry, ...carriedOf(rule) });
+          else expect(table[id], `${f}: ${id}`).toBe(rule.entry);
           registered.add(id);
         }
       }

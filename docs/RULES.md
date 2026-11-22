@@ -47,17 +47,14 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 | Hasten (Clay Golem) | Monster feature | p.72 | After using it, the golem's movement provokes no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
 | Dreadful Howl (Dire Worg) | Monster feature | p.335 | The fear ends when the worg's following turn begins; a save halves the damage. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
 | Terrifying Presence (Dracolich) | Monster feature | p.102 | The fear ends when the target's following turn ends; a save avoids the damage. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
-| Rumbling Movement (Elemental Cataclysm) | Monster feature | p.111 | The movement of this action draws no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). | table, partial | Validated |
-| Sacred Weapon (Empyrean) | Monster feature | p.113 | The stun ends when the user's next turn begins; the extra damage ignores resistance. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). | table, partial | Validated |
+| Sacred Weapon (Empyrean) | Monster feature | p.113 | The stun ends when the user's next turn begins; the extra damage ignores resistance. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). Carries over 1 engine key (usageLimits). | table, partial | Validated |
 | Stench Spray (Flumph) | Monster feature | p.122 | The poison from a failed save lasts 1d4 hours. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, out-of-combat 1). | table, partial | Validated |
 | Suffocate (Graveyard Revenant) | Monster feature | p.260 | The held creature can end the grip, and the choking with it, by winning a check as an action. Partial: 2 expectations left to the table (table-ruling 1, target-size 1). | table, partial | Validated |
 | Sleep Gaze (Jackalwere) | Monster feature | p.182 | Another creature can spend an action to wake the sleeper; the sleep lasts ten minutes. Partial: 3 expectations left to the table (immunity-after-save 1, no-key 2). | table, partial | Validated |
 | Toxic Ink (Kraken) | Monster feature | p.187 | The blinding and poisoning end when the kraken's next turn ends. Partial: 3 expectations left to the table (no-key 2, table-ruling 1). | table, partial | Validated |
-| Watery Rush (Lacedon Ghoul) | Monster feature | p.132 | Movement after this bonus action provokes no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). | table, partial | Validated |
-| Telekinetic Thrust (Poltergeist) | Monster feature | p.246 | A failed save also shoves the target 30 feet away from the user. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Telekinetic Thrust (Poltergeist) | Monster feature | p.246 | A failed save also shoves the target 30 feet away from the user. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Carries over 1 engine key (magical). | table | Validated |
 | Hypnotic Gaze (Ultroloth) | Monster feature | p.311 | The stun lasts until the ultroloth begins its next turn; a successful save takes no damage. Partial: 1 expectation left to the table (immunity-after-save 1). | table, partial | Validated |
 | Spore Bomb (Violet Fungus Necrohulk) | Monster feature | p.126 | Half damage on a save; the poison lasts until the necrohulk begins its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (healing-block 1). | table, partial | Validated |
-| Tactical Charge (Warrior Commander) | Monster feature | p.321 | After using it, the warrior's movement draws no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (table-ruling 1). | table, partial | Validated |
 
 Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
 
@@ -79,6 +76,7 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Create Whirlwind (Djinni) | Monster feature | p.99 | Held: changes the engine's reading: a person decides |
 | Unsettling Visage (Doppelganger) | Monster feature | p.100 | Held: changes the engine's reading: a person decides |
 | Fetid Cloud (Dretch) | Monster feature | p.103 | Held: changes the engine's reading: a person decides |
+| Rumbling Movement (Elemental Cataclysm) | Monster feature | p.111 | Held: the engine already does it |
 | Hammer Throw (Fire Giant) | Monster feature | p.119 | Held: the engine already does it |
 | Claw (Ghast Gravecaller) | Monster feature | p.130 | Held: the engine already does it |
 | Claw (Ghast) | Monster feature | p.130 | Held: review disagrees |
@@ -95,6 +93,7 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Luring Song (Harpy) | Monster feature | p.164 | Held: changes the engine's reading: a person decides |
 | Ice Spear (Ice Devil) | Monster feature | p.176 | Held: the engine already does it |
 | Sticky Net (Kuo-toa) | Monster feature | p.189 | Held: the engine already does it |
+| Watery Rush (Lacedon Ghoul) | Monster feature | p.132 | Held: the engine already does it |
 | Paralyzing Touch (Lich) | Monster feature | p.196 | Held: the engine already does it |
 | Sickening Vapors (Manes Vaporspawn) | Monster feature | p.201 | Held: the engine already does it |
 | Water Jet (Marid) | Monster feature | p.203 | Held: changes the engine's reading: a person decides |
@@ -105,7 +104,7 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Tentacle Slam (Otyugh) | Monster feature | p.233 | Held: review disagrees |
 | Scare (Quasit) | Monster feature | p.252 | Held: changes the engine's reading: a person decides |
 | Vengeful Glare (Revenant) | Monster feature | p.259 | Held: changes the engine's reading: a person decides |
-| Swoop (Roc) | Monster feature | p.261 | Held: review disagrees |
+| Swoop (Roc) | Monster feature | p.261 | Held: the engine already does it |
 | Blazing Movement (Salamander Inferno Master) | Monster feature | p.267 | Held: the engine already does it |
 | Vile Appearance (Sea Hag) | Monster feature | p.271 | Held: changes the engine's reading: a person decides |
 | Charged Tendril (Shambling Mound) | Monster feature | p.276 | Held: changes the engine's reading: a person decides |
@@ -120,6 +119,7 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Charging Horn (Unicorn) | Monster feature | p.313 | Held: the engine already does it |
 | Spores (Vrock) | Monster feature | p.319 | Held: changes the engine's reading: a person decides |
 | Stunning Screech (Vrock) | Monster feature | p.319 | Held: the engine already does it |
+| Tactical Charge (Warrior Commander) | Monster feature | p.321 | Held: the engine already does it |
 | Prowl (Tiger or Hybrid Form Only) (Weretiger) | Monster feature | p.326 | Held: the engine already does it |
 | Toxic Escape (Yochlol) | Monster feature | p.341 | Held: the engine already does it |
 
@@ -174,7 +174,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-40 rules: 16 played, 24 validated. 6 of them reviewed with Ruling R24 tolerances (not an exact agreement). 15 of them partial (part of the entry left to the table). 59 more held for a person, not shipped (changes the engine's reading: a person decides 25, the engine already does it 25, review disagrees 7, reviewer unsure 2).
+37 rules: 16 played, 21 validated. 6 of them reviewed with Ruling R24 tolerances (not an exact agreement). 12 of them partial (part of the entry left to the table). 62 more held for a person, not shipped (changes the engine's reading: a person decides 25, the engine already does it 29, review disagrees 6, reviewer unsure 2).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

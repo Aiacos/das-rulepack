@@ -43,15 +43,12 @@ export const SOURCES = Object.freeze({
   "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
   "mmHasten00000000": "xmm-clay-golem-hasten",
   "mmHypnoticGaze00": "xmm-ultroloth-hypnotic-gaze",
-  "mmRumblingMoveme": "xmm-elemental-cataclysm-rumbling-movement",
   "mmSacredWeapon00": "xmm-empyrean-sacred-weapon",
   "mmSleepGaze00000": "xmm-jackalwere-sleep-gaze",
   "mmSporeBomb00000": "xmm-violet-fungus-necrohulk-spore-bomb",
-  "mmTacticalCharge": "xmm-warrior-commander-tactical-charge",
   "mmTelekineticThr": "xmm-poltergeist-telekinetic-thrust",
   "mmToxicInk000000": "xmm-kraken-toxic-ink",
   "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze",
-  "mmWateryRush0000": "xmm-lacedon-ghoul-watery-rush",
   "mmWhirlwind00000": "xmm-air-elemental-whirlwind",
   "yO5Jxg4POQGRLlXI": "xmm-flumph-stench-spray"
 });

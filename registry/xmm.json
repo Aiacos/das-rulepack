@@ -7604,7 +7604,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.286Z",
+          "at": "2026-11-22T06:29:15.147Z",
           "core": "0.290.0",
           "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
           "item": "e6d3d0570e5db94d0db9eed256359c7754a0b55555855458f47968f281d7da31",
@@ -7615,7 +7615,10 @@
             "triggers"
           ],
           "changes": [],
-          "triggers": "same"
+          "triggers": "same",
+          "original": "whirlwind",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.287Z",
@@ -10430,7 +10433,7 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.295Z",
+          "at": "2026-11-22T06:29:15.157Z",
           "core": "0.290.0",
           "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
           "item": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a",
@@ -10442,7 +10445,10 @@
             "actionOrBonus",
             "noReactions"
           ],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "slowing-breath",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.295Z",
@@ -14048,7 +14054,7 @@
           "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.300Z",
+          "at": "2026-11-22T06:29:15.163Z",
           "core": "0.290.0",
           "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
           "item": "70c42e73b4637906ea0604e237cdfc230d1122ac0f1ce0fb5f75ceea7a61c192",
@@ -14057,7 +14063,10 @@
             "noOpportunity"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "feral-strike",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.300Z",
@@ -18978,7 +18987,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.305Z",
+          "at": "2026-11-22T06:29:15.169Z",
           "core": "0.290.0",
           "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
           "item": "5852337695aa2a0f4cb0659bba364b870e1da6459f8f24147199350df68870da",
@@ -18987,7 +18996,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "flame-whip",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.305Z",
@@ -19325,7 +19337,7 @@
           "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.307Z",
+          "at": "2026-11-22T06:29:15.173Z",
           "core": "0.290.0",
           "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
           "item": "04c5fa09b957db3e3972c708fe05e0efe1fe38ab44b38922f25f944c2dca5461",
@@ -19334,7 +19346,12 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "death-throes",
+          "carried": [
+            "emanation"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.307Z",
@@ -20721,7 +20738,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.310Z",
+          "at": "2026-11-22T06:29:15.175Z",
           "core": "0.290.0",
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
           "item": "65e432e0047388d2e26a926c056bc36cd7b439c37ce1de365f0feab5f3abd4ab",
@@ -20730,7 +20747,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "horrify",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.310Z",
@@ -22070,7 +22090,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.312Z",
+          "at": "2026-11-22T06:29:15.177Z",
           "core": "0.290.0",
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
           "item": "7980ebdac1c7339b7ad44e14e53eecea8b792f126f2360895c8638a2704daed1",
@@ -22079,7 +22099,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "beard",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.312Z",
@@ -26146,7 +26169,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.316Z",
+          "at": "2026-11-22T06:29:15.179Z",
           "core": "0.290.0",
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
           "item": "a8229c266fe5ed511237683c7e9d09b814f3161c6f4fa44cc5da5f8a8cc60d63",
@@ -26155,7 +26178,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "infernal-sting",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.316Z",
@@ -28441,7 +28467,7 @@
           "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.319Z",
+          "at": "2026-11-22T06:29:15.182Z",
           "core": "0.290.0",
           "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f",
           "item": "4251045e121dd32ec962a53057556e2672ac18016b80316aed958cc15351d2ca",
@@ -28450,7 +28476,10 @@
             "triggers"
           ],
           "changes": [],
-          "triggers": "same"
+          "triggers": "same",
+          "original": "deadly-leap",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.320Z",
@@ -30216,7 +30245,7 @@
           "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.321Z",
+          "at": "2026-11-22T06:29:15.184Z",
           "core": "0.290.0",
           "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c",
           "item": "8034b529a3b4ac72e33357cdcd67268d416555371b31a187dc98d1a587956d53",
@@ -30225,7 +30254,10 @@
             "noOpportunity"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "trampling-charge",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.321Z",
@@ -30553,7 +30585,7 @@
           "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.322Z",
+          "at": "2026-11-22T06:29:15.186Z",
           "core": "0.290.0",
           "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634",
           "item": "fa51c7733e53f2303ad0c6b9cc497a10cc0ac949be0168ac3d6cef0c0b6a9f07",
@@ -30563,7 +30595,10 @@
             "noOpportunity"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "entangling-trail",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.322Z",
@@ -30974,7 +31009,7 @@
           "confidence": 0.75
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.325Z",
+          "at": "2026-11-22T06:29:15.189Z",
           "core": "0.290.0",
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
           "item": "3428fc9b756aef8eb23544398df49403169dc48188cabacd4dc6dc3e649ac873",
@@ -30983,7 +31018,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "unnerving-gaze",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.325Z",
@@ -31311,7 +31349,7 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.327Z",
+          "at": "2026-11-22T06:29:15.192Z",
           "core": "0.290.0",
           "rule": "aa73674451f070fba2b951a1ad5090c2d347b0e0c3ffde41e3ef253204512bef",
           "item": "ef4e3b7de1ce73ac21af8305642a413b6d48485e7ad697ce76e5e2a35768b119",
@@ -31322,7 +31360,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "drone",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.327Z",
@@ -32434,7 +32475,7 @@
           "confidence": 0.75
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.328Z",
+          "at": "2026-11-22T06:29:15.194Z",
           "core": "0.290.0",
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
           "item": "b7673def13b3026a6369169687f8b2fe37679a545a63ac0f96c722766c9e86a1",
@@ -32443,7 +32484,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "hasten",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.328Z",
@@ -34129,7 +34173,7 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.329Z",
+          "at": "2026-11-22T06:29:15.195Z",
           "core": "0.290.0",
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
           "item": "c6993ece5b0c1367e128982cb1149ae06dc3958567cc73820ed721a0b8bb1ad1",
@@ -34138,7 +34182,10 @@
             "noOpportunity"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "stomp",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.329Z",
@@ -40031,7 +40078,7 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.331Z",
+          "at": "2026-11-22T06:29:15.198Z",
           "core": "0.290.0",
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
           "item": "d4bed35ba23259fb0b908636d8f33994884c5e96d5c37c4dda2774010ac749f7",
@@ -40040,7 +40087,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "grave-dust-flight",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.331Z",
@@ -40923,7 +40973,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.333Z",
+          "at": "2026-11-22T06:29:15.200Z",
           "core": "0.290.0",
           "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
           "item": "230e43ffcfdcf867ce4c4c18e31a2004b42ffda98a4e44bbb03a1467cad0e801",
@@ -40934,7 +40984,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "dreadful-howl",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.333Z",
@@ -41536,7 +41589,7 @@
           "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.335Z",
+          "at": "2026-11-22T06:29:15.206Z",
           "core": "0.290.0",
           "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6",
           "item": "17b03925ed2afbc0d39e5e95df8dc9fb3dc10dcce2a74321ac4cf04c2e8571f6",
@@ -41545,7 +41598,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "create-whirlwind",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.335Z",
@@ -42287,7 +42343,7 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.336Z",
+          "at": "2026-11-22T06:29:15.209Z",
           "core": "0.290.0",
           "rule": "646210646e2f691ef83983d3ed13bbcd082d0f38c590c8e5a1d6aafa4d347c70",
           "item": "d110e6fcd3a1f7f05ca5127c3ac8a90ec3941bf0e1154c2b4048f2f1a0d7c1bc",
@@ -42298,7 +42354,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "unsettling-visage",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.336Z",
@@ -42897,7 +42956,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.337Z",
+          "at": "2026-11-22T06:29:15.211Z",
           "core": "0.290.0",
           "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
           "item": "40306fb6e167aa57efac9fff53b7e6bd7453476e76666cf4654a6aafac9a9abd",
@@ -42908,7 +42967,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "terrifying-presence",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.337Z",
@@ -43742,7 +43804,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.338Z",
+          "at": "2026-11-22T06:29:15.214Z",
           "core": "0.290.0",
           "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
           "item": "d3f50d321f27f050385607bced4c43e8baaa12a464b0686a10597b5bcb924fa2",
@@ -43754,7 +43816,10 @@
             "actionOrBonus",
             "noReactions"
           ],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "fetid-cloud",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.338Z",
@@ -46462,16 +46527,21 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.340Z",
+          "at": "2026-11-22T06:29:15.217Z",
           "core": "0.290.0",
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
           "item": "e060d50193eb5d685cc0bc72c9fdad5140fe0a161ecf4f68a92f9feefcfd1d54",
-          "delta": [
+          "delta": [],
+          "same": [
             "noOpportunity"
           ],
-          "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "rumbling-movement",
+          "carried": [
+            "noOpportunity"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.340Z",
@@ -47749,7 +47819,7 @@
           "because": "ignoresResistance"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.342Z",
+          "at": "2026-11-22T06:29:15.220Z",
           "core": "0.290.0",
           "rule": "289674df4b31bf8dcca46fcedbd9e3657bf728b1edd62013076fb6f3ea4ba6a3",
           "item": "826e9a044d57ee1e594b879c6d1a0a85d57d94fd19d7a22c51b2a111492c88ec",
@@ -47760,7 +47830,12 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "sacred-weapon",
+          "carried": [
+            "usageLimits"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.342Z",
@@ -50486,7 +50561,7 @@
           "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.344Z",
+          "at": "2026-11-22T06:29:15.223Z",
           "core": "0.290.0",
           "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f",
           "item": "a71f373bb7fcb499137c581fc6acecc293c89c711985a550e8729ff4f572b3d3",
@@ -50495,7 +50570,10 @@
             "triggers"
           ],
           "changes": [],
-          "triggers": "same"
+          "triggers": "same",
+          "original": "hammer-throw",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.344Z",
@@ -51810,7 +51888,7 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.345Z",
+          "at": "2026-11-22T06:29:15.226Z",
           "core": "0.290.0",
           "rule": "bc1aaf3646f10ec1a9a2db77fb7031301643ae87678dca1d37d962676cccb22d",
           "item": "b7424869015d026d2b5e02ec7cb6e9d316e322345e7bd17981046e1d08bdb576",
@@ -51819,7 +51897,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "stench-spray",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.345Z",
@@ -53616,7 +53697,7 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.346Z",
+          "at": "2026-11-22T06:29:15.228Z",
           "core": "0.290.0",
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
           "item": "2a7672e9a760a2a080dd43214f20f318608cda1025a87e2b8890536ee9bbb5d5",
@@ -53625,7 +53706,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "claw",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.347Z",
@@ -54094,7 +54178,7 @@
           "because": "onHit"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.348Z",
+          "at": "2026-11-22T06:29:15.231Z",
           "core": "0.290.0",
           "rule": "a6651715bcb7a0b4507f53a9671f066e0e6bc940af94babb2758058f45e47532",
           "item": "dd7549190039031d64f42b829e30b319dbee6077fd1dc63d91482554413fefba",
@@ -54105,7 +54189,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "claw",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.348Z",
@@ -54318,7 +54405,7 @@
           "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.349Z",
+          "at": "2026-11-22T06:29:15.234Z",
           "core": "0.290.0",
           "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64",
           "item": "3440d808bcf057ac1e5363b37d182984bd89233da085ebbcca7f1abb8e9cf149",
@@ -54327,7 +54414,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "horrific-visage",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.349Z",
@@ -54920,7 +55010,7 @@
           "because": "onHit"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.350Z",
+          "at": "2026-11-22T06:29:15.236Z",
           "core": "0.290.0",
           "rule": "b072b27e5dc8dbc1bbcf868bda895ad0ae4a7592374b40f0346a1736997b2840",
           "item": "a31c1433e441c1e974e31a3ddb488211efe9cdbca95f1dd003dd13b367ae9194",
@@ -54931,7 +55021,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "claw",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.350Z",
@@ -55158,7 +55251,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.352Z",
+          "at": "2026-11-22T06:29:15.239Z",
           "core": "0.290.0",
           "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
           "item": "7e3f9e72a420e8007cb46d1a16803c515cf020d0093929939d406dff849dada2",
@@ -55169,7 +55262,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "boulder-toss",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.352Z",
@@ -60086,7 +60182,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.355Z",
+          "at": "2026-11-22T06:29:15.243Z",
           "core": "0.290.0",
           "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
           "item": "eda43c12d0da79d2083b0e264d8182362423209f4ac33a280ba0d70c7785b450",
@@ -60097,7 +60193,12 @@
           "changes": [
             "effectEnds"
           ],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "draconic-strike",
+          "carried": [
+            "dropsEffects"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.355Z",
@@ -61151,7 +61252,7 @@
           "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.357Z",
+          "at": "2026-11-22T06:29:15.246Z",
           "core": "0.290.0",
           "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875",
           "item": "9a5df39d1830e007e7662f33b31266a6f11ebbc283e1bf448d9b77a411d4924e",
@@ -61160,7 +61261,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "psychic-warp",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.357Z",
@@ -64579,7 +64683,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.359Z",
+          "at": "2026-11-22T06:29:15.249Z",
           "core": "0.290.0",
           "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
           "item": "457138ec6ffdead909abbd916e1ef424824462e90426084e0b11465355244aa8",
@@ -64588,7 +64692,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "brutal-gore",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.359Z",
@@ -65085,7 +65192,7 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.360Z",
+          "at": "2026-11-22T06:29:15.251Z",
           "core": "0.290.0",
           "rule": "b2d23d966d7408b0e07247bb5215f71b0e9fa1ae64038dc2567b43b8f05ded27",
           "item": "4ad1813785034993a025476f3696e9069178fba30bf483ecf83408b35b6df47f",
@@ -65096,7 +65203,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "haunting-glare",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.360Z",
@@ -65265,7 +65375,7 @@
           "because": "actionEnds"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.361Z",
+          "at": "2026-11-22T06:29:15.253Z",
           "core": "0.290.0",
           "rule": "4469b99a209164a66139284a634dc515826b33bb594de35ee4836de91d6e7109",
           "item": "28263736d66e75e307017a4490e99c7649945e62a47cbe3fecd26fcc4ac33086",
@@ -65274,7 +65384,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "suffocate",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.361Z",
@@ -65620,7 +65733,7 @@
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.363Z",
+          "at": "2026-11-22T06:29:15.255Z",
           "core": "0.290.0",
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
           "item": "28d1efe644909060354a6118990481b5978264166c0caa87708808c45a08f581",
@@ -65629,7 +65742,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "chaos-claw",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.363Z",
@@ -66658,7 +66774,7 @@
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.364Z",
+          "at": "2026-11-22T06:29:15.257Z",
           "core": "0.290.0",
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
           "item": "0d5ebbe7c4c04d1f29ba206770b4aa72ab7f7b185dac827d3d788170fc21b295",
@@ -66667,7 +66783,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "chaos-staff",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.364Z",
@@ -67189,7 +67308,7 @@
           "because": "actionEnds"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.366Z",
+          "at": "2026-11-22T06:29:15.261Z",
           "core": "0.290.0",
           "rule": "1079969876bf38f33b81d2db5de3fbae2691c805ee67f4562b569dd1cd7e7cac",
           "item": "83696e62b652f4e72811bee60c7afbac3fc9a5f5c173f7b72d0ff7a0526bec10",
@@ -67202,7 +67321,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "paralyzing-tentacles",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.366Z",
@@ -69330,7 +69452,7 @@
           "because": "targets"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.369Z",
+          "at": "2026-11-22T06:29:15.266Z",
           "core": "0.290.0",
           "rule": "8dbd41b1762199a12c9bc09875daf6cfc409be0f193bb660d60b55cba95fc5aa",
           "item": "517159710324e7b8031a04596ca506b093db7224e9af2b76e272664ddbd136f7",
@@ -69340,7 +69462,12 @@
             "targets",
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "luring-song",
+          "carried": [
+            "magical"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.369Z",
@@ -73190,7 +73317,7 @@
           "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.371Z",
+          "at": "2026-11-22T06:29:15.269Z",
           "core": "0.290.0",
           "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147",
           "item": "c427894fde6fe9466070583026319dc8729baf1bd12b666c5f03a5fdf4225bc7",
@@ -73200,7 +73327,14 @@
             "noReactions"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "ice-spear",
+          "carried": [
+            "effectChanges",
+            "gmAlert",
+            "noBonus"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.371Z",
@@ -75723,7 +75857,7 @@
           "because": "actionEnds"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.374Z",
+          "at": "2026-11-22T06:29:15.273Z",
           "core": "0.290.0",
           "rule": "a98b8f8ac03d7264f7b5427cbe29cf452697cb83192c006b168ac94b86743b3f",
           "item": "dd475da7652f2b9b88c52fa48cddc27643da928ec54ea45a349fe979c143278f",
@@ -75733,7 +75867,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "sleep-gaze",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.374Z",
@@ -77402,7 +77539,7 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.376Z",
+          "at": "2026-11-22T06:29:15.275Z",
           "core": "0.290.0",
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
           "item": "0e385537001c9edd837443b004764a46a489349eb1d8a1df9cf879c91fe36990",
@@ -77411,7 +77548,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "toxic-ink",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.376Z",
@@ -78700,7 +78840,7 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.377Z",
+          "at": "2026-11-22T06:29:15.277Z",
           "core": "0.290.0",
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
           "item": "70ed136753fdee784872fc3e354c2ad5dd3c71e1a47a1ca6cc1e2ef097adc2f1",
@@ -78709,7 +78849,10 @@
             "triggers"
           ],
           "changes": [],
-          "triggers": "same"
+          "triggers": "same",
+          "original": "sticky-net",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.377Z",
@@ -79237,16 +79380,21 @@
           "confidence": 0.7
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.378Z",
+          "at": "2026-11-22T06:29:15.279Z",
           "core": "0.290.0",
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
           "item": "d5e259770d542f1849a160739e15078503745287b5df1c94ab4eaaa29625d137",
-          "delta": [
+          "delta": [],
+          "same": [
             "noOpportunity"
           ],
-          "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "watery-rush",
+          "carried": [
+            "noOpportunity"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.378Z",
@@ -80016,7 +80164,7 @@
           "confidence": 0.9
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.379Z",
+          "at": "2026-11-22T06:29:15.280Z",
           "core": "0.290.0",
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
           "item": "765bb31da980f5320d8ca6522d70591cbabb59db973493524f8753a36f54b678",
@@ -80025,7 +80173,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "paralyzing-touch",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.379Z",
@@ -82670,7 +82821,7 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.381Z",
+          "at": "2026-11-22T06:29:15.283Z",
           "core": "0.290.0",
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
           "item": "f2d80e0d3cdfe0983ead627c9c04d501e662fb13db2619cc84723c32db99bbf7",
@@ -82679,7 +82830,12 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "sickening-vapors",
+          "carried": [
+            "emanation"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.381Z",
@@ -83189,7 +83345,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.382Z",
+          "at": "2026-11-22T06:29:15.285Z",
           "core": "0.290.0",
           "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
           "item": "75fc0363978f7eb45e8c08a8b4f297f5792c85e0e810a44ab295aa6ffcae47b9",
@@ -83200,7 +83356,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "water-jet",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.383Z",
@@ -84673,7 +84832,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.384Z",
+          "at": "2026-11-22T06:29:15.287Z",
           "core": "0.290.0",
           "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
           "item": "ba08e89be1db1390b3cea0b4941f3110fb4db6ab9ed076141b75d7663764093e",
@@ -84682,7 +84841,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "aquatic-burst",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.384Z",
@@ -84864,7 +85026,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.387Z",
+          "at": "2026-11-22T06:29:15.289Z",
           "core": "0.290.0",
           "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
           "item": "c33f5a8b5d645026b9870693c00eeb2296495ac19a2b64f219575a313dac0bb4",
@@ -84875,7 +85037,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "watery-rebuke",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.387Z",
@@ -85256,7 +85421,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.388Z",
+          "at": "2026-11-22T06:29:15.291Z",
           "core": "0.290.0",
           "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
           "item": "692decbe8ae9fa41d7f35a3bc0d45d8077566b3b3b5c282921be7f1468876b0d",
@@ -85265,7 +85430,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "harpoon",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.388Z",
@@ -87511,7 +87679,7 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.390Z",
+          "at": "2026-11-22T06:29:15.293Z",
           "core": "0.290.0",
           "rule": "792c6686cbe13c60e0255b10479db355c3ba36046647f77c3cf23e85fe79ae2b",
           "item": "8fd883af6dd4999092467e4713da90eade3aaad62518f4a4d0a937dc30b87bbb",
@@ -87522,7 +87690,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "paralysis-gas",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.390Z",
@@ -93958,7 +94129,7 @@
           "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.393Z",
+          "at": "2026-11-22T06:29:15.297Z",
           "core": "0.290.0",
           "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377",
           "item": "85d1d6f07b708fb11b2c800052abbbb5c60c58e23bcbb04f1e280ab0ee7bb660",
@@ -93969,7 +94140,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "tentacle-slam",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.393Z",
@@ -98853,7 +99027,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.395Z",
+          "at": "2026-11-22T06:29:15.300Z",
           "core": "0.290.0",
           "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
           "item": "24212f888cea83de578f9f7b3f85ab31186a9bdaabb94739c261c01e6fef2ca3",
@@ -98863,7 +99037,12 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "superset"
+          "triggers": "superset",
+          "original": "telekinetic-thrust",
+          "carried": [
+            "magical"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.396Z",
@@ -101491,7 +101670,7 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.398Z",
+          "at": "2026-11-22T06:29:15.303Z",
           "core": "0.290.0",
           "rule": "a4185148eec22b7efc4a82955adf6d5c4b14a982b4fd4089cfff8529bd90d342",
           "item": "49a6c220f308435f3522155555a11be5a611efeab4b52bc3003000fb5c6c111d",
@@ -101502,7 +101681,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "scare",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.398Z",
@@ -103747,7 +103929,7 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.400Z",
+          "at": "2026-11-22T06:29:15.306Z",
           "core": "0.290.0",
           "rule": "01533f83cbb655a96bea53d554e9c79d6ab4d55c7cac788fe37c0b67bb606f7d",
           "item": "81134f270c57102f53441193a27f682fc86efc5430a15e07247276169e0a9fa2",
@@ -103758,7 +103940,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "vengeful-glare",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.400Z",
@@ -104443,16 +104628,21 @@
           "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.401Z",
+          "at": "2026-11-22T06:29:15.308Z",
           "core": "0.290.0",
           "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
           "item": "7f7a4797b5d697a1ee70068b22a210b79830c0670bada3f1c145b36b466f71ec",
-          "delta": [
+          "delta": [],
+          "same": [
             "noOpportunity"
           ],
-          "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "swoop",
+          "carried": [
+            "noOpportunity"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.401Z",
@@ -106807,7 +106997,7 @@
           "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.403Z",
+          "at": "2026-11-22T06:29:15.311Z",
           "core": "0.290.0",
           "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b",
           "item": "de4ffe61c93fd68c8e004b106acac02e6c450966b75e2306169190764caa313d",
@@ -106816,7 +107006,10 @@
             "noOpportunity"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "blazing-movement",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.403Z",
@@ -108698,7 +108891,7 @@
           "because": "targets"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.405Z",
+          "at": "2026-11-22T06:29:15.314Z",
           "core": "0.290.0",
           "rule": "38ab072a86e2d5b92ce054ac2538e26012e7c33fa8b6a84cca6b1b738d4134f9",
           "item": "431970b816ca39f488cf1b6f26056a473891e0845571df2162381fdae160ad8f",
@@ -108709,7 +108902,12 @@
           "changes": [
             "targets"
           ],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "vile-appearance",
+          "carried": [
+            "emanation"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.405Z",
@@ -109999,7 +110197,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.406Z",
+          "at": "2026-11-22T06:29:15.316Z",
           "core": "0.290.0",
           "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
           "item": "7a3bd3409ff0a533ce62615002d9171c7f99ce355f35d5c82bfca031efe40013",
@@ -110008,7 +110206,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "charged-tendril",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.406Z",
@@ -110461,7 +110662,7 @@
           "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.408Z",
+          "at": "2026-11-22T06:29:15.318Z",
           "core": "0.290.0",
           "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30",
           "item": "68cc859c9ed4d1fd29188ccf600b3cb7ac8b54553f103b3400f4fb1adcbc497f",
@@ -110470,7 +110671,10 @@
           ],
           "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "mm-protection",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.408Z",
@@ -111360,7 +111564,7 @@
           "confidence": 0.9
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.409Z",
+          "at": "2026-11-22T06:29:15.323Z",
           "core": "0.290.0",
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
           "item": "fdc240828265e4588d205b9f850f81ade0d0ddfc691a3bed046934ed5c4d3b20",
@@ -111369,7 +111573,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "cinder-breath",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.409Z",
@@ -112540,7 +112747,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.410Z",
+          "at": "2026-11-22T06:29:15.326Z",
           "core": "0.290.0",
           "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
           "item": "39a5651ebd1c0eb86c30ac5e5e966c815062ac5bf6caf6917618e81a1f390788",
@@ -112549,7 +112756,10 @@
             "saveDamage"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "spell-reflection",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.411Z",
@@ -112937,7 +113147,7 @@
           "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.411Z",
+          "at": "2026-11-22T06:29:15.328Z",
           "core": "0.290.0",
           "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf",
           "item": "ed4b9fe678d46651cbdab4d67f31c05bbb54ab8f302387c4dc89b5f3c8623850",
@@ -112946,7 +113156,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "mind-rending-roar",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.412Z",
@@ -118025,7 +118238,7 @@
           "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.414Z",
+          "at": "2026-11-22T06:29:15.332Z",
           "core": "0.290.0",
           "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29",
           "item": "c0283cdba0512b5e36991fab2fc4324be8600f55727d854387c272e4dc24ce65",
@@ -118037,7 +118250,12 @@
             "actionOrBonus",
             "noReactions"
           ],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "fetid-aura",
+          "carried": [
+            "emanation"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.414Z",
@@ -119103,7 +119321,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.416Z",
+          "at": "2026-11-22T06:29:15.335Z",
           "core": "0.290.0",
           "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
           "item": "8a30e9528e428eb8e6b4c3e321f7ff2994ef40c13150e680ad0fd44430378f25",
@@ -119112,7 +119330,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "cacophony",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.416Z",
@@ -120982,7 +121203,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.417Z",
+          "at": "2026-11-22T06:29:15.338Z",
           "core": "0.290.0",
           "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
           "item": "d1691ba30514d408b522b27adfbb867b1d9d986dfdec425dad19af43f841bdd1",
@@ -120991,7 +121212,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "warhammer",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.417Z",
@@ -121770,7 +121994,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.419Z",
+          "at": "2026-11-22T06:29:15.341Z",
           "core": "0.290.0",
           "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
           "item": "268b521fc5a619d98d6585359cf9df05c04a1f63e9852c69396da987232c0978",
@@ -121779,7 +122003,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "grasping-root",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.419Z",
@@ -123181,7 +123408,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.421Z",
+          "at": "2026-11-22T06:29:15.344Z",
           "core": "0.290.0",
           "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
           "item": "66af846a435c351889e7cc2602925ce298cbc0e1289400c7e741082ddb80d1f4",
@@ -123192,7 +123419,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "hypnotic-gaze",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.421Z",
@@ -124083,7 +124313,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.421Z",
+          "at": "2026-11-22T06:29:15.345Z",
           "core": "0.290.0",
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
           "item": "1a76e0d4e6f49eb7b839ecf4b344fde631f670cbfcfae0bf9782a13d6964e687",
@@ -124092,7 +124322,10 @@
             "noOpportunity"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "charging-horn",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.422Z",
@@ -127209,7 +127442,7 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.423Z",
+          "at": "2026-11-22T06:29:15.348Z",
           "core": "0.290.0",
           "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
           "item": "10c2b78bfc5dee68165f3a7645da060afa08688b2b521e8ac7c1bc0c05e706b6",
@@ -127220,7 +127453,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "spore-bomb",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.424Z",
@@ -127693,7 +127929,7 @@
           "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.425Z",
+          "at": "2026-11-22T06:29:15.351Z",
           "core": "0.290.0",
           "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f",
           "item": "2d1ade2680ae5ad4a492492a629388a84dbcec91d0ee1b40559f457a5440fedc",
@@ -127702,7 +127938,10 @@
           "changes": [
             "triggers"
           ],
-          "triggers": "drops"
+          "triggers": "drops",
+          "original": "spores",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.425Z",
@@ -127866,7 +128105,7 @@
           "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.426Z",
+          "at": "2026-11-22T06:29:15.353Z",
           "core": "0.290.0",
           "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f",
           "item": "5e0a9f8a8bf509577e5be2072e68de84ac02cff4ceb2eed02f22dabd6d5d7089",
@@ -127875,7 +128114,10 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "stunning-screech",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.426Z",
@@ -128579,16 +128821,21 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.427Z",
+          "at": "2026-11-22T06:29:15.354Z",
           "core": "0.290.0",
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
           "item": "f39e3add98de4d8984b479b2ccabd4f9002ab95491b95bde4f7df84b79978de5",
-          "delta": [
+          "delta": [],
+          "same": [
             "noOpportunity"
           ],
-          "same": [],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "tactical-charge",
+          "carried": [
+            "noOpportunity"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.427Z",
@@ -130964,7 +131211,7 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.428Z",
+          "at": "2026-11-22T06:29:15.356Z",
           "core": "0.290.0",
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
           "item": "c4fc55b09eeffd34245294f9d3c2c4f3ab98074ba97127bfee27eb23eff26e81",
@@ -130973,7 +131220,10 @@
             "noOpportunity"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "prowl",
+          "carried": [],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.428Z",
@@ -134375,7 +134625,7 @@
           "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26"
         },
         "reading": {
-          "at": "2026-11-22T06:14:53.430Z",
+          "at": "2026-11-22T06:29:15.360Z",
           "core": "0.290.0",
           "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26",
           "item": "b97f74a0e8ad6bc12b1795e96b98731bee49e26d624fbc76294d556bf38124b6",
@@ -134384,7 +134634,13 @@
             "effectEnds"
           ],
           "changes": [],
-          "triggers": "none"
+          "triggers": "none",
+          "original": "toxic-escape",
+          "carried": [
+            "gmAlert",
+            "triggers"
+          ],
+          "dropped": []
         },
         "gates": {
           "at": "2026-11-22T06:14:53.430Z",

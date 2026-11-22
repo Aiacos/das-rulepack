@@ -117,30 +117,6 @@ export const RULES = book(BOOK, [
   },
 
   {
-    "identifier": "xmm-elemental-cataclysm-rumbling-movement",
-    "name": "Rumbling Movement",
-    "page": 111,
-    "kind": "monster",
-    "status": "validated",
-    "handledIn": "table",
-    "origin": "Elemental Cataclysm",
-    "adds": "The movement of this action draws no opportunity attacks.",
-    "entry": {
-      "noOpportunity": "afterUse"
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ],
-    "partial": {
-      "no-key": 1,
-      "table-ruling": 1
-    }
-  },
-
-  {
     "identifier": "xmm-empyrean-sacred-weapon",
     "name": "Sacred Weapon",
     "page": 113,
@@ -158,6 +134,12 @@ export const RULES = book(BOOK, [
           "EotF3wFKQQnsLEGX"
         ]
       }
+    },
+    "carries": {
+      "from": "sacred-weapon",
+      "keys": [
+        "usageLimits"
+      ]
     },
     "partial": {
       "no-key": 1,
@@ -266,30 +248,6 @@ export const RULES = book(BOOK, [
   },
 
   {
-    "identifier": "xmm-lacedon-ghoul-watery-rush",
-    "name": "Watery Rush",
-    "page": 132,
-    "kind": "monster",
-    "status": "validated",
-    "handledIn": "table",
-    "origin": "Lacedon Ghoul",
-    "adds": "Movement after this bonus action provokes no opportunity attacks.",
-    "entry": {
-      "noOpportunity": "afterUse"
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ],
-    "partial": {
-      "no-key": 1,
-      "table-ruling": 1
-    }
-  },
-
-  {
     "identifier": "xmm-poltergeist-telekinetic-thrust",
     "name": "Telekinetic Thrust",
     "page": 246,
@@ -314,6 +272,12 @@ export const RULES = book(BOOK, [
             }
           ]
         }
+      ]
+    },
+    "carries": {
+      "from": "telekinetic-thrust",
+      "keys": [
+        "magical"
       ]
     },
     "uncovered": [
@@ -365,29 +329,6 @@ export const RULES = book(BOOK, [
     ],
     "partial": {
       "healing-block": 1
-    }
-  },
-
-  {
-    "identifier": "xmm-warrior-commander-tactical-charge",
-    "name": "Tactical Charge",
-    "page": 321,
-    "kind": "monster",
-    "status": "validated",
-    "handledIn": "table",
-    "origin": "Warrior Commander",
-    "adds": "After using it, the warrior's movement draws no opportunity attacks.",
-    "entry": {
-      "noOpportunity": "afterUse"
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ],
-    "partial": {
-      "table-ruling": 1
     }
   }
 ]);
