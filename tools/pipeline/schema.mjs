@@ -1,7 +1,7 @@
 // The record format of the rulebook registry: the closed vocabularies and the structural validator.
 import { assertProblems, isCanonicalAssertion, isPlainLine, unassertableKeys } from "./assert.mjs";
 import { DRAFT_KEYS } from "./draft-keys.mjs";
-import { leavesConflicts, leavesProblems } from "./leaves.mjs";
+import { LEAVE_REASONS, leavesConflicts, leavesProblems } from "./leaves.mjs";
 
 export const ADDS_MAX = 200;
 
@@ -269,17 +269,35 @@ export function readingProblems(reading) {
   return errors;
 }
 
-// A reread (reread.mjs): `{ by, at, confidence, reading: { core, sha }, covered, beyond?, provisional?, second? }`, `second`
-// the same without `provisional` and `second`. `beyond` (only and always with `covered: false`) is a list of assertions of
-// the closed vocabulary, as an agent writes them, with no `free` anywhere: data, never prose.
-const REREAD_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "provisional", "second"];
-const REREAD_SECOND_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond"];
+// A reread (reread.mjs): `{ by, at, confidence, reading: { core, sha }, covered, beyond?, unexpressed?, provisional?,
+// second? }`, `second` the same without `provisional` and `second`, or `{ by, at, confidence, reading, outcome:
+// "second-unsure" }` (a second reader below the threshold: the core is not confirmed). With `covered: false`, `beyond` (a list
+// of assertions of the closed vocabulary, as an agent writes them, with no `free` anywhere) or `unexpressed` (distinct
+// reasons of LEAVE_REASONS: what is missing that no assertion can state), or both: data, never prose.
+const REREAD_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "unexpressed", "provisional", "second"];
+const REREAD_SECOND_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "unexpressed", "outcome"];
 export const REREAD_BEYOND_MAX = 6;
+/** The closed outcomes of a second reread that carry no answer (reread.mjs): an unsure second reader. */
+export const REREAD_OUTCOMES = Object.freeze(["second-unsure"]);
 const hasFree = (a) => ["given", "expect"].some((part) => isObject(a?.[part]) && has(a[part], "free"));
+/** Why a reread's `unexpressed` cannot stand (`at` the path), or null: a non-empty list of distinct LEAVE_REASONS. */
+export function unexpressedProblem(list, at = "unexpressed") {
+  if (!Array.isArray(list) || !list.length) return `${at}: a non-empty list of reasons (${LEAVE_REASONS.join(", ")})`;
+  const bad = list.findIndex((x) => typeof x !== "string" || !LEAVE_REASONS.includes(x));
+  if (bad >= 0) return `${at}[${bad}]: must be one of ${LEAVE_REASONS.join(", ")}`;
+  if (new Set(list).size !== list.length) return `${at}: each reason once`;
+  return null;
+}
 function rereadReadingProblems(r, at, fields) {
   const errors = [];
   if (!isObject(r)) return [`${at}: must be { ${fields.join(", ")} }`];
   for (const f of Object.keys(r)) if (!fields.includes(f)) errors.push(`${at}.${f}: unknown field`);
+  if (has(r, "outcome")) {
+    if (!REREAD_OUTCOMES.includes(r.outcome)) errors.push(`${at}.outcome: must be one of ${REREAD_OUTCOMES.join(", ")}`);
+    for (const f of ["covered", "beyond", "unexpressed"]) {
+      if (has(r, f)) errors.push(`${at}.${f}: an outcome (${REREAD_OUTCOMES.join(", ")}) carries no answer`);
+    }
+  }
   if (!isReaderHandle(r.by)) errors.push(`${at}.by: must be a reader handle (not "rule")`);
   if (typeof r.at !== "string" || !/^\d{4}-\d{2}-\d{2}T/.test(r.at)) errors.push(`${at}.at: must be an ISO date string`);
   if (!(typeof r.confidence === "number" && r.confidence >= 0 && r.confidence <= 1)) {
@@ -289,15 +307,24 @@ function rereadReadingProblems(r, at, fields) {
   if (!isObject(fp) || !Object.keys(fp).every((k) => k === "core" || k === "sha") || !isCoreVersion(fp.core) || !isHex64(fp.sha)) {
     errors.push(`${at}.reading: must be { core: an engine version, sha: 64 hex characters }`);
   }
+  if (has(r, "outcome")) return errors;
   if (typeof r.covered !== "boolean") errors.push(`${at}.covered: must be true or false`);
   if (r.covered === true && has(r, "beyond")) errors.push(`${at}.beyond: covered: true carries none`);
+  if (r.covered === true && has(r, "unexpressed")) errors.push(`${at}.unexpressed: covered: true carries none`);
   if (r.covered === false) {
+    if (!has(r, "beyond") && !has(r, "unexpressed")) {
+      errors.push(`${at}: covered: false needs beyond or unexpressed (or both)`);
+    }
     const list = r.beyond;
-    if (!Array.isArray(list) || !list.length || list.length > REREAD_BEYOND_MAX) {
+    if (has(r, "beyond") && (!Array.isArray(list) || !list.length || list.length > REREAD_BEYOND_MAX)) {
       errors.push(`${at}.beyond: covered: false needs 1 to ${REREAD_BEYOND_MAX} assertions`);
-    } else {
+    } else if (has(r, "beyond")) {
       errors.push(...assertProblems(list, { at: `${at}.beyond`, agent: true, origins: ["official"] }));
       if (list.some(hasFree)) errors.push(`${at}.beyond: no free text (data only)`);
+    }
+    if (has(r, "unexpressed")) {
+      const problem = unexpressedProblem(r.unexpressed, `${at}.unexpressed`);
+      if (problem) errors.push(problem);
     }
   }
   return errors;
@@ -305,8 +332,8 @@ function rereadReadingProblems(r, at, fields) {
 /**
  * What is wrong with `evidence.triaged.reread`, as messages: its closed shape, and its tie to the record. Covered by the
  * first reread and, when there is one, by the second: a `core` the rule sets (`by: "rule"`, the previous verdict in `was`,
- * the fixed REREAD_WHY), `provisional: true` until a second reread agrees. Otherwise the verdict is not `core`; a second reread
- * follows only a covered first one.
+ * the fixed REREAD_WHY), `provisional: true` until a second reread agrees. Otherwise (something beyond, something
+ * unexpressed, a second reader unsure) the verdict is not `core`; a second reread follows only a covered first one.
  */
 function rereadProblems(triaged, verdict, why) {
   const at = "evidence.triaged.reread";
@@ -324,7 +351,9 @@ function rereadProblems(triaged, verdict, why) {
   if (covered && !(verdict === "core" && triaged.by === "rule" && has(triaged, "was") && why === REREAD_WHY)) {
     errors.push(`${at}: a covered reread goes with the verdict core, by rule, its previous verdict in was and the fixed why`);
   }
-  if (!covered && verdict === "core") errors.push(`${at}: a reread that found something beyond the engine is no core`);
+  if (!covered && verdict === "core") {
+    errors.push(`${at}: a reread that found something beyond the engine, or a second reader unsure, is no core`);
+  }
   return errors;
 }
 

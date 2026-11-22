@@ -3132,22 +3132,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Two stage save: incapacitated, repeated save at end of next turn, then unconscious ending on damage or being woken",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:58:58.556Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Two stage save: incapacitated, repeated save at end of next turn, then unconscious ending on damage or being woken",
-            "triaged": {
-              "by": "reader-xmm-002",
-              "at": "2026-11-21T19:58:33.563Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-002",
+          "at": "2026-11-21T19:58:33.563Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r001",
             "at": "2026-11-22T06:58:58.556Z",
@@ -3157,11 +3151,19 @@
               "sha": "c3ff5bb328f25c87de6cbcec71a9e697b6bcf404806aa45f7cdf1054e853bc5d"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s001",
+              "at": "2026-11-22T07:21:59.249Z",
+              "confidence": 0.65,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "c3ff5bb328f25c87de6cbcec71a9e697b6bcf404806aa45f7cdf1054e853bc5d"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -9408,22 +9410,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Repeated save at end of next turn, escalating to Unconscious that ends on damage or being woken; data has statuses only.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:58:58.556Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Repeated save at end of next turn, escalating to Unconscious that ends on damage or being woken; data has statuses only.",
-            "triaged": {
-              "by": "reader-xmm-003",
-              "at": "2026-11-21T19:58:33.883Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-003",
+          "at": "2026-11-21T19:58:33.883Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r001",
             "at": "2026-11-22T06:58:58.556Z",
@@ -9433,11 +9429,19 @@
               "sha": "c3ff5bb328f25c87de6cbcec71a9e697b6bcf404806aa45f7cdf1054e853bc5d"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s001",
+              "at": "2026-11-22T07:21:59.249Z",
+              "confidence": 0.65,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "c3ff5bb328f25c87de6cbcec71a9e697b6bcf404806aa45f7cdf1054e853bc5d"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -13296,22 +13300,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Data has the line save and half damage but lacks the 30-foot push away from the source",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:58:58.556Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Data has the line save and half damage but lacks the 30-foot push away from the source",
-            "triaged": {
-              "by": "reader-xmm-004",
-              "at": "2026-11-21T19:58:34.201Z",
-              "confidence": 0.7,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-004",
+          "at": "2026-11-21T19:58:34.201Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r001",
             "at": "2026-11-22T06:58:58.556Z",
@@ -13321,11 +13319,19 @@
               "sha": "ddc1a1921d6c995c88cbf24a4ad16219f861607d9070f2acfc20a4f076ba1eef"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s001",
+              "at": "2026-11-22T07:21:59.249Z",
+              "confidence": 0.5,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ddc1a1921d6c995c88cbf24a4ad16219f861607d9070f2acfc20a4f076ba1eef"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -20337,22 +20343,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Reaction adding to AC against one melee hit, only while holding a weapon; trigger-bound.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:58:58.556Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Reaction adding to AC against one melee hit, only while holding a weapon; trigger-bound.",
-            "triaged": {
-              "by": "reader-xmm-005",
-              "at": "2026-11-21T19:58:34.523Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-005",
+          "at": "2026-11-21T19:58:34.523Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r001",
             "at": "2026-11-22T06:58:58.556Z",
@@ -20362,11 +20362,19 @@
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s001",
+              "at": "2026-11-22T07:21:59.249Z",
+              "confidence": 0.65,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -21165,22 +21173,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Needs sunlight check, creature-type exclusion and drop to 0 HP at a threshold; data has only a flat save.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:58:58.556Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Needs sunlight check, creature-type exclusion and drop to 0 HP at a threshold; data has only a flat save.",
-            "triaged": {
-              "by": "reader-xmm-005",
-              "at": "2026-11-21T19:58:34.523Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-005",
+          "at": "2026-11-21T19:58:34.523Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r001",
             "at": "2026-11-22T06:58:58.556Z",
@@ -21190,11 +21192,19 @@
               "sha": "c31bf4aacc8822617e5a8a8dbff09425e4a9a7b6ab886054557080f61e3ae6dc"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s001",
+              "at": "2026-11-22T07:21:59.249Z",
+              "confidence": 0.65,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "c31bf4aacc8822617e5a8a8dbff09425e4a9a7b6ab886054557080f61e3ae6dc"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -39597,22 +39607,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Con save with HP max reduction equal to damage and a repeat lockout; data lacks the max HP reduction.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:58:59.872Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Con save with HP max reduction equal to damage and a repeat lockout; data lacks the max HP reduction.",
-            "triaged": {
-              "by": "reader-xmm-009",
-              "at": "2026-11-21T19:58:35.775Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-009",
+          "at": "2026-11-21T19:58:35.775Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r002",
             "at": "2026-11-22T06:58:59.872Z",
@@ -39622,11 +39626,19 @@
               "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s001",
+              "at": "2026-11-22T07:21:59.249Z",
+              "confidence": 0.5,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -39740,22 +39752,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Reaction that adds a bonus to AC against the triggering melee hit while holding a weapon; data lacks any effect.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:58:59.872Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Reaction that adds a bonus to AC against the triggering melee hit while holding a weapon; data lacks any effect.",
-            "triaged": {
-              "by": "reader-xmm-009",
-              "at": "2026-11-21T19:58:35.775Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-009",
+          "at": "2026-11-21T19:58:35.775Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r002",
             "at": "2026-11-22T06:58:59.872Z",
@@ -39765,11 +39771,19 @@
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s001",
+              "at": "2026-11-22T07:21:59.249Z",
+              "confidence": 0.65,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -55622,11 +55636,34 @@
           "at": "2026-11-21T19:58:36.756Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t001",
+            "at": "2026-11-22T07:08:37.818Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c9428f0bc8c26c8936b4066a86ab081df7ff670e5592a6bc3d4e9d837508c4ef"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "poisoned"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Aura triggered at start of turn with save, plus 24-hour immunity after the save; needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -55919,11 +55956,34 @@
           "at": "2026-11-21T19:58:36.756Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t001",
+            "at": "2026-11-22T07:08:37.818Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c9428f0bc8c26c8936b4066a86ab081df7ff670e5592a6bc3d4e9d837508c4ef"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "poisoned"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Aura triggered at start of turn with save, plus 24-hour immunity after the save; needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -60679,22 +60739,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Reaction to taking damage underwater: cube of obscurement and a move; data has a generic effect only.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:01.200Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Reaction to taking damage underwater: cube of obscurement and a move; data has a generic effect only.",
-            "triaged": {
-              "by": "reader-xmm-013",
-              "at": "2026-11-21T19:58:37.068Z",
-              "confidence": 0.75,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-013",
+          "at": "2026-11-21T19:58:37.068Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r003",
             "at": "2026-11-22T06:59:01.200Z",
@@ -60704,11 +60758,31 @@
               "sha": "36b9e6e931942f4a3a51c7edae5bee38a1ad68f9d2cd64e2f2a6cdaaec895f9b"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.7,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "36b9e6e931942f4a3a51c7edae5bee38a1ad68f9d2cd64e2f2a6cdaaec895f9b"
+              },
+              "covered": false,
+              "beyond": [
+                {
+                  "given": {
+                    "moment": "enter"
+                  },
+                  "expect": {
+                    "condition": {
+                      "applied": "blinded"
+                    }
+                  }
+                }
+              ]
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -70577,22 +70651,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Grapple with escape DC, restrained, start-of-turn damage, max HP loss and healing; riders beyond the save activity.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:02.542Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Grapple with escape DC, restrained, start-of-turn damage, max HP loss and healing; riders beyond the save activity.",
-            "triaged": {
-              "by": "reader-xmm-015",
-              "at": "2026-11-21T19:58:37.695Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-015",
+          "at": "2026-11-21T19:58:37.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r004",
             "at": "2026-11-22T06:59:02.542Z",
@@ -70602,11 +70670,19 @@
               "sha": "4ea4fa9c75af616d33422810afdf9286a2e122eabca3580e9cb78836a0e70508"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s002",
+              "at": "2026-11-22T07:22:00.624Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "4ea4fa9c75af616d33422810afdf9286a2e122eabca3580e9cb78836a0e70508"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -72641,11 +72717,34 @@
           "at": "2026-11-21T19:58:37.695Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t001",
+            "at": "2026-11-22T07:08:37.818Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c9428f0bc8c26c8936b4066a86ab081df7ff670e5592a6bc3d4e9d837508c4ef"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "poisoned"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Start-of-turn save in an emanation applying poison until next turn; data lacks the aura timing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -82526,22 +82625,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Save for half damage only for non-Undead and the lich cannot repeat it next turn; needs creature-type filter and limit.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:02.542Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Save for half damage only for non-Undead and the lich cannot repeat it next turn; needs creature-type filter and limit.",
-            "triaged": {
-              "by": "reader-xmm-017",
-              "at": "2026-11-21T19:58:38.331Z",
-              "confidence": 0.7,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-017",
+          "at": "2026-11-21T19:58:38.331Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r004",
             "at": "2026-11-22T06:59:02.542Z",
@@ -82551,11 +82644,19 @@
               "sha": "4a04b365ee8907e578f0c334940574cd0efdefdf08ee8be112678b3844f4e479"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s002",
+              "at": "2026-11-22T07:22:00.624Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "4a04b365ee8907e578f0c334940574cd0efdefdf08ee8be112678b3844f4e479"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -88970,7 +89071,16 @@
               "sha": "54792044a662ae166e83739f0757827f197981b94991d2a7d4f7fb776324e85f"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "54792044a662ae166e83739f0757827f197981b94991d2a7d4f7fb776324e85f"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -90743,22 +90853,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Triggered on death, an area save with a short restrained effect; data has a special activation only",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:03.873Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Triggered on death, an area save with a short restrained effect; data has a special activation only",
-            "triaged": {
-              "by": "reader-xmm-018",
-              "at": "2026-11-21T19:58:38.644Z",
-              "confidence": 0.8,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-018",
+          "at": "2026-11-21T19:58:38.644Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r005",
             "at": "2026-11-22T06:59:03.873Z",
@@ -90768,11 +90872,19 @@
               "sha": "2dee1f652cee3875705de22c606fd0a7cff5c5cdcf3f298753a8c58b3918820c"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s002",
+              "at": "2026-11-22T07:22:00.624Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "2dee1f652cee3875705de22c606fd0a7cff5c5cdcf3f298753a8c58b3918820c"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -94605,22 +94717,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Reaction to a melee hit while holding a weapon adds to AC against that attack; data lacks trigger",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:03.873Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Reaction to a melee hit while holding a weapon adds to AC against that attack; data lacks trigger",
-            "triaged": {
-              "by": "reader-xmm-019",
-              "at": "2026-11-21T19:58:38.968Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-019",
+          "at": "2026-11-21T19:58:38.968Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r005",
             "at": "2026-11-22T06:59:03.873Z",
@@ -94630,11 +94736,19 @@
               "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s003",
+              "at": "2026-11-22T07:22:01.910Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -100205,11 +100319,42 @@
           "at": "2026-11-21T19:58:39.284Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.7,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "2404cb3774ee5307047aa690314883944e5e3fbaf55d5e603767ad0f439662a5"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "frightened"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "moment": "turnStart"
+                },
+                "expect": {
+                  "affects": "enemies"
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Aura on enemies starting turns in range with a 24-hour immunity after a save; needs aura and immunity tracking.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -108178,17 +108323,36 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-022",
-          "at": "2026-11-21T19:58:39.923Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Reaction triggered by an attack hitting it, then uses another action",
+            "triaged": {
+              "by": "reader-xmm-022",
+              "at": "2026-11-21T19:58:39.923Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "1e5e812cf7f92b1f60a7e9550a8950326db48dda023a6eacf6e05f979d971999"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "why": "Reaction triggered by an attack hitting it, then uses another action",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -111658,7 +111822,16 @@
               "sha": "e7e68714d677113e05cc15d57a35097ee337dcb7c577e3530f61b33c6c7a2364"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "e7e68714d677113e05cc15d57a35097ee337dcb7c577e3530f61b33c6c7a2364"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -114377,7 +114550,16 @@
               "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.7,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -116689,26 +116871,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "third-t7",
-          "at": "2026-11-21T23:14:43.695Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xmm-023",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+            "triaged": {
+              "by": "third-t7",
+              "at": "2026-11-21T23:14:43.695Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xmm-023",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s43",
+                "confidence": 0.7
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s43",
-            "confidence": 0.7
-          },
-          "via": "third-reading"
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -117457,18 +117658,36 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Three-step roar sequence reset by a long rest, with a repeated paralysis save and a prone rider; needs ordering and repeats.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.7,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "3944ad77ca39b478a36092782f0baaf00c2dc8ff7ad6c3f94925f227bd01656f"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Three-step roar sequence reset by a long rest, with a repeated paralysis save and a prone rider; needs ordering and repeats.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -117522,26 +117741,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "third-t7",
-          "at": "2026-11-21T23:14:43.695Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xmm-023",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+            "triaged": {
+              "by": "third-t7",
+              "at": "2026-11-21T23:14:43.695Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xmm-023",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s43",
+                "confidence": 0.7
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s43",
-            "confidence": 0.7
-          },
-          "via": "third-reading"
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -120974,7 +121212,16 @@
               "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -128527,22 +128774,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Max HP reduction equal to necrotic damage plus self-healing; data has only the damage die.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:06.525Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Max HP reduction equal to necrotic damage plus self-healing; data has only the damage die.",
-            "triaged": {
-              "by": "reader-xmm-026",
-              "at": "2026-11-21T19:58:41.206Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-026",
+          "at": "2026-11-21T19:58:41.206Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r007",
             "at": "2026-11-22T06:59:06.525Z",
@@ -128552,11 +128793,19 @@
               "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s003",
+              "at": "2026-11-22T07:22:01.910Z",
+              "confidence": 0.65,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -128924,22 +129173,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Save attack limited to willing or grappled/incapacitated/restrained target, max HP reduction and healing.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:06.525Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Save attack limited to willing or grappled/incapacitated/restrained target, max HP reduction and healing.",
-            "triaged": {
-              "by": "reader-xmm-026",
-              "at": "2026-11-21T19:58:41.206Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-026",
+          "at": "2026-11-21T19:58:41.206Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r007",
             "at": "2026-11-22T06:59:06.525Z",
@@ -128949,11 +129192,19 @@
               "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s003",
+              "at": "2026-11-22T07:22:01.910Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -130147,22 +130398,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Willing or grappled target save, max HP reduction and healing, plus rise as spawn on death; data lacks the riders.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:06.525Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Willing or grappled target save, max HP reduction and healing, plus rise as spawn on death; data lacks the riders.",
-            "triaged": {
-              "by": "reader-xmm-026",
-              "at": "2026-11-21T19:58:41.206Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-026",
+          "at": "2026-11-21T19:58:41.206Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r007",
             "at": "2026-11-22T06:59:06.525Z",
@@ -130172,11 +130417,19 @@
               "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s004",
+              "at": "2026-11-22T07:22:03.293Z",
+              "confidence": 0.55,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -132782,22 +133035,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Reaction to being hit: AC bonus against that attack and counterattack on a miss; data has a transferring AC bonus that is always on.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:06.525Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Reaction to being hit: AC bonus against that attack and counterattack on a miss; data has a transferring AC bonus that is always on.",
-            "triaged": {
-              "by": "reader-xmm-026",
-              "at": "2026-11-21T19:58:41.206Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-026",
+          "at": "2026-11-21T19:58:41.206Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r007",
             "at": "2026-11-22T06:59:06.525Z",
@@ -132807,11 +133054,19 @@
               "sha": "612df0986edce9f6dad62405f0507dcbd540ef09c4de2d239185baa583b38ad8"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-s004",
+              "at": "2026-11-22T07:22:03.293Z",
+              "confidence": 0.55,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "612df0986edce9f6dad62405f0507dcbd540ef09c4de2d239185baa583b38ad8"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -141396,7 +141651,16 @@
               "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.7,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
+              },
+              "covered": true
+            }
           }
         }
       },

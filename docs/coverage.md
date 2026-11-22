@@ -12,8 +12,8 @@ what an entry needs, not that it is done, and only the last column counts rules 
 | Entries | 19,143 |
 | Joined to an item of the official Foundry module | 4,708 |
 | Joined to an item imported by DDB Importer (spells and items only) | 6,507 |
-| Verdict `core` · `none` · `data` | 788 · 2,674 · 2,438 |
-| Verdict `entry` (a rule is needed and not written yet) | 3,227 |
+| Verdict `core` · `none` · `data` | 793 · 2,674 · 2,438 |
+| Verdict `entry` (a rule is needed and not written yet) | 3,222 |
 | Verdict `unverifiable` (no text) | 272 |
 | Waiting for a person in `registry/queue.json` | 119 |
 | No verdict yet | 9,619 |
@@ -31,14 +31,14 @@ for spells and items only. How far one reading can be trusted: `docs/reader-agre
 | Book | Year | Entries | Official item | DDB item | `core` | `none` | `data` | `entry` | no text | Queued | No verdict | Rules shipped |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Astarion's Book of Hungers (`ABH`) | 2025 | 60 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 58 | 0 |
-| Eberron: Forge of the Artificer (`EFA`) | 2025 | 258 | 236 | 23 | 0 | 65 | 80 | 106 | 0 | 2 | 5 | 0 |
-| Forgotten Realms: Adventures in Faerûn (`FRAIF`) | 2025 | 277 | 262 | 84 | 0 | 62 | 94 | 116 | 0 | 5 | 0 | 0 |
+| Eberron: Forge of the Artificer (`EFA`) | 2025 | 258 | 236 | 23 | 5 | 65 | 80 | 101 | 0 | 2 | 5 | 0 |
+| Forgotten Realms: Adventures in Faerûn (`FRAIF`) | 2025 | 277 | 262 | 84 | 11 | 62 | 94 | 105 | 0 | 5 | 0 | 0 |
 | Forgotten Realms: Heroes of Faerûn (`FRHOF`) | 2025 | 153 | 132 | 36 | 0 | 55 | 12 | 80 | 3 | 3 | 0 | 0 |
 | Lorwyn: First Light (`LFL`) | 2025 | 58 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 58 | 0 |
 | Netheril's Fall (`NF`) | 2025 | 43 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 43 | 0 |
-| Monster Manual (2025) (`XMM`) | 2025 | 2,147 | 2,114 | 1,626 | 96 | 453 | 858 | 721 | 0 | 19 | 0 | 75 |
+| Monster Manual (2025) (`XMM`) | 2025 | 2,147 | 2,114 | 1,626 | 84 | 453 | 858 | 733 | 0 | 19 | 0 | 75 |
 | Dungeon Master's Guide (2024) (`XDMG`) | 2024 | 596 | 352 | 462 | 146 | 208 | 98 | 95 | 36 | 13 | 0 | 0 |
-| Player's Handbook (2024) (`XPHB`) | 2024 | 1,464 | 1,208 | 629 | 544 | 490 | 134 | 199 | 79 | 6 | 10 | 3 |
+| Player's Handbook (2024) (`XPHB`) | 2024 | 1,464 | 1,208 | 629 | 545 | 490 | 134 | 198 | 79 | 6 | 10 | 3 |
 
 ## Before 2024
 

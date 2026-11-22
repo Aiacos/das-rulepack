@@ -43105,10 +43105,31 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t007",
+            "at": "2026-11-22T07:08:44.868Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "4d902b7191435b3f73338fff8a29de171846610964f5307d0db9bbefcd0fc904"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit"
+                },
+                "expect": {
+                  "ends": "casterTurnStart"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Heal-block until start of its next turn is an effect with a timed end; the effect carries no changes or statuses, so data lacks the block.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -44635,10 +44656,31 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t007",
+            "at": "2026-11-22T07:08:44.868Z",
+            "confidence": 0.72,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "9af2441c01e5bc7a567486811ea637d3d0536ddf26cd3412c4cf2df60d8df09e"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isDamaged"
+                },
+                "expect": {
+                  "denies": "opportunityAttacks"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Reaction triggered by taking damage: counter-attack or move toward the attacker; data has only a utility activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -44769,10 +44811,31 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t007",
+            "at": "2026-11-22T07:08:44.868Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "a99c35ca8505a1492b31f6e495cee938fe0a111571df850b2e4da45845ab46cc"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "ends": "bearerTurnStart"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Triggered at a creature starting its turn nearby; no opportunity attacks and halved speed until its next turn; needs trigger and timed end.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -45424,10 +45487,41 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t007",
+            "at": "2026-11-22T07:08:44.868Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "69cfe1e497b8e0250f46618a0ea6ee0fb86e40aadad72afc5d39de354ce497ce"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "charmed"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "ends": "isDamaged"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Teleport followed by a mood-dependent rider (advantage, timed charm ending on damage, darkness cube); choice at use time, data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -45547,17 +45641,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-019",
-          "at": "2026-11-21T19:50:50.217Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:44.868Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Attack is present but data lacks the free teleport after the attack; needs a post-attack trigger.",
+            "triaged": {
+              "by": "reader-xphb-019",
+              "at": "2026-11-21T19:50:50.217Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t007",
+            "at": "2026-11-22T07:08:44.868Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "2ead3fc5db5c9c83e4db3aba90c29df73689f9f00a247735068d98ffa34ae121"
+            },
+            "covered": true,
+            "second": {
+              "by": "reread-w003",
+              "at": "2026-11-22T07:11:12.348Z",
+              "confidence": 0.85,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "2ead3fc5db5c9c83e4db3aba90c29df73689f9f00a247735068d98ffa34ae121"
+              },
+              "covered": true
+            }
+          }
         }
       },
-      "why": "Attack is present but data lacks the free teleport after the attack; needs a post-attack trigger.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -46704,10 +46826,31 @@
           "at": "2026-11-21T19:50:50.217Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t007",
+            "at": "2026-11-22T07:08:44.868Z",
+            "confidence": 0.7,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "7ebcedc7dfe3e429a33d67ca3bbf874345c01dcf995f7013a4e314b6b56a70f8"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit"
+                },
+                "expect": {
+                  "ends": "bearerTurnEnd"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Paralyzed applies only if target is already Poisoned; activity lacks damage and the condition.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -46775,10 +46918,34 @@
           "at": "2026-11-21T19:50:50.217Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t007",
+            "at": "2026-11-22T07:08:44.868Z",
+            "confidence": 0.7,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c452132a48ed0b99a13ccfe8ec76fd5a208477f6f0a60a3759f47d030945f261"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "poisoned"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Aura save at start of creatures turns within an emanation; data has only a one-shot save.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {

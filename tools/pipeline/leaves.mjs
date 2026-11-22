@@ -12,13 +12,18 @@ export const LEAVES_MAX = 6;
 /** How many expectations one `unexpressed` item may stand for. */
 export const UNEXPRESSED_MAX = 6;
 /**
- * Why a rule leaves an expectation to the table, the reasons pilot 3 showed (docs/pilot-m3.md; the drafters' and readers'
- * `why` on branch pilot/m3-xmm): no allowed key expresses it; a limit by the target's size; only targets in a state (grappled,
- * cursed, engulfed); an immunity after a save; a target that cannot regain hit points; an effect outside combat; something
- * the table decides.
+ * Why a rule leaves an expectation to the table, and what a reread found missing that the assertions cannot say (reread.mjs
+ * `unexpressed`): one list for both. The reasons pilot 3 showed (docs/pilot-m3.md; the drafters' and readers' `why` on branch
+ * pilot/m3-xmm): no allowed key expresses it; a limit by the target's size; only targets in a state (grappled, cursed,
+ * engulfed); an immunity after a save; a target that cannot regain hit points; an effect outside combat; something the table
+ * decides. Then the ones the rereaders kept naming as unsayable (their `why` at 0.6, triage/reread-2): a lower maximum of hit
+ * points; an effect kept across turns; a choice at use time; a death or zero-hit-point trigger; a change of form; a limit on
+ * how often it is used; a trigger narrower than any moment; a result by how much a save fails; a follow-up action; the user
+ * healing itself by what it deals.
  */
 export const LEAVE_REASONS = Object.freeze(["no-key", "target-size", "target-state", "immunity-after-save", "healing-block",
-  "out-of-combat", "table-ruling"]);
+  "out-of-combat", "table-ruling", "max-hp-reduction", "ongoing-effect", "use-time-choice", "death-trigger", "form-change",
+  "use-limit", "trigger-filter", "save-margin", "follow-up-action", "self-healing"]);
 /** The bucket of docs/RULES.md for a leaves assertion that gives no `because`. */
 export const UNSTATED = "unstated";
 

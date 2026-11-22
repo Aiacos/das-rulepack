@@ -225,7 +225,19 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] XMM monster features re-read against the engine's reading (2026-11-22): 96 became `core` (75 confirmed by a second
       reader, 21 provisional), 60 are marked as going beyond the engine, 61 unsure and unchanged.
 - [ ] The 21 provisional `core` and the 61 unsure rereads: a third reader, or a person.
+- [x] Rereads that see something missing the assertions cannot say (2026-11-22): a third answer, `covered: false` with
+      `unexpressed` (reasons of `LEAVE_REASONS`, extended to the recurring ones and shared with `rule.leaves`); a second
+      reread fails closed (an unsure second reader reverts the `core`, outcome `second-unsure`); a second-reread results
+      file can be ingested again (`already confirmed` / `already reverted`); the brief says plainly that something missing
+      is never covered.
+- [ ] Re-ingest the existing second-reread results files under the fail-closed rule on the registry (XMM 001-004, the
+      r2 XMM second pass, FRAIF), then recount confirmed and provisional `core`.
+- [ ] Hand a reread's `unexpressed` reasons to the drafter (today `beyondEngine` carries the `beyond` assertions only).
 - [ ] Reread the monster features of the other books with official actor dumps (FRAIF 32, EFA 13, XPHB 7 with a reading).
 - [ ] Draft the 60 "beyond the engine" records as additions over the reading (most have a shared embedded id: they wait on
       upstream for a creature-scoped binding).
+- [x] Rereads, second round (2026-11-22): `core` confirmed for 80 XMM, 11 FRAIF, 5 EFA, 1 XPHB monster features; a second
+      reread now fails closed and a reader can answer "missing, but the vocabulary cannot say it".
+- [ ] 4 XMM provisional `core` wait for a second reader; 51 XMM rereads stay undecided (no word for what is missing).
+- [ ] Give drafters the `unexpressed` reasons of a reread, and count them: they rank the vocabulary to add.
 

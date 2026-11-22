@@ -5600,17 +5600,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-005",
-          "at": "2026-11-21T19:58:28.835Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:43.881Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Poisoned until next turn and extra damage only if already Poisoned: a conditional rider; data has two split activities, no condition check.",
+            "triaged": {
+              "by": "reader-efa-005",
+              "at": "2026-11-21T19:58:28.835Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "11818946785224fc485aa2ee0845a6585f2751c47c8db16e2597d2cd393c5a0f"
+            },
+            "covered": true,
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.8,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "11818946785224fc485aa2ee0845a6585f2751c47c8db16e2597d2cd393c5a0f"
+              },
+              "covered": true
+            }
+          }
         }
       },
-      "why": "Poisoned until next turn and extra damage only if already Poisoned: a conditional rider; data has two split activities, no condition check.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -6177,10 +6205,33 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.72,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "7b76af0f1f068aaf348309d84153d29857412471132ac1e07c57dad8aad895cc"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isDamaged"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 1
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Reaction triggered by taking damage from a creature within 5 ft, making a free attack at the triggerer; data has an empty utility.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -6216,17 +6267,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-005",
-          "at": "2026-11-21T19:58:28.835Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:43.881Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Advantage on attacks against targets not at full HP: conditional advantage; data lacks it.",
+            "triaged": {
+              "by": "reader-efa-005",
+              "at": "2026-11-21T19:58:28.835Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.9,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "9d19b86943711ca4f3b8956e55eec160e65b02aeda60468a81bf9d750fa8731a"
+            },
+            "covered": true,
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "9d19b86943711ca4f3b8956e55eec160e65b02aeda60468a81bf9d750fa8731a"
+              },
+              "covered": true
+            }
+          }
         }
       },
-      "why": "Advantage on attacks against targets not at full HP: conditional advantage; data lacks it.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -6319,10 +6398,33 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.72,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "a7f4779c0ed178938418d663d18e80402853a5e68f34c603e68f1fad6329f347"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isDamaged"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 1
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Reaction triggered by taking damage from a creature within 5 ft, making a free attack at the triggerer; data has an empty utility.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -6653,17 +6755,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-005",
-          "at": "2026-11-21T19:58:28.835Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:43.881Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Frightened rider plus extra damage only if the target is already Frightened; conditional, data splits it into two activities without a check.",
+            "triaged": {
+              "by": "reader-efa-005",
+              "at": "2026-11-21T19:58:28.835Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "f762bd531685a38c83e98f3f7b4881809cbf55fff1ce4d4d3cdcd9a161cfc47e"
+            },
+            "covered": true,
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.85,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "f762bd531685a38c83e98f3f7b4881809cbf55fff1ce4d4d3cdcd9a161cfc47e"
+              },
+              "covered": true
+            }
+          }
         }
       },
-      "why": "Frightened rider plus extra damage only if the target is already Frightened; conditional, data splits it into two activities without a check.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -6710,10 +6840,31 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "8f06ec470c1a4c07e429f72e26d7d44d148300f3a26d95b9d730573e495460a8"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "denies": "actionAndBonus"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Frightened plus a restriction to one of move/action/bonus action per turn; the data effect has no keys for the restriction.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7246,18 +7397,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-005",
-          "at": "2026-11-21T19:58:28.835Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:43.881Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Bonus Disengage or Hide choice at use time; data has only a Hiding status, no Disengage.",
+            "triaged": {
+              "by": "reader-efa-005",
+              "at": "2026-11-21T19:58:28.835Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.9,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "292e69565a16bc56f1fcd0d864877beb5d26c1542661ae93251e9051fc903031"
+            },
+            "covered": true,
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "292e69565a16bc56f1fcd0d864877beb5d26c1542661ae93251e9051fc903031"
+              },
+              "covered": true
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Bonus Disengage or Hide choice at use time; data has only a Hiding status, no Disengage.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -8436,10 +8614,35 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "00522c2d1dcffdd52e1912f48f006322681e81a63bca3a04806d1e64ba39d5b0"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "roll": {
+                    "mode": "advantage",
+                    "on": "attack",
+                    "for": "self"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Mark grants advantage vs marked target, blocks hiding and Invisible benefit, ends after a minute or on reuse; data has a status only.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8678,10 +8881,32 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.72,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "5d62efb06603b54aa2f992e45367473b169b9c28d926a0049428c42fca291e11"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "denies": "reactions",
+                  "ends": "casterTurnEnd"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Save for half damage plus no Reactions until the end of its next turn; data carries damage but no effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -9166,10 +9391,29 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.72,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "7c2ebd16c5e50b42c0b6c7a97a0dffd62a98958d57b336e13ecbde2bb8d840ee"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "ends": "casterTurnStart"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Invisibility until next turn that ends early after an attack roll; data lacks the end-on-attack event.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -9803,17 +10047,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-006",
-          "at": "2026-11-21T19:58:29.145Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:43.881Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Teleport plus blinding emanation on arrival with an end-of-next-turn duration; data has the save and effect but no movement or timed end.",
+            "triaged": {
+              "by": "reader-efa-006",
+              "at": "2026-11-21T19:58:29.145Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "5961bd14655afdd4ac4a02b6e50c0f171df92317295545489d38292e1055f6d5"
+            },
+            "covered": true,
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "5961bd14655afdd4ac4a02b6e50c0f171df92317295545489d38292e1055f6d5"
+              },
+              "covered": true
+            }
+          }
         }
       },
-      "why": "Teleport plus blinding emanation on arrival with an end-of-next-turn duration; data has the save and effect but no movement or timed end.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -10607,10 +10879,33 @@
           "at": "2026-11-21T19:58:29.145Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t006",
+            "at": "2026-11-22T07:08:43.881Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "disadvantage",
+                    "on": "check",
+                    "for": "self"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Disadvantage on checks and attacks while in sunlight; data lacks any effect. Generic Core entry applies.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {

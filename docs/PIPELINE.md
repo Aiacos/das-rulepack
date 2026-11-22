@@ -318,8 +318,9 @@ rule, so editing the rule makes gates, review and play stale at once. A legacy r
 the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it. A ruled monster feature also
 carries `evidence.reading` (Ruling R29, written by the gates: stage 4); it does not change the state, only what is emitted.
 A monster record a reread judged carries `evidence.triaged.reread` (`{ by, at, confidence, reading: { core, sha }, covered,
-beyond?, provisional?, second? }`, section "Ingesting rereads"); a reread `core` that no second reread has confirmed has
-`provisional: true`, which is what a count of `core` verdicts reads to tell the confirmed from the provisional ones.
+beyond?, unexpressed?, provisional?, second? }`, section "Ingesting rereads"); a reread `core` that no second reread has
+confirmed has `provisional: true`, which is what a count of `core` verdicts reads to tell the confirmed from the provisional
+ones.
 
 ## 🧾 Rule vocabulary
 
@@ -360,7 +361,10 @@ beyond?, provisional?, second? }`, section "Ingesting rereads"); a reread `core`
   automate, as data: `rule.leaves`, at most 6 items, each an assertion `{ given, expect, because? }` of the vocabulary above
   (no `free` anywhere) of what would be true at the table but is done by hand, or `{ unexpressed, count }` (count 1 to 6) for
   what even the assertions cannot say. `because` and `unexpressed` are words of `LEAVE_REASONS`: `no-key`, `target-size`,
-  `target-state`, `immunity-after-save`, `healing-block`, `out-of-combat`, `table-ruling`. The schema checks it like `assert`
+  `target-state`, `immunity-after-save`, `healing-block`, `out-of-combat`, `table-ruling`, `max-hp-reduction`,
+  `ongoing-effect`, `use-time-choice`, `death-trigger`, `form-change`, `use-limit`, `trigger-filter`, `save-margin`,
+  `follow-up-action`, `self-healing` (each defined in `definitions.leavesBecause`; the same single list a reread's
+  `unexpressed` uses, section "Ingesting rereads"). The schema checks it like `assert`
   (own keys, closed words; the validator gate checks the engine's words) and refuses a leaves assertion the rule states or
   implies (the same up to optional detail), a leaves damage the rule gives another fraction of for the same situation, an
   item listed twice, and any `leaves` on a rule whose own assertions (stated and implied) are none or only the item's own
@@ -531,15 +535,17 @@ the engine reading the entry was cut against (the engine version and the SHA-256
 `readingFingerprint`). Nothing of an earlier verdict, why, confidence, reader or drafter handle, or drafts-queue answer goes
 in. `<private dir>/<id>.structure.json` holds the item structures, with `engineReads` in the official one, as for triage
 (premium-derived: never inside the repository, the registry or `--out`; never commit it). `<dir>/reread-vocabulary.json` is the
-reviewer's vocabulary (the assertion shapes, the engine words, `definitions`, `endsExamples`). `<dir>/<book>-reread-report.json`
+reviewer's vocabulary (the assertion shapes, the engine words, `definitions`, `endsExamples`) with `unexpressed`, the reasons
+of `LEAVE_REASONS`, defined in `definitions.leavesBecause` (`batch.mjs` `rereadVocabulary`). `<dir>/<book>-reread-report.json`
 holds counts only: the batches, the entries cut, each reason a candidate was left out (`already ruled`, `legacy`,
 `in review-queue.json`, `in queue.json`, `no text`, `no matched official item`, `official item not in the dumps`,
 `engine reads nothing`, `reread for the current reading`), also printed on the console.
 
 `--second` cuts `<book>-reread-second-<NNN>` (its own numbering, `second: true` in the batch, report
-`<book>-reread-second-report.json`) from the records a first reread set to `core` and no second reread has read
-(`second reread done` otherwise), when the engine still reads them as the first reread judged them (`reading changed since
-the first reread` otherwise). Give it to a reader with another handle than the first: the ingest refuses the same one.
+`<book>-reread-second-report.json`) from the records a first reread set to `core` and no second reader has settled (`second
+reread done` otherwise: confirmed, or back to `entry` by a disagreement or an unsure second reader), when the engine still
+reads them as the first reread judged them (`reading changed since the first reread` otherwise). Give it to a reader with
+another handle than the first: the ingest refuses the same one.
 
 ### 📖 Brief for a reread agent
 
@@ -562,24 +568,35 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 > `onSave`, the effects each applies) and its effects (statuses, the keys their changes touch); then `engineReads`. What the
 > item's data does, the engine does without any entry (an attack, a save, its damage, half on a save when `onSave` says so,
 > the effects an activity applies with their statuses, durations, uses). What `engineReads` says, the engine adds by itself.
-> Compare what remains of the text with both:
+> Compare what remains of the text with both. There are three answers:
 > - `covered: true` when everything the text requires in combat is in the item's data or in `engineReads`. What does not act
 >   in combat (a description, a smell, something done outside a fight) does not count.
-> - `covered: false` when the text requires something more: then `beyond` lists it, as assertions of the closed vocabulary
->   (`assert.shapes` of `reread-vocabulary.json`: `given` with `roll`, `moment`, `origin`, `targetType`; `expect` with
->   `damage`, `condition`, `ends`, `roll`, `affects`, `denies`, `move`, `uses`), one per thing the engine does not do, at
->   most 6. Read each word in `definitions` of `reread-vocabulary.json`, never from its spelling (the turn words are the
->   trap: `bearerTurnEnd` and `casterTurnEnd` never end the turn of placement, `currentTurnEnd` does; `endsExamples` shows
->   each); a word marked `"unverified"` has no established meaning: do not use it. No `free` text anywhere in `beyond`, and
->   no `excludes`.
+> - `covered: false` with `beyond` when the text requires something more that an assertion can say: `beyond` lists it, as
+>   assertions of the closed vocabulary (`assert.shapes` of `reread-vocabulary.json`: `given` with `roll`, `moment`,
+>   `origin`, `targetType`; `expect` with `damage`, `condition`, `ends`, `roll`, `affects`, `denies`, `move`, `uses`), one
+>   per thing the engine does not do, at most 6. Read each word in `definitions` of `reread-vocabulary.json`, never from its
+>   spelling (the turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end the turn of placement,
+>   `currentTurnEnd` does; `endsExamples` shows each); a word marked `"unverified"` has no established meaning: do not use
+>   it. No `free` text anywhere in `beyond`, and no `excludes`.
+> - `covered: false` with `unexpressed` when the text requires something in combat that neither the item's data nor
+>   `engineReads` gives, and no assertion can say it: `unexpressed` lists why, as distinct reasons of the closed list
+>   `unexpressed` of `reread-vocabulary.json` (each defined in `definitions.leavesBecause`: a limit on the target's size, a
+>   target in some state, an immunity after a save, a healing block, a lower hit point maximum, an effect kept across
+>   turns, a choice at use time, a death or zero-hit-point trigger, a change of form, a limit on how often it is used, a
+>   trigger narrower than any moment, a result by how much a save fails, a follow-up action, the user healing itself...).
+>   `beyond` and `unexpressed` may be given together: list as assertions what an assertion can say, and name the reason
+>   for the rest. `unexpressed` is never a way to avoid thinking: if an assertion can say it, say it in `beyond`.
+>
+> **Plainly: if something is missing, the answer is never covered, whatever your confidence.** `covered: true` is for a
+> text with nothing left over; a reader who sees something missing answers `covered: false` (with `beyond`, `unexpressed` or
+> both), and says so with a low confidence if unsure what it is, never with `covered: true`.
 >
 > **What is not beyond** (the written criteria, section "Written criteria for the two boundaries", apply). A rider the
 > item's own data already does is not beyond (its effect already applies the condition on that roll; its save already
 > halves); something `engineReads` already says is not beyond (a `status` or `move` step of its `triggers` on that roll, a
 > `resave` that ends the effect, an `effectEnds` ending...). The ingest rejects a `beyond` assertion that either already
 > implies. A requirement the closed vocabulary cannot say at all (a choice at use time, a state kept across turns) is beyond
-> too, but cannot be listed: say `covered: false` only when you can list at least one assertion of what is beyond;
-> otherwise lower your confidence below 0.7 and say in `why` what cannot be expressed.
+> too: name it in `unexpressed`.
 >
 > **Worked example: covered** (invented). The text of "Cinder Shove" says: Dexterity save; on a failure, fire damage and the
 > target falls prone; on a success, half damage. The structure has one `save` activity with fire damage and `onSave:
@@ -602,6 +619,18 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   "why": "the grapple is the item's effect; the engine does not take its reactions away" }
 > ```
 >
+> **Worked example: unexpressed** (invented). The text of "Gale Tumble" says: Strength save; on a failure, the target is
+> knocked prone, but only if it is Medium or smaller; this cannot be used again until the start of the user's next turn.
+> The structure has one `save` activity with no damage and no effect; `engineReads` is `{ "triggers": [{ "on":
+> "failedSave", "do": [{ "type": "status", "status": "prone" }] }] }`. The fall is in `engineReads`; the size limit and the
+> once-per-round limit are neither the data nor the reading, and no assertion says them:
+>
+> ```json
+> { "key": "tst:monster:storm-goat/action/gale-tumble", "covered": false, "confidence": 0.8,
+>   "unexpressed": ["target-size", "use-limit"],
+>   "why": "the engine reads the fall, but not that big targets are spared, nor the wait before it is used again" }
+> ```
+>
 > **No text, no answer.** If the text file is missing or unreadable, leave the entry out of the results. Never decide from
 > memory of the book, and never from the structure alone.
 >
@@ -611,17 +640,20 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 > { "batch": "<batch id>", "by": "<your agent handle>",
 >   "results": [ { "key": "…", "covered": true, "why": "one line", "confidence": 0.9 },
 >                { "key": "…", "covered": false, "beyond": [ { "given": { }, "expect": { } } ], "why": "one line",
+>                  "confidence": 0.8 },
+>                { "key": "…", "covered": false, "unexpressed": [ "target-size" ], "why": "one line",
 >                  "confidence": 0.8 } ] }
 > ```
 >
 > One result per entry, `key` unchanged; no other field (never `verdict`, `hint`, `reading`, `evidence` or `by` inside a
-> result: a result that carries one is rejected, and a file with another top-level field is refused whole). `beyond` only
-> with `covered: false`, and always with it. `why` is one line of your own words, at most 200 characters: never the book's
-> (8 or more consecutive words of the text are rejected), never a structure file's content beyond ids and keys. `by` is a
-> short handle such as `rereader-3`, never a person's name (it is written into the public registry), and for a second reread
-> never the first reader's. **Confidence** is 0 to 1; 0.7 is the line: below it nothing is written and the entry is cut again
-> later. Say 0.6 when unsure rather than rounding up: `covered: true` takes work away from the pack, a second reader checks
-> it, but a wrong one is a feature nobody automates.
+> result: a result that carries one is rejected, and a file with another top-level field is refused whole). `beyond` and
+> `unexpressed` only with `covered: false`, and always one of them (or both) with it. `why` is one line of your own words,
+> at most 200 characters: never the book's (8 or more consecutive words of the text are rejected), never a structure file's
+> content beyond ids and keys. `by` is a short handle such as `rereader-3`, never a person's name (it is written into the
+> public registry), and for a second reread never the first reader's. **Confidence** is 0 to 1; 0.7 is the line: below it,
+> on a first reread, nothing is written and the entry is cut again later; on a second reread, the first reader's `core` is
+> not confirmed and the entry goes back to the drafters. Say 0.6 when unsure rather than rounding up: `covered: true` takes
+> work away from the pack, a second reader checks it, but a wrong one is a feature nobody automates.
 
 ## 📖 Brief for a drafter agent
 
@@ -1234,14 +1266,16 @@ have that id, stage `reread` (`second: true` exactly with `--second`) and entrie
 reading. For each result:
 
 - **Rejected** (`{ key, reason }`; nothing of it written; never stops the others, an unexpected exception included): a field
-  other than `key`, `covered`, `beyond`, `why`, `confidence`; a key twice; a key that is no record or not an entry of the batch;
-  a record that is not a monster feature, has a rule, is legacy, whose verdict is not `entry`, or that waits in
-  `review-queue.json` or `queue.json`; an official item not in the dumps, or one the engine reads nothing of now; **stale**: the
-  reading of today is not the one the batch entry was cut against (cut a new batch); a record already reread for that very
-  reading; `covered` not a boolean; `beyond` with `covered: true`, or missing, empty or longer than 6 with `covered: false`;
-  an assertion of `beyond` that `assertProblems` refuses (the engine's words, the agent form: no `excludes`, no `free`-only
-  assertion), or that holds a `free` text at all (it is stored as data and handed to drafters); **an atom of `beyond` that the
-  engine's reading already implies** (`impliedAsserts(reading, { structure })`, equal up to optional detail, Ruling R24's
+  other than `key`, `covered`, `beyond`, `unexpressed`, `why`, `confidence`; a key twice; a key that is no record or not an
+  entry of the batch; a record that is not a monster feature, has a rule, is legacy, whose verdict is not `entry`, or that
+  waits in `review-queue.json` or `queue.json`; an official item not in the dumps, or one the engine reads nothing of now;
+  **stale**: the reading of today is not the one the batch entry was cut against (cut a new batch); a record already reread
+  for that very reading; `covered` not a boolean; `beyond` or `unexpressed` with `covered: true`; `covered: false` with
+  neither; `beyond` empty or longer than 6; `unexpressed` not a non-empty list of distinct reasons of `LEAVE_REASONS`
+  (leaves.mjs: the one list `rule.leaves` uses too, each reason defined in `definitions.leavesBecause`); an assertion of
+  `beyond` that `assertProblems` refuses (the engine's words, the agent form: no `excludes`, no `free`-only assertion), or
+  that holds a `free` text at all (it is stored as data and handed to drafters); **an atom of `beyond` that the engine's
+  reading already implies** (`impliedAsserts(reading, { structure })`, equal up to optional detail, Ruling R24's
   `sameUpToDetail`: a reader cannot claim as missing what the engine does), **or that the item's own data already does**
   (`itemAsserts`: the statuses of its effects on the roll that applies them, an attack's full damage on a hit, a save's on a
   failed save, the half or none of its `onSave`); a confidence outside 0..1; a `why` that is not one line of at most 200
@@ -1254,29 +1288,47 @@ reading. For each result:
   what the record was, in the shape the pre-pass uses (the reader's triage evidence, an older reread left out), `reading` the
   fingerprint of the reading judged. If the key is in `drafts-queue.json`, its entry is removed (it no longer needs a rule).
 - **Beyond** (`covered: false`, at least 0.7): the verdict stays `entry`, the record gains `hint: "beyond-engine"`, and
-  `evidence.triaged.reread = { by, at, confidence, reading, covered: false, beyond }` beside the reader's triage evidence. A
-  drafts-queue entry stays as it is (the drafter's answer still stands) and gains nothing.
+  `evidence.triaged.reread = { by, at, confidence, reading, covered: false, beyond?, unexpressed? }` beside the reader's
+  triage evidence: `beyond` the assertions, `unexpressed` the reasons for what is missing and no assertion can state (data;
+  `batch draft` hands the drafter `beyondEngine` from `beyond` only). A drafts-queue entry stays as it is (the drafter's
+  answer still stands) and gains nothing.
 
-It prints `{ covered, beyond, unsure, dequeued, rejected }` (`unsure` the keys) and exits with 1 when anything was rejected;
-the books and `drafts-queue.json` are written in one step (`commitIngest`).
+It prints `{ covered, beyond, unsure, dequeued, rejected }` (`beyond` counts the `unexpressed` answers too; `unsure` the
+keys) and exits with 1 when anything was rejected; the books and `drafts-queue.json` are written in one step
+(`commitIngest`).
 
 **Second reread** (`--reread --second`, from a `batch reread ... --second` batch): `core` takes work away, so a covered reread
 stays provisional until a second, blind reader with another handle (case aside) agrees. Only a record whose verdict a first
 reread set to `core`, `provisional`, with no second reread, judged against the same reading as the first, is taken; every
-other check above applies. Agreement (`covered: true`, at least 0.7): `reread.second = { by, at, confidence, reading, covered:
-true }`, `provisional` goes. Disagreement (`covered: false` with its `beyond`, at least 0.7): the verdict goes back to what it
-was (`was`: `entry` and its why, the reader's triage evidence), `hint: "beyond-engine"`, and `reread` keeps both readings
-(`second` with its `beyond`). **The drafts-queue entry removed by the first reread is not restored**: the record is simply
-draftable again (the command says so on stderr). Below 0.7: nothing changes. It prints `{ agreed, disagreed, unsure,
-rejected }`.
+other check above applies. It **fails closed**: only an agreement keeps the `core`.
+
+- Agreement (`covered: true`, at least 0.7): `reread.second = { by, at, confidence, reading, covered: true }`,
+  `provisional` goes.
+- Disagreement (`covered: false` with its `beyond`, its `unexpressed` or both, at least 0.7): the verdict goes back to what
+  it was (`was`: `entry` and its why, the reader's triage evidence), `hint: "beyond-engine"`, and `reread` keeps both
+  readings (`second` with its `beyond` and `unexpressed`).
+- Unsure (below 0.7, whatever it says, once it passes the checks above): reverted the same way, the second reading
+  recorded as `reread.second = { by, at, confidence, reading, outcome: "second-unsure" }` (a closed outcome; what the unsure
+  reader said is not taken). The real runs showed why: readers answered `covered: true` at 0.6 while naming something
+  missing the assertions could not say, so an unsure second reader more often than not saw something missing.
+
+**The drafts-queue entry removed by the first reread is not restored** on a reversion (disagreement or unsure): the record
+is simply draftable again (the command says so on stderr). A record a second reader already settled is not rejected but
+reported and left alone: `already confirmed` (an agreeing second, verdict `core`) or `already reverted` (any other second,
+verdict back to `entry`), so that a second-reread results file ingested before the fail-closed rule can be ingested again:
+its records still provisional with no second reread get the rule, the others are reported. It prints `{ agreed,
+disagreed, unsure-reverted, already confirmed, already reverted, rejected }` (counts; `rejected` the `{ key, reason }`) and
+exits with 1 only when something was rejected.
 
 The schema holds `evidence.triaged.reread` (closed keys, a reader handle, a date, a confidence, `reading: { core: an engine
-version, sha: 64 hex }`, `beyond` as above with no `free`), and ties it to the record, also under `gates --ci`: a reread
-covered by the first reader and by the second, if any, goes with the verdict `core` by rule, its `was` and the fixed why, and
-is `provisional: true` exactly while there is no second; otherwise the verdict is not `core`; only a covered first reread has
-a second one. The local `npm run gates` (it needs the dumps) prints a note (`reread: stale, ...`, never a failure) for a
-record whose engine reading of today has another `sha` than the one a reread judged: a later engine that reads the feature
-differently makes the reread visibly stale. A stale `entry` is cut again by `batch reread`; a stale `core` is not (it is no
+version, sha: 64 hex }`, `beyond` as above with no `free`, `unexpressed` as above, a second's `outcome` only
+`"second-unsure"` and then with no `covered`, `beyond` or `unexpressed`), and ties it to the record, also under `gates
+--ci`: a reread covered by the first reader and by the second, if any, goes with the verdict `core` by rule, its `was` and
+the fixed why, and is `provisional: true` exactly while there is no second; otherwise the verdict is not `core`; only a
+covered first reread has a second one. The local `npm run gates` (it needs the dumps) prints a note (`reread: stale, ...`,
+never a failure) for a record whose engine reading of today has another `sha` than the one a reread judged: a later engine
+that reads the feature differently makes the reread visibly stale. A stale `entry` is cut again by `batch reread`; a stale
+`core` is not (it is no
 `entry` any more): the note is there for a person.
 
 ### Written criteria for the two boundaries
