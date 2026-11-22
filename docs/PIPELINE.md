@@ -353,7 +353,10 @@ ones.
   (target|allies|enemies|self), denies? (opportunityAttacks|reactions|actionAndBonus|healing|tempHp), move?: { mode,
   distance? }, uses?: { spent }, subjected?: activity (Ruling R33: only with a zone or aura moment, and no roll), chooses?:
   oneEffect|oneEffectPerTarget|effectByRoll, bars?: entry|melee|actions|spells (Ruling R34: both said once for the use,
-  never with a roll or a moment), free? }`. Any other field is
+  never with a roll or a moment), acBonus?: proficiency|1..10, hitBecomes?: miss, attackerTakes?: activity (Ruling R38: each
+  only with `given.moment: isHit` and no roll), counterattack?: meleeWeapon (only with `given.moment: isMissed`, no roll),
+  reactionsPerRound?: 2..20 (once for the item, no roll or moment), teleports?: self|swapsWithTarget (at the use, or on a
+  `hit` or a `miss`; never at a moment), sheds?: light (never at a moment), free? }`. Any other field is
   refused; `free` is one printable line of at most 120 characters and never stands alone (every assertion has a closed `expect`
   field); `given.origin` is one of the rule's
   `origins`; `move.distance` is a non-negative number or a formula of at most 24 characters made of digits, spaces,
@@ -381,7 +384,13 @@ ones.
   (`chooses: oneEffect`, `oneEffectPerTarget` with `perTarget`, `effectByRoll` with `roll`; `order` and a pool alone are
   unassertable), `barrier` (`bars: entry` and `bars: melee`, and `bars: actions` when it `shields`; one that names creature
   types implies nothing; its radius is unassertable), `globe` (`bars: spells` given `spellLevelAtMost: <maxLevel>`; its
-  radius is unassertable); `effectEnds` (`ends:
+  radius is unassertable); Ruling R38: a reaction declaration of `triggers` in its drafter's shape (one word at its moment,
+  the condition's `activity` beside it: `acBonus: proficiency|<n>` for `use` + `penalty`, `hitBecomes: miss` for `use` +
+  `miss`, both at `isHit`; `counterattack: meleeWeapon` at `isMissed`; `attackerTakes: activity` for damage `to: source` at
+  `isHit`; a reaction outside the shape implies nothing and is unassertable), `reactions` (`reactionsPerRound: <perRound>`),
+  `teleport` (`teleports: self`, given `roll: hit` and `roll: miss` with `after: attack`; its own `distance` and `then` are
+  unassertable), `swapPlaces` (`teleports: swapsWithTarget`), `light` (`sheds: light` on the roll that applies the item's
+  effects; its radii are unassertable); `effectEnds` (`ends:
   <word>`), `noReactions`, `actionOrBonus`, `blocksHealing` and `blocksTempHp` (`denies: reactions` / `actionAndBonus` /
   `healing` / `tempHp`; `blocksTempHp: true` is unassertable, it also covers the creature that carries the item), `effectStatuses`
   (`condition.applied`), each on the roll that applies its effect in the official structure (a hit for an attack's, a
@@ -475,6 +484,52 @@ ones.
   engine accepts. Scenarios: `expect.chooses`, `expect.bars`, `given.spellLevelAtMost`, `expect.denies.healing` and
   `expect.denies.tempHp` are manual (the runner picks no option, moves no creature in, casts no spell from outside, heals
   nobody); the three older denials keep their interpreter.
+- **Reactions, teleports and light** (Ruling R38, `tools/pipeline/reactions.mjs`). The drafts queue declined parries, a hit
+  turned into a miss, a counterattack after a miss, damage dealt back, a self teleport, a reaction on every turn and a glow
+  for want of a key the engine already has. Four reaction declarations of `triggers` and four keys join the drafter's
+  vocabulary in the same closed, typed form (`DRAFT_SHAPES`; `checkDraftKeys` enforces them through `reactionProblemsOf`, on
+  every declaration of the reaction territory: a moment `isHit` or `isMissed`, a `use`, `penalty` or `miss` step, or damage
+  `to: "source"`), each with what it does at the table and the engine file that says so (`REACTION_DECLARATIONS`,
+  `REACTION_KEYS`, in `draft-vocabulary.json` `reactions`). The declarations, steps in this order (`tuple`), with an optional
+  condition `if` of ONE fact among `activity.isAttack|isMelee|isWeapon|isSpell` (at a hit or a miss the engine's `target` is
+  the creature that reacts and its `source` the attacker, so only the facts of the attack read the same):
+  `{ on: "isHit", do: [{ type: "use", activity? }, { type: "penalty", formula: "@prof"|"1".."10" }] }` (by its reaction, the
+  creature's AC is raised by that much against that attack alone; the hit is judged again and may miss: the Monster Manual's
+  parry), `{ on: "isHit", do: [{ type: "use", activity? }, { type: "miss" }] }` (by its reaction, that attack misses),
+  `{ on: "isMissed", do: [{ type: "use", target: "source", weapon: true, activity? }] }` (by its reaction, it attacks the
+  attacker with one of its own melee weapons; the activity, when named, pays), `{ on: "isHit", do: [{ type: "damage", to:
+  "source", activity: <activity id> }] }` (the attacker that hit takes that activity's damage; no reaction). The keys:
+  `reactions: { perRound: 2..20 }` (that many reactions a round, never more than one in a turn; 20 is "a reaction on every
+  turn", as the engine writes it for its own), `teleport: { activity, then?, after?: "attack" } | { distance: 5..300, units:
+  "ft", activity?, then?, after? }` (the use teleports its user to a space it sees and picks, within the distance or the
+  activity's range; `after`: once the attack is judged, hit or miss; `then`: an activity used on arrival; `single`),
+  `swapPlaces: { activity }` (the user and its target within 5 ft swap places; `single`), `light: { on: "effect", bright?,
+  dim?, units: "ft" }` (5..300 ft, at least one radius; the bearer of each effect of the item sheds light while it lasts,
+  `dim` being the outer radius). Refused with why (`EXCLUDED_REACTION`): a declaration's `via`, `fromEffect`, `by`,
+  `oncePerTurn`, `ask`, `free`, `defends`; a `use`'s `advantage`, `consume`, `free`, `approach`; any step's `margin`; a
+  damage step's `formula`, `damageType`, `same`, `spends`, `onSave` (a free formula, or another moment's); `reactions.loseOne`;
+  `teleport.passengers`, `unseen`, `maxLight`, `area`, `destination`; a light on an `area`, `summon`, `wall` or `caster`,
+  and its `darkness`, `dispels`, `carried`, `single`, `color`, `animation`, `activity`. Not admitted, with why
+  (`NOT_ADMITTED_REACTION`, `NOT_ADMITTED_STEPS`, `reactions.notAdmitted`): the keys `counter` (a 2014 counterspell, not a
+  counterattack), `damageShield` (a free formula), `carriedLight` (lit by hand, a fuel item by identifier), `transpose`,
+  `afterTeleport` (identifiers of other documents), `forOneAttack`; the hit steps `halve`, `uncrit`, `reduce`, `reroll`,
+  `resist` (newer than the engine's latest release) and `save`. **Engine gaps** (looked for in the validators, the
+  runtime, the shipped entries and the monster text reader): no step teleports the TARGET of a hit or a save (`banish`
+  only removes it from the scene); nothing doubles damage against objects or structures (`siege` is only a weapon kind);
+  nothing makes a hit miss only when the attacker fails a save (`cancelForSelf` has `ifSourceFails`, for areas only). Not
+  gaps but not admitted: advantage on the user's next attack (a `preAttackRoll` declaration with `consume`, whose condition
+  names the item by identifier, `source.hasEffect`), and an immunity after a successful save (a `mark` step's free name and
+  translation label with `targets.unaffectedIf`, which the engine's monster text reader writes itself). **One way to say
+  it**: a reaction word at its moment, `{ "given": { "moment": "isHit" }, "expect": { "acBonus": "proficiency" } }`, the
+  condition beside the moment (`"activity": "melee"`), never a roll; `reactionsPerRound` once with an empty `given`;
+  `teleports` at the use (`given: {}`) or on a hit and a miss. `loadCore` gives `reactionFields` (the reactions, teleport and
+  light validators' own field lists and `LIGHT_ON`), `stepFields(type)` and `declarationFields` (read from validateStep and
+  validateTrigger) and `hitWindowSteps`; a DAS_CORE test fails on a field or step in neither a drafter shape nor a table
+  with why, on a value the pack assumes refused that the engine accepts, and on a shipped entry that fits a shape without
+  implying its word. Every key and step is in the engine's latest release too: nothing is gated on the engine in use.
+  Scenarios: every new word is manual (`expect.acBonus`, `expect.hitBecomes`, `expect.counterattack`, `expect.attackerTakes`
+  beside `given.moment.isHit|isMissed` and `advance`; `expect.reactionsPerRound`, `expect.teleports`, `expect.sheds`): the
+  runner makes no attack against the creature, takes no reaction, picks no destination and reads no light.
 - **Partial rules** (Ruling R25, `tools/pipeline/leaves.mjs`). A rule may declare what its entry expects and it does not
   automate, as data: `rule.leaves`, at most 6 items, each an assertion `{ given, expect, because? }` of the vocabulary above
   (no `free` anywhere) of what would be true at the table but is done by hand, or `{ unexpressed, count }` (count 1 to 6) for
@@ -728,6 +783,14 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 >   the roll that applies the effect): a healing block is then `beyond`, not `unexpressed`. Not sayable still: a barrier
 >   that stops only some creature types (`no-key`), a change of form (`form-change`), a choice of anything but one of the
 >   activity's effects (a damage type, a direction, a target: `use-time-choice`), an automatic failure by creature type.
+>   So are (Ruling R38) what a reaction does to the attack that set it off, at its moment and with no roll: an AC bonus
+>   against the hit (`{ "given": { "moment": "isHit" }, "expect": { "acBonus": "proficiency" } }`, or the number 1 to 10),
+>   the hit turned into a miss (`hitBecomes: miss`, at `isHit`), a melee counterattack after a miss (`counterattack:
+>   meleeWeapon`, at `isMissed`), the item's damage dealt back to the attacker that hit (`attackerTakes: activity`, at
+>   `isHit`), with "a melee attack" as `"activity": "melee"` beside the moment; a creature's reactions a round
+>   (`reactionsPerRound`, 20 for "one on every turn"), its own teleport (`teleports: self`; a swap with its target,
+>   `swapsWithTarget`) and a glow (`sheds: light`). Not sayable still: a limit "while holding a weapon" (`trigger-filter`),
+>   advantage on the user's next attack, the target teleported (`no-key`), damage doubled against objects.
 >   `beyond` and `unexpressed` may be given together: list as assertions what an assertion can say, and name the reason
 >   for the rest. `unexpressed` is never a way to avoid thinking: if an assertion can say it, say it in `beyond`.
 >
@@ -800,6 +863,18 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 > ```
 >
 > Had `engineReads` been `{ "blocksHealing": true }`, the entry would be covered.
+>
+> **Worked example: beyond, a reaction** (invented). The text of "Brass Riposte" says: when a creature hits the sentinel with
+> a melee attack, the sentinel adds 3 to its AC against that attack; if the attack then misses, the sentinel makes one
+> melee attack against the attacker. The structure has one `utility` activity with a reaction activation; `engineReads` is
+> null:
+>
+> ```json
+> { "key": "tst:monster:brass-sentinel/reaction/brass-riposte", "covered": false, "confidence": 0.8,
+>   "beyond": [ { "given": { "moment": "isHit", "activity": "melee" }, "expect": { "acBonus": 3 } },
+>     { "given": { "moment": "isMissed", "activity": "melee" }, "expect": { "counterattack": "meleeWeapon" } } ],
+>   "why": "the reaction raises its AC against one melee hit and answers a miss with a melee attack" }
+> ```
 >
 > **Worked example: unexpressed** (invented). The text of "Gale Tumble" says: Strength save; on a failure, the target is
 > knocked prone, but only if it is Medium or smaller; this cannot be used again until the start of the user's next turn.
@@ -900,14 +975,19 @@ or `MOVE_MODES` has none, and a test fails on it) and `endsExamples` (one invent
 word it takes on the user's own turn and as a reaction on another's turn). Shapes are declarative: `enum` (one of `values`),
 `object` (`keys` required, `optional`, closed), `list` (non-empty), `idMap` (an object keyed by ids of the named kind,
 origins side by side), `idList`, `id`, `oneOf` (any alternative), `tagged` (an object whose `type` picks its other fields),
+`tuple` (a list of exactly those places, each of its own shape: a reaction's steps, Ruling R38),
 `true`, `number`, `formula`, `line`, `distance`, `facts` (a trigger's condition: 1 to `max` of the named facts as keys, each
 with its argument's shape). `conditions` gives the same facts with the given field that says each, and the facts left out
 with why (Ruling R30). `zones` gives the zone and aura keys with what each does (`keys`), the moments a replay and an
 emanation may name, the aura moment words, and what the engine also takes with why not (`excluded`; Ruling R33). `wards`
 gives the choice, barrier and ward keys with what each does (`keys`), what the engine also takes with why not (`excluded`),
-and the keys of that territory a drafter may not write, with why (`notAdmitted`; Ruling R34). Tests
+and the keys of that territory a drafter may not write, with why (`notAdmitted`; Ruling R34). `reactions` gives the reaction,
+teleport and light keys and the four reaction declarations with what each does (`keys`, `declarations`), the declaration's
+shape (`declaration`, also among the `triggers` alternatives), the moments and the facts a reaction's condition may name,
+what the engine also takes with why not (`excluded`), and the keys and hit steps of that territory a drafter may not write,
+with why (`notAdmitted`; Ruling R38). Tests
 build a value from every alternative of every shape and have the validators (`assertProblems`, the engine's `validateEntry`,
-and for the zone and ward keys `checkDraftKeys`) accept it.
+and for the zone, ward and reaction keys `checkDraftKeys`) accept it.
 
 The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
 
@@ -934,7 +1014,8 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 >
 > **What the words mean.** `definitions` in `draft-vocabulary.json` gives the meaning of every word of the closed lists you
 > choose from (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `chooses`, `bars`, `moveMode`, `affects`, `denies`,
-> `rollMode`, `rollOn`, `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`), each
+> `acBonus`, `hitBecomes`, `counterattack`, `attackerTakes`, `reactionsPerRound`, `teleports`, `sheds`, `rollMode`, `rollOn`,
+> `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`), each
 > with where it comes from (`from`: the engine file, or this pack's vocabulary). Read a word there before you use it, never
 > from its spelling. The turn words are the trap: `bearerTurnEnd` and `casterTurnEnd` never end on the turn the effect was
 > placed in ("until the end of its next turn"), `currentTurnEnd` ends that very turn ("until the end of the turn in
@@ -1057,9 +1138,55 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > "oneEffect" } }`; had it said "a spell of 3rd level or lower cast from outside cannot affect anything inside", `{ "globe":
 > { "radius": 10, "units": "ft", "maxLevel": 3 } }` with `{ "given": { "spellLevelAtMost": 3 }, "expect": { "bars": "spells" } }`.
 >
+> **A reaction, a teleport, a light (Ruling R38).** `reactions.declarations` and `reactions.keys` of
+> `draft-vocabulary.json` say what each does; `reactions.notAdmitted` what you may not write and why. A reaction is one
+> `triggers` declaration in one of four shapes, its steps in that order, with at most one fact of `reactions.facts` as its
+> condition: "adds N to its AC against that attack" (or "its proficiency bonus") is `{ "on": "isHit", "do": [{ "type": "use"
+> }, { "type": "penalty", "formula": "N" }] }` (`"@prof"` for the proficiency bonus; N from 1 to 10), asserted `{ "given": {
+> "moment": "isHit" }, "expect": { "acBonus": N } }` (`"proficiency"`); "the attack misses instead" is `use` then `{ "type":
+> "miss" }`, asserted `hitBecomes: miss`; "when an attack misses it, it makes a melee attack against the attacker" is `{ "on":
+> "isMissed", "do": [{ "type": "use", "target": "source", "weapon": true }] }`, asserted `counterattack: meleeWeapon` at
+> `isMissed`; "a creature that hits it takes N damage" where the structure has a damage activity for it is `{ "on": "isHit",
+> "do": [{ "type": "damage", "to": "source", "activity": "<its id>" }] }`, asserted `attackerTakes: activity`. "With a melee
+> attack" is the condition `{ "activity.isMelee": true }` and `"activity": "melee"` in each `given`. Name the activity of a
+> `use` only when the item has several reaction activities. "While holding a weapon", a reaction that costs nothing more, a
+> bonus that lasts beyond that attack, a reduction or halving of the damage, a save that decides whether the hit misses:
+> none has a shape (`person`; a damage formula of your own is refused, the damage comes from the item's activity). "It can
+> take one reaction on every turn" is `{ "reactions": { "perRound": 20 } }` (N reactions a round: `perRound: N`), asserted
+> `{ "given": {}, "expect": { "reactionsPerRound": 20 } }`. "It teleports up to 30 feet to a space it can see" is `{
+> "teleport": { "activity": "<its id>" } }` when that activity's range is the distance, else `{ "distance": 30, "units": "ft",
+> "activity": "<its id>" }`; `"after": "attack"` when it teleports once the attack hits or misses; asserted `teleports: self`
+> (on `hit` and on `miss` with `after`). "It and the target swap places" is `swapPlaces`, `teleports: swapsWithTarget`. "It
+> sheds bright light in a 10-foot radius and dim light for an additional 10 feet" while an effect of the item is on it is
+> `{ "light": { "on": "effect", "bright": 10, "dim": 20, "units": "ft" } }` (`dim` is the OUTER radius), asserted `sheds:
+> light`. Teleporting the target, advantage on the next attack, damage doubled against objects and an immunity after a
+> save have no drafter key: `person` (or `engine` for the first and the third).
+>
+> Worked example (invented). The text of "Brass Guard" says: Reaction, when a creature hits the sentinel with a melee
+> attack: the sentinel adds 3 to its AC against that attack. The structure has one `utility` activity `Bs10Bs21Bs32Bs43`
+> with a reaction activation:
+>
+> ```json
+> { "key": "tst:monster:brass-sentinel/reaction/brass-guard", "outcome": "rule", "confidence": 0.8,
+>   "why": "the AC bonus against one melee hit, by the reaction",
+>   "rule": { "handledIn": "table", "adds": "Raises its AC by 3 against one melee hit.",
+>     "entry": { "triggers": [
+>       { "on": "isHit", "if": { "activity.isMelee": true }, "do": [{ "type": "use" }, { "type": "penalty", "formula": "3" }] }
+>     ] },
+>     "origins": ["official"],
+>     "assert": [ { "given": { "moment": "isHit", "activity": "melee" }, "expect": { "acBonus": 3 } } ] } }
+> ```
+>
+> Had the same reaction gone on "if the attack then misses, the sentinel makes one melee attack against the attacker", do
+> not add the `isMissed` declaration: each `use` costs a reaction and the creature has spent its one on the AC bonus, so the
+> engine would never offer the counterattack (a free one is refused). That text is a partial rule leaving the counterattack
+> (`{ "unexpressed": "follow-up-action", "count": 1 }`) or `person`. A reaction whose whole response is the counterattack
+> ("when a creature misses it with a melee attack, it makes one melee attack against that creature") is the `isMissed`
+> declaration alone.
+>
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`,
-> `emanation`, `aura`)
+> `emanation`, `aura`, `teleport`, `swapPlaces`)
 > holds one id: name one origin only and put the others in `uncovered` with a one-line reason. Every matched origin
 > (`plutonium` `unchecked` excepted) is either in `origins` or in `uncovered: [{ origin, because }]`. `origins` lists each
 > origin once. Leaving `official` uncovered (naming only `ddb-importer`) is allowed when the official item has nothing to
@@ -1236,6 +1363,7 @@ handle of `docs/owners.json`, Ruling R23).
 > `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`,
 > `spellLevelAtMost`; `expect`: `damage` with its `fraction`, `condition` applied or ended, `ends`, `roll` with advantage,
 > disadvantage, `autoSuccess` or `autoFail`, `affects`, `denies`, `move`, `uses`, `subjected`, `chooses`, `bars`; never `excludes`,
+> `acBonus`, `hitBecomes`, `counterattack`, `attackerTakes`, `reactionsPerRound`, `teleports`, `sheds`; never `excludes`,
 > which is refused).
 > When the text limits a consequence ("if the
 > target is Large or smaller", "on a melee attack", "a creature it is grappling"), state the limit in the same assertion's
@@ -1280,6 +1408,19 @@ handle of `docs/owners.json`, Ruling R23).
 > while an effect lasts is `{ "denies": "healing" }` on the roll that applies the effect (`{ "roll": "failedSave" }` for a
 > save's); "cannot gain temporary hit points", `{ "denies": "tempHp" }`. Invented example: "For the spell's duration, a
 > 10-foot barrier moves with you; creatures can't enter it" gives `{ "given": {}, "expect": { "bars": "entry" } }`.
+>
+> **Reactions, teleports and light** (Ruling R38). What a reaction does to the attack that set it off is said at its moment,
+> with no roll (read `definitions.acBonus`, `hitBecomes`, `counterattack`, `attackerTakes`): "adds 2 to its AC against that
+> attack" is `{ "given": { "moment": "isHit" }, "expect": { "acBonus": 2 } }` (`"proficiency"` for its proficiency bonus,
+> even when the number printed is that bonus); "the attack misses instead", `{ "hitBecomes": "miss" }` at `isHit`; "when an
+> attack misses it, it makes a melee attack against the attacker", `{ "counterattack": "meleeWeapon" }` at `isMissed`; "a
+> creature that hits it takes damage", `{ "attackerTakes": "activity" }` at `isHit` when the structure has the activity for
+> that damage. "A melee attack" in the trigger is `"activity": "melee"` beside the moment. "One reaction on every turn"
+> is `{ "given": {}, "expect": { "reactionsPerRound": 20 } }` (N a round: N). "It teleports" is `{ "teleports": "self" }`
+> (`{ "roll": "hit" }` and `{ "roll": "miss" }` when it comes once the attack is judged), "it swaps places with the target"
+> `swapsWithTarget`; "it sheds light" `{ "sheds": "light" }`. Invented example: "When a creature hits the warden with a
+> melee attack, the warden adds 4 to its AC against it" gives `{ "given": { "moment": "isHit", "activity": "melee" },
+> "expect": { "acBonus": 4 } }`.
 >
 > You never see whether the draft declared part of the entry as left to the table (`leaves`): state everything the text
 > requires, as always; the comparison takes care of what the draft says it does not automate.

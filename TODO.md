@@ -93,6 +93,22 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       a barrier or globe, a choice's `order` (which face gives which effect), `wardsConditions` (a source's type), `wardsAtZero`.
 - [ ] Scenarios for wards: answer the choice question, walk a creature into a barrier, cast from outside a globe, heal a
       creature that bears a `blocksHealing` effect; until then `chooses`, `bars` and `denies: healing|tempHp` are manual.
+- [x] Reactions, teleports and light (Ruling R38): four reaction declarations of `triggers` (an AC bonus against one hit,
+      a hit turned into a miss, a melee counterattack after a miss, the item's damage dealt back) and `reactions`,
+      `teleport`, `swapPlaces`, `light` in closed shapes (`reactions.mjs`); `acBonus`, `hitBecomes`, `counterattack`,
+      `attackerTakes`, `reactionsPerRound`, `teleports`, `sheds`; pinned to the engine's validator text (keys, steps,
+      declarations) by a DAS_CORE test, on the main branch and the latest release alike.
+- [ ] Draft the R38 pool: 19 of the 206 drafts-queue entries name a mechanic it makes writable (a reading of the drafters'
+      `why`, not a closed field: 12 parries, 1 counterattack, 2 misses, 1 self teleport, 2 reaction counts, 1 light), about
+      11 of them whole; 3 parries the engine already reads (the weapon-held limit stays unsayable). Measure Ruling R12.
+- [ ] Upstream requests (no book named): a step that teleports the TARGET of a hit or a failed save; damage doubled
+      against objects and structures; a hit that misses only when the attacker fails a save (as `cancelForSelf`'s
+      `ifSourceFails`, at `isHit`); a free counterattack tied to the AC reaction just taken.
+- [ ] Reaction words still missing: "while holding a weapon" (the engine's `target.wieldsProperty` is not offered), a
+      halved or reduced hit (`halve`, `reduce`), resistance by reaction (`resist`), a reroll, advantage on the next attack
+      (an identifier condition), an immunity after a save (a mark's free name), a teleport's own distance, a light's radii.
+- [ ] Scenarios for reactions: attack the creature with a melee activity, take its reaction, read the judged hit; until
+      then every R38 word is manual (`given.moment.isHit|isMissed`, `advance`).
 - [ ] Scenarios: a size-limited assertion stages only a target that satisfies the limit; the other side (a target too
       large) and the other condition fields (`targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`,
       `onOwnTurn`, `damageType`, `activity`) have no interpreter, and `targetType` is still checked on its positive side only.
