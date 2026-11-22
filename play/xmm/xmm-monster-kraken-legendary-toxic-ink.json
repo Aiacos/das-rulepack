@@ -4,27 +4,31 @@
   "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 2,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 4,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmKraken00000000.mmToxicInk000000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmKraken00000000",
+      "id": "mmToxicInk000000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "Kquf9zADg0jtKBqw": null
+    },
+    "area": [
+      "Kquf9zADg0jtKBqw"
+    ]
   },
   "steps": [
     {
@@ -44,12 +48,6 @@
     },
     {
       "check": "expect.condition.applied=poisoned;given.roll=failedSave"
-    },
-    {
-      "use": "Kquf9zADg0jtKBqw"
-    },
-    {
-      "check": "expect.ends=casterTurnEnd"
     },
     {
       "use": "Kquf9zADg0jtKBqw"

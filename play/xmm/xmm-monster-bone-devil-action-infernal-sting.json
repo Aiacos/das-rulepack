@@ -4,27 +4,29 @@
   "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmBoneDevil00000.mmInfernalSting0",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmBoneDevil00000",
+      "id": "mmInfernalSting0"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "nc4l1efsfjkTcPyT": 10
+    },
+    "area": []
   },
   "steps": [
     {
@@ -35,12 +37,6 @@
     },
     {
       "check": "expect.condition.applied=poisoned;given.roll=hit"
-    },
-    {
-      "use": "nc4l1efsfjkTcPyT"
-    },
-    {
-      "check": "expect.ends=casterTurnStart"
     },
     {
       "use": "nc4l1efsfjkTcPyT"

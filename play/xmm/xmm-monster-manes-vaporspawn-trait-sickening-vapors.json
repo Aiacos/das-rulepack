@@ -4,27 +4,31 @@
   "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmManesVaporspaw.mmSickeningVapor",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmManesVaporspaw",
+      "id": "mmSickeningVapor"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "a9NAwfq8B1qvfEi7": null
+    },
+    "area": [
+      "a9NAwfq8B1qvfEi7"
+    ]
   },
   "steps": [
     {
@@ -35,12 +39,6 @@
     },
     {
       "check": "expect.condition.applied=incapacitated;given.roll=failedSave"
-    },
-    {
-      "use": "a9NAwfq8B1qvfEi7"
-    },
-    {
-      "check": "expect.ends=bearerTurnEnd"
     },
     {
       "use": "a9NAwfq8B1qvfEi7"

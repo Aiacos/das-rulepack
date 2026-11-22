@@ -4,27 +4,31 @@
   "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 2,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 4,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmUltroloth00000.mmHypnoticGaze00",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmUltroloth00000",
+      "id": "mmHypnoticGaze00"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "Sc5RbdImboeEd4zt": null
+    },
+    "area": [
+      "Sc5RbdImboeEd4zt"
+    ]
   },
   "steps": [
     {
@@ -43,13 +47,7 @@
       "force": "savedSave"
     },
     {
-      "check": "expect.damage.fraction=0;given.roll=savedSave"
-    },
-    {
-      "use": "Sc5RbdImboeEd4zt"
-    },
-    {
-      "check": "expect.ends=casterTurnStart"
+      "check": "expect.damage.fraction=0;expect.damage.type=psychic;given.roll=savedSave"
     },
     {
       "use": "Sc5RbdImboeEd4zt"

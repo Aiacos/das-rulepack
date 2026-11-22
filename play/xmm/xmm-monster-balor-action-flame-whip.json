@@ -4,27 +4,29 @@
   "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.move.distance.mode",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmBalor000000000.mmFlameWhip00000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmBalor000000000",
+      "id": "mmFlameWhip00000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "sPRQe6Llftsg9xiX": 30
+    },
+    "area": []
   },
   "steps": [
     {

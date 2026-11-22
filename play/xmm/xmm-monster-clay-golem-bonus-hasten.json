@@ -4,27 +4,29 @@
   "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.denies",
-    "setup.item"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmClayGolem00000.mmHasten00000000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmClayGolem00000",
+      "id": "mmHasten00000000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "1xqzKzUEPSEDWHta": null
+    },
+    "area": []
   },
   "steps": [
     {

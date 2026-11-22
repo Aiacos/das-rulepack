@@ -4,27 +4,29 @@
   "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmGhastGravecall.pF4ucCgUSL6IY7YA",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmGhastGravecall",
+      "id": "pF4ucCgUSL6IY7YA"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "W1T7dZnG8GMMwyEP": null
+    },
+    "area": []
   },
   "steps": [
     {
@@ -35,12 +37,6 @@
     },
     {
       "check": "expect.condition.applied=paralyzed;given.roll=hit"
-    },
-    {
-      "use": "W1T7dZnG8GMMwyEP"
-    },
-    {
-      "check": "expect.ends=bearerTurnEnd"
     },
     {
       "use": "W1T7dZnG8GMMwyEP"

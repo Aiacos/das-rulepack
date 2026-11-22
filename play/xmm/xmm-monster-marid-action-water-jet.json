@@ -4,27 +4,31 @@
   "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.move.distance.mode",
-    "setup.item"
-  ],
-  "checks": 2,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmMarid000000000.mmWaterJet000000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmMarid000000000",
+      "id": "mmWaterJet000000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "CY2HqHThU06Jf0Bw": null
+    },
+    "area": [
+      "CY2HqHThU06Jf0Bw"
+    ]
   },
   "steps": [
     {
@@ -43,7 +47,7 @@
       "force": "savedSave"
     },
     {
-      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+      "check": "expect.damage.fraction=0.5;expect.damage.type=cold;given.roll=savedSave"
     },
     {
       "use": "CY2HqHThU06Jf0Bw"

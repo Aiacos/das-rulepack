@@ -4,26 +4,50 @@
   "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "setup.item",
-    "use"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmTreeBlight0000.mmGraspingRoot00",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmTreeBlight0000",
+      "id": "mmGraspingRoot00"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "t4WdQWTV3tN4xcdO": 15
+    },
+    "area": [
+      "t4WdQWTV3tN4xcdO"
+    ]
   },
-  "steps": []
+  "steps": [
+    {
+      "use": "t4WdQWTV3tN4xcdO"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=grappled;given.roll=failedSave"
+    },
+    {
+      "use": "t4WdQWTV3tN4xcdO"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.move.distance=10;expect.move.mode=pull;given.roll=failedSave"
+    }
+  ]
 }

@@ -4,27 +4,29 @@
   "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.move.distance.mode",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmPoltergeist000.mmTelekineticThr",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmPoltergeist000",
+      "id": "mmTelekineticThr"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "qHeMp7n2VPHtGbDS": 30
+    },
+    "area": []
   },
   "steps": [
     {
@@ -34,7 +36,7 @@
       "force": "savedSave"
     },
     {
-      "check": "expect.damage.fraction=0;given.roll=savedSave"
+      "check": "expect.damage.fraction=0;expect.damage.type=force;given.roll=savedSave"
     },
     {
       "use": "qHeMp7n2VPHtGbDS"

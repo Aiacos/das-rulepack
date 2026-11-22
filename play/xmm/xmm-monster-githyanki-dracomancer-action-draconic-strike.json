@@ -4,35 +4,31 @@
   "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 2,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmGithyankiDraco.mmDraconicStrike",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmGithyankiDraco",
+      "id": "mmDraconicStrike"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "wWTdmqi8bi2I4egV": 120
+    },
+    "area": []
   },
   "steps": [
-    {
-      "use": "wWTdmqi8bi2I4egV"
-    },
-    {
-      "check": "expect.condition.applied=frightened"
-    },
     {
       "use": "wWTdmqi8bi2I4egV"
     },
@@ -41,12 +37,6 @@
     },
     {
       "check": "expect.condition.applied=frightened;given.roll=hit"
-    },
-    {
-      "use": "wWTdmqi8bi2I4egV"
-    },
-    {
-      "check": "expect.ends=casterTurnStart"
     },
     {
       "use": "wWTdmqi8bi2I4egV"

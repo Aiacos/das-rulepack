@@ -4,27 +4,29 @@
   "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.denies",
-    "setup.item"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmWarriorCommand.mmTacticalCharge",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmWarriorCommand",
+      "id": "mmTacticalCharge"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "lX4rc5MqNaUFktQy": null
+    },
+    "area": []
   },
   "steps": [
     {

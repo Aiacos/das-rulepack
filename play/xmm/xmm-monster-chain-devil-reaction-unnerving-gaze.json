@@ -4,27 +4,31 @@
   "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmChainDevil0000.mmUnnervingGaze0",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmChainDevil0000",
+      "id": "mmUnnervingGaze0"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "btp6NZvx465nxWTF": null
+    },
+    "area": [
+      "btp6NZvx465nxWTF"
+    ]
   },
   "steps": [
     {
@@ -35,12 +39,6 @@
     },
     {
       "check": "expect.condition.applied=frightened;given.roll=failedSave"
-    },
-    {
-      "use": "btp6NZvx465nxWTF"
-    },
-    {
-      "check": "expect.ends=currentTurnEnd"
     },
     {
       "use": "btp6NZvx465nxWTF"

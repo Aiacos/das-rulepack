@@ -4,27 +4,29 @@
   "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.move.distance.mode",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmMerfolkWaveben.mmWateryRebuke00",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmMerfolkWaveben",
+      "id": "mmWateryRebuke00"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "nCfH0YgOhJR2wIKd": 5
+    },
+    "area": []
   },
   "steps": [
     {
@@ -34,7 +36,7 @@
       "force": "savedSave"
     },
     {
-      "check": "expect.damage.fraction=0;given.roll=savedSave"
+      "check": "expect.damage.fraction=0;expect.damage.type=cold;given.roll=savedSave"
     },
     {
       "use": "nCfH0YgOhJR2wIKd"

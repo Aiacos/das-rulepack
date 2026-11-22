@@ -4,25 +4,29 @@
   "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "setup.item"
-  ],
+  "manual": false,
+  "manualBecause": [],
   "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmMerfolkWaveben.mmAquaticBurst00",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmMerfolkWaveben",
+      "id": "mmAquaticBurst00"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "PXOjhjDQE9dup2V7": 60
+    },
+    "area": []
   },
   "steps": [
     {

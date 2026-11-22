@@ -4,27 +4,29 @@
   "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.denies",
-    "setup.item"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmWeretiger00000.4XnVTvvmrKKbIP8n",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmWeretiger00000",
+      "id": "4XnVTvvmrKKbIP8n"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "rJZ08yOwJQS9Ic7i": null
+    },
+    "area": []
   },
   "steps": [
     {

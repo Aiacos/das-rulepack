@@ -4,27 +4,29 @@
   "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmSmokeMephit000.mmCinderBreath00",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmSmokeMephit000",
+      "id": "mmCinderBreath00"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "tb7VfYTYKzOxuE5S": 15
+    },
+    "area": []
   },
   "steps": [
     {
@@ -35,12 +37,6 @@
     },
     {
       "check": "expect.condition.applied=blinded;given.roll=failedSave"
-    },
-    {
-      "use": "tb7VfYTYKzOxuE5S"
-    },
-    {
-      "check": "expect.ends=casterTurnEnd"
     },
     {
       "use": "tb7VfYTYKzOxuE5S"

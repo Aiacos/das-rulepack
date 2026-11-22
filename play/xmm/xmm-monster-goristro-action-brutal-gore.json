@@ -4,27 +4,29 @@
   "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.move.distance.mode",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmGoristro000000.mmBrutalGore0000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmGoristro000000",
+      "id": "mmBrutalGore0000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "G85AiJOkpSH2EA5D": 10
+    },
+    "area": []
   },
   "steps": [
     {
