@@ -24,7 +24,8 @@ import {
 } from "./triage.mjs";
 import {
   cutBatches, cutDraftBatches, cutReviewBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason,
-  draftVocabulary, highestBatches, identifierClashReasons, REVIEW_BATCH_SIZE, reviewReport, reviewSkipReason, reviewVocabulary
+  draftVocabulary, highestBatches, identifierClashReasons, REVIEW_BATCH_SIZE, reviewReport, reviewSkipReason, reviewVocabulary,
+  rulableOrigin
 } from "./batch.mjs";
 import { DRAFT_KEYS } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
@@ -434,8 +435,9 @@ function checkStructureDir(dir, out) {
 // Per batch entry and matched origin, the structure of the item's document (null when the dumps do not hold it).
 // A document is the one with the item's docId and, when the item records it, its data fingerprint: never another document
 // that shares the id (a journal page, another printing). A monster feature's document is the item embedded in the actor
-// (`<actor id>.<item id>`).
-function structuresOf(batch, records, dumpsDir) {
+// (`<actor id>.<item id>`). With `rulable` (the draft and review cuts, and the review ingest) an origin no rule can name is
+// left out (batch.mjs rulableOrigin: a monster feature's DDB Importer item, Ruling R3).
+function structuresOf(batch, records, dumpsDir, { rulable = false } = {}) {
   const byKey = new Map(records.map((r) => [r.key, r]));
   const indexes = new Map();
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
@@ -454,7 +456,7 @@ function structuresOf(batch, records, dumpsDir) {
   for (const e of batch.entries) {
     const r = byKey.get(e.key);
     const perOrigin = {};
-    for (const item of r.items.filter((i) => i.match === "matched")) {
+    for (const item of r.items.filter((i) => i.match === "matched" && (!rulable || rulableOrigin(r, i.origin)))) {
       const doc = findDocument(docs(r.book, item.origin, r.kind), item.docId, item.data?.sha256);
       perOrigin[item.origin] = doc ? structureOf(doc) : null;
     }
@@ -590,7 +592,8 @@ async function batchCommand([stage, book, ...rest]) {
     batches = cutBatches(found.records, { size, kind: opts.kind, after, withoutItems, ...cutOptions });
   }
   // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
-  const structures = dumpsDir === null ? [] : batches.map((b) => structuresOf(b, found.records, dumpsDir));
+  const structures = dumpsDir === null ? []
+    : batches.map((b) => structuresOf(b, found.records, dumpsDir, { rulable: draft || review }));
   mkdirSync(opts.out, { recursive: true });
   if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
   const write = (file, data) => writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
@@ -682,7 +685,8 @@ function commitIngest(books, all, changed, queued, applied, { queue: kind = "tri
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
   const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>"
-    + " | --review --batch <batch file>] | ingest --settle-unsure [--min <n>]";
+    + " | --review --batch <batch file>] | ingest --settle-unsure [--min <n>]"
+    + " (--review needs RULEPACK_DUMPS: the item's own damage is read from the official structure, Ruling R24)";
   const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const [mode] = modes;
@@ -739,8 +743,11 @@ async function ingestCommand(args) {
     return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered });
   }
   if (mode === "--review") {
+    // Ruling R24: the baseline is decided from the official item's structure, read from the dumps as `batch review` does.
+    const dumpsDir = need("RULEPACK_DUMPS");
+    if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
     const offered = offeredReviews(input.batch, batchFile);
-    return ingestReviewCommand(input, { textDir, core: await loadCore(coreDir), offered });
+    return ingestReviewCommand(input, { textDir, core: await loadCore(coreDir), offered, dumpsDir });
   }
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
@@ -821,11 +828,22 @@ function offeredReviews(id, file) {
 // `ingest <results-file> --review --batch <batch file>`: independent reviews. Agreements write `evidence.reviewed`; the rest
 // (disagreement, free text, low confidence, a draft stamped for a person) goes to registry/review-queue.json; books and that
 // queue are saved in one step.
-function ingestReviewCommand(input, { textDir, core, offered }) {
+function ingestReviewCommand(input, { textDir, core, offered, dumpsDir }) {
   checkQueues(REGISTRY);
   const books = loadRegistry(REGISTRY);
-  const out = ingestReviews(books.flatMap((b) => b.records), input.results, {
-    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "review"), offered
+  const all = books.flatMap((b) => b.records);
+  // The official structure of every record the results answer (the same data the batch's structure file gave the reviewer).
+  const known = new Set(all.map((r) => r.key));
+  const keys = [...new Set(input.results.map((r) => r?.key))]
+    .filter((k) => typeof k === "string" && offered.has(k) && known.has(k));
+  const structures = new Map();
+  for (const [book, ofBook] of groupBy(all.filter((r) => keys.includes(r.key)), (r) => r.book)) {
+    const { entries } = structuresOf({ id: book, entries: ofBook.map((r) => ({ key: r.key })) }, ofBook, dumpsDir,
+      { rulable: true });
+    for (const [key, perOrigin] of Object.entries(entries)) if (perOrigin.official) structures.set(key, perOrigin.official);
+  }
+  const out = ingestReviews(all, input.results, {
+    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "review"), offered, structures
   });
   if (!commitIngest(books, out.records, out.agreed, out.disagreed, out.agreed, { queue: "review" })) return;
   const reasons = {};

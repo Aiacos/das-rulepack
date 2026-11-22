@@ -303,10 +303,20 @@ function reviewEntryProblems(entry, vocabulary) {
     asserts(d.assert, "draft.assert");
     errors.push(...canonicalListProblems(d.implied, "draft.implied", vocabulary));
   });
-  part("review", ["rule", "assert", "agrees", "onlyDraft", "onlyReview"], (r) => {
+  // `baseline` and `detail` (Ruling R24: what the comparison tolerated) are absent from entries queued before it.
+  part("review", ["rule", "assert", "agrees", "onlyDraft", "onlyReview", "baseline", "detail"], (r) => {
     asserts(r.assert, "review.assert");
     if (typeof r.agrees !== "boolean") errors.push("review.agrees: must be a boolean");
     for (const f of ["onlyDraft", "onlyReview"]) errors.push(...canonicalListProblems(r[f], `review.${f}`, vocabulary));
+    if (Object.hasOwn(r, "baseline")) errors.push(...canonicalListProblems(r.baseline, "review.baseline", vocabulary));
+    if (Object.hasOwn(r, "detail")) {
+      const pair = (p) => isPlainObject(p) && Object.keys(p).length === 2 && Object.hasOwn(p, "draft")
+        && Object.hasOwn(p, "review");
+      if (!Array.isArray(r.detail) || !r.detail.every(pair)) errors.push("review.detail: must be an array of { draft, review }");
+      else {
+        r.detail.forEach((p, i) => errors.push(...canonicalListProblems([p.draft, p.review], `review.detail[${i}]`, vocabulary)));
+      }
+    }
   });
   return errors;
 }

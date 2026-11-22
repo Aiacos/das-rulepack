@@ -9,7 +9,7 @@ import {
   RULE_QUOTE_WORDS, checkIds, checkText, engineIdentifiers, gateSchema, gateValidator, quotationCheck, ruleProse
 } from "./gates.mjs";
 import { identifierClashReasons } from "./batch.mjs";
-import { SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
+import { DDB_MONSTER_UNCOVERED, SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, sharedEmbeddedId } from "./settle.mjs";
 import {
   QUEUE_THRESHOLD, cachedText, clip, clipEchoes, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
@@ -87,6 +87,13 @@ function draftedRecord(record, draft, { core, embedded, by, at }) {
     if (alias?.identifier) alsoAs.push({ identifier: alias.identifier, origin });
   }
   if (alsoAs.length) rule.alsoAs = alsoAs;
+  // Ruling R3: a monster feature's matched DDB Importer item is never covered. The batch offers it without ids (batch.mjs
+  // rulableOrigin); the tool accounts for it here when the drafter left it out, with the one reason it can have.
+  const ddb = record.kind === "monster" && (record.items ?? []).some((i) => i?.origin === "ddb-importer" && i.match === "matched");
+  const uncovered = rule.uncovered === undefined ? [] : rule.uncovered;
+  if (ddb && Array.isArray(uncovered) && !uncovered.some((u) => u?.origin === "ddb-importer")) {
+    rule.uncovered = [...uncovered, { origin: "ddb-importer", because: DDB_MONSTER_UNCOVERED }];
+  }
   const label = ruleOriginLabel(record);
   if (label !== undefined) rule.origin = label;
   next.rule = rule;
