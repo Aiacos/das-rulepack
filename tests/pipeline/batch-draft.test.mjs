@@ -4,7 +4,8 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  CORE_IDENTIFIER, SHARED_IDENTIFIER, cutDraftBatches, draftSkipReason, draftVocabulary, identifierClashReasons
+  CORE_IDENTIFIER, SHARED_EMBEDDED_REFUSED, SHARED_IDENTIFIER, cutDraftBatches, draftSkipReason, draftVocabulary,
+  identifierClashReasons
 } from "../../tools/pipeline/batch.mjs";
 import { embeddedIndex } from "../../tools/pipeline/settle.mjs";
 import { DRAFT_KEYS, checkDraftKeys } from "../../tools/pipeline/draft-keys.mjs";
@@ -73,7 +74,7 @@ describe("cutDraftBatches", () => {
     const ddbOnly = rec(2, { ...base, key: "tst:monster:c/d", items: [item({ origin: "ddb-importer" })] });
     const fine = rec(3, { ...base, key: "tst:monster:e/f" });
     expect([shared, ddbOnly, fine].map((r) => draftSkipReason(r, { embedded: embeddedIndex([]) }))).toEqual([
-      "monster feature: shared embedded id, waits on upstream", "monster feature: no official item", null
+      SHARED_EMBEDDED_REFUSED, "monster feature: no official item", null
     ]);
     const cut = cutDraftBatches([shared, ddbOnly, fine], { core, embedded: embeddedIndex([]) });
     expect(cut[0].entries.map((e) => e.key)).toEqual(["tst:monster:e/f"]);
@@ -95,7 +96,9 @@ describe("cutDraftBatches", () => {
     });
     it("is left out when another creature embeds it, though the record carries no flag", () => {
       const embedded = embeddedIndex([actor("Beast", own), actor("Other Beast", own)]);
-      expect(draftSkipReason(mon(1), { embedded })).toBe("monster feature: shared embedded id, waits on upstream");
+      expect(draftSkipReason(mon(1), { embedded })).toBe(SHARED_EMBEDDED_REFUSED);
+      // Ruling R35: with an engine that accepts `<actor id>.<item id>` sources it is cut (tests/pipeline/scoped-sources.test.mjs).
+      expect(draftSkipReason(mon(1), { embedded, actorItem: true })).toBeNull();
       expect(cutDraftBatches([mon(1), mon(2, { items: [item({ docId: "Ac00Ac11Ac22Ac33.Qq11Qq22Qq33Qq44" })] })],
         { core, embedded }).flatMap((b) => b.entries.map((e) => e.key))).toEqual(["tst:monster:beast/bite2"]);
     });

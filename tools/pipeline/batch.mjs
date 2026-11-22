@@ -17,7 +17,7 @@ import { resolveShape } from "./shapes.mjs";
 import { FIX_ENUMS, describeFixTypes } from "./fix-types.mjs";
 import * as assertVocabulary from "./assert.mjs";
 import { isFormula } from "./assert.mjs";
-import { DDB_MONSTER_UNCOVERED, monsterIdentifier, sourceKeysOf } from "./identifiers.mjs";
+import { DDB_MONSTER_UNCOVERED, actorItemKeyOf, embeddedIdOf, monsterIdentifier } from "./identifiers.mjs";
 import { sharedEmbeddedId } from "./settle.mjs";
 import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
 import { LEAVES_MAX, LEAVE_REASONS, UNEXPRESSED_MAX } from "./leaves.mjs";
@@ -103,6 +103,9 @@ export const SHARED_IDENTIFIER = "identifier shared with another record";
 // A monster feature the engine reads something of (Ruling R29) that no reread found going beyond that reading: a drafter
 // would mostly repeat the engine. It goes to a reread first (reread.mjs); `hint: "beyond-engine"` lets it through.
 export const ENGINE_READS_FIRST = "engine reads it: reread first";
+// Ruling R35: a monster feature whose embedded item id another creature embeds binds by `<actor id>.<item id>`, which an older
+// DAS · Core refuses (loadCore `actorItemSources`): a drafter's rule could not bind it.
+export const SHARED_EMBEDDED_REFUSED = "monster feature: shared embedded id, this DAS · Core refuses actor.item sources";
 // Ruling R22: a rule of another edition already holds the identifier: an edition-scoped one (bound through sources) is needed.
 export const EDITION_IDENTIFIER = "identifier ruled for another edition: needs an edition-scoped identifier";
 // The records that register an identifier with the engine, or will once drafted (verdict entry), under the identifier they
@@ -133,10 +136,12 @@ export function identifierClashReasons(records, coreIdentifiers, { pending } = {
  * `no text`, `no matched item` (a drafter has no ids to take), `monster feature that cannot be scoped` (no creature or name,
  * so no identifier can be made: identifiers.mjs monsterIdentifier), and the monster features the gates would fail whatever is
  * drafted: no official item, an official item with no embedded id, or an embedded id that another creature of the package
- * embeds. The last is decided here from `embedded` (settle.mjs embeddedIndex of the package's actors), with the test inventory
- * binds by: the record's own `embeddedShared` flag exists only once a rule is bound. A monster is not decided without it.
+ * embeds while the engine refuses `<actor id>.<item id>` sources (`actorItem`: loadCore `actorItemSources`, false when not
+ * given; Ruling R35) or the item has no such key to bind. Sharing is decided here from `embedded` (settle.mjs embeddedIndex
+ * of the package's actors), with the test inventory binds by: the record's own `embeddedShared` flag exists only once a rule
+ * is bound. A monster is not decided without it.
  */
-export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new Map(), readingOf } = {}) {
+export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new Map(), readingOf, actorItem = false } = {}) {
   if (r.rule) return "already ruled";
   if (queued.has(r.key)) return "queued";
   if (!r.text) return "no text";
@@ -150,10 +155,13 @@ export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new
     const official = matchedItems(r).filter((i) => i.origin === "official");
     if (!official.length) return "monster feature: no official item";
     if (!embedded) throw new TypeError("draftSkipReason: a monster feature needs the actors of the book's package (embedded)");
-    const own = official.flatMap((i) => sourceKeysOf(i, "monster"));
+    const own = official.map(embeddedIdOf).filter(Boolean);
     if (!own.length) return "monster feature: official item has no embedded id";
-    if (official.some((i) => i.embeddedShared) || own.some((id) => sharedEmbeddedId(embedded, id, r.owner))) {
-      return "monster feature: shared embedded id, waits on upstream";
+    const shared = official.filter((i) => i.embeddedShared || sharedEmbeddedId(embedded, embeddedIdOf(i) ?? "", r.owner));
+    if (shared.length) {
+      // Ruling R35: bound by the creature's `<actor id>.<item id>`, which the engine in use must accept.
+      if (!actorItem) return SHARED_EMBEDDED_REFUSED;
+      if (!shared.every(actorItemKeyOf)) return "monster feature: official item has no embedded id";
     }
     // `readingOf(record)`: the engine's reading of the official item (null when it reads nothing, undefined when the item is
     // not in the dumps); `batch draft` always gives it.
@@ -371,7 +379,8 @@ function whyFor(r, textOf, report) {
  * `textOf(record)` gives the cached text (the `why` of an entry is kept only when it does not quote it; `report.whyWithheld`
  * counts the others). `core` is loadCore's result (`shipped`, for the examples); `ruled` the records examples may come from
  * (default: `records`),
- * `gated(record)` which of them stand gated.
+ * `gated(record)` which of them stand gated. A monster feature whose embedded item id another creature embeds is cut only when
+ * `core.actorItemSources` (Ruling R35).
  */
 export function cutDraftBatches(records, options = {}) {
   const {
@@ -380,7 +389,7 @@ export function cutDraftBatches(records, options = {}) {
   } = options;
   const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind) && (redraft
     ? redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf })
-    : draftSkipReason(r, { queued, embedded, clashes, readingOf }) === null));
+    : draftSkipReason(r, { queued, embedded, clashes, readingOf, actorItem: core?.actorItemSources === true }) === null));
   // A redraft is blind: the rules it replaces are no examples.
   const blind = new Set(redraft ? open.map((r) => r.key) : []);
   const unseen = (list) => list.filter((r) => !blind.has(r.key));

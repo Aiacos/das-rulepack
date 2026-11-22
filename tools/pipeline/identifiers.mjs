@@ -27,16 +27,35 @@ export const GENERIC_IDENTIFIERS = Object.freeze(new Set(["", ...SHARED, ...WEAP
 const norm = (id) => (typeof id === "string" ? id.trim().toLowerCase() : "");
 const matchedOf = (record, origin) => (record?.items ?? []).find((i) => i?.origin === origin && i.match === "matched");
 
+/** A monster feature's embedded item id (the part after "." of `<actor id>.<item id>`), or null when it is not 16 characters. */
+export function embeddedIdOf(item) {
+  const own = String(item?.docId ?? "").split(".").pop();
+  return DOC_ID.test(own) ? own : null;
+}
+
 /**
- * The 16-character document ids under which a source can bind an item: the official document and its copies, or for a
- * monster feature the embedded item id (the part after "." of `<actor id>.<item id>`). Other origins have none (a DDB
- * Importer id is a world's own).
+ * Ruling R35: a monster feature's `<actor id>.<item id>` (its official item's `docId`), or null when it is not two
+ * 16-character ids. The key that binds ONE creature's feature when other creatures embed the same item id.
+ */
+export function actorItemKeyOf(item) {
+  const parts = String(item?.docId ?? "").split(".");
+  return parts.length === 2 && parts.every((p) => DOC_ID.test(p)) ? parts.join(".") : null;
+}
+
+/** True for a `sources` key of two ids, `<actor id>.<item id>` (Ruling R35). */
+export const isActorItemKey = (key) => typeof key === "string" && actorItemKeyOf({ docId: key }) === key;
+
+/**
+ * The keys under which a source can bind an item: the official document and its copies, or for a monster feature the
+ * embedded item id (the part after "." of `<actor id>.<item id>`), and when other creatures embed that id (`embeddedShared`,
+ * Ruling R35) the whole `<actor id>.<item id>` instead: a source under the bare id would bind every creature that embeds it.
+ * Other origins have none (a DDB Importer id is a world's own).
  */
 export function sourceKeysOf(item, kind) {
   if (item?.origin !== "official" || item.match !== "matched") return [];
   if (kind === "monster") {
-    const own = String(item.docId ?? "").split(".").pop();
-    return DOC_ID.test(own) ? [own] : [];
+    const key = item.embeddedShared ? actorItemKeyOf(item) : embeddedIdOf(item);
+    return key ? [key] : [];
   }
   return [item.docId, ...(item.alsoDocIds ?? [])].filter((id) => typeof id === "string");
 }
@@ -55,16 +74,23 @@ export function reaches(record, item) {
   return (record?.rule?.alsoAs ?? []).some((a) => a?.origin === item?.origin && norm(a?.identifier) === own && own !== "");
 }
 
-/** Why a monster feature whose embedded item id several creatures share has no source (Ruling R3). */
-export const SHARED_EMBEDDED = "shared embedded item id: waits on upstream (engine: actor.item sources, refused by external"
-  + " registration)";
+/**
+ * Why a monster feature whose embedded item id several creatures share is not reached (Rulings R3, R35): only an
+ * `<actor id>.<item id>` source that binds it to the creature-scoped identifier reaches that one creature's feature.
+ */
+export const SHARED_EMBEDDED = "shared embedded item id: only an <actor id>.<item id> source bound to the creature-scoped"
+  + " identifier reaches it";
+/** Ruling R35: the engine in use refuses `<actor id>.<item id>` sources (an older DAS · Core): such a rule cannot bind. */
+export const ACTOR_ITEM_REFUSED = "this DAS · Core refuses <actor id>.<item id> sources (an older engine): a rule on a"
+  + " shared embedded item id waits for one that accepts them";
 
 /**
  * What is wrong with the identifiers a ruled record registers, from the record alone (so it holds under `gates --ci`, which
- * has no dumps): its own identifier must not be generic, a monster feature's must be its creature-scoped one (R3) and its
- * embedded item id must not be shared, and every alias (R2) must be a non-generic identifier that the record's matched item
- * of a named origin carries; a monster feature has none. The DAS · Core identifiers are the `unique` gate's (it has the
- * engine). Messages start with "identifier:"; none for a record without a rule.
+ * has no dumps): its own identifier must not be generic, a monster feature's must be its creature-scoped one (R3) and a
+ * shared embedded item id must be bound by its `<actor id>.<item id>` source (R35), and every alias (R2) must be a
+ * non-generic identifier that the record's matched item of a named origin carries; a monster feature has none. The DAS ·
+ * Core identifiers are the `unique` gate's (it has the engine). Messages start with "identifier:"; none for a record without
+ * a rule.
  */
 export function identifierProblems(record) {
   const rule = record?.rule;
@@ -80,7 +106,9 @@ export function identifierProblems(record) {
       out.push(`identifier: a ruled monster feature is registered as ${scoped}, not ${JSON.stringify(record.identifier)}`);
     }
     const origins = Array.isArray(rule.origins) ? rule.origins : [];
-    const shared = (record.items ?? []).some((i) => i?.match === "matched" && i.embeddedShared && origins.includes(i.origin));
+    // Ruling R35: a shared embedded id is reached only through its own `<actor id>.<item id>` source.
+    const shared = (record.items ?? []).some((i) => i?.match === "matched" && i.embeddedShared && origins.includes(i.origin)
+      && !boundBySource(record, i));
     if (shared) out.push(`identifier: ${SHARED_EMBEDDED}`);
   }
   for (const a of Array.isArray(rule.alsoAs) ? rule.alsoAs : []) {
@@ -119,8 +147,9 @@ export const DDB_MONSTER_UNCOVERED = "DDB Importer monster features: world ids a
 /**
  * The alias a rule needs to reach the item of `origin` (Ruling R2): `{ identifier }`, or `{ uncovered: because }` when no
  * alias may be registered (the origin goes to `rule.uncovered`), or null when the item is already reached (same identifier,
- * or bound by a source). Never an alias: a monster feature's item (its identifier is scoped to the creature, R3), an empty or
- * generic identifier, a DAS · Core identifier, an identifier that is not kebab-case.
+ * or bound by a source; a shared embedded id only by its `<actor id>.<item id>` source, R35). Never an alias: a monster
+ * feature's item (its identifier is scoped to the creature, R3), an empty or generic identifier, a DAS · Core identifier,
+ * an identifier that is not kebab-case.
  */
 export function aliasFor(record, origin, { coreIdentifiers = new Set() } = {}) {
   const item = matchedOf(record, origin);
@@ -128,8 +157,9 @@ export function aliasFor(record, origin, { coreIdentifiers = new Set() } = {}) {
   if (record.kind === "monster" && origin === "ddb-importer") {
     return { uncovered: DDB_MONSTER_UNCOVERED };
   }
+  if (boundBySource(record, item)) return null;
   if (item.embeddedShared) return { uncovered: SHARED_EMBEDDED };
-  if (norm(item.identifier) === norm(record.identifier) || boundBySource(record, item)) return null;
+  if (norm(item.identifier) === norm(record.identifier)) return null;
   const id = norm(item.identifier);
   if (record.kind === "monster") return { uncovered: "monster feature item not bound by a source" };
   if (GENERIC_IDENTIFIERS.has(id)) return { uncovered: `generic identifier ${JSON.stringify(id)}` };

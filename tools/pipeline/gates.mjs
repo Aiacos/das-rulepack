@@ -15,7 +15,9 @@ import {
 import { GATE_NAMES } from "./schema.mjs";
 import { hasText, readText, splitWords } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
-import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
+import {
+  ACTOR_ITEM_REFUSED, boundBySource, identifierProblems, isActorItemKey, reaches, SHARED_EMBEDDED, unaccountedOrigins
+} from "./identifiers.mjs";
 import {
   checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys, wardProblemsOf, zoneProblemsOf
 } from "./draft-keys.mjs";
@@ -118,9 +120,16 @@ function draftProblems(record, context) {
   return checkDraftKeys(entry, { origins: originsOf(record.rule), kind: record.kind });
 }
 
-export function gateValidator(record, context) {
+// Ruling R35: an `<actor id>.<item id>` source of a ruled record, against the engine in use (loadCore `actorItemSources`, asked
+// of its own validateSources): an older engine refuses the key, and the rule could not bind its creature's feature.
+const actorItemProblems = (record, core) => (core?.actorItemSources === true ? [] : Object.keys(isObject(record.sources)
+  ? record.sources : {}).filter(isActorItemKey).map((key) => `validator: sources ${key}: ${ACTOR_ITEM_REFUSED}`));
+
+export const gateValidator = (record, context) => (record.rule
+  ? [...actorItemProblems(record, context.core), ...validatorProblems(record, context)] : []);
+
+function validatorProblems(record, context) {
   const { core } = context;
-  if (!record.rule) return [];
   // The rule's assertions, against the engine's enumerations (the schema gate checked their shape without them).
   const asserts = Array.isArray(record.rule.assert)
     ? assertProblems(record.rule.assert, {
@@ -163,7 +172,7 @@ const uncoveredOf = (rule) => (Array.isArray(rule?.uncovered) ? rule.uncovered.m
  * the rule names (the ids of several origins sit side by side), and every origin named must contribute one when the entry has
  * any. Every matched origin is either named or listed in `rule.uncovered`. The item of every origin named must be reached by
  * an identifier the rule registers (its own, a source, an alias), and a monster feature whose embedded item id is shared by
- * several creatures cannot be (the engine would need `<actor id>.<item id>` sources). A legacy record with standing is held
+ * several creatures only by its `<actor id>.<item id>` source (Ruling R35). A legacy record with standing is held
  * to the first rule only (its origins were written before uncovered origins and aliases existed).
  */
 export function checkIds(record, context) {
@@ -194,7 +203,7 @@ export function checkIds(record, context) {
     for (const id of mine) owned.add(id);
     if (ids.length && !mine.length && !legacy) out.failures.push(`ids: ${origin} contributes no id`);
     for (const item of legacy ? [] : items) {
-      if (item.embeddedShared) out.failures.push(`ids: ${SHARED_EMBEDDED}`);
+      if (item.embeddedShared && !boundBySource(record, item)) out.failures.push(`ids: ${SHARED_EMBEDDED}`);
       else if (!reaches(record, item)) {
         out.failures.push(`ids: ${origin} item identifier ${item.identifier} is not reached (no source, no alias)`);
       }
@@ -512,7 +521,24 @@ export function rebindingClashes(records, coreIdentifiers = new Set()) {
   return out;
 }
 
+/**
+ * Ruling R35: the documents ruled records bind through `sources` to different identifiers (`[key, [records]]`): the engine
+ * would know one item by two identifiers. `<actor A>.<item>` and `<actor B>.<item>` are two documents (two creatures'
+ * features); a bare item id other creatures share is refused per record (settle.mjs sourceProblems).
+ */
+export function sourceClashes(records) {
+  const byKey = new Map();
+  for (const record of records) {
+    if (!hasRule(record) || !isObject(record.sources)) continue;
+    for (const key of Object.keys(record.sources)) byKey.set(key, [...(byKey.get(key) ?? []), record]);
+  }
+  // Records that bind one document to ONE identifier share that identifier: identifierTwins already reports them.
+  return [...byKey].filter(([key, group]) => new Set(group.map((r) => r.sources[key])).size > 1);
+}
+const sourceMessage = (key, group) => `unique: ${group.map((r) => r.key).join(" and ")} bind the same document ${key}`;
+
 export const gateUnique = (records, { core } = {}) => [
+  ...sourceClashes(records).map(([key, group]) => sourceMessage(key, group)),
   ...identifierTwins(records).shared.map(([id, group]) => uniqueMessage(id, group)),
   ...identifierTwins(records).later.map(([id, record, first]) => editionMessage(id, record, first)),
   ...coreCollisions(records, engineIdentifiers(core), hasRule, core?.identifiers).map(([, m]) => m),
@@ -527,6 +553,7 @@ const uniqueFailuresByKey = (records, core) => {
   for (const [id, record, first] of later) add(record.key, editionMessage(id, record, first));
   for (const [record, m] of coreCollisions(records, engineIdentifiers(core), hasRule, core?.identifiers)) add(record.key, m);
   for (const [record, m] of rebindingClashes(records, engineIdentifiers(core) ?? new Set())) add(record.key, m);
+  for (const [key, group] of sourceClashes(records)) for (const r of group) add(r.key, sourceMessage(key, group));
   return byKey;
 };
 

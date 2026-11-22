@@ -70,6 +70,17 @@ describe("scenarioOf for a monster feature", () => {
     expect(s.checks).toBe(1);
   });
 
+  // Ruling R35: an embedded item id other creatures share, bound by `<actor id>.<item id>`: the run casts that creature and
+  // uses its own item, never another creature's.
+  it("for a shared embedded id bound by <actor id>.<item id>, casts the bound creature and uses its own item", () => {
+    const r = monster();
+    r.items[0].embeddedShared = true;
+    r.sources = { [`${ACTOR}.${ITEM}`]: r.identifier };
+    const s = scenarioOf(r, { structure: structureFor() });
+    expect(s.manual).toBe(false);
+    expect(s.setup.item).toMatchObject({ actor: ACTOR, id: ITEM, docId: `${ACTOR}.${ITEM}` });
+  });
+
   it("without the structure the untyped assertion is checked; an id that is not <actor>.<item> is setup.item", () => {
     expect(scenarioOf(monster()).steps.at(-1)).toEqual({ check: canonical(HALF) });
     expect(scenarioOf(monster({ docId: "mmZorg" }), { structure: structureFor() }).manualBecause).toEqual(["setup.item"]);

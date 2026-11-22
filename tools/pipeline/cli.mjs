@@ -670,7 +670,8 @@ async function batchCommand([stage, book, ...rest]) {
     checkQueues(REGISTRY);
     const queued = new Set(loadQueue(REGISTRY, "drafts").map((q) => q.key));
     const every = loadRegistry(REGISTRY).flatMap((b) => b.records);
-    // A monster feature's shared embedded id is decided from the actors of the book's package (the test inventory binds by).
+    // A monster feature's shared embedded id is decided from the actors of the book's package (the test inventory binds by);
+    // such a feature is cut only when the engine accepts `<actor id>.<item id>` sources (Ruling R35, core.actorItemSources).
     const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
     const actors = officialFilesFor(dumpsDir, packages, found.book).filter(isActorFile)
       .flatMap((f) => actorSummaries(readDump(join(dumpsDir, f)), "official"));
@@ -700,7 +701,7 @@ async function batchCommand([stage, book, ...rest]) {
     for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
       const why = redraft
         ? (redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf }) ? null : NOT_REDRAFTABLE)
-        : draftSkipReason(r, { queued, embedded, clashes, readingOf });
+        : draftSkipReason(r, { queued, embedded, clashes, readingOf, actorItem: core.actorItemSources === true });
       if (why) left[why] = (left[why] ?? 0) + 1;
     }
     for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);

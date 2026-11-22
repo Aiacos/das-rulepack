@@ -9,7 +9,7 @@ import {
   RULE_QUOTE_WORDS, checkIds, checkText, engineIdentifiers, gateSchema, gateValidator, quotationCheck, ruleProse
 } from "./gates.mjs";
 import { identifierClashReasons, redraftable } from "./batch.mjs";
-import { DDB_MONSTER_UNCOVERED, SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
+import { ACTOR_ITEM_REFUSED, DDB_MONSTER_UNCOVERED, SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, canonicalIdentifier, sharedEmbeddedId } from "./settle.mjs";
 import { isPartial } from "./leaves.mjs";
 import {
@@ -152,15 +152,20 @@ function draftedRecord(record, draft, { core, embedded, by, at }) {
     });
     if (Object.keys(sources).length) next.sources = sources;
     else delete next.sources;
+    // Ruling R35: a shared embedded id binds by `<actor id>.<item id>`, which the engine in use must accept.
+    if (next.items.some((i) => i.embeddedShared) && core?.actorItemSources !== true) {
+      return { problem: `identifier: ${ACTOR_ITEM_REFUSED}` };
+    }
   }
   const rule = structuredClone(draft);
   const origins = Array.isArray(rule.origins) ? rule.origins : [];
   const alsoAs = [];
   for (const origin of origins) {
     const alias = aliasFor(next, origin, { coreIdentifiers: engineIdentifiers(core) });
-    // Ruling R3: a monster feature whose embedded item id another creature shares cannot be ruled until upstream accepts
-    // `<actor id>.<item id>` sources; any other origin aliasFor cannot reach belongs in rule.uncovered.
-    if (alias?.uncovered === SHARED_EMBEDDED) return { problem: `identifier: ${SHARED_EMBEDDED}: the feature cannot be ruled yet` };
+    // Rulings R3, R35: a monster feature whose embedded item id another creature shares is reached only by its own
+    // `<actor id>.<item id>` source (none could be bound: no such key); any other origin aliasFor cannot reach belongs in
+    // rule.uncovered.
+    if (alias?.uncovered === SHARED_EMBEDDED) return { problem: `identifier: ${SHARED_EMBEDDED}: the feature cannot be ruled` };
     if (alias?.uncovered) {
       return { problem: `rule.origins: ${origin} cannot be reached (${alias.uncovered}): it goes in rule.uncovered` };
     }

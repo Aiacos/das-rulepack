@@ -75,13 +75,16 @@ describe("a ruled monster feature is registered under its creature-scoped identi
     expect(checkIds(wolf, { core: stubCore }).failures).toEqual([]);
   });
 
-  it("scoped identifier and a shared embedded id: no source, and the gate says it waits on upstream (also under --ci)", () => {
+  // Ruling R35: bound by the creature's `<actor id>.<item id>`; an engine that refuses such keys holds it (also under --ci).
+  it("scoped identifier and a shared embedded id: binds <actor id>.<item id>; a refusing engine fails it (also under --ci)", () => {
     const next = run(shared, ruleWolf(run(shared).records, true)).records;
     const wolf = next.find((r) => r.owner === "Dire Wolf");
-    expect(wolf.sources).toBeUndefined();
+    expect(wolf.sources).toEqual({ [`${WOLF}.${BITE}`]: "tst-dire-wolf-bite" });
     expect(wolf.items.find((i) => i.origin === "official").embeddedShared).toBe(true);
-    expect(checkIds(wolf, { core: stubCore }).failures.join("\n")).toMatch(/waits on upstream/);
-    expect(failuresOf(next, ci())[wolf.key].schema.join("\n")).toMatch(/waits on upstream/);
+    expect(gateSchema(wolf)).toEqual([]);
+    expect(checkIds(wolf, { core: stubCore }).failures).toEqual([]);
+    expect(failuresOf(next, ci())[wolf.key].validator.join("\n")).toMatch(/refuses <actor id>\.<item id> sources/);
+    expect(failuresOf(next, ci({ core: { ...stubCore, actorItemSources: true } }))[wolf.key]?.validator).toBeUndefined();
   });
 });
 
