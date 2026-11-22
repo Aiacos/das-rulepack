@@ -4,7 +4,7 @@ import { groupBy, stateOf } from "./registry.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
 import { DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural } from "./draft-keys.mjs";
 import { assertShapes } from "./assert.mjs";
-import { quotationCheck } from "./gates.mjs";
+import { identifierClashes, quotationCheck } from "./gates.mjs";
 import { resolveShape } from "./shapes.mjs";
 import { FIX_ENUMS, describeFixTypes } from "./fix-types.mjs";
 import * as assertVocabulary from "./assert.mjs";
@@ -74,6 +74,26 @@ const EXAMPLE_STRING_MAX = 100;
 
 const matchedItems = (r) => (r.items ?? []).filter((i) => i?.match === "matched");
 
+// A record no drafter can take to `gated` (the `unique` gate would fail it whatever is drafted): a person decides.
+export const CORE_IDENTIFIER = "identifier is DAS · Core's: a person decides inCore";
+export const SHARED_IDENTIFIER = "identifier shared with another record";
+// The records that register an identifier with the engine, or will once drafted (verdict entry), under the identifier they
+// will have (an unruled monster feature's is its creature-scoped one, Ruling R3).
+const willRegister = (r) => Boolean(r?.rule) || r?.verdict === "entry";
+const asRegistered = (r) => {
+  if (r.rule || r.kind !== "monster") return r;
+  try { return { ...r, identifier: monsterIdentifier(r) }; } catch { return r; }
+};
+/**
+ * Map of record key to CORE_IDENTIFIER or SHARED_IDENTIFIER for the records whose identifier (or alias) the `unique` gate
+ * would hold against them (gates.mjs identifierClashes, the gate's own functions), counting every record that has a rule or
+ * the verdict entry. `coreIdentifiers` is core.identifiers. Used by `batch draft` (left out) and `ingest --draft` (queued).
+ */
+export function identifierClashReasons(records, coreIdentifiers) {
+  const clashes = identifierClashes(records.filter(willRegister).map(asRegistered), { coreIdentifiers, registers: willRegister });
+  return new Map([...clashes].map(([key, c]) => [key, c.core.length ? CORE_IDENTIFIER : SHARED_IDENTIFIER]));
+}
+
 /**
  * Why an `entry` record is not cut into a draft batch, or null when it is: `already ruled`, `queued` (in drafts-queue.json),
  * `no text`, `no matched item` (a drafter has no ids to take), `monster feature that cannot be scoped` (no creature or name,
@@ -82,7 +102,7 @@ const matchedItems = (r) => (r.items ?? []).filter((i) => i?.match === "matched"
  * embeds. The last is decided here from `embedded` (settle.mjs embeddedIndex of the package's actors), with the test inventory
  * binds by: the record's own `embeddedShared` flag exists only once a rule is bound. A monster is not decided without it.
  */
-export function draftSkipReason(r, { queued = new Set(), embedded } = {}) {
+export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new Map() } = {}) {
   if (r.rule) return "already ruled";
   if (queued.has(r.key)) return "queued";
   if (!r.text) return "no text";
@@ -102,7 +122,8 @@ export function draftSkipReason(r, { queued = new Set(), embedded } = {}) {
       return "monster feature: shared embedded id, waits on upstream";
     }
   }
-  return null;
+  // `clashes` (identifierClashReasons of the whole registry): the unique gate would fail it whatever is drafted.
+  return clashes.get(r.key) ?? null;
 }
 
 // The strings an example may keep: a 16-character id, a word of the engine's vocabularies, a short formula or dice. Anything
@@ -247,10 +268,11 @@ function whyFor(r, textOf, report) {
  */
 export function cutDraftBatches(records, options = {}) {
   const {
-    size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded, textOf, report = {}
+    size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded, textOf, report = {},
+    clashes = new Map()
   } = options;
   const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind)
-    && draftSkipReason(r, { queued, embedded }) === null);
+    && draftSkipReason(r, { queued, embedded, clashes }) === null);
   const pool = exampleCandidates(records, { core, ...(ruled ? { ruled } : {}), ...(gated ? { gated } : {}) });
   const official = (r) => matchedItems(r).some((i) => i.origin === "official");
   const rank = (k) => (DRAFT_KIND_ORDER.includes(k) ? DRAFT_KIND_ORDER.indexOf(k) : DRAFT_KIND_ORDER.length);

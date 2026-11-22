@@ -8,8 +8,9 @@ import { cacheText } from "../../tools/pipeline/text.mjs";
 import { embeddedIndex } from "../../tools/pipeline/settle.mjs";
 import { SHARED_EMBEDDED } from "../../tools/pipeline/identifiers.mjs";
 import {
-  loadQueue, ruleFingerprint, saveBook, saveQueue, stateOf, validateRecord, writeFilesAtomically
+  emittedFingerprint, loadQueue, ruleFingerprint, saveBook, saveQueue, stateOf, validateRecord, writeFilesAtomically
 } from "../../tools/pipeline/registry.mjs";
+import { CORE_IDENTIFIER, SHARED_IDENTIFIER } from "../../tools/pipeline/batch.mjs";
 
 // Synthetic fixtures only: invented entries, invented words.
 const BODY = "Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon";
@@ -110,7 +111,22 @@ describe("ingestDrafts: applied", () => {
       assert: [{ given: { roll: "failedSave" }, expect: { affects: "target" } }]
     }) })]);
     expect(out.rejected).toEqual([]);
-    expect(out.records[0].rule.entry).toEqual(entry);
+    const next = out.records[0];
+    expect(next.rule.entry).toEqual(entry);
+    // Stamped for Task 6: the review sends it to a person whatever the reviewer says.
+    expect(next.evidence.drafted).toMatchObject({ person: true, because: "noReactions" });
+    expect(validateRecord(next)).toEqual([]);
+    // The stamp cannot be dropped silently: the schema requires it while the key is there, and the gate evidence covers it.
+    const { person, because, ...bare } = next.evidence.drafted;
+    const stripped = { ...next, evidence: { ...next.evidence, drafted: bare } };
+    expect(validateRecord(stripped).join(" ")).toMatch(/needs person: true, because: "noReactions"/);
+    expect(emittedFingerprint(stripped)).not.toBe(emittedFingerprint(next));
+    expect(validateRecord({ ...next, evidence: { ...next.evidence, drafted: { ...bare, person: true } } }).join(" "))
+      .toMatch(/person and because go together/);
+    expect(validateRecord({ ...next, evidence: { ...next.evidence, drafted: { ...bare, person: true, because: "other" } } })
+      .join(" ")).toMatch(/DRAFTED_FOR_PERSON/);
+    // A rule without noReactions carries no stamp.
+    expect(run([record()], [result()]).records[0].evidence.drafted).not.toHaveProperty("person");
   });
 
   it("scopes a monster feature to its creature and binds its unique embedded item id", () => {
@@ -162,6 +178,26 @@ describe("ingestDrafts: queued", () => {
     const bad = run([r], [result({ confidence: 0.6, rule: rule({ entry: { aura: {} } }) })]);
     expect(bad.queued).toEqual([]);
     expect(bad.rejected).toHaveLength(1);
+  });
+
+  it("queues a rule on a DAS · Core identifier: a person decides inCore", () => {
+    const r = record({ identifier: "in-core", items: [item("official", { identifier: "in-core" }),
+      item("ddb-importer", { identifier: "in-core" })] });
+    const out = run([r], [result()]);
+    expect(out.rejected).toEqual([]);
+    expect(out.applied).toEqual([]);
+    expect(out.queued).toEqual([{ key: r.key, reason: CORE_IDENTIFIER, by: "drafter-1", why: "half on a save", confidence: 0.9,
+      draft: rule() }]);
+    expect(out.records[0].rule).toBeUndefined();
+  });
+
+  it("queues a rule whose identifier another entry or ruled record registers", () => {
+    const twin = record({ key: "tst:spell:frost-glimmer-2014", edition: "2014" });
+    const out = run([record(), twin], [result()]);
+    expect(out.applied).toEqual([]);
+    expect(out.queued.map((q) => q.reason)).toEqual([SHARED_IDENTIFIER]);
+    // A twin that will never register (verdict none) does not stand in the way.
+    expect(run([record(), { ...twin, verdict: "none" }], [result()]).applied).toEqual(["tst:spell:frost-glimmer"]);
   });
 
   it("a non-rule outcome carries no rule, a rule outcome needs one", () => {

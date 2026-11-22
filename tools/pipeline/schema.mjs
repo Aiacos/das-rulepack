@@ -238,7 +238,14 @@ function checkEvidence(evidence, errors, legacy) {
       if (!isHex64(p.rule)) errors.push("evidence.person.rule: must be 64 hex characters (the fingerprint of the rule signed)");
     }
   }
-  checkStamped(evidence, "drafted", { by: isReaderHandle, at: isString, core: isString, rule: isHex64 }, {}, errors);
+  // `person: true` with a `because` of DRAFTED_FOR_PERSON: the draft ingest says the rule goes to a person at review whatever
+  // a reviewer says (Ruling R15: `noReactions`). The two go together.
+  checkStamped(evidence, "drafted", { by: isReaderHandle, at: isString, core: isString, rule: isHex64 }, {}, errors,
+    { person: (v) => v === true, because: (v) => DRAFTED_FOR_PERSON.includes(v) });
+  const drafted = evidence.drafted;
+  if (isObject(drafted) && has(drafted, "person") !== has(drafted, "because")) {
+    errors.push("evidence.drafted: person and because go together");
+  }
   const confidence = (v) => typeof v === "number" && v >= 0 && v <= 1;
   checkStamped(evidence, "reviewed", { by: isReaderHandle, at: isString, agrees: (v) => typeof v === "boolean", rule: isHex64,
     confidence }, { rule: legacy, confidence: legacy }, errors);
@@ -251,7 +258,16 @@ const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rul
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
 const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
-  confidence: "a number from 0 to 1" };
+  confidence: "a number from 0 to 1", person: "true", because: "one of the reasons a draft goes to a person (DRAFTED_FOR_PERSON)" };
+
+/**
+ * Why a drafted rule goes to a person at review whatever the reviewer says (`evidence.drafted.because`, with `person: true`):
+ * `noReactions` (Ruling R15: the assertion vocabulary has no word for a lost reaction).
+ */
+export const DRAFTED_FOR_PERSON = Object.freeze(["noReactions"]);
+/** The `evidence.drafted.because` a rule's entry calls for, or null (draft.mjs stamps it; the schema requires it). */
+export const draftedForPerson = (entry) =>
+  (isObject(entry) && Object.hasOwn(entry, "noReactions") ? "noReactions" : null);
 
 // One rule-stamped evidence object: `fields` (name → check) are required unless `optional[name]`; `extra` are optional ones.
 // No other field is allowed.
@@ -288,6 +304,13 @@ export function validateRecord(record) {
   // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
   if (has(record, "rule")) {
     checkRule(record.rule, record.verdict, errors, record.identifier, record.legacy === true);
+    // A drafted rule that calls for a person at review carries the stamp (Ruling R15): it cannot be dropped while the key is
+    // there (a person who writes such a rule by hand has no `drafted` evidence and is not held to it).
+    const wanted = isObject(record.rule) ? draftedForPerson(record.rule.entry) : null;
+    const drafted = isObject(record.evidence) ? record.evidence.drafted : undefined;
+    if (wanted && record.legacy !== true && isObject(drafted) && !(drafted.person === true && drafted.because === wanted)) {
+      errors.push(`evidence.drafted: a drafted rule with ${wanted} needs person: true, because: "${wanted}" (Ruling R15)`);
+    }
     if (!RULE_VERDICTS.includes(record.verdict)) {
       errors.push(`verdict: a record with a rule can only have the verdict entry or code, not ${JSON.stringify(record.verdict)}`);
     }

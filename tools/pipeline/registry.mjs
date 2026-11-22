@@ -67,11 +67,17 @@ const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", 
 /**
  * The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of, and of
  * `evidence.person` (the signature that lets the gates pass what a drafter may not write: adding or changing it after the
- * gates makes their evidence stale). Absent, it leaves the hash as it was (`canonical` drops undefined fields).
+ * gates makes their evidence stale), and of the draft's `evidence.drafted.person` / `because` stamp (Ruling R15: removing it
+ * makes the evidence stale too). Absent, they leave the hash as it was (`canonical` drops undefined fields).
  */
 export const emittedFingerprint = (record) => ruleFingerprint({
-  ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person
+  ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person,
+  forPerson: forPersonOf(record?.evidence?.drafted)
 });
+// The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs DRAFTED_FOR_PERSON), or undefined when it has none.
+const forPersonOf = (d) =>
+  (d !== null && typeof d === "object" && (d.person !== undefined || d.because !== undefined)
+    ? { person: d.person, because: d.because } : undefined);
 
 /**
  * The items the gates check, as `evidence.gates.items` records them: per origin the rule names, the data fingerprint of the

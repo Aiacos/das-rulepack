@@ -180,10 +180,13 @@ The state is derived from the evidence and written by the tools; nobody types it
 | `played` | a scenario passed in a running world, on the rule as it is |
 
 Evidence about the rule carries its fingerprint (`rule`, `registry.mjs` `ruleFingerprint`): `evidence.drafted: { by, at, core,
-rule }`, `evidence.reviewed: { by, at, agrees, rule, confidence }`, `evidence.played: { at, core, world, scenario, client?,
-rule }` (no other field; `by` a reader handle, `confidence` from 0 to 1). A review or a play counts only while its `rule` is
-the fingerprint of the current rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a
-review or a play written before the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it.
+rule, person?, because? }` (`person: true` with `because` from `schema.mjs` `DRAFTED_FOR_PERSON`, today only `noReactions`: the
+draft goes to a person at review; the schema requires the stamp on a drafted rule whose entry has `noReactions`, and the gate
+evidence fingerprint `emits` covers it, so dropping it fails the schema and makes the record `drafted`), `evidence.reviewed: {
+by, at, agrees, rule, confidence }`, `evidence.played: { at, core, world, scenario, client?, rule }` (no other field; `by` a
+reader handle, `confidence` from 0 to 1). A review or a play counts only while its `rule` is the fingerprint of the current
+rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a review or a play written before
+the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it.
 
 ## 🧾 Rule vocabulary
 
@@ -345,28 +348,31 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 
 ## 📖 Brief for a drafter agent
 
-`batch draft <BOOK> --out <dir> --structure <private dir>` cuts the records with verdict `entry` and no `rule`: 20 entries
-per batch (`--size`), one kind per batch, kinds in the order spell, feat, option, species, background, item, feature,
-monster, records with a matched official item first. A record is left out (and counted on the console, by reason) when it is
-already ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, or is a monster feature that can
-never pass the gates (no creature to scope it to; "no official item"; "official item has no embedded id"; "shared embedded
-id, waits on upstream"). The last is decided by `batch draft` itself, as inventory decides it when it binds a rule
-(`settle.mjs` `embeddedIndex`, `sharedEmbeddedId`): a feature is cut only when its official embedded item id is unique among
-the actors of the book's package, which `batch draft` reads from `RULEPACK_DUMPS` (always needed, as `--structure` is
-mandatory; the usage error says so). The record's own `embeddedShared` flag is no help: it is written only once a rule is
+`batch draft <BOOK> --out <dir> --structure <private dir>` cuts the records with verdict `entry` and no `rule`: 20 entries per
+batch (`--size`), one kind per batch, kinds in the order spell, feat, option, species, background, item, feature, monster,
+records with a matched official item first. A record is left out (and counted on the console, by reason) when it is already
+ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, is a monster feature that can never pass the
+gates (no creature to scope it to; "no official item"; "official item has no embedded id"; "shared embedded id, waits on
+upstream"), or is one the `unique` gate would fail whatever is drafted: "identifier is DAS · Core's: a person decides inCore"
+and "identifier shared with another record" (another record of the registry that has a rule or the verdict `entry` registers it,
+a monster feature counted under its creature-scoped identifier; `batch.mjs` `identifierClashReasons`, built on the gate's own
+`gates.mjs` `identifierClashes`). The shared embedded id is decided by `batch draft` itself, as inventory decides it when it
+binds a rule (`settle.mjs` `embeddedIndex`, `sharedEmbeddedId`): a feature is cut only when its official embedded item id is
+unique among the actors of the book's package, which `batch draft` reads from `RULEPACK_DUMPS` (always needed, as `--structure`
+is mandatory; the usage error says so). The record's own `embeddedShared` flag is no help: it is written only once a rule is
 bound. It writes `<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`), `<private
 dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-derived, private) and
 `<dir>/draft-vocabulary.json` (engine words only, and for every allowed data-fix path its type as a declarative description,
 `fixes.types`, generated from the table that also checks it: safe to commit). A batch is `{ id, stage: "draft", allowed,
 vocabulary, entries }`; `allowed` is `DRAFT_KEYS` with the slot each key's ids sit in. An entry is the triage entry plus
 `identifier` (a monster feature's is scoped to its creature: `<book>-<creature>-<feature>`), `keys` and `similar` (the triage
-reader's hints), `why` and `examples` (at most three `{ identifier, entry }`, drafter keys only, stripped to ids, engine
-words, formulas and numbers: no `adds`, `free` or label: first the triage `similar`, then the shipped rules that share
-`keys`, then the canonical example of each key the shipped rules of the record's kind use most, so an entry has examples even
-when triage left `keys` and `similar` empty). The triage `why` is kept only when it passes the quotation check of a rule's
-strings (8 consecutive words of the text, `gates.mjs` `quotationCheck`); otherwise the entry is cut without `why` and counted
-("why withheld: quotes the source"). It needs the text, hence `RULEPACK_TEXT` at cut time (without the text of an entry its
-`why` is withheld). The text is never in the batch: it is in the private cache, named by `textSha`. `batch draft` also writes
+reader's hints), `why` and `examples` (at most three `{ identifier, entry }`, drafter keys only, stripped to ids, engine words,
+formulas and numbers: no `adds`, `free` or label: first the triage `similar`, then the shipped rules that share `keys`, then the
+canonical example of each key the shipped rules of the record's kind use most, so an entry has examples even when triage left
+`keys` and `similar` empty). The triage `why` is kept only when it passes the quotation check of a rule's strings (8 consecutive
+words of the text, `gates.mjs` `quotationCheck`); otherwise the entry is cut without `why` and counted ("why withheld: quotes
+the source"). It needs the text, hence `RULEPACK_TEXT` at cut time (without the text of an entry its `why` is withheld). The
+text is never in the batch: it is in the private cache, named by `textSha`. `batch draft` also writes
 `<dir>/<book>-draft-report.json`: the batches, the entries cut, each reason a record was left out with its count, and the `why`
 withheld (counts only). It refuses, writing nothing, a book whose package has no dump files, or that has monster records to cut
 and no actor in its dumps. The numbering continues after the highest `<book>-draft-<NNN>` among the batch files and the
@@ -559,19 +565,21 @@ tell whether another creature shares the feature's embedded item id). For each r
   (shape, `assert` present and valid, identifiers, sources), the drafter limits (`checkDraftKeys`: a key outside
   `DRAFT_KEYS`, a `create` fix, a fix path or type outside the allowlist, the word budget), the engine's `validateEntry` with
   the real fact list and the assertions against the engine's enumerations, the ids gate (Rulings R4, R5) and the quotation
-  check of every string of the rule. Up to four of the problems are named. The `unique` and `fixes` gates are not run here:
-  `gates` runs them (an identifier equal to a DAS · Core identifier is accepted by the ingest and fails `unique` until a
-  person sets `inCore`).
+  check of every string of the rule. Up to four of the problems are named. The `fixes` gate is not run here: `gates` runs it.
 - **Queued** in `registry/drafts-queue.json` (`{ key, reason, by, why, confidence, draft? }`, merged by key, sorted): outcome
-  `person`, `code` or `engine` (the reason is the outcome); a rule that passed every check above with a confidence below 0.7
-  (`low-confidence`, the rule kept as `draft`). The verdict is not changed. A queued record is not cut by `batch draft` again,
-  and a later result for it is rejected: a person settles it.
+  `person`, `code` or `engine` (the reason is the outcome); a rule that passed every check above but that the `unique` gate
+  would fail whatever is drafted ("identifier is DAS · Core's: a person decides inCore", "identifier shared with another
+  record": the same test as `batch draft`'s, on the record as it would be written, aliases included; the rule kept as
+  `draft`); a rule that passed every check with a confidence below 0.7 (`low-confidence`, the rule kept as `draft`). The
+  verdict is not changed. A queued record is not cut by `batch draft` again, and a later result for it is rejected: a person
+  settles it.
 - **Applied** otherwise: `rule` is written as the drafter wrote it plus what the tools derive: `alsoAs` from `aliasFor`
   (Ruling R2: the identifier of a matched item that differs from the record's), `origin` (Ruling R17: the last part of the
   owner and, for a feature, the level), and for a monster feature its identifier `monsterIdentifier` (`<book>-<creature>-
   <feature>`) with its embedded item id bound in `sources`; `evidence.drafted = { by, at, core, rule }` (`rule` the rule's
-  fingerprint). Nothing else of the evidence changes. The state is `drafted`; `npm run gates` (local, with dumps and text)
-  takes it to `gated` or prints why not. A rule with `noReactions` is accepted: the review sends it to a person (Ruling R15).
+  fingerprint), plus `person: true, because: "noReactions"` when the entry uses `noReactions` (Ruling R15: the review sends
+  every record with that stamp to `review-queue.json`, whatever the reviewer says). Nothing else of the evidence changes. The
+  state is `drafted`; `npm run gates` (local, with dumps and text) takes it to `gated` or prints why not.
 
 It prints `{ applied, queued, rejected }` and exits with 1 when anything was rejected. The touched books and the queue are
 written in one step (every file is checked first, then written under a temporary name and renamed over the old one,

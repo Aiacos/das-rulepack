@@ -23,7 +23,7 @@ import {
 } from "./triage.mjs";
 import {
   cutBatches, cutDraftBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason, draftVocabulary,
-  highestBatches
+  highestBatches, identifierClashReasons
 } from "./batch.mjs";
 import { DRAFT_KEYS } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
@@ -452,12 +452,14 @@ async function batchCommand([stage, book, ...rest]) {
       throw new UsageError(`${found.book}: no actor in its package's dumps (RULEPACK_DUMPS): monsters cannot be checked`);
     }
     embedded = embeddedIndex(actors);
+    // The records the unique gate would fail whatever is drafted (a DAS · Core identifier, one shared with another record).
+    const clashes = identifierClashReasons(every, core.identifiers);
     const textOf = (r) => (r.text && hasText(textDir, r.text.sha256) ? readText(textDir, r.text.sha256) : null);
     batches = cutDraftBatches(found.records, {
-      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report
+      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes
     });
     for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
-      const why = draftSkipReason(r, { queued, embedded });
+      const why = draftSkipReason(r, { queued, embedded, clashes });
       if (why) left[why] = (left[why] ?? 0) + 1;
     }
     for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);

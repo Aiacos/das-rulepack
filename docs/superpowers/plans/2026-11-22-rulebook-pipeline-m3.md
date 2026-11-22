@@ -305,6 +305,10 @@ two books or runs sharing one `--structure` folder can overwrite each other (as 
 
 ### Task 6: Independent review — `batch review`, `ingest --review`
 
+- (Added with Task 5's fixes.) Every record whose `evidence.drafted` carries `person: true` (`because: "noReactions"`, Ruling
+  R15; stamped by `ingest --draft`, required by the schema, covered by `emits`) goes to `review-queue.json` whatever the
+  review says, agreement included: `ingest --review` never writes `evidence.reviewed.agrees: true` for it.
+
 **Files:** create `tools/pipeline/review.mjs`; modify `batch.mjs`, `cli.mjs`, `docs/PIPELINE.md` (stage 5, reviewer brief); test
 `tests/pipeline/review.test.mjs`.
 

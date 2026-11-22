@@ -2,10 +2,11 @@
 // gates' own functions before it is written, or a reason for a person in registry/drafts-queue.json. Nothing here reads
 // rulebook text except to check that a drafter did not quote it; nothing here writes `evidence` other than `drafted`.
 import { ruleFingerprint } from "./registry.mjs";
-import { BY, ORIGIN_MAX, isReaderHandle } from "./schema.mjs";
+import { BY, ORIGIN_MAX, draftedForPerson, isReaderHandle } from "./schema.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { checkDraftKeys } from "./draft-keys.mjs";
 import { checkIds, checkText, gateSchema, gateValidator } from "./gates.mjs";
+import { identifierClashReasons } from "./batch.mjs";
 import { SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, sharedEmbeddedId } from "./settle.mjs";
 import {
@@ -84,7 +85,12 @@ function draftedRecord(record, draft, { core, embedded, by, at }) {
   const label = ruleOriginLabel(record);
   if (label !== undefined) rule.origin = label;
   next.rule = rule;
-  next.evidence = { ...next.evidence, drafted: { by, at, core: core.version, rule: ruleFingerprint(rule) } };
+  // Ruling R15: a rule the assertion vocabulary cannot fully say (noReactions) goes to a person at review: stamped here.
+  const forPerson = draftedForPerson(rule.entry);
+  next.evidence = {
+    ...next.evidence,
+    drafted: { by, at, core: core.version, rule: ruleFingerprint(rule), ...(forPerson ? { person: true, because: forPerson } : {}) }
+  };
   return { record: next };
 }
 
@@ -113,10 +119,12 @@ function ruleProblems(candidate, { core, textDir }) {
  *   an outcome other than `rule`, or none on `rule`; a rule that is not `handledIn: "table"`, names an origin aliasFor cannot
  *   reach, or fails the schema (assert included), the drafter limits (checkDraftKeys), the engine's validateEntry, the ids gate
  *   (R4, R5, a shared embedded id) or the quotation check of its prose and entry strings;
- * - queued (`queued`, entries of drafts-queue.json) when the outcome is `person`, `code` or `engine` (reason: the outcome), or
- *   a rule that passed every check has a confidence below 0.7 (`low-confidence`, the rule kept as `draft`);
+ * - queued (`queued`, entries of drafts-queue.json) when the outcome is `person`, `code` or `engine` (reason: the outcome); a
+ *   rule that passed every check but that the unique gate would fail whatever is drafted (batch.mjs CORE_IDENTIFIER,
+ *   SHARED_IDENTIFIER); or one with a confidence below 0.7 (`low-confidence`); a queued rule is kept as `draft`;
  * - applied otherwise: `rule` written with `alsoAs` and `origin` derived, a monster feature's creature-scoped identifier and
- *   its source bound, `evidence.drafted = { by, at, core, rule }`. The state is `drafted` until `gates` passes.
+ *   its source bound, `evidence.drafted = { by, at, core, rule }` (plus `person: true, because: "noReactions"` for an entry
+ *   with noReactions, Ruling R15). The state is `drafted` until `gates` passes.
  * `queue` is drafts-queue.json; `embedded` a Map of book code to settle.mjs embeddedIndex of its package's actors, required
  * when a result is for a monster feature. The inputs are not changed.
  */
@@ -170,6 +178,13 @@ export function ingestDrafts(records, results, { textDir, by, at = new Date().to
       const shown = problems.slice(0, SHOWN_PROBLEMS).map((p) => p.slice(0, SHOWN_PROBLEM_CHARS));
       const more = problems.length > SHOWN_PROBLEMS ? ` (and ${problems.length - SHOWN_PROBLEMS} more)` : "";
       reject(result, `${shown.join("; ")}${more}`);
+      continue;
+    }
+    // The unique gate would fail it whatever a drafter writes (a DAS · Core identifier, one shared with another record that
+    // has a rule or the verdict entry): a person decides (batch.mjs identifierClashReasons, the gate's own functions).
+    const clash = identifierClashReasons(out.map((r) => (r === record ? drafted.record : r)), core.identifiers).get(result.key);
+    if (clash) {
+      queued.push(entry(clash, { draft: structuredClone(result.rule) }));
       continue;
     }
     if (result.confidence < QUEUE_THRESHOLD) {

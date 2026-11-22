@@ -355,12 +355,16 @@ const norm = (id) => (typeof id === "string" ? id.trim().toLowerCase() : "");
 const registeredBy = (record) =>
   [...new Set([norm(record.identifier), ...(record.rule?.alsoAs ?? []).map((a) => norm(a?.identifier))].filter(Boolean))];
 
-// The groups of ruled records that share one identifier, aliases included. Only a record that has a rule registers an
+// Who registers an identifier with the engine: a record that has a rule. `batch draft` and `ingest --draft` also count the
+// records that will (verdict entry), through `registers` (identifierClashes).
+const hasRule = (record) => isObject(record) && Boolean(record.rule);
+
+// The groups of registering records that share one identifier, aliases included. Only a record that has a rule registers an
 // identifier with the engine, and two rules must never register one: binding `sources` does not make two entries one.
-function duplicateGroups(records) {
+function duplicateGroups(records, registers = hasRule) {
   const byIdentifier = new Map();
   for (const record of records) {
-    if (!isObject(record) || !record.rule) continue;
+    if (!isObject(record) || !registers(record)) continue;
     for (const id of registeredBy(record)) byIdentifier.set(id, [...(byIdentifier.get(id) ?? []), record]);
   }
   return [...byIdentifier].filter(([, group]) => group.length > 1);
@@ -372,17 +376,31 @@ const coreMessage = (record, id) => `unique: ${record.key}: ${id} is a DAS · Co
 
 // A registered table is merged over the engine's entries identifier by identifier: a rule under one of the engine's
 // identifiers patches the engine's entry, allowed only for its own identifier with `rule.inCore: true` (set by a person).
-function coreCollisions(records, identifiers) {
+function coreCollisions(records, identifiers, registers = hasRule) {
   const out = [];
   if (!identifiers?.size) return out;
   for (const record of records) {
-    if (!isObject(record) || !record.rule) continue;
+    if (!isObject(record) || !registers(record)) continue;
     // `inCore` is a person's decision about the record's own identifier; an alias never patches an entry of the engine.
     const own = norm(record.identifier);
     for (const id of registeredBy(record)) {
-      if (identifiers.has(id) && !(id === own && record.rule.inCore === true)) out.push([record, coreMessage(record, id)]);
+      if (identifiers.has(id) && !(id === own && record.rule?.inCore === true)) out.push([record, coreMessage(record, id), id]);
     }
   }
+  return out;
+}
+
+/**
+ * What the `unique` gate holds against each record, by key: `{ core: [ids], shared: [ids] }` (an identifier or alias that is
+ * a DAS · Core one without `rule.inCore`; one another registering record registers too). `registers(record)` says which
+ * records register (default: those with a rule, as the gate); `batch draft` and `ingest --draft` add the `entry` records
+ * that will, under the identifier they will have, so that a record no drafter can ever take to `gated` goes to a person.
+ */
+export function identifierClashes(records, { coreIdentifiers, registers = hasRule } = {}) {
+  const out = new Map();
+  const at = (key) => out.get(key) ?? out.set(key, { core: [], shared: [] }).get(key);
+  for (const [id, group] of duplicateGroups(records, registers)) for (const { key } of group) at(key).shared.push(id);
+  for (const [record, , id] of coreCollisions(records, coreIdentifiers, registers)) at(record.key).core.push(id);
   return out;
 }
 

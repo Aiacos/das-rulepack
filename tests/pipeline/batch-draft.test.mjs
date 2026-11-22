@@ -3,7 +3,9 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, 
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { cutDraftBatches, draftSkipReason, draftVocabulary } from "../../tools/pipeline/batch.mjs";
+import {
+  CORE_IDENTIFIER, SHARED_IDENTIFIER, cutDraftBatches, draftSkipReason, draftVocabulary, identifierClashReasons
+} from "../../tools/pipeline/batch.mjs";
 import { embeddedIndex } from "../../tools/pipeline/settle.mjs";
 import { DRAFT_KEYS, checkDraftKeys } from "../../tools/pipeline/draft-keys.mjs";
 import { typeProblem } from "../../tools/pipeline/fix-types.mjs";
@@ -303,4 +305,27 @@ describe("pipeline CLI: batch draft", () => {
     expect(existsSync(out)).toBe(false);
   });
   void writeFileSync;
+});
+
+describe("records the unique gate would fail whatever is drafted", () => {
+  it("leaves out a DAS · Core identifier and one shared with another entry or ruled record, by their own reasons", () => {
+    const ruled = rec(9, { identifier: "s9", rule: { handledIn: "table", adds: "x", entry: { halfOnMiss: true },
+      origins: ["official"], assert: [{ given: {}, expect: { damage: { fraction: 1 } } }] } });
+    const records = [rec(1), rec(2, { identifier: "in-core" }), rec(3, { identifier: "s9" }), rec(4, { identifier: "s1" }),
+      rec(5, { identifier: "s5" }), rec(6, { identifier: "s5", verdict: "none" }), ruled];
+    const clashes = identifierClashReasons(records, new Set(["in-core"]));
+    expect(records.map((r) => draftSkipReason(r, { clashes }))).toEqual([
+      SHARED_IDENTIFIER, CORE_IDENTIFIER, SHARED_IDENTIFIER, SHARED_IDENTIFIER, null, null, "already ruled"
+    ]);
+    const cut = cutDraftBatches(records, { core, clashes, textOf: () => "other words" });
+    expect(cut.flatMap((b) => b.entries.map((e) => e.key))).toEqual(["tst:spell:s05"]);
+  });
+
+  it("reads an unruled monster feature under its creature-scoped identifier", () => {
+    const m = (n, owner) => rec(n, { key: `tst:monster:${n}/action/bite`, kind: "monster", name: "Bite", owner,
+      section: "action", identifier: "bite" });
+    const clashes = identifierClashReasons([m(1, "Glimmer Drake"), m(2, "Frost Drake")], new Set(["bite"]));
+    expect(clashes.size).toBe(0);
+    expect(identifierClashReasons([m(1, "Glimmer Drake"), m(2, "Glimmer Drake")], new Set()).size).toBe(2);
+  });
 });
