@@ -61,6 +61,13 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       inventorying their books, then they can leave `registry/legacy.json`. `saveTashCausBrew` (Tasha's Caustic Brew) is
       to be checked against the imported item.
 - [ ] Run the CI workflow on GitHub once (it was only simulated locally, on Node 20, against DAS · Core v0.289.0).
+- [x] Trigger conditions (Ruling R30): a drafter's trigger may carry `if` over 14 closed facts (`conditions.mjs`
+      `DRAFT_FACTS`), said in `given` by nine new fields; review, the engine's readings and scenarios read them.
+- [ ] Redraft the pool R30 makes statable: 29 XMM monster features whose reread named `target-size` (11), `target-state`
+      (5) or `trigger-filter` (14) among `unexpressed` (no other book has any); reread or draft them again.
+- [ ] Scenarios: a size-limited assertion stages only a target that satisfies the limit; the other side (a target too
+      large) and the other condition fields (`targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`,
+      `onOwnTurn`, `damageType`, `activity`) have no interpreter, and `targetType` is still checked on its positive side only.
 
 ## Shadow Blade
 
