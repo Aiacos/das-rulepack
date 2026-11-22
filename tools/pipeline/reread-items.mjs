@@ -107,7 +107,11 @@ export function parseEngineView(value) {
     for (const f of ["identifier", "pack"]) {
       if (Object.hasOwn(e, f) && typeof e[f] !== "string") throw new Error(`${at}: ${f} must be a string`);
     }
-    out.set(key, { level: e.level, rules: [...new Set(rules)].sort() });
+    // The engine's own entry for the item, when the sweep kept it: shown to the reader as data, so that a rule's name is
+    // not credited with more than the rule does.
+    if (Object.hasOwn(e, "entry") && !isObject(e.entry)) throw new Error(`${at}: entry must be an object`);
+    out.set(key, { level: e.level, rules: [...new Set(rules)].sort(),
+      ...(isObject(e.entry) ? { entry: JSON.parse(JSON.stringify(e.entry)) } : {}) });
   }
   return (key) => (out.has(key) ? out.get(key) : undefined);
 }
@@ -119,8 +123,8 @@ export function parseEngineView(value) {
  */
 export const viewFingerprint = (view, core) => ({
   core: core?.version,
-  sha: createHash("sha256").update(canonical({ level: view?.level ?? null, rules: [...(view?.rules ?? [])].sort() }))
-    .digest("hex")
+  sha: createHash("sha256").update(canonical({ level: view?.level ?? null, rules: [...(view?.rules ?? [])].sort(),
+    ...(isObject(view?.entry) ? { entry: view.entry } : {}) })).digest("hex")
 });
 
 const versionParts = (v) => String(v ?? "").split("-")[0].split(".").map((n) => Number(n));
@@ -159,11 +163,13 @@ const officialOf = (r) => (Array.isArray(r?.items) ? r.items : [])
 // What a reader needs besides the text, as a triage entry gives it (batch.mjs): never the hint, nor anything of a verdict.
 const READER_FIELDS = ["owner", "level", "section", "rarity", "page", "srd"];
 const summary = ({ data, ...item }) => item;
-const entryOf = (r, { level, rules }, fp) => entryWith(r, { level, rules: [...new Set(rules)].sort() }, fp);
+const entryOf = (r, { level, rules, entry }, fp) => entryWith(r, { level, rules: [...new Set(rules)].sort(),
+  ...(isObject(entry) ? { entry } : {}) }, fp);
 const entryWith = (r, view, fp) => ({
   key: r.key, name: r.name, kind: r.kind, edition: r.edition, textSha: r.text.sha256,
   ...Object.fromEntries(READER_FIELDS.filter((f) => r[f] !== undefined && r[f] !== null).map((f) => [f, r[f]])),
-  items: r.items.map(summary), engineView: { level: view.level, rules: [...view.rules] },
+  items: r.items.map(summary),
+  engineView: { level: view.level, rules: [...view.rules], ...(isObject(view.entry) ? { entry: view.entry } : {}) },
   engineWords: { level: LEVEL_MEANINGS[view.level], rules: Object.fromEntries(view.rules.map((k) => [k, ruleKeyMeaning(k)])) },
   view: { core: fp.core, sha: fp.sha }
 });
