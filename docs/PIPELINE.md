@@ -850,8 +850,8 @@ backup.
 
 For every record of the book in state `reviewed` or `played`, `tools/pipeline/scenarios.mjs` `scenarioOf` writes
 `play/<book>/<slug of the key>.json` and, unless it is manual, `play/<book>/<slug>.mjs`, two lines that hand the JSON to
-`play/lib/steps.mjs` `scenario`. A scenario is `{ scenario, key, rule, origin, client: "gm", manual, manualBecause, setup,
-steps }`:
+`play/lib/steps.mjs` `scenario`. A scenario is `{ scenario, key, rule, origin, client: "gm", manual, manualBecause, checks,
+setup, steps }`:
 
 - `scenario` is `<book>/<slug(key)>`, the name the runner prints; `rule` the rule fingerprint the file was made for.
 - `setup`: the scene (`Arène des sorts`), its caster token (`Lanceur`) and the token the target is placed near (`Cible`); the
@@ -859,15 +859,22 @@ steps }`:
   the item pack holding the docId, the book's own package first; the `kind`); the target, an SRD 2024 creature of the
   creature type the assertions name (`scenarios.mjs` `TARGETS`, ids the Monster Manual 2025 and dnd5e's `actors24` share),
   a Bandit Captain when they name none.
-- `steps`: per assertion of `rule.assert` plus those its entry implies (`impliedAsserts`), deduplicated: `{ use: <activity
-  id> }` (the first id of the entry that is an activity of the item, else its only activity), `{ force: <roll> }` when it
-  has a roll, `{ advance: <moment> }` when it has a moment, `{ check: <canonical assertion> }`.
-- `manual: true` when a step has no interpreter, with the paths that have none in `manualBecause` (`given.free`,
-  `force.crit`, `advance`, `expect.condition.ended`, `setup.item`…). The interpreter covers what the runner can do without
-  guessing: the outcomes `hit`, `miss`, `failedSave`, `savedSave`; a fraction of the rolled damage (no damage type); a
-  condition applied; one creature type; the setup item's own origin. The runner cannot force a d20: a step `{ force }` uses
-  the activity again (up to 12 times) until that outcome comes, and fails its check if it never does. A manual scenario's
-  JSON is a checklist for a person.
+- `steps`: the assertions are `rule.assert` plus those its entry implies (`impliedAsserts`), deduplicated. Every id of the
+  entry that is an activity of the item is played (the rule fingerprint `played` is bound to covers all of them; with none,
+  the item's only activity): per activity, per assertion checked on it, `{ use: <activity id> }`, `{ force: <roll> }` when it
+  has a roll, `{ advance: <moment> }` when it has a moment, `{ check: <canonical assertion> }`. An assertion the entry ties
+  to some activities (`saveDamage`, `noDamage` name theirs) is checked on those; any other, on each activity.
+- `checks`: how many checks the run makes when every assertion holds (one per damage fraction, one per condition applied);
+  `played` refuses a run whose stamp counts another number.
+- `manual: true` when a step has no interpreter, with the paths that have none in `manualBecause` (`given.free`, `force.crit`,
+  `advance`, `expect.condition.ended`, `setup.item`…). The interpreter covers what the runner can do without guessing: the
+  outcomes `hit`, `miss`, `failedSave`, `savedSave`; a fraction of the rolled damage (no damage type); a condition applied; one
+  creature type; the setup item's own origin. No check passes on nothing: a missing resolution for the target fails it; a
+  fraction above 0 needs a damage roll and a positive `damage.applied`; a fraction of 0 needs a damage roll or an explicit
+  `damage.applied` in the resolution; a condition must be absent before the use and present after; no target creature fails the
+  scenario; a use the engine refuses stops it at once ("the use of activity … was refused"). The runner cannot force a d20: a
+  step `{ force }` uses the activity again (up to 12 times) until that outcome comes, and fails its check if it never does. A
+  manual scenario's JSON is a checklist for a person.
 
 Generated files hold ids, engine words, numbers, the record key and fingerprints: never `adds`, a `free` text (its canonical
 form is `*`), the record's name or any text of the book. `--check` compares the files with what would be written (exit 1 on a
@@ -875,11 +882,16 @@ stale, missing or orphan file); files of `play/<book>/` that no reviewed record 
 the run order (Ruling R11): a rule's **family** is its sorted top-level entry keys, `triggers` with its declarations'
 `on > step types` (`saveDamage+triggers(failedSave>status)`); the first rule (by key) of each family comes first, then the
 others, all of them scheduled. Two records whose keys make one scenario id stop the command. `--check` and `--plan` are
-exclusive.
+exclusive. `--plan` prints `{ scenarios, manual, manualShare, order }`.
+
+`scenarios` (`--check` included) needs `RULEPACK_DUMPS`, the premium dumps, to find the compendium of an item: CI has none,
+so CI cannot check that `play/` is current. Run `npm run scenarios -- <BOOK> --check` locally before committing play data.
 
 ### Playing one scenario on the server (main session)
 
-On the machine that runs the MCP connector for the test world, with the world open in the GM's client (connector setting
+On the machine that runs the MCP connector for the test world (Node 20.10 or later: the generated modules import their JSON
+with `with { type: "json" }`, and `play/lib/steps.mjs` imports `tools/pipeline/registry.mjs`, so this repository must be
+checked out there), with the world open in the GM's client (connector setting
 "Outils de test" on, the engine reloaded after any change), after a world backup:
 
 ```sh
@@ -890,7 +902,9 @@ MCP_URL=<the connector's URL, default http://localhost:31416/mcp> \
 
 A folder (`<this repository>/play/<book>`) plays every scenario of the book, in file order; `--plan` says which to run first.
 The runner plays it in the scene named `Arène des sorts` (absent: "non applicable", nothing recorded), places the target, lends
-the item to `Lanceur` (a spell as at will), uses the activity, checks, puts everything back, and prints a verdict. Then:
+the item to `Lanceur` (a spell as at will), uses each activity, checks, puts everything back (the target's hit points and
+conditions, the caster's spell slots, the spent uses of an item it already held, only the concentration effects the run
+added), and prints a verdict. Then:
 
 ```sh
 npm run played -- <private log> --world <world name>   # --client player for a player's client
@@ -906,17 +920,19 @@ and commit the registry. The log stays private (it is not rulebook text, but it 
 das-rulepack: <book>/<slug> core=<engine version> rule=<64-hex rule fingerprint> checks=<checks played>
 ```
 
-`core` is the engine's version as the GM's client reports it (`testApi.status`). `npm run played -- <runner-log> --world
-<name> [--client gm|player]` (`tools/pipeline/played.mjs`) cuts the log into the runner's blocks (`▶ <name>` … its verdict) and,
-for each block named like a scenario id (the engine's own scenarios in the same log are ignored), writes
-`evidence.played = { at, core, world, scenario, client, rule }` only when every block of that scenario in the log passed
-(`✓ scénario tenu (<n> vérifications)`, no `✗` line) with `n` equal to the stamp's `checks` and at least 1; its stamp is that
-whole line, nothing before or after it on the line, one per block, naming the block's scenario; its `rule` is the record's
-rule fingerprint today and the one `play/<book>/<slug>.json` was made for; the record is `reviewed` (or `played`: played
-again) and its scenario is not manual. Anything else writes nothing for that scenario and is listed in `skipped` with its
-reason (a stamp for an older rule, another record's rule or scenario, a failed or interrupted scenario, 0 checks, a
-malformed stamp, no scenario file); the command prints `{ played, skipped }`, exits 1 when something was skipped, and writes
-the touched books in one step. `--world` is a handle (letters, digits, `. _ -`); a log and `--manual` are exclusive.
+`core` is the engine's version as the GM's client reports it (`testApi.status`). `npm run played -- <runner-log> --world <name>
+[--client gm|player]` (`tools/pipeline/played.mjs`) cuts the log into the runner's blocks (`▶ <name>` … its verdict) and, for
+each block named like a scenario id (terminal colour codes are stripped from every line first; a log with stamp lines but no
+block it can read exits 2, "no runner block recognised (colour codes on the header lines?)"; the engine's own scenarios in the
+same log are ignored), writes `evidence.played = { at, core, world, scenario, client, rule }` only when every block of that
+scenario in the log passed (`✓ scénario tenu (<n> vérifications)`, no `✗` line) with `n` equal to the stamp's `checks`, at least
+1, and equal to the `checks` its scenario file declares (a run that played fewer is refused); its stamp is that whole line,
+nothing before or after it on the line, one per block, naming the block's scenario; its `rule` is the record's rule fingerprint
+today and the one `play/<book>/<slug>.json` was made for; the record is `reviewed` (or `played`: played again) and its scenario
+is not manual. Anything else writes nothing for that scenario and is listed in `skipped` with its reason (a stamp for an older
+rule, another record's rule or scenario, a failed or interrupted scenario, 0 checks, a malformed stamp, no scenario file); the
+command prints `{ played, skipped }`, exits 1 when something was skipped, and writes the touched books in one step. `--world` is
+a handle (letters, digits, `. _ -`); a log and `--manual` are exclusive.
 
 **What stops a forged log, and what does not.** `played` reads only a runner log: no results file, no ingest and no agent
 stage can write `evidence.played` (a results file that carries `evidence` is refused, as for every ingest). The log is

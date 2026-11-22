@@ -914,7 +914,12 @@ function scenariosCommand(args) {
   const own = packages.filter((p) => p.book && p.book.toUpperCase() === book).map((p) => p.id);
   const itemFiles = dumpsFor(dumpsDir, "official").filter((f) => !isActorFile(f));
   const packOf = packIndex(itemFiles.map((f) => [f, readDump(join(dumpsDir, f))]), own);
-  if (modes[0] === "--plan") return console.log(JSON.stringify(planOf(records, { packOf }), null, 2));
+  if (modes[0] === "--plan") {
+    const order = planOf(records, { packOf });
+    const manual = order.filter((p) => p.manual).length;
+    const manualShare = `${order.length ? Math.round((100 * manual) / order.length) : 0}%`;
+    return console.log(JSON.stringify({ scenarios: order.length, manual, manualShare, order }, null, 2));
+  }
 
   const playable = records.filter((r) => SCENARIO_STATES.includes(stateOf(r)));
   const ids = groupBy(playable, scenarioIdOf);
@@ -982,6 +987,9 @@ function playedCommand(args) {
   const [log] = positional;
   if (!existsSync(log) || !statSync(log).isFile()) throw new UsageError(`No runner log at ${clip(log)}`);
   const text = readFileSync(log, "utf8");
+  if (!parseRunnerLog(text).length && text.includes("das-rulepack:")) {
+    throw new UsageError(`${clip(log)}: no runner block recognised (colour codes on the header lines?): nothing recorded`);
+  }
   const scenarios = new Map(parseRunnerLog(text).filter((b) => isScenarioId(b.name)).map((b) => [b.name, scenarioFile(b.name)])
     .filter(([, json]) => json !== null));
   const out = playedFrom(all, text, { scenarios, world: flags.world, client, at });

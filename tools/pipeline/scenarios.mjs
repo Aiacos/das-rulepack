@@ -72,11 +72,34 @@ function uninterpreted(a, origin) {
 }
 
 /**
+ * The checks play/lib/steps.mjs makes for one assertion when it is met (one `ctx.expect` per observed fact: a damage fraction,
+ * a condition applied). The scenario declares their sum as `checks`; `played` refuses a run whose stamp counts another number.
+ */
+export const expectsOf = (a) =>
+  (Object.hasOwn(a.expect, "damage") ? 1 : 0) + (Object.hasOwn(a.expect.condition ?? {}, "applied") ? 1 : 0);
+
+// canonical assertion → the activities the entry ties it to (saveDamage and noDamage name their activities); an assertion the
+// entry does not tie to an activity is absent (it is checked on every activity played).
+function attributed(entry, activities) {
+  const out = new Map();
+  if (!isObject(entry)) return out;
+  for (const id of activities) {
+    const own = {};
+    if (isObject(entry.saveDamage) && Object.hasOwn(entry.saveDamage, id)) own.saveDamage = { [id]: entry.saveDamage[id] };
+    if (Array.isArray(entry.noDamage) && entry.noDamage.includes(id)) own.noDamage = [id];
+    for (const c of impliedAsserts(own)) out.set(c, new Set([...(out.get(c) ?? []), id]));
+  }
+  return out;
+}
+
+/**
  * The scenario of a reviewed record: `{ scenario, key, rule, origin, client: "gm", manual, manualBecause, setup, steps }`.
  * `setup.item` is the official item (else the first origin the rule names) by docId, with its compendium uuid when `packOf`
  * (docId → "<package>.<pack>", from the dumps) knows it; `setup.target` an SRD 2024 creature of the type the assertions name.
- * `steps`, per assertion: `{ use: <activity id> }`, `{ force: <roll> }` when it has one, `{ advance: <moment> }` when it has
- * one, `{ check: <canonical assertion> }`. `manual` when a step has no interpreter; `manualBecause` names which (paths only).
+ * `steps`, per activity the entry names (each one the rule's fingerprint covers) and per assertion checked on it: `{ use:
+ * <activity id> }`, `{ force: <roll> }` when it has one, `{ advance: <moment> }` when it has one, `{ check: <canonical
+ * assertion> }`; `checks` the number of checks the run makes when every assertion holds. `manual` when a step has no
+ * interpreter; `manualBecause` names which (paths only).
  */
 export function scenarioOf(record, { packOf } = {}) {
   const rule = record.rule ?? {};
@@ -88,22 +111,31 @@ export function scenarioOf(record, { packOf } = {}) {
   const setupItem = { origin, docId: item?.docId ?? null, uuid: pack ? `Compendium.${pack}.Item.${item.docId}` : null,
     kind: record.kind };
   if (!setupItem.uuid) because.add("setup.item");
-  // The activity used: the first id of the entry that is an activity of the item, else the item's only activity.
+  // The activities played: every id of the entry that is an activity of the item (the rule's fingerprint covers all of them),
+  // else the item's only activity.
   const activities = Array.isArray(item?.activities) ? item.activities : [];
-  const activity = idsOf(rule.entry).find((id) => activities.includes(id)) ?? (activities.length === 1 ? activities[0] : null);
-  if (!activity) because.add("use");
+  const named = [...new Set(idsOf(rule.entry).filter((id) => activities.includes(id)))];
+  const played = named.length ? named : activities.length === 1 ? [activities[0]] : [];
+  if (!played.length) because.add("use");
   const checks = checksOf(rule);
   if (!checks.length) because.add("check");
+  const tied = attributed(rule.entry, played);
   const types = new Set();
   const steps = [];
-  for (const c of checks) {
-    const a = assertionOfCanonical(c) ?? { given: {}, expect: { unreadable: true } };
-    if (Object.hasOwn(a.given, "targetType")) types.add(a.given.targetType);
-    for (const why of uninterpreted(a, origin)) because.add(why);
-    steps.push({ use: activity });
-    if (Object.hasOwn(a.given, "roll")) steps.push({ force: a.given.roll });
-    if (Object.hasOwn(a.given, "moment")) { steps.push({ advance: a.given.moment }); because.add("advance"); }
-    steps.push({ check: c });
+  let expected = 0;
+  for (const activity of played) {
+    for (const c of checks) {
+      // An assertion the entry ties to some activities is checked on those; one it ties to none, on each.
+      if (tied.has(c) && !tied.get(c).has(activity)) continue;
+      const a = assertionOfCanonical(c) ?? { given: {}, expect: { unreadable: true } };
+      if (Object.hasOwn(a.given, "targetType")) types.add(a.given.targetType);
+      for (const why of uninterpreted(a, origin)) because.add(why);
+      steps.push({ use: activity });
+      if (Object.hasOwn(a.given, "roll")) steps.push({ force: a.given.roll });
+      if (Object.hasOwn(a.given, "moment")) { steps.push({ advance: a.given.moment }); because.add("advance"); }
+      steps.push({ check: c });
+      expected += expectsOf(a);
+    }
   }
   // One target per scenario: assertions about two creature types are two plays, which a person runs.
   if (types.size > 1) because.add("given.targetType");
@@ -111,7 +143,7 @@ export function scenarioOf(record, { packOf } = {}) {
   const manualBecause = [...because].sort();
   return {
     scenario: scenarioIdOf(record), key: record.key, rule: ruleFingerprint(record.rule), origin, client: "gm",
-    manual: manualBecause.length > 0, manualBecause,
+    manual: manualBecause.length > 0, manualBecause, checks: expected,
     setup: { scene: ARENA.scene, caster: ARENA.caster, near: ARENA.near, item: setupItem,
       target: { actor: TARGETS[type] ?? TARGETS[DEFAULT_TARGET], type } },
     steps

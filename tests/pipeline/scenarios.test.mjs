@@ -68,7 +68,25 @@ describe("scenarioOf: a rule's assertions as play data", () => {
     // The rule's assertion and the one its entry implies are the same: one check, after the use and the forced roll.
     expect(normaliseAssert([HALF])).toEqual(impliedAsserts(r.rule.entry));
     expect(s.steps).toEqual([{ use: A_OFF }, { force: "savedSave" }, { check: normaliseAssert([HALF])[0] }]);
+    expect(s.checks).toBe(1);
     expect(scenarioIdOf(r)).toBe(s.scenario);
+  });
+
+  it("every activity the entry names is played; an assertion tied to one activity is checked there, the others on each", () => {
+    const A2 = "Ag11Bg22Cg33Dg44";
+    const official = { ...item("official"), activities: [A_OFF, A2] };
+    const zero = { given: {}, expect: { damage: { fraction: 0 } } };
+    const proneAny = { given: {}, expect: { condition: { applied: "prone" } } };
+    const r = reviewed({ items: [official], rule: rule({ entry: { saveDamage: { [A_OFF]: "half" }, noDamage: [A2] },
+      origins: ["official"], assert: [HALF, zero, proneAny] }) });
+    const s = scenarioOf(r, { packOf });
+    const [half, none, prone] = [HALF, zero, proneAny].map((a) => normaliseAssert([a])[0]);
+    expect(s.steps).toEqual([
+      { use: A_OFF }, { check: prone }, { use: A_OFF }, { force: "savedSave" }, { check: half },
+      { use: A2 }, { check: prone }, { use: A2 }, { check: none }
+    ]);
+    expect(s.checks).toBe(4);
+    expect(s.manual).toBe(false);
   });
 
   it("the target is an SRD 2024 actor of the creature type the assertions name", () => {
@@ -108,8 +126,8 @@ describe("scenarioOf: a rule's assertions as play data", () => {
       for (const w of words(text)) if (!allowed.has(w)) expect(prose.has(w), w).toBe(false);
     }
     const json = JSON.parse(files[0][1]);
-    expect(Object.keys(json).sort()).toEqual(["client", "key", "manual", "manualBecause", "origin", "rule", "scenario", "setup",
-      "steps"]);
+    expect(Object.keys(json).sort()).toEqual(["checks", "client", "key", "manual", "manualBecause", "origin", "rule", "scenario",
+      "setup", "steps"]);
     expect(files[1][1].split("\n").filter(Boolean)).toHaveLength(2);
   });
 });
@@ -140,32 +158,56 @@ describe("families (Ruling R11)", () => {
 });
 
 describe("play/lib/steps.mjs scenario(json): what the engine's runner plays", () => {
-  // A stand-in for the runner's context (DAS_CORE tools/scenario.mjs makeContext): only what steps.mjs calls.
-  const fakeContext = ({ saves = [true], applied = 5, rolled = 10 } = {}) => {
+  // A stand-in for the runner's context (DAS_CORE tools/scenario.mjs makeContext): only what steps.mjs calls. `resolution`
+  // gives the target's part of each resolution (try n), `messages` the damage messages, `statusAfter` the effects after a use.
+  const fakeContext = (over = {}) => {
+    const {
+      saves = [true], applied = 5, rolled = 10, resolution, messages, used = true, statusAfter = [], statusBefore = [],
+      target = true,
+      casterItems = [], casterEffects = [[], []]
+    } = over;
     const log = [];
+    const calls = [];
+    const restores = [];
     let checks = 0;
     let n = 0;
+    let effectReads = 0;
+    let afterUse = false;
     const ctx = {
       log: (...a) => log.push(["log", a.join(" ")]),
-      expect: (ok, label) => { checks += 1; log.push([ok ? "pass" : "fail", label]); return ok; },
+      expect: (ok, label) => { checks += 1; log.push([ok ? "pass" : "fail", label]); return !!ok; },
       get checks() { return checks; },
-      restore: () => {},
+      restore: (fn) => restores.push(fn),
       token: async (name) => ({ id: "TkCaster00000000", name, actorId: "AcCaster00000000" }),
-      cast: async (roles) => Object.fromEntries(Object.keys(roles).map((k) => [k, { id: "TkTarget00000000", name: k }])),
+      cast: async (roles) =>
+        Object.fromEntries(Object.keys(roles).map((k) => [k, target ? { id: "TkTarget00000000", name: k } : null])),
       ensureItem: async () => "ItItem0000000000",
-      use: async () => ({ used: true, usageMessageId: `Ms${n}` }),
+      use: async () => { afterUse = true; return { used, usageMessageId: `Ms${n}` }; },
       settle: async () => {
         const success = saves[Math.min(n, saves.length - 1)];
         n += 1;
+        if (resolution) return resolution(n);
         return { step: "done", targets: [{ id: "TkTarget00000000", save: { success, total: 12 }, damage: { applied } }] };
       },
-      messagesSince: async () => [{ type: "damage", rolls: [{ total: rolled }] }],
-      hp: async () => 30, setHp: async () => {}, effects: async () => [], removeStatusEffects: async () => {},
-      removeEffectsNamed: async () => {},
+      messagesSince: async () => messages ?? [{ type: "damage", rolls: [{ total: rolled }] }],
+      hp: async () => 30, setHp: async () => { afterUse = false; }, removeStatusEffects: async () => {},
+      effects: async (token) => {
+        if (token.id === "TkCaster00000000") return casterEffects[Math.min(effectReads++, casterEffects.length - 1)];
+        return afterUse ? statusAfter : statusBefore;
+      },
+      scene: async () => ({ sceneId: "ScArena000000000" }),
+      call: async (tool, args) => {
+        calls.push([tool, args]);
+        if (tool === "get-scene-object") return { data: { actorId: "AcCaster00000000", actorLink: true } };
+        if (tool === "get-actor") return { items: casterItems, system: { spells: { spell1: { value: 2 } } } };
+        return {};
+      },
       engine: async (fn) => (fn === "status" ? { version: "9.9.9" } : null)
     };
-    return { ctx, log };
+    return { ctx, log, calls, undo: async () => { for (const fn of restores.reverse()) await fn(); } };
   };
+  const fails = (log) => log.filter(([k]) => k === "fail").length;
+  const passes = (log) => log.filter(([k]) => k === "pass").length;
 
   it("plays each check after forcing its roll, and logs the stamp line last", async () => {
     const s = scenarioOf(reviewed(), { packOf });
@@ -173,18 +215,88 @@ describe("play/lib/steps.mjs scenario(json): what the engine's runner plays", ()
     expect(played.name).toBe(s.scenario);
     const { ctx, log } = fakeContext({ saves: [false, false, true] });
     await played.run(ctx);
-    expect(log.filter(([k]) => k === "pass")).toHaveLength(1);
-    expect(log.at(-1)).toEqual(["log", `das-rulepack: ${s.scenario} core=9.9.9 rule=${s.rule} checks=1`]);
+    expect(passes(log)).toBe(s.checks);
+    expect(log.at(-1)).toEqual(["log", `das-rulepack: ${s.scenario} core=9.9.9 rule=${s.rule} checks=${s.checks}`]);
   });
 
   it("a wrong damage fraction fails its check, and a roll never seen fails too", async () => {
     const s = scenarioOf(reviewed(), { packOf });
     const wrong = fakeContext({ applied: 10, rolled: 10 });
     await scenario(s).run(wrong.ctx);
-    expect(wrong.log.filter(([k]) => k === "fail")).toHaveLength(1);
+    expect(fails(wrong.log)).toBe(1);
     const never = fakeContext({ saves: [false] });
     await scenario(s).run(never.ctx);
-    expect(never.log.filter(([k]) => k === "fail")).toHaveLength(1);
+    expect(fails(never.log)).toBe(1);
+  });
+
+  describe("no check passes when what it observes did not happen", () => {
+    const zero = { given: {}, expect: { damage: { fraction: 0 } } };
+    const full = { given: {}, expect: { damage: { fraction: 1 } } };
+    const prone = { given: {}, expect: { condition: { applied: "prone" } } };
+    const run = async (assert, over) => {
+      const s = scenarioOf(reviewed({ rule: rule({ entry: { actionOrBonus: true }, origins: ["official"],
+        uncovered: [{ origin: "ddb-importer", because: "no activity" }], assert }) }), { packOf });
+      expect(s.manual).toBe(false);
+      const f = fakeContext(over);
+      await scenario(s).run(f.ctx);
+      return f.log;
+    };
+    // An entry that implies no assertion: the one under test is the only check (check 1), played on the item's only activity.
+    const only = (log, what) => log.filter(([k, l]) => k !== "log" && l.includes(what));
+
+    it("a damage fraction above 0 with no damage message and no applied damage fails", async () => {
+      const log = await run([full], { messages: [], resolution: () => ({ targets: [{ id: "TkTarget00000000" }] }) });
+      expect(only(log, "damage fraction 1").map(([k]) => k)).toEqual(["fail"]);
+    });
+
+    it("a damage fraction of 0 where nothing was rolled and no damage field exists fails", async () => {
+      const log = await run([zero], { messages: [], resolution: () => ({ targets: [{ id: "TkTarget00000000" }] }) });
+      expect(only(log, "damage fraction 0").map(([k]) => k)).toEqual(["fail"]);
+    });
+
+    it("a damage fraction of 0 passes on an explicit 0 applied", async () => {
+      const log = await run([zero], { messages: [],
+        resolution: () => ({ targets: [{ id: "TkTarget00000000", hit: true, damage: { applied: 0 } }] }) });
+      expect(only(log, "damage fraction 0").map(([k]) => k)).toEqual(["pass"]);
+    });
+
+    it("no resolution target at all fails the check", async () => {
+      const log = await run([full], { resolution: () => ({ targets: [] }) });
+      expect(only(log, "check 1").map(([k]) => k)).toContain("fail");
+    });
+
+    it("a condition already there before the use, or never there, fails", async () => {
+      expect(only(await run([prone], { statusAfter: [] }), "prone").map(([k]) => k)).toEqual(["fail"]);
+      const there = [{ statuses: ["prone"] }];
+      expect(only(await run([prone], { statusBefore: there, statusAfter: there }), "prone").map(([k]) => k)).toEqual(["fail"]);
+      expect(only(await run([prone], { statusAfter: there }), "prone").map(([k]) => k)).toEqual(["pass"]);
+    });
+
+    it("no target creature fails the scenario", async () => {
+      const log = await run([full], { target: false });
+      expect(fails(log)).toBeGreaterThan(0);
+    });
+
+    it("a refused use fails at once with a clear message", async () => {
+      const s = scenarioOf(reviewed(), { packOf });
+      const f = fakeContext({ used: false });
+      await expect(scenario(s).run(f.ctx)).rejects.toThrow(/use of activity Af11Bf22Cf33Df44 was refused/);
+    });
+  });
+
+  it("puts back only what the run added: new concentration effects, and the spent uses of an item the caster held", async () => {
+    const s = scenarioOf(reviewed(), { packOf });
+    const held = [{ _id: "ItItem0000000000", system: { uses: { spent: 1 }, activities: { [A_OFF]: { uses: { spent: 2 } } } } }];
+    const f = fakeContext({ casterItems: held,
+      casterEffects: [[{ _id: "EfOld00000000000", name: "Concentrating" }],
+        [{ _id: "EfOld00000000000", name: "Concentrating" }, { _id: "EfNew00000000000", name: "Concentrating" }]] });
+    await scenario(s).run(f.ctx);
+    await f.undo();
+    const removed = f.calls.filter(([t]) => t === "remove-embedded-effect").map(([, a]) => a.effectId);
+    expect(removed).toEqual(["EfNew00000000000"]);
+    const upsert = f.calls.find(([t, a]) => t === "upsert-actor-item" && a.match?.value === "ItItem0000000000");
+    expect(upsert[1].itemData).toEqual({ "system.uses.spent": 1, [`system.activities.${A_OFF}.uses.spent`]: 2 });
+    expect(f.calls.some(([t, a]) => t === "update-actor" && a.actorData?.["system.spells"])).toBe(true);
   });
 
   it("refuses a manual scenario: it is a checklist for a person", () => {
@@ -226,7 +338,8 @@ describe("npm run scenarios", () => {
     const out = cli(["TST", "--plan"]);
     expect(out.status, out.stderr).toBe(0);
     const plan = JSON.parse(out.stdout);
-    expect(plan.map((p) => p.first)).toEqual([true, false]);
+    expect(plan.order.map((p) => p.first)).toEqual([true, false]);
+    expect(plan).toMatchObject({ scenarios: 2, manual: 0, manualShare: "0%" });
     expect(existsSync(playDir)).toBe(false);
   });
 

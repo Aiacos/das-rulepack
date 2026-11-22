@@ -23,6 +23,9 @@ const PASSED = /^✓ scénario tenu \((\d+) vérifications?\)$/;
 const EMPTY = /^✓ scénario tenu — rien vérifié/;
 const FAILED = /^✗ (\d+) vérification\(s\) en défaut$/;
 const CHECK_FAILED = /^✗ /;
+// Terminal colour and cursor codes (CSI and OSC sequences): stripped from every line before it is read.
+const ANSI = /\u001b\[[0-9;?]*[ -/]*[@-~]|\u001b\][^\u0007\u001b]*(?:\u0007|\u001b\\)/g;
+export const stripAnsi = (line) => line.replace(ANSI, "");
 
 /**
  * The runner's log cut into scenario blocks: `[{ name, stamps: [{ scenario, core, rule, checks }], malformed: [line],
@@ -33,7 +36,7 @@ export function parseRunnerLog(text) {
   const blocks = [];
   let block = null;
   for (const raw of String(text).split(/\r?\n/)) {
-    const line = raw.trim();
+    const line = stripAnsi(raw).trim();
     const start = START.exec(line);
     if (start) {
       block = { name: start[1], stamps: [], malformed: [], failedChecks: 0, verdict: null };
@@ -60,6 +63,8 @@ export function parseRunnerLog(text) {
 // Why one block does not record a play, or null; `stamp` is its stamp when it has a well-formed one.
 function blockProblem(block) {
   if (block.malformed.length) return `malformed stamp line ${echo(block.malformed[0])}: nothing may follow checks=<n>`;
+  // A failed or interrupted scenario says so first (an interrupted one never reaches its stamp line).
+  if (block.verdict && (!block.verdict.passed || block.failedChecks)) return "failed: a check of the runner was not met";
   if (!block.stamps.length) return "no stamp line in its block (the scenario was interrupted or is not a generated one)";
   if (block.stamps.length > 1) return "more than one stamp line in its block";
   const [stamp] = block.stamps;
@@ -110,6 +115,10 @@ export function playedFrom(records, logText, { scenarios, world, client = "gm", 
       continue;
     }
     if (file.rule !== current) { skip("its scenario file was generated for another rule: run npm run scenarios"); continue; }
+    if (!Number.isInteger(file.checks) || stamp.checks !== file.checks) {
+      skip(`it ran ${stamp.checks} of the ${file.checks} checks its scenario declares`);
+      continue;
+    }
     written.set(record.key, { at, core: stamp.core, world, scenario: id, client, rule: current });
   }
   const next = records.map((r) => (written.has(r.key) ? { ...r, evidence: { ...r.evidence, played: written.get(r.key) } } : r));

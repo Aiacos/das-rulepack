@@ -43,8 +43,8 @@ const reviewed = (name = "Frost Glimmer", { assert = [HALF] } = {}) => {
   r.evidence.reviewed = { by: "reviewer-1", at: AT, agrees: true, rule: fp, confidence: 0.9 };
   return r;
 };
-const stamp = (id, rule, checks = 2, core = "9.9.9") => `    das-rulepack: ${id} core=${core} rule=${rule} checks=${checks}`;
-const block = (id, { lines = [], verdict = "  ✓ scénario tenu (2 vérifications)" } = {}) =>
+const stamp = (id, rule, checks = 1, core = "9.9.9") => `    das-rulepack: ${id} core=${core} rule=${rule} checks=${checks}`;
+const block = (id, { lines = [], verdict = "  ✓ scénario tenu (1 vérification)" } = {}) =>
   [`\n▶ ${id}`, "    ✓ check 1: damage fraction 0.5 (applied 5 of 10)", "    ✓ check 1: savedSave", ...lines,
     "    ✓ aucune erreur dans la console du MJ", verdict].join("\n");
 const logOf = (...blocks) => ["Préconditions : client du MJ fr, 0 joueur(s) connecté(s)", ...blocks, "\n1/1 scénario(s) tenus"]
@@ -64,8 +64,8 @@ describe("the stamp line (Ruling R10)", () => {
     expect(STAMP.exec(`das-rulepack: tst/x core=1.2.3 rule=${sha} checks=4 and it went well`)).toBeNull();
     const parsed = parseRunnerLog(logOf(block("tst/x", { lines: [stamp("tst/x", sha)] })));
     expect(parsed).toHaveLength(1);
-    expect(parsed[0]).toMatchObject({ name: "tst/x", verdict: { passed: true, checks: 2 },
-      stamps: [{ scenario: "tst/x", core: "9.9.9", rule: sha, checks: 2 }] });
+    expect(parsed[0]).toMatchObject({ name: "tst/x", verdict: { passed: true, checks: 1 },
+      stamps: [{ scenario: "tst/x", core: "9.9.9", rule: sha, checks: 1 }] });
   });
 });
 
@@ -154,6 +154,32 @@ describe("playedFrom: evidence.played from the runner's log", () => {
       .skipped[0].reason).toMatch(/no record/);
   });
 
+  it("a run that played fewer checks than its scenario declares is refused", () => {
+    const r = reviewed();
+    const id = "tst/tst-spell-frost-glimmer";
+    const declared = new Map([[id, { ...scenarioOf(r, { packOf }), checks: 3 }]]);
+    const out = run([r], logOf(block(id, { lines: [stamp(id, ruleFingerprint(r.rule))] })), { scenarios: declared });
+    expect(out.played).toEqual([]);
+    expect(out.skipped[0].reason).toMatch(/ran 1 of the 3 checks/);
+  });
+
+  it("an interrupted scenario is reported as failed, not as a missing stamp", () => {
+    const r = reviewed();
+    const id = "tst/tst-spell-frost-glimmer";
+    const cut = [`\n▶ ${id}`, "    ✗ interrompu : check 1: the use of activity Af11Bf22Cf33Df44 was refused",
+      "  ✗ 1 vérification(s) en défaut"].join("\n");
+    expect(run([r], logOf(cut)).skipped[0].reason).toMatch(/failed/);
+  });
+
+  it("colour codes around the runner's lines are stripped before reading", () => {
+    const r = reviewed();
+    const id = "tst/tst-spell-frost-glimmer";
+    const colour = (t) => t.split("\n").map((l) => (l.trim() ? `\u001b[1m${l}\u001b[0m` : l)).join("\n");
+    const out = run([r], colour(logOf(block(id, { lines: [stamp(id, ruleFingerprint(r.rule), 1)] ,
+      verdict: "  ✓ scénario tenu (1 vérification)" }))));
+    expect(out.played).toEqual([r.key]);
+  });
+
   it("a scenario file generated for another rule than today's is not the one played", () => {
     const r = reviewed();
     const id = "tst/tst-spell-frost-glimmer";
@@ -224,6 +250,14 @@ describe("npm run played", () => {
     expect(saved.evidence.played).toMatchObject({ world: "dnd-6", client: "gm", core: "9.9.9", scenario: id });
     expect(JSON.parse(readFileSync(join(registry, "tst.json"), "utf8")).records.find((r) => r.key === records[0].key).state)
       .toBe("played");
+  });
+
+  it("a log with stamp lines but no runner block it can read exits non-zero and says why", () => {
+    const log = join(tmp, "flat.log");
+    writeFileSync(log, `${stamp(id, ruleFingerprint(records[0].rule))}\n`);
+    const out = cli([log, "--world", "dnd-6"]);
+    expect(out.status).not.toBe(0);
+    expect(out.stderr).toMatch(/no runner block recognised \(colour codes on the header lines\?\)/);
   });
 
   it("needs --world, a world handle, and a client of gm or player; a log and --manual are exclusive", () => {
