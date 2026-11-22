@@ -3,7 +3,8 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  VERDICTS, STATES, ORIGINS, MATCHES, KINDS, SECOND_REVIEW_RESULTS, isReaderHandle, validateRecord
+  VERDICTS, STATES, ORIGINS, MATCHES, KINDS, SECOND_REVIEW_RESULTS, AGAINST_AGREES, AGAINST_RESULTS, isReaderHandle,
+  validateRecord
 } from "./schema.mjs";
 import { assertProblems, assertionOfCanonical, isCanonicalAssertion } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
@@ -75,7 +76,8 @@ const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", 
  * makes the evidence stale too), and of `evidence.reviewed.because` and `evidence.played.because` (the lines of a person's
  * review-accept and hand play, written after the gates: the text gate must read them before the evidence stands again,
  * under --ci too), and of `evidence.reviewed.tolerated` (Ruling R24: what a review agreement tolerated; a hand edit that
- * removes it makes the gate evidence stale, and the gates run again after an agreement that tolerated anything). Absent,
+ * removes it makes the gate evidence stale, and the gates run again after an agreement that tolerated anything), and of
+ * `evidence.reviewed.second.tolerated` (Ruling R41: what the second review's comparison tolerated, the same). Absent,
  * they leave the hash as it was (`canonical` drops undefined fields). The rest of `evidence.played`
  * (written from the runner's log) is held by the schema to ids, a version, a world handle and fingerprints: no prose can
  * sit there, so it does not touch this fingerprint and a play from the log keeps the gates standing.
@@ -83,7 +85,8 @@ const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", 
 export const emittedFingerprint = (record) => ruleFingerprint({
   ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person,
   forPerson: forPersonOf(record?.evidence?.drafted), reviewedBecause: record?.evidence?.reviewed?.because,
-  reviewedTolerated: record?.evidence?.reviewed?.tolerated, playedBecause: record?.evidence?.played?.because
+  reviewedTolerated: record?.evidence?.reviewed?.tolerated, playedBecause: record?.evidence?.played?.because,
+  reviewedSecondTolerated: record?.evidence?.reviewed?.second?.tolerated
 });
 // The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs draftedForPersonReasons), or undefined when it has none.
 const forPersonOf = (d) =>
@@ -255,7 +258,7 @@ export function writeFilesAtomically(files, { write = writeFileSync, rename = re
   });
 }
 
-const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review", "reoffered", "second"];
+const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review", "reoffered", "second", "redraftedAgainst"];
 // The shape of a record key (keyOf): `<book>:<kind>:<scoped name>`, lower case.
 export const RECORD_KEY = /^[a-z][a-z0-9]{1,9}:[a-z]+:[a-z0-9][a-z0-9/#-]*$/;
 
@@ -311,6 +314,36 @@ function reviewEntryProblems(entry, vocabulary) {
     }
   });
   if (Object.hasOwn(entry, "second")) errors.push(...secondMarkProblems(entry.second, vocabulary));
+  if (Object.hasOwn(entry, "redraftedAgainst")) {
+    if (!Object.hasOwn(entry, "second")) errors.push("redraftedAgainst: only beside a second mark (Ruling R41)");
+    errors.push(...againstMarkProblems(entry.redraftedAgainst));
+  }
+  return errors;
+}
+
+// Ruling R41: the mark a redraft against two reviews leaves on a review-queue entry it did not take out of the queue:
+// `{ by, at, result }` always (`result` one of AGAINST_RESULTS); with `result: "compared"` also `agreesFirst` and
+// `agreesSecond` (each true, false or "unsure"; never both true: such a rule was confirmed). No prose.
+function againstMarkProblems(mark) {
+  if (!isPlainObject(mark)) return ["redraftedAgainst: must be { by, at, result, agreesFirst?, agreesSecond? }"];
+  const errors = [];
+  const compared = mark.result === "compared";
+  const allowed = ["by", "at", "result", ...(compared ? ["agreesFirst", "agreesSecond"] : [])];
+  for (const f of Object.keys(mark)) {
+    if (!allowed.includes(f)) errors.push(`redraftedAgainst.${f}: unknown field (or not with this result)`);
+  }
+  if (!isReaderHandle(mark.by)) errors.push("redraftedAgainst.by: must be a reader handle (not \"rule\")");
+  if (typeof mark.at !== "string" || !mark.at) errors.push("redraftedAgainst.at: must be a non-empty string");
+  if (!AGAINST_RESULTS.includes(mark.result)) {
+    errors.push(`redraftedAgainst.result: must be one of ${AGAINST_RESULTS.join(", ")}`);
+  }
+  if (!compared) return errors;
+  for (const f of ["agreesFirst", "agreesSecond"]) {
+    if (!AGAINST_AGREES.includes(mark[f])) errors.push(`redraftedAgainst.${f}: must be true, false or "unsure"`);
+  }
+  if (mark.agreesFirst === true && mark.agreesSecond === true) {
+    errors.push("redraftedAgainst: a rule both reviews agree with is confirmed, not kept in the queue");
+  }
   return errors;
 }
 
@@ -378,6 +411,10 @@ export function validateQueueEntry(entry, { queue, vocabulary } = {}) {
   }
   // Ruling R40: the mark of a second review that did not settle the entry, in review-queue.json only.
   if (Object.hasOwn(entry, "second") && queue !== "review") errors.push("second: a mark of review-queue.json entries only");
+  // Ruling R41: the mark of a redraft against two reviews that did not settle the entry, in review-queue.json only.
+  if (Object.hasOwn(entry, "redraftedAgainst") && queue !== "review") {
+    errors.push("redraftedAgainst: a mark of review-queue.json entries only");
+  }
   if (queue === "review" && !errors.length) errors.push(...reviewEntryProblems(entry, vocabulary));
   return errors;
 }

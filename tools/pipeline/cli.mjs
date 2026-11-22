@@ -32,6 +32,7 @@ import {
 import { draftKeysFor } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
 import { ingestReviews, queueHolds, secondReviewSkipReason } from "./review.mjs";
+import { againstReviewsSkipReason } from "./against.mjs";
 import { REREAD_BATCH_SIZE, cutRereadBatches, ingestRereads, readingFingerprint, rereadReport } from "./reread.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { AGENT_HANDLE } from "./schema.mjs";
@@ -621,7 +622,7 @@ function queueEntries(dir) {
 async function batchCommand([stage, book, ...rest]) {
   const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>] "
     + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
-    + " [--redraft | --reoffer]"
+    + " [--redraft [--against-reviews] | --reoffer]"
     + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT: monster features are checked against the actors of the book's package)"
     + "\n       batch review <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>] [--second]"
     + " (needs DAS_CORE and RULEPACK_DUMPS)\n       " + REREAD_USAGE;
@@ -636,6 +637,9 @@ async function batchCommand([stage, book, ...rest]) {
   const redraft = rest.includes("--redraft");
   // Ruling R39: `--reoffer` cuts, once, the drafts-queue entries a drafter declined whose record is still an unruled entry.
   const reoffer = rest.includes("--reoffer");
+  // Ruling R41: `--redraft --against-reviews` cuts, once, the review-queue entries two blind reviews read alike against the
+  // draft (against.mjs).
+  const against = rest.includes("--against-reviews");
   if ((draft || review) && (withoutItems || second)) throw new UsageError(usage);
   // Ruling R40: `--second` cuts, once, the review-queue entries a blind second review may settle (review.mjs).
   const secondReview = rest.includes("--second");
@@ -643,7 +647,11 @@ async function batchCommand([stage, book, ...rest]) {
   if (redraft && !draft) throw new UsageError(`--redraft goes with batch draft only\n${usage}`);
   if (reoffer && !draft) throw new UsageError(`--reoffer goes with batch draft only\n${usage}`);
   if (reoffer && redraft) throw new UsageError(`--reoffer and --redraft cannot be used together\n${usage}`);
-  rest = rest.filter((a) => !["--without-items", "--queued", "--redraft", "--reoffer", "--second"].includes(a));
+  if (against && !(draft && redraft)) {
+    throw new UsageError(`--against-reviews goes with batch draft --redraft only\n${usage}`);
+  }
+  rest = rest.filter((a) => !["--without-items", "--queued", "--redraft", "--reoffer", "--second", "--against-reviews"]
+    .includes(a));
   for (let i = 0; i < rest.length; i += 2) {
     if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
@@ -700,16 +708,19 @@ async function batchCommand([stage, book, ...rest]) {
     // A monster feature the engine reads something of goes to a reread first, unless one found it goes beyond the reading.
     const readingOf = monsters ? memoByKey(readingFor(officialMonsterDocuments(dumpsDir, found.book), core)) : undefined;
     // Ruling R32: a redraft decides on each rule's comparison with the engine's reading computed now (as the gates do).
-    const reviewQueued = redraft ? new Set(loadQueue(REGISTRY, "review").map((q) => q.key)) : new Set();
-    const currentReadingOf = redraft ? currentReadingFor(found.records, dumpsDir, core) : undefined;
+    const reviewQueue = redraft ? loadQueue(REGISTRY, "review") : [];
+    const reviewQueued = new Set(reviewQueue.map((q) => q.key));
+    // Ruling R41: a redraft against two reviews decides on the review queue and the record alone (no engine reading).
+    const currentReadingOf = redraft && !against ? currentReadingFor(found.records, dumpsDir, core) : undefined;
     batches = cutDraftBatches(found.records, {
       size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes, readingOf, redraft,
-      reviewQueued, currentReadingOf, reoffer, drafts, owners: ownerHandles()
+      reviewQueued, currentReadingOf, reoffer, drafts, owners: ownerHandles(), againstReviews: against, reviewQueue
     });
     const skip = { queued, embedded, clashes, readingOf, actorItem: core.actorItemSources === true };
+    const queueEntry = new Map(reviewQueue.map((q) => [q.key, q]));
     for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
-      const why = redraft
-        ? (redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf }) ? null : NOT_REDRAFTABLE)
+      const why = against ? againstReviewsSkipReason(queueEntry.get(r.key), r, { owners: ownerHandles() })
+        : redraft ? (redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf }) ? null : NOT_REDRAFTABLE)
         : reoffer ? reofferSkipReason(r, { ...skip, drafts, owners: ownerHandles() }) : draftSkipReason(r, skip);
       if (why) left[why] = (left[why] ?? 0) + 1;
     }
@@ -775,7 +786,7 @@ async function batchCommand([stage, book, ...rest]) {
   });
   if (draft) {
     write(join(opts.out, "draft-vocabulary.json"), draftVocabulary(core));
-    const mark = redraft ? "-redraft" : reoffer ? "-reoffer" : "";
+    const mark = against ? "-against-reviews" : redraft ? "-redraft" : reoffer ? "-reoffer" : "";
     write(join(opts.out, `${found.book.toLowerCase()}-draft${mark}-report.json`),
       draftReport(found.book, batches, left, report.whyWithheld ?? 0));
   }
@@ -1051,7 +1062,7 @@ async function ingestRereadCommand(args) {
 async function ingestCommand(args) {
   if (args.includes("--reread")) return ingestRereadCommand(args);
   const usage = "Usage: ingest <results-file> [--overwrite | --second | --third"
-    + " | --draft [--redraft | --reoffer] --batch <batch file>"
+    + " | --draft [--redraft [--against-reviews] | --reoffer] --batch <batch file>"
     + " | --review [--second] --batch <batch file> | --reread [--second | --restate] --batch <batch file>]"
     + " | ingest --settle-unsure [--min <n>]"
     + " (--draft and --review need RULEPACK_DUMPS: the official item's structure backs a condition and gives the item's"
@@ -1069,13 +1080,19 @@ async function ingestCommand(args) {
   const reoffer = args.includes("--reoffer");
   if (reoffer && mode !== "--draft") throw new UsageError(`--reoffer goes with --draft only\n${usage}`);
   if (reoffer && redraft) throw new UsageError(`--reoffer and --redraft cannot be used together\n${usage}`);
+  // Ruling R41: `--against-reviews` takes the results of a batch cut with `batch draft --redraft --against-reviews`, only.
+  const against = args.includes("--against-reviews");
+  if (against && !(mode === "--draft" && redraft)) {
+    throw new UsageError(`--against-reviews goes with --draft --redraft only\n${usage}`);
+  }
   const rest = [];
   let min = null;
   let batchFile = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === "--min") { min = args[(i += 1)] ?? ""; continue; }
     if (args[i] === "--batch") { batchFile = args[(i += 1)] ?? ""; continue; }
-    if (!modes.includes(args[i]) && !["--redraft", "--reoffer", ...(reviewSecond ? ["--second"] : [])].includes(args[i])) {
+    const flags = ["--redraft", "--reoffer", "--against-reviews", ...(reviewSecond ? ["--second"] : [])];
+    if (!modes.includes(args[i]) && !flags.includes(args[i])) {
       rest.push(args[i]);
     }
   }
@@ -1106,8 +1123,8 @@ async function ingestCommand(args) {
     // Fix round 1 (Ruling R24): a stated condition is checked against the official item's structure, read from the dumps.
     const dumpsDir = need("RULEPACK_DUMPS");
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
-    const offered = offeredKeys(input.batch, batchFile, { redraft, reoffer });
-    return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered, redraft, reoffer });
+    const offered = offeredKeys(input.batch, batchFile, { redraft, reoffer, against });
+    return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered, redraft, reoffer, against });
   }
   if (mode === "--review") {
     // Ruling R24: the baseline is decided from the official item's structure, read from the dumps as `batch review` does.
@@ -1135,7 +1152,7 @@ async function ingestCommand(args) {
 // one step. A monster feature needs the actors of its book's package (RULEPACK_DUMPS) to tell a shared embedded id.
 // The keys a draft batch file offers: its id must be the results file's `batch`, of the form `<book>-draft-<NNN>`, its stage
 // `draft`, and every entry a key of that book.
-function offeredKeys(id, file, { redraft = false, reoffer = false } = {}) {
+function offeredKeys(id, file, { redraft = false, reoffer = false, against = false } = {}) {
   const m = /^([a-z][a-z0-9]{1,9})-draft-(\d{3,})$/.exec(String(id));
   if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a draft batch id (<book>-draft-<NNN>)`);
   const batch = readJson(file, "batch file");
@@ -1145,6 +1162,10 @@ function offeredKeys(id, file, { redraft = false, reoffer = false } = {}) {
   if ((batch.redraft === true) !== redraft) {
     throw new UsageError(`${file}: ${redraft ? "not a redraft batch" : "a redraft batch"} (a batch cut with --redraft is`
       + " ingested with --draft --redraft, and only it)");
+  }
+  if ((batch.againstReviews === true) !== against) {
+    throw new UsageError(`${file}: ${against ? "not an against-reviews batch" : "an against-reviews batch"} (a batch cut with`
+      + " --redraft --against-reviews is ingested with --draft --redraft --against-reviews, and only it)");
   }
   if ((batch.reoffer === true) !== reoffer) {
     throw new UsageError(`${file}: ${reoffer ? "not a reoffer batch" : "a reoffer batch"} (a batch cut with --reoffer is`
@@ -1157,7 +1178,7 @@ function offeredKeys(id, file, { redraft = false, reoffer = false } = {}) {
   return new Set(keys);
 }
 
-function ingestDraftCommand(input, { textDir, core, offered, redraft = false, reoffer = false }) {
+function ingestDraftCommand(input, { textDir, core, offered, redraft = false, reoffer = false, against = false }) {
   checkQueues(REGISTRY);
   const books = loadRegistry(REGISTRY);
   const all = books.flatMap((b) => b.records);
@@ -1177,13 +1198,17 @@ function ingestDraftCommand(input, { textDir, core, offered, redraft = false, re
     }
   }
   // Ruling R32: a redraft decides on the comparison with the engine's reading computed now, as the cut did.
-  const redrafting = redraft ? { redraft, reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)),
+  const redrafting = redraft && !against ? { redraft, reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)),
     readingOf: currentReadingFor(all.filter((r) => keys.has(r.key)), dumpsDir, core) } : {};
+  // Ruling R41: decided on review-queue.json as it is; the new rule is compared with both reviews it stores.
+  const againstReviews = against
+    ? { redraft: true, againstReviews: true, reviewQueue: loadQueue(REGISTRY, "review"), owners: ownerHandles() } : {};
   const out = ingestDrafts(all, input.results, {
     textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded, offered,
-    structures: officialStructures(all, [...keys], dumpsDir), ...redrafting,
+    structures: officialStructures(all, [...keys], dumpsDir), ...redrafting, ...againstReviews,
     ...(reoffer ? { reoffer, owners: ownerHandles() } : {})
   });
+  if (against) return againstReviewsDone(books, out);
   // A redraft that goes to a person changes its record (the old rule is removed) and queues it.
   const changed = [...out.applied, ...out.unruled];
   // Ruling R39: an applied reoffer leaves the queue; every other offered entry is written back as it was, marked.
@@ -1192,6 +1217,24 @@ function ingestDraftCommand(input, { textDir, core, offered, redraft = false, re
   const counts = reoffer ? { declined: out.declined.length, marked: out.marked.length } : { queued: out.queued.length };
   console.log(JSON.stringify({ applied: out.applied.length, ...counts,
     ...(redraft ? { unruled: out.unruled.length } : {}), rejected: out.rejected }, null, 2));
+  if (out.rejected.length) process.exitCode = 1;
+}
+
+// Ruling R41: a redraft against two reviews saved in one step: every new rule written; a confirmed one's entry leaves
+// review-queue.json, a kept one's is written brought up to date, and every other offered entry as it was, marked.
+function againstReviewsDone(books, out) {
+  const entries = [...out.kept, ...out.marked];
+  if (!commitIngest(books, out.records, out.applied, entries, out.confirmed, { queue: "review" })) return;
+  const tolerated = out.records.filter((r) => out.confirmed.includes(r.key)
+    && (r.evidence.reviewed.tolerated || r.evidence.reviewed.second.tolerated)).length;
+  console.log(JSON.stringify({ applied: out.applied.length, confirmed: out.confirmed.length,
+    confirmedExact: out.confirmed.length - tolerated, confirmedTolerated: tolerated, partial: out.partial,
+    kept: out.kept.length, declined: out.declined.length, marked: out.marked.length, regate: out.confirmed,
+    rejected: out.rejected }, null, 2));
+  if (out.applied.length) {
+    console.error(`${out.applied.length} rule(s) replaced: run npm run gates (they stay drafted until the gates pass on the`
+      + " new rule)");
+  }
   if (out.rejected.length) process.exitCode = 1;
 }
 

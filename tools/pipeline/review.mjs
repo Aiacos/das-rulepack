@@ -207,6 +207,21 @@ export { SECOND_REVIEW_RESULTS, SECOND_REVIEW_VIA };
 export const NOT_SECOND_REVIEWABLE = "not in review-queue.json";
 
 /**
+ * True when a queued rule is an owner's (Rulings R40, R41): no `evidence.drafted`, an owner of `owners` (docs/owners.json)
+ * drafted it (case aside), the draft is stamped for a person, the record carries a person's signature (`evidence.person`),
+ * or the entry's draft names one (`draft.person`).
+ */
+export function ownerSigned(entry, record, owners) {
+  const drafted = record?.evidence?.drafted;
+  const isOwner = (h) => typeof h === "string" && owners.some((o) => o.toLowerCase() === h.toLowerCase());
+  return !isObject(drafted) || isOwner(drafted.by) || drafted.person === true || record.evidence?.person !== undefined
+    || entry?.draft?.person !== undefined;
+}
+/** True when a review-queue entry's draft or review is not about the record's rule as it is (Rulings R40, R41). */
+export const entryStale = (entry, record) => !isObject(record?.rule) || !queueHolds(entry, record)
+  || entry.draft?.rule !== ruleFingerprint(record.rule);
+
+/**
  * Why a review-queue `entry` is not open to a second review of `record` (Ruling R40), or null when it is: `not in
  * review-queue.json` (no entry or no record), `other reason` (a reason outside SECOND_REVIEW_REASONS: a draft's stamp,
  * free text, unexpressed), `second review done` (the entry carries a `second` mark), `owner` (a rule an owner wrote or
@@ -219,15 +234,8 @@ export function secondReviewSkipReason(entry, record, { owners } = {}) {
   if (!isObject(entry) || !isObject(record) || entry.key !== record.key) return NOT_SECOND_REVIEWABLE;
   if (!SECOND_REVIEW_REASONS.includes(entry.reason)) return "other reason";
   if (Object.hasOwn(entry, "second")) return "second review done";
-  const drafted = record.evidence?.drafted;
-  const isOwner = (h) => typeof h === "string" && owners.some((o) => o.toLowerCase() === h.toLowerCase());
-  if (!isObject(drafted) || isOwner(drafted.by) || drafted.person === true || record.evidence?.person !== undefined
-    || entry.draft?.person !== undefined) {
-    return "owner";
-  }
-  if (!isObject(record.rule) || !queueHolds(entry, record) || entry.draft?.rule !== ruleFingerprint(record.rule)) {
-    return "stale";
-  }
+  if (ownerSigned(entry, record, owners)) return "owner";
+  if (entryStale(entry, record)) return "stale";
   if (record.legacy === true) return "legacy";
   const state = stateOf(record);
   if (state !== "gated") return `not gated (${state})`;
@@ -359,6 +367,14 @@ function takeResult(result, ctx) {
   return confirm(record, comparison, { by, at, confidence: result.confidence });
 }
 
+/**
+ * What an agreement tolerated (Rulings R24, R25), as `evidence.reviewed.tolerated` stores it: `{ baseline, detail, left? }`,
+ * canonical strings and pairs of them; null when the comparison tolerated nothing.
+ */
+export const toleratedOf = (comparison) => (comparison.baseline.length || comparison.detail.length || comparison.left.length
+  ? { baseline: [...comparison.baseline], detail: comparison.detail.map((p) => [p.draft, p.review]),
+    ...(comparison.left.length ? { left: comparison.left.map((p) => [p.leaves, p.review]) } : {}) } : null);
+
 // An agreement: `evidence.reviewed` written on a copy of the record (`extra`: what a second review adds, Ruling R40).
 function confirm(record, comparison, { by, at, confidence, extra = {} }) {
   const next = structuredClone(record);
@@ -367,9 +383,7 @@ function confirm(record, comparison, { by, at, confidence, extra = {} }) {
   // again before the record stands as reviewed (registry.mjs emittedFingerprint).
   // Ruling R25: an agreement that matched review assertions with the rule's leaves is "reviewed, partial": the [leaves,
   // review] pairs are kept under `left`, with the same protection.
-  const tolerated = comparison.baseline.length || comparison.detail.length || comparison.left.length
-    ? { baseline: [...comparison.baseline], detail: comparison.detail.map((p) => [p.draft, p.review]),
-      ...(comparison.left.length ? { left: comparison.left.map((p) => [p.leaves, p.review]) } : {}) } : null;
+  const tolerated = toleratedOf(comparison);
   next.evidence = { ...next.evidence, reviewed: { by, at, agrees: true, rule: ruleFingerprint(record.rule), confidence,
     ...(tolerated ? { tolerated } : {}), ...extra } };
   return { apply: { record, next, tolerated: tolerated !== null, partial: isPartial(record.rule) } };

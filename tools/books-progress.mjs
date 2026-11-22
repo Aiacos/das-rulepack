@@ -277,6 +277,22 @@ export function secondReviews(dir = resolve(ROOT, "registry")) {
 }
 
 /**
+ * Ruling R41: the rules a redraft against two blind reviews settled (`evidence.reviewed.via` "redraft-against-reviews": two
+ * reviewers read the text alike against an older draft, the new draft agreed with both), as "<book>|<identifier>", read
+ * from registry/ for records that stand reviewed or played: counted apart, beside the second reviews.
+ */
+export function againstReviews(dir = resolve(ROOT, "registry")) {
+  const out = new Set();
+  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !NOT_BOOKS.includes(f)) ) {
+    for ( const r of JSON.parse(readFileSync(resolve(dir, f), "utf8")).records ?? [] ) {
+      const settled = r.evidence?.reviewed?.via === "redraft-against-reviews";
+      if ( ["reviewed", "played"].includes(r.state) && settled ) out.add(`${r.book}|${r.identifier}`);
+    }
+  }
+  return out;
+}
+
+/**
  * Ruling R27: the rules registry/ holds for a person (drafted and gated, not registered with DAS · Core: generate.mjs
  * emissionOf), in registry order, as `{ book, name, kind, page, because }` (`because` a key of HELD_REASONS; `origin` when the
  * rule has one). The pack's modules do not carry them, so they are read here, with legacy.json and review-queue.json.
@@ -340,7 +356,8 @@ export function partialNote(rule) {
  * The closing line of the rules block: the counts by status, plays by hand, reviews with R24 tolerances, rules settled by a
  * second review (Ruling R40) and partial rules (Ruling R25) apart.
  */
-export function countsLine(rules, { handPlayed = () => false, tolerated = new Set(), second = new Set(), held = [] } = {}) {
+export function countsLine(rules, { handPlayed = () => false, tolerated = new Set(), second = new Set(), against = new Set(),
+  held = [] } = {}) {
   const count = status => rules.filter(rule => rule.status === status).length;
   const waiting = count("pending") ? `, ${count("pending")} pending` : "";
   const hand = rules.filter(handPlayed).length;
@@ -349,9 +366,13 @@ export function countsLine(rules, { handPlayed = () => false, tolerated = new Se
   const tolerance = loose ? ` ${loose} of them reviewed with Ruling R24 tolerances (not an exact agreement).` : "";
   const settled = rules.filter(rule => second.has(`${rule.book}|${rule.identifier}`)).length;
   const tieBreak = settled ? ` ${settled} of them settled by a second review (Ruling R40).` : "";
+  const redrafted = rules.filter(rule => against.has(`${rule.book}|${rule.identifier}`)).length;
+  const twoReviews = redrafted
+    ? ` ${redrafted} of them settled by a redraft that agrees with two reviews (Ruling R41).` : "";
   const partial = rules.filter(rule => partialNote(rule)).length;
   const partly = partial ? ` ${partial} of them partial (part of the entry left to the table).` : "";
-  return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}${tieBreak}${partly}`
+  return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}${tieBreak}${twoReviews}`
+    + partly
     + heldLine(held);
 }
 
@@ -398,7 +419,8 @@ export function renderRules() {
     if ( shipped.length ) out.push("");
     out.push(...heldTable(held.filter(row => row.book === book.code)));
   }
-  out.push(countsLine(RULES, { handPlayed, tolerated: toleratedReviews(), second: secondReviews(), held }));
+  out.push(countsLine(RULES, { handPlayed, tolerated: toleratedReviews(), second: secondReviews(), against: againstReviews(),
+    held }));
   return out.join("\n");
 }
 

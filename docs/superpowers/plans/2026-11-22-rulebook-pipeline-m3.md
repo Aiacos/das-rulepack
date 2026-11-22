@@ -915,3 +915,37 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   reviewer's `why` is not stored on the mark (data only), so a person reads the first `why` and the second's assertions,
   and must open the results file for its words; (f) `withFirst` uses the comparison's direction (the first review as the
   stated side), so two reviews that agree only up to a detail the second pins and the first does not are not called agreeing.
+- **R41 (2026-11-22). Two blind reviews that read the text alike against the draft settle a new draft.** After R40, 12
+  review-queue entries carry `second: { agrees: false, result: "read", withFirst: true }`: two reviewers who never saw the
+  draft read the text the same way, and the draft says something else. A blind review states what the TEXT requires, so both
+  stay valid for any later draft of the same record while its text and item are unchanged. `batch draft --redraft
+  --against-reviews` cuts the records `against.mjs` `againstReviewsSkipReason` accepts — reason `disagreement` or
+  `low-confidence`, that `second` mark, no `redraftedAgainst` mark, a rule no owner wrote or signed, not legacy, the entry
+  about the rule as it is, an `entry` record with a text, unchanged since the reviews (no `textChangedAt`, `gated` with its
+  item fingerprints `evidence.gates.items` = today's `items[].data.sha256`, gate evidence dated no later than `second.at`) —
+  as ordinary blind draft entries in batches marked `redraft: true, againstReviews: true`, report
+  `<book>-draft-against-reviews-report.json`. `ingest --draft --redraft --against-reviews` runs every draft check, replaces the
+  rule as R32 does (marked `redrafted: true`), and compares the new rule with the first review and with the second as stored
+  (`review.assert` / `confidence`, `second.assert` / `second.confidence`: R40 already stores both, so the 12 existing entries
+  need no results file), by `compareAsserts`, no new tolerance, each agreement held to the 0.7 bar on that reviewer's own
+  confidence. Both agree: `evidence.reviewed` by the first reviewer, `via: "redraft-against-reviews"`, `second: { by, at,
+  confidence, assert, tolerated? }`, the entry out of the queue; a rule reviewed like any other once regated, counted apart in
+  `docs/RULES.md`. Otherwise the new rule is kept, the entry stays queued about it (`draft`, `review` against the first,
+  reason `disagreement`, `free-text` or `low-confidence` as a first review would say) with `redraftedAgainst: { by, at,
+  result: "compared", agreesFirst, agreesSecond }`; a decline, a clash, a low confidence, a rejection or a missing answer
+  leaves the record and the entry as they were with `redraftedAgainst: { by, at, result }`. Measured (repository registry
+  unchanged, cut into a scratch folder against the engine's main branch): XMM 11 entries in 1 batch, FRAIF 1 in 1, XPHB and
+  XDMG none: the 12. Five of them have two reviewers at or above 0.7 and can be confirmed; seven have a reviewer below it and
+  can at best be kept, `"unsure"`. *Cost if wrong:* (a) two reviewers who share a misreading (the same vocabulary word read
+  the same wrong way, the same item structure misleading both) now ship a draft that agrees with them, with no person in the
+  loop — R40's cost (a) with the draft no longer an independent reading; (b) the reviews are taken as valid for a new draft
+  although each was written for an entry whose draft it never saw: a reviewer whose assertions depended on what the batch
+  offered at the time (the item summary, the vocabulary of that day) is held to them; (c) "unchanged" is proved by gate
+  dates, since no fingerprint sits on a queue entry: an engine release or any other cause that re-dates the gate evidence
+  after the second review refuses the record (fail closed: the 12 become uncuttable after a `npm run gates` that changes
+  their evidence), and a change of item data between the first and the second review is not seen (the first review has no
+  date); (d) the mark is one-shot and a rejected or missing answer burns it (a new ruling must clear the marks); (e) a kept
+  entry's `second` keeps its comparison lists about the older draft, so a person reads `redraftedAgainst` for how the new
+  one stands against the second review; (f) the confirmed review is signed by the first reviewer and dated at the ingest,
+  not when the review was written; (g) a `redrafted: true` mark also keeps R32 from redrafting the new rule later, even if
+  it changes the engine's reading.
