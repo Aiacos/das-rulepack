@@ -119,13 +119,6 @@
     "confidence": 0.75
   },
   {
-    "key": "xdmg:item:dust-of-dryness",
-    "reason": "person",
-    "by": "drafter-y001",
-    "why": "the save, necrotic damage and half on a success are the item's data; who may be targeted is the user's pick",
-    "confidence": 0.75
-  },
-  {
     "key": "xdmg:item:figurine-of-wondrous-power-ivory-goats",
     "reason": "person",
     "by": "drafter-y003",
@@ -201,20 +194,6 @@
     "by": "drafter-y001",
     "why": "spells are the item's cast activities with their own uses; harm to a player who is not attuned needs an attunement fact, no key",
     "confidence": 0.75
-  },
-  {
-    "key": "xdmg:item:javelin-of-lightning",
-    "reason": "person",
-    "by": "drafter-y001",
-    "why": "the attack offers both damage types and the bolt is a save activity with half on a success: the item's data does it",
-    "confidence": 0.75
-  },
-  {
-    "key": "xdmg:item:lute-of-thunderous-thumping",
-    "reason": "person",
-    "by": "drafter-y002",
-    "why": "the extra thunder and a separate bard attack are already in the data; the sung-attack and class limit have no key",
-    "confidence": 0.8
   },
   {
     "key": "xdmg:item:natures-mantle",
@@ -357,13 +336,6 @@
     "confidence": 0.8
   },
   {
-    "key": "xdmg:item:staff-of-the-woodlands",
-    "reason": "person",
-    "by": "drafter-y002",
-    "why": "spell attack bonus and spells are already in the data; tree form is out of combat",
-    "confidence": 0.8
-  },
-  {
     "key": "xdmg:item:sword-of-answering",
     "reason": "person",
     "by": "drafter-y002",
@@ -389,34 +361,6 @@
     "reason": "person",
     "by": "drafter-y002",
     "why": "the swim speed limit on the beast target has no condition or key; the cast and charges are data",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:wand-of-fireballs",
-    "reason": "person",
-    "by": "drafter-y002",
-    "why": "spending extra charges to cast at a higher level needs a consumption scaling the fix paths do not allow",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:wand-of-lightning-bolts",
-    "reason": "person",
-    "by": "drafter-y002",
-    "why": "spending extra charges to cast at a higher level needs a consumption scaling the fix paths do not allow",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:wand-of-magic-missiles",
-    "reason": "person",
-    "by": "drafter-y002",
-    "why": "spending extra charges to cast at a higher level needs a consumption scaling the fix paths do not allow",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:wand-of-orcus",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "combat parts (mace damage with necrotic, AC bonus) are the item data; attunement death save, Orcus charge discount and undead call have no key",
     "confidence": 0.8
   },
   {

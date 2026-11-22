@@ -64,6 +64,13 @@ describe("the engine view: a closed shape, a fingerprint, the vocabulary of its 
       layers: ["module"], identifier: "cinder-step-1", pack: "tst.feats" }, [keyOf(2)]: { missing: true } });
     expect(viewOf(keyOf(1))).toEqual({ level: "rule", rules: ["globe", "usageLimits"] });
     expect(viewOf(keyOf(2))).toBeNull();
+    // The engine's own entry, when the sweep kept it, is carried to the reader and counts in the fingerprint.
+    const withEntry = parseEngineView({ [keyOf(1)]: { level: "rule", rules: ["globe"], entry: { globe: { radius: 10 } } } });
+    expect(withEntry(keyOf(1))).toEqual({ level: "rule", rules: ["globe"], entry: { globe: { radius: 10 } } });
+    expect(() => parseEngineView({ [keyOf(1)]: { level: "rule", rules: [], entry: "x" } })).toThrow(/entry must be an object/);
+    const bare = viewFingerprint({ level: "rule", rules: ["globe"] }, { version: "9.9.9" });
+    const full = viewFingerprint(withEntry(keyOf(1)), { version: "9.9.9" });
+    expect(full.sha).not.toBe(bare.sha);
     expect(viewOf(keyOf(3))).toBeUndefined();
     for (const bad of [[], null, { k: { level: "magic" } }, { k: { level: "auto", note: "x" } },
       { k: { level: "auto", rules: [1] } }, { k: { missing: true, level: "auto" } }, { k: { level: "auto", rules: ["a b"] } }]) {

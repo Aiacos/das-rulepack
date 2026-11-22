@@ -63,7 +63,7 @@ export const COVERED_BY_MEANINGS = Object.freeze({
 const NOT_ITEM_ENTRY = "not an item entry";
 const NOT_ITEM_CORE = "not an item reread core";
 const RULE_KEY = /^[a-z][A-Za-z0-9]{0,63}$/;
-const VIEW_FIELDS = ["level", "rules", "layers", "identifier", "pack"];
+const VIEW_FIELDS = ["level", "rules", "layers", "identifier", "pack", "entry"];
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 const isItemKind = (r) => typeof r?.kind === "string" && r.kind !== "monster" && r.kind !== "sense";
