@@ -1517,10 +1517,24 @@
           "at": "2026-11-21T19:58:33.563Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "ca780597f2cf285818b312190fb788cd91ad9a4bbc67d13c9fd91c30cb8bea14"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Paralysis until next turn skipped for cold immune targets plus one hour immunity; data has half damage on save the text does not state",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -5132,10 +5146,25 @@
           "at": "2026-11-21T19:58:33.563Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "a68ac710cfd6da3a0d69c737a0322e4716f1b8742cf2f62ab9d8d4fada1ba764"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Incapacitated and removed from play until the dragon next turn, then placed in a chosen space; needs an end event and relocation",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8104,10 +8133,25 @@
           "at": "2026-11-21T19:58:33.883Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "7db2a555d9200c77aee748872333e39a2ef7bb7cc5a74bd97387a19635415048"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size",
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Prone and a free Bite only if target is Large or smaller and the allosaurus moved 30+ ft straight before the hit; data lacks damage and the condition.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -11513,10 +11557,25 @@
           "at": "2026-11-21T19:58:34.201Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "a68ac710cfd6da3a0d69c737a0322e4716f1b8742cf2f62ab9d8d4fada1ba764"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Banish: incapacitated and removal to a demiplane until the next turn start, return by DM choice; data has only the condition",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -22809,10 +22868,25 @@
           "at": "2026-11-21T19:58:34.837Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "de8ea732c9d17050da4cfc0b1af6e941997758d0edfb655a3026971858608e41"
+            },
+            "covered": false,
+            "unexpressed": [
+              "ongoing-effect",
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Wound dealing damage at each turn start, ending on timing or stanching check, once per target; data lacks the ongoing part.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -25041,10 +25115,26 @@
           "at": "2026-11-21T19:58:34.837Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "3ccbf02c279175207f1d785ac6e0aa34a58037f937cfee6ff224cdc5ba94caa4"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "trigger-filter",
+              "table-ruling"
+            ]
+          }
         }
       },
       "why": "Reaction triggered by bloodied or specific damage types, size and HP gates, halving HP among the new creatures; data has a bare summon.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27606,10 +27696,25 @@
           "at": "2026-11-21T19:58:35.155Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c3ff5bb328f25c87de6cbcec71a9e697b6bcf404806aa45f7cdf1054e853bc5d"
+            },
+            "covered": false,
+            "unexpressed": [
+              "save-margin",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Incapacitated then repeat save at end of next turn escalating to Unconscious, ending on damage or being woken; needs timing rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -39116,11 +39221,24 @@
           "at": "2026-11-21T19:58:35.775Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction that adds a bonus to AC against the triggering melee hit while holding a weapon; data lacks any effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -41365,11 +41483,24 @@
           "at": "2026-11-21T19:58:35.775Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Max HP reduction on failed save plus lockout until next turn; data has the save but no reduction.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -48732,10 +48863,24 @@
           "at": "2026-11-21T19:58:36.110Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "447dbb06f4d001dd42e3c59a873eb4ca02b571c2bf06e94baaf4920cc07766c8"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size"
+            ]
+          }
         }
       },
       "why": "Prone only if the elephant moved straight toward the target beforehand and size limited; data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -49977,11 +50122,24 @@
           "at": "2026-11-21T19:58:36.428Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction to a melee hit while holding a weapon adding to AC is a trigger and circumstance data cannot express.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -56276,11 +56434,27 @@
           "at": "2026-11-21T19:58:36.756Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "29b4bff6dcfb04bc81baec5e5e05ee094eff7150f1903a9230e692f28aa8de4c"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "death-trigger",
+              "immunity-after-save",
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Possession: control swap, untargetable ghost, ending conditions, immunity afterwards; beyond the data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -59314,10 +59488,25 @@
           "at": "2026-11-21T19:58:36.756Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "36b9e6e931942f4a3a51c7edae5bee38a1ad68f9d2cd64e2f2a6cdaaec895f9b"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction triggered by damage underwater with area obscurement and movement; data lacks the trigger.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -60696,10 +60885,24 @@
           "at": "2026-11-21T19:58:37.068Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "ba28665de8a9ccc65f7a08d7a39e3ec95d98afbf13cb650d0c1b5932730354ac"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size"
+            ]
+          }
         }
       },
       "why": "Grapple limited by size with escape DC, plus a pull of 10 feet; data has only plain grappled effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -61642,11 +61845,24 @@
           "at": "2026-11-21T19:58:37.068Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "54792044a662ae166e83739f0757827f197981b94991d2a7d4f7fb776324e85f"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Prone only for size limit, plus death and absorption at 0 HP from this attack; data lacks the death rider.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -64100,11 +64316,24 @@
           "at": "2026-11-21T19:58:37.068Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction to a melee hit while holding a weapon adding to AC against that attack.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -65400,10 +65629,26 @@
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "26a74bba5e7f8ed95223dd8506b9612d1b628003771fafd37e2d0ee5ab995d62"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice",
+              "target-size"
+            ]
+          }
         }
       },
       "why": "Reaction to an attack roll: swap places with an ally and redirect the attack; data lacks the trigger and swap.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -65544,10 +65789,24 @@
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c6a8bdcc47f55a7d22f9d97dfb04ff048ccdf00f0b10115c57561a4749e109b6"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction to a hit: on a failed save the attack misses instead; data has only a bare save activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -66375,10 +66634,24 @@
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "447dbb06f4d001dd42e3c59a873eb4ca02b571c2bf06e94baaf4920cc07766c8"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size"
+            ]
+          }
         }
       },
       "why": "Prone only if target is size-limited and the gorgon charged 20+ feet in a line; data applies prone unconditionally.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -66445,10 +66718,24 @@
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "d20f10290975e807c541f1d446bd8ee72d0307df68fab5fe48ae8db0d45b8d67"
+            },
+            "covered": false,
+            "unexpressed": [
+              "save-margin"
+            ]
+          }
         }
       },
       "why": "Save with two outcomes by degree, repeated at end of next turn, escalating to petrified; data only holds both statuses.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -73783,11 +74070,24 @@
           "at": "2026-11-21T19:58:37.695Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction to a melee hit while holding a weapon, raising AC against that attack.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -74415,10 +74715,25 @@
           "at": "2026-11-21T19:58:37.695Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "beeb4314339abf26832587c4514cb3694c6f34cfe566e5626a87b37916465182"
+            },
+            "covered": false,
+            "unexpressed": [
+              "ongoing-effect",
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Wound deals damage each turn and ends on several events; data lacks the ongoing handling.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -76388,10 +76703,25 @@
           "at": "2026-11-21T19:58:38.017Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "24c5bdcc336b4eb2268abeb5add44c96a06f138526960a0d64aba8d7c363fd00"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-state",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Save with a hit point threshold choosing between unconsciousness and damage, with wake conditions; needs a conditional rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -76970,10 +77300,25 @@
           "at": "2026-11-21T19:58:38.017Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "716ce5278b527382a6140b0419cac458220d31b3ca175481640310f8d9b95650"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Grapple with escape DC, start-of-turn damage while grappled and a casting limit; needs timing and condition riders.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -78977,11 +79322,24 @@
           "at": "2026-11-21T19:58:38.017Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction adding to AC when hit by a melee attack while holding a weapon; needs a reaction rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -81210,10 +81568,26 @@
           "at": "2026-11-21T19:58:38.331Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "a2c9694452cc8b51f3568a9d7cf268b95ee509848d0b131f8b454a21b1657df0"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter",
+              "use-time-choice",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction trigger on a missed melee attack, stuck weapon and grapple tied to it; needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -81419,10 +81793,24 @@
           "at": "2026-11-21T19:58:38.331Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "11443b96bc45abd2dff67c0b437ed08505a2ef901cc1acfce9080d8b77db61c0"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Paralysis on failed save only for targets that are not Undead or elf, ending at a stated turn point; needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -84802,10 +85190,24 @@
           "at": "2026-11-21T19:58:38.331Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "447dbb06f4d001dd42e3c59a873eb4ca02b571c2bf06e94baaf4920cc07766c8"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size"
+            ]
+          }
         }
       },
       "why": "Prone only if target is Huge or smaller and the beast moved 20 ft straight first; movement and size conditions missing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -86430,11 +86832,24 @@
           "at": "2026-11-21T19:58:38.644Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x001",
+            "at": "2026-11-22T07:26:44.235Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction to a melee hit while armed adding to AC against that one attack; needs a trigger rule",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -86989,10 +87404,25 @@
           "at": "2026-11-21T19:58:38.644Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "d20f10290975e807c541f1d446bd8ee72d0307df68fab5fe48ae8db0d45b8d67"
+            },
+            "covered": false,
+            "unexpressed": [
+              "save-margin",
+              "table-ruling"
+            ]
+          }
         }
       },
       "why": "Save repeated at end of next turn, escalating result and reflection condition; recharge use present but rest needs a rule",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -88695,10 +89125,24 @@
           "at": "2026-11-21T19:58:38.644Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "54792044a662ae166e83739f0757827f197981b94991d2a7d4f7fb776324e85f"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Data lacks the optional teleport of the target and the kill-and-devour result at 0 HP",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -93227,10 +93671,24 @@
           "at": "2026-11-21T19:58:38.968Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "0ff9372e021b16fd31c05265b5762388d75639a42445318fc95ba5342e7e9146"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Save for damage plus frightened that ends on damage or losing line of sight, with 24 hour immunity; data lacks the end conditions",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -95149,11 +95607,24 @@
           "at": "2026-11-21T19:58:38.968Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "65f659cfca4449ed6405952e7f4fb44c2f02a0a2613693df51e36864bc8f41db"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Invisible condition that ends early after dealing damage plus teleport; data lacks the end event",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -95390,10 +95861,25 @@
           "at": "2026-11-21T19:58:38.968Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "3ccbf02c279175207f1d785ac6e0aa34a58037f937cfee6ff224cdc5ba94caa4"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Reaction splitting into two jellies on a trigger with HP division and size change; data only has a bare summon",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -97633,11 +98119,24 @@
           "at": "2026-11-21T19:58:39.284Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "266ed644d8def6ecd8e407cc02d2c20515f9c2ba5e1d447e8770e322291998a0"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction when hit: the attack becomes a miss and the attacker is charmed on a failed save; needs trigger handling.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -99729,11 +100228,25 @@
           "at": "2026-11-21T19:58:39.284Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "bbc711e4a8d73461cca8f5bdfa6320acf7720aa41ea44c9f2edab04588eabd1a"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action",
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction: AC bonus against one attack, then a free rapier attack if it misses; data only has a passive AC effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -108348,7 +108861,16 @@
               "sha": "1e5e812cf7f92b1f60a7e9550a8950326db48dda023a6eacf6e05f979d971999"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-y003",
+              "at": "2026-11-22T07:26:46.959Z",
+              "confidence": 0.8,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "1e5e812cf7f92b1f60a7e9550a8950326db48dda023a6eacf6e05f979d971999"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -108869,10 +109391,25 @@
           "at": "2026-11-21T19:58:39.923Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "80ac1b6be11b06a14f4bb6f60b43d0ce8e0e2eb3f87f5691e37a6b406bbdaeea"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Reaction on taking piercing or slashing damage, emanation save, acid damage and a lasting curse with several riders",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -115155,11 +115692,25 @@
           "at": "2026-11-21T19:58:40.242Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c15152ab3d7363ee59d25ff27a7ba2a3cb15e0e6003b7a0a66571e678c918857"
+            },
+            "covered": false,
+            "unexpressed": [
+              "death-trigger",
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Triggered on death with an emanation save and poisoned until end of next turn; data has the save but no death trigger.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -115432,10 +115983,24 @@
           "at": "2026-11-21T19:58:40.242Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.85,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "26ebf2285a0ddaf714ec7efd91a46d578883874d86dffac02105b1dc37d44f84"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Blinded for a minute with a once-until-next-turn lockout; data has the save and status only.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -116871,31 +117436,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:39.182Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
-            "triaged": {
-              "by": "third-t7",
-              "at": "2026-11-21T23:14:43.695Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": [],
-              "first": {
-                "by": "reader-xmm-023",
-                "confidence": 0.65
-              },
-              "second": {
-                "by": "second-s43",
-                "confidence": 0.7
-              },
-              "via": "third-reading"
-            }
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.65
           },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading",
           "reread": {
             "by": "reread-t002",
             "at": "2026-11-22T07:08:39.182Z",
@@ -116905,11 +117464,22 @@
               "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-y003",
+              "at": "2026-11-22T07:26:46.959Z",
+              "confidence": 0.8,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
+              },
+              "covered": false,
+              "unexpressed": [
+                "follow-up-action"
+              ]
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -116975,10 +117545,24 @@
           "at": "2026-11-21T19:58:40.242Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c46b1e8993070377fe64b15b30415a60f684c808bc89de833dd4d90e382c4b62"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Exhaustion on a failed save with a once-until-next-turn lockout; the aging note is flavour.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -117658,22 +118242,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Three-step roar sequence reset by a long rest, with a repeated paralysis save and a prone rider; needs ordering and repeats.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:39.182Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Three-step roar sequence reset by a long rest, with a repeated paralysis save and a prone rider; needs ordering and repeats.",
-            "triaged": {
-              "by": "reader-xmm-023",
-              "at": "2026-11-21T19:58:40.242Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-023",
+          "at": "2026-11-21T19:58:40.242Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t002",
             "at": "2026-11-22T07:08:39.182Z",
@@ -117683,11 +118261,22 @@
               "sha": "3944ad77ca39b478a36092782f0baaf00c2dc8ff7ad6c3f94925f227bd01656f"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-y003",
+              "at": "2026-11-22T07:26:46.959Z",
+              "confidence": 0.7,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "3944ad77ca39b478a36092782f0baaf00c2dc8ff7ad6c3f94925f227bd01656f"
+              },
+              "covered": false,
+              "unexpressed": [
+                "use-limit"
+              ]
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -117741,31 +118330,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:39.182Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
-            "triaged": {
-              "by": "third-t7",
-              "at": "2026-11-21T23:14:43.695Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": [],
-              "first": {
-                "by": "reader-xmm-023",
-                "confidence": 0.65
-              },
-              "second": {
-                "by": "second-s43",
-                "confidence": 0.7
-              },
-              "via": "third-reading"
-            }
+          "by": "third-t7",
+          "at": "2026-11-21T23:14:43.695Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-xmm-023",
+            "confidence": 0.65
           },
+          "second": {
+            "by": "second-s43",
+            "confidence": 0.7
+          },
+          "via": "third-reading",
           "reread": {
             "by": "reread-t002",
             "at": "2026-11-22T07:08:39.182Z",
@@ -117775,11 +118358,22 @@
               "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-y003",
+              "at": "2026-11-22T07:26:46.959Z",
+              "confidence": 0.8,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
+              },
+              "covered": false,
+              "unexpressed": [
+                "follow-up-action"
+              ]
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -117845,10 +118439,24 @@
           "at": "2026-11-21T19:58:40.242Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c46b1e8993070377fe64b15b30415a60f684c808bc89de833dd4d90e382c4b62"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Exhaustion on a failed save with a once-until-next-turn lockout; the aging note is flavour.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -120090,11 +120698,25 @@
           "at": "2026-11-21T19:58:40.561Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "d8c1e1ddf693702b1af4f55b0b17c9433a16c2623aebbe16e2f7cbdaef2fecaf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "ongoing-effect",
+              "use-limit"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Attachment with damage each of its turns and detach rules; needs a repeating trigger and state",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -120344,10 +120966,25 @@
           "at": "2026-11-21T19:58:40.561Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "a21b309b9fceae0ae77ae1e5f6307cd57e08310c446596bc12ed14a9a82acd4c"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter",
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Reaction reducing damage from a ranged hit and a conditional redirect; trigger and chained save needed",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -123212,10 +123849,25 @@
           "at": "2026-11-21T19:58:40.886Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "04457fe3359ffa3890b1b74e09e274e081dba1ad35f9be923154ec3ac237cbd7"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size",
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Grapple rider and end-of-turn necrotic damage while held: data has the activities but timed trigger and size limit need a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -127729,10 +128381,24 @@
           "at": "2026-11-21T19:58:40.886Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "2548d6024f4b46d18be97914a6452187b4214b9148e879f2ba17a1414a2ce177"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cone save with reaction block and d8 random behavior table; data has rolling but no enforced outcome.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -131256,10 +131922,25 @@
           "at": "2026-11-21T19:58:41.206Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "1ee1d894952df62a63a10bc98bd122e1750036cc8e3956341db3f3f01b403bd9"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Grapple on Large or smaller with escape DC, ongoing start-of-turn damage, and no repeat use while grappling; data lacks the limits.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -133430,11 +134111,24 @@
           "at": "2026-11-21T19:58:41.206Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "dab52c331501c0e5412cc6b6d5a95672cfc8fe747bbff7d43fc7891d850c8463"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Reaction AC bonus only against a melee hit while holding a weapon; data lacks any effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -133658,11 +134352,25 @@
           "at": "2026-11-21T19:58:41.206Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "897fc8af7548b5a4d8fef98fde9acb50429ab702302a060ba85b457d033ca0f0"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-size",
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Recharge save with grapple, restrained, suffocation, start-of-turn damage, capacity limit and pull-out check; needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -136647,10 +137355,24 @@
           "at": "2026-11-21T20:09:30.714Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.7,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "7c2ebd16c5e50b42c0b6c7a97a0dffd62a98958d57b336e13ecbde2bb8d840ee"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Invisible until concentration ends, ending early after an attack roll or the other bonus action; data has only the condition",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -138419,10 +139141,24 @@
           "at": "2026-11-21T20:09:30.714Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "9492356d98fc2e4515dd0e05b04d62597b6c0dc4d7b857fb0f383d8276158e64"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Paralysis until start of its next turn, skipped for cold immunity, plus per-source 1 hour immunity; data has save and condition only",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -139934,10 +140670,25 @@
           "at": "2026-11-21T19:58:41.528Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-x002",
+            "at": "2026-11-22T07:26:45.531Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c3ff5bb328f25c87de6cbcec71a9e697b6bcf404806aa45f7cdf1054e853bc5d"
+            },
+            "covered": false,
+            "unexpressed": [
+              "save-margin",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Repeated save at end of next turn, escalation to unconscious, ends on damage or being woken: needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {

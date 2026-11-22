@@ -240,4 +240,8 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       reread now fails closed and a reader can answer "missing, but the vocabulary cannot say it".
 - [ ] 4 XMM provisional `core` wait for a second reader; 51 XMM rereads stay undecided (no word for what is missing).
 - [ ] Give drafters the `unexpressed` reasons of a reread, and count them: they rank the vocabulary to add.
+- [x] Rereads, third round (2026-11-22): the 54 undecided XMM features are decided (51 beyond the engine); XMM has 81
+      monster features `core` by two readers and 136 `entry` beyond the engine. Reasons ranked in `docs/pilot-m3.md`.
+- [ ] Wider vocabulary, in this order: a filter on a trigger (melee only, a kind of attack), a size limit on targets (the
+      engine has the fact `target.sizeAtMost` for a trigger's `if`), a use limit per round or turn.
 
