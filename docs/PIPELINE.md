@@ -220,8 +220,9 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    `coverage:` note (not a gate: the record's evidence does not change) and `docs/RULES.md` says "Not checked on <origin>".
    The schema gate also checks, from the record alone (so under `--ci` too), the identifiers a ruled record registers
    (`identifiers.mjs` `identifierProblems`): its own identifier is not generic (`GENERIC_IDENTIFIERS`); a monster feature's
-   is its creature-scoped one, it has no alias, and an official item with `embeddedShared` fails
-   (`shared embedded item id: waits on upstream …`, the rule stays `drafted`); every alias is not generic, its `origin` is in
+   is its creature-scoped one, it has no alias, and an official item with `embeddedShared` must be bound by its own
+   `<actor id>.<item id>` source (Ruling R35; otherwise `shared embedded item id: only an <actor id>.<item id> source …`, the
+   rule stays `drafted`); every alias is not generic, its `origin` is in
    `rule.origins`, and it equals the identifier of the record's matched item of that origin. The ids gate also looks at the
    reprints (below), with the ids the official item contributes.
    The `unique` gate applies only to records that have a `rule`, the only ones that register an identifier with the engine:
@@ -290,6 +291,20 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    when the running engine lacks one. A key that cannot be carried (its value names the original identifier) or an original
    identifier the engine handles in code holds the rule: "its identifier would drop engine behaviour". Outside monster
    features, the unique gate refuses `sources` that bind an item of an engine identifier to another identifier.
+   **A shared embedded item id (Ruling R35).** One embedded item id is often used by many creatures (a bite of hundreds): a
+   source under the bare id would bind every one of them. Such a feature's rule is bound by `<actor id>.<item id>` (its
+   official item's `docId`, from the dumps), which DAS · Core looks up before the bare id (`adapter/content.mjs`
+   `identifierOf` with `core/source-keys.mjs` `sourceKeys`: the actor read from the document that carries the item, its own
+   compendium source for a world copy or a token) and which its `validateSources` accepts. Whether the engine in use does is
+   asked of the engine itself, never of its version: `loadCore` calls its `validateSources` on a key of two invented ids
+   (`core.mjs` `actorItemSourcesOf`, `core.actorItemSources`). With it, `batch draft` cuts such features and `ingest --draft`
+   binds them; without it, they are left out ("monster feature: shared embedded id, this DAS · Core refuses actor.item
+   sources"), refused at ingest, and a record that binds one fails the validator gate (also under `--ci`). The engine's
+   reading, the comparison and the carry are those of the bound creature's item (the document of the dumps under that
+   `docId`, the actor id taken from it). A feature whose embedded id is unique keeps its bare-id source. At registration,
+   `scripts/scoped-sources.mjs` `withAcceptedSources` asks the running engine (`api.content.validateSources`) about each
+   `<actor id>.<item id>` source: one it refuses, or cannot be asked about, is left out with the rules it binds, and one
+   console line says how many and why.
 
 ## 📋 Record states
 
@@ -822,17 +837,19 @@ The Claude Code session gives each reread agent one batch file, its structure fi
 batch (`--size`), one kind per batch, kinds in the order spell, feat, option, species, background, item, feature, monster,
 records with a matched official item first. A record is left out (and counted on the console, by reason) when it is already
 ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, is a monster feature that can never pass the
-gates (no creature to scope it to; "no official item"; "official item has no embedded id"; "shared embedded id, waits on
-upstream"; "engine reads it: reread first": the engine reads something of it, Ruling R29, and no reread found the text going
-beyond that reading: `hint: "beyond-engine"` lets it through), or is one the `unique` gate would fail whatever is drafted:
+gates (no creature to scope it to; "no official item"; "official item has no embedded id"; "shared embedded id, this DAS ·
+Core refuses actor.item sources", on an engine that does, Ruling R35; "engine reads it: reread first": the engine reads
+something of it, Ruling R29, and no reread found the text going beyond that reading: `hint: "beyond-engine"` lets it
+through), or is one the `unique` gate would fail whatever is drafted:
 "identifier is DAS · Core's: a person decides inCore",
 "identifier shared with another record" (another record of the same edition that has a rule or the verdict `entry` registers it,
 a monster feature counted under its creature-scoped identifier) and "identifier ruled for another edition: needs an
 edition-scoped identifier" (Ruling R22: a twin of another edition alone is no clash until it has a rule; `batch.mjs`
 `identifierClashReasons`, built on the gate's own `gates.mjs` `identifierClashes` and `identifierTwins`). The shared embedded id
 is decided by `batch draft` itself, as inventory decides it when it binds a rule (`settle.mjs` `embeddedIndex`,
-`sharedEmbeddedId`): a feature is cut only when its official embedded item id is unique among the actors of the book's package,
-which `batch draft` reads from `RULEPACK_DUMPS` (always needed, as `--structure` is mandatory; the usage error says so). The
+`sharedEmbeddedId`): a feature whose official embedded item id another creature of the book's package embeds is cut only when
+the engine accepts `<actor id>.<item id>` sources (`core.actorItemSources`), and the actors are read from `RULEPACK_DUMPS`
+(always needed, as `--structure` is mandatory; the usage error says so). The
 record's own `embeddedShared` flag is no help: it is written only once a rule is bound. It writes
 `<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`), `<private
 dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-derived, private) and
@@ -2032,18 +2049,20 @@ Notes on what inventory does with each kind:
   fingerprint; an `absent` resolution stays while matching offers the same candidates (or none). Otherwise the item goes back
   to what matching says and the key is listed under `resolutionStale` in the report.
 - **`sources`.** When an item's identifier is not the record's, inventory fills `sources: { <docId>: <identifier> }`, which is
-  what the engine accepts with `register(source, table, { sources })` (keys are 16-character document ids, values kebab-case
-  identifiers). Only an official package's documents qualify. A DDB Importer item lives in a world, where the id is the world's
-  own and not stable across worlds, and a monster feature's id is `<actor id>.<item id>`: those get `identifierDiffers: true`
-  on the item and no source. Inventory owns the field: it is recomputed on every run and removed when nothing is bound.
+  what the engine accepts with `register(source, table, { sources })` (keys are 16-character document ids, or for a monster
+  feature whose embedded id is shared `<actor id>.<item id>`, Ruling R35; values kebab-case identifiers). Only an official
+  package's documents qualify. A DDB Importer item lives in a world, where the id is the world's
+  own and not stable across worlds: it gets `identifierDiffers: true` on the item and no source; a monster feature is bound
+  as below. Inventory owns the field: it is recomputed on every run and removed when nothing is bound.
 - **Monster features (Ruling R3).** A ruled monster feature has an identifier scoped to its creature,
   `<book>-<creature>-<feature>` (`-2` for a repeated name; `identifiers.mjs` `monsterIdentifier`), never the bare feature
   name (the engine has generic entries under names such as `bite`). Inventory binds it by the id of its official embedded item
   (`sources: { <item id>: <identifier> }`, the part after `.`) when no actor of another creature of the book's package embeds
-  that id and the record carries its scoped identifier (a bare name is never bound); otherwise, for a shared id, the item gets
-  `embeddedShared: true` and no source (the engine reads `<actor id>.<item id>` sources, but
-  external registration accepts 16-character ids only), and the ids gate keeps the rule `drafted`. A feature without a rule
-  binds nothing. DDB Importer monster features are always uncovered (world ids, generic identifiers).
+  that id and the record carries its scoped identifier (a bare name is never bound); for a shared id, the item gets
+  `embeddedShared: true` and the source is the creature's whole `<actor id>.<item id>` (Ruling R35: `sources: { <actor
+  id>.<item id>: <identifier> }`, never the bare id), which the gates hold `drafted` on an engine that refuses such keys. Two
+  creatures' rules on one shared id are two bindings; two records that bind one key to different identifiers fail `unique`.
+  A feature without a rule binds nothing. DDB Importer monster features are always uncovered (world ids, generic identifiers).
 - **Aliases (Ruling R2).** `rule.alsoAs: [{ identifier, origin }]` registers the entry under the identifier an origin's item
   carries when no source can bind it (a DDB Importer item, say). `identifiers.mjs` `aliasFor(record, origin,
   { coreIdentifiers })` gives the alias, or `{ uncovered: because }` when there may be none: a monster feature, an empty or

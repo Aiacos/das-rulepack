@@ -62,9 +62,9 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   `unique` gate refuses aliases equal to any Core identifier or to another rule's identifier or alias).
 - **R3 — Monster identifiers.** A ruled monster feature gets `identifier = <book>-<slug(creature)>-<slug(feature)>`, bound by
   inventory through `sources` to the embedded item id of its official item when that id is unique among the package's actors.
-  A shared embedded id needs an `<actor id>.<item id>` source, which the engine reads (`identifierOf`, §334) but external
-  registration refuses (`validateSources` accepts 16-character ids only): such features stay `drafted` until upstream accepts
-  it (an issue with no book named). DDB Importer monster features are always `uncovered` (world ids, generic identifiers):
+  A shared embedded id needs an `<actor id>.<item id>` source, which the engine reads (`identifierOf`, §334); external
+  registration refused it when this ruling was written (`validateSources` accepted 16-character ids only), and now accepts
+  it: Ruling R35 binds such features. DDB Importer monster features are always `uncovered` (world ids, generic identifiers):
   `batch draft` and `batch review` offer that item as `{ origin, match, uncovered: "always" }` with no ids and no structure,
   and `ingest --draft` adds its `uncovered` line (`DDB_MONSTER_UNCOVERED`) when a drafter leaves it out (pilot 2: 8 of 12
   monster rules named it and were rejected).
@@ -471,6 +471,41 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   `perTarget` or radius reaches the table unless a person plays it; (f) leaving `changesForm` out keeps the commonest
   sampled main effect (a change of form) at `person`, and the automatic failure at `engine`, until upstream adds them.
 
+- **R35 — a shared embedded item id is bound by `<actor id>.<item id>`, when the engine says it accepts the key.** One
+  embedded item id is often used by many creatures (in the dumps: 1,480 of XMM's monster records, 53 of XPHB's, 4 of EFA's
+  share theirs with another creature), and R3 left every such feature out (`batch draft`: 457 XMM, 33 XPHB, 2 EFA `entry`
+  records) because a source under the bare id binds every creature that embeds it. DAS · Core now accepts a key of two
+  16-character ids in `validateSources` and looks it up first (`identifierOf` with `core/source-keys.mjs` `sourceKeys`: the
+  actor is read from the document that carries the item, its own compendium source for a world copy or a token). Built:
+  `loadCore` asks the engine itself (`actorItemSourcesOf`: its `validateSources` on a key of two invented ids, never its
+  version, which did not change) and gives `actorItemSources`. Inventory and `ingest --draft` bind a ruled, scoped monster
+  feature whose id another creature of the package embeds by its official item's `docId` (`sources: { <actor id>.<item id>:
+  <identifier> }`) and flag it `embeddedShared`; `sourceKeysOf` of such an item is that key only, so a bare shared id in
+  `sources` fails (`sources: … other creatures share`) and an unbound one fails the identifier and ids gates as before.
+  The engine in use decides the rest: `batch draft` cuts such features only with `actorItemSources`, `ingest --draft`
+  refuses them without it, and the validator gate fails a record whose `<actor id>.<item id>` source the engine refuses
+  (also under `--ci`, which loads the engine too). `unique` fails two records that bind one key to different identifiers;
+  `<actor A>.<item>` and `<actor B>.<item>` are two bindings. A feature whose embedded id is unique keeps its bare-id
+  source: the 15 shipped monster rules are unchanged (in XMM's package each of their ids is embedded by one actor only, so
+  a dotted key would bind the same item there, and their fingerprints and evidence would move for nothing). The engine's
+  reading, the comparison and the carry (R29) already used the right item: the document is the dumps' under the record's
+  `docId` and the actor id is taken from it; tests pin it with two creatures that share one id. Scenarios already cast the
+  creature by its actor id and use its own item. At registration the module asks the running engine
+  (`api.content.validateSources`, per key) and leaves out every `<actor id>.<item id>` source it refuses, or cannot be asked
+  about, with the rules that source binds, saying so in one console line (`scripts/scoped-sources.mjs`).
+  Measured on a copy of the registry (DAS · Core 0.290.0 of today): the draft cut takes 455 more XMM features (2 more go to
+  "reread first"), 33 more XPHB and 2 more EFA; the reread cut does not change (it never left these out); `npm run gates`
+  changes no record, and the 42 shipped rules, the generated modules, README and RULES.md stay byte-identical.
+  *Cost if wrong:* (a) the engine builds the item half of the key from the item's compendium source when it has one, not
+  from its embedded id: an item whose source names another id is never found under the pack's key, and its rule silently
+  binds nothing (measured: 0 of the 1,537 shared records of XMM, XPHB and EFA; the registry does not keep the source, so no
+  gate checks it); (b) another actor of the same creature that embeds the id (a second printing in the package) is not bound,
+  where a bare id reached both (measured: 0); (c) a later change to the engine's lookup order (`sourceKeys`) can bind nothing
+  unseen until a play (a DAS_CORE test runs the engine's own `sourceKeys` against the pack's key); (d) on an older engine the
+  module registers none of these rules (one console line), and the gates run against an older clone fail them closed
+  (`drafted`, out of the module) — no worse than before; (e) an inventory run binds the key from the data without asking
+  the engine, so the decision is the gates': a record can sit bound and failing the validator gate on an old clone.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
@@ -769,6 +804,7 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
 - Plutonium (no dump; its matches stay `unchecked`, rules list it as not checked).
 - Books without an official module, and older books' monster features without an item (they need imported-item dumps first).
 - Drafter keys outside `DRAFT_KEYS`; `code` rules (written by a person); data fixes on items embedded in actors.
-- `actor.item` sources for shared embedded item ids: an upstream issue, not pack work.
+- ~~`actor.item` sources for shared embedded item ids: an upstream issue, not pack work.~~ Upstream accepts them now: Ruling
+  R35.
 - Leaving legacy for the 24 migrated rules; the 437 triage-queue entries for a person; the 168 ambiguous official matches.
 - Play from a player's client (`players: true` scenarios) beyond what the pilot shows is needed.

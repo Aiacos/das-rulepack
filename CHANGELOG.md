@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- A rule can now bind one creature's feature even when many creatures share its item id (an `<actor id>.<item id>` source,
+  which DAS · Core now accepts); on an older DAS · Core those rules are not registered and the console says how many. No
+  rule of this kind ships yet.
 - Rulebook pipeline (`docs/PIPELINE.md`): one registry record per rulebook entry in `registry/<book>.json`, with commands for
   inventory, triage (by rule, in batches for reader agents, ingest of their results), gates and generation of the book
   modules; no rulebook text is stored, only names, pages, identifiers and SHA-256 fingerprints. CI runs the tests, the gates and
