@@ -2,7 +2,9 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, isReaderHandle, validateRecord } from "./schema.mjs";
+import {
+  VERDICTS, STATES, ORIGINS, MATCHES, KINDS, SECOND_REVIEW_RESULTS, isReaderHandle, validateRecord
+} from "./schema.mjs";
 import { assertProblems, assertionOfCanonical, isCanonicalAssertion } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
 
@@ -253,7 +255,7 @@ export function writeFilesAtomically(files, { write = writeFileSync, rename = re
   });
 }
 
-const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review", "reoffered"];
+const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review", "reoffered", "second"];
 // The shape of a record key (keyOf): `<book>:<kind>:<scoped name>`, lower case.
 export const RECORD_KEY = /^[a-z][a-z0-9]{1,9}:[a-z]+:[a-z0-9][a-z0-9/#-]*$/;
 
@@ -308,6 +310,43 @@ function reviewEntryProblems(entry, vocabulary) {
       }
     }
   });
+  if (Object.hasOwn(entry, "second")) errors.push(...secondMarkProblems(entry.second, vocabulary));
+  return errors;
+}
+
+// Ruling R40: the mark a second review leaves on a review-queue entry it did not settle. `{ by, at, agrees, result }` always
+// (`agrees`: false, or "unsure" for an agreement below the threshold and for an answer rejected or missing; `result` one of
+// SECOND_REVIEW_RESULTS); with `result: "read"` also `confidence`, `assert` (the second review's assertions, [] when it could
+// not express the entry), `onlyDraft`, `onlyReview` (canonical strings) and, when its assertions agree with the first review's,
+// `withFirst: true`. No prose.
+const SECOND_READ_FIELDS = ["confidence", "assert", "onlyDraft", "onlyReview"];
+function secondMarkProblems(mark, vocabulary) {
+  if (!isPlainObject(mark)) return ["second: must be { by, at, agrees, result, confidence?, assert?, onlyDraft?, onlyReview?,"
+    + " withFirst? }"];
+  const errors = [];
+  const read = mark.result === "read";
+  const allowed = ["by", "at", "agrees", "result", ...(read ? [...SECOND_READ_FIELDS, "withFirst"] : [])];
+  for (const f of Object.keys(mark)) if (!allowed.includes(f)) errors.push(`second.${f}: unknown field (or not with this result)`);
+  if (!isReaderHandle(mark.by)) errors.push("second.by: must be a reader handle (not \"rule\")");
+  if (typeof mark.at !== "string" || !mark.at) errors.push("second.at: must be a non-empty string");
+  if (mark.agrees !== false && mark.agrees !== "unsure") errors.push("second.agrees: must be false or \"unsure\"");
+  if (!SECOND_REVIEW_RESULTS.includes(mark.result)) {
+    errors.push(`second.result: must be one of ${SECOND_REVIEW_RESULTS.join(", ")}`);
+  }
+  if (!read) return errors;
+  for (const f of SECOND_READ_FIELDS) if (!Object.hasOwn(mark, f)) errors.push(`second.${f}: required for a result read`);
+  const c = mark.confidence;
+  if (Object.hasOwn(mark, "confidence") && !(typeof c === "number" && c >= 0 && c <= 1)) {
+    errors.push("second.confidence: must be a number from 0 to 1");
+  }
+  if (Object.hasOwn(mark, "assert")) {
+    if (!Array.isArray(mark.assert)) errors.push("second.assert: must be an array of assertions");
+    else if (mark.assert.length) errors.push(...assertProblems(mark.assert, { vocabulary, at: "second.assert" }));
+  }
+  for (const f of ["onlyDraft", "onlyReview"]) {
+    if (Object.hasOwn(mark, f)) errors.push(...canonicalListProblems(mark[f], `second.${f}`, vocabulary));
+  }
+  if (Object.hasOwn(mark, "withFirst") && mark.withFirst !== true) errors.push("second.withFirst: must be true when present");
   return errors;
 }
 
@@ -337,6 +376,8 @@ export function validateQueueEntry(entry, { queue, vocabulary } = {}) {
     if (queue !== "drafts") errors.push("reoffered: a mark of drafts-queue.json entries only");
     else if (entry.reoffered !== true) errors.push("reoffered: must be true when present");
   }
+  // Ruling R40: the mark of a second review that did not settle the entry, in review-queue.json only.
+  if (Object.hasOwn(entry, "second") && queue !== "review") errors.push("second: a mark of review-queue.json entries only");
   if (queue === "review" && !errors.length) errors.push(...reviewEntryProblems(entry, vocabulary));
   return errors;
 }

@@ -1612,8 +1612,9 @@ every file as it was.
 ### Ingesting reviews
 
 `npm run ingest -- <results-file> --review --batch <batch file>` takes what a reviewer wrote (`tools/pipeline/review.mjs`
-`ingestReviews`). `--batch` is required; `--review` with `--overwrite`, `--second`, `--third`, `--settle-unsure` or `--draft`
-is a usage error. The whole file is refused (exit 2, nothing written) when it is not `{ batch, by, results }`, has another
+`ingestReviews`). `--batch` is required; `--review` with `--overwrite`, `--third`, `--settle-unsure` or `--draft` is a usage
+error (`--review --second` is the second review, section "Second review" below). The whole file is refused (exit 2,
+nothing written) when it is not `{ batch, by, results }`, has another
 top-level field, `by` is not a handle, it holds a key named `__proto__`, `constructor` or `prototype`, a queue file of the
 registry is invalid, its `batch` is not a review batch id `<book>-review-<NNN>`, or the batch file does not have that id, stage
 `review`, and entries that are all keys of that book with a 64-hex `rule`. It needs `RULEPACK_DUMPS` (a usage error says so):
@@ -1708,6 +1709,45 @@ part of the gate evidence fingerprint `emits`, and the text gate reads both with
 record is `drafted` until `npm run gates` runs again and passes, and `gates --ci` fails until then, so a quote typed into
 `because` by hand cannot stand on evidence stamped before it. The command trusts `--by`: whoever runs the CLI acts as the
 owner named (Ruling R20: a visible claim, not a signature). Agents never run it.
+
+### Second review (Ruling R40)
+
+A review-queue entry queued as `disagreement` or `low-confidence` is read once more, blind, by a second reviewer: two
+independent readings of three (the draft and one reviewer) agreeing settle it, as the triage's third reading settles two
+readers who disagree. `review.mjs` `secondReviewSkipReason` says which entries are open to it: reason `disagreement` or
+`low-confidence` (never a draft's stamp for a person, `free-text` or `unexpressed`: `other reason`), no `second` mark yet
+(`second review done`), drafted by an agent (`owner`: no `evidence.drafted`, an `evidence.person`, a drafter handle of
+`docs/owners.json`, a draft stamped for a person, a `draft.person` on the entry), the entry's draft and review about the rule
+as it is (`stale`), and the plain cut's own reasons (`legacy`, `not gated (<state>)`, `no text`, `no assertion`).
+
+- `batch review <BOOK> ... --second` cuts those entries alone, as ordinary review entries (the same entry a plain cut gives:
+  nothing of the draft, of the first review or of the queue entry's `reason`, `why`, handle or confidence), in batches
+  `<book>-review-second-<NNN>` (`second: true`, numbered on their own after the highest `-review-second-` number in `<dir>`),
+  report `<book>-review-second-report.json`, whose `leftOut` counts the book's other queue entries by the reasons above. The
+  reviewer brief is the same, unchanged: the second reviewer is given it, the batch, its structure file and a handle that is
+  none of the rule's authors' and not the first reviewer's.
+- `ingest <results-file> --review --second --batch <batch file>` takes only a batch so marked (a second batch without
+  `--second`, or a plain one with it, is refused, exit 2). Every check of `--review` applies, with the same comparison
+  (`compareAsserts`, baseline, tolerances, leaves; no new tolerance), except that the record must be an entry open to a second
+  review (`not open to a second review: <reason>` otherwise) and the reviewer must not be the first one (case aside).
+  - Agreement with the DRAFT at or above 0.7: **confirmed**, exactly as an agreeing first review (`evidence.reviewed`, with
+    `tolerated` when R24 or R25 tolerated anything, then `drafted` until `npm run gates` runs again) plus `via:
+    "second-review"` and `first: { by, confidence, reason, assert, onlyDraft, onlyReview }`, the first review as data
+    (canonical assertions; its `why` stays out of the record). The entry leaves the queue.
+  - Anything else: the entry stays exactly as it was (`reason`, `by`, `why`, `confidence`, `draft`, `review`) plus `second: {
+    by, at, agrees, result }`: `agrees` is `false` when the assertions do not agree with the draft (an `outcome: "person"`
+    included), `"unsure"` when they agree below 0.7 or when the result is `rejected` or `missing` (an offered entry the file
+    does not answer). A `read` result also keeps `confidence`, `assert`, `onlyDraft`, `onlyReview` and, when its assertions
+    agree with the first review's (the same comparison, the first review as the stated side), `withFirst: true`: two
+    reviewers against the draft, for a person or a redraft to take first. The mark is final: the entry is never cut by
+    `--second` again, and a further second result for it is rejected.
+  - It prints `{ confirmed, confirmedExact, confirmedTolerated, regate, partial, marked, withFirst, rejected }` and exits with
+    1 when anything was rejected; the books and the queue are written in one step.
+- The schema holds both: `evidence.reviewed.via` (`"second-review"` only) and `first` go together, `first` with closed keys and
+  a reason of the two; a queue entry's `second` is allowed in `review-queue.json` only, with closed keys per result, assertions
+  valid against the engine's words and canonical strings. A confirmed rule is `reviewed` and ships (`emissionOf`); a marked
+  entry holds its rule under its reason as before. `docs/RULES.md` counts the shipped rules settled by a second review apart
+  (`books-progress.mjs` `secondReviews`).
 
 ### Second reading of the queue
 

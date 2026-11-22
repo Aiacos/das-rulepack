@@ -443,7 +443,13 @@ function checkEvidence(evidence, errors, legacy, verdict, why) {
   const confidence = (v) => typeof v === "number" && v >= 0 && v <= 1;
   // `because`: the one line a person gives when they accept a review-queue entry (`review-accept`); a reviewer writes none.
   checkStamped(evidence, "reviewed", { by: isReaderHandle, at: isString, agrees: (v) => typeof v === "boolean", rule: isHex64,
-    confidence }, { rule: legacy, confidence: legacy }, errors, { because: (v) => isPlainLine(v, 120), tolerated: isTolerated });
+    confidence }, { rule: legacy, confidence: legacy }, errors, { because: (v) => isPlainLine(v, 120), tolerated: isTolerated,
+    via: (v) => v === SECOND_REVIEW_VIA, first: isFirstReview });
+  // Ruling R40: a rule settled by a second review says so (`via`) and keeps the first review it settled (`first`): together.
+  const reviewed = evidence.reviewed;
+  if (isObject(reviewed) && has(reviewed, "via") !== has(reviewed, "first")) {
+    errors.push("evidence.reviewed: via and first go together (a rule settled by a second review, Ruling R40)");
+  }
   // A play (Ruling R10; played.mjs): read from the runner's log, or recorded by an owner who played a checklist by hand
   // (`manual: true` with `by` and `because`, the only prose: part of `emits`, read by the text gate). Every other field has
   // a shape that holds no prose: a scenario id, an engine version, a world handle, a client, a fingerprint.
@@ -479,6 +485,20 @@ const isTolerated = (v) => isObject(v) && REVIEW_TOLERANCES.every((k) => Object.
   && (!Object.hasOwn(v, PARTIAL_TOLERANCE) || (isPairList(v.left) && v.left.length > 0))
   && (v.baseline.length + v.detail.length + (Object.hasOwn(v, PARTIAL_TOLERANCE) ? v.left.length : 0) > 0)
   && v.baseline.every((c) => isCanonicalAssertion(c)) && isPairList(v.detail);
+// Ruling R40: how evidence.reviewed says a second review settled the rule, and the first review it settled, as data: the
+// first reviewer's handle and confidence, the reason the entry was queued (a reason a second review may settle), and its
+// assertions and what was on one side only, as canonical strings (no prose: the first `why` is not kept here).
+export const SECOND_REVIEW_VIA = "second-review";
+export const SECOND_REVIEWED_REASONS = Object.freeze(["disagreement", "low-confidence"]);
+// What the mark of a second review that did not confirm the rule says of its result (a review-queue entry's `second.result`):
+// an answer read, an answer rejected, or no answer for an offered entry.
+export const SECOND_REVIEW_RESULTS = Object.freeze(["read", "rejected", "missing"]);
+const FIRST_REVIEW_FIELDS = ["by", "confidence", "reason", "assert", "onlyDraft", "onlyReview"];
+const isCanonicalList = (l) => Array.isArray(l) && l.every((c) => isCanonicalAssertion(c));
+const isFirstReview = (v) => isObject(v) && Object.keys(v).every((k) => FIRST_REVIEW_FIELDS.includes(k))
+  && FIRST_REVIEW_FIELDS.every((k) => Object.hasOwn(v, k)) && isReaderHandle(v.by)
+  && typeof v.confidence === "number" && v.confidence >= 0 && v.confidence <= 1 && SECOND_REVIEWED_REASONS.includes(v.reason)
+  && isCanonicalList(v.assert) && isCanonicalList(v.onlyDraft) && isCanonicalList(v.onlyReview);
 const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
 // The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
@@ -490,6 +510,9 @@ const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex charact
   "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]], left?: [[leaves, review]] } (Rulings R24,"
     + " R25), not all empty",
   "drafted.redrafted": "true (Ruling R32)",
+  "reviewed.via": `${SECOND_REVIEW_VIA} (Ruling R40)`,
+  "reviewed.first": "{ by, confidence, reason: disagreement or low-confidence, assert, onlyDraft, onlyReview } (Ruling R40,"
+    + " canonical assertions)",
   "played.because": "one line of printable ASCII, at most 120 characters", "played.by": "an owner's handle, not an agent's",
   "played.manual": "true", "played.client": `one of ${["gm", "player"].join(", ")}`,
   "played.scenario": "a scenario id <book>/<slug> (scenarios.mjs)", "played.core": "an engine version (1.2.3)",
