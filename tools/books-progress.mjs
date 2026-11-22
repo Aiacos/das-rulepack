@@ -271,7 +271,14 @@ export function countsLine(rules, { handPlayed = () => false, tolerated = new Se
 }
 
 const STATUS = { played: "Played", validated: "Validated", pending: "Pending" };
-const KIND = { spell: "Spell", feature: "Feature", sense: "Sense" };
+/** The label of each kind of rule (scripts/rules/book.mjs KINDS) in docs/RULES.md. */
+export const KIND_LABELS = Object.freeze({ spell: "Spell", feat: "Feat", option: "Option", feature: "Feature",
+  species: "Species trait", background: "Background", item: "Item", monster: "Monster feature", sense: "Sense" });
+/** The label of a kind; an unknown kind is refused (thrown), never printed as "undefined". */
+export function kindLabel(kind) {
+  if ( !Object.hasOwn(KIND_LABELS, kind) ) throw new Error(`no label for the kind ${JSON.stringify(kind)} (KIND_LABELS)`);
+  return KIND_LABELS[kind];
+}
 
 /** The block between `<!-- auto:rules -->` and `<!-- /auto:rules -->`: the pack's rules, book by book. */
 export function renderRules() {
@@ -295,7 +302,7 @@ export function renderRules() {
       const gaps = [...(rule.uncovered ?? []).map(u => ` Not covered on ${u.origin}: ${u.because}.`),
         ...(unaccounted.get(`${rule.book}|${rule.identifier}`) ?? []).map(o => ` Not checked on ${o} (the rule predates it).`)]
         .join("");
-      out.push(`| ${name} | ${KIND[rule.kind]} | ${pages} | ${rule.adds}${gaps} | ${where} | ${statusOf(rule)} |`);
+      out.push(`| ${name} | ${kindLabel(rule.kind)} | ${pages} | ${rule.adds}${gaps} | ${where} | ${statusOf(rule)} |`);
     }
     out.push("");
   }

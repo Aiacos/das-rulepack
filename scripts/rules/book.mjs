@@ -26,8 +26,11 @@
  * @property {{origin: string, because: string}[]} [uncovered]  Origins whose item the rule does not reach, and why.
  */
 
-/** What a rule is about. */
-export const KINDS = Object.freeze(["spell", "feature", "sense"]);
+/**
+ * What a rule is about: every kind a ruled record of registry/ may have (tools/pipeline/schema.mjs KINDS; a test holds the two
+ * lists equal). `monster` is a feature of a creature's stat block; `sense` exists only in legacy rules.
+ */
+export const KINDS = Object.freeze(["spell", "feat", "option", "feature", "species", "background", "item", "monster", "sense"]);
 
 /**
  * How far a rule was checked.
