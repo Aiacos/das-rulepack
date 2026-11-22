@@ -11,6 +11,7 @@ import { checkFixes, checkText, runGates } from "../../tools/pipeline/gates.mjs"
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { NOT_BOOKS, ruleFingerprint, validateTriageQueueEntry } from "../../tools/pipeline/registry.mjs";
 import { ASSERT } from "./fixtures/assert.mjs";
+import { fromRegistry } from "../derived.mjs";
 
 // Synthetic fixtures only: invented ids and invented text. Fix round 2 of Task 3: allowlists instead of blacklists, and the
 // drafter limits enforced by a gate that runs under --ci.
@@ -190,16 +191,26 @@ describe("text fields: printable ASCII; code, catalog and origin", () => {
     expect(schema("scripts/no-such-script.mjs").join("; ")).toMatch(/schema: rule\.code: scripts\/no-such-script\.mjs is not/);
   });
 
+  // Legacy pin: the 10 code and origin values of the 24 legacy rules, which the schema does not check on a legacy record.
   it("the legacy rules' code and origin values pass these formats anyway", () => {
-    const dir = join(ROOT, "registry");
-    const ruled = readdirSync(dir).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f))
-      .flatMap((f) => JSON.parse(readFileSync(join(dir, f), "utf8")).records).filter((r) => r.rule);
+    const ruled = fromRegistry().records.filter((r) => r.rule && r.legacy === true);
+    expect(ruled).toHaveLength(24);
     const values = ruled.flatMap((r) => ["code", "origin"].filter((f) => f in r.rule).map((f) => [r.key, f, r.rule[f]]));
     expect(values).toHaveLength(10);
     for (const [key, f, v] of values) {
       const { legacy, legacyStatus, ...plain } = { ...r0(), rule: { ...r0().rule, [f]: v } };
       expect(validateRecord(plain), `${key} ${f}`).toEqual([]);
       if (f === "code") expect(existsSync(join(ROOT, v)), v).toBe(true);
+    }
+  });
+
+  // Derived: every other emitted rule is checked on its own record, code, catalog and origin included, by the schema.
+  it("the code, catalog and origin of every emitted rule that is not legacy pass these formats", () => {
+    const { emitted, isLegacy } = fromRegistry();
+    for (const { record, rule } of emitted.filter(({ record }) => !isLegacy(record))) {
+      expect(validateRecord(record), record.key).toEqual([]);
+      for (const f of ["code", "catalog", "origin"]) expect(f in rule, `${record.key} ${f}`).toBe(f in record.rule);
+      if ("code" in rule) expect(existsSync(join(ROOT, rule.code)), rule.code).toBe(true);
     }
   });
 });

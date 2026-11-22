@@ -11,6 +11,7 @@ import {
 import { validateRecord } from "../../tools/pipeline/schema.mjs";
 import { generate, NOT_BOOKS as GENERATE_NOT_BOOKS } from "../../tools/pipeline/generate.mjs";
 import { unaccountedByRule } from "../../tools/books-progress.mjs";
+import { fromRegistry } from "../derived.mjs";
 
 // Synthetic fixtures only. Evidence about a rule carries the rule fingerprint (drafted, reviewed, played): editing the rule
 // makes all of it stale, and the state is derived from the evidence alone.
@@ -65,10 +66,11 @@ describe("stateOf and rule-stamped evidence", () => {
     expect(stateOf(edited)).toBe("drafted");
   });
 
+  // Legacy pin: the records that claim `legacy` are the 24 keys of registry/legacy.json, each in the state it had.
   it("legacy states unchanged for the 24", () => {
-    const dir = join(ROOT, "registry");
-    const ruled = readdirSync(dir).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f))
-      .flatMap((f) => JSON.parse(readFileSync(join(dir, f), "utf8")).records).filter((r) => r.rule);
+    const { records, legacyKeys } = fromRegistry();
+    const ruled = records.filter((r) => r.rule && r.legacy === true);
+    expect(ruled.map((r) => r.key).sort()).toEqual(legacyKeys);
     expect(ruled).toHaveLength(24);
     for (const r of ruled) {
       expect(r.legacy, r.key).toBe(true);
@@ -83,6 +85,15 @@ describe("stateOf and rule-stamped evidence", () => {
     expect(stateOf(old)).toBe("reviewed");
     const stale = { ...legacy, evidence: { ...legacy.evidence, reviewed: reviewed("c".repeat(64)) } };
     expect(stateOf(stale)).toBe("gated");
+  });
+
+  // Derived: every other record with a rule is saved in the state its own evidence gives, and is a valid record.
+  it("every record with a rule that is not legacy is saved in the state stateOf derives, and is valid", () => {
+    const others = fromRegistry().records.filter((r) => r.rule && r.legacy !== true);
+    for (const r of others) {
+      expect(stateOf(r), r.key).toBe(r.state);
+      expect(validateRecord((({ state, ...x }) => x)(r)), r.key).toEqual([]);
+    }
   });
 });
 

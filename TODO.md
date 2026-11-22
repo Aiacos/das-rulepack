@@ -166,7 +166,10 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] Decide what a partial rule is (refused, or accepted with its uncovered part declared as data).
 - [ ] Define the timing words of the vocabulary against the engine's behaviour (`bearerTurnEnd`, `casterTurnEnd`,
       `currentTurnEnd`), with an example each.
-- [ ] Tests that pin the 24 legacy rules (registered set, states, round trip) must derive what they expect from the
-      registry: 7 fail on `pilot/m3-xmm`, so no new rule can land on `master` yet.
+- [x] Tests that pin the 24 legacy rules (registered set, states, round trip) derive what they expect from the registry
+      for every other rule (2026-11-22, `tests/derived.mjs`; docs/PIPELINE.md, Legacy rules). The 7 pass on `pilot/m3-xmm`.
+- [ ] The module's `KINDS` (`scripts/rules/book.mjs`) and the Kind column of docs/RULES.md know spell, feature and sense
+      only: the 14 `monster` rules of `pilot/m3-xmm` fail "the rules that are not legacy … have the same properties" and
+      show as `undefined` in docs/RULES.md. Add the kind there (and its label in `tools/books-progress.mjs`) before merging.
 - [ ] Scenario interpreter for moves; match the runner's resolution to the target by token id.
 

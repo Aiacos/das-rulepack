@@ -1096,6 +1096,17 @@ edits its `rule`, removes `legacy` and `legacyStatus` and its key from `legacy.j
 the gates pass on it (`gated`, status `validated`). Editing a legacy record in place without that, in anything the module
 emits, is refused.
 
+**The tests and the legacy rules.** The tests that check what the module ships do it in two halves. The 24 legacy rules
+are pinned as they were: their registered identifiers (written out in `tests/registration.test.mjs`) and entries (its
+snapshot), their saved states, their 10 `code` and `origin` values, their rule → record → rule round trip and their
+properties, each test failing if a legacy rule changes. Every other rule is derived from registry/ at test time
+(`tests/derived.mjs`, with `ruleFromRecord` and `sourcesOf`): the registered table and `sources` are exactly what the
+registry emits, each emitted rule is the shipped one with the same properties, reads its record back and passes the
+schema, and no rule shares a sense's identifier. Nothing of the pipeline's rules is written in a test; the one guard
+against silent growth is docs/RULES.md (written by `npm run books`, checked by `-- --check`), whose rows per book and
+status, less the legacy ones, must be what registry/ emits. A test also loads `scripts/main.mjs` and fails if a module of
+`scripts/rules/books/` is not imported by the index or not in the table registered, or the index imports a missing one.
+
 ## 🚧 Not built yet
 
 Only inventory, triage (rule-based, batch files, ingest), resolve, drafting (batches, brief, ingest), gates, review (batches,
