@@ -10347,7 +10347,7 @@
       "edition": "2024",
       "owner": "Ancient Copper Dragon",
       "section": "action",
-      "identifier": "slowing-breath",
+      "identifier": "xmm-ancient-copper-dragon-slowing-breath",
       "page": 80,
       "srd": true,
       "text": {
@@ -10384,7 +10384,8 @@
           ],
           "data": {
             "sha256": "d733c9e6878aa60c33616d53713062a768db6ba92b213f584171176a49f2724b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -10399,10 +10400,73 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "1fa031d0db4f5c17378613d096947866bcb7862afd16ebb71f2416b41fdd357d",
+          "person": true,
+          "because": "noReactions"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.262Z",
+          "core": "0.289.0",
+          "rule": "1fa031d0db4f5c17378613d096947866bcb7862afd16ebb71f2416b41fdd357d",
+          "emits": "fb755d0fd8adb4cdca108c416de3c781c634740cecac3f377ce0664bdd5de98a",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a"
+          }
         }
       },
       "why": "Data halves speed only; text also bars reactions and limits to one action or bonus action until end of next turn",
-      "state": "triaged"
+      "sources": {
+        "BqtNDu2WFDju2dM6": "xmm-ancient-copper-dragon-slowing-breath"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "On a failed save the target loses reactions, gets only an action or a bonus action, until the end of its next turn.",
+        "entry": {
+          "noReactions": [
+            "ztGUDHGfoUxlUY53"
+          ],
+          "actionOrBonus": [
+            "ztGUDHGfoUxlUY53"
+          ],
+          "effectEnds": {
+            "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Ancient Copper Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:ancient-copper-dragon/legendary/giggling-magic",
@@ -19131,7 +19195,7 @@
       "edition": "2024",
       "owner": "Balor",
       "section": "trait",
-      "identifier": "death-throes",
+      "identifier": "xmm-balor-death-throes",
       "page": 26,
       "srd": true,
       "text": {
@@ -19164,7 +19228,8 @@
           "effects": [],
           "data": {
             "sha256": "2783076865cde47d801a808da4133a99eeae866d76c5e9ac219f78dd5aae1b4d"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -19179,11 +19244,69 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "ad6b6cb64b42ebf90a8db990b6e4702e1e2672f86008e0caa7d48b2cb5549155"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.266Z",
+          "core": "0.289.0",
+          "rule": "ad6b6cb64b42ebf90a8db990b6e4702e1e2672f86008e0caa7d48b2cb5549155",
+          "emits": "91b11abf82e4a7a8c1515de6f879af0be9cd6545a1abc98a0efb23b5b3195401",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "04c5fa09b957db3e3972c708fe05e0efe1fe38ab44b38922f25f944c2dca5461"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Explosion on death plus revival elsewhere; triggered by dying, activation empty in the data.",
-      "state": "triaged"
+      "sources": {
+        "mmDeathThroes000": "xmm-balor-death-throes"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A successful save halves the explosion damage; the table triggers it when the balor dies.",
+        "entry": {
+          "saveDamage": {
+            "jTq2czA8KQITUK4c": "half"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5,
+                "type": "fire"
+              }
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Balor"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:balor/trait/fire-aura",
@@ -20436,7 +20559,7 @@
       "edition": "2024",
       "owner": "Banshee",
       "section": "action",
-      "identifier": "horrify",
+      "identifier": "xmm-banshee-horrify",
       "page": 29,
       "srd": false,
       "text": {
@@ -20473,7 +20596,8 @@
           ],
           "data": {
             "sha256": "d14861daade9e9952353b1f217d4d551d8d654f8f36468504679497565d444d1"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -20488,10 +20612,75 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "413ef9d15a692966f73b756ca4fe6a0ab0c2020ea2ba3f4136ea03486210fff7"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.267Z",
+          "core": "0.289.0",
+          "rule": "413ef9d15a692966f73b756ca4fe6a0ab0c2020ea2ba3f4136ea03486210fff7",
+          "emits": "2ddf1b46cd761cc9bb4bc03aa5c762894f72c45cb09afbd59b4b2c5264df22be",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "65e432e0047388d2e26a926c056bc36cd7b439c37ce1de365f0feab5f3abd4ab"
+          }
         }
       },
       "why": "Frightened to a turn start plus 24-hour immunity to this banshee; the immunity rider is not in data.",
-      "state": "triaged"
+      "sources": {
+        "BgXdOU6xf5CiGoyc": "xmm-banshee-horrify"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Fear on a failed save ends when the banshee's next turn starts.",
+        "entry": {
+          "effectEnds": {
+            "rttbSuOfCKb1TjGs": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "frightened"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Banshee"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:banshee/action/multiattack",
@@ -21690,7 +21879,7 @@
       "edition": "2024",
       "owner": "Bearded Devil",
       "section": "action",
-      "identifier": "beard",
+      "identifier": "xmm-bearded-devil-beard",
       "page": 33,
       "srd": true,
       "text": {
@@ -21727,7 +21916,8 @@
           ],
           "data": {
             "sha256": "ad4084ac4ff373f7cce4538a0f4ba26ef469f79ad1902762fb550cf23e134ae3"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -21742,10 +21932,75 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "2e53e8461f0b98feb310351472102b926c92ec7eb0447b55a41e6c3e7cd75bf3"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.268Z",
+          "core": "0.289.0",
+          "rule": "2e53e8461f0b98feb310351472102b926c92ec7eb0447b55a41e6c3e7cd75bf3",
+          "emits": "48ae8e154febb5053c5a1b2eb90b7c1d31aaab20d16bf17e967ee3912e85bca3",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7980ebdac1c7339b7ad44e14e53eecea8b792f126f2360895c8638a2704daed1"
+          }
         }
       },
       "why": "Poisoned until next turn start plus no healing while it lasts; data has only the bare condition without the rider or duration.",
-      "state": "triaged"
+      "sources": {
+        "mmBeard000000000": "xmm-bearded-devil-beard"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The poison from a hit ends when the devil's next turn starts.",
+        "entry": {
+          "effectEnds": {
+            "dnpr0RaXDWfSZOYz": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "condition": {
+                "applied": "poisoned"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Bearded Devil"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:bearded-devil/action/infernal-glaive",
@@ -25675,7 +25930,7 @@
       "edition": "2024",
       "owner": "Bone Devil",
       "section": "action",
-      "identifier": "infernal-sting",
+      "identifier": "xmm-bone-devil-infernal-sting",
       "page": 52,
       "srd": true,
       "text": {
@@ -25712,7 +25967,8 @@
           ],
           "data": {
             "sha256": "b6f5bcd6da7fffcfb986d55d445ec7e6683b9c9dff7ee7baaf96c13064d03be3"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -25727,10 +25983,75 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "7629d17868aac5aec83538ddd2972d05075f112d47e1029f9fae96aefaf0bb9e"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.270Z",
+          "core": "0.289.0",
+          "rule": "7629d17868aac5aec83538ddd2972d05075f112d47e1029f9fae96aefaf0bb9e",
+          "emits": "baaf5438a7f842638b8cb365b83b32e8bb32fc380a0caf5aff0936492128e13b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "a8229c266fe5ed511237683c7e9d09b814f3161c6f4fa44cc5da5f8a8cc60d63"
+          }
         }
       },
       "why": "Poisoned lasts until the devil's next turn start and blocks healing meanwhile; data has only a plain Poisoned effect, no expiry or heal block.",
-      "state": "triaged"
+      "sources": {
+        "mmInfernalSting0": "xmm-bone-devil-infernal-sting"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The poison from a hit ends when the devil's next turn starts.",
+        "entry": {
+          "effectEnds": {
+            "96f41YwmHtjW8P0o": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "condition": {
+                "applied": "poisoned"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Bone Devil"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:bone-devil/action/multiattack",
@@ -27886,7 +28207,7 @@
       "edition": "2024",
       "owner": "Bulette",
       "section": "action",
-      "identifier": "deadly-leap",
+      "identifier": "xmm-bulette-deadly-leap",
       "page": 63,
       "srd": true,
       "text": {
@@ -27923,7 +28244,8 @@
           ],
           "data": {
             "sha256": "261d3dc447e0241917b39a000cf8474736007d27f5f5e2d7d16df8c0cd3d1f56"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -27938,10 +28260,102 @@
           "confidence": 0.7,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "2d064e3b8b1d02b49003be3237668d4b55506ae3f8d09440a146a8c3094d151c"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.271Z",
+          "core": "0.289.0",
+          "rule": "2d064e3b8b1d02b49003be3237668d4b55506ae3f8d09440a146a8c3094d151c",
+          "emits": "d5c23aed305e0eb76381fb9ace44144c95ae7779002d0579e33a87f378f98791",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "4251045e121dd32ec962a53057556e2672ac18016b80316aed958cc15351d2ca"
+          }
         }
       },
       "why": "Jump into occupied space, damage to creatures there, push on success; data models only a line save with Prone.",
-      "state": "triaged"
+      "sources": {
+        "mmDeadlyLeap0000": "xmm-bulette-deadly-leap"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A successful save halves the damage and pushes the target 5 feet away.",
+        "entry": {
+          "saveDamage": {
+            "IPCXEQoTuaAG5l52": "half"
+          },
+          "triggers": [
+            {
+              "on": "savedSave",
+              "do": [
+                {
+                  "type": "move",
+                  "mode": "push",
+                  "distance": 5,
+                  "units": "ft"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5,
+                "type": "bludgeoning"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "move": {
+                "mode": "push",
+                "distance": 5
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "prone"
+              }
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Bulette"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:bulette/action/multiattack",
@@ -29560,7 +29974,7 @@
       "edition": "2024",
       "owner": "Centaur Trooper",
       "section": "bonus",
-      "identifier": "trampling-charge",
+      "identifier": "xmm-centaur-trooper-trampling-charge",
       "page": 67,
       "srd": true,
       "text": {
@@ -29597,7 +30011,8 @@
           ],
           "data": {
             "sha256": "71f6b8d44c98a52c27c726fbab330a4cf593aab49ec4153ecf94f14f8850e711"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -29612,11 +30027,66 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "f2ad72685f1f5cd7867f1a85e3e51702eabbe1937d6467bb991ece8f791e0040"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.272Z",
+          "core": "0.289.0",
+          "rule": "f2ad72685f1f5cd7867f1a85e3e51702eabbe1937d6467bb991ece8f791e0040",
+          "emits": "4a8f3c79e1a60c5516f5f934c9b2db1378064d9f9bd457c489c28a94c3faf40c",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "8034b529a3b4ac72e33357cdcd67268d416555371b31a187dc98d1a587956d53"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Movement through spaces with one save per creature entered; data has a plain save and Prone, lacks the movement trigger.",
-      "state": "triaged"
+      "sources": {
+        "mmTramplingCharg": "xmm-centaur-trooper-trampling-charge"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The charge move provokes no opportunity attacks.",
+        "entry": {
+          "noOpportunity": "afterUse"
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "prone"
+              }
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Centaur Trooper"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:centaur-warden/action/forest-staff",
@@ -29813,7 +30283,7 @@
       "edition": "2024",
       "owner": "Centaur Warden",
       "section": "bonus",
-      "identifier": "entangling-trail",
+      "identifier": "xmm-centaur-warden-entangling-trail",
       "page": 67,
       "srd": false,
       "text": {
@@ -29850,7 +30320,8 @@
           ],
           "data": {
             "sha256": "248e06b9c77fbf0f2c6369b9fe5aaa1b97c13825228f25df0dc4f00d71616a51"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -29865,11 +30336,77 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "b324e21dc232060cc7682331828b5a2c1b053c3c686e71ca92f2b74be887c5c7"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.273Z",
+          "core": "0.289.0",
+          "rule": "b324e21dc232060cc7682331828b5a2c1b053c3c686e71ca92f2b74be887c5c7",
+          "emits": "ce9743accb8fad921d548f432ad43ac6ec7a8fe07a83dd4c81724fc322d5450a",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "fa51c7733e53f2303ad0c6b9cc497a10cc0ac949be0168ac3d6cef0c0b6a9f07"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Save applies to creatures near the mover during movement, restraint until end of next turn; movement trigger not in data.",
-      "state": "triaged"
+      "sources": {
+        "mmEntanglingTrai": "xmm-centaur-warden-entangling-trail"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The move provokes no opportunity attacks; restraint ends at the end of the target's next turn.",
+        "entry": {
+          "noOpportunity": "afterUse",
+          "effectEnds": {
+            "xbTNeTDl4xlD6WEJ": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "restrained"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Centaur Warden"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:centaur-warden/trait/spellcasting",
@@ -30135,7 +30672,7 @@
       "edition": "2024",
       "owner": "Chain Devil",
       "section": "reaction",
-      "identifier": "unnerving-gaze",
+      "identifier": "xmm-chain-devil-unnerving-gaze",
       "page": 68,
       "srd": true,
       "text": {
@@ -30172,7 +30709,8 @@
           ],
           "data": {
             "sha256": "516fbb3e66bde5b603d13c1333d4f1cb83793ba8a3d5dedc4b87aa621cd958a6"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -30187,10 +30725,75 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n001",
+          "at": "2026-11-22T03:19:53.856Z",
+          "core": "0.289.0",
+          "rule": "cc0ca9e991934d42f7c8d563818da417a1d2c4eeef0d0e50ad165a561592d4f0"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.274Z",
+          "core": "0.289.0",
+          "rule": "cc0ca9e991934d42f7c8d563818da417a1d2c4eeef0d0e50ad165a561592d4f0",
+          "emits": "34d114a9e1025b95454a9dd1063113545861c9093392c78e7d44fcae83fc0dc0",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3428fc9b756aef8eb23544398df49403169dc48188cabacd4dc6dc3e649ac873"
+          }
         }
       },
       "why": "Reaction triggered by a creature starting its turn nearby, frightened until its turn end, 24 hour immunity; trigger and immunity not in data.",
-      "state": "triaged"
+      "sources": {
+        "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Fear from a failed save ends at the end of the target's own turn.",
+        "entry": {
+          "effectEnds": {
+            "BheOE4RU2wcG94yl": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "frightened"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Chain Devil"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:chain-devil/trait/diabolical-restoration",
@@ -30379,7 +30982,7 @@
       "edition": "2024",
       "owner": "Chasme",
       "section": "bonus",
-      "identifier": "drone",
+      "identifier": "xmm-chasme-drone",
       "page": 69,
       "srd": false,
       "text": {
@@ -30419,7 +31022,8 @@
           },
           "differences": [
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -30434,10 +31038,81 @@
           "confidence": 0.9,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n002",
+          "at": "2026-11-22T03:19:56.946Z",
+          "core": "0.289.0",
+          "rule": "f79f3c44b5e0e8ddf6c528e2323272f5cfdb648b9109c236640db4bc5aebdc31"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.274Z",
+          "core": "0.289.0",
+          "rule": "f79f3c44b5e0e8ddf6c528e2323272f5cfdb648b9109c236640db4bc5aebdc31",
+          "emits": "66117f90fafcd00a5ce5b7f37c713433a45a4575776b524e90f2910f0f7db8a1",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "ef4e3b7de1ce73ac21af8305642a413b6d48485e7ad697ce76e5e2a35768b119"
+          }
         }
       },
       "why": "Aura save repeated each turn, ends on damage or being doused, demon exemption and 24 hour immunity; data has only Unconscious.",
-      "state": "triaged"
+      "sources": {
+        "mmDrone000000000": "xmm-chasme-drone"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The sleeper rolls a fresh save whenever one of its turns ends; the sleep lasts ten minutes at most.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "fromEffect": "f04Z8zNXMjMn7x6U",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ],
+          "effectDurations": {
+            "f04Z8zNXMjMn7x6U": {
+              "seconds": 600
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "unconscious"
+              }
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Chasme"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:chasme/trait/demonic-restoration",
@@ -31878,7 +32553,7 @@
       "edition": "2024",
       "owner": "Cloaker",
       "section": "bonus",
-      "identifier": "moan",
+      "identifier": "xmm-cloaker-moan",
       "page": 73,
       "srd": true,
       "text": {
@@ -31915,7 +32590,8 @@
           ],
           "data": {
             "sha256": "a3517f878825543bb4f07d5517bae3a3d7ccebfd2b795edc34a9087dacf32720"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -31930,10 +32606,75 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-n002",
+          "at": "2026-11-22T03:19:56.946Z",
+          "core": "0.289.0",
+          "rule": "754cb8857cc6819d68dca91d2729ed37f33661b4f705e652126b558d64d4ecad"
+        },
+        "gates": {
+          "at": "2026-11-22T03:20:06.275Z",
+          "core": "0.289.0",
+          "rule": "754cb8857cc6819d68dca91d2729ed37f33661b4f705e652126b558d64d4ecad",
+          "emits": "9207711b671310032499d37bb60b28d0730eac15a6aed61bef6ce91ea48f57e5",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "63e72631f79dbaf80951e89748098df6724217100014324b1ef5176ff6c9deff"
+          }
         }
       },
       "why": "Emanation fear until end of next turn plus 24 hour immunity on the target; data lacks duration and immunity.",
-      "state": "triaged"
+      "sources": {
+        "mmMoan0000000000": "xmm-cloaker-moan"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The fear from a failed save ends when the cloaker's next turn ends.",
+        "entry": {
+          "effectEnds": {
+            "ozk8flGDR2kAITEI": "casterTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "frightened"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "casterTurnEnd"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Cloaker"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:cloaker/trait/light-sensitivity",
