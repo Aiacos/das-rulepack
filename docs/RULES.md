@@ -50,7 +50,7 @@ Published as an official Foundry VTT module (`dnd-adventures-faerun`).
 | Rule | Kind | Page | What the module adds | Handled in | Status |
 |---|---|---|---|---|---|
 | Orb of Damara | Item | p.246 | Foes beginning their turn near the bearer roll the fear save; frightened lasts until that foe's next turn begins. Not covered on ddb-importer: emanation holds a single activity id; the importer item splits the aura into its own utility and save activities. Partial: 7 expectations left to the table (form-change 1, immunity-after-save 1, no-key 2, out-of-combat 1, table-ruling 1, use-time-choice 1). | table, partial | Validated |
-| Ulcrun | Item | p.237 | A successful save deals no damage at all. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
+| Ulcrun | Item | p.237 | A successful save deals no damage at all. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
 
 Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
 
@@ -64,21 +64,21 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 
 | Rule | Kind | Page | What the module adds | Handled in | Status |
 |---|---|---|---|---|---|
-| Whirlwind (Air Elemental) | Monster feature | p.13 | A failed save also shoves the target 20 feet away from the elemental; a success halves the damage. Partial: 1 expectation left to the table (target-size 1). | table, partial | Validated |
-| Slowing Breath (Ancient Copper Dragon) | Monster feature | p.80 | The slowing effect from the breath lasts until the affected creature finishes its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
-| Unnerving Gaze (Chain Devil) | Monster feature | p.68 | The fear ends at the end of the turn it was imposed in. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (immunity-after-save 1, table-ruling 1). | table, partial | Validated |
-| Hasten (Clay Golem) | Monster feature | p.72 | After using it, the golem's movement provokes no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
-| Dreadful Howl (Dire Worg) | Monster feature | p.335 | The fear ends when the worg's following turn begins; a save halves the damage. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
-| Terrifying Presence (Dracolich) | Monster feature | p.102 | The fear ends when the target's following turn ends; a save avoids the damage. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
+| Whirlwind (Air Elemental) | Monster feature | p.13 | A failed save also shoves the target 20 feet away from the elemental; a success halves the damage. Partial: 1 expectation left to the table (target-size 1). | table, partial | Played |
+| Slowing Breath (Ancient Copper Dragon) | Monster feature | p.80 | The slowing effect from the breath lasts until the affected creature finishes its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Played |
+| Unnerving Gaze (Chain Devil) | Monster feature | p.68 | The fear ends at the end of the turn it was imposed in. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (immunity-after-save 1, table-ruling 1). | table, partial | Played |
+| Hasten (Clay Golem) | Monster feature | p.72 | After using it, the golem's movement provokes no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
+| Dreadful Howl (Dire Worg) | Monster feature | p.335 | The fear ends when the worg's following turn begins; a save halves the damage. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
+| Terrifying Presence (Dracolich) | Monster feature | p.102 | The fear ends when the target's following turn ends; a save avoids the damage. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
 | Sacred Weapon (Empyrean) | Monster feature | p.113 | The stun ends when the user's next turn begins; the extra damage ignores resistance. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). Carries over 1 engine key (usageLimits). | table, partial | Validated |
 | Stench Spray (Flumph) | Monster feature | p.122 | The poison from a failed save lasts 1d4 hours. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, out-of-combat 1). | table, partial | Validated |
 | Suffocate (Graveyard Revenant) | Monster feature | p.260 | The held creature can end the grip, and the choking with it, by winning a check as an action. Partial: 2 expectations left to the table (table-ruling 1, target-size 1). | table, partial | Validated |
 | Sleep Gaze (Jackalwere) | Monster feature | p.182 | Another creature can spend an action to wake the sleeper; the sleep lasts ten minutes. Partial: 3 expectations left to the table (immunity-after-save 1, no-key 2). | table, partial | Validated |
-| Toxic Ink (Kraken) | Monster feature | p.187 | The blinding and poisoning end when the kraken's next turn ends. Partial: 3 expectations left to the table (no-key 2, table-ruling 1). | table, partial | Validated |
-| Icy Bite (Lacedon Ghoul) | Monster feature | p.132 | The slowing effect ends when the user's next turn begins. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
-| Telekinetic Thrust (Poltergeist) | Monster feature | p.246 | A failed save also shoves the target 30 feet away from the user. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Carries over 1 engine key (magical). | table | Validated |
-| Hypnotic Gaze (Ultroloth) | Monster feature | p.311 | The stun lasts until the ultroloth begins its next turn; a successful save takes no damage. Partial: 1 expectation left to the table (immunity-after-save 1). | table, partial | Validated |
-| Spore Bomb (Violet Fungus Necrohulk) | Monster feature | p.126 | Half damage on a save; the poison lasts until the necrohulk begins its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (healing-block 1). | table, partial | Validated |
+| Toxic Ink (Kraken) | Monster feature | p.187 | The blinding and poisoning end when the kraken's next turn ends. Partial: 3 expectations left to the table (no-key 2, table-ruling 1). | table, partial | Played |
+| Icy Bite (Lacedon Ghoul) | Monster feature | p.132 | The slowing effect ends when the user's next turn begins. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Played |
+| Telekinetic Thrust (Poltergeist) | Monster feature | p.246 | A failed save also shoves the target 30 feet away from the user. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Carries over 1 engine key (magical). | table | Played |
+| Hypnotic Gaze (Ultroloth) | Monster feature | p.311 | The stun lasts until the ultroloth begins its next turn; a successful save takes no damage. Partial: 1 expectation left to the table (immunity-after-save 1). | table, partial | Played |
+| Spore Bomb (Violet Fungus Necrohulk) | Monster feature | p.126 | Half damage on a save; the poison lasts until the necrohulk begins its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (healing-block 1). | table, partial | Played |
 
 Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
 
@@ -193,7 +193,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-42 rules: 16 played, 26 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 15 of them partial (part of the entry left to the table). 59 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 10, reviewer unsure 7).
+42 rules: 28 played, 14 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 15 of them partial (part of the entry left to the table). 59 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 10, reviewer unsure 7).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

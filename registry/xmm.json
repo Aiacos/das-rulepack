@@ -8363,6 +8363,14 @@
           "items": {
             "official": "e6d3d0570e5db94d0db9eed256359c7754a0b55555855458f47968f281d7da31"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.783Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-air-elemental-action-whirlwind",
+          "client": "gm",
+          "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d"
         }
       },
       "why": "Recharge save for damage, push and Prone limited to Medium or smaller targets in its space; size limit and push not in data.",
@@ -8434,7 +8442,7 @@
         ],
         "origin": "Air Elemental"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:air-elemental/trait/air-form",
@@ -11289,6 +11297,14 @@
           "items": {
             "official": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-copper-dragon-action-slowing-breath",
+          "client": "gm",
+          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287"
         }
       },
       "why": "Data halves speed only; text also bars reactions and limits to one action or bonus action until end of next turn",
@@ -11324,7 +11340,7 @@
         ],
         "origin": "Ancient Copper Dragon"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:ancient-copper-dragon/legendary/giggling-magic",
@@ -21742,6 +21758,14 @@
           "items": {
             "official": "65e432e0047388d2e26a926c056bc36cd7b439c37ce1de365f0feab5f3abd4ab"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-banshee-action-horrify",
+          "client": "gm",
+          "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c"
         }
       },
       "why": "Frightened to a turn start plus 24-hour immunity to this banshee; the immunity rider is not in data.",
@@ -21797,7 +21821,7 @@
         ],
         "origin": "Banshee"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:banshee/action/multiattack",
@@ -23122,6 +23146,14 @@
           "items": {
             "official": "7980ebdac1c7339b7ad44e14e53eecea8b792f126f2360895c8638a2704daed1"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bearded-devil-action-beard",
+          "client": "gm",
+          "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c"
         }
       },
       "why": "Poisoned until next turn start plus no healing while it lasts; data has only the bare condition without the rider or duration.",
@@ -23173,7 +23205,7 @@
         ],
         "origin": "Bearded Devil"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:bearded-devil/action/infernal-glaive",
@@ -27394,6 +27426,14 @@
           "items": {
             "official": "a8229c266fe5ed511237683c7e9d09b814f3161c6f4fa44cc5da5f8a8cc60d63"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bone-devil-action-infernal-sting",
+          "client": "gm",
+          "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3"
         }
       },
       "why": "Poisoned lasts until the devil's next turn start and blocks healing meanwhile; data has only a plain Poisoned effect, no expiry or heal block.",
@@ -27445,7 +27485,7 @@
         ],
         "origin": "Bone Devil"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:bone-devil/action/multiattack",
@@ -32411,6 +32451,14 @@
           "items": {
             "official": "3428fc9b756aef8eb23544398df49403169dc48188cabacd4dc6dc3e649ac873"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-chain-devil-reaction-unnerving-gaze",
+          "client": "gm",
+          "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628"
         }
       },
       "why": "Reaction triggered by a creature starting its turn nearby, frightened until its turn end, 24 hour immunity; trigger and immunity not in data.",
@@ -32466,7 +32514,7 @@
         ],
         "origin": "Chain Devil"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:chain-devil/trait/diabolical-restoration",
@@ -33959,6 +34007,14 @@
           "items": {
             "official": "b7673def13b3026a6369169687f8b2fe37679a545a63ac0f96c722766c9e86a1"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-clay-golem-bonus-hasten",
+          "client": "gm",
+          "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc"
         }
       },
       "why": "Grants Dash and Disengage; recharge use is in data but no effect for the two actions.",
@@ -33996,7 +34052,7 @@
         ],
         "origin": "Clay Golem"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:clay-golem/trait/acid-absorption",
@@ -35866,6 +35922,14 @@
           "items": {
             "official": "c6993ece5b0c1367e128982cb1149ae06dc3958567cc73820ed721a0b8bb1ad1"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-colossus-legendary-stomp",
+          "client": "gm",
+          "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e"
         }
       },
       "hint": "core-generic",
@@ -35908,7 +35972,7 @@
         ],
         "origin": "Colossus"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:colossus/trait/immutable-form",
@@ -41981,6 +42045,14 @@
           "items": {
             "official": "d4bed35ba23259fb0b908636d8f33994884c5e96d5c37c4dda2774010ac749f7"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-demilich-legendary-grave-dust-flight",
+          "client": "gm",
+          "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb"
         }
       },
       "hint": "core-generic",
@@ -42037,7 +42109,7 @@
         ],
         "origin": "Demilich"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:demilich/legendary/necrosis",
@@ -42905,6 +42977,14 @@
           "items": {
             "official": "230e43ffcfdcf867ce4c4c18e31a2004b42ffda98a4e44bbb03a1467cad0e801"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-dire-worg-action-dreadful-howl",
+          "client": "gm",
+          "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6"
         }
       },
       "why": "Save only for creatures that are not worgs; half damage and frightened until next turn.",
@@ -42964,7 +43044,7 @@
         ],
         "origin": "Dire Worg"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:dire-worg/action/multiattack",
@@ -44944,6 +45024,14 @@
           "items": {
             "official": "40306fb6e167aa57efac9fff53b7e6bd7453476e76666cf4654a6aafac9a9abd"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-dracolich-legendary-terrifying-presence",
+          "client": "gm",
+          "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2"
         }
       },
       "why": "Aura save for damage plus Frightened until end of next turn, and a lockout; data shows no duration or lockout.",
@@ -45008,7 +45096,7 @@
         ],
         "origin": "Dracolich"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:dracolich/trait/legendary-resistance",
@@ -48425,6 +48513,14 @@
           "items": {
             "official": "e060d50193eb5d685cc0bc72c9fdad5140fe0a161ecf4f68a92f9feefcfd1d54"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-elemental-cataclysm-legendary-rumbling-movement",
+          "client": "gm",
+          "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c"
         }
       },
       "hint": "core-generic",
@@ -48477,7 +48573,7 @@
         ],
         "origin": "Elemental Cataclysm"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:elemental-cataclysm/trait/control-weather",
@@ -55760,6 +55856,14 @@
           "items": {
             "official": "2a7672e9a760a2a080dd43214f20f318608cda1025a87e2b8890536ee9bbb5d5"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ghast-gravecaller-action-claw",
+          "client": "gm",
+          "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5"
         }
       },
       "why": "Paralysis applies only to non-Undead targets; data lacks that type restriction.",
@@ -55811,7 +55915,7 @@
         ],
         "origin": "Ghast Gravecaller"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:ghast-gravecaller/action/horrific-necrosis",
@@ -80142,6 +80246,14 @@
           "items": {
             "official": "0e385537001c9edd837443b004764a46a489349eb1d8a1df9cf879c91fe36990"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kraken-legendary-toxic-ink",
+          "client": "gm",
+          "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd"
         }
       },
       "why": "Underwater-only area save, conditions until end of next turn, a free move and a not-again limit; needs riders.",
@@ -80201,7 +80313,7 @@
         ],
         "origin": "Kraken"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:kraken/trait/amphibious",
@@ -81533,6 +81645,14 @@
           "items": {
             "official": "70ed136753fdee784872fc3e354c2ad5dd3c71e1a47a1ca6cc1e2ef097adc2f1"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-action-sticky-net",
+          "client": "gm",
+          "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7"
         }
       },
       "why": "Save to restrain exists, but the net can be destroyed and freed by a check, which needs a rule beyond the data.",
@@ -81588,7 +81708,7 @@
         ],
         "origin": "Kuo-toa"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:kuo-toa/reaction/sticky-shield",
@@ -82017,6 +82137,14 @@
           "items": {
             "official": "830f7a201f277fe6e3d053d40716324e6e56818f4be7b8fb26171009c611dcb6"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lacedon-ghoul-action-icy-bite",
+          "client": "gm",
+          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae"
         }
       },
       "why": "Speed reduction effect exists but it must end at the start of the ghoul next turn; expiry on that event needs a rule.",
@@ -82052,7 +82180,7 @@
         ],
         "origin": "Lacedon Ghoul"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:lacedon-ghoul/action/multiattack",
@@ -82219,6 +82347,14 @@
           "items": {
             "official": "d5e259770d542f1849a160739e15078503745287b5df1c94ab4eaaa29625d137"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lacedon-ghoul-bonus-watery-rush",
+          "client": "gm",
+          "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6"
         }
       },
       "hint": "core-generic",
@@ -82261,7 +82397,7 @@
         ],
         "origin": "Lacedon Ghoul"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:lamia/action/claw",
@@ -83001,6 +83137,14 @@
           "items": {
             "official": "765bb31da980f5320d8ca6522d70591cbabb59db973493524f8753a36f54b678"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lich-action-paralyzing-touch",
+          "client": "gm",
+          "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740"
         }
       },
       "why": "Paralysis effect exists but must end at the start of the lich next turn; expiry on that event needs a rule.",
@@ -83046,7 +83190,7 @@
         ],
         "origin": "Lich"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:lich/legendary/deathly-teleport",
@@ -85788,6 +85932,14 @@
           "items": {
             "official": "f2d80e0d3cdfe0983ead627c9c04d501e662fb13db2619cc84723c32db99bbf7"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-manes-vaporspawn-trait-sickening-vapors",
+          "client": "gm",
+          "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df"
         }
       },
       "hint": "core-generic",
@@ -85838,7 +85990,7 @@
         ],
         "origin": "Manes Vaporspawn"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:manes/action/claw",
@@ -102237,6 +102389,14 @@
           "items": {
             "official": "24212f888cea83de578f9f7b3f85ab31186a9bdaabb94739c261c01e6fef2ca3"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-poltergeist-action-telekinetic-thrust",
+          "client": "gm",
+          "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7"
         }
       },
       "hint": "core-generic",
@@ -102299,7 +102459,7 @@
         ],
         "origin": "Poltergeist"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:poltergeist/bonus/vanish",
@@ -115179,6 +115339,14 @@
           "items": {
             "official": "fdc240828265e4588d205b9f850f81ade0d0ddfc691a3bed046934ed5c4d3b20"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-smoke-mephit-action-cinder-breath",
+          "client": "gm",
+          "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496"
         }
       },
       "why": "Recharge save that blinds until the end of the monster's next turn; the specific turn-end duration is not in data.",
@@ -115224,7 +115392,7 @@
         ],
         "origin": "Smoke Mephit"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:smoke-mephit/action/claw",
@@ -116473,6 +116641,14 @@
           "items": {
             "official": "39a5651ebd1c0eb86c30ac5e5e966c815062ac5bf6caf6917618e81a1f390788"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-spectator-reaction-spell-reflection",
+          "client": "gm",
+          "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6"
         }
       },
       "why": "Reaction after a successful save or a missed spell attack, then a save for damage; data has the damage but no trigger.",
@@ -116527,7 +116703,7 @@
         ],
         "origin": "Spectator"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:specter/action/life-drain",
@@ -123309,6 +123485,14 @@
           "items": {
             "official": "8a30e9528e428eb8e6b4c3e321f7ff2994ef40c13150e680ad0fd44430378f25"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-ravens-action-cacophony",
+          "client": "gm",
+          "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46"
         }
       },
       "why": "Data lacks Disadvantage on checks and attacks while Deafened; also half-on-save is set though the text has no damage",
@@ -123382,7 +123566,7 @@
         ],
         "origin": "Swarm of Ravens"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-ravens/trait/swarm",
@@ -127370,6 +127554,14 @@
           "items": {
             "official": "66af846a435c351889e7cc2602925ce298cbc0e1289400c7e741082ddb80d1f4"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ultroloth-action-hypnotic-gaze",
+          "client": "gm",
+          "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0"
         }
       },
       "why": "Cone save with stun until next turn is carried by data, but the 24 hour immunity needs a rule.",
@@ -127428,7 +127620,7 @@
         ],
         "origin": "Ultroloth"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:ultroloth/action/mercurial-whip",
@@ -128287,6 +128479,14 @@
           "items": {
             "official": "1a76e0d4e6f49eb7b839ecf4b344fde631f670cbfcfae0bf9782a13d6964e687"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-unicorn-legendary-charging-horn",
+          "client": "gm",
+          "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d"
         }
       },
       "hint": "core-generic",
@@ -128325,7 +128525,7 @@
         ],
         "origin": "Unicorn"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:unicorn/legendary/shimmering-shield",
@@ -131800,6 +132000,14 @@
           "items": {
             "official": "10c2b78bfc5dee68165f3a7645da060afa08688b2b521e8ac7c1bc0c05e706b6"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-violet-fungus-necrohulk-action-spore-bomb",
+          "client": "gm",
+          "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836"
         }
       },
       "why": "Recharge area save with half damage, poisoned until next turn and no healing while poisoned; data effect has no changes for the healing block.",
@@ -131864,7 +132072,7 @@
         ],
         "origin": "Violet Fungus Necrohulk"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:violet-fungus-necrohulk/bonus/absorb-body",
@@ -133179,6 +133387,14 @@
           "items": {
             "official": "f39e3add98de4d8984b479b2ccabd4f9002ab95491b95bde4f7df84b79978de5"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-warrior-commander-bonus-tactical-charge",
+          "client": "gm",
+          "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844"
         }
       },
       "hint": "core-generic",
@@ -133217,7 +133433,7 @@
         ],
         "origin": "Warrior Commander"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:warrior-commander/reaction/counterattack",
@@ -135667,6 +135883,14 @@
           "items": {
             "official": "c4fc55b09eeffd34245294f9d3c2c4f3ab98074ba97127bfee27eb23eff26e81"
           }
+        },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-weretiger-bonus-prowl-tiger-or-hybrid-form-only",
+          "client": "gm",
+          "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd"
         }
       },
       "hint": "core-generic",
@@ -135705,7 +135929,7 @@
         ],
         "origin": "Weretiger"
       },
-      "state": "reviewed"
+      "state": "played"
     },
     {
       "key": "xmm:monster:weretiger/bonus/shape-shift",

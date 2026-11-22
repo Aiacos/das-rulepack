@@ -492,3 +492,11 @@ the 70 % of Ruling R12: the other 21 batches were not run, and the declined entr
 none of the 6: 4 with a reviewer below the confidence line, 1 disagreement, 1 with a key no assertion checks. All 6 wait for a
 person; none ships yet.
 
+# Plays recorded (2026-11-22)
+
+All 29 automatic scenarios of the pipeline's rules were played on the test world (Foundry 14.370, dnd5e 6.1.1, the engine
+reporting 0.290.0) and held; 29 plays are recorded (`npm run played`). One scenario failed at first for a creature not yet
+found right after the page reload, and held when played again. Of the 42 rules the pack ships, 28 are now played (16 older
+ones, 12 from the pipeline) and 14 validated; the other 17 recorded plays are on rules still held for a person. Scenarios
+with a zone moment, a size limit or a pull out of reach stay manual and are not played.
+
