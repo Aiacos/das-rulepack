@@ -6,7 +6,8 @@
 import { ruleFingerprint, stateOf } from "./registry.mjs";
 import { BY, REVIEW_TOLERANCES, isReaderHandle } from "./schema.mjs";
 import {
-  OPTIONAL_DETAIL, assertProblems, givenOf, impliedAsserts, isFreeCanonical as isFree, normaliseAssert, pairsOf, sameUpToDetail
+  OPTIONAL_DETAIL, assertProblems, atomise, givenOf, impliedAsserts, isFreeCanonical as isFree, normaliseAssert, pairsOf,
+  sameUpToDetail
 } from "./assert.mjs";
 import { RULE_QUOTE_WORDS, quotationCheck } from "./gates.mjs";
 import { ALL_ROLLS, damageRollsOf } from "./draft-keys.mjs";
@@ -142,8 +143,9 @@ const byDraft = (x, y) => (x.draft < y.draft ? -1 : x.draft > y.draft ? 1 : x.re
  */
 export function compareAsserts(rule, review, { structure = null } = {}) {
   const implied = impliedAsserts(rule?.entry, { structure });
-  const draft = [...new Set([...normaliseAssert(rule?.assert), ...implied])].sort();
-  const reviewed = normaliseAssert(review);
+  // Atoms on both sides: one expectation per assertion, so a joined and a split wording of the same thing compare equal.
+  const draft = [...new Set([...normaliseAssert(atomise(rule?.assert)), ...implied])].sort();
+  const reviewed = normaliseAssert(atomise(review));
   const free = [...draft, ...reviewed].some(isFree);
   const strictTypes = strictTypesOf(draft);
   const d = absorb(draft);
