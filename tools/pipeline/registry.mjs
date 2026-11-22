@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, isReaderHandle, validateRecord } from "./schema.mjs";
+import { assertProblems, normaliseAssert } from "./assert.mjs";
 
 export { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord };
 
@@ -68,11 +69,13 @@ const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", 
  * The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of, and of
  * `evidence.person` (the signature that lets the gates pass what a drafter may not write: adding or changing it after the
  * gates makes their evidence stale), and of the draft's `evidence.drafted.person` / `because` stamp (Ruling R15: removing it
- * makes the evidence stale too). Absent, they leave the hash as it was (`canonical` drops undefined fields).
+ * makes the evidence stale too), and of `evidence.reviewed.because` (the line of a person's review-accept, written after the
+ * gates: the text gate must read it before the evidence stands again, under --ci too). Absent, they leave the hash as it was
+ * (`canonical` drops undefined fields).
  */
 export const emittedFingerprint = (record) => ruleFingerprint({
   ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person,
-  forPerson: forPersonOf(record?.evidence?.drafted)
+  forPerson: forPersonOf(record?.evidence?.drafted), reviewedBecause: record?.evidence?.reviewed?.because
 });
 // The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs DRAFTED_FOR_PERSON), or undefined when it has none.
 const forPersonOf = (d) =>
@@ -248,8 +251,68 @@ const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "revi
 // The shape of a record key (keyOf): `<book>:<kind>:<scoped name>`, lower case.
 export const RECORD_KEY = /^[a-z][a-z0-9]{1,9}:[a-z]+:[a-z0-9][a-z0-9/#-]*$/;
 
-/** The problems of one entry of drafts-queue.json or review-queue.json, or []. */
-export function validateQueueEntry(entry) {
+const HEX = /^[0-9a-f]{64}$/;
+const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const ASSERT_PART = /^[A-Za-z]{1,24}$/;
+// One canonical assertion string (assert.mjs normaliseAssert: sorted `path=value` pairs) read back as an assertion, or null.
+function assertionOfCanonical(canonical) {
+  if (typeof canonical !== "string" || !canonical || canonical.length > 400) return null;
+  const out = { given: {}, expect: {} };
+  for (const pair of canonical.split(";")) {
+    const i = pair.indexOf("=");
+    const path = i > 0 ? pair.slice(0, i).split(".") : [];
+    if (path.length < 2 || !Object.hasOwn(out, path[0]) || !path.every((p) => ASSERT_PART.test(p))) return null;
+    let node = out[path[0]];
+    for (const p of path.slice(1, -1)) {
+      if (!Object.hasOwn(node, p)) node[p] = {};
+      node = node[p];
+      if (!isPlainObject(node)) return null;
+    }
+    const raw = pair.slice(i + 1);
+    node[path.at(-1)] = /^-?\d+(\.\d+)?$/.test(raw) ? Number(raw) : raw;
+  }
+  return out;
+}
+// The problems of a list of canonical assertion strings: each must read back as a valid assertion and canonicalise to itself.
+function canonicalListProblems(list, at, vocabulary) {
+  if (!Array.isArray(list)) return [`${at}: must be an array of canonical assertions`];
+  return list.flatMap((c, i) => {
+    const a = assertionOfCanonical(c);
+    const ok = a && !assertProblems([a], { vocabulary }).length && normaliseAssert([a])[0] === c;
+    return ok ? [] : [`${at}[${i}]: not a canonical assertion of the closed vocabulary`];
+  });
+}
+// What a review-queue entry holds besides its own fields (review.mjs): the draft's and the review's assertions, the
+// comparison as canonical strings, the handles and fingerprints. Closed keys; the assertions and their words checked (against
+// the engine's enumerations when `vocabulary` is given), so a hand-edited entry cannot hold prose there.
+function reviewEntryProblems(entry, vocabulary) {
+  const errors = [];
+  const part = (name, fields, check) => {
+    const v = entry[name];
+    if (!isPlainObject(v)) return errors.push(`${name}: must be { ${fields.join(", ")} }`);
+    for (const f of Object.keys(v)) if (!fields.includes(f)) errors.push(`${name}.${f}: unknown field`);
+    if (typeof v.rule !== "string" || !HEX.test(v.rule)) errors.push(`${name}.rule: must be 64 hex characters`);
+    check(v);
+  };
+  const asserts = (v, at) => errors.push(...assertProblems(v, { vocabulary, at }));
+  part("draft", ["by", "person", "rule", "assert", "implied"], (d) => {
+    for (const f of ["by", "person"]) if (Object.hasOwn(d, f) && !isReaderHandle(d[f])) errors.push(`draft.${f}: a handle`);
+    asserts(d.assert, "draft.assert");
+    errors.push(...canonicalListProblems(d.implied, "draft.implied", vocabulary));
+  });
+  part("review", ["rule", "assert", "agrees", "onlyDraft", "onlyReview"], (r) => {
+    asserts(r.assert, "review.assert");
+    if (typeof r.agrees !== "boolean") errors.push("review.agrees: must be a boolean");
+    for (const f of ["onlyDraft", "onlyReview"]) errors.push(...canonicalListProblems(r[f], `review.${f}`, vocabulary));
+  });
+  return errors;
+}
+
+/**
+ * The problems of one entry of drafts-queue.json or review-queue.json, or []. With `queue: "review"` the entry's `draft` and
+ * `review` are held to their shape too (reviewEntryProblems; `vocabulary`: the engine's enumerations, loadCore).
+ */
+export function validateQueueEntry(entry, { queue, vocabulary } = {}) {
   if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return ["entry: must be an object"];
   const errors = [];
   if (typeof entry.key !== "string" || !RECORD_KEY.test(entry.key)) errors.push("key: must be a record key (<book>:<kind>:<name>)");
@@ -265,6 +328,7 @@ export function validateQueueEntry(entry) {
     }
   }
   for (const f of Object.keys(entry)) if (!QUEUE_FIELDS.includes(f)) errors.push(`${f}: unknown field`);
+  if (queue === "review" && !errors.length) errors.push(...reviewEntryProblems(entry, vocabulary));
   return errors;
 }
 
@@ -308,14 +372,14 @@ const queueFile = (dir, name) => {
  * The entries of a queue (`name`: drafts or review); a missing file is an empty queue. Throws, naming the file, on a file
  * that does not parse, is no array, or holds an entry that validateQueueEntry refuses.
  */
-export function loadQueue(dir, name) {
+export function loadQueue(dir, name, { vocabulary } = {}) {
   const file = queueFile(dir, name);
   if (!existsSync(file)) return [];
   let list;
   try { list = JSON.parse(readFileSync(file, "utf8")); } catch (e) { throw new Error(`${file}: ${e.message}`); }
   if (!Array.isArray(list)) throw new Error(`${file}: must be an array of queue entries`);
   list.forEach((e, i) => {
-    const errors = validateQueueEntry(e);
+    const errors = validateQueueEntry(e, { queue: name, vocabulary });
     if (errors.length) throw new Error(`${file}: entry ${i}: ${errors.join("; ")}`);
   });
   return list;
@@ -329,7 +393,7 @@ export function queueText(name, entries) {
   queueFile("", name);
   const keys = new Set();
   for (const e of entries) {
-    const errors = validateQueueEntry(e);
+    const errors = validateQueueEntry(e, { queue: name });
     if (errors.length) throw new Error(`${QUEUE_FILES[name]}: ${e?.key ?? "entry"}: ${errors.join("; ")}`);
     if (keys.has(e.key)) throw new Error(`${QUEUE_FILES[name]}: ${e.key} is listed twice`);
     keys.add(e.key);

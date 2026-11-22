@@ -10,7 +10,7 @@ import { identifierClashReasons } from "./batch.mjs";
 import { SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, sharedEmbeddedId } from "./settle.mjs";
 import {
-  MAX_ECHO, QUEUE_THRESHOLD, cachedText, clip, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
+  QUEUE_THRESHOLD, cachedText, clip, clipEchoes, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
 } from "./intake.mjs";
 
 /** What a drafter answers for an entry: a rule, or why a person (or a script, or the engine) is needed instead. */
@@ -234,23 +234,4 @@ function takeResult(result, ctx) {
   if (clash) return entry(clash, result.rule);
   if (result.confidence < QUEUE_THRESHOLD) return entry("low-confidence", result.rule);
   return { apply: { record, next: drafted.record } };
-}
-
-// A rejection repeats at most MAX_ECHO characters of any string the drafter supplied (a key or a value of the result), as the
-// other ingests do (intake.mjs clip): a longer one is cut wherever a message quotes it.
-function clipEchoes(reason, result) {
-  const long = new Set();
-  const walk = (node, depth) => {
-    if (depth > 32) return;
-    if (typeof node === "string") { if (node.length > MAX_ECHO) long.add(node); return; }
-    if (node === null || typeof node !== "object") return;
-    for (const k of Object.keys(node)) {
-      if (k.length > MAX_ECHO) long.add(k);
-      walk(node[k], depth + 1);
-    }
-  };
-  try { walk(result, 0); } catch { /* a result that throws on reading is already the reason */ }
-  let out = String(reason);
-  for (const s of [...long].sort((a, b) => b.length - a.length)) out = out.split(s).join(clip(s));
-  return out;
 }

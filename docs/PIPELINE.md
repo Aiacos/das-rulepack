@@ -42,6 +42,10 @@ excepted.
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
 | 3c | Ingest drafts | `npm run ingest -- <results-file> --draft --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
+| 5a | Cut review batches | `npm run batch -- review <BOOK> --out <dir> --structure <private dir> [--size 30] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
+| 5b | Review a batch | (no command: a reviewer agent reads files, blind to the draft) | `RULEPACK_TEXT` | the Claude Code session, via reviewer agents |
+| 5c | Ingest reviews | `npm run ingest -- <results-file> --review --batch <batch file>` (see "Ingesting reviews") | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
+| 5d | Accept a queued review | `npm run pipeline -- review-accept <key> --because "<one line>" --by <owner>` | nothing | a person (an owner) |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
 `<BOOK>` is a book code of `docs/books.json`, in any case: every command upper-cases it once (`xzz` is `XZZ`) and refuses,
@@ -49,7 +53,7 @@ with exit 2, a code that does not then match `/^[A-Z][A-Z0-9]{1,9}$/`. Registry 
 and hold the upper-case one; a file whose records name another book, or two records with one key, is not written.
 
 The numbers 1, 2, 4, 7 are the stage numbers of the design
-(`docs/superpowers/specs/2026-11-21-rulebook-pipeline-design.md`); stages 5 and 6 are not built.
+(`docs/superpowers/specs/2026-11-21-rulebook-pipeline-design.md`); stage 6 (play) is not built.
 
 1. **Inventory** reads the dataset and the dumps and writes (or refreshes) one record per entry: page, edition, `srd`
    flag, canonical `identifier`, text fingerprint, and per origin the matched item with its activity and effect ids. The
@@ -183,10 +187,11 @@ The state is derived from the evidence and written by the tools; nobody types it
 | `played` | a scenario passed in a running world, on the rule as it is |
 
 Evidence about the rule carries its fingerprint (`rule`, `registry.mjs` `ruleFingerprint`): `evidence.drafted: { by, at, core,
-rule, person?, because? }` (`person: true` with `because` from `schema.mjs` `DRAFTED_FOR_PERSON`, today only `noReactions`: the
-draft goes to a person at review; the schema requires the stamp on a drafted rule whose entry has `noReactions`, and the gate
-evidence fingerprint `emits` covers it, so dropping it fails the schema and makes the record `drafted`), `evidence.reviewed: {
-by, at, agrees, rule, confidence }`, `evidence.played: { at, core, world, scenario, client?, rule }` (no other field; `by` a
+rule, person?, because? }` (`person: true` with `because` from `schema.mjs` `DRAFTED_FOR_PERSON`, `noReactions` or
+`official-uncovered`: the draft goes to a person at review; the schema requires the stamp on a drafted rule whose entry has
+`noReactions` or that leaves `official` uncovered, and the gate evidence fingerprint `emits` covers it, so dropping it fails the
+schema and makes the record `drafted`), `evidence.reviewed: { by, at, agrees, rule, confidence, because? }` (`because`: the
+line of a person's `review-accept`), `evidence.played: { at, core, world, scenario, client?, rule }` (no other field; `by` a
 reader handle, `confidence` from 0 to 1). A review or a play counts only while its `rule` is the fingerprint of the current
 rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a review or a play written before
 the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it.
@@ -504,6 +509,63 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > is rejected). `by` is a short handle such as `drafter-3`, never a person's name (the registry is public). Confidence is 0 to
 > 1; 0.7 is the line.
 
+## 📖 Brief for a reviewer agent
+
+`batch review <BOOK> --out <dir> --structure <private dir>` cuts the records whose state is `gated` (every gate passed on the
+rule as it is): 30 entries per batch (`--size`), one kind per batch, kinds in the drafter's order. A record is left out (and
+counted on the console and in `<dir>/<book>-review-report.json`, by reason) when it is `legacy`, `not gated (<state>)` (a rule
+the gates do not pass is not worth reviewing; a `reviewed` or `played` one is done), `queued` (an entry of
+`registry/review-queue.json` about the rule as it is waits for a person), has `no text` or `no assertion`. A rule a person
+wrote (no `evidence.drafted`) is cut like any gated rule. A batch `<dir>/<book>-review-<NNN>.json` is `{ id, stage:
+"review", entries, vocabulary: "review-vocabulary.json" }`; an entry is exactly a triage entry (`key`, `name`, `kind`,
+`edition`, `textSha`, the record's `owner`, `level`, `section`, `rarity`, `page`, `srd`, `hint` where it has them, and
+`items` without their data: the matched origins with their activity and effect ids) plus `rule`, the fingerprint of the
+rule under review. **Nothing of the draft goes in**: no entry, no assertion, no `adds`, no `origins` or `uncovered`, no
+drafter handle, no triage `keys`, `similar` or `why`.
+`<dir>/review-vocabulary.json` holds the assertion vocabulary (`assert` of `draft-vocabulary.json`), the engine words it names
+and the limits of the strings; `<private dir>/<id>.structure.json` the item structures, as for triage (never commit it).
+Numbering continues per series (`-review-`), as for the other batches. The Claude Code session gives each reviewer agent one
+batch file, its structure file and this brief, and an agent handle that is none of the rule's authors' (`evidence.drafted.by`,
+`evidence.person.by`; never an owner's: `--second`, `--third`, `--draft` and `--review` refuse a results file signed with a
+handle of `docs/owners.json`, Ruling R23).
+
+> You review the entries of one batch file, `<dir>/<book>-review-<NNN>.json`, **blind**: you are not shown the rule that was
+> drafted, and you must not look for it.
+>
+> **What you may read.** The batch file, `review-vocabulary.json` beside it, its structure file `<private dir>/<book>-review-
+> <NNN>.structure.json`, and the text cache `$RULEPACK_TEXT` (the text of an entry is `<textSha>.txt`). Nothing else: never
+> open anything under `registry/`, `scripts/rules/`, `docs/RULES.md`, any batch of another stage or any results file. No
+> network, no game server, no git, no edits to the repository: you write one results file and nothing more. This
+> prohibition is the only barrier between you and the drafted rule (the files are readable): a reviewer that opens them
+> invalidates its own review, and must say so instead of answering.
+>
+> **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Say what must be
+> true at the table when the item is used, as assertions in the closed vocabulary: `[{ given, expect }]` with the fields of
+> `assert.shapes` (`given`: `roll`, `moment`, `origin`, `targetType`; `expect`: `damage` with its `fraction`, `condition`
+> applied or ended, `ends`, `roll` with advantage or disadvantage, `affects`, `excludes`, `move`, `uses`). State every
+> consequence the text gives that the vocabulary can say, each once: a saved save that halves the damage, a failed save that
+> leaves a condition, a miss that halves, an effect that ends at a moment. Leave out what the vocabulary cannot say; never
+> force it. `free` (one line, at most 120 characters, your own words) never counts as agreement: an assertion that carries one
+> goes to a person.
+>
+> **Write one file** `<batch id>.results.json` outside the repository:
+>
+> ```json
+> { "batch": "<batch id>", "by": "<your agent handle>",
+>   "results": [ { "key": "tst:spell:glimmerwhisk", "rule": "<the entry's rule, unchanged>", "why": "one line, your own words",
+>                  "confidence": 0.9,
+>                  "assert": [ { "given": { "roll": "crit", "targetType": "<a creature type>" },
+>                                "expect": { "move": { "mode": "<a move mode>", "distance": 15 } } } ] } ] }
+> ```
+>
+> Note that the example shows the shape only: an invented entry and an uncommon combination, no entry's answer.
+>
+> One result per entry, `key` and `rule` copied from the entry unchanged. No other field: never `evidence`, `verdict`,
+> `agrees` or `by` inside a result (the tools derive them; a result that carries one is rejected). Never rulebook text: `why`
+> and every `free` are checked for 8 or more consecutive words of the source, alone and together. `by` is a short handle such
+> as `reviewer-2`, never a person's name, and never the drafter's. Confidence is 0 to 1; 0.7 is the line. No text, no review:
+> an entry whose text file is missing is left out of the results.
+
 ## 📥 Ingesting results
 
 The main session runs `npm run ingest -- <results-file>` for each results file. The command:
@@ -546,6 +608,12 @@ What the session does with the output:
    chose, at confidence 1 and `"by": "<their handle>"` (a short handle, not their name: it lands in a public file), with
    `--overwrite` if the record already has a verdict; applying a verdict removes the key from the queue. An `engine` verdict
    is never applied by `ingest`: it waits in the queue until a person records the upstream issue and sets the record.
+   **Rule (Ruling R23):** a results file signed with a handle of `docs/owners.json` is a person's decision, taken only by
+   the plain `ingest` (with or without `--overwrite`), where it also settles an entry that has a `second` or `third`
+   reading (the verdict is applied, `evidence.triaged.by` is the owner, the earlier readings are kept as
+   `evidence.triaged.first` and `second`, and the entry leaves the queue), while every agent stage (`--second`, `--third`,
+   `--draft`, `--review`) refuses it and an agent-signed file is still rejected for such an entry; every other check,
+   the quotation of `why` included, applies to the owner as to a reader.
 3. A batch with an unusual share of rejections or queued results is redone, not patched.
 4. Before a person reads the queue, a second reader may read it (below). Give a second reading to a reader with a different
    handle (`by`) than the first one's: the tool rejects the same handle.
@@ -605,6 +673,64 @@ It prints `{ applied, queued, rejected }` and exits with 1 when anything was rej
 written in one step (every file is checked first, then written under a temporary name and renamed over the old one,
 `registry.mjs` `writeFilesAtomically`), as every `ingest` now does: an invalid book or queue, or a failing write, leaves
 every file as it was.
+
+### Ingesting reviews
+
+`npm run ingest -- <results-file> --review --batch <batch file>` takes what a reviewer wrote (`tools/pipeline/review.mjs`
+`ingestReviews`). `--batch` is required; `--review` with `--overwrite`, `--second`, `--third`, `--settle-unsure` or `--draft`
+is a usage error. The whole file is refused (exit 2, nothing written) when it is not `{ batch, by, results }`, has another
+top-level field, `by` is not a handle, it holds a key named `__proto__`, `constructor` or `prototype`, a queue file of the
+registry is invalid, its `batch` is not a review batch id `<book>-review-<NNN>`, or the batch file does not have that id, stage
+`review`, and entries that are all keys of that book with a 64-hex `rule`.
+
+**Agreement** (Ruling R9, `review.mjs` `compareAsserts`, data only). The draft says `normaliseAssert(rule.assert)` plus
+`impliedAsserts(rule.entry)`; the review says `normaliseAssert(assert)`. They agree when the two sets are equal and neither side
+holds a `free` text. Tolerated: order, duplicates, an implied assertion the draft did not write in `assert` (its entry says
+it) and the review states. Not tolerated: any assertion on one side only, so a review that misses an expectation (an implied
+one included), returns fewer than the rule asserts or more, or gives another moment, roll, target, condition, fraction, ending
+or move, disagrees. The comparison is kept as canonical assertion strings: `onlyDraft` (what the review misses) and
+`onlyReview` (what it adds).
+
+For each result:
+
+- **Rejected** (listed in `rejected` as `{ key, reason }`; nothing of it is kept, nothing queued): a field other than `key`,
+  `rule`, `assert`, `why`, `confidence` (own properties only: `evidence`, `verdict`, `agrees`, `by` are refused; no ingest
+  writes `evidence.person`); a key twice; a key that is no record or not an entry of the batch file; a legacy record or one
+  without a rule; a `rule` that is not the fingerprint the batch entry gave, or that is no longer the rule's (the rule was
+  edited after the batch was cut: "stale", Review Focus 4: the review does not apply, cut a new batch); a record waiting in
+  `review-queue.json` (an entry about the rule as it is); a record whose state is not `gated`, or one of whose authors signs
+  with the reviewer's handle (`evidence.drafted.by`, `evidence.person.by`, case aside: a rule a person wrote or edited after
+  the draft is reviewed as it is, by someone who is neither); a confidence outside 0..1; a `why` that is not one line of at
+  most 200 printable characters; an `assert` that is not a non-empty list valid against the clone's enumerations; no text in
+  the cache; a `why`, a `free`, or `why` and every free text the queue entry would store (the draft's and the review's)
+  together, in the stored order, its reverse, and with `why` first or last, quoting 8 words of the text. Any
+  unexpected exception on one result is that result's rejection (`internal: …`). A rejection repeats at most 80 characters of
+  any string the reviewer wrote.
+- **Queued** in `registry/review-queue.json` (`{ key, reason, by, why, confidence, draft: { by?, person?, rule, assert,
+  implied }, review: { rule, assert, agrees, onlyDraft, onlyReview } }`, merged by key, sorted; nothing is written on the
+  record; `loadQueue` and `gates`, `--ci` included, hold `draft` and `review` to that shape: closed keys, valid assertions
+  with the engine's words, canonical assertion strings that read back as such, so a hand-edited entry with prose fails): a
+  record whose draft is stamped for a person (`evidence.drafted.person`, reason `noReactions` or `official-uncovered`, Rulings
+  R15, R21), **whatever the review says, agreement included** (`review.agrees` then says so); otherwise `disagreement`,
+  `free-text` (the sets are equal but a side holds a free text) or `low-confidence` (agreement below 0.7).
+- **Agreed** otherwise: `evidence.reviewed = { by, at, agrees: true, rule, confidence }`, `rule` the rule's fingerprint; the
+  state is `reviewed`. A review never changes the rule.
+
+It prints `{ agreed, queued, reasons, rejected }` and exits with 1 when anything was rejected. The touched books and the queue
+are written in one step, as every `ingest` (`writeFilesAtomically`).
+
+A person settles a review-queue entry in one of two ways. Editing the rule makes every evidence stale (the record is
+`drafted`, then gated and reviewed again; the old queue entry, about another rule, no longer holds the record). Or
+`npm run pipeline -- review-accept <key> --because "<one line>" --by <owner>`: `--because` is required (one line of printable
+ASCII, at most 120 characters), `--by` an owner of `docs/owners.json` (never an agent's handle); the key must be in
+`review-queue.json` with an entry about the rule as it is, and the record `gated`. It needs `RULEPACK_TEXT`: `--because` is
+refused when it quotes 8 or more consecutive words of the entry's text, alone or with the rule's prose, and when the text is
+not in the cache nothing can be checked, so nothing is written. It writes `evidence.reviewed = { by, at, agrees: true, rule,
+confidence: 1, because }` and removes the entry, in one step. `evidence.reviewed.because` (like `evidence.person.because`) is
+part of the gate evidence fingerprint `emits`, and the text gate reads both with the rule's prose: after `review-accept` the
+record is `drafted` until `npm run gates` runs again and passes, and `gates --ci` fails until then, so a quote typed into
+`because` by hand cannot stand on evidence stamped before it. The command trusts `--by`: whoever runs the CLI acts as the
+owner named (Ruling R20: a visible claim, not a signature). Agents never run it.
 
 ### Second reading of the queue
 
@@ -734,10 +860,10 @@ emits, is refused.
 
 ## 🚧 Not built yet
 
-Only inventory, triage (rule-based, batch files, ingest), resolve, drafting (batches, brief, ingest), gates and generation
+Only inventory, triage (rule-based, batch files, ingest), resolve, drafting (batches, brief, ingest), gates, review (batches,
+brief, ingest, `review-accept`) and generation
 exist. These stages of the design do not:
 
-- **Review**: the independent second reading and its comparison with the draft.
 - **Play**: scenario generation and runs on a test world.
 - **Drift**: recomputing fingerprints and reopening the records whose inputs changed.
 

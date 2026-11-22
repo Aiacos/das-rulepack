@@ -247,8 +247,9 @@ function checkEvidence(evidence, errors, legacy) {
     errors.push("evidence.drafted: person and because go together");
   }
   const confidence = (v) => typeof v === "number" && v >= 0 && v <= 1;
+  // `because`: the one line a person gives when they accept a review-queue entry (`review-accept`); a reviewer writes none.
   checkStamped(evidence, "reviewed", { by: isReaderHandle, at: isString, agrees: (v) => typeof v === "boolean", rule: isHex64,
-    confidence }, { rule: legacy, confidence: legacy }, errors);
+    confidence }, { rule: legacy, confidence: legacy }, errors, { because: (v) => isPlainLine(v, 120) });
   checkStamped(evidence, "played", { at: isString, core: isString, world: isString, scenario: isString, rule: isHex64 },
     { rule: legacy }, errors, { client: isString });
 }
@@ -258,7 +259,8 @@ const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rul
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
 const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
-  confidence: "a number from 0 to 1", person: "true", because: "one of the reasons a draft goes to a person (DRAFTED_FOR_PERSON)" };
+  confidence: "a number from 0 to 1", person: "true", because: "one of the reasons a draft goes to a person (DRAFTED_FOR_PERSON)",
+  "reviewed.because": "one line of printable ASCII, at most 120 characters" };
 
 /**
  * Why a drafted rule goes to a person at review whatever the reviewer says (`evidence.drafted.because`, with `person: true`):
@@ -288,7 +290,7 @@ function checkStamped(evidence, name, fields, optional, errors, extra = {}) {
   for (const [f, ok] of Object.entries(checks)) {
     const required = has(fields, f) && !optional[f];
     if (!has(value, f) ? required : !ok(value[f])) {
-      errors.push(`evidence.${name}.${f}: must be ${WHAT[f] ?? "a non-empty string"}`);
+      errors.push(`evidence.${name}.${f}: must be ${WHAT[`${name}.${f}`] ?? WHAT[f] ?? "a non-empty string"}`);
     }
   }
   for (const f of Object.keys(value)) if (!has(checks, f)) errors.push(`evidence.${name}.${f}: unknown field (${shape})`);

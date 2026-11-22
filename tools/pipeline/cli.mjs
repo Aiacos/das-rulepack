@@ -4,7 +4,7 @@ import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   BOOK_CODE, NOT_BOOKS, QUEUE_FILES, bookFile, bookText, canonical, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue,
-  queuePath, queueText, saveBook, validateTriageQueueEntry, writeFilesAtomically
+  queuePath, queueText, ruleFingerprint, saveBook, stateOf, validateTriageQueueEntry, writeFilesAtomically
 } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
@@ -16,18 +16,21 @@ import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { embeddedIndex, poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
 import { loadCore } from "./core.mjs";
-import { runGates } from "./gates.mjs";
+import { quotationCheck, ruleProse, runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
 import {
   autoTriage, clip, ingest, ingestSecond, ingestThird, isReaderHandle, setByRule, settleUnsure, triageContext, BY
 } from "./triage.mjs";
 import {
-  cutBatches, cutDraftBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason, draftVocabulary,
-  highestBatches, identifierClashReasons
+  cutBatches, cutDraftBatches, cutReviewBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason,
+  draftVocabulary, highestBatches, identifierClashReasons, REVIEW_BATCH_SIZE, reviewReport, reviewSkipReason, reviewVocabulary
 } from "./batch.mjs";
 import { DRAFT_KEYS } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
-import { forbiddenKeyIn } from "./intake.mjs";
+import { ingestReviews, queueHolds } from "./review.mjs";
+import { isPlainLine } from "./assert.mjs";
+import { AGENT_HANDLE } from "./schema.mjs";
+import { cachedText, forbiddenKeyIn } from "./intake.mjs";
 import { structureOf } from "./structure.mjs";
 import { hasText, readText } from "./text.mjs";
 
@@ -38,6 +41,13 @@ const RULES_OUT = process.env.RULEPACK_RULES || join(ROOT, "scripts", "rules");
 const RULES_LABEL = process.env.RULEPACK_RULES || "scripts/rules";
 
 class UsageError extends Error {}
+
+// The owners of docs/owners.json (Ruling R20): they sign `evidence.person` and run `review-accept`; never a results file.
+const ownerHandles = () => {
+  const { owners } = JSON.parse(readFileSync(join(ROOT, "docs", "owners.json"), "utf8"));
+  return Array.isArray(owners) ? owners.filter((o) => typeof o === "string") : [];
+};
+const isOwner = (by) => typeof by === "string" && ownerHandles().some((o) => o.toLowerCase() === by.toLowerCase());
 
 const need = (name) => {
   if (!process.env[name]) throw new UsageError(`Environment variable ${name} is not set`);
@@ -203,6 +213,11 @@ function gatesCommand(args) {
   const dumpsDir = ci ? null : need("RULEPACK_DUMPS");
   const textDir = ci ? null : need("RULEPACK_TEXT");
   return loadCore(coreDir).then((core) => {
+    // Again with the engine's enumerations: a word of a review-queue entry's assertions must be one of the engine's.
+    try { checkQueues(REGISTRY, core); } catch (e) {
+      console.error(e.message);
+      process.exit(2);
+    }
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
     const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci, legacy: legacyOf(REGISTRY) });
     if (!ci) {
@@ -363,9 +378,9 @@ function structuresOf(batch, records, dumpsDir) {
 
 // Every queue file of the registry folder parses and holds valid entries (the gates check them, under --ci too): a broken
 // queue would otherwise only show when a later stage reads it.
-function checkQueues(dir) {
+function checkQueues(dir, vocabulary) {
   for (const name of Object.keys(QUEUE_FILES)) {
-    try { loadQueue(dir, name); } catch (e) { throw new UsageError(e.message); }
+    try { loadQueue(dir, name, { vocabulary }); } catch (e) { throw new UsageError(e.message); }
   }
   const file = join(dir, "queue.json");
   if (!existsSync(file)) return;
@@ -398,20 +413,24 @@ function queueEntries(dir) {
 async function batchCommand([stage, book, ...rest]) {
   const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>] "
     + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
-    + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT: monster features are checked against the actors of the book's package)";
-  if (!["triage", "draft"].includes(stage) || !book) throw new UsageError(usage);
+    + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT: monster features are checked against the actors of the book's package)"
+    + "\n       batch review <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
+    + " (needs DAS_CORE and RULEPACK_DUMPS)";
+  if (!["triage", "draft", "review"].includes(stage) || !book) throw new UsageError(usage);
   const draft = stage === "draft";
+  const review = stage === "review";
   const opts = {};
   const withoutItems = rest.includes("--without-items");
   const second = rest.includes("--queued");
-  if (draft && (withoutItems || second)) throw new UsageError(usage);
+  if ((draft || review) && (withoutItems || second)) throw new UsageError(usage);
   rest = rest.filter((a) => a !== "--without-items" && a !== "--queued");
   for (let i = 0; i < rest.length; i += 2) {
     if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
   }
-  if (!opts.out || (draft && !opts.structure)) throw new UsageError(usage);
-  const size = opts.size === undefined ? (draft ? DRAFT_BATCH_SIZE : DEFAULT_BATCH_SIZE) : Number(opts.size);
+  if (!opts.out || ((draft || review) && !opts.structure)) throw new UsageError(usage);
+  const defaultSize = draft ? DRAFT_BATCH_SIZE : review ? REVIEW_BATCH_SIZE : DEFAULT_BATCH_SIZE;
+  const size = opts.size === undefined ? defaultSize : Number(opts.size);
   if (!Number.isInteger(size) || size < 1) throw new UsageError("--size must be a positive integer");
   if (opts.kind !== undefined && !INVENTORY_KINDS.includes(opts.kind)) {
     throw new UsageError(`--kind "${clip(opts.kind)}" is unknown: ${INVENTORY_KINDS.join(", ")}`);
@@ -424,7 +443,7 @@ async function batchCommand([stage, book, ...rest]) {
     checkStructureDir(opts.structure, opts.out);
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   }
-  const series = draft ? "draft" : second ? "second" : "triage";
+  const series = draft ? "draft" : review ? "review" : second ? "second" : "triage";
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
   let batches;
   let core = null;
@@ -464,6 +483,17 @@ async function batchCommand([stage, book, ...rest]) {
     }
     for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);
     if (report.whyWithheld) console.log(`why withheld: quotes the source or no text (${report.whyWithheld} entries)`);
+  } else if (review) {
+    // Only rules that stand gated, and are not waiting for a person in review-queue.json; nothing of the draft goes in.
+    core = await loadCore(need("DAS_CORE"));
+    checkQueues(REGISTRY);
+    const queue = loadQueue(REGISTRY, "review");
+    batches = cutReviewBatches(found.records, { size, kind: opts.kind, after, queue });
+    for (const r of found.records.filter((x) => x.rule && (!opts.kind || x.kind === opts.kind))) {
+      const why = reviewSkipReason(r, { queue });
+      if (why) left[why] = (left[why] ?? 0) + 1;
+    }
+    for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} ruled records (${why})`);
   } else {
     // A second reading is cut from the queue entries that have no second reading yet; a normal batch leaves the whole queue out.
     const cutOptions = second
@@ -477,13 +507,19 @@ async function batchCommand([stage, book, ...rest]) {
   if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
   const write = (file, data) => writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
   batches.forEach((b, i) => {
-    write(join(opts.out, `${b.id}.json`), draft ? { ...b, allowed: DRAFT_KEYS, vocabulary: "draft-vocabulary.json" } : b);
+    const body = draft ? { ...b, allowed: DRAFT_KEYS, vocabulary: "draft-vocabulary.json" }
+      : review ? { ...b, vocabulary: "review-vocabulary.json" } : b;
+    write(join(opts.out, `${b.id}.json`), body);
     if (dumpsDir !== null) write(join(opts.structure, `${b.id}.structure.json`), structures[i]);
   });
   if (draft) {
     write(join(opts.out, "draft-vocabulary.json"), draftVocabulary(core));
     write(join(opts.out, `${found.book.toLowerCase()}-draft-report.json`),
       draftReport(found.book, batches, left, report.whyWithheld ?? 0));
+  }
+  if (review) {
+    write(join(opts.out, "review-vocabulary.json"), reviewVocabulary(core));
+    write(join(opts.out, `${found.book.toLowerCase()}-review-report.json`), reviewReport(found.book, batches, left));
   }
   const withStructure = dumpsDir === null ? "" : `, structure files to ${opts.structure}`;
   console.log(`${batches.length} batches written to ${opts.out}${withStructure}`);
@@ -505,18 +541,20 @@ function nextQueue(dir, queued, applied) {
   return next.length || existsSync(file) ? `${JSON.stringify(next, null, 2)}\n` : null;
 }
 
-// The next content of registry/drafts-queue.json: merged by key, the keys that were applied leave it. Null when unchanged.
-function nextDraftsQueue(dir, queued, applied) {
-  const current = loadQueue(dir, "drafts");
+// The next content of registry/drafts-queue.json or review-queue.json (`name`: drafts or review): merged by key, the keys that
+// were applied leave it. Null when unchanged.
+function nextNamedQueue(dir, name, queued, applied) {
+  const current = loadQueue(dir, name);
   const byKey = new Map(current.filter((q) => !applied.includes(q.key)).map((q) => [q.key, q]));
   for (const q of queued) byKey.set(q.key, q);
   if (!queued.length && byKey.size === current.length) return null;
-  return queueText("drafts", [...byKey.values()]);
+  return queueText(name, [...byKey.values()]);
 }
 
 // Saves what an ingest changed: the books that hold `changed` keys, then the queue (`queue`: "triage" for registry/queue.json,
-// "drafts" for registry/drafts-queue.json). Everything is checked before anything is written (every book as `saveBook` does,
-// the new queue), then every file is written under a temporary name and all are renamed (registry.mjs writeFilesAtomically):
+// "drafts" for registry/drafts-queue.json, "review" for registry/review-queue.json). Everything is checked before anything is
+// written (every book as `saveBook` does, the new queue), then every file is written under a temporary name and all are
+// renamed (registry.mjs writeFilesAtomically):
 // when something is invalid or a write fails nothing is changed, the reason is printed and the exit code is 1. Returns true
 // when saved.
 function commitIngest(books, all, changed, queued, applied, { queue: kind = "triage" } = {}) {
@@ -528,9 +566,9 @@ function commitIngest(books, all, changed, queued, applied, { queue: kind = "tri
     for (const b of pending) {
       try { files.push([bookFile(REGISTRY, b.book), bookText(b)]); } catch (e) { throw new Error(`book ${b.book}: ${e.message}`); }
     }
-    if (kind === "drafts") {
-      const text = (queued.length || applied.length) ? nextDraftsQueue(REGISTRY, queued, applied) : null;
-      if (text !== null) files.push([queuePath(REGISTRY, "drafts"), text]);
+    if (Object.hasOwn(QUEUE_FILES, kind)) {
+      const text = (queued.length || applied.length) ? nextNamedQueue(REGISTRY, kind, queued, applied) : null;
+      if (text !== null) files.push([queuePath(REGISTRY, kind), text]);
     } else {
       const text = (queued.length || applied.length) ? nextQueue(REGISTRY, queued, applied) : null;
       if (text !== null) files.push([join(REGISTRY, "queue.json"), text]);
@@ -555,12 +593,11 @@ function commitIngest(books, all, changed, queued, applied, { queue: kind = "tri
 
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
-  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>]"
-    + " | ingest --settle-unsure [--min <n>]";
+  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>"
+    + " | --review --batch <batch file>] | ingest --settle-unsure [--min <n>]";
   const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const [mode] = modes;
-  if (mode === "--review") throw new UsageError("ingest --review is not built yet");
   const rest = [];
   let min = null;
   let batchFile = null;
@@ -570,9 +607,11 @@ async function ingestCommand(args) {
     if (!modes.includes(args[i])) rest.push(args[i]);
   }
   if (min !== null && mode !== "--settle-unsure") throw new UsageError("--min goes with --settle-unsure only");
-  if (batchFile !== null && mode !== "--draft") throw new UsageError("--batch goes with --draft only");
-  if (mode === "--draft" && !batchFile) {
-    throw new UsageError(`${usage}\n--draft needs --batch <the batch file the results answer>`);
+  if (batchFile !== null && mode !== "--draft" && mode !== "--review") {
+    throw new UsageError("--batch goes with --draft or --review only");
+  }
+  if ((mode === "--draft" || mode === "--review") && !batchFile) {
+    throw new UsageError(`${usage}\n${mode} needs --batch <the batch file the results answer>`);
   }
   if (mode === "--settle-unsure") {
     const n = min === null ? 0.6 : (min.trim() === "" || min !== min.trim() ? NaN : Number(min));
@@ -596,6 +635,13 @@ async function ingestCommand(args) {
   const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
   if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
   if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
+  // Ruling R23: an owner settles the triage queue through the plain ingest (with or without --overwrite); the agent stages
+  // (--second, --third, --draft, --review) never take an owner's file.
+  const owner = isOwner(input.by);
+  if (owner && mode !== undefined && mode !== "--overwrite") {
+    throw new UsageError(`${file}: by ${JSON.stringify(clip(input.by))} is an owner of docs/owners.json: ${mode} is an`
+      + " agent stage, its results file is signed with an agent handle (an owner settles the triage queue with plain ingest)");
+  }
   const forbidden = forbiddenKeyIn(input);
   if (forbidden) {
     throw new UsageError(`${file}: a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden}): not a results file`);
@@ -604,12 +650,16 @@ async function ingestCommand(args) {
     const offered = offeredKeys(input.batch, batchFile);
     return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered });
   }
+  if (mode === "--review") {
+    const offered = offeredReviews(input.batch, batchFile);
+    return ingestReviewCommand(input, { textDir, core: await loadCore(coreDir), offered });
+  }
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
   if (second) return ingestSecondCommand(books, input, { textDir, entryKeys });
   if (third) return ingestThirdCommand(books, input, { textDir, entryKeys });
   const out = ingest(books.flatMap((b) => b.records), input.results, {
-    textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY)
+    textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY), owner
   });
   if (!commitIngest(books, out.records, out.applied, out.queued, out.applied)) return;
   console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
@@ -661,6 +711,92 @@ function ingestDraftCommand(input, { textDir, core, offered }) {
   if (!commitIngest(books, out.records, out.applied, out.queued, out.applied, { queue: "drafts" })) return;
   console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
   if (out.rejected.length) process.exitCode = 1;
+}
+
+// The keys a review batch file offers, each with the fingerprint of the rule its entry carried: the batch id must be the results
+// file's `batch`, of the form `<book>-review-<NNN>`, its stage `review`, every entry a key of that book with a 64-hex `rule`.
+function offeredReviews(id, file) {
+  const m = /^([a-z][a-z0-9]{1,9})-review-(\d{3,})$/.exec(String(id));
+  if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a review batch id (<book>-review-<NNN>)`);
+  const batch = readJson(file, "batch file");
+  if (batch?.id !== id || batch?.stage !== "review" || !Array.isArray(batch?.entries)) {
+    throw new UsageError(`${file}: not the review batch ${id} (its id, stage "review" and entries)`);
+  }
+  const ok = (e) => typeof e?.key === "string" && e.key.startsWith(`${m[1]}:`) && typeof e.rule === "string"
+    && /^[0-9a-f]{64}$/.test(e.rule);
+  if (!batch.entries.every(ok)) {
+    throw new UsageError(`${file}: every entry of ${id} must be a key of book ${m[1].toUpperCase()} with its rule fingerprint`);
+  }
+  return new Map(batch.entries.map((e) => [e.key, e.rule]));
+}
+
+// `ingest <results-file> --review --batch <batch file>`: independent reviews. Agreements write `evidence.reviewed`; the rest
+// (disagreement, free text, low confidence, a draft stamped for a person) goes to registry/review-queue.json; books and that
+// queue are saved in one step.
+function ingestReviewCommand(input, { textDir, core, offered }) {
+  checkQueues(REGISTRY);
+  const books = loadRegistry(REGISTRY);
+  const out = ingestReviews(books.flatMap((b) => b.records), input.results, {
+    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "review"), offered
+  });
+  if (!commitIngest(books, out.records, out.agreed, out.disagreed, out.agreed, { queue: "review" })) return;
+  const reasons = {};
+  for (const q of out.disagreed) reasons[q.reason] = (reasons[q.reason] ?? 0) + 1;
+  console.log(JSON.stringify({ agreed: out.agreed.length, queued: out.disagreed.length, reasons, rejected: out.rejected },
+    null, 2));
+  if (out.rejected.length) process.exitCode = 1;
+}
+
+// `review-accept <key> --because "<one line>" --by <owner>`: a person settles a review-queue entry about the rule as it is by
+// accepting it: `evidence.reviewed = { by, at, agrees: true, rule, confidence: 1, because }`, and the entry leaves the queue.
+// (The other way to settle one is to edit the rule: every evidence goes stale and the record is drafted, gated and reviewed
+// again.) `--by` is an owner of docs/owners.json, never an agent's handle.
+function reviewAcceptCommand(args) {
+  const usage = "Usage: review-accept <key> --because \"<one line>\" --by <owner handle>";
+  const flags = {};
+  const positional = [];
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i] === "--because" || args[i] === "--by") {
+      if (args[i + 1] === undefined) throw new UsageError(usage);
+      flags[args[i].slice(2)] = args[(i += 1)];
+    } else if (args[i].startsWith("--")) throw new UsageError(usage);
+    else positional.push(args[i]);
+  }
+  const [key, ...rest] = positional;
+  if (!key || rest.length) throw new UsageError(usage);
+  if (flags.because === undefined) throw new UsageError(`${usage}\nreview-accept needs --because: why the rule stands`);
+  if (!isPlainLine(flags.because, 120)) {
+    throw new UsageError("--because must be one line of printable ASCII, at most 120 characters");
+  }
+  if (!isReaderHandle(flags.by) || AGENT_HANDLE.test(flags.by) || !ownerHandles().includes(flags.by)) {
+    throw new UsageError("--by must be an owner listed in docs/owners.json (never an agent's handle)");
+  }
+  checkQueues(REGISTRY);
+  const books = loadRegistry(REGISTRY);
+  const all = books.flatMap((b) => b.records);
+  const record = all.find((r) => r.key === key);
+  if (!record) throw new UsageError(`The registry has no record ${JSON.stringify(clip(key))}`);
+  const entry = loadQueue(REGISTRY, "review").find((q) => q.key === key);
+  if (!entry) throw new UsageError(`${clip(key)} is not in review-queue.json`);
+  if (!queueHolds(entry, record)) {
+    throw new UsageError(`${clip(key)}: the rule changed since it was queued: cut a new review batch for the rule as it is`);
+  }
+  if (stateOf(record) !== "gated") throw new UsageError(`${clip(key)}: the state is ${stateOf(record)}, not gated`);
+  // `--because` lands in a public file: it must not quote the entry's text, alone or with the rule's prose. Without the text
+  // nothing can be checked, so nothing is written (fail closed). The text gate reads it again (it is part of `emits`).
+  const text = cachedText(need("RULEPACK_TEXT"))(record);
+  if (text === null) throw new UsageError(`${clip(key)}: the entry's text is not in RULEPACK_TEXT: --because cannot be checked`);
+  const quotes = quotationCheck(text);
+  const prose = ruleProse(record.rule).map(([, v]) => v);
+  if ([[flags.because], [...prose, flags.because], [flags.because, ...prose]].some((p) => quotes(p.join(" ")))) {
+    throw new UsageError("--because quotes 8 or more consecutive words of the entry's text (alone or with the rule's prose)");
+  }
+  const at = new Date().toISOString();
+  const reviewed = { by: flags.by, at, agrees: true, rule: ruleFingerprint(record.rule), confidence: 1, because: flags.because };
+  const next = all.map((r) => (r.key === key ? { ...r, evidence: { ...r.evidence, reviewed } } : r));
+  if (!commitIngest(books, next, [key], [], [key], { queue: "review" })) return;
+  console.log(JSON.stringify({ key, reviewed: "accepted", by: flags.by }));
+  console.log("The gate evidence is stale until the text gate reads --because: run npm run gates.");
 }
 
 // `ingest <results-file> --second`: the second reading of the queue. Agreements are applied and leave the queue;
@@ -756,7 +892,7 @@ async function resolveCommand(args) {
 
 export const COMMANDS = {
   inventory: inventoryCommand, gates: gatesCommand, generate: generateCommand, triage: triageCommand, batch: batchCommand,
-  ingest: ingestCommand, resolve: resolveCommand
+  ingest: ingestCommand, resolve: resolveCommand, "review-accept": reviewAcceptCommand
 };
 
 export async function main(argv) {

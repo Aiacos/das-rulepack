@@ -149,10 +149,16 @@ function settle(record, result, { by, at, extra = {} }) {
 // Applies reader results to a copy of `records`. Low-confidence results and every `engine` verdict are returned in
 // `queued` instead of being applied. `rejected` is [{ key, reason }]; `applied` the keys that were changed. `entryKeys` (a Set,
 // core.entryKeys) are the engine's entry keys: without it, no result may name `keys`.
-export function ingest(records, results, { textDir, by, at = new Date().toISOString(), overwrite = false, entryKeys, queue = [] }) {
+// `owner` (Ruling R23: the file is signed with a handle of docs/owners.json, which the CLI checks) lets a person settle a
+// queued entry, one with a second or third reading included: the earlier readings are kept as `evidence.triaged.first` and
+// `second` ({ by, confidence }); every other check applies to the owner as to a reader (the quotation of `why` included).
+export function ingest(records, results, options) {
+  const { textDir, by, at = new Date().toISOString(), overwrite = false, entryKeys, queue = [], owner = false } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   const out = structuredClone(records);
-  const settledByTwo = new Set(queue.filter((q) => q?.second).map((q) => q.key));
+  const settledByTwo = new Set(owner ? [] : queue.filter((q) => q?.second).map((q) => q.key));
+  const inQueue = new Map(owner ? queue.filter((q) => typeof q?.by === "string").map((q) => [q.key, q]) : []);
+  const reading = (r) => ({ by: r.by, confidence: r.confidence });
   const byKey = new Map(out.map((r) => [r.key, r]));
   const textOf = cachedText(textDir);
   const applied = [];
@@ -175,7 +181,10 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
       });
       continue;
     }
-    const invalid = settle(record, result, { by, at });
+    const earlier = inQueue.get(result.key);
+    const extra = !earlier ? {}
+      : { first: reading(earlier), ...(earlier.second?.by ? { second: reading(earlier.second) } : {}) };
+    const invalid = settle(record, result, { by, at, extra });
     if (invalid) {
       rejected.push({ key: clip(result.key), reason: invalid });
       continue;
