@@ -230,6 +230,20 @@ export function unaccountedByRule(dir = resolve(ROOT, "registry")) {
   return out;
 }
 
+/**
+ * The rules played by hand (a person followed a manual scenario's checklist: `evidence.played.manual`), as "<book>|<identifier>",
+ * read from registry/: shown as "Played by hand" and counted apart from the plays of the engine's runner.
+ */
+export function playedByHand(dir = resolve(ROOT, "registry")) {
+  const out = new Set();
+  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !NOT_BOOKS.includes(f)) ) {
+    for ( const r of JSON.parse(readFileSync(resolve(dir, f), "utf8")).records ?? [] ) {
+      if ( (r.state === "played") && (r.evidence?.played?.manual === true) ) out.add(`${r.book}|${r.identifier}`);
+    }
+  }
+  return out;
+}
+
 const STATUS = { played: "Played", validated: "Validated", pending: "Pending" };
 const KIND = { spell: "Spell", feature: "Feature", sense: "Sense" };
 
@@ -239,6 +253,9 @@ export function renderRules() {
     .sort((a, b) => (Number(!foundryPackage(a.code)) - Number(!foundryPackage(b.code))) || byYear(a, b));
   const out = [];
   const unaccounted = unaccountedByRule();
+  const byHand = playedByHand();
+  const handPlayed = rule => (rule.status === "played") && byHand.has(`${rule.book}|${rule.identifier}`);
+  const statusOf = rule => (handPlayed(rule) ? "Played by hand" : STATUS[rule.status]);
   for ( const book of books ) {
     const pkg = foundryPackage(book.code);
     out.push(`### ${book.code} · ${book.name}${/\(\d{4}\)$/.test(book.name) ? "" : ` (${book.year})`}`, "");
@@ -252,13 +269,15 @@ export function renderRules() {
       const gaps = [...(rule.uncovered ?? []).map(u => ` Not covered on ${u.origin}: ${u.because}.`),
         ...(unaccounted.get(`${rule.book}|${rule.identifier}`) ?? []).map(o => ` Not checked on ${o} (the rule predates it).`)]
         .join("");
-      out.push(`| ${name} | ${KIND[rule.kind]} | ${pages} | ${rule.adds}${gaps} | ${where} | ${STATUS[rule.status]} |`);
+      out.push(`| ${name} | ${KIND[rule.kind]} | ${pages} | ${rule.adds}${gaps} | ${where} | ${statusOf(rule)} |`);
     }
     out.push("");
   }
   const count = status => RULES.filter(rule => rule.status === status).length;
   const waiting = count("pending") ? `, ${count("pending")} pending` : "";
-  out.push(`${RULES.length} rules: ${count("played")} played, ${count("validated")} validated${waiting}.`);
+  const hand = RULES.filter(handPlayed).length;
+  const played = `${count("played")} played${hand ? ` (${hand} by hand)` : ""}`;
+  out.push(`${RULES.length} rules: ${played}, ${count("validated")} validated${waiting}.`);
   return out.join("\n");
 }
 

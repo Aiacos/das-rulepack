@@ -13,7 +13,9 @@
     "ingest": "node tools/pipeline/cli.mjs ingest",
     "resolve": "node tools/pipeline/cli.mjs resolve",
     "gates": "node tools/pipeline/cli.mjs gates",
-    "build:rules": "node tools/pipeline/cli.mjs generate"
+    "build:rules": "node tools/pipeline/cli.mjs generate",
+    "scenarios": "node tools/pipeline/cli.mjs scenarios",
+    "played": "node tools/pipeline/cli.mjs played"
   },
   "devDependencies": { "vitest": "^3.0.0" }
 }

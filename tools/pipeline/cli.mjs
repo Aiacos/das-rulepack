@@ -1,5 +1,5 @@
 // Command line of the rulebook pipeline: `npm run pipeline -- <subcommand> ...`. Later tasks add one function each to COMMANDS.
-import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -33,6 +33,9 @@ import { isPlainLine } from "./assert.mjs";
 import { AGENT_HANDLE } from "./schema.mjs";
 import { cachedText, forbiddenKeyIn } from "./intake.mjs";
 import { structureOf } from "./structure.mjs";
+import { packIndex, planOf, scenarioFiles, scenarioIdOf, scenarioOf, SCENARIO_STATES } from "./scenarios.mjs";
+import { parseRunnerLog, playedFrom } from "./played.mjs";
+import { isCoreVersion, isScenarioId, isWorld, PLAY_CLIENTS } from "./schema.mjs";
 import { hasText, readText } from "./text.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -40,6 +43,9 @@ const REGISTRY = process.env.RULEPACK_REGISTRY || join(ROOT, "registry");
 // Where `generate` writes the rule modules: scripts/rules/ of this repository unless RULEPACK_RULES says otherwise.
 const RULES_OUT = process.env.RULEPACK_RULES || join(ROOT, "scripts", "rules");
 const RULES_LABEL = process.env.RULEPACK_RULES || "scripts/rules";
+// Where `scenarios` writes the play data (play/<book>/<slug>.json and .mjs) and `played` reads it: play/ of this repository
+// unless RULEPACK_PLAY says otherwise.
+const PLAY = process.env.RULEPACK_PLAY || join(ROOT, "play");
 
 class UsageError extends Error {}
 
@@ -972,9 +978,158 @@ async function resolveCommand(args) {
   console.log(JSON.stringify({ key, origin, resolved: what }));
 }
 
+// `scenarios <BOOK> [--check | --plan]`: the play data of every record of the book in state reviewed or played
+// (scenarios.mjs), written to play/<book>/; `--check` compares only (exit 1 on a difference), `--plan` prints the run order
+// by family (Ruling R11). Files of play/<book>/ that no such record makes any more are removed (listed by --check).
+function scenariosCommand(args) {
+  const usage = "Usage: scenarios <BOOK> [--check | --plan]";
+  const modes = ["--check", "--plan"].filter((m) => args.includes(m));
+  if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
+  const positional = args.filter((a) => !modes.includes(a));
+  if (positional.length !== 1 || positional[0].startsWith("--")) throw new UsageError(usage);
+  const book = bookArg(positional[0]);
+  const dumpsDir = need("RULEPACK_DUMPS");
+  if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+  const records = loadRegistry(REGISTRY).flatMap((b) => b.records).filter((r) => r.book === book);
+  // The compendium of an official item: the pack (a dump file of items, not actors) that holds its docId.
+  const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+  const own = packages.filter((p) => p.book && p.book.toUpperCase() === book).map((p) => p.id);
+  const itemFiles = dumpsFor(dumpsDir, "official").filter((f) => !isActorFile(f));
+  const packOf = packIndex(itemFiles.map((f) => [f, readDump(join(dumpsDir, f))]), own);
+  if (modes[0] === "--plan") {
+    const order = planOf(records, { packOf });
+    const manual = order.filter((p) => p.manual).length;
+    const manualShare = `${order.length ? Math.round((100 * manual) / order.length) : 0}%`;
+    return console.log(JSON.stringify({ scenarios: order.length, manual, manualShare, order }, null, 2));
+  }
+
+  const playable = records.filter((r) => SCENARIO_STATES.includes(stateOf(r)));
+  const ids = groupBy(playable, scenarioIdOf);
+  const clash = [...ids].find(([, list]) => list.length > 1);
+  if (clash) throw new UsageError(`${clash[1].map((r) => r.key).join(" and ")} make one scenario id ${clash[0]}`);
+  const expected = new Map(playable.flatMap((r) => scenarioFiles(scenarioOf(r, { packOf }))));
+  const dir = join(PLAY, book.toLowerCase());
+  const present = existsSync(dir) ? readdirSync(dir).filter((f) => /\.(json|mjs)$/.test(f)) : [];
+  const orphan = present.map((f) => `${book.toLowerCase()}/${f}`).filter((p) => !expected.has(p));
+  const changed = [...expected].filter(([p, text]) => {
+    const file = join(PLAY, p);
+    return !existsSync(file) || readFileSync(file, "utf8") !== text;
+  }).map(([p]) => p);
+  const manual = playable.filter((r) => scenarioOf(r, { packOf }).manual).map((r) => r.key);
+  if (modes[0] === "--check") {
+    const ok = !changed.length && !orphan.length;
+    console.log(JSON.stringify({ scenarios: playable.length, manual: manual.length, stale: changed, orphan }, null, 2));
+    if (!ok) process.exitCode = 1;
+    return;
+  }
+  mkdirSync(dir, { recursive: true });
+  writeFilesAtomically(changed.map((p) => [join(PLAY, p), expected.get(p)]));
+  for (const p of orphan) rmSync(join(PLAY, p), { force: true });
+  console.log(JSON.stringify({ scenarios: playable.length, manual, written: changed, removed: orphan }, null, 2));
+}
+
+// The generated scenario file of a scenario id (play/<book>/<slug>.json), or null when there is none or it is not an object.
+function scenarioFile(id) {
+  const [book, name] = id.split("/");
+  const file = join(PLAY, book, `${name}.json`);
+  if (!existsSync(file)) return null;
+  try {
+    const json = JSON.parse(readFileSync(file, "utf8"));
+    return json !== null && typeof json === "object" && !Array.isArray(json) ? json : null;
+  } catch { return null; }
+}
+
+// `played <runner-log> --world <name> [--client gm|player]`: evidence.played from the log of the engine's runner (played.mjs);
+// `played --manual <key> --world <name> --because "<one line>" --by <owner> [--core <version>]`: a checklist played by hand.
+function playedCommand(args) {
+  const usage = "Usage: played <runner-log> --world <name> [--client gm|player]\n"
+    + "       played --manual <key> --world <name> --because \"<one line>\" --by <owner handle> [--core <version>]";
+  const flags = {};
+  const positional = [];
+  for (let i = 0; i < args.length; i += 1) {
+    if (["--world", "--client", "--manual", "--because", "--by", "--core"].includes(args[i])) {
+      if (args[i + 1] === undefined || Object.hasOwn(flags, args[i].slice(2))) throw new UsageError(usage);
+      flags[args[i].slice(2)] = args[(i += 1)];
+    } else if (args[i].startsWith("--")) throw new UsageError(usage);
+    else positional.push(args[i]);
+  }
+  if (Object.hasOwn(flags, "manual") && positional.length) {
+    throw new UsageError("A runner log and --manual cannot be used together: either the log of a play, or a play by hand");
+  }
+  if (!isWorld(flags.world)) throw new UsageError(`${usage}\n--world must be a world handle (letters, digits, . _ -)`);
+  const client = flags.client ?? "gm";
+  if (!PLAY_CLIENTS.includes(client)) throw new UsageError(`--client must be one of ${PLAY_CLIENTS.join(", ")}`);
+  checkQueues(REGISTRY);
+  const books = loadRegistry(REGISTRY);
+  const all = books.flatMap((b) => b.records);
+  const at = new Date().toISOString();
+  if (Object.hasOwn(flags, "manual")) return playedByHand(books, all, flags, { client, at, usage });
+
+  if (positional.length !== 1 || ["because", "by", "core"].some((f) => Object.hasOwn(flags, f))) throw new UsageError(usage);
+  const [log] = positional;
+  if (!existsSync(log) || !statSync(log).isFile()) throw new UsageError(`No runner log at ${clip(log)}`);
+  const text = readFileSync(log, "utf8");
+  if (!parseRunnerLog(text).length && text.includes("das-rulepack:")) {
+    throw new UsageError(`${clip(log)}: no runner block recognised (colour codes on the header lines?): nothing recorded`);
+  }
+  const scenarios = new Map(parseRunnerLog(text).filter((b) => isScenarioId(b.name)).map((b) => [b.name, scenarioFile(b.name)])
+    .filter(([, json]) => json !== null));
+  const out = playedFrom(all, text, { scenarios, world: flags.world, client, at });
+  if (!commitIngest(books, out.records, out.played, [], [])) return;
+  console.log(JSON.stringify({ played: out.played, skipped: out.skipped }, null, 2));
+  if (out.skipped.length) process.exitCode = 1;
+}
+
+// A person played a manual scenario's checklist (scenarios.mjs `manual`): `evidence.played` with `manual: true`, `by` (an
+// owner of docs/owners.json) and `because`, which lands in a public file: it must not quote the entry's text, and the text
+// gate reads it again (it is part of `emits`: the gates must run before the record is played).
+function playedByHand(books, all, flags, { client, at, usage }) {
+  if (flags.because === undefined || !isPlainLine(flags.because, 120)) {
+    throw new UsageError(`${usage}\n--because must be one line of printable ASCII, at most 120 characters`);
+  }
+  if (!isReaderHandle(flags.by) || AGENT_HANDLE.test(flags.by) || !isOwner(flags.by)) {
+    throw new UsageError("--by must be an owner listed in docs/owners.json (never an agent's handle)");
+  }
+  const key = flags.manual;
+  const record = all.find((r) => r.key === key);
+  if (!record) throw new UsageError(`The registry has no record ${JSON.stringify(clip(key))}`);
+  const state = stateOf(record);
+  if (!SCENARIO_STATES.includes(state)) throw new UsageError(`${clip(key)}: the state is ${state}, not reviewed`);
+  const id = scenarioIdOf(record);
+  const json = scenarioFile(id);
+  const current = ruleFingerprint(record.rule);
+  if (!json || json.key !== key || json.rule !== current) {
+    throw new UsageError(`${clip(key)}: play/${id}.json is missing or was made for another rule: run npm run scenarios`);
+  }
+  if (json.manual !== true) throw new UsageError(`${clip(key)}: not a manual scenario: play it with the runner and record its log`);
+  const core = flags.core ?? coreVersion();
+  if (!isCoreVersion(core)) throw new UsageError("--core must be an engine version (1.2.3)");
+  const text = cachedText(need("RULEPACK_TEXT"))(record);
+  if (text === null) throw new UsageError(`${clip(key)}: the entry's text is not in RULEPACK_TEXT: --because cannot be checked`);
+  const quotes = quotationCheck(text);
+  const prose = ruleProse(record.rule).map(([, v]) => v);
+  if ([[flags.because], [...prose, flags.because], [flags.because, ...prose]].some((p) => quotes(p.join(" ")))) {
+    throw new UsageError("--because quotes 8 or more consecutive words of the entry's text (alone or with the rule's prose)");
+  }
+  const played = { at, core, world: flags.world, scenario: id, client, rule: current, manual: true, by: flags.by,
+    because: flags.because };
+  const next = all.map((r) => (r.key === key ? { ...r, evidence: { ...r.evidence, played } } : r));
+  if (!commitIngest(books, next, [key], [], [])) return;
+  console.log(JSON.stringify({ key, played: "by hand", by: flags.by }));
+  console.log("The gate evidence is stale until the text gate reads --because: run npm run gates.");
+}
+
+// The engine version of DAS_CORE (module/module.json), for a play by hand that names none.
+function coreVersion() {
+  const file = join(need("DAS_CORE"), "module", "module.json");
+  if (!existsSync(file)) throw new UsageError(`DAS_CORE has no module/module.json: give --core <version>`);
+  return JSON.parse(readFileSync(file, "utf8")).version;
+}
+
 export const COMMANDS = {
   inventory: inventoryCommand, gates: gatesCommand, generate: generateCommand, triage: triageCommand, batch: batchCommand,
-  ingest: ingestCommand, resolve: resolveCommand, "review-accept": reviewAcceptCommand
+  ingest: ingestCommand, resolve: resolveCommand, "review-accept": reviewAcceptCommand, scenarios: scenariosCommand,
+  played: playedCommand
 };
 
 export async function main(argv) {

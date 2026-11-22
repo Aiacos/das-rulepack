@@ -34,7 +34,7 @@ function gatedRecord() {
   return record;
 }
 const reviewed = (rule) => ({ by: "reviewer-1", at: AT, agrees: true, rule, confidence: 0.9 });
-const played = (rule) => ({ at: AT, core: "1.0.0", world: "test-world", scenario: "s-1", client: "gm", rule });
+const played = (rule) => ({ at: AT, core: "1.0.0", world: "test-world", scenario: "tst/s-1", client: "gm", rule });
 
 describe("stateOf and rule-stamped evidence", () => {
   it("reviewed with an old rule fingerprint leaves the state gated", () => {

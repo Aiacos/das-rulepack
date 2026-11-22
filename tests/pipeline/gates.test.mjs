@@ -467,7 +467,7 @@ describe("runGates", () => {
           expect(failures[legacy.key]?.legacy, JSON.stringify(edit)).toEqual([`legacy: ${legacy.key} changed since migration`]);
         }
       }
-      const played = { at: "2026-11-21", core: "1.0.0", world: "w", scenario: "s" };
+      const played = { at: "2026-11-21", core: "1.0.0", world: "w", scenario: "tst/s" };
       expect(runGates([{ ...legacy, evidence: { played } }], ci(listed)).failures).toEqual({});
     });
 

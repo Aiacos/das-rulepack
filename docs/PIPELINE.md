@@ -21,6 +21,7 @@ text itself lives in a local cache outside the repository.
 | `DAS_CORE` | a clone of the DAS · Core engine (read only) |
 | `RULEPACK_REGISTRY` | optional: the registry folder, default `registry/` of this repository |
 | `RULEPACK_RULES` | optional: where `build:rules` writes the generated modules, default `scripts/rules/` of this repository |
+| `RULEPACK_PLAY` | optional: where `scenarios` writes the play data and `played` reads it, default `play/` of this repository |
 
 A command that needs a variable that is not set exits with code 2 and names it. Nothing under `tools/` calls a model, a
 network service or a Foundry server.
@@ -46,6 +47,10 @@ excepted.
 | 5b | Review a batch | (no command: a reviewer agent reads files, blind to the draft) | `RULEPACK_TEXT` | the Claude Code session, via reviewer agents |
 | 5c | Ingest reviews | `npm run ingest -- <results-file> --review --batch <batch file>` (see "Ingesting reviews") | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 5d | Accept a queued review | `npm run pipeline -- review-accept <key> --because "<one line>" --by <owner>` | nothing | a person (an owner) |
+| 6a | Scenarios | `npm run scenarios -- <BOOK> [--check \| --plan]` (see "Playing scenarios") | `RULEPACK_DUMPS` | a person |
+| 6b | Play | `cd "$DAS_CORE" && node tools/scenario.mjs <this repo>/play/<book> 2>&1 \| tee <private log>` | the test server | the main session only |
+| 6c | Record plays | `npm run played -- <runner-log> --world <name> [--client gm\|player]` | nothing | the main session |
+| 6d | Record a play by hand | `npm run played -- --manual <key> --world <name> --because "<one line>" --by <owner>` | `RULEPACK_TEXT` | a person (an owner) |
 | 7 | Generate | `npm run build:rules` (`-- --check` to verify only) | nothing | a person; CI runs `--check` |
 
 `<BOOK>` is a book code of `docs/books.json`, in any case: every command upper-cases it once (`xzz` is `XZZ`) and refuses,
@@ -53,7 +58,7 @@ with exit 2, a code that does not then match `/^[A-Z][A-Z0-9]{1,9}$/`. Registry 
 and hold the upper-case one; a file whose records name another book, or two records with one key, is not written.
 
 The numbers 1, 2, 4, 7 are the stage numbers of the design
-(`docs/superpowers/specs/2026-11-21-rulebook-pipeline-design.md`); stage 6 (play) is not built.
+(`docs/superpowers/specs/2026-11-21-rulebook-pipeline-design.md`).
 
 1. **Inventory** reads the dataset and the dumps and writes (or refreshes) one record per entry: page, edition, `srd`
    flag, canonical `identifier`, text fingerprint, and per origin the matched item with its activity and effect ids. The
@@ -234,8 +239,10 @@ rule, person?, because? }` (`person: true` with `because` from `schema.mjs` `DRA
 `official-uncovered`: the draft goes to a person at review; the schema requires the stamp on a drafted rule whose entry has
 `noReactions` or that leaves `official` uncovered, and the gate evidence fingerprint `emits` covers it, so dropping it fails the
 schema and makes the record `drafted`), `evidence.reviewed: { by, at, agrees, rule, confidence, because? }` (`because`: the
-line of a person's `review-accept`), `evidence.played: { at, core, world, scenario, client?, rule }` (no other field; `by` a
-reader handle, `confidence` from 0 to 1). A review or a play counts only while its `rule` is the fingerprint of the current
+line of a person's `review-accept`), `evidence.played: { at, core, world, scenario, client?, rule, manual?, by?,
+because? }` (`scenario` a scenario id `<book>/<slug>`, `core` an engine version, `world` a handle, `client` `gm` or `player`;
+`manual`, `by` (an owner) and `because` together, for a checklist played by hand; no other field). `by` a reader handle,
+`confidence` from 0 to 1 elsewhere. A review or a play counts only while its `rule` is the fingerprint of the current
 rule, so editing the rule makes gates, review and play stale at once. A legacy record may keep a review or a play written before
 the stamp existed (no `rule`): it counts as it did; one that carries a stamp is held to it.
 
@@ -876,6 +883,126 @@ data does not carry it:
 
 An attack activity whose damage list shows the item's base damage is a plain attack: `data`.
 
+## 🎲 Playing scenarios
+
+Stage 6 turns a `reviewed` rule's assertions into a **scenario**: data a person, or the engine's own scenario runner on the test
+server, can follow ("this item on the arena's caster, use this activity on a creature of this type, expect this"), and records
+that it was actually played. The tools never touch a game server: `scenarios` writes files, `played` reads a runner log. Play
+itself is run by the **main session only** (never a subagent), on the test server of the workspace rules, after a world
+backup.
+
+### `npm run scenarios -- <BOOK> [--check | --plan]`
+
+For every record of the book in state `reviewed` or `played`, `tools/pipeline/scenarios.mjs` `scenarioOf` writes
+`play/<book>/<slug of the key>.json` and, unless it is manual, `play/<book>/<slug>.mjs`, two lines that hand the JSON to
+`play/lib/steps.mjs` `scenario`. A scenario is `{ scenario, key, rule, origin, client: "gm", manual, manualBecause, checks,
+setup, steps }`:
+
+- `scenario` is `<book>/<slug(key)>`, the name the runner prints; `rule` the rule fingerprint the file was made for.
+- `setup`: the scene (`Arène des sorts`), its caster token (`Lanceur`) and the token the target is placed near (`Cible`); the
+  item (`origin`: official when the rule names it, else the first origin; `docId`; its compendium `uuid`, found in the dumps:
+  the item pack holding the docId, the book's own package first; the `kind`); the target, an SRD 2024 creature of the
+  creature type the assertions name (`scenarios.mjs` `TARGETS`, ids the Monster Manual 2025 and dnd5e's `actors24` share),
+  a Bandit Captain when they name none.
+- `steps`: the assertions are `rule.assert` plus those its entry implies (`impliedAsserts`), deduplicated. Every id of the
+  entry that is an activity of the item is played (the rule fingerprint `played` is bound to covers all of them; with none,
+  the item's only activity): per activity, per assertion checked on it, `{ use: <activity id> }`, `{ force: <roll> }` when it
+  has a roll, `{ advance: <moment> }` when it has a moment, `{ check: <canonical assertion> }`. An assertion the entry ties
+  to some activities (`saveDamage`, `noDamage` name theirs) is checked on those; any other, on each activity.
+- `checks`: how many checks the run makes when every assertion holds (one per damage fraction, one per condition applied);
+  `played` refuses a run whose stamp counts another number.
+- `manual: true` when a step has no interpreter, with the paths that have none in `manualBecause` (`given.free`, `force.crit`,
+  `advance`, `expect.condition.ended`, `setup.item`…). The interpreter covers what the runner can do without guessing: the
+  outcomes `hit`, `miss`, `failedSave`, `savedSave`; a fraction of the rolled damage (no damage type); a condition applied; one
+  creature type; the setup item's own origin. No check passes on nothing: a missing resolution for the target fails it; a
+  fraction above 0 needs a damage roll and a positive `damage.applied`; a fraction of 0 needs a damage roll or an explicit
+  `damage.applied` in the resolution; a condition must be absent before the use and present after; no target creature fails the
+  scenario; a use the engine refuses stops it at once ("the use of activity … was refused"). The runner cannot force a d20: a
+  step `{ force }` uses the activity again (up to 12 times) until that outcome comes, and fails its check if it never does. A
+  manual scenario's JSON is a checklist for a person.
+
+Generated files hold ids, engine words, numbers, the record key and fingerprints: never `adds`, a `free` text (its canonical
+form is `*`), the record's name or any text of the book. `--check` compares the files with what would be written (exit 1 on a
+stale, missing or orphan file); files of `play/<book>/` that no reviewed record makes are removed by a write. `--plan` prints
+the run order (Ruling R11): a rule's **family** is its sorted top-level entry keys, `triggers` with its declarations'
+`on > step types` (`saveDamage+triggers(failedSave>status)`); the first rule (by key) of each family comes first, then the
+others, all of them scheduled. Two records whose keys make one scenario id stop the command. `--check` and `--plan` are
+exclusive. `--plan` prints `{ scenarios, manual, manualShare, order }`.
+
+`scenarios` (`--check` included) needs `RULEPACK_DUMPS`, the premium dumps, to find the compendium of an item: CI has none,
+so CI cannot check that `play/` is current. Run `npm run scenarios -- <BOOK> --check` locally before committing play data.
+
+### Playing one scenario on the server (main session)
+
+On the machine that runs the MCP connector for the test world (Node 20.10 or later: the generated modules import their JSON
+with `with { type: "json" }`, and `play/lib/steps.mjs` imports `tools/pipeline/registry.mjs`, so this repository must be
+checked out there), with the world open in the GM's client (connector setting
+"Outils de test" on, the engine reloaded after any change), after a world backup:
+
+```sh
+cd "$DAS_CORE"
+MCP_URL=<the connector's URL, default http://localhost:31416/mcp> \
+  node tools/scenario.mjs <this repository>/play/<book>/<slug>.mjs 2>&1 | tee <private log>
+```
+
+A folder (`<this repository>/play/<book>`) plays every scenario of the book, in file order; `--plan` says which to run first.
+The runner plays it in the scene named `Arène des sorts` (absent: "non applicable", nothing recorded), places the target, lends
+the item to `Lanceur` (a spell as at will), uses each activity, checks, puts everything back (the target's hit points and
+conditions, the caster's spell slots, the spent uses of an item it already held, only the concentration effects the run
+added), and prints a verdict. Then:
+
+```sh
+npm run played -- <private log> --world <world name>   # --client player for a player's client
+```
+
+and commit the registry. The log stays private (it is not rulebook text, but it is no repository file either).
+
+### The stamp line and `npm run played`
+
+`play/lib/steps.mjs` prints, last of its own lines in the scenario's block, exactly one stamp line (Ruling R10):
+
+```text
+das-rulepack: <book>/<slug> core=<engine version> rule=<64-hex rule fingerprint> checks=<checks played>
+```
+
+`core` is the engine's version as the GM's client reports it (`testApi.status`). `npm run played -- <runner-log> --world <name>
+[--client gm|player]` (`tools/pipeline/played.mjs`) cuts the log into the runner's blocks (`▶ <name>` … its verdict) and, for
+each block named like a scenario id (terminal colour codes are stripped from every line first; a log with stamp lines but no
+block it can read exits 2, "no runner block recognised (colour codes on the header lines?)"; the engine's own scenarios in the
+same log are ignored), writes `evidence.played = { at, core, world, scenario, client, rule }` only when every block of that
+scenario in the log passed (`✓ scénario tenu (<n> vérifications)`, no `✗` line) with `n` equal to the stamp's `checks`, at least
+1, and equal to the `checks` its scenario file declares (a run that played fewer is refused); its stamp is that whole line,
+nothing before or after it on the line, one per block, naming the block's scenario; its `rule` is the record's rule fingerprint
+today and the one `play/<book>/<slug>.json` was made for; the record is `reviewed` (or `played`: played again) and its scenario
+is not manual. Anything else writes nothing for that scenario and is listed in `skipped` with its reason (a stamp for an older
+rule, another record's rule or scenario, a failed or interrupted scenario, 0 checks, a malformed stamp, no scenario file); the
+command prints `{ played, skipped }`, exits 1 when something was skipped, and writes the touched books in one step. `--world` is
+a handle (letters, digits, `. _ -`); a log and `--manual` are exclusive.
+
+**What stops a forged log, and what does not.** `played` reads only a runner log: no results file, no ingest and no agent
+stage can write `evidence.played` (a results file that carries `evidence` is refused, as for every ingest). The log is
+produced by the engine's runner on the server; the tool checks its form and that it was stamped for the rule as it is, not
+that it came from a real run. A hand-written log with a correct stamp would be accepted: what stands against it is the main
+session's honesty when it runs the play and the owner's review of the commit that records it (the same trust model as Ruling
+R20). Played evidence carries the world, the client, the engine version and the date, so that review can tell what to ask.
+
+**Played evidence and the gates.** A play from the log holds no prose: the schema holds `scenario`, `core`, `world`,
+`client` and `rule` to an id, a version, a handle, a word and a fingerprint, so it is not part of `emits` and the record goes
+from `reviewed` to `played` with its gate evidence standing. The only prose a play may carry is the `because` of a play by
+hand: like `evidence.person.because` and `evidence.reviewed.because` it is part of `emits` and the text gate reads it, so
+after `played --manual` the record is `drafted` until `npm run gates` passes again (`gates --ci` fails until then). The rule:
+any line a person writes on the evidence stales the gates until the text gate has read it; nothing else written after the
+gates may hold free text.
+
+### Playing a checklist by hand
+
+`npm run played -- --manual <key> --world <name> --because "<one line>" --by <owner> [--core <version>]` records that a person
+followed a manual scenario's checklist: `evidence.played` with `manual: true`, `by` and `because`. `--by` is an owner of
+`docs/owners.json`, never an agent's handle; the record must be `reviewed`, its `play/<book>/<slug>.json` made for the rule
+as it is and manual; `--because` is one line of at most 120 printable characters that does not quote the entry's text (alone
+or with the rule's prose; without the text in `RULEPACK_TEXT` nothing is written); `--core` defaults to the version of
+`DAS_CORE`. The README shows such a rule as "Played by hand" and counts it apart.
+
 ## 🏛️ Legacy rules
 
 The 24 rules that shipped before the pipeline were migrated into the registry as they were: `legacy: true`, their old
@@ -906,10 +1033,9 @@ emits, is refused.
 ## 🚧 Not built yet
 
 Only inventory, triage (rule-based, batch files, ingest), resolve, drafting (batches, brief, ingest), gates, review (batches,
-brief, ingest, `review-accept`) and generation
+brief, ingest, `review-accept`), scenarios and played evidence, and generation
 exist. These stages of the design do not:
 
-- **Play**: scenario generation and runs on a test world.
 - **Drift**: recomputing fingerprints and reopening the records whose inputs changed.
 
 Inventory reads the kinds `spell`, `feat`, `option`, `feature`, `species`, `background`, `item` and `monster` (`all` runs
