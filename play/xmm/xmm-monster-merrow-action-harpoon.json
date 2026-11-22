@@ -4,8 +4,10 @@
   "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
   "origin": "official",
   "client": "gm",
-  "manual": false,
-  "manualBecause": [],
+  "manual": true,
+  "manualBecause": [
+    "setup.reach"
+  ],
   "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
@@ -24,7 +26,7 @@
       "type": "humanoid"
     },
     "reach": {
-      "hyK7Ua3oC3S3KqGu": 20
+      "hyK7Ua3oC3S3KqGu": 5
     },
     "area": []
   },
