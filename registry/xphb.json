@@ -56283,10 +56283,107 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-v001",
+          "at": "2026-11-22T10:03:22.198Z",
+          "core": "0.290.0",
+          "rule": "260e8df44fad6916b2f72d016f63d2d606b30b3dfc057041ff59ef282d101e35"
+        },
+        "gates": {
+          "at": "2026-11-22T10:03:32.060Z",
+          "core": "0.290.0",
+          "rule": "260e8df44fad6916b2f72d016f63d2d606b30b3dfc057041ff59ef282d101e35",
+          "emits": "e6e5b2a613df01347cd138afe9a971df1dc87364f90e35f8249be6e22643136a",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "08ef75da697ac3a19e76c5051dcd3351f329bda6d3cfb00b973ff0ce37b7583c",
+            "ddb-importer": "f631fba02a395fe631460e014609a60191169a760022c74935709490b4993200"
+          }
         }
       },
       "why": "Whirlpool save on first entry or end of turn each turn, plus repeatable per-turn effect choice; data has only a one-off save activity.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature that comes into the whirlpool, or finishes its turn in it, rolls the Strength save again (once per turn).",
+        "entry": {
+          "triggers": [
+            {
+              "on": [
+                "enter",
+                "turnEnd"
+              ],
+              "do": [
+                {
+                  "type": "replay"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official",
+          "ddb-importer"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "enter"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "moment": "turnEnd"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 1,
+                "type": "bludgeoning"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5,
+                "type": "bludgeoning"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 2
+          },
+          {
+            "unexpressed": "out-of-combat",
+            "count": 1
+          }
+        ]
+      },
+      "state": "gated"
     },
     {
       "key": "xphb:spell:control-weather",
@@ -75329,10 +75426,94 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-v001",
+          "at": "2026-11-22T10:03:22.198Z",
+          "core": "0.290.0",
+          "rule": "d1f84830fcef4e54bb4c8baa1bb8a081e9bc6c027c808c73053791c9cfbd424c",
+          "person": true,
+          "because": "selfZone"
+        },
+        "gates": {
+          "at": "2026-11-22T10:03:32.067Z",
+          "core": "0.290.0",
+          "rule": "d1f84830fcef4e54bb4c8baa1bb8a081e9bc6c027c808c73053791c9cfbd424c",
+          "emits": "61482495f87bcedf40ba727f1e077ae65a65d20de6ed3b939f5cc30330a15003",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "775b09930dcc2e118ecc10812c0ac9cf8617a2859c6958c04bc6633b15f05987"
+          }
         }
       },
       "why": "Save on first entry each turn or turn start inside the area; data does not model the area trigger (official effect has no changes).",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The 15-foot sphere is laid, and a creature coming in or beginning its turn there saves again, once per turn.",
+        "entry": {
+          "triggers": [
+            {
+              "on": [
+                "enter",
+                "turnStart"
+              ],
+              "do": [
+                {
+                  "type": "replay"
+                }
+              ]
+            }
+          ],
+          "selfZone": {
+            "dnd5eactivity000": {
+              "type": "sphere",
+              "size": 15,
+              "units": "ft"
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "its save is a second, special activity after a utility cast; the replay is bound to one origin"
+          }
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "enter"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "out-of-combat",
+            "count": 1
+          }
+        ]
+      },
+      "state": "gated"
     }
   ]
 }

@@ -3023,5 +3023,174 @@
         }
       ]
     }
+  },
+  {
+    "key": "xphb:spell:control-water",
+    "reason": "disagreement",
+    "by": "reviewer-v001",
+    "why": "Whirlpool replays its Strength save on entry and at a creature's own turn end; success halves; the water-only pull is not sayable",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v001",
+      "rule": "260e8df44fad6916b2f72d016f63d2d606b30b3dfc057041ff59ef282d101e35",
+      "assert": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "moment": "turnEnd"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "bludgeoning"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5,
+              "type": "bludgeoning"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.subjected=activity;given.moment=enter",
+        "expect.subjected=activity;given.moment=turnEnd"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 2
+        },
+        {
+          "unexpressed": "out-of-combat",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "260e8df44fad6916b2f72d016f63d2d606b30b3dfc057041ff59ef282d101e35",
+      "assert": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "moment": "turnEnd"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5,
+              "type": "bludgeoning"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.roll=failedSave"
+      ],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xphb:spell:zone-of-truth",
+    "reason": "selfZone",
+    "by": "reviewer-v001",
+    "why": "Area forces its Charisma save on entry and when a creature begins its own turn inside; the no-lying result has no word",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-v001",
+      "rule": "d1f84830fcef4e54bb4c8baa1bb8a081e9bc6c027c808c73053791c9cfbd424c",
+      "assert": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "moment": "turnStart"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        }
+      ],
+      "implied": [
+        "expect.subjected=activity;given.moment=enter",
+        "expect.subjected=activity;given.moment=turnStart"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "out-of-combat",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "d1f84830fcef4e54bb4c8baa1bb8a081e9bc6c027c808c73053791c9cfbd424c",
+      "assert": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "moment": "turnStart"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
   }
 ]
