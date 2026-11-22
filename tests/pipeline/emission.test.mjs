@@ -63,8 +63,9 @@ const disagreeing = { agrees: false, onlyDraft: CANON, onlyReview: CANON_OTHER, 
 describe("emissionOf (Ruling R27): one function decides what is registered with the engine", () => {
   it("closes the reasons a rule is held, each with its label", () => {
     expect(Object.keys(HELD_REASONS).sort()).toEqual(
-      ["disagreement", "engine-already", "engine-changes", "engine-text", "free-text", "low-confidence", "not-reviewed", "queued",
-        "review-stale", "unexpressed"]);
+      ["disagreement", "engine-already", "engine-changes", "engine-rebinding", "engine-text", "free-text", "low-confidence",
+        "not-reviewed", "queued", "review-stale", "unexpressed"]);
+    expect(HELD_REASONS["engine-rebinding"]).toBe("its identifier would drop engine behaviour");
     expect(HELD_REASONS["engine-changes"]).toBe("changes the engine's reading: a person decides");
     expect(HELD_REASONS["engine-already"]).toBe("the engine already does it");
     expect(HELD_REASONS["not-reviewed"]).toBe("not reviewed yet");
@@ -348,5 +349,35 @@ describe("emissionOf for monster rules (Ruling R29): the delta against the engin
     const r = monster({ saveDamage: { [ACT]: "half" }, halfOnMiss: true }, { saveDamage: { [ACT]: "half" } });
     expect(ruleFromRecord(r, { queue: [], monsterRules: true }).entry).toEqual({ saveDamage: { [ACT]: "half" },
       halfOnMiss: true });
+  });
+});
+
+// Fix round 1: the rebinding of the item's identifier (Ruling R29, amended).
+describe("emissionOf for monster rules: what the rebinding of the item's identifier drops", () => {
+  const merging = { version: "9.9.9", mergeEntries: (layers) => Object.assign({}, ...layers.filter(Boolean)) };
+  function monster(rebinding) {
+    const r = gated("Glimmer");
+    r.kind = "monster";
+    r.rule.entry = { halfOnMiss: true };
+    regate(agreed(regate(r)));
+    const comparison = compareWithReading(r.rule.entry, null, merging);
+    r.evidence.reading = readingEvidence(r, { comparison, original: "glimmer", carried: [], dropped: [], code: false,
+      ...rebinding }, { at: AT, core: merging });
+    return r;
+  }
+
+  it("ships a rule with carried keys, saying where they come from (resolved from the engine at registration)", () => {
+    const r = monster({ carried: ["magical", "usageLimits"] });
+    expect(emissionOf(r, { queue: [] })).toEqual({ emitted: true, because: "reviewed" });
+    const rule = ruleFromRecord(r, { queue: [] });
+    expect(rule.entry).toEqual({ halfOnMiss: true });
+    expect(rule.carries).toEqual({ from: "glimmer", keys: ["magical", "usageLimits"] });
+    expect(ruleFromRecord(monster({}), { queue: [] })).not.toHaveProperty("carries");
+  });
+
+  it("holds a rule whose identifier would drop a key that cannot be carried, or behaviour the engine's code ties to it", () => {
+    expect(emissionOf(monster({ dropped: ["effectChanges"] }), { queue: [] }))
+      .toEqual({ emitted: false, because: "engine-rebinding" });
+    expect(emissionOf(monster({ code: true }), { queue: [] })).toEqual({ emitted: false, because: "engine-rebinding" });
   });
 });

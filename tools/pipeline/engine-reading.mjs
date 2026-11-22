@@ -64,6 +64,21 @@ const kebab = (name) => String(name ?? "").normalize("NFD").replace(/[̀-ͯ]/g, 
   .replace(/[\s-]+/g, "-").replace(/[^a-z0-9-]/g, "");
 
 /**
+ * The identifier the engine knows an item by without the pack (`adapter/content.mjs` `identifierOf`, offline): its shipped
+ * sources (`<actor id>.<item id>`, then the item id), then the item's `system.identifier`, then its name in kebab case.
+ */
+export function originalIdentifierOf(item, core, { actorId } = {}) {
+  const sources = isObject(core?.sources) ? core.sources : {};
+  const own = (key) => (Object.hasOwn(sources, key) ? sources[key] : undefined);
+  return (actorId ? own(`${actorId}.${item?._id}`) : undefined) ?? own(item?._id)
+    ?? (item?.system?.identifier || kebab(item?.name) || null);
+}
+
+/** The engine's shipped entry under an identifier (`content/index.mjs` `SHIPPED`), or null. */
+const shippedOf = (core, id) => (id && isObject(core?.shipped) && Object.hasOwn(core.shipped, id) && isObject(core.shipped[id])
+  ? core.shipped[id] : null);
+
+/**
  * The engine's text-layer entry for an official embedded monster item of the dumps, or null when it reads nothing (or the
  * item is a spell, or not on an NPC: the engine reads neither). `identifier`: the one the engine would see (a ruled record's
  * own, which its `sources` bind); left out, the engine's shipped sources (`<actor id>.<item id>`, then the item id), then the
@@ -72,11 +87,8 @@ const kebab = (name) => String(name ?? "").normalize("NFD").replace(/[̀-ͯ]/g, 
 export function engineReading(item, core, { identifier, actorId, actorType = "npc", swallow } = {}) {
   const layer = textLayerOf(core);
   if (actorType !== "npc" || !isObject(item) || item.type === "spell") return null;
-  const sources = isObject(core.sources) ? core.sources : {};
-  const own = (key) => (Object.hasOwn(sources, key) ? sources[key] : undefined);
-  const id = identifier ?? (actorId ? own(`${actorId}.${item._id}`) : undefined) ?? own(item._id)
-    ?? (item.system?.identifier || kebab(item.name) || null);
-  const shipped = isObject(core.shipped) && Object.hasOwn(core.shipped, id) ? core.shipped[id] : null;
+  const id = identifier ?? originalIdentifierOf(item, core, { actorId });
+  const shipped = shippedOf(core, id);
   const input = textLayerInput(item, { identifier: id, swallow: swallow ?? !!shipped?.swallow });
   if (!input.html) return null;
   const reading = layer(input);
@@ -133,9 +145,15 @@ export const officialItemOf = (record) => (Array.isArray(record?.items) ? record
  * computed on, the keys the pack registers (`delta`), those the engine already reads the same (`same`), those that change
  * the reading (`changes`: every changed key but a superset `triggers`, which is in `delta`), and the trigger outcome.
  */
-export function readingEvidence(record, comparison, { at = new Date().toISOString(), core } = {}) {
+export function readingEvidence(record, result, { at = new Date().toISOString(), core } = {}) {
+  // `result`: engineComparison's (with the rebinding: `original`, `carried`, `dropped`, `code` when true), or a bare
+  // compareWithReading comparison (no rebinding modelled: the shape written before fix round 1).
+  const comparison = result.comparison ?? result;
+  const rebinding = result.comparison ? { original: result.original, carried: [...result.carried], dropped: [...result.dropped],
+    ...(result.code ? { code: true } : {}) } : {};
   return { at, core: core?.version, rule: ruleFingerprint(record.rule), item: officialItemOf(record)?.data?.sha256,
-    delta: [...comparison.delta], same: [...comparison.same], changes: [...comparison.held], triggers: comparison.triggers };
+    delta: [...comparison.delta], same: [...comparison.same], changes: [...comparison.held], triggers: comparison.triggers,
+    ...rebinding };
 }
 
 /**
@@ -153,3 +171,69 @@ export function currentReading(record) {
 /** What the pack registers for a rule whose reading stands: the keys of `delta`, taken from the rule's own entry. */
 export const deltaEntry = (entry, reading) =>
   Object.fromEntries(reading.delta.filter((k) => Object.hasOwn(entry, k)).map((k) => [k, structuredClone(entry[k])]));
+
+// Every string of a value with the identifier `from` written as `to` (a text-layer trigger names the item's identifier: "this
+// attack" conditions, the mark of an immunity), so that two readings under two identifiers compare by what they do.
+const renamed = (value, from, to) => {
+  if (!from || from === to) return value;
+  if (typeof value === "string") return value.split(from).join(to);
+  if (Array.isArray(value)) return value.map((v) => renamed(v, from, to));
+  if (isObject(value)) {
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [renamed(k, from, to), renamed(v, from, to)]));
+  }
+  return value;
+};
+// Does a value name the identifier itself (a string equal to it or ending in `:<it>`, or a key)? Its meaning is bound to
+// that identifier: carried under another one it would no longer mean the same.
+const names = (value, id) => {
+  if (typeof value === "string") return value === id || value.endsWith(`:${id}`);
+  if (Array.isArray(value)) return value.some((v) => names(v, id));
+  if (isObject(value)) return Object.entries(value).some(([k, v]) => k === id || names(v, id));
+  return false;
+};
+
+/**
+ * Ruling R29, fix round 1: what a monster rule does to the item, the rebinding of its identifier included. A pack monster
+ * rule binds the embedded item to its creature-scoped identifier through `sources`, so the engine (`identifierOf`) then knows
+ * the item by the pack's identifier: its shipped entry under the item's original identifier (the `module` layer) no longer
+ * applies, and the text layer is read under the new identifier (`swallow` comes from the entry of that identifier).
+ *  - `before`: what the engine ends with WITHOUT the pack — the text layer under the original identifier merged with the
+ *    engine's shipped entry for it (`mergeEntries`).
+ *  - `comparison`: the rule's entry against `before` (compareWithReading): its delta, what it changes.
+ *  - `carried`: the keys of `before` the rebinding would lose that come from the shipped entry and can be carried over
+ *    faithfully (the pack registers them, resolved from the engine's own shipped table at registration); `dropped`: the keys
+ *    lost that cannot be (a shipped value that names the original identifier, a text-layer key that differs under the new
+ *    identifier); `code`: the engine's code recognises the original identifier (`core.runtimeIdentifiers`, or it leaves it to
+ *    the system), behaviour no entry carries.
+ *  - `after`: what the engine ends with WITH the pack — the text layer under the pack's identifier merged with the delta and
+ *    the carried keys (the scoped identifier has no shipped entry of its own). Every key of `before` is in it unchanged
+ *    (identifier strings aside) unless it is in `dropped`.
+ * A rule under the item's own identifier rebinds nothing: the engine merges the pack's entry over its own key by key
+ * (`content/index.mjs` rebuild), so `carried` and `dropped` are empty.
+ */
+export function engineComparison(item, record, core, { actorId, actorType = "npc" } = {}) {
+  const merge = mergeOf(core);
+  const original = originalIdentifierOf(item, core, { actorId });
+  const target = typeof record?.identifier === "string" && record.identifier ? record.identifier : original;
+  const shipped = shippedOf(core, original);
+  const textBefore = engineReading(item, core, { identifier: original, actorType, swallow: !!shipped?.swallow });
+  const before = merge([textBefore, shipped]);
+  const entry = isObject(record?.rule?.entry) ? record.rule.entry : {};
+  const comparison = compareWithReading(entry, before, core);
+  const delta = deltaEntry(entry, comparison);
+  const handled = (map) => !!original && (map instanceof Map ? map.has(original) : map instanceof Set && map.has(original));
+  if (target === original) {
+    const after = merge([textBefore, merge([shipped, delta])]);
+    return { original, target, before, comparison, carried: [], dropped: [], code: false, after };
+  }
+  const code = handled(core.runtimeIdentifiers) || handled(core.systemHandled);
+  const textAfter = (swallow) => engineReading(item, core, { identifier: target, actorType, swallow });
+  const same = (a, b) => canonical(renamed(a, target, original)) === canonical(b);
+  const lostIn = (after) => Object.keys(before ?? {}).filter((k) => !same(after?.[k], before[k])).sort();
+  const lost = lostIn(merge([textAfter(!!delta.swallow), delta]));
+  const carried = lost.filter((k) => shipped && Object.hasOwn(shipped, k) && !names(shipped[k], original));
+  const module = { ...delta, ...Object.fromEntries(carried.map((k) => [k, structuredClone(shipped[k])])) };
+  const after = merge([textAfter(!!module.swallow), module]);
+  const dropped = lostIn(after);
+  return { original, target, before, comparison, carried: carried.filter((k) => !dropped.includes(k)), dropped, code, after };
+}

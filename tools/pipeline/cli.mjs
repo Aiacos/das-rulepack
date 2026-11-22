@@ -17,7 +17,7 @@ import { embeddedIndex, poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
 import { undefinedWords } from "./definitions.mjs";
 import { loadCore } from "./core.mjs";
-import { compareWithReading, engineReading, officialItemOf, readingEvidence } from "./engine-reading.mjs";
+import { engineComparison, engineReading, officialItemOf, readingEvidence } from "./engine-reading.mjs";
 import { engineIdentifiers, quotationCheck, ruleProse, runGates } from "./gates.mjs";
 import { generate, shippedHeld } from "./generate.mjs";
 import {
@@ -264,8 +264,9 @@ export function readingOfRecord(record, documents, core) {
   const item = officialItemOf(record);
   const doc = item && Object.hasOwn(documents.official ?? {}, item.docId) ? documents.official[item.docId] : null;
   if (!doc || !record.rule?.entry || typeof record.rule.entry !== "object") return null;
-  const reading = engineReading(doc, core, { identifier: record.identifier });
-  return readingEvidence(record, compareWithReading(record.rule.entry, reading, core), { core });
+  // Fix round 1: with the rebinding of the item to the rule's identifier (engine-reading.mjs engineComparison).
+  const actorId = String(item.docId).split(".")[0];
+  return readingEvidence(record, engineComparison(doc, record, core, { actorId }), { core });
 }
 
 // Ruling R27: the held rules that a generated book module (RULEPACK_RULES, default scripts/rules/) registers all the same,

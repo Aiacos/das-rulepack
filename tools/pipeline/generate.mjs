@@ -54,6 +54,7 @@ export const HELD_REASONS = Object.freeze({
   "engine-text": "the engine already reads this feature's text: to be compared first",
   "engine-changes": "changes the engine's reading: a person decides",
   "engine-already": "the engine already does it",
+  "engine-rebinding": "its identifier would drop engine behaviour",
   "not-reviewed": "not reviewed yet",
   "review-stale": "its review is about an older rule",
   disagreement: "review disagrees",
@@ -95,7 +96,7 @@ function comparisonHeld(entry) {
  * HELD_REASONS: a gated rule never reviewed, queued as disagreement, low-confidence, free-text or unexpressed, or whose queue
  * entry is about an older rule. `queue`: review-queue.json (a list or a Map by key); left out, nothing can be confirmed
  * from it and a stamped rule is held. A monster rule (Rulings R28, R29) is first held by its stored comparison with the
- * engine's reading (`evidence.reading`): `engine-text` (none current), `engine-changes`, `engine-already`.
+ * engine's reading (`evidence.reading`): `engine-text` (none current), `engine-changes`, `engine-already`, `engine-rebinding`.
  */
 export function emissionOf(record, { legacy, queue, monsterRules = false } = {}) {
   if (!isObject(record) || !record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
@@ -111,6 +112,11 @@ export function emissionOf(record, { legacy, queue, monsterRules = false } = {})
     if (!reading) return { emitted: false, because: "engine-text" };
     if (reading.changes.length) return { emitted: false, because: "engine-changes" };
     if (!reading.delta.length) return { emitted: false, because: "engine-already" };
+    // Fix round 1: binding the item to the rule's identifier (`sources`) drops the engine's own entry under the item's
+    // original identifier and reads its text under the new one: what cannot be carried over holds the rule.
+    if ((Array.isArray(reading.dropped) && reading.dropped.length) || reading.code === true) {
+      return { emitted: false, because: "engine-rebinding" };
+    }
   }
   const state = stateOf(record);
   if (state === "reviewed" || state === "played") return { emitted: true, because: "reviewed" };
@@ -159,7 +165,15 @@ export function ruleFromRecord(record, { legacy, queue, monsterRules = false } =
   out.adds = rule.adds;
   for (const f of ["code", "entry"]) if (f in rule) out[f] = structuredClone(rule[f]);
   // Ruling R29: a monster rule registers only its delta against the engine's reading (emissionOf checked it stands).
-  if (record.kind === "monster" && monsterRules !== true && out.entry) out.entry = deltaEntry(rule.entry, currentReading(record));
+  if (record.kind === "monster" && monsterRules !== true && out.entry) {
+    const reading = currentReading(record);
+    out.entry = deltaEntry(rule.entry, reading);
+    // Fix round 1: the engine keys the rebinding would drop, carried over: named here, their values taken from the engine's
+    // own shipped entry under `from` when the pack registers (scripts/carry.mjs), never copied into the repository.
+    if (Array.isArray(reading.carried) && reading.carried.length) {
+      out.carries = { from: reading.original, keys: [...reading.carried] };
+    }
+  }
   // Ruling R2: the other identifiers the entry is registered under (left out when there are none).
   const aliases = aliasesOf(record);
   if (aliases.length) out.alsoAs = aliases;

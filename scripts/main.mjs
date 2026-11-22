@@ -5,7 +5,8 @@
  */
 
 import { MODULE_ID, DAS_ID } from "./constants.mjs";
-import { TABLE, SOURCES } from "./rules/index.mjs";
+import { RULES, TABLE, SOURCES } from "./rules/index.mjs";
+import { withCarried } from "./carry.mjs";
 import { registerShadowBlade } from "./shadow-blade.mjs";
 import { registerBladeCantrips, registerBladeCantripsInit } from "./blade-cantrips.mjs";
 import { registerImporters } from "./importers.mjs";
@@ -19,7 +20,11 @@ Hooks.once(`${DAS_ID}.registerContent`, register => {
   // other rules are registered all the same.
   // The sources (document id -> identifier, for items whose own identifier is not the rule's) go as a third argument only when
   // there are some: without them the call is the two-argument call it has always been.
-  try { register(MODULE_ID, { ...TABLE }, ...(Object.keys(SOURCES).length ? [{ sources: { ...SOURCES } }] : [])); }
+  // Ruling R29 (fix round 1): a monster rule that rebinds its item carries over the engine keys that would be dropped, taken
+  // from the engine's own shipped entries; one whose carried key the running engine does not ship is left out.
+  const { table, missing } = withCarried(TABLE, RULES, globalThis.game?.modules?.get(DAS_ID)?.api?.content?.builtin);
+  if ( missing.length ) console.warn(`${MODULE_ID} | not registered (an engine key they carry is missing): ${missing.join(", ")}`);
+  try { register(MODULE_ID, table, ...(Object.keys(SOURCES).length ? [{ sources: { ...SOURCES } }] : [])); }
   catch(err) { console.error(`${MODULE_ID} | rules refused by DAS · Core:`, err); }
 });
 

@@ -473,10 +473,34 @@ export function identifierClashes(records, { coreIdentifiers, registers = hasRul
  * DAS · Core identifier (engineIdentifiers: its table, its code, what it leaves to the system) without `rule.inCore`.
  * Unruled records are ignored.
  */
+/**
+ * Ruling R29, fix round 1: the records that bind, through `sources`, an item whose own identifier the engine handles (its
+ * table, code or system: `coreIdentifiers`) to another identifier — the engine would then no longer apply what it has for
+ * the item. `[record, message]` pairs. A monster feature is left to its reading (`evidence.reading`: what the rebinding
+ * drops is carried over or holds the rule); a rule under the item's own identifier, or an alias equal to it, rebinds nothing.
+ */
+export function rebindingClashes(records, coreIdentifiers = new Set()) {
+  const out = [];
+  for (const record of records) {
+    if (!hasRule(record) || record.kind === "monster" || !isObject(record.sources)) continue;
+    for (const [docId, identifier] of Object.entries(record.sources)) {
+      const item = (record.items ?? []).find((i) => i?.match === "matched" && typeof i.docId === "string"
+        && (i.docId === docId || i.docId.endsWith(`.${docId}`)));
+      const own = item?.identifier;
+      if (typeof own === "string" && own !== identifier && coreIdentifiers.has(own)) {
+        out.push([record, `unique: sources ${docId} rebinds an item of DAS · Core's identifier ${own} to ${identifier}:`
+          + " the engine's entry for it would no longer apply"]);
+      }
+    }
+  }
+  return out;
+}
+
 export const gateUnique = (records, { core } = {}) => [
   ...identifierTwins(records).shared.map(([id, group]) => uniqueMessage(id, group)),
   ...identifierTwins(records).later.map(([id, record, first]) => editionMessage(id, record, first)),
-  ...coreCollisions(records, engineIdentifiers(core), hasRule, core?.identifiers).map(([, m]) => m)
+  ...coreCollisions(records, engineIdentifiers(core), hasRule, core?.identifiers).map(([, m]) => m),
+  ...rebindingClashes(records, engineIdentifiers(core) ?? new Set()).map(([, m]) => m)
 ];
 
 const uniqueFailuresByKey = (records, core) => {
@@ -486,6 +510,7 @@ const uniqueFailuresByKey = (records, core) => {
   for (const [id, group] of shared) for (const { key } of group) add(key, uniqueMessage(id, group));
   for (const [id, record, first] of later) add(record.key, editionMessage(id, record, first));
   for (const [record, m] of coreCollisions(records, engineIdentifiers(core), hasRule, core?.identifiers)) add(record.key, m);
+  for (const [record, m] of rebindingClashes(records, engineIdentifiers(core) ?? new Set())) add(record.key, m);
   return byKey;
 };
 

@@ -300,6 +300,16 @@ export function heldLine(rows) {
 }
 
 /**
+ * Ruling R29 (fix round 1): the engine keys a monster rule carries over because binding its item to the rule's identifier
+ * would drop them, for its row of docs/RULES.md, or "".
+ */
+export function carriesNote(rule) {
+  const keys = Array.isArray(rule.carries?.keys) ? rule.carries.keys : [];
+  if ( !keys.length ) return "";
+  return ` Carries over ${keys.length} engine key${keys.length === 1 ? "" : "s"} (${keys.join(", ")}).`;
+}
+
+/**
  * Ruling R25: what a partial rule leaves to the table, for its row of docs/RULES.md (its `partial` counts by reason), or "".
  */
 export function partialNote(rule) {
@@ -363,7 +373,7 @@ export function renderRules() {
       const gaps = [...(rule.uncovered ?? []).map(u => ` Not covered on ${u.origin}: ${u.because}.`),
         ...(unaccounted.get(`${rule.book}|${rule.identifier}`) ?? []).map(o => ` Not checked on ${o} (the rule predates it).`)]
         .join("");
-      const adds = `${rule.adds}${gaps}${partial}`;
+      const adds = `${rule.adds}${gaps}${partial}${carriesNote(rule)}`;
       out.push(`| ${name} | ${kindLabel(rule.kind)} | ${pages} | ${adds} | ${where} | ${statusOf(rule)} |`);
     }
     if ( shipped.length ) out.push("");
