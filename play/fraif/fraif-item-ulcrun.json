@@ -1,0 +1,49 @@
+{
+  "scenario": "fraif/fraif-item-ulcrun",
+  "key": "fraif:item:ulcrun",
+  "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "aifUlcrun0000000",
+      "uuid": "Compendium.dnd-adventures-faerun.items.Item.aifUlcrun0000000",
+      "kind": "item"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "V2WWlJdFgdzFVzIg": null
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "V2WWlJdFgdzFVzIg"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0;expect.damage.type=poison;given.roll=savedSave"
+    },
+    {
+      "use": "V2WWlJdFgdzFVzIg"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.damage.fraction=1;expect.damage.type=poison;given.roll=failedSave"
+    }
+  ]
+}

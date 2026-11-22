@@ -1,5 +1,26 @@
 [
   {
+    "key": "fraif:item:calimemnon-crystal",
+    "reason": "code",
+    "by": "drafter-s001",
+    "why": "cold aura carried by the wearer needs a per-creature once-a-turn cap and must spare the wearer; ray split is chosen at use",
+    "confidence": 0.75
+  },
+  {
+    "key": "fraif:item:crown-of-horns",
+    "reason": "person",
+    "by": "drafter-s001",
+    "why": "main effect is an aura that forces a fear save on entry and turn start: no drafter key; resave filters, immunity and toggle too",
+    "confidence": 0.85
+  },
+  {
+    "key": "fraif:item:deathdance",
+    "reason": "person",
+    "by": "drafter-s001",
+    "why": "data already poisons and incapacitates; the automatic success for humanoids has no key with a defined meaning",
+    "confidence": 0.8
+  },
+  {
     "key": "xmm:monster:aberrant-cultist/action/tentacle-lash",
     "reason": "person",
     "by": "drafter-q001",
