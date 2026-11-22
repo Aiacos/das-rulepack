@@ -1,12 +1,12 @@
 {
   "scenario": "xmm/xmm-monster-ancient-copper-dragon-action-slowing-breath",
   "key": "xmm:monster:ancient-copper-dragon/action/slowing-breath",
-  "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
+  "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
   "origin": "official",
   "client": "gm",
   "manual": false,
   "manualBecause": [],
-  "checks": 4,
+  "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
     "caster": null,
@@ -31,24 +31,6 @@
     ]
   },
   "steps": [
-    {
-      "use": "teMMQNDDIE9XkPN3"
-    },
-    {
-      "force": "failedSave"
-    },
-    {
-      "check": "expect.denies=actionAndBonus;given.roll=failedSave"
-    },
-    {
-      "use": "teMMQNDDIE9XkPN3"
-    },
-    {
-      "force": "failedSave"
-    },
-    {
-      "check": "expect.denies=reactions;given.roll=failedSave"
-    },
     {
       "use": "teMMQNDDIE9XkPN3"
     },

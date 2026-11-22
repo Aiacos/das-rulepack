@@ -1039,6 +1039,70 @@
     }
   },
   {
+    "key": "xmm:monster:githyanki-dracomancer/action/draconic-strike",
+    "reason": "disagreement",
+    "by": "reviewer-r001",
+    "why": "Fear on hit and its end are already read by the engine; only the full hit damage of both types remains to state",
+    "confidence": 0.7,
+    "draft": {
+      "by": "drafter-r001",
+      "rule": "7a60aadf29baa35933881e87384daac2157cc8ec131c24a54bd2502b5606c7aa",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.condition.applied=frightened;given.roll=hit"
+      ]
+    },
+    "review": {
+      "rule": "7a60aadf29baa35933881e87384daac2157cc8ec131c24a54bd2502b5606c7aa",
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "slashing"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "fire"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.condition.applied=frightened;given.roll=hit"
+      ],
+      "onlyReview": [
+        "expect.damage.fraction=1;expect.damage.type=slashing;given.roll=hit"
+      ],
+      "baseline": [
+        "expect.damage.fraction=1;expect.damage.type=fire;given.roll=hit"
+      ],
+      "detail": []
+    }
+  },
+  {
     "key": "xmm:monster:githzerai-psion/action/psychic-warp",
     "reason": "disagreement",
     "by": "reviewer-v002",
@@ -2435,6 +2499,71 @@
       ],
       "onlyReview": [
         "expect.condition.applied=poisoned;given.moment=turnStart;given.roll=failedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:tree-blight/action/grasping-root",
+    "reason": "triggers",
+    "by": "reviewer-r001",
+    "why": "Failed save drags a size-capped target 10 ft closer and grapples it; turn-start damage is already engine-read",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-r001",
+      "rule": "e9315bb58511848cbda5f2a47e645a8565309d17fc163e940c8a65caee2b71f4",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "move": {
+              "mode": "pull",
+              "distance": 10
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.move.distance=10;expect.move.mode=pull;given.roll=failedSave"
+      ]
+    },
+    "review": {
+      "rule": "e9315bb58511848cbda5f2a47e645a8565309d17fc163e940c8a65caee2b71f4",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave",
+            "targetSizeAtMost": "lg"
+          },
+          "expect": {
+            "move": {
+              "mode": "pull",
+              "distance": 10
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave",
+            "targetSizeAtMost": "lg"
+          },
+          "expect": {
+            "condition": {
+              "applied": "grappled"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.move.distance=10;expect.move.mode=pull;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.condition.applied=grappled;given.roll=failedSave;given.targetSizeAtMost=lg",
+        "expect.move.distance=10;expect.move.mode=pull;given.roll=failedSave;given.targetSizeAtMost=lg"
       ],
       "baseline": [],
       "detail": []
