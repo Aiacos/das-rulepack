@@ -5082,17 +5082,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-003",
-          "at": "2026-11-21T19:50:45.335Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Speed bonus is carried by data but must be suppressed while wearing heavy armor.",
+            "triaged": {
+              "by": "reader-xphb-003",
+              "at": "2026-11-21T19:50:45.335Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Speed bonus is carried by data but must be suppressed while wearing heavy armor.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -8379,17 +8387,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-004",
-          "at": "2026-11-21T19:50:45.648Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose a Cleric spell at use time and cast it free; data has a bare utility activity with no cast.",
+            "triaged": {
+              "by": "reader-xphb-004",
+              "at": "2026-11-21T19:50:45.648Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Choose a Cleric spell at use time and cast it free; data has a bare utility activity with no cast.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -11506,17 +11522,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-005",
-          "at": "2026-11-21T19:50:45.954Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Free spell cast and slot recovery with a choice at use time and a limit; data has no uses max or formula.",
+            "triaged": {
+              "by": "reader-xphb-005",
+              "at": "2026-11-21T19:50:45.954Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Free spell cast and slot recovery with a choice at use time and a limit; data has no uses max or formula.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -14186,17 +14210,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-007",
-          "at": "2026-11-21T19:50:46.560Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks the 18-20 death save counts as 20 and the bloodied-gated turn start heal condition.",
+            "triaged": {
+              "by": "reader-xphb-007",
+              "at": "2026-11-21T19:50:46.560Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Data lacks the 18-20 death save counts as 20 and the bloodied-gated turn start heal condition.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -17480,17 +17512,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-008",
-          "at": "2026-11-21T19:50:46.864Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Delayed vibrations ending on event or action, one target at a time; the effect carries no changes.",
+            "triaged": {
+              "by": "reader-xphb-008",
+              "at": "2026-11-21T19:50:46.864Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Delayed vibrations ending on event or action, one target at a time; the effect carries no changes.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -21173,24 +21213,32 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T23:14:46.522Z",
-          "confidence": 0.65,
-          "first": {
-            "by": "reader-xphb-009",
-            "confidence": 0.65
-          },
-          "second": {
-            "by": "second-s46",
-            "confidence": 0.65
-          },
-          "via": "bulk-unsure"
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Speed bonus and climb/swim speeds are carried by an effect, but the heavy-armor condition cannot be expressed in the data.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T23:14:46.522Z",
+              "confidence": 0.65,
+              "first": {
+                "by": "reader-xphb-009",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s46",
+                "confidence": 0.65
+              },
+              "via": "bulk-unsure"
+            }
+          }
         }
       },
-      "why": "Speed bonus and climb/swim speeds are carried by an effect, but the heavy-armor condition cannot be expressed in the data.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -22267,17 +22315,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Once per turn spill of Hunters Mark extra damage to a second creature within range; data has a bare damage activity with no limit or trigger.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Once per turn spill of Hunters Mark extra damage to a second creature within range; data has a bare damage activity with no limit or trigger.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -22315,17 +22371,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Reaction on taking damage granting resistance to that type until end of turn; data has per-type effects but the trigger and type choice need a rule.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Reaction on taking damage granting resistance to that type until end of turn; data has per-type effects but the trigger and type choice need a rule.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -23354,17 +23418,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Turn a failed d20 test into a 20 as a choice after the roll; data has a use counter and an empty activity, nothing touching the roll.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Turn a failed d20 test into a 20 as a choice after the roll; data has a use counter and an empty activity, nothing touching the roll.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -25846,17 +25918,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-011",
-          "at": "2026-11-21T19:50:47.770Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "While Innate Sorcery is active, one free metamagic per turn; conditional and once per turn; data empty",
+            "triaged": {
+              "by": "reader-xphb-011",
+              "at": "2026-11-21T19:50:47.770Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "While Innate Sorcery is active, one free metamagic per turn; conditional and once per turn; data empty",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -26060,17 +26140,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-011",
-          "at": "2026-11-21T19:50:47.770Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data covers the paid Innate Sorcery restore but not up to two metamagic options per spell while active",
+            "triaged": {
+              "by": "reader-xphb-011",
+              "at": "2026-11-21T19:50:47.770Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Data covers the paid Innate Sorcery restore but not up to two metamagic options per spell while active",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -30719,17 +30807,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-013",
-          "at": "2026-11-21T19:50:48.383Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "data lacks max damage on cast and escalating necrotic backlash ignoring resistance after first use",
+            "triaged": {
+              "by": "reader-xphb-013",
+              "at": "2026-11-21T19:50:48.383Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "data lacks max damage on cast and escalating necrotic backlash ignoring resistance after first use",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -47768,17 +47864,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-020",
-          "at": "2026-11-21T19:50:50.519Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time: reroll some damage dice up to a modifier, new rolls bind; data only spends a point.",
+            "triaged": {
+              "by": "reader-xphb-020",
+              "at": "2026-11-21T19:50:50.519Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Choice at use time: reroll some damage dice up to a modifier, new rolls bind; data only spends a point.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -47857,17 +47961,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-020",
-          "at": "2026-11-21T19:50:50.519Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Doubles a spell duration and grants concentration advantage when used; data only consumes a point.",
+            "triaged": {
+              "by": "reader-xphb-020",
+              "at": "2026-11-21T19:50:50.519Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Doubles a spell duration and grants concentration advantage when used; data only consumes a point.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -49402,17 +49514,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-020",
-          "at": "2026-11-21T19:50:50.519Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T16:27:28.098Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at casting to change damage type among listed ones; data only consumes a point.",
+            "triaged": {
+              "by": "reader-xphb-020",
+              "at": "2026-11-21T19:50:50.519Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Choice at casting to change damage type among listed ones; data only consumes a point.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {

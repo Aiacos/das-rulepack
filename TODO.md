@@ -307,3 +307,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] CI was red for three pushes (the engine's latest release has no creature-scoped sources yet): R36, tests follow the
       clone, `--ci` tolerates the binding. Checked locally against a clone of the release, as CI makes it.
 
+- [x] Pre-pass against the engine main after the merges of 2026-11-22: 15 XPHB records are now `core`.
