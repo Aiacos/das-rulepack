@@ -81933,7 +81933,7 @@
       "edition": "2024",
       "owner": "Lacedon Ghoul",
       "section": "action",
-      "identifier": "icy-bite",
+      "identifier": "xmm-lacedon-ghoul-icy-bite",
       "page": 132,
       "srd": false,
       "text": {
@@ -81970,7 +81970,8 @@
           ],
           "data": {
             "sha256": "84a436bd9c23260c2bc9903352014cdab3298a715fe52aaa3c70d8ab95561132"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -81985,10 +81986,87 @@
           "confidence": 0.7,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-q001",
+          "at": "2026-11-22T08:17:57.436Z",
+          "core": "0.290.0",
+          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae"
+        },
+        "reading": {
+          "at": "2026-11-22T08:18:24.450Z",
+          "core": "0.290.0",
+          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
+          "item": "830f7a201f277fe6e3d053d40716324e6e56818f4be7b8fb26171009c611dcb6",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "icy-bite",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T08:18:24.450Z",
+          "core": "0.290.0",
+          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
+          "emits": "60e1e266d21394d4a5b73c1d8b3115c7aeefebde772a6d2f8830bb97db349cb5",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "830f7a201f277fe6e3d053d40716324e6e56818f4be7b8fb26171009c611dcb6"
+          }
+        },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T08:19:31.461Z",
+          "agrees": true,
+          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
+          "confidence": 0.8
         }
       },
       "why": "Speed reduction effect exists but it must end at the start of the ghoul next turn; expiry on that event needs a rule.",
-      "state": "triaged"
+      "sources": {
+        "mmIcyBite0000000": "xmm-lacedon-ghoul-icy-bite"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The slowing effect ends when the user's next turn begins.",
+        "entry": {
+          "effectEnds": {
+            "kCxRhmskJImIaVxj": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Lacedon Ghoul"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:lacedon-ghoul/action/multiattack",

@@ -248,6 +248,28 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-lacedon-ghoul-icy-bite",
+    "name": "Icy Bite",
+    "page": 132,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Lacedon Ghoul",
+    "adds": "The slowing effect ends when the user's next turn begins.",
+    "entry": {
+      "effectEnds": {
+        "kCxRhmskJImIaVxj": "casterTurnStart"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-poltergeist-telekinetic-thrust",
     "name": "Telekinetic Thrust",
     "page": 246,

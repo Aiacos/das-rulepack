@@ -129,11 +129,25 @@
     }
   },
   {
+    "key": "xmm:monster:bandit-captain/reaction/parry",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads the reaction and its AC bonus; the melee-only and weapon-held limits would change its trigger",
+    "confidence": 0.85
+  },
+  {
     "key": "xmm:monster:bandit-crime-lord/bonus/deadly-aim",
     "reason": "person",
     "by": "drafter-q002",
     "why": "self advantage on one later attack plus bonus poison only if it lands: no key carries either",
     "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:banshee/action/deathly-wail",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine already reads the HP threshold and type exclusion; the sunlight and hearing limits have no key",
+    "confidence": 0.85
   },
   {
     "key": "xmm:monster:banshee/trait/incorporeal-movement",
@@ -344,6 +358,20 @@
     "by": "drafter-v002",
     "why": "data already casts the spell; the lockout until the user's next turn starts has no usage-limit word",
     "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:death-knight/legendary/fell-word",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads the drain; only the not-again-before-next-turn limit is beyond, and no key says it",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:death-knight/reaction/parry",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads the reaction and its AC bonus; the melee-only and weapon-held limits would change its trigger",
+    "confidence": 0.85
   },
   {
     "key": "xmm:monster:death-knight/trait/legendary-resistance",
@@ -724,6 +752,13 @@
     "confidence": 0.8
   },
   {
+    "key": "xmm:monster:gulthias-blight/action/life-draining-root",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads turn damage and drain; escape DC, size limit and blight healing have no assertable key",
+    "confidence": 0.75
+  },
+  {
     "key": "xmm:monster:half-dragon/action/dragons-breath",
     "reason": "person",
     "by": "drafter-v006",
@@ -850,6 +885,13 @@
     "confidence": 0.85
   },
   {
+    "key": "xmm:monster:lich/legendary/disrupt-life",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads the undead exclusion, data the half; only a reuse limit is beyond and no key says it",
+    "confidence": 0.85
+  },
+  {
     "key": "xmm:monster:magmin/bonus/ignited-illumination",
     "reason": "engine",
     "by": "drafter-v008",
@@ -911,6 +953,13 @@
     "by": "drafter-v009",
     "why": "the resistance goes to whoever rides the mount, only while mounted: needs a rider relation the keys lack",
     "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:noble/reaction/parry",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads the reaction and its AC bonus; the melee-only and weapon-held limits would change its trigger",
+    "confidence": 0.85
   },
   {
     "key": "xmm:monster:nycaloth/bonus/shadowy-teleport",
@@ -1225,6 +1274,13 @@
     "confidence": 0.85
   },
   {
+    "key": "xmm:monster:umber-hulk/bonus/confusing-gaze",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads the lost reactions and their end; the random d8 behaviour has no key",
+    "confidence": 0.85
+  },
+  {
     "key": "xmm:monster:vampire-familiar/action/umbral-dagger",
     "reason": "code",
     "by": "drafter-v012",
@@ -1237,6 +1293,13 @@
     "by": "drafter-v012",
     "why": "radiant damage at turn start and disadvantage both depend on standing in sunlight; drafter keys take no such condition",
     "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:vampire-umbral-lord/bonus/sanguine-drain",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "construct and undead exclusion needs an unaffected-type key drafters cannot write; drain is read",
+    "confidence": 0.75
   },
   {
     "key": "xmm:monster:vampire-umbral-lord/legendary/umbral-strike",
@@ -1285,6 +1348,13 @@
     "reason": "code",
     "by": "drafter-v013",
     "why": "the user picks one of two riders on each hit, one being an ally's reactive move: needs a prompt",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:warrior-commander/reaction/counterattack",
+    "reason": "person",
+    "by": "drafter-q001",
+    "why": "engine reads the reaction; only the follow-up attack on a miss is beyond, and no key says it",
     "confidence": 0.85
   },
   {

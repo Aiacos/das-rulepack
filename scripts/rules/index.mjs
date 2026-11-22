@@ -43,6 +43,7 @@ export const SOURCES = Object.freeze({
   "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
   "mmHasten00000000": "xmm-clay-golem-hasten",
   "mmHypnoticGaze00": "xmm-ultroloth-hypnotic-gaze",
+  "mmIcyBite0000000": "xmm-lacedon-ghoul-icy-bite",
   "mmSacredWeapon00": "xmm-empyrean-sacred-weapon",
   "mmSleepGaze00000": "xmm-jackalwere-sleep-gaze",
   "mmSporeBomb00000": "xmm-violet-fungus-necrohulk-spore-bomb",

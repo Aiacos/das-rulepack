@@ -1,0 +1,42 @@
+{
+  "scenario": "xmm/xmm-monster-lacedon-ghoul-action-icy-bite",
+  "key": "xmm:monster:lacedon-ghoul/action/icy-bite",
+  "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmLacedonGhoul00.mmIcyBite0000000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmLacedonGhoul00",
+      "id": "mmIcyBite0000000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "S75UzB5v5j2iYnsA": 5
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "S75UzB5v5j2iYnsA"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=hit"
+    }
+  ]
+}
