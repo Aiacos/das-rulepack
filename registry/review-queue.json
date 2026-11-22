@@ -340,6 +340,72 @@
           "review": "expect.damage.fraction=0;given.roll=savedSave"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z005",
+      "at": "2026-11-22T21:52:11.205Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "poison"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "blinded"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "savedSave"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=savedSave",
+        "expect.ends=savedSave;given.moment=startOfTurn"
+      ],
+      "onlyReview": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "withFirst": true
     }
   },
   {
@@ -527,6 +593,61 @@
           "review": "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=failedSave"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z004",
+      "at": "2026-11-22T21:52:09.565Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "psychic"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5,
+              "type": "psychic"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "roll": {
+              "mode": "disadvantage",
+              "on": "attack",
+              "for": "target"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=bearerTurnEnd"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -590,6 +711,30 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.65,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "charmed"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=savedSave"
+      ],
+      "onlyReview": [],
+      "withFirst": true
     }
   },
   {
@@ -642,6 +787,25 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": "unsure",
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": []
     }
   },
   {
@@ -684,96 +848,6 @@
             "condition": {
               "applied": "incapacitated"
             }
-          }
-        }
-      ],
-      "agrees": true,
-      "onlyDraft": [],
-      "onlyReview": [],
-      "baseline": [],
-      "detail": []
-    }
-  },
-  {
-    "key": "xmm:monster:adult-brass-dragon/legendary/scorching-sands",
-    "reason": "low-confidence",
-    "by": "reviewer-w001",
-    "why": "engine reads no damage on success; the slowed speed expires as the victim's next turn closes; reuse wait unsayable",
-    "confidence": 0.65,
-    "draft": {
-      "by": "drafter-w001",
-      "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
-      "assert": [
-        {
-          "given": {
-            "roll": "failedSave"
-          },
-          "expect": {
-            "ends": "bearerTurnEnd"
-          }
-        }
-      ],
-      "implied": [
-        "expect.ends=bearerTurnEnd;given.roll=failedSave"
-      ],
-      "leaves": [
-        {
-          "unexpressed": "use-limit",
-          "count": 1
-        }
-      ]
-    },
-    "review": {
-      "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
-      "assert": [
-        {
-          "given": {
-            "roll": "failedSave"
-          },
-          "expect": {
-            "ends": "bearerTurnEnd"
-          }
-        }
-      ],
-      "agrees": true,
-      "onlyDraft": [],
-      "onlyReview": [],
-      "baseline": [],
-      "detail": []
-    }
-  },
-  {
-    "key": "xmm:monster:adult-copper-dragon/action/slowing-breath",
-    "reason": "low-confidence",
-    "by": "reviewer-w001",
-    "why": "engine reads lost reactions and action-or-bonus; what remains sayable is expiry at the end of the victim's next turn",
-    "confidence": 0.65,
-    "draft": {
-      "by": "drafter-w001",
-      "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
-      "assert": [
-        {
-          "given": {
-            "roll": "failedSave"
-          },
-          "expect": {
-            "ends": "bearerTurnEnd"
-          }
-        }
-      ],
-      "implied": [
-        "expect.ends=bearerTurnEnd;given.roll=failedSave"
-      ]
-    },
-    "review": {
-      "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
-      "assert": [
-        {
-          "given": {
-            "roll": "failedSave"
-          },
-          "expect": {
-            "ends": "bearerTurnEnd"
           }
         }
       ],
@@ -830,6 +904,25 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": "unsure",
+      "result": "read",
+      "confidence": 0.65,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": []
     }
   },
   {
@@ -897,6 +990,41 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.8,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "move": {
+              "mode": "push",
+              "distance": 30
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0.5;given.roll=savedSave"
+      ],
+      "withFirst": true
     }
   },
   {
@@ -941,6 +1069,18 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [],
+      "onlyDraft": [
+        "expect.denies=opportunityAttacks"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -1031,6 +1171,37 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [
+        {
+          "given": {
+            "moment": "turnStart"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "moment": "turnStart"
+          },
+          "expect": {
+            "affects": "enemies"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.chooses=oneEffect",
+        "expect.ends=bearerTurnEnd"
+      ],
+      "onlyReview": [],
+      "withFirst": true
     }
   },
   {
@@ -1107,6 +1278,29 @@
           "review": "expect.damage.fraction=0.5;given.roll=savedSave"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.7,
+      "assert": [
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.damage.fraction=0.5;expect.damage.type=force;given.roll=savedSave"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -1236,6 +1430,81 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.5,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "paralyzed"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "denies": "healing"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.damage.fraction=0;expect.damage.type=psychic;given.roll=savedSave",
+        "expect.damage.fraction=0;given.roll=savedSave"
+      ],
+      "onlyReview": [
+        "expect.condition.applied=frightened;given.roll=failedSave",
+        "expect.condition.applied=paralyzed;given.roll=failedSave",
+        "expect.condition.applied=poisoned;given.roll=failedSave",
+        "expect.damage.fraction=0.5;given.roll=savedSave"
+      ]
     }
   },
   {
@@ -1400,6 +1669,53 @@
           "review": "expect.move.mode=pull;given.roll=failedSave"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.55,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "grappled"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "move": {
+              "mode": "pull"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.chooses=oneEffectPerTarget"
+      ],
+      "onlyReview": [
+        "expect.condition.applied=grappled;given.roll=failedSave",
+        "expect.condition.applied=restrained;given.roll=failedSave"
+      ],
+      "withFirst": true
     }
   },
   {
@@ -1490,6 +1806,41 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.move.distance=5;expect.move.mode=push;given.roll=savedSave"
+      ],
+      "onlyReview": [
+        "expect.damage.fraction=0.5;given.roll=savedSave"
+      ]
     }
   },
   {
@@ -1570,6 +1921,29 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.denies=opportunityAttacks"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -1656,6 +2030,30 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.denies=opportunityAttacks",
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -1791,6 +2189,28 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.denies=healing;given.roll=hit"
+      ],
+      "onlyReview": [],
+      "withFirst": true
     }
   },
   {
@@ -1841,6 +2261,28 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.chooses=effectByRoll"
+      ],
+      "onlyReview": [],
+      "withFirst": true
     }
   },
   {
@@ -1927,6 +2369,39 @@
           "leaves": "expect.damage.fraction=1;expect.damage.type=thunder;given.moment=startOfTurn",
           "review": "expect.damage.fraction=1;expect.damage.type=thunder;given.moment=startOfTurn"
         }
+      ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.7,
+      "assert": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.subjected=activity;given.moment=enter"
       ]
     }
   },
@@ -2206,6 +2681,88 @@
           "review": "expect.roll.for=ally;expect.roll.mode=advantage;expect.roll.on=save"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "roll": {
+              "mode": "advantage",
+              "on": "attack",
+              "for": "self"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "roll": {
+              "mode": "advantage",
+              "on": "save",
+              "for": "self"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "roll": {
+              "mode": "advantage",
+              "on": "check",
+              "for": "self"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "roll": {
+              "mode": "advantage",
+              "on": "attack",
+              "for": "ally"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "roll": {
+              "mode": "advantage",
+              "on": "save",
+              "for": "ally"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "roll": {
+              "mode": "advantage",
+              "on": "check",
+              "for": "ally"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "ends": "casterTurnEnd"
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.roll.for=self;expect.roll.mode=advantage;expect.roll.on=attack",
+        "expect.roll.for=self;expect.roll.mode=advantage;expect.roll.on=check",
+        "expect.roll.for=self;expect.roll.mode=advantage;expect.roll.on=save"
+      ],
+      "withFirst": true
     }
   },
   {
@@ -2293,6 +2850,41 @@
           "leaves": "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=hit",
           "review": "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=hit"
         }
+      ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.7,
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "roll": {
+              "mode": "disadvantage",
+              "on": "attack",
+              "for": "target"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.move.distance=15;expect.move.mode=push;given.roll=hit"
+      ],
+      "onlyReview": [
+        "expect.ends=bearerTurnEnd;given.roll=hit"
       ]
     }
   },
@@ -2509,6 +3101,30 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.7,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.damage.fraction=1;expect.damage.type=psychic;given.roll=failedSave",
+        "expect.ends=casterTurnStart;given.roll=failedSave"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -2644,6 +3260,32 @@
         "expect.damage.fraction=1;expect.damage.type=fire;given.roll=hit"
       ],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.5,
+      "assert": [
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "slashing"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.condition.applied=frightened;given.roll=hit"
+      ],
+      "onlyReview": [
+        "expect.damage.fraction=1;expect.damage.type=slashing;given.roll=hit"
+      ]
     }
   },
   {
@@ -2723,6 +3365,38 @@
           "leaves": "expect.condition.applied=prone;given.roll=hit",
           "review": "expect.condition.applied=prone;given.roll=hit"
         }
+      ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.5,
+      "assert": [
+        {
+          "given": {
+            "roll": "hit",
+            "targetSizeAtMost": "lg"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "hit"
+          },
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.condition.applied=prone;given.roll=hit;given.targetSizeAtMost=lg"
       ]
     }
   },
@@ -2863,6 +3537,30 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.55,
+      "assert": [
+        {
+          "given": {
+            "targetSizeAtMost": "med"
+          },
+          "expect": {
+            "teleports": "swapsWithTarget"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.teleports=swapsWithTarget"
+      ],
+      "onlyReview": [
+        "expect.teleports=swapsWithTarget;given.targetSizeAtMost=med"
+      ],
+      "withFirst": true
     }
   },
   {
@@ -2957,102 +3655,6 @@
             "condition": {
               "applied": "grappled"
             }
-          }
-        }
-      ],
-      "agrees": true,
-      "onlyDraft": [],
-      "onlyReview": [],
-      "baseline": [],
-      "detail": []
-    }
-  },
-  {
-    "key": "xmm:monster:gray-slaad/action/chaos-claw",
-    "reason": "low-confidence",
-    "by": "reviewer-v002",
-    "why": "Hit gives one of four random conditions lasting to the user next turn start; the d4 pick is not expressible",
-    "confidence": 0.55,
-    "draft": {
-      "by": "drafter-v006",
-      "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "casterTurnStart"
-          }
-        }
-      ],
-      "implied": [
-        "expect.ends=casterTurnStart;given.roll=hit"
-      ],
-      "leaves": [
-        {
-          "unexpressed": "no-key",
-          "count": 1
-        }
-      ]
-    },
-    "review": {
-      "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "casterTurnStart"
-          }
-        }
-      ],
-      "agrees": true,
-      "onlyDraft": [],
-      "onlyReview": [],
-      "baseline": [],
-      "detail": []
-    }
-  },
-  {
-    "key": "xmm:monster:green-slaad/action/chaos-staff",
-    "reason": "low-confidence",
-    "by": "reviewer-v002",
-    "why": "Hit gives one of four random conditions lasting to the user next turn start; the d4 pick is not expressible",
-    "confidence": 0.55,
-    "draft": {
-      "by": "drafter-v006",
-      "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "casterTurnStart"
-          }
-        }
-      ],
-      "implied": [
-        "expect.ends=casterTurnStart;given.roll=hit"
-      ],
-      "leaves": [
-        {
-          "unexpressed": "no-key",
-          "count": 1
-        }
-      ]
-    },
-    "review": {
-      "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "casterTurnStart"
           }
         }
       ],
@@ -3362,6 +3964,19 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [],
+      "onlyDraft": [
+        "expect.denies=reactions;given.roll=hit",
+        "expect.ends=bearerTurnEnd;given.roll=hit"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -3581,6 +4196,52 @@
           "review": "expect.damage.fraction=0.5;expect.damage.type=bludgeoning;given.roll=savedSave"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.7,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "bludgeoning"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=casterTurnStart;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.roll=failedSave"
+      ]
     }
   },
   {
@@ -3635,6 +4296,38 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.7,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "casterTurnEnd"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5
+            }
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0.5;given.roll=savedSave"
+      ],
+      "withFirst": true
     }
   },
   {
@@ -3690,6 +4383,35 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [
+        {
+          "given": {
+            "moment": "isHit",
+            "activity": "melee"
+          },
+          "expect": {
+            "acBonus": 4
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.acBonus=4;given.activity=melee;given.moment=isHit"
+      ],
+      "withFirst": true
     }
   },
   {
@@ -3895,6 +4617,34 @@
           "review": "expect.condition.ended=grappled"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z001",
+      "at": "2026-11-22T21:52:05.872Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "denies": "opportunityAttacks"
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "condition": {
+              "ended": "grappled"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.denies=opportunityAttacks;given.origin=official"
+      ],
+      "onlyReview": [],
+      "withFirst": true
     }
   },
   {
@@ -3972,6 +4722,30 @@
           "review": "expect.damage.fraction=1;expect.damage.type=fire;given.moment=enter"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.denies=opportunityAttacks",
+        "expect.denies=opportunityAttacks;given.origin=official"
+      ],
+      "onlyReview": [
+        "expect.subjected=activity;given.moment=enter"
+      ]
     }
   },
   {
@@ -4043,6 +4817,40 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.55,
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "affects": "enemies"
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "chooses": "oneEffect"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "isDamaged"
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.affects=enemies",
+        "expect.ends=isDamaged;given.roll=failedSave"
+      ]
     }
   },
   {
@@ -4196,6 +5004,25 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.6,
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "ends": "casterTurnStart"
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=casterTurnStart;given.origin=official"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -4301,6 +5128,38 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "affects": "enemies"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.damage.fraction=1;expect.damage.type=psychic;given.roll=failedSave",
+        "expect.ends=casterTurnStart;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.affects=enemies"
+      ]
     }
   },
   {
@@ -4408,6 +5267,41 @@
       ],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.8,
+      "assert": [
+        {
+          "given": {
+            "moment": "turnStart"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.denies=actionAndBonus;given.roll=failedSave",
+        "expect.denies=reactions;given.roll=failedSave",
+        "expect.ends=bearerTurnStart;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.subjected=activity;given.moment=turnStart"
+      ]
     }
   },
   {
@@ -4640,6 +5534,30 @@
           "review": "expect.damage.fraction=1;expect.damage.type=poison;given.moment=startOfTurn"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.8,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=savedSave;given.moment=endOfTurn",
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -4733,6 +5651,40 @@
         "expect.damage.fraction=1;expect.damage.type=thunder;given.roll=failedSave"
       ],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.7,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "stunned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "thunder"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=casterTurnEnd;given.roll=failedSave"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -4858,6 +5810,39 @@
           "review": "expect.damage.fraction=0.5;given.moment=isHit"
         }
       ]
+    },
+    "second": {
+      "by": "reviewer-z002",
+      "at": "2026-11-22T21:52:06.686Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        }
+      ],
+      "onlyDraft": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "onlyReview": []
     }
   },
   {
@@ -4962,6 +5947,66 @@
       "onlyReview": [],
       "baseline": [],
       "detail": []
+    },
+    "second": {
+      "by": "reviewer-z003",
+      "at": "2026-11-22T21:52:08.155Z",
+      "agrees": false,
+      "result": "read",
+      "confidence": 0.75,
+      "assert": [
+        {
+          "given": {
+            "moment": "enter"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "moment": "turnEnd"
+          },
+          "expect": {
+            "subjected": "activity"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "bludgeoning"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5,
+              "type": "bludgeoning"
+            }
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "move": {
+              "mode": "pull",
+              "distance": 10
+            }
+          }
+        }
+      ],
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.move.distance=10;expect.move.mode=pull"
+      ]
     }
   },
   {

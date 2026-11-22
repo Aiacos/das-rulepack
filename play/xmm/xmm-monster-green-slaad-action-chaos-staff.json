@@ -1,0 +1,42 @@
+{
+  "scenario": "xmm/xmm-monster-green-slaad-action-chaos-staff",
+  "key": "xmm:monster:green-slaad/action/chaos-staff",
+  "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmGreenSlaad0000.mmChaosStaff0000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmGreenSlaad0000",
+      "id": "mmChaosStaff0000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "2qoiBCfxVP5wvFQh": 10
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "2qoiBCfxVP5wvFQh"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=hit"
+    }
+  ]
+}

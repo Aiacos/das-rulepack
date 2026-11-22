@@ -337,4 +337,7 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] A heal activity is a manual scenario (`activity.heal`): the runner makes no healing roll. One more play recorded.
 - [x] XDMG drafted in full: 2 of 66 drafted, none shipped (both to the review queue); 64 to the drafts queue.
 - [ ] The hard tail of XPHB, XDMG and XMM is written by hand or left to the table: no more bulk drafting on it.
+- [x] Second review (R40) over the 41 disagreements: 4 confirmed and shipped, 12 with two reviewers against the draft, 23
+      read three ways, 2 unsure. 53 rules ship.
+- [ ] The 12 rules with two reviewers against the draft: write them again from the two reviews' common reading.
 

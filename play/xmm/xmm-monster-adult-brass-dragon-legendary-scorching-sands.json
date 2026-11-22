@@ -1,0 +1,42 @@
+{
+  "scenario": "xmm/xmm-monster-adult-brass-dragon-legendary-scorching-sands",
+  "key": "xmm:monster:adult-brass-dragon/legendary/scorching-sands",
+  "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmAdultBrassDrag.mmScorchingSands",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmAdultBrassDrag",
+      "id": "mmScorchingSands"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "g5fxAWhrpwohtETl": 120
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "g5fxAWhrpwohtETl"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd;given.roll=failedSave"
+    }
+  ]
+}

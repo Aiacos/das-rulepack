@@ -548,3 +548,18 @@ matter; 5 need code). A blind review settled neither draft (one disagreement, on
 rule of this book ships. What triage left as "needs a rule" in the three core books is mostly the hard tail: vehicles,
 artifacts, random effect tables, a check chained to a cast. Bulk drafting is not run again on it.
 
+# A second blind review as tie-break (2026-11-22)
+
+The 41 rules held for a disagreement (34) or an unsure reviewer (7) were read by a second blind reviewer (Ruling R40).
+
+| Outcome | Rules |
+|---|---|
+| The second reviewer agrees with the draft: confirmed, shipped | 4 |
+| It agrees with the first reviewer, against the draft | 12 |
+| It reads the text a third way | 23 |
+| It is unsure | 2 |
+
+Three independent readings of the same feature agree on the draft in one case out of ten, and differ all three in more than
+half. For these features the closed vocabulary leaves too much room: what stays in the queue is for a person, and the 12
+with two reviewers against the draft are the first to write again. The pack ships 53 rules.
+

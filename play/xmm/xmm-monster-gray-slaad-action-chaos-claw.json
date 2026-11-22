@@ -1,0 +1,42 @@
+{
+  "scenario": "xmm/xmm-monster-gray-slaad-action-chaos-claw",
+  "key": "xmm:monster:gray-slaad/action/chaos-claw",
+  "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmGraySlaad00000.mmChaosClaw00000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmGraySlaad00000",
+      "id": "mmChaosClaw00000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "GSapWfGU7buYRat9": 10
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "GSapWfGU7buYRat9"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=hit"
+    }
+  ]
+}

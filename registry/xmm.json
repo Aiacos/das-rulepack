@@ -3793,6 +3793,24 @@
           "items": {
             "official": "36ddf8804decd6ee43442be9e8eea48f6608b08e4ca982d1870af1e4517eb701"
           }
+        },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
+          "confidence": 0.7,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-w001",
+            "confidence": 0.65,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=bearerTurnEnd;given.roll=failedSave"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
         }
       },
       "why": "Data has half damage on save the text does not give; speed halving needs correct timed effect until end of next turn",
@@ -3835,7 +3853,7 @@
         ],
         "origin": "Adult Brass Dragon"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:adult-brass-dragon/trait/legendary-resistance",
@@ -4929,6 +4947,24 @@
           "items": {
             "official": "40d479eb5a876e31c85abf8875e30dd96aab3a1d0355e0a6720755c8bc72e71d"
           }
+        },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
+          "confidence": 0.75,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-w001",
+            "confidence": 0.65,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=bearerTurnEnd;given.roll=failedSave"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
         }
       },
       "why": "Multi-part restriction: no reactions, halved speed, action or bonus action not both; data has half damage the text lacks and no restriction",
@@ -4965,7 +5001,7 @@
         ],
         "origin": "Adult Copper Dragon"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:adult-copper-dragon/legendary/giggling-magic",
@@ -69564,6 +69600,24 @@
           "items": {
             "official": "28d1efe644909060354a6118990481b5978264166c0caa87708808c45a08f581"
           }
+        },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
+          "confidence": 0.75,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-v002",
+            "confidence": 0.55,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=casterTurnStart;given.roll=hit"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
         }
       },
       "why": "Random condition from a d4 until the start of its next turn, on hit; data has four statuses with no roll or timed end.",
@@ -69602,7 +69656,7 @@
         ],
         "origin": "Gray Slaad"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:gray-slaad/action/multiattack",
@@ -70605,6 +70659,24 @@
           "items": {
             "official": "0d5ebbe7c4c04d1f29ba206770b4aa72ab7f7b185dac827d3d788170fc21b295"
           }
+        },
+        "reviewed": {
+          "by": "reviewer-z001",
+          "at": "2026-11-22T21:52:05.872Z",
+          "agrees": true,
+          "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
+          "confidence": 0.75,
+          "via": "second-review",
+          "first": {
+            "by": "reviewer-v002",
+            "confidence": 0.55,
+            "reason": "low-confidence",
+            "assert": [
+              "expect.ends=casterTurnStart;given.roll=hit"
+            ],
+            "onlyDraft": [],
+            "onlyReview": []
+          }
         }
       },
       "why": "Random condition from a d4 until the start of its next turn, on hit; data has four statuses with no roll or timed end.",
@@ -70643,7 +70715,7 @@
         ],
         "origin": "Green Slaad"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:green-slaad/action/multiattack",

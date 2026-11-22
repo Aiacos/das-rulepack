@@ -33,6 +33,53 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-adult-brass-dragon-scorching-sands",
+    "name": "Scorching Sands",
+    "page": 55,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Adult Brass Dragon",
+    "adds": "The halved speed on a failed save ends at the end of the target's next turn.",
+    "entry": {
+      "effectEnds": {
+        "n3I76HfSH6eKLALf": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ],
+    "partial": {
+      "use-limit": 1
+    }
+  },
+
+  {
+    "identifier": "xmm-adult-copper-dragon-slowing-breath",
+    "name": "Slowing Breath",
+    "page": 79,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Adult Copper Dragon",
+    "adds": "The slowing effect on a failed save ends at the end of the target's next turn.",
+    "entry": {
+      "effectEnds": {
+        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-air-elemental-whirlwind",
     "name": "Whirlwind",
     "page": 13,
@@ -335,6 +382,50 @@ export const RULES = book(BOOK, [
     "partial": {
       "table-ruling": 1,
       "target-size": 1
+    }
+  },
+
+  {
+    "identifier": "xmm-gray-slaad-chaos-claw",
+    "name": "Chaos Claw",
+    "page": 286,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Gray Slaad",
+    "adds": "Whichever condition the hit leaves fades when the slaad begins its next turn.",
+    "entry": {
+      "effectEnds": {
+        "Ev7mKTcyL79IvYBB": "casterTurnStart",
+        "GG2jzWkmTiuYWWe3": "casterTurnStart",
+        "HH52pF3Z9b4C4iZI": "casterTurnStart",
+        "W0SCayTqq4bANpBF": "casterTurnStart"
+      }
+    },
+    "partial": {
+      "no-key": 1
+    }
+  },
+
+  {
+    "identifier": "xmm-green-slaad-chaos-staff",
+    "name": "Chaos Staff",
+    "page": 286,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Green Slaad",
+    "adds": "Whichever condition the hit leaves fades when the slaad begins its next turn.",
+    "entry": {
+      "effectEnds": {
+        "9CkIM0lfUxFcSVdQ": "casterTurnStart",
+        "DUCZE6k2kWwLpGrC": "casterTurnStart",
+        "RwBlO4hYb5kHF0mi": "casterTurnStart",
+        "XvK15FUAxn9Piwpm": "casterTurnStart"
+      }
+    },
+    "partial": {
+      "no-key": 1
     }
   },
 

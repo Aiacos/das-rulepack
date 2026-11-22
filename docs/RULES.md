@@ -79,6 +79,8 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 | Rule | Kind | Page | What the module adds | Handled in | Status |
 |---|---|---|---|---|---|
 | Mucus Cloud (Aboleth) | Monster feature | p.12 | Creatures next to the aboleth save against the curse when its turn ends. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 4 expectations left to the table (healing-block 1, out-of-combat 2, trigger-filter 1). | table, partial | Validated |
+| Scorching Sands (Adult Brass Dragon) | Monster feature | p.55 | The halved speed on a failed save ends at the end of the target's next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (use-limit 1). | table, partial | Validated |
+| Slowing Breath (Adult Copper Dragon) | Monster feature | p.79 | The slowing effect on a failed save ends at the end of the target's next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
 | Whirlwind (Air Elemental) | Monster feature | p.13 | A failed save also shoves the target 20 feet away from the elemental; a success halves the damage. Partial: 1 expectation left to the table (target-size 1). | table, partial | Played |
 | Slowing Breath (Ancient Copper Dragon) | Monster feature | p.80 | The slowing effect from the breath lasts until the affected creature finishes its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Played |
 | Unnerving Gaze (Chain Devil) | Monster feature | p.68 | The fear ends at the end of the turn it was imposed in. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (immunity-after-save 1, table-ruling 1). | table, partial | Played |
@@ -91,6 +93,8 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 | War Cry (Frost Giant) | Monster feature | p.124 | The war cry's effect on its recipient ends when the giant's next turn begins. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
 | Hunger of Yeenoghu (Gnoll Demoniac) | Monster feature | p.141 | A creature entering the dark cube or starting its turn there saves again; the cube is difficult terrain. Partial: 2 expectations left to the table (no-key 2). Carries over 1 engine key (magical). | table, partial | Validated |
 | Suffocate (Graveyard Revenant) | Monster feature | p.260 | The held creature can end the grip, and the choking with it, by winning a check as an action. Partial: 2 expectations left to the table (table-ruling 1, target-size 1). | table, partial | Validated |
+| Chaos Claw (Gray Slaad) | Monster feature | p.286 | Whichever condition the hit leaves fades when the slaad begins its next turn. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
+| Chaos Staff (Green Slaad) | Monster feature | p.286 | Whichever condition the hit leaves fades when the slaad begins its next turn. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
 | Sleep Gaze (Jackalwere) | Monster feature | p.182 | Another creature can spend an action to wake the sleeper; the sleep lasts ten minutes. Partial: 3 expectations left to the table (immunity-after-save 1, no-key 2). | table, partial | Validated |
 | Toxic Ink (Kraken) | Monster feature | p.187 | The blinding and poisoning end when the kraken's next turn ends. Partial: 3 expectations left to the table (no-key 2, table-ruling 1). | table, partial | Played |
 | Icy Bite (Lacedon Ghoul) | Monster feature | p.132 | The slowing effect ends when the user's next turn begins. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Played |
@@ -106,8 +110,6 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Dominate Mind (Aboleth) | Monster feature | p.12 | Held: its identifier would drop engine behaviour |
 | Cloud of Insects (Adult Black Dragon) | Monster feature | p.39 | Held: reviewer unsure |
 | Sleep Breath (Adult Brass Dragon) | Monster feature | p.55 | Held: reviewer unsure |
-| Scorching Sands (Adult Brass Dragon) | Monster feature | p.55 | Held: reviewer unsure |
-| Slowing Breath (Adult Copper Dragon) | Monster feature | p.79 | Held: reviewer unsure |
 | Noxious Miasma (Adult Green Dragon) | Monster feature | p.153 | Held: reviewer unsure |
 | Cold Gale (Adult Silver Dragon) | Monster feature | p.279 | Held: review disagrees |
 | Feral Strike (Animal Lord) | Monster feature | p.15 | Held: the engine already does it |
@@ -142,8 +144,6 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Psychic Warp (Githzerai Psion) | Monster feature | p.137 | Held: review disagrees |
 | Redirect Attack (Goblin Boss) | Monster feature | p.143 | Held: review disagrees |
 | Haunting Glare (Graveyard Revenant) | Monster feature | p.260 | Held: changes the engine's reading: a person decides |
-| Chaos Claw (Gray Slaad) | Monster feature | p.286 | Held: reviewer unsure |
-| Chaos Staff (Green Slaad) | Monster feature | p.286 | Held: reviewer unsure |
 | Paralyzing Tentacles (Grell) | Monster feature | p.157 | Held: changes the engine's reading: a person decides |
 | Luring Song (Harpy) | Monster feature | p.164 | Held: changes the engine's reading: a person decides |
 | Reactive Heads (Hydra) | Monster feature | p.175 | Held: the engine already does it |
@@ -230,7 +230,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-49 rules: 29 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 21 of them partial (part of the entry left to the table). 80 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 24, reviewer unsure 7).
+53 rules: 29 played, 24 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 4 of them settled by a second review (Ruling R40). 24 of them partial (part of the entry left to the table). 76 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 24, reviewer unsure 3).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell
