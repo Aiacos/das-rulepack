@@ -6,12 +6,16 @@ import { pathToFileURL } from "node:url";
 import { spawnSync } from "node:child_process";
 import { RULES } from "../../scripts/rules/index.mjs";
 import {
-  emittedFingerprint, legacyFingerprint, validateRecord, ruleFingerprint, saveBook
+  emittedFingerprint, legacyFingerprint, validateRecord, ruleFingerprint, saveBook, stateOf
 } from "../../tools/pipeline/registry.mjs";
 import {
   recordFromRule, ruleFromRecord, bookModuleSource, indexSource, generate
 } from "../../tools/pipeline/generate.mjs";
 import { extractNotes } from "../../tools/pipeline/migrate.mjs";
+import { fromRegistry } from "../derived.mjs";
+
+const DERIVED = fromRegistry();
+const keyOfRule = (rule) => `${rule.book}|${rule.identifier}`;
 
 // legacy.json for these records: each key with the fingerprint of its rule as it is now.
 const legacyOf = (records) => new Map(records.map((r) => [r.key, legacyFingerprint(r)]));
@@ -28,11 +32,33 @@ const rules = () => [
 ];
 
 describe("recordFromRule / ruleFromRecord", () => {
+  // Legacy pin: the 24 legacy rules, rule -> record -> rule, exactly.
   it("round-trips every shipped rule, optional properties staying absent and catalog null staying null", () => {
-    expect(RULES.length).toBeGreaterThan(0);
-    for (const r of RULES) {
+    const legacy = new Set(DERIVED.emitted.filter(({ record }) => DERIVED.isLegacy(record)).map(({ rule }) => keyOfRule(rule)));
+    const shipped = RULES.filter((r) => legacy.has(keyOfRule(r)));
+    expect(shipped).toHaveLength(24);
+    for (const r of shipped) {
       const record = recordFromRule(r);
       expect(ruleFromRecord(record, { legacy: legacyOf([record]) }), r.identifier).toEqual(r);
+    }
+  });
+
+  // Derived: every other emitted rule, record -> rule -> record: the shipped rule is what its record emits, and reads back
+  // the record's identity and rule fields, an absent optional property staying absent and catalog null staying null.
+  // (recordFromRule is the migration of hand-written rules and cannot rebuild a pipeline key: a monster's needs its section.)
+  it("round-trips every emitted rule that is not legacy, record to rule to record", () => {
+    for (const { record, rule } of DERIVED.emitted.filter(({ record }) => !DERIVED.isLegacy(record))) {
+      expect(RULES.find((r) => keyOfRule(r) === keyOfRule(rule)), record.key).toEqual(rule);
+      for (const f of ["identifier", "name", "kind", "book", "page"]) expect(rule[f], `${record.key} ${f}`).toEqual(record[f]);
+      expect(rule.handledIn === "code" ? "code" : "entry", record.key).toBe(record.verdict);
+      expect(rule.status, record.key).toBe({ played: "played", reviewed: "validated", gated: "validated" }[stateOf(record)]);
+      expect(rule.alsoIn, record.key).toEqual(record.alsoIn);
+      for (const f of ["handledIn", "adds", "entry", "code", "origin", "catalog", "inCore"]) {
+        expect(f in rule, `${record.key} ${f}`).toBe(f in record.rule);
+        expect(rule[f], `${record.key} ${f}`).toEqual(record.rule[f]);
+      }
+      expect(rule.alsoAs ?? [], record.key).toEqual((record.rule.alsoAs ?? []).map((a) => a.identifier));
+      expect(rule.uncovered ?? [], record.key).toEqual(record.rule.uncovered ?? []);
     }
   });
 

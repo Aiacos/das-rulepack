@@ -2,9 +2,11 @@ import { describe, it, expect } from "vitest";
 import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { SPELLS, SENSES, FEATURES, TABLE } from "../scripts/rules/index.mjs";
+import { SPELLS, SENSES, FEATURES, RULES, TABLE } from "../scripts/rules/index.mjs";
+import { fromRegistry } from "./derived.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
+const derived = fromRegistry();
 
 // The rules are validated by DAS · Core's own validator, from a clone of the engine: DAS_CORE, or the sibling folders used in
 // this workspace. Without a clone the contract tests are skipped locally and fail in CI.
@@ -49,9 +51,34 @@ describe("senses table", () => {
     }
   });
 
+  // Legacy pin: the 24 legacy rules register spells, senses and features only, so their part of the table is those three.
   it("shares no identifier with the spell rules, and both are in the one table that is registered", () => {
     expect(Object.keys(SENSES).filter(id => id in SPELLS)).toEqual([]);
-    expect(TABLE).toEqual({ ...SPELLS, ...SENSES, ...FEATURES });
+    const legacy = derived.emitted.filter(({ record }) => derived.isLegacy(record)).map(({ rule }) => rule);
+    expect(legacy).toHaveLength(24);
+    const legacyIds = legacy.filter(rule => rule.entry).flatMap(rule => [rule.identifier, ...(rule.alsoAs ?? [])]);
+    const three = { ...SPELLS, ...SENSES, ...FEATURES };
+    for ( const id of legacyIds ) expect(TABLE[id], id).toBe(three[id]);
+    expect(legacyIds.filter(id => !(id in three))).toEqual([]);
+  });
+
+  // Derived: no sense identifier is registered by any other rule, legacy or not; the table is what registry/ emits, and holds
+  // the spells, senses and features with their own entries, the rules of other kinds (a monster's feature) beside them.
+  it("no other rule, legacy or not, registers a sense's identifier; the table is what registry/ emits", () => {
+    for ( const id of Object.keys(SENSES) ) {
+      const holders = RULES.filter(rule => rule.entry && [rule.identifier, ...(rule.alsoAs ?? [])].includes(id));
+      expect(holders.map(rule => rule.kind), id).toEqual(["sense"]);
+      expect(TABLE[id], id).toBe(SENSES[id]);
+    }
+    for ( const [id, entry] of Object.entries({ ...SPELLS, ...FEATURES }) ) expect(TABLE[id], id).toBe(entry);
+    expect(TABLE).toEqual(derived.table);
+    // Any other identifier is that of a rule of another kind, or an alias (`alsoAs`).
+    const elsewhere = new Set([
+      ...RULES.filter(rule => rule.entry && !["spell", "sense", "feature"].includes(rule.kind)).map(rule => rule.identifier),
+      ...RULES.filter(rule => rule.entry).flatMap(rule => rule.alsoAs ?? [])
+    ]);
+    const outside = Object.keys(TABLE).filter(id => !(id in SPELLS || id in SENSES || id in FEATURES));
+    for ( const id of outside ) expect(elsewhere, id).toContain(id);
   });
 });
 
