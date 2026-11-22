@@ -1,0 +1,198 @@
+[
+  {
+    "key": "xmm:monster:aboleth/legendary/psychic-drain",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "conditional chained action plus healing: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:aboleth/trait/mucus-cloud",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "aura save at end of turn with a lasting curse: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:air-elemental/action/thunderous-slam",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "data already holds the attack and its thunder damage; nothing to add",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:animal-lord/action/animal-spirit",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "variant rider chosen by lord type: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:animal-lord/trait/lordly-presence",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "aura with variant effect by lord type: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:animated-rug-of-smothering/action/smother",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "grapple in place of damage with shared damage: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:arch-hag/action/spectral-claw",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "only gap is the size limit on prone: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:arch-hag/bonus/witch-strike",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "targets only creatures it has cursed: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:arch-hag/legendary/malicious-magic",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "lockout until its next turn starts: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:arch-hag/trait/spiteful-escape",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "death replacement, teleport and area curse: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:arch-hag/trait/tongue-twister",
+    "reason": "person",
+    "by": "drafter-m001",
+    "why": "curse blocking verbal spells: no key",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:bandit-captain/reaction/parry",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "reaction adding to AC against one attack: no key for an AC bonus",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:bandit-crime-lord/bonus/deadly-aim",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "self advantage on the next attack plus conditional extra damage: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:banshee/action/deathly-wail",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "sunlight condition, creature-type exclusion and drop to 0 HP at a threshold: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:banshee/trait/incorporeal-movement",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "moving through creatures as terrain and damage when ending in an object: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:barbed-devil/trait/barbed-hide",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "turn-start damage only to grapple partners: no key for the grapple condition",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:barlgura/action/thrash",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "prone rider limited by target size: no key for a size limit",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:bearded-devil/action/infernal-glaive",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "ongoing wound with turn-start damage and stanch check, once per target: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:beholder-zombie/action/eye-rays",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "random ray choice without repeats and object riders: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:beholder-zombie/trait/undead-fortitude",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "save to stay at 1 HP when dropped to 0: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:beholder/bonus/antimagic-cone",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "magic-suppressing area until next turn: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:berserker-commander/action/greataxe",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "damage may go to another creature near the target: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:berserker-commander/bonus/frenzied-rush",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "allies' reaction moves without opportunity attacks: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:black-pudding/action/dissolving-pseudopod",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "cumulative armor penalty with destruction threshold: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:blob-of-annihilation/legendary/decay",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "damage to engulfed creatures only: no key for engulfed state",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:blob-of-annihilation/trait/astral-implosion",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "death-triggered implosion that ejects engulfed creatures: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:blue-slaad/action/mutating-claw",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "curse with healing block, repeated max HP loss and transformation: no key",
+    "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:brazen-gorgon/action/smelting-charge",
+    "reason": "person",
+    "by": "drafter-m002",
+    "why": "charge through spaces with grapple, conditional prone and linked restrained: no key",
+    "confidence": 0.85
+  }
+]

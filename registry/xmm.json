@@ -7526,7 +7526,7 @@
       "edition": "2024",
       "owner": "Air Elemental",
       "section": "action",
-      "identifier": "whirlwind",
+      "identifier": "xmm-air-elemental-whirlwind",
       "page": 13,
       "srd": true,
       "text": {
@@ -7580,10 +7580,94 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-m001",
+          "at": "2026-11-22T02:42:28.154Z",
+          "core": "0.289.0",
+          "rule": "1fe13c65a3ca30dc97b262543a57566893cbfe7f6d56c361139d16c807a78904"
+        },
+        "gates": {
+          "at": "2026-11-22T02:42:50.159Z",
+          "core": "0.289.0",
+          "rule": "1fe13c65a3ca30dc97b262543a57566893cbfe7f6d56c361139d16c807a78904",
+          "emits": "696ec124c349b1dddbaa1742dd3e7911a278006b53d43eba00e4ff81b37799ad",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "e6d3d0570e5db94d0db9eed256359c7754a0b55555855458f47968f281d7da31"
+          }
         }
       },
       "why": "Recharge save for damage, push and Prone limited to Medium or smaller targets in its space; size limit and push not in data.",
-      "state": "triaged"
+      "sources": {
+        "mmWhirlwind00000": "xmm-air-elemental-whirlwind"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "On a failed save the target is also shoved 20 feet away; the size limit on targets is left to the GM.",
+        "entry": {
+          "saveDamage": {
+            "GQzr4EMMm6kkZVdC": "half"
+          },
+          "triggers": [
+            {
+              "on": "failedSave",
+              "do": [
+                {
+                  "type": "move",
+                  "mode": "push",
+                  "distance": 20,
+                  "units": "ft"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "move": {
+                "mode": "push"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "prone"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5
+              }
+            }
+          }
+        ],
+        "origin": "Air Elemental"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:air-elemental/trait/air-form",
@@ -13763,7 +13847,7 @@
       "edition": "2024",
       "owner": "Animal Lord",
       "section": "legendary",
-      "identifier": "feral-strike",
+      "identifier": "xmm-animal-lord-feral-strike",
       "page": 15,
       "srd": false,
       "text": {
@@ -13819,11 +13903,59 @@
             "by": "reader-xmm-004",
             "confidence": 0.65
           }
+        },
+        "drafted": {
+          "by": "drafter-m001",
+          "at": "2026-11-22T02:42:28.154Z",
+          "core": "0.289.0",
+          "rule": "8a34bee3a0bd449b261a067b57ae45cd5ad6f8b8bb9f2dc979ace5096df84a24"
+        },
+        "gates": {
+          "at": "2026-11-22T02:42:50.162Z",
+          "core": "0.289.0",
+          "rule": "8a34bee3a0bd449b261a067b57ae45cd5ad6f8b8bb9f2dc979ace5096df84a24",
+          "emits": "888d72fbe0f76f4130b7bfc930db8a323cbf727c52f45bb7677c2484daab1c64",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "70c42e73b4637906ea0604e237cdfc230d1122ac0f1ce0fb5f75ceea7a61c192"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Movement free of opportunity attacks plus an attack; data lacks both, only a use expenditure.",
-      "state": "triaged"
+      "sources": {
+        "mmFeralStrike000": "xmm-animal-lord-feral-strike"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Movement made with this legendary action provokes no opportunity attacks; the attack is a separate roll.",
+        "entry": {
+          "noOpportunity": "afterUse"
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "moves"
+            },
+            "expect": {
+              "excludes": "enemies",
+              "free": "no opportunity attack while it moves"
+            }
+          }
+        ],
+        "origin": "Animal Lord"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:animal-lord/legendary/radiant-strike",
@@ -18626,7 +18758,7 @@
       "edition": "2024",
       "owner": "Balor",
       "section": "action",
-      "identifier": "flame-whip",
+      "identifier": "xmm-balor-flame-whip",
       "page": 26,
       "srd": true,
       "text": {
@@ -18663,7 +18795,8 @@
           ],
           "data": {
             "sha256": "840961bf7890a98d1eed8fa81dc8abc6b0753081a2a0fee0e52942897711b29d"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -18678,10 +18811,87 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-m001",
+          "at": "2026-11-22T02:42:28.154Z",
+          "core": "0.289.0",
+          "rule": "dfb06fde2a91290498ff7fae9b2fca337345791510a5db5badac64e4e22d8ca9"
+        },
+        "gates": {
+          "at": "2026-11-22T02:42:50.164Z",
+          "core": "0.289.0",
+          "rule": "dfb06fde2a91290498ff7fae9b2fca337345791510a5db5badac64e4e22d8ca9",
+          "emits": "85fa4f59b3173a39998063e214d9579e3b711a7253fbaec4d0d7dc08054f9a31",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "5852337695aa2a0f4cb0659bba364b870e1da6459f8f24147199350df68870da"
+          }
         }
       },
       "why": "Pull up to 25 feet and prone, limited to Huge or smaller targets; data has only the prone effect.",
-      "state": "triaged"
+      "sources": {
+        "mmFlameWhip00000": "xmm-balor-flame-whip"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A hit also drags the target 25 feet toward the balor; the size limit is left to the GM.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "hit",
+              "do": [
+                {
+                  "type": "move",
+                  "mode": "pull",
+                  "distance": 25,
+                  "units": "ft"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "move": {
+                "mode": "pull"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "condition": {
+                "applied": "prone"
+              }
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "triggers holds one origin; this item has its own attack"
+          }
+        ],
+        "origin": "Balor"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:balor/action/lightning-blade",
