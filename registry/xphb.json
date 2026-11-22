@@ -783,17 +783,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-002",
-          "at": "2026-11-21T19:50:45.039Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:41.043Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Advantage on checks only while disguised as someone; circumstance the data cannot express. Mimicry check activity exists but not the conditional advantage.",
+            "triaged": {
+              "by": "reader-xphb-002",
+              "at": "2026-11-21T19:50:45.039Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
+          }
         }
       },
-      "why": "Advantage on checks only while disguised as someone; circumstance the data cannot express. Mimicry check activity exists but not the conditional advantage.",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -2128,10 +2158,24 @@
             "by": "second-s45",
             "confidence": 0.62
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -2870,10 +2914,38 @@
           "at": "2026-11-21T19:50:45.039Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "advantage",
+                    "on": "attack",
+                    "for": "self"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "target-size",
+              "target-state",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Advantage vs unmounted smaller creatures while mounted, mount save-half rule and attack redirect; no data in item (data lacks all of it).",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3378,10 +3450,24 @@
             "by": "second-s45",
             "confidence": 0.62
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4776,10 +4862,24 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Save advantage is data, but it must be dropped while incapacitated; effect has no such condition.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -5642,10 +5742,48 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "disadvantage",
+                    "on": "attack",
+                    "for": "enemy"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "hit",
+                  "activity": "melee",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "prone"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Choice at rage start; Lion aura imposes disadvantage on enemies, Falcon needs no armor, Ram prone on hit; only Ram partly in data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -5870,10 +6008,25 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Reach increase on own turn for heavy or versatile weapons plus extra mastery activation; data only touches mastery bonus.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -6048,10 +6201,24 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction at turn start of a creature in 30 ft while raging: Strength save or teleport, then optional speed 0; data has only the save shell.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -6147,10 +6314,24 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "death-trigger"
+            ]
+          }
         }
       },
       "why": "Rage-activated 1 minute form ending at 0 HP, once per long rest, plus reaction revive of an ally; data has resistances and flight only.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -6829,10 +7010,24 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Two spells always prepared; when cast, may target a second creature within 10 ft of the first; data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7466,10 +7661,32 @@
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "denies": "opportunityAttacks"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction triggered by an enemy ending its turn nearby, spends inspiration, moves self and one ally without opportunity attacks; data has only a generic reaction activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7514,10 +7731,24 @@
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Triggered on rolling initiative, spends a use, die roll becomes an initiative bonus for allies in range; data lacks the trigger and bonus.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7565,10 +7796,25 @@
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "First hit on a turn forces a Charisma save or the attack misses, while the presence lasts; data lacks the miss-on-failed-save rider.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7697,10 +7943,24 @@
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Temp HP is twice the spent inspiration die and a free reaction move; data heal activity lacks the die-based amount and the move.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7749,10 +8009,38 @@
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "targetStatus": "charmed"
+                },
+                "expect": {
+                  "roll": {
+                    "mode": "autoFail",
+                    "on": "save",
+                    "for": "target"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Free Command casting, auto-fail on charmed targets, slot-based restore; data lacks a cast activity and the auto-fail rider.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8014,10 +8302,24 @@
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Bonus Action weapon attack after casting an action-time spell; trigger rule, data has no activity or effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8798,17 +9100,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-004",
-          "at": "2026-11-21T19:50:45.648Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:41.043Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Adds Wish as an option with a multi-long-rest cooldown; data has a bare utility activity.",
+            "triaged": {
+              "by": "reader-xphb-004",
+              "at": "2026-11-21T19:50:45.648Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Adds Wish as an option with a multi-long-rest cooldown; data has a bare utility activity.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -9445,10 +9777,36 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "disadvantage",
+                    "on": "save",
+                    "for": "enemy"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Enemies in bright light get disadvantage on saves vs specific effects; data has an empty effect with no changes.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -9582,16 +9940,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Save activity lacks the Con save ability and the plus-level damage term, and darkness dispel; data lacks these.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-005",
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.62,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Save activity lacks the Con save ability and the plus-level damage term, and darkness dispel; data lacks these.",
       "state": "triaged"
     },
     {
@@ -9743,10 +10122,46 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "advantage",
+                    "on": "attack",
+                    "for": "ally"
+                  }
+                }
+              },
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "advantage",
+                    "on": "attack",
+                    "for": "self"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Advantage on attacks vs a creature near the illusion, plus healing when it ends; data only has a bare heal.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -10054,10 +10469,24 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction to add a flat bonus to a missed attack roll, for self or ally within range; needs a trigger.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -10229,10 +10658,25 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "death-trigger"
+            ]
+          }
         }
       },
       "why": "Casts two spells via a resource without concentration, ending early on stated events; data has only cast activities.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -10887,10 +11331,25 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Transform with uses is present, but the end on incapacitation or death and form rules need a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -11473,17 +11932,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-005",
-          "at": "2026-11-21T19:50:45.954Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:41.043Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Save activity has zero dice and heal has no formula; data lacks the scaling dice and one-target heal choice.",
+            "triaged": {
+              "by": "reader-xphb-005",
+              "at": "2026-11-21T19:50:45.954Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Save activity has zero dice and heal has no formula; data lacks the scaling dice and one-target heal choice.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -11679,10 +12168,25 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Transform activity exists but the CR cap, AC formula and temp HP grant are missing from the data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -11894,10 +12398,25 @@
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i001",
+            "at": "2026-11-22T23:41:41.043Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Emanation may be placed on another willing creature, or on both for two uses; a choice at use time that the activities do not express.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12118,10 +12637,25 @@
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Data lacks the upgraded dice, the hover flight while Dragon is active and the per-turn constellation switch.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12349,10 +12883,24 @@
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Holding-condition free casts of one spell with uses by ability modifier and Long Rest recovery; data has only a replacement ritual activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12405,10 +12953,24 @@
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Form lasts 10 minutes, ends on incapacity or reuse, with a constellation chosen at use time; data has effects but not these conditions.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12676,10 +13238,24 @@
           "first": {
             "by": "reader-xphb-006",
             "confidence": 0.65
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
           }
         }
       },
       "why": "Raises attacks per Attack action to three; data has no activity or effect, so the attack count needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12765,18 +13341,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-006",
-          "at": "2026-11-21T19:50:46.258Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:41.780Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Reroll of a failed save with a level bonus, once per use, chosen after the roll; utility activity does not express the reroll.",
+            "triaged": {
+              "by": "reader-xphb-006",
+              "at": "2026-11-21T19:50:46.258Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "52d478c98f12f19400cdf965ab346bfaf497220b4a5bcb194fd90b083a02c4f6"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.78,
+              "view": {
+                "core": "0.290.0",
+                "sha": "52d478c98f12f19400cdf965ab346bfaf497220b4a5bcb194fd90b083a02c4f6"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Reroll of a failed save with a level bonus, once per use, chosen after the roll; utility activity does not express the reroll.",
       "state": "triaged"
     },
     {
@@ -13037,18 +13643,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-006",
-          "at": "2026-11-21T19:50:46.258Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:41.780Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Reroll of a failed save with a level bonus, once per use, chosen after the roll; utility activity does not express the reroll.",
+            "triaged": {
+              "by": "reader-xphb-006",
+              "at": "2026-11-21T19:50:46.258Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "52d478c98f12f19400cdf965ab346bfaf497220b4a5bcb194fd90b083a02c4f6"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.78,
+              "view": {
+                "core": "0.290.0",
+                "sha": "52d478c98f12f19400cdf965ab346bfaf497220b4a5bcb194fd90b083a02c4f6"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Reroll of a failed save with a level bonus, once per use, chosen after the roll; utility activity does not express the reroll.",
       "state": "triaged"
     },
     {
@@ -13298,10 +13934,24 @@
           "first": {
             "by": "reader-xphb-006",
             "confidence": 0.65
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
           }
         }
       },
       "why": "Raises attacks per Attack action to four; data lacks any effect, attack count needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13431,10 +14081,24 @@
           "first": {
             "by": "reader-xphb-006",
             "confidence": 0.65
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
           }
         }
       },
       "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13646,18 +14310,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-006",
-          "at": "2026-11-21T19:50:46.258Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:41.780Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Reroll of a failed save with a level bonus, once per use, chosen after the roll; utility activity does not express the reroll.",
+            "triaged": {
+              "by": "reader-xphb-006",
+              "at": "2026-11-21T19:50:46.258Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "52d478c98f12f19400cdf965ab346bfaf497220b4a5bcb194fd90b083a02c4f6"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.78,
+              "view": {
+                "core": "0.290.0",
+                "sha": "52d478c98f12f19400cdf965ab346bfaf497220b4a5bcb194fd90b083a02c4f6"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Reroll of a failed save with a level bonus, once per use, chosen after the roll; utility activity does not express the reroll.",
       "state": "triaged"
     },
     {
@@ -13696,16 +14390,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Swapping a weapon mastery property per attack is a choice at attack time; the data effect only adds mastery proficiencies.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-006",
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.62,
+              "view": {
+                "core": "0.290.0",
+                "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Swapping a weapon mastery property per attack is a choice at attack time; the data effect only adds mastery proficiencies.",
       "state": "triaged"
     },
     {
@@ -13801,10 +14516,25 @@
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Once per turn, a maneuver may use a rolled die instead of spending a Superiority Die; data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -14536,10 +15266,32 @@
           "at": "2026-11-21T19:50:46.560Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "teleports": "self"
+                }
+              }
+            ],
+            "unexpressed": [
+              "table-ruling"
+            ]
+          }
         }
       },
       "why": "Teleport tied to Action Surge use; data lacks any activity or hook for it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -14865,10 +15617,48 @@
           "at": "2026-11-21T19:50:46.560Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "startOfTurn",
+                  "selfStatus": "charmed"
+                },
+                "expect": {
+                  "condition": {
+                    "ended": "charmed"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "moment": "startOfTurn",
+                  "selfStatus": "frightened"
+                },
+                "expect": {
+                  "condition": {
+                    "ended": "frightened"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Data lacks psychic resistance and the start-of-turn charm/fear ending paid with a die.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -14916,10 +15706,24 @@
           "at": "2026-11-21T19:50:46.560Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cover for a minute ending on incapacitation, restorable with a die; effect has no end condition.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -14965,10 +15769,25 @@
           "at": "2026-11-21T19:50:46.560Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action",
+              "ongoing-effect"
+            ]
+          }
         }
       },
       "why": "Data lacks any activity: free spell cast plus a bonus weapon attack each turn while concentrating.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -16564,10 +17383,24 @@
           "first": {
             "by": "reader-xphb-008",
             "confidence": 0.65
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
           }
         }
       },
       "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -16660,10 +17493,24 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Choice of damage type at use time for unarmed strikes; data only lists the types on an attack activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -16734,18 +17581,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-008",
-          "at": "2026-11-21T19:50:46.864Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:41.780Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Dex save damage reduction (none on success, half on fail) with an incapacitated exception; data lacks it.",
+            "triaged": {
+              "by": "reader-xphb-008",
+              "at": "2026-11-21T19:50:46.864Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "0ac346b4a2de73dfff931df10e5d7ec0e9514e79816bf17db09939820e14f9d4"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "0ac346b4a2de73dfff931df10e5d7ec0e9514e79816bf17db09939820e14f9d4"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Dex save damage reduction (none on success, half on fail) with an incapacitated exception; data lacks it.",
       "state": "triaged"
     },
     {
@@ -16879,10 +17756,24 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Fly and swim speeds only while attunement is active; data lacks any effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -17161,10 +18052,26 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice",
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Replaces strikes with healing, free Hand of Harm, limited uses and once per turn; data only has a use counter.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -17255,10 +18162,25 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Once per turn rider with focus cost; data has a damage activity but no once-per-turn limit.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -17705,10 +18627,25 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Waives the dim light requirement for a focus cost plus a free strike; data is a bare utility activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -17755,10 +18692,25 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "ongoing-effect"
+            ]
+          }
         }
       },
       "why": "Ends on bright light at end of turn or incapacitation, free Flurry; effect has only a status and no end rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -17986,10 +18938,32 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "teleports": "self"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Teleport needs dim light at both ends and grants advantage on next melee attack; data lacks the advantage.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -18614,10 +19588,24 @@
           "at": "2026-11-21T19:50:46.864Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i002",
+            "at": "2026-11-22T23:41:41.780Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Free once per long rest cast of a spell; data lacks the use limit and slot waiver.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -18868,10 +19856,24 @@
           "first": {
             "by": "reader-xphb-009",
             "confidence": 0.6
+          },
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
           }
         }
       },
       "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -18923,10 +19925,24 @@
             "by": "second-s46",
             "confidence": 0.65
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Data lacks the once-per-long-rest free cast of Find Steed (no uses, no cast activity); always-prepared part alone would be none. Entry: restriction missing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -19146,10 +20162,24 @@
           "at": "2026-11-21T19:50:47.166Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "death-trigger"
+            ]
+          }
         }
       },
       "why": "Reaction-like drop to 1 HP once per rest plus level-scaled healing; data has uses but empty heal and no trigger on reaching 0 HP.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -19685,10 +20715,34 @@
           "at": "2026-11-21T19:50:47.166Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isMissed"
+                },
+                "expect": {
+                  "counterattack": "meleeWeapon"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction to an incoming hit adding an AC bonus that can turn it into a miss, then a conditional counterattack; data only has a bare reaction utility.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -19737,10 +20791,25 @@
           "at": "2026-11-21T19:50:47.166Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Timed buff with Charisma-check advantage, a reaction save reroll and once-per-turn miss-to-hit; data lacks effects for these.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -19778,18 +20847,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-009",
-          "at": "2026-11-21T19:50:47.166Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:42.670Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Triggered right after Divine Smite, spends a Channel Divinity use and splits temp HP among chosen creatures; a choice at use time.",
+            "triaged": {
+              "by": "reader-xphb-009",
+              "at": "2026-11-21T19:50:47.166Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "d76b8f500487a031667f6ecbc425a387b5078c4640093aa66dfad3a67d6477f6"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "d76b8f500487a031667f6ecbc425a387b5078c4640093aa66dfad3a67d6477f6"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Triggered right after Divine Smite, spends a Channel Divinity use and splits temp HP among chosen creatures; a choice at use time.",
       "state": "triaged"
     },
     {
@@ -20234,10 +21333,33 @@
           "at": "2026-11-21T19:50:47.166Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "denies": "opportunityAttacks"
+                }
+              }
+            ],
+            "unexpressed": [
+              "trigger-filter",
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Triggers on an opportunity attack hit: speed to 0 until turn end and a half-speed move that does not provoke; data has a generic action with a speed effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -21172,10 +22294,24 @@
           "first": {
             "by": "reader-xphb-009",
             "confidence": 0.6
+          },
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
           }
         }
       },
       "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -21413,10 +22549,26 @@
           "at": "2026-11-21T19:50:47.166Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action",
+              "target-state",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Companion strikes twice and adds once-per-turn extra force damage vs a marked target; data damage is a bare placeholder.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -21459,10 +22611,24 @@
           "at": "2026-11-21T19:50:47.166Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Self-targeting spells also affect the companion within 30 feet; needs a rule on spell targeting.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -21603,10 +22769,24 @@
           "at": "2026-11-21T19:50:47.466Z",
           "confidence": 0.72,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Companion command riders and a damage-type choice on its hits; data only swaps types, lacks the bonus-action extra action grant.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -21751,11 +22931,25 @@
           "at": "2026-11-21T19:50:47.466Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "96afcab24d9fd1e8ee7a8b1e38ed92c339b13786b890a44b8071cc7e8e027b05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Extra psychic damage on weapon hit limited to once per turn, scaling at level 11; data has an activity but no limit.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -21983,10 +23177,46 @@
           "at": "2026-11-21T19:50:47.466Z",
           "confidence": 0.78,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "frightened"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "ends": "casterTurnStart"
+                }
+              }
+            ],
+            "unexpressed": [
+              "follow-up-action",
+              "use-time-choice",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Rider options on the Dreadful Strike (extra attack or area fear save) tied to another feature; data has only a save activity without frightened or damage.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -23843,18 +25073,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:42.670Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Dexterity save for half becomes none on success and half on failure, blocked while incapacitated; data has no effect carrying it.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "0ac346b4a2de73dfff931df10e5d7ec0e9514e79816bf17db09939820e14f9d4"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "0ac346b4a2de73dfff931df10e5d7ec0e9514e79816bf17db09939820e14f9d4"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Dexterity save for half becomes none on success and half on failure, blocked while incapacitated; data has no effect carrying it.",
       "state": "triaged"
     },
     {
@@ -24028,10 +25288,24 @@
           "at": "2026-11-21T19:50:47.770Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "data lacks the second Trip target near the spectral hand; extends Cunning Strike Trip",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -24078,10 +25352,24 @@
           "at": "2026-11-21T19:50:47.770Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction after a spell hits you: Int save, negate and steal spell for 8 hours; data has a save activity and use but no negation or steal effect",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -24332,10 +25620,25 @@
           "at": "2026-11-21T19:50:47.770Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "ongoing-effect",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Extra poison damage only when Cunning Strike Poison fails, ignoring resistance; data activity looks off (die size) and lacks the link and resistance bypass",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -24387,10 +25690,25 @@
           "at": "2026-11-21T19:50:47.770Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Sneak Attack first round of combat: Con save or doubled damage; data activity has no real damage or trigger condition",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -24612,10 +25930,24 @@
             "by": "second-s46",
             "confidence": 0.65
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Mimicry is out of combat; Steady Aim no longer zeroes Speed, and the effect only touches an activity, so a rule must lift the speed drop.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -24656,18 +25988,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-011",
-          "at": "2026-11-21T19:50:47.770Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:42.670Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Invisible status exists in data, but it must end after dealing damage or forcing a save; data lacks the end trigger",
+            "triaged": {
+              "by": "reader-xphb-011",
+              "at": "2026-11-21T19:50:47.770Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "48d4f9c59bb33402bf1c2f3b7d0ea9bfad87d6e91260f8b17474d96655b4a33c"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.78,
+              "view": {
+                "core": "0.290.0",
+                "sha": "48d4f9c59bb33402bf1c2f3b7d0ea9bfad87d6e91260f8b17474d96655b4a33c"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Invisible status exists in data, but it must end after dealing damage or forcing a save; data lacks the end trigger",
       "state": "triaged"
     },
     {
@@ -24846,10 +26208,25 @@
           "at": "2026-11-21T19:50:47.770Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "data lacks the manifested blade weapon and the bonus action second attack with smaller die",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -25039,17 +26416,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-011",
-          "at": "2026-11-21T19:50:47.770Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:42.670Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data has utility activities with die cost but no attack bonus on a miss or roll-scaled teleport distance",
+            "triaged": {
+              "by": "reader-xphb-011",
+              "at": "2026-11-21T19:50:47.770Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
+          }
         }
       },
-      "why": "Data has utility activities with die cost but no attack bonus on a miss or roll-scaled teleport distance",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -26303,10 +27710,36 @@
           "at": "2026-11-21T19:50:48.071Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "move": {
+                    "mode": "pull"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "data lacks the save ability, the teleport, the pull effect and the once-per-rest use with a point-cost restore",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -26480,10 +27913,24 @@
           "at": "2026-11-21T19:50:48.071Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Choice at casting between slot and points, and components waived; data only has a point spend",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -26574,10 +28021,24 @@
           "at": "2026-11-21T19:50:48.071Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Effect has no changes: needs no-advantage against the bearer and a floor of 10 on d20 tests during the state",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -26749,10 +28210,24 @@
           "at": "2026-11-21T19:50:48.071Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction that cancels advantage and disadvantage on another creature roll; data has only uses and activity",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27121,10 +28596,24 @@
             "by": "second-s46",
             "confidence": 0.6
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Roll twice on the surge table and pick; a choice at roll time, data has nothing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27171,10 +28660,25 @@
           "first": {
             "by": "reader-xphb-012",
             "confidence": 0.65
+          },
+          "reread": {
+            "by": "reread-i003",
+            "at": "2026-11-22T23:41:42.670Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice",
+              "no-key"
+            ]
           }
         }
       },
       "why": "Post-cast choice of a surge effect once per long rest; uses exist but the choice and the table exclusion need a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27220,10 +28724,38 @@
           "at": "2026-11-21T19:50:48.071Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "advantage",
+                    "on": "attack",
+                    "for": "self"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "use-time-choice",
+              "use-limit",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Advantage on a d20 test chosen before rolling, recharged by a slot cast with a surge; data only tracks uses",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27301,10 +28833,25 @@
           "at": "2026-11-21T19:50:48.071Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Once-per-turn d20 after a slot cast triggering a table roll; data lacks it",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27349,10 +28896,25 @@
           "at": "2026-11-21T19:50:48.071Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Reaction on another creature d20 roll adding or subtracting 1d4 for a point cost; data lacks the roll modification",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27550,17 +29112,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-012",
-          "at": "2026-11-21T19:50:48.071Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:43.472Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Free once-per-rest casts of a high-level spell; data lacks uses and cast activity",
+            "triaged": {
+              "by": "reader-xphb-012",
+              "at": "2026-11-21T19:50:48.071Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
+          }
         }
       },
-      "why": "Free once-per-rest casts of a high-level spell; data lacks uses and cast activity",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -28299,10 +29891,33 @@
           "at": "2026-11-21T19:50:48.383Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "teleports": "self"
+                }
+              }
+            ],
+            "unexpressed": [
+              "follow-up-action",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "data lacks the free Misty Step after an Enchantment or Illusion spell; needs a trigger on casting",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -29065,10 +30680,36 @@
           "at": "2026-11-21T19:50:48.383Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "disadvantage",
+                    "on": "save",
+                    "for": "target"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "data lacks it: extra disadvantage on saves of chosen ability when Hex cast; needs linkage to the Hex spell",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -29111,10 +30752,24 @@
           "at": "2026-11-21T19:50:48.383Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "resistance is in data, but reflecting equal psychic damage back onto the attacker is a reaction to a trigger",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -29162,10 +30817,26 @@
           "at": "2026-11-21T19:50:48.383Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-state",
+              "use-limit",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "data lacks Summon Aberration tweak and once-per-turn extra psychic rider on Hexed targets",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -30721,10 +32392,24 @@
           "at": "2026-11-21T19:50:48.383Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "slot regain only when casting a divination spell at level 2+, limited to lower slot; data has just a manual refund",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -33416,10 +35101,25 @@
           "first": {
             "by": "reader-xphb-015",
             "confidence": 0.65
+          },
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "d1439ecc21749396c555ce79d02303d2106e54073be3693ac2d85dc2e533971e"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "target-state"
+            ]
           }
         }
       },
       "why": "Binding needs a check and a target already Grappled/Incapacitated/Restrained; Restrained until escape check or burst. No activity applies Restrained or ends it on a successful check.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -37250,16 +38950,38 @@
         }
       ],
       "verdict": "entry",
+      "why": "Two-hand requirement applies only when not mounted; data cannot express that circumstance.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-016",
           "at": "2026-11-21T19:50:49.308Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Two-hand requirement applies only when not mounted; data cannot express that circumstance.",
       "state": "triaged"
     },
     {
@@ -48213,10 +49935,25 @@
           "at": "2026-11-21T19:50:50.519Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "death-trigger",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Reaction-style trigger when a listed creature drops to 0 HP, set to 1 HP once until rest; data lacks the trigger.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -49838,10 +51575,24 @@
           "at": "2026-11-21T19:50:50.831Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Data lacks the necrotic and radiant damage resistances: no effect on the item.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -49962,17 +51713,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-021",
-          "at": "2026-11-21T19:50:50.831Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:43.472Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Heal activity and long-rest use exist, but data lacks the healing dice formula (proficiency-count d4s).",
+            "triaged": {
+              "by": "reader-xphb-021",
+              "at": "2026-11-21T19:50:50.831Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Heal activity and long-rest use exist, but data lacks the healing dice formula (proficiency-count d4s).",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -50617,18 +52398,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-021",
-          "at": "2026-11-21T19:50:50.831Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:43.472Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks save advantage against the charmed condition: no effect on the item.",
+            "triaged": {
+              "by": "reader-xphb-021",
+              "at": "2026-11-21T19:50:50.831Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "093c67bc33f392089bc136acd46370c5b31230afd9467fee96c2d936235a22f4"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j001",
+              "at": "2026-11-22T23:43:51.681Z",
+              "confidence": 0.78,
+              "view": {
+                "core": "0.290.0",
+                "sha": "093c67bc33f392089bc136acd46370c5b31230afd9467fee96c2d936235a22f4"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Data lacks save advantage against the charmed condition: no effect on the item.",
       "state": "triaged"
     },
     {
@@ -62537,10 +64348,25 @@
             "by": "second-s50",
             "confidence": 0.6
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "entry: ward by creature type, fear, resistance, vulnerability and other options chosen at casting; utility activity has nothing",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -64421,10 +66247,32 @@
             "by": "second-s50",
             "confidence": 0.55
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "05dc3644e49cf8846cb84e091af9585c4c022a7030311d3731004714468dc2eb"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "bars": "entry"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "entry: ends early if caster leaves or recasts, and blocks low-level spells; utility activity has no effect or end event",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -65200,10 +67048,34 @@
             "by": "second-s50",
             "confidence": 0.6
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "denies": "reactions"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key",
+              "immunity-after-save",
+              "death-trigger"
+            ]
+          }
         }
       },
       "why": "entry: possession save, soul trapping, incapacitated host, ending on death and return rules need timing beyond the activities",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -73929,10 +75801,26 @@
             "by": "second-s50",
             "confidence": 0.6
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i004",
+            "at": "2026-11-22T23:41:43.472Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "use-time-choice",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "entry: save plus transform, temp HP from new form, ends on death, becomes permanent with full concentration; data lacks these",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {

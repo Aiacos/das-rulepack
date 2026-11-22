@@ -791,10 +791,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction d4 on a failed Con save has no effect in data; Surge parity rule and hit die roll outcomes need handling at cast time.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -884,10 +898,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Triggers on cantrip cast, rolls hit dice for temp HP plus force damage to a chosen creature; data only has damage shells and a die scale.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -934,10 +962,24 @@
           "first": {
             "by": "reader-efa-002",
             "confidence": 0.6
+          },
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
           }
         }
       },
       "why": "Die size is carried by the scale effect, but the ally-sharing option on the free See Invisibility cast is a choice at use time that the data lacks.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -980,10 +1022,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Die upgrade is in data; doubled Hunter's Mark range and denying Invisible benefit is a cast-time spell modification data lacks.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1029,10 +1085,36 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "frightened"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Subdue Animal save/Frightened is in data; mount reaction after a melee hit while mounted is a trigger the data lacks.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1075,10 +1157,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cure Wounds healing dice treat 1 or 2 as 3: a roll modification and free cast uses that data does not carry.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1125,10 +1221,24 @@
           "first": {
             "by": "reader-efa-002",
             "confidence": 0.65
+          },
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
           }
         }
       },
       "why": "Die size is data; the Purify Food and Drink variant (exhaustion reduction, temp HP, choice of stat, once per long rest) is a use-time modification data lacks.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1178,10 +1288,24 @@
             "by": "second-s10",
             "confidence": 0.6
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Die size is data; casting the free Magic Weapon at its higher level is a change to the parent feat's cast activity that the data does not express.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1224,10 +1348,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Misty Step extension lets two allies take a reaction to teleport; trigger-based, data only has the die scale.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1316,10 +1454,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Extends the swap reaction with one attack as part of the same reaction; reaction rider that data lacks.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1369,10 +1521,24 @@
             "by": "second-s10",
             "confidence": 0.6
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Die size is data; casting the free Invisibility at its higher level modifies the parent feat's cast activity, which the data does not express.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1415,10 +1581,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Fly speed granted only for the duration of a free Gust of Wind cast; conditional on a spell, data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1463,10 +1643,48 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isAttacked"
+                },
+                "expect": {
+                  "roll": {
+                    "mode": "disadvantage",
+                    "on": "attack",
+                    "for": "enemy"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "moment": "enemyAttacks",
+                  "targetWithin": 30
+                },
+                "expect": {
+                  "roll": {
+                    "mode": "disadvantage",
+                    "on": "attack",
+                    "for": "enemy"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Reaction to impose disadvantage on an attack roll against self or ally within range, limited uses; the activity has no effect, data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1972,10 +2190,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Lightning resistance is not set by any effect in data (data lacks it); check bonus is carried by effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -2294,10 +2526,24 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Stored spell in an item: others cast it, once per creature turn, limited charges, concentration. Data has only a cast stub.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -2627,10 +2873,24 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "death-trigger"
+            ]
+          }
         }
       },
       "why": "Trigger when dropped to 0 HP: sacrifice created items to set HP to a computed value. Data lacks that trigger and formula.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -2848,10 +3108,24 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction to add a bonus to another creature failed check or save within range; trigger and use-time choice. Data has only a stub activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -2967,10 +3241,26 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "trigger-filter",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Once per turn extra force damage on certain spell damage types, resistances and poison immunity, free cast. Data lacks resistances and the limit.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3213,10 +3503,25 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Bonus to one roll of a spell cast with a focus, only for healing or certain damage types. Existing effect is unconditional.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3307,10 +3612,71 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetSizeAtMost": "huge"
+                },
+                "expect": {
+                  "move": {
+                    "mode": "pull",
+                    "distance": 25
+                  }
+                }
+              },
+              {
+                "given": {},
+                "expect": {
+                  "roll": {
+                    "mode": "advantage",
+                    "on": "save",
+                    "for": "self"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "hit",
+                  "damageType": "lightning"
+                },
+                "expect": {
+                  "sheds": "light"
+                }
+              },
+              {
+                "given": {
+                  "roll": "hit",
+                  "damageType": "lightning"
+                },
+                "expect": {
+                  "roll": {
+                    "mode": "disadvantage",
+                    "on": "attack",
+                    "for": "target"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key",
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Model-specific upgrades: reach and size growth, pull reaction with a save and a melee attack, glimmer disadvantage, fly bonus action. Data empty.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3707,10 +4073,24 @@
           "first": {
             "by": "reader-efa-003",
             "confidence": 0.6
+          },
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
           }
         }
       },
       "why": "Data has no activity or effect; the extra attack on the Attack action is a combat effect the data lacks.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3755,10 +4135,24 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Plus one to attack and damage with the model special weapon only; data effect only covers plan scale. Data lacks bonus.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3801,10 +4195,24 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Two cannons at once and an aura giving cover to allies within 10 feet of the cannon. Data lacks the aura.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4052,10 +4460,25 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i007",
+            "at": "2026-11-22T23:41:45.698Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Spells cast through the marked focus add a rolled bonus to one damage roll; data lacks any damage bonus effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4098,10 +4521,48 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 1,
+                    "type": "force"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "savedSave"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 0.5,
+                    "type": "force"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction detonation when the cannon is hit with a dex save area; plus damage increases. Data lacks the activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4146,10 +4607,36 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "damage": {
+                    "fraction": 1,
+                    "type": "force"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Upgrades to extra damage and healing dice and a retaliation damage on deflect; data has only a damage stub.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4344,10 +4831,25 @@
             "by": "second-s11",
             "confidence": 0.6
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "death-trigger"
+            ]
+          }
         }
       },
       "why": "Summon activities exist, but acting on your turn with Dodge only unless commanded, vanishing on death and replacing the old one need rules beyond the data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4438,10 +4940,25 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Extra attack plus forgoing an attack to command the companion action; data has only a utility stub.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4487,10 +5004,25 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "On a hit, extra force damage or healing choice at use time, once per turn, limited uses. Data has stubs, no once per turn.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4537,10 +5069,24 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "death-trigger"
+            ]
+          }
         }
       },
       "why": "Replaces dropping to 0 HP with set HP and teleport for a map holder; free cast once per rest. Data only has init bonus.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4587,10 +5133,24 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Map holders get initiative bonus (data) but also ignore sight and cover when targeting each other; map creation limits. Data lacks targeting.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4727,10 +5287,32 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "teleports": "self"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Free spell casts with uses, and movement-cost teleport with conditions on destination. Data has a single special stub.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4823,10 +5405,26 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-state",
+              "use-limit",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Once per turn Intelligence damage bonus only for certain spells or attacks against a marked target; concentration protection. Data bonus is unconditional.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4871,10 +5469,32 @@
           "at": "2026-11-21T19:58:28.245Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "teleports": "self"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Rider on Flash of Genius reaction letting a creature teleport a short distance; data lacks the rider.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4931,10 +5551,32 @@
           "at": "2026-11-21T19:58:28.545Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "teleports": "self"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Bonus action teleport limited to a space occupied earlier this turn; data has only a bare utility activity with no movement or restriction.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -5176,10 +5818,38 @@
           "at": "2026-11-21T19:58:28.545Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isHit",
+                  "activity": "melee"
+                },
+                "expect": {
+                  "move": {
+                    "mode": "push",
+                    "distance": 15
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "target-size"
+            ]
+          }
         }
       },
       "why": "Data lacks the +1 AC bonus (no effect) and the reaction to push a Large or smaller melee attacker 15 feet needs a trigger and size limit.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -5236,10 +5906,24 @@
           "at": "2026-11-21T19:58:28.545Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Recover a spent slot of level 3 or lower as a bonus action; data consumes a fixed slot level 1 or only a use, so the choice of slot is missing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -11933,10 +12617,24 @@
           "at": "2026-11-21T19:58:29.735Z",
           "confidence": 0.82,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Psychic damage resistance; data lacks any effect for it, so a rule or data fix must grant the resistance.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12131,18 +12829,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-008",
-          "at": "2026-11-21T19:58:29.735Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:46.434Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Advantage on saves against or to end the Charmed condition; data lacks any effect, so a conditional save rule is needed.",
+            "triaged": {
+              "by": "reader-efa-008",
+              "at": "2026-11-21T19:58:29.735Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "093c67bc33f392089bc136acd46370c5b31230afd9467fee96c2d936235a22f4"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-j003",
+              "at": "2026-11-22T23:43:53.237Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "093c67bc33f392089bc136acd46370c5b31230afd9467fee96c2d936235a22f4"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Advantage on saves against or to end the Charmed condition; data lacks any effect, so a conditional save rule is needed.",
       "state": "triaged"
     },
     {
@@ -12231,10 +12959,25 @@
           "at": "2026-11-21T19:58:29.735Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Reaction-like choice to turn a failed save versus Unconscious into success, with limited uses; data has only a use counter, no trigger.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12433,10 +13176,26 @@
           "at": "2026-11-21T19:58:29.735Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "ongoing-effect",
+              "follow-up-action",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Shift state with temp HP plus per-option riders (AC bonus, bonus-action bite, speed, reaction move, advantage); data has only a temp HP heal, lacks the options and duration.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12509,10 +13268,24 @@
           "at": "2026-11-21T19:58:29.735Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Poison resistance and advantage on saves against Poisoned; data lacks any effect for them.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12757,10 +13530,24 @@
             "by": "second-s13",
             "confidence": 0.65
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i008",
+            "at": "2026-11-22T23:41:46.434Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Summon activity exists, but the replace-previous-summon rule and the ally acting right after the caster on the caster's initiative count are not in the data; default Dodge when no orders.",
+      "hint": "beyond-engine",
       "state": "triaged"
     }
   ]

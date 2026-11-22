@@ -579,3 +579,20 @@ reviews as stored (Ruling R41).
 The pack ships 55 rules. Where three blind readings were made of one feature, they agree all three in few cases: what
 remains in the review queue is for a person.
 
+# Items read again against the engine (2026-11-23)
+
+The non-monster entries triage had left as "needs a rule" were read again by a reader who sees how the engine classifies the
+item, the rules it recognises and its own entry (Ruling R42), with a blind second reader for every covered answer.
+
+| | XPHB | XDMG | EFA |
+|---|---|---|---|
+| Read | 112 | 43 | 49 |
+| Covered, confirmed by two readers (now `core`, `data` or `none`) | 14 | 8 | 1 |
+| Covered by one reader, not confirmed | 3 | 0 | 0 |
+| Something is beyond the engine and the data | 81 | 34 | 43 |
+| Reader unsure | 14 | 1 | 5 |
+
+One entry in nine was already covered. For the rest the readers name what is missing mostly as a reason the assertion
+vocabulary cannot state (117 times "no key"), then a follow-up action (23), a choice at use (20), a use limit (19): these
+entries need a rule written with the engine's own keys, one by one.
+

@@ -1162,10 +1162,24 @@
             "by": "second-s40",
             "confidence": 0.6
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Vehicle with lever table (claws, grapple, depth pressure damage); official data only has a move-levers utility, so lever effects are missing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1536,10 +1550,38 @@
           "at": "2026-11-21T19:58:25.822Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetType": "giant"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 2,
+                    "type": "force"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Extra damage on a natural 20, bonus vs Giants, object max damage and thrown return need rules beyond data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -1759,10 +1801,25 @@
           "at": "2026-11-21T19:58:25.822Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "table-ruling"
+            ]
+          }
         }
       },
       "why": "Chance of being pulled in and devoured at turn start need rules; data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3415,10 +3472,33 @@
           "at": "2026-11-21T19:58:25.822Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "sheds": "light"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Halo advantage and disadvantage on attackers by creature type, big radiant damage and slot upgrade need rules.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3492,10 +3572,46 @@
           "at": "2026-11-21T19:58:25.822Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "targetType": "fiend"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 0
+                  }
+                }
+              },
+              {
+                "given": {
+                  "targetType": "undead"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 0
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Self and area psychic damage by creature type, advantage on checks and charisma-save transform need rules.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4389,10 +4505,24 @@
           "at": "2026-11-21T19:58:25.822Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Force resistance is in data; immunity to damage from one named spell is missing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -6422,10 +6552,24 @@
           "at": "2026-11-21T19:58:25.822Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Replacing an attack roll d20 with a 10 is a choice at roll time; data has only a use counter.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7427,10 +7571,25 @@
             "by": "second-s40",
             "confidence": 0.65
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Check-gated cast of a cantrip not known, once per long rest; official lacks recovery, and the check-then-cast dependency needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8083,17 +8242,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-002",
-          "at": "2026-11-21T19:58:26.128Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.295Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Damage applies only to water-based elementals as a creature-type limit; data carries a save-for-damage activity but not the target restriction",
+            "triaged": {
+              "by": "reader-xdmg-002",
+              "at": "2026-11-21T19:58:26.128Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Damage applies only to water-based elementals as a creature-type limit; data carries a save-for-damage activity but not the target restriction",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -9784,11 +9973,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "12818e4d9be519956bd608c94002b0ee54d2ca6bdf08fb6303d409d1010f48d3"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Truesight and charges are data, but a chance on every cast that the artifact takes over the bearer and the alignment change need a rule",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12100,11 +12302,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "12818e4d9be519956bd608c94002b0ee54d2ca6bdf08fb6303d409d1010f48d3"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Extra cold damage applies only to melee spell attacks and weapons held by the hand, and each cast makes the hand cast a compelling spell on the bearer; data lacks that rider",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12263,10 +12478,25 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Unknown-spell use needs a spell slot, a level-scaled check, a short or long rest limit and a random failure table; data does not join these",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12390,10 +12620,24 @@
             "by": "second-s40",
             "confidence": 0.65
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Check-gated cast of an unknown cantrip, once per long rest; the success-then-cast dependency is not expressed by the check activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13730,10 +13974,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13786,10 +14044,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13842,10 +14114,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13898,10 +14184,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13955,10 +14255,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -14011,10 +14325,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -14067,10 +14395,24 @@
           "at": "2026-11-21T19:58:26.128Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast activities exist but lack the once-per-dawn limit for each spell and the unattuned psychic damage with a save; the instrument-specific spell level is also a detail",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -14899,17 +15241,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-003",
-          "at": "2026-11-21T19:58:26.453Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.295Z",
+          "was": {
+            "verdict": "entry",
+            "why": "damage type swap to lightning on a hit is a choice at use time; bolt activity is carried once per dawn but swap is not",
+            "triaged": {
+              "by": "reader-xdmg-003",
+              "at": "2026-11-21T19:58:26.453Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "damage type swap to lightning on a hit is a choice at use time; bolt activity is carried once per dawn but swap is not",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -15518,17 +15890,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-003",
-          "at": "2026-11-21T19:58:26.453Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.295Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Bard may use Charisma for attack rolls with the lute; thunder damage is in data but the ability choice and class limit are not",
+            "triaged": {
+              "by": "reader-xdmg-003",
+              "at": "2026-11-21T19:58:26.453Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Bard may use Charisma for attack rolls with the lute; thunder damage is in data but the ability choice and class limit are not",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -16664,10 +17066,24 @@
           "at": "2026-11-21T19:58:26.453Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "bonus-action Hide when lightly obscured even when observed is a circumstance rule; official data lacks it",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -16784,10 +17200,24 @@
           "at": "2026-11-21T19:58:26.453Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "damage increases per extra bead thrown together, a choice made at use; data has only a cast activity",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -19287,10 +19717,24 @@
           "at": "2026-11-21T19:58:26.453Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "drink then three bonus-action breaths within an hour; data lacks the limit of three and ending",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -21657,10 +22101,24 @@
           "at": "2026-11-21T19:58:26.749Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "28214a09442a9acb4b7b1e4f6fcebf8c9f3bc71fb7db4a301e959e3692c7b006"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Whip needs bonus-action melee spell attacks and repositioning; data lacks the attack and the 1 hour or incapacitated end.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -23369,10 +23827,34 @@
           "at": "2026-11-21T19:58:26.749Z",
           "confidence": 0.72,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "a3d7bd5c281ccc03162b8a4e10ae347217f031d290bc308c86544bb3030d56f7"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "enter"
+                },
+                "expect": {
+                  "subjected": "activity"
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Official lightning spheres lack damage, the discharge trigger and movement; saves lack an ability.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -23439,10 +23921,25 @@
             "by": "second-s40",
             "confidence": 0.6
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Stored spell levels and casting with the original caster's DC and slot level; data lacks any activity or storage. entry: data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -25209,10 +25706,24 @@
           "at": "2026-11-21T19:58:26.749Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i005",
+            "at": "2026-11-22T23:41:44.295Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Attacks against the mount have disadvantage and rider cannot be forcibly dismounted; data lacks both.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -28335,10 +28846,35 @@
           "at": "2026-11-21T19:58:26.749Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "enter"
+                },
+                "expect": {
+                  "subjected": "activity"
+                }
+              }
+            ],
+            "unexpressed": [
+              "death-trigger",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Control check, bonus-action movement and a save on the sphere entering a space; data has no movement or entering trigger and the official save lacks an ability.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -29190,10 +29726,25 @@
           "at": "2026-11-21T19:58:27.052Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "ongoing-effect"
+            ]
+          }
         }
       },
       "why": "Toggled snake head with its own AC and HP, attack using proficiency and Wisdom, destruction on 0 HP; data only has attack damage lines.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -29442,17 +29993,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-005",
-          "at": "2026-11-21T19:58:27.052Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.930Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Plus 2 weapon and spell attack bonuses are missing: data lacks any effect for them; casting activities and charges are present.",
+            "triaged": {
+              "by": "reader-xdmg-005",
+              "at": "2026-11-21T19:58:27.052Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Plus 2 weapon and spell attack bonuses are missing: data lacks any effect for them; casting activities and charges are present.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29964,10 +30545,39 @@
           "at": "2026-11-21T19:58:27.052Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isDamaged"
+                },
+                "expect": {
+                  "roll": {
+                    "mode": "advantage",
+                    "on": "attack",
+                    "for": "self"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "follow-up-action",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction melee attack with advantage that ignores immunity and resistance on its damage; plain data cannot express the ignore clause.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -30497,10 +31107,25 @@
           "at": "2026-11-21T19:58:27.052Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Strength set to 20 minimum, extra thunder damage, and prone/concentration riders; data has saves but lacks the ability override and per-hit bonus.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -30726,10 +31351,25 @@
           "at": "2026-11-21T19:58:27.052Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Bonus action to cast a written spell without slot or components once per dawn needs a rule; data has only a generic utility.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -31001,10 +31641,24 @@
           "at": "2026-11-21T19:58:27.052Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Cast of Dominate Beast is limited to Beasts with a swim speed; charges present in data but target restriction is not.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -31534,17 +32188,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-005",
-          "at": "2026-11-21T19:58:27.052Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.930Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+            "triaged": {
+              "by": "reader-xdmg-005",
+              "at": "2026-11-21T19:58:27.052Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -31594,17 +32278,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-005",
-          "at": "2026-11-21T19:58:27.052Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.930Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+            "triaged": {
+              "by": "reader-xdmg-005",
+              "at": "2026-11-21T19:58:27.052Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -31715,17 +32429,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-005",
-          "at": "2026-11-21T19:58:27.052Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.930Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+            "triaged": {
+              "by": "reader-xdmg-005",
+              "at": "2026-11-21T19:58:27.052Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Number of charges and spell level are chosen at use time; data consumes a fixed single charge.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -31798,17 +32542,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-005",
-          "at": "2026-11-21T19:58:27.052Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T23:41:44.930Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Many riders: attunement save, plus 3 weapon and AC bonuses, extra necrotic, discounted charges for Orcus, undead summon with limit; data lacks most.",
+            "triaged": {
+              "by": "reader-xdmg-005",
+              "at": "2026-11-21T19:58:27.052Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-j002",
+              "at": "2026-11-22T23:43:52.546Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Many riders: attunement save, plus 3 weapon and AC bonuses, extra necrotic, discounted charges for Orcus, undead summon with limit; data lacks most.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -32260,10 +33034,25 @@
           "at": "2026-11-21T19:58:27.052Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Plus 3 bonuses, extra necrotic on a natural 20, initiative advantage present as effect; data lacks bonuses and crit rider, globe once-per-dawn needs care.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -32553,10 +33342,24 @@
           "at": "2026-11-21T19:58:27.052Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-i006",
+            "at": "2026-11-22T23:41:44.930Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "ongoing-effect"
+            ]
+          }
         }
       },
       "why": "Cumulative chance of failure per use and destruction on failure is not expressed by data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
