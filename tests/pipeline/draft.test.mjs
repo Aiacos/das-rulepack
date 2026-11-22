@@ -10,7 +10,10 @@ import { SHARED_EMBEDDED } from "../../tools/pipeline/identifiers.mjs";
 import {
   emittedFingerprint, loadQueue, ruleFingerprint, saveBook, saveQueue, stateOf, validateRecord, writeFilesAtomically
 } from "../../tools/pipeline/registry.mjs";
-import { CORE_IDENTIFIER, SHARED_IDENTIFIER } from "../../tools/pipeline/batch.mjs";
+import {
+  CORE_IDENTIFIER, EDITION_IDENTIFIER, SHARED_IDENTIFIER, identifierClashReasons
+} from "../../tools/pipeline/batch.mjs";
+import { gateUnique } from "../../tools/pipeline/gates.mjs";
 
 // Synthetic fixtures only: invented entries, invented words.
 const BODY = "Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon";
@@ -194,8 +197,8 @@ describe("ingestDrafts: queued", () => {
     expect(out.records[0].rule).toBeUndefined();
   });
 
-  it("queues a rule whose identifier another entry or ruled record registers", () => {
-    const twin = record({ key: "tst:spell:frost-glimmer-2014", edition: "2014" });
+  it("queues a rule whose identifier another entry or ruled record of its edition registers", () => {
+    const twin = record({ key: "tst:spell:frost-glimmer-twin" });
     const out = run([record(), twin], [result()]);
     expect(out.applied).toEqual([]);
     expect(out.queued.map((q) => q.reason)).toEqual([SHARED_IDENTIFIER]);
@@ -386,6 +389,54 @@ describe("fix round 1", () => {
     expect(validateRecord(next)).toEqual([]);
     const { person, because, ...bare } = next.evidence.drafted;
     expect(validateRecord({ ...next, evidence: { ...next.evidence, drafted: bare } }).join(" ")).toMatch(/official-uncovered/);
+  });
+});
+
+describe("Ruling R22: identifiers shared per edition", () => {
+  const ruled = (over) => ({ ...record(over), rule: rule(), evidence: { ...record(over).evidence } });
+  const older = { key: "tst:spell:frost-glimmer-2014", edition: "2014" };
+
+  it("a twin of another edition with no rule does not stand in the way: cut and applied", () => {
+    const twin = record(older);
+    expect(identifierClashReasons([record(), twin], new Set()).size).toBe(0);
+    const out = run([record(), twin], [result()]);
+    expect(out.applied).toEqual(["tst:spell:frost-glimmer"]);
+    // and the gate then accepts the one rule
+    expect(gateUnique(out.records, { core })).toEqual([]);
+  });
+
+  it("a twin of the same edition still does (left out, queued)", () => {
+    const twin = record({ key: "tst:spell:frost-glimmer-twin" });
+    expect(identifierClashReasons([record(), twin], new Set()).get(record().key)).toBe(SHARED_IDENTIFIER);
+  });
+
+  it("once a 2014 twin has a rule, the 2024 record needs an edition-scoped identifier (left out, queued, gate fails)", () => {
+    const twin = ruled(older);
+    expect(identifierClashReasons([record(), twin], new Set()).get(record().key)).toBe(EDITION_IDENTIFIER);
+    const out = run([record(), twin], [result()]);
+    expect(out.applied).toEqual([]);
+    expect(out.queued.map((q) => q.reason)).toEqual([EDITION_IDENTIFIER]);
+    // Forced through by hand anyway: the gate fails the later rule (the drafted one), not the earlier.
+    const later = { ...ruled(), evidence: { ...record().evidence, drafted: { by: "drafter-1", at: AT, core: "9.9.9",
+      rule: ruleFingerprint(rule()) } } };
+    const failures = gateUnique([later, twin], { core });
+    expect(failures).toHaveLength(1);
+    expect(failures[0]).toMatch(/tst:spell:frost-glimmer: frost-glimmer is registered by tst:spell:frost-glimmer-2014/);
+    expect(failures[0]).toMatch(/edition-scoped identifier bound through sources/);
+  });
+
+  it("the other direction: a 2024 rule exists, the 2014 twin's later rule fails", () => {
+    const first = { ...ruled(), evidence: { ...record().evidence, drafted: { by: "drafter-1", at: "2026-01-01T00:00:00.000Z",
+      core: "9.9.9", rule: ruleFingerprint(rule()) } } };
+    const second = { ...ruled(older), evidence: { ...record(older).evidence, drafted: { by: "drafter-2",
+      at: "2026-02-01T00:00:00.000Z", core: "9.9.9", rule: ruleFingerprint(rule()) } } };
+    const failures = gateUnique([second, first], { core });
+    expect(failures).toHaveLength(1);
+    expect(failures[0]).toMatch(/^unique: tst:spell:frost-glimmer-2014: frost-glimmer is registered by tst:spell:frost-glimmer /);
+    expect(identifierClashReasons([first, record(older)], new Set()).get(older.key)).toBe(EDITION_IDENTIFIER);
+    // Two ruled records of one edition keep today's message.
+    const same = { ...second, key: "tst:spell:frost-glimmer-twin", edition: "2024" };
+    expect(gateUnique([first, same], { core }).join(" ")).toMatch(/share the identifier frost-glimmer/);
   });
 });
 

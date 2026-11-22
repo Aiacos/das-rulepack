@@ -230,7 +230,7 @@ function takeResult(result, ctx) {
   // The unique gate would fail it whatever a drafter writes (a DAS · Core identifier, one shared with another record that
   // has a rule or the verdict entry): a person decides (batch.mjs identifierClashReasons, the gate's own functions).
   const others = ctx.out.map((r) => (r === record ? drafted.record : r));
-  const clash = identifierClashReasons(others, core.identifiers).get(result.key);
+  const clash = identifierClashReasons(others, core.identifiers, { pending: new Set([result.key]) }).get(result.key);
   if (clash) return entry(clash, result.rule);
   if (result.confidence < QUEUE_THRESHOLD) return entry("low-confidence", result.rule);
   return { apply: { record, next: drafted.record } };

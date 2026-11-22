@@ -145,7 +145,10 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
    `rule.origins`, and it equals the identifier of the record's matched item of that origin. The ids gate also looks at the
    reprints (below), with the ids the official item contributes.
    The `unique` gate applies only to records that have a `rule`, the only ones that register an identifier with the engine:
-   two ruled records that register one identifier, their own or an alias, always fail, whatever `sources` they bind; records
+   two ruled records of one edition that register one identifier, their own or an alias, always fail, whatever `sources`
+   they bind; across editions (Ruling R22, `gates.mjs` `identifierTwins`) the first rule keeps the identifier, and a rule of
+   another edition under it later fails (it needs an edition-scoped identifier bound through `sources`), the 2024 rule
+   standing in for the older printing's item meanwhile; records
    without a rule are ignored (many features and traits share a name). A registered table is merged over the engine's own
    entries identifier by identifier, so an identifier or alias equal to a DAS · Core identifier (`content/index.mjs`
    `SHIPPED` and `SRD_ALIASES` of the clone) fails unless it is the record's own identifier and the rule says `inCore: true`
@@ -353,14 +356,16 @@ batch (`--size`), one kind per batch, kinds in the order spell, feat, option, sp
 records with a matched official item first. A record is left out (and counted on the console, by reason) when it is already
 ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, is a monster feature that can never pass the
 gates (no creature to scope it to; "no official item"; "official item has no embedded id"; "shared embedded id, waits on
-upstream"), or is one the `unique` gate would fail whatever is drafted: "identifier is DAS · Core's: a person decides inCore"
-and "identifier shared with another record" (another record of the registry that has a rule or the verdict `entry` registers it,
-a monster feature counted under its creature-scoped identifier; `batch.mjs` `identifierClashReasons`, built on the gate's own
-`gates.mjs` `identifierClashes`). The shared embedded id is decided by `batch draft` itself, as inventory decides it when it
-binds a rule (`settle.mjs` `embeddedIndex`, `sharedEmbeddedId`): a feature is cut only when its official embedded item id is
-unique among the actors of the book's package, which `batch draft` reads from `RULEPACK_DUMPS` (always needed, as `--structure`
-is mandatory; the usage error says so). The record's own `embeddedShared` flag is no help: it is written only once a rule is
-bound. It writes `<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`), `<private
+upstream"), or is one the `unique` gate would fail whatever is drafted: "identifier is DAS · Core's: a person decides inCore",
+"identifier shared with another record" (another record of the same edition that has a rule or the verdict `entry` registers it,
+a monster feature counted under its creature-scoped identifier) and "identifier ruled for another edition: needs an
+edition-scoped identifier" (Ruling R22: a twin of another edition alone is no clash until it has a rule; `batch.mjs`
+`identifierClashReasons`, built on the gate's own `gates.mjs` `identifierClashes` and `identifierTwins`). The shared embedded id
+is decided by `batch draft` itself, as inventory decides it when it binds a rule (`settle.mjs` `embeddedIndex`,
+`sharedEmbeddedId`): a feature is cut only when its official embedded item id is unique among the actors of the book's package,
+which `batch draft` reads from `RULEPACK_DUMPS` (always needed, as `--structure` is mandatory; the usage error says so). The
+record's own `embeddedShared` flag is no help: it is written only once a rule is bound. It writes
+`<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`), `<private
 dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-derived, private) and
 `<dir>/draft-vocabulary.json` (engine words only, and for every allowed data-fix path its type as a declarative description,
 `fixes.types`, generated from the table that also checks it: safe to commit). A batch is `{ id, stage: "draft", allowed,
@@ -579,12 +584,13 @@ tell whether another creature shares the feature's embedded item id). For each r
   it never stops the others. A rejection repeats at most 80 characters of any string the drafter wrote.
 - **Queued** in `registry/drafts-queue.json` (`{ key, reason, by, why, confidence, draft? }`, merged by key, sorted): outcome
   `person`, `code` or `engine` (the reason is the outcome); a rule that passed every check above but that the `unique` gate
-  would fail whatever is drafted ("identifier is DAS · Core's: a person decides inCore", "identifier shared with another
-  record": the same test as `batch draft`'s, on the record as it would be written, aliases included; the rule kept as
-  `draft`); a rule that passed every check with a confidence below 0.7 (`low-confidence`, the rule kept as `draft`). A result is
-  queued only if its `why` and the strings of its draft together, in either order, do not quote 8 words of the text (`why` and
-  the rule are each checked alone, the queue entry holds both): a hit rejects it. The verdict is not changed. A queued record is
-  not cut by `batch draft` again, and a later result for it is rejected: a person settles it.
+  would fail whatever is drafted ("identifier is DAS · Core's: a person decides inCore", "identifier shared with another record"
+  of its edition, "identifier ruled for another edition: needs an edition-scoped identifier": the same test as `batch draft`'s,
+  on the record as it would be written, aliases included; the rule kept as `draft`); a rule that passed every check with a
+  confidence below 0.7 (`low-confidence`, the rule kept as `draft`). A result is queued only if its `why` and the strings of its
+  draft together, in either order, do not quote 8 words of the text (`why` and the rule are each checked alone, the queue entry
+  holds both): a hit rejects it. The verdict is not changed. A queued record is not cut by `batch draft` again, and a later
+  result for it is rejected: a person settles it.
 - **Applied** otherwise: `rule` is written as the drafter wrote it plus what the tools derive: `alsoAs` from `aliasFor`
   (Ruling R2: the identifier of a matched item that differs from the record's), `origin` (Ruling R17: the last part of the
   owner and, for a feature, the level), and for a monster feature its identifier `monsterIdentifier` (`<book>-<creature>-

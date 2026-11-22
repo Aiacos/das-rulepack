@@ -130,6 +130,15 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   in `schema.mjs`, required by the schema, covered by `emits`). Wrong if the official item does carry what the rule needs: the
   rule then misses the official module's item, which the person at review is there to catch (cost: one person's reading per
   such rule; if they are many, the brief needs a sharper "why uncovered" rule).
+- **R22 — An identifier is shared per edition.** As the rule-based `core` triage counts identifiers per edition, two records
+  clash on an identifier (or alias) only within one edition: a 2024 record whose only twins are of another edition is cut by
+  `batch draft`, applied by `ingest --draft` and accepted by the `unique` gate as long as no twin of another edition has a
+  rule under it. Once one has, a twin of another edition that gets a rule later fails `unique` ("needs an edition-scoped
+  identifier bound through sources", a later task), is left out by `batch draft` and queued by `ingest --draft`
+  ("identifier ruled for another edition"). One function decides it (`gates.mjs` `identifierTwins`). Wrong if the older
+  printing differs: the engine finds an entry by identifier whatever the edition, so the 2024 rule also applies to an item of
+  the older printing that carries the same identifier (as the engine's own entries already do); until that record gets its
+  own scoped rule, the 2024 rule stands in for it.
 
 ## What a drafter may write (engine limits)
 

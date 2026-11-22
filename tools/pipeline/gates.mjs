@@ -363,18 +363,45 @@ const registeredBy = (record) =>
 // records that will (verdict entry), through `registers` (identifierClashes).
 const hasRule = (record) => isObject(record) && Boolean(record.rule);
 
-// The groups of registering records that share one identifier, aliases included. Only a record that has a rule registers an
-// identifier with the engine, and two rules must never register one: binding `sources` does not make two entries one.
-function duplicateGroups(records, registers = hasRule) {
+// Ruling R22: which of the registering records that share one identifier (aliases included) clash. Records of ONE edition
+// that share it always do (`shared`: binding `sources` does not make two entries one). Records of different editions do not,
+// until two of them carry a rule: the first rule keeps the identifier and every later record of another edition is `later`
+// (it needs an edition-scoped identifier bound through `sources`). "First": a rule with no `evidence.drafted` (a legacy or
+// hand-written one), then the earliest `evidence.drafted.at`, then the key; a record that has no rule yet, or is `pending`
+// (the draft being ingested), comes after every rule. The one function batch draft, ingest --draft and the unique gate use.
+export function identifierTwins(records, { registers = hasRule, pending = new Set() } = {}) {
   const byIdentifier = new Map();
   for (const record of records) {
     if (!isObject(record) || !registers(record)) continue;
     for (const id of registeredBy(record)) byIdentifier.set(id, [...(byIdentifier.get(id) ?? []), record]);
   }
-  return [...byIdentifier].filter(([, group]) => group.length > 1);
+  const rank = (r) => {
+    if (!hasRule(r) || pending.has(r.key)) return [2, "", r.key];
+    const at = r.evidence?.drafted?.at;
+    return typeof at === "string" ? [1, at, r.key] : [0, "", r.key];
+  };
+  const before = (a, b) => {
+    const [x, y] = [rank(a), rank(b)];
+    for (let i = 0; i < 3; i += 1) if (x[i] !== y[i]) return x[i] < y[i] ? -1 : 1;
+    return 0;
+  };
+  const shared = [];
+  const later = [];
+  for (const [id, group] of byIdentifier) {
+    if (group.length < 2) continue;
+    const byEdition = new Map();
+    for (const r of group) byEdition.set(r.edition, [...(byEdition.get(r.edition) ?? []), r]);
+    for (const same of byEdition.values()) if (same.length > 1) shared.push([id, same]);
+    const [first] = [...group].sort(before);
+    if (!hasRule(first) || pending.has(first.key)) continue;
+    for (const r of group) if (r !== first && r.edition !== first.edition) later.push([id, r, first]);
+  }
+  return { shared, later };
 }
 
 const uniqueMessage = (id, group) => `unique: ${group.map((r) => r.key).join(" and ")} share the identifier ${id}`;
+const editionMessage = (id, record, first) => `unique: ${record.key}: ${id} is registered by ${first.key} (edition`
+  + ` ${first.edition}): a rule for edition ${record.edition} needs an edition-scoped identifier bound through sources (R22)`;
 const coreMessage = (record, id) => `unique: ${record.key}: ${id} is a DAS · Core identifier (an entry there would be patched`
   + " for every item of that name; set rule.inCore only on purpose)";
 
@@ -395,32 +422,39 @@ function coreCollisions(records, identifiers, registers = hasRule) {
 }
 
 /**
- * What the `unique` gate holds against each record, by key: `{ core: [ids], shared: [ids] }` (an identifier or alias that is
- * a DAS · Core one without `rule.inCore`; one another registering record registers too). `registers(record)` says which
+ * What the `unique` gate holds against each record, by key: `{ core: [ids], shared: [ids], edition: [ids] }` (an identifier
+ * or alias that is a DAS · Core one without `rule.inCore`; one another registering record of its edition registers too; one
+ * a rule of another edition registered first: identifierTwins, Ruling R22). `registers(record)` says which
  * records register (default: those with a rule, as the gate); `batch draft` and `ingest --draft` add the `entry` records
  * that will, under the identifier they will have, so that a record no drafter can ever take to `gated` goes to a person.
  */
-export function identifierClashes(records, { coreIdentifiers, registers = hasRule } = {}) {
+export function identifierClashes(records, { coreIdentifiers, registers = hasRule, pending } = {}) {
   const out = new Map();
-  const at = (key) => out.get(key) ?? out.set(key, { core: [], shared: [] }).get(key);
-  for (const [id, group] of duplicateGroups(records, registers)) for (const { key } of group) at(key).shared.push(id);
+  const at = (key) => out.get(key) ?? out.set(key, { core: [], shared: [], edition: [] }).get(key);
+  const { shared, later } = identifierTwins(records, { registers, pending });
+  for (const [id, group] of shared) for (const { key } of group) at(key).shared.push(id);
+  for (const [id, record] of later) at(record.key).edition.push(id);
   for (const [record, , id] of coreCollisions(records, coreIdentifiers, registers)) at(record.key).core.push(id);
   return out;
 }
 
 /**
- * Two ruled records that register one identifier (own or alias) would register one entry twice, always a failure; so is an
- * identifier or alias equal to a DAS · Core identifier (`core.identifiers`) without `rule.inCore`. Unruled records are ignored.
+ * Two ruled records of one edition that register one identifier (own or alias) would register one entry twice, always a
+ * failure; across editions the later rule fails (Ruling R22, identifierTwins); so does an identifier or alias equal to a
+ * DAS · Core identifier (`core.identifiers`) without `rule.inCore`. Unruled records are ignored.
  */
 export const gateUnique = (records, { core } = {}) => [
-  ...duplicateGroups(records).map(([id, group]) => uniqueMessage(id, group)),
+  ...identifierTwins(records).shared.map(([id, group]) => uniqueMessage(id, group)),
+  ...identifierTwins(records).later.map(([id, record, first]) => editionMessage(id, record, first)),
   ...coreCollisions(records, core?.identifiers).map(([, m]) => m)
 ];
 
 const uniqueFailuresByKey = (records, core) => {
   const byKey = new Map();
   const add = (key, m) => byKey.set(key, [...(byKey.get(key) ?? []), m]);
-  for (const [id, group] of duplicateGroups(records)) for (const { key } of group) add(key, uniqueMessage(id, group));
+  const { shared, later } = identifierTwins(records);
+  for (const [id, group] of shared) for (const { key } of group) add(key, uniqueMessage(id, group));
+  for (const [id, record, first] of later) add(record.key, editionMessage(id, record, first));
   for (const [record, m] of coreCollisions(records, core?.identifiers)) add(record.key, m);
   return byKey;
 };
