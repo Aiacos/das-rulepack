@@ -15,8 +15,9 @@ import { SPELL_LEVELS } from "./wards.mjs";
 export const FREE_MAX = 120;
 export const ROLLS = Object.freeze(["hit", "miss", "crit", "failedSave", "savedSave"]);
 export const FRACTIONS = Object.freeze([0, 0.5, 1, 2]);
-// Ruling R33: `autoSuccess`, the roll is not made and succeeds (the engine's saveAutoSuccess).
-export const ROLL_MODES = Object.freeze(["advantage", "disadvantage", "autoSuccess"]);
+// Ruling R33: `autoSuccess`, the roll is not made and succeeds (the engine's saveAutoSuccess); Ruling R37: `autoFail`, it is
+// not made and fails (saveAutoFail).
+export const ROLL_MODES = Object.freeze(["advantage", "disadvantage", "autoSuccess", "autoFail"]);
 export const ROLL_ON = Object.freeze(["attack", "save", "check"]);
 export const ROLL_FOR = Object.freeze(["self", "target", "ally", "enemy"]);
 // Who an assertion is about (`expect.affects`), and who it leaves out (`expect.excludes`, the same words).
@@ -403,6 +404,13 @@ const IMPLIED = {
     if (!isObject(v)) return { asserts: [], unassertable: true };
     const types = Array.isArray(v.types) ? v.types.filter(isWord) : [];
     return { asserts: types.map((t) => ({ given: { targetType: t }, expect: { roll: { mode: "autoSuccess", on: "save",
+      for: "target" } } })), unassertable: Object.keys(v).some((k) => k !== "types") };
+  },
+  // Ruling R37: a creature of those types fails the item's save without rolling.
+  saveAutoFail: (v) => {
+    if (!isObject(v)) return { asserts: [], unassertable: true };
+    const types = Array.isArray(v.types) ? v.types.filter(isWord) : [];
+    return { asserts: types.map((t) => ({ given: { targetType: t }, expect: { roll: { mode: "autoFail", on: "save",
       for: "target" } } })), unassertable: Object.keys(v).some((k) => k !== "types") };
   },
   // Ruling R34: one effect of the activity chosen at its use (once, per target, by a die). Its pool is the item's own effects

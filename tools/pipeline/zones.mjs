@@ -11,7 +11,8 @@
 //     or on a creature that starts its own turn within it (core/emanation.mjs, runtime/emanations.mjs); `aura` copies an
 //     effect of the item onto the creatures within its radius while they stay there (core/aura.mjs, adapter/auras.mjs).
 // `saveAutoSuccess` and `willingFails` decide the save of some creatures before any roll (runtime/engine.mjs `openingFor`,
-// core/action.mjs `creatureAutoSuccess`).
+// core/action.mjs `creatureAutoSuccess`); Ruling R37 adds `saveAutoFail` (core/conditions.mjs `typeAutoSave`: a type on both
+// sides fails), a key newer than the engine's latest release (draft-keys.mjs ENGINE_CAPABILITIES).
 //
 // Everything here is a closed word, a bounded number or an id of the item's own activities and effects: no identifier of
 // another document, no free string (no `changes` key/value text, no radius formula). A field or value of the engine left out
@@ -68,6 +69,8 @@ export const ZONE_KEYS = Object.freeze({
     "engine core/area.mjs"),
   saveAutoSuccess: key("A creature of one of `types`, of at least size `sizeAtLeast`, or (`fighting`) an enemy in a started"
     + " combat with the user succeeds on the item's saving throw without rolling.", "engine runtime/engine.mjs"),
+  saveAutoFail: key("A creature of one of `types` fails the item's saving throw without rolling (a failure wins over an"
+    + " automatic success of the same item).", "engine runtime/engine.mjs"),
   willingFails: key("Before the save, the user is asked for each target that is not its enemy whether it is willing; a willing"
     + " one fails the item's saving throw without rolling.", "engine runtime/engine.mjs")
 });

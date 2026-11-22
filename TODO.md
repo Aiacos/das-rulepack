@@ -84,9 +84,11 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] Size the R34 pool with a drafting sample: the 9 XPHB spells again (none is in the registry), then the next FRAIF, EFA
       and XPHB batches; closed fields give only 2 XMM rereads and 1 FRAIF partial rule naming `use-time-choice`, to read for
       a pick among the activity's effects. Measure Ruling R12 before any volume.
-- [ ] Upstream requests (no book named): an automatic FAILURE of a save by creature type (only `saveAutoSuccess` exists);
-      a change of form that gives temporary hit points from the new form and lets the user pick among the transform's
-      profiles (`changesForm` takes the first profile and that form's maximum hit points).
+- [x] Automatic FAILURE of a save by creature type (Ruling R37): upstream main has `saveAutoFail: { types }`; drafter key
+      and roll mode `autoFail`, offered only when the engine in use knows it (`core.saveAutoFail`), skipped at registration
+      by an engine that refuses it. Draft the texts that answered `engine` for it once a release carries the key.
+- [ ] Upstream requests (no book named): a change of form that gives temporary hit points from the new form and lets the
+      user pick among the transform's profiles (`changesForm` takes the first profile and that form's maximum hit points).
 - [ ] Ward words still missing: a barrier limited to creature types (a given for the barred creature's type), the radius of
       a barrier or globe, a choice's `order` (which face gives which effect), `wardsConditions` (a source's type), `wardsAtZero`.
 - [ ] Scenarios for wards: answer the choice question, walk a creature into a barrier, cast from outside a globe, heal a

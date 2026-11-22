@@ -8,7 +8,9 @@ import {
   AURA_AFFECTS, AURA_MOMENTS, EMANATION_AFFECTS, EMANATION_ON, EXCLUDED_ZONE, TEMPLATE_TYPES, ZONE_AFFECTS, ZONE_KEYS,
   ZONE_MOMENTS
 } from "../../tools/pipeline/zones.mjs";
-import { DAMAGE_ROLLS, DRAFT_KEYS, DRAFT_SHAPES, checkDraftKeys, zoneProblemsOf } from "../../tools/pipeline/draft-keys.mjs";
+import {
+  DAMAGE_ROLLS, DRAFT_KEYS, DRAFT_SHAPES, checkDraftKeys, draftKeysFor, engineKnows, zoneProblemsOf
+} from "../../tools/pipeline/draft-keys.mjs";
 import {
   EXPECT_FIELDS, IMPLIED_KEYS, IMPLIES_NOTHING, ROLL_MODES, SUBJECTED, assertProblems, impliedAsserts, normaliseAssert,
   unassertableKeys
@@ -37,16 +39,18 @@ const SUBJECT = (moment) => canon({ given: { moment }, expect: { subjected: "act
 const NEW_KEYS = Object.keys(ZONE_KEYS);
 
 describe("Ruling R33: the zone and aura keys a drafter may write", () => {
-  it("admits nine engine keys, each with a slot, a meaning in our words and the engine file it was read from", () => {
-    expect(NEW_KEYS.sort()).toEqual(["aura", "emanation", "saveAutoSuccess", "selfZone", "willingFails", "zoneAffects",
-      "zoneEffects", "zoneLasts", "zoneMax"]);
+  it("admits ten engine keys, each with a slot, a meaning in our words and the engine file it was read from", () => {
+    // Ruling R37 added saveAutoFail (save-auto-fail.test.mjs).
+    expect(NEW_KEYS.sort()).toEqual(["aura", "emanation", "saveAutoFail", "saveAutoSuccess", "selfZone", "willingFails",
+      "zoneAffects", "zoneEffects", "zoneLasts", "zoneMax"]);
     for (const k of NEW_KEYS) {
       expect(Object.hasOwn(DRAFT_KEYS, k), k).toBe(true);
       expect(ZONE_KEYS[k].means, k).toMatch(/^[\x20-\x7e]{40,500}$/);
       expect(ZONE_KEYS[k].from, k).toMatch(/^engine (core|adapter|runtime)\/[a-z/-]+\.mjs$/);
     }
     expect(Object.fromEntries(NEW_KEYS.map((k) => [k, DRAFT_KEYS[k].slot]))).toEqual({
-      aura: "single", emanation: "single", saveAutoSuccess: "none", selfZone: "activityMap", willingFails: "none",
+      aura: "single", emanation: "single", saveAutoSuccess: "none", saveAutoFail: "none", selfZone: "activityMap",
+      willingFails: "none",
       zoneAffects: "none", zoneEffects: "none", zoneLasts: "none", zoneMax: "none"
     });
     expect(Object.isFrozen(ZONE_KEYS) && Object.isFrozen(EXCLUDED_ZONE)).toBe(true);
@@ -190,7 +194,7 @@ describe("the assertion words", () => {
   it("given.moment takes the aura moment words beside the engine's moments; expect.subjected and autoSuccess are closed", () => {
     expect(SUBJECTED).toEqual(["activity"]);
     expect(EXPECT_FIELDS).toContain("subjected");
-    expect(ROLL_MODES).toEqual(["advantage", "disadvantage", "autoSuccess"]);
+    expect(ROLL_MODES).toEqual(["advantage", "disadvantage", "autoSuccess", "autoFail"]);
     const ok = (a) => expect(assertProblems([a], { vocabulary }), JSON.stringify(a)).toEqual([]);
     const no = (a) => expect(assertProblems([a], { vocabulary }).length, JSON.stringify(a)).toBeGreaterThan(0);
     for (const moment of [...AURA_MOMENTS, ...ZONE_MOMENTS]) ok({ given: { moment }, expect: { subjected: "activity" } });
@@ -226,8 +230,11 @@ describe("the assertion words", () => {
       expect(v.assert.rollModes).toContain("autoSuccess");
     }
     const d = draftVocabulary(core);
-    for (const k of NEW_KEYS) expect(d.draftShapes[k], k).toBeTruthy();
-    expect(Object.keys(d.zones.keys).sort()).toEqual([...NEW_KEYS].sort());
+    // Ruling R37: this stand-in engine does not know saveAutoFail, so it is not offered.
+    const offered = NEW_KEYS.filter((k) => Object.hasOwn(draftKeysFor(core), k));
+    expect(NEW_KEYS.filter((k) => !offered.includes(k))).toEqual(["saveAutoFail"]);
+    for (const k of offered) expect(d.draftShapes[k], k).toBeTruthy();
+    expect(Object.keys(d.zones.keys).sort()).toEqual([...offered].sort());
     expect(d.zones).toMatchObject({ zoneMoments: ZONE_MOMENTS, emanationOn: EMANATION_ON, auraMoments: AURA_MOMENTS });
     expect(Object.keys(d.zones.excluded).sort()).toEqual(Object.keys(EXCLUDED_ZONE).sort());
     // A reviewer writes no entry: no drafter key, no zone table.
@@ -318,7 +325,7 @@ const CORE = process.env.DAS_CORE;
 describe.skipIf(!CORE)("against the DAS_CORE clone", () => {
   it("each admitted key is an entry key of the engine; its lists and fields are the ones this pack assumes", async () => {
     const core = await loadCore(CORE);
-    for (const k of NEW_KEYS) expect(core.entryKeys.has(k), k).toBe(true);
+    for (const k of NEW_KEYS) expect(core.entryKeys.has(k), k).toBe(engineKnows(k, core));
     // core/triggers.mjs MOMENTS holds the zone moments; the aura words are emanation moments and no trigger moment.
     for (const m of ZONE_MOMENTS) expect(core.moments, m).toContain(m);
     for (const m of AURA_MOMENTS) { expect(core.moments, m).not.toContain(m); expect(core.emanationMoments, m).toContain(m); }
@@ -349,7 +356,7 @@ describe.skipIf(!CORE)("against the DAS_CORE clone", () => {
     const shapes = draftVocabulary(core).draftShapes;
     const facts = Object.fromEntries(core.facts.map((name) => [name, true]));
     let n = 0;
-    for (const k of [...NEW_KEYS, "triggers"]) {
+    for (const k of [...NEW_KEYS, "triggers"].filter((x) => Object.hasOwn(shapes, x))) {
       for (const value of variants(shapes[k])) {
         n++;
         expect(core.validateEntry({ [k]: value }, { facts }), `${k} ${JSON.stringify(value)}`).toEqual([]);
