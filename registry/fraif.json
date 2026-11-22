@@ -1335,22 +1335,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Save repeated at end of each turn, 1 minute cap, and one-use-per-turn limit; data holds only the initial save and poisoned.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Save repeated at end of each turn, 1 minute cap, and one-use-per-turn limit; data holds only the initial save and poisoned.",
-            "triaged": {
-              "by": "reader-fraif-002",
-              "at": "2026-11-21T19:58:32.070Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -1360,11 +1354,19 @@
               "sha": "dc8f5f178a60c7bd18d523c5171d61e8327751128a33e4582423b84de52709ae"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "dc8f5f178a60c7bd18d523c5171d61e8327751128a33e4582423b84de52709ae"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -1668,22 +1670,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Repeated save each turn with timed expiry, no reactions and action-or-bonus limit; data only halves speed.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Repeated save each turn with timed expiry, no reactions and action-or-bonus limit; data only halves speed.",
-            "triaged": {
-              "by": "reader-fraif-002",
-              "at": "2026-11-21T19:58:32.070Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -1693,11 +1689,19 @@
               "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -2433,22 +2437,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Save repeated at end of each turn, 1 minute cap, and one-use-per-turn limit; data holds only the initial save and poisoned.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Save repeated at end of each turn, 1 minute cap, and one-use-per-turn limit; data holds only the initial save and poisoned.",
-            "triaged": {
-              "by": "reader-fraif-002",
-              "at": "2026-11-21T19:58:32.070Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -2458,11 +2456,19 @@
               "sha": "dc8f5f178a60c7bd18d523c5171d61e8327751128a33e4582423b84de52709ae"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "dc8f5f178a60c7bd18d523c5171d61e8327751128a33e4582423b84de52709ae"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -2764,22 +2770,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Repeated save each turn with timed expiry, no reactions and action-or-bonus limit; data only halves speed.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Repeated save each turn with timed expiry, no reactions and action-or-bonus limit; data only halves speed.",
-            "triaged": {
-              "by": "reader-fraif-002",
-              "at": "2026-11-21T19:58:32.070Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -2789,11 +2789,19 @@
               "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -4469,25 +4477,19 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Data lacks it: expend-use utility only; needs a teleport within range then one attack chained.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Data lacks it: expend-use utility only; needs a teleport within range then one attack chained.",
-            "triaged": {
-              "by": "second-s14",
-              "at": "2026-11-21T21:54:35.198Z",
-              "confidence": 0.75,
-              "keys": [],
-              "similar": [],
-              "first": {
-                "by": "reader-fraif-002",
-                "confidence": 0.6
-              }
-            }
+          "by": "second-s14",
+          "at": "2026-11-21T21:54:35.198Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
+          "first": {
+            "by": "reader-fraif-002",
+            "confidence": 0.6
           },
           "reread": {
             "by": "reread-t004",
@@ -4498,11 +4500,19 @@
               "sha": "1a64900c95d0def90b72edd4a39815bfd12873b702fd30a4f20efdbbf0df5f76"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "1a64900c95d0def90b72edd4a39815bfd12873b702fd30a4f20efdbbf0df5f76"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -4554,22 +4564,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Emanation save for half damage is in data; the pull toward the source and the use-again limit are not.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Emanation save for half damage is in data; the pull toward the source and the use-again limit are not.",
-            "triaged": {
-              "by": "reader-fraif-002",
-              "at": "2026-11-21T19:58:32.070Z",
-              "confidence": 0.8,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.8,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -4579,11 +4583,19 @@
               "sha": "5c19594deae107173a6ce3a9f54db388bcc6fc00d817bd2263c12cd96a409d6b"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "5c19594deae107173a6ce3a9f54db388bcc6fc00d817bd2263c12cd96a409d6b"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -5114,22 +5126,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Reaction triggered by being hit, attacking the triggering creature; data has an empty utility activity.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Reaction triggered by being hit, attacking the triggering creature; data has an empty utility activity.",
-            "triaged": {
-              "by": "reader-fraif-002",
-              "at": "2026-11-21T19:58:32.070Z",
-              "confidence": 0.85,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-002",
+          "at": "2026-11-21T19:58:32.070Z",
+          "confidence": 0.85,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -5139,11 +5145,19 @@
               "sha": "aee82a7b0747dba7ccd417d3837ef4f9af347899481825b87496d38c9dd637de"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "aee82a7b0747dba7ccd417d3837ef4f9af347899481825b87496d38c9dd637de"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -8245,22 +8259,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Repeating save each turn ends the effect, speed 0, cannot reuse until next turn; data only partly models it.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Repeating save each turn ends the effect, speed 0, cannot reuse until next turn; data only partly models it.",
-            "triaged": {
-              "by": "reader-fraif-003",
-              "at": "2026-11-21T19:58:32.365Z",
-              "confidence": 0.75,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-003",
+          "at": "2026-11-21T19:58:32.365Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -8270,11 +8278,19 @@
               "sha": "dc8f5f178a60c7bd18d523c5171d61e8327751128a33e4582423b84de52709ae"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "dc8f5f178a60c7bd18d523c5171d61e8327751128a33e4582423b84de52709ae"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -11539,22 +11555,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Area save with damage and frightened is data, but the restriction on reuse until its next turn needs a rule.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Area save with damage and frightened is data, but the restriction on reuse until its next turn needs a rule.",
-            "triaged": {
-              "by": "reader-fraif-004",
-              "at": "2026-11-21T19:58:32.671Z",
-              "confidence": 0.72,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -11564,11 +11574,19 @@
               "sha": "8612c61afb4f0e6069184f1f3ff733c4245ddf4674ec709e5a1e79684ad0f9d0"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "8612c61afb4f0e6069184f1f3ff733c4245ddf4674ec709e5a1e79684ad0f9d0"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -12097,22 +12115,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Area save with damage and frightened is data, but the restriction on reuse until its next turn needs a rule.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Area save with damage and frightened is data, but the restriction on reuse until its next turn needs a rule.",
-            "triaged": {
-              "by": "reader-fraif-004",
-              "at": "2026-11-21T19:58:32.671Z",
-              "confidence": 0.72,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.72,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -12122,11 +12134,19 @@
               "sha": "95f9322fdaa762856c4d241858ddb491282832285f4b8159cb58cd8681a01a90"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "95f9322fdaa762856c4d241858ddb491282832285f4b8159cb58cd8681a01a90"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -12558,22 +12578,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Halved speed, no reactions, one action type per turn, repeated save each turn and timed expiry: needs a rule.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:41.722Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Halved speed, no reactions, one action type per turn, repeated save each turn and timed expiry: needs a rule.",
-            "triaged": {
-              "by": "reader-fraif-004",
-              "at": "2026-11-21T19:58:32.671Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t004",
             "at": "2026-11-22T07:08:41.722Z",
@@ -12583,11 +12597,19 @@
               "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -14459,22 +14481,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Halved speed, no reactions, one action type per turn, repeated save each turn and timed expiry: needs a rule.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T07:08:42.842Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Halved speed, no reactions, one action type per turn, repeated save each turn and timed expiry: needs a rule.",
-            "triaged": {
-              "by": "reader-fraif-004",
-              "at": "2026-11-21T19:58:32.671Z",
-              "confidence": 0.9,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-fraif-004",
+          "at": "2026-11-21T19:58:32.671Z",
+          "confidence": 0.9,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-t005",
             "at": "2026-11-22T07:08:42.842Z",
@@ -14484,11 +14500,19 @@
               "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:22:05.788Z",
+              "confidence": 0.6,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "c916efe1236a623b7bfba7e6026a4057f7b07476eece0efd5fa8c4a7c29f914b"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {

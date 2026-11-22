@@ -318,3 +318,21 @@ it removes work; a result that names as missing something the engine or the item
 The book's monster `entry` records went from 816 to 720, and the drafts queue from 214 to 184. Drafters now get a monster
 feature only after a reread found it goes beyond the engine, with the missing expectations as a hint.
 
+# Rereads, second round and a correction to the stage (2026-11-22)
+
+The unsure rereads of the 2024 Monster Manual were read again by other readers, the three other books with official actor
+dumps were read, and every new "covered" went to a second blind reader. Readers kept answering "covered" at low confidence
+while saying that something was missing which the closed vocabulary could not state: the answer shape forced them. The stage
+now has a third answer ("something is missing that the vocabulary cannot say", with reasons from the one closed list that
+`leaves` also uses), and a second reread fails closed: anything but a confident agreement sends the verdict back to `entry`.
+The stored second rereads were applied again under that rule.
+
+| Monster features with an engine reading, after both rounds | XMM | FRAIF | EFA | XPHB |
+|---|---|---|---|---|
+| `core`: covered, confirmed by a second reader | 80 | 11 | 5 | 1 |
+| `core`, still waiting for its second reader | 4 | 0 | 0 | 0 |
+| `entry`, marked as going beyond the engine | 82 | 19 | 7 | 6 |
+
+In the Monster Manual the monster `entry` records went from 816 to 732. Of the features a first reader could not decide,
+51 of 62 stayed undecided with another reader: what is missing there has no word in the vocabulary yet.
+

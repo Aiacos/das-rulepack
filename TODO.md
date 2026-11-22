@@ -236,4 +236,8 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] Reread the monster features of the other books with official actor dumps (FRAIF 32, EFA 13, XPHB 7 with a reading).
 - [ ] Draft the 60 "beyond the engine" records as additions over the reading (most have a shared embedded id: they wait on
       upstream for a creature-scoped binding).
+- [x] Rereads, second round (2026-11-22): `core` confirmed for 80 XMM, 11 FRAIF, 5 EFA, 1 XPHB monster features; a second
+      reread now fails closed and a reader can answer "missing, but the vocabulary cannot say it".
+- [ ] 4 XMM provisional `core` wait for a second reader; 51 XMM rereads stay undecided (no word for what is missing).
+- [ ] Give drafters the `unexpressed` reasons of a reread, and count them: they rank the vocabulary to add.
 
