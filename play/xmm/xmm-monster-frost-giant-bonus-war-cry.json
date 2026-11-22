@@ -4,8 +4,10 @@
   "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5",
   "origin": "official",
   "client": "gm",
-  "manual": false,
-  "manualBecause": [],
+  "manual": true,
+  "manualBecause": [
+    "activity.heal"
+  ],
   "checks": 2,
   "setup": {
     "scene": "Arène des sorts",

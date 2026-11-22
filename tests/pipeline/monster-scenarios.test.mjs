@@ -120,6 +120,13 @@ describe("scenarioOf for a monster feature", () => {
       "expect.roll"]);
   });
 
+  it("a heal activity is played by hand (activity.heal): the runner makes no healing roll", () => {
+    const s = scenarioOf(monster(), { structure: structureFor({ type: "heal" }) });
+    expect(s.manual).toBe(true);
+    expect(s.manualBecause).toContain("activity.heal");
+    expect(scenarioOf(monster(), { structure: structureFor({ type: "save" }) }).manualBecause).not.toContain("activity.heal");
+  });
+
   it("a pull that cannot start within the activity's reach is setup.reach", () => {
     const pull = { given: { roll: "hit" }, expect: { move: { mode: "pull", distance: 25 } } };
     const r = monster({ entry: {}, assert: [pull] });

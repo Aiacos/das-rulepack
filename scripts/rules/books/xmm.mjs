@@ -202,7 +202,7 @@ export const RULES = book(BOOK, [
     "name": "Morningstar",
     "page": 116,
     "kind": "monster",
-    "status": "validated",
+    "status": "played",
     "handledIn": "table",
     "origin": "Ettin",
     "adds": "The marker placed by a hit expires when the target's following turn ends.",
