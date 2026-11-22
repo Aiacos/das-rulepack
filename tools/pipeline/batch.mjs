@@ -1,6 +1,8 @@
 // Batch files for reader agents. The tools never call a model: they cut the work into files and ingest what comes back.
 // Text is referenced by fingerprint (`textSha`), never embedded, so a batch file is safe to commit.
-import { groupBy, stateOf } from "./registry.mjs";
+import { groupBy, ruleFingerprint, stateOf } from "./registry.mjs";
+import { queueHolds } from "./review.mjs";
+import { MAX_WHY } from "./intake.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
 import { DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural } from "./draft-keys.mjs";
 import { assertShapes } from "./assert.mjs";
@@ -342,5 +344,74 @@ export function draftVocabulary(core) {
     limits: {
       addsMax: ADDS_MAX, originMax: ORIGIN_MAX, freeMax: assertVocabulary.FREE_MAX, quoteWords: 8, entryWords: ENTRY_WORD_BUDGET
     }
+  };
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------
+// Review batches (stage 5). A reviewer is blind to the draft: an entry is a triage entry (the record's facts, its matched
+// origins with their ids, the text fingerprint) plus `rule`, the fingerprint of the rule under review, which ties the answer
+// to that rule. Nothing of the drafted rule goes in: no entry, no assertion, no `adds`, no drafter handle, no triage `keys`.
+export const REVIEW_BATCH_SIZE = 30;
+
+/**
+ * Why a record that has a rule is not cut into a review batch, or null when it is: `no rule`, `legacy` (it leaves legacy
+ * through a person), `not gated (<state>)` (a rule the gates do not pass is not worth reviewing; a reviewed or played one is
+ * done), `queued` (an entry of review-queue.json about the rule as it is, review.mjs queueHolds: it waits for a person), `no
+ * drafted evidence` (a person's own rule), `no text`, `no assertion`.
+ */
+export function reviewSkipReason(r, { queue = [] } = {}) {
+  if (!r?.rule) return "no rule";
+  if (r.legacy === true) return "legacy";
+  const state = stateOf(r);
+  if (state !== "gated") return `not gated (${state})`;
+  if (queue.some((q) => q?.key === r.key && queueHolds(q, r))) return "queued";
+  if (r.evidence?.drafted === null || typeof r.evidence?.drafted !== "object") return "no drafted evidence";
+  if (!r.text) return "no text";
+  if (!Array.isArray(r.rule.assert) || !r.rule.assert.length) return "no assertion";
+  return null;
+}
+
+/**
+ * Review batches `{ id: "<book>-review-<NNN>", stage: "review", entries }`: the records reviewSkipReason accepts, per book,
+ * one kind per batch (kinds in DRAFT_KIND_ORDER), cut at `size` (Ruling R8: 30). `queue` is review-queue.json; `after` ({ book:
+ * highest number }) makes the numbering continue.
+ */
+export function cutReviewBatches(records, options = {}) {
+  const { size = REVIEW_BATCH_SIZE, kind, after = {}, queue = [] } = options;
+  const open = records.filter((r) => (!kind || r.kind === kind) && reviewSkipReason(r, { queue }) === null);
+  const rank = (k) => (DRAFT_KIND_ORDER.includes(k) ? DRAFT_KIND_ORDER.indexOf(k) : DRAFT_KIND_ORDER.length);
+  const batches = [];
+  const counts = new Map(Object.entries(after));
+  for (const [book, ofBook] of groupBy(open, (r) => r.book.toLowerCase())) {
+    const kinds = [...groupBy(ofBook, (r) => r.kind)].sort(([a], [b]) => rank(a) - rank(b) || (a < b ? -1 : a > b ? 1 : 0));
+    for (const [, ofKind] of kinds) {
+      for (let i = 0; i < ofKind.length; i += size) {
+        const n = (counts.get(book) ?? 0) + 1;
+        counts.set(book, n);
+        const id = `${book}-review-${String(n).padStart(3, "0")}`;
+        const entries = ofKind.slice(i, i + size).map((r) => ({ ...entryOf(r), rule: ruleFingerprint(r.rule) }));
+        batches.push({ id, stage: "review", entries });
+      }
+    }
+  }
+  return batches;
+}
+
+/** `<book>-review-report.json`: counts only, like the draft report (the batches, the entries cut, each reason left out). */
+export const reviewReport = (book, batches, leftOut) => ({
+  book, batches: batches.length, cut: batches.reduce((n, b) => n + b.entries.length, 0),
+  leftOut: Object.fromEntries(Object.entries(leftOut).sort())
+});
+
+/**
+ * What a reviewer may write (`review-vocabulary.json`): the assertion vocabulary of the drafter's (draftVocabulary) and the
+ * engine words it names, with the limits of its strings. No drafter key, no example rule: engine data only.
+ */
+export function reviewVocabulary(core) {
+  const { engine, assert, limits } = draftVocabulary(core);
+  const words = ["moments", "statuses", "creatureTypes", "moveModes", "effectEnds", "damageTypes"];
+  return {
+    engine: Object.fromEntries(words.map((w) => [w, engine[w]])), assert,
+    limits: { freeMax: limits.freeMax, quoteWords: limits.quoteWords, whyMax: MAX_WHY }
   };
 }
