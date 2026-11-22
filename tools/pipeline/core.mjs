@@ -1,6 +1,7 @@
 // Loads what the gates need from a clone of DAS · Core: the validator, the data-fix helpers, the fact names, the table of
 // identifiers the engine already has an entry for, those it handles outside the table (core-scan.mjs), its entry keys and its
-// vocabulary. Nothing here writes to the clone.
+// vocabulary; and (Ruling R30) the facts a condition may name with the subject and argument kind of each (core/recipes.mjs
+// FACTS) and the closed value lists of those arguments (FACT_ARG_OPTIONS). Nothing here writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -56,7 +57,7 @@ export function vocabularyOf(modules, facts) {
 export async function loadCore(dir) {
   const files = [
     "core/content.mjs", "core/content/enums.mjs", "core/triggers.mjs", "core/data-fixes.mjs", "content/index.mjs",
-    "adapter/facts.mjs", "core/eligibility.mjs", "core/monster-text.mjs", "../module.json"
+    "adapter/facts.mjs", "core/eligibility.mjs", "core/monster-text.mjs", "core/recipes.mjs", "../module.json"
   ];
   for (const f of files) {
     if (!existsSync(join(dir, "module", "scripts", f))) throw new Error(`DAS_CORE ${dir}: module/scripts/${f} is missing`);
@@ -104,6 +105,14 @@ export async function loadCore(dir) {
   if (!Array.isArray(enums.STEP_TYPES) || !enums.STEP_TYPES.length) {
     throw new Error(`DAS_CORE ${dir}: core/content/enums.mjs does not export STEP_TYPES`);
   }
+  // Ruling R30: the engine's condition facts (`{ subject, arg }` each) and the closed lists of their arguments.
+  const recipes = await load(dir, "core/recipes.mjs");
+  const factKinds = factKindsOf(recipes.FACTS);
+  const options = recipes.FACT_ARG_OPTIONS ?? {};
+  const argLists = { sizes: options.size, activityTypes: options.activityType, distanceUnits: options.units };
+  for (const [name, value] of Object.entries(argLists)) {
+    if (!Array.isArray(value) || !value.length) throw new Error(`DAS_CORE ${dir}: core/recipes.mjs does not give ${name}`);
+  }
   const moments = Object.keys(triggers.MOMENTS);
   const vocabulary = vocabularyOf([enums, triggers], facts);
 
@@ -137,6 +146,18 @@ export async function loadCore(dir) {
     get locate() { return scanned().locate; },
     stepTypes: [...enums.STEP_TYPES],
     creatureTypes: [...lists.creatureTypes], moveModes: [...lists.moveModes], effectEnds: [...lists.effectEnds],
-    damageTypes: [...lists.damageTypes], abilities: [...lists.abilities]
+    damageTypes: [...lists.damageTypes], abilities: [...lists.abilities],
+    factKinds, sizes: [...argLists.sizes], activityTypes: [...argLists.activityTypes], distanceUnits: [...argLists.distanceUnits]
   };
+}
+
+/** The engine's condition facts as `{ <fact>: { subject, arg } }` (core/recipes.mjs FACTS), frozen; throws when malformed. */
+export function factKindsOf(FACTS) {
+  if (!FACTS || typeof FACTS !== "object" || !Object.keys(FACTS).length) {
+    throw new Error("core/recipes.mjs does not export FACTS");
+  }
+  return Object.freeze(Object.fromEntries(Object.entries(FACTS).map(([name, f]) => {
+    if (typeof f?.subject !== "string" || typeof f?.arg !== "string") throw new Error(`core/recipes.mjs FACTS: ${name} malformed`);
+    return [name, Object.freeze({ subject: f.subject, arg: f.arg })];
+  })));
 }

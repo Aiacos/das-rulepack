@@ -6,7 +6,10 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { DEFINITIONS, DEFINITION_SOURCES, ENDS_EXAMPLES, definitionsFor, undefinedWords } from
   "../../tools/pipeline/definitions.mjs";
-import { AFFECTS, DENIES, FRACTIONS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON } from "../../tools/pipeline/assert.mjs";
+import {
+  ACTIVITY_GIVENS, AFFECTS, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, TARGET_HP
+} from "../../tools/pipeline/assert.mjs";
+import { DRAFT_FACTS } from "../../tools/pipeline/conditions.mjs";
 import { LEAVE_REASONS, TURN_ENDS } from "../../tools/pipeline/leaves.mjs";
 import { draftVocabulary, reviewVocabulary } from "../../tools/pipeline/batch.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
@@ -16,13 +19,16 @@ import { loadCore } from "../../tools/pipeline/core.mjs";
 const COMMITTED = {
   ends: ["casterTurnStart", "casterTurnEnd", "bearerTurnStart", "bearerTurnEnd", "currentTurnEnd"],
   moveMode: ["push", "pull", "random"],
+  // core/recipes.mjs FACT_ARG_OPTIONS.size (Ruling R30: `given.targetSizeAtMost`, the argument of target.sizeAtMost).
+  size: ["tiny", "sm", "med", "lg", "huge", "grg"],
   moment: ["isHit", "isDamaged", "leavesReach", "enemyDisengages", "enter", "turnStart", "turnEnd", "moves", "preDamageRoll",
     "hit", "failedSave", "savedSave", "startOfTurn", "endOfTurn", "originTurnStart", "preAttackRoll", "castsSpell", "isMissed",
     "enemyTurnEnd", "isTargeted", "isAttacked", "enemyAttacks", "allyAttacks", "gainsCondition", "allyIsHit", "allyIsDamaged",
     "enemyAttacked", "falls", "allyFalls", "savesAgainst", "inArea"]
 };
 const PACK = { roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON, rollFor: ROLL_FOR,
-  fraction: FRACTIONS.map(String), leavesBecause: LEAVE_REASONS };
+  fraction: FRACTIONS.map(String), leavesBecause: LEAVE_REASONS, given: GIVEN_FIELDS, targetHp: TARGET_HP,
+  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS) };
 
 const isDefinition = (d) => d === "unverified" || (d !== null && typeof d === "object" && Object.keys(d).length === 2
   && typeof d.means === "string" && /^[\x20-\x7e]{10,240}$/.test(d.means) && DEFINITION_SOURCES.includes(d.from));
@@ -96,5 +102,6 @@ describe.skipIf(!CORE)("definitions against the DAS_CORE clone", () => {
     expect([...TURN_ENDS].sort()).toEqual([...core.effectEnds].sort());
     expect([...core.moveModes].sort()).toEqual([...COMMITTED.moveMode].sort());
     expect([...core.moments].sort()).toEqual([...COMMITTED.moment].sort());
+    expect([...core.sizes]).toEqual(COMMITTED.size);
   });
 });

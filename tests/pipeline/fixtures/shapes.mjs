@@ -23,6 +23,13 @@ export function variants(d) {
     case "list": return variants(d.item).map((v) => [v]);
     case "idList": return [[d.ids === "effect" ? EFF : ACT]];
     case "idMap": return variants(d.value).map((v) => ({ [d.ids === "effect" ? EFF : ACT]: v }));
+    // A condition (Ruling R30): each fact alone with each of its argument's variants, and the first `max` facts together.
+    case "facts": {
+      const names = Object.keys(d.facts);
+      const alone = names.flatMap((name) => variants(d.facts[name]).map((v) => ({ [name]: v })));
+      const together = Object.fromEntries(names.slice(0, d.max).map((name) => [name, variants(d.facts[name])[0]]));
+      return [...alone, together];
+    }
     case "tagged":
       return Object.entries(d.variants).flatMap(([tag, o]) => variants(o).map((v) => ({ [d.tag]: tag, ...v })));
     case "object": {

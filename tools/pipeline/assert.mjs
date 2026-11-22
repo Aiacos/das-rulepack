@@ -8,6 +8,7 @@
 // (schema.mjs imports this module too: ORIGINS is read only when a list is checked, after both are loaded.)
 import { ORIGINS } from "./schema.mjs";
 import * as sh from "./shapes.mjs";
+import { HP_AT_MOST, WITHIN_FT, givensOfCondition } from "./conditions.mjs";
 
 export const FREE_MAX = 120;
 export const ROLLS = Object.freeze(["hit", "miss", "crit", "failedSave", "savedSave"]);
@@ -17,7 +18,15 @@ export const ROLL_ON = Object.freeze(["attack", "save", "check"]);
 export const ROLL_FOR = Object.freeze(["self", "target", "ally", "enemy"]);
 // Who an assertion is about (`expect.affects`), and who it leaves out (`expect.excludes`, the same words).
 export const AFFECTS = Object.freeze(["target", "allies", "enemies", "self"]);
-export const GIVEN_FIELDS = Object.freeze(["roll", "moment", "origin", "targetType", "free"]);
+// Ruling R30: the given fields that say a trigger's condition, one per allowed fact (conditions.mjs DRAFT_FACTS `given`):
+// `targetType` (target.creatureType) was there before; `targetHp` says target.bloodied or target.wounded, `activity` one of
+// activity.isAttack, isMelee, isWeapon, isSpell.
+export const TARGET_HP = Object.freeze(["bloodied", "wounded"]);
+export const ACTIVITY_GIVENS = Object.freeze(["attack", "melee", "weapon", "spell"]);
+export const CONDITION_GIVENS = Object.freeze(["targetSizeAtMost", "targetType", "targetStatus", "selfStatus", "targetWithin",
+  "targetHp", "targetHpAtMost", "onOwnTurn", "damageType", "activity"]);
+export const GIVEN_FIELDS = Object.freeze(["roll", "moment", "origin", "targetType", "free",
+  ...CONDITION_GIVENS.filter((f) => f !== "targetType")]);
 export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll", "affects", "excludes", "move", "uses", "denies",
   "free"]);
 // Fix round 1 of Ruling R25: `excludes` maps to no notion of the engine and pilot 3 used it two ways, so no agent may write it
@@ -95,9 +104,28 @@ export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS,
     if (has(given, "targetType")) {
       word(given.targetType, "creatureTypes", `${here}.given.targetType`, "a creature type of the engine");
     }
+    checkConditionGiven(given, `${here}.given`, { errors, word, oneOf });
     checkExpect(expect, `${here}.expect`, { errors, word, oneOf, vocabulary });
   });
   return errors;
+}
+
+// Ruling R30: the given fields of a trigger's condition, each of the type of the fact it mirrors.
+const inRange = (v, { min, max }) => Number.isInteger(v) && v >= min && v <= max;
+function checkConditionGiven(given, at, { errors, word, oneOf }) {
+  if (has(given, "targetSizeAtMost")) word(given.targetSizeAtMost, "sizes", `${at}.targetSizeAtMost`, "a size of the engine");
+  if (has(given, "targetStatus")) word(given.targetStatus, "statuses", `${at}.targetStatus`, "a status of the engine");
+  if (has(given, "selfStatus")) word(given.selfStatus, "statuses", `${at}.selfStatus`, "a status of the engine");
+  if (has(given, "damageType")) word(given.damageType, "damageTypes", `${at}.damageType`, "a damage type of the engine");
+  if (has(given, "targetWithin") && !inRange(given.targetWithin, WITHIN_FT)) {
+    errors.push(`${at}.targetWithin: must be an integer of feet from ${WITHIN_FT.min} to ${WITHIN_FT.max}`);
+  }
+  if (has(given, "targetHpAtMost") && !inRange(given.targetHpAtMost, HP_AT_MOST)) {
+    errors.push(`${at}.targetHpAtMost: must be an integer from ${HP_AT_MOST.min} to ${HP_AT_MOST.max}`);
+  }
+  if (has(given, "targetHp")) oneOf(given.targetHp, TARGET_HP, `${at}.targetHp`);
+  if (has(given, "activity")) oneOf(given.activity, ACTIVITY_GIVENS, `${at}.activity`);
+  if (has(given, "onOwnTurn") && given.onOwnTurn !== true) errors.push(`${at}.onOwnTurn: must be true`);
 }
 
 function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
@@ -254,28 +282,35 @@ const IMPLIED = {
   // The `status` and `move` steps on a roll moment (Ruling R24, fix round 1, L1); a `resave` through an effect: the effect
   // ends when its bearer saves, on the roll that applied it (`keep`: it stays, no word; `advantage`: no word). Any other step,
   // or a status or move on a moment that is no roll, has no word.
+  // Ruling R30: a declaration's condition (`if`) goes into the given of each assertion it implies (conditions.mjs
+  // givensOfCondition: one situation per alternative); a condition with a part that has no word makes the declaration imply
+  // nothing (never the assertion without its condition, which would say more than the trigger does) and unassertable.
   triggers: (v, entry, structure) => {
     const asserts = [];
     let unassertable = false;
     for (const d of asDeclarations(v)) {
+      const condition = givensOfCondition(isObject(d) && Object.hasOwn(d, "if") ? d.if : undefined);
+      if (condition.unassertable) { unassertable = true; continue; }
+      const own = [];
       const rolls = (Array.isArray(d?.on) ? d.on : [d?.on]).filter((on) => ROLLS.includes(on));
       for (const step of asSteps(d)) {
         if ((step?.type === "status" && isWord(step.status)) || (step?.type === "move" && isWord(step.mode))) {
           if (!rolls.length) unassertable = true;
           for (const roll of rolls) {
-            if (step.type === "status") asserts.push({ given: { roll }, expect: { condition: { applied: step.status } } });
+            if (step.type === "status") own.push({ given: { roll }, expect: { condition: { applied: step.status } } });
             else {
               // A step without a distance implies no distance: never an undefined field.
               const move = step.distance === undefined ? { mode: step.mode } : { mode: step.mode, distance: step.distance };
-              asserts.push({ given: { roll }, expect: { move } });
+              own.push({ given: { roll }, expect: { move } });
             }
           }
         } else if (step?.type === "resave" && isObject(step) && Object.keys(step).every((k) => k === "type")) {
           const from = isWord(d?.fromEffect) ? onEffect(d.fromEffect, entry, structure, { ends: "savedSave" })
             : [{ given: {}, expect: { ends: "savedSave" } }];
-          asserts.push(...from);
+          own.push(...from);
         } else unassertable = true;
       }
+      for (const a of own) for (const g of condition.givens) asserts.push({ given: { ...a.given, ...g }, expect: a.expect });
     }
     return { asserts, unassertable };
   },
@@ -410,7 +445,8 @@ export function assertionOfCanonical(canonical) {
       if (!isPlain(node)) return null;
     }
     const raw = pair.slice(i + 1);
-    node[path.at(-1)] = /^-?\d+(\.\d+)?$/.test(raw) ? Number(raw) : raw;
+    // `true` is the canonical spelling of a true given (Ruling R30: onOwnTurn); no field takes the word "true".
+    node[path.at(-1)] = /^-?\d+(\.\d+)?$/.test(raw) ? Number(raw) : raw === "true" ? true : raw;
   }
   return out;
 }
@@ -430,7 +466,12 @@ export function isCanonicalAssertion(c, vocabulary) {
 export const assertShapes = () => Object.freeze({
   given: Object.freeze({
     roll: sh.values(ROLLS), moment: sh.word("moments"), origin: sh.values(ORIGINS), targetType: sh.word("creatureTypes"),
-    free: Object.freeze({ type: "line", max: FREE_MAX })
+    free: Object.freeze({ type: "line", max: FREE_MAX }),
+    // Ruling R30: the situations a trigger's condition names.
+    targetSizeAtMost: sh.word("sizes"), targetStatus: sh.word("statuses"), selfStatus: sh.word("statuses"),
+    targetWithin: Object.freeze({ type: "number", ...WITHIN_FT, int: true, formula: false }), targetHp: sh.values(TARGET_HP),
+    targetHpAtMost: Object.freeze({ type: "number", ...HP_AT_MOST, int: true, formula: false }), onOwnTurn: sh.TRUE,
+    damageType: sh.word("damageTypes"), activity: sh.values(ACTIVITY_GIVENS)
   }),
   expect: Object.freeze({
     damage: sh.object({ fraction: sh.values(FRACTIONS) }, { type: sh.word("damageTypes") }),

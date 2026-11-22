@@ -257,16 +257,17 @@ describe("draftVocabulary: the type of every allowed fix path", () => {
 describe("draftVocabulary", () => {
   it("holds engine words only, whatever the records are", () => {
     const v = draftVocabulary(core);
-    expect(Object.keys(v).sort()).toEqual(["assert", "definitions", "draftKeys", "draftShapes", "endsExamples", "engine", "fixes",
-      "keyExamples", "leaves", "limits", "monsters"]);
+    expect(Object.keys(v).sort()).toEqual(["assert", "conditions", "definitions", "draftKeys", "draftShapes", "endsExamples",
+      "engine", "fixes", "keyExamples", "leaves", "limits", "monsters"]);
     expect(v.draftKeys.saveDamage).toEqual({ slot: "activityMap" });
     expect(v.engine).toMatchObject({ moments: ["failedSave"], stepTypes: ["status"], statuses: ["prone"], facts: ["actor.prone"] });
     expect(v.assert.rolls).toContain("failedSave");
     expect(v.limits).toMatchObject({ addsMax: 200, freeMax: 120, quoteWords: 8, entryWords: 60 });
     expect(Object.keys(v.fixes.paths).length).toBeGreaterThan(0);
     // The definitions are the pack's own, about engine words (the moment castsSpell included): nothing of the records.
+    // (Ruling R30: the engine's fact activity.isSpell is a word of the vocabulary, not the records' "Spell <n>".)
     const { definitions, ...rest } = v;
-    expect(JSON.stringify(rest)).not.toMatch(/tst|Spell|s1/);
+    expect(JSON.stringify(rest)).not.toMatch(/tst|Spell \d|s1/);
     expect(JSON.stringify(definitions)).not.toMatch(/tst|s1/);
   });
 });
