@@ -279,6 +279,19 @@ function exampleCandidates(records, { core, ruled = records, gated = standsGated
  * The canonical example of each drafter key: the shortest of DAS · Core's shipped entries that use it (ties: by identifier),
  * stripped to ids, engine words, formulas and numbers. `{ <key>: { identifier, entry } }`, only for the keys some entry uses.
  */
+// How a data fix is written (`fixes.shape`): the leaves of `fixes.paths.activity` go under their activity's own path, an
+// effect's under the effect's id; and three invented fixes the drafter check accepts (`fixes.examples`).
+export const FIX_SHAPE = Object.freeze({
+  activity: { path: "system.activities.<activity id>.<a leaf of paths.activity>", from: "the value today", value: "the new value" },
+  item: { path: "<a leaf of paths.item>", from: "the value today", value: "the new value" },
+  effect: { effect: "<effect id>", path: "<a leaf of paths.effect>", from: "the value today", value: "the new value" }
+});
+export const FIX_EXAMPLES = Object.freeze([
+  { path: "system.activities.Ac00Ac11Ac22Ac33.save.ability", from: [], value: ["wis"] },
+  { path: "system.target.affects.type", from: "object", value: "creature" },
+  { effect: "Ef00Ef11Ef22Ef33", path: "statuses", from: [], value: ["prone"] }
+]);
+
 export function keyExamplesOf(core) {
   const words = wordsOf(core);
   const stripped = Object.entries(core?.shipped ?? {}).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
@@ -446,7 +459,7 @@ export function draftVocabulary(core) {
     monsters: { origins: ["official"], uncovered: [{ origin: "ddb-importer", because: DDB_MONSTER_UNCOVERED }] },
     fixes: {
       paths: JSON.parse(JSON.stringify(FIX_PATHS)), enums: JSON.parse(JSON.stringify(FIX_ENUMS)), types: describeFixTypes(),
-      max: MAX_FIXES
+      max: MAX_FIXES, shape: JSON.parse(JSON.stringify(FIX_SHAPE)), examples: JSON.parse(JSON.stringify(FIX_EXAMPLES))
     },
     limits: {
       addsMax: ADDS_MAX, originMax: ORIGIN_MAX, freeMax: assertVocabulary.FREE_MAX, quoteWords: 8, entryWords: ENTRY_WORD_BUDGET

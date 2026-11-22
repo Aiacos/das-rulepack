@@ -843,7 +843,9 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 >
 > **Where the shapes are.** `draft-vocabulary.json` says how to write each value: `draftShapes.<key>` for a key of
 > `rule.entry`, `assert.shapes.given.<field>` and `assert.shapes.expect.<field>` for an assertion, `fixes.paths` and
-> `fixes.types` for `dataFixes`, `keyExamples.<key>` for a worked example of a key. The entry's `examples` are rules of the
+> `fixes.types` for `dataFixes` (`fixes.shape` says how a fix is written — an activity's leaf goes under
+> `system.activities.<activity id>.` — and `fixes.examples` shows three), `keyExamples.<key>` for a worked example of a
+> key. The entry's `examples` are rules of the
 > same kind. Write only what a shape allows.
 >
 > **What the words mean.** `definitions` in `draft-vocabulary.json` gives the meaning of every word of the closed lists you
