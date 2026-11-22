@@ -979,6 +979,25 @@ handle, confidence and kept `draft` are in neither the batch nor the structure f
 the record outside the queue). The batches keep the `-draft-` numbering, carry `reoffer: true`, and the report is
 `<book>-draft-reoffer-report.json`. They are ingested with `--draft --reoffer` only.
 
+`--redraft --against-reviews` (Ruling R41; `--against-reviews` without `--redraft`, or anywhere but `batch draft`, is a usage
+error) drafts again, once, the records whose review-queue entry holds two blind reviews that read the text alike against
+the draft: a second review (Ruling R40) marked `second: { agrees: false, result: "read", withFirst: true }`. A blind review
+says what the TEXT requires and never saw the draft, so both stay valid for any later draft of the same record while its text
+and matched item are unchanged. Only the records `against.mjs` `againstReviewsSkipReason` accepts are cut; every other
+`entry` record of the book is left out under one closed reason (`not in review-queue.json`, `other reason`: neither
+`disagreement` nor `low-confidence`, `no second review against the draft`, `redrafted against reviews`: the entry already
+carries the mark below, `owner`: as for a second review, `legacy`, `stale`: the entry is not about the rule as it is, `not
+an entry record`, `changed since the reviews`, `no text`). "Changed since the reviews" stands on the fingerprints the registry
+keeps on the record, since a queue entry stores none: the text's `text.sha256` (inventory dates `textChangedAt` and drops
+`evidence.gates` whenever it changes) and each matched item's `items[].data.sha256` (recorded per origin in
+`evidence.gates.items`; inventory drops the gate evidence when it changes, and the gates keep their `at` while nothing does):
+the record must have no `textChangedAt`, be `gated` (its gate evidence current, item fingerprints included) and its gate
+evidence must be dated no later than the second review (`evidence.gates.at` <= `second.at`). The entries are ordinary
+draft entries, blind: nothing of the old rule, of either review or of the queue entry (`reason`, `why`, handles,
+confidences) is in the batch or the structure file, and no rule of a record cut is offered as an example. The batches keep
+the `-draft-` numbering, carry `redraft: true, againstReviews: true`, and the report is
+`<book>-draft-against-reviews-report.json`. They are ingested with `--draft --redraft --against-reviews` only.
+
 `draft-vocabulary.json` also holds `draftShapes` (the value shape of every drafter key), `assert.shapes` (the value shape of
 every `given` and `expect` field), `fixes.types` (the type of every data-fix path) and `keyExamples` (the canonical example of
 each key: the shortest shipped entry that uses it), `definitions` (`tools/pipeline/definitions.mjs`: the meaning of each word
@@ -1603,6 +1622,39 @@ the one a person reads, and a reoffer is one extra chance, not a new reading of 
 changes, and the entry still waits for a person as before (a person settles it as any drafts-queue entry; a later plain
 draft result for it is still refused). It prints `{ applied, declined, marked, rejected }`.
 
+With `--redraft --against-reviews` (Ruling R41; a batch cut with `batch draft --redraft --against-reviews`, and only it: such
+a batch without the flag, or another batch with it, is refused, exit 2) the record's review-queue entry must still be one
+`againstReviewsSkipReason` accepts, decided on the registry and the queue as they are before any result is taken (otherwise
+`not redraftable against its reviews`), and the drafter must have signed neither review (case aside). Every draft check
+holds. A result that passes them all replaces the rule as `--redraft` does (from `withoutRule`, `evidence.drafted.redrafted:
+true`, so that no later `--redraft` discards it), then the new rule is compared, by the comparison a review ingest uses
+(`compareAsserts`, the official structure from the dumps for the baseline; no new tolerance), with the FIRST review as the
+entry stores it (`review.assert`, `confidence`, `by`) and with the SECOND (`second.assert`, `second.confidence`,
+`second.by`). Against each it stands `true` (it agrees and that reviewer's confidence is at least 0.7, the bar every review
+agreement meets), `"unsure"` (it agrees, the reviewer was below 0.7) or `false`.
+- Both `true`, and the draft not stamped for a person: **confirmed**. `evidence.reviewed = { by: <first reviewer>, at:
+  <ingest date>, agrees: true, rule, confidence: <first's>, tolerated?, via: "redraft-against-reviews", second: { by, at,
+  confidence, assert, tolerated? } }`: the first reviewer signs it (the entry's own reviewer, whose review anchored the
+  queue), `at` is when the agreement was found (the first review's own date is not stored), `tolerated` is what the
+  comparison with the first tolerated, and `second` keeps the second review as data (its handle, date and confidence, its
+  assertions as canonical strings, what its comparison tolerated): both reviews the rule is reviewed on, no prose. The
+  entry leaves `review-queue.json`; the record is `drafted` until `npm run gates` passes on the new rule, then `reviewed`
+  and shipped as any reviewed rule (`emissionOf`; a monster rule still goes through its reading). `docs/RULES.md` counts
+  such rules beside the second reviews (`books-progress.mjs` `againstReviews`).
+- Otherwise the new rule is **kept** and the entry stays queued, brought up to date so that it is about the rule as it is:
+  `draft` and `review` about the new rule (the first review compared with it), its `reason` the draft's stamp for a person
+  when it has one, else `disagreement` when either comparison differs, `free-text` when only a free text stands between
+  them, `low-confidence` when a reviewer was unsure; its `by`, `why`, `confidence` and `second` as they were (`second` is
+  the second review as it was taken: its `onlyDraft` / `onlyReview` are about the older draft); plus `redraftedAgainst: {
+  by, at, result: "compared", agreesFirst, agreesSecond }`.
+- A decline (`person`, `code`, `engine`), a clash or a low confidence, a rejected result, or a key the file does not answer:
+  the record and the entry stay exactly as they were, plus `redraftedAgainst: { by, at, result: "declined" | "rejected" |
+  "missing" }`. Nothing goes to `drafts-queue.json`.
+The mark is final: an entry that carries it is never cut by `--against-reviews` again. `review-queue.json` allows it beside a
+`second` mark only, with closed keys per result (`agreesFirst` and `agreesSecond` only with `compared`, never both `true`).
+It prints `{ applied, confirmed, confirmedExact, confirmedTolerated, partial, kept, declined, marked, regate, rejected }`;
+the books and the review queue are written in one step.
+
 It prints `{ applied, partial, queued, rejected }` (`partial`: the keys applied with `leaves`, Ruling R25, for the owner to
 read; with `--redraft` also `unruled`) and exits with 1 when anything was rejected. The touched books and the queue are
 written in one step (every file is checked first, then written under a temporary name and renamed over the old one,
@@ -1748,6 +1800,10 @@ as it is (`stale`), and the plain cut's own reasons (`legacy`, `not gated (<stat
   valid against the engine's words and canonical strings. A confirmed rule is `reviewed` and ships (`emissionOf`); a marked
   entry holds its rule under its reason as before. `docs/RULES.md` counts the shipped rules settled by a second review apart
   (`books-progress.mjs` `secondReviews`).
+- An entry marked `withFirst: true` (two reviewers against the draft) is open to a redraft against both reviews (Ruling R41:
+  `batch draft <BOOK> --redraft --against-reviews`, "Cut draft batches" and "Ingesting drafts"). The mark stores what that
+  comparison needs: the second review's assertions and confidence (`second.assert`, `second.confidence`) beside the first's
+  (`review.assert`, `confidence`).
 
 ### Second reading of the queue
 

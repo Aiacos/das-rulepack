@@ -340,5 +340,8 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Second review (R40) over the 41 disagreements: 4 confirmed and shipped, 12 with two reviewers against the draft, 23
       read three ways, 2 unsure. 53 rules ship.
 - [ ] The 12 rules with two reviewers against the draft: write them again from the two reviews' common reading.
+      Built 2026-11-22 (Ruling R41): `batch draft <BOOK> --redraft --against-reviews`, `ingest --draft --redraft
+      --against-reviews`, once, blind; confirmed when the new rule agrees with both stored reviews: XMM 11 in 1 batch,
+      FRAIF 1 (5 of the 12 have both reviewers at or above 0.7); run them.
 
 - [x] Four more plays recorded, among them the first rules bound to one creature by an actor.item source.

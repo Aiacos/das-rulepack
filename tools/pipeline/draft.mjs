@@ -12,6 +12,7 @@ import { identifierClashReasons, redraftable, reofferable } from "./batch.mjs";
 import { ACTOR_ITEM_REFUSED, DDB_MONSTER_UNCOVERED, SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, canonicalIdentifier, sharedEmbeddedId } from "./settle.mjs";
 import { isPartial } from "./leaves.mjs";
+import { againstMark, againstOutcome, redraftableAgainst } from "./against.mjs";
 import {
   QUEUE_THRESHOLD, cachedText, clip, clipEchoes, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
 } from "./intake.mjs";
@@ -99,18 +100,32 @@ export function unbackedProblems(rule, structure) {
 // Why a result cannot be taken at all (before its rule is looked at), or null. With `redraft` (Ruling R32) the record must
 // be redraftable (batch.mjs) instead of unruled. With `reoffer` (Ruling R39) its drafts-queue entry must be reofferable
 // (`reofferKeys`), and only then is a queued record taken.
-function resultProblem(record, result, { queuedKeys, offered, redraft, reviewQueued, readingOf, reoffer, reofferKeys }) {
+// With `againstReviews` (Ruling R41) its review-queue entry must be redraftable against its two reviews (`againstKeys`),
+// and the drafter must have signed neither review.
+function resultProblem(record, result, { queuedKeys, offered, redraft, reviewQueued, readingOf, reoffer, reofferKeys,
+  againstReviews, againstEntries, by }) {
   const extra = unknownFields(result, DRAFT_RESULT_FIELDS);
   if (extra.length) return `unknown field ${echo(extra[0])}`;
   if (!record) return `unknown key ${echo(result.key)}`;
   if (!offered.has(result.key)) return "not offered by this batch (its key is not an entry of the batch file)";
+  if (againstReviews) {
+    const entry = againstEntries.get(result.key);
+    if (!entry) {
+      return "not redraftable against its reviews (a review-queue entry two blind reviews read alike against the draft,"
+        + " text and item unchanged, redrafted once at most)";
+    }
+    const same = (h) => typeof h === "string" && h.toLowerCase() === by.toLowerCase();
+    if (same(entry.by) || same(entry.second?.by)) {
+      return "the drafter signed one of the two reviews (case aside): a redraft against them must be independent";
+    }
+  }
   if (reoffer && !reofferKeys.has(result.key)) {
     return "not reofferable (a drafts-queue entry a drafter declined, never an owner's, about an unruled entry record,"
       + " reoffered once at most)";
   }
   if (queuedKeys.has(result.key) && !reoffer) return "the record waits for a person in drafts-queue.json";
   if (record.legacy === true) return "legacy record: it leaves legacy through a person, never through a draft";
-  if (redraft && !redraftable(record, { draftsQueued: queuedKeys, reviewQueued, readingOf })) {
+  if (redraft && !againstReviews && !redraftable(record, { draftsQueued: queuedKeys, reviewQueued, readingOf })) {
     return "not redraftable (a monster rule held because it changes the engine's reading, outside the queues, redrafted"
       + " once at most)";
   }
@@ -245,13 +260,20 @@ function ruleProblems(candidate, { core, textDir }) {
  * queue); one that would be queued (a decline, a clash, a low confidence) is listed in `declined` and queues nothing; every
  * offered reofferable entry not applied (declined, rejected, or with no result in the file) comes back in `marked`, as it
  * was plus `reoffered: true`, for the caller to write over the old one.
+ * With `againstReviews` (Ruling R41; `redraft` and `owners` required, `reviewQueue`: review-queue.json) a result is taken
+ * only for a record whose review-queue entry against.mjs `redraftableAgainst` accepts, decided before any result is taken,
+ * from a drafter who signed neither review. One that passes every check replaces the rule as a redraft does (marked
+ * `redrafted: true`), then against.mjs againstOutcome compares it with both stored reviews: confirmed (`confirmed`, the
+ * record reviewed, the entry to leave the queue) or kept (`kept`, the entry brought up to date and marked). A decline, a
+ * clash or a low confidence (`declined`), a rejection or a key the file leaves out changes nothing but the entry's mark
+ * (`marked`, `redraftedAgainst: { by, at, result }`): one chance. Nothing goes to drafts-queue.json.
  * Any exception on one result becomes its rejection
  * (`internal: …`), never the file's. A rejection repeats at most 80 characters of any drafter string. Inputs unchanged.
  */
 export function ingestDrafts(records, results, options = {}) {
   const {
     textDir, by, at = new Date().toISOString(), core, queue = [], embedded, offered, structures = new Map(), redraft = false,
-    reviewQueued = new Set(), readingOf, reoffer = false, owners
+    reviewQueued = new Set(), readingOf, reoffer = false, owners, againstReviews = false, reviewQueue = []
   } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core.validateEntry !== "function") throw new TypeError("ingestDrafts needs core (loadCore)");
@@ -259,13 +281,20 @@ export function ingestDrafts(records, results, options = {}) {
   if (!(structures instanceof Map)) throw new TypeError("structures must be a Map of record key to the official structure");
   if (redraft && reoffer) throw new TypeError("ingestDrafts: redraft and reoffer cannot be ingested together");
   if (reoffer && !Array.isArray(owners)) throw new TypeError("ingestDrafts: a reoffer needs owners (docs/owners.json)");
+  if (againstReviews && !redraft) throw new TypeError("ingestDrafts: againstReviews is a redraft (redraft: true)");
+  if (againstReviews && !Array.isArray(owners)) {
+    throw new TypeError("ingestDrafts: againstReviews needs owners (docs/owners.json)");
+  }
   const out = structuredClone(records);
   const original = new Map(out.map((r) => [r.key, r]));
   // Ruling R39: decided on the records as they are before any result is taken.
   const reofferEntries = reoffer
     ? queue.filter((q) => offered.has(q?.key) && reofferable(q, original.get(q.key), { owners })) : [];
+  // Ruling R41: decided on the records and the review queue as they are before any result is taken.
+  const againstEntries = new Map(againstReviews ? reviewQueue
+    .filter((q) => offered.has(q?.key) && redraftableAgainst(q, original.get(q.key), { owners })).map((q) => [q.key, q]) : []);
   const context = {
-    reoffer, reofferKeys: new Set(reofferEntries.map((q) => q.key)),
+    reoffer, reofferKeys: new Set(reofferEntries.map((q) => q.key)), againstReviews, againstEntries,
     out, byKey: new Map(out.map((r) => [r.key, r])), queuedKeys: new Set(queue.map((q) => q?.key)), offered,
     textOf: cachedText(textDir), textDir, core, embedded, by, at, seen: new Set(), structures, redraft, reviewQueued, readingOf
   };
@@ -275,6 +304,9 @@ export function ingestDrafts(records, results, options = {}) {
   const rejected = [];
   const unruled = [];
   const declined = [];
+  const confirmed = [];
+  const kept = [];
+  const refused = new Set();
   for (const result of Array.isArray(results) ? results : []) {
     let outcome;
     // One result never aborts the file: anything unexpected is that result's rejection.
@@ -283,9 +315,12 @@ export function ingestDrafts(records, results, options = {}) {
       let key = null;
       try { key = typeof result?.key === "string" ? clip(result.key) : null; } catch { key = null; }
       rejected.push({ key, reason: clipEchoes(outcome.reject, result) });
+      if (!outcome.duplicate && typeof key === "string") refused.add(key);
       continue;
     }
     if (outcome.declined) declined.push(outcome.declined);
+    if (outcome.confirmed) confirmed.push(outcome.confirmed);
+    if (outcome.kept) kept.push(outcome.kept);
     if (outcome.queue) queued.push(outcome.queue);
     if (outcome.apply) {
       const { record, next } = outcome.apply;
@@ -300,6 +335,12 @@ export function ingestDrafts(records, results, options = {}) {
     }
   }
   // Ruling R39: every reoffered entry that did not become a rule stays as it was, marked so that it is offered once only.
+  if (againstReviews) {
+    // Ruling R41: every offered entry that took no new rule stays as it was, marked, so that it is offered once only.
+    const marked = [...againstEntries.values()].filter((q) => !applied.includes(q.key)).map((q) => againstMark(q, { by, at,
+      result: declined.includes(q.key) ? "declined" : refused.has(q.key) ? "rejected" : "missing" }));
+    return { records: out, applied, partial, queued, rejected, unruled, declined, confirmed, kept, marked };
+  }
   const marked = reofferEntries.filter((q) => !applied.includes(q.key)).map((q) => ({ ...structuredClone(q), reoffered: true }));
   return { records: out, applied, partial, queued, rejected, unruled, ...(reoffer ? { declined, marked } : {}) };
 }
@@ -327,11 +368,12 @@ function takeResult(result, ctx) {
   if (!isObject(result)) return { reject: "result must be an object" };
   const forbidden = forbiddenKeyIn(result);
   if (forbidden) return { reject: `a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden})` };
-  if (seen.has(result.key)) return { reject: "the key appears twice in this file" };
+  if (seen.has(result.key)) return { reject: "the key appears twice in this file", duplicate: true };
   seen.add(result.key);
   const record = byKey.get(result.key);
   const reason = resultProblem(record, result, { queuedKeys, offered, redraft, reviewQueued: ctx.reviewQueued,
-    readingOf: ctx.readingOf, reoffer: ctx.reoffer, reofferKeys: ctx.reofferKeys });
+    readingOf: ctx.readingOf, reoffer: ctx.reoffer, reofferKeys: ctx.reofferKeys, againstReviews: ctx.againstReviews,
+    againstEntries: ctx.againstEntries, by });
   if (reason) return { reject: reason };
   const text = textOf(record);
   if (text === null) return { reject: "no text in the cache: nothing to check the result against" };
@@ -339,7 +381,8 @@ function takeResult(result, ctx) {
   if (quoted) return { reject: quoted };
   const entry = (reasonOf, draft) => {
     // Ruling R39: a reoffer that goes to a person again queues nothing: the old entry is kept, marked (ingestDrafts).
-    if (ctx.reoffer) return { declined: result.key };
+    // Ruling R41: so does a redraft against two reviews: the record and its review-queue entry stay as they were.
+    if (ctx.reoffer || ctx.againstReviews) return { declined: result.key };
     const split = splitQuotation(result.why, draft, text);
     if (split) return { reject: split };
     const queued = { key: result.key, reason: reasonOf, by, why: result.why, confidence: result.confidence,
@@ -376,5 +419,13 @@ function takeResult(result, ctx) {
   const clash = identifierClashReasons(others, engineIdentifiers(core), { pending: new Set([result.key]) }).get(result.key);
   if (clash) return entry(clash, result.rule);
   if (result.confidence < QUEUE_THRESHOLD) return entry("low-confidence", result.rule);
+  if (ctx.againstReviews) {
+    // Ruling R41: the new rule against both stored reviews, compared as a review ingest compares.
+    const judged = againstOutcome(ctx.againstEntries.get(result.key), drafted.record,
+      { by, at, structure: ctx.structures.get(result.key) ?? null, text });
+    if (judged.reject) return { reject: judged.reject };
+    if (judged.confirm) return { apply: { record, next: judged.confirm }, confirmed: result.key };
+    return { apply: { record, next: drafted.record }, kept: judged.keep };
+  }
   return { apply: { record, next: drafted.record } };
 }

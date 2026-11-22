@@ -27,6 +27,7 @@ import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
 import { LEAVES_MAX, LEAVE_REASONS, UNEXPRESSED_MAX } from "./leaves.mjs";
 import { beyondOf } from "./reread.mjs";
 import { emissionOf } from "./generate.mjs";
+import { redraftableAgainst } from "./against.mjs";
 import * as sh from "./shapes.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
@@ -421,6 +422,9 @@ function whyFor(r, textOf, report) {
  * entries; no rule of a record cut is ever offered as an example (the drafter is blind to the rule it replaces).
  * With `reoffer` (Ruling R39), only the records reofferSkipReason accepts (`drafts`: the drafts-queue entries; `owners`: the
  * handles of docs/owners.json), in batches marked `reoffer: true`: ordinary entries, nothing of the decline in them.
+ * With `redraft` and `againstReviews` (Ruling R41), only the records whose review-queue entry (`reviewQueue`) against.mjs
+ * `redraftableAgainst` accepts (`owners` required), in batches marked `redraft: true, againstReviews: true`: ordinary
+ * entries, blind to the old rule, to both reviews and to the queue entry; no rule of a record cut is an example.
  * `queued` (keys of drafts-queue.json) are left out; `after` ({ book: highest number }) makes the numbering continue.
  * `embedded` (settle.mjs embeddedIndex of the package's actors) is required when a monster feature is among the records.
  * `textOf(record)` gives the cached text (the `why` of an entry is kept only when it does not quote it; `report.whyWithheld`
@@ -433,12 +437,16 @@ export function cutDraftBatches(records, options = {}) {
   const {
     size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded, textOf, report = {},
     clashes = new Map(), readingOf, redraft = false, reviewQueued = new Set(), currentReadingOf, reoffer = false, drafts = [],
-    owners
+    owners, againstReviews = false, reviewQueue = []
   } = options;
   if (redraft && reoffer) throw new TypeError("cutDraftBatches: redraft and reoffer cannot be cut together");
+  if (againstReviews && !redraft) throw new TypeError("cutDraftBatches: againstReviews is a redraft (redraft: true)");
+  if (againstReviews && !Array.isArray(owners)) throw new TypeError("cutDraftBatches: againstReviews needs owners");
+  const entryOfQueue = new Map(againstReviews ? reviewQueue.map((q) => [q?.key, q]) : []);
   const skip = { queued, embedded, clashes, readingOf, actorItem: core?.actorItemSources === true };
-  const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind) && (redraft
-    ? redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf })
+  const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind) && (againstReviews
+    ? redraftableAgainst(entryOfQueue.get(r.key), r, { owners })
+    : redraft ? redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf })
     : reoffer ? reofferSkipReason(r, { ...skip, drafts, owners }) === null
       : draftSkipReason(r, skip) === null));
   // A redraft is blind: the rules it replaces are no examples.
@@ -459,8 +467,8 @@ export function cutDraftBatches(records, options = {}) {
         const id = `${book}-draft-${String(n).padStart(3, "0")}`;
         const entries = sorted.slice(i, i + size)
           .map((r) => draftEntryOf(r, examplesFor(r, pool), whyFor(r, textOf, report)));
-        batches.push({ id, stage: "draft", ...(redraft ? { redraft: true } : {}), ...(reoffer ? { reoffer: true } : {}),
-          entries });
+        batches.push({ id, stage: "draft", ...(redraft ? { redraft: true } : {}),
+          ...(againstReviews ? { againstReviews: true } : {}), ...(reoffer ? { reoffer: true } : {}), entries });
       }
     }
   }

@@ -444,11 +444,23 @@ function checkEvidence(evidence, errors, legacy, verdict, why) {
   // `because`: the one line a person gives when they accept a review-queue entry (`review-accept`); a reviewer writes none.
   checkStamped(evidence, "reviewed", { by: isReaderHandle, at: isString, agrees: (v) => typeof v === "boolean", rule: isHex64,
     confidence }, { rule: legacy, confidence: legacy }, errors, { because: (v) => isPlainLine(v, 120), tolerated: isTolerated,
-    via: (v) => v === SECOND_REVIEW_VIA, first: isFirstReview });
+    via: (v) => REVIEWED_VIAS.includes(v), first: isFirstReview, second: isAgainstSecond });
   // Ruling R40: a rule settled by a second review says so (`via`) and keeps the first review it settled (`first`): together.
+  // Ruling R41: a rule redrafted against two reviews is reviewed by the first reviewer and keeps the second (`second`).
   const reviewed = evidence.reviewed;
-  if (isObject(reviewed) && has(reviewed, "via") !== has(reviewed, "first")) {
-    errors.push("evidence.reviewed: via and first go together (a rule settled by a second review, Ruling R40)");
+  if (isObject(reviewed)) {
+    if (has(reviewed, "first") !== (reviewed.via === SECOND_REVIEW_VIA)) {
+      errors.push(`evidence.reviewed: via ${SECOND_REVIEW_VIA} and first go together (a rule settled by a second review,`
+        + " Ruling R40)");
+    }
+    if (has(reviewed, "second") !== (reviewed.via === REDRAFT_AGAINST_VIA)) {
+      errors.push(`evidence.reviewed: via ${REDRAFT_AGAINST_VIA} and second go together (a rule redrafted against two`
+        + " reviews, Ruling R41)");
+    }
+    const sameHand = (a, b) => typeof a === "string" && typeof b === "string" && a.toLowerCase() === b.toLowerCase();
+    if (isObject(reviewed.second) && sameHand(reviewed.second.by, reviewed.by)) {
+      errors.push("evidence.reviewed.second.by: the second reviewer is not the first (case aside)");
+    }
   }
   // A play (Ruling R10; played.mjs): read from the runner's log, or recorded by an owner who played a checklist by hand
   // (`manual: true` with `by` and `because`, the only prose: part of `emits`, read by the text gate). Every other field has
@@ -499,6 +511,22 @@ const isFirstReview = (v) => isObject(v) && Object.keys(v).every((k) => FIRST_RE
   && FIRST_REVIEW_FIELDS.every((k) => Object.hasOwn(v, k)) && isReaderHandle(v.by)
   && typeof v.confidence === "number" && v.confidence >= 0 && v.confidence <= 1 && SECOND_REVIEWED_REASONS.includes(v.reason)
   && isCanonicalList(v.assert) && isCanonicalList(v.onlyDraft) && isCanonicalList(v.onlyReview);
+// Ruling R41: how evidence.reviewed says a rule redrafted against two blind reviews agreed with both (`via`), the first
+// reviewer signing it, and the second review beside it as data: its handle, date and confidence, its assertions as canonical
+// strings (never empty), and what its comparison with the rule tolerated (as `tolerated`), no prose.
+export const REDRAFT_AGAINST_VIA = "redraft-against-reviews";
+export const REVIEWED_VIAS = Object.freeze([SECOND_REVIEW_VIA, REDRAFT_AGAINST_VIA]);
+// What the mark of a redraft against two reviews that did not confirm the rule says of its result (a review-queue entry's
+// `redraftedAgainst.result`): a new rule compared with both reviews, a decline, a rejected answer, no answer.
+export const AGAINST_RESULTS = Object.freeze(["compared", "declined", "rejected", "missing"]);
+// How a compared new rule stands against one review (`agreesFirst`, `agreesSecond`): agreeing at or above the threshold
+// the reviewer's own confidence reaches, agreeing below it, or not agreeing.
+export const AGAINST_AGREES = Object.freeze([true, false, "unsure"]);
+const AGAINST_SECOND_FIELDS = ["by", "at", "confidence", "assert"];
+const isAgainstSecond = (v) => isObject(v) && Object.keys(v).every((k) => [...AGAINST_SECOND_FIELDS, "tolerated"].includes(k))
+  && AGAINST_SECOND_FIELDS.every((k) => Object.hasOwn(v, k)) && isReaderHandle(v.by) && isString(v.at)
+  && typeof v.confidence === "number" && v.confidence >= 0 && v.confidence <= 1 && isCanonicalList(v.assert)
+  && v.assert.length > 0 && (!Object.hasOwn(v, "tolerated") || isTolerated(v.tolerated));
 const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
 // The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
@@ -510,7 +538,8 @@ const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex charact
   "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]], left?: [[leaves, review]] } (Rulings R24,"
     + " R25), not all empty",
   "drafted.redrafted": "true (Ruling R32)",
-  "reviewed.via": `${SECOND_REVIEW_VIA} (Ruling R40)`,
+  "reviewed.via": `${SECOND_REVIEW_VIA} (Ruling R40) or ${REDRAFT_AGAINST_VIA} (Ruling R41)`,
+  "reviewed.second": "{ by, at, confidence, assert, tolerated? } (Ruling R41, canonical assertions, not empty)",
   "reviewed.first": "{ by, confidence, reason: disagreement or low-confidence, assert, onlyDraft, onlyReview } (Ruling R40,"
     + " canonical assertions)",
   "played.because": "one line of printable ASCII, at most 120 characters", "played.by": "an owner's handle, not an agent's",
