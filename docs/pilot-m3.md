@@ -382,3 +382,18 @@ What is still not statable among them: a trigger filter 12 (nearly all the same 
 hand, where "melee" can be said and "in hand" cannot, so readers left the whole limit unstated), no key 6, a follow-up action
 3, a target state 3, others 1 or 2. The size limit went from 11 to 1.
 
+# Redraft of the rules that changed the engine's reading (2026-11-22)
+
+Of the 25 monster rules held because they changed what the engine reads, 12 wait in the review queue and were left alone;
+the other 13 were drafted again, blind, as additions over the reading (`--redraft`, Ruling R32).
+
+| Outcome | Rules |
+|---|---|
+| Drafted again | 3 |
+| of which agreed by a blind review and shipped | 1 |
+| of which sent to the review queue (a disagreement, a trigger) | 2 |
+| Rule removed, to the drafts queue: the engine already does all the text asks | 7 |
+| Rule removed, to the drafts queue: would need to narrow the item's own effect | 3 |
+
+The pack ships 39 rules (24 older ones, 15 monster rules); 51 more are held.
+

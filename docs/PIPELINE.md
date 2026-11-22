@@ -43,9 +43,9 @@ excepted.
 | 2e | Cut reread batches | `npm run batch -- reread <BOOK> --out <dir> --structure <private dir> [--size 30] [--second \| --restate]` (see "Rereading monster features") | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
 | 2f | Reread a batch | (no command: a reread agent reads files, blind to every earlier verdict) | `RULEPACK_TEXT` | the Claude Code session, via reread agents |
 | 2g | Ingest rereads | `npm run ingest -- <results-file> --reread [--second \| --restate] --batch <batch file>` (see "Ingesting rereads") | `RULEPACK_TEXT`, `DAS_CORE`, `RULEPACK_DUMPS` | the Claude Code session |
-| 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
+| 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>] [--redraft]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
-| 3c | Ingest drafts | `npm run ingest -- <results-file> --draft --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
+| 3c | Ingest drafts | `npm run ingest -- <results-file> --draft [--redraft] --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 5a | Cut review batches | `npm run batch -- review <BOOK> --out <dir> --structure <private dir> [--size 30] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
 | 5b | Review a batch | (no command: a reviewer agent reads files, blind to the draft) | `RULEPACK_TEXT` | the Claude Code session, via reviewer agents |
@@ -750,6 +750,17 @@ withheld (counts only). It refuses, writing nothing, a book whose package has no
 and no actor in its dumps. The numbering continues after the highest `<book>-draft-<NNN>` among the batch files and the
 `<book>-draft-<NNN>.results.json` files of `<dir>`.
 
+`--redraft` (Ruling R32) drafts again, once, the monster rules that change the engine's reading: drafted before the drafter
+saw `engineReads` or could write trigger conditions, they drop or alter what the engine reads (a merged `triggers` replaces
+the engine's whole), and `emissionOf` holds them `engine-changes`. Only `redraftable` records are cut (`batch.mjs`: a
+monster feature, not legacy, with a rule held `engine-changes` under the reading computed now from `DAS_CORE` and the dumps,
+as `npm run gates` computes it; in neither `drafts-queue.json` nor `review-queue.json`; whose draft has no
+`evidence.drafted.redrafted: true`); every other `entry` record is left out as `not redraftable`. The entries are ordinary
+draft entries (`engineReads` in the structure file, read as for an unruled record; `beyondEngine` when a reread found it),
+blind to the rule they replace: nothing of it is in the batch, and no rule of a record cut is offered as an example. The
+batches keep the `-draft-` numbering, carry `redraft: true`, and the report is `<book>-draft-redraft-report.json`. They are
+ingested with `--draft --redraft` only (see "Ingesting drafts").
+
 `draft-vocabulary.json` also holds `draftShapes` (the value shape of every drafter key), `assert.shapes` (the value shape of
 every `given` and `expect` field), `fixes.types` (the type of every data-fix path) and `keyExamples` (the canonical example of
 each key: the shortest shipped entry that uses it), `definitions` (`tools/pipeline/definitions.mjs`: the meaning of each word
@@ -1160,8 +1171,20 @@ against the official item's structure (below). For each result:
   a person at review). Nothing else of the evidence changes. The
   state is `drafted`; `npm run gates` (local, with dumps and text) takes it to `gated` or prints why not.
 
+With `--redraft` (Ruling R32; a batch cut with `batch draft --redraft`, and only it: a redraft batch without the flag, or a
+plain one with it, is refused, exit 2) the record must still be `redraftable` (on the reading computed now; otherwise the
+result is rejected as `not redraftable`) instead of unruled, and every other check holds. An applied result replaces the
+rule: the record starts from what it was before any draft (`draft.mjs` `withoutRule`: no rule, none of `evidence.drafted`,
+`gates`, `reviewed`, `played`, `person` and `reading`, a monster feature's identifier and sources as for an unruled one),
+then takes the new rule as above, with `evidence.drafted.redrafted: true`. It is `drafted`: `npm run gates` computes its
+`evidence.reading` again, and `batch review` cuts it for a blind review, as any new draft. A result that goes to a person
+(an outcome `person`, `code` or `engine`, a clash, a low confidence) is queued exactly as above, and the old rule is removed
+the same way (listed in `unruled`: the queue alone would leave a rule known to change the engine's reading in place). A
+rejected result leaves the record as it was. A redrafted rule that still changes the reading stays held `engine-changes`,
+and the mark keeps the next `--redraft` from cutting it again.
+
 It prints `{ applied, partial, queued, rejected }` (`partial`: the keys applied with `leaves`, Ruling R25, for the owner to
-read) and exits with 1 when anything was rejected. The touched books and the queue are
+read; with `--redraft` also `unruled`) and exits with 1 when anything was rejected. The touched books and the queue are
 written in one step (every file is checked first, then written under a temporary name and renamed over the old one,
 `registry.mjs` `writeFilesAtomically`), as every `ingest` now does: an invalid book or queue, or a failing write, leaves
 every file as it was.

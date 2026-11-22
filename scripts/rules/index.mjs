@@ -39,6 +39,7 @@ export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as `sources`. */
 export const SOURCES = Object.freeze({
   "3YYshLRIcL7GvBG2": "xmm-graveyard-revenant-suffocate",
+  "BqtNDu2WFDju2dM6": "xmm-ancient-copper-dragon-slowing-breath",
   "Ml3peAqEgqgm95nj": "xmm-dracolich-terrifying-presence",
   "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
   "mmHasten00000000": "xmm-clay-golem-hasten",

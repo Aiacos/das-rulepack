@@ -24,6 +24,28 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-ancient-copper-dragon-slowing-breath",
+    "name": "Slowing Breath",
+    "page": 80,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Ancient Copper Dragon",
+    "adds": "The slowing effect from the breath lasts until the affected creature finishes its next turn.",
+    "entry": {
+      "effectEnds": {
+        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-chain-devil-unnerving-gaze",
     "name": "Unnerving Gaze",
     "page": 68,

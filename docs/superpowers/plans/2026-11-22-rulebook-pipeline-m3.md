@@ -362,6 +362,28 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   (c) the mark does not name the vocabulary it was judged against, so a reader cannot tell from the record alone which
   change it answered.
 
+- **R32 — a rule that changes the engine's reading is drafted again, once, blind, as an addition over the reading.** The 25
+  XMM monster rules held `engine-changes` (R29) were drafted before the drafter saw `engineReads` or could write a trigger
+  condition (R30): they drop or alter what the engine reads (a merged `triggers` replaces its whole list), and no cut ever
+  offered a ruled record to a drafter again. `batch draft --redraft` cuts the records `batch.mjs` `redraftable` accepts — a
+  monster feature, not legacy, with a rule `emissionOf` holds `engine-changes` under the reading computed now (as the gates
+  compute it), in neither drafts-queue.json nor review-queue.json, not yet redrafted — as ordinary draft entries
+  (`engineReads` read as for an unruled record, `beyondEngine` when a reread found it) in batches marked `redraft: true`;
+  the old rule is not shown, nor offered as an example. `ingest --draft --redraft` (refused on a batch without the mark,
+  and the mark refused without the flag) runs every draft check; an applied result starts from the record as it was before
+  any draft (no rule, no draft, gates, review, play, signature or reading evidence: the new rule is reviewed again, blind,
+  and `npm run gates` computes its reading), takes the new rule and marks `evidence.drafted.redrafted: true`. The mark sits
+  on the draft evidence, not in the rule: it says how the rule was drafted, it does not change the rule's fingerprint, what
+  is emitted or what a reviewer sees, and no drafter can write it (the result fields are closed). A result that goes to a
+  person is queued as any declined draft and removes the old rule too (the queue alone would leave in place a rule known to
+  change the engine's reading); a rejected one changes nothing. A redrafted rule that still changes the reading stays held,
+  and the mark keeps it from a second cut. *Cost if wrong:* (a) a redraft discards a rule a person may have accepted
+  (`review-accept`) or that only changed a key on purpose, and a declined redraft leaves the feature without any rule until
+  a person settles the queue entry; (b) the mark is one-shot: a redrafter who still drops a trigger leaves the rule held
+  for a person, never redrafted again without a new ruling; (c) the mark lives on `evidence.drafted`, so a record whose
+  redraft was declined carries none: drafted again later through the ordinary path, it could be redrafted once more;
+  (d) the cut decides on the reading of the engine the tools point at, so another release may count other records.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed

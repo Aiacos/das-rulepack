@@ -43,6 +43,7 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 | Rule | Kind | Page | What the module adds | Handled in | Status |
 |---|---|---|---|---|---|
 | Whirlwind (Air Elemental) | Monster feature | p.13 | A failed save also shoves the target 20 feet away from the elemental; a success halves the damage. Partial: 1 expectation left to the table (target-size 1). | table, partial | Validated |
+| Slowing Breath (Ancient Copper Dragon) | Monster feature | p.80 | The slowing effect from the breath lasts until the affected creature finishes its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
 | Unnerving Gaze (Chain Devil) | Monster feature | p.68 | The fear ends at the end of the turn it was imposed in. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (immunity-after-save 1, table-ruling 1). | table, partial | Validated |
 | Hasten (Clay Golem) | Monster feature | p.72 | After using it, the golem's movement provokes no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
 | Dreadful Howl (Dire Worg) | Monster feature | p.335 | The fear ends when the worg's following turn begins; a save halves the damage. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
@@ -61,9 +62,7 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 
 | Held rule | Kind | Page | Status |
 |---|---|---|---|
-| Slowing Breath (Ancient Copper Dragon) | Monster feature | p.80 | Held: changes the engine's reading: a person decides |
 | Feral Strike (Animal Lord) | Monster feature | p.15 | Held: the engine already does it |
-| Flame Whip (Balor) | Monster feature | p.26 | Held: changes the engine's reading: a person decides |
 | Death Throes (Balor) | Monster feature | p.26 | Held: review disagrees |
 | Horrify (Banshee) | Monster feature | p.29 | Held: the engine already does it |
 | Beard (Bearded Devil) | Monster feature | p.33 | Held: the engine already does it |
@@ -76,17 +75,14 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Grave-Dust Flight (Demilich) | Monster feature | p.96 | Held: the engine already does it |
 | Create Whirlwind (Djinni) | Monster feature | p.99 | Held: changes the engine's reading: a person decides |
 | Unsettling Visage (Doppelganger) | Monster feature | p.100 | Held: changes the engine's reading: a person decides |
-| Fetid Cloud (Dretch) | Monster feature | p.103 | Held: changes the engine's reading: a person decides |
 | Rumbling Movement (Elemental Cataclysm) | Monster feature | p.111 | Held: the engine already does it |
 | Hammer Throw (Fire Giant) | Monster feature | p.119 | Held: the engine already does it |
 | Claw (Ghast Gravecaller) | Monster feature | p.130 | Held: the engine already does it |
 | Claw (Ghast) | Monster feature | p.130 | Held: review disagrees |
 | Horrific Visage (Ghost) | Monster feature | p.131 | Held: the engine already does it |
 | Claw (Ghoul) | Monster feature | p.132 | Held: review disagrees |
-| Boulder Toss (Giant Ape) | Monster feature | p.354 | Held: changes the engine's reading: a person decides |
-| Draconic Strike (Githyanki Dracomancer) | Monster feature | p.135 | Held: changes the engine's reading: a person decides |
+| Draconic Strike (Githyanki Dracomancer) | Monster feature | p.135 | Held: review disagrees |
 | Psychic Warp (Githzerai Psion) | Monster feature | p.137 | Held: review disagrees |
-| Brutal Gore (Goristro) | Monster feature | p.150 | Held: changes the engine's reading: a person decides |
 | Haunting Glare (Graveyard Revenant) | Monster feature | p.260 | Held: changes the engine's reading: a person decides |
 | Chaos Claw (Gray Slaad) | Monster feature | p.286 | Held: reviewer unsure |
 | Chaos Staff (Green Slaad) | Monster feature | p.286 | Held: reviewer unsure |
@@ -97,10 +93,6 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Watery Rush (Lacedon Ghoul) | Monster feature | p.132 | Held: the engine already does it |
 | Paralyzing Touch (Lich) | Monster feature | p.196 | Held: the engine already does it |
 | Sickening Vapors (Manes Vaporspawn) | Monster feature | p.201 | Held: the engine already does it |
-| Water Jet (Marid) | Monster feature | p.203 | Held: changes the engine's reading: a person decides |
-| Aquatic Burst (Merfolk Wavebender) | Monster feature | p.209 | Held: changes the engine's reading: a person decides |
-| Watery Rebuke (Merfolk Wavebender) | Monster feature | p.209 | Held: changes the engine's reading: a person decides |
-| Harpoon (Merrow) | Monster feature | p.210 | Held: changes the engine's reading: a person decides |
 | Paralysis Gas (Modron Pentadrone) | Monster feature | p.218 | Held: changes the engine's reading: a person decides |
 | Tentacle Slam (Otyugh) | Monster feature | p.233 | Held: review disagrees |
 | Scare (Quasit) | Monster feature | p.252 | Held: changes the engine's reading: a person decides |
@@ -108,15 +100,13 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 | Swoop (Roc) | Monster feature | p.261 | Held: the engine already does it |
 | Blazing Movement (Salamander Inferno Master) | Monster feature | p.267 | Held: the engine already does it |
 | Vile Appearance (Sea Hag) | Monster feature | p.271 | Held: changes the engine's reading: a person decides |
-| Charged Tendril (Shambling Mound) | Monster feature | p.276 | Held: changes the engine's reading: a person decides |
 | Protection (Shield Guardian) | Monster feature | p.277 | Held: review disagrees |
 | Cinder Breath (Smoke Mephit) | Monster feature | p.208 | Held: the engine already does it |
 | Spell Reflection (Spectator) | Monster feature | p.289 | Held: the engine already does it |
 | Mind-Rending Roar (Sphinx of Lore) | Monster feature | p.293 | Held: the engine already does it |
 | Fetid Aura (Swarm of Dretches) | Monster feature | p.104 | Held: changes the engine's reading: a person decides |
 | Cacophony (Swarm of Ravens) | Monster feature | p.371 | Held: the engine already does it |
-| Warhammer (Tough Boss) | Monster feature | p.307 | Held: changes the engine's reading: a person decides |
-| Grasping Root (Tree Blight) | Monster feature | p.44 | Held: changes the engine's reading: a person decides |
+| Grasping Root (Tree Blight) | Monster feature | p.44 | Held: its identifier would drop engine behaviour |
 | Charging Horn (Unicorn) | Monster feature | p.313 | Held: the engine already does it |
 | Spores (Vrock) | Monster feature | p.319 | Held: changes the engine's reading: a person decides |
 | Stunning Screech (Vrock) | Monster feature | p.319 | Held: the engine already does it |
@@ -175,7 +165,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-38 rules: 16 played, 22 validated. 6 of them reviewed with Ruling R24 tolerances (not an exact agreement). 12 of them partial (part of the entry left to the table). 62 more held for a person, not shipped (changes the engine's reading: a person decides 25, the engine already does it 29, review disagrees 6, reviewer unsure 2).
+39 rules: 16 played, 23 validated. 6 of them reviewed with Ruling R24 tolerances (not an exact agreement). 12 of them partial (part of the entry left to the table). 51 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 7, reviewer unsure 2).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

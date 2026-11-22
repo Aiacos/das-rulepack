@@ -91,6 +91,13 @@
     "confidence": 0.85
   },
   {
+    "key": "xmm:monster:balor/action/flame-whip",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "engine reads the size-limited pull; the prone rides the item's effect with no size bound, which no monster key may narrow (data problem)",
+    "confidence": 0.75
+  },
+  {
     "key": "xmm:monster:balor/action/lightning-blade",
     "reason": "low-confidence",
     "by": "drafter-q001",
@@ -472,6 +479,13 @@
     "confidence": 0.75
   },
   {
+    "key": "xmm:monster:dretch/action/fetid-cloud",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "the engine already reads it: poison from the data, its ending, lost reactions and the one-action limit from the reading",
+    "confidence": 0.85
+  },
+  {
     "key": "xmm:monster:earth-elemental/action/rock-launch",
     "reason": "person",
     "by": "drafter-v003",
@@ -640,6 +654,13 @@
     "confidence": 0.8
   },
   {
+    "key": "xmm:monster:giant-ape/action/boulder-toss",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "the engine already reads it: save and half damage are data, the size-limited fall is in the reading",
+    "confidence": 0.9
+  },
+  {
     "key": "xmm:monster:giant-axe-beak/action/sharpened-beak",
     "reason": "person",
     "by": "drafter-v005",
@@ -750,6 +771,13 @@
     "by": "drafter-v006",
     "why": "outcome depends on the margin of failure and the resave happens once: no key",
     "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:goristro/action/brutal-gore",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "engine reads the size-limited push; the prone rides the item's effect with no size bound, which no monster key may narrow (data problem)",
+    "confidence": 0.75
   },
   {
     "key": "xmm:monster:gulthias-blight/action/life-draining-root",
@@ -899,6 +927,13 @@
     "confidence": 0.9
   },
   {
+    "key": "xmm:monster:marid/action/water-jet",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "engine reads the size-limited push; the prone rides the item's effect with no size bound, which no monster key may narrow (data problem)",
+    "confidence": 0.75
+  },
+  {
     "key": "xmm:monster:marilith/reaction/parry",
     "reason": "person",
     "by": "drafter-v008",
@@ -911,6 +946,27 @@
     "by": "drafter-v008",
     "why": "one reaction allowed on each turn instead of per round; the engine has no such allowance",
     "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:merfolk-wavebender/action/aquatic-burst",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "the engine already reads it: damage is data, the fall of large or smaller targets is in the reading",
+    "confidence": 0.9
+  },
+  {
+    "key": "xmm:monster:merfolk-wavebender/reaction/watery-rebuke",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "the engine already reads it: the save and damage are data, the size-limited shove is in the reading; the reaction cue is the table's",
+    "confidence": 0.8
+  },
+  {
+    "key": "xmm:monster:merrow/action/harpoon",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "the engine already reads it: damage is data, the size-limited pull on a hit is in the reading",
+    "confidence": 0.9
   },
   {
     "key": "xmm:monster:mimic/trait/adhesive-object-form-only",
@@ -1116,6 +1172,13 @@
     "confidence": 0.8
   },
   {
+    "key": "xmm:monster:shambling-mound/action/charged-tendril",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "the engine already reads it: both damage parts are data, the size-limited pull on a hit is in the reading",
+    "confidence": 0.9
+  },
+  {
     "key": "xmm:monster:shield-guardian/trait/bound",
     "reason": "person",
     "by": "drafter-v010",
@@ -1251,6 +1314,13 @@
     "by": "drafter-v012",
     "why": "doubled damage against objects and structures: no key multiplies damage by target kind",
     "confidence": 0.85
+  },
+  {
+    "key": "xmm:monster:tough-boss/action/warhammer",
+    "reason": "person",
+    "by": "drafter-r001",
+    "why": "the engine already reads it: damage is data, the size-limited shove on a hit is in the reading",
+    "confidence": 0.9
   },
   {
     "key": "xmm:monster:treant/action/animate-trees",

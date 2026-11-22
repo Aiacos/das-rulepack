@@ -10757,40 +10757,31 @@
           "similar": []
         },
         "drafted": {
-          "by": "drafter-q001",
-          "at": "2026-11-22T04:16:02.532Z",
-          "core": "0.289.0",
-          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98"
-        },
-        "reviewed": {
-          "by": "reviewer-q001",
-          "at": "2026-11-22T04:19:43.298Z",
-          "agrees": true,
-          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
-          "confidence": 0.8
+          "by": "drafter-r001",
+          "at": "2026-11-22T08:48:03.266Z",
+          "core": "0.290.0",
+          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.157Z",
+          "at": "2026-11-22T08:48:14.070Z",
           "core": "0.290.0",
-          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
+          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
           "item": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a",
           "delta": [
             "effectEnds"
           ],
           "same": [],
-          "changes": [
-            "actionOrBonus",
-            "noReactions"
-          ],
+          "changes": [],
           "triggers": "none",
           "original": "slowing-breath",
           "carried": [],
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.295Z",
+          "at": "2026-11-22T08:48:14.071Z",
           "core": "0.290.0",
-          "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
+          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
           "emits": "0bdca73972d5d791ec5d3e61d82b1d34877e9df19038231b8a423c14a7e29b81",
           "passed": [
             "schema",
@@ -10803,6 +10794,13 @@
           "items": {
             "official": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a"
           }
+        },
+        "reviewed": {
+          "by": "reviewer-r001",
+          "at": "2026-11-22T08:49:35.429Z",
+          "agrees": true,
+          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
+          "confidence": 0.8
         }
       },
       "why": "Data halves speed only; text also bars reactions and limits to one action or bonus action until end of next turn",
@@ -10811,14 +10809,8 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "Failing creatures lose reactions and get only an action or a bonus action, through the end of their next turn.",
+        "adds": "The slowing effect from the breath lasts until the affected creature finishes its next turn.",
         "entry": {
-          "noReactions": [
-            "ztGUDHGfoUxlUY53"
-          ],
-          "actionOrBonus": [
-            "ztGUDHGfoUxlUY53"
-          ],
           "effectEnds": {
             "ztGUDHGfoUxlUY53": "bearerTurnEnd"
           }
@@ -10827,22 +10819,6 @@
           "official"
         ],
         "assert": [
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "denies": "reactions"
-            }
-          },
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "denies": "actionAndBonus"
-            }
-          },
           {
             "given": {
               "roll": "failedSave"
@@ -19495,7 +19471,7 @@
       "edition": "2024",
       "owner": "Balor",
       "section": "action",
-      "identifier": "xmm-balor-flame-whip",
+      "identifier": "flame-whip",
       "page": 26,
       "srd": true,
       "text": {
@@ -19532,8 +19508,7 @@
           ],
           "data": {
             "sha256": "840961bf7890a98d1eed8fa81dc8abc6b0753081a2a0fee0e52942897711b29d"
-          },
-          "identifierDiffers": true
+          }
         },
         {
           "origin": "plutonium",
@@ -19548,116 +19523,10 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-q001",
-          "at": "2026-11-22T04:16:02.532Z",
-          "core": "0.289.0",
-          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e"
-        },
-        "reviewed": {
-          "by": "reviewer-q001",
-          "at": "2026-11-22T04:19:43.298Z",
-          "agrees": true,
-          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
-          "confidence": 0.85
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.169Z",
-          "core": "0.290.0",
-          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
-          "item": "5852337695aa2a0f4cb0659bba364b870e1da6459f8f24147199350df68870da",
-          "delta": [],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "flame-whip",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.305Z",
-          "core": "0.290.0",
-          "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
-          "emits": "85fa4f59b3173a39998063e214d9579e3b711a7253fbaec4d0d7dc08054f9a31",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "5852337695aa2a0f4cb0659bba364b870e1da6459f8f24147199350df68870da"
-          }
         }
       },
       "why": "Pull up to 25 feet and prone, limited to Huge or smaller targets; data has only the prone effect.",
-      "sources": {
-        "mmFlameWhip00000": "xmm-balor-flame-whip"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A hit drags the target 25 feet toward the balor.",
-        "entry": {
-          "triggers": [
-            {
-              "on": "hit",
-              "do": [
-                {
-                  "type": "move",
-                  "mode": "pull",
-                  "distance": 25,
-                  "units": "ft"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "move": {
-                "mode": "pull",
-                "distance": 25
-              }
-            }
-          },
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "condition": {
-                "applied": "prone"
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Balor"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:balor/action/lightning-blade",
@@ -45335,7 +45204,7 @@
       "edition": "2024",
       "owner": "Dretch",
       "section": "action",
-      "identifier": "xmm-dretch-fetid-cloud",
+      "identifier": "fetid-cloud",
       "page": 103,
       "srd": true,
       "text": {
@@ -45372,8 +45241,7 @@
           ],
           "data": {
             "sha256": "290326a35114416a0085162d5eb6c450321082d1446d0e779c25213c3300608d"
-          },
-          "identifierDiffers": true
+          }
         },
         {
           "origin": "plutonium",
@@ -45388,123 +45256,11 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v003",
-          "at": "2026-11-22T04:26:31.984Z",
-          "core": "0.289.0",
-          "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9"
-        },
-        "reviewed": {
-          "by": "reviewer-v001",
-          "at": "2026-11-22T04:29:59.513Z",
-          "agrees": true,
-          "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
-          "confidence": 0.85
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.214Z",
-          "core": "0.290.0",
-          "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
-          "item": "d3f50d321f27f050385607bced4c43e8baaa12a464b0686a10597b5bcb924fa2",
-          "delta": [],
-          "same": [
-            "effectEnds"
-          ],
-          "changes": [
-            "actionOrBonus",
-            "noReactions"
-          ],
-          "triggers": "none",
-          "original": "fetid-cloud",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.338Z",
-          "core": "0.290.0",
-          "rule": "647da00d949d5e04701acbd88accd3a5ef875a71091ff73981ce5bcc6c3938f9",
-          "emits": "356c19f107234ea483cbea8953c3625f6c131855aef31a3ace87dfe359bc6301",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "d3f50d321f27f050385607bced4c43e8baaa12a464b0686a10597b5bcb924fa2"
-          }
         }
       },
       "hint": "core-generic",
       "why": "Poisoned variant limits the target to an action or bonus action and no reactions; data has plain Poisoned.",
-      "sources": {
-        "mmFetidCloud0000": "xmm-dretch-fetid-cloud"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "The poison ends when the target's following turn ends and limits what it can do meanwhile.",
-        "entry": {
-          "effectEnds": {
-            "IqfKmepxiah2U3YT": "bearerTurnEnd"
-          },
-          "noReactions": [
-            "IqfKmepxiah2U3YT"
-          ],
-          "actionOrBonus": [
-            "IqfKmepxiah2U3YT"
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "condition": {
-                "applied": "poisoned"
-              }
-            }
-          },
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "ends": "bearerTurnEnd"
-            }
-          },
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "denies": "reactions"
-            }
-          },
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "denies": "actionAndBonus"
-            }
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Dretch"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:dretch/action/rend",
@@ -57024,7 +56780,7 @@
       "edition": "2024",
       "owner": "Giant Ape",
       "section": "action",
-      "identifier": "xmm-giant-ape-boulder-toss",
+      "identifier": "boulder-toss",
       "page": 354,
       "srd": true,
       "text": {
@@ -57062,8 +56818,7 @@
           },
           "differences": [
             "statuses"
-          ],
-          "identifierDiffers": true
+          ]
         },
         {
           "origin": "plutonium",
@@ -57078,127 +56833,10 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v005",
-          "at": "2026-11-22T04:26:37.731Z",
-          "core": "0.289.0",
-          "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de"
-        },
-        "reviewed": {
-          "by": "reviewer-v001",
-          "at": "2026-11-22T04:29:59.513Z",
-          "agrees": true,
-          "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
-          "confidence": 0.75,
-          "tolerated": {
-            "baseline": [],
-            "detail": [
-              [
-                "expect.damage.fraction=0.5;expect.damage.type=bludgeoning;given.roll=savedSave",
-                "expect.damage.fraction=0.5;given.roll=savedSave"
-              ]
-            ]
-          }
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.239Z",
-          "core": "0.290.0",
-          "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
-          "item": "7e3f9e72a420e8007cb46d1a16803c515cf020d0093929939d406dff849dada2",
-          "delta": [
-            "saveDamage"
-          ],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "boulder-toss",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.352Z",
-          "core": "0.290.0",
-          "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
-          "emits": "7e4ac2fe468965dfd72941f05b92ca20cf236c3801dec60f3d2388017fcb7bf6",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "7e3f9e72a420e8007cb46d1a16803c515cf020d0093929939d406dff849dada2"
-          }
         }
       },
       "why": "Recharge area save; prone only for Large or smaller targets; data lacks the size limit.",
-      "sources": {
-        "mmBoulderToss000": "xmm-giant-ape-boulder-toss"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "Creatures that fail the save are knocked prone; a success halves the damage.",
-        "entry": {
-          "saveDamage": {
-            "jpC3fk7LJlhH4CDr": "half"
-          },
-          "triggers": [
-            {
-              "on": "failedSave",
-              "do": [
-                {
-                  "type": "status",
-                  "status": "prone"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "condition": {
-                "applied": "prone"
-              }
-            }
-          },
-          {
-            "given": {
-              "roll": "savedSave"
-            },
-            "expect": {
-              "damage": {
-                "fraction": 0.5
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Giant Ape"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:giant-ape/action/fist",
@@ -62228,30 +61866,22 @@
           "similar": []
         },
         "drafted": {
-          "by": "drafter-v005",
-          "at": "2026-11-22T04:26:37.731Z",
-          "core": "0.289.0",
-          "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62"
-        },
-        "reviewed": {
-          "by": "reviewer-v001",
-          "at": "2026-11-22T04:29:59.513Z",
-          "agrees": true,
-          "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
-          "confidence": 0.85
+          "by": "drafter-r001",
+          "at": "2026-11-22T08:48:03.266Z",
+          "core": "0.290.0",
+          "rule": "7a60aadf29baa35933881e87384daac2157cc8ec131c24a54bd2502b5606c7aa",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.243Z",
+          "at": "2026-11-22T08:48:14.212Z",
           "core": "0.290.0",
-          "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
+          "rule": "7a60aadf29baa35933881e87384daac2157cc8ec131c24a54bd2502b5606c7aa",
           "item": "eda43c12d0da79d2083b0e264d8182362423209f4ac33a280ba0d70c7785b450",
           "delta": [
             "effectStatuses"
           ],
           "same": [],
-          "changes": [
-            "effectEnds"
-          ],
+          "changes": [],
           "triggers": "none",
           "original": "draconic-strike",
           "carried": [
@@ -62260,9 +61890,9 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.355Z",
+          "at": "2026-11-22T08:48:14.212Z",
           "core": "0.290.0",
-          "rule": "9332198dd382c155c60134b52d2c539a28bd8ead5799dc747e97f27212d35f62",
+          "rule": "7a60aadf29baa35933881e87384daac2157cc8ec131c24a54bd2502b5606c7aa",
           "emits": "4c66a0bbeac820a554fa39f3d85194d1505748ae61ff9a936ecaebd898b810a8",
           "passed": [
             "schema",
@@ -62284,7 +61914,7 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "A hit leaves the target frightened, not prone, until the attacker starts its following turn.",
+        "adds": "The effect placed on a hit frightens the target instead of knocking it down.",
         "entry": {
           "effectStatuses": {
             "3EaKpE9izXLyKuZ0": {
@@ -62292,9 +61922,6 @@
                 "frightened"
               ]
             }
-          },
-          "effectEnds": {
-            "3EaKpE9izXLyKuZ0": "casterTurnStart"
           }
         },
         "origins": [
@@ -62310,33 +61937,11 @@
                 "applied": "frightened"
               }
             }
-          },
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "ends": "casterTurnStart"
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "damage": {
-                "fraction": 1,
-                "type": "slashing"
-              }
-            },
-            "because": "no-key"
           }
         ],
         "origin": "Githyanki Dracomancer"
       },
-      "state": "reviewed"
+      "state": "gated"
     },
     {
       "key": "xmm:monster:githyanki-dracomancer/action/multiattack",
@@ -66874,7 +66479,7 @@
       "edition": "2024",
       "owner": "Goristro",
       "section": "action",
-      "identifier": "xmm-goristro-brutal-gore",
+      "identifier": "brutal-gore",
       "page": 150,
       "srd": false,
       "text": {
@@ -66911,8 +66516,7 @@
           ],
           "data": {
             "sha256": "b4b70f164696f577502bdb5f05a8941296afef1f8fe9aa88b4a4ffc6dc4ed590"
-          },
-          "identifierDiffers": true
+          }
         },
         {
           "origin": "plutonium",
@@ -66927,116 +66531,10 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v006",
-          "at": "2026-11-22T04:26:40.565Z",
-          "core": "0.289.0",
-          "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5"
-        },
-        "reviewed": {
-          "by": "reviewer-v002",
-          "at": "2026-11-22T04:30:00.951Z",
-          "agrees": true,
-          "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
-          "confidence": 0.85
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.249Z",
-          "core": "0.290.0",
-          "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
-          "item": "457138ec6ffdead909abbd916e1ef424824462e90426084e0b11465355244aa8",
-          "delta": [],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "brutal-gore",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.359Z",
-          "core": "0.290.0",
-          "rule": "0b894cb84d12cf3cb0ee2d54a53bad66aaf65a4a08297e89f128886c9d7f94a5",
-          "emits": "874e368206f76d7259367dd763b5fe5ac72580caa291394e09fc7c5ed706f17a",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "457138ec6ffdead909abbd916e1ef424824462e90426084e0b11465355244aa8"
-          }
         }
       },
       "why": "Push 20 feet and prone limited to Huge or smaller; data applies prone with no size limit or push.",
-      "sources": {
-        "mmBrutalGore0000": "xmm-goristro-brutal-gore"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A hit also shoves the target 20 feet away from the demon.",
-        "entry": {
-          "triggers": [
-            {
-              "on": "hit",
-              "do": [
-                {
-                  "type": "move",
-                  "mode": "push",
-                  "distance": 20,
-                  "units": "ft"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "move": {
-                "mode": "push",
-                "distance": 20
-              }
-            }
-          },
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "condition": {
-                "applied": "prone"
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Goristro"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:goristro/action/multiattack",
@@ -81993,6 +81491,13 @@
           "core": "0.290.0",
           "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae"
         },
+        "reviewed": {
+          "by": "reviewer-q001",
+          "at": "2026-11-22T08:19:31.461Z",
+          "agrees": true,
+          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
+          "confidence": 0.8
+        },
         "reading": {
           "at": "2026-11-22T08:18:24.450Z",
           "core": "0.290.0",
@@ -82024,13 +81529,6 @@
           "items": {
             "official": "830f7a201f277fe6e3d053d40716324e6e56818f4be7b8fb26171009c611dcb6"
           }
-        },
-        "reviewed": {
-          "by": "reviewer-q001",
-          "at": "2026-11-22T08:19:31.461Z",
-          "agrees": true,
-          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
-          "confidence": 0.8
         }
       },
       "why": "Speed reduction effect exists but it must end at the start of the ghoul next turn; expiry on that event needs a rule.",
@@ -86215,7 +85713,7 @@
       "edition": "2024",
       "owner": "Marid",
       "section": "action",
-      "identifier": "xmm-marid-water-jet",
+      "identifier": "water-jet",
       "page": 203,
       "srd": false,
       "text": {
@@ -86252,8 +85750,7 @@
           ],
           "data": {
             "sha256": "ed6d5e770963c79f29e262544331cf40ada19e4e03a4e937273bcae570b80e6f"
-          },
-          "identifierDiffers": true
+          }
         },
         {
           "origin": "plutonium",
@@ -86268,142 +85765,10 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v008",
-          "at": "2026-11-22T04:26:46.371Z",
-          "core": "0.289.0",
-          "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845"
-        },
-        "reviewed": {
-          "by": "reviewer-v002",
-          "at": "2026-11-22T04:30:00.951Z",
-          "agrees": true,
-          "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
-          "confidence": 0.85,
-          "tolerated": {
-            "baseline": [
-              "expect.damage.fraction=1;expect.damage.type=cold;given.roll=failedSave"
-            ],
-            "detail": [
-              [
-                "expect.damage.fraction=0.5;given.roll=savedSave",
-                "expect.damage.fraction=0.5;expect.damage.type=cold;given.roll=savedSave"
-              ]
-            ]
-          }
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.285Z",
-          "core": "0.290.0",
-          "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
-          "item": "75fc0363978f7eb45e8c08a8b4f297f5792c85e0e810a44ab295aa6ffcae47b9",
-          "delta": [
-            "saveDamage"
-          ],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "water-jet",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.383Z",
-          "core": "0.290.0",
-          "rule": "22c229ea4a91f075698a99805b1f7ea78b82545740517abfb61626f54f131845",
-          "emits": "fea735a5c39512929fdbb2dfab173fff6a31c742b7e1caabcb84cf5c37db6fbe",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "75fc0363978f7eb45e8c08a8b4f297f5792c85e0e810a44ab295aa6ffcae47b9"
-          }
         }
       },
       "why": "Line save with half damage is carried, but the push and prone apply only to Huge or smaller targets.",
-      "sources": {
-        "mmWaterJet000000": "xmm-marid-water-jet"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A failed save also pushes the target 20 feet away; a success halves the damage.",
-        "entry": {
-          "saveDamage": {
-            "CY2HqHThU06Jf0Bw": "half"
-          },
-          "triggers": [
-            {
-              "on": "failedSave",
-              "do": [
-                {
-                  "type": "move",
-                  "mode": "push",
-                  "distance": 20,
-                  "units": "ft"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "move": {
-                "mode": "push",
-                "distance": 20
-              }
-            }
-          },
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "condition": {
-                "applied": "prone"
-              }
-            }
-          },
-          {
-            "given": {
-              "roll": "savedSave"
-            },
-            "expect": {
-              "damage": {
-                "fraction": 0.5
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Marid"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:marid/trait/amphibious",
@@ -87760,7 +87125,7 @@
       "edition": "2024",
       "owner": "Merfolk Wavebender",
       "section": "action",
-      "identifier": "xmm-merfolk-wavebender-aquatic-burst",
+      "identifier": "aquatic-burst",
       "page": 209,
       "srd": false,
       "text": {
@@ -87795,97 +87160,10 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v008",
-          "at": "2026-11-22T04:26:46.371Z",
-          "core": "0.289.0",
-          "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e"
-        },
-        "reviewed": {
-          "by": "reviewer-v002",
-          "at": "2026-11-22T04:30:00.951Z",
-          "agrees": true,
-          "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
-          "confidence": 0.85
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.287Z",
-          "core": "0.290.0",
-          "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
-          "item": "ba08e89be1db1390b3cea0b4941f3110fb4db6ab9ed076141b75d7663764093e",
-          "delta": [],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "aquatic-burst",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.384Z",
-          "core": "0.290.0",
-          "rule": "396ebdfce57af0ed8889eea36d31244d261760648898fb73d52327b29d97352e",
-          "emits": "85eeaaed6d319f722f4fd2557018dd9a4509b92f8c87f243d52d85d33322b45a",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "ba08e89be1db1390b3cea0b4941f3110fb4db6ab9ed076141b75d7663764093e"
-          }
         }
       },
       "why": "Data lacks the prone rider limited to Large or smaller targets",
-      "sources": {
-        "mmAquaticBurst00": "xmm-merfolk-wavebender-aquatic-burst"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A hit also knocks the target prone.",
-        "entry": {
-          "triggers": [
-            {
-              "on": "hit",
-              "do": [
-                {
-                  "type": "status",
-                  "status": "prone"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "condition": {
-                "applied": "prone"
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "origin": "Merfolk Wavebender"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:merfolk-wavebender/action/multiattack",
@@ -87943,7 +87221,7 @@
       "edition": "2024",
       "owner": "Merfolk Wavebender",
       "section": "reaction",
-      "identifier": "xmm-merfolk-wavebender-watery-rebuke",
+      "identifier": "watery-rebuke",
       "page": 209,
       "srd": false,
       "text": {
@@ -87978,130 +87256,10 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v008",
-          "at": "2026-11-22T04:26:46.371Z",
-          "core": "0.289.0",
-          "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b"
-        },
-        "reviewed": {
-          "by": "reviewer-v002",
-          "at": "2026-11-22T04:30:00.951Z",
-          "agrees": true,
-          "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
-          "confidence": 0.8,
-          "tolerated": {
-            "baseline": [
-              "expect.damage.fraction=1;expect.damage.type=cold;given.roll=failedSave"
-            ],
-            "detail": [
-              [
-                "expect.damage.fraction=0;expect.damage.type=cold;given.roll=savedSave",
-                "expect.damage.fraction=0;given.roll=savedSave"
-              ]
-            ]
-          }
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.289Z",
-          "core": "0.290.0",
-          "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
-          "item": "c33f5a8b5d645026b9870693c00eeb2296495ac19a2b64f219575a313dac0bb4",
-          "delta": [
-            "saveDamage"
-          ],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "watery-rebuke",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.387Z",
-          "core": "0.290.0",
-          "rule": "4009039a320a9e4dc45285572a093cfc3af25abf8877543df25b5936832a9e2b",
-          "emits": "2a2e90c7af3bf55fab0ba1d81bc465db1a82fa095c5a104401a8e91ee3757060",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "c33f5a8b5d645026b9870693c00eeb2296495ac19a2b64f219575a313dac0bb4"
-          }
         }
       },
       "why": "Reaction triggered by an enemy entering reach, plus a push of up to 30 feet for smaller targets",
-      "sources": {
-        "mmWateryRebuke00": "xmm-merfolk-wavebender-watery-rebuke"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A failed save also pushes the target 30 feet away; a success deals nothing.",
-        "entry": {
-          "saveDamage": {
-            "nCfH0YgOhJR2wIKd": "none"
-          },
-          "triggers": [
-            {
-              "on": "failedSave",
-              "do": [
-                {
-                  "type": "move",
-                  "mode": "push",
-                  "distance": 30,
-                  "units": "ft"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "move": {
-                "mode": "push",
-                "distance": 30
-              }
-            }
-          },
-          {
-            "given": {
-              "roll": "savedSave"
-            },
-            "expect": {
-              "damage": {
-                "fraction": 0
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          },
-          {
-            "unexpressed": "table-ruling",
-            "count": 1
-          }
-        ],
-        "origin": "Merfolk Wavebender"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:merfolk-wavebender/trait/amphibious",
@@ -88335,7 +87493,7 @@
       "edition": "2024",
       "owner": "Merrow",
       "section": "action",
-      "identifier": "xmm-merrow-harpoon",
+      "identifier": "harpoon",
       "page": 210,
       "srd": true,
       "text": {
@@ -88368,8 +87526,7 @@
           "effects": [],
           "data": {
             "sha256": "f429c7249db66b0efc8c8b556b85e7b1e269e86c9c680fde2d885d3241546568"
-          },
-          "identifierDiffers": true
+          }
         },
         {
           "origin": "plutonium",
@@ -88384,106 +87541,10 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v008",
-          "at": "2026-11-22T04:26:46.371Z",
-          "core": "0.289.0",
-          "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766"
-        },
-        "reviewed": {
-          "by": "reviewer-v002",
-          "at": "2026-11-22T04:30:00.951Z",
-          "agrees": true,
-          "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
-          "confidence": 0.85
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.291Z",
-          "core": "0.290.0",
-          "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
-          "item": "692decbe8ae9fa41d7f35a3bc0d45d8077566b3b3b5c282921be7f1468876b0d",
-          "delta": [],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "harpoon",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.388Z",
-          "core": "0.290.0",
-          "rule": "6f9f93cd0b349f3e88284c9821bac953bed3a777fe46385f23b697a217e78766",
-          "emits": "a8e799c00f14485160aa97297c2fd12f9e22a54444fb1420473d77301ee6cdb8",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "692decbe8ae9fa41d7f35a3bc0d45d8077566b3b3b5c282921be7f1468876b0d"
-          }
         }
       },
       "why": "Data lacks the pull toward the attacker, limited to Large or smaller targets",
-      "sources": {
-        "mmHarpoon0000000": "xmm-merrow-harpoon"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A hit also drags the target 15 feet toward the merrow.",
-        "entry": {
-          "triggers": [
-            {
-              "on": "hit",
-              "do": [
-                {
-                  "type": "move",
-                  "mode": "pull",
-                  "distance": 15,
-                  "units": "ft"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "move": {
-                "mode": "pull",
-                "distance": 15
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Merrow"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:merrow/action/multiattack",
@@ -114210,7 +113271,7 @@
       "edition": "2024",
       "owner": "Shambling Mound",
       "section": "action",
-      "identifier": "xmm-shambling-mound-charged-tendril",
+      "identifier": "charged-tendril",
       "page": 276,
       "srd": true,
       "text": {
@@ -114243,8 +113304,7 @@
           "effects": [],
           "data": {
             "sha256": "bf5601e2885c4f277ee30836391b587701de32adbc385e94ac09990aa0cc55ee"
-          },
-          "identifierDiffers": true
+          }
         },
         {
           "origin": "plutonium",
@@ -114259,106 +113319,10 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v010",
-          "at": "2026-11-22T04:26:52.168Z",
-          "core": "0.289.0",
-          "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2"
-        },
-        "reviewed": {
-          "by": "reviewer-v003",
-          "at": "2026-11-22T04:30:02.189Z",
-          "agrees": true,
-          "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
-          "confidence": 0.85
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.316Z",
-          "core": "0.290.0",
-          "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
-          "item": "7a3bd3409ff0a533ce62615002d9171c7f99ce355f35d5c82bfca031efe40013",
-          "delta": [],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "charged-tendril",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.406Z",
-          "core": "0.290.0",
-          "rule": "70ddb193354709ce742aa700047b8d721fcf81132176d0e2004c6f98ef0df8b2",
-          "emits": "409483253649c2bad07058328465361c5d3cab9eec3e0f20d60f20564fcaf6a7",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "7a3bd3409ff0a533ce62615002d9171c7f99ce355f35d5c82bfca031efe40013"
-          }
         }
       },
       "why": "Pull rider limited to Medium or smaller targets; data has only the extra lightning damage.",
-      "sources": {
-        "mmChargedTendril": "xmm-shambling-mound-charged-tendril"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A hit also pulls the target 5 feet toward the mound.",
-        "entry": {
-          "triggers": [
-            {
-              "on": "hit",
-              "do": [
-                {
-                  "type": "move",
-                  "mode": "pull",
-                  "distance": 5,
-                  "units": "ft"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "move": {
-                "mode": "pull",
-                "distance": 5
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Shambling Mound"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:shambling-mound/action/engulf",
@@ -125697,7 +124661,7 @@
       "edition": "2024",
       "owner": "Tough Boss",
       "section": "action",
-      "identifier": "xmm-tough-boss-warhammer",
+      "identifier": "warhammer",
       "page": 307,
       "srd": true,
       "text": {
@@ -125730,8 +124694,7 @@
           "effects": [],
           "data": {
             "sha256": "c0c5758ccd31fcc10d126a39b7504ad04bd268ae8976dd279fc0ddca28257948"
-          },
-          "identifierDiffers": true
+          }
         },
         {
           "origin": "plutonium",
@@ -125746,106 +124709,10 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
-        },
-        "drafted": {
-          "by": "drafter-v012",
-          "at": "2026-11-22T04:26:57.881Z",
-          "core": "0.289.0",
-          "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9"
-        },
-        "reviewed": {
-          "by": "reviewer-v003",
-          "at": "2026-11-22T04:30:02.189Z",
-          "agrees": true,
-          "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
-          "confidence": 0.85
-        },
-        "reading": {
-          "at": "2026-11-22T06:29:15.338Z",
-          "core": "0.290.0",
-          "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
-          "item": "d1691ba30514d408b522b27adfbb867b1d9d986dfdec425dad19af43f841bdd1",
-          "delta": [],
-          "same": [],
-          "changes": [
-            "triggers"
-          ],
-          "triggers": "drops",
-          "original": "warhammer",
-          "carried": [],
-          "dropped": []
-        },
-        "gates": {
-          "at": "2026-11-22T06:14:53.417Z",
-          "core": "0.290.0",
-          "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
-          "emits": "f81c95b6e51c0a64a85d73d22bdd4ed62f4c4d9625958b9288d6c5c28d028e4a",
-          "passed": [
-            "schema",
-            "validator",
-            "ids",
-            "fixes",
-            "text",
-            "unique"
-          ],
-          "items": {
-            "official": "d1691ba30514d408b522b27adfbb867b1d9d986dfdec425dad19af43f841bdd1"
-          }
         }
       },
       "why": "Push on hit for size-limited targets; data lacks the push.",
-      "sources": {
-        "iD5121TXziB6ZcSt": "xmm-tough-boss-warhammer"
-      },
-      "rule": {
-        "handledIn": "table",
-        "adds": "A hit also shoves the target 10 feet away from the attacker.",
-        "entry": {
-          "triggers": [
-            {
-              "on": "hit",
-              "do": [
-                {
-                  "type": "move",
-                  "mode": "push",
-                  "distance": 10,
-                  "units": "ft"
-                }
-              ]
-            }
-          ]
-        },
-        "origins": [
-          "official"
-        ],
-        "assert": [
-          {
-            "given": {
-              "roll": "hit"
-            },
-            "expect": {
-              "move": {
-                "mode": "push",
-                "distance": 10
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "unexpressed": "target-size",
-            "count": 1
-          }
-        ],
-        "uncovered": [
-          {
-            "origin": "ddb-importer",
-            "because": "DDB Importer monster features: world ids and generic identifiers"
-          }
-        ],
-        "origin": "Tough Boss"
-      },
-      "state": "reviewed"
+      "state": "triaged"
     },
     {
       "key": "xmm:monster:tough-boss/trait/pack-tactics",
@@ -126529,48 +125396,36 @@
           "similar": []
         },
         "drafted": {
-          "by": "drafter-v012",
-          "at": "2026-11-22T04:26:57.881Z",
-          "core": "0.289.0",
-          "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910"
-        },
-        "reviewed": {
-          "by": "reviewer-v003",
-          "at": "2026-11-22T04:30:02.189Z",
-          "agrees": true,
-          "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
-          "confidence": 0.8,
-          "tolerated": {
-            "baseline": [],
-            "detail": [],
-            "left": [
-              [
-                "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.moment=startOfTurn",
-                "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.moment=startOfTurn"
-              ]
-            ]
-          }
+          "by": "drafter-r001",
+          "at": "2026-11-22T08:48:03.266Z",
+          "core": "0.290.0",
+          "rule": "e9315bb58511848cbda5f2a47e645a8565309d17fc163e940c8a65caee2b71f4",
+          "person": true,
+          "because": "triggers",
+          "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.341Z",
+          "at": "2026-11-22T08:48:14.352Z",
           "core": "0.290.0",
-          "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
+          "rule": "e9315bb58511848cbda5f2a47e645a8565309d17fc163e940c8a65caee2b71f4",
           "item": "268b521fc5a619d98d6585359cf9df05c04a1f63e9852c69396da987232c0978",
-          "delta": [],
-          "same": [],
-          "changes": [
+          "delta": [
             "triggers"
           ],
-          "triggers": "drops",
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
           "original": "grasping-root",
           "carried": [],
-          "dropped": []
+          "dropped": [
+            "triggers"
+          ]
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.419Z",
+          "at": "2026-11-22T08:48:14.352Z",
           "core": "0.290.0",
-          "rule": "dcb266c0af682be9e5b16032bdfb8bfbedb1af3deee049d578f772178fcf2910",
-          "emits": "91f794ae2377e39359348fe89ace131554b36cad02810991104ac6fcb8621a0e",
+          "rule": "e9315bb58511848cbda5f2a47e645a8565309d17fc163e940c8a65caee2b71f4",
+          "emits": "4cc2ddf95559a5834a02c43fd08f52287e47debb335fb5da5a1cf186f247d76e",
           "passed": [
             "schema",
             "validator",
@@ -126590,9 +125445,20 @@
       },
       "rule": {
         "handledIn": "table",
-        "adds": "A failed save also drags the target 10 feet toward the blight.",
+        "adds": "A failed save drags the target 10 feet toward the blight, besides the grapple and its per-turn damage.",
         "entry": {
           "triggers": [
+            {
+              "on": "startOfTurn",
+              "via": "effect",
+              "do": [
+                {
+                  "type": "damage",
+                  "to": "bearer",
+                  "activity": "ZfTdvK7PuLzxKtZw"
+                }
+              ]
+            },
             {
               "on": "failedSave",
               "do": [
@@ -126620,39 +125486,11 @@
                 "distance": 10
               }
             }
-          },
-          {
-            "given": {
-              "roll": "failedSave"
-            },
-            "expect": {
-              "condition": {
-                "applied": "grappled"
-              }
-            }
-          }
-        ],
-        "leaves": [
-          {
-            "given": {
-              "moment": "startOfTurn"
-            },
-            "expect": {
-              "damage": {
-                "fraction": 1,
-                "type": "bludgeoning"
-              }
-            },
-            "because": "target-state"
-          },
-          {
-            "unexpressed": "target-size",
-            "count": 1
           }
         ],
         "origin": "Tree Blight"
       },
-      "state": "reviewed"
+      "state": "gated"
     },
     {
       "key": "xmm:monster:tree-blight/action/multiattack",
