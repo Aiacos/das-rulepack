@@ -20,7 +20,7 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] The one ambiguous DDB Importer match (`xphb:spell:flaming-sphere`): the official module and the dataset agree on the
       school, DDB Importer's item has another one — same entry, importer data to be reported; settle it with `resolve`.
 - [ ] Plutonium: dump its items and run the check; every Plutonium match is `unchecked` for now.
-- [ ] 2,209 entries have the verdict `entry` and no rule yet: drafting is the next stage to build.
+- [ ] 2,209 entries have the verdict `entry` and no rule yet: drafting is built (`batch draft`, `ingest --draft`); run it.
 - [x] Second-reader sample (200 entries, three kinds): same verdict on 88%, same answer to "needs a rule or not" on 96.5% —
       `docs/reader-agreement.md`. Spells, species and older books are not sampled yet.
 - [x] `plainText` kept only the first argument of attack tags (`{@atkr m}`, `{@hit 7}` became "m 7"): now renders the headers
@@ -54,8 +54,9 @@ After the pilot (`docs/pilot-xphb-spells.md`):
       fix without `from` on a mistyped path fails.
 - [ ] The TCE legacy rules name `ddb-importer` alone while their official item is matched: the ids gate holds legacy records
       to the first checks only; their new rules will list the official origin or say why it is uncovered.
-- [ ] Before a release built from the registry: run the local gates (dumps and text cache) and fail on any registry difference;
-      `ingest` saves the books and the queue in two steps.
+- [ ] Before a release built from the registry: run the local gates (dumps and text cache) and fail on any registry difference.
+- [x] `ingest` saved the books and the queue in two steps: every ingest now writes them in one step (temporary files, then
+      renamed; `registry.mjs` `writeFilesAtomically`).
 - [ ] The 24 migrated rules have no item data attached (`ids`, `fixes`, `text` are notes): attach DDB Importer items by
       inventorying their books, then they can leave `registry/legacy.json`. `saveTashCausBrew` (Tasha's Caustic Brew) is
       to be checked against the imported item.
