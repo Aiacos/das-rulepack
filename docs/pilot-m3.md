@@ -278,3 +278,25 @@ over (empyrean sacred weapon `usageLimits`, poltergeist telekinetic thrust `magi
 and 3 (elemental cataclysm, lacedon ghoul, warrior commander) only repeat a `noOpportunity` the engine ships under the
 original identifier: they become "the engine already does it". New totals of the 75: 13 ship, 25 change the reading, 29
 add nothing, 6 review disagrees, 2 reviewer unsure. None holds for "its identifier would drop engine behaviour".
+
+# Where the monster rules stand (2026-11-22, end of day)
+
+The engine's own reading of a monster feature is now computed by the pipeline from the dumps with the engine's pure
+function, compared with each rule, and stored as evidence (Ruling R29). A rule ships only as what it adds; and because a
+monster rule binds its item to an identifier of its own, the engine's shipped entry under the item's original identifier
+would stop applying: the keys that would be dropped are carried over at registration, from the running engine's own table.
+
+| The 75 monster rules in the registry | Rules |
+|---|---|
+| Shipped, as their delta over the engine's reading (2 carry over an engine key) | 13 |
+| Held: the engine already does it | 29 |
+| Held: it changes the engine's reading (20 drop a trigger the engine reads, 9 of them a size-limited push) | 25 |
+| Held: review disagrees / reviewer unsure | 8 |
+
+Checked live on the test world, registering and unregistering the pack and comparing the engine's entry of each bound item:
+for the 13 shipped rules no engine key is lost, none is changed, and every rule adds at least one key (a damage fraction on
+a successful save 6, an ending 2, a duration 2, an ending of an action 2, and one each of three others).
+
+Of the 816 monster features of this book that triage called `entry`, the engine reads something for 287. Triage and the
+three briefs now carry that reading: what remains to judge, write and assert is only what goes beyond it.
+

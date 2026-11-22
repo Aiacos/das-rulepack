@@ -206,4 +206,11 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       13 ship (2 carry a key), 29 add nothing, 25 change the reading, 8 held by R27.
 - [ ] Run `npm run gates` on the registry again (writes `original`/`carried`), then `build:rules`, `books`, `scenarios`;
       replay the live check of the shipped rules (13).
+- [x] R29 and its fix (2026-11-22): monster rules ship as their delta over the engine's reading and carry over the engine
+      keys a rebinding would drop; 13 of 75 shipped, checked live (no engine key lost or changed).
+- [ ] Re-triage the monster `entry` records with `engineReads` in the batch (816 in XMM, 287 with a reading): most of the
+      29 "the engine already does it" rules point at records whose verdict should be `core`.
+- [ ] The 25 rules that change the engine's reading: redraft them as additions (never restating `triggers`), or drop them.
+- [ ] The reading is computed from the engine release the tools point at; record and check the engine version at
+      registration (a newer engine may read more, making a shipped delta redundant: redundant is harmless, but say so).
 
