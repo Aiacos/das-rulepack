@@ -174,3 +174,20 @@ or when it waits for a person only because of its own stamp and the reviewer did
 **75 monster rules in the registry, 43 shipped, 32 held** (29 "review disagrees", 3 "reviewer unsure"); `docs/RULES.md`
 shows which, and why. None is recorded as played.
 
+# Live play of the shipped monster rules (2026-11-22)
+
+The scenario generator learnt to stage a monster (the creature itself is cast for the run and uses its own embedded item)
+and to check moves, the turn-based endings of an effect, the three restrictions and typed damage: the 39 scenarios of the
+reviewed rules went from all manual to all automatic. They were then run on the test world through the engine's own
+scenario runner, each placing its creatures, using the activity until the roll it needs comes up, and restoring the world.
+
+| Outcome | Scenarios |
+|---|---|
+| Held: every declared check passed, stamp printed | 38 |
+| Interrupted: the attack was never resolved (a ranged pull started beyond the reach the engine accepts) | 1 |
+
+**Not recorded as `played`.** The stamp carries the engine version the test world reports, and that world's manifest of the
+engine is stale (it says an older version than the code it runs, which is the current release plus open pull requests):
+recording those stamps would write a wrong version into the evidence. The logs are kept privately; the plays are to be
+recorded after the test world reports the right version, or redone then.
+

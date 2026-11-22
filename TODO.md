@@ -179,4 +179,11 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] From the drafts queue, rank the missing keys by entries blocked (a size limit on targets, effects only on grappled
       creatures, auras, healing blocks, immunity after a save) for the wider vocabulary and the upstream requests.
 - [ ] Record as played what is played: nothing is yet (one rule was played by hand before it was re-drafted).
+- [x] Scenarios for monster rules are automatic (2026-11-22); 38 of 39 held when played live on the test world.
+- [ ] Record them as played: first make the test world report the engine version it really runs (its manifest is stale),
+      then replay and run `npm run played`. One scenario (a ranged pull) starts beyond the range the engine accepts: fix
+      its starting distance.
+- [ ] Missing keys ranked from the drafts queue (214 entries): a size limit on targets (19) is one field on an existing key;
+      then advantage or a bonus under a condition (23), state kept across turns (21), an armour-class bonus against one hit
+      (14), a reaction that alters a roll (13), a choice at use time (11). 8 queued entries are `data`, 4 are `none`.
 
