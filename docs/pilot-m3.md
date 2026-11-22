@@ -120,3 +120,30 @@ full damage; on a successful save it took half. Not recorded as `played`: a manu
    under its token name, which the ad-hoc scenario matched wrongly.
 5. The wider vocabulary (auras, a size limit on targets) and the upstream requests of the first pilot still stand.
 
+# Fourth pilot — the same 40 monster features with the final tooling (2026-11-22)
+
+Between the third and the fourth pilot: every closed word an agent picks got a definition (the endings of an effect
+first), three words were added to the assertion vocabulary (no opportunity attacks, no reactions, action or bonus action
+only), a rule may declare what it leaves to the table as data (Ruling R25), every drafter key either implies an assertion or
+sends the rule to a person, and agreement compares atoms (Ruling R26: one expectation per assertion).
+
+| Stage | First pilot on these 40 | Fourth pilot |
+|---|---|---|
+| Rules written | 12 | 10 |
+| Accepted at ingest and through every gate | 3 | 8 |
+| Rejected at ingest | 9 | 1 (it declared as left out something the rule itself does) |
+| Queued for a person (drafter unsure) | 0 | 1 |
+| Partial rules (with `leaves`) | - | 7 of 8 |
+
+| Independent review of the 8 | Rules |
+|---|---|
+| Agreed exactly | 5 |
+| Agreed with tolerances | 1 |
+| Disagreement, queued for a person | 1 |
+| Queued: the reviewer was unsure | 1 |
+
+**Ruling R12 is met**: 8 of 10 drafts through the gates (70 % asked), 1 disagreement in 8 reviews (30 % allowed).
+**Decision: go, for the draftable monster features of the 2024 Monster Manual**, with the larger drafter model. The eight
+rules are on `master` with their state shown in `docs/RULES.md`; none is recorded as played. What the yield is: one entry in
+five becomes a rule; the rest go to a person with a reason, most often a rider no key expresses.
+
