@@ -19,7 +19,10 @@ export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
 // What the rule-based triage may tell a reader about a record (triage.mjs): `core-generic` (the engine has the identifier,
 // too generic to settle the record) and `core-parts` (the engine handles some of the record's parts, not all).
 // `engine-reads` (Ruling R29): DAS · Core's own text layer reads something of this monster feature (triage --engine-reading).
-export const HINTS = Object.freeze(["core-generic", "core-parts", "engine-reads"]);
+// `beyond-engine`: a reread (reread.mjs) found that the text asks for something the engine's reading does not give.
+export const HINTS = Object.freeze(["core-generic", "core-parts", "engine-reads", "beyond-engine"]);
+// The why of a `core` the reread stage sets (reread.mjs): fixed, so that no reader's words become the record's why.
+export const REREAD_WHY = "DAS · Core reads this feature's text and a reader found nothing beyond it";
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -266,11 +269,71 @@ export function readingProblems(reading) {
   return errors;
 }
 
+// A reread (reread.mjs): `{ by, at, confidence, reading: { core, sha }, covered, beyond?, provisional?, second? }`, `second`
+// the same without `provisional` and `second`. `beyond` (only and always with `covered: false`) is a list of assertions of
+// the closed vocabulary, as an agent writes them, with no `free` anywhere: data, never prose.
+const REREAD_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "provisional", "second"];
+const REREAD_SECOND_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond"];
+export const REREAD_BEYOND_MAX = 6;
+const hasFree = (a) => ["given", "expect"].some((part) => isObject(a?.[part]) && has(a[part], "free"));
+function rereadReadingProblems(r, at, fields) {
+  const errors = [];
+  if (!isObject(r)) return [`${at}: must be { ${fields.join(", ")} }`];
+  for (const f of Object.keys(r)) if (!fields.includes(f)) errors.push(`${at}.${f}: unknown field`);
+  if (!isReaderHandle(r.by)) errors.push(`${at}.by: must be a reader handle (not "rule")`);
+  if (typeof r.at !== "string" || !/^\d{4}-\d{2}-\d{2}T/.test(r.at)) errors.push(`${at}.at: must be an ISO date string`);
+  if (!(typeof r.confidence === "number" && r.confidence >= 0 && r.confidence <= 1)) {
+    errors.push(`${at}.confidence: must be a number from 0 to 1`);
+  }
+  const fp = r.reading;
+  if (!isObject(fp) || !Object.keys(fp).every((k) => k === "core" || k === "sha") || !isCoreVersion(fp.core) || !isHex64(fp.sha)) {
+    errors.push(`${at}.reading: must be { core: an engine version, sha: 64 hex characters }`);
+  }
+  if (typeof r.covered !== "boolean") errors.push(`${at}.covered: must be true or false`);
+  if (r.covered === true && has(r, "beyond")) errors.push(`${at}.beyond: covered: true carries none`);
+  if (r.covered === false) {
+    const list = r.beyond;
+    if (!Array.isArray(list) || !list.length || list.length > REREAD_BEYOND_MAX) {
+      errors.push(`${at}.beyond: covered: false needs 1 to ${REREAD_BEYOND_MAX} assertions`);
+    } else {
+      errors.push(...assertProblems(list, { at: `${at}.beyond`, agent: true, origins: ["official"] }));
+      if (list.some(hasFree)) errors.push(`${at}.beyond: no free text (data only)`);
+    }
+  }
+  return errors;
+}
+/**
+ * What is wrong with `evidence.triaged.reread`, as messages: its closed shape, and its tie to the record. Covered by the
+ * first reread and, when there is one, by the second: a `core` the rule sets (`by: "rule"`, the previous verdict in `was`,
+ * the fixed REREAD_WHY), `provisional: true` until a second reread agrees. Otherwise the verdict is not `core`; a second reread
+ * follows only a covered first one.
+ */
+function rereadProblems(triaged, verdict, why) {
+  const at = "evidence.triaged.reread";
+  const r = triaged.reread;
+  const errors = rereadReadingProblems(r, at, REREAD_FIELDS);
+  if (!isObject(r)) return errors;
+  if (has(r, "second")) errors.push(...rereadReadingProblems(r.second, `${at}.second`, REREAD_SECOND_FIELDS));
+  if (has(r, "provisional") && r.provisional !== true) errors.push(`${at}.provisional: must be true when present`);
+  if (r.covered === false && has(r, "second")) errors.push(`${at}.second: only a covered first reread is read again`);
+  if (r.covered === true && has(r, "second") === has(r, "provisional")) {
+    errors.push(`${at}.provisional: a covered reread is provisional until a second reread, and only then`);
+  }
+  if (r.covered === false && has(r, "provisional")) errors.push(`${at}.provisional: only a covered reread is provisional`);
+  const covered = r.covered === true && (!isObject(r.second) || r.second.covered === true);
+  if (covered && !(verdict === "core" && triaged.by === "rule" && has(triaged, "was") && why === REREAD_WHY)) {
+    errors.push(`${at}: a covered reread goes with the verdict core, by rule, its previous verdict in was and the fixed why`);
+  }
+  if (!covered && verdict === "core") errors.push(`${at}: a reread that found something beyond the engine is no core`);
+  return errors;
+}
+
 // The shapes of evidence.gates, .drafted, .reviewed and .played, when present (the tools write them; nobody types them).
 // Evidence about the rule carries its fingerprint (`rule`, 64 hex): editing the rule makes it stale (registry.mjs stateOf). A
 // legacy record may keep a review or a play written before the stamp existed.
-function checkEvidence(evidence, errors, legacy, verdict) {
+function checkEvidence(evidence, errors, legacy, verdict, why) {
   const { gates, triaged } = evidence;
+  if (isObject(triaged) && has(triaged, "reread")) errors.push(...rereadProblems(triaged, verdict, why));
   // The triage pre-pass (triage.mjs corePrepass) turns a record to `core` by rule and keeps what it was: `{ verdict, why?,
   // triaged? }`, the previous triage evidence signed by a reader. It goes with `by: "rule"` and the verdict `core` only.
   if (isObject(triaged) && has(triaged, "was")) {
@@ -450,7 +513,7 @@ export function validateRecord(record) {
     errors.push(`verdict: unknown verdict ${JSON.stringify(record.verdict)}`);
   }
   if (!isObject(record.evidence)) errors.push("evidence: must be an object");
-  else checkEvidence(record.evidence, errors, record.legacy === true, record.verdict);
+  else checkEvidence(record.evidence, errors, record.legacy === true, record.verdict, record.why);
   // A verdict comes before any draft: `rule.entry` is required only once a rule is there. A rule is registered only under
   // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
   if (has(record, "rule")) {

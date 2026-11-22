@@ -32,6 +32,7 @@ import {
 import { DRAFT_KEYS } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
 import { ingestReviews, queueHolds } from "./review.mjs";
+import { REREAD_BATCH_SIZE, cutRereadBatches, ingestRereads, readingFingerprint, rereadReport } from "./reread.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { AGENT_HANDLE } from "./schema.mjs";
 import { cachedText, forbiddenKeyIn } from "./intake.mjs";
@@ -231,8 +232,10 @@ function gatesCommand(args) {
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
     // Ruling R29: each monster rule compared with the engine's own reading of its official item (stored as evidence.reading).
     const readingOf = ci ? undefined : (record) => readingOfRecord(record, documents, core);
+    // A reread (reread.mjs) judged against the engine's reading of an unruled monster feature: noted when it reads otherwise.
+    const rereadReadingOf = ci ? undefined : (record) => rereadReadingOfRecord(record, documents, core);
     const { failures, notes, updated } = runGates(records, {
-      core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf
+      core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf, rereadReadingOf
     });
     // Ruling R27 (--ci): no generated module registers a rule that is held for a person.
     const held = ci ? await heldInModules(records, books) : [];
@@ -267,6 +270,16 @@ export function readingOfRecord(record, documents, core) {
   // Fix round 1: with the rebinding of the item to the rule's identifier (engine-reading.mjs engineComparison).
   const actorId = String(item.docId).split(".")[0];
   return readingEvidence(record, engineComparison(doc, record, core, { actorId }), { core });
+}
+
+// The fingerprint of the engine's reading of today of a record's official monster item (reread.mjs readingFingerprint), under
+// the identifier the engine sees without the pack; null when it reads nothing, undefined when the item is not in the dumps.
+function rereadReadingOfRecord(record, documents, core) {
+  const item = officialItemOf(record);
+  const doc = item && Object.hasOwn(documents.official ?? {}, item.docId) ? documents.official[item.docId] : null;
+  if (!doc) return undefined;
+  const reading = engineReading(doc, core, { actorId: String(item.docId).split(".")[0] });
+  return reading ? readingFingerprint(reading, core) : null;
 }
 
 // Ruling R27: the held rules that a generated book module (RULEPACK_RULES, default scripts/rules/) registers all the same,
@@ -608,7 +621,8 @@ async function batchCommand([stage, book, ...rest]) {
     + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
     + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT: monster features are checked against the actors of the book's package)"
     + "\n       batch review <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
-    + " (needs DAS_CORE and RULEPACK_DUMPS)";
+    + " (needs DAS_CORE and RULEPACK_DUMPS)\n       " + REREAD_USAGE;
+  if (stage === "reread" && book) return rereadBatchCommand(book, rest);
   if (!["triage", "draft", "review"].includes(stage) || !book) throw new UsageError(usage);
   const draft = stage === "draft";
   const review = stage === "review";
@@ -668,11 +682,13 @@ async function batchCommand([stage, book, ...rest]) {
     // by leaving it to the system; one shared with another record).
     const clashes = identifierClashReasons(every, engineIdentifiers(core));
     const textOf = (r) => (r.text && hasText(textDir, r.text.sha256) ? readText(textDir, r.text.sha256) : null);
+    // A monster feature the engine reads something of goes to a reread first, unless one found it goes beyond the reading.
+    const readingOf = monsters ? memoByKey(readingFor(officialMonsterDocuments(dumpsDir, found.book), core)) : undefined;
     batches = cutDraftBatches(found.records, {
-      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes
+      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes, readingOf
     });
     for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
-      const why = draftSkipReason(r, { queued, embedded, clashes });
+      const why = draftSkipReason(r, { queued, embedded, clashes, readingOf });
       if (why) left[why] = (left[why] ?? 0) + 1;
     }
     for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);
@@ -733,6 +749,75 @@ async function batchCommand([stage, book, ...rest]) {
   }
   const withStructure = dumpsDir === null ? "" : `, structure files to ${opts.structure}`;
   console.log(`${batches.length} batches written to ${opts.out}${withStructure}`);
+}
+
+// One value per record key, computed once (the engine's reading of an item is asked for by the cut and by the report).
+const memoByKey = (f) => {
+  const seen = new Map();
+  return (r) => {
+    if (!seen.has(r.key)) seen.set(r.key, f(r));
+    return seen.get(r.key);
+  };
+};
+
+const REREAD_USAGE = "batch reread <BOOK> --out <dir> --structure <private dir> [--size <n>] [--second]"
+  + " (needs DAS_CORE and RULEPACK_DUMPS: the engine's reading of each monster feature is computed at cut time)";
+
+// `batch reread <BOOK> --out <dir> --structure <private dir> [--size <n>] [--second]` (reread.mjs): the unruled monster
+// `entry` records the engine reads something of, for a reader blind to every earlier verdict; with `--second`, the provisional
+// `core` records of a first reread, for another reader. Writes the batches, their structure files (with `engineReads`), the
+// vocabulary of the assertions (`reread-vocabulary.json`: the review's) and `<book>-reread[-second]-report.json` (counts).
+async function rereadBatchCommand(book, rest) {
+  const usage = `Usage: ${REREAD_USAGE}`;
+  const second = rest.includes("--second");
+  const args = rest.filter((a) => a !== "--second");
+  const opts = {};
+  for (let i = 0; i < args.length; i += 2) {
+    if (!["--out", "--size", "--structure"].includes(args[i]) || args[i + 1] === undefined) throw new UsageError(usage);
+    opts[args[i].slice(2)] = args[i + 1];
+  }
+  if (!opts.out || !opts.structure) throw new UsageError(usage);
+  const size = opts.size === undefined ? REREAD_BATCH_SIZE : Number(opts.size);
+  if (!Number.isInteger(size) || size < 1) throw new UsageError("--size must be a positive integer");
+  const missing = ["DAS_CORE", "RULEPACK_DUMPS"].filter((v) => !process.env[v]);
+  if (missing.length) {
+    throw new UsageError(`batch reread needs DAS_CORE and RULEPACK_DUMPS (${missing.join(" and ")} not set): the engine's`
+      + " reading of each monster feature is computed at cut time");
+  }
+  const found = loadBookOrFail(book);
+  checkFolderArg("--out", opts.out);
+  checkFolderArg("--structure", opts.structure);
+  checkStructureDir(opts.structure, opts.out);
+  const dumpsDir = process.env.RULEPACK_DUMPS;
+  if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+  const core = await loadCore(process.env.DAS_CORE);
+  const undefinedOnes = undefinedWords(core);
+  if (undefinedOnes.length) {
+    throw new UsageError(`words without a definition (tools/pipeline/definitions.mjs): ${undefinedOnes.slice(0, 8).join(", ")}`);
+  }
+  checkQueues(REGISTRY);
+  const reviewQueued = new Set(loadQueue(REGISTRY, "review").map((q) => q.key));
+  const triageQueued = queuedKeys(REGISTRY);
+  const readingOf = memoByKey(readingFor(officialMonsterDocuments(dumpsDir, found.book), core));
+  const series = second ? "reread-second" : "reread";
+  const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
+  const { batches, leftOut } = cutRereadBatches(found.records, {
+    size, after, readingOf, core, second, reviewQueued, triageQueued
+  });
+  // Every structure is computed before anything is written.
+  const structures = batches.map((b) => structuresOf(b, found.records, dumpsDir, { engine: core }));
+  mkdirSync(opts.out, { recursive: true });
+  mkdirSync(opts.structure, { recursive: true });
+  const write = (file, data) => writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
+  batches.forEach((b, i) => {
+    write(join(opts.out, `${b.id}.json`), { ...b, vocabulary: "reread-vocabulary.json" });
+    write(join(opts.structure, `${b.id}.structure.json`), structures[i]);
+  });
+  write(join(opts.out, "reread-vocabulary.json"), reviewVocabulary(core));
+  write(join(opts.out, `${found.book.toLowerCase()}-${series}-report.json`), rereadReport(found.book, batches, leftOut));
+  for (const [why, n] of Object.entries(leftOut)) console.log(`left out: ${n} records (${why})`);
+  console.log(`${batches.length} batches (${batches.reduce((n, b) => n + b.entries.length, 0)} entries) written to ${opts.out},`
+    + ` structure files to ${opts.structure}`);
 }
 
 function readJson(file, what) {
@@ -801,10 +886,112 @@ function commitIngest(books, all, changed, queued, applied, { queue: kind = "tri
   return true;
 }
 
+// A results file `{ batch, by, results }` with no other field, signed with a handle (`mode`: the agent stage, refused for an
+// owner's handle, Ruling R23; undefined or --overwrite for the plain ingest), holding no key named __proto__, constructor or
+// prototype. Usage errors otherwise (exit 2, nothing written).
+function readResultsFile(file, mode) {
+  const input = readJson(file, "results file");
+  if (typeof input?.batch !== "string" || typeof input?.by !== "string" || !Array.isArray(input?.results)) {
+    throw new UsageError(`${file}: must be { batch: string, by: string, results: [...] }`);
+  }
+  if ("overwrite" in input) throw new UsageError(`${file}: overwrite is not a results field: pass --overwrite to ingest`);
+  const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
+  if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
+  if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
+  // Ruling R23: an owner settles the triage queue through the plain ingest (with or without --overwrite); the agent stages
+  // (--second, --third, --draft, --review, --reread) never take an owner's file.
+  if (isOwner(input.by) && mode !== undefined && mode !== "--overwrite") {
+    throw new UsageError(`${file}: by ${JSON.stringify(clip(input.by))} is an owner of docs/owners.json: ${mode} is an`
+      + " agent stage, its results file is signed with an agent handle (an owner settles the triage queue with plain ingest)");
+  }
+  const forbidden = forbiddenKeyIn(input);
+  if (forbidden) {
+    throw new UsageError(`${file}: a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden}): not a results file`);
+  }
+  return input;
+}
+
+// The keys a reread batch file offers, each with the fingerprint of the reading its entry was cut against: the batch id must
+// be the results file's `batch`, `<book>-reread-<NNN>` (or `<book>-reread-second-<NNN>` with `second`), its stage `reread`,
+// `second` as the command says, and every entry a key of that book with a reading `{ core, sha }`.
+function offeredRereads(id, file, second) {
+  const m = new RegExp(`^([a-z][a-z0-9]{1,9})-reread-${second ? "second-" : ""}(\\d{3,})$`).exec(String(id));
+  const shape = second ? "<book>-reread-second-<NNN>" : "<book>-reread-<NNN>";
+  if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a ${second ? "second " : ""}reread batch id (${shape})`);
+  const batch = readJson(file, "batch file");
+  if (batch?.id !== id || batch?.stage !== "reread" || (batch.second === true) !== second || !Array.isArray(batch?.entries)) {
+    throw new UsageError(`${file}: not the reread batch ${id} (its id, stage "reread"${second ? ", second" : ""} and entries)`);
+  }
+  const ok = (e) => typeof e?.key === "string" && e.key.startsWith(`${m[1]}:`) && e.reading !== null
+    && typeof e.reading === "object" && typeof e.reading.sha === "string" && /^[0-9a-f]{64}$/.test(e.reading.sha);
+  if (!batch.entries.every(ok)) {
+    throw new UsageError(`${file}: every entry of ${id} must be a key of book ${m[1].toUpperCase()} with its reading`);
+  }
+  return { book: m[1].toUpperCase(), offered: new Map(batch.entries.map((e) => [e.key, e.reading])) };
+}
+
+// `ingest <results-file> --reread [--second] --batch <batch file>` (reread.mjs ingestRereads): a covered reading turns the
+// record to `core` (and takes it out of drafts-queue.json), one that found something beyond the engine hints it
+// `beyond-engine`; with `--second`, a second reading of a provisional `core` agrees or gives the record back its verdict.
+// The engine's reading of each record is computed again (DAS_CORE, RULEPACK_DUMPS): a batch cut against another is stale.
+async function ingestRereadCommand(args) {
+  const usage = "Usage: ingest <results-file> --reread [--second] --batch <batch file>"
+    + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT)";
+  const others = ["--third", "--overwrite", "--settle-unsure", "--draft", "--review", "--min"].filter((m) => args.includes(m));
+  if (others.length) throw new UsageError(`--reread and ${others.join(" and ")} cannot be used together`);
+  const second = args.includes("--second");
+  const rest = [];
+  let batchFile = null;
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i] === "--batch") { batchFile = args[(i += 1)] ?? ""; continue; }
+    if (args[i] !== "--reread" && args[i] !== "--second") rest.push(args[i]);
+  }
+  const [file, ...extraArgs] = rest;
+  if (!file || extraArgs.length || !batchFile) {
+    throw new UsageError(`${usage}\n--reread needs --batch <the batch file the results answer>`);
+  }
+  const textDir = need("RULEPACK_TEXT");
+  const coreDir = need("DAS_CORE");
+  const dumpsDir = need("RULEPACK_DUMPS");
+  if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+  const input = readResultsFile(file, "--reread");
+  const { book, offered } = offeredRereads(input.batch, batchFile, second);
+  checkQueues(REGISTRY);
+  const core = await loadCore(coreDir);
+  const books = loadRegistry(REGISTRY);
+  const all = books.flatMap((b) => b.records);
+  const byKey = new Map(all.map((r) => [r.key, r]));
+  const documentOf = officialMonsterDocuments(dumpsDir, book);
+  const current = new Map();
+  for (const key of new Set(input.results.map((r) => r?.key).filter((k) => typeof k === "string" && offered.has(k)))) {
+    const record = byKey.get(key);
+    const doc = record ? documentOf(record) : null;
+    if (!doc) continue;
+    const actorId = String(officialItemOf(record).docId).split(".")[0];
+    current.set(key, { reading: engineReading(doc, core, { actorId }), structure: structureOf(doc) });
+  }
+  const out = ingestRereads(all, input.results, {
+    textDir, by: input.by, core, offered, current, second, draftsQueue: loadQueue(REGISTRY, "drafts"),
+    reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY)
+  });
+  const changed = second ? [...out.agreed, ...out.disagreed] : [...out.covered, ...out.beyond];
+  if (!commitIngest(books, out.records, changed, [], second ? [] : out.dequeued, { queue: "drafts" })) return;
+  const counts = second
+    ? { agreed: out.agreed.length, disagreed: out.disagreed.length, unsure: out.unsure, rejected: out.rejected }
+    : { covered: out.covered.length, beyond: out.beyond.length, unsure: out.unsure, dequeued: out.dequeued.length,
+      rejected: out.rejected };
+  console.log(JSON.stringify(counts, null, 2));
+  if (second && out.disagreed.length) {
+    console.error(`${out.disagreed.length} record(s) back to entry: their drafts-queue entries are not restored (draftable again)`);
+  }
+  if (out.rejected.length) process.exitCode = 1;
+}
+
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
+  if (args.includes("--reread")) return ingestRereadCommand(args);
   const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>"
-    + " | --review --batch <batch file>] | ingest --settle-unsure [--min <n>]"
+    + " | --review --batch <batch file> | --reread [--second] --batch <batch file>] | ingest --settle-unsure [--min <n>]"
     + " (--draft and --review need RULEPACK_DUMPS: the official item's structure backs a condition and gives the item's"
     + " own damage, Ruling R24)";
   const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
@@ -839,25 +1026,8 @@ async function ingestCommand(args) {
   const third = mode === "--third";
   const textDir = need("RULEPACK_TEXT");
   const coreDir = need("DAS_CORE");
-  const input = readJson(file, "results file");
-  if (typeof input?.batch !== "string" || typeof input?.by !== "string" || !Array.isArray(input?.results)) {
-    throw new UsageError(`${file}: must be { batch: string, by: string, results: [...] }`);
-  }
-  if ("overwrite" in input) throw new UsageError(`${file}: overwrite is not a results field: pass --overwrite to ingest`);
-  const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
-  if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
-  if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
-  // Ruling R23: an owner settles the triage queue through the plain ingest (with or without --overwrite); the agent stages
-  // (--second, --third, --draft, --review) never take an owner's file.
+  const input = readResultsFile(file, mode);
   const owner = isOwner(input.by);
-  if (owner && mode !== undefined && mode !== "--overwrite") {
-    throw new UsageError(`${file}: by ${JSON.stringify(clip(input.by))} is an owner of docs/owners.json: ${mode} is an`
-      + " agent stage, its results file is signed with an agent handle (an owner settles the triage queue with plain ingest)");
-  }
-  const forbidden = forbiddenKeyIn(input);
-  if (forbidden) {
-    throw new UsageError(`${file}: a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden}): not a results file`);
-  }
   if (mode === "--draft") {
     // Fix round 1 (Ruling R24): a stated condition is checked against the official item's structure, read from the dumps.
     const dumpsDir = need("RULEPACK_DUMPS");

@@ -144,8 +144,11 @@ export function autoTriage(record, context = {}) {
   return nothing; // SRD or not, a reader decides from here
 }
 
-// A verdict the rule-based step set: `evidence.triaged.by` is "rule" (ingest always records a confidence, the rule never).
-export const setByRule = (r) => r.evidence?.triaged?.by === "rule" && !("confidence" in r.evidence.triaged);
+// A verdict the rule-based step set: `evidence.triaged.by` is "rule" (ingest always records a confidence, the rule never). A
+// `core` a reread set (reread.mjs: by rule, from a reader's judgement in `evidence.triaged.reread`) is not the rules' to redo:
+// `--redo-rule` would otherwise give it back its previous verdict, since no rule gives a monster feature `core`.
+export const setByRule = (r) => r.evidence?.triaged?.by === "rule" && !("confidence" in r.evidence.triaged)
+  && !Object.hasOwn(r.evidence.triaged, "reread");
 
 export { BY, isReaderHandle };
 const ENGINE_KEY = /^[A-Za-z][A-Za-z0-9.]{0,63}$/;
@@ -499,7 +502,8 @@ export function engineReadingPrepass(records, { readingOf, queued = new Set() } 
     const keys = reading && typeof reading === "object" ? Object.keys(reading).sort() : [];
     if (keys.length) {
       out.hinted.push({ key: r.key, keys });
-      return r.hint === "engine-reads" ? r : { ...r, hint: "engine-reads" };
+      // A reread already found what the text asks beyond the reading (`beyond-engine`): that hint says more, it stays.
+      return r.hint === "engine-reads" || r.hint === "beyond-engine" ? r : { ...r, hint: "engine-reads" };
     }
     out.none.push(r.key);
     if (r.hint !== "engine-reads") return r;
