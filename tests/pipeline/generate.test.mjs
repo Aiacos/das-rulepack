@@ -12,6 +12,7 @@ import {
   recordFromRule, ruleFromRecord, bookModuleSource, indexSource, generate
 } from "../../tools/pipeline/generate.mjs";
 import { extractNotes } from "../../tools/pipeline/migrate.mjs";
+import { currentReading, deltaEntry } from "../../tools/pipeline/engine-reading.mjs";
 import { fromRegistry } from "../derived.mjs";
 
 const DERIVED = fromRegistry();
@@ -55,7 +56,14 @@ describe("recordFromRule / ruleFromRecord", () => {
       expect(rule.alsoIn, record.key).toEqual(record.alsoIn);
       for (const f of ["handledIn", "adds", "entry", "code", "origin", "catalog", "inCore"]) {
         expect(f in rule, `${record.key} ${f}`).toBe(f in record.rule);
-        expect(rule[f], `${record.key} ${f}`).toEqual(record.rule[f]);
+        // Ruling R29: a monster rule registers only its delta against the engine's reading, never the whole entry.
+        const expected = f === "entry" && record.kind === "monster"
+          ? deltaEntry(record.rule.entry, currentReading(record)) : record.rule[f];
+        expect(rule[f], `${record.key} ${f}`).toEqual(expected);
+        if (f === "entry" && record.kind === "monster") {
+          expect(Object.keys(rule.entry).length, record.key).toBeGreaterThan(0);
+          expect(Object.keys(rule.entry).every((k) => Object.hasOwn(record.rule.entry, k)), record.key).toBe(true);
+        }
       }
       expect(rule.alsoAs ?? [], record.key).toEqual((record.rule.alsoAs ?? []).map((a) => a.identifier));
       expect(rule.uncovered ?? [], record.key).toEqual(record.rule.uncovered ?? []);
