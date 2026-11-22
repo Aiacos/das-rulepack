@@ -45666,7 +45666,16 @@
               "sha": "2ead3fc5db5c9c83e4db3aba90c29df73689f9f00a247735068d98ffa34ae121"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w003",
+              "at": "2026-11-22T07:11:12.348Z",
+              "confidence": 0.85,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "2ead3fc5db5c9c83e4db3aba90c29df73689f9f00a247735068d98ffa34ae121"
+              },
+              "covered": true
+            }
           }
         }
       },

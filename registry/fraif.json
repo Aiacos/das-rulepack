@@ -1073,7 +1073,16 @@
               "sha": "ee212d5c03a0472fabb623b1726ed5cc1ea2859a9339ae2367739ac71b81bb81"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ee212d5c03a0472fabb623b1726ed5cc1ea2859a9339ae2367739ac71b81bb81"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -2162,7 +2171,16 @@
               "sha": "8e9f75779376389f3db732a292e4e04ce3c6b23197bd405f684002ca29abde78"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "8e9f75779376389f3db732a292e4e04ce3c6b23197bd405f684002ca29abde78"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -5045,7 +5063,16 @@
               "sha": "3791d4be3eebaa5f08dd7d8f71cc63b7ce574e575b51c4901fd681e1920f5af7"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "3791d4be3eebaa5f08dd7d8f71cc63b7ce574e575b51c4901fd681e1920f5af7"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -5743,7 +5770,16 @@
               "sha": "da4b0b4356d302b1c9e9808ed77356dfaca81e6182140285841fd1a30b089a1f"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "da4b0b4356d302b1c9e9808ed77356dfaca81e6182140285841fd1a30b089a1f"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -6611,7 +6647,16 @@
               "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -6920,7 +6965,16 @@
               "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -7229,7 +7283,16 @@
               "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -7652,7 +7715,16 @@
               "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "5c58eaa3036c3c058344612ceea6d509cc4c0cefb06d8238cb4ad1b416a5a847"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -9299,7 +9371,16 @@
               "sha": "b6c03fcc005b92cedc543a30690f0e6cbbe017739b8a83e5e1b2aa94b2a3ff84"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "b6c03fcc005b92cedc543a30690f0e6cbbe017739b8a83e5e1b2aa94b2a3ff84"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -11067,7 +11148,16 @@
               "sha": "8d835fdffb982a51dac430d65347c0cbe2a48db5762a00194cb919ee06cbef1f"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "8d835fdffb982a51dac430d65347c0cbe2a48db5762a00194cb919ee06cbef1f"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -12683,7 +12773,16 @@
               "sha": "42482e33a69c5984cc2d7d25fd0e34c4a5324d925e224541b11f0d1ff88c7705"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-22T07:11:10.301Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "42482e33a69c5984cc2d7d25fd0e34c4a5324d925e224541b11f0d1ff88c7705"
+              },
+              "covered": true
+            }
           }
         }
       },

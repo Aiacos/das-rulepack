@@ -5625,7 +5625,16 @@
               "sha": "11818946785224fc485aa2ee0845a6585f2751c47c8db16e2597d2cd393c5a0f"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.8,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "11818946785224fc485aa2ee0845a6585f2751c47c8db16e2597d2cd393c5a0f"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -6283,7 +6292,16 @@
               "sha": "9d19b86943711ca4f3b8956e55eec160e65b02aeda60468a81bf9d750fa8731a"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "9d19b86943711ca4f3b8956e55eec160e65b02aeda60468a81bf9d750fa8731a"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -6762,7 +6780,16 @@
               "sha": "f762bd531685a38c83e98f3f7b4881809cbf55fff1ce4d4d3cdcd9a161cfc47e"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.85,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "f762bd531685a38c83e98f3f7b4881809cbf55fff1ce4d4d3cdcd9a161cfc47e"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -7395,7 +7422,16 @@
               "sha": "292e69565a16bc56f1fcd0d864877beb5d26c1542661ae93251e9051fc903031"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.9,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "292e69565a16bc56f1fcd0d864877beb5d26c1542661ae93251e9051fc903031"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -10036,7 +10072,16 @@
               "sha": "5961bd14655afdd4ac4a02b6e50c0f171df92317295545489d38292e1055f6d5"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-22T07:11:11.353Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "5961bd14655afdd4ac4a02b6e50c0f171df92317295545489d38292e1055f6d5"
+              },
+              "covered": true
+            }
           }
         }
       },
