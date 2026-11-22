@@ -191,3 +191,27 @@ engine is stale (it says an older version than the code it runs, which is the cu
 recording those stamps would write a wrong version into the evidence. The logs are kept privately; the plays are to be
 recorded after the test world reports the right version, or redone then.
 
+# Correction (2026-11-22, same day): the engine already reads monster features
+
+Checked live after the plays: DAS · Core derives entries for monster features from their English text by itself (pushes
+with a size limit, conditions, healing blocks, the endings of effects), and a rule registered by a module REPLACES that
+reading for the item. With the pack's 43 monster rules registered and then unregistered on the test world:
+
+| What the pack rule does to the engine's own reading | Rules |
+|---|---|
+| Identical to it (redundant) | 17 |
+| Adds a key, changes none | 13 |
+| Changes a key the engine had (5 of them also add one) | 13 |
+
+For 41 of the 43 items the engine had an entry from the text; for 2 it had none. The 38 scenarios that held live prove the
+behaviour at the table, not that the pack's rule added anything: the engine alone would probably have passed most of them.
+Worse, a rule that replaces the engine's reading can lose what the engine reads and the drafter could not express (a size
+limit on a push).
+
+**Ruling R28: every monster rule is held out of the module** until it is compared with the engine's reading (0 of the 75
+shipped now; they stay in the registry). What this changes upstream of the drafting: the `entry` verdicts of monster
+features were given without knowing the text layer, so most are probably `core`; triage needs the engine's reading as an
+input before any monster feature is drafted again. What stands: the tooling (gates, blind review, partial rules, held
+rules, automatic scenarios), which is kind-independent, and the finding that the pack's field is what the engine does not
+read: non-monster entries and the entries of sources the engine's text reader does not cover.
+

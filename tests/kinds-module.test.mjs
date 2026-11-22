@@ -41,10 +41,10 @@ describe("kinds of the module", () => {
     record.evidence.gates = { at: "2026-11-22", core: "1.0.0", rule: ruleFingerprint(record.rule),
       emits: emittedFingerprint(record), passed: ["schema", "validator", "ids", "fixes", "text", "unique"] };
     // Ruling R27: gated alone, it is held for a person; a review that agrees emits it.
-    expect(ruleFromRecord(record, { legacy: new Map() })).toBeNull();
+    expect(ruleFromRecord(record, { legacy: new Map(), monsterRules: true })).toBeNull();
     record.evidence.reviewed = { by: "reviewer-1", at: "2026-11-22", agrees: true, rule: record.evidence.gates.rule,
       confidence: 0.9 };
-    const rule = ruleFromRecord(record, { legacy: new Map() });
+    const rule = ruleFromRecord(record, { legacy: new Map(), monsterRules: true });
     expect(rule.kind).toBe("monster");
     expect(KINDS).toContain(rule.kind);
     expect(kindLabel(rule.kind)).toBe("Monster feature");

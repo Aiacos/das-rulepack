@@ -255,6 +255,15 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   reads them (XMM on this branch: 32 of 75 held); a stamped rule whose reviewer agreed ships before a person reads the stamp,
   which is the part of the entry the vocabulary could not check (`leaves` and the stamp say so in `docs/RULES.md` only).
 
+- **R28 — no monster rule is registered until it is compared with what the engine reads.** DAS · Core derives entries
+  for monster features from their English text by itself (its "text" layer, `core/monster-text.mjs`); an entry registered by
+  a module replaces that reading for the item. Measured live on the first 43 shipped monster rules: for 41 of them the
+  engine already had an entry from the text; 17 pack rules were identical to it, 13 changed keys it had (some for the worse:
+  a size limit the engine reads and the draft lacked), 18 added a key. `emissionOf` therefore holds every rule of kind
+  `monster` ("engine-text"); `monsterRules: true` lifts it, for the tests of the mechanics only. *Cost if wrong:* the few
+  rules that add something real (a damage fraction on a successful save the engine does not read) are not shipped either,
+  until the comparison exists. Triage of monster features must change too: `entry` was decided without the text layer.
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed

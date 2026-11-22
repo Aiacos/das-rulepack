@@ -10,11 +10,10 @@ import * as mpmm from "./books/mpmm.mjs";
 import * as phb from "./books/phb.mjs";
 import * as tce from "./books/tce.mjs";
 import * as xge from "./books/xge.mjs";
-import * as xmm from "./books/xmm.mjs";
 import * as xphb from "./books/xphb.mjs";
 
 /** The book modules, each `{ BOOK, RULES }`. */
-export const BOOKS = Object.freeze([ai, ftd, mpmm, phb, tce, xge, xmm, xphb]);
+export const BOOKS = Object.freeze([ai, ftd, mpmm, phb, tce, xge, xphb]);
 
 /** Every rule of the pack, with its book, page, kind and status. @type {readonly import("./book.mjs").Rule[]} */
 export const RULES = Object.freeze(BOOKS.flatMap(module => module.RULES));
@@ -37,48 +36,4 @@ export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.
   .flatMap(rule => [rule.identifier, ...(rule.alsoAs ?? [])].map(identifier => [identifier, rule.entry]))));
 
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as `sources`. */
-export const SOURCES = Object.freeze({
-  "3YYshLRIcL7GvBG2": "xmm-graveyard-revenant-suffocate",
-  "4XnVTvvmrKKbIP8n": "xmm-weretiger-prowl-tiger-or-hybrid-form-only",
-  "4e4ia1FS6ln2GnGF": "xmm-demilich-grave-dust-flight",
-  "9p8yotv4r7nt3NWl": "xmm-lich-paralyzing-touch",
-  "BgXdOU6xf5CiGoyc": "xmm-banshee-horrify",
-  "BnRLQOEcoPDYB7fx": "xmm-kuo-toa-sticky-net",
-  "BqtNDu2WFDju2dM6": "xmm-ancient-copper-dragon-slowing-breath",
-  "Ml3peAqEgqgm95nj": "xmm-dracolich-terrifying-presence",
-  "iD5121TXziB6ZcSt": "xmm-tough-boss-warhammer",
-  "mmAquaticBurst00": "xmm-merfolk-wavebender-aquatic-burst",
-  "mmBeard000000000": "xmm-bearded-devil-beard",
-  "mmBoulderToss000": "xmm-giant-ape-boulder-toss",
-  "mmBrutalGore0000": "xmm-goristro-brutal-gore",
-  "mmCacophony00000": "xmm-swarm-of-ravens-cacophony",
-  "mmChargedTendril": "xmm-shambling-mound-charged-tendril",
-  "mmChargingHorn00": "xmm-unicorn-charging-horn",
-  "mmCinderBreath00": "xmm-smoke-mephit-cinder-breath",
-  "mmDraconicStrike": "xmm-githyanki-dracomancer-draconic-strike",
-  "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
-  "mmFetidCloud0000": "xmm-dretch-fetid-cloud",
-  "mmFlameWhip00000": "xmm-balor-flame-whip",
-  "mmGraspingRoot00": "xmm-tree-blight-grasping-root",
-  "mmHarpoon0000000": "xmm-merrow-harpoon",
-  "mmHasten00000000": "xmm-clay-golem-hasten",
-  "mmHypnoticGaze00": "xmm-ultroloth-hypnotic-gaze",
-  "mmInfernalSting0": "xmm-bone-devil-infernal-sting",
-  "mmRumblingMoveme": "xmm-elemental-cataclysm-rumbling-movement",
-  "mmSacredWeapon00": "xmm-empyrean-sacred-weapon",
-  "mmSickeningVapor": "xmm-manes-vaporspawn-sickening-vapors",
-  "mmSleepGaze00000": "xmm-jackalwere-sleep-gaze",
-  "mmSpellReflectio": "xmm-spectator-spell-reflection",
-  "mmSporeBomb00000": "xmm-violet-fungus-necrohulk-spore-bomb",
-  "mmStomp000000000": "xmm-colossus-stomp",
-  "mmTacticalCharge": "xmm-warrior-commander-tactical-charge",
-  "mmTelekineticThr": "xmm-poltergeist-telekinetic-thrust",
-  "mmToxicInk000000": "xmm-kraken-toxic-ink",
-  "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze",
-  "mmWaterJet000000": "xmm-marid-water-jet",
-  "mmWateryRebuke00": "xmm-merfolk-wavebender-watery-rebuke",
-  "mmWateryRush0000": "xmm-lacedon-ghoul-watery-rush",
-  "mmWhirlwind00000": "xmm-air-elemental-whirlwind",
-  "pF4ucCgUSL6IY7YA": "xmm-ghast-gravecaller-claw",
-  "yO5Jxg4POQGRLlXI": "xmm-flumph-stench-spray"
-});
+export const SOURCES = Object.freeze({});

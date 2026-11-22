@@ -186,4 +186,10 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] Missing keys ranked from the drafts queue (214 entries): a size limit on targets (19) is one field on an existing key;
       then advantage or a bonus under a condition (23), state kept across turns (21), an armour-class bonus against one hit
       (14), a reaction that alters a roll (13), a choice at use time (11). 8 queued entries are `data`, 4 are `none`.
+- [x] R28 (2026-11-22): every monster rule is held; the engine reads monster features from their text itself.
+- [ ] Give triage the engine's own reading of a monster feature (what its text layer derives for the official item) and
+      re-triage the monster `entry` records with it: most are probably `core`.
+- [ ] For the 75 monster rules in the registry: compare each with the engine's reading (identical / adds / changes) and
+      keep only what adds something the engine does not read, as a rule that MERGES with the reading instead of replacing it
+      (check how the engine merges a module entry over its text layer, key by key).
 
