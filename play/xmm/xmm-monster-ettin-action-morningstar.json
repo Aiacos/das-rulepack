@@ -1,0 +1,42 @@
+{
+  "scenario": "xmm/xmm-monster-ettin-action-morningstar",
+  "key": "xmm:monster:ettin/action/morningstar",
+  "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmEttin000000000.5LN8JEIko2tgE2WO",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmEttin000000000",
+      "id": "5LN8JEIko2tgE2WO"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "QIpweawAzbt4xw5h": 5
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "QIpweawAzbt4xw5h"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=bearerTurnEnd;given.roll=hit"
+    }
+  ]
+}

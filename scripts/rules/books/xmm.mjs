@@ -5,6 +5,34 @@ export const BOOK = "XMM";
 
 export const RULES = book(BOOK, [
   {
+    "identifier": "xmm-aboleth-mucus-cloud",
+    "name": "Mucus Cloud",
+    "page": 12,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Aboleth",
+    "adds": "Creatures next to the aboleth save against the curse when its turn ends.",
+    "entry": {
+      "emanation": {
+        "on": "ownTurnEnd",
+        "activity": "clFFG8uDBSFzxIo8"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ],
+    "partial": {
+      "healing-block": 1,
+      "out-of-combat": 2,
+      "trigger-filter": 1
+    }
+  },
+
+  {
     "identifier": "xmm-air-elemental-whirlwind",
     "name": "Whirlwind",
     "page": 13,
@@ -170,6 +198,32 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-ettin-morningstar",
+    "name": "Morningstar",
+    "page": 116,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Ettin",
+    "adds": "The marker placed by a hit expires when the target's following turn ends.",
+    "entry": {
+      "effectEnds": {
+        "1SUTrOeGym7HuWxB": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ],
+    "partial": {
+      "no-key": 1,
+      "use-limit": 1
+    }
+  },
+
+  {
     "identifier": "xmm-flumph-stench-spray",
     "name": "Stench Spray",
     "page": 122,
@@ -195,6 +249,69 @@ export const RULES = book(BOOK, [
     "partial": {
       "no-key": 1,
       "out-of-combat": 1
+    }
+  },
+
+  {
+    "identifier": "xmm-frost-giant-war-cry",
+    "name": "War Cry",
+    "page": 124,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Frost Giant",
+    "adds": "The war cry's effect on its recipient ends when the giant's next turn begins.",
+    "entry": {
+      "effectEnds": {
+        "qNmREVJzIbrjEJyb": "casterTurnStart"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ],
+    "partial": {
+      "no-key": 1
+    }
+  },
+
+  {
+    "identifier": "xmm-gnoll-demoniac-hunger-of-yeenoghu",
+    "name": "Hunger of Yeenoghu",
+    "page": 141,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Gnoll Demoniac",
+    "adds": "A creature entering the dark cube or starting its turn there saves again; the cube is difficult terrain.",
+    "entry": {
+      "difficultTerrain": {
+        "cost": 2
+      },
+      "triggers": [
+        {
+          "on": [
+            "enter",
+            "turnStart"
+          ],
+          "do": [
+            {
+              "type": "replay"
+            }
+          ]
+        }
+      ]
+    },
+    "carries": {
+      "from": "hunger-of-yeenoghu",
+      "keys": [
+        "magical"
+      ]
+    },
+    "partial": {
+      "no-key": 2
     }
   },
 
@@ -330,6 +447,35 @@ export const RULES = book(BOOK, [
         "because": "DDB Importer monster features: world ids and generic identifiers"
       }
     ]
+  },
+
+  {
+    "identifier": "xmm-sprite-heart-sight",
+    "name": "Heart Sight",
+    "page": 298,
+    "kind": "monster",
+    "status": "validated",
+    "handledIn": "table",
+    "origin": "Sprite",
+    "adds": "Celestial, fiend and undead targets fail the save outright.",
+    "entry": {
+      "saveAutoFail": {
+        "types": [
+          "celestial",
+          "fiend",
+          "undead"
+        ]
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ],
+    "partial": {
+      "out-of-combat": 1
+    }
   },
 
   {

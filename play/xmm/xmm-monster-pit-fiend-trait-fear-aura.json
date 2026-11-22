@@ -1,0 +1,67 @@
+{
+  "scenario": "xmm/xmm-monster-pit-fiend-trait-fear-aura",
+  "key": "xmm:monster:pit-fiend/trait/fear-aura",
+  "rule": "84041c8db8fab11f3a009a57a17db386b3eeff9fb82be3f1dfe9971685b57499",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "advance",
+    "expect.affects",
+    "expect.subjected",
+    "given.moment.turnStart"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmPitFiend000000.mmFearAura000000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmPitFiend000000",
+      "id": "mmFearAura000000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "oT8238p9jXwVy76c": null
+    },
+    "area": [
+      "oT8238p9jXwVy76c"
+    ]
+  },
+  "steps": [
+    {
+      "use": "oT8238p9jXwVy76c"
+    },
+    {
+      "advance": "turnStart"
+    },
+    {
+      "check": "expect.affects=enemies;given.moment=turnStart"
+    },
+    {
+      "use": "oT8238p9jXwVy76c"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=frightened;given.roll=failedSave"
+    },
+    {
+      "use": "oT8238p9jXwVy76c"
+    },
+    {
+      "advance": "turnStart"
+    },
+    {
+      "check": "expect.subjected=activity;given.moment=turnStart"
+    }
+  ]
+}

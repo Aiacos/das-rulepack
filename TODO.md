@@ -329,4 +329,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 
 - [x] Pre-pass against the engine main after the merges of 2026-11-22: 15 XPHB records are now `core`.
 - [x] Plays recorded on the test world: 29 scenarios held, 29 plays recorded; 28 of the 42 shipped rules are played.
+- [x] Drafts queue offered again (R39): 26 of 195 drafted, 9 ship after a blind review, 17 to the review queue. 49 rules.
 

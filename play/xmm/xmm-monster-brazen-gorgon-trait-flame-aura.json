@@ -1,0 +1,48 @@
+{
+  "scenario": "xmm/xmm-monster-brazen-gorgon-trait-flame-aura",
+  "key": "xmm:monster:brazen-gorgon/trait/flame-aura",
+  "rule": "fc9eda298c17a98d574c555ee908abb80109205bd2af95eb7488c8c65018afaa",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "advance",
+    "expect.subjected",
+    "given.moment.ownTurnEnd"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmBrazenGorgon00.mmFlameAura00000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmBrazenGorgon00",
+      "id": "mmFlameAura00000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "f4cPafTT2VXHbpr7": null
+    },
+    "area": [
+      "f4cPafTT2VXHbpr7"
+    ]
+  },
+  "steps": [
+    {
+      "use": "f4cPafTT2VXHbpr7"
+    },
+    {
+      "advance": "ownTurnEnd"
+    },
+    {
+      "check": "expect.subjected=activity;given.moment=ownTurnEnd"
+    }
+  ]
+}

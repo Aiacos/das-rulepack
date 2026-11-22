@@ -526,3 +526,17 @@ a save (4: a mark's free name), damage dealt back on a failed save against magic
 target (2) and damage doubled against objects (1): engine gaps. On a copy of the registry after `npm run gates`
 (19 143 records, 0 failing), the 101 ruled records keep their states and emission, and the registry, generated modules,
 README and RULES.md are byte-identical.
+
+# The drafts queue offered again (2026-11-22)
+
+After five additions to the drafter vocabulary and two corrections of the item summary, the entries drafters had declined
+were offered once more, blind (`--reoffer`, Ruling R39): 195 entries in 11 batches (XMM 192, FRAIF 3).
+
+| Outcome | Entries |
+|---|---|
+| Drafted and accepted by the gates (they leave the drafts queue) | 26 |
+| Declined again (kept in the queue with their first reason, marked) | 169 |
+
+Of the 26, a blind review agreed on 9 (7 exactly), which ship, 5 of them as partial rules; 17 went to the review queue (12
+disagreements, 5 with a key no assertion checks). The pack ships 49 rules; the drafts queue went from 206 to 180.
+

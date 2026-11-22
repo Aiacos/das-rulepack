@@ -1,0 +1,32 @@
+{
+  "scenario": "xmm/xmm-monster-marilith-trait-reactive",
+  "key": "xmm:monster:marilith/trait/reactive",
+  "rule": "62f856b5a99ff6cf0b735ffada8b193121d09d324902be809c905508d94f8bbc",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "use"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmMarilith000000.mmReactive000000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmMarilith000000",
+      "id": "mmReactive000000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {},
+    "area": []
+  },
+  "steps": []
+}

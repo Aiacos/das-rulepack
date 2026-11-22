@@ -1,0 +1,39 @@
+{
+  "scenario": "xmm/xmm-monster-frost-giant-bonus-war-cry",
+  "key": "xmm:monster:frost-giant/bonus/war-cry",
+  "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5",
+  "origin": "official",
+  "client": "gm",
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmFrostGiant0000.mmWarCry00000000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmFrostGiant0000",
+      "id": "mmWarCry00000000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "uN0VTW2Fqig7YAs9": null
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "uN0VTW2Fqig7YAs9"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    }
+  ]
+}

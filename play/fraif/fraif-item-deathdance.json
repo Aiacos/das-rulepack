@@ -1,0 +1,57 @@
+{
+  "scenario": "fraif/fraif-item-deathdance",
+  "key": "fraif:item:deathdance",
+  "rule": "735b0ac4311e11e0065123d16a60c438c3020100013906de3d415a9f8698c089",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect.roll"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "aifDeathdance000",
+      "uuid": "Compendium.dnd-adventures-faerun.items.Item.aifDeathdance000",
+      "kind": "item"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "1lOQF2Uz5coee7Vh": null
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "1lOQF2Uz5coee7Vh"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=incapacitated;given.roll=failedSave"
+    },
+    {
+      "use": "1lOQF2Uz5coee7Vh"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=poisoned;given.roll=failedSave"
+    },
+    {
+      "use": "1lOQF2Uz5coee7Vh"
+    },
+    {
+      "check": "expect.roll.for=target;expect.roll.mode=autoSuccess;expect.roll.on=save;given.targetType=humanoid"
+    }
+  ]
+}

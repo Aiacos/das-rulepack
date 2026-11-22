@@ -75,10 +75,128 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x011",
+          "at": "2026-11-22T19:47:30.801Z",
+          "core": "0.290.0",
+          "rule": "669ba941e24bf17208b70319b57be2d0f90eb9fd787d0743829e12e110a9e1e4",
+          "person": true,
+          "because": "dataFixes"
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.432Z",
+          "core": "0.290.0",
+          "rule": "669ba941e24bf17208b70319b57be2d0f90eb9fd787d0743829e12e110a9e1e4",
+          "emits": "b25d463c0b22ba5a6ab7944371151fdc5c3700f55e726a256a0261cdbb61beeb",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "32f156bb33f00346235fb29eda889636e9ad7ab8d513838499ee7840967b6d92"
+          }
         }
       },
       "why": "Aura damage on entry/turn end, once per turn, with toggle and self-immunity; data has only a plain damage activity. Rays need per-ray choice at use.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The cold aura stays around the wearer and hits creatures that come in or finish a turn inside; the damage ray deals radiant.",
+        "entry": {
+          "triggers": [
+            {
+              "on": [
+                "enter",
+                "turnEnd"
+              ],
+              "do": [
+                {
+                  "type": "replay",
+                  "activity": "aZZx8YQP6EC1klxs"
+                }
+              ]
+            }
+          ],
+          "zoneLasts": {
+            "seconds": 86400
+          },
+          "dataFixes": [
+            {
+              "path": "system.activities.OY9mLl8DZNh6Ij4t.damage.parts",
+              "from": [
+                {
+                  "number": 6,
+                  "denomination": 6,
+                  "types": []
+                }
+              ],
+              "value": [
+                {
+                  "number": 6,
+                  "denomination": 6,
+                  "bonus": 6,
+                  "types": [
+                    "radiant"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "its aura is a utility activity with a separate damage activity; triggers and fixes bind the official ids only"
+          }
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "enter"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "moment": "turnEnd"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5,
+                "type": "radiant"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 2
+          },
+          {
+            "unexpressed": "use-time-choice",
+            "count": 1
+          }
+        ]
+      },
+      "state": "gated"
     },
     {
       "key": "fraif:item:crown-of-horns",
@@ -152,10 +270,107 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x011",
+          "at": "2026-11-22T19:47:30.801Z",
+          "core": "0.290.0",
+          "rule": "ea4675228a53c3e54102950f25aca57954cf129b0c5a6fd3b0395935071d2d10",
+          "person": true,
+          "because": "emanation"
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.434Z",
+          "core": "0.290.0",
+          "rule": "ea4675228a53c3e54102950f25aca57954cf129b0c5a6fd3b0395935071d2d10",
+          "emits": "ad3ac5d2ce87d554a6139d02f321315616603d303ef30a7d6e19d0e5d08ca935",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "e497e4426e9bab40a408628a68e4ee79a352b4fd3d0325305e9f95ebb4a01514"
+          }
         }
       },
       "why": "Fear aura with entry/start-of-turn saves, repeat save on triggers, 1-minute immunity, incapacitated off-switch; undead rising on kill. Data only has a one-shot save.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "Creatures starting a turn within 60 feet of the wearer must save against the fear aura or become frightened.",
+        "entry": {
+          "emanation": {
+            "on": "turnStart",
+            "activity": "wkYpaGqW6RIJPxMa",
+            "radius": 60,
+            "units": "ft"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "emanation holds one activity id; the importer item has its own fear aura activity"
+          }
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "frightened"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {
+              "moment": "enter"
+            },
+            "expect": {
+              "subjected": "activity"
+            },
+            "because": "no-key"
+          },
+          {
+            "unexpressed": "immunity-after-save",
+            "count": 1
+          },
+          {
+            "unexpressed": "trigger-filter",
+            "count": 2
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 2
+          },
+          {
+            "unexpressed": "death-trigger",
+            "count": 2
+          },
+          {
+            "unexpressed": "form-change",
+            "count": 1
+          }
+        ]
+      },
+      "state": "gated"
     },
     {
       "key": "fraif:item:deathdance",
@@ -216,10 +431,90 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x011",
+          "at": "2026-11-22T19:47:30.801Z",
+          "core": "0.290.0",
+          "rule": "735b0ac4311e11e0065123d16a60c438c3020100013906de3d415a9f8698c089"
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.435Z",
+          "core": "0.290.0",
+          "rule": "735b0ac4311e11e0065123d16a60c438c3020100013906de3d415a9f8698c089",
+          "emits": "09abae08bfa0b8c8ba625fb771013540cd6d983c69d557c98b3522cf03635a7e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "86eb95bd6a1135af27e9952f0fa5b2ab722653ea38b44f14df8fa1e1d5500a00",
+            "ddb-importer": "ac3c979e5993fdd01525d7e04999e6964c145fd5d28ce0f97df6736f8badc09f"
+          }
+        },
+        "reviewed": {
+          "by": "reviewer-x002",
+          "at": "2026-11-22T19:50:03.463Z",
+          "agrees": true,
+          "rule": "735b0ac4311e11e0065123d16a60c438c3020100013906de3d415a9f8698c089",
+          "confidence": 0.85
         }
       },
       "why": "Humanoids auto-succeed (creature-type limit) and the poison also incapacitates; data cannot express the type exemption.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "Humanoid targets succeed on the Constitution save automatically.",
+        "entry": {
+          "saveAutoSuccess": {
+            "types": [
+              "humanoid"
+            ]
+          }
+        },
+        "origins": [
+          "official",
+          "ddb-importer"
+        ],
+        "assert": [
+          {
+            "given": {
+              "targetType": "humanoid"
+            },
+            "expect": {
+              "roll": {
+                "mode": "autoSuccess",
+                "on": "save",
+                "for": "target"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "poisoned"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "incapacitated"
+              }
+            }
+          }
+        ]
+      },
+      "state": "reviewed"
     },
     {
       "key": "fraif:item:ffolk-sailing-ship",
@@ -562,6 +857,13 @@
           "core": "0.290.0",
           "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b"
         },
+        "reviewed": {
+          "by": "reviewer-t001",
+          "at": "2026-11-22T09:57:24.752Z",
+          "agrees": true,
+          "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b",
+          "confidence": 0.75
+        },
         "gates": {
           "at": "2026-11-22T09:55:50.362Z",
           "core": "0.290.0",
@@ -578,13 +880,6 @@
           "items": {
             "official": "b03343c9c412a1761e4533d2f747eb97b2fde6328822a03189ff3b50ff55bef2"
           }
-        },
-        "reviewed": {
-          "by": "reviewer-t001",
-          "at": "2026-11-22T09:57:24.752Z",
-          "agrees": true,
-          "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b",
-          "confidence": 0.75
         }
       },
       "why": "Fear aura: enemies save at turn start, then 24h immunity; breath type chosen at use; toggle. Official data has fixed damage types and lacks the immunity.",
@@ -1028,6 +1323,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "fraif/fraif-item-ulcrun",
+          "client": "gm",
+          "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0"
+        },
         "gates": {
           "at": "2026-11-22T09:01:17.792Z",
           "core": "0.290.0",
@@ -1045,14 +1348,6 @@
             "official": "102c4eaa05dbffb0a38263bcbbab22552cbcca2d5e366f5fb2158de15f848bd3",
             "ddb-importer": "60d9c037c76fb488ae5350ac28aa8c26d9d8254a5a29945302129e477a5e21f0"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "fraif/fraif-item-ulcrun",
-          "client": "gm",
-          "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0"
         }
       },
       "why": "Data lacks the exhaustion level on a failed save; damage and save are present, the exhaustion rider is missing in every origin.",

@@ -1,0 +1,48 @@
+{
+  "scenario": "xmm/xmm-monster-aboleth-trait-mucus-cloud",
+  "key": "xmm:monster:aboleth/trait/mucus-cloud",
+  "rule": "f4bab65212fe6b4463c876643c198dbc60f30a655a4cae3cc67ed08e4ee3f7e9",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "advance",
+    "expect.subjected",
+    "given.moment.ownTurnEnd"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmAboleth0000000.mmMucusCloud0000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmAboleth0000000",
+      "id": "mmMucusCloud0000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "clFFG8uDBSFzxIo8": null
+    },
+    "area": [
+      "clFFG8uDBSFzxIo8"
+    ]
+  },
+  "steps": [
+    {
+      "use": "clFFG8uDBSFzxIo8"
+    },
+    {
+      "advance": "ownTurnEnd"
+    },
+    {
+      "check": "expect.subjected=activity;given.moment=ownTurnEnd"
+    }
+  ]
+}
