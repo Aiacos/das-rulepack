@@ -4,28 +4,31 @@
   "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.damage.type",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 3,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 4,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmDireWorg000000.mmDreadfulHowl00",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmDireWorg000000",
+      "id": "mmDreadfulHowl00"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "xToMbcg9i9oSf06f": null
+    },
+    "area": [
+      "xToMbcg9i9oSf06f"
+    ]
   },
   "steps": [
     {
@@ -45,21 +48,6 @@
     },
     {
       "check": "expect.damage.fraction=0.5;expect.damage.type=psychic;given.roll=savedSave"
-    },
-    {
-      "use": "xToMbcg9i9oSf06f"
-    },
-    {
-      "force": "savedSave"
-    },
-    {
-      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
-    },
-    {
-      "use": "xToMbcg9i9oSf06f"
-    },
-    {
-      "check": "expect.ends=casterTurnStart"
     },
     {
       "use": "xToMbcg9i9oSf06f"

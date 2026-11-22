@@ -4,36 +4,33 @@
   "rule": "068b834692a1806ff249460f9ef9e45e14931a8f4544df552b87c7b64bdfcd98",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.denies",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 4,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmAncientCopperD.BqtNDu2WFDju2dM6",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmAncientCopperD",
+      "id": "BqtNDu2WFDju2dM6"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "teMMQNDDIE9XkPN3": null
+    },
+    "area": [
+      "teMMQNDDIE9XkPN3"
+    ]
   },
   "steps": [
-    {
-      "use": "teMMQNDDIE9XkPN3"
-    },
-    {
-      "check": "expect.denies=actionAndBonus"
-    },
     {
       "use": "teMMQNDDIE9XkPN3"
     },
@@ -47,22 +44,10 @@
       "use": "teMMQNDDIE9XkPN3"
     },
     {
-      "check": "expect.denies=reactions"
-    },
-    {
-      "use": "teMMQNDDIE9XkPN3"
-    },
-    {
       "force": "failedSave"
     },
     {
       "check": "expect.denies=reactions;given.roll=failedSave"
-    },
-    {
-      "use": "teMMQNDDIE9XkPN3"
-    },
-    {
-      "check": "expect.ends=bearerTurnEnd"
     },
     {
       "use": "teMMQNDDIE9XkPN3"

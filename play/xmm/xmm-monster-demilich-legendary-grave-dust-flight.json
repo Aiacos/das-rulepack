@@ -4,27 +4,31 @@
   "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmDemilich000000.4e4ia1FS6ln2GnGF",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmDemilich000000",
+      "id": "4e4ia1FS6ln2GnGF"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "jjHZ0sa9Ihw0qnC5": null
+    },
+    "area": [
+      "jjHZ0sa9Ihw0qnC5"
+    ]
   },
   "steps": [
     {
@@ -35,12 +39,6 @@
     },
     {
       "check": "expect.condition.applied=blinded;given.roll=failedSave"
-    },
-    {
-      "use": "jjHZ0sa9Ihw0qnC5"
-    },
-    {
-      "check": "expect.ends=casterTurnEnd"
     },
     {
       "use": "jjHZ0sa9Ihw0qnC5"

@@ -20,6 +20,8 @@ const DOC = "Do11Do22Do33Do44";
 const HALF = { given: { roll: "savedSave" }, expect: { damage: { fraction: 0.5 } } };
 const PRONE = { given: { roll: "failedSave", targetType: "undead" }, expect: { condition: { applied: "prone" } } };
 const packOf = (docId) => (docId === DOC ? "tst-pkg.spells" : null);
+// The engine names a resolution's target by its token's uuid (its name may be randomised): DAS_CORE core/action.mjs.
+const TARGET_UUID = "Scene.ScArena000000000.Token.TkTarget00000000";
 
 let textDir;
 beforeEach(() => { textDir = mkdtempSync(join(tmpdir(), "scenarios-")); });
@@ -107,11 +109,12 @@ describe("scenarioOf: a rule's assertions as play data", () => {
   });
 
   it("a moment, a crit or an unknown compendium makes it manual, with the paths named", () => {
+    // A condition ended is interpreted (play/lib/steps.mjs); at a moment (a turn's end, a turn passed) it is not: `advance`.
     const later = { given: { moment: "endOfTurn" }, expect: { condition: { ended: "prone" } } };
     const crit = { given: { roll: "crit" }, expect: { damage: { fraction: 2 } } };
     const s = scenarioOf(reviewed({ rule: rule({ assert: [later, crit] }) }), { packOf });
     expect(s.manual).toBe(true);
-    expect(s.manualBecause).toEqual(expect.arrayContaining(["advance", "force.crit", "expect.condition.ended"]));
+    expect(s.manualBecause).toEqual(["advance", "force.crit", "given.moment"]);
     expect(scenarioOf(reviewed(), {}).manualBecause).toContain("setup.item");
   });
 
@@ -187,7 +190,7 @@ describe("play/lib/steps.mjs scenario(json): what the engine's runner plays", ()
         const success = saves[Math.min(n, saves.length - 1)];
         n += 1;
         if (resolution) return resolution(n);
-        return { step: "done", targets: [{ id: "TkTarget00000000", save: { success, total: 12 }, damage: { applied } }] };
+        return { step: "done", targets: [{ token: TARGET_UUID, save: { success, total: 12 }, damage: { applied } }] };
       },
       messagesSince: async () => messages ?? [{ type: "damage", rolls: [{ total: rolled }] }],
       hp: async () => 30, setHp: async () => { afterUse = false; }, removeStatusEffects: async () => {},
@@ -246,18 +249,18 @@ describe("play/lib/steps.mjs scenario(json): what the engine's runner plays", ()
     const only = (log, what) => log.filter(([k, l]) => k !== "log" && l.includes(what));
 
     it("a damage fraction above 0 with no damage message and no applied damage fails", async () => {
-      const log = await run([full], { messages: [], resolution: () => ({ targets: [{ id: "TkTarget00000000" }] }) });
+      const log = await run([full], { messages: [], resolution: () => ({ targets: [{ token: TARGET_UUID }] }) });
       expect(only(log, "damage fraction 1").map(([k]) => k)).toEqual(["fail"]);
     });
 
     it("a damage fraction of 0 where nothing was rolled and no damage field exists fails", async () => {
-      const log = await run([zero], { messages: [], resolution: () => ({ targets: [{ id: "TkTarget00000000" }] }) });
+      const log = await run([zero], { messages: [], resolution: () => ({ targets: [{ token: TARGET_UUID }] }) });
       expect(only(log, "damage fraction 0").map(([k]) => k)).toEqual(["fail"]);
     });
 
     it("a damage fraction of 0 passes on an explicit 0 applied", async () => {
       const log = await run([zero], { messages: [],
-        resolution: () => ({ targets: [{ id: "TkTarget00000000", hit: true, damage: { applied: 0 } }] }) });
+        resolution: () => ({ targets: [{ token: TARGET_UUID, hit: true, damage: { applied: 0 } }] }) });
       expect(only(log, "damage fraction 0").map(([k]) => k)).toEqual(["pass"]);
     });
 

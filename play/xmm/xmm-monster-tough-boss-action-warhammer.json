@@ -4,27 +4,29 @@
   "rule": "e2872405c454f13e4145b5b5d76a5992b7a732f3b3fb66ac0d2fc3532f321cb9",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.move.distance.mode",
-    "setup.item"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmToughBoss00000.iD5121TXziB6ZcSt",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmToughBoss00000",
+      "id": "iD5121TXziB6ZcSt"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "jf99rIxqlwX1YLPc": 5
+    },
+    "area": []
   },
   "steps": [
     {

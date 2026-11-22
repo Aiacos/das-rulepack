@@ -4,26 +4,39 @@
   "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "setup.item",
-    "use"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmKuotoa00000000.BnRLQOEcoPDYB7fx",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmKuotoa00000000",
+      "id": "BnRLQOEcoPDYB7fx"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "MxEs7KnCVGemObHx": 15
+    },
+    "area": []
   },
-  "steps": []
+  "steps": [
+    {
+      "use": "MxEs7KnCVGemObHx"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=restrained;given.roll=failedSave"
+    }
+  ]
 }

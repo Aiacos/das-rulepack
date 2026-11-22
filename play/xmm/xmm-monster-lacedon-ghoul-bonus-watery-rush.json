@@ -4,27 +4,29 @@
   "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.denies",
-    "setup.item"
-  ],
-  "checks": 0,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 1,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmLacedonGhoul00.mmWateryRush0000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmLacedonGhoul00",
+      "id": "mmWateryRush0000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "xoYfePV5epjJkYHX": null
+    },
+    "area": []
   },
   "steps": [
     {

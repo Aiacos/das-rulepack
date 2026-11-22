@@ -4,26 +4,29 @@
   "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect.damage.type",
-    "setup.item"
-  ],
+  "manual": false,
+  "manualBecause": [],
   "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmSpectator00000.mmSpellReflectio",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmSpectator00000",
+      "id": "mmSpellReflectio"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "ZYmB6aUHCqkMh0Ji": 120
+    },
+    "area": []
   },
   "steps": [
     {
@@ -33,7 +36,7 @@
       "force": "savedSave"
     },
     {
-      "check": "expect.damage.fraction=0;given.roll=savedSave"
+      "check": "expect.damage.fraction=0;expect.damage.type=force;given.roll=savedSave"
     },
     {
       "use": "ZYmB6aUHCqkMh0Ji"

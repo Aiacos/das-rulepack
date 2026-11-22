@@ -4,25 +4,31 @@
   "rule": "2312a6493c6215793c1940f0db44a679e3fb0eae0ef4ceba0874ce1389e9e1de",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "setup.item"
-  ],
+  "manual": false,
+  "manualBecause": [],
   "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmGiantApe000000.mmBoulderToss000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmGiantApe000000",
+      "id": "mmBoulderToss000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "jpC3fk7LJlhH4CDr": 90
+    },
+    "area": [
+      "jpC3fk7LJlhH4CDr"
+    ]
   },
   "steps": [
     {
@@ -41,7 +47,7 @@
       "force": "savedSave"
     },
     {
-      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+      "check": "expect.damage.fraction=0.5;expect.damage.type=bludgeoning;given.roll=savedSave"
     }
   ]
 }

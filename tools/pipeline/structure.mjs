@@ -95,3 +95,27 @@ export function structureOf(doc) {
   out.effects = list(doc?.effects).map(effectOf);
   return out;
 }
+
+// A length in feet: a positive number, or a string of digits; anything else (a formula, "self", an empty value) is unknown.
+const feet = (v) => {
+  const n = typeof v === "number" ? v : typeof v === "string" && /^\d+(\.\d+)?$/.test(v.trim()) ? Number(v) : NaN;
+  return Number.isFinite(n) && n > 0 ? n : null;
+};
+
+/**
+ * How far each activity of a document reaches, in feet, by activity id (null when unknown): the activity's own range when it
+ * is given in feet, else for an activity that takes the item's range (units `self` or none: a monster's weapon attack) the
+ * larger of the item's reach and normal range in feet. Numbers only: what play/lib/steps.mjs needs to start a pull in reach.
+ */
+export function reachesOf(doc) {
+  const system = isObject(doc?.system) ? doc.system : {};
+  const item = isObject(system.range) && system.range.units === "ft" ? system.range : null;
+  const itemReach = item ? Math.max(feet(item.reach) ?? 0, feet(item.value) ?? 0) || null : null;
+  const out = {};
+  for (const [id, a] of Object.entries(isObject(system.activities) ? system.activities : {})) {
+    const range = isObject(a?.range) ? a.range : {};
+    const own = range.units === "ft" ? feet(range.value) : null;
+    out[plain(a?._id) ?? id] = own ?? (!range.units || range.units === "self" ? itemReach : null);
+  }
+  return out;
+}

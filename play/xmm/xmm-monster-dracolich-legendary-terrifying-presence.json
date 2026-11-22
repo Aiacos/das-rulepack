@@ -4,27 +4,31 @@
   "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 2,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 4,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmDracolich00000.Ml3peAqEgqgm95nj",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmDracolich00000",
+      "id": "Ml3peAqEgqgm95nj"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "SVb8yS9ewkeZpP2R": null
+    },
+    "area": [
+      "SVb8yS9ewkeZpP2R"
+    ]
   },
   "steps": [
     {
@@ -43,13 +47,7 @@
       "force": "savedSave"
     },
     {
-      "check": "expect.damage.fraction=0;given.roll=savedSave"
-    },
-    {
-      "use": "SVb8yS9ewkeZpP2R"
-    },
-    {
-      "check": "expect.ends=bearerTurnEnd"
+      "check": "expect.damage.fraction=0;expect.damage.type=psychic;given.roll=savedSave"
     },
     {
       "use": "SVb8yS9ewkeZpP2R"

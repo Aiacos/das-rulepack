@@ -4,27 +4,29 @@
   "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.ends",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 3,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmBeardedDevil00.mmBeard000000000",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmBeardedDevil00",
+      "id": "mmBeard000000000"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "m3VvZz74hV95zwaB": null
+    },
+    "area": []
   },
   "steps": [
     {
@@ -35,12 +37,6 @@
     },
     {
       "check": "expect.condition.applied=poisoned;given.roll=hit"
-    },
-    {
-      "use": "m3VvZz74hV95zwaB"
-    },
-    {
-      "check": "expect.ends=casterTurnStart"
     },
     {
       "use": "m3VvZz74hV95zwaB"

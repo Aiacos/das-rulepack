@@ -1070,27 +1070,52 @@ For every record of the book in state `reviewed` or `played`, `tools/pipeline/sc
 setup, steps }`:
 
 - `scenario` is `<book>/<slug(key)>`, the name the runner prints; `rule` the rule fingerprint the file was made for.
-- `setup`: the scene (`Arène des sorts`), its caster token (`Lanceur`) and the token the target is placed near (`Cible`); the
-  item (`origin`: official when the rule names it, else the first origin; `docId`; its compendium `uuid`, found in the dumps:
-  the item pack holding the docId, the book's own package first; the `kind`); the target, an SRD 2024 creature of the
-  creature type the assertions name (`scenarios.mjs` `TARGETS`, ids the Monster Manual 2025 and dnd5e's `actors24` share),
-  a Bandit Captain when they name none.
-- `steps`: the assertions are `rule.assert` plus those its entry implies (`impliedAsserts`), deduplicated. Every id of the
-  entry that is an activity of the item is played (the rule fingerprint `played` is bound to covers all of them; with none,
-  the item's only activity): per activity, per assertion checked on it, `{ use: <activity id> }`, `{ force: <roll> }` when it
-  has a roll, `{ advance: <moment> }` when it has a moment, `{ check: <canonical assertion> }`. An assertion the entry ties
+- `setup`: the scene (`Arène des sorts`); the item (`origin`: official when the rule names it, else the first origin;
+  `docId`; the `kind`). For a **monster feature** (`kind: monster`, docId `<actor id>.<item id>`) the creature itself is cast
+  for the run from `actor` (the Monster Manual 2025, else dnd5e's SRD 2024, by that id) and uses its own embedded item `id`
+  (`caster: null`, no compendium uuid, uses not consumed); a docId of another shape is `setup.item`. For anything else the item
+  is lent to the arena's caster token (`caster: "Lanceur"`) from its compendium `uuid`, found in the dumps (the item pack
+  holding the docId, the book's own package first). `near`: the token the creatures are cast near (`Cible`). The target is an
+  SRD 2024 creature of the creature type the assertions name (`scenarios.mjs` `TARGETS`), a Bandit Captain when they name none.
+  `reach`: per activity played, how far it reaches in feet (`structure.mjs` `reachesOf`: the activity's range in feet, else
+  the larger of the item's reach and normal range; null when unknown); `area`: the activities with an area template, used on
+  a rectangle laid over the target (as the engine's own scenarios do for a cone).
+- `steps`: the assertions are `rule.assert` plus those its entry implies (`impliedAsserts`, given the official item's structure
+  from the dumps: the roll each effect is applied on, the damage types), less those `rule.leaves` leaves to the table; of two
+  that say the same thing (`sameUpToDetail`) only the more detailed is kept. Every id of the entry that is an activity of the
+  item is played (the rule fingerprint `played` is bound to covers all of them); with none, the item's only activity; with
+  several and none named, the only one of the kind that makes the assertions' rolls (a save for `failedSave`/`savedSave`, an
+  attack for `hit`/`miss`). Per activity, per assertion checked on it: `{ use: <activity id> }`, `{ force: <roll> }` when it
+  has a roll (`{ observe: <roll> }` when it has none but is about an effect: the roll the activity applies effects on, a failed
+  save or a hit), `{ advance: <moment> }` when it has a moment, `{ check: <canonical assertion> }`. An assertion the entry ties
   to some activities (`saveDamage`, `noDamage` name theirs) is checked on those; any other, on each activity.
-- `checks`: how many checks the run makes when every assertion holds (one per damage fraction, one per condition applied);
+- `checks`: how many checks the run makes when every assertion holds: one per damage fraction (its type included), condition
+  applied, condition ended, move and denial; two per ending at a turn boundary (still there just before, gone just after).
   `played` refuses a run whose stamp counts another number.
-- `manual: true` when a step has no interpreter, with the paths that have none in `manualBecause` (`given.free`, `force.crit`,
-  `advance`, `expect.condition.ended`, `setup.item`…). The interpreter covers what the runner can do without guessing: the
-  outcomes `hit`, `miss`, `failedSave`, `savedSave`; a fraction of the rolled damage (no damage type); a condition applied; one
-  creature type; the setup item's own origin. No check passes on nothing: a missing resolution for the target fails it; a
-  fraction above 0 needs a damage roll and a positive `damage.applied`; a fraction of 0 needs a damage roll or an explicit
-  `damage.applied` in the resolution; a condition must be absent before the use and present after; no target creature fails the
-  scenario; a use the engine refuses stops it at once ("the use of activity … was refused"). The runner cannot force a d20: a
-  step `{ force }` uses the activity again (up to 12 times) until that outcome comes, and fails its check if it never does. A
-  manual scenario's JSON is a checklist for a person.
+- `manual: true` when a step has no interpreter, with exactly the paths that have none in `manualBecause` (`given.free`,
+  `force.crit`, `advance`, `expect.ends.savedSave`, `expect.ends.isDamaged`, `expect.move.mode.random`, `expect.move.distance`
+  (a formula), `expect.roll`, `expect.uses`, `setup.item`, `setup.reach` (a pull whose start, its distance plus 5 ft, is beyond
+  the activity's reach), `use`…). A manual scenario's JSON is a checklist for a person.
+
+**What the interpreter checks** (`play/lib/steps.mjs`; no check passes on nothing — a missing resolution for the target fails
+it, so does a use the engine refuses, at once; a target is found in the resolution by its token's uuid, never by name: the
+engine's world may rename a cast creature, "Loquacious rulepack-target (1)"):
+
+| Assertion | How it is observed | Fails when |
+|---|---|---|
+| `given.roll` hit / miss / failedSave / savedSave | the activity is used again (up to 20 times) until the resolution shows that outcome | it never comes |
+| `expect.damage.fraction` (+ `type`) | the damage roll's total against `damage.applied`; the type among the resolution's `damageRoll.damages` types | no roll, no applied damage (above 0), another amount, the type absent |
+| `expect.condition.applied` | the status absent before the use, present after | already there, or never there |
+| `expect.condition.ended` | the status set on the target (`set-status`) before the use, gone after | it could not be set, or it stays |
+| `expect.move` push / pull (± distance) | the target placed so that the lane is free (a push: adjacent, its whole distance free beyond; a pull: its distance plus one square out); squares travelled and squares from the caster before and after | nothing moved, it moved sideways or the wrong way, or not the stated distance (the failure line adds the engine's "pushed n of m (stopped)" log line when there is one) |
+| `expect.ends` casterTurnStart / casterTurnEnd / bearerTurnStart / bearerTurnEnd / currentTurnEnd | in a combat (caster at initiative 20, target 10), the effect placed on a new caster's turn; turns passed one by one: still there just before the stated moment, gone just after (`casterTurnEnd` / `bearerTurnEnd`: the end of that creature's next turn, never the one it was placed in) | no new effect, gone too early, still there after |
+| `expect.denies` reactions / actionAndBonus | the engine's `stats` of the target (`reactionBlocked`, `actionOrBonus`): false before the use, true after | already true, or still false |
+| `expect.denies` opportunityAttacks | in a combat, on a new caster's turn: the engine's `budget` of the caster (`disengaged`, what runtime/turn.mjs sets after an item that "moves without provoking"): false before, true after | already true, or still false |
+
+Not interpreted (manual): an ending on a repeated save (`savedSave`) or on a moment (`isDamaged`…): the engine's scenarios
+force neither; a random move; roll modes; uses spent; a crit; a moment to advance to. A combat is started once per scenario
+when a check needs one and ended by the runner's restore; when it cannot be started, that check fails and the run prints
+`stamp withheld: …` instead of its stamp line, so `npm run played` records nothing from it.
 
 Generated files hold ids, engine words, numbers, the record key and fingerprints: never `adds`, a `free` text (its canonical
 form is `*`), the record's name or any text of the book. `--check` compares the files with what would be written (exit 1 on a
@@ -1116,17 +1141,61 @@ MCP_URL=<the connector's URL, default http://localhost:31416/mcp> \
   node tools/scenario.mjs <this repository>/play/<book>/<slug>.mjs 2>&1 | tee <private log>
 ```
 
-A folder (`<this repository>/play/<book>`) plays every scenario of the book, in file order; `--plan` says which to run first.
-The runner plays it in the scene named `Arène des sorts` (absent: "non applicable", nothing recorded), places the target, lends
-the item to `Lanceur` (a spell as at will), uses each activity, checks, puts everything back (the target's hit points and
-conditions, the caster's spell slots, the spent uses of an item it already held, only the concentration effects the run
-added), and prints a verdict. Then:
+A folder (`<this repository>/play/<book>`) plays every automatic scenario of the book (only those have a `.mjs`), in file
+order; `--plan` says which to run first. The runner plays it in the scene named `Arène des sorts` (absent: "non applicable",
+nothing recorded). A spell or item scenario places the target near `Cible` and lends the item to `Lanceur` (a spell as at
+will); a monster scenario casts the creature (friendly) near `Cible`, then the target (hostile) next to it, and moves them so
+that each check has its lane (`placementOf`: adjacent, on the side with the most free squares; the creature moved elsewhere on
+the scene when its side has no room). It uses each activity, checks, puts everything back (the target's hit points and
+conditions, the caster's spell slots, the spent uses of an item it already held, only the concentration effects the run added;
+the cast creatures are removed, the combat ended), and prints a verdict. Then:
 
 ```sh
 npm run played -- <private log> --world <world name>   # --client player for a player's client
 ```
 
 and commit the registry. The log stays private (it is not rulebook text, but it is no repository file either).
+
+**The 2024 Monster Manual today** (`npm run scenarios -- XMM`, 2026-11-22): 39 scenarios, **39 automatic, 0 manual** (before:
+0 automatic, all `setup.item`, and 34 of them also waiting for the move, ending or denial interpreters). One scenario, then all
+of them, from the engine's clone:
+
+```sh
+cd "$DAS_CORE"
+export MCP_URL=<the connector's URL>
+node tools/scenario.mjs <this repository>/play/xmm/xmm-monster-banshee-action-horrify.mjs 2>&1 | tee <log>
+node tools/scenario.mjs <this repository>/play/xmm 2>&1 | tee <log>
+cd <this repository> && npm run played -- <log> --world <world name>
+```
+
+**What could not be verified without a server** (a checklist for the first live run; each item names the scenario that shows
+it):
+
+- [ ] `ctx.cast` places a creature by its actor id for every caster of `play/xmm` (the Monster Manual 2025 module installed),
+  and `disposition: 1` for the caster does not change how the engine resolves (`whirlwind`, `watery-rebuke`: `affects: enemy`).
+- [ ] The monster's embedded item id is the second half of the docId for every creature (seen for the Air Elemental only).
+- [ ] `run-script` returns the GEOMETRY of `play/lib/steps.mjs` (`canvas.scene.grid.size`, `.distance`, `.isSquare`,
+  `dimensions.sceneRect`, tokens' `_source.x/y`, `width/height`, `level`) and `move-token` lands the target exactly on the cell.
+- [ ] A forced move is measured on the free lane `placementOf` chose: no wall of the arena crosses it (walls are not read).
+  The full distance is expected; a short push fails with the engine's "pushed n of m (stopped)" line in the message
+  (`whirlwind`, `goristro`, `marid`, `poltergeist`, `watery-rebuke`, `tough-boss`).
+- [ ] A pull starts its distance plus one square out and the engine stops it adjacent (`balor` 25 ft from 30, `merrow`,
+  `shambling-mound`, `tree-blight`): the attack is accepted at that range (reach 30, normal range 20).
+- [ ] An area activity accepts `area: { shape: "rectangle", …box(target) }` and resolves the target in it (every scenario with a
+  non-empty `setup.area`: cones, lines, radii centred on the creature).
+- [ ] `ctx.startCombat` gives a started combat (`round` ≥ 1) holding both creatures, `set-initiative` reorders it, `next-turn`
+  runs the engine's turn endings (core/effect-ends.mjs) on the GM's client within 1.5 s, and no window opened at a turn change
+  blocks the next one (`banshee`, `demilich`, `dracolich`, `chain-devil`, `ghast-gravecaller`).
+- [ ] An effect placed on a new caster's turn carries the engine's `placedOn` (it is placed during a started combat).
+- [ ] `ctx.engine("stats")` reports `reactionBlocked` and `actionOrBonus` for an unlinked cast target (`slowing-breath`,
+  `fetid-cloud`).
+- [ ] `ctx.engine("budget")` reports `disengaged` for the caster after a "moves without provoking" item on its own turn, the
+  engine reading the item's English description (`clay-golem`, `colossus`, `lacedon-ghoul`, `unicorn`, `warrior-commander`,
+  `weretiger`, `elemental-cataclysm`); a utility activity's `settle` may time out without failing the check.
+- [ ] `damageRoll.damages[].type` is in the resolution the connector returns (`dire-worg`, `spectator`, `giant-ape`).
+- [ ] A reaction or legendary activity (`chain-devil`, `spectator`, `watery-rebuke`, `colossus`, `unicorn`) is accepted when used
+  outside its trigger with `consume: false`.
+- [ ] 20 tries are enough for the rarer roll (a DC 13 save the Bandit Captain fails about one time in five).
 
 ### The stamp line and `npm run played`
 

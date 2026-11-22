@@ -4,27 +4,31 @@
   "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
   "origin": "official",
   "client": "gm",
-  "manual": true,
-  "manualBecause": [
-    "expect",
-    "expect.denies",
-    "setup.item"
-  ],
-  "checks": 1,
+  "manual": false,
+  "manualBecause": [],
+  "checks": 2,
   "setup": {
     "scene": "Arène des sorts",
-    "caster": "Lanceur",
+    "caster": null,
     "near": "Cible",
     "item": {
       "origin": "official",
       "docId": "mmElementalCatac.mmRumblingMoveme",
       "uuid": null,
-      "kind": "monster"
+      "kind": "monster",
+      "actor": "mmElementalCatac",
+      "id": "mmRumblingMoveme"
     },
     "target": {
       "actor": "mmBanditCaptain0",
       "type": "humanoid"
-    }
+    },
+    "reach": {
+      "6LnRjVsoOrDcYSqw": null
+    },
+    "area": [
+      "6LnRjVsoOrDcYSqw"
+    ]
   },
   "steps": [
     {
