@@ -2040,7 +2040,7 @@
       "edition": "2024",
       "owner": "Adult Black Dragon",
       "section": "legendary",
-      "identifier": "cloud-of-insects",
+      "identifier": "xmm-adult-black-dragon-cloud-of-insects",
       "page": 39,
       "srd": true,
       "text": {
@@ -2062,7 +2062,8 @@
           ],
           "data": {
             "sha256": "ef47a0e2c27af3cfb3b6ef0a53b99257f8127683f4a1f42f8966e99ada5538de"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -2075,7 +2076,8 @@
           "effects": [],
           "data": {
             "sha256": "f2c1febaeb446c421c4718daa02f36dad9a9df8a1d03d8c97da55fe9814ac7ac"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -2090,10 +2092,90 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-w001",
+          "at": "2026-11-22T11:21:09.233Z",
+          "core": "0.290.0",
+          "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1"
+        },
+        "reading": {
+          "at": "2026-11-22T11:21:21.506Z",
+          "core": "0.290.0",
+          "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1",
+          "item": "ef47a0e2c27af3cfb3b6ef0a53b99257f8127683f4a1f42f8966e99ada5538de",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "cloud-of-insects",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T11:21:21.506Z",
+          "core": "0.290.0",
+          "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1",
+          "emits": "b56fda4c03329f3ffa8ce4565f57973864bae9bf0df75a0e3b8728dc2c79623f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "ef47a0e2c27af3cfb3b6ef0a53b99257f8127683f4a1f42f8966e99ada5538de"
+          }
         }
       },
       "why": "No half damage on save per text; the effect has no changes for disadvantage on concentration saves and the action cannot repeat next turn",
-      "state": "triaged"
+      "sources": {
+        "mmAdultBlackDrag.mmCloudOfInsects": "xmm-adult-black-dragon-cloud-of-insects"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The insect effect on a target that failed ends at the end of that target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "owuEyJBslYKvxqeX": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          },
+          {
+            "unexpressed": "use-limit",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Adult Black Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:adult-black-dragon/legendary/frightful-presence",
@@ -3098,7 +3180,7 @@
       "edition": "2024",
       "owner": "Adult Brass Dragon",
       "section": "action",
-      "identifier": "sleep-breath",
+      "identifier": "xmm-adult-brass-dragon-sleep-breath",
       "page": 55,
       "srd": true,
       "text": {
@@ -3122,7 +3204,8 @@
           ],
           "data": {
             "sha256": "068df80092e522f7eb3a0858130a0831444e81e503c394d0309473988fe615c6"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -3139,7 +3222,8 @@
           ],
           "data": {
             "sha256": "de89fdab14fcb199ddab992275b05db53d7c240fc4da51fb65a87ddeb34f3367"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -3176,9 +3260,92 @@
               "outcome": "second-unsure"
             }
           }
+        },
+        "drafted": {
+          "by": "drafter-w001",
+          "at": "2026-11-22T11:21:09.233Z",
+          "core": "0.290.0",
+          "rule": "040ccff3c9b618ee832818b7fd5052f124218b87d085a693ec0843d33a8269b3",
+          "person": true,
+          "because": "actionEnds"
+        },
+        "reading": {
+          "at": "2026-11-22T11:21:21.512Z",
+          "core": "0.290.0",
+          "rule": "040ccff3c9b618ee832818b7fd5052f124218b87d085a693ec0843d33a8269b3",
+          "item": "068df80092e522f7eb3a0858130a0831444e81e503c394d0309473988fe615c6",
+          "delta": [
+            "actionEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sleep-breath",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T11:21:21.512Z",
+          "core": "0.290.0",
+          "rule": "040ccff3c9b618ee832818b7fd5052f124218b87d085a693ec0843d33a8269b3",
+          "emits": "d8e5b952cacb037bfe4b79df4b96b7f3d411e2f4079f5ca50aa6464edfa4711d",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "068df80092e522f7eb3a0858130a0831444e81e503c394d0309473988fe615c6"
+          }
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmAdultBrassDrag.mmSleepBreath000": "xmm-adult-brass-dragon-sleep-breath"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Another creature can spend its action to wake a target put to sleep, ending the unconscious effect.",
+        "entry": {
+          "actionEnds": {
+            "eiPsvHBjVi4pRHqJ": {
+              "by": "other",
+              "verb": "wake"
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "incapacitated"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "save-margin",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Adult Brass Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:adult-brass-dragon/legendary/blazing-light",
@@ -3313,7 +3480,7 @@
       "edition": "2024",
       "owner": "Adult Brass Dragon",
       "section": "legendary",
-      "identifier": "scorching-sands",
+      "identifier": "xmm-adult-brass-dragon-scorching-sands",
       "page": 55,
       "srd": true,
       "text": {
@@ -3335,7 +3502,8 @@
           ],
           "data": {
             "sha256": "36ddf8804decd6ee43442be9e8eea48f6608b08e4ca982d1870af1e4517eb701"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -3350,7 +3518,8 @@
           ],
           "data": {
             "sha256": "c0b9a9c451a85136a858365859c2122790615f011ca21ab2b3c0c969dc880765"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -3385,11 +3554,87 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-w001",
+          "at": "2026-11-22T11:21:09.233Z",
+          "core": "0.290.0",
+          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89"
+        },
+        "reading": {
+          "at": "2026-11-22T11:21:21.514Z",
+          "core": "0.290.0",
+          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
+          "item": "36ddf8804decd6ee43442be9e8eea48f6608b08e4ca982d1870af1e4517eb701",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "scorching-sands",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T11:21:21.514Z",
+          "core": "0.290.0",
+          "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
+          "emits": "e41e31fdbde65df0ee42027ed3bfd13961b63d9b6ee2d01fdc6742dd0971139e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "36ddf8804decd6ee43442be9e8eea48f6608b08e4ca982d1870af1e4517eb701"
+          }
         }
       },
       "why": "Data has half damage on save the text does not give; speed halving needs correct timed effect until end of next turn",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAdultBrassDrag.mmScorchingSands": "xmm-adult-brass-dragon-scorching-sands"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The halved speed on a failed save ends at the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "n3I76HfSH6eKLALf": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "use-limit",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Adult Brass Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:adult-brass-dragon/trait/legendary-resistance",
@@ -4371,7 +4616,7 @@
       "edition": "2024",
       "owner": "Adult Copper Dragon",
       "section": "action",
-      "identifier": "slowing-breath",
+      "identifier": "xmm-adult-copper-dragon-slowing-breath",
       "page": 79,
       "srd": true,
       "text": {
@@ -4393,7 +4638,8 @@
           ],
           "data": {
             "sha256": "40d479eb5a876e31c85abf8875e30dd96aab3a1d0355e0a6720755c8bc72e71d"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -4408,7 +4654,8 @@
           ],
           "data": {
             "sha256": "0cb72cb3a9685de75a811efc76ff6bba4f1b75acf0f419c0cb2fb2d46f4b2225"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -4443,11 +4690,81 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-w001",
+          "at": "2026-11-22T11:21:09.233Z",
+          "core": "0.290.0",
+          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537"
+        },
+        "reading": {
+          "at": "2026-11-22T11:21:21.518Z",
+          "core": "0.290.0",
+          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
+          "item": "40d479eb5a876e31c85abf8875e30dd96aab3a1d0355e0a6720755c8bc72e71d",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "slowing-breath",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T11:21:21.518Z",
+          "core": "0.290.0",
+          "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
+          "emits": "3ed288473e5a96b3448e7b7b0bd8a56bcae5c0ddd62c3585a62bd4f2164c3f9f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "40d479eb5a876e31c85abf8875e30dd96aab3a1d0355e0a6720755c8bc72e71d"
+          }
         }
       },
       "why": "Multi-part restriction: no reactions, halved speed, action or bonus action not both; data has half damage the text lacks and no restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAdultCopperDra.mmSlowingBreath0": "xmm-adult-copper-dragon-slowing-breath"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The slowing effect on a failed save ends at the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Adult Copper Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:adult-copper-dragon/legendary/giggling-magic",
@@ -5729,7 +6046,7 @@
       "edition": "2024",
       "owner": "Adult Green Dragon",
       "section": "legendary",
-      "identifier": "noxious-miasma",
+      "identifier": "xmm-adult-green-dragon-noxious-miasma",
       "page": 153,
       "srd": true,
       "text": {
@@ -5751,7 +6068,8 @@
           ],
           "data": {
             "sha256": "8bb2dd184613e666a6e732963e803c35f47f4b8cf28d0969d2d9c56afa72bc0e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -5766,7 +6084,8 @@
           ],
           "data": {
             "sha256": "3e04ca5465c03506c65c2dfe3efbed1a5f08adfb6da2e7f7fee80538e1fe6ffd"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -5781,11 +6100,89 @@
           "confidence": 0.7,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-w002",
+          "at": "2026-11-22T11:21:12.182Z",
+          "core": "0.290.0",
+          "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626"
+        },
+        "reading": {
+          "at": "2026-11-22T11:21:21.524Z",
+          "core": "0.290.0",
+          "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626",
+          "item": "8bb2dd184613e666a6e732963e803c35f47f4b8cf28d0969d2d9c56afa72bc0e",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "noxious-miasma",
+          "carried": [
+            "effectChanges"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T11:21:21.524Z",
+          "core": "0.290.0",
+          "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626",
+          "emits": "0631b6d9f82ecff3d20cb7a9a0f21b5a9c912e62db32fe152449ca523421e03d",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "8bb2dd184613e666a6e732963e803c35f47f4b8cf28d0969d2d9c56afa72bc0e"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Self-limiting legendary action plus a short AC penalty; the cannot-repeat-until-next-turn limit and effect timing need a rule.",
-      "state": "triaged"
+      "sources": {
+        "mmAdultGreenDrag.mmNoxiousMiasma0": "xmm-adult-green-dragon-noxious-miasma"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The AC penalty from a failed save lasts until the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "TSWsGeApnMgxOyIF": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "use-limit",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Adult Green Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:adult-green-dragon/legendary/pounce",
@@ -6883,7 +7280,7 @@
       "edition": "2024",
       "owner": "Adult Silver Dragon",
       "section": "legendary",
-      "identifier": "cold-gale",
+      "identifier": "xmm-adult-silver-dragon-cold-gale",
       "page": 279,
       "srd": true,
       "text": {
@@ -6903,7 +7300,8 @@
           "effects": [],
           "data": {
             "sha256": "3b9bc71d00148010e998400234a1287b1308962c523b0ad84cf563c3475b028a"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -6916,7 +7314,8 @@
           "effects": [],
           "data": {
             "sha256": "73cf8e1efe7a3dc33088aa721a1a47da24ff204618dab48b23a39459290d523e"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -6931,10 +7330,99 @@
           "confidence": 0.7,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-w002",
+          "at": "2026-11-22T11:21:12.182Z",
+          "core": "0.290.0",
+          "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72"
+        },
+        "reading": {
+          "at": "2026-11-22T11:21:21.527Z",
+          "core": "0.290.0",
+          "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+          "item": "3b9bc71d00148010e998400234a1287b1308962c523b0ad84cf563c3475b028a",
+          "delta": [
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "cold-gale",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T11:21:21.528Z",
+          "core": "0.290.0",
+          "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+          "emits": "82e5627901a2cfd63e05630d6b8b4a52326b9a27fa693bab8af6a269ffce8708",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3b9bc71d00148010e998400234a1287b1308962c523b0ad84cf563c3475b028a"
+          }
         }
       },
       "why": "Push away from the dragon on a failed save and a cannot-repeat-until-next-turn limit; data has no push or action limit.",
-      "state": "triaged"
+      "sources": {
+        "mmAdultSilverDra.mmColdGale000000": "xmm-adult-silver-dragon-cold-gale"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A failed save pushes the target 30 feet away from the dragon.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "failedSave",
+              "do": [
+                {
+                  "type": "move",
+                  "mode": "push",
+                  "distance": 30,
+                  "units": "ft"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "move": {
+                "mode": "push",
+                "distance": 30
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "use-limit",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Adult Silver Dragon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:adult-silver-dragon/legendary/pounce",
@@ -10763,6 +11251,13 @@
           "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
           "redrafted": true
         },
+        "reviewed": {
+          "by": "reviewer-r001",
+          "at": "2026-11-22T08:49:35.429Z",
+          "agrees": true,
+          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
+          "confidence": 0.8
+        },
         "reading": {
           "at": "2026-11-22T08:48:14.070Z",
           "core": "0.290.0",
@@ -10794,13 +11289,6 @@
           "items": {
             "official": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a"
           }
-        },
-        "reviewed": {
-          "by": "reviewer-r001",
-          "at": "2026-11-22T08:49:35.429Z",
-          "agrees": true,
-          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
-          "confidence": 0.8
         }
       },
       "why": "Data halves speed only; text also bars reactions and limits to one action or bonus action until end of next turn",

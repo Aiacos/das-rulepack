@@ -84,6 +84,12 @@ Held for a person (Ruling R27): gated, not registered with DAS · Core until a p
 
 | Held rule | Kind | Page | Status |
 |---|---|---|---|
+| Cloud of Insects (Adult Black Dragon) | Monster feature | p.39 | Held: reviewer unsure |
+| Sleep Breath (Adult Brass Dragon) | Monster feature | p.55 | Held: reviewer unsure |
+| Scorching Sands (Adult Brass Dragon) | Monster feature | p.55 | Held: reviewer unsure |
+| Slowing Breath (Adult Copper Dragon) | Monster feature | p.79 | Held: reviewer unsure |
+| Noxious Miasma (Adult Green Dragon) | Monster feature | p.153 | Held: reviewer unsure |
+| Cold Gale (Adult Silver Dragon) | Monster feature | p.279 | Held: review disagrees |
 | Feral Strike (Animal Lord) | Monster feature | p.15 | Held: the engine already does it |
 | Death Throes (Balor) | Monster feature | p.26 | Held: review disagrees |
 | Horrify (Banshee) | Monster feature | p.29 | Held: the engine already does it |
@@ -187,7 +193,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-42 rules: 16 played, 26 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 15 of them partial (part of the entry left to the table). 53 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 9, reviewer unsure 2).
+42 rules: 16 played, 26 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 15 of them partial (part of the entry left to the table). 59 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 10, reviewer unsure 7).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

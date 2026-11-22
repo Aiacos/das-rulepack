@@ -132,6 +132,313 @@
     }
   },
   {
+    "key": "xmm:monster:adult-black-dragon/legendary/cloud-of-insects",
+    "reason": "low-confidence",
+    "by": "reviewer-w001",
+    "why": "the rider lasts until the victim's following turn closes; concentration-only disadvantage and the reuse wait have no words",
+    "confidence": 0.65,
+    "draft": {
+      "by": "drafter-w001",
+      "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "no-key",
+          "count": 1
+        },
+        {
+          "unexpressed": "use-limit",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:adult-brass-dragon/action/sleep-breath",
+    "reason": "actionEnds",
+    "by": "reviewer-w001",
+    "why": "engine reads the resave, end on damage and turn-end expiry; incapacitation on a failure remains; margin and waking are unsayable",
+    "confidence": 0.55,
+    "draft": {
+      "by": "drafter-w001",
+      "rule": "040ccff3c9b618ee832818b7fd5052f124218b87d085a693ec0843d33a8269b3",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        }
+      ],
+      "implied": [],
+      "leaves": [
+        {
+          "unexpressed": "save-margin",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "040ccff3c9b618ee832818b7fd5052f124218b87d085a693ec0843d33a8269b3",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "incapacitated"
+            }
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:adult-brass-dragon/legendary/scorching-sands",
+    "reason": "low-confidence",
+    "by": "reviewer-w001",
+    "why": "engine reads no damage on success; the slowed speed expires as the victim's next turn closes; reuse wait unsayable",
+    "confidence": 0.65,
+    "draft": {
+      "by": "drafter-w001",
+      "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "use-limit",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:adult-copper-dragon/action/slowing-breath",
+    "reason": "low-confidence",
+    "by": "reviewer-w001",
+    "why": "engine reads lost reactions and action-or-bonus; what remains sayable is expiry at the end of the victim's next turn",
+    "confidence": 0.65,
+    "draft": {
+      "by": "drafter-w001",
+      "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ]
+    },
+    "review": {
+      "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:adult-green-dragon/legendary/noxious-miasma",
+    "reason": "low-confidence",
+    "by": "reviewer-w001",
+    "why": "the armor penalty expires once the victim's next turn closes; the penalty itself and the reuse wait have no words",
+    "confidence": 0.65,
+    "draft": {
+      "by": "drafter-w002",
+      "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "use-limit",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:adult-silver-dragon/legendary/cold-gale",
+    "reason": "disagreement",
+    "by": "reviewer-w001",
+    "why": "failing pushes the victim 30 ft away from the dragon; succeeding halves the cold damage; reuse wait unsayable",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-w002",
+      "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "move": {
+              "mode": "push",
+              "distance": 30
+            }
+          }
+        }
+      ],
+      "implied": [
+        "expect.move.distance=30;expect.move.mode=push;given.roll=failedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "use-limit",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "move": {
+              "mode": "push",
+              "distance": 30
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0.5,
+              "type": "cold"
+            }
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0.5;expect.damage.type=cold;given.roll=savedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
     "key": "xmm:monster:animal-lord/legendary/feral-strike",
     "reason": "low-confidence",
     "by": "reviewer-q001",

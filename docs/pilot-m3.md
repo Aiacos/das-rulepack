@@ -482,3 +482,13 @@ change:
 None of them is drafted yet. `npm run gates` on the copy changes no record; the 42 shipped rules keep their states and the
 generated modules, README and RULES.md do not change. On an older DAS · Core the module registers none of these rules and
 says so in one console line.
+
+# The monster features a shared id had kept out: a sample (2026-11-22)
+
+With creature-scoped bindings (Ruling R35), 456 Monster Manual features are cut for drafting in 23 batches. Two batches were
+drafted as a sample: 40 entries, 7 drafts, 6 accepted by the gates (1 refused: a quoted line), 33 declined (most: no key for
+the main effect — a failed save turned into a success by choice, a move followed by an attack; 6 need code). 17.5 % against
+the 70 % of Ruling R12: the other 21 batches were not run, and the declined entries were not queued. A blind review settled
+none of the 6: 4 with a reviewer below the confidence line, 1 disagreement, 1 with a key no assertion checks. All 6 wait for a
+person; none ships yet.
+
