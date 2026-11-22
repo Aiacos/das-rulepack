@@ -201,19 +201,35 @@ const run = (records, results, opts = {}) => ingestReviews(records, results, {
 const result = (r, over = {}) => ({ key: r.key, rule: ruleFingerprint(r.rule), why: "my own words", confidence: 0.9, ...over });
 
 describe("ingestReviews: Ruling R24 recorded", () => {
-  it("an agreement that used a tolerance says which, in a closed field the schema holds", () => {
+  it("an agreement that used a tolerance stores the pairs it tolerated, held by the schema and by emits (fix round 1, V)", () => {
     const r = spell(WHIRLWIND);
     const out = run([r], [result(r, { assert: WHIRLWIND_REVIEW })], { structures: new Map([[r.key, SAVE_DAMAGE]]) });
     expect(out.agreed).toEqual([r.key]);
+    expect(out.tolerated).toEqual([r.key]);
     const next = out.records[0];
+    const tolerated = {
+      baseline: [c1(a(FS, { damage: { fraction: 1, type: "thunder" } }))],
+      detail: [
+        [c1(a(SS, { damage: { fraction: 0.5 } })), c1(a(SS, { damage: { fraction: 0.5, type: "thunder" } }))],
+        [c1(a(FS, { move: { mode: "push" } })), c1(a(FS, { move: { mode: "push", distance: 20 } }))]
+      ]
+    };
     expect(next.evidence.reviewed).toEqual({ by: "reviewer-1", at: AT, agrees: true, rule: ruleFingerprint(r.rule),
-      confidence: 0.9, tolerated: ["baseline", "detail"] });
-    expect(stateOf(next)).toBe("reviewed");
+      confidence: 0.9, tolerated });
     expect(validateRecord(next)).toEqual([]);
     expect(REVIEW_TOLERANCES).toEqual(["baseline", "detail"]);
-    for (const bad of [[], ["prose"], ["detail", "baseline"], ["detail", "detail"], true]) {
+    // Part of emits: the gates must run again before the review stands (the record is drafted until then).
+    expect(stateOf(next)).toBe("drafted");
+    const regated = { ...next, evidence: { ...next.evidence, gates: { ...next.evidence.gates, emits: emittedFingerprint(next) } } };
+    expect(stateOf(regated)).toBe("reviewed");
+    // A hand edit that removes or changes the stored pairs makes the gate evidence stale again.
+    const { tolerated: dropped, ...bare } = regated.evidence.reviewed;
+    expect(stateOf({ ...regated, evidence: { ...regated.evidence, reviewed: bare } })).toBe("drafted");
+    for (const bad of [[], ["baseline"], {}, { baseline: [], detail: [] }, { baseline: ["prose here"], detail: [] },
+      { baseline: [], detail: [["prose", "x"]] }, { baseline: [], detail: [[tolerated.detail[0][0]]] },
+      { baseline: [], extra: [] }]) {
       const forged = { ...next, evidence: { ...next.evidence, reviewed: { ...next.evidence.reviewed, tolerated: bad } } };
-      expect(validateRecord(forged).join(" ")).toMatch(/evidence\.reviewed\.tolerated/);
+      expect(validateRecord(forged).join(" "), JSON.stringify(bad)).toMatch(/evidence\.reviewed\.tolerated/);
     }
   });
   it("an exact agreement carries no tolerated field", () => {
@@ -434,7 +450,156 @@ describe("pipeline CLI: monster features under R3 and R24", () => {
     expect(r.status, r.stderr + r.stdout).toBe(0);
     expect(JSON.parse(r.stdout)).toMatchObject({ agreed: 1, queued: 0 });
     const [after] = records();
-    expect(after.evidence.reviewed).toMatchObject({ agrees: true, tolerated: ["baseline"] });
+    expect(after.evidence.reviewed.tolerated).toEqual({ detail: [],
+      baseline: [c1(a(HIT, { damage: { fraction: 1, type: "fire" } }))] });
+    // A tolerated agreement changes what the gates fingerprint: the command says to run them again.
+    expect(stateOf(after)).toBe("drafted");
+    expect(JSON.parse(r.stdout)).toMatchObject({ agreedTolerated: 1, agreedExact: 0, regate: [KEY] });
+    expect(r.stderr).toMatch(/npm run gates/);
     expect(loadQueue(join(tmp, "registry"), "review")).toEqual([]);
+  });
+});
+
+// ---------------------------------------------------------------------------------------------------------------------------
+// Fix round 1: the three leaks of R24 (L1 distance, L2 type, L3 baseline) and the draft ingest's backing check.
+import { impliedAsserts } from "../../tools/pipeline/assert.mjs";
+import { DAMAGE_ROLLS, DRAFT_KEYS } from "../../tools/pipeline/draft-keys.mjs";
+
+const onRoll = (on, ...steps) => ({ triggers: [{ on, do: steps }] });
+const moveStep = (mode, distance) => ({ type: "move", mode, distance, units: "ft" });
+
+describe("fix round 1, L1: a distance the rule does not pin is never taken from the review", () => {
+  it("impliedAsserts says the moves and statuses of every roll moment the entry's steps use", () => {
+    for (const on of ["hit", "failedSave", "savedSave"]) {
+      expect(impliedAsserts(onRoll(on, moveStep("pull", 5), { type: "status", status: "prone" }))).toEqual(normaliseAssert([
+        a({ roll: on }, { move: { mode: "pull", distance: 5 } }), a({ roll: on }, { condition: { applied: "prone" } })]));
+    }
+    // A moment that is no roll (the bearer is hit, a turn starts) implies nothing of a roll.
+    expect(impliedAsserts(onRoll("isHit", moveStep("push", 5)))).toEqual([]);
+    expect(impliedAsserts({ triggers: [{ on: ["hit", "failedSave"], do: [moveStep("push", 10)] }] })).toEqual(normaliseAssert([
+      a(HIT, { move: { mode: "push", distance: 10 } }), a(FS, { move: { mode: "push", distance: 10 } })]));
+  });
+  it("entry on-hit pull 5, draft pull, review pull 25: disagree", () => {
+    const c = compareAsserts({ entry: onRoll("hit", moveStep("pull", 5)), assert: [a(HIT, { move: { mode: "pull" } })] },
+      [a(HIT, { move: { mode: "pull", distance: 25 } })]);
+    expect(c.agrees).toBe(false);
+    expect(c.onlyReview).toEqual([c1(a(HIT, { move: { mode: "pull", distance: 25 } }))]);
+  });
+  it("entry on-hit pull 25, draft pull, review pull 25: agree", () => {
+    const c = compareAsserts({ entry: onRoll("hit", moveStep("pull", 25)), assert: [a(HIT, { move: { mode: "pull" } })] },
+      [a(HIT, { move: { mode: "pull", distance: 25 } })]);
+    expect(c.agrees).toBe(true);
+  });
+  it("entry with no move step, draft push, review push 60: disagree (the rule pins no distance)", () => {
+    const c = compareAsserts({ entry: {}, assert: [a(FS, { move: { mode: "push" } })] },
+      [a(FS, { move: { mode: "push", distance: 60 } })]);
+    expect(c.agrees).toBe(false);
+  });
+  it("a draft distance against a review without one is tolerated, as detail", () => {
+    const c = compareAsserts({ entry: onRoll("hit", moveStep("pull", 25)), assert: [] }, [a(HIT, { move: { mode: "pull" } })]);
+    expect(c.agrees).toBe(true);
+    expect(c.detail).toEqual([{ draft: c1(a(HIT, { move: { mode: "pull", distance: 25 } })),
+      review: c1(a(HIT, { move: { mode: "pull" } })) }]);
+  });
+});
+
+describe("fix round 1, L1: ingest --draft rejects a move or condition the rule and the item do not back", () => {
+  const STRUCT = { activities: [{ id: A_OFF, type: "save", damage: [{ types: ["fire"] }], effects: ["Ef11Ef22Ef33Ef44"] }],
+    effects: [{ id: "Ef11Ef22Ef33Ef44", name: "x", statuses: ["prone"], changes: [], transfer: false }] };
+  const r0 = () => {
+    const r = spell({ entry: {}, assert: [] });
+    delete r.rule; r.evidence = { triaged: r.evidence.triaged };
+    return r;
+  };
+  const draft = (rule, structures = new Map([["tst:spell:storm-gust", STRUCT]])) => {
+    const r = r0();
+    return ingestDrafts([r], [{ key: r.key, outcome: "rule", why: "a rule", confidence: 0.9,
+      rule: { handledIn: "table", adds: "Zorbly the quux.", origins: ["official"], ...rule } }],
+    { textDir, by: "drafter-1", at: AT, core, offered: new Set([r.key]), structures });
+  };
+  const reason = (out) => out.rejected.map((x) => x.reason).join(" | ");
+  it("a stated move on a roll with no move step for it", () => {
+    const out = draft({ entry: { saveDamage: { [A_OFF]: "half" } }, assert: [a(FS, { move: { mode: "push" } })] });
+    expect(reason(out)).toMatch(/the entry does nothing of the kind on failedSave/);
+    const hit = draft({ entry: onRoll("failedSave", moveStep("push", 10)), assert: [a(HIT, { move: { mode: "push" } })] });
+    expect(reason(hit)).toMatch(/nothing of the kind on hit/);
+    const far = draft({ entry: onRoll("failedSave", moveStep("push", 10)),
+      assert: [a(FS, { move: { mode: "push", distance: 20 } })] });
+    expect(reason(far)).toMatch(/nothing of the kind on failedSave/);
+  });
+  it("accepts a move backed by a step of the roll, and a condition the item's own save activity applies", () => {
+    expect(draft({ entry: onRoll("failedSave", moveStep("push", 10)), assert: [a(FS, { move: { mode: "push" } })] }).rejected)
+      .toEqual([]);
+    expect(draft({ entry: { saveDamage: { [A_OFF]: "half" } }, assert: [a(FS, { condition: { applied: "prone" } })] }).rejected)
+      .toEqual([]);
+  });
+  it("fails closed: a condition of another roll, another status, or no structure at all", () => {
+    const entry = { saveDamage: { [A_OFF]: "half" } };
+    expect(reason(draft({ entry, assert: [a(HIT, { condition: { applied: "prone" } })] }))).toMatch(/nothing of the kind on hit/);
+    expect(reason(draft({ entry, assert: [a(FS, { condition: { applied: "blinded" } })] }))).toMatch(/on failedSave/);
+    expect(reason(draft({ entry, assert: [a(FS, { condition: { applied: "prone" } })] }, new Map())))
+      .toMatch(/nothing of the kind on failedSave/);
+  });
+});
+
+describe("fix round 1, L2: which activity gets which save result", () => {
+  const TWO = { activities: [
+    { id: "Aa11Aa22Aa33Aa44", type: "save", damage: [{ types: ["fire"] }], effects: [] },
+    { id: "Bb11Bb22Bb33Bb44", type: "save", damage: [{ types: ["cold"] }], effects: [] }], effects: [] };
+  const swapped = { entry: { saveDamage: { Aa11Aa22Aa33Aa44: "half", Bb11Bb22Bb33Bb44: "none" } }, assert: [] };
+  const review = [a(SS, { damage: { fraction: 0.5, type: "cold" } }), a(SS, { damage: { fraction: 0, type: "fire" } })];
+  it("implied save damage carries its activity's types from the structure", () => {
+    expect(impliedAsserts(swapped.entry, { structure: TWO })).toEqual(normaliseAssert([
+      a(SS, { damage: { fraction: 0.5, type: "fire" } }), a(SS, { damage: { fraction: 0, type: "cold" } })]));
+  });
+  it("the swapped review disagrees, with the structure and without it", () => {
+    expect(compareAsserts(swapped, review, { structure: TWO }).agrees).toBe(false);
+    expect(compareAsserts(swapped, review).agrees).toBe(false);
+  });
+  it("the right review agrees with the structure; Whirlwind (one activity) still agrees", () => {
+    const right = [a(SS, { damage: { fraction: 0.5, type: "fire" } }), a(SS, { damage: { fraction: 0, type: "cold" } })];
+    expect(compareAsserts(swapped, right, { structure: TWO }).agrees).toBe(true);
+    expect(compareAsserts(WHIRLWIND, WHIRLWIND_REVIEW, { structure: SAVE_DAMAGE }).agrees).toBe(true);
+  });
+});
+
+describe("fix round 1, L3: no baseline where the entry touches damage on that roll", () => {
+  const prone = a(HIT, { condition: { applied: "prone" } });
+  const full = a(HIT, { damage: { fraction: 1 } });
+  const agrees = (entry) => compareAsserts({ entry, assert: [prone] }, [prone, full], { structure: ATTACK_DAMAGE }).agrees;
+  it("every drafter key is classified by the rolls whose damage it touches", () => {
+    expect(Object.keys(DAMAGE_ROLLS).sort()).toEqual(Object.keys(DRAFT_KEYS).sort());
+  });
+  it("a damage-touching step or key blocks the baseline; a move or status step does not", () => {
+    expect(agrees({})).toBe(true);
+    expect(agrees(onRoll("hit", { type: "status", status: "prone" }))).toBe(true);
+    for (const entry of [
+      onRoll("hit", { type: "halve" }), onRoll("hit", { type: "damage", formula: "2d6", damageType: "fire" }),
+      onRoll("preDamageRoll", { type: "bonus" }), { noDamage: [A_OFF] }, { ignoresResistance: { types: ["fire"] } },
+      { dataFixes: [] }, { maxDamage: true }, { onHit: { save: A_OFF } }
+    ]) expect(agrees(entry), JSON.stringify(entry)).toBe(false);
+    // halfOnMiss touches the miss only, saveDamage the saved save only.
+    expect(agrees({ halfOnMiss: true })).toBe(false);
+    expect(compareAsserts({ entry: { saveDamage: { [A_OFF]: "half" } }, assert: [a(FS, { condition: { applied: "prone" } })] },
+      [a(FS, { condition: { applied: "prone" } }), a(SS, { damage: { fraction: 0.5 } }), a(FS, { damage: { fraction: 1 } })],
+      { structure: SAVE_DAMAGE }).agrees).toBe(true);
+  });
+});
+
+describe("fix round 1: own-property lookups", () => {
+  it("an expectation kind named like an inherited property is no detail", () => {
+    const c = compareAsserts({ entry: {}, assert: [a(HIT, { affects: "target" })] }, [a(HIT, { affects: "target" })]);
+    expect(c.agrees).toBe(true);
+  });
+});
+
+describe("fix round 1, V: reviews with tolerances are counted apart", () => {
+  it("the rules block says how many agreed only through Ruling R24", async () => {
+    const { countsLine } = await import("../../tools/books-progress.mjs");
+    const rules = [{ book: "TST", identifier: "a", status: "validated" }, { book: "TST", identifier: "b", status: "played" },
+      { book: "TST", identifier: "c", status: "validated" }];
+    expect(countsLine(rules)).toBe("3 rules: 1 played, 2 validated.");
+    expect(countsLine(rules, { tolerated: new Set(["TST|a", "TST|b"]) }))
+      .toBe("3 rules: 1 played, 2 validated. 2 of them reviewed with Ruling R24 tolerances (not an exact agreement).");
   });
 });

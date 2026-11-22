@@ -171,6 +171,22 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   taken as "the item's data stands", which is what the entry does at the table; (c) the baseline trusts the official
   structure: an official item whose activity deals damage on a roll where the text says it does not makes a reviewer's
   wrong "full damage" pass (the drafter's rule would have to say the opposite for it to be seen).
+  **Fix round 1** (a review of R24 found three leaks and a visibility gap). (L1) `impliedAsserts` now says the `move` and
+  `status` steps of `triggers` on every roll moment (hit, failedSave, savedSave...), with their distance, and the distance
+  tolerance runs one way only: a review distance is taken only where the draft side pins the same one (an entry step);
+  `ingest --draft` rejects a stated move or condition on a roll that neither an entry step nor, for a condition, an effect of
+  the item's activity of that roll backs ("the entry does nothing of the kind on <roll>"; fail closed without the structure,
+  so `ingest --draft` needs `RULEPACK_DUMPS`). (L2) implied `saveDamage` / `halfOnMiss` / `noDamage` carry their activity's
+  damage types from the official structure, and a type must match exactly for a given whose draft-side fractions differ.
+  (L3) no baseline on a roll whose damage the entry touches (`DAMAGE_ROLLS`, one line per drafter key, a test fails when a key
+  is added without one; an unknown key touches every roll; `saveDamage` is classified as touching the saved save only, since
+  it sets that fraction and is itself implied and must be matched). (V) `evidence.reviewed.tolerated` stores the tolerated
+  baseline strings and `[draft, review]` pairs, schema-held and part of `emits`: a tolerated agreement leaves the record
+  `drafted` until the gates run again (the command says so), and RULES.md counts such reviews apart. Remaining cost: a
+  reviewer less specific than the draft (no type, no distance) still agrees; a condition the item's own effect applies is
+  accepted without a step even when the text gives it on another roll than the structure's activity suggests (a person reads
+  the queue only when the review differs); a two-type activity whose review gives one untyped fraction now disagrees (more
+  queue, not less safety); `DAMAGE_ROLLS` classifies `atTurnStart`, `onHit`, `dataFixes` by hand.
 
 ## What a drafter may write (engine limits)
 

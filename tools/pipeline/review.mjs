@@ -7,6 +7,7 @@ import { ruleFingerprint, stateOf } from "./registry.mjs";
 import { BY, REVIEW_TOLERANCES, isReaderHandle } from "./schema.mjs";
 import { assertProblems, impliedAsserts, normaliseAssert } from "./assert.mjs";
 import { RULE_QUOTE_WORDS, quotationCheck } from "./gates.mjs";
+import { ALL_ROLLS, damageRollsOf } from "./draft-keys.mjs";
 import {
   QUEUE_THRESHOLD, cachedText, clip, clipEchoes, confidenceProblem, echo, forbiddenKeyIn, unknownFields, whyProblem, whyQuotes
 } from "./intake.mjs";
@@ -37,7 +38,7 @@ export const OPTIONAL_DETAIL = Object.freeze({ damage: Object.freeze(["type"]), 
 const pairsOf = (canonical) => new Map(canonical.split(";").map((p) => [p.slice(0, p.indexOf("=")), p.slice(p.indexOf("=") + 1)]));
 const isDetailPath = (path) => {
   const [part, kind, field, ...rest] = path.split(".");
-  return part === "expect" && !rest.length && (OPTIONAL_DETAIL[kind] ?? []).includes(field);
+  return part === "expect" && !rest.length && Object.hasOwn(OPTIONAL_DETAIL, kind) && OPTIONAL_DETAIL[kind].includes(field);
 };
 const kindsOf = (pairs) => [...new Set([...pairs.keys()].filter((p) => p.startsWith("expect.")).map((p) => p.split(".")[1]))]
   .sort().join(",");
@@ -59,6 +60,36 @@ export function sameUpToDetail(x, y) {
   }
   return true;
 }
+/**
+ * True when a review assertion `r` matches a draft-side assertion `d` (stated or implied) up to detail, in the safe direction
+ * only (fix round 1): a detail the draft states and the review leaves out is tolerated (the reviewer is less specific); a
+ * `distance` the review states and the draft does not is never taken (the draft side must pin it: an implied step distance,
+ * which absorbs a stated move without one, matches exactly), and a damage `type` stated on one side only is not tolerated for
+ * a `given` listed in `strictTypes` (two or more draft-side damage assertions of that given with different fractions: which
+ * activity gets which result would hang on the type).
+ */
+export function draftMatches(d, r, { strictTypes = new Set() } = {}) {
+  if (!sameUpToDetail(d, r)) return false;
+  const a = pairsOf(d);
+  const b = pairsOf(r);
+  const strict = strictTypes.has(givenOf(a));
+  for (const path of b.keys()) if (!a.has(path) && (path === "expect.move.distance" || (strict && path === "expect.damage.type"))) {
+    return false;
+  }
+  return !(strict && a.has("expect.damage.type") && !b.has("expect.damage.type"));
+}
+// The givens whose draft-side damage assertions differ in fraction (draftMatches `strictTypes`).
+function strictTypesOf(draft) {
+  const fractions = new Map();
+  for (const c of draft) {
+    const p = pairsOf(c);
+    if (!p.has("expect.damage.fraction")) continue;
+    const g = givenOf(p);
+    fractions.set(g, (fractions.get(g) ?? new Set()).add(p.get("expect.damage.fraction")));
+  }
+  return new Set([...fractions].filter(([, f]) => f.size > 1).map(([g]) => g));
+}
+
 // `x` says less than `y` and nothing else: the same up to detail, every pair of `x` in `y`, `y` longer.
 const weaker = (x, y) => x !== y && sameUpToDetail(x, y) && [...pairsOf(x)].every(([p, v]) => pairsOf(y).get(p) === v);
 
@@ -77,14 +108,18 @@ const BASELINE_ACTIVITY = Object.freeze({ hit: "attack", failedSave: "save" });
  * True when a review-only canonical assertion only states the item's own baseline (Ruling R24): `damage.fraction = 1`, with or
  * without a `type`, given `hit` or `failedSave` alone, where the official item's structure (structure.mjs structureOf) has an
  * activity of that roll (an attack for `hit`, a save for `failedSave`) that deals damage (of that type, when one is stated),
- * and the draft says nothing of the damage in that situation or in every situation (`given: {}`, noDamage). Never anything
- * else.
+ * the draft says nothing of the damage in that situation or in every situation (`given: {}`, noDamage), and the entry
+ * changes no damage on that roll (draft-keys.mjs damageRollsOf: a damage step, saveDamage on a saved save, noDamage...).
+ * Never anything else.
  */
-export function isBaseline(canonical, { structure, draft = [] } = {}) {
+export function isBaseline(canonical, { structure, draft = [], entry = {} } = {}) {
   if (isFree(canonical)) return false;
   const pairs = pairsOf(canonical);
   const roll = pairs.get("given.roll");
-  const kind = BASELINE_ACTIVITY[roll];
+  const kind = Object.hasOwn(BASELINE_ACTIVITY, roll) ? BASELINE_ACTIVITY[roll] : undefined;
+  // Fix round 1 (L3): never where the entry changes the item's damage on that roll (draft-keys.mjs DAMAGE_ROLLS).
+  const touched = damageRollsOf(entry);
+  if (touched === ALL_ROLLS || touched.includes(roll)) return false;
   if (!kind || givenOf(pairs) !== `given.roll=${roll}` || pairs.get("expect.damage.fraction") !== "1") return false;
   if (![...pairs.keys()].every((p) => p.startsWith("given.") || p === "expect.damage.fraction" || p === "expect.damage.type")) {
     return false;
@@ -102,12 +137,12 @@ export function isBaseline(canonical, { structure, draft = [] } = {}) {
 
 // A one-to-one matching of the drafts to the reviews that say the same up to detail (augmenting paths; the lists are short).
 // Reviews that could be baseline are tried last, so that a match uses them only when nothing else serves.
-function matchUpToDetail(drafts, reviews, isLast) {
+function matchUpToDetail(drafts, reviews, isLast, strictTypes) {
   const ordered = [...reviews.filter((r) => !isLast(r)), ...reviews.filter(isLast)];
   const owner = new Map();
   const tryDraft = (d, seen) => {
     for (const r of ordered) {
-      if (seen.has(r) || !sameUpToDetail(d, r)) continue;
+      if (seen.has(r) || !draftMatches(d, r, { strictTypes })) continue;
       seen.add(r);
       if (!owner.has(r) || tryDraft(owner.get(r), seen)) { owner.set(r, d); return true; }
     }
@@ -133,16 +168,18 @@ const byDraft = (x, y) => (x.draft < y.draft ? -1 : x.draft > y.draft ? 1 : x.re
  * agrees, whatever else matches.
  */
 export function compareAsserts(rule, review, { structure = null } = {}) {
-  const implied = impliedAsserts(rule?.entry);
+  const implied = impliedAsserts(rule?.entry, { structure });
   const draft = [...new Set([...normaliseAssert(rule?.assert), ...implied])].sort();
   const reviewed = normaliseAssert(review);
   const free = [...draft, ...reviewed].some(isFree);
+  const strictTypes = strictTypesOf(draft);
   const d = absorb(draft);
   const r = absorb(reviewed);
   const exact = d.kept.filter((x) => r.kept.includes(x));
-  const baselineOf = (c) => isBaseline(c, { structure, draft });
+  const baselineOf = (c) => isBaseline(c, { structure, draft, entry: rule?.entry });
   const matched = new Map(exact.map((x) => [x, x]));
-  const loose = matchUpToDetail(d.kept.filter((x) => !matched.has(x)), r.kept.filter((x) => !exact.includes(x)), baselineOf);
+  const loose = matchUpToDetail(d.kept.filter((x) => !matched.has(x)), r.kept.filter((x) => !exact.includes(x)), baselineOf,
+    strictTypes);
   for (const [x, y] of loose) matched.set(x, y);
   const detail = [...loose].map(([x, y]) => ({ draft: x, review: y }));
   // An absorbed draft assertion shares the match of the one that absorbs it; an absorbed review one is matched with it.
@@ -283,11 +320,14 @@ function takeResult(result, ctx) {
     } };
   }
   const next = structuredClone(record);
-  // Ruling R24: an agreement that tolerated anything says what (a closed list: no prose), beside the rule's fingerprint.
-  const tolerated = REVIEW_TOLERANCES.filter((t) => comparison[t].length);
+  // Ruling R24 (fix round 1, V): an agreement that tolerated anything keeps what it tolerated, as canonical strings: the
+  // review assertions taken as baseline and the [draft, review] pairs matched up to detail. Part of `emits`: the gates run
+  // again before the record stands as reviewed (registry.mjs emittedFingerprint).
+  const tolerated = comparison.baseline.length || comparison.detail.length
+    ? { baseline: [...comparison.baseline], detail: comparison.detail.map((p) => [p.draft, p.review]) } : null;
   next.evidence = { ...next.evidence, reviewed: { by, at, agrees: true, rule: fingerprint, confidence: result.confidence,
-    ...(tolerated.length ? { tolerated } : {}) } };
-  return { apply: { record, next } };
+    ...(tolerated ? { tolerated } : {}) } };
+  return { apply: { record, next, tolerated: tolerated !== null } };
 }
 
 /**
@@ -309,7 +349,9 @@ function takeResult(result, ctx) {
  *   (`unexpressed`, its `assert` stored as []), the assertions differ (`disagreement`, compareAsserts with Ruling R24's
  *   tolerances), hold a free text (`free-text`) or the confidence is below 0.7 (`low-confidence`);
  * - agreed otherwise: `evidence.reviewed = { by, at, agrees: true, rule, confidence, tolerated? }`, `rule` the rule's
- *   fingerprint, `tolerated` the R24 tolerances used (REVIEW_TOLERANCES, only when any was). The rule is never changed.
+ *   fingerprint, `tolerated` (only when R24 tolerated anything) `{ baseline: [review], detail: [[draft, review]] }` as
+ *   canonical strings; such keys are also listed in `tolerated` of the return value (their gate evidence goes stale: `emits`
+ *   covers the field). The rule is never changed.
  * `structures` (a Map of record key to the official item's structure, structure.mjs structureOf; default empty) is what the
  * baseline of R24 is decided from: a record without one gets no baseline.
  * `queue` is review-queue.json. Any exception on one result becomes its rejection (`internal: …`). A rejection repeats at most
@@ -327,6 +369,7 @@ export function ingestReviews(records, results, options = {}) {
     textOf: cachedText(textDir), core, by, at, seen: new Set(), structures
   };
   const agreed = [];
+  const tolerated = [];
   const disagreed = [];
   const rejected = [];
   for (const result of Array.isArray(results) ? results : []) {
@@ -342,7 +385,8 @@ export function ingestReviews(records, results, options = {}) {
       Object.keys(record).forEach((k) => delete record[k]);
       Object.assign(record, next);
       agreed.push(next.key);
+      if (outcome.apply.tolerated) tolerated.push(next.key);
     }
   }
-  return { records: out, agreed, disagreed, rejected };
+  return { records: out, agreed, tolerated, disagreed, rejected };
 }

@@ -1,5 +1,5 @@
 // The record format of the rulebook registry: the closed vocabularies and the structural validator.
-import { assertProblems, isPlainLine } from "./assert.mjs";
+import { assertProblems, isCanonicalAssertion, isPlainLine } from "./assert.mjs";
 
 export const ADDS_MAX = 200;
 
@@ -284,12 +284,13 @@ export const isScenarioId = (v) => typeof v === "string" && SCENARIO_ID.test(v);
 export const isCoreVersion = (v) => typeof v === "string" && CORE_VERSION.test(v);
 export const isWorld = (v) => typeof v === "string" && BY.test(v);
 
-// Ruling R24: what an agreement tolerated (review.mjs REVIEW_TOLERANCES), a non-empty sorted list of distinct closed words. No
-// prose can sit there, so like the log-written fields of a play it is not part of `emits`; it is about the rule its
-// `reviewed.rule` names and goes stale with the rest of the review when the rule changes.
+// Ruling R24 (fix round 1, V): what an agreement tolerated, `{ baseline: [review], detail: [[draft, review]] }` (the names
+// of REVIEW_TOLERANCES), every string a canonical assertion of the closed vocabulary, at least one of the two lists non-empty.
+// It is part of the gates' `emits` (registry.mjs emittedFingerprint), so a hand edit that removes or changes it is seen.
 export const REVIEW_TOLERANCES = Object.freeze(["baseline", "detail"]);
-const isTolerated = (v) => Array.isArray(v) && v.length > 0 && v.every((t) => REVIEW_TOLERANCES.includes(t))
-  && v.every((t, i) => i === 0 || REVIEW_TOLERANCES.indexOf(v[i - 1]) < REVIEW_TOLERANCES.indexOf(t));
+const isTolerated = (v) => isObject(v) && Object.keys(v).length === 2 && REVIEW_TOLERANCES.every((k) => Array.isArray(v[k]))
+  && (v.baseline.length + v.detail.length > 0) && v.baseline.every((c) => isCanonicalAssertion(c))
+  && v.detail.every((p) => Array.isArray(p) && p.length === 2 && p.every((c) => isCanonicalAssertion(c)));
 const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
 // The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
 export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
@@ -297,7 +298,7 @@ const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
   confidence: "a number from 0 to 1", person: "true", because: "one of the reasons a draft goes to a person (DRAFTED_FOR_PERSON)",
   "reviewed.because": "one line of printable ASCII, at most 120 characters",
-  "reviewed.tolerated": "a sorted list of distinct tolerances of Ruling R24 (baseline, detail)",
+  "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]] } (Ruling R24), not both empty",
   "played.because": "one line of printable ASCII, at most 120 characters", "played.by": "an owner's handle, not an agent's",
   "played.manual": "true", "played.client": `one of ${["gm", "player"].join(", ")}`,
   "played.scenario": "a scenario id <book>/<slug> (scenarios.mjs)", "played.core": "an engine version (1.2.3)",

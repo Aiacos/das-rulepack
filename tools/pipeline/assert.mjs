@@ -161,39 +161,86 @@ export function normaliseAssert(assertions) {
   return [...new Set(assertions.map(canonicalOf).filter(Boolean))].sort();
 }
 
+// The damage types of an activity of the official structure (structure.mjs structureOf), sorted; [] when unknown.
+const typesOf = (structure, id) => {
+  const activity = (Array.isArray(structure?.activities) ? structure.activities : []).find((a) => a?.id === id);
+  return [...new Set((Array.isArray(activity?.damage) ? activity.damage : [])
+    .flatMap((p) => (Array.isArray(p?.types) ? p.types : [])).filter(isWord))].sort();
+};
+// One damage assertion per type (Ruling R24, fix round 1: which activity gets which result), or one untyped when no type is
+// known (no structure, or an activity whose parts name none).
+const typed = (given, fraction, types) => (types.length
+  ? types.map((type) => ({ given, expect: { damage: { fraction, type } } })) : [{ given, expect: { damage: { fraction } } }]);
+
 /**
  * What an entry says by itself, in canonical form (normaliseAssert): a review must assert it too (Ruling R9). `saveDamage`
- * (a saved save: half or no damage), `halfOnMiss` (a miss: half), `noDamage` (the activity's own damage is not rolled),
- * `triggers` on `failedSave` with a `status` or `move` step. Every other key implies nothing (`noReactions` included: the
- * assertion vocabulary has no word for a lost reaction).
+ * (a saved save: half or no damage), `halfOnMiss` (a miss: half), `noDamage` (the activity's own damage is not rolled), each
+ * with the damage types of its activity when `structure` (the official item's, structure.mjs structureOf) gives them (one
+ * assertion per type; `halfOnMiss`: the types of the item's attack activities); and the `status` and `move` steps of
+ * `triggers` on every roll moment they are declared on (`on` one of ROLLS: hit, failedSave, savedSave...), with the mode,
+ * distance and status the step holds. Every other key implies nothing (`noReactions` included: the assertion vocabulary has
+ * no word for a lost reaction).
  */
-export function impliedAsserts(entry) {
+export function impliedAsserts(entry, { structure = null } = {}) {
   if (!isObject(entry)) return [];
   const out = [];
   if (isObject(entry.saveDamage)) {
-    for (const v of Object.values(entry.saveDamage)) {
-      if (v === "half" || v === "none") {
-        out.push({ given: { roll: "savedSave" }, expect: { damage: { fraction: v === "half" ? 0.5 : 0 } } });
-      }
+    for (const [id, v] of Object.entries(entry.saveDamage)) {
+      if (v === "half" || v === "none") out.push(...typed({ roll: "savedSave" }, v === "half" ? 0.5 : 0, typesOf(structure, id)));
     }
   }
-  if (entry.halfOnMiss === true) out.push({ given: { roll: "miss" }, expect: { damage: { fraction: 0.5 } } });
-  if (Array.isArray(entry.noDamage) && entry.noDamage.length) out.push({ given: {}, expect: { damage: { fraction: 0 } } });
+  if (entry.halfOnMiss === true) {
+    const attacks = (Array.isArray(structure?.activities) ? structure.activities : []).filter((a) => a?.type === "attack");
+    const types = [...new Set(attacks.flatMap((a) => typesOf(structure, a.id)))].sort();
+    out.push(...typed({ roll: "miss" }, 0.5, types));
+  }
+  if (Array.isArray(entry.noDamage) && entry.noDamage.length) {
+    for (const id of entry.noDamage) out.push(...typed({}, 0, typesOf(structure, id)));
+  }
   const declarations = Array.isArray(entry.triggers) ? entry.triggers : isObject(entry.triggers) ? [entry.triggers] : [];
   for (const d of declarations) {
-    const on = Array.isArray(d?.on) ? d.on : [d?.on];
-    if (!on.includes("failedSave")) continue;
-    for (const step of Array.isArray(d.do) ? d.do : [d.do]) {
-      if (step?.type === "status" && isWord(step.status)) {
-        out.push({ given: { roll: "failedSave" }, expect: { condition: { applied: step.status } } });
-      } else if (step?.type === "move" && isWord(step.mode)) {
-        // A step without a distance implies no distance: never an undefined field.
-        const move = step.distance === undefined ? { mode: step.mode } : { mode: step.mode, distance: step.distance };
-        out.push({ given: { roll: "failedSave" }, expect: { move } });
+    const rolls = (Array.isArray(d?.on) ? d.on : [d?.on]).filter((on) => ROLLS.includes(on));
+    for (const roll of rolls) {
+      for (const step of Array.isArray(d.do) ? d.do : [d.do]) {
+        if (step?.type === "status" && isWord(step.status)) {
+          out.push({ given: { roll }, expect: { condition: { applied: step.status } } });
+        } else if (step?.type === "move" && isWord(step.mode)) {
+          // A step without a distance implies no distance: never an undefined field.
+          const move = step.distance === undefined ? { mode: step.mode } : { mode: step.mode, distance: step.distance };
+          out.push({ given: { roll }, expect: { move } });
+        }
       }
     }
   }
   return normaliseAssert(out);
+}
+
+const ASSERT_PART = /^[A-Za-z]{1,24}$/;
+const isPlain = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+/** One canonical assertion string (normaliseAssert: sorted `path=value` pairs) read back as an assertion, or null. */
+export function assertionOfCanonical(canonical) {
+  if (typeof canonical !== "string" || !canonical || canonical.length > 400) return null;
+  const out = { given: {}, expect: {} };
+  for (const pair of canonical.split(";")) {
+    const i = pair.indexOf("=");
+    const path = i > 0 ? pair.slice(0, i).split(".") : [];
+    if (path.length < 2 || !Object.hasOwn(out, path[0]) || !path.every((p) => ASSERT_PART.test(p))) return null;
+    let node = out[path[0]];
+    for (const p of path.slice(1, -1)) {
+      if (!Object.hasOwn(node, p)) node[p] = {};
+      node = node[p];
+      if (!isPlain(node)) return null;
+    }
+    const raw = pair.slice(i + 1);
+    node[path.at(-1)] = /^-?\d+(\.\d+)?$/.test(raw) ? Number(raw) : raw;
+  }
+  return out;
+}
+/** True when `c` reads back as a valid assertion of the closed vocabulary (`vocabulary`: the engine's) and canonicalises to
+ * itself. */
+export function isCanonicalAssertion(c, vocabulary) {
+  const a = assertionOfCanonical(c);
+  return Boolean(a) && !assertProblems([a], { vocabulary }).length && normaliseAssert([a])[0] === c;
 }
 
 /**

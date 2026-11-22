@@ -474,7 +474,11 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > **How you work.** For each entry read the text by `textSha`, then the structure of each matched origin. Take every id (an
 > activity or an effect) from the structure file or the batch entry's `items`, never from memory. Write `rule.entry` with the
 > keys of `allowed` only, and an `assert` list that says in the closed vocabulary what happens (`given`/`expect` of
-> `draft-vocabulary.json`; `free` never counts as agreement). The `examples` show the shape; they are not this entry's rule.
+> `draft-vocabulary.json`; `free` never counts as agreement). A `move` or an applied `condition` you assert on a roll must be
+> done by the rule (a `triggers` step on that roll: a `move` of that mode and distance, a `status`) or, for a condition, by the
+> item itself (an effect with that status linked to its attack or save activity in the structure file): otherwise the
+> result is rejected ("the entry does nothing of the kind on <roll>").
+> The `examples` show the shape; they are not this entry's rule.
 >
 > **Origins side by side.** Keys whose slot is `activityMap` or `effectMap` hold the ids of several origins in one object:
 > list every origin whose item has the ids. A `single` slot (`triggers`, `rollBonus`, `atTurnStart`, `onHit`, `dataFixes`)
@@ -700,8 +704,9 @@ brief above; `tools/pipeline/draft.mjs` `ingestDrafts`). `--batch` is required: 
 refused (exit 2, nothing written) when it is not `{ batch, by, results }`, has another top-level field, `by` is not a handle
 (`drafter-3`), it holds a key named `__proto__`, `constructor` or `prototype` anywhere, a queue file of the registry is
 invalid, its `batch` is not a draft batch id `<book>-draft-<NNN>`, or the batch file does not have that id, stage `draft`,
-and entries that are all keys of that book. Monster features need `RULEPACK_DUMPS` (the actors of the book's package
-tell whether another creature shares the feature's embedded item id). For each result:
+and entries that are all keys of that book. It needs `RULEPACK_DUMPS`: monster features need the actors of the book's package
+(they tell whether another creature shares the feature's embedded item id), and every rule's stated conditions are checked
+against the official item's structure (below). For each result:
 
 - **Rejected** (listed in `rejected` as `{ key, reason }`; nothing of it is kept, the record stays as it was and is cut again
   by the next `batch draft`): a field other than `key`, `outcome`, `why`, `confidence`, `rule`, or in `rule` other than
@@ -721,7 +726,13 @@ tell whether another creature shares the feature's embedded item id). For each r
   (shape, `assert` present and valid, identifiers, sources), the drafter limits (`checkDraftKeys`: a key outside
   `DRAFT_KEYS`, a `create` fix, a fix path or type outside the allowlist, the word budget), the engine's `validateEntry` with
   the real fact list and the assertions against the engine's enumerations, the ids gate (Rulings R4, R5) and the quotation
-  check of every string of the rule. Up to four of the problems are named. The `fixes` gate is not run here: `gates` runs it.
+  check of every string of the rule; and (Ruling R24, fix round 1) a stated `move` or applied `condition` on a roll that
+  nothing backs (`draft.mjs` `unbackedProblems`, "the entry does nothing of the kind on <roll>"): a move needs a `triggers`
+  step on that roll of that mode (and distance, when the assertion gives one); a condition needs a `status` step on that roll,
+  or an effect carrying that status (its own `statuses`, or the entry's `effectStatuses`) linked to an activity of the roll's
+  type in the official structure (attack for hit, miss and crit; save for failedSave; for savedSave, only an effect the entry
+  lists in `savedEffects`). The structure says nothing of movement, and without the structure nothing is backed by the item
+  (fail closed). Up to four of the problems are named. The `fixes` gate is not run here: `gates` runs it.
   Any unexpected exception while one result is read becomes that result's rejection (`internal: <first 80 characters>`):
   it never stops the others. A rejection repeats at most 80 characters of any string the drafter wrote.
 - **Queued** in `registry/drafts-queue.json` (`{ key, reason, by, why, confidence, draft? }`, merged by key, sorted): outcome
@@ -759,23 +770,34 @@ registry is invalid, its `batch` is not a review batch id `<book>-review-<NNN>`,
 the official structure of each record answered, read as `batch review --structure` reads it, decides the baseline below.
 
 **Agreement** (Rulings R9 and R24, `review.mjs` `compareAsserts`, data only). The draft says `normaliseAssert(rule.assert)`
-plus `impliedAsserts(rule.entry)`; the review says `normaliseAssert(assert)`. Each side is read as its strongest assertions:
-one that says less than another of its own side (`push` beside `push 20`) is absorbed by it and shares its fate. They agree
-when every draft assertion is matched by a distinct review assertion, every review assertion is matched or is the item's
-baseline, and neither side holds a `free` text. A match is either equality or **the same up to optional detail**
-(`sameUpToDetail`): the same `given` (every given field is identity), the same expectation kinds, every field both state equal,
-and every field one side states alone an optional detail of its kind (`OPTIONAL_DETAIL`: damage `type`, move `distance`;
-identity everywhere else: damage `fraction`, move `mode`, condition `applied` / `ended`, roll `mode` / `on` / `for`, `ends`,
-`affects`, `excludes`, `uses`). Two details both stated and different never match; 20 and `"20"` are one value. **Baseline**
-(`isBaseline`): a review-only `damage.fraction = 1`, with or without a `type`, given `hit` or `failedSave` alone, is what the
-item's own data already does, not something the rule adds, when the official item's structure has an activity of that roll
-that deals damage (an `attack` for `hit`, a `save` for `failedSave`; of that type when one is stated) and the draft says
-nothing of the damage in that situation or in every situation; no other review-only assertion is ever baseline, and a draft
-assertion is never ignored. Still not tolerated: any other assertion on one side only, another moment, roll, target,
-condition, fraction, ending, move mode or given. The comparison is kept as canonical assertion strings: `onlyDraft` (what the
-review misses), `onlyReview` (what it adds), `baseline` (review assertions taken as the item's baseline) and `detail` (`{ draft,
-review }` pairs matched up to detail, absorbed ones included), so a person sees what was tolerated. A result with `"outcome":
-"person"` (no `assert`) says the reviewer could not express the entry: it is queued as `unexpressed`.
+plus `impliedAsserts(rule.entry, { structure })`: the saved-save, miss and no-damage fractions of `saveDamage`, `halfOnMiss`
+and `noDamage`, each with the damage types of its activity in the official structure (one assertion per type; untyped
+without the structure), and the `status` and `move` steps of `triggers` on every roll moment they are declared on (`hit`,
+`failedSave`, `savedSave`...), with the mode, distance and status the step holds. The review says `normaliseAssert(assert)`.
+Each side is read as its strongest assertions: one that says less than another of its own side (`push` beside `push 20`) is
+absorbed by it and shares its fate. They agree when every draft assertion is matched by a distinct review assertion, every
+review assertion is matched or is the item's baseline, and neither side holds a `free` text. A match is either equality or
+**the same up to optional detail** (`draftMatches`): the same `given` (every given field is identity), the same expectation
+kinds, every field both state equal, and every field one side states alone an optional detail of its kind (`OPTIONAL_DETAIL`:
+damage `type`, move `distance`; identity everywhere else: damage `fraction`, move `mode`, condition `applied` / `ended`, roll
+`mode` / `on` / `for`, `ends`, `affects`, `excludes`, `uses`), **in the safe direction only**: a detail the draft states and
+the review leaves out is tolerated; a `distance` the review states and the draft side does not pin is not ("the rule pins no
+distance": the draft side pins one through an entry step, whose implied assertion absorbs a stated move without distance); and
+when two or more draft-side damage assertions of one `given` differ in fraction, a damage `type` must match exactly for that
+`given` (which activity gets which result). Two details both stated and different never match; 20 and `"20"` are one value.
+**Baseline** (`isBaseline`): a review-only `damage.fraction = 1`, with or without a `type`, given `hit` or `failedSave` alone,
+is what the item's own data already does when the official item's structure has an activity of that roll that deals damage
+(an `attack` for `hit`, a `save` for `failedSave`; of that type when one is stated), the draft says nothing of the damage in
+that situation or in every situation, and the entry changes no damage on that roll (`draft-keys.mjs` `DAMAGE_ROLLS`, one line
+per drafter key: a damage-touching `triggers` step on that roll — anything but `status`, `move`, `resave` — or on a moment
+that is no roll; `saveDamage` on the saved save; `halfOnMiss` on the miss; `onHit` on the hit; `noDamage`, `ignoresResistance`,
+`atTurnStart`, `dataFixes`, a `rollBonus` on anything but attack, save, check or initiative, and any key not in the table, on
+every roll); no other review-only assertion is ever baseline, and a draft assertion is never ignored. Still not tolerated: any
+other assertion on one side only, another moment, roll, target, condition, fraction, ending, move mode or given. The
+comparison is kept as canonical assertion strings: `onlyDraft` (what the review misses), `onlyReview` (what it adds),
+`baseline` (review assertions taken as the item's baseline) and `detail` (`{ draft, review }` pairs matched up to detail,
+absorbed ones included), so a person sees what was tolerated. A result with `"outcome": "person"` (no `assert`) says the
+reviewer could not express the entry: it is queued as `unexpressed`.
 
 For each result:
 
@@ -803,12 +825,16 @@ For each result:
   (outcome `person`, `review.assert` stored as `[]`), `disagreement`, `free-text` (everything matches but a side holds a free
   text) or `low-confidence` (agreement below 0.7).
 - **Agreed** otherwise: `evidence.reviewed = { by, at, agrees: true, rule, confidence, tolerated? }`, `rule` the rule's
-  fingerprint, `tolerated` the Ruling R24 tolerances the agreement used (`["baseline"]`, `["detail"]` or `["baseline",
-  "detail"]`, a closed sorted list the schema holds; absent on an exact agreement). Like the rest of the review it is about
-  the rule `reviewed.rule` names and goes stale with it; it holds no prose, so it is not part of the gates' `emits`. The state
-  is `reviewed`. A review never changes the rule.
+  fingerprint, `tolerated` (only when Ruling R24 tolerated anything) `{ baseline: [review], detail: [[draft, review]] }`, the
+  canonical strings of what was tolerated, held by the schema (each a canonical assertion of the closed vocabulary, not both
+  lists empty). `tolerated` is part of the gates' `emits` (`registry.mjs` `emittedFingerprint`), so a hand edit that removes
+  or changes it is seen: right after such an agreement the record is **`drafted`** until `npm run gates` passes again, then
+  `reviewed` (an exact agreement is `reviewed` at once). A review never changes the rule.
 
-It prints `{ agreed, queued, reasons, rejected }` and exits with 1 when anything was rejected. The touched books and the queue
+It prints `{ agreed, agreedExact, agreedTolerated, regate, queued, reasons, rejected }` (`regate`: the keys that agreed
+through R24's tolerances, with a line on stderr saying to run `npm run gates`) and exits with 1 when anything was rejected.
+`docs/RULES.md` counts the rules that stand reviewed through tolerances apart from exact agreements (`books-progress.mjs`
+`toleratedReviews`). The touched books and the queue
 are written in one step, as every `ingest` (`writeFilesAtomically`).
 
 A person settles a review-queue entry in one of two ways. Editing the rule makes every evidence stale (the record is

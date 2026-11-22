@@ -686,7 +686,8 @@ function commitIngest(books, all, changed, queued, applied, { queue: kind = "tri
 async function ingestCommand(args) {
   const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>"
     + " | --review --batch <batch file>] | ingest --settle-unsure [--min <n>]"
-    + " (--review needs RULEPACK_DUMPS: the item's own damage is read from the official structure, Ruling R24)";
+    + " (--draft and --review need RULEPACK_DUMPS: the official item's structure backs a condition and gives the item's"
+    + " own damage, Ruling R24)";
   const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const [mode] = modes;
@@ -739,6 +740,9 @@ async function ingestCommand(args) {
     throw new UsageError(`${file}: a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden}): not a results file`);
   }
   if (mode === "--draft") {
+    // Fix round 1 (Ruling R24): a stated condition is checked against the official item's structure, read from the dumps.
+    const dumpsDir = need("RULEPACK_DUMPS");
+    if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
     const offered = offeredKeys(input.batch, batchFile);
     return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered });
   }
@@ -787,9 +791,8 @@ function ingestDraftCommand(input, { textDir, core, offered }) {
   const keys = new Set(input.results.map((r) => r?.key).filter((k) => offered.has(k)));
   const monsterBooks = [...new Set(all.filter((r) => r.kind === "monster" && keys.has(r.key)).map((r) => r.book))];
   const embedded = new Map();
+  const dumpsDir = need("RULEPACK_DUMPS");
   if (monsterBooks.length) {
-    const dumpsDir = need("RULEPACK_DUMPS");
-    if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
     const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
     for (const book of monsterBooks) {
       const actors = officialFilesFor(dumpsDir, packages, book).filter(isActorFile)
@@ -801,7 +804,8 @@ function ingestDraftCommand(input, { textDir, core, offered }) {
     }
   }
   const out = ingestDrafts(all, input.results, {
-    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded, offered
+    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded, offered,
+    structures: officialStructures(all, [...keys], dumpsDir)
   });
   if (!commitIngest(books, out.records, out.applied, out.queued, out.applied, { queue: "drafts" })) return;
   console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
@@ -825,6 +829,19 @@ function offeredReviews(id, file) {
   return new Map(batch.entries.map((e) => [e.key, e.rule]));
 }
 
+// The official item's structure (structure.mjs structureOf, as a batch's structure file holds it) of each record of `keys`,
+// a Map of key to structure; a record whose official document is not in the dumps has none.
+function officialStructures(records, keys, dumpsDir) {
+  const wanted = new Set(keys);
+  const structures = new Map();
+  for (const [book, ofBook] of groupBy(records.filter((r) => wanted.has(r.key)), (r) => r.book)) {
+    const { entries } = structuresOf({ id: book, entries: ofBook.map((r) => ({ key: r.key })) }, ofBook, dumpsDir,
+      { rulable: true });
+    for (const [key, perOrigin] of Object.entries(entries)) if (perOrigin.official) structures.set(key, perOrigin.official);
+  }
+  return structures;
+}
+
 // `ingest <results-file> --review --batch <batch file>`: independent reviews. Agreements write `evidence.reviewed`; the rest
 // (disagreement, free text, low confidence, a draft stamped for a person) goes to registry/review-queue.json; books and that
 // queue are saved in one step.
@@ -833,23 +850,23 @@ function ingestReviewCommand(input, { textDir, core, offered, dumpsDir }) {
   const books = loadRegistry(REGISTRY);
   const all = books.flatMap((b) => b.records);
   // The official structure of every record the results answer (the same data the batch's structure file gave the reviewer).
-  const known = new Set(all.map((r) => r.key));
-  const keys = [...new Set(input.results.map((r) => r?.key))]
-    .filter((k) => typeof k === "string" && offered.has(k) && known.has(k));
-  const structures = new Map();
-  for (const [book, ofBook] of groupBy(all.filter((r) => keys.includes(r.key)), (r) => r.book)) {
-    const { entries } = structuresOf({ id: book, entries: ofBook.map((r) => ({ key: r.key })) }, ofBook, dumpsDir,
-      { rulable: true });
-    for (const [key, perOrigin] of Object.entries(entries)) if (perOrigin.official) structures.set(key, perOrigin.official);
-  }
+  const keys = input.results.map((r) => r?.key).filter((k) => typeof k === "string" && offered.has(k));
+  const structures = officialStructures(all, keys, dumpsDir);
   const out = ingestReviews(all, input.results, {
     textDir, by: input.by, core, queue: loadQueue(REGISTRY, "review"), offered, structures
   });
   if (!commitIngest(books, out.records, out.agreed, out.disagreed, out.agreed, { queue: "review" })) return;
   const reasons = {};
   for (const q of out.disagreed) reasons[q.reason] = (reasons[q.reason] ?? 0) + 1;
-  console.log(JSON.stringify({ agreed: out.agreed.length, queued: out.disagreed.length, reasons, rejected: out.rejected },
-    null, 2));
+  // Ruling R24: an agreement that tolerated anything stores it in evidence.reviewed.tolerated, which the gates fingerprint
+  // (emits): those records are `drafted` until `npm run gates` runs again, and counted apart from exact agreements.
+  console.log(JSON.stringify({ agreed: out.agreed.length, agreedExact: out.agreed.length - out.tolerated.length,
+    agreedTolerated: out.tolerated.length, regate: out.tolerated, queued: out.disagreed.length, reasons,
+    rejected: out.rejected }, null, 2));
+  if (out.tolerated.length) {
+    console.error(`${out.tolerated.length} agreement(s) used Ruling R24 tolerances: run npm run gates (they stay drafted until`
+      + " the gates pass again on evidence.reviewed.tolerated)");
+  }
   if (out.rejected.length) process.exitCode = 1;
 }
 

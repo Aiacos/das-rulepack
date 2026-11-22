@@ -244,6 +244,32 @@ export function playedByHand(dir = resolve(ROOT, "registry")) {
   return out;
 }
 
+/**
+ * The rules whose review agreed only through Ruling R24's tolerances (`evidence.reviewed.tolerated`: optional detail, the
+ * item's own damage), as "<book>|<identifier>", read from registry/ for records that stand reviewed or played: counted apart
+ * from exact agreements.
+ */
+export function toleratedReviews(dir = resolve(ROOT, "registry")) {
+  const out = new Set();
+  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !NOT_BOOKS.includes(f)) ) {
+    for ( const r of JSON.parse(readFileSync(resolve(dir, f), "utf8")).records ?? [] ) {
+      if ( ["reviewed", "played"].includes(r.state) && r.evidence?.reviewed?.tolerated ) out.add(`${r.book}|${r.identifier}`);
+    }
+  }
+  return out;
+}
+
+/** The closing line of the rules block: the counts by status, plays by hand and reviews with R24 tolerances apart. */
+export function countsLine(rules, { handPlayed = () => false, tolerated = new Set() } = {}) {
+  const count = status => rules.filter(rule => rule.status === status).length;
+  const waiting = count("pending") ? `, ${count("pending")} pending` : "";
+  const hand = rules.filter(handPlayed).length;
+  const played = `${count("played")} played${hand ? ` (${hand} by hand)` : ""}`;
+  const loose = rules.filter(rule => tolerated.has(`${rule.book}|${rule.identifier}`)).length;
+  const tolerance = loose ? ` ${loose} of them reviewed with Ruling R24 tolerances (not an exact agreement).` : "";
+  return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}`;
+}
+
 const STATUS = { played: "Played", validated: "Validated", pending: "Pending" };
 const KIND = { spell: "Spell", feature: "Feature", sense: "Sense" };
 
@@ -273,11 +299,7 @@ export function renderRules() {
     }
     out.push("");
   }
-  const count = status => RULES.filter(rule => rule.status === status).length;
-  const waiting = count("pending") ? `, ${count("pending")} pending` : "";
-  const hand = RULES.filter(handPlayed).length;
-  const played = `${count("played")} played${hand ? ` (${hand} by hand)` : ""}`;
-  out.push(`${RULES.length} rules: ${played}, ${count("validated")} validated${waiting}.`);
+  out.push(countsLine(RULES, { handPlayed, tolerated: toleratedReviews() }));
   return out.join("\n");
 }
 

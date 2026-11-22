@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, isReaderHandle, validateRecord } from "./schema.mjs";
-import { assertProblems, normaliseAssert } from "./assert.mjs";
+import { assertProblems, assertionOfCanonical, isCanonicalAssertion } from "./assert.mjs";
 
 export { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, validateRecord };
 
@@ -71,14 +71,16 @@ const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", 
  * gates makes their evidence stale), and of the draft's `evidence.drafted.person` / `because` stamp (Ruling R15: removing it
  * makes the evidence stale too), and of `evidence.reviewed.because` and `evidence.played.because` (the lines of a person's
  * review-accept and hand play, written after the gates: the text gate must read them before the evidence stands again,
- * under --ci too). Absent, they leave the hash as it was (`canonical` drops undefined fields). The rest of `evidence.played`
+ * under --ci too), and of `evidence.reviewed.tolerated` (Ruling R24: what a review agreement tolerated; a hand edit that
+ * removes it makes the gate evidence stale, and the gates run again after an agreement that tolerated anything). Absent,
+ * they leave the hash as it was (`canonical` drops undefined fields). The rest of `evidence.played`
  * (written from the runner's log) is held by the schema to ids, a version, a world handle and fingerprints: no prose can
  * sit there, so it does not touch this fingerprint and a play from the log keeps the gates standing.
  */
 export const emittedFingerprint = (record) => ruleFingerprint({
   ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person,
   forPerson: forPersonOf(record?.evidence?.drafted), reviewedBecause: record?.evidence?.reviewed?.because,
-  playedBecause: record?.evidence?.played?.because
+  reviewedTolerated: record?.evidence?.reviewed?.tolerated, playedBecause: record?.evidence?.played?.because
 });
 // The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs DRAFTED_FOR_PERSON), or undefined when it has none.
 const forPersonOf = (d) =>
@@ -256,34 +258,13 @@ export const RECORD_KEY = /^[a-z][a-z0-9]{1,9}:[a-z]+:[a-z0-9][a-z0-9/#-]*$/;
 
 const HEX = /^[0-9a-f]{64}$/;
 const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
-const ASSERT_PART = /^[A-Za-z]{1,24}$/;
-// One canonical assertion string (assert.mjs normaliseAssert: sorted `path=value` pairs) read back as an assertion, or null.
-export function assertionOfCanonical(canonical) {
-  if (typeof canonical !== "string" || !canonical || canonical.length > 400) return null;
-  const out = { given: {}, expect: {} };
-  for (const pair of canonical.split(";")) {
-    const i = pair.indexOf("=");
-    const path = i > 0 ? pair.slice(0, i).split(".") : [];
-    if (path.length < 2 || !Object.hasOwn(out, path[0]) || !path.every((p) => ASSERT_PART.test(p))) return null;
-    let node = out[path[0]];
-    for (const p of path.slice(1, -1)) {
-      if (!Object.hasOwn(node, p)) node[p] = {};
-      node = node[p];
-      if (!isPlainObject(node)) return null;
-    }
-    const raw = pair.slice(i + 1);
-    node[path.at(-1)] = /^-?\d+(\.\d+)?$/.test(raw) ? Number(raw) : raw;
-  }
-  return out;
-}
+// One canonical assertion string read back as an assertion (assert.mjs, where it lives; exported here for the callers).
+export { assertionOfCanonical };
 // The problems of a list of canonical assertion strings: each must read back as a valid assertion and canonicalise to itself.
 function canonicalListProblems(list, at, vocabulary) {
   if (!Array.isArray(list)) return [`${at}: must be an array of canonical assertions`];
-  return list.flatMap((c, i) => {
-    const a = assertionOfCanonical(c);
-    const ok = a && !assertProblems([a], { vocabulary }).length && normaliseAssert([a])[0] === c;
-    return ok ? [] : [`${at}[${i}]: not a canonical assertion of the closed vocabulary`];
-  });
+  return list.flatMap((c, i) => (isCanonicalAssertion(c, vocabulary) ? []
+    : [`${at}[${i}]: not a canonical assertion of the closed vocabulary`]));
 }
 // What a review-queue entry holds besides its own fields (review.mjs): the draft's and the review's assertions, the
 // comparison as canonical strings, the handles and fingerprints. Closed keys; the assertions and their words checked (against

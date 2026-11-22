@@ -40,6 +40,59 @@ export function ruleOriginLabel(record) {
 }
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const asList = (v) => (Array.isArray(v) ? v : v === undefined ? [] : [v]);
+// The canonical spelling of a distance (20 and "20" are one, as in assert.mjs normaliseAssert).
+const spelled = (v) => (typeof v === "string" ? v : JSON.stringify(v));
+
+// The activity type whose own roll a `given.roll` is (an attack for hit and miss, a save for the saves).
+const ACTIVITY_OF_ROLL = Object.freeze({ hit: "attack", crit: "attack", miss: "attack", failedSave: "save", savedSave: "save" });
+/**
+ * Fix round 1 (Ruling R24, L1): every stated `move` or applied `condition` of `rule.assert` on a roll must be backed, by a
+ * `triggers` step of the entry on that roll (a `move` of that mode, and of that distance when the assertion gives one; a
+ * `status` of that status), or, for a condition only, by the item's own data: an activity of that roll's type (attack for
+ * hit/miss/crit, save for failedSave/savedSave) in the official structure (`structure`, structure.mjs structureOf) that links
+ * an effect carrying the status (its `statuses`, or the entry's `effectStatuses` for that effect); for a saved save, only an
+ * effect the entry lists in `savedEffects` (an effect of a save activity applies on a failed one). The structure says
+ * nothing of movement, so a move is backed by a step alone. Without the structure nothing is backed by the item (fail
+ * closed). The problems, one per assertion that is not backed.
+ */
+export function unbackedProblems(rule, structure) {
+  const problems = [];
+  const declarations = asList(rule?.entry?.triggers);
+  const steps = (roll) => declarations.filter((d) => asList(d?.on).includes(roll)).flatMap((d) => asList(d?.do));
+  const activities = Array.isArray(structure?.activities) ? structure.activities : [];
+  const effects = new Map((Array.isArray(structure?.effects) ? structure.effects : []).map((e) => [e?.id, e]));
+  const statusesOf = (id) => {
+    const own = Array.isArray(effects.get(id)?.statuses) ? effects.get(id).statuses : [];
+    const set = rule?.entry?.effectStatuses?.[id];
+    return [...own, ...(Array.isArray(set) ? set : Array.isArray(set?.set) ? set.set : [])];
+  };
+  const byItem = (roll, status) => {
+    if (!Object.hasOwn(ACTIVITY_OF_ROLL, roll)) return false;
+    const saved = asList(rule?.entry?.savedEffects);
+    return activities.some((a) => a?.type === ACTIVITY_OF_ROLL[roll] && asList(a.effects)
+      .some((id) => (roll !== "savedSave" || saved.includes(id)) && statusesOf(id).includes(status)));
+  };
+  (Array.isArray(rule?.assert) ? rule.assert : []).forEach((a, i) => {
+    const roll = a?.given?.roll;
+    if (typeof roll !== "string") return;
+    const move = a?.expect?.move;
+    const status = a?.expect?.condition?.applied;
+    const here = steps(roll);
+    if (isObject(move)) {
+      const backed = here.some((st) => st?.type === "move" && st.mode === move.mode
+        && (move.distance === undefined || (st.distance !== undefined && spelled(st.distance) === spelled(move.distance))));
+      if (!backed) problems.push(`rule.assert[${i}]: the entry does nothing of the kind on ${roll} (no move step of that mode`
+        + `${move.distance === undefined ? "" : " and distance"} on ${roll})`);
+    }
+    if (typeof status === "string") {
+      const backed = here.some((st) => st?.type === "status" && st.status === status) || byItem(roll, status);
+      if (!backed) problems.push(`rule.assert[${i}]: the entry does nothing of the kind on ${roll} (no status step for`
+        + ` ${status}, and the item's own ${ACTIVITY_OF_ROLL[roll] ?? "activity"} applies none)`);
+    }
+  });
+  return problems;
+}
 
 // Why a result cannot be taken at all (before its rule is looked at), or null.
 function resultProblem(record, result, { queuedKeys, offered }) {
@@ -133,7 +186,9 @@ function ruleProblems(candidate, { core, textDir }) {
  *   an outcome other than `rule`, or none on `rule`; a rule that is not `handledIn: "table"`, whose `origins` is not a
  *   non-empty list of distinct known origins, that is for a monster feature without the actors index, names an origin
  *   aliasFor cannot reach, or fails the schema (assert included), the drafter limits (checkDraftKeys), the engine's
- *   validateEntry, the ids gate (R4, R5, a shared embedded id) or the quotation check of its prose and entry strings;
+ *   validateEntry, the ids gate (R4, R5, a shared embedded id) or the quotation check of its prose and entry strings, or
+ *   states a move or condition on a roll that neither the entry nor the item's own data backs (unbackedProblems, decided
+ *   from `structures`: a Map of record key to the official structure, structure.mjs structureOf; fail closed without it);
  * - queued (`queued`, entries of drafts-queue.json) when the outcome is `person`, `code` or `engine` (reason: the outcome); a
  *   rule that passed every check but that the unique gate would fail whatever is drafted (batch.mjs CORE_IDENTIFIER,
  *   SHARED_IDENTIFIER); or one with a confidence below 0.7 (`low-confidence`); a queued rule is kept as `draft`, unless `why`
@@ -147,14 +202,15 @@ function ruleProblems(candidate, { core, textDir }) {
  * (`internal: …`), never the file's. A rejection repeats at most 80 characters of any drafter string. Inputs unchanged.
  */
 export function ingestDrafts(records, results, options = {}) {
-  const { textDir, by, at = new Date().toISOString(), core, queue = [], embedded, offered } = options;
+  const { textDir, by, at = new Date().toISOString(), core, queue = [], embedded, offered, structures = new Map() } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core.validateEntry !== "function") throw new TypeError("ingestDrafts needs core (loadCore)");
   if (!(offered instanceof Set)) throw new TypeError("ingestDrafts needs offered (a Set of the batch file's entry keys)");
+  if (!(structures instanceof Map)) throw new TypeError("structures must be a Map of record key to the official structure");
   const out = structuredClone(records);
   const context = {
     out, byKey: new Map(out.map((r) => [r.key, r])), queuedKeys: new Set(queue.map((q) => q?.key)), offered,
-    textOf: cachedText(textDir), textDir, core, embedded, by, at, seen: new Set()
+    textOf: cachedText(textDir), textDir, core, embedded, by, at, seen: new Set(), structures
   };
   const applied = [];
   const queued = [];
@@ -230,7 +286,8 @@ function takeResult(result, ctx) {
   if (badOrigins) return { reject: badOrigins };
   const drafted = draftedRecord(record, result.rule, { core, embedded, by, at });
   if (drafted.problem) return { reject: drafted.problem };
-  const problems = ruleProblems(drafted.record, { core, textDir });
+  const problems = [...unbackedProblems(drafted.record.rule, ctx.structures.get(result.key) ?? null),
+    ...ruleProblems(drafted.record, { core, textDir })];
   if (problems.length) {
     const shown = problems.slice(0, SHOWN_PROBLEMS).map((p) => p.slice(0, SHOWN_PROBLEM_CHARS));
     const more = problems.length > SHOWN_PROBLEMS ? ` (and ${problems.length - SHOWN_PROBLEMS} more)` : "";
