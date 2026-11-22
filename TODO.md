@@ -155,4 +155,10 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] A verdict for "needs engine support" entries and a grouped list of the missing capabilities for upstream.
 - [ ] Second pilot on the 2024 Monster Manual's draftable monster features (294).
 - [ ] Tasks 7 (scenarios; in progress) and 8 (stale re-reads) of the plan; volume only after a pilot that passes R12.
+- [x] Pre-pass run on every book (2026-11-22): 12 `entry` records became `core`, all in XPHB (11 identifiers the engine
+      handles in its code, 1 feature whose six options each have an engine entry). The yield is small: what the engine leaves
+      to the game system is said only in the prose of its notes, with no identifier to match (5 of the pilot's 11 named
+      records are missed for that reason). "Handled in code" can mean handled in part: `spell-breaker` and `war-bond` are.
+- [ ] The larger remedy for wrong `entry` verdicts is a re-read with the engine in view: give a reader the engine's notes and
+      the code path next to the text (a new reading stage), instead of matching identifiers.
 
