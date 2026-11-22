@@ -19597,7 +19597,7 @@
           "similar": []
         }
       },
-      "why": "One target burns and takes fire damage at the start of its next turn; timed trigger needs a rule",
+      "why": "A single target ignites and suffers fire damage when its following turn begins; a delayed trigger like this needs a rule.",
       "state": "triaged"
     },
     {
@@ -20162,7 +20162,7 @@
           "similar": []
         }
       },
-      "why": "Undead appearance effect ends if you deal damage or force a save; ending event needs a rule",
+      "why": "The undead-look effect stops once you hurt something or compel a saving throw; that ending event needs a rule.",
       "state": "triaged"
     },
     {
@@ -21538,7 +21538,7 @@
           "similar": []
         }
       },
-      "why": "no item data; plain attack plus a rider: target cannot regain hit points until the start of the creature's next turn",
+      "why": "no item data; ordinary attack plus a rider: the victim gets no healing before the creature's following turn starts",
       "state": "triaged"
     },
     {
@@ -25064,7 +25064,7 @@
           "similar": []
         }
       },
-      "why": "no item data; attack plus a frighten save that ends at the end of the target's next turn",
+      "why": "no item data; attack plus a Wisdom save against fear, the fright lasting through the target's following turn",
       "state": "triaged"
     },
     {

@@ -380,3 +380,16 @@ describe("--settle-unsure and --min details", () => {
     expect(r.status).toBe(2);
   });
 });
+
+describe("the quotation limit of the third reading", () => {
+  it("rejects a why that shares 8 consecutive words with the text, accepts 7", () => {
+    const r = record("Dim Glow");
+    const q = [disputed("Dim Glow")];
+    const eight = BODY.split(" ").slice(0, 8).join(" ");
+    const seven = BODY.split(" ").slice(0, 7).join(" ");
+    const bad = third([r], [res("Dim Glow", { why: eight })], q);
+    expect(bad.settled).toEqual([]);
+    expect(bad.rejected[0].reason).toMatch(/quotation of 8 or more/);
+    expect(third([r], [res("Dim Glow", { why: seven })], q).rejected).toEqual([]);
+  });
+});

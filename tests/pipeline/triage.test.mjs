@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { autoTriage, ingest, triageContext, QUEUE_THRESHOLD } from "../../tools/pipeline/triage.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
+import { quotationCheck, RULE_QUOTE_WORDS } from "../../tools/pipeline/gates.mjs";
 import { saveBook, validateRecord } from "../../tools/pipeline/registry.mjs";
 import { inventory } from "../../tools/pipeline/inventory.mjs";
 import { ASSERT } from "./fixtures/assert.mjs";
@@ -131,7 +132,7 @@ describe("ingest", () => {
     const hidden = ["alpha-beta-gamma-delta", "epsilon-zeta-eta-theta", "iota-kappa-lambda-mu"];
     const out = run(records, [ok("tst:spell:dim-glow", { similar: hidden })]);
     expect(out.rejected[0].reason).toMatch(/similar contains a quotation/);
-    expect(run(records, [ok("tst:spell:dim-glow", { similar: hidden.slice(0, 2) })]).rejected).toEqual([]);
+    expect(run(records, [ok("tst:spell:dim-glow", { similar: hidden.slice(0, 1) })]).rejected).toEqual([]);
     expect(run(records, [ok("tst:spell:dim-glow", { similar: ["tst:spell:other-one"] })]).rejected).toEqual([]);
   });
 
@@ -181,17 +182,26 @@ describe("ingest", () => {
     expect(out.records[0].verdict).toBeNull();
   });
 
-  it("accepts 11 consecutive words of the text and rejects 12, ignoring case and spacing", () => {
+  it("accepts 7 consecutive words of the text and rejects 8, ignoring case and spacing", () => {
     const records = [record("Dim Glow")];
-    const eleven = "alpha beta gamma delta epsilon zeta eta theta iota kappa lambda";
-    const twelve = `${eleven} mu`;
-    expect(run(records, [ok("tst:spell:dim-glow", { why: eleven })]).rejected).toEqual([]);
-    const shout = "It says: ALPHA  beta   gamma delta epsilon zeta eta theta iota kappa lambda MU.";
+    const seven = "alpha beta gamma delta epsilon zeta eta";
+    const eight = `${seven} theta`;
+    expect(run(records, [ok("tst:spell:dim-glow", { why: seven })]).rejected).toEqual([]);
+    const shout = "It says: ALPHA  beta   gamma delta epsilon zeta eta THETA.";
     const bad = run(records, [ok("tst:spell:dim-glow", { why: shout })]);
-    expect(bad.rejected[0].reason).toMatch(/quotation/);
-    expect(run(records, [ok("tst:spell:dim-glow", { why: twelve })]).rejected).toHaveLength(1);
+    expect(bad.rejected[0].reason).toMatch(/quotation of 8 or more/);
+    expect(run(records, [ok("tst:spell:dim-glow", { why: eight })]).rejected).toHaveLength(1);
     const later = run(records, [ok("tst:spell:dim-glow", { why: "so xi omicron pi rho sigma dim glow" })]);
     expect(later.rejected).toEqual([]);
+  });
+
+  it("uses the gates' quotation check: one limit, the same words", () => {
+    const records = [record("Dim Glow")];
+    expect(RULE_QUOTE_WORDS).toBe(8);
+    // camelCase and digit boundaries count as word breaks in the gates' normaliser
+    const glued = "alphaBeta gamma delta epsilon zeta eta theta";
+    expect(quotationCheck(BODY)(glued)).toBe(true);
+    expect(run(records, [ok("tst:spell:dim-glow", { why: glued })]).rejected).toHaveLength(1);
   });
 
   it("allows only unverifiable for an entry without text", () => {

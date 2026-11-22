@@ -334,8 +334,8 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 > `dataFixes`, …) or dotted paths that start with one (`triggers.0.on`). `why` is one line: no line break, no tab, no control
 > character.
 >
-> **Limits.** `why` is your own words: never quote the rulebook, and in no case 12 or more consecutive words of the text
-> (a longer quotation is rejected), and never copy a structure file's content beyond ids and keys: it is private. No server,
+> **Limits.** `why` is your own words: never quote the rulebook, and never 8 or more consecutive words of the text
+> (such a quotation is rejected), and never copy a structure file's content beyond ids and keys: it is private. No server,
 > no network, no git, no edits to the repository.
 >
 > **Confidence** is a number from 0 to 1. 1 means certain; 0.7 is the line: at 0.7 or more you would stand behind the
@@ -504,8 +504,11 @@ The main session runs `npm run ingest -- <results-file>` for each results file. 
   - the verdict is `core` (only the rule-based step sets it) or unknown, or the key is unknown;
   - the confidence is not a number from 0 to 1;
   - `why` is empty, longer than 200 characters, not a single line of printable characters (a line break, a tab, a
-    control or format character), or quotes 12 or more consecutive words of the cached text (compared on lower-cased
-    words, whitespace and surrounding punctuation ignored);
+    control or format character), or quotes 8 or more consecutive words of the cached text (the check of a rule's strings, `gates.mjs`
+    `quotationCheck` with `RULE_QUOTE_WORDS`: NFKC, lower case, any other character a separator; the same limit and the
+    same normaliser for `ingest`, `ingest --second` and `ingest --third`, and for the words of a kebab-case `similar` entry).
+    A test (`tests/pipeline/registry-why.test.mjs`, run when `RULEPACK_TEXT` is set) fails if any `why` of the registry, or
+    of a queue entry's `second` or `third` reading, breaks that limit;
   - the entry has no text and the verdict is not `unverifiable`;
   - the record already has a verdict (from a person, a rule or an earlier ingest), unless the command is run with
     `--overwrite`: replacing verdicts is a person's decision, given on the command line, never by a results file;

@@ -62541,7 +62541,7 @@
         }
       },
       "hint": "core-generic",
-      "why": "Healing at the start of each of its turns while above 0 HP; data heal activity has no amount or timing.",
+      "why": "Recovers hit points whenever its turn begins, if it still has one or more; the data heal activity lacks the amount and the timing.",
       "state": "triaged"
     },
     {
@@ -63509,7 +63509,7 @@
         }
       },
       "hint": "core-generic",
-      "why": "Healing at the start of each of its turns while above 0 HP; data heal activity has no amount or timing.",
+      "why": "Recovers hit points whenever its turn begins, if it still has one or more; the data heal activity lacks the amount and the timing.",
       "state": "triaged"
     },
     {
@@ -80479,7 +80479,7 @@
         }
       },
       "hint": "core-generic",
-      "why": "Poisoned effect on hit present; its end at the end of the merrow's next turn may need duration checking",
+      "why": "The poisoned effect on a hit is present; when it expires (after the merrow's following turn) may need a duration check.",
       "state": "triaged"
     },
     {
@@ -104989,7 +104989,7 @@
         }
       },
       "hint": "core-generic",
-      "why": "Heals at the start of each of its turns; the heal activity has a zero die and no turn trigger.",
+      "why": "Recovers hit points whenever its turn begins; the heal activity has a zero die and no turn trigger.",
       "state": "triaged"
     },
     {
@@ -107083,7 +107083,7 @@
           "similar": []
         }
       },
-      "why": "Recharge emanation save with incapacitated until the start of the sphinx's next turn; data has the save, the end-point is not expressed.",
+      "why": "Recharging emanation with a save that leaves enemies incapacitated until the sphinx's following turn begins; data has the save but not the end point.",
       "state": "triaged"
     },
     {

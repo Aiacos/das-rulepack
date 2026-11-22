@@ -223,8 +223,9 @@ const draftEntryOf = (r, examples, why) => ({
   ...(why ? { why } : {}), examples
 });
 
-// The triage `why` is the reader's own words, accepted up to 11 consecutive words of the text: a drafter gets it only when it
-// passes the check a rule's strings face (8 words, gates.mjs quotationCheck). Without the text it is withheld (fail closed).
+// The triage `why` is the reader's own words, ingest refuses 8 or more consecutive words of the text; an older `why` may
+// predate that limit, so a drafter gets it only when it passes the check a rule's strings face (gates.mjs quotationCheck).
+// Without the text it is withheld (fail closed).
 function whyFor(r, textOf, report) {
   if (!r.why) return undefined;
   let text = null;

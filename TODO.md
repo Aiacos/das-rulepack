@@ -136,4 +136,9 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Owner-approved written criteria for the two boundaries applied in bulk (2026-11-22): a blind third reading of the 178
       disagreements settled 152 (26 stay, each with three readings); the common verdict of two unsure readings was applied
       to 166 (8 stay). The queue holds 119 entries for a person: 85 with no item or no text, 26 + 8 with their readings.
+- [x] Quotation limit is 8 consecutive words everywhere (2026-11-22): every ingest uses the gates' check; 17 triage reasons
+      that shared 8-11 words with their text were reworded; a test keeps the registry clean.
+- [ ] 8 legacy rules have an `adds` sharing exactly 8 consecutive words with the source (ai:incite-greed, tce:booming-blade,
+      xge: holy-weapon, power-word-pain, psychic-scream, snare, wall-of-light, watery-sphere). A legacy record cannot be
+      edited in place: take them out of legacy through the pipeline (redraft with `assert`, gates, review) in the pilot.
 

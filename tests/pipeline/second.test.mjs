@@ -318,3 +318,16 @@ describe("second reading on the command line", () => {
     expect(b.entries.map((e) => e.key)).toEqual(["tst:spell:s1", "tst:spell:s2"]);
   });
 });
+
+describe("the quotation limit of the second reading", () => {
+  it("rejects a why that shares 8 consecutive words with the text, accepts 7", () => {
+    const r = record("Dim Glow");
+    const q = [queued("Dim Glow")];
+    const eight = BODY.split(" ").slice(0, 8).join(" ");
+    const seven = BODY.split(" ").slice(0, 7).join(" ");
+    const bad = second([r], [res("Dim Glow", { why: eight })], q);
+    expect(bad.agreed).toEqual([]);
+    expect(bad.rejected[0].reason).toMatch(/quotation of 8 or more/);
+    expect(second([r], [res("Dim Glow", { why: seven })], q).rejected).toEqual([]);
+  });
+});

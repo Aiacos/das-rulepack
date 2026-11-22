@@ -10405,7 +10405,7 @@
           "similar": []
         }
       },
-      "why": "Attack plus a poisoned condition until the end of its next turn; activity and effect carry it.",
+      "why": "Attack that also poisons its target until the target's next turn ends; the activity and its effect already carry that.",
       "state": "triaged"
     },
     {
@@ -10455,7 +10455,7 @@
           "similar": []
         }
       },
-      "why": "Attack plus a poisoned condition until the end of its next turn; activity and effect carry it.",
+      "why": "Attack that also poisons its target until the target's next turn ends; the activity and its effect already carry that.",
       "state": "triaged"
     },
     {
