@@ -36,6 +36,27 @@ Published as an official Foundry VTT module (`dnd-players-handbook`).
 | Inspiring Smite (Oath of Glory 3) | Feature | p.114 | The Temporary Hit Points are divided among the chosen creatures as the paladin likes, where the engine splits them evenly. | table | Played |
 | Dreadful Strikes (Fey Wanderer 3) | Feature | p.124 | The extra Psychic die is once per turn for each target, not once per turn for the ranger. | code + table | Played |
 
+### XMM · Monster Manual (2025)
+
+Published as an official Foundry VTT module (`dnd-monster-manual`).
+
+| Rule | Kind | Page | What the module adds | Handled in | Status |
+|---|---|---|---|---|---|
+| Whirlwind (Air Elemental) | undefined | p.13 | On a failed save the target is also shoved 20 feet away; the size limit on targets is left to the GM. | table | Validated |
+| Slowing Breath (Ancient Copper Dragon) | undefined | p.80 | On a failed save the target loses reactions, gets only an action or a bonus action, until the end of its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Feral Strike (Animal Lord) | undefined | p.15 | Movement made with this legendary action provokes no opportunity attacks; the attack is a separate roll. | table | Validated |
+| Flame Whip (Balor) | undefined | p.26 | A hit also drags the target 25 feet toward the balor; the size limit is left to the GM. Not covered on ddb-importer: triggers holds one origin; this item has its own attack. | table | Validated |
+| Death Throes (Balor) | undefined | p.26 | A successful save halves the explosion damage; the table triggers it when the balor dies. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Horrify (Banshee) | undefined | p.29 | Fear on a failed save ends when the banshee's next turn starts. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Beard (Bearded Devil) | undefined | p.33 | The poison from a hit ends when the devil's next turn starts. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Infernal Sting (Bone Devil) | undefined | p.52 | The poison from a hit ends when the devil's next turn starts. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Deadly Leap (Bulette) | undefined | p.63 | A successful save halves the damage and pushes the target 5 feet away. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Trampling Charge (Centaur Trooper) | undefined | p.67 | The charge move provokes no opportunity attacks. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Entangling Trail (Centaur Warden) | undefined | p.67 | The move provokes no opportunity attacks; restraint ends at the end of the target's next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Unnerving Gaze (Chain Devil) | undefined | p.68 | Fear from a failed save ends at the end of the target's own turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Drone (Chasme) | undefined | p.69 | The sleeper rolls a fresh save whenever one of its turns ends; the sleep lasts ten minutes at most. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+| Moan (Cloaker) | undefined | p.73 | The fear from a failed save ends when the cloaker's next turn ends. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
+
 ### PHB · Player's Handbook (2014)
 
 Not published on Foundry.
@@ -87,7 +108,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-24 rules: 16 played, 8 validated.
+38 rules: 16 played, 22 validated. 4 of them reviewed with Ruling R24 tolerances (not an exact agreement).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

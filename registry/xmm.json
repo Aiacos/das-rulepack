@@ -19251,11 +19251,25 @@
           "core": "0.289.0",
           "rule": "ad6b6cb64b42ebf90a8db990b6e4702e1e2672f86008e0caa7d48b2cb5549155"
         },
+        "reviewed": {
+          "by": "reviewer-n001",
+          "at": "2026-11-22T03:24:03.210Z",
+          "agrees": true,
+          "rule": "ad6b6cb64b42ebf90a8db990b6e4702e1e2672f86008e0caa7d48b2cb5549155",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=fire;given.roll=failedSave",
+              "expect.damage.fraction=1;expect.damage.type=force;given.roll=failedSave"
+            ],
+            "detail": []
+          }
+        },
         "gates": {
-          "at": "2026-11-22T03:20:06.266Z",
+          "at": "2026-11-22T03:24:28.699Z",
           "core": "0.289.0",
           "rule": "ad6b6cb64b42ebf90a8db990b6e4702e1e2672f86008e0caa7d48b2cb5549155",
-          "emits": "91b11abf82e4a7a8c1515de6f879af0be9cd6545a1abc98a0efb23b5b3195401",
+          "emits": "ba9ae8ba849358cd5d47767353c29937e7e093417e3986747cb971ca9bf5241a",
           "passed": [
             "schema",
             "validator",
@@ -19306,7 +19320,7 @@
         ],
         "origin": "Balor"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:balor/trait/fire-aura",
@@ -20619,6 +20633,13 @@
           "core": "0.289.0",
           "rule": "413ef9d15a692966f73b756ca4fe6a0ab0c2020ea2ba3f4136ea03486210fff7"
         },
+        "reviewed": {
+          "by": "reviewer-n001",
+          "at": "2026-11-22T03:24:03.210Z",
+          "agrees": true,
+          "rule": "413ef9d15a692966f73b756ca4fe6a0ab0c2020ea2ba3f4136ea03486210fff7",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T03:20:06.267Z",
           "core": "0.289.0",
@@ -20680,7 +20701,7 @@
         ],
         "origin": "Banshee"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:banshee/action/multiattack",
@@ -21939,6 +21960,13 @@
           "core": "0.289.0",
           "rule": "2e53e8461f0b98feb310351472102b926c92ec7eb0447b55a41e6c3e7cd75bf3"
         },
+        "reviewed": {
+          "by": "reviewer-n001",
+          "at": "2026-11-22T03:24:03.210Z",
+          "agrees": true,
+          "rule": "2e53e8461f0b98feb310351472102b926c92ec7eb0447b55a41e6c3e7cd75bf3",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T03:20:06.268Z",
           "core": "0.289.0",
@@ -22000,7 +22028,7 @@
         ],
         "origin": "Bearded Devil"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:bearded-devil/action/infernal-glaive",
@@ -25990,6 +26018,13 @@
           "core": "0.289.0",
           "rule": "7629d17868aac5aec83538ddd2972d05075f112d47e1029f9fae96aefaf0bb9e"
         },
+        "reviewed": {
+          "by": "reviewer-n001",
+          "at": "2026-11-22T03:24:03.210Z",
+          "agrees": true,
+          "rule": "7629d17868aac5aec83538ddd2972d05075f112d47e1029f9fae96aefaf0bb9e",
+          "confidence": 0.85
+        },
         "gates": {
           "at": "2026-11-22T03:20:06.270Z",
           "core": "0.289.0",
@@ -26051,7 +26086,7 @@
         ],
         "origin": "Bone Devil"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:bone-devil/action/multiattack",
@@ -28267,11 +28302,24 @@
           "core": "0.289.0",
           "rule": "2d064e3b8b1d02b49003be3237668d4b55506ae3f8d09440a146a8c3094d151c"
         },
+        "reviewed": {
+          "by": "reviewer-n001",
+          "at": "2026-11-22T03:24:03.210Z",
+          "agrees": true,
+          "rule": "2d064e3b8b1d02b49003be3237668d4b55506ae3f8d09440a146a8c3094d151c",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [
+              "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.roll=failedSave"
+            ],
+            "detail": []
+          }
+        },
         "gates": {
-          "at": "2026-11-22T03:20:06.271Z",
+          "at": "2026-11-22T03:24:28.703Z",
           "core": "0.289.0",
           "rule": "2d064e3b8b1d02b49003be3237668d4b55506ae3f8d09440a146a8c3094d151c",
-          "emits": "d5c23aed305e0eb76381fb9ace44144c95ae7779002d0579e33a87f378f98791",
+          "emits": "0385fcbe5d7e046b2aca720af336d6cb4661aaec6e9ec2f9b58ae6151042fd1b",
           "passed": [
             "schema",
             "validator",
@@ -28355,7 +28403,7 @@
         ],
         "origin": "Bulette"
       },
-      "state": "gated"
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:bulette/action/multiattack",

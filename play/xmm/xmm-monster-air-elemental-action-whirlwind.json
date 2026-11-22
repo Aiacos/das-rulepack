@@ -1,0 +1,68 @@
+{
+  "scenario": "xmm/xmm-monster-air-elemental-action-whirlwind",
+  "key": "xmm:monster:air-elemental/action/whirlwind",
+  "rule": "1fe13c65a3ca30dc97b262543a57566893cbfe7f6d56c361139d16c807a78904",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.move.distance.mode",
+    "expect.move.mode",
+    "setup.item"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmAirElemental00.mmWhirlwind00000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "GQzr4EMMm6kkZVdC"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=prone;given.roll=failedSave"
+    },
+    {
+      "use": "GQzr4EMMm6kkZVdC"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    },
+    {
+      "use": "GQzr4EMMm6kkZVdC"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.move.distance=20;expect.move.mode=push;given.roll=failedSave"
+    },
+    {
+      "use": "GQzr4EMMm6kkZVdC"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.move.mode=push;given.roll=failedSave"
+    }
+  ]
+}

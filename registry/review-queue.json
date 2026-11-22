@@ -1,0 +1,402 @@
+[
+  {
+    "key": "xmm:monster:ancient-copper-dragon/action/slowing-breath",
+    "reason": "noReactions",
+    "by": "reviewer-n001",
+    "why": "Failed save imposes speed and action limits lasting to the end of the target's next turn; reaction loss not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-n001",
+      "rule": "1fa031d0db4f5c17378613d096947866bcb7862afd16ebb71f2416b41fdd357d",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": []
+    },
+    "review": {
+      "rule": "1fa031d0db4f5c17378613d096947866bcb7862afd16ebb71f2416b41fdd357d",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "agrees": true,
+      "onlyDraft": [],
+      "onlyReview": [],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:animal-lord/legendary/feral-strike",
+    "reason": "disagreement",
+    "by": "reviewer-n001",
+    "why": "Legendary option: costs one legendary use, movement provokes no opportunity attacks, then one Rend",
+    "confidence": 0.6,
+    "draft": {
+      "by": "drafter-m001",
+      "rule": "8a34bee3a0bd449b261a067b57ae45cd5ad6f8b8bb9f2dc979ace5096df84a24",
+      "assert": [
+        {
+          "given": {
+            "moment": "moves"
+          },
+          "expect": {
+            "excludes": "enemies",
+            "free": "no opportunity attack while it moves"
+          }
+        }
+      ],
+      "implied": []
+    },
+    "review": {
+      "rule": "8a34bee3a0bd449b261a067b57ae45cd5ad6f8b8bb9f2dc979ace5096df84a24",
+      "assert": [
+        {
+          "given": {},
+          "expect": {
+            "uses": {
+              "spent": 1
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "leavesReach"
+          },
+          "expect": {
+            "excludes": "self"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.excludes=enemies;expect.free=*;given.moment=moves"
+      ],
+      "onlyReview": [
+        "expect.excludes=self;given.moment=leavesReach",
+        "expect.uses.spent=1"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:centaur-trooper/bonus/trampling-charge",
+    "reason": "disagreement",
+    "by": "reviewer-n001",
+    "why": "Move without provoking; each entered creature saves: failure deals damage and knocks prone, success nothing",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-n001",
+      "rule": "f2ad72685f1f5cd7867f1a85e3e51702eabbe1937d6467bb991ece8f791e0040",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        }
+      ],
+      "implied": []
+    },
+    "review": {
+      "rule": "f2ad72685f1f5cd7867f1a85e3e51702eabbe1937d6467bb991ece8f791e0040",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "bludgeoning"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "prone"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "leavesReach"
+          },
+          "expect": {
+            "excludes": "self"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0;given.roll=savedSave",
+        "expect.excludes=self;given.moment=leavesReach"
+      ],
+      "baseline": [
+        "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.roll=failedSave"
+      ],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:centaur-warden/bonus/entangling-trail",
+    "reason": "disagreement",
+    "by": "reviewer-n001",
+    "why": "Move without provoking; nearby creatures save: failure deals damage and restrains until end of their next turn",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-n001",
+      "rule": "b324e21dc232060cc7682331828b5a2c1b053c3c686e71ca92f2b74be887c5c7",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": []
+    },
+    "review": {
+      "rule": "b324e21dc232060cc7682331828b5a2c1b053c3c686e71ca92f2b74be887c5c7",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "bludgeoning"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "restrained"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "leavesReach"
+          },
+          "expect": {
+            "excludes": "self"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.damage.fraction=0;given.roll=savedSave",
+        "expect.excludes=self;given.moment=leavesReach"
+      ],
+      "baseline": [
+        "expect.damage.fraction=1;expect.damage.type=bludgeoning;given.roll=failedSave"
+      ],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:chain-devil/reaction/unnerving-gaze",
+    "reason": "disagreement",
+    "by": "reviewer-n001",
+    "why": "Reaction at a creature's turn start: failure frightens it until that same turn ends; immunity on success not expressible",
+    "confidence": 0.75,
+    "draft": {
+      "by": "drafter-n001",
+      "rule": "cc0ca9e991934d42f7c8d563818da417a1d2c4eeef0d0e50ad165a561592d4f0",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "bearerTurnEnd"
+          }
+        }
+      ],
+      "implied": []
+    },
+    "review": {
+      "rule": "cc0ca9e991934d42f7c8d563818da417a1d2c4eeef0d0e50ad165a561592d4f0",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "frightened"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "currentTurnEnd"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.ends=bearerTurnEnd;given.roll=failedSave"
+      ],
+      "onlyReview": [
+        "expect.ends=currentTurnEnd;given.roll=failedSave"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  },
+  {
+    "key": "xmm:monster:chasme/bonus/drone",
+    "reason": "disagreement",
+    "by": "reviewer-n001",
+    "why": "Failure knocks unconscious; ends on a later successful repeat save or on taking damage; demon auto-success not expressible",
+    "confidence": 0.7,
+    "draft": {
+      "by": "drafter-n002",
+      "rule": "f79f3c44b5e0e8ddf6c528e2323272f5cfdb648b9109c236640db4bc5aebdc31",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "unconscious"
+            }
+          }
+        }
+      ],
+      "implied": []
+    },
+    "review": {
+      "rule": "f79f3c44b5e0e8ddf6c528e2323272f5cfdb648b9109c236640db4bc5aebdc31",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "unconscious"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "savedSave"
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "isDamaged"
+          }
+        },
+        {
+          "given": {},
+          "expect": {
+            "excludes": "self"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [],
+      "onlyReview": [
+        "expect.ends=isDamaged;given.roll=failedSave",
+        "expect.ends=savedSave;given.roll=failedSave",
+        "expect.excludes=self"
+      ],
+      "baseline": [],
+      "detail": []
+    }
+  }
+]

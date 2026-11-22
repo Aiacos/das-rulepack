@@ -1,0 +1,48 @@
+{
+  "scenario": "xmm/xmm-monster-balor-trait-death-throes",
+  "key": "xmm:monster:balor/trait/death-throes",
+  "rule": "ad6b6cb64b42ebf90a8db990b6e4702e1e2672f86008e0caa7d48b2cb5549155",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect.damage.type",
+    "setup.item"
+  ],
+  "checks": 2,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmBalor000000000.mmDeathThroes000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "jTq2czA8KQITUK4c"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;expect.damage.type=fire;given.roll=savedSave"
+    },
+    {
+      "use": "jTq2czA8KQITUK4c"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    }
+  ]
+}

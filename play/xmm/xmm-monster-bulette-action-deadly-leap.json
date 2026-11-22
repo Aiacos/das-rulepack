@@ -1,0 +1,68 @@
+{
+  "scenario": "xmm/xmm-monster-bulette-action-deadly-leap",
+  "key": "xmm:monster:bulette/action/deadly-leap",
+  "rule": "2d064e3b8b1d02b49003be3237668d4b55506ae3f8d09440a146a8c3094d151c",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.damage.type",
+    "expect.move.distance.mode",
+    "setup.item"
+  ],
+  "checks": 3,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmBulette0000000.mmDeadlyLeap0000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "IPCXEQoTuaAG5l52"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=prone;given.roll=failedSave"
+    },
+    {
+      "use": "IPCXEQoTuaAG5l52"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;expect.damage.type=bludgeoning;given.roll=savedSave"
+    },
+    {
+      "use": "IPCXEQoTuaAG5l52"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    },
+    {
+      "use": "IPCXEQoTuaAG5l52"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.move.distance=5;expect.move.mode=push;given.roll=savedSave"
+    }
+  ]
+}
