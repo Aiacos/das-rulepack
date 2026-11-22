@@ -34,7 +34,7 @@ import { ingestReviews, queueHolds } from "./review.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { AGENT_HANDLE } from "./schema.mjs";
 import { cachedText, forbiddenKeyIn } from "./intake.mjs";
-import { structureOf } from "./structure.mjs";
+import { reachesOf, structureOf } from "./structure.mjs";
 import { packIndex, planOf, scenarioFiles, scenarioIdOf, scenarioOf, SCENARIO_STATES } from "./scenarios.mjs";
 import { parseRunnerLog, playedFrom } from "./played.mjs";
 import { isCoreVersion, isScenarioId, isWorld, PLAY_CLIENTS } from "./schema.mjs";
@@ -457,8 +457,9 @@ function checkStructureDir(dir, out) {
 // A document is the one with the item's docId and, when the item records it, its data fingerprint: never another document
 // that shares the id (a journal page, another printing). A monster feature's document is the item embedded in the actor
 // (`<actor id>.<item id>`). With `rulable` (the draft and review cuts, and the review ingest) an origin no rule can name is
-// left out (batch.mjs rulableOrigin: a monster feature's DDB Importer item, Ruling R3).
-function structuresOf(batch, records, dumpsDir, { rulable = false } = {}) {
+// left out (batch.mjs rulableOrigin: a monster feature's DDB Importer item, Ruling R3). With `reach` (the play data of
+// `scenarios`) each activity also carries its reach in feet (structure.mjs reachesOf).
+function structuresOf(batch, records, dumpsDir, { rulable = false, reach = false } = {}) {
   const byKey = new Map(records.map((r) => [r.key, r]));
   const indexes = new Map();
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
@@ -479,7 +480,10 @@ function structuresOf(batch, records, dumpsDir, { rulable = false } = {}) {
     const perOrigin = {};
     for (const item of r.items.filter((i) => i.match === "matched" && (!rulable || rulableOrigin(r, i.origin)))) {
       const doc = findDocument(docs(r.book, item.origin, r.kind), item.docId, item.data?.sha256);
-      perOrigin[item.origin] = doc ? structureOf(doc) : null;
+      const structure = doc ? structureOf(doc) : null;
+      const reaches = doc && reach ? reachesOf(doc) : null;
+      perOrigin[item.origin] = reaches
+        ? { ...structure, activities: structure.activities.map((a) => ({ ...a, reach: reaches[a.id] ?? null })) } : structure;
     }
     if (Object.keys(perOrigin).length) entries[e.key] = perOrigin;
   }
@@ -859,12 +863,12 @@ function offeredReviews(id, file) {
 
 // The official item's structure (structure.mjs structureOf, as a batch's structure file holds it) of each record of `keys`,
 // a Map of key to structure; a record whose official document is not in the dumps has none.
-function officialStructures(records, keys, dumpsDir) {
+function officialStructures(records, keys, dumpsDir, { reach = false } = {}) {
   const wanted = new Set(keys);
   const structures = new Map();
   for (const [book, ofBook] of groupBy(records.filter((r) => wanted.has(r.key)), (r) => r.book)) {
     const { entries } = structuresOf({ id: book, entries: ofBook.map((r) => ({ key: r.key })) }, ofBook, dumpsDir,
-      { rulable: true });
+      { rulable: true, reach });
     for (const [key, perOrigin] of Object.entries(entries)) if (perOrigin.official) structures.set(key, perOrigin.official);
   }
   return structures;
@@ -1059,8 +1063,13 @@ function scenariosCommand(args) {
   const own = packages.filter((p) => p.book && p.book.toUpperCase() === book).map((p) => p.id);
   const itemFiles = dumpsFor(dumpsDir, "official").filter((f) => !isActorFile(f));
   const packOf = packIndex(itemFiles.map((f) => [f, readDump(join(dumpsDir, f))]), own);
+  // The official item's structure, with each activity's reach: the rolls its effects are applied on, its damage types, its
+  // activity kinds and templates, how far a pull may start (scenarios.mjs scenarioOf).
+  const scenarioRecords = records.filter((r) => SCENARIO_STATES.includes(stateOf(r)));
+  const structures = officialStructures(scenarioRecords, scenarioRecords.map((r) => r.key), dumpsDir, { reach: true });
+  const scenarioFor = (r) => scenarioOf(r, { packOf, structure: structures.get(r.key) ?? null });
   if (modes[0] === "--plan") {
-    const order = planOf(records, { packOf });
+    const order = planOf(records, { packOf, structures });
     const manual = order.filter((p) => p.manual).length;
     const manualShare = `${order.length ? Math.round((100 * manual) / order.length) : 0}%`;
     return console.log(JSON.stringify({ scenarios: order.length, manual, manualShare, order }, null, 2));
@@ -1070,7 +1079,7 @@ function scenariosCommand(args) {
   const ids = groupBy(playable, scenarioIdOf);
   const clash = [...ids].find(([, list]) => list.length > 1);
   if (clash) throw new UsageError(`${clash[1].map((r) => r.key).join(" and ")} make one scenario id ${clash[0]}`);
-  const expected = new Map(playable.flatMap((r) => scenarioFiles(scenarioOf(r, { packOf }))));
+  const expected = new Map(playable.flatMap((r) => scenarioFiles(scenarioFor(r))));
   const dir = join(PLAY, book.toLowerCase());
   const present = existsSync(dir) ? readdirSync(dir).filter((f) => /\.(json|mjs)$/.test(f)) : [];
   const orphan = present.map((f) => `${book.toLowerCase()}/${f}`).filter((p) => !expected.has(p));
@@ -1078,7 +1087,7 @@ function scenariosCommand(args) {
     const file = join(PLAY, p);
     return !existsSync(file) || readFileSync(file, "utf8") !== text;
   }).map(([p]) => p);
-  const manual = playable.filter((r) => scenarioOf(r, { packOf }).manual).map((r) => r.key);
+  const manual = playable.filter((r) => scenarioFor(r).manual).map((r) => r.key);
   if (modes[0] === "--check") {
     const ok = !changed.length && !orphan.length;
     console.log(JSON.stringify({ scenarios: playable.length, manual: manual.length, stale: changed, orphan }, null, 2));

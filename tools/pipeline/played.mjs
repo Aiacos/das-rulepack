@@ -7,7 +7,9 @@
 // A play is recorded for a scenario only when every block of the log that names it passed with the same number of checks
 // as its stamp (at least one), its stamp is exactly that line (nothing after it), names the scenario of its block, and its
 // rule is both the rule its scenario file was generated for and the record's rule as it is today; and the record is in state
-// reviewed (or played: played again), its scenario not manual.
+// reviewed (or played: played again), its scenario not manual. A run that needed a combat (an ending at a turn boundary, a
+// move freed of opportunity attacks) and could not start one fails that check and prints no stamp (play/lib/steps.mjs): its
+// block is refused like any failed or unstamped one.
 //
 // What this does not stop: the log is a local file. A forged log is possible; what stands against it is the honesty of
 // the main session that runs the play and the owner's review of the commit that records it (as for Ruling R20).
