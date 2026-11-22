@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-bearded-devil-action-beard",
+  "key": "xmm:monster:bearded-devil/action/beard",
+  "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmBeardedDevil00.mmBeard000000000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "m3VvZz74hV95zwaB"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.condition.applied=poisoned;given.roll=hit"
+    },
+    {
+      "use": "m3VvZz74hV95zwaB"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    },
+    {
+      "use": "m3VvZz74hV95zwaB"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=hit"
+    }
+  ]
+}

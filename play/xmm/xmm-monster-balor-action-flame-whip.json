@@ -1,0 +1,49 @@
+{
+  "scenario": "xmm/xmm-monster-balor-action-flame-whip",
+  "key": "xmm:monster:balor/action/flame-whip",
+  "rule": "6299d7be32bf7d75dfbf35ee8aa9de131519a9b16a12c40b6df5e6803c14915e",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.move.distance.mode",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmBalor000000000.mmFlameWhip00000",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "sPRQe6Llftsg9xiX"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.condition.applied=prone;given.roll=hit"
+    },
+    {
+      "use": "sPRQe6Llftsg9xiX"
+    },
+    {
+      "force": "hit"
+    },
+    {
+      "check": "expect.move.distance=25;expect.move.mode=pull;given.roll=hit"
+    }
+  ]
+}

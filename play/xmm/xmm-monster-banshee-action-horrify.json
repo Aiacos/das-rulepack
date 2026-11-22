@@ -1,0 +1,55 @@
+{
+  "scenario": "xmm/xmm-monster-banshee-action-horrify",
+  "key": "xmm:monster:banshee/action/horrify",
+  "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect",
+    "expect.ends",
+    "setup.item"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmBanshee0000000.BgXdOU6xf5CiGoyc",
+      "uuid": null,
+      "kind": "monster"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    }
+  },
+  "steps": [
+    {
+      "use": "HLddTFpf4viIdEOL"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=frightened;given.roll=failedSave"
+    },
+    {
+      "use": "HLddTFpf4viIdEOL"
+    },
+    {
+      "check": "expect.ends=casterTurnStart"
+    },
+    {
+      "use": "HLddTFpf4viIdEOL"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=casterTurnStart;given.roll=failedSave"
+    }
+  ]
+}

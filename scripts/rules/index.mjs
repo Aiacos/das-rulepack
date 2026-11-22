@@ -10,10 +10,11 @@ import * as mpmm from "./books/mpmm.mjs";
 import * as phb from "./books/phb.mjs";
 import * as tce from "./books/tce.mjs";
 import * as xge from "./books/xge.mjs";
+import * as xmm from "./books/xmm.mjs";
 import * as xphb from "./books/xphb.mjs";
 
 /** The book modules, each `{ BOOK, RULES }`. */
-export const BOOKS = Object.freeze([ai, ftd, mpmm, phb, tce, xge, xphb]);
+export const BOOKS = Object.freeze([ai, ftd, mpmm, phb, tce, xge, xmm, xphb]);
 
 /** Every rule of the pack, with its book, page, kind and status. @type {readonly import("./book.mjs").Rule[]} */
 export const RULES = Object.freeze(BOOKS.flatMap(module => module.RULES));
@@ -36,4 +37,13 @@ export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.
   .flatMap(rule => [rule.identifier, ...(rule.alsoAs ?? [])].map(identifier => [identifier, rule.entry]))));
 
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as `sources`. */
-export const SOURCES = Object.freeze({});
+export const SOURCES = Object.freeze({
+  "BgXdOU6xf5CiGoyc": "xmm-banshee-horrify",
+  "BqtNDu2WFDju2dM6": "xmm-ancient-copper-dragon-slowing-breath",
+  "mmBeard000000000": "xmm-bearded-devil-beard",
+  "mmDeathThroes000": "xmm-balor-death-throes",
+  "mmFeralStrike000": "xmm-animal-lord-feral-strike",
+  "mmFlameWhip00000": "xmm-balor-flame-whip",
+  "mmInfernalSting0": "xmm-bone-devil-infernal-sting",
+  "mmWhirlwind00000": "xmm-air-elemental-whirlwind"
+});
