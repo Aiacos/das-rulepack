@@ -19,6 +19,7 @@ import { sharedEmbeddedId } from "./settle.mjs";
 import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
 import { LEAVES_MAX, LEAVE_REASONS, UNEXPRESSED_MAX } from "./leaves.mjs";
 import { beyondOf } from "./reread.mjs";
+import { emissionOf } from "./generate.mjs";
 import * as sh from "./shapes.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
@@ -162,6 +163,32 @@ export function draftSkipReason(r, { queued = new Set(), embedded, clashes = new
   return clashes.get(r.key) ?? null;
 }
 
+/** Why a record is left out of a redraft cut (Ruling R32): every record but a redraftable one. */
+export const NOT_REDRAFTABLE = "not redraftable";
+/** The mark a redraft leaves on the draft it writes (`evidence.drafted.redrafted`, Ruling R32). */
+export const isRedrafted = (r) => r?.evidence?.drafted?.redrafted === true;
+const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+
+/**
+ * Ruling R32: whether a ruled record is drafted again (`batch draft --redraft`, `ingest --draft --redraft`): a monster
+ * feature, not legacy, with a rule whose emission (generate.mjs emissionOf) is held `engine-changes` (it drops or alters
+ * what the engine reads), that waits in neither drafts-queue.json (`draftsQueued`) nor review-queue.json (`reviewQueued`),
+ * and whose draft does not carry the mark of a redraft (`evidence.drafted.redrafted`: once only). The reading decided on is
+ * the stored one (`evidence.reading`, as CI decides), or, with `readingOf(record)`, the one computed now from the engine
+ * and the dumps (an `evidence.reading`; none, null: not redraftable, fail closed).
+ */
+export function redraftable(r, { draftsQueued = new Set(), reviewQueued = new Set(), readingOf } = {}) {
+  if (r?.kind !== "monster" || r.legacy === true || !r.rule || isRedrafted(r)) return false;
+  if (draftsQueued.has(r.key) || reviewQueued.has(r.key)) return false;
+  let candidate = r;
+  if (typeof readingOf === "function") {
+    const reading = readingOf(r);
+    if (!isPlainObject(reading)) return false;
+    candidate = { ...r, evidence: { ...r.evidence, reading } };
+  }
+  return emissionOf(candidate)?.because === "engine-changes";
+}
+
 // The strings an example may keep: a 16-character id, a word of the engine's vocabularies, a short formula or dice. Anything
 // else (a label, a comment in French, a sentence) is stripped, with the property or list item that held it.
 const ID16 = /^[A-Za-z0-9]{16}$/;
@@ -300,6 +327,9 @@ function whyFor(r, textOf, report) {
 /**
  * Draft batches `{ id: "<book>-draft-<NNN>", stage: "draft", entries }`: the `entry` records with no rule that draftSkipReason
  * accepts, per book, one kind per batch (kinds in DRAFT_KIND_ORDER), records with a matched official item first, cut at `size`.
+ * With `redraft` (Ruling R32), only the records `redraftable` accepts (`queued` and `reviewQueued` the keys of the two queues,
+ * `currentReadingOf` the reading computed now), in batches marked `redraft: true` of the same draft series and the same
+ * entries; no rule of a record cut is ever offered as an example (the drafter is blind to the rule it replaces).
  * `queued` (keys of drafts-queue.json) are left out; `after` ({ book: highest number }) makes the numbering continue.
  * `embedded` (settle.mjs embeddedIndex of the package's actors) is required when a monster feature is among the records.
  * `textOf(record)` gives the cached text (the `why` of an entry is kept only when it does not quote it; `report.whyWithheld`
@@ -310,11 +340,15 @@ function whyFor(r, textOf, report) {
 export function cutDraftBatches(records, options = {}) {
   const {
     size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded, textOf, report = {},
-    clashes = new Map(), readingOf
+    clashes = new Map(), readingOf, redraft = false, reviewQueued = new Set(), currentReadingOf
   } = options;
-  const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind)
-    && draftSkipReason(r, { queued, embedded, clashes, readingOf }) === null);
-  const pool = exampleCandidates(records, { core, ...(ruled ? { ruled } : {}), ...(gated ? { gated } : {}) });
+  const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind) && (redraft
+    ? redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf })
+    : draftSkipReason(r, { queued, embedded, clashes, readingOf }) === null));
+  // A redraft is blind: the rules it replaces are no examples.
+  const blind = new Set(redraft ? open.map((r) => r.key) : []);
+  const unseen = (list) => list.filter((r) => !blind.has(r.key));
+  const pool = exampleCandidates(unseen(records), { core, ruled: unseen(ruled ?? records), ...(gated ? { gated } : {}) });
   const official = (r) => matchedItems(r).some((i) => i.origin === "official");
   const rank = (k) => (DRAFT_KIND_ORDER.includes(k) ? DRAFT_KIND_ORDER.indexOf(k) : DRAFT_KIND_ORDER.length);
   const batches = [];
@@ -329,7 +363,7 @@ export function cutDraftBatches(records, options = {}) {
         const id = `${book}-draft-${String(n).padStart(3, "0")}`;
         const entries = sorted.slice(i, i + size)
           .map((r) => draftEntryOf(r, examplesFor(r, pool), whyFor(r, textOf, report)));
-        batches.push({ id, stage: "draft", entries });
+        batches.push({ id, stage: "draft", ...(redraft ? { redraft: true } : {}), entries });
       }
     }
   }

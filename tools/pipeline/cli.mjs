@@ -26,8 +26,8 @@ import {
 } from "./triage.mjs";
 import {
   cutBatches, cutDraftBatches, cutReviewBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason,
-  draftVocabulary, highestBatches, identifierClashReasons, REVIEW_BATCH_SIZE, reviewReport, reviewSkipReason, reviewVocabulary,
-  rereadVocabulary, rulableOrigin
+  draftVocabulary, highestBatches, identifierClashReasons, NOT_REDRAFTABLE, redraftable, REVIEW_BATCH_SIZE, reviewReport,
+  reviewSkipReason, reviewVocabulary, rereadVocabulary, rulableOrigin
 } from "./batch.mjs";
 import { DRAFT_KEYS } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
@@ -546,8 +546,9 @@ function checkStructureDir(dir, out) {
 // `scenarios`) each activity also carries its reach in feet (structure.mjs reachesOf).
 // With `engine` (what loadCore returns: the triage, draft and review cuts), a monster record's official structure also carries
 // `engineReads` (Ruling R29): the engine's own reading of the item, an entry of ids and engine words (null when it reads
-// nothing), under the identifier the engine would see (the rule's own when the record has one, its sources bind it).
-function structuresOf(batch, records, dumpsDir, { rulable = false, reach = false, engine = null } = {}) {
+// nothing), under the identifier the engine would see (the rule's own when the record has one, its sources bind it). With
+// `unruled` (a redraft, Ruling R32) it is read as for a record without a rule: what a drafter of it sees, blind to the rule.
+function structuresOf(batch, records, dumpsDir, { rulable = false, reach = false, engine = null, unruled = false } = {}) {
   const byKey = new Map(records.map((r) => [r.key, r]));
   const indexes = new Map();
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
@@ -574,7 +575,8 @@ function structuresOf(batch, records, dumpsDir, { rulable = false, reach = false
         ? { ...structure, activities: structure.activities.map((a) => ({ ...a, reach: reaches[a.id] ?? null })) } : structure;
       if (doc && engine && r.kind === "monster" && item.origin === "official") {
         const actorId = String(item.docId).split(".")[0];
-        perOrigin.official.engineReads = engineReading(doc, engine, r.rule ? { identifier: r.identifier } : { actorId });
+        perOrigin.official.engineReads = engineReading(doc, engine, r.rule && !unruled ? { identifier: r.identifier }
+          : { actorId });
       }
     }
     if (Object.keys(perOrigin).length) entries[e.key] = perOrigin;
@@ -619,6 +621,7 @@ function queueEntries(dir) {
 async function batchCommand([stage, book, ...rest]) {
   const usage = "Usage: batch triage <BOOK> --out <dir> [--structure <private dir>] [--size <n>] [--kind <kind>] "
     + "[--without-items] [--queued]\n       batch draft <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
+    + " [--redraft]"
     + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT: monster features are checked against the actors of the book's package)"
     + "\n       batch review <BOOK> --out <dir> --structure <private dir> [--size <n>] [--kind <kind>]"
     + " (needs DAS_CORE and RULEPACK_DUMPS)\n       " + REREAD_USAGE;
@@ -629,8 +632,11 @@ async function batchCommand([stage, book, ...rest]) {
   const opts = {};
   const withoutItems = rest.includes("--without-items");
   const second = rest.includes("--queued");
+  // Ruling R32: `--redraft` cuts, once, the monster rules held because they change the engine's reading (batch.mjs).
+  const redraft = rest.includes("--redraft");
   if ((draft || review) && (withoutItems || second)) throw new UsageError(usage);
-  rest = rest.filter((a) => a !== "--without-items" && a !== "--queued");
+  if (redraft && !draft) throw new UsageError(`--redraft goes with batch draft only\n${usage}`);
+  rest = rest.filter((a) => a !== "--without-items" && a !== "--queued" && a !== "--redraft");
   for (let i = 0; i < rest.length; i += 2) {
     if (!["--out", "--size", "--structure", "--kind"].includes(rest[i]) || rest[i + 1] === undefined) throw new UsageError(usage);
     opts[rest[i].slice(2)] = rest[i + 1];
@@ -684,11 +690,17 @@ async function batchCommand([stage, book, ...rest]) {
     const textOf = (r) => (r.text && hasText(textDir, r.text.sha256) ? readText(textDir, r.text.sha256) : null);
     // A monster feature the engine reads something of goes to a reread first, unless one found it goes beyond the reading.
     const readingOf = monsters ? memoByKey(readingFor(officialMonsterDocuments(dumpsDir, found.book), core)) : undefined;
+    // Ruling R32: a redraft decides on each rule's comparison with the engine's reading computed now (as the gates do).
+    const reviewQueued = redraft ? new Set(loadQueue(REGISTRY, "review").map((q) => q.key)) : new Set();
+    const currentReadingOf = redraft ? currentReadingFor(found.records, dumpsDir, core) : undefined;
     batches = cutDraftBatches(found.records, {
-      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes, readingOf
+      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes, readingOf, redraft,
+      reviewQueued, currentReadingOf
     });
     for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
-      const why = draftSkipReason(r, { queued, embedded, clashes, readingOf });
+      const why = redraft
+        ? (redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf }) ? null : NOT_REDRAFTABLE)
+        : draftSkipReason(r, { queued, embedded, clashes, readingOf });
       if (why) left[why] = (left[why] ?? 0) + 1;
     }
     for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);
@@ -728,7 +740,8 @@ async function batchCommand([stage, book, ...rest]) {
   }
   // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
   const structures = dumpsDir === null ? []
-    : batches.map((b) => structuresOf(b, found.records, dumpsDir, { rulable: draft || review, engine: core }));
+    : batches.map((b) => structuresOf(b, found.records, dumpsDir, { rulable: draft || review, engine: core,
+      unruled: redraft }));
   mkdirSync(opts.out, { recursive: true });
   if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
   const write = (file, data) => writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
@@ -740,7 +753,7 @@ async function batchCommand([stage, book, ...rest]) {
   });
   if (draft) {
     write(join(opts.out, "draft-vocabulary.json"), draftVocabulary(core));
-    write(join(opts.out, `${found.book.toLowerCase()}-draft-report.json`),
+    write(join(opts.out, `${found.book.toLowerCase()}-draft${redraft ? "-redraft" : ""}-report.json`),
       draftReport(found.book, batches, left, report.whyWithheld ?? 0));
   }
   if (review) {
@@ -759,6 +772,13 @@ const memoByKey = (f) => {
     return seen.get(r.key);
   };
 };
+
+// Ruling R32: the `evidence.reading` of each ruled monster record of `records`, computed now from the dumps and the engine
+// (readingOfRecord, what `npm run gates` stores), once per record; null when its official item is not in the dumps.
+function currentReadingFor(records, dumpsDir, core) {
+  const documents = loadDocuments(dumpsDir, records.filter((r) => r.kind === "monster" && r.rule && r.legacy !== true));
+  return memoByKey((r) => readingOfRecord(r, documents, core));
+}
 
 const REREAD_USAGE = "batch reread <BOOK> --out <dir> --structure <private dir> [--size <n>] [--second | --restate]"
   + " (needs DAS_CORE and RULEPACK_DUMPS: the engine's reading of each monster feature is computed at cut time)";
@@ -948,7 +968,8 @@ function offeredRereads(id, file, second, restate = false) {
 async function ingestRereadCommand(args) {
   const usage = "Usage: ingest <results-file> --reread [--second | --restate] --batch <batch file>"
     + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_TEXT)";
-  const others = ["--third", "--overwrite", "--settle-unsure", "--draft", "--review", "--min"].filter((m) => args.includes(m));
+  const others = ["--third", "--overwrite", "--settle-unsure", "--draft", "--review", "--min", "--redraft"]
+    .filter((m) => args.includes(m));
   if (others.length) throw new UsageError(`--reread and ${others.join(" and ")} cannot be used together`);
   const second = args.includes("--second");
   const restate = args.includes("--restate");
@@ -1005,7 +1026,7 @@ async function ingestRereadCommand(args) {
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
   if (args.includes("--reread")) return ingestRereadCommand(args);
-  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>"
+  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft [--redraft] --batch <batch file>"
     + " | --review --batch <batch file> | --reread [--second | --restate] --batch <batch file>]"
     + " | ingest --settle-unsure [--min <n>]"
     + " (--draft and --review need RULEPACK_DUMPS: the official item's structure backs a condition and gives the item's"
@@ -1013,13 +1034,16 @@ async function ingestCommand(args) {
   const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const [mode] = modes;
+  // Ruling R32: `--redraft` takes the results of a batch cut with `batch draft --redraft`, and only those.
+  const redraft = args.includes("--redraft");
+  if (redraft && mode !== "--draft") throw new UsageError(`--redraft goes with --draft only\n${usage}`);
   const rest = [];
   let min = null;
   let batchFile = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === "--min") { min = args[(i += 1)] ?? ""; continue; }
     if (args[i] === "--batch") { batchFile = args[(i += 1)] ?? ""; continue; }
-    if (!modes.includes(args[i])) rest.push(args[i]);
+    if (!modes.includes(args[i]) && args[i] !== "--redraft") rest.push(args[i]);
   }
   if (min !== null && mode !== "--settle-unsure") throw new UsageError("--min goes with --settle-unsure only");
   if (batchFile !== null && mode !== "--draft" && mode !== "--review") {
@@ -1048,8 +1072,8 @@ async function ingestCommand(args) {
     // Fix round 1 (Ruling R24): a stated condition is checked against the official item's structure, read from the dumps.
     const dumpsDir = need("RULEPACK_DUMPS");
     if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
-    const offered = offeredKeys(input.batch, batchFile);
-    return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered });
+    const offered = offeredKeys(input.batch, batchFile, redraft);
+    return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered, redraft });
   }
   if (mode === "--review") {
     // Ruling R24: the baseline is decided from the official item's structure, read from the dumps as `batch review` does.
@@ -1077,12 +1101,16 @@ async function ingestCommand(args) {
 // one step. A monster feature needs the actors of its book's package (RULEPACK_DUMPS) to tell a shared embedded id.
 // The keys a draft batch file offers: its id must be the results file's `batch`, of the form `<book>-draft-<NNN>`, its stage
 // `draft`, and every entry a key of that book.
-function offeredKeys(id, file) {
+function offeredKeys(id, file, redraft = false) {
   const m = /^([a-z][a-z0-9]{1,9})-draft-(\d{3,})$/.exec(String(id));
   if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a draft batch id (<book>-draft-<NNN>)`);
   const batch = readJson(file, "batch file");
   if (batch?.id !== id || batch?.stage !== "draft" || !Array.isArray(batch?.entries)) {
     throw new UsageError(`${file}: not the draft batch ${id} (its id, stage "draft" and entries)`);
+  }
+  if ((batch.redraft === true) !== redraft) {
+    throw new UsageError(`${file}: ${redraft ? "not a redraft batch" : "a redraft batch"} (a batch cut with --redraft is`
+      + " ingested with --draft --redraft, and only it)");
   }
   const keys = batch.entries.map((e) => e?.key);
   if (!keys.every((k) => typeof k === "string" && k.startsWith(`${m[1]}:`))) {
@@ -1091,7 +1119,7 @@ function offeredKeys(id, file) {
   return new Set(keys);
 }
 
-function ingestDraftCommand(input, { textDir, core, offered }) {
+function ingestDraftCommand(input, { textDir, core, offered, redraft = false }) {
   checkQueues(REGISTRY);
   const books = loadRegistry(REGISTRY);
   const all = books.flatMap((b) => b.records);
@@ -1110,12 +1138,18 @@ function ingestDraftCommand(input, { textDir, core, offered }) {
       embedded.set(book, embeddedIndex(actors));
     }
   }
+  // Ruling R32: a redraft decides on the comparison with the engine's reading computed now, as the cut did.
+  const redrafting = redraft ? { redraft, reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)),
+    readingOf: currentReadingFor(all.filter((r) => keys.has(r.key)), dumpsDir, core) } : {};
   const out = ingestDrafts(all, input.results, {
     textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded, offered,
-    structures: officialStructures(all, [...keys], dumpsDir)
+    structures: officialStructures(all, [...keys], dumpsDir), ...redrafting
   });
-  if (!commitIngest(books, out.records, out.applied, out.queued, out.applied, { queue: "drafts" })) return;
-  console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
+  // A redraft that goes to a person changes its record (the old rule is removed) and queues it.
+  const changed = [...out.applied, ...out.unruled];
+  if (!commitIngest(books, out.records, changed, out.queued, out.applied, { queue: "drafts" })) return;
+  console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length,
+    ...(redraft ? { unruled: out.unruled.length } : {}), rejected: out.rejected }, null, 2));
   if (out.rejected.length) process.exitCode = 1;
 }
 

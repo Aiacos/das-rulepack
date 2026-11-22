@@ -227,6 +227,8 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       whether "the engine already does it" rules should be dropped and their records reread.
 - [ ] A reread `core` gone stale (the gates note a new engine reading): decide who restores it or cuts it again.
 - [ ] The 25 rules that change the engine's reading: redraft them as additions (never restating `triggers`), or drop them.
+- [ ] Redraft them with `batch draft XMM --redraft` (Ruling R32, built 2026-11-22: once, blind, `evidence.drafted.redrafted`),
+      then `ingest --draft --redraft`, `gates`, a blind review; count what still changes the reading (held for a person).
 - [ ] The reading is computed from the engine release the tools point at; record and check the engine version at
       registration (a newer engine may read more, making a shipped delta redundant: redundant is harmless, but say so).
 - [x] XMM monster features re-read against the engine's reading (2026-11-22): 96 became `core` (75 confirmed by a second

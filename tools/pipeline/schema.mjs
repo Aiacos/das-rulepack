@@ -432,8 +432,10 @@ function checkEvidence(evidence, errors, legacy, verdict, why) {
   }
   // `person: true` with a `because` of draftedForPersonReasons(): the draft ingest says the rule goes to a person at review
   // whatever a reviewer says (Ruling R15, generalised: a key the vocabulary cannot assert). The two go together.
+  // `redrafted: true`: the rule was drafted again over the engine's reading by a redraft (Ruling R32, batch.mjs
+  // redraftable): a redraft never cuts it again.
   checkStamped(evidence, "drafted", { by: isReaderHandle, at: isString, core: isString, rule: isHex64 }, {}, errors,
-    { person: (v) => v === true, because: (v) => draftedForPersonReasons().includes(v) });
+    { person: (v) => v === true, because: (v) => draftedForPersonReasons().includes(v), redrafted: (v) => v === true });
   const drafted = evidence.drafted;
   if (isObject(drafted) && has(drafted, "person") !== has(drafted, "because")) {
     errors.push("evidence.drafted: person and because go together");
@@ -487,6 +489,7 @@ const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex charact
   "reviewed.because": "one line of printable ASCII, at most 120 characters",
   "reviewed.tolerated": "{ baseline: [canonical assertion], detail: [[draft, review]], left?: [[leaves, review]] } (Rulings R24,"
     + " R25), not all empty",
+  "drafted.redrafted": "true (Ruling R32)",
   "played.because": "one line of printable ASCII, at most 120 characters", "played.by": "an owner's handle, not an agent's",
   "played.manual": "true", "played.client": `one of ${["gm", "player"].join(", ")}`,
   "played.scenario": "a scenario id <book>/<slug> (scenarios.mjs)", "played.core": "an engine version (1.2.3)",
