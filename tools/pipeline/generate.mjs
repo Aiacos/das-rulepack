@@ -50,6 +50,7 @@ const STATUS_OF_STATE = { played: "played", reviewed: "validated", gated: "valid
  * reason nor the record's own stamp (a hand edit): it waits for a person all the same.
  */
 export const HELD_REASONS = Object.freeze({
+  "engine-text": "the engine already reads this feature's text: to be compared first",
   "not-reviewed": "not reviewed yet",
   "review-stale": "its review is about an older rule",
   disagreement: "review disagrees",
@@ -92,9 +93,14 @@ function comparisonHeld(entry) {
  * entry is about an older rule. `queue`: review-queue.json (a list or a Map by key); left out, nothing can be confirmed
  * from it and a stamped rule is held.
  */
-export function emissionOf(record, { legacy, queue } = {}) {
+export function emissionOf(record, { legacy, queue, monsterRules = false } = {}) {
   if (!isObject(record) || !record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
   if (record.legacy === true) return hasLegacyStanding(record, legacy) ? { emitted: true, because: "legacy" } : null;
+  // Ruling R28: DAS · Core derives entries for monster features from their English text by itself (its "text" layer). A pack
+  // rule under the same item replaces that reading: 17 of the first 43 repeated it and 13 changed it, some for the worse (a
+  // size limit lost). Until a rule is compared with what the engine reads, no monster rule is registered.
+  // `monsterRules: true` lifts the hold: only the tests of the mechanics pass it.
+  if (record.kind === "monster" && monsterRules !== true) return { emitted: false, because: "engine-text" };
   const state = stateOf(record);
   if (state === "reviewed" || state === "played") return { emitted: true, because: "reviewed" };
   if (state !== "gated") return null;
@@ -125,8 +131,8 @@ export function emissionOf(record, { legacy, queue } = {}) {
  * registry.mjs loadLegacy; `queue`: review-queue.json). A legacy record keeps its old status, or "played" once a complete
  * play is recorded.
  */
-export function ruleFromRecord(record, { legacy, queue } = {}) {
-  if (emissionOf(record, { legacy, queue })?.emitted !== true) return null;
+export function ruleFromRecord(record, { legacy, queue, monsterRules = false } = {}) {
+  if (emissionOf(record, { legacy, queue, monsterRules })?.emitted !== true) return null;
   const status = record.legacy === true
     ? (isPlayed(record.evidence?.played) ? "played" : record.legacyStatus) : STATUS_OF_STATE[stateOf(record)];
   if (!status) return null;

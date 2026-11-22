@@ -273,7 +273,7 @@ describe("leaves at draft time, in the vocabulary and in the outputs", () => {
     const r = gated(monster(CHARGE));
     // Ruling R27: a rule is emitted once a review of it agrees.
     r.evidence.reviewed = { by: "reviewer-zz9", at: AT, agrees: true, rule: ruleFingerprint(r.rule), confidence: 0.9 };
-    const rule = ruleFromRecord(r, { legacy: new Map() });
+    const rule = ruleFromRecord(r, { legacy: new Map(), monsterRules: true });
     expect(rule.entry).toEqual(CHARGE.entry);
     expect(JSON.stringify(rule.entry)).not.toMatch(/leaves|no-key/);
     expect(rule.partial).toEqual({ "no-key": 2 });

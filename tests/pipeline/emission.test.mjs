@@ -62,11 +62,20 @@ const disagreeing = { agrees: false, onlyDraft: CANON, onlyReview: CANON_OTHER, 
 describe("emissionOf (Ruling R27): one function decides what is registered with the engine", () => {
   it("closes the reasons a rule is held, each with its label", () => {
     expect(Object.keys(HELD_REASONS).sort()).toEqual(
-      ["disagreement", "free-text", "low-confidence", "not-reviewed", "queued", "review-stale", "unexpressed"]);
+      ["disagreement", "engine-text", "free-text", "low-confidence", "not-reviewed", "queued", "review-stale", "unexpressed"]);
     expect(HELD_REASONS["not-reviewed"]).toBe("not reviewed yet");
     expect(HELD_REASONS.disagreement).toBe("review disagrees");
     expect(HELD_REASONS["low-confidence"]).toBe("reviewer unsure");
     expect(Object.isFrozen(HELD_REASONS)).toBe(true);
+  });
+
+  it("holds every monster rule, even a reviewed one: the engine reads those features' text itself (Ruling R28)", () => {
+    const r = gated("Glimmer");
+    r.kind = "monster";
+    r.evidence.reviewed = { by: "reviewer-1", at: "2026-11-22", agrees: true, rule: r.evidence.gates.rule, confidence: 0.9 };
+    expect(emissionOf(r, { queue: [] })).toEqual({ emitted: false, because: "engine-text" });
+    expect(ruleFromRecord(r, { legacy: new Map(), queue: [] })).toBeNull();
+    expect(emissionOf(r, { queue: [], monsterRules: true })?.emitted).not.toBe(false);
   });
 
   it("holds a rule merely gated and never reviewed", () => {
