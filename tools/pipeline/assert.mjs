@@ -9,11 +9,13 @@
 import { ORIGINS } from "./schema.mjs";
 import * as sh from "./shapes.mjs";
 import { HP_AT_MOST, WITHIN_FT, givensOfCondition } from "./conditions.mjs";
+import { AURA_MOMENTS, EMANATION_ON, ZONE_MOMENTS } from "./zones.mjs";
 
 export const FREE_MAX = 120;
 export const ROLLS = Object.freeze(["hit", "miss", "crit", "failedSave", "savedSave"]);
 export const FRACTIONS = Object.freeze([0, 0.5, 1, 2]);
-export const ROLL_MODES = Object.freeze(["advantage", "disadvantage"]);
+// Ruling R33: `autoSuccess`, the roll is not made and succeeds (the engine's saveAutoSuccess).
+export const ROLL_MODES = Object.freeze(["advantage", "disadvantage", "autoSuccess"]);
 export const ROLL_ON = Object.freeze(["attack", "save", "check"]);
 export const ROLL_FOR = Object.freeze(["self", "target", "ally", "enemy"]);
 // Who an assertion is about (`expect.affects`), and who it leaves out (`expect.excludes`, the same words).
@@ -28,7 +30,12 @@ export const CONDITION_GIVENS = Object.freeze(["targetSizeAtMost", "targetType",
 export const GIVEN_FIELDS = Object.freeze(["roll", "moment", "origin", "targetType", "free",
   ...CONDITION_GIVENS.filter((f) => f !== "targetType")]);
 export const EXPECT_FIELDS = Object.freeze(["damage", "condition", "ends", "roll", "affects", "excludes", "move", "uses", "denies",
-  "free"]);
+  "subjected", "free"]);
+/**
+ * Ruling R33: what a creature is subjected to at a zone or aura moment (`expect.subjected`, with `given.moment`): the item's
+ * activity is used on it (its saving throw, its damage, its effects, as the item's data gives them).
+ */
+export const SUBJECTED = Object.freeze(["activity"]);
 // Fix round 1 of Ruling R25: `excludes` maps to no notion of the engine and pilot 3 used it two ways, so no agent may write it
 // (a drafter's assert and leaves, a reviewer's assert: `assertProblems(…, { agent: true })`); stored data that holds it (a
 // review-queue entry, a tolerated pair) is still read. What it was bent to say has its own word now: `denies`.
@@ -97,7 +104,17 @@ export function assertProblems(assertions, { vocabulary = {}, origins = ORIGINS,
       if (has(o, "free") && !isFree(o.free)) errors.push(`${here}.${part}.free: one line of at most ${FREE_MAX} characters`);
     }
     if (has(given, "roll")) oneOf(given.roll, ROLLS, `${here}.given.roll`);
-    if (has(given, "moment")) word(given.moment, "moments", `${here}.given.moment`, "a moment of the engine (MOMENTS)");
+    // Ruling R33: the aura moment words (zones.mjs AURA_MOMENTS) are moments of a `given` too.
+    if (has(given, "moment") && !AURA_MOMENTS.includes(given.moment)) {
+      word(given.moment, "moments", `${here}.given.moment`, "a moment of the engine (MOMENTS) or an aura moment (AURA_MOMENTS)");
+    }
+    // Ruling R33: a creature is subjected to the activity at a zone or aura moment, whatever its roll: `subjected` needs one
+    // of those moments and no roll. (A zone or aura moment beside a roll stays allowed: stored rereads and reviews hold it.)
+    const zoneMoment = has(given, "moment") && [...ZONE_MOMENTS, ...AURA_MOMENTS].includes(given.moment);
+    if (has(expect, "subjected") && (!zoneMoment || has(given, "roll"))) {
+      errors.push(`${here}.expect.subjected: only with a zone or aura moment in given.moment and no roll (${[...ZONE_MOMENTS,
+        ...AURA_MOMENTS].join(", ")})`);
+    }
     if (has(given, "origin")) {
       if (!origins.includes(given.origin)) errors.push(`${here}.given.origin: must be an origin (${origins.join(", ")})`);
     }
@@ -164,6 +181,7 @@ function checkExpect(expect, at, { errors, word, oneOf, vocabulary }) {
   }
   for (const k of ["affects", "excludes"]) if (has(expect, k)) oneOf(expect[k], AFFECTS, `${at}.${k}`);
   if (has(expect, "denies")) oneOf(expect.denies, DENIES, `${at}.denies`);
+  if (has(expect, "subjected")) oneOf(expect.subjected, SUBJECTED, `${at}.subjected`);
   if (has(expect, "move")) {
     const m = expect.move;
     if (!isObject(m) || !onlyKeys(m, ["mode", "distance"])) errors.push(`${at}.move: must be { mode, distance? }`);
@@ -304,6 +322,13 @@ const IMPLIED = {
               own.push({ given: { roll }, expect: { move } });
             }
           }
+        } else if (step?.type === "replay" && isObject(step) && Object.keys(step).every((k) => k === "type" || k === "activity")) {
+          // Ruling R33: a zone uses the item's activity again on a creature at each zone moment it names; another moment
+          // (once per square travelled, a turn of no area) has no word.
+          const ons = (Array.isArray(d?.on) ? d.on : [d?.on]);
+          const zone = ons.filter((on) => ZONE_MOMENTS.includes(on));
+          if (zone.length !== ons.length || !zone.length) unassertable = true;
+          for (const moment of zone) own.push({ given: { moment }, expect: { subjected: "activity" } });
         } else if (step?.type === "resave" && isObject(step) && Object.keys(step).every((k) => k === "type")) {
           const from = isWord(d?.fromEffect) ? onEffect(d.fromEffect, entry, structure, { ends: "savedSave" })
             : [{ given: {}, expect: { ends: "savedSave" } }];
@@ -328,6 +353,27 @@ const IMPLIED = {
   // The bearer of the item makes those rolls with disadvantage (the drafter's shape has no `if`).
   rollDisadvantage: (v) => ({ asserts: (Array.isArray(v?.on) ? v.on : []).filter((o) => ROLL_ON.includes(o))
     .map((on) => ({ given: {}, expect: { roll: { mode: "disadvantage", on, for: "self" } } })) }),
+  // Ruling R33: an aura that acts uses the item's activity on each creature it reaches at its moment (the bearer's turn end
+  // or start, a creature's own turn start); `affects: enemy` says who. Its radius, a sight limit and a limit to an effect of
+  // the item have no word.
+  emanation: (v) => {
+    if (!isObject(v) || !EMANATION_ON.includes(v.on)) return { asserts: [], unassertable: true };
+    const given = { moment: v.on };
+    const asserts = [{ given, expect: { subjected: "activity" } },
+      ...(v.affects === "enemy" ? [{ given, expect: { affects: "enemies" } }] : [])];
+    return { asserts, unassertable: Object.keys(v).some((k) => !["on", "affects", "activity"].includes(k)) };
+  },
+  // Who the item's area affects when its data does not say: in every situation.
+  zoneAffects: (v) => (v === "enemy" || v === "ally"
+    ? { asserts: [{ given: {}, expect: { affects: v === "enemy" ? "enemies" : "allies" } }] }
+    : { asserts: [], unassertable: true }),
+  // A creature of those types succeeds on the item's save without rolling; a size floor and "an enemy it fights" have no word.
+  saveAutoSuccess: (v) => {
+    if (!isObject(v)) return { asserts: [], unassertable: true };
+    const types = Array.isArray(v.types) ? v.types.filter(isWord) : [];
+    return { asserts: types.map((t) => ({ given: { targetType: t }, expect: { roll: { mode: "autoSuccess", on: "save",
+      for: "target" } } })), unassertable: Object.keys(v).some((k) => k !== "types") };
+  },
   // The statuses the entry adds to an effect of the item, applied on the roll that applies it.
   effectStatuses: (v, entry, structure) => ({ asserts: isObject(v) ? Object.entries(v).flatMap(([id, x]) => {
     const statuses = Array.isArray(x) ? x : Array.isArray(x?.set) ? x.set : [];
@@ -359,7 +405,14 @@ export const IMPLIES_NOTHING = Object.freeze({
   difficultTerrain: "no word for terrain",
   targets: "who the action may affect by creature type: no word for an unaffected creature",
   onHit: "a hit that forces a saving throw: no word for a save being made",
-  dataFixes: "it rewrites the item's data; what the data then does is not an assertion of the rule"
+  dataFixes: "it rewrites the item's data; what the data then does is not an assertion of the rule",
+  // Ruling R33: the keys that shape a zone or a passive aura.
+  aura: "an effect copied onto nearby creatures while they stay: no word for an effect held by being near the bearer",
+  selfZone: "the template an activity lacks: no word for the shape or size of an area",
+  zoneLasts: "a duration in time for the area: no word for a length of time",
+  zoneMax: "a cap on how many creatures the area affects: no word for a count of creatures",
+  zoneEffects: "effects held while inside the area and lost on leaving it: no word for leaving an area",
+  willingFails: "a willing target fails without rolling: no given word for a creature's consent"
 });
 
 /**
@@ -465,7 +518,8 @@ export function isCanonicalAssertion(c, vocabulary) {
 // A function, not a constant: ORIGINS comes from schema.mjs, which imports this module (read only once both are loaded).
 export const assertShapes = () => Object.freeze({
   given: Object.freeze({
-    roll: sh.values(ROLLS), moment: sh.word("moments"), origin: sh.values(ORIGINS), targetType: sh.word("creatureTypes"),
+    roll: sh.values(ROLLS), moment: sh.oneOf(sh.word("moments"), sh.values(AURA_MOMENTS)), origin: sh.values(ORIGINS),
+    targetType: sh.word("creatureTypes"),
     free: Object.freeze({ type: "line", max: FREE_MAX }),
     // Ruling R30: the situations a trigger's condition names.
     targetSizeAtMost: sh.word("sizes"), targetStatus: sh.word("statuses"), selfStatus: sh.word("statuses"),
@@ -478,7 +532,7 @@ export const assertShapes = () => Object.freeze({
     condition: sh.object({}, { applied: sh.word("statuses"), ended: sh.word("statuses") }, { atLeastOne: true }),
     ends: sh.oneOf(sh.word("effectEnds"), sh.word("moments")),
     roll: sh.object({ mode: sh.values(ROLL_MODES), on: sh.values(ROLL_ON), for: sh.values(ROLL_FOR) }),
-    affects: sh.values(AFFECTS), denies: sh.values(DENIES),
+    affects: sh.values(AFFECTS), denies: sh.values(DENIES), subjected: sh.values(SUBJECTED),
     move: sh.object({ mode: sh.word("moveModes") }, { distance: Object.freeze({ type: "distance" }) }),
     uses: sh.object({ spent: Object.freeze({ type: "number", min: 1, int: true, formula: false }) }),
     free: Object.freeze({ type: "line", max: FREE_MAX })

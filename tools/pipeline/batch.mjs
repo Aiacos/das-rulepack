@@ -5,8 +5,9 @@ import { queueHolds } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
 import {
-  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural
+  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural, zoneProblemsOf
 } from "./draft-keys.mjs";
+import { AURA_MOMENTS, EMANATION_ON, EXCLUDED_ZONE, ZONE_KEYS, ZONE_MOMENTS, replays } from "./zones.mjs";
 import { DRAFT_FACTS, EXCLUDED_FACTS, MAX_CONDITION_FACTS } from "./conditions.mjs";
 import { assertShapes } from "./assert.mjs";
 import { identifierClashes, quotationCheck } from "./gates.mjs";
@@ -220,12 +221,28 @@ function stripProse(node, words) {
 // formulas and numbers, within the word budget. null when nothing of it is left.
 function exampleEntry(entry, words) {
   if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return null;
-  const kept = stripProse(Object.fromEntries(Object.entries(entry).filter(([k]) => Object.hasOwn(DRAFT_KEYS, k))), words);
+  const kept = fitZones(stripProse(Object.fromEntries(Object.entries(entry).filter(([k]) => Object.hasOwn(DRAFT_KEYS, k))),
+    words));
   if (!Object.keys(kept).length) return null;
   const long = (n) => (typeof n === "string" ? n.length > EXAMPLE_STRING_MAX
     : Array.isArray(n) ? n.some(long) : n !== null && typeof n === "object" ? Object.entries(n).some(([k, v]) => long(k) || long(v))
       : false);
   return long(kept) || entryWords(kept).size > ENTRY_WORD_BUDGET ? null : kept;
+}
+
+// Ruling R33: an example keeps a zone or aura key only in the drafter's shape (no `changes` text, no radius formula...), and
+// only the replay declarations a drafter may write: what the engine's own entries do beyond it is not shown as a model.
+function fitZones(entry) {
+  const out = { ...entry };
+  for (const key of Object.keys(ZONE_KEYS)) {
+    if (Object.hasOwn(out, key) && zoneProblemsOf({ [key]: out[key] }).length) delete out[key];
+  }
+  if (Array.isArray(out.triggers)) {
+    const fit = out.triggers.filter((d) => !replays(d) || !zoneProblemsOf({ triggers: [d] }).length);
+    if (fit.length) out.triggers = fit;
+    else delete out.triggers;
+  }
+  return out;
 }
 
 // The candidates examples are taken from: DAS · Core's shipped entries, then the pack's rules that stand gated.
@@ -404,7 +421,7 @@ export function draftVocabulary(core) {
       rollModes: copy(assertVocabulary.ROLL_MODES), rollOn: copy(assertVocabulary.ROLL_ON),
       rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
       givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.AGENT_EXPECT_FIELDS),
-      denies: copy(assertVocabulary.DENIES)
+      denies: copy(assertVocabulary.DENIES), subjected: copy(assertVocabulary.SUBJECTED), auraMoments: copy(AURA_MOMENTS)
     },
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
     draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),
@@ -416,6 +433,12 @@ export function draftVocabulary(core) {
       facts: Object.fromEntries(Object.entries(DRAFT_FACTS).map(([name, f]) => [name, { subject: f.subject, given: f.given,
         ...(Object.hasOwn(f, "value") ? { value: f.value } : {}), arg: resolveShape(CONDITION_SHAPE.facts[name], engineLists) }])),
       excluded: { ...EXCLUDED_FACTS }
+    },
+    // Ruling R33: the zone and aura keys (zones.mjs): what each does at the table and where that was read, the moments a
+    // replay and an emanation may name, the aura moment words of `given.moment`, and what the engine also takes with why not.
+    zones: {
+      keys: JSON.parse(JSON.stringify(ZONE_KEYS)), zoneMoments: copy(ZONE_MOMENTS), emanationOn: copy(EMANATION_ON),
+      auraMoments: copy(AURA_MOMENTS), excluded: { ...EXCLUDED_ZONE }
     },
     keyExamples: keyExamplesOf(core),
     // Ruling R3: a monster feature names the official origin only; its DDB Importer item is uncovered with this reason

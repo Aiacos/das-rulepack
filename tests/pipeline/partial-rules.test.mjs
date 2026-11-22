@@ -292,7 +292,9 @@ describe("leaves at draft time, in the vocabulary and in the outputs", () => {
     const v = draftVocabulary({ ...core, stepTypes: [], abilities: [], shipped: {} });
     const values = [...variants(v.leaves.shapes.assertion), ...variants(v.leaves.shapes.unexpressed)];
     expect(values.length).toBeGreaterThan(20);
-    for (const value of values) {
+    // Ruling R33: `subjected` goes with a zone or aura moment (a rule across fields, outside the declarative shape).
+    const fit = (x) => (x.expect?.subjected ? { ...x, given: { ...x.given, moment: "ownTurnEnd" } } : x);
+    for (const value of values.map(fit)) {
       expect(leavesProblems([value], { vocabulary: core }), JSON.stringify(value)).toEqual([]);
     }
     expect(JSON.stringify(v.leaves)).not.toMatch(/"free"/);

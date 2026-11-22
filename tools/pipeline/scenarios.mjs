@@ -19,6 +19,7 @@ import { assertionOfCanonical, ruleFingerprint, slug, stateOf } from "./registry
 import { DENIES, impliedAsserts, normaliseAssert, pairsOf, sameUpToDetail } from "./assert.mjs";
 import { leavesAssertions, TURN_ENDS } from "./leaves.mjs";
 import { SIZES } from "./conditions.mjs";
+import { AURA_MOMENTS, ZONE_MOMENTS } from "./zones.mjs";
 
 // The arena the scenarios play in (DAS_CORE tools/lib/stages.mjs ARENE_SORTS): its caster token, and the token near which
 // the target is placed (20 ft away: in range of everything but touch). A monster feature's creature is cast near it too.
@@ -102,6 +103,9 @@ function uninterpreted(a, origin) {
     // The positive side is staged by the choice of the target (targetOf); a target that does not satisfy it is not played.
     if (k === "targetSizeAtMost") { out.push("given.targetSizeAtMost.unmet"); continue; }
     if (k === "origin" && v === origin) continue;
+    // Ruling R33: a zone or aura moment needs an area laid and a creature in it when a turn passes, which the interpreter
+    // does not stage: named by its word.
+    if (k === "moment" && [...ZONE_MOMENTS, ...AURA_MOMENTS].includes(v)) { out.push(`given.moment.${v}`); continue; }
     out.push(k === "roll" ? `force.${v}` : `given.${k}`);
   }
   for (const [k, v] of Object.entries(a.expect)) {

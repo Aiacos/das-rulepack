@@ -87,7 +87,7 @@ describe("I2a: value shapes", () => {
     expect(Object.keys(given).sort()).toEqual(["activity", "damageType", "free", "moment", "onOwnTurn", "origin", "roll",
       "selfStatus", "targetHp", "targetHpAtMost", "targetSizeAtMost", "targetStatus", "targetType", "targetWithin"]);
     expect(Object.keys(expectShapes).sort())
-      .toEqual(["affects", "condition", "damage", "denies", "ends", "free", "move", "roll", "uses"]);
+      .toEqual(["affects", "condition", "damage", "denies", "ends", "free", "move", "roll", "subjected", "uses"]);
     let n = 0;
     for (const [field, shape] of Object.entries(given)) {
       for (const value of variants(shape)) {
@@ -100,7 +100,9 @@ describe("I2a: value shapes", () => {
       for (const value of variants(shape)) {
         n++;
         const expectSide = field === "free" ? { free: value, damage: { fraction: 1 } } : { [field]: value };
-        const problems = assertProblems([{ given: {}, expect: expectSide }], { vocabulary });
+        // Ruling R33: `subjected` goes with a zone or aura moment (a rule across fields, outside the declarative shape).
+        const given = field === "subjected" ? { moment: "ownTurnEnd" } : {};
+        const problems = assertProblems([{ given, expect: expectSide }], { vocabulary });
         expect(problems, `${field} ${JSON.stringify(value)}`).toEqual([]);
       }
     }

@@ -7,8 +7,9 @@ import { join } from "node:path";
 import { DEFINITIONS, DEFINITION_SOURCES, ENDS_EXAMPLES, definitionsFor, undefinedWords } from
   "../../tools/pipeline/definitions.mjs";
 import {
-  ACTIVITY_GIVENS, AFFECTS, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, TARGET_HP
+  ACTIVITY_GIVENS, AFFECTS, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, SUBJECTED, TARGET_HP
 } from "../../tools/pipeline/assert.mjs";
+import { AURA_MOMENTS } from "../../tools/pipeline/zones.mjs";
 import { DRAFT_FACTS } from "../../tools/pipeline/conditions.mjs";
 import { LEAVE_REASONS, TURN_ENDS } from "../../tools/pipeline/leaves.mjs";
 import { draftVocabulary, reviewVocabulary } from "../../tools/pipeline/batch.mjs";
@@ -28,7 +29,7 @@ const COMMITTED = {
 };
 const PACK = { roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON, rollFor: ROLL_FOR,
   fraction: FRACTIONS.map(String), leavesBecause: LEAVE_REASONS, given: GIVEN_FIELDS, targetHp: TARGET_HP,
-  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS) };
+  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS), auraMoment: AURA_MOMENTS, subjected: SUBJECTED };
 
 const isDefinition = (d) => d === "unverified" || (d !== null && typeof d === "object" && Object.keys(d).length === 2
   && typeof d.means === "string" && /^[\x20-\x7e]{10,240}$/.test(d.means) && DEFINITION_SOURCES.includes(d.from));

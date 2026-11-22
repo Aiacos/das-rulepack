@@ -90,7 +90,7 @@ describe("the stamp for a person, generalised (Ruling R15)", () => {
     expect(draftedForPerson({ entry: { usageLimits: { [SAVE]: { oncePerTurn: true } }, effectDurations: {} } }))
       .toBe("effectDurations");
     expect(draftedForPerson({ entry: { noReactions: true, effectEnds: { [E_SAVE]: "bearerTurnEnd" } } })).toBe(null);
-    expect(draftedForPerson({ entry: { aura: {} } })).toBe("other-key");
+    expect(draftedForPerson({ entry: { globe: {} } })).toBe("other-key");
     expect(draftedForPerson({ entry: {}, uncovered: [{ origin: "official", because: "x" }] })).toBe("official-uncovered");
     for (const key of Object.keys(IMPLIES_NOTHING)) expect(draftedForPersonReasons(), key).toContain(key);
     // A stamp written before fix round 1 keeps its reason.

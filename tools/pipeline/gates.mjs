@@ -16,7 +16,7 @@ import { GATE_NAMES } from "./schema.mjs";
 import { hasText, readText, splitWords } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
 import { identifierProblems, reaches, SHARED_EMBEDDED, unaccountedOrigins } from "./identifiers.mjs";
-import { checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys } from "./draft-keys.mjs";
+import { checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys, zoneProblemsOf } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
 import { rereadStaleNote } from "./reread.mjs";
@@ -138,6 +138,9 @@ export function gateValidator(record, context) {
   if (!isLegacy(record, context) && !signedByOwner(record, context)) {
     const shape = new Set(conditionProblemsOf(entry));
     asserts.push(...conditionProblemsOf(entry, { vocabulary: core }).filter((e) => !shape.has(e)).map((e) => `validator: ${e}`));
+    // Ruling R33: the same for the words of a zone or aura key (creature types, sizes).
+    const zone = new Set(zoneProblemsOf(entry));
+    asserts.push(...zoneProblemsOf(entry, { vocabulary: core }).filter((e) => !zone.has(e)).map((e) => `validator: ${e}`));
   }
   // The engine looks a fact up as a key of the object it is given.
   const facts = Object.fromEntries(core.facts.map((name) => [name, true]));

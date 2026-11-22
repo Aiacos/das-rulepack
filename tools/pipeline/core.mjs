@@ -1,7 +1,9 @@
 // Loads what the gates need from a clone of DAS · Core: the validator, the data-fix helpers, the fact names, the table of
 // identifiers the engine already has an entry for, those it handles outside the table (core-scan.mjs), its entry keys and its
 // vocabulary; and (Ruling R30) the facts a condition may name with the subject and argument kind of each (core/recipes.mjs
-// FACTS) and the closed value lists of those arguments (FACT_ARG_OPTIONS). Nothing here writes to the clone.
+// FACTS) and the closed value lists of those arguments (FACT_ARG_OPTIONS); and (Ruling R33) the moments of an emanation
+// (core/emanation.mjs EMANATION_MOMENTS), who an aura's copy goes to (AURA_AFFECTS) and the fields the zone and aura validators
+// accept (`zoneFields`, read from their own lists). Nothing here writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -52,6 +54,32 @@ export function vocabularyOf(modules, facts) {
   }
   for (const fact of facts) addAll([fact, ...fact.split(".")]);
   return words;
+}
+
+// The quoted words of the first `[...]` list that follows `anchor` in `source` and matches `pattern` (a closing piece of
+// code: `].includes(key)`), or null when the anchor or the list is not found.
+function listAfter(source, anchor, pattern) {
+  const start = source.indexOf(anchor);
+  if (start < 0) return null;
+  const m = source.slice(start).match(pattern);
+  return m ? [...m[1].matchAll(/"([A-Za-z]+)"/g)].map((x) => x[1]) : null;
+}
+/**
+ * Ruling R33: the fields and words the engine's validators of the zone and aura keys accept, read as text from their own
+ * lists (core/content/steps.mjs validateAura, annex.mjs validateEmanation, entry.mjs `saveAutoSuccess`, `selfZone`,
+ * `zoneAffects`): `{ aura, emanation, emanationAffects, saveAutoSuccess, templateTypes, zoneAffects }`, or null when one of
+ * them is not found (a test then fails: the pack's shapes were checked against lists the engine no longer writes so).
+ */
+export function zoneFieldsOf({ steps, annex, entry }) {
+  const out = {
+    aura: listAfter(steps, "export function validateAura", /\[([^\]]*)\]\.includes\(key\)/),
+    emanation: listAfter(annex, "export function validateEmanation", /\[([^\]]*)\]\.includes\(key\)/),
+    emanationAffects: listAfter(annex, "export function validateEmanation", /"affects" in e\) && !\[([^\]]*)\]/),
+    saveAutoSuccess: listAfter(entry, '"saveAutoSuccess" in entry', /const keys = \[([^\]]*)\]/),
+    templateTypes: listAfter(entry, '"selfZone" in entry', /\[([^\]]*)\]\.includes\(t\.type\)/),
+    zoneAffects: listAfter(entry, '("zoneAffects" in entry)', /\[([^\]]*)\]\.includes\(entry\.zoneAffects\)/)
+  };
+  return Object.values(out).every((v) => Array.isArray(v) && v.length) ? out : null;
 }
 
 export async function loadCore(dir) {
@@ -114,6 +142,22 @@ export async function loadCore(dir) {
     if (!Array.isArray(value) || !value.length) throw new Error(`DAS_CORE ${dir}: core/recipes.mjs does not give ${name}`);
   }
   const moments = Object.keys(triggers.MOMENTS);
+  // Ruling R33: optional here (an engine without them still gates; the zone tests fail on it).
+  const emanation = existsSync(join(dir, "module", "scripts", "core", "emanation.mjs"))
+    ? await load(dir, "core/emanation.mjs") : {};
+  const emanationMoments = Array.isArray(emanation.EMANATION_MOMENTS) ? [...emanation.EMANATION_MOMENTS] : [];
+  const auraAffects = Array.isArray(enums.AURA_AFFECTS) ? [...enums.AURA_AFFECTS] : [];
+  let zoneFields;
+  const readZoneFields = () => {
+    if (zoneFields === undefined) {
+      const text = (f) => {
+        const path = join(dir, "module", "scripts", "core", "content", f);
+        return existsSync(path) ? readFileSync(path, "utf8") : "";
+      };
+      zoneFields = zoneFieldsOf({ steps: text("steps.mjs"), annex: text("annex.mjs"), entry: text("entry.mjs") });
+    }
+    return zoneFields;
+  };
   const vocabulary = vocabularyOf([enums, triggers], facts);
 
   const aliases = SRD_ALIASES ?? {};
@@ -147,7 +191,8 @@ export async function loadCore(dir) {
     stepTypes: [...enums.STEP_TYPES],
     creatureTypes: [...lists.creatureTypes], moveModes: [...lists.moveModes], effectEnds: [...lists.effectEnds],
     damageTypes: [...lists.damageTypes], abilities: [...lists.abilities],
-    factKinds, sizes: [...argLists.sizes], activityTypes: [...argLists.activityTypes], distanceUnits: [...argLists.distanceUnits]
+    factKinds, sizes: [...argLists.sizes], activityTypes: [...argLists.activityTypes], distanceUnits: [...argLists.distanceUnits],
+    emanationMoments, auraAffects, get zoneFields() { return readZoneFields(); }
   };
 }
 
