@@ -304,4 +304,6 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       all 6 in the review queue; R12 no-go for the other 21 batches.
 - [x] The item summary now shows dnd5e's own change of form (`transform`: preset, what is kept, temporary hit points):
       readers and drafters had been declining form changes as "no key" although the item's data does them.
+- [x] CI was red for three pushes (the engine's latest release has no creature-scoped sources yet): R36, tests follow the
+      clone, `--ci` tolerates the binding. Checked locally against a clone of the release, as CI makes it.
 

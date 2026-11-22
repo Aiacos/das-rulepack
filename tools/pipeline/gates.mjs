@@ -125,8 +125,11 @@ function draftProblems(record, context) {
 const actorItemProblems = (record, core) => (core?.actorItemSources === true ? [] : Object.keys(isObject(record.sources)
   ? record.sources : {}).filter(isActorItemKey).map((key) => `validator: sources ${key}: ${ACTOR_ITEM_REFUSED}`));
 
+// Ruling R36: CI checks the pack against the engine's latest RELEASE, which may predate the capability the registry was
+// gated with; under `--ci` an older engine's refusal is not a failure (the shipped module skips such a rule on that engine by
+// itself). A full run of the gates still fails it.
 export const gateValidator = (record, context) => (record.rule
-  ? [...actorItemProblems(record, context.core), ...validatorProblems(record, context)] : []);
+  ? [...(context.ci ? [] : actorItemProblems(record, context.core)), ...validatorProblems(record, context)] : []);
 
 function validatorProblems(record, context) {
   const { core } = context;
