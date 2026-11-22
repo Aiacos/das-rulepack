@@ -172,4 +172,11 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       only: the 14 `monster` rules of `pilot/m3-xmm` fail "the rules that are not legacy … have the same properties" and
       show as `undefined` in docs/RULES.md. Add the kind there (and its label in `tools/books-progress.mjs`) before merging.
 - [ ] Scenario interpreter for moves; match the runner's resolution to the target by token id.
+- [x] Volume on XMM monster features (2026-11-22): 75 rules in the registry, 43 shipped, 32 held for a person (R27);
+      214 entries in the drafts queue with a reason, 36 in the review queue. `docs/pilot-m3.md` has the counts.
+- [ ] The owner's queues: `registry/review-queue.json` (36: the draft and the review side by side, as data),
+      `registry/drafts-queue.json` (what no key expresses, by reason), `registry/queue.json` (119 triage entries).
+- [ ] From the drafts queue, rank the missing keys by entries blocked (a size limit on targets, effects only on grappled
+      creatures, auras, healing blocks, immunity after a save) for the wider vocabulary and the upstream requests.
+- [ ] Record as played what is played: nothing is yet (one rule was played by hand before it was re-drafted).
 

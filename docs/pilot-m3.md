@@ -147,3 +147,30 @@ sends the rule to a person, and agreement compares atoms (Ruling R26: one expect
 rules are on `master` with their state shown in `docs/RULES.md`; none is recorded as played. What the yield is: one entry in
 five becomes a rule; the rest go to a person with a reason, most often a rider no key expresses.
 
+# Volume on the 2024 Monster Manual's draftable monster features (2026-11-22)
+
+| Stage | Entries |
+|---|---|
+| Cut for drafting (13 batches, larger drafter model) | 255 |
+| Rules written | 73 |
+| Accepted at ingest and through every gate | 67 |
+| Rejected at ingest (4 quoted the text, 1 declared as left out what the rule does) | 5 |
+| Queued for a person, with a reason | 183 |
+
+| Independent review of the 67 | Rules |
+|---|---|
+| Agreed exactly | 22 |
+| Agreed with tolerances | 11 |
+| Disagreement | 17 |
+| Sent to a person by the rule's own stamp (a key the vocabulary cannot assert) | 15 |
+| Reviewer unsure | 2 |
+
+Disagreement is 17 of 67 (25 %), or 17 of the 50 rules an automatic agreement could settle (34 %): at Ruling R12's limit,
+not clearly under it. Most differences: a damage fraction the reviewer states and the draft does not (7), an ending the draft
+states and the reviewer does not confirm (5).
+
+**Ruling R27 — a contested rule is held, not shipped.** The module registers a drafted rule only when a review confirmed it,
+or when it waits for a person only because of its own stamp and the reviewer did not contradict it. With the pilot's eight:
+**75 monster rules in the registry, 43 shipped, 32 held** (29 "review disagrees", 3 "reviewer unsure"); `docs/RULES.md`
+shows which, and why. None is recorded as played.
+
