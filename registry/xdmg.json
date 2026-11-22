@@ -8331,26 +8331,34 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "third-t2",
-          "at": "2026-11-21T23:14:38.945Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xdmg-002",
-            "confidence": 0.6
-          },
-          "second": {
-            "by": "second-s40",
-            "confidence": 0.6
-          },
-          "via": "third-reading"
+          "by": "rule",
+          "at": "2026-11-22T18:51:46.117Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Summon outcomes depend on a table roll: obedience, hostility or wish, with one-shot limits and command economy. entry: summon with end conditions.",
+            "triaged": {
+              "by": "third-t2",
+              "at": "2026-11-21T23:14:38.945Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xdmg-002",
+                "confidence": 0.6
+              },
+              "second": {
+                "by": "second-s40",
+                "confidence": 0.6
+              },
+              "via": "third-reading"
+            }
+          }
         }
       },
-      "why": "Summon outcomes depend on a table roll: obedience, hostility or wish, with one-shot limits and command economy. entry: summon with end conditions.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -13003,17 +13011,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-002",
-          "at": "2026-11-21T19:58:26.128Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T18:51:46.117Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+            "triaged": {
+              "by": "reader-xdmg-002",
+              "at": "2026-11-21T19:58:26.128Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -13069,17 +13085,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-002",
-          "at": "2026-11-21T19:58:26.128Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T18:51:46.117Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+            "triaged": {
+              "by": "reader-xdmg-002",
+              "at": "2026-11-21T19:58:26.128Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -13135,17 +13159,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-002",
-          "at": "2026-11-21T19:58:26.128Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T18:51:46.117Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+            "triaged": {
+              "by": "reader-xdmg-002",
+              "at": "2026-11-21T19:58:26.128Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Summon activity exists, but proficiency requirement decides whether the spirits are allies or hostile; data lacks that conditional outcome",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -18322,17 +18354,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-003",
-          "at": "2026-11-21T19:58:26.453Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T18:51:46.117Z",
+          "was": {
+            "verdict": "entry",
+            "why": "summons rat swarms with a charge and sways them with a save, plus control lost beyond 30 feet; data only has a summon and save",
+            "triaged": {
+              "by": "reader-xdmg-003",
+              "at": "2026-11-21T19:58:26.453Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "summons rat swarms with a charge and sways them with a save, plus control lost beyond 30 feet; data only has a summon and save",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -28450,17 +28490,25 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-005",
-          "at": "2026-11-21T19:58:27.052Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T18:51:46.117Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Reaction to turn back a spell and a once-per-dawn forced save success are not expressed by the data; cast activities and charges are.",
+            "triaged": {
+              "by": "reader-xdmg-005",
+              "at": "2026-11-21T19:58:27.052Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          }
         }
       },
-      "why": "Reaction to turn back a spell and a once-per-dawn forced save success are not expressed by the data; cast activities and charges are.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
@@ -29158,24 +29206,32 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s40",
-          "at": "2026-11-21T23:14:46.522Z",
-          "confidence": 0.65,
-          "first": {
-            "by": "reader-xdmg-005",
-            "confidence": 0.65
-          },
-          "second": {
-            "by": "second-s40",
-            "confidence": 0.65
-          },
-          "via": "bulk-unsure"
+          "by": "rule",
+          "at": "2026-11-22T18:51:46.117Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Summon of a snake with revert/destroy/heal rules, and a one hour lockout; data has attack and summon only, not the revert logic.",
+            "triaged": {
+              "by": "second-s40",
+              "at": "2026-11-21T23:14:46.522Z",
+              "confidence": 0.65,
+              "first": {
+                "by": "reader-xdmg-005",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s40",
+                "confidence": 0.65
+              },
+              "via": "bulk-unsure"
+            }
+          }
         }
       },
-      "why": "Summon of a snake with revert/destroy/heal rules, and a one hour lockout; data has attack and summon only, not the revert logic.",
+      "why": "DAS · Core has an entry under this identifier",
       "state": "triaged"
     },
     {
