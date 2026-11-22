@@ -19,17 +19,17 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | Joined to an item of the official module | 4,304 |
 | Ambiguous against the official module (wait for `npm run resolve`) | 164 |
 | No item in the official module | 424 |
-| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 791 |
+| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 788 |
 | Verdict `none` (nothing to automate in combat) | 1,333 |
 | Verdict `data` (the item's own data is enough) | 1,276 |
-| Verdict `entry` (a declarative rule is needed and not written yet) | 1,311 |
+| Verdict `entry` (a declarative rule is needed and not written yet) | 1,314 |
 | Verdict `code` (a script is needed) | 0 |
 | Verdict `engine` (needs something the engine lacks) | 0 |
 | Verdict `unverifiable` (no text) | 118 |
 | No verdict, in `registry/queue.json`, waiting for a person | 48 |
 | No verdict, left for reader agents | 15 |
 
-Who set the verdicts: reader agents 3,762, rule 972, SRD reading of November 2026 95. A reader agent's verdict is one reading of
+Who set the verdicts: reader agents 3,765, rule 969, SRD reading of November 2026 95. A reader agent's verdict is one reading of
 the text against the structure of the item's data; it was not checked by a second reader and not played. Verdicts below 0.7
 of confidence, and every `engine` verdict, were not applied: they are in the queue.
 
@@ -71,7 +71,7 @@ Records in `registry/xdmg.json`: 596 inventoried.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | item | 1 | 0 / 0 / 1 | 0 / 0 / 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-| monster | 2146 | 2114 / 28 / 4 | 1626 / 288 / 232 | 84 | 453 | 858 | 732 | 0 | 0 | 0 | 19 | 0 |
+| monster | 2146 | 2114 / 28 / 4 | 1626 / 288 / 232 | 81 | 453 | 858 | 735 | 0 | 0 | 0 | 19 | 0 |
 
 Records in `registry/xmm.json`: 2147 inventoried.
 

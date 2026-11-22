@@ -336,3 +336,33 @@ The stored second rereads were applied again under that rule.
 In the Monster Manual the monster `entry` records went from 816 to 732. Of the features a first reader could not decide,
 51 of 62 stayed undecided with another reader: what is missing there has no word in the vocabulary yet.
 
+# Rereads, third round (2026-11-22)
+
+With the three-answer shape, the 54 Monster Manual features that two readers had left undecided were all decided, each with
+confidence: none is covered; 51 go beyond the engine (3 results were rejected for naming as missing what the engine or the
+item already does). Of the 4 provisional `core`, 1 was confirmed and 3 went back to `entry`.
+
+| 2024 Monster Manual, monster features with an engine reading | Records |
+|---|---|
+| `core`, confirmed by two readers | 81 |
+| `entry`, going beyond the engine | 136 |
+| Still to settle (rejected results) | 3 |
+
+What readers could not state in the closed vocabulary, by reason (one feature may give several):
+
+| Reason | Features |
+|---|---|
+| No key or word at all for it | 20 |
+| The trigger needs a filter (melee only, a kind of attack) | 14 |
+| A limit on the target's size | 11 |
+| A limit on uses (once per round or per turn) | 8 |
+| An effect only on a target in a given state | 5 |
+| A result that depends on the margin of a failed save | 4 |
+| A choice at use time | 4 |
+| A follow-up action · an effect lasting across turns · a change of form | 3 each |
+| A ruling at the table · a death trigger | 2 each |
+| Immunity after a successful save | 1 |
+
+With the drafts queue's ranking (advantage or a bonus under a condition, state kept across turns, the size limit, an
+armour-class bonus against one hit), this is the list for the wider vocabulary: a trigger filter and a size limit come first.
+
