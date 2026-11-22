@@ -26,6 +26,7 @@ import { sharedEmbeddedId } from "./settle.mjs";
 import { ENDS_EXAMPLES, definitionsFor } from "./definitions.mjs";
 import { LEAVES_MAX, LEAVE_REASONS, UNEXPRESSED_MAX } from "./leaves.mjs";
 import { beyondOf } from "./reread.mjs";
+import { COVERED_BY_LEVELS, COVERED_BY_MEANINGS, LEVEL_MEANINGS, NO_DEFINITION } from "./reread-items.mjs";
 import { emissionOf } from "./generate.mjs";
 import { redraftableAgainst } from "./against.mjs";
 import * as sh from "./shapes.mjs";
@@ -391,10 +392,11 @@ function examplesFor(r, { candidates, resolve, keyExamples, common }) {
   return out;
 }
 
-// `beyondEngine`: what a reread found the text asks beyond the engine's reading (reread.mjs beyondOf), as assertions of the
-// closed vocabulary with no free text: a hint of what the rule is to add.
+// `beyondEngine`: what a reread found the text asks beyond the engine's reading of a monster feature (reread.mjs beyondOf),
+// or beyond the engine's view of an item (Ruling R42, reread-items.mjs), as assertions of the closed vocabulary with no free
+// text: a hint of what the rule is to add.
 const draftEntryOf = (r, examples, why) => {
-  const beyond = r.kind === "monster" ? beyondOf(r) : null;
+  const beyond = beyondOf(r);
   return {
     ...entryOf(r, { rulable: true }), identifier: r.kind === "monster" ? monsterIdentifier(r) : r.identifier,
     keys: r.evidence?.triaged?.keys ?? [], similar: r.evidence?.triaged?.similar ?? [],
@@ -663,4 +665,15 @@ export function rereadVocabulary(core) {
   const review = reviewVocabulary(core);
   return { ...review, unexpressed: [...LEAVE_REASONS],
     definitions: { ...review.definitions, leavesBecause: definitionsFor().leavesBecause } };
+}
+
+/**
+ * What an item rereader may write (`reread-items-vocabulary.json`, Ruling R42): the monster rereader's (rereadVocabulary: the
+ * assertion shapes, the engine words, `unexpressed`), the engine levels and the `coveredBy` words with their definitions,
+ * which levels each `coveredBy` stands on (reread-items.mjs COVERED_BY_LEVELS), and what an undescribed rule key is said to be.
+ */
+export function itemRereadVocabulary(core) {
+  return { ...rereadVocabulary(core), engineLevels: { ...LEVEL_MEANINGS }, coveredBy: { ...COVERED_BY_MEANINGS },
+    coveredByLevels: Object.fromEntries(Object.entries(COVERED_BY_LEVELS).map(([k, v]) => [k, [...v]])),
+    noDefinition: NO_DEFINITION };
 }

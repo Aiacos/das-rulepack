@@ -23,6 +23,17 @@ export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
 export const HINTS = Object.freeze(["core-generic", "core-parts", "engine-reads", "beyond-engine"]);
 // The why of a `core` the reread stage sets (reread.mjs): fixed, so that no reader's words become the record's why.
 export const REREAD_WHY = "DAS · Core reads this feature's text and a reader found nothing beyond it";
+// Ruling R42 (reread-items.mjs): a non-monster `entry` reread against the engine's own class of the item (its view). A
+// covered answer says what covers the text in combat: `engine` (a rule of DAS · Core for the item), `data` (the item's own
+// activities and effects on the engine's common path) or `nothing` (the text asks nothing to automate in combat); each sets
+// a verdict and a fixed why, so that no reader's words become the record's why.
+export const COVERED_BY = Object.freeze(["engine", "data", "nothing"]);
+export const COVERED_VERDICT = Object.freeze({ engine: "core", data: "data", nothing: "none" });
+export const ITEM_REREAD_WHY = Object.freeze({
+  engine: "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
+  data: "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
+  nothing: "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat"
+});
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -275,9 +286,12 @@ export function readingProblems(reading) {
 // false`, `beyond` (a list of assertions of the closed vocabulary, as an agent writes them, with no `free` anywhere) or
 // `unexpressed` (distinct reasons of LEAVE_REASONS: what is missing that no assertion can state), or both: data, never prose.
 // `restated: true`: the first reread a restate wrote (reread.mjs, Ruling R31), never cut again by a restate.
-const REREAD_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "unexpressed", "provisional", "second",
-  "restated"];
-const REREAD_SECOND_FIELDS = ["by", "at", "confidence", "reading", "covered", "beyond", "unexpressed", "outcome"];
+// An item reread (Ruling R42) holds `view` (the fingerprint of the engine view judged) in place of `reading`, and with
+// `covered: true` its `coveredBy` (COVERED_BY); its second likewise.
+const REREAD_FIELDS = ["by", "at", "confidence", "reading", "view", "covered", "coveredBy", "beyond", "unexpressed",
+  "provisional", "second", "restated"];
+const REREAD_SECOND_FIELDS = ["by", "at", "confidence", "reading", "view", "covered", "coveredBy", "beyond", "unexpressed",
+  "outcome"];
 export const REREAD_BEYOND_MAX = 6;
 /** The closed outcomes of a second reread that carry no answer (reread.mjs): an unsure second reader. */
 export const REREAD_OUTCOMES = Object.freeze(["second-unsure"]);
@@ -296,20 +310,29 @@ function rereadReadingProblems(r, at, fields) {
   for (const f of Object.keys(r)) if (!fields.includes(f)) errors.push(`${at}.${f}: unknown field`);
   if (has(r, "outcome")) {
     if (!REREAD_OUTCOMES.includes(r.outcome)) errors.push(`${at}.outcome: must be one of ${REREAD_OUTCOMES.join(", ")}`);
-    for (const f of ["covered", "beyond", "unexpressed"]) {
+    for (const f of ["covered", "coveredBy", "beyond", "unexpressed"]) {
       if (has(r, f)) errors.push(`${at}.${f}: an outcome (${REREAD_OUTCOMES.join(", ")}) carries no answer`);
     }
+  }
+  if (has(r, "reading") === has(r, "view")) {
+    errors.push(`${at}: either reading (a monster feature's reread) or view (an item's, Ruling R42), and only one`);
   }
   if (!isReaderHandle(r.by)) errors.push(`${at}.by: must be a reader handle (not "rule")`);
   if (typeof r.at !== "string" || !/^\d{4}-\d{2}-\d{2}T/.test(r.at)) errors.push(`${at}.at: must be an ISO date string`);
   if (!(typeof r.confidence === "number" && r.confidence >= 0 && r.confidence <= 1)) {
     errors.push(`${at}.confidence: must be a number from 0 to 1`);
   }
-  const fp = r.reading;
+  const basis = has(r, "view") ? "view" : "reading";
+  const fp = r[basis];
   if (!isObject(fp) || !Object.keys(fp).every((k) => k === "core" || k === "sha") || !isCoreVersion(fp.core) || !isHex64(fp.sha)) {
-    errors.push(`${at}.reading: must be { core: an engine version, sha: 64 hex characters }`);
+    errors.push(`${at}.${basis}: must be { core: an engine version, sha: 64 hex characters }`);
   }
   if (has(r, "outcome")) return errors;
+  if (basis === "reading" && has(r, "coveredBy")) errors.push(`${at}.coveredBy: an item reread's only (with view)`);
+  if (basis === "view" && r.covered === true && !COVERED_BY.includes(r.coveredBy)) {
+    errors.push(`${at}.coveredBy: covered: true must say what covers it, one of ${COVERED_BY.join(", ")}`);
+  }
+  if (r.covered !== true && has(r, "coveredBy")) errors.push(`${at}.coveredBy: only with covered: true`);
   if (typeof r.covered !== "boolean") errors.push(`${at}.covered: must be true or false`);
   if (r.covered === true && has(r, "beyond")) errors.push(`${at}.beyond: covered: true carries none`);
   if (r.covered === true && has(r, "unexpressed")) errors.push(`${at}.unexpressed: covered: true carries none`);
@@ -350,12 +373,25 @@ function rereadProblems(triaged, verdict, why) {
     errors.push(`${at}.provisional: a covered reread is provisional until a second reread, and only then`);
   }
   if (r.covered === false && has(r, "provisional")) errors.push(`${at}.provisional: only a covered reread is provisional`);
-  const covered = r.covered === true && (!isObject(r.second) || r.second.covered === true);
-  if (covered && !(verdict === "core" && triaged.by === "rule" && has(triaged, "was") && why === REREAD_WHY)) {
-    errors.push(`${at}: a covered reread goes with the verdict core, by rule, its previous verdict in was and the fixed why`);
+  const item = has(r, "view");
+  if (isObject(r.second) && has(r.second, "view") !== item) {
+    errors.push(`${at}.second: reads what the first read (a view for an item reread, a reading for a monster's)`);
   }
-  if (!covered && verdict === "core") {
+  // An item reread is covered when its second (if any) agrees on covered AND on coveredBy.
+  const covered = r.covered === true && (!isObject(r.second) || (r.second.covered === true
+    && (!item || r.second.coveredBy === r.coveredBy)));
+  const [expected, fixed] = item ? [COVERED_VERDICT[r.coveredBy], ITEM_REREAD_WHY[r.coveredBy]] : ["core", REREAD_WHY];
+  if (covered && !(verdict === expected && triaged.by === "rule" && has(triaged, "was") && why === fixed)) {
+    errors.push(item ? `${at}: a covered item reread goes with the verdict of its coveredBy (${Object.entries(COVERED_VERDICT)
+      .map(([k, v]) => `${k}: ${v}`).join(", ")}), by rule, its previous verdict in was and the fixed why`
+      : `${at}: a covered reread goes with the verdict core, by rule, its previous verdict in was and the fixed why`);
+  }
+  if (!covered && !item && verdict === "core") {
     errors.push(`${at}: a reread that found something beyond the engine, or a second reader unsure, is no core`);
+  }
+  if (!covered && item && Object.values(COVERED_VERDICT).includes(verdict)) {
+    errors.push(`${at}: an item reread that found something beyond the engine, or a second reader who did not agree, sets`
+      + ` no ${Object.values(COVERED_VERDICT).join(", ")}`);
   }
   return errors;
 }
@@ -376,7 +412,12 @@ function checkEvidence(evidence, errors, legacy, verdict, why) {
       && (!has(w, "triaged") || (isObject(w.triaged) && isReaderHandle(w.triaged.by) && !has(w.triaged, "was")));
     if (!ok) errors.push(`evidence.triaged.was: must be ${shape}`);
     if (triaged.by !== "rule") errors.push("evidence.triaged.was: only the rule-based pre-pass keeps one (by: rule)");
-    if (verdict !== "core") errors.push("evidence.triaged.was: goes with the verdict core only (restore the previous one instead)");
+    // Ruling R42: an item reread covered by the data or by nothing sets data or none, and keeps what it was too.
+    const itemReread = isObject(triaged.reread) && has(triaged.reread, "view");
+    if (verdict !== "core" && !(itemReread && ["data", "none"].includes(verdict))) {
+      errors.push("evidence.triaged.was: goes with the verdict core only, or the data or none of an item reread (restore the"
+        + " previous one instead)");
+    }
   }
   // A verdict settled by several readings carries them: `first` and `second` are { by, confidence } (triage.mjs); `via` says
   // how it was settled when not by two agreeing readers: a third reading, or the owner's bulk rule for two unsure ones.
