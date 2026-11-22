@@ -384,6 +384,47 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
   redraft was declined carries none: drafted again later through the ordinary path, it could be redrafted once more;
   (d) the cut decides on the reading of the engine the tools point at, so another release may count other records.
 
+- **R33 — zones and auras are drafter keys, in a closed form, and a zone moment is said once with `subjected`.** The sample
+  outside the Monster Manual (1 accepted of 16) declined most often for an area or an aura that acts on a creature when it
+  enters, or starts or ends a turn there; the engine has the keys in its own content. A drafter may now write nine of them
+  (`tools/pipeline/zones.mjs` `ZONE_KEYS`, each with what it does, read from the engine's runtime: `emanation`, `aura`,
+  `zoneAffects`, `zoneEffects`, `selfZone`, `zoneLasts`, `zoneMax`, `saveAutoSuccess`, `willingFails`), and `triggers` a
+  zone that replays the item's activity (`{ on: enter|turnStart|turnEnd, do: [{ type: "replay", activity? }] }`). Every
+  value is a closed word, a bounded number (radius and size 5 to 300 ft, a zone 6 to 86 400 s, 1 to 20 creatures) or an id
+  of the item's own activities and effects, checked by `checkDraftKeys` against the declarative shapes (`shapes.mjs`
+  `shapeProblems`); what the engine also takes is refused with why (`EXCLUDED_ZONE`: an aura's `changes` key/value
+  strings and both radius formulas, free text; `aura.affects: summoner`; `emanation.atStart`; an emanation on `death`; a
+  replay `on: moves` or under an `if`). No key of the nine is excluded whole: none takes another document's identifier or a
+  free string once those fields are out, and each one's meaning is pinned by the engine's code and shipped uses. The
+  assertion vocabulary grows by three words: `given.moment` takes the aura moments `ownTurnStart` / `ownTurnEnd` (the
+  emanation moments that are no trigger moment; `turnStart` is in both lists with one meaning), `expect.subjected:
+  activity` (the item's activity is used on the creature at that moment; only with a zone or aura moment, never with a
+  roll), and the roll mode `autoSuccess`. `impliedAsserts`: a replay or an emanation, one `subjected` atom per moment;
+  `zoneAffects`, `affects`; an emanation's `affects: enemy`, `affects: enemies` at its moment; `saveAutoSuccess.types`, one
+  `autoSuccess` save per creature type. The shaping keys (`aura`, `selfZone`, `zoneLasts`, `zoneMax`, `zoneEffects`,
+  `willingFails`) and the unsayable parts (an emanation's radius, `sees`, `whileActive`; `saveAutoSuccess.fighting` and
+  `sizeAtLeast`) imply nothing and stamp the draft for a person (R15). The briefs ask for one wording: the moment alone with
+  `subjected`, what the activity does with the roll alone, once. `loadCore` gives `emanationMoments`, `auraAffects` and
+  `zoneFields` (each zone validator's own field lists, read as text), and a DAS_CORE test fails on an engine field in
+  neither a shape nor `EXCLUDED_ZONE`, on a moment or recipient list that moved, and on a value the pack assumes refused
+  that the engine accepts. A scenario with a zone or aura moment is manual (`given.moment.<word>`, `expect.subjected`).
+  Measured (repository registry unchanged; a copy gated): the 40 shipped rules keep their states and the generated
+  outputs do not change; the pool in closed fields is small (reread `beyond` assertions at a zone moment: XMM 7, XPHB 1;
+  of the 206 drafts-queue entries, 3 have one; the queue's `reason` has no area word), the drafters' own `why` names an
+  aura or zone for 17 of the 206 (2 FRAIF, 15 XMM: a keyword search read by eye, not a closed field; most also need
+  something else, an immunity, a healing block, a choice), and the 306 entries of the other 2024 books not yet drafted carry
+  no closed reason at all. *Cost if wrong:* (a) `ownTurnEnd` against `turnEnd` is the old
+  trap of the turn words in a new place: a drafter and a reviewer who pick differently disagree, and a draft that picks the
+  wrong one with a reviewer who does the same ships a zone that acts on the wrong turn (play cannot catch it: the
+  scenarios are manual); (b) the "roll alone" wording is a brief rule, not a check (stored rereads and reviews pair a zone
+  moment with a roll, so it cannot be refused): a side that repeats the consequences per moment disagrees with one that
+  does not, more for a person; (c) a radius, a sight limit, a cap, a duration and a consent are never compared at review:
+  a person reads each such rule (slower volume), and a person's slip there reaches the table; (d) `subjected: activity`
+  says THAT the activity is used, not which one: a replay of a sibling activity and of the item's own compare equal;
+  (e) an emanation acts from the text the engine reads beside it (incapacitated, kin, immunity: core/emanation.mjs
+  `readEmanationText`), which a rule neither states nor controls; (f) a shipped engine entry whose shape a drafter may not
+  write is no longer offered whole as a key example (its zone key or replay declaration is dropped from the example).
+
 ## What a drafter may write (engine limits)
 
 `DRAFT_KEYS` (`tools/pipeline/draft-keys.mjs`), each with the slot its ids sit in — `activityMap` / `effectMap` (an object keyed
@@ -395,10 +436,12 @@ in `module/scripts/core/content/entry.mjs` and drops any key it cannot confirm:
 `saveDisadvantageFor`, `rollBonus`, `rollDisadvantage`, `effectStatuses`, `effectDurations`, `savedEffects`, `atTurnStart`,
 `usageLimits`, `ignoresResistance`, `grantsResistances`, `grantsConditionImmunities`, `difficultTerrain`, `targets`, `onHit`
 (`single`), and `dataFixes` (official origin only, `from` mandatory, never on a monster feature: the data-fix gate has no
-document for `<actor id>.<item id>` yet).
+document for `<actor id>.<item id>` yet). Since R33: `emanation` and `aura` (`single`), `selfZone` (`activityMap`),
+`zoneAffects`, `zoneEffects`, `zoneLasts`, `zoneMax`, `saveAutoSuccess`, `willingFails` (`none`), each in the closed shape
+of `DRAFT_SHAPES`, and a `triggers` declaration that replays the item's activity at the zone moments.
 
-Outside the list, the engine has keys but the drafter does not use them in this milestone: zones and geometry (`aura`,
-`emanation`, `walls`, `zoneEffects`, `summon`, `teleport`, `light`…), `gmAlert` (prose), `choice`, `metamagic`, `sense` and
+Outside the list, the engine has keys but the drafter does not use them in this milestone: geometry (`walls`, `summon`,
+`teleport`, `light`…; the zone and aura keys of R33 are in the list), `gmAlert` (prose), `choice`, `metamagic`, `sense` and
 class-mechanic keys (`smite`, `rage`, `sneakAttack`…), which Core owns for the SRD. Those records go to the drafts queue as
 `outcome: "person"`. A rule that needs a fact the engine's `adapter/facts.mjs` does not provide (light level, say), state across
 turns no key models, or a prompt to the player, is `outcome: "code"` (a script like Shadow Blade: a person writes it). A rule that

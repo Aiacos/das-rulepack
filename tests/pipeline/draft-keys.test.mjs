@@ -20,13 +20,13 @@ describe("DRAFT_KEYS and checkDraftKeys", () => {
     expect(Object.isFrozen(DRAFT_KEYS)).toBe(true);
   });
 
-  it("checkDraftKeys refuses gmAlert and aura", () => {
+  it("checkDraftKeys refuses gmAlert and globe", () => {
     const spell = { origins: ["official"], kind: "spell" };
     expect(checkDraftKeys({ saveDamage: { [A_OFF]: "half" } }, spell)).toEqual([]);
-    const problems = checkDraftKeys({ gmAlert: "read the text", aura: { radius: 10 }, saveDamage: { [A_OFF]: "half" } }, spell);
+    const problems = checkDraftKeys({ gmAlert: "read the text", globe: { radius: 10 }, saveDamage: { [A_OFF]: "half" } }, spell);
     expect(problems).toHaveLength(2);
     expect(problems.join("; ")).toMatch(/gmAlert: not a drafter key/);
-    expect(problems.join("; ")).toMatch(/aura: not a drafter key/);
+    expect(problems.join("; ")).toMatch(/globe: not a drafter key/);
     expect(checkDraftKeys(null, spell)).toEqual(["entry: must be an object"]);
   });
 
@@ -113,7 +113,18 @@ describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
     difficultTerrain: { difficultTerrain: { cost: 2 } },
     targets: { targets: { types: ["humanoid"] } },
     onHit: { onHit: { save: A_OFF } },
-    dataFixes: { dataFixes: [{ path: `system.activities.${A_OFF}.damage.onSave`, value: "half", from: "none" }] }
+    dataFixes: { dataFixes: [{ path: `system.activities.${A_OFF}.damage.onSave`, value: "half", from: "none" }] },
+    // Ruling R33: zones and auras.
+    emanation: { emanation: { on: "ownTurnEnd", activity: A_OFF } },
+    aura: { aura: { effect: E_OFF } },
+    zoneAffects: { zoneAffects: "enemy" },
+    zoneEffects: { zoneEffects: true },
+    selfZone: { selfZone: { [A_OFF]: { type: "radius", size: 10, units: "ft" },
+      [A_DDB]: { type: "radius", size: 10, units: "ft" } } },
+    zoneLasts: { zoneLasts: { seconds: 600 } },
+    zoneMax: { zoneMax: 6 },
+    saveAutoSuccess: { saveAutoSuccess: { types: ["construct"] } },
+    willingFails: { willingFails: true }
   };
 
   it("every drafter key is an entry key of the engine", async () => {

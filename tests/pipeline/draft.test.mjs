@@ -186,7 +186,7 @@ describe("ingestDrafts: queued", () => {
     expect(out.queued).toEqual([{ key: r.key, reason: "low-confidence", by: "drafter-1", why: "half on a save",
       confidence: 0.6, draft: rule() }]);
     expect(out.records[0].rule).toBeUndefined();
-    const bad = run([r], [result({ confidence: 0.6, rule: rule({ entry: { aura: {} } }) })]);
+    const bad = run([r], [result({ confidence: 0.6, rule: rule({ entry: { globe: {} } }) })]);
     expect(bad.queued).toEqual([]);
     expect(bad.rejected).toHaveLength(1);
   });
@@ -264,8 +264,8 @@ describe("ingestDrafts: one rejection per reason", () => {
   it("a confidence out of range", () => rejects(result({ confidence: 2 }), /confidence/));
   it("a why that is not one short line", () => rejects(result({ why: "a\nb" }), /why/));
   it("schema errors", () => rejects(result({ rule: rule({ handledIn: "code" }) }), /handledIn/));
-  it("an entry key a drafter may not write", () => rejects(result({ rule: rule({ entry: { aura: { radius: 10 } } }) }),
-    /aura: not a drafter key/));
+  it("an entry key a drafter may not write", () => rejects(result({ rule: rule({ entry: { globe: { radius: 10 } } }) }),
+    /globe: not a drafter key/));
   it("a data fix that creates an effect", () => {
     const entry = { dataFixes: [{ create: { name: "x" } }] };
     rejects(result({ rule: rule({ entry, origins: ["official"], uncovered: [{ origin: "ddb-importer", because: "w" }] }) }),

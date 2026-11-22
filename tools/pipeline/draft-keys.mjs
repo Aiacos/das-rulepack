@@ -10,7 +10,12 @@
 import { FIX_ENUMS, FIX_TYPES, typeProblem } from "./fix-types.mjs";
 import { splitWords } from "./text.mjs";
 import * as sh from "./shapes.mjs";
+import { shapeProblems } from "./shapes.mjs";
 import { DRAFT_FACTS, MAX_CONDITION_FACTS, SIZES, conditionProblems } from "./conditions.mjs";
+import {
+  AURA_AFFECTS, EMANATION_AFFECTS, EMANATION_ON, EXCLUDED_ZONE, RADIUS_FT, TEMPLATE_TYPES, ZONE_AFFECTS, ZONE_KEYS, ZONE_MAX,
+  ZONE_MOMENTS, ZONE_SECONDS, replays
+} from "./zones.mjs";
 
 export const SLOTS = Object.freeze(["activityMap", "effectMap", "single", "none"]);
 
@@ -48,7 +53,17 @@ export const DRAFT_KEYS = Object.freeze({
   onHit: slot("single"),
   // A fix is applied to the item data of its path: official origin only, a typed `value` and `from` (fix-types.mjs), no
   // `create`, never a monster feature (the data-fix gate has no document for `<actor id>.<item id>` yet).
-  dataFixes: slot("single")
+  dataFixes: slot("single"),
+  // Ruling R33 (zones.mjs): `emanation.activity` and `aura.effect` hold one id each; `selfZone` is keyed by activity ids.
+  emanation: slot("single"),
+  aura: slot("single"),
+  zoneAffects: slot("none"),
+  zoneEffects: slot("none"),
+  selfZone: slot("activityMap"),
+  zoneLasts: slot("none"),
+  zoneMax: slot("none"),
+  saveAutoSuccess: slot("none"),
+  willingFails: slot("none")
 });
 
 // The value shape of every DRAFT_KEYS key (shapes.mjs): what the engine's validator accepts from a drafter, with the ids where
@@ -63,9 +78,18 @@ const STEP_ON_OUTCOME = tagged("type", {
   move: object({ mode: word("moveModes"), distance: Object.freeze({ type: "number", formula: false }), units: values(["ft"]) })
 });
 const STEP_RESAVE = tagged("type", { resave: object({}, { advantage: TRUE, keep: TRUE }) });
+// Ruling R33: a zone replays the item's activity (or the one named, an activity of the item) on a creature at its moments.
+const STEP_REPLAY = tagged("type", { replay: object({}, { activity: id("activity") }) });
+const ZONE_ON = oneOf(values(ZONE_MOMENTS), list(values(ZONE_MOMENTS)));
+export const REPLAY_DECLARATION = object({ on: ZONE_ON, do: list(STEP_REPLAY) });
 // Ruling R30: the shape of each allowed fact's argument (conditions.mjs DRAFT_FACTS: an engine list, a bounded integer or
 // distance, or true), and the condition itself: one object of 1 to MAX_CONDITION_FACTS of them.
 const INT = (min, max) => Object.freeze({ type: "number", min, max, int: true, formula: false });
+const FEET = INT(RADIUS_FT.min, RADIUS_FT.max);
+const FT = values(["ft"]);
+// An emanation or an aura with no radius takes the item's own template or range; one with a radius gives it in feet.
+const withRadius = (required, optional) => oneOf(object(required, optional),
+  object({ ...required, radius: FEET, units: FT }, optional));
 const argShape = ({ arg }) => (arg.kind === "true" ? TRUE : arg.kind === "enum" ? word(arg.list)
   : arg.kind === "int" ? INT(arg.min, arg.max) : arg.kind === "enumList" ? list(word(arg.list))
     : object({ distance: INT(arg.min, arg.max), units: values(arg.units) }));
@@ -78,7 +102,9 @@ export const DRAFT_SHAPES = Object.freeze({
     object({ on: Object.freeze({ ...word("moments", "failedSave"), sampleOnly: true }), do: list(STEP_ON_OUTCOME) },
       { if: CONDITION_SHAPE }),
     object({ on: Object.freeze({ ...word("moments", "endOfTurn"), sampleOnly: true }), via: values(["effect"]),
-      do: list(STEP_RESAVE) }, { fromEffect: id("effect"), if: CONDITION_SHAPE })
+      do: list(STEP_RESAVE) }, { fromEffect: id("effect"), if: CONDITION_SHAPE }),
+    // Ruling R33: a zone that uses the item's activity again on a creature that enters it, or starts or ends its turn in it.
+    REPLAY_DECLARATION
   )),
   saveDamage: idMap("activity", values(["half", "none"])),
   halfOnMiss: TRUE,
@@ -119,7 +145,20 @@ export const DRAFT_SHAPES = Object.freeze({
   onHit: object({ save: id("activity") }, { whileEnchanted: id("effect") }),
   // A data fix is described by `fixes` of the vocabulary: its `path` is one of `fixes.paths`, its `value` and `from` have the
   // type `fixes.types` gives for that path.
-  dataFixes: Object.freeze({ type: "see", at: "fixes" })
+  dataFixes: Object.freeze({ type: "see", at: "fixes" }),
+  // Ruling R33 (zones.mjs ZONE_KEYS says what each does; EXCLUDED_ZONE what the engine also takes and a drafter may not).
+  emanation: withRadius({ on: values(EMANATION_ON) },
+    { affects: values(EMANATION_AFFECTS), sees: TRUE, activity: id("activity"), whileActive: TRUE }),
+  aura: withRadius({}, { affects: values(AURA_AFFECTS), includeSelf: TRUE, effect: id("effect"),
+    types: list(word("creatureTypes")), whileActive: TRUE }),
+  zoneAffects: values(ZONE_AFFECTS),
+  zoneEffects: TRUE,
+  selfZone: idMap("activity", object({ type: values(TEMPLATE_TYPES), size: FEET, units: FT })),
+  zoneLasts: object({ seconds: INT(ZONE_SECONDS.min, ZONE_SECONDS.max) }),
+  zoneMax: INT(ZONE_MAX.min, ZONE_MAX.max),
+  saveAutoSuccess: object({}, { types: list(word("creatureTypes")), fighting: TRUE, sizeAtLeast: word("sizes") },
+    { atLeastOne: true }),
+  willingFails: TRUE
 });
 
 // Ruling R24, fix round 1 (L3): the rolls on which each drafter key changes the damage the item's own activity deals, so that
@@ -164,7 +203,12 @@ export const DAMAGE_ROLLS = Object.freeze({
   grantsResistances: none, grantsConditionImmunities: none, difficultTerrain: none, targets: none,
   onHit: () => ["hit"],
   // A data fix may rewrite the activity's damage parts.
-  dataFixes: all
+  dataFixes: all,
+  // Ruling R33: an emanation deals its activity's damage at a turn moment, outside the item's own roll; the other zone keys
+  // shape who is affected, where and how long, never the damage of a roll.
+  emanation: all,
+  aura: none, zoneAffects: none, zoneEffects: none, selfZone: none, zoneLasts: none, zoneMax: none, saveAutoSuccess: none,
+  willingFails: none
 });
 /** The rolls on which an entry changes the item's own damage (DAMAGE_ROLLS; an unknown key: every roll). */
 export function damageRollsOf(entry) {
@@ -256,9 +300,58 @@ export function conditionProblemsOf(entry, { vocabulary = {} } = {}) {
   });
 }
 
+// The fields and values a zone key or a replay declaration may not hold, named with why (zones.mjs EXCLUDED_ZONE), own keys only.
+function excludedIn(value, key, at) {
+  if (!isObject(value)) return [];
+  const out = [];
+  for (const [field, v] of Object.entries(value)) {
+    const why = has(EXCLUDED_ZONE, `${key}.${field}`) ? EXCLUDED_ZONE[`${key}.${field}`] : null;
+    if (why) out.push(`${at}.${field}: not a drafter's field (${why})`);
+    for (const x of Array.isArray(v) ? v : [v]) {
+      const what = `${key}.${field}.${x}`;
+      if (typeof x === "string" && has(EXCLUDED_ZONE, what)) {
+        out.push(`${at}.${field}: "${x}" is not a drafter's value (${EXCLUDED_ZONE[what]})`);
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * Ruling R33: the problems of an entry's zone and aura keys (zones.mjs ZONE_KEYS) against their drafter shapes (DRAFT_SHAPES,
+ * shapes.mjs shapeProblems: closed fields, bounded numbers, ids, closed words), and of every `triggers` declaration that
+ * replays (REPLAY_DECLARATION: zone moments only, replay steps only). What the engine takes and a drafter may not (a `changes`
+ * text, a radius formula, an emanation on death, a replay per square or under a condition) is named with why (EXCLUDED_ZONE).
+ * `vocabulary` (loadCore's lists) checks the engine's words (creature types, sizes); without it a word need only be a word.
+ */
+export function zoneProblemsOf(entry, { vocabulary: given = {} } = {}) {
+  if (!isObject(entry)) return [];
+  // The sizes are a committed copy of the engine's (conditions.mjs SIZES, pinned to the clone): checked even without it.
+  const vocabulary = { sizes: SIZES, ...given };
+  const out = [];
+  for (const key of Object.keys(ZONE_KEYS)) {
+    if (!has(entry, key)) continue;
+    const named = excludedIn(entry[key], key, key);
+    const shape = shapeProblems(entry[key], DRAFT_SHAPES[key], { at: key, vocabulary });
+    // A field already named with why is not repeated as an unknown one.
+    out.push(...named, ...shape.filter((p) => !named.some((n) => p.startsWith(n.slice(0, n.indexOf(":"))))));
+  }
+  if (has(entry, "triggers")) {
+    declarationsOf(entry.triggers).forEach((d, i) => {
+      if (!replays(d)) return;
+      const at = `triggers[${i}]`;
+      const named = excludedIn(d, "triggers.replay", at);
+      const shape = shapeProblems(d, REPLAY_DECLARATION, { at, vocabulary });
+      out.push(...named, ...shape.filter((p) => !named.some((n) => p.startsWith(n.slice(0, n.indexOf(":"))))));
+    });
+  }
+  return out;
+}
+
 /**
  * Why a drafter may not write this entry, or []: a key outside DRAFT_KEYS, a trigger's condition outside DRAFT_FACTS and its
- * typed arguments (conditionProblemsOf, Ruling R30), and the limits of `dataFixes` (no `create`, a
+ * typed arguments (conditionProblemsOf, Ruling R30), a zone or aura key outside its closed shape (zoneProblemsOf, Ruling
+ * R33), and the limits of `dataFixes` (no `create`, a
  * path of FIX_PATHS, `value` and `from` of the leaf's type, at most MAX_FIXES fixes and one per path, official origin only,
  * never a monster feature).
  * `origins` (the rule's) and `kind` (the record's) are required: without them the limits could not be applied, so the call
@@ -279,6 +372,7 @@ export function checkDraftKeys(entry, { origins, kind } = {}) {
     if (kind === "monster") problems.push("dataFixes: never on a monster feature");
   }
   problems.push(...conditionProblemsOf(entry));
+  problems.push(...zoneProblemsOf(entry));
   problems.push(...forbiddenKeys(entry));
   const words = entryWords(entry);
   if (words.size > ENTRY_WORD_BUDGET) {
@@ -314,7 +408,10 @@ const CLOSED_WORDS = new Set([
     "number", "denomination", "bonus", "types", "period", "_id", "onSave", "level", "min", "max", "attack", "save",
     "override", "system", "activities"],
   // Ruling R30: the facts of a condition, their segments, and the words of their arguments' closed lists.
-  ...Object.keys(DRAFT_FACTS).flatMap((f) => [f, ...f.split(".")]), ...SIZES, "if", "distance", "units", "ft"
+  ...Object.keys(DRAFT_FACTS).flatMap((f) => [f, ...f.split(".")]), ...SIZES, "if", "distance", "units", "ft",
+  // Ruling R33: the fields and words of the zone and aura keys.
+  ...ZONE_MOMENTS, ...EMANATION_ON, ...EMANATION_AFFECTS, ...AURA_AFFECTS, ...ZONE_AFFECTS, ...TEMPLATE_TYPES,
+  "on", "do", "replay", "radius", "sees", "activity", "whileActive", "includeSelf", "size", "seconds", "fighting", "sizeAtLeast"
 ]);
 /** True when every token of `s` is a 16-character id or a word of CLOSED_WORDS: structure, not words (a key, a path). */
 export const isStructural = (s) => String(s).split(/[^A-Za-z0-9_]+/).every((t) => !t || ID16.test(t) || CLOSED_WORDS.has(t));

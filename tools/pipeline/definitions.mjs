@@ -5,8 +5,9 @@
 // tests/pipeline/definitions.test.mjs fails when a word of these lists has no definition: the engine's lists through loadCore,
 // and a committed copy of them.
 import {
-  ACTIVITY_GIVENS, AFFECTS, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, TARGET_HP
+  ACTIVITY_GIVENS, AFFECTS, DENIES, FRACTIONS, GIVEN_FIELDS, ROLLS, ROLL_FOR, ROLL_MODES, ROLL_ON, SUBJECTED, TARGET_HP
 } from "./assert.mjs";
+import { AURA_MOMENTS } from "./zones.mjs";
 import { LEAVE_REASONS } from "./leaves.mjs";
 import { DRAFT_FACTS } from "./conditions.mjs";
 
@@ -14,7 +15,9 @@ import { DRAFT_FACTS } from "./conditions.mjs";
 export const DEFINITION_SOURCES = Object.freeze([
   "engine core/effect-ends.mjs", "engine core/triggers.mjs", "engine core/content.mjs", "engine core/content/enums.mjs",
   "engine runtime/engine-commands.mjs", "pack tools/pipeline/assert.mjs", "pack tools/pipeline/leaves.mjs",
-  "engine adapter/facts.mjs", "pack tools/pipeline/conditions.mjs"
+  "engine adapter/facts.mjs", "pack tools/pipeline/conditions.mjs",
+  // Ruling R33: zones and auras.
+  "engine core/emanation.mjs", "engine core/area.mjs", "engine core/action.mjs"
 ]);
 
 const def = (means, from) => Object.freeze({ means, from });
@@ -57,8 +60,10 @@ const DEFINED = {
     leavesReach: def("A hostile creature moves out of the creature's reach.", MOMENT_FROM),
     enemyDisengages: def("A hostile creature has just taken the Disengage action.", MOMENT_FROM),
     enter: def("A creature enters the area, or the area moves onto it.", MOMENT_FROM),
-    turnStart: def("A creature starts its turn inside the area.", MOMENT_FROM),
-    turnEnd: def("A creature ends its turn inside the area.", MOMENT_FROM),
+    turnStart: def("A creature starts its own turn inside the area (or inside an aura: each creature, on its own turn).",
+      MOMENT_FROM),
+    turnEnd: def("A creature ends its own turn inside the area (each creature, on its own turn; not the aura's bearer's turn).",
+      MOMENT_FROM),
     moves: def("A creature moves inside the area, once per square travelled (not when the area is placed).", MOMENT_FROM),
     preDamageRoll: def("The creature is about to roll the damage of an activity.", MOMENT_FROM),
     hit: def("An attack of the item has just hit the target.", MOMENT_FROM),
@@ -85,6 +90,21 @@ const DEFINED = {
     savesAgainst: def("The creature has just succeeded on a saving throw against a hostile creature's activity.",
       MOMENT_FROM),
     inArea: def("The creature, caught in another creature's area activity, is about to take its damage.", MOMENT_FROM)
+  },
+  // `given.moment` beside the engine's MOMENTS (Ruling R33, zones.mjs AURA_MOMENTS): the moments of an aura that acts
+  // (core/emanation.mjs EMANATION_MOMENTS; runtime/emanations.mjs: one use on every creature reached, at the bearer's turn).
+  auraMoment: {
+    ownTurnStart: def("The aura's bearer (the creature that carries the item) starts its turn: every creature within the aura"
+      + " at that moment is subjected, once, on the bearer's turn.", "engine core/emanation.mjs"),
+    ownTurnEnd: def("The aura's bearer (the creature that carries the item) ends its turn: every creature within the aura at"
+      + " that moment is subjected, once, on the bearer's turn (not each on its own turn: that is turnEnd).",
+    "engine core/emanation.mjs")
+  },
+  // `expect.subjected` (Ruling R33, assert.mjs SUBJECTED), with a zone or aura moment in `given.moment`.
+  subjected: {
+    activity: def("The item's activity is used on the creature at that moment: its saving throw, damage and effects as the"
+      + " item's data gives them (core/area.mjs: a zone replays it, at most once per creature and turn).",
+    "engine core/area.mjs")
   },
   // `expect.move.mode` (core/content/enums.mjs MOVE_MODES; runtime/engine-commands.mjs: push moves away from the source, pull
   // toward it, random in a direction rolled on a die, as a displacement that provokes no opportunity attack).
@@ -117,7 +137,10 @@ const DEFINED = {
   // `expect.roll` (assert.mjs ROLL_MODES, ROLL_ON, ROLL_FOR).
   rollMode: {
     advantage: def("The roll is made with advantage.", PACK_FROM),
-    disadvantage: def("The roll is made with disadvantage.", PACK_FROM)
+    disadvantage: def("The roll is made with disadvantage.", PACK_FROM),
+    // Ruling R33: core/action.mjs creatureAutoSuccess, runtime/engine.mjs openingFor (saveAutoSuccess).
+    autoSuccess: def("The roll is not made: it succeeds automatically (the item's saving throw, for the creatures named).",
+      "engine core/action.mjs")
   },
   rollOn: {
     attack: def("An attack roll.", PACK_FROM),
@@ -142,7 +165,8 @@ const DEFINED = {
   // (adapter/facts.mjs factsFor; conditions.mjs DRAFT_FACTS names which).
   given: {
     roll: def("The outcome of the item's own roll on which the expectation holds (see the roll words).", PACK_FROM),
-    moment: def("The moment of the engine at which the expectation holds (see the moment words).", MOMENT_FROM),
+    moment: def("The moment of the engine at which the expectation holds (see the moment words, and the aura moment words).",
+      MOMENT_FROM),
     origin: def("The origin of the item the expectation is about, one of the rule's origins.", PACK_FROM),
     targetType: def("Only when the target is of this creature type (fact target.creatureType).", FACTS_FROM),
     free: def("One line for a person: it never counts as agreement and nothing checks it.", PACK_FROM),
@@ -244,9 +268,9 @@ const DEFINED = {
 };
 
 const deepFreeze = (o) => Object.freeze(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Object.freeze({ ...v })])));
-/** The definitions, by list (`ends`, `roll`, `moment`, `moveMode`, `affects`, `denies`, `rollMode`, `rollOn`, `rollFor`,
- * `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`, `leavesBecause`), each word to `{ means, from }` or
- * "unverified". */
+/** The definitions, by list (`ends`, `roll`, `moment`, `auraMoment`, `subjected`, `moveMode`, `affects`, `denies`, `rollMode`,
+ * `rollOn`, `rollFor`, `fraction`, `given`, `size`, `targetHp`, `activity`, `fact`, `leavesBecause`), each word to
+ * `{ means, from }` or "unverified". */
 export const DEFINITIONS = deepFreeze(DEFINED);
 
 /**
@@ -285,7 +309,7 @@ export function definitionsFor({ review = false } = {}) {
 const ENGINE_LISTS = Object.freeze({ ends: "effectEnds", moment: "moments", moveMode: "moveModes", size: "sizes" });
 const PACK_LISTS = Object.freeze({ roll: ROLLS, affects: AFFECTS, denies: DENIES, rollMode: ROLL_MODES, rollOn: ROLL_ON,
   rollFor: ROLL_FOR, fraction: FRACTIONS, leavesBecause: LEAVE_REASONS, given: GIVEN_FIELDS, targetHp: TARGET_HP,
-  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS) });
+  activity: ACTIVITY_GIVENS, fact: Object.keys(DRAFT_FACTS), auraMoment: AURA_MOMENTS, subjected: SUBJECTED });
 
 /**
  * The words with no definition, as `<list>.<word>` (own properties only): of the engine's lists given in `core` (loadCore:
