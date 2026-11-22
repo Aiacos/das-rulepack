@@ -256,3 +256,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] A reaction limited to "a melee weapon in hand": decide whether the brief should state the melee part and leave the
       rest (11 features, one pattern), then the next keys: follow-up action, state across turns.
 
+- [x] Draft round 5 (XMM, 12 features drafted with trigger conditions available): 1 rule shipped after an exact blind
+      review, 10 to the drafts queue (7 no key, 3 would change the engine trigger), 1 rejected for a quoted why.

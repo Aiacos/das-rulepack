@@ -52,6 +52,7 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 | Suffocate (Graveyard Revenant) | Monster feature | p.260 | The held creature can end the grip, and the choking with it, by winning a check as an action. Partial: 2 expectations left to the table (table-ruling 1, target-size 1). | table, partial | Validated |
 | Sleep Gaze (Jackalwere) | Monster feature | p.182 | Another creature can spend an action to wake the sleeper; the sleep lasts ten minutes. Partial: 3 expectations left to the table (immunity-after-save 1, no-key 2). | table, partial | Validated |
 | Toxic Ink (Kraken) | Monster feature | p.187 | The blinding and poisoning end when the kraken's next turn ends. Partial: 3 expectations left to the table (no-key 2, table-ruling 1). | table, partial | Validated |
+| Icy Bite (Lacedon Ghoul) | Monster feature | p.132 | The slowing effect ends when the user's next turn begins. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. | table | Validated |
 | Telekinetic Thrust (Poltergeist) | Monster feature | p.246 | A failed save also shoves the target 30 feet away from the user. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Carries over 1 engine key (magical). | table | Validated |
 | Hypnotic Gaze (Ultroloth) | Monster feature | p.311 | The stun lasts until the ultroloth begins its next turn; a successful save takes no damage. Partial: 1 expectation left to the table (immunity-after-save 1). | table, partial | Validated |
 | Spore Bomb (Violet Fungus Necrohulk) | Monster feature | p.126 | Half damage on a save; the poison lasts until the necrohulk begins its next turn. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (healing-block 1). | table, partial | Validated |
@@ -174,7 +175,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-37 rules: 16 played, 21 validated. 6 of them reviewed with Ruling R24 tolerances (not an exact agreement). 12 of them partial (part of the entry left to the table). 62 more held for a person, not shipped (changes the engine's reading: a person decides 25, the engine already does it 29, review disagrees 6, reviewer unsure 2).
+38 rules: 16 played, 22 validated. 6 of them reviewed with Ruling R24 tolerances (not an exact agreement). 12 of them partial (part of the entry left to the table). 62 more held for a person, not shipped (changes the engine's reading: a person decides 25, the engine already does it 29, review disagrees 6, reviewer unsure 2).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell
