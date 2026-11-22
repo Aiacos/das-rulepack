@@ -34,7 +34,7 @@ excepted.
 |---|---|---|---|---|
 | 1 | Inventory | `npm run inventory -- <BOOK> <kind|all> [--allow-collisions]` | `RULEPACK_DATASET`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 1b | Settle a match | `npm run resolve -- <key> <origin> --doc <docId> --because "<one line>"` (see "Settling matches") | `RULEPACK_DUMPS` (`--doc`) | a person |
-| 2a | Triage by rule | `npm run triage -- <BOOK> [--redo-rule]` | `DAS_CORE`, `RULEPACK_TEXT` | a person |
+| 2a | Triage by rule | `npm run triage -- <BOOK> [--redo-rule \| --core-prepass [--report <file>]]` | `DAS_CORE`, `RULEPACK_TEXT` (`RULEPACK_DUMPS`: a feature's options) | a person |
 | 2b | Cut batches | `npm run batch -- triage <BOOK> --out <dir> [--structure <private dir>] [--size 40] [--kind <kind>] [--without-items]` | nothing (`--structure`: `RULEPACK_DUMPS`) | a person |
 | 2c | Read a batch | (no command: a reader agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via reader agents |
 | 2d | Ingest results | `npm run ingest -- <results-file> [--overwrite \| --second \| --third]`, or `npm run ingest -- --settle-unsure [--min <n>]` | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
@@ -70,6 +70,35 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
        never gets `core` by rule. A record
        that misses `core` only for that reason gets `hint: "core-generic"` (the engine has a generic entry of that name) and
        goes on through the rules below; the hint is passed to the reader.
+     - **`core` for what the engine handles outside its content table**, under the same conditions (2024, unique of its
+       kind and edition, never a monster feature; otherwise `hint: "core-generic"`), each with its own `why`. The
+       identifiers come from a static scan of the engine's scripts (`tools/pipeline/core-scan.mjs`, read as text, never run;
+       `loadCore` returns them with the file and line of each, for the report only):
+       - **in code** ("DAS · Core handles this identifier in code", `runtimeIdentifiers`): a string literal that its code
+         tests an item's identifier against — `identifierOf(i).id === "x"` (or `contentOf(i).identifier`,
+         `i.system.identifier`, a name bound to one in the same top-level declaration, a constant that holds the literal),
+         membership in a literal list, Set or object (`LIST.includes(id)`, `TABLE[id]`), a Set of an actor's identifiers
+         tested with a literal (the attack budget), the first parameter of a function some call passes an identifier, and a
+         feature an entry's condition asks for (`"source.hasFeature": "x"`: an improved feature played inside another
+         entry). `!==` is not taken (excluding is not handling), nor `typeof x === "..."`, nor the engine's diagnostics, debug
+         trail and test scenarios; a literal is taken only when it can be an identifier (kebab-case, at most 64 characters,
+         hyphenated or letters only). CSS classes, settings, hooks and i18n keys are never in such a context.
+       - **left to the system** ("DAS · Core leaves this identifier to the game system", `systemHandled`): a sentence of a
+         comment of the content files that names dnd5e and says it does the thing alone or that no entry is needed ("... fait
+         seul", "aucune entrée"), naming the identifier in backticks (hyphenated only); a literal list right under such a
+         comment; an entry whose value is `null` or `{}`. The engine's notes mostly name features in French prose ("Ce que
+         dnd5e fait déjà seul : Sens du danger, ..."), with no identifier: those cannot be read and are left to the reader.
+       - **every part handled** ("every option of this feature is handled by DAS · Core"): the record's parts are its
+         registry children (records of its book whose `owner` is its name, not monster features: a species' traits), all
+         `core`, and the options its official item offers as a choice (the `ItemChoice` pools of its document in the dumps of
+         the book's package, when `RULEPACK_DUMPS` is set), all among the identifiers above or the table; at least one part.
+         Some handled only: `hint: "core-parts"`, no verdict. `triage` runs its rules twice, so a parent follows the parts
+         the first round settles.
+
+       The unique gate and `batch draft` hold all three like the table's (`core.handled`, gates.mjs `engineIdentifiers`): a
+       rule under an identifier the engine handles in code, or leaves to the system, would stack on that behaviour, so it
+       fails `unique` unless a person sets `rule.inCore`, with its own message, and the entry is left out of draft batches
+       ("identifier is DAS · Core's: a person decides inCore").
      - **No text in the dataset** (`text: null`): a species whose traits are records of their own is left alone (its traits
        describe it); a record with a matched or ambiguous item in some origin is `unverifiable` ("the rulebook entry has no
        text of its own"); a record of kind spell, feat, option, feature, background or item with no item in any origin (a
@@ -83,7 +112,21 @@ The numbers 1, 2, 4, 7 are the stage numbers of the design
      (`evidence.triaged.by` is `"rule"`, with no confidence): a verdict the rules give again keeps its date, one they give
      differently is rewritten, and one they no longer give is cleared (`verdict` back to null, `why` and `evidence.triaged`
      removed, and the count printed as `cleared`). A verdict set by `ingest` and a record that has a `rule` are never
-     touched. `by: "rule"` is reserved: `ingest` refuses a results file signed with it.
+     touched, except a pre-pass `core` the rules no longer give: its previous verdict comes back (below, `restored`).
+     `by: "rule"` is reserved: `ingest` refuses a results file signed with it.
+   - `triage <BOOK> --core-prepass [--report <file>]` is the **pre-pass**: the `core` rule above (its four sources) and
+     nothing else, over the records whose verdict is `entry` or none, whoever set it (a reader's `entry` included: the
+     pilot's records were read before the engine's code was looked at, `docs/pilot-m3.md`). It never touches a record that
+     has a `rule`, a legacy record, a record whose key is in any queue (`queue.json`, `drafts-queue.json`,
+     `review-queue.json`), or one with another verdict. A record it turns to `core` keeps only the verdict, the `why` and
+     `evidence.triaged = { by: "rule", at, was: { verdict, why, triaged } }`: `was` is what the record was (the reader's
+     triage evidence, signed), so the change is auditable and reversible — the schema accepts `was` only with `by: "rule"`
+     and the verdict `core`, and `--redo-rule` gives it back when the rules no longer give `core` (a twin appeared, the
+     engine dropped the identifier). It prints one line per change (`core  <key>  <source>  <file:line>, ...`) and per
+     record it only hints (`hint ...`, not written), then `changed:` and `hinted (not written):`; `--report <file>` (a file
+     outside the registry folder) also writes them as JSON, with the engine's version, the previous verdict and its author,
+     and the file and line of the engine that justify each (for parts, each option with its own). Running it again changes
+     nothing. It cannot be combined with `--redo-rule`.
    - `batch triage` leaves out the records with no matched item in any origin (a reader has nothing to compare the text
      with); `--without-items` cuts them too.
    - `batch triage` writes `<dir>/<book>-triage-<NNN>.json` for the records that have no verdict and have text, grouped by
@@ -304,6 +347,8 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 > apply, and per item its `match` and `differences`. When the origins differ, say in `why` which origin lacks what.
 > An entry with `hint: "core-generic"` has an identifier for which DAS · Core has a generic entry (shared by many entries,
 > or a monster feature): it says nothing about this entry, so judge it against its text like any other.
+> An entry with `hint: "core-parts"` is a feature whose options (or a species whose traits) DAS · Core partly handles: judge
+> what the handled parts leave out.
 >
 > **What the engine does without an entry** (so the data resolves it: `data`, or `none` when the text adds nothing to combat):
 > attack rolls; saving throws; damage and healing, with half or none on a successful save as the activity says; applying an

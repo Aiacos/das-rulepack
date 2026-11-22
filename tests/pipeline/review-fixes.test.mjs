@@ -157,7 +157,8 @@ describe("I2: rule-based triage on shared identifiers", () => {
   });
   it("validates the hint against its closed list", () => {
     expect(validateRecord(rec("x", { hint: "core-generic" }))).toEqual([]);
-    expect(validateRecord(rec("x", { hint: "other" }))).toContain("hint: must be one of core-generic");
+    expect(validateRecord(rec("x", { hint: "core-parts" }))).toEqual([]);
+    expect(validateRecord(rec("x", { hint: "other" }))).toContain("hint: must be one of core-generic, core-parts");
   });
 });
 

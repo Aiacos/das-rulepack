@@ -1,8 +1,10 @@
 // Loads what the gates need from a clone of DAS · Core: the validator, the data-fix helpers, the fact names, the table of
-// identifiers the engine already has an entry for, its entry keys and its vocabulary. Nothing here writes to the clone.
+// identifiers the engine already has an entry for, those it handles outside the table (core-scan.mjs), its entry keys and its
+// vocabulary. Nothing here writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
+import { locator, readEngineScripts, scanRuntime, scanSystemHandled } from "./core-scan.mjs";
 
 export const MIN_FACTS = 60;
 
@@ -103,8 +105,29 @@ export async function loadCore(dir) {
 
   const aliases = SRD_ALIASES ?? {};
   const identifiers = new Set([...Object.keys(SHIPPED), ...Object.keys(aliases), ...Object.values(aliases)]);
+  // What the engine handles outside its table (core-scan.mjs), each identifier with the files and lines that say so: for the
+  // triage pre-pass and its report. `handled` is all three: a rule under any of them would stack on what the engine (or the
+  // system, for what the engine leaves to it) already does, so the unique gate and `batch draft` hold it like a table one.
+  // The scan reads every script of the engine: done once, and only by a command that asks for one of them.
+  let scan = null;
+  const scanned = () => {
+    if (!scan) {
+      const scripts = readEngineScripts(dir);
+      const runtimeIdentifiers = scanRuntime(scripts);
+      const systemHandled = scanSystemHandled(scripts);
+      scan = {
+        runtimeIdentifiers, systemHandled, locate: locator(scripts, runtimeIdentifiers, systemHandled),
+        handled: new Set([...identifiers, ...runtimeIdentifiers.keys(), ...systemHandled.keys()])
+      };
+    }
+    return scan;
+  };
   return {
     validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary, moments, statuses, shipped: SHIPPED,
+    get runtimeIdentifiers() { return scanned().runtimeIdentifiers; },
+    get systemHandled() { return scanned().systemHandled; },
+    get handled() { return scanned().handled; },
+    get locate() { return scanned().locate; },
     stepTypes: [...enums.STEP_TYPES],
     creatureTypes: [...lists.creatureTypes], moveModes: [...lists.moveModes], effectEnds: [...lists.effectEnds],
     damageTypes: [...lists.damageTypes], abilities: [...lists.abilities]

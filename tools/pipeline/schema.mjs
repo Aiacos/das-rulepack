@@ -14,8 +14,9 @@ export const KINDS = Object.freeze(["spell", "feat", "option", "feature", "speci
 export const EDITIONS = Object.freeze(["2014", "2024"]);
 // The verdicts under which a record carries a rule that the pack registers.
 export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
-// What the rule-based triage may tell a reader about a record (triage.mjs): `core-generic`.
-export const HINTS = Object.freeze(["core-generic"]);
+// What the rule-based triage may tell a reader about a record (triage.mjs): `core-generic` (the engine has the identifier,
+// too generic to settle the record) and `core-parts` (the engine handles some of the record's parts, not all).
+export const HINTS = Object.freeze(["core-generic", "core-parts"]);
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -186,8 +187,20 @@ export const VIA = Object.freeze(["third-reading", "bulk-unsure"]);
 // The shapes of evidence.gates, .drafted, .reviewed and .played, when present (the tools write them; nobody types them).
 // Evidence about the rule carries its fingerprint (`rule`, 64 hex): editing the rule makes it stale (registry.mjs stateOf). A
 // legacy record may keep a review or a play written before the stamp existed.
-function checkEvidence(evidence, errors, legacy) {
+function checkEvidence(evidence, errors, legacy, verdict) {
   const { gates, triaged } = evidence;
+  // The triage pre-pass (triage.mjs corePrepass) turns a record to `core` by rule and keeps what it was: `{ verdict, why?,
+  // triaged? }`, the previous triage evidence signed by a reader. It goes with `by: "rule"` and the verdict `core` only.
+  if (isObject(triaged) && has(triaged, "was")) {
+    const w = triaged.was;
+    const shape = "{ verdict (not core), why?, triaged?: { by: reader handle, ... } without was }";
+    const ok = isObject(w) && Object.keys(w).every((k) => ["verdict", "why", "triaged"].includes(k))
+      && VERDICTS.includes(w.verdict) && w.verdict !== "core" && (!has(w, "why") || typeof w.why === "string")
+      && (!has(w, "triaged") || (isObject(w.triaged) && isReaderHandle(w.triaged.by) && !has(w.triaged, "was")));
+    if (!ok) errors.push(`evidence.triaged.was: must be ${shape}`);
+    if (triaged.by !== "rule") errors.push("evidence.triaged.was: only the rule-based pre-pass keeps one (by: rule)");
+    if (verdict !== "core") errors.push("evidence.triaged.was: goes with the verdict core only (restore the previous one instead)");
+  }
   // A verdict settled by several readings carries them: `first` and `second` are { by, confidence } (triage.mjs); `via` says
   // how it was settled when not by two agreeing readers: a third reading, or the owner's bulk rule for two unsure ones.
   if (isObject(triaged) && ["first", "second", "via"].some((k) => has(triaged, k))) {
@@ -309,7 +322,7 @@ export function validateRecord(record) {
     errors.push(`verdict: unknown verdict ${JSON.stringify(record.verdict)}`);
   }
   if (!isObject(record.evidence)) errors.push("evidence: must be an object");
-  else checkEvidence(record.evidence, errors, record.legacy === true);
+  else checkEvidence(record.evidence, errors, record.legacy === true, record.verdict);
   // A verdict comes before any draft: `rule.entry` is required only once a rule is there. A rule is registered only under
   // the verdicts entry and code, so a record that has one cannot take another verdict (it would vanish from the pack).
   if (has(record, "rule")) {

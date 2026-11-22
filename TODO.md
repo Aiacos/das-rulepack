@@ -145,8 +145,10 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 
 ## Milestone 3 — after the first pilot (2026-11-22, `docs/pilot-m3.md`: 1 rule from 46 entries, decision: revise)
 
-- [ ] Triage pre-pass: `core` for what the engine already does (identifiers recognised by its runtime code, features whose
-      parts ship under other identifiers, what its content notes leave to the system). Re-run it over every `entry` record.
+- [x] Triage pre-pass: `core` for what the engine already does (identifiers recognised by its runtime code, features whose
+      parts ship under other identifiers, what its content notes leave to the system): `triage <BOOK> --core-prepass`
+      (`docs/PIPELINE.md`). Still to do: run it on the registry (a dry run turns 12 XPHB `entry` records to `core`); the
+      engine's notes that name features in French prose only cannot be read by it.
 - [ ] Widen the drafter vocabulary: the full `triggers` shape, then `emanation`, `duringRage`, `barrier`, `globe`,
       `targets.requires`, `spellDamageTypes`, `usageLimits.whileEffect` (each through the same review as the first 28 keys).
 - [ ] Decide whether typed data fixes may apply to a monster feature bound by a unique embedded id.

@@ -16,10 +16,11 @@ import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { embeddedIndex, poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
 import { loadCore } from "./core.mjs";
-import { quotationCheck, ruleProse, runGates } from "./gates.mjs";
+import { engineIdentifiers, quotationCheck, ruleProse, runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
 import {
-  autoTriage, clip, ingest, ingestSecond, ingestThird, isReaderHandle, setByRule, settleUnsure, triageContext, BY
+  autoTriage, choiceOptions, clip, corePrepass, ingest, ingestSecond, ingestThird, isReaderHandle, restorePrepass, setByRule,
+  settleUnsure, triageContext, BY
 } from "./triage.mjs";
 import {
   cutBatches, cutDraftBatches, cutReviewBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason,
@@ -271,41 +272,121 @@ function loadBookOrFail(code) {
 }
 
 // `triage <BOOK>` applies the rules to the records without a verdict; with `--redo-rule` it also re-evaluates the records whose
-// verdict the rules set (never one set by ingest, never a record that has a rule), clearing what the rules no longer give.
+// verdict the rules set (never one set by ingest, never a record that has a rule), clearing what the rules no longer give and
+// giving back the previous verdict of a record the pre-pass turned to `core`. With `--core-prepass` it applies the `core` rule
+// alone to the records whose verdict is `entry` or none, whoever set it (triage.mjs corePrepass), and prints, and with
+// `--report <file>` (outside the registry) writes, what it changed with the engine's file and line.
 async function triageCommand(args) {
+  const usage = "Usage: triage <BOOK> [--redo-rule | --core-prepass [--report <file>]]";
+  const positional = [];
+  let report = null;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === "--report") {
+      report = args[++i];
+      if (!report || report.startsWith("--")) throw new UsageError(usage);
+    } else if (args[i] !== "--redo-rule" && args[i] !== "--core-prepass") positional.push(args[i]);
+  }
   const redo = args.includes("--redo-rule");
-  const [book, ...rest] = args.filter((a) => a !== "--redo-rule");
-  if (!book || rest.length) throw new UsageError("Usage: triage <BOOK> [--redo-rule]");
+  const prepass = args.includes("--core-prepass");
+  const [book, ...rest] = positional;
+  if (!book || rest.length || (redo && prepass) || (report && !prepass)) throw new UsageError(usage);
+  if (report && (isInside(realPathOf(report), realPathOf(REGISTRY)) || (existsSync(report) && statSync(report).isDirectory()))) {
+    throw new UsageError(`--report ${report} must be a file outside the registry folder`);
+  }
   const coreDir = need("DAS_CORE");
   const textDir = need("RULEPACK_TEXT");
   const found = loadBookOrFail(book);
-  const { identifiers } = await loadCore(coreDir);
-  const context = { coreIdentifiers: identifiers, textDir, ...triageContext(loadRegistry(REGISTRY).flatMap((b) => b.records)) };
+  const core = await loadCore(coreDir);
+  const all = loadRegistry(REGISTRY).flatMap((b) => b.records);
+  const optionsOf = choiceOptionsFor(found.book);
+  if (!optionsOf) console.log("options: not checked (RULEPACK_DUMPS is not set)");
+  const base = {
+    coreIdentifiers: core.identifiers, runtimeIdentifiers: core.runtimeIdentifiers, systemHandled: core.systemHandled,
+    handledIdentifiers: core.handled, textDir, ...(optionsOf ? { optionsOf } : {})
+  };
   const at = new Date().toISOString();
+  if (prepass) return corePrepassCommand(found, { base, all, core, at, report });
+
+  const open = (r) => !r.verdict || (redo && !r.rule && setByRule(r));
   const counts = {};
   let cleared = 0;
-  const records = found.records.map((r) => {
-    const open = !r.verdict || (redo && !r.rule && setByRule(r));
-    if (!open) return r;
+  let restored = 0;
+  const pass = (context, count) => found.records.map((r) => {
+    if (!open(r)) return r;
     const t = autoTriage({ ...r, verdict: null }, context);
     const { hint, textChangedAt, ...next } = r;
     if (t?.hint) next.hint = t.hint;
+    const was = r.evidence?.triaged?.was;
     if (t?.verdict) {
-      counts[t.verdict] = (counts[t.verdict] ?? 0) + 1;
+      if (count) counts[t.verdict] = (counts[t.verdict] ?? 0) + 1;
       // A verdict the rules give again, unchanged, keeps its date.
       if (r.verdict === t.verdict && r.why === t.why) return next;
-      return { ...next, verdict: t.verdict, why: t.why, evidence: { ...r.evidence, triaged: { by: t.by, at } } };
+      // A pre-pass `core` given again for another reason keeps what the record was before it.
+      const triaged = { by: t.by, at, ...(was && t.verdict === "core" ? { was } : {}) };
+      if (!was || t.verdict === "core") return { ...next, verdict: t.verdict, why: t.why, evidence: { ...r.evidence, triaged } };
     }
     if (!r.verdict) return { ...next, ...(textChangedAt === undefined ? {} : { textChangedAt }) };
-    cleared += 1;
+    if (was) {
+      if (count) restored += 1;
+      return restorePrepass(next);
+    }
+    if (count) cleared += 1;
     const { why, ...unsettled } = next;
     const { triaged, ...evidence } = r.evidence ?? {};
     return { ...unsettled, verdict: null, evidence };
   });
+  // Two passes: the second sees the verdicts the first gave, so a record whose parts it turned to `core` follows them.
+  const first = pass({ ...base, ...triageContext(all) }, false);
+  const firstKeys = new Set(first.map((r) => r.key));
+  const records = pass({ ...base, ...triageContext([...all.filter((r) => !firstKeys.has(r.key)), ...first]) }, true);
   saveBook(REGISTRY, { book: found.book, note: found.note, records });
   for (const [verdict, n] of Object.entries(counts)) console.log(`${verdict}: ${n}`);
   if (redo) console.log(`cleared: ${cleared}`);
+  if (redo && restored) console.log(`restored (pre-pass undone): ${restored}`);
   console.log(`left: ${records.filter((r) => !r.verdict).length}`);
+}
+
+// The options a record's official item offers as a choice (triage.mjs choiceOptions), from the dumps of the book's package;
+// null when RULEPACK_DUMPS is not set.
+function choiceOptionsFor(book) {
+  const dumpsDir = process.env.RULEPACK_DUMPS;
+  if (!dumpsDir) return null;
+  if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+  const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+  const docs = new Map();
+  for (const f of officialFilesFor(dumpsDir, packages, book).filter((x) => !isActorFile(x))) {
+    for (const d of readDump(join(dumpsDir, f))) if (typeof d?._id === "string" && !docs.has(d._id)) docs.set(d._id, d);
+  }
+  return (record) => choiceOptions(record, docs);
+}
+
+// `triage <BOOK> --core-prepass`: corePrepass over the book, every queue's keys left alone; the registry keeps the verdict,
+// the why and `evidence.triaged` (with the previous verdict), the report the reason and where the engine says so.
+function corePrepassCommand(found, { base, all, core, at, report }) {
+  checkQueues(REGISTRY);
+  const queued = new Set([...queueEntries(REGISTRY), ...loadQueue(REGISTRY, "drafts"), ...loadQueue(REGISTRY, "review")]
+    .map((q) => q.key));
+  const { records, changed, hinted } = corePrepass(found.records, { ...base, all }, { queued, at });
+  const byKey = new Map(records.map((r) => [r.key, r]));
+  const optionsOf = base.optionsOf ?? (() => []);
+  const where = (c) => {
+    if (c.source !== "parts") return core.locate(c.identifier);
+    const record = byKey.get(c.key);
+    const children = records.filter((r) => r.owner === record.name && r.kind !== "monster").map((r) => r.key);
+    return [...children, ...optionsOf(record).map((o) => `${o} (${core.locate(o)[0] ?? "?"})`)];
+  };
+  const lines = changed.map((c) => ({ ...c, kind: byKey.get(c.key).kind, why: byKey.get(c.key).why, at: where(c) }));
+  if (changed.length) saveBook(REGISTRY, { book: found.book, note: found.note, records });
+  for (const c of lines) console.log(`core  ${c.key}  ${c.source}  ${c.at.join(", ")}`);
+  for (const h of hinted) console.log(`hint  ${h.key}  ${h.hint} (${h.source})`);
+  console.log(`changed: ${changed.length}`);
+  console.log(`hinted (not written): ${hinted.length}`);
+  if (report) {
+    mkdirSync(dirname(resolve(report)), { recursive: true });
+    const body = { book: found.book, at, core: core.version, changed: lines, hinted };
+    writeFileSync(report, `${JSON.stringify(body, null, 2)}\n`);
+    console.log(`Wrote ${report}.`);
+  }
 }
 
 // The real path of `p`, also when it does not exist yet: each existing part is resolved (symlinks included) before the next
@@ -471,8 +552,9 @@ async function batchCommand([stage, book, ...rest]) {
       throw new UsageError(`${found.book}: no actor in its package's dumps (RULEPACK_DUMPS): monsters cannot be checked`);
     }
     embedded = embeddedIndex(actors);
-    // The records the unique gate would fail whatever is drafted (a DAS · Core identifier, one shared with another record).
-    const clashes = identifierClashReasons(every, core.identifiers);
+    // The records the unique gate would fail whatever is drafted (an identifier DAS · Core handles, in its table, its code or
+    // by leaving it to the system; one shared with another record).
+    const clashes = identifierClashReasons(every, engineIdentifiers(core));
     const textOf = (r) => (r.text && hasText(textDir, r.text.sha256) ? readText(textDir, r.text.sha256) : null);
     batches = cutDraftBatches(found.records, {
       size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes

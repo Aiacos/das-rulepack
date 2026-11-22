@@ -18,8 +18,21 @@ export { MAX_ECHO, MAX_WHY, ONE_LINE, QUEUE_THRESHOLD, clip };
 // The kinds whose record with no text and no item is a placeholder ("Subclass Feature" lines and the like): nothing to read,
 // nothing to automate. A species is described by its traits and a monster feature by its stat block: never placeholders.
 const PLACEHOLDER_KINDS = ["item", "feature", "option", "feat", "background", "spell"];
+/**
+ * The why of each `core` the rule-based step sets, by what says the engine handles the record: its content table, its code
+ * (core-scan.mjs scanRuntime), its content notes that leave it to the system (scanSystemHandled), or the options of the
+ * feature (each handled).
+ */
+export const CORE_WHY = Object.freeze({
+  table: "DAS · Core has an entry under this identifier",
+  code: "DAS · Core handles this identifier in code",
+  system: "DAS · Core leaves this identifier to the game system",
+  parts: "every option of this feature is handled by DAS · Core"
+});
+/** What a `core` why set by the rule-based step names: table, code, system or parts (null for any other why). */
+export const coreSourceOf = (why) => Object.keys(CORE_WHY).find((k) => CORE_WHY[k] === why) ?? null;
 const WHY = Object.freeze({
-  core: "DAS · Core has an entry under this identifier",
+  core: CORE_WHY.table,
   none: "no text and no item in any origin",
   noOwnText: "the rulebook entry has no text of its own",
   notCached: "the rulebook text is not in the cache"
@@ -36,12 +49,51 @@ const countKey = (kind, identifier, edition) => `${kind}|${identifier}|${edition
 export function triageContext(records) {
   const identifierCounts = new Map();
   const traitOwners = new Set();
+  const childVerdicts = new Map();
   for (const r of records) {
     const id = countKey(r.kind, identifierOf(r), r.edition);
     identifierCounts.set(id, (identifierCounts.get(id) ?? 0) + 1);
     if (r.kind === "species" && r.owner) traitOwners.add(`${r.book}|${r.owner}`);
+    // The parts of a record: the records of its book whose owner is its name (a species' traits), never a monster feature
+    // (a creature named like a spell is no part of the spell).
+    if (r.owner && r.kind !== "monster") {
+      const at = `${r.book}|${r.owner}`;
+      childVerdicts.set(at, [...(childVerdicts.get(at) ?? []), r.verdict ?? null]);
+    }
   }
-  return { identifierCounts, traitOwners };
+  return { identifierCounts, traitOwners, childVerdicts };
+}
+
+/**
+ * The identifiers of the options a record's matched official item offers as a choice (`ItemChoice` advancements: each
+ * option is its own item), in the order of the pools; null for an option whose document is not in `docs` (Map of document id
+ * to document, the official dumps of the book's package). Empty when the item offers no choice or is not in the dumps.
+ */
+export function choiceOptions(record, docs) {
+  const out = [];
+  for (const item of (record.items ?? []).filter((i) => i?.origin === "official" && i.match === "matched")) {
+    const doc = docs.get(item.docId);
+    for (const adv of Object.values(doc?.system?.advancement ?? {})) {
+      if (adv?.type !== "ItemChoice") continue;
+      for (const option of adv.configuration?.pool ?? []) {
+        const id = String(option?.uuid ?? "").split(".").at(-1);
+        const identifier = docs.get(id)?.system?.identifier;
+        out.push(typeof identifier === "string" && identifier ? identifier : null);
+      }
+    }
+  }
+  return out;
+}
+
+// How many parts a record has and how many of them the engine handles: its registry children that are `core`, and the
+// options of its item that are among `handled` (the engine's table, code and system identifiers).
+function partsOf(record, { childVerdicts, optionsOf, handled }) {
+  const children = childVerdicts?.get(`${record.book}|${record.name}`) ?? [];
+  const options = optionsOf?.(record) ?? [];
+  return {
+    total: children.length + options.length,
+    handled: children.filter((v) => v === "core").length + options.filter((o) => o !== null && handled.has(o)).length
+  };
 }
 
 /**
@@ -50,23 +102,35 @@ export function triageContext(records) {
  * `identifierCounts` and `traitOwners` come from triageContext over the whole registry.
  * - `core` only for the one 2024 record of its kind that uses an identifier the engine has (the engine's entries are written
  *   for the 2024 rules: a 2014 twin neither takes the verdict away nor gets it), never for a monster feature; otherwise the
- *   record is hinted `core-generic` and goes on through the rules below.
+ *   record is hinted `core-generic` and goes on through the rules below. The identifier is looked up in the content table
+ *   (`coreIdentifiers`), then among those the engine's code recognises (`runtimeIdentifiers`) and those its content notes
+ *   leave to the system (`systemHandled`), each with its own why (CORE_WHY). With none of them, under the same conditions, a
+ *   record whose parts are all handled is `core` too: its registry children (`childVerdicts`: all `core`) and the options its
+ *   item offers (`optionsOf(record)`, choiceOptions: all among `handledIdentifiers`); some handled only, `hint: "core-parts"`.
  * - No text in the dataset: a species described by its traits is left alone; with an item in some origin, `unverifiable`;
  *   with none, `none` for the kinds whose such records are placeholders.
  * - A text fingerprint missing from the cache: `unverifiable`.
  * SRD content that Core lacks is a finding for upstream, not a rule for this pack: it is left to a reader like the rest.
  */
-export function autoTriage(record, { coreIdentifiers, textDir, identifierCounts, traitOwners } = {}) {
+export function autoTriage(record, context = {}) {
+  const { coreIdentifiers, runtimeIdentifiers, systemHandled, textDir, identifierCounts, traitOwners } = context;
   if (!(identifierCounts instanceof Map)) throw new Error("autoTriage needs identifierCounts (triageContext of the registry)");
   if (record.verdict) return null;
   const identifier = identifierOf(record);
+  const eligible = record.kind !== "monster" && record.edition === "2024"
+    && identifierCounts.get(countKey(record.kind, identifier, record.edition)) === 1;
   let hint;
-  if (coreIdentifiers.has(identifier)) {
-    if (record.kind !== "monster" && record.edition === "2024"
-      && identifierCounts.get(countKey(record.kind, identifier, record.edition)) === 1) {
-      return { verdict: "core", why: WHY.core, by: "rule" };
-    }
+  const sources = [[coreIdentifiers, CORE_WHY.table], [runtimeIdentifiers, CORE_WHY.code], [systemHandled, CORE_WHY.system]];
+  const source = sources.find(([set]) => set?.has(identifier));
+  if (source) {
+    if (eligible) return { verdict: "core", why: source[1], by: "rule" };
     hint = "core-generic";
+  } else if (record.kind !== "monster") {
+    const handled = context.handledIdentifiers
+      ?? new Set(sources.flatMap(([set]) => (set ? [...set.keys()] : [])));
+    const parts = partsOf(record, { ...context, handled });
+    if (parts.total && parts.handled === parts.total && eligible) return { verdict: "core", why: CORE_WHY.parts, by: "rule" };
+    if (parts.handled) hint = "core-parts";
   }
   const hinted = (outcome) => (hint ? { ...outcome, hint } : outcome);
   const nothing = hint ? { hint } : null;
@@ -344,4 +408,69 @@ export function settleUnsure(records, { textDir, queue, min, at = new Date().toI
     applied.push(entry.key);
   }
   return { records: out, applied, kept, problems };
+}
+
+/**
+ * The triage pre-pass (`triage <BOOK> --core-prepass`): the `core` rule of autoTriage (its four sources, CORE_WHY) applied to
+ * the records of `records` (one book) whose verdict is `entry` or none, whoever set it — never to a record that has a rule,
+ * a legacy one, one whose key is in `queued`, or one with another verdict. `context` is autoTriage's, with `all` the records
+ * of the whole registry (the book's among them): parts are counted again after each round, so a parent whose parts this run
+ * turns to `core` is settled in the same run. A record turned to `core` keeps its previous verdict, why and triage evidence in
+ * `evidence.triaged.was` (restorePrepass gives them back); the rest of it is unchanged. Returns `{ records, changed, hinted }`:
+ * `changed` is `[{ key, source, identifier, was: { verdict, by } | null }]` (`source`: table, code, system or parts),
+ * `hinted` the records the rule only hints (`{ key, hint, source }`), which are not written. The inputs are not changed.
+ */
+export function corePrepass(records, context, { queued = new Set(), at = new Date().toISOString() } = {}) {
+  const out = structuredClone(records);
+  const changed = [];
+  const own = new Set(out.map((r) => r.key));
+  const open = (r) => !r.rule && r.legacy !== true && !queued.has(r.key) && (r.verdict === null || r.verdict === "entry");
+  for (let round = 0; round < 4; round++) {
+    const all = [...(context.all ?? []).filter((r) => !own.has(r.key)), ...out];
+    const ctx = { ...context, ...triageContext(all) };
+    let more = false;
+    for (const [i, r] of out.entries()) {
+      if (!open(r)) continue;
+      const t = autoTriage({ ...r, verdict: null }, ctx);
+      if (t?.verdict !== "core") continue;
+      const { hint, textChangedAt, ...rest } = r;
+      const before = r.evidence?.triaged;
+      const was = r.verdict ? { verdict: r.verdict, ...(typeof r.why === "string" ? { why: r.why } : {}),
+        ...(before ? { triaged: before } : {}) } : null;
+      const triaged = { by: "rule", at, ...(was ? { was } : {}) };
+      const next = { ...rest, verdict: "core", why: t.why, evidence: { ...r.evidence, triaged } };
+      const invalid = validateRecord(next);
+      if (invalid.length) throw new Error(`${r.key}: the pre-pass would make the record invalid: ${invalid[0]}`);
+      out[i] = next;
+      changed.push({ key: r.key, source: coreSourceOf(t.why), identifier: identifierOf(r),
+        was: was ? { verdict: was.verdict, by: before?.by ?? null } : null });
+      more = true;
+    }
+    if (!more) break;
+  }
+  const ctx = { ...context, ...triageContext([...(context.all ?? []).filter((r) => !own.has(r.key)), ...out]) };
+  const hinted = [];
+  for (const r of out) {
+    if (!open(r)) continue;
+    const t = autoTriage({ ...r, verdict: null }, ctx);
+    if (t?.hint) {
+      const identifier = identifierOf(r);
+      const source = t.hint === "core-parts" ? "parts"
+        : context.coreIdentifiers?.has(identifier) ? "table" : context.runtimeIdentifiers?.has(identifier) ? "code" : "system";
+      hinted.push({ key: r.key, hint: t.hint, source });
+    }
+  }
+  return { records: out, changed, hinted };
+}
+
+/** The record as it was before the pre-pass turned it to `core` (from `evidence.triaged.was`), or null if it was not. */
+export function restorePrepass(record) {
+  const was = record?.evidence?.triaged?.was;
+  if (!was) return null;
+  const { why, evidence, ...rest } = record;
+  const { triaged, ...others } = evidence;
+  return {
+    ...rest, verdict: was.verdict, ...(was.why === undefined ? {} : { why: was.why }),
+    evidence: { ...others, ...(was.triaged ? { triaged: was.triaged } : {}) }
+  };
 }
