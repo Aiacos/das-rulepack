@@ -18,7 +18,8 @@ export const EDITIONS = Object.freeze(["2014", "2024"]);
 export const RULE_VERDICTS = Object.freeze(["entry", "code"]);
 // What the rule-based triage may tell a reader about a record (triage.mjs): `core-generic` (the engine has the identifier,
 // too generic to settle the record) and `core-parts` (the engine handles some of the record's parts, not all).
-export const HINTS = Object.freeze(["core-generic", "core-parts"]);
+// `engine-reads` (Ruling R29): DAS · Core's own text layer reads something of this monster feature (triage --engine-reading).
+export const HINTS = Object.freeze(["core-generic", "core-parts", "engine-reads"]);
 
 const DOC_ID = /^[A-Za-z0-9]{16}$/;
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -194,6 +195,52 @@ export const isReaderHandle = (by) => typeof by === "string" && BY.test(by) && b
 
 export const VIA = Object.freeze(["third-reading", "bulk-unsure"]);
 
+/** How a rule's `triggers` stand against the engine's reading (Ruling R29; engine-reading.mjs compareWithReading). */
+export const READING_TRIGGERS = Object.freeze(["superset", "drops", "none", "same"]);
+const ENTRY_KEY = /^[a-z][A-Za-z0-9]{0,63}$/;
+const READING_FIELDS = ["at", "core", "rule", "item", "delta", "same", "changes", "triggers"];
+const READING_LISTS = ["delta", "same", "changes"];
+
+/**
+ * What is wrong with an `evidence.reading` (Ruling R29: a rule compared with the engine's own reading of a monster feature),
+ * as messages; empty when it is sound. A closed shape that holds no prose: a date, an engine version, two fingerprints, three
+ * disjoint lists of entry keys and a trigger outcome consistent with where `triggers` is listed.
+ */
+export function readingProblems(reading) {
+  const shape = `{ ${READING_FIELDS.join(", ")} }`;
+  if (!isObject(reading)) return [`evidence.reading: must be ${shape}`];
+  const errors = [];
+  for (const f of Object.keys(reading)) {
+    if (!READING_FIELDS.includes(f)) errors.push(`evidence.reading.${f}: unknown field (${shape})`);
+  }
+  if (typeof reading.at !== "string" || !/^\d{4}-\d{2}-\d{2}T/.test(reading.at)) {
+    errors.push("evidence.reading.at: must be an ISO date string");
+  }
+  if (!isCoreVersion(reading.core)) errors.push("evidence.reading.core: must be an engine version");
+  for (const f of ["rule", "item"]) if (!isHex64(reading[f])) errors.push(`evidence.reading.${f}: must be 64 hex characters`);
+  const seen = new Set();
+  for (const f of READING_LISTS) {
+    const list = reading[f];
+    if (!Array.isArray(list) || !list.every((k) => typeof k === "string" && ENTRY_KEY.test(k))) {
+      errors.push(`evidence.reading.${f}: must be a list of entry keys`);
+      continue;
+    }
+    for (const k of list) {
+      if (seen.has(k)) errors.push(`evidence.reading.${f}: ${k} is in two lists`);
+      seen.add(k);
+    }
+  }
+  if (!READING_TRIGGERS.includes(reading.triggers)) {
+    errors.push(`evidence.reading.triggers: must be one of ${READING_TRIGGERS.join(", ")}`);
+  } else if (!errors.length) {
+    // The outcome says where `triggers` sits: nowhere, in `same`, in `delta` (a superset) or in `changes` (it drops one).
+    const where = READING_LISTS.find((f) => reading[f].includes("triggers")) ?? null;
+    const expected = { none: null, same: "same", superset: "delta", drops: "changes" }[reading.triggers];
+    if (where !== expected) errors.push(`evidence.reading.triggers: ${reading.triggers} does not match where triggers is listed`);
+  }
+  return errors;
+}
+
 // The shapes of evidence.gates, .drafted, .reviewed and .played, when present (the tools write them; nobody types them).
 // Evidence about the rule carries its fingerprint (`rule`, 64 hex): editing the rule makes it stale (registry.mjs stateOf). A
 // legacy record may keep a review or a play written before the stamp existed.
@@ -246,6 +293,8 @@ function checkEvidence(evidence, errors, legacy, verdict) {
       }
     }
   }
+  // Ruling R29: a rule compared with the engine's reading of its monster feature (written by `npm run gates`).
+  if (has(evidence, "reading")) errors.push(...readingProblems(evidence.reading));
   // A person's signature that lets a rule hold what a drafter may not write (Ruling R6; gates.mjs draftProblems): bound to the
   // rule it signs (`rule`, its fingerprint), by an owner of docs/owners.json (checked by the gate), never an agent's handle.
   // No ingest writes it: a person types it.

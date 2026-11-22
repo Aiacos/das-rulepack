@@ -218,11 +218,21 @@ describe("pipeline CLI: batch --structure", () => {
     expect(readdirSync(out)).toEqual(["xphb-triage-001.json"]);
   });
 
-  it("reads the embedded item of an actor for a monster feature", () => {
-    const r = run(["batch", "triage", "XMM", "--out", out, "--structure", priv]);
+  it("reads the embedded item of an actor for a monster feature, with the engine's reading of it (Ruling R29)", () => {
+    // A monster feature's structure gives what the engine already reads (`engineReads`): without DAS_CORE, nothing is cut.
+    if (!process.env.DAS_CORE) {
+      const refused = run(["batch", "triage", "XMM", "--out", out, "--structure", priv]);
+      expect(refused.status).toBe(2);
+      expect(refused.stderr).toContain("DAS_CORE");
+      expect(existsSync(out)).toBe(false);
+      return;
+    }
+    const r = run(["batch", "triage", "XMM", "--out", out, "--structure", priv], { DAS_CORE: process.env.DAS_CORE });
     expect(r.status, r.stderr).toBe(0);
     const file = JSON.parse(readFileSync(join(priv, "xmm-triage-001.structure.json"), "utf8"));
-    expect(file.entries["xmm:monster:invented-beast/action/claw"].official.activities[0].id).toBe("bbbbbbbbbbbbbbbb");
+    const official = file.entries["xmm:monster:invented-beast/action/claw"].official;
+    expect(official.activities[0].id).toBe("bbbbbbbbbbbbbbbb");
+    expect(official).toHaveProperty("engineReads");
   });
 
   it("refuses a structure folder inside the repository or the registry, also through a symlink, and writes nothing", () => {

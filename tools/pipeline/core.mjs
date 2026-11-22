@@ -61,9 +61,13 @@ export async function loadCore(dir) {
   for (const f of files) {
     if (!existsSync(join(dir, "module", "scripts", f))) throw new Error(`DAS_CORE ${dir}: module/scripts/${f} is missing`);
   }
-  const { validateEntry } = await load(dir, "core/content.mjs");
+  const { validateEntry, mergeEntries } = await load(dir, "core/content.mjs");
   const { matchesFrom, getPath } = await load(dir, "core/data-fixes.mjs");
-  const { SHIPPED, SRD_ALIASES } = await load(dir, "content/index.mjs");
+  const { SHIPPED, SRD_ALIASES, SOURCES } = await load(dir, "content/index.mjs");
+  // Ruling R29: the engine's own reading of a monster feature (its pure text layer) and its merge of entry layers. Optional
+  // here: an engine without them still gates; engine-reading.mjs says clearly that it cannot read when they are missing.
+  const layer = existsSync(join(dir, "module", "scripts", "core", "monster-layer.mjs"))
+    ? await load(dir, "core/monster-layer.mjs") : {};
   if (typeof validateEntry !== "function" || typeof matchesFrom !== "function" || typeof getPath !== "function") {
     throw new Error(`DAS_CORE ${dir}: validateEntry, matchesFrom or getPath is not exported`);
   }
@@ -124,6 +128,9 @@ export async function loadCore(dir) {
   };
   return {
     validateEntry, facts, matchesFrom, getPath, version, identifiers, entryKeys, vocabulary, moments, statuses, shipped: SHIPPED,
+    monsterTextLayer: typeof layer.monsterTextLayer === "function" ? layer.monsterTextLayer : null,
+    mergeEntries: typeof mergeEntries === "function" ? mergeEntries : null,
+    sources: SOURCES && typeof SOURCES === "object" ? { ...SOURCES } : {},
     get runtimeIdentifiers() { return scanned().runtimeIdentifiers; },
     get systemHandled() { return scanned().systemHandled; },
     get handled() { return scanned().handled; },

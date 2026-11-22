@@ -17,11 +17,12 @@ import { embeddedIndex, poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
 import { undefinedWords } from "./definitions.mjs";
 import { loadCore } from "./core.mjs";
+import { compareWithReading, engineReading, officialItemOf, readingEvidence } from "./engine-reading.mjs";
 import { engineIdentifiers, quotationCheck, ruleProse, runGates } from "./gates.mjs";
 import { generate, shippedHeld } from "./generate.mjs";
 import {
-  autoTriage, choiceOptions, clip, corePrepass, ingest, ingestSecond, ingestThird, isReaderHandle, restorePrepass, setByRule,
-  settleUnsure, triageContext, BY
+  autoTriage, choiceOptions, clip, corePrepass, engineReadingPrepass, ingest, ingestSecond, ingestThird, isReaderHandle,
+  restorePrepass, setByRule, settleUnsure, triageContext, BY
 } from "./triage.mjs";
 import {
   cutBatches, cutDraftBatches, cutReviewBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason,
@@ -228,7 +229,11 @@ function gatesCommand(args) {
       process.exit(2);
     }
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
-    const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci, legacy: legacyOf(REGISTRY) });
+    // Ruling R29: each monster rule compared with the engine's own reading of its official item (stored as evidence.reading).
+    const readingOf = ci ? undefined : (record) => readingOfRecord(record, documents, core);
+    const { failures, notes, updated } = runGates(records, {
+      core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf
+    });
     // Ruling R27 (--ci): no generated module registers a rule that is held for a person.
     const held = ci ? await heldInModules(records, books) : [];
     if (!ci) {
@@ -251,6 +256,16 @@ function gatesCommand(args) {
       + `${held.length ? `, ${held.length} held rule(s) in the generated modules` : ""}.`);
     if (failed || held.length) process.exitCode = 1;
   });
+}
+
+// Ruling R29: the evidence.reading of a ruled monster record, or null when its official item is not in the dumps (the document
+// matched by its data fingerprint, as the data-fix gate reads it). The engine sees the rule's own identifier: its sources bind it.
+export function readingOfRecord(record, documents, core) {
+  const item = officialItemOf(record);
+  const doc = item && Object.hasOwn(documents.official ?? {}, item.docId) ? documents.official[item.docId] : null;
+  if (!doc || !record.rule?.entry || typeof record.rule.entry !== "object") return null;
+  const reading = engineReading(doc, core, { identifier: record.identifier });
+  return readingEvidence(record, compareWithReading(record.rule.entry, reading, core), { core });
 }
 
 // Ruling R27: the held rules that a generated book module (RULEPACK_RULES, default scripts/rules/) registers all the same,
@@ -305,22 +320,27 @@ function loadBookOrFail(code) {
 // alone to the records whose verdict is `entry` or none, whoever set it (triage.mjs corePrepass), and prints, and with
 // `--report <file>` (outside the registry) writes, what it changed with the engine's file and line.
 async function triageCommand(args) {
-  const usage = "Usage: triage <BOOK> [--redo-rule | --core-prepass [--report <file>]]";
+  const usage = "Usage: triage <BOOK> [--redo-rule | --core-prepass [--report <file>] | --engine-reading [--report <file>]]";
   const positional = [];
   let report = null;
+  const FLAGS = ["--redo-rule", "--core-prepass", "--engine-reading"];
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--report") {
       report = args[++i];
       if (!report || report.startsWith("--")) throw new UsageError(usage);
-    } else if (args[i] !== "--redo-rule" && args[i] !== "--core-prepass") positional.push(args[i]);
+    } else if (!FLAGS.includes(args[i])) positional.push(args[i]);
   }
   const redo = args.includes("--redo-rule");
   const prepass = args.includes("--core-prepass");
+  const reading = args.includes("--engine-reading");
   const [book, ...rest] = positional;
-  if (!book || rest.length || (redo && prepass) || (report && !prepass)) throw new UsageError(usage);
+  if (!book || rest.length || [redo, prepass, reading].filter(Boolean).length > 1 || (report && !prepass && !reading)) {
+    throw new UsageError(usage);
+  }
   if (report && (isInside(realPathOf(report), realPathOf(REGISTRY)) || (existsSync(report) && statSync(report).isDirectory()))) {
     throw new UsageError(`--report ${report} must be a file outside the registry folder`);
   }
+  if (reading) return engineReadingCommand(bookArg(book), report);
   const coreDir = need("DAS_CORE");
   const textDir = need("RULEPACK_TEXT");
   const found = loadBookOrFail(book);
@@ -417,6 +437,57 @@ function corePrepassCommand(found, { base, all, core, at, report }) {
   }
 }
 
+// The official actor dumps of a book's package, as a document index (`<actor id>.<item id>`), and a lookup of a record's
+// official item in it by docId and data fingerprint (dumps.mjs findDocument); null when the item is not there.
+function officialMonsterDocuments(dumpsDir, book) {
+  if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+  const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+  const index = docIndex(dumpsDir, officialFilesFor(dumpsDir, packages, book).filter(isActorFile));
+  return (record) => {
+    const item = officialItemOf(record);
+    return item ? findDocument(index, item.docId, item.data.sha256) : null;
+  };
+}
+
+// The engine's own reading of a record's official monster item (Ruling R29), under the identifier the engine would see
+// today (the record has no rule: nothing of the pack names it); undefined when the item is not in the dumps.
+const readingFor = (documentOf, core) => (record) => {
+  const doc = documentOf(record);
+  if (!doc) return undefined;
+  const actorId = String(officialItemOf(record).docId).split(".")[0];
+  return engineReading(doc, core, { actorId });
+};
+
+// `triage <BOOK> --engine-reading [--report <file>]` (Ruling R29): the hint `engine-reads` on the monster `entry` records
+// without a rule whose official item the engine's text layer reads something of (triage.mjs engineReadingPrepass); no
+// verdict changes. Needs DAS_CORE and RULEPACK_DUMPS. Prints the counts, and with `--report` writes the keys read (with the
+// entry keys the engine reads: no prose), unread and without a document.
+async function engineReadingCommand(book, report) {
+  const core = await loadCore(need("DAS_CORE"));
+  const documentOf = officialMonsterDocuments(need("RULEPACK_DUMPS"), book);
+  const found = loadBookOrFail(book);
+  checkQueues(REGISTRY);
+  const queued = new Set([...queueEntries(REGISTRY), ...loadQueue(REGISTRY, "drafts"), ...loadQueue(REGISTRY, "review")]
+    .map((q) => q.key));
+  const out = engineReadingPrepass(found.records, { readingOf: readingFor(documentOf, core), queued });
+  const before = new Map(found.records.map((r) => [r.key, canonical(r)]));
+  if (out.records.some((r) => before.get(r.key) !== canonical(r))) {
+    saveBook(REGISTRY, { book: found.book, note: found.note, records: out.records });
+  }
+  for (const h of out.hinted) console.log(`hint  ${h.key}  engine-reads (${h.keys.join(", ")})`);
+  console.log(`engine reads something: ${out.hinted.length}`);
+  console.log(`engine reads nothing: ${out.none.length}${out.cleared.length ? ` (hint removed: ${out.cleared.length})` : ""}`);
+  console.log(`official item not in the dumps: ${out.unread.length}`);
+  console.log(`ruled (left to evidence.reading): ${out.ruled.length}`);
+  if (report) {
+    mkdirSync(dirname(resolve(report)), { recursive: true });
+    const body = { book: found.book, core: core.version, hinted: out.hinted, none: out.none, unread: out.unread,
+      ruled: out.ruled, cleared: out.cleared };
+    writeFileSync(report, `${JSON.stringify(body, null, 2)}\n`);
+    console.log(`Wrote ${report}.`);
+  }
+}
+
 // The real path of `p`, also when it does not exist yet: each existing part is resolved (symlinks included) before the next
 // one is applied, so a ".." goes up from where a symlink really leads; what does not exist yet is appended as written.
 function realPathOf(p) {
@@ -459,7 +530,10 @@ function checkStructureDir(dir, out) {
 // (`<actor id>.<item id>`). With `rulable` (the draft and review cuts, and the review ingest) an origin no rule can name is
 // left out (batch.mjs rulableOrigin: a monster feature's DDB Importer item, Ruling R3). With `reach` (the play data of
 // `scenarios`) each activity also carries its reach in feet (structure.mjs reachesOf).
-function structuresOf(batch, records, dumpsDir, { rulable = false, reach = false } = {}) {
+// With `engine` (what loadCore returns: the triage, draft and review cuts), a monster record's official structure also carries
+// `engineReads` (Ruling R29): the engine's own reading of the item, an entry of ids and engine words (null when it reads
+// nothing), under the identifier the engine would see (the rule's own when the record has one, its sources bind it).
+function structuresOf(batch, records, dumpsDir, { rulable = false, reach = false, engine = null } = {}) {
   const byKey = new Map(records.map((r) => [r.key, r]));
   const indexes = new Map();
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
@@ -484,6 +558,10 @@ function structuresOf(batch, records, dumpsDir, { rulable = false, reach = false
       const reaches = doc && reach ? reachesOf(doc) : null;
       perOrigin[item.origin] = reaches
         ? { ...structure, activities: structure.activities.map((a) => ({ ...a, reach: reaches[a.id] ?? null })) } : structure;
+      if (doc && engine && r.kind === "monster" && item.origin === "official") {
+        const actorId = String(item.docId).split(".")[0];
+        perOrigin.official.engineReads = engineReading(doc, engine, r.rule ? { identifier: r.identifier } : { actorId });
+      }
     }
     if (Object.keys(perOrigin).length) entries[e.key] = perOrigin;
   }
@@ -621,9 +699,19 @@ async function batchCommand([stage, book, ...rest]) {
   if (undefinedOnes.length) {
     throw new UsageError(`words without a definition (tools/pipeline/definitions.mjs): ${undefinedOnes.slice(0, 8).join(", ")}`);
   }
+  // Ruling R29: a monster feature's structure carries what the engine already reads of it (`engineReads`), so a triage cut
+  // with structures needs DAS_CORE as soon as it holds a monster feature.
+  const byKey = new Map(found.records.map((r) => [r.key, r]));
+  const monsters = batches.some((b) => b.entries.some((e) => byKey.get(e.key)?.kind === "monster"));
+  if (dumpsDir !== null && !core && monsters) {
+    if (!process.env.DAS_CORE) {
+      throw new UsageError("DAS_CORE is not set: a monster feature's structure gives the engine's own reading (engineReads)");
+    }
+    core = await loadCore(process.env.DAS_CORE);
+  }
   // Every structure is computed before anything is written: a dump that cannot be read leaves no batch behind.
   const structures = dumpsDir === null ? []
-    : batches.map((b) => structuresOf(b, found.records, dumpsDir, { rulable: draft || review }));
+    : batches.map((b) => structuresOf(b, found.records, dumpsDir, { rulable: draft || review, engine: core }));
   mkdirSync(opts.out, { recursive: true });
   if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
   const write = (file, data) => writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);

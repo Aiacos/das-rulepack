@@ -441,7 +441,12 @@ describe("pipeline CLI with DDB Importer's monsters", () => {
   it("batch triage --structure writes a structure for the ddb-importer origin of a monster feature", () => {
     expect(run(["inventory", "TCE", "monster"]).status).toBe(0);
     const priv = join(tmp, "private");
-    const r = run(["batch", "triage", "TCE", "--out", join(tmp, "out"), "--structure", priv]);
+    // Ruling R29: a monster feature's structure gives the engine's own reading, so the cut needs DAS_CORE.
+    if (!process.env.DAS_CORE) {
+      expect(run(["batch", "triage", "TCE", "--out", join(tmp, "out"), "--structure", priv]).status).toBe(2);
+      return;
+    }
+    const r = run(["batch", "triage", "TCE", "--out", join(tmp, "out"), "--structure", priv], { DAS_CORE: process.env.DAS_CORE });
     expect(r.status, r.stderr).toBe(0);
     const raw = readFileSync(join(priv, readdirSync(priv)[0]), "utf8");
     expect(raw).not.toContain(MARK);
