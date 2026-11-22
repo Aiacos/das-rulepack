@@ -40,98 +40,137 @@ export const FIX_ENUMS = Object.freeze({
 });
 
 export const FIX_MAX_ITEMS = 12;
-const ID = /^[A-Za-z0-9]{16}$/;
+
+// A type is a plain, serializable description (the vocabulary file gives it to drafters as it is, enums resolved) and ONE
+// interpreter, `typeProblem`, checks a value against it: the check and the vocabulary cannot drift apart.
+//   { type: "number" }                  a finite number or a short formula (assert.mjs isFormula)
+//   { type: "numeric" }                 a finite number
+//   { type: "boolean" }
+//   { type: "id" }                      a 16-character id
+//   { type: "path" }                    a short dotted attribute path
+//   { type: "int", min, max }
+//   { type: "enum", enum: "<FIX_ENUMS name>" }
+//   { type: "either", of: [type, ...] }
+//   { type: "object", keys: { <required key>: type }, optional: { <key>: type } }   closed keys
+//   { type: "list", item: type }        at most FIX_MAX_ITEMS items; `[]` is a list (the guard "it was empty")
+const NUMBER = Object.freeze({ type: "number" });
+const BOOL = Object.freeze({ type: "boolean" });
+const ID = Object.freeze({ type: "id" });
+const enumOf = (name) => Object.freeze({ type: "enum", enum: name });
+const listOf = (item) => Object.freeze({ type: "list", item });
+const object = (keys, optional = {}) => Object.freeze({ type: "object", keys, optional });
+const either = (...of) => Object.freeze({ type: "either", of });
+const PATH = Object.freeze({ type: "path" });
+const ID_RE = /^[A-Za-z0-9]{16}$/;
 const ATTRIBUTE = /^[a-z][A-Za-z0-9]*(\.[A-Za-z0-9]+)*$/;
 // Own properties only: a key named like an inherited one (`constructor`, `toString`...) is never taken for a known key.
 const has = (o, k) => Object.hasOwn(o, k);
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
-
-// A type is a function of a value: null when the value has the type, else what it should have been.
-const num = (v) => ((typeof v === "number" && Number.isFinite(v)) || isFormula(v) ? null : "a number or a short formula");
-const bool = (v) => (typeof v === "boolean" ? null : "a boolean");
-const oneOf = (name) => (v) => (FIX_ENUMS[name].includes(v) ? null : `one of ${FIX_ENUMS[name].join(", ")}`);
-const id = (v) => (typeof v === "string" && ID.test(v) ? null : "a 16-character id");
 // A dotted attribute path (a change key, a consumption target): at most PATH_SEGMENTS segments of at most PATH_SEGMENT
 // characters each (Ruling R19: an identifier is too short to carry a sentence).
 export const PATH_SEGMENTS = 6;
 export const PATH_SEGMENT = 24;
 export const isShortPath = (v) => typeof v === "string" && v.length <= 64 && ATTRIBUTE.test(v)
   && v.split(".").length <= PATH_SEGMENTS && v.split(".").every((p) => p.length <= PATH_SEGMENT);
-const attribute = (v) => (isShortPath(v) ? null
-  : `a dotted attribute path (at most ${PATH_SEGMENTS} segments of at most ${PATH_SEGMENT} characters)`);
-const either = (...types) => (v) => (types.some((t) => t(v) === null) ? null : types.map((t) => t(v)).join(" or "));
-const intIn = (lo, hi) => (v) => (Number.isInteger(v) && v >= lo && v <= hi ? null : `an integer from ${lo} to ${hi}`);
 
-// An object whose keys are closed: `required` and `optional` map each key to its type.
-const object = (required, optional = {}) => {
-  const type = (v) => {
-    if (!isObject(v)) return "an object";
-    for (const k of Object.keys(v)) if (!has(required, k) && !has(optional, k)) return `no key ${k}`;
-    for (const k of Object.keys(required)) if (!has(v, k)) return `a key ${k}`;
-    for (const [k, t] of Object.entries({ ...required, ...optional })) {
-      if (has(v, k)) {
-        const problem = t(v[k]);
-        if (problem) return `${k}: ${problem}`;
+/** Why `value` does not have the type `t` (a description above), or null. */
+export function typeProblem(t, value) {
+  switch (t.type) {
+    case "number": return (typeof value === "number" && Number.isFinite(value)) || isFormula(value) ? null
+      : "a number or a short formula";
+    case "numeric": return Number.isFinite(value) ? null : "a number";
+    case "boolean": return typeof value === "boolean" ? null : "a boolean";
+    case "id": return typeof value === "string" && ID_RE.test(value) ? null : "a 16-character id";
+    case "path": return isShortPath(value) ? null
+      : `a dotted attribute path (at most ${PATH_SEGMENTS} segments of at most ${PATH_SEGMENT} characters)`;
+    case "int": return Number.isInteger(value) && value >= t.min && value <= t.max ? null
+      : `an integer from ${t.min} to ${t.max}`;
+    case "enum": return FIX_ENUMS[t.enum].includes(value) ? null : `one of ${FIX_ENUMS[t.enum].join(", ")}`;
+    case "either": return t.of.some((x) => typeProblem(x, value) === null) ? null
+      : t.of.map((x) => typeProblem(x, value)).join(" or ");
+    case "object": {
+      if (!isObject(value)) return "an object";
+      for (const k of Object.keys(value)) if (!has(t.keys, k) && !has(t.optional, k)) return `no key ${k}`;
+      for (const k of Object.keys(t.keys)) if (!has(value, k)) return `a key ${k}`;
+      for (const [k, x] of Object.entries({ ...t.keys, ...t.optional })) {
+        if (has(value, k)) {
+          const problem = typeProblem(x, value[k]);
+          if (problem) return `${k}: ${problem}`;
+        }
       }
+      return null;
     }
-    return null;
-  };
-  return type;
-};
-// A list of at most FIX_MAX_ITEMS values of one type; `[]` is a list (the guard "was empty").
-const listOf = (item) => {
-  const type = (v) => {
-    if (!Array.isArray(v)) return "a list";
-    if (v.length > FIX_MAX_ITEMS) return `a list of at most ${FIX_MAX_ITEMS} items`;
-    for (const [i, x] of v.entries()) {
-      const problem = item(x);
-      if (problem) return `[${i}]: ${problem}`;
+    case "list": {
+      if (!Array.isArray(value)) return "a list";
+      if (value.length > FIX_MAX_ITEMS) return `a list of at most ${FIX_MAX_ITEMS} items`;
+      for (const [i, x] of value.entries()) {
+        const problem = typeProblem(t.item, x);
+        if (problem) return `[${i}]: ${problem}`;
+      }
+      return null;
     }
-    return null;
-  };
-  type.list = true;
-  return type;
-};
+    default: throw new Error(`unknown fix type ${JSON.stringify(t.type)}`);
+  }
+}
 
-const DAMAGE_PART = object({}, { number: num, denomination: num, bonus: num, types: listOf(oneOf("damageTypes")),
-  scaling: object({}, { mode: oneOf("scalingModes"), number: num }) });
-const CONSUMPTION = object({ type: oneOf("consumptionTypes"), value: num },
-  { target: either(id, attribute), scaling: object({}, { mode: oneOf("scalingModes"), formula: num }) });
-const RECOVERY = object({ period: oneOf("recoveryPeriods"), type: oneOf("recoveryTypes") }, { formula: num });
-const EFFECT_REF = object({ _id: id }, { onSave: bool, level: object({}, { min: num, max: num }) });
-const CHANGE = object({ key: attribute, value: num },
-  { type: oneOf("changeTypes"), mode: intIn(0, 5), priority: (v) => (Number.isFinite(v) ? null : "a number") });
+/** A type description with its enums resolved to their words: what the vocabulary file holds (JSON, no functions). */
+export function describeType(t) {
+  switch (t.type) {
+    case "enum": return { type: "enum", values: [...FIX_ENUMS[t.enum]] };
+    case "either": return { type: "either", of: t.of.map(describeType) };
+    case "list": return { type: "list", max: FIX_MAX_ITEMS, item: describeType(t.item) };
+    case "object": return {
+      type: "object",
+      keys: Object.fromEntries(Object.entries(t.keys).map(([k, x]) => [k, describeType(x)])),
+      optional: Object.fromEntries(Object.entries(t.optional).map(([k, x]) => [k, describeType(x)]))
+    };
+    case "int": return { type: "int", min: t.min, max: t.max };
+    default: return { type: t.type };
+  }
+}
+
+const DAMAGE_PART = object({}, { number: NUMBER, denomination: NUMBER, bonus: NUMBER, types: listOf(enumOf("damageTypes")),
+  scaling: object({}, { mode: enumOf("scalingModes"), number: NUMBER }) });
+const CONSUMPTION = object({ type: enumOf("consumptionTypes"), value: NUMBER },
+  { target: either(ID, PATH), scaling: object({}, { mode: enumOf("scalingModes"), formula: NUMBER }) });
+const RECOVERY = object({ period: enumOf("recoveryPeriods"), type: enumOf("recoveryTypes") }, { formula: NUMBER });
+const EFFECT_REF = object({ _id: ID }, { onSave: BOOL, level: object({}, { min: NUMBER, max: NUMBER }) });
+const CHANGE = object({ key: PATH, value: NUMBER },
+  { type: enumOf("changeTypes"), mode: Object.freeze({ type: "int", min: 0, max: 5 }),
+    priority: Object.freeze({ type: "numeric" }) });
 
 const TARGET = {
-  "target.template.type": oneOf("templateTypes"), "target.template.size": num, "target.template.units": oneOf("distanceUnits"),
-  "target.template.count": num, "target.affects.type": oneOf("affectsTypes"), "target.affects.count": num,
-  "target.affects.choice": bool
+  "target.template.type": enumOf("templateTypes"), "target.template.size": NUMBER,
+  "target.template.units": enumOf("distanceUnits"), "target.template.count": NUMBER,
+  "target.affects.type": enumOf("affectsTypes"), "target.affects.count": NUMBER, "target.affects.choice": BOOL
 };
-/** The type of each allowed leaf (draft-keys.mjs FIX_PATHS is their list). */
+/** The type description of each allowed leaf (draft-keys.mjs FIX_PATHS is their list). */
 export const FIX_TYPES = Object.freeze({
   activity: Object.freeze({
-    "range.value": num, "range.units": oneOf("rangeUnits"), "range.long": num, ...TARGET,
-    "duration.value": num, "duration.units": oneOf("timeUnits"), "duration.concentration": bool,
-    "activation.type": oneOf("activationTypes"), "activation.value": num,
-    "save.ability": listOf(oneOf("abilities")), "save.dc.calculation": oneOf("dcCalculations"), "save.dc.formula": num,
-    "damage.onSave": oneOf("onSave"), "damage.parts": listOf(DAMAGE_PART), "damage.includeBase": bool,
-    "healing.number": num, "healing.denomination": num, "healing.bonus": num, "healing.types": listOf(oneOf("healingTypes")),
-    "consumption.targets": listOf(CONSUMPTION), "consumption.spellSlot": bool,
-    "uses.max": num, "uses.recovery": listOf(RECOVERY), "effects": listOf(EFFECT_REF), "attack.bonus": num,
-    "spell.challenge": object({}, { attack: num, save: num, override: bool })
+    "range.value": NUMBER, "range.units": enumOf("rangeUnits"), "range.long": NUMBER, ...TARGET,
+    "duration.value": NUMBER, "duration.units": enumOf("timeUnits"), "duration.concentration": BOOL,
+    "activation.type": enumOf("activationTypes"), "activation.value": NUMBER,
+    "save.ability": listOf(enumOf("abilities")), "save.dc.calculation": enumOf("dcCalculations"), "save.dc.formula": NUMBER,
+    "damage.onSave": enumOf("onSave"), "damage.parts": listOf(DAMAGE_PART), "damage.includeBase": BOOL,
+    "healing.number": NUMBER, "healing.denomination": NUMBER, "healing.bonus": NUMBER,
+    "healing.types": listOf(enumOf("healingTypes")),
+    "consumption.targets": listOf(CONSUMPTION), "consumption.spellSlot": BOOL,
+    "uses.max": NUMBER, "uses.recovery": listOf(RECOVERY), "effects": listOf(EFFECT_REF), "attack.bonus": NUMBER,
+    "spell.challenge": object({}, { attack: NUMBER, save: NUMBER, override: BOOL })
   }),
   item: Object.freeze(Object.fromEntries([
-    ["uses.max", num], ["uses.recovery", listOf(RECOVERY)], ["uses.autoDestroy", bool], ["duration.value", num],
-    ["duration.units", oneOf("timeUnits")], ["range.value", num], ["range.units", oneOf("rangeUnits")],
-    ...Object.entries(TARGET), ["properties", listOf(oneOf("itemProperties"))], ["attunement", oneOf("attunement")],
-    ["damage.base.denomination", num]
+    ["uses.max", NUMBER], ["uses.recovery", listOf(RECOVERY)], ["uses.autoDestroy", BOOL], ["duration.value", NUMBER],
+    ["duration.units", enumOf("timeUnits")], ["range.value", NUMBER], ["range.units", enumOf("rangeUnits")],
+    ...Object.entries(TARGET), ["properties", listOf(enumOf("itemProperties"))], ["attunement", enumOf("attunement")],
+    ["damage.base.denomination", NUMBER]
   ].map(([leaf, type]) => [`system.${leaf}`, type]))),
   effect: Object.freeze({
-    "duration.seconds": num, "duration.rounds": num, "duration.turns": num, "duration.value": num,
-    "duration.units": oneOf("timeUnits"), "duration.expiry": oneOf("expiry"), "statuses": listOf(oneOf("statuses")),
-    "system.changes": listOf(CHANGE), "changes": listOf(CHANGE), "transfer": bool, "disabled": bool
+    "duration.seconds": NUMBER, "duration.rounds": NUMBER, "duration.turns": NUMBER, "duration.value": NUMBER,
+    "duration.units": enumOf("timeUnits"), "duration.expiry": enumOf("expiry"), "statuses": listOf(enumOf("statuses")),
+    "system.changes": listOf(CHANGE), "changes": listOf(CHANGE), "transfer": BOOL, "disabled": BOOL
   })
 });
 
-/** Why `value` does not have the type of the leaf, or null. `type` is one of FIX_TYPES' values. */
-export const typeProblem = (type, value) => type(value);
+/** The vocabulary's description of every allowed leaf: `{ activity|item|effect: { <path>: description } }`. */
+export const describeFixTypes = () => Object.fromEntries(Object.entries(FIX_TYPES)
+  .map(([where, leaves]) => [where, Object.fromEntries(Object.entries(leaves).map(([k, t]) => [k, describeType(t)]))]));

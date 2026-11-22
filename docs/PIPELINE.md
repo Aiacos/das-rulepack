@@ -346,15 +346,18 @@ The Claude Code session gives each reader agent one batch file, its structure fi
 
 `batch draft <BOOK> --out <dir> --structure <private dir>` cuts the records with verdict `entry` and no `rule`: 20 entries
 per batch (`--size`), one kind per batch, kinds in the order spell, feat, option, species, background, item, feature,
-monster, records with a matched official item first. A record is left out (and counted on the console, by reason) when it
-is already ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, or is a monster feature with no
-creature to scope it to. It writes `<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`),
-`<private dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-derived, private) and
-`<dir>/draft-vocabulary.json` (engine words only: safe to commit). A batch is `{ id, stage: "draft", allowed, vocabulary,
-entries }`; `allowed` is `DRAFT_KEYS` with the slot each key's ids sit in. An entry is the triage entry plus `identifier` (a
-monster feature's is scoped to its creature: `<book>-<creature>-<feature>`), `keys` and `similar` (the triage reader's
-hints), `why` (the triage reason) and `examples` (at most two `{ identifier, entry }`, drafter keys only, from DAS · Core or
-the pack's gated rules). The text is never in the batch: it is in the private cache, named by `textSha`.
+monster, records with a matched official item first. A record is left out (and counted on the console, by reason) when it is
+already ruled, queued in `registry/drafts-queue.json`, has no text, has no matched item, or is a monster feature that can
+never pass the gates (no creature to scope it to; "no official item"; "shared embedded id, waits on upstream"). It writes
+`<dir>/<book>-draft-<NNN>.json` (numbering continues after the highest in `<dir>`), `<private
+dir>/<book>-draft-<NNN>.structure.json` (the same file as for triage: premium-derived, private) and
+`<dir>/draft-vocabulary.json` (engine words only, and for every allowed data-fix path its type as a declarative description,
+`fixes.types`, generated from the table that also checks it: safe to commit). A batch is `{ id, stage: "draft", allowed,
+vocabulary, entries }`; `allowed` is `DRAFT_KEYS` with the slot each key's ids sit in. An entry is the triage entry plus
+`identifier` (a monster feature's is scoped to its creature: `<book>-<creature>-<feature>`), `keys` and `similar` (the triage
+reader's hints), `why` (the triage reason) and `examples` (at most two `{ identifier, entry }`, drafter keys only, from DAS ·
+Core or the pack's gated rules, stripped to ids, engine words, formulas and numbers: no `adds`, `free` or label). The text is
+never in the batch: it is in the private cache, named by `textSha`.
 
 The Claude Code session gives each drafter agent one batch file, its structure file, `draft-vocabulary.json` and this brief.
 

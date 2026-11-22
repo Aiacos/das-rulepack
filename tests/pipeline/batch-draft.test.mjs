@@ -4,7 +4,8 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { cutDraftBatches, draftSkipReason, draftVocabulary } from "../../tools/pipeline/batch.mjs";
-import { DRAFT_KEYS } from "../../tools/pipeline/draft-keys.mjs";
+import { DRAFT_KEYS, checkDraftKeys } from "../../tools/pipeline/draft-keys.mjs";
+import { typeProblem } from "../../tools/pipeline/fix-types.mjs";
 import { saveBook, saveQueue } from "../../tools/pipeline/registry.mjs";
 
 // Synthetic fixtures only: invented entries.
@@ -61,6 +62,19 @@ describe("cutDraftBatches", () => {
     expect(b.entries.map((e) => [e.key, e.identifier])).toEqual([["tst:monster:a/b", "tst-beast-bite"]]);
   });
 
+  it("leaves out a monster feature that can never pass the gates, each under its own reason", () => {
+    const base = { kind: "monster", name: "Bite", owner: "Beast" };
+    const shared = rec(1, { ...base, key: "tst:monster:a/b", items: [item({ embeddedShared: true })] });
+    const ddbOnly = rec(2, { ...base, key: "tst:monster:c/d", items: [item({ origin: "ddb-importer" })] });
+    const fine = rec(3, { ...base, key: "tst:monster:e/f" });
+    expect([shared, ddbOnly, fine].map((r) => draftSkipReason(r, {}))).toEqual([
+      "monster feature: shared embedded id, waits on upstream", "monster feature: no official item", null
+    ]);
+    expect(cutDraftBatches([shared, ddbOnly, fine], { core })[0].entries.map((e) => e.key)).toEqual(["tst:monster:e/f"]);
+    // Only monsters: a spell with a shared flag or without an official item is still drafted.
+    expect(draftSkipReason(rec(4, { items: [item({ origin: "ddb-importer" })] }), {})).toBeNull();
+  });
+
   it("puts records with a matched official item first, one kind per batch, kinds in the ruled order", () => {
     const ddb = rec(1, { items: [item({ origin: "ddb-importer" })] });
     const records = [ddb, rec(2), rec(3, { kind: "feat", key: "tst:feat:s03" }), rec(4, { kind: "spell" })];
@@ -110,6 +124,43 @@ describe("cutDraftBatches", () => {
       .not.toBe("packed");
   });
 
+  it("examples carry ids, engine words and formulas only: labels, comments and prose are stripped, adds is never there", () => {
+    const shipped = {
+      "label-rule": {
+        saveDamage: { Aa11Bb22Cc33Dd44: "half", note: "Reste en etat de choc" },
+        triggers: [{ on: "failedSave", do: [{ type: "status", status: "prone", label: "Une etiquette", amount: "2d6+3" }] }],
+        gmAlert: "prose", adds: "NOT HERE", free: "NOT HERE"
+      }
+    };
+    const legacy = {
+      ...rec(9, { identifier: "old-rule", legacy: true }),
+      rule: { handledIn: "table", adds: "LEGACY ADDS TEXT", origins: ["official"], assert: [{ free: "LEGACY FREE" }], entry: {
+        halfOnMiss: true, noOpportunity: "Texte libre francais qui traine" } }
+    };
+    const pointer = rec(1, {
+      evidence: { triaged: { by: "reader-1", confidence: 0.9, keys: ["saveDamage", "triggers"], similar: ["old-rule"] } }
+    });
+    const [b] = cutDraftBatches([pointer], { core: { ...core, shipped }, ruled: [legacy], gated: () => true });
+    const out = JSON.stringify(b);
+    for (const bad of ["NOT HERE", "LEGACY", "etat de choc", "etiquette", "francais", "prose"]) expect(out).not.toContain(bad);
+    const strings = [];
+    const walk = (n) => {
+      if (typeof n === "string") strings.push(n);
+      else if (n && typeof n === "object") Object.values(n).forEach(walk);
+    };
+    b.entries[0].examples.forEach((e) => walk(e.entry));
+    const words = new Set([...core.moments, ...core.stepTypes, ...core.statuses]);
+    for (const str of strings) {
+      const ok = /^[A-Za-z0-9]{16}$/.test(str) || words.has(str) || /^\d+d\d+([+-]\d+)?$/.test(str)
+        || ["half", "none"].includes(str);
+      expect(ok, str).toBe(true);
+    }
+    expect(b.entries[0].examples.map((e) => e.identifier)).toContain("label-rule");
+    expect(b.entries[0].examples.find((e) => e.identifier === "label-rule").entry.triggers[0].do[0]).toEqual({
+      type: "status", status: "prone", amount: "2d6+3"
+    });
+  });
+
   it("no text is embedded: only the fingerprint, and no field beyond the triage fields", () => {
     const text = { sha256: sha(1), source: "5etools", chars: 5, body: "SECRET WORDS" };
     const [b] = cutDraftBatches([rec(1, { text })], { core });
@@ -118,6 +169,58 @@ describe("cutDraftBatches", () => {
     expect(Object.keys(b.entries[0]).sort()).toEqual([
       "edition", "examples", "identifier", "items", "key", "keys", "kind", "name", "page", "similar", "textSha", "why"
     ]);
+  });
+});
+
+// A value built from a vocabulary description alone.
+const sample = (d) => {
+  switch (d.type) {
+    case "number": case "numeric": return 1;
+    case "boolean": return true;
+    case "id": return "Ab12Cd34Ef56Gh78";
+    case "path": return "abc.def";
+    case "int": return d.min;
+    case "enum": return d.values[0];
+    case "either": return sample(d.of[0]);
+    case "list": return [sample(d.item)];
+    case "object": return Object.fromEntries(Object.entries(d.keys).map(([k, x]) => [k, sample(x)]));
+    default: throw new Error(`unknown description ${d.type}`);
+  }
+};
+const ACT = "Ac00Ac11Ac22Ac33";
+
+describe("draftVocabulary: the type of every allowed fix path", () => {
+  const v = draftVocabulary(core);
+  const cases = Object.entries(v.fixes.types).flatMap(([where, leaves]) => Object.entries(leaves).map(([leaf, d]) => {
+    const path = where === "activity" ? `system.activities.${ACT}.${leaf}` : leaf;
+    return { where, leaf, d, fix: { path, ...(where === "effect" ? { effect: "Ef00Ef11Ef22Ef33" } : {}) } };
+  }));
+
+  it("describes every path of FIX_PATHS, and only those", () => {
+    for (const [where, paths] of Object.entries(v.fixes.paths)) {
+      expect(Object.keys(v.fixes.types[where]).sort(), where).toEqual([...paths].sort());
+    }
+  });
+
+  it("a value built from the description is accepted by checkDraftKeys, for every path (value and from)", () => {
+    expect(cases.length).toBeGreaterThan(40);
+    for (const { where, leaf, d, fix } of cases) {
+      const entry = { dataFixes: [{ ...fix, value: sample(d), from: sample(d) }] };
+      expect(checkDraftKeys(entry, { origins: ["official"], kind: "spell" }), `${where} ${leaf}`).toEqual([]);
+    }
+  });
+
+  it("the description is plain JSON: no function, and a list or enum states its items or words", () => {
+    expect(JSON.parse(JSON.stringify(v.fixes.types))).toEqual(v.fixes.types);
+    expect(v.fixes.types.activity["range.units"]).toMatchObject({ type: "enum" });
+    expect(v.fixes.types.activity["range.units"].values).toContain("ft");
+    expect(v.fixes.types.activity["damage.parts"]).toMatchObject({ type: "list", item: { type: "object" } });
+    expect(v.fixes.types.activity["range.value"]).toEqual({ type: "number" });
+  });
+
+  it("the one interpreter refuses what the description does not describe", () => {
+    expect(typeProblem({ type: "enum", enum: "rangeUnits" }, "furlong")).toMatch(/one of/);
+    expect(typeProblem({ type: "list", item: { type: "number" } }, "x")).toBe("a list");
   });
 });
 

@@ -2,9 +2,10 @@
 // Text is referenced by fingerprint (`textSha`), never embedded, so a batch file is safe to commit.
 import { groupBy, stateOf } from "./registry.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
-import { DRAFT_KEYS, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords } from "./draft-keys.mjs";
-import { FIX_ENUMS } from "./fix-types.mjs";
+import { DRAFT_KEYS, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural } from "./draft-keys.mjs";
+import { FIX_ENUMS, describeFixTypes } from "./fix-types.mjs";
 import * as assertVocabulary from "./assert.mjs";
+import { isFormula } from "./assert.mjs";
 import { monsterIdentifier } from "./identifiers.mjs";
 
 export const DEFAULT_BATCH_SIZE = 40;
@@ -84,15 +85,46 @@ export function draftSkipReason(r, { queued = new Set() } = {}) {
       return "monster feature that cannot be scoped";
     }
     try { monsterIdentifier(r); } catch { return "monster feature that cannot be scoped"; }
+    // The gates would fail it whatever is drafted (gates.mjs `ids`: SHARED_EMBEDDED; an official item is what the ids bind to).
+    const official = matchedItems(r).filter((i) => i.origin === "official");
+    if (!official.length) return "monster feature: no official item";
+    if (official.some((i) => i.embeddedShared)) return "monster feature: shared embedded id, waits on upstream";
   }
   return null;
 }
 
-// What a drafter sees of an example rule: the drafter keys only (no prose key of the engine), short strings, within the word
-// budget. null when nothing of it is left or it would not pass for a drafter's own entry.
-function exampleEntry(entry) {
+// The strings an example may keep: a 16-character id, a word of the engine's vocabularies, a short formula or dice. Anything
+// else (a label, a comment in French, a sentence) is stripped, with the property or list item that held it.
+const ID16 = /^[A-Za-z0-9]{16}$/;
+const DICE = /^\d+d\d+([+-]\d+)?$/;
+const KEY = /^[A-Za-z0-9_]{1,24}$/;
+function wordsOf(core) {
+  const set = new Set(core?.vocabulary ?? []);
+  for (const name of ["moments", "stepTypes", "facts", "statuses", "creatureTypes", "moveModes", "effectEnds", "damageTypes",
+    "abilities"]) for (const w of core?.[name] ?? []) set.add(w);
+  return set;
+}
+const plainValue = (s, words) => ID16.test(s) || words.has(s) || DICE.test(s) || isFormula(s) || isStructural(s);
+function stripProse(node, words) {
+  if (typeof node === "string") return plainValue(node, words) ? node : undefined;
+  if (Array.isArray(node)) return node.map((x) => stripProse(x, words)).filter((x) => x !== undefined);
+  if (node !== null && typeof node === "object") {
+    const out = {};
+    for (const [k, v] of Object.entries(node)) {
+      if (!KEY.test(k)) continue;
+      const kept = stripProse(v, words);
+      if (kept !== undefined) out[k] = kept;
+    }
+    return out;
+  }
+  return node;
+}
+
+// What a drafter sees of an example rule: the drafter keys only (no prose key of the engine), nothing but ids, engine words,
+// formulas and numbers, within the word budget. null when nothing of it is left.
+function exampleEntry(entry, words) {
   if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return null;
-  const kept = Object.fromEntries(Object.entries(entry).filter(([k]) => Object.hasOwn(DRAFT_KEYS, k)));
+  const kept = stripProse(Object.fromEntries(Object.entries(entry).filter(([k]) => Object.hasOwn(DRAFT_KEYS, k))), words);
   if (!Object.keys(kept).length) return null;
   const long = (n) => (typeof n === "string" ? n.length > EXAMPLE_STRING_MAX
     : Array.isArray(n) ? n.some(long) : n !== null && typeof n === "object" ? Object.entries(n).some(([k, v]) => long(k) || long(v))
@@ -108,7 +140,7 @@ function exampleCandidates(records, { core, ruled = records, gated = standsGated
   for (const r of ruled) if (r.rule?.entry && gated(r)) out.set(r.identifier, r.rule.entry);
   const byKey = new Map(ruled.concat(records).map((r) => [r.key, r.identifier]));
   const candidates = [...out].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
-    .map(([identifier, entry]) => ({ identifier, entry: exampleEntry(entry) })).filter((c) => c.entry);
+    .map(([identifier, entry]) => ({ identifier, entry: exampleEntry(entry, wordsOf(core)) })).filter((c) => c.entry);
   return { candidates, resolve: (s) => byKey.get(s) ?? s };
 }
 
@@ -186,7 +218,10 @@ export function draftVocabulary(core) {
       rollFor: copy(assertVocabulary.ROLL_FOR), affects: copy(assertVocabulary.AFFECTS),
       givenFields: copy(assertVocabulary.GIVEN_FIELDS), expectFields: copy(assertVocabulary.EXPECT_FIELDS)
     },
-    fixes: { paths: JSON.parse(JSON.stringify(FIX_PATHS)), enums: JSON.parse(JSON.stringify(FIX_ENUMS)), max: MAX_FIXES },
+    fixes: {
+      paths: JSON.parse(JSON.stringify(FIX_PATHS)), enums: JSON.parse(JSON.stringify(FIX_ENUMS)), types: describeFixTypes(),
+      max: MAX_FIXES
+    },
     limits: {
       addsMax: ADDS_MAX, originMax: ORIGIN_MAX, freeMax: assertVocabulary.FREE_MAX, quoteWords: 8, entryWords: ENTRY_WORD_BUDGET
     }
