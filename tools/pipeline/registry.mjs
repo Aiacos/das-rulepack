@@ -1,6 +1,6 @@
 // Registry records, their fingerprints and derived state, and their on-disk form (one JSON file per book).
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { VERDICTS, STATES, ORIGINS, MATCHES, KINDS, isReaderHandle, validateRecord } from "./schema.mjs";
 
@@ -67,11 +67,17 @@ const EMITTED_FIELDS = ["identifier", "name", "book", "page", "kind", "alsoIn", 
 /**
  * The fingerprint `evidence.gates.emits` stores: a canonical hash of the record fields its emitted rule is made of, and of
  * `evidence.person` (the signature that lets the gates pass what a drafter may not write: adding or changing it after the
- * gates makes their evidence stale). Absent, it leaves the hash as it was (`canonical` drops undefined fields).
+ * gates makes their evidence stale), and of the draft's `evidence.drafted.person` / `because` stamp (Ruling R15: removing it
+ * makes the evidence stale too). Absent, they leave the hash as it was (`canonical` drops undefined fields).
  */
 export const emittedFingerprint = (record) => ruleFingerprint({
-  ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person
+  ...Object.fromEntries(EMITTED_FIELDS.map((f) => [f, record?.[f]])), person: record?.evidence?.person,
+  forPerson: forPersonOf(record?.evidence?.drafted)
 });
+// The draft's "a person reads it at review" stamp (Ruling R15; schema.mjs DRAFTED_FOR_PERSON), or undefined when it has none.
+const forPersonOf = (d) =>
+  (d !== null && typeof d === "object" && (d.person !== undefined || d.because !== undefined)
+    ? { person: d.person, because: d.because } : undefined);
 
 /**
  * The items the gates check, as `evidence.gates.items` records them: per origin the rule names, the data fingerprint of the
@@ -156,6 +162,8 @@ export function legacyProblem(record, legacy) {
 export const hasLegacyStanding = (record, legacy) => record?.legacy === true && legacyProblem(record, legacy) === null;
 
 const fileOf = (dir, code) => join(dir, `${code.toLowerCase()}.json`);
+/** The file of a book in the registry folder. */
+export const bookFile = fileOf;
 
 export function loadBook(dir, code) {
   const { book, note, records } = JSON.parse(readFileSync(fileOf(dir, code), "utf8"));
@@ -191,14 +199,49 @@ export function checkBook({ book, records }) {
 }
 
 // `note` is the book-level comment (the header of the generated module); it is written only when there is one.
-export function saveBook(dir, { book, note, records }) {
+/** The content of a book file (records sorted by key, each with its derived state); throws when checkBook refuses it. */
+export function bookText({ book, note, records }) {
   const invalid = checkBook({ book, records });
   if (invalid) throw new Error(invalid);
   const sorted = [...records].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
   const withState = sorted.map(({ state, ...r }) => ({ ...r, state: stateOf(r) }));
   const out = { book, ...(note === undefined ? {} : { note }), records: withState };
+  return `${JSON.stringify(out, null, 2)}\n`;
+}
+
+export function saveBook(dir, { book, note, records }) {
+  const text = bookText({ book, note, records });
   mkdirSync(dir, { recursive: true });
-  writeFileSync(fileOf(dir, book), `${JSON.stringify(out, null, 2)}\n`);
+  writeFileSync(fileOf(dir, book), text);
+}
+
+/**
+ * Writes several files as one step: every file is first written under a temporary name beside it, then all are renamed over
+ * their targets. A write that fails removes the temporary files already written and throws: no target has changed. `write`,
+ * `rename` and `remove` are injectable for tests. A rename is atomic per file on one file system; should one fail after
+ * others succeeded, the error names what was and was not replaced.
+ */
+export function writeFilesAtomically(files, { write = writeFileSync, rename = renameSync, remove = rmSync } = {}) {
+  const temporary = [];
+  try {
+    for (const [path, text] of files) {
+      const tmp = `${path}.${process.pid}.tmp`;
+      temporary.push(tmp);
+      write(tmp, text);
+    }
+  } catch (e) {
+    for (const tmp of temporary) { try { remove(tmp, { force: true }); } catch { /* best effort */ } }
+    throw e;
+  }
+  const done = [];
+  files.forEach(([path], i) => {
+    try { rename(temporary[i], path); done.push(path); } catch (e) {
+      const left = files.map(([p]) => p).filter((p) => !done.includes(p));
+      for (const tmp of temporary.slice(i)) { try { remove(tmp, { force: true }); } catch { /* best effort */ } }
+      throw new Error(`rename failed at ${path}: ${e.message}; replaced: ${done.join(", ") || "nothing"}; not replaced: `
+        + left.join(", "));
+    }
+  });
 }
 
 const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review"];
@@ -278,9 +321,12 @@ export function loadQueue(dir, name) {
   return list;
 }
 
-/** Writes a queue, every entry checked, sorted by key; one key appears once. */
-export function saveQueue(dir, name, entries) {
-  const file = queueFile(dir, name);
+/** The file of a queue (`name`: drafts or review) in the registry folder. */
+export const queuePath = (dir, name) => queueFile(dir, name);
+
+/** The content of a queue file: every entry checked, sorted by key; one key appears once. Throws otherwise. */
+export function queueText(name, entries) {
+  queueFile("", name);
   const keys = new Set();
   for (const e of entries) {
     const errors = validateQueueEntry(e);
@@ -289,6 +335,12 @@ export function saveQueue(dir, name, entries) {
     keys.add(e.key);
   }
   const sorted = [...entries].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  return `${JSON.stringify(sorted, null, 2)}\n`;
+}
+
+/** Writes a queue, every entry checked, sorted by key; one key appears once. */
+export function saveQueue(dir, name, entries) {
+  const text = queueText(name, entries);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(file, `${JSON.stringify(sorted, null, 2)}\n`);
+  writeFileSync(queueFile(dir, name), text);
 }

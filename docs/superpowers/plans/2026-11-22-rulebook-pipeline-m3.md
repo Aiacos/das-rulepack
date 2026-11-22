@@ -124,6 +124,21 @@ content entry by entry), `adapter/content.mjs` (`identifierOf`: sources, then `s
 - **R20 — `docs/owners.json` is protected by code review only** (a single-owner repository: CODEOWNERS adds nothing), and
   `evidence.person` is a visible, reviewable claim, not a cryptographic signature. Wrong: anyone who can commit can add an
   owner or sign as one; the commit that does it is in the history, which is the control.
+- **R21 — The official origin may be uncovered.** A rule may list `official` under `rule.uncovered` and name only
+  `ddb-importer` (some official items carry no activity or effect to bind the entry to). Such a draft is stamped for a person
+  at review exactly like `noReactions` (`evidence.drafted.person: true`, `because: "official-uncovered"`; `DRAFTED_FOR_PERSON`
+  in `schema.mjs`, required by the schema, covered by `emits`). Wrong if the official item does carry what the rule needs: the
+  rule then misses the official module's item, which the person at review is there to catch (cost: one person's reading per
+  such rule; if they are many, the brief needs a sharper "why uncovered" rule).
+- **R22 — An identifier is shared per edition.** As the rule-based `core` triage counts identifiers per edition, two records
+  clash on an identifier (or alias) only within one edition: a 2024 record whose only twins are of another edition is cut by
+  `batch draft`, applied by `ingest --draft` and accepted by the `unique` gate as long as no twin of another edition has a
+  rule under it. Once one has, a twin of another edition that gets a rule later fails `unique` ("needs an edition-scoped
+  identifier bound through sources", a later task), is left out by `batch draft` and queued by `ingest --draft`
+  ("identifier ruled for another edition"). One function decides it (`gates.mjs` `identifierTwins`). Wrong if the older
+  printing differs: the engine finds an entry by identifier whatever the edition, so the 2024 rule also applies to an item of
+  the older printing that carries the same identifier (as the engine's own entries already do); until that record gets its
+  own scoped rule, the 2024 rule stands in for it.
 
 ## What a drafter may write (engine limits)
 
@@ -304,6 +319,11 @@ two books or runs sharing one `--structure` folder can overwrite each other (as 
       then `npm run gates` on a synthetic registry gives `gated`; commit `Pipeline: ingest drafted rules`.
 
 ### Task 6: Independent review — `batch review`, `ingest --review`
+
+- (Added with Task 5's fixes.) Every record whose `evidence.drafted` carries `person: true` (`because: "noReactions"`, Ruling
+  R15, or `because: "official-uncovered"`, Ruling R21; stamped by `ingest --draft`, required by the schema, covered by
+  `emits`) goes to `review-queue.json` whatever the review says, agreement included: `ingest --review` never writes
+  `evidence.reviewed.agrees: true` for it.
 
 **Files:** create `tools/pipeline/review.mjs`; modify `batch.mjs`, `cli.mjs`, `docs/PIPELINE.md` (stage 5, reviewer brief); test
 `tests/pipeline/review.test.mjs`.

@@ -3,8 +3,8 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSyn
 import { dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  BOOK_CODE, NOT_BOOKS, QUEUE_FILES, canonical, checkBook, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue, saveBook,
-  validateTriageQueueEntry
+  BOOK_CODE, NOT_BOOKS, QUEUE_FILES, bookFile, bookText, canonical, groupBy, isReservedBook, loadBook, loadLegacy, loadQueue,
+  queuePath, queueText, saveBook, validateTriageQueueEntry, writeFilesAtomically
 } from "./registry.mjs";
 import { readEntries } from "./dataset.mjs";
 import { readMonsters } from "./monsters.mjs";
@@ -23,9 +23,11 @@ import {
 } from "./triage.mjs";
 import {
   cutBatches, cutDraftBatches, DEFAULT_BATCH_SIZE, DRAFT_BATCH_SIZE, draftReport, draftSkipReason, draftVocabulary,
-  highestBatches
+  highestBatches, identifierClashReasons
 } from "./batch.mjs";
 import { DRAFT_KEYS } from "./draft-keys.mjs";
+import { ingestDrafts } from "./draft.mjs";
+import { forbiddenKeyIn } from "./intake.mjs";
 import { structureOf } from "./structure.mjs";
 import { hasText, readText } from "./text.mjs";
 
@@ -450,12 +452,14 @@ async function batchCommand([stage, book, ...rest]) {
       throw new UsageError(`${found.book}: no actor in its package's dumps (RULEPACK_DUMPS): monsters cannot be checked`);
     }
     embedded = embeddedIndex(actors);
+    // The records the unique gate would fail whatever is drafted (a DAS · Core identifier, one shared with another record).
+    const clashes = identifierClashReasons(every, core.identifiers);
     const textOf = (r) => (r.text && hasText(textDir, r.text.sha256) ? readText(textDir, r.text.sha256) : null);
     batches = cutDraftBatches(found.records, {
-      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report
+      size, kind: opts.kind, after, queued, core, ruled: every, embedded, textOf, report, clashes
     });
     for (const r of found.records.filter((x) => x.verdict === "entry" && (!opts.kind || x.kind === opts.kind))) {
-      const why = draftSkipReason(r, { queued, embedded });
+      const why = draftSkipReason(r, { queued, embedded, clashes });
       if (why) left[why] = (left[why] ?? 0) + 1;
     }
     for (const [why, n] of Object.entries(left).sort()) console.log(`left out: ${n} entry records (${why})`);
@@ -501,59 +505,75 @@ function nextQueue(dir, queued, applied) {
   return next.length || existsSync(file) ? `${JSON.stringify(next, null, 2)}\n` : null;
 }
 
-// Saves what an ingest changed: the books that hold `changed` keys, then registry/queue.json. Everything is checked before
-// anything is written (every book as `saveBook` does, the new queue); when something is invalid nothing is written, the reason
-// is printed and the exit code is 1. A write that fails is reported with what was and was not written. Returns true when saved.
-function commitIngest(books, all, changed, queued, applied) {
+// The next content of registry/drafts-queue.json: merged by key, the keys that were applied leave it. Null when unchanged.
+function nextDraftsQueue(dir, queued, applied) {
+  const current = loadQueue(dir, "drafts");
+  const byKey = new Map(current.filter((q) => !applied.includes(q.key)).map((q) => [q.key, q]));
+  for (const q of queued) byKey.set(q.key, q);
+  if (!queued.length && byKey.size === current.length) return null;
+  return queueText("drafts", [...byKey.values()]);
+}
+
+// Saves what an ingest changed: the books that hold `changed` keys, then the queue (`queue`: "triage" for registry/queue.json,
+// "drafts" for registry/drafts-queue.json). Everything is checked before anything is written (every book as `saveBook` does,
+// the new queue), then every file is written under a temporary name and all are renamed (registry.mjs writeFilesAtomically):
+// when something is invalid or a write fails nothing is changed, the reason is printed and the exit code is 1. Returns true
+// when saved.
+function commitIngest(books, all, changed, queued, applied, { queue: kind = "triage" } = {}) {
   const touched = new Set(all.filter((r) => changed.includes(r.key)).map((r) => r.book));
   const pending = books.filter((b) => touched.has(b.book))
     .map((b) => ({ book: b.book, note: b.note, records: all.filter((r) => r.book === b.book) }));
-  let queue;
+  const files = [];
   try {
     for (const b of pending) {
-      const invalid = checkBook(b);
-      if (invalid) throw new Error(`book ${b.book}: ${invalid}`);
+      try { files.push([bookFile(REGISTRY, b.book), bookText(b)]); } catch (e) { throw new Error(`book ${b.book}: ${e.message}`); }
     }
-    queue = (queued.length || applied.length) ? nextQueue(REGISTRY, queued, applied) : null;
+    if (kind === "drafts") {
+      const text = (queued.length || applied.length) ? nextDraftsQueue(REGISTRY, queued, applied) : null;
+      if (text !== null) files.push([queuePath(REGISTRY, "drafts"), text]);
+    } else {
+      const text = (queued.length || applied.length) ? nextQueue(REGISTRY, queued, applied) : null;
+      if (text !== null) files.push([join(REGISTRY, "queue.json"), text]);
+    }
   } catch (e) {
     if (e instanceof UsageError) throw e;
     console.error(`Nothing was written: ${e.message}`);
     process.exitCode = 1;
     return false;
   }
-  const done = [];
-  const steps = [...pending.map((b) => [`book ${b.book}`, () => saveBook(REGISTRY, b)])];
-  if (queue !== null) {
-    steps.push(["queue.json", () => {
-      mkdirSync(REGISTRY, { recursive: true });
-      writeFileSync(join(REGISTRY, "queue.json"), queue);
-    }]);
-  }
-  for (const [name, write] of steps) {
-    try { write(); done.push(name); } catch (e) {
-      const left = steps.map(([n]) => n).filter((n) => !done.includes(n));
-      const written = done.join(", ") || "nothing";
-      console.error(`Write failed at ${name}: ${e.message}\nWritten: ${written}\nNot written: ${left.join(", ")}`);
-      process.exitCode = 1;
-      return false;
-    }
+  if (!files.length) return true;
+  try {
+    mkdirSync(REGISTRY, { recursive: true });
+    writeFilesAtomically(files);
+  } catch (e) {
+    console.error(`Write failed: ${e.message}`);
+    process.exitCode = 1;
+    return false;
   }
   return true;
 }
 
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
-  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third] | ingest --settle-unsure [--min <n>]";
-  const modes = ["--third", "--second", "--overwrite", "--settle-unsure"].filter((m) => args.includes(m));
+  const usage = "Usage: ingest <results-file> [--overwrite | --second | --third | --draft --batch <batch file>]"
+    + " | ingest --settle-unsure [--min <n>]";
+  const modes = ["--third", "--second", "--overwrite", "--settle-unsure", "--draft", "--review"].filter((m) => args.includes(m));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const [mode] = modes;
+  if (mode === "--review") throw new UsageError("ingest --review is not built yet");
   const rest = [];
   let min = null;
+  let batchFile = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === "--min") { min = args[(i += 1)] ?? ""; continue; }
+    if (args[i] === "--batch") { batchFile = args[(i += 1)] ?? ""; continue; }
     if (!modes.includes(args[i])) rest.push(args[i]);
   }
   if (min !== null && mode !== "--settle-unsure") throw new UsageError("--min goes with --settle-unsure only");
+  if (batchFile !== null && mode !== "--draft") throw new UsageError("--batch goes with --draft only");
+  if (mode === "--draft" && !batchFile) {
+    throw new UsageError(`${usage}\n--draft needs --batch <the batch file the results answer>`);
+  }
   if (mode === "--settle-unsure") {
     const n = min === null ? 0.6 : (min.trim() === "" || min !== min.trim() ? NaN : Number(min));
     if (rest.length || !(n >= 0.5 && n < 0.7)) {
@@ -576,6 +596,14 @@ async function ingestCommand(args) {
   const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
   if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
   if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
+  const forbidden = forbiddenKeyIn(input);
+  if (forbidden) {
+    throw new UsageError(`${file}: a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden}): not a results file`);
+  }
+  if (mode === "--draft") {
+    const offered = offeredKeys(input.batch, batchFile);
+    return ingestDraftCommand(input, { textDir, core: await loadCore(coreDir), offered });
+  }
   const { entryKeys } = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
   if (second) return ingestSecondCommand(books, input, { textDir, entryKeys });
@@ -584,6 +612,53 @@ async function ingestCommand(args) {
     textDir, by: input.by, overwrite, entryKeys, queue: queueEntries(REGISTRY)
   });
   if (!commitIngest(books, out.records, out.applied, out.queued, out.applied)) return;
+  console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
+  if (out.rejected.length) process.exitCode = 1;
+}
+
+// `ingest <results-file> --draft`: drafted rules. Applied rules are written with the state `drafted` (`gates` decides the rest);
+// person, code and engine outcomes and low-confidence rules go to registry/drafts-queue.json; books and that queue are saved in
+// one step. A monster feature needs the actors of its book's package (RULEPACK_DUMPS) to tell a shared embedded id.
+// The keys a draft batch file offers: its id must be the results file's `batch`, of the form `<book>-draft-<NNN>`, its stage
+// `draft`, and every entry a key of that book.
+function offeredKeys(id, file) {
+  const m = /^([a-z][a-z0-9]{1,9})-draft-(\d{3,})$/.exec(String(id));
+  if (!m) throw new UsageError(`batch ${JSON.stringify(clip(id))} is not a draft batch id (<book>-draft-<NNN>)`);
+  const batch = readJson(file, "batch file");
+  if (batch?.id !== id || batch?.stage !== "draft" || !Array.isArray(batch?.entries)) {
+    throw new UsageError(`${file}: not the draft batch ${id} (its id, stage "draft" and entries)`);
+  }
+  const keys = batch.entries.map((e) => e?.key);
+  if (!keys.every((k) => typeof k === "string" && k.startsWith(`${m[1]}:`))) {
+    throw new UsageError(`${file}: every entry of ${id} must be a key of book ${m[1].toUpperCase()}`);
+  }
+  return new Set(keys);
+}
+
+function ingestDraftCommand(input, { textDir, core, offered }) {
+  checkQueues(REGISTRY);
+  const books = loadRegistry(REGISTRY);
+  const all = books.flatMap((b) => b.records);
+  const keys = new Set(input.results.map((r) => r?.key).filter((k) => offered.has(k)));
+  const monsterBooks = [...new Set(all.filter((r) => r.kind === "monster" && keys.has(r.key)).map((r) => r.book))];
+  const embedded = new Map();
+  if (monsterBooks.length) {
+    const dumpsDir = need("RULEPACK_DUMPS");
+    if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+    const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+    for (const book of monsterBooks) {
+      const actors = officialFilesFor(dumpsDir, packages, book).filter(isActorFile)
+        .flatMap((f) => actorSummaries(readDump(join(dumpsDir, f)), "official"));
+      if (!actors.length) {
+        throw new UsageError(`${book}: no actor in its package's dumps (RULEPACK_DUMPS): monsters cannot be checked`);
+      }
+      embedded.set(book, embeddedIndex(actors));
+    }
+  }
+  const out = ingestDrafts(all, input.results, {
+    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded, offered
+  });
+  if (!commitIngest(books, out.records, out.applied, out.queued, out.applied, { queue: "drafts" })) return;
   console.log(JSON.stringify({ applied: out.applied.length, queued: out.queued.length, rejected: out.rejected }, null, 2));
   if (out.rejected.length) process.exitCode = 1;
 }

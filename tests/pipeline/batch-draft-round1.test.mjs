@@ -183,5 +183,5 @@ describe("I3 and the report file, through the CLI", () => {
     writeFileSync(join(out, "xphb-draft-005.results.json"), "{}");
     expect(run(["batch", "draft", "XPHB", "--out", out, "--structure", structure], env).status).toBe(0);
     expect(readdirSync(out)).toContain("xphb-draft-006.json");
-  });
+  }, 30_000); // spawns the CLI over the real dumps: seconds under a full parallel run
 });

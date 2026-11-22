@@ -123,5 +123,5 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("pipeline end to end", () => {
     expect(src).toContain('"identifier": "tide-clasp"');
     expect(src).toContain('"status": "validated"');
     expect(src).not.toContain("quill-spark");
-  });
+  }, 30_000); // a dozen CLI runs in a row: past vitest's 5 s default under a full parallel run
 });

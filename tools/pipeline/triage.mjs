@@ -1,18 +1,19 @@
 // Triage: the rule-based part (`autoTriage`) and the intake of what reader agents decided (`ingest`).
 // Nothing here reads rulebook text except to check that a reader did not quote it.
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { VERDICTS, slug, validateRecord } from "./registry.mjs";
 import { BY, HINTS, RULE_VERDICTS, isReaderHandle } from "./schema.mjs";
 import { hasText } from "./text.mjs";
 import { quotationCheck, RULE_QUOTE_WORDS } from "./gates.mjs";
+import {
+  MAX_ECHO, MAX_WHY, ONE_LINE, QUEUE_THRESHOLD, cachedText, clip, confidenceProblem, echo, unknownFields, whyProblem, whyQuotes
+} from "./intake.mjs";
 
 // The hint a record can carry for its reader (`record.hint`): `core-generic` says DAS · Core has an entry under the
 // identifier, but one too generic to settle the record by itself (a monster feature, or a shared identifier).
 export { HINTS };
 
-export const QUEUE_THRESHOLD = 0.7;
-export const MAX_WHY = 200;
+// The checks every ingest shares live in intake.mjs; these names stay exported from here for the callers that used them.
+export { MAX_ECHO, MAX_WHY, ONE_LINE, QUEUE_THRESHOLD, clip };
 
 // The kinds whose record with no text and no item is a placeholder ("Subclass Feature" lines and the like): nothing to read,
 // nothing to automate. A species is described by its traits and a monster feature by its stat block: never placeholders.
@@ -90,26 +91,16 @@ const MAX_KEYS = 12;
 const MAX_SIMILAR = 5;
 
 const isList = (v, max, ok) => Array.isArray(v) && v.length <= max && v.every((x) => typeof x === "string" && ok(x));
-// `why` is one line of printable characters: no control or format character, no line or paragraph separator.
-export const ONE_LINE = /^[^\p{C}\p{Zl}\p{Zp}]*$/u;
-export const MAX_ECHO = 80;
-// What a rejection repeats of a reader's own strings: at most MAX_ECHO characters.
-export const clip = (s) => String(s).slice(0, MAX_ECHO);
-const echo = (s) => JSON.stringify(clip(s));
 
 // Why a result cannot be taken, or null. `textOf(record)` gives the cached text or null; `entryKeys` the engine's entry keys.
 function problem(record, result, { overwrite, textOf, known, entryKeys }) {
-  const extra = Object.keys(result).filter((k) => !RESULT_FIELDS.includes(k));
+  const extra = unknownFields(result, RESULT_FIELDS);
   if (extra.length) return `unknown field ${echo(extra[0])}`;
   if (!record) return `unknown key ${echo(result.key)}`;
   if (!VERDICTS.includes(result.verdict)) return `unknown verdict ${echo(result.verdict)}`;
   if (result.verdict === "core") return "a reader may not return core: the rule-based step sets it";
-  if (typeof result.confidence !== "number" || !(result.confidence >= 0 && result.confidence <= 1)) {
-    return "confidence must be a number from 0 to 1";
-  }
-  if (typeof result.why !== "string" || !result.why.trim()) return "why must be a non-empty string";
-  if (result.why.length > MAX_WHY) return `why is longer than ${MAX_WHY} characters`;
-  if (!ONE_LINE.test(result.why)) return "why must be a single line of printable characters";
+  const unfit = confidenceProblem(result.confidence) ?? whyProblem(result.why);
+  if (unfit) return unfit;
   const isEngineKey = (k) => ENGINE_KEY.test(k) && !!entryKeys?.has(k.split(".")[0]);
   if ("keys" in result && !isList(result.keys, MAX_KEYS, isEngineKey)) {
     return `keys must be at most ${MAX_KEYS} entry keys of the engine, or dotted paths that start with one`;
@@ -125,7 +116,8 @@ function problem(record, result, { overwrite, textOf, known, entryKeys }) {
   if (text === null) return result.verdict === "unverifiable" ? null : "no text, no verdict: only unverifiable is allowed";
   // One limit and one normaliser for every prose of the registry: the gates' (gates.mjs quotationCheck, RULE_QUOTE_WORDS).
   const quotes = quotationCheck(text);
-  if (quotes(result.why)) return `why contains a quotation of ${RULE_QUOTE_WORDS} or more consecutive words of the text`;
+  const quoted = whyQuotes(result.why, text, quotes);
+  if (quoted) return quoted;
   // `similar` entries that are not record keys could carry a quotation as kebab-case identifiers.
   const spelled = (result.similar ?? []).filter((s) => !known.has(s)).join(" ").replaceAll("-", " ");
   if (quotes(spelled)) return `similar contains a quotation of ${RULE_QUOTE_WORDS} or more consecutive words of the text`;
@@ -162,10 +154,7 @@ export function ingest(records, results, { textDir, by, at = new Date().toISOStr
   const out = structuredClone(records);
   const settledByTwo = new Set(queue.filter((q) => q?.second).map((q) => q.key));
   const byKey = new Map(out.map((r) => [r.key, r]));
-  const textOf = (r) => {
-    if (!r.text || !hasText(textDir, r.text.sha256)) return null;
-    return readFileSync(join(textDir, `${r.text.sha256}.txt`), "utf8");
-  };
+  const textOf = cachedText(textDir);
   const applied = [];
   const queued = [];
   const rejected = [];
@@ -210,10 +199,7 @@ export function ingestSecond(records, results, { textDir, by, at = new Date().to
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
   const inQueue = new Map(queue.map((q) => [q.key, q]));
-  const textOf = (r) => {
-    if (!r.text || !hasText(textDir, r.text.sha256)) return null;
-    return readFileSync(join(textDir, `${r.text.sha256}.txt`), "utf8");
-  };
+  const textOf = cachedText(textDir);
   const agreed = [];
   const disagreed = [];
   const unsure = [];
@@ -269,10 +255,7 @@ export function ingestThird(records, results, { textDir, by, at = new Date().toI
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
   const inQueue = new Map(queue.map((q) => [q.key, q]));
-  const textOf = (r) => {
-    if (!r.text || !hasText(textDir, r.text.sha256)) return null;
-    return readFileSync(join(textDir, `${r.text.sha256}.txt`), "utf8");
-  };
+  const textOf = cachedText(textDir);
   const settled = [];
   const unsettled = [];
   const seen = new Set();
@@ -328,10 +311,7 @@ export function ingestThird(records, results, { textDir, by, at = new Date().toI
 export function settleUnsure(records, { textDir, queue, min, at = new Date().toISOString() }) {
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
-  const textOf = (r) => {
-    if (!r.text || !hasText(textDir, r.text.sha256)) return null;
-    return readFileSync(join(textDir, `${r.text.sha256}.txt`), "utf8");
-  };
+  const textOf = cachedText(textDir);
   const applied = [];
   const kept = [];
   const problems = [];
