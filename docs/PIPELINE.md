@@ -1928,7 +1928,8 @@ setup, steps }`:
   `played` refuses a run whose stamp counts another number.
 - `manual: true` when a step has no interpreter, with exactly the paths that have none in `manualBecause` (`given.free`,
   `force.crit`, `advance`, `expect.ends.savedSave`, `expect.ends.isDamaged`, `expect.move.mode.random`, `expect.move.distance`
-  (a formula), `expect.roll`, `expect.uses`, `setup.item`, `setup.reach` (a pull whose start, its distance plus 5 ft, is beyond
+  (a formula), `expect.roll`, `expect.uses`, `activity.heal` (a heal activity: the runner makes no healing roll and casts
+  its target as a foe), `setup.item`, `setup.reach` (a pull whose start, its distance plus 5 ft, is beyond
   the activity's reach), `use`…). A manual scenario's JSON is a checklist for a person.
 - Ruling R30, a trigger's condition: an assertion limited to targets of a size or smaller gets a target that satisfies it
   (`setup.target`: of the creature type the assertions name, else the default type first, no larger than the smallest limit;

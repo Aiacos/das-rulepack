@@ -75,7 +75,7 @@ Published as an official Foundry VTT module (`dnd-monster-manual`).
 | Dreadful Howl (Dire Worg) | Monster feature | p.335 | The fear ends when the worg's following turn begins; a save halves the damage. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
 | Terrifying Presence (Dracolich) | Monster feature | p.102 | The fear ends when the target's following turn ends; a save avoids the damage. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Played |
 | Sacred Weapon (Empyrean) | Monster feature | p.113 | The stun ends when the user's next turn begins; the extra damage ignores resistance. Partial: 2 expectations left to the table (no-key 1, table-ruling 1). Carries over 1 engine key (usageLimits). | table, partial | Validated |
-| Morningstar (Ettin) | Monster feature | p.116 | The marker placed by a hit expires when the target's following turn ends. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, use-limit 1). | table, partial | Validated |
+| Morningstar (Ettin) | Monster feature | p.116 | The marker placed by a hit expires when the target's following turn ends. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, use-limit 1). | table, partial | Played |
 | Stench Spray (Flumph) | Monster feature | p.122 | The poison from a failed save lasts 1d4 hours. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 2 expectations left to the table (no-key 1, out-of-combat 1). | table, partial | Validated |
 | War Cry (Frost Giant) | Monster feature | p.124 | The war cry's effect on its recipient ends when the giant's next turn begins. Not covered on ddb-importer: DDB Importer monster features: world ids and generic identifiers. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
 | Hunger of Yeenoghu (Gnoll Demoniac) | Monster feature | p.141 | A creature entering the dark cube or starting its turn there saves again; the cube is difficult terrain. Partial: 2 expectations left to the table (no-key 2). Carries over 1 engine key (magical). | table, partial | Validated |
@@ -219,7 +219,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-49 rules: 28 played, 21 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 21 of them partial (part of the entry left to the table). 78 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 7).
+49 rules: 29 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 21 of them partial (part of the entry left to the table). 78 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 7).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

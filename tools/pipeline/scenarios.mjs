@@ -251,6 +251,8 @@ export function scenarioOf(record, { packOf, structure = null } = {}) {
   const steps = [];
   let expected = 0;
   for (const activity of played) {
+    // A heal activity waits for a healing roll the runner never makes, on a target it casts as a foe: by hand.
+    if (shape.get(activity)?.type === "heal") because.add("activity.heal");
     for (const c of checks) {
       // An assertion the entry ties to some activities is checked on those; one it ties to none, on each.
       if (tied.has(c) && !tied.get(c).has(activity)) continue;
