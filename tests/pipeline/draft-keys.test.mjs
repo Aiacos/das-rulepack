@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { DRAFT_KEYS, SLOTS, checkDraftKeys } from "../../tools/pipeline/draft-keys.mjs";
+import { DRAFT_KEYS, SLOTS, checkDraftKeys, draftKeysFor, engineKnows } from "../../tools/pipeline/draft-keys.mjs";
 import { checkIds } from "../../tools/pipeline/gates.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
 
@@ -124,6 +124,7 @@ describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
     zoneLasts: { zoneLasts: { seconds: 600 } },
     zoneMax: { zoneMax: 6 },
     saveAutoSuccess: { saveAutoSuccess: { types: ["construct"] } },
+    saveAutoFail: { saveAutoFail: { types: ["plant"] } },
     willingFails: { willingFails: true },
     // Ruling R34: choices, barriers and wards.
     choice: { choice: { effects: "one", pool: { [A_OFF]: [E_OFF], [A_DDB]: [E_DDB] } } },
@@ -135,21 +136,28 @@ describe.skipIf(!CORE_DIR)("DRAFT_KEYS against the engine (DAS_CORE)", () => {
     blocksTempHp: { blocksTempHp: [E_OFF, E_DDB] }
   };
 
-  it("every drafter key is an entry key of the engine", async () => {
+  it("every drafter key the engine in use knows is an entry key of the engine (Ruling R37: the others are not)", async () => {
     const core = await loadCore(CORE_DIR);
-    expect(Object.keys(DRAFT_KEYS).filter((k) => !core.entryKeys.has(k))).toEqual([]);
+    expect(Object.keys(draftKeysFor(core)).filter((k) => !core.entryKeys.has(k))).toEqual([]);
+    expect(Object.keys(DRAFT_KEYS).filter((k) => !engineKnows(k, core) && core.entryKeys.has(k))).toEqual([]);
   });
 
   it("the engine's validator accepts each key with its ids at the slot DRAFT_KEYS names", async () => {
     const file = join(CORE_DIR, "module", "scripts", "core", "content.mjs");
     expect(existsSync(file)).toBe(true);
     const { validateEntry } = await import(pathToFileURL(file).href);
+    const core = await loadCore(CORE_DIR);
     expect(Object.keys(samples).sort()).toEqual(Object.keys(DRAFT_KEYS).sort());
     const ids = new Set([A_OFF, A_DDB, E_OFF, E_DDB]);
     const holds = (v) => (typeof v === "string" ? (ids.has(v) || [...ids].some((id) => v.includes(id)) ? 1 : 0)
       : Array.isArray(v) ? v.reduce((n, x) => n + holds(x), 0)
         : v && typeof v === "object" ? Object.entries(v).reduce((n, [k, x]) => n + (ids.has(k) ? 1 : 0) + holds(x), 0) : 0);
     for (const [key, entry] of Object.entries(samples)) {
+      // Ruling R37: a key newer than this engine is refused by it, as loadCore said.
+      if (!engineKnows(key, core)) {
+        expect(validateEntry(entry, { facts: {} }).length, key).toBeGreaterThan(0);
+        continue;
+      }
       expect(validateEntry(entry, { facts: {} }), key).toEqual([]);
       const { slot } = DRAFT_KEYS[key];
       const count = holds(entry[key]);

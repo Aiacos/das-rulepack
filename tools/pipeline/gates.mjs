@@ -19,7 +19,8 @@ import {
   ACTOR_ITEM_REFUSED, boundBySource, identifierProblems, isActorItemKey, reaches, SHARED_EMBEDDED, unaccountedOrigins
 } from "./identifiers.mjs";
 import {
-  checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys, wardProblemsOf, zoneProblemsOf
+  capabilityProblems, checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys, unknownToEngine, wardProblemsOf,
+  zoneProblemsOf
 } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
@@ -127,9 +128,12 @@ const actorItemProblems = (record, core) => (core?.actorItemSources === true ? [
 
 // Ruling R36: CI checks the pack against the engine's latest RELEASE, which may predate the capability the registry was
 // gated with; under `--ci` an older engine's refusal is not a failure (the shipped module skips such a rule on that engine by
-// itself). A full run of the gates still fails it.
+// itself). A full run of the gates still fails it. Ruling R37: the same for a drafter key newer than the engine in use
+// (draft-keys.mjs ENGINE_CAPABILITIES, `saveAutoFail`): said once by a full run, and left out of what the engine is asked.
 export const gateValidator = (record, context) => (record.rule
-  ? [...(context.ci ? [] : actorItemProblems(record, context.core)), ...validatorProblems(record, context)] : []);
+  ? [...(context.ci ? [] : [...actorItemProblems(record, context.core), ...newerKeyProblems(record, context.core)]),
+    ...validatorProblems(record, context)] : []);
+const newerKeyProblems = (record, core) => capabilityProblems(record.rule?.entry, core).map((e) => `validator: ${e}`);
 
 function validatorProblems(record, context) {
   const { core } = context;
@@ -159,10 +163,13 @@ function validatorProblems(record, context) {
     const ward = new Set(wardProblemsOf(entry));
     asserts.push(...wardProblemsOf(entry, { vocabulary: core }).filter((e) => !ward.has(e)).map((e) => `validator: ${e}`));
   }
-  // The engine looks a fact up as a key of the object it is given.
+  // The engine looks a fact up as a key of the object it is given. A key it does not know yet (Ruling R37) is not asked about:
+  // gateValidator says it, or `--ci` lets it pass; the rest of the entry is the engine's to judge either way.
   const facts = Object.fromEntries(core.facts.map((name) => [name, true]));
+  const newer = new Set(unknownToEngine(entry, core));
+  const asked = newer.size ? Object.fromEntries(Object.entries(entry).filter(([k]) => !newer.has(k))) : entry;
   try {
-    return [...core.validateEntry(entry, { facts }).map((e) => `validator: ${e}`), ...asserts];
+    return [...core.validateEntry(asked, { facts }).map((e) => `validator: ${e}`), ...asserts];
   } catch (e) {
     return [`validator: the engine threw on the entry: ${e.message}`, ...asserts];
   }

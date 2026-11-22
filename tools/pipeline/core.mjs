@@ -5,7 +5,8 @@
 // (core/emanation.mjs EMANATION_MOMENTS), who an aura's copy goes to (AURA_AFFECTS) and the fields the zone and aura validators
 // accept (`zoneFields`, read from their own lists); and (Ruling R34) the words of a choice (core/content/enums.mjs
 // CHOICE_EFFECTS) and the fields the choice, barrier, globe and wardsConditions validators accept (`wardFields`); and (Ruling
-// R35) whether its `validateSources` accepts `<actor id>.<item id>` keys (`actorItemSources`). Nothing here writes to the clone.
+// R35) whether its `validateSources` accepts `<actor id>.<item id>` keys (`actorItemSources`); and (Ruling R37) whether it
+// knows the entry key `saveAutoFail` (`saveAutoFail`). Nothing here writes to the clone.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -112,6 +113,23 @@ export function actorItemSourcesOf(validateSources) {
   if (typeof validateSources !== "function") return false;
   try {
     const errors = validateSources({ [ACTOR_ITEM_PROBE]: "probe" });
+    return Array.isArray(errors) && errors.length === 0;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Ruling R37: whether the engine knows the entry key `saveAutoFail` (a creature of those types fails the save): it is one of
+ * its ENTRY_KEYS and its own validateEntry accepts `{ saveAutoFail: { types: [<its first creature type>] } }`. Asked of the
+ * engine itself, never inferred from its version (its latest release predates the key). False when anything is missing,
+ * throws or refuses.
+ */
+export function saveAutoFailOf({ entryKeys, validateEntry, creatureTypes } = {}) {
+  if (!(entryKeys instanceof Set) || !entryKeys.has("saveAutoFail") || typeof validateEntry !== "function") return false;
+  if (!Array.isArray(creatureTypes) || typeof creatureTypes[0] !== "string") return false;
+  try {
+    const errors = validateEntry({ saveAutoFail: { types: [creatureTypes[0]] } }, { facts: {} });
     return Array.isArray(errors) && errors.length === 0;
   } catch {
     return false;
@@ -235,6 +253,8 @@ export async function loadCore(dir) {
     sources: SOURCES && typeof SOURCES === "object" ? { ...SOURCES } : {},
     // Ruling R35: the engine accepts `<actor id>.<item id>` sources from a module (actorItemSourcesOf).
     actorItemSources: actorItemSourcesOf(validateSources),
+    // Ruling R37: the engine knows the entry key `saveAutoFail` (saveAutoFailOf).
+    saveAutoFail: saveAutoFailOf({ entryKeys, validateEntry, creatureTypes: lists.creatureTypes }),
     get runtimeIdentifiers() { return scanned().runtimeIdentifiers; },
     get systemHandled() { return scanned().systemHandled; },
     get handled() { return scanned().handled; },

@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { cutDraftBatches, draftReport, draftVocabulary } from "../../tools/pipeline/batch.mjs";
 import { highestBatches } from "../../tools/pipeline/batch.mjs";
-import { DRAFT_KEYS } from "../../tools/pipeline/draft-keys.mjs";
+import { DRAFT_KEYS, DRAFT_SHAPES, draftKeysFor } from "../../tools/pipeline/draft-keys.mjs";
 import { assertProblems } from "../../tools/pipeline/assert.mjs";
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
@@ -113,7 +113,9 @@ describe("I2a: value shapes", () => {
   });
   it("every drafter key has a shape", () => {
     const v = draftVocabulary(core, {});
-    expect(Object.keys(v.draftShapes).sort()).toEqual(Object.keys(DRAFT_KEYS).sort());
+    // Ruling R37: the vocabulary offers the keys the engine in use knows (draftKeysFor); every key has a shape all the same.
+    expect(Object.keys(v.draftShapes).sort()).toEqual(Object.keys(draftKeysFor(core)).sort());
+    expect(Object.keys(DRAFT_SHAPES).sort()).toEqual(Object.keys(DRAFT_KEYS).sort());
   });
 });
 

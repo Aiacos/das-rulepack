@@ -64,6 +64,8 @@ export const DRAFT_KEYS = Object.freeze({
   zoneLasts: slot("none"),
   zoneMax: slot("none"),
   saveAutoSuccess: slot("none"),
+  // Ruling R37: newer than the engine's latest release (ENGINE_CAPABILITIES).
+  saveAutoFail: slot("none"),
   willingFails: slot("none"),
   // Ruling R34 (wards.mjs): `choice.pool` is keyed by activity ids (its lists and `order` hold effect ids, side by side);
   // `blocksHealing` and `blocksTempHp` are true or a list of effect ids.
@@ -172,6 +174,8 @@ export const DRAFT_SHAPES = Object.freeze({
   zoneMax: INT(ZONE_MAX.min, ZONE_MAX.max),
   saveAutoSuccess: object({}, { types: list(word("creatureTypes")), fighting: TRUE, sizeAtLeast: word("sizes") },
     { atLeastOne: true }),
+  // Ruling R37: only `types`, the engine's validator takes nothing else (core/content/entry.mjs).
+  saveAutoFail: object({ types: list(word("creatureTypes")) }),
   willingFails: TRUE,
   // Ruling R34 (wards.mjs WARD_KEYS says what each does; EXCLUDED_WARD what the engine also takes and a drafter may not).
   // A choice of one effect: once, per target (which the engine prefers to a roll, so never both), or by a die whose faces
@@ -240,7 +244,7 @@ export const DAMAGE_ROLLS = Object.freeze({
   // shape who is affected, where and how long, never the damage of a roll.
   emanation: all,
   aura: none, zoneAffects: none, zoneEffects: none, selfZone: none, zoneLasts: none, zoneMax: none, saveAutoSuccess: none,
-  willingFails: none,
+  saveAutoFail: none, willingFails: none,
   // Ruling R34: which effect passes, who may come near or be reached, what the bearer is spared: never the damage of a roll.
   choice: none, barrier: none, globe: none, wardsConditions: none, wardsAtZero: none, blocksHealing: none, blocksTempHp: none
 });
@@ -255,6 +259,24 @@ export function damageRollsOf(entry) {
   }
   return [...rolls];
 }
+
+/**
+ * Ruling R37: the drafter keys newer than the engine's latest release, each with the loadCore flag that says the engine in use
+ * knows it (asked of the engine itself, core.mjs). Without it the key is not offered (draftKeysFor, the vocabulary), draft
+ * ingest refuses it (checkDraftKeys with `core`), a full gates run fails it and `gates --ci` does not (gates.mjs, as R36).
+ */
+export const ENGINE_CAPABILITIES = Object.freeze({ saveAutoFail: "saveAutoFail" });
+export const KEY_UNKNOWN_TO_ENGINE = "the DAS · Core in use does not know this key (it is newer than that engine: update"
+  + " DAS · Core)";
+/** True when the engine in use (`core`, loadCore's result) knows the drafter key: always, but for ENGINE_CAPABILITIES. */
+export const engineKnows = (key, core) => !has(ENGINE_CAPABILITIES, key) || core?.[ENGINE_CAPABILITIES[key]] === true;
+/** DRAFT_KEYS less the keys the engine in use does not know (Ruling R37). */
+export const draftKeysFor = (core) => Object.freeze(Object.fromEntries(Object.entries(DRAFT_KEYS)
+  .filter(([key]) => engineKnows(key, core))));
+/** `<key>: KEY_UNKNOWN_TO_ENGINE` for each key of the entry the engine in use does not know (Ruling R37). */
+export const unknownToEngine = (entry, core) => (isObject(entry) ? Object.keys(entry)
+  .filter((key) => has(DRAFT_KEYS, key) && !engineKnows(key, core)) : []);
+export const capabilityProblems = (entry, core) => unknownToEngine(entry, core).map((key) => `${key}: ${KEY_UNKNOWN_TO_ENGINE}`);
 
 /** The entry keys whose slot holds one id (Ruling R4: such a key, when it holds an id, names one origin only). */
 export const singleSlotKeys = (entry) =>
@@ -405,9 +427,10 @@ export function wardProblemsOf(entry, { vocabulary = {} } = {}) {
  * path of FIX_PATHS, `value` and `from` of the leaf's type, at most MAX_FIXES fixes and one per path, official origin only,
  * never a monster feature).
  * `origins` (the rule's) and `kind` (the record's) are required: without them the limits could not be applied, so the call
- * throws rather than pass.
+ * throws rather than pass. With `core` (loadCore's result: draft ingest), a key newer than the engine in use is refused too
+ * (Ruling R37, capabilityProblems); without it (the schema gate, `--ci` included), it is not.
  */
-export function checkDraftKeys(entry, { origins, kind } = {}) {
+export function checkDraftKeys(entry, { origins, kind, core } = {}) {
   if (!Array.isArray(origins) || typeof kind !== "string" || !kind) {
     throw new TypeError("checkDraftKeys: origins and kind are required");
   }
@@ -425,6 +448,7 @@ export function checkDraftKeys(entry, { origins, kind } = {}) {
   problems.push(...zoneProblemsOf(entry));
   problems.push(...wardProblemsOf(entry));
   problems.push(...forbiddenKeys(entry));
+  if (core !== undefined) problems.push(...capabilityProblems(entry, core));
   const words = entryWords(entry);
   if (words.size > ENTRY_WORD_BUDGET) {
     problems.push(`entry: more than ${ENTRY_WORD_BUDGET} distinct words in its strings (${words.size}; Ruling R19)`);

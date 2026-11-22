@@ -29,7 +29,7 @@ import {
   draftVocabulary, highestBatches, identifierClashReasons, NOT_REDRAFTABLE, redraftable, REVIEW_BATCH_SIZE, reviewReport,
   reviewSkipReason, reviewVocabulary, rereadVocabulary, rulableOrigin
 } from "./batch.mjs";
-import { DRAFT_KEYS } from "./draft-keys.mjs";
+import { draftKeysFor } from "./draft-keys.mjs";
 import { ingestDrafts } from "./draft.mjs";
 import { ingestReviews, queueHolds } from "./review.mjs";
 import { REREAD_BATCH_SIZE, cutRereadBatches, ingestRereads, readingFingerprint, rereadReport } from "./reread.mjs";
@@ -747,7 +747,7 @@ async function batchCommand([stage, book, ...rest]) {
   if (dumpsDir !== null) mkdirSync(opts.structure, { recursive: true });
   const write = (file, data) => writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
   batches.forEach((b, i) => {
-    const body = draft ? { ...b, allowed: DRAFT_KEYS, vocabulary: "draft-vocabulary.json" }
+    const body = draft ? { ...b, allowed: draftKeysFor(core), vocabulary: "draft-vocabulary.json" }
       : review ? { ...b, vocabulary: "review-vocabulary.json" } : b;
     write(join(opts.out, `${b.id}.json`), body);
     if (dumpsDir !== null) write(join(opts.structure, `${b.id}.structure.json`), structures[i]);

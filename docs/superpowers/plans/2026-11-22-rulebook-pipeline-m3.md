@@ -814,3 +814,16 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   full run of the gates still fails it, and the shipped module skips such a rule on an older engine by itself. The two
   engine tests of the capability follow what the clone has instead of pinning it true. Cost if wrong: CI would stay green
   for a rule no released engine can bind; the rule is still skipped at registration, never bound to the wrong creature.
+- **R37 (2026-11-22).** The engine's main branch has `saveAutoFail: { types: [creature types] }` (a creature of those types
+  fails the item's save without rolling; a type on both sides fails, core/conditions.mjs `typeAutoSave`); its latest release
+  does not. `loadCore` asks the engine itself (`ENTRY_KEYS` and its own validateEntry on a probe, never its version) and
+  gives `core.saveAutoFail`. The key is a drafter key (`slot: none`, only `types`, a zone key beside `saveAutoSuccess`,
+  `draft-keys.mjs` `ENGINE_CAPABILITIES`), offered in `draft-vocabulary.json` and a batch's `allowed` only when the engine in
+  use knows it; draft ingest refuses it otherwise; a full run of the gates fails a rule that uses it on such an engine and
+  `--ci` does not (as R36), the engine being asked about the rest of the entry either way. It implies one `roll: { mode:
+  autoFail, on: save, for: target }` given each `targetType`; `autoFail` is a roll mode beside `autoSuccess`. The shipped
+  module now asks the running engine (`api.content.validate`) before registering and leaves out a rule it refuses, with its
+  aliases and sources, in one console line (`scripts/known-entries.mjs`): the engine's register() dropped such an entry but
+  kept its sources, so the item was rebound to an identifier with no entry. Cost if wrong: a rule with the key ships while
+  every released engine refuses it, so it does nothing until DAS · Core is updated (said once in the console); a drafter
+  on an older engine answers `engine` for a text the key would say, and that record waits for a redraft.

@@ -5,8 +5,8 @@ import { queueHolds } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
 import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
 import {
-  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, entryWords, isStructural, wardProblemsOf,
-  zoneProblemsOf
+  CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, draftKeysFor, entryWords, isStructural,
+  wardProblemsOf, zoneProblemsOf
 } from "./draft-keys.mjs";
 import { AURA_MOMENTS, EMANATION_ON, EXCLUDED_ZONE, ZONE_KEYS, ZONE_MOMENTS, replays } from "./zones.mjs";
 import { EXCLUDED_WARD, NOT_ADMITTED, WARD_KEYS } from "./wards.mjs";
@@ -435,8 +435,10 @@ export function draftVocabulary(core) {
     moveModes: copy(core.moveModes), effectEnds: copy(core.effectEnds), damageTypes: copy(core.damageTypes),
     sizes: copy(core.sizes)
   };
+  // Ruling R37: a key newer than the engine in use is not offered (draft-keys.mjs draftKeysFor).
+  const offered = draftKeysFor(core);
   return {
-    draftKeys: Object.fromEntries(Object.entries(DRAFT_KEYS).map(([k, v]) => [k, { ...v }])),
+    draftKeys: Object.fromEntries(Object.entries(offered).map(([k, v]) => [k, { ...v }])),
     engine: {
       moments: copy(core.moments), stepTypes: copy(core.stepTypes), facts: copy(core.facts), statuses: copy(core.statuses),
       creatureTypes: copy(core.creatureTypes), moveModes: copy(core.moveModes), effectEnds: copy(core.effectEnds),
@@ -453,7 +455,8 @@ export function draftVocabulary(core) {
       chooses: copy(assertVocabulary.CHOOSES), bars: copy(assertVocabulary.BARS)
     },
     // The value shape of every field of an assertion and of every drafter key, engine words resolved (shapes.mjs).
-    draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).map(([k, s]) => [k, resolveShape(s, engineLists)])),
+    draftShapes: Object.fromEntries(Object.entries(DRAFT_SHAPES).filter(([k]) => Object.hasOwn(offered, k))
+      .map(([k, s]) => [k, resolveShape(s, engineLists)])),
     // Ruling R30: what a trigger's `if` may name (conditions.mjs): each allowed fact with its subject, the given field that
     // says it in an assertion and its argument's shape (engine words resolved), at most `max` per trigger; the facts left out
     // with why.
@@ -466,7 +469,8 @@ export function draftVocabulary(core) {
     // Ruling R33: the zone and aura keys (zones.mjs): what each does at the table and where that was read, the moments a
     // replay and an emanation may name, the aura moment words of `given.moment`, and what the engine also takes with why not.
     zones: {
-      keys: JSON.parse(JSON.stringify(ZONE_KEYS)), zoneMoments: copy(ZONE_MOMENTS), emanationOn: copy(EMANATION_ON),
+      keys: JSON.parse(JSON.stringify(Object.fromEntries(Object.entries(ZONE_KEYS).filter(([k]) => Object.hasOwn(offered, k))))),
+      zoneMoments: copy(ZONE_MOMENTS), emanationOn: copy(EMANATION_ON),
       auraMoments: copy(AURA_MOMENTS), excluded: { ...EXCLUDED_ZONE }
     },
     // Ruling R34: the choice, barrier and ward keys (wards.mjs): what each does at the table and where that was read, what

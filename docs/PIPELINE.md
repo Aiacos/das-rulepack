@@ -349,7 +349,7 @@ ones.
   R30, below; `moment` is a moment of the engine or, Ruling R33, an aura moment `ownTurnStart|ownTurnEnd`; Ruling R34:
   `spellLevelAtMost` only with `bars: spells`); `expect: {
   damage?: { fraction: 0|0.5|1|2, type? }, condition?: { applied?, ended? }, ends?, roll?: { mode:
-  advantage|disadvantage|autoSuccess, on: attack|save|check, for: self|target|ally|enemy }, affects?
+  advantage|disadvantage|autoSuccess|autoFail, on: attack|save|check, for: self|target|ally|enemy }, affects?
   (target|allies|enemies|self), denies? (opportunityAttacks|reactions|actionAndBonus|healing|tempHp), move?: { mode,
   distance? }, uses?: { spent }, subjected?: activity (Ruling R33: only with a zone or aura moment, and no roll), chooses?:
   oneEffect|oneEffectPerTarget|effectByRoll, bars?: entry|melee|actions|spells (Ruling R34: both said once for the use,
@@ -376,7 +376,8 @@ ones.
   the `given` of each of them, and one whose condition has a part with no given word implies nothing and is unassertable);
   `emanation` (`subjected: activity` at its moment, `affects: enemies` beside it when only enemies; its radius, `sees` and
   `whileActive` are unassertable), `zoneAffects` (`affects: enemies|allies`), `saveAutoSuccess` (`roll: { mode: autoSuccess,
-  on: save, for: target }` given each `targetType`; `fighting` and `sizeAtLeast` are unassertable); Ruling R34: `choice`
+  on: save, for: target }` given each `targetType`; `fighting` and `sizeAtLeast` are unassertable); Ruling R37:
+  `saveAutoFail` (`roll: { mode: autoFail, on: save, for: target }` given each `targetType`); Ruling R34: `choice`
   (`chooses: oneEffect`, `oneEffectPerTarget` with `perTarget`, `effectByRoll` with `roll`; `order` and a pool alone are
   unassertable), `barrier` (`bars: entry` and `bars: melee`, and `bars: actions` when it `shields`; one that names creature
   types implies nothing; its radius is unassertable), `globe` (`bars: spells` given `spellLevelAtMost: <maxLevel>`; its
@@ -424,21 +425,25 @@ ones.
   item's own template, when it has one, gives the radius and who instead; `single`); `zoneAffects: enemy|ally`;
   `zoneEffects: true`; `selfZone: { <activity id>: { type: radius|sphere|circle|cube|square, size: 5..300, units: "ft" } }`
   (`activityMap`); `zoneLasts: { seconds: 6..86400 }`; `zoneMax: 1..20`; `saveAutoSuccess: { types?, fighting?: true,
-  sizeAtLeast? }` (at least one); `willingFails: true`. And `triggers` gains a third shape, a zone that uses the item's
-  activity again (`{ on: enter|turnStart|turnEnd or a list of them, do: [{ type: "replay", activity?: <id> }] }`: replay
-  steps only, at zone moments only, no `if`). What the engine also takes and a drafter may not is refused with why
-  (`EXCLUDED_ZONE`): `aura.changes` (free key and value strings), `aura.radiusFormula` and `emanation.radiusFormula` (free
-  formulas), `aura.affects: summoner`, `emanation.atStart`, `emanation.on: death` (a death trigger), a replay `on: moves` (once
-  per square: no word for how often) or under an `if`. **One way to say it**: the moment goes with `expect.subjected:
-  activity`, one assertion per moment (`{ "given": { "moment": "turnEnd" }, "expect": { "subjected": "activity" } }`), never
-  with a roll (refused); what the activity then does is said as for any use of the item, with the roll alone (`{ "given": {
-  "roll": "failedSave" }, ... }`), not repeated per moment (allowed, as stored rereads hold it, but compared as another
-  situation). `turnStart` / `turnEnd` are a creature's OWN turn inside the zone or aura; `ownTurnStart` / `ownTurnEnd` the
-  turn of the aura's bearer (`definitions.auraMoment`). The radius of an area or aura is the item's data or the entry's, never
-  asserted. `loadCore` gives the engine's `emanationMoments`, `auraAffects` and `zoneFields` (the fields each zone validator
-  accepts, read from its own lists), and a DAS_CORE test pins every drafter shape, word and exclusion to them: a field the
-  engine adds or renames fails the suite. Scenarios: a zone or aura moment is `manual`, named `given.moment.<word>` beside
-  `expect.subjected` (the runner lays no lasting area and passes no turn with a creature inside).
+  sizeAtLeast? }` (at least one); `willingFails: true`; Ruling R37: `saveAutoFail: { types: [creature types] }` (`types`
+  only, not empty), offered (`draftKeys`, `draftShapes`, `zones.keys`, a batch's `allowed`) only when the engine in use knows
+  it (`loadCore` `saveAutoFail`, asked of its ENTRY_KEYS and validator): otherwise draft ingest refuses it, a full `gates`
+  run fails a rule that uses it and `gates --ci` does not, as Ruling R36. And `triggers` gains a third shape, a zone that
+  uses the item's activity again (`{ on: enter|turnStart|turnEnd or a list of them, do: [{ type: "replay", activity?: <id>
+  }] }`: replay steps only, at zone moments only, no `if`). What the engine also takes and a drafter may not is refused with
+  why (`EXCLUDED_ZONE`): `aura.changes` (free key and value strings), `aura.radiusFormula` and `emanation.radiusFormula`
+  (free formulas), `aura.affects: summoner`, `emanation.atStart`, `emanation.on: death` (a death trigger), a replay `on:
+  moves` (once per square: no word for how often) or under an `if`. **One way to say it**: the moment goes with
+  `expect.subjected: activity`, one assertion per moment (`{ "given": { "moment": "turnEnd" }, "expect": { "subjected":
+  "activity" } }`), never with a roll (refused); what the activity then does is said as for any use of the item, with the
+  roll alone (`{ "given": { "roll": "failedSave" }, ... }`), not repeated per moment (allowed, as stored rereads hold it,
+  but compared as another situation). `turnStart` / `turnEnd` are a creature's OWN turn inside the zone or aura;
+  `ownTurnStart` / `ownTurnEnd` the turn of the aura's bearer (`definitions.auraMoment`). The radius of an area or aura is
+  the item's data or the entry's, never asserted. `loadCore` gives the engine's `emanationMoments`, `auraAffects` and
+  `zoneFields` (the fields each zone validator accepts, read from its own lists), and a DAS_CORE test pins every drafter
+  shape, word and exclusion to them: a field the engine adds or renames fails the suite. Scenarios: a zone or aura moment is
+  `manual`, named `given.moment.<word>` beside `expect.subjected` (the runner lays no lasting area and passes no turn with a
+  creature inside).
 - **Choices, barriers and wards** (Ruling R34, `tools/pipeline/wards.mjs`). Seven engine keys join `DRAFT_KEYS` in the same
   closed, typed form (`DRAFT_SHAPES`, enforced by `checkDraftKeys` through `wardProblemsOf`; the validator gate checks the
   creature types and statuses against the engine), each with what it does at the table and the engine file that says so
@@ -460,8 +465,8 @@ ones.
   field, which the system's own antimagic status also does). Not admitted, with why (`NOT_ADMITTED`, `wards.notAdmitted`):
   `changesForm` (the token becomes the FIRST profile of the item's transform activity with that form's maximum hit points,
   or keeps its own: no temporary hit points, no pick among forms), `formLock`, `walls`, `wallSide`, `encloses`,
-  `wardsDetection`. The engine has no automatic FAILURE of a save by creature type (only `saveAutoSuccess`,
-  `saveAutoSuccessAgainst: ["magic"]` and the consent of `willingFails`): an upstream gap, not a key. **One way to say
+  `wardsDetection`. An automatic FAILURE of a save by creature type is `saveAutoFail` (Ruling R37, the zone keys above),
+  on an engine that knows it. **One way to say
   it**: `chooses` and `bars` hold for the use of the item, `given: {}` (or `spellLevelAtMost` for a globe), never with a roll or
   a moment (refused); a barrier that stops only some creature types has no given word for them: its rule asserts no `bars`
   and goes to a person. `loadCore` gives the engine's `choiceEffects` and `wardFields` (the fields of the choice, barrier,
@@ -979,10 +984,17 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > and `definitions.moment`): read both before choosing. "Creatures of your choice", "only enemies" is `zoneAffects: "enemy"`
 > (an area) or `affects: "enemy"` (an emanation); "a construct succeeds automatically" is `saveAutoSuccess: { "types":
 > ["construct"] }`, asserted `{ "given": { "targetType": "construct" }, "expect": { "roll": { "mode": "autoSuccess", "on":
-> "save", "for": "target" } } }`. Never a `changes` list, a radius formula, an emanation on death, a replay `on: "moves"`
-> or under an `if` (`zones.excluded` says why): those are a person's. `selfZone`, `zoneLasts`, `zoneMax`, `zoneEffects`,
-> `aura`, `willingFails`, an emanation's `radius`, `sees` or `whileActive`, and `saveAutoSuccess.fighting` / `sizeAtLeast`
-> have no assertion word: write them when they are the right key, and know the rule then goes to a person at review.
+> "save", "for": "target" } } }`; "a plant fails automatically" is `saveAutoFail: { "types": ["plant"] }` (`types` only),
+> asserted the same with `"mode": "autoFail"` and `"targetType": "plant"`, but only when `draftKeys` lists `saveAutoFail`:
+> when it does not, the engine in use does not know the key, so answer `engine`. Invented example: "Wilting Hush" deals
+> necrotic damage on a failed Constitution save, half on a success, and a plant creature fails the save automatically:
+> `{ "saveDamage": { "<activity id>": "half" }, "saveAutoFail": { "types": ["plant"] } }`, asserted `[{ "given": { "roll":
+> "savedSave" }, "expect": { "damage": { "fraction": 0.5 } } }, { "given": { "targetType": "plant" }, "expect": { "roll": {
+> "mode": "autoFail", "on": "save", "for": "target" } } }]`. Never a `changes` list, a radius formula, an emanation on
+> death, a replay `on: "moves"` or under an `if` (`zones.excluded` says why): those are a person's. `selfZone`, `zoneLasts`,
+> `zoneMax`, `zoneEffects`, `aura`, `willingFails`, an emanation's `radius`, `sees` or `whileActive`, and
+> `saveAutoSuccess.fighting` / `sizeAtLeast` have no assertion word: write them when they are the right key, and know the
+> rule then goes to a person at review.
 >
 > Worked example (invented). The text of "Cinder Haze" says the caster fills a 20-foot sphere with embers for the
 > spell's duration; a creature that enters it or ends its turn there makes a Constitution save, and is poisoned until the
@@ -1020,9 +1032,9 @@ The Claude Code session gives each drafter agent one batch file, its structure f
 > { "bars": "spells" } }`. "Cannot regain hit points" while an effect lasts is `blocksHealing` (`true`, or the effect ids),
 > asserted `denies: healing` on the roll that applies the effect; "cannot gain temporary hit points" is `blocksTempHp`
 > (`denies: tempHp`). `wardsConditions` and `wardsAtZero` have no word: write them when they are the key, and the rule goes
-> to a person. A change of form (`changesForm`: no temporary hit points, the first form only), walls, an enclosure and an
-> automatic FAILURE of a save by creature type have no drafter key: answer `person` (or `engine` for the failure: the engine
-> has only `saveAutoSuccess`). A radius is never asserted.
+> to a person. A change of form (`changesForm`: no temporary hit points, the first form only), walls and an enclosure have
+> no drafter key: answer `person`. An automatic FAILURE of a save by creature type is `saveAutoFail` (zones, above) when
+> `draftKeys` lists it, else `engine`. A radius is never asserted.
 >
 > Worked example (invented). The text of "Veil of Thorns" says: for the duration, a 10-foot barrier of thorns surrounds the
 > caster and moves with it; no creature can enter it or reach through it with a melee weapon, and the caster cannot regain
@@ -1223,7 +1235,7 @@ handle of `docs/owners.json`, Ruling R23).
 > `assert.shapes` (`given`: `roll`, `moment`, `origin`, `targetType`, and the situations a limit names: `targetSizeAtMost`,
 > `targetStatus`, `selfStatus`, `targetWithin`, `targetHp`, `targetHpAtMost`, `onOwnTurn`, `damageType`, `activity`,
 > `spellLevelAtMost`; `expect`: `damage` with its `fraction`, `condition` applied or ended, `ends`, `roll` with advantage,
-> disadvantage or `autoSuccess`, `affects`, `denies`, `move`, `uses`, `subjected`, `chooses`, `bars`; never `excludes`,
+> disadvantage, `autoSuccess` or `autoFail`, `affects`, `denies`, `move`, `uses`, `subjected`, `chooses`, `bars`; never `excludes`,
 > which is refused).
 > When the text limits a consequence ("if the
 > target is Large or smaller", "on a melee attack", "a creature it is grappling"), state the limit in the same assertion's
@@ -1248,11 +1260,13 @@ handle of `docs/owners.json`, Ruling R23).
 > item: never repeated per moment. "Only enemies" or "creatures of your choice" is `{ "given": {}, "expect": { "affects":
 > "enemies" } }` for an area, and the same with the aura's moment in `given` for an aura that acts. "Constructs succeed
 > automatically" is `{ "given": { "targetType": "construct" }, "expect": { "roll": { "mode": "autoSuccess", "on": "save",
-> "for": "target" } } }`. The radius or size of an area is the item's data: never state it. Invented example: "Each creature
-> that starts its turn within 10 feet of the hound must succeed on a save or be frightened" gives `[{ "given": { "moment":
-> "turnStart" }, "expect": { "subjected": "activity" } }, { "given": { "roll": "failedSave" }, "expect": { "condition": {
-> "applied": "frightened" } } }]`; "at the end of each of the hound's turns, each creature within 10 feet takes fire damage"
-> gives `{ "given": { "moment": "ownTurnEnd" }, "expect": { "subjected": "activity" } }`.
+> "for": "target" } } }`; "plants fail it automatically" is the same with `"targetType": "plant"` and `"mode": "autoFail"`
+> (Ruling R37): never read a failure as a success, nor the other way. The radius or size of an area is the item's data:
+> never state it. Invented example: "Each creature that starts its turn within 10 feet of the hound must succeed on a save
+> or be frightened" gives `[{ "given": { "moment": "turnStart" }, "expect": { "subjected": "activity" } }, { "given": {
+> "roll": "failedSave" }, "expect": { "condition": { "applied": "frightened" } } }]`; "at the end of each of the hound's
+> turns, each creature within 10 feet takes fire damage" gives `{ "given": { "moment": "ownTurnEnd" }, "expect": {
+> "subjected": "activity" } }`.
 >
 > **Choices, barriers and wards** (Ruling R34). Say each of these once for the use of the item, with an empty `given`
 > (never a roll, never a moment; read `definitions.chooses` and `definitions.bars`). "The user picks one of the effects"
@@ -1762,7 +1776,7 @@ setup, steps }`:
 - Ruling R33, zones and auras: an assertion at a zone or aura moment (`enter`, `turnStart`, `turnEnd`, `ownTurnStart`,
   `ownTurnEnd`) is manual, `given.moment.<word>` in `manualBecause` beside `expect.subjected` and `advance`: the runner lays
   no lasting area, places no creature in it and passes no turn to watch the activity used again. An automatic success
-  (`roll.mode: autoSuccess`) is `expect.roll`, as every roll mode.
+  or failure (`roll.mode: autoSuccess`, Ruling R37 `autoFail`) is `expect.roll`, as every roll mode.
 - Ruling R34, choices, barriers and wards: `expect.chooses` (the runner answers no question), `expect.bars` (it walks no
   creature into an emanation, attacks from no outside square, casts no spell from outside), `given.spellLevelAtMost`, and
   the denials `expect.denies.healing` / `expect.denies.tempHp` (it deals no damage and heals nobody after the use) are

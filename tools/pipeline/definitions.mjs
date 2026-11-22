@@ -20,7 +20,9 @@ export const DEFINITION_SOURCES = Object.freeze([
   // Ruling R33: zones and auras.
   "engine core/emanation.mjs", "engine core/area.mjs", "engine core/action.mjs",
   // Ruling R34: choices, barriers and wards.
-  "engine adapter/usage.mjs", "engine adapter/barriers.mjs", "engine adapter/eligibility.mjs", "engine runtime/cantrips.mjs"
+  "engine adapter/usage.mjs", "engine adapter/barriers.mjs", "engine adapter/eligibility.mjs", "engine runtime/cantrips.mjs",
+  // Ruling R37: an automatic failure by creature type.
+  "engine core/conditions.mjs"
 ]);
 
 const def = (means, from) => Object.freeze({ means, from });
@@ -169,7 +171,10 @@ const DEFINED = {
     disadvantage: def("The roll is made with disadvantage.", PACK_FROM),
     // Ruling R33: core/action.mjs creatureAutoSuccess, runtime/engine.mjs openingFor (saveAutoSuccess).
     autoSuccess: def("The roll is not made: it succeeds automatically (the item's saving throw, for the creatures named).",
-      "engine core/action.mjs")
+      "engine core/action.mjs"),
+    // Ruling R37: core/conditions.mjs typeAutoSave, runtime/engine.mjs openingFor (saveAutoFail).
+    autoFail: def("The roll is not made: it fails automatically (the item's saving throw, for the creatures named).",
+      "engine core/conditions.mjs")
   },
   rollOn: {
     attack: def("An attack roll.", PACK_FROM),
