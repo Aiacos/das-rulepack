@@ -16,7 +16,7 @@ import { inventory, INVENTORY_KINDS } from "./inventory.mjs";
 import { embeddedIndex, poolOf } from "./settle.mjs";
 import { excludeReprint, resolveItem, ResolveError, RESOLVABLE } from "./resolve.mjs";
 import { loadCore } from "./core.mjs";
-import { runGates } from "./gates.mjs";
+import { quotationCheck, ruleProse, runGates } from "./gates.mjs";
 import { generate } from "./generate.mjs";
 import {
   autoTriage, clip, ingest, ingestSecond, ingestThird, isReaderHandle, setByRule, settleUnsure, triageContext, BY
@@ -30,7 +30,7 @@ import { ingestDrafts } from "./draft.mjs";
 import { ingestReviews, queueHolds } from "./review.mjs";
 import { isPlainLine } from "./assert.mjs";
 import { AGENT_HANDLE } from "./schema.mjs";
-import { forbiddenKeyIn } from "./intake.mjs";
+import { cachedText, forbiddenKeyIn } from "./intake.mjs";
 import { structureOf } from "./structure.mjs";
 import { hasText, readText } from "./text.mjs";
 
@@ -41,6 +41,13 @@ const RULES_OUT = process.env.RULEPACK_RULES || join(ROOT, "scripts", "rules");
 const RULES_LABEL = process.env.RULEPACK_RULES || "scripts/rules";
 
 class UsageError extends Error {}
+
+// The owners of docs/owners.json (Ruling R20): they sign `evidence.person` and run `review-accept`; never a results file.
+const ownerHandles = () => {
+  const { owners } = JSON.parse(readFileSync(join(ROOT, "docs", "owners.json"), "utf8"));
+  return Array.isArray(owners) ? owners.filter((o) => typeof o === "string") : [];
+};
+const isOwner = (by) => typeof by === "string" && ownerHandles().some((o) => o.toLowerCase() === by.toLowerCase());
 
 const need = (name) => {
   if (!process.env[name]) throw new UsageError(`Environment variable ${name} is not set`);
@@ -206,6 +213,11 @@ function gatesCommand(args) {
   const dumpsDir = ci ? null : need("RULEPACK_DUMPS");
   const textDir = ci ? null : need("RULEPACK_TEXT");
   return loadCore(coreDir).then((core) => {
+    // Again with the engine's enumerations: a word of a review-queue entry's assertions must be one of the engine's.
+    try { checkQueues(REGISTRY, core); } catch (e) {
+      console.error(e.message);
+      process.exit(2);
+    }
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
     const { failures, notes, updated } = runGates(records, { core, documents, textDir, ci, legacy: legacyOf(REGISTRY) });
     if (!ci) {
@@ -366,9 +378,9 @@ function structuresOf(batch, records, dumpsDir) {
 
 // Every queue file of the registry folder parses and holds valid entries (the gates check them, under --ci too): a broken
 // queue would otherwise only show when a later stage reads it.
-function checkQueues(dir) {
+function checkQueues(dir, vocabulary) {
   for (const name of Object.keys(QUEUE_FILES)) {
-    try { loadQueue(dir, name); } catch (e) { throw new UsageError(e.message); }
+    try { loadQueue(dir, name, { vocabulary }); } catch (e) { throw new UsageError(e.message); }
   }
   const file = join(dir, "queue.json");
   if (!existsSync(file)) return;
@@ -623,6 +635,11 @@ async function ingestCommand(args) {
   const extra = Object.keys(input).filter((k) => !["batch", "by", "results"].includes(k));
   if (extra.length) throw new UsageError(`${file}: unknown field ${JSON.stringify(clip(extra[0]))}`);
   if (!isReaderHandle(input.by)) throw new UsageError(`${file}: by must match ${BY} and not be "rule"`);
+  // One check for every mode: an owner signs only by hand (evidence.person) or through review-accept, never in a results file.
+  if (isOwner(input.by)) {
+    throw new UsageError(`${file}: by ${JSON.stringify(clip(input.by))} is an owner of docs/owners.json: a results file is an`
+      + " agent's, signed with an agent handle");
+  }
   const forbidden = forbiddenKeyIn(input);
   if (forbidden) {
     throw new UsageError(`${file}: a key named ${forbidden.split(/[.[]/).pop()} (at ${forbidden}): not a results file`);
@@ -749,8 +766,7 @@ function reviewAcceptCommand(args) {
   if (!isPlainLine(flags.because, 120)) {
     throw new UsageError("--because must be one line of printable ASCII, at most 120 characters");
   }
-  const { owners } = JSON.parse(readFileSync(join(ROOT, "docs", "owners.json"), "utf8"));
-  if (!isReaderHandle(flags.by) || AGENT_HANDLE.test(flags.by) || !Array.isArray(owners) || !owners.includes(flags.by)) {
+  if (!isReaderHandle(flags.by) || AGENT_HANDLE.test(flags.by) || !ownerHandles().includes(flags.by)) {
     throw new UsageError("--by must be an owner listed in docs/owners.json (never an agent's handle)");
   }
   checkQueues(REGISTRY);
@@ -764,11 +780,21 @@ function reviewAcceptCommand(args) {
     throw new UsageError(`${clip(key)}: the rule changed since it was queued: cut a new review batch for the rule as it is`);
   }
   if (stateOf(record) !== "gated") throw new UsageError(`${clip(key)}: the state is ${stateOf(record)}, not gated`);
+  // `--because` lands in a public file: it must not quote the entry's text, alone or with the rule's prose. Without the text
+  // nothing can be checked, so nothing is written (fail closed). The text gate reads it again (it is part of `emits`).
+  const text = cachedText(need("RULEPACK_TEXT"))(record);
+  if (text === null) throw new UsageError(`${clip(key)}: the entry's text is not in RULEPACK_TEXT: --because cannot be checked`);
+  const quotes = quotationCheck(text);
+  const prose = ruleProse(record.rule).map(([, v]) => v);
+  if ([[flags.because], [...prose, flags.because], [flags.because, ...prose]].some((p) => quotes(p.join(" ")))) {
+    throw new UsageError("--because quotes 8 or more consecutive words of the entry's text (alone or with the rule's prose)");
+  }
   const at = new Date().toISOString();
   const reviewed = { by: flags.by, at, agrees: true, rule: ruleFingerprint(record.rule), confidence: 1, because: flags.because };
   const next = all.map((r) => (r.key === key ? { ...r, evidence: { ...r.evidence, reviewed } } : r));
   if (!commitIngest(books, next, [key], [], [key], { queue: "review" })) return;
   console.log(JSON.stringify({ key, reviewed: "accepted", by: flags.by }));
+  console.log("The gate evidence is stale until the text gate reads --because: run npm run gates.");
 }
 
 // `ingest <results-file> --second`: the second reading of the queue. Agreements are applied and leave the queue;

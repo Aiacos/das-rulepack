@@ -356,8 +356,8 @@ export const REVIEW_BATCH_SIZE = 30;
 /**
  * Why a record that has a rule is not cut into a review batch, or null when it is: `no rule`, `legacy` (it leaves legacy
  * through a person), `not gated (<state>)` (a rule the gates do not pass is not worth reviewing; a reviewed or played one is
- * done), `queued` (an entry of review-queue.json about the rule as it is, review.mjs queueHolds: it waits for a person), `no
- * drafted evidence` (a person's own rule), `no text`, `no assertion`.
+ * done), `queued` (an entry of review-queue.json about the rule as it is, review.mjs queueHolds: it waits for a person),
+ * `no text`, `no assertion`. A person's own rule (no drafted evidence) is cut like any other.
  */
 export function reviewSkipReason(r, { queue = [] } = {}) {
   if (!r?.rule) return "no rule";
@@ -365,7 +365,6 @@ export function reviewSkipReason(r, { queue = [] } = {}) {
   const state = stateOf(r);
   if (state !== "gated") return `not gated (${state})`;
   if (queue.some((q) => q?.key === r.key && queueHolds(q, r))) return "queued";
-  if (r.evidence?.drafted === null || typeof r.evidence?.drafted !== "object") return "no drafted evidence";
   if (!r.text) return "no text";
   if (!Array.isArray(r.rule.assert) || !r.rule.assert.length) return "no assertion";
   return null;

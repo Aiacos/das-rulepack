@@ -70,20 +70,25 @@ function resultProblem(record, result, { offered, queued, by }) {
   if (held && queueHolds(held, record)) return "the record waits for a person in review-queue.json";
   const state = stateOf(record);
   if (state !== "gated") return `the state is ${state}, not gated: only gated rules are reviewed`;
-  const drafted = record.evidence?.drafted;
-  if (!isObject(drafted) || typeof drafted.by !== "string") return "no drafted evidence: only drafted rules are reviewed";
-  if (drafted.by.toLowerCase() === by.toLowerCase()) {
-    return "the reviewer is the drafter (same handle, case aside): a review must be independent";
+  if (authorsOf(record).some((h) => h.toLowerCase() === by.toLowerCase())) {
+    return "the reviewer is an author of the rule (its drafter or the person who signed it, case aside): a review must be"
+      + " independent";
   }
   return confidenceProblem(result.confidence) ?? whyProblem(result.why);
 }
+
+// The handles recorded on a rule: who drafted it (evidence.drafted.by) and who signed it (evidence.person.by), when present.
+// A rule a person wrote or edited after the draft is reviewed as it is, by someone who is neither.
+export const authorsOf = (record) => [record?.evidence?.drafted?.by, record?.evidence?.person?.by]
+  .filter((h) => typeof h === "string" && h !== "");
 
 // The `free` texts of a list of assertions, as [where, text].
 const freeTexts = (assertions) => assertions.flatMap((a, i) => ["given", "expect"]
   .filter((part) => typeof a?.[part]?.free === "string").map((part) => [`assert[${i}].${part}.free`, a[part].free]));
 
-// Why the reviewer's strings quote the text, alone or together (why first, then the free texts, and the reverse), or null.
-function quotationProblem(why, assertions, text) {
+// Why the reviewer's strings quote the text, alone, or together with everything a queue entry would store beside them (the
+// draft's free texts): read as stored (draft, why, review), in reverse, and with `why` first or last; or null.
+function quotationProblem(why, assertions, text, draftAssertions) {
   const quotes = quotationCheck(text);
   const quoted = whyQuotes(why, text, quotes);
   if (quoted) return quoted;
@@ -91,11 +96,13 @@ function quotationProblem(why, assertions, text) {
   for (const [where, value] of frees) {
     if (quotes(value)) return `${where} quotes ${RULE_QUOTE_WORDS} or more consecutive words of the text`;
   }
-  const values = frees.map(([, v]) => v);
-  if (values.length && (quotes([why, ...values].join(" ")) || quotes([...values, why].join(" ")))) {
-    return `why and the free texts together quote ${RULE_QUOTE_WORDS} or more consecutive words of the text`;
-  }
-  return null;
+  const mine = frees.map(([, v]) => v);
+  const draft = freeTexts(Array.isArray(draftAssertions) ? draftAssertions : []).map(([, v]) => v);
+  if (!mine.length && !draft.length) return null;
+  const orders = [[...draft, why, ...mine], [...mine, why, ...draft], [why, ...draft, ...mine], [...draft, ...mine, why]];
+  return orders.some((o) => quotes(o.join(" ")))
+    ? `why and the free texts (the draft's included) together quote ${RULE_QUOTE_WORDS} or more consecutive words of the text`
+    : null;
 }
 
 // One result: `{ reject: reason }`, `{ queue: entry }` or `{ apply: { record, next } }`. May throw (the caller catches).
@@ -120,12 +127,13 @@ function takeResult(result, ctx) {
   }
   const text = textOf(record);
   if (text === null) return { reject: "no text in the cache: nothing to check the result against" };
-  const quoted = quotationProblem(result.why, result.assert, text);
+  const quoted = quotationProblem(result.why, result.assert, text, record.rule.assert);
   if (quoted) return { reject: quoted };
 
   const fingerprint = ruleFingerprint(record.rule);
   const comparison = compareAsserts(record.rule, result.assert);
-  const drafted = record.evidence.drafted;
+  const drafted = isObject(record.evidence?.drafted) ? record.evidence.drafted : {};
+  const signed = record.evidence?.person;
   // Rulings R15, R21: a draft stamped for a person goes to one whatever the review says, with the comparison attached.
   const forPerson = drafted.person === true ? drafted.because : null;
   const queueReason = forPerson ?? (comparison.onlyDraft.length || comparison.onlyReview.length ? "disagreement"
@@ -133,7 +141,9 @@ function takeResult(result, ctx) {
   if (queueReason) {
     return { queue: {
       key: result.key, reason: queueReason, by, why: result.why, confidence: result.confidence,
-      draft: { by: drafted.by, rule: fingerprint, assert: structuredClone(record.rule.assert ?? []), implied: comparison.implied },
+      draft: { ...(typeof drafted.by === "string" ? { by: drafted.by } : {}),
+        ...(typeof signed?.by === "string" ? { person: signed.by } : {}), rule: fingerprint,
+        assert: structuredClone(record.rule.assert ?? []), implied: comparison.implied },
       review: { rule: fingerprint, assert: structuredClone(result.assert), agrees: comparison.agrees,
         onlyDraft: comparison.onlyDraft, onlyReview: comparison.onlyReview }
     } };
@@ -150,11 +160,14 @@ function takeResult(result, ctx) {
  *   repeats a key of the file; names no record, a key the batch did not offer (`offered`, required: a Map of the batch
  *   file's keys to the rule fingerprint each entry carried), a legacy record or one without a rule; its `rule` is not the
  *   fingerprint the batch gave, or is no longer the record's (the rule changed after the cut: stale); the record waits in
- *   review-queue.json (an entry about the rule as it is, queueHolds), is not `gated`, has no drafted evidence, or was drafted
- *   under the reviewer's handle (case aside); the confidence is outside 0..1, `why` is not one line of at most 200 characters;
+ *   review-queue.json (an entry about the rule as it is, queueHolds), is not `gated`, or names the reviewer's handle among
+ *   its authors (authorsOf: evidence.drafted.by, evidence.person.by; case aside); the confidence is outside 0..1, `why` is
+ *   not one line of at most 200 characters;
  *   `assert` is not a non-empty list valid against the engine's enumerations (`core`); the text is not in the cache; `why`,
- *   any `free` text, or `why` and the free texts together (either order) quote 8 words of the text;
- * - queued (`disagreed`, entries of review-queue.json, the comparison attached as data: `draft: { by, rule, assert, implied }`,
+ *   any `free` text, or `why` and the free texts of the review and the draft together (as a queue entry stores them) quote
+ *   8 words of the text;
+ * - queued (`disagreed`, entries of review-queue.json, the comparison attached as data: `draft: { by?, person?, rule, assert,
+ *   implied }`,
  *   `review: { rule, assert, agrees, onlyDraft, onlyReview }`) when the draft is stamped for a person (reason: its
  *   `because`, Rulings R15, R21, agreement included), or else the assertions differ (`disagreement`), hold a free text
  *   (`free-text`) or the confidence is below 0.7 (`low-confidence`);

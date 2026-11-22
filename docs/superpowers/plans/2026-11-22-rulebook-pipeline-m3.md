@@ -348,6 +348,10 @@ two books or runs sharing one `--structure` folder can overwrite each other (as 
       it`, `review batch carries nothing of the draft`, `review-accept needs because`; implement; PASS; commit
       `Pipeline: independent review of drafted rules`.
 
+**Parked** (review findings of Task 6 kept for later): the reason `free-text` is stated only when both sides hold a `free`
+in the same assertion (a `free` is part of the canonical form, so one on one side only shows as `disagreement`; it still
+reaches a person); review batch numbering continues per `--out` folder only, as for drafts (two folders can reuse an id).
+
 ### Task 7: Scenarios and played evidence
 
 **Files:** create `tools/pipeline/scenarios.mjs`, `tools/pipeline/played.mjs`, `play/lib/steps.mjs` (a scenario module for the

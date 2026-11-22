@@ -8,8 +8,10 @@ import { cutReviewBatches, reviewSkipReason } from "../../tools/pipeline/batch.m
 import { cacheText } from "../../tools/pipeline/text.mjs";
 import { normaliseAssert } from "../../tools/pipeline/assert.mjs";
 import {
-  emittedFingerprint, gatedItems, loadBook, loadQueue, ruleFingerprint, saveBook, saveQueue, stateOf, validateRecord
+  emittedFingerprint, gatedItems, loadBook, loadQueue, queueText, ruleFingerprint, saveBook, saveQueue, stateOf,
+  validateQueueEntry, validateRecord
 } from "../../tools/pipeline/registry.mjs";
+import { checkText } from "../../tools/pipeline/gates.mjs";
 
 // Synthetic fixtures only: invented entries, invented words.
 const BODY = "Alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon";
@@ -40,7 +42,7 @@ const rule = (over = {}) => ({
   origins: ["official", "ddb-importer"], assert: [HALF], ...over
 });
 // A record as `ingest --draft` and `gates` leave it: drafted by `drafter-zz9`, every gate passed on the rule as it is.
-const gated = (over = {}, { drafted = {} } = {}) => {
+const gated = (over = {}, { drafted = {}, person } = {}) => {
   const { body, ...rest } = over;
   const sha = cacheText(textDir, body ?? BODY);
   const r = {
@@ -51,7 +53,11 @@ const gated = (over = {}, { drafted = {} } = {}) => {
     evidence: { triaged: { by: "reader-1", at: AT, confidence: 0.9, keys: ["saveDamage"], similar: ["cold-snap"] } },
     rule: rule(), ...rest
   };
-  r.evidence = { ...r.evidence, drafted: { by: "drafter-zz9", at: AT, core: "9.9.9", rule: ruleFingerprint(r.rule), ...drafted } };
+  if (drafted !== null) {
+    const stamp = { by: "drafter-zz9", at: AT, core: "9.9.9", rule: ruleFingerprint(r.rule), ...drafted };
+    r.evidence = { ...r.evidence, drafted: stamp };
+  }
+  if (person) r.evidence.person = { by: person, because: "written by hand", rule: ruleFingerprint(r.rule) };
   r.evidence.gates = {
     at: AT, core: "9.9.9", rule: ruleFingerprint(r.rule), emits: emittedFingerprint(r),
     passed: ["schema", "validator", "ids", "fixes", "text", "unique"], items: gatedItems(r)
@@ -430,14 +436,15 @@ describe("pipeline CLI: batch review, ingest --review, review-accept", () => {
   it("review-accept needs because, an owner, and a current queue entry", () => {
     const [a] = records;
     const entry = { key: a.key, reason: "noReactions", by: "reviewer-1", why: "x", confidence: 0.9,
-      review: { rule: ruleFingerprint(a.rule), agrees: true } };
+      draft: { by: "drafter-zz9", rule: ruleFingerprint(a.rule), assert: [HALF], implied: normaliseAssert([HALF]) },
+      review: { rule: ruleFingerprint(a.rule), assert: [HALF], agrees: true, onlyDraft: [], onlyReview: [] } };
     saveQueue(registry, "review", [entry]);
     expect(cli(["review-accept", a.key, "--by", "owner"]).status).toBe(2);
     expect(cli(["review-accept", a.key, "--because", "checked it", "--by", "reviewer-9"]).status).toBe(2);
     expect(cli(["review-accept", a.key, "--because", "checked it"]).status).toBe(2);
     expect(cli(["review-accept", records[1].key, "--because", "checked it", "--by", "owner"]).status).toBe(2);
     const before = readFileSync(join(registry, "tst.json"), "utf8");
-    saveQueue(registry, "review", [{ ...entry, review: { rule: "e".repeat(64) } }]);
+    saveQueue(registry, "review", [{ ...entry, review: { ...entry.review, rule: "e".repeat(64) } }]);
     expect(cli(["review-accept", a.key, "--because", "checked it", "--by", "owner"]).status).toBe(2);
     expect(readFileSync(join(registry, "tst.json"), "utf8")).toBe(before);
     saveQueue(registry, "review", [entry]);
@@ -447,7 +454,176 @@ describe("pipeline CLI: batch review, ingest --review, review-accept", () => {
     expect(next.evidence.reviewed).toMatchObject({ by: "owner", agrees: true, rule: ruleFingerprint(a.rule), confidence: 1,
       because: "checked the reaction by hand" });
     expect(next.rule).toEqual(a.rule);
-    expect(stateOf(next)).toBe("reviewed");
+    // `because` was written after the gates: their evidence no longer stands until `gates` runs (and reads it) again.
+    expect(stateOf(next)).toBe("drafted");
+    expect(r.stdout).toMatch(/npm run gates/);
     expect(loadQueue(registry, "review")).toEqual([]);
+  });
+});
+
+const nineWords = "alpha beta gamma delta epsilon zeta eta theta iota";
+describe("fix round 1", () => {
+  it("the text gate reads evidence.reviewed.because and evidence.person.because, alone and with the rule's prose", () => {
+    const r = gated();
+    const withBecause = (ev) => ({ ...r, evidence: { ...r.evidence, ...ev } });
+    const reviewed = { by: "owner", at: AT, agrees: true, rule: ruleFingerprint(r.rule), confidence: 1 };
+    expect(checkText(withBecause({ reviewed: { ...reviewed, because: "checked by hand" } }), { textDir }).failures).toEqual([]);
+    expect(checkText(withBecause({ reviewed: { ...reviewed, because: nineWords } }), { textDir }).failures.join(" "))
+      .toMatch(/evidence\.reviewed\.because quotes/);
+    expect(checkText(withBecause({ person: { by: "owner", because: nineWords, rule: ruleFingerprint(r.rule) } }), { textDir })
+      .failures.join(" ")).toMatch(/evidence\.person\.because quotes/);
+    // Four words in adds, four in because: together they quote eight.
+    const split = { ...withBecause({ reviewed: { ...reviewed, because: "epsilon zeta eta theta" } }),
+      rule: rule({ adds: "alpha beta gamma delta" }) };
+    expect(checkText(split, { textDir }).failures.join(" ")).toMatch(/together quotes/);
+  });
+
+  it("a because written after the gates makes their evidence stale, so --ci cannot pass it unread", () => {
+    const r = gated();
+    const reviewed = { by: "owner", at: AT, agrees: true, rule: ruleFingerprint(r.rule), confidence: 1 };
+    const accepted = { ...r, evidence: { ...r.evidence, reviewed } };
+    expect(emittedFingerprint(accepted)).toBe(emittedFingerprint(r));
+    expect(stateOf(accepted)).toBe("reviewed");
+    const withBecause = { ...r, evidence: { ...r.evidence, reviewed: { ...reviewed, because: nineWords } } };
+    expect(emittedFingerprint(withBecause)).not.toBe(emittedFingerprint(r));
+    expect(stateOf(withBecause)).toBe("drafted");
+  });
+
+  it("the joint quotation check covers everything a queue entry stores: why, the draft's and the review's free texts", () => {
+    const freeOf = (words) => ({ given: HALF.given, expect: { ...HALF.expect, free: words } });
+    const r = gated({ rule: rule({ assert: [freeOf("alpha beta gamma")] }) });
+    const out = run([r], [review(r, { why: "delta epsilon zeta", assert: [freeOf("eta theta iota"), HALF] })]);
+    expect(out.disagreed).toEqual([]);
+    expect(reasonOf(out)).toMatch(/together quote/);
+  });
+
+  it("a person's rule (no drafted evidence) is cut and reviewed; independence holds against every handle on the record", () => {
+    const own = gated({}, { drafted: null, person: "owner" });
+    expect(validateRecord(own)).toEqual([]);
+    expect(stateOf(own)).toBe("gated");
+    expect(reviewSkipReason(own)).toBeNull();
+    expect(cutReviewBatches([own])[0].entries.map((e) => e.key)).toEqual([own.key]);
+    expect(reasonOf(run([own], [review(own)], { by: "OWNER" }))).toMatch(/independent/);
+    const ok = run([own], [review(own)]);
+    expect(ok.agreed).toEqual([own.key]);
+    // Drafted, then edited and signed by a person: reviewed as it is now, by someone who is neither.
+    const edited = gated({ rule: rule({ adds: "Edited by a person." }) }, { drafted: { rule: "d".repeat(64) }, person: "owner" });
+    expect(edited.evidence.drafted.rule).not.toBe(ruleFingerprint(edited.rule));
+    for (const by of ["drafter-zz9", "owner"]) expect(reasonOf(run([edited], [review(edited)], { by }))).toMatch(/independent/);
+    const second = run([edited], [review(edited)]);
+    expect(second.agreed).toEqual([edited.key]);
+    expect(second.records[0].evidence.reviewed.rule).toBe(ruleFingerprint(edited.rule));
+    // Queued, the entry names both.
+    const queued = run([edited], [review(edited, { confidence: 0.5 })]).disagreed[0];
+    expect(queued.draft).toMatchObject({ by: "drafter-zz9", person: "owner" });
+    expect(validateQueueEntry(queued, { queue: "review" })).toEqual([]);
+  });
+
+  it("validates what sits inside a review-queue entry: shape and closed vocabulary, no prose", () => {
+    const r = gated();
+    const [entry] = run([r], [review(r, { assert: [PRONE] })]).disagreed;
+    expect(validateQueueEntry(entry, { queue: "review" })).toEqual([]);
+    expect(validateQueueEntry(entry, { queue: "review", vocabulary: core })).toEqual([]);
+    const bad = (path, value) => {
+      const e = structuredClone(entry);
+      const parts = path.split(".");
+      let node = e;
+      for (const p of parts.slice(0, -1)) node = node[p];
+      node[parts.at(-1)] = value;
+      return validateQueueEntry(e, { queue: "review", vocabulary: core }).join("; ");
+    };
+    expect(bad("review.assert", [{ given: { roll: "when it fails" }, expect: { affects: "target" } }])).toMatch(/review\.assert/);
+    expect(bad("draft.assert", [{ given: {}, expect: { condition: { applied: "falls over and sulks" } } }]))
+      .toMatch(/draft\.assert/);
+    expect(bad("review.onlyDraft", ["the target falls over"])).toMatch(/onlyDraft/);
+    expect(bad("draft.implied", ["expect.damage.fraction=0.5;given.roll=a long sentence of prose"])).toMatch(/implied/);
+    expect(bad("review.agrees", "yes")).toMatch(/agrees/);
+    expect(bad("review.rule", "abc")).toMatch(/rule/);
+    expect(bad("review.note", "hello")).toMatch(/note: unknown field/);
+    expect(bad("draft.by", "rule")).toMatch(/by/);
+    // The drafts queue keeps a draft rule as it is: not held to this shape.
+    const { review: dropped, ...draftOnly } = entry;
+    expect(validateQueueEntry(draftOnly, { queue: "drafts" })).toEqual([]);
+    expect(() => queueText("review", [{ ...entry, review: { ...entry.review, onlyReview: ["prose here"] } }]))
+      .toThrow(/onlyReview/);
+  });
+
+  it("the reviewer brief's example is a placeholder that shows the shape only", () => {
+    const doc = readFileSync(join(process.cwd(), "docs", "PIPELINE.md"), "utf8");
+    const brief = doc.slice(doc.indexOf("## 📖 Brief for a reviewer agent"), doc.indexOf("## 📥 Ingesting results"));
+    expect(brief).toMatch(/the example shows the shape only/);
+    expect(brief).not.toMatch(/"savedSave"/);
+    expect(brief).toMatch(/invalidates its own review/);
+  });
+});
+
+describe("fix round 1: CLI", () => {
+  let tmp, registry, env;
+  const cli = (args, over = {}) =>
+    spawnSync("node", ["tools/pipeline/cli.mjs", ...args], { encoding: "utf8", env: { ...env, ...over } });
+  const write = (name, body) => { const f = join(tmp, name); writeFileSync(f, JSON.stringify(body)); return f; };
+  const withCore = it.skipIf(!process.env.DAS_CORE);
+  let records;
+  beforeEach(() => {
+    tmp = mkdtempSync(join(tmpdir(), "review-fix-"));
+    registry = join(tmp, "registry");
+    env = { PATH: process.env.PATH, RULEPACK_TEXT: textDir, RULEPACK_REGISTRY: registry,
+      ...(process.env.DAS_CORE ? { DAS_CORE: process.env.DAS_CORE } : {}) };
+    records = [gated()];
+    saveBook(registry, { book: "TST", records });
+  });
+  afterEach(() => rmSync(tmp, { recursive: true, force: true }));
+
+  it("review-accept refuses a because that quotes the text, and needs the text to check it", () => {
+    const [a] = records;
+    saveQueue(registry, "review", [{ key: a.key, reason: "noReactions", by: "reviewer-1", why: "x", confidence: 0.9,
+      draft: { by: "drafter-zz9", rule: ruleFingerprint(a.rule), assert: [HALF], implied: normaliseAssert([HALF]) },
+      review: { rule: ruleFingerprint(a.rule), assert: [HALF], agrees: true, onlyDraft: [], onlyReview: [] } }]);
+    const before = readFileSync(join(registry, "tst.json"), "utf8");
+    const quoted = cli(["review-accept", a.key, "--because", nineWords, "--by", "owner"]);
+    expect(quoted.status).toBe(2);
+    expect(quoted.stderr).toMatch(/quot/);
+    expect(cli(["review-accept", a.key, "--because", "checked it", "--by", "owner"], { RULEPACK_TEXT: "" }).status).toBe(2);
+    expect(cli(["review-accept", a.key, "--because", "checked it", "--by", "owner"], { RULEPACK_TEXT: join(tmp, "none") })
+      .status).toBe(2);
+    expect(readFileSync(join(registry, "tst.json"), "utf8")).toBe(before);
+    expect(loadQueue(registry, "review")).toHaveLength(1);
+  });
+
+  withCore("an owner's handle never comes in through a results file, whatever the mode", () => {
+    const batchFile = (id, stage) => write(`${id}.json`, { id, stage, entries: records.map((r) => ({ key: r.key,
+      rule: ruleFingerprint(r.rule) })) });
+    const cases = [
+      [write("t.json", { batch: "tst-triage-001", by: "owner", results: [] }), []],
+      [write("s.json", { batch: "tst-second-001", by: "owner", results: [] }), ["--second"]],
+      [write("th.json", { batch: "tst-third-001", by: "owner", results: [] }), ["--third"]],
+      [write("d.json", { batch: "tst-draft-001", by: "owner", results: [] }), ["--draft", "--batch",
+        batchFile("tst-draft-001", "draft")]],
+      [write("r.json", { batch: "tst-review-001", by: "owner", results: [review(records[0])] }), ["--review", "--batch",
+        batchFile("tst-review-001", "review")]]
+    ];
+    const before = readFileSync(join(registry, "tst.json"), "utf8");
+    for (const [file, flags] of cases) {
+      const r = cli(["ingest", file, ...flags]);
+      expect(r.status).toBe(2);
+      expect(r.stderr).toMatch(/owners\.json/);
+    }
+    expect(readFileSync(join(registry, "tst.json"), "utf8")).toBe(before);
+  });
+
+  withCore("a hand-edited review queue with prose fails gates --ci", () => {
+    const [a] = records;
+    const entry = { key: a.key, reason: "disagreement", by: "reviewer-1", why: "x", confidence: 0.9,
+      draft: { by: "drafter-zz9", rule: ruleFingerprint(a.rule), assert: [HALF], implied: normaliseAssert([HALF]) },
+      review: { rule: ruleFingerprint(a.rule), assert: [PRONE], agrees: false, onlyDraft: normaliseAssert([HALF]),
+        onlyReview: normaliseAssert([PRONE]) } };
+    writeFileSync(join(registry, "review-queue.json"), `${JSON.stringify([entry])}\n`);
+    expect(cli(["gates", "--ci"]).stderr).not.toMatch(/review-queue/);
+    const prose = { ...entry, review: { ...entry.review, assert: [{ given: {}, expect: { condition: {
+      applied: "it falls over and sulks" } } }] } };
+    writeFileSync(join(registry, "review-queue.json"), `${JSON.stringify([prose])}\n`);
+    const r = cli(["gates", "--ci"]);
+    expect(r.status).toBe(2);
+    expect(r.stderr).toMatch(/review-queue\.json.*review\.assert/);
   });
 });

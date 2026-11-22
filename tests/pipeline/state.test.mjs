@@ -146,7 +146,12 @@ describe("drafts-queue.json and review-queue.json", () => {
     const before = generate({ registry, out });
     const index = readFileSync(join(out, "index.mjs"), "utf8");
     writeFileSync(join(registry, "drafts-queue.json"), `${JSON.stringify([entry("tst:spell:glimmer-bolt")], null, 2)}\n`);
-    writeFileSync(join(registry, "review-queue.json"), `${JSON.stringify([entry("tst:spell:x", { reason: "disagreement" })])}\n`);
+    // A review-queue entry in its full shape (registry.mjs holds `draft` and `review` to it).
+    const assert = [{ given: { roll: "hit" }, expect: { affects: "target" } }];
+    const review = entry("tst:spell:x", { reason: "disagreement",
+      draft: { by: "drafter-1", rule: "a".repeat(64), assert, implied: [] },
+      review: { rule: "a".repeat(64), assert, agrees: true, onlyDraft: [], onlyReview: [] } });
+    writeFileSync(join(registry, "review-queue.json"), `${JSON.stringify([review])}\n`);
     expect(before.written.sort()).toEqual(["books/tst.mjs", "index.mjs"]);
     expect(generate({ registry, out, check: true }).differing).toEqual([]);
     expect(readFileSync(join(out, "index.mjs"), "utf8")).toBe(index);
