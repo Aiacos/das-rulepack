@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { KEY_UNKNOWN_TO_ENGINE } from "../../tools/pipeline/draft-keys.mjs";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
@@ -517,7 +518,10 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("with the real DAS · Core", () =>
     const core = await loadCore(CORE_DIR);
     const { TABLE } = await import("../../scripts/rules/index.mjs");
     for (const [id, entry] of Object.entries(TABLE)) {
-      expect(gateValidator(withEntry(entry), ctx({ core })), id).toEqual([]);
+      // Rulings R36, R37: against an engine older than a key the pack ships (CI's latest release), the only problem allowed
+      // is that key being unknown to it; the shipped module leaves such a rule out on that engine by itself.
+      const problems = gateValidator(withEntry(entry), ctx({ core })).filter((x) => !x.includes(KEY_UNKNOWN_TO_ENGINE));
+      expect(problems, id).toEqual([]);
       for (const found of idsIn(entry, core.vocabulary)) expect(found, id).toMatch(/^[A-Za-z0-9]{16}$/);
     }
     const unknownFact = entryWith({ triggers: [{ on: "isHit", if: { "moon.phase": "full" }, do: [{ type: "resave" }] }] });

@@ -812,7 +812,7 @@
       "edition": "2024",
       "owner": "Aboleth",
       "section": "action",
-      "identifier": "dominate-mind",
+      "identifier": "xmm-aboleth-dominate-mind",
       "page": 12,
       "srd": true,
       "text": {
@@ -849,7 +849,8 @@
           ],
           "data": {
             "sha256": "16ba15ecacad0952eac7142cc88fd7f035969e1e41065c10539ce0b74227535a"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -886,11 +887,118 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x001",
+          "at": "2026-11-22T19:47:12.026Z",
+          "core": "0.290.0",
+          "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.553Z",
+          "core": "0.290.0",
+          "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052",
+          "item": "130f98a4adc959db1b714b3af0df861f42511104896d78b1c7107e2b93887a75",
+          "delta": [
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "dominate-mind",
+          "carried": [
+            "choice"
+          ],
+          "dropped": [
+            "triggers"
+          ]
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.553Z",
+          "core": "0.290.0",
+          "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052",
+          "emits": "91692169b991b74e815d378cf50512037dd31bc3cbdc155bbf0e58ef7b0af369",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "130f98a4adc959db1b714b3af0df861f42511104896d78b1c7107e2b93887a75"
+          }
         }
       },
       "why": "Charm with repeated save whenever damaged and after distance and time; control and range-based conditions exceed the data",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "yiiKNaJ2svcUWqLi": "xmm-aboleth-dominate-mind"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A failed save leaves the target charmed; taking damage still lets it save again.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "isDamaged",
+              "via": "effect",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            },
+            {
+              "on": "failedSave",
+              "do": [
+                {
+                  "type": "status",
+                  "status": "charmed"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "charmed"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          },
+          {
+            "unexpressed": "death-trigger",
+            "count": 1
+          },
+          {
+            "unexpressed": "out-of-combat",
+            "count": 2
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Aboleth"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:aboleth/action/multiattack",
@@ -1337,7 +1445,7 @@
       "edition": "2024",
       "owner": "Aboleth",
       "section": "trait",
-      "identifier": "mucus-cloud",
+      "identifier": "xmm-aboleth-mucus-cloud",
       "page": 12,
       "srd": true,
       "text": {
@@ -1378,7 +1486,8 @@
           },
           "differences": [
             "activityTypes"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -1393,10 +1502,102 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x001",
+          "at": "2026-11-22T19:47:12.026Z",
+          "core": "0.290.0",
+          "rule": "f4bab65212fe6b4463c876643c198dbc60f30a655a4cae3cc67ed08e4ee3f7e9"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "f4bab65212fe6b4463c876643c198dbc60f30a655a4cae3cc67ed08e4ee3f7e9",
+          "confidence": 0.7
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.555Z",
+          "core": "0.290.0",
+          "rule": "f4bab65212fe6b4463c876643c198dbc60f30a655a4cae3cc67ed08e4ee3f7e9",
+          "item": "8ef4d208c7285b686ba0ceea7fff6a08b7e1852aab13e5d3272c234b00864386",
+          "delta": [
+            "emanation"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "mucus-cloud",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.555Z",
+          "core": "0.290.0",
+          "rule": "f4bab65212fe6b4463c876643c198dbc60f30a655a4cae3cc67ed08e4ee3f7e9",
+          "emits": "e2a9fd52d2c77da614fdcff45dd0b0f13ea48671ab9e8a9d5aadadd9b24ce32b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "8ef4d208c7285b686ba0ceea7fff6a08b7e1852aab13e5d3272c234b00864386"
+          }
         }
       },
       "why": "Aura around the creature while underwater, save at end of its turn, lasting curse with healing limits and periodic acid damage",
-      "state": "triaged"
+      "sources": {
+        "mmMucusCloud0000": "xmm-aboleth-mucus-cloud"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Creatures next to the aboleth save against the curse when its turn ends.",
+        "entry": {
+          "emanation": {
+            "on": "ownTurnEnd",
+            "activity": "clFFG8uDBSFzxIo8"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "ownTurnEnd"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "trigger-filter",
+            "count": 1
+          },
+          {
+            "unexpressed": "healing-block",
+            "count": 1
+          },
+          {
+            "unexpressed": "out-of-combat",
+            "count": 2
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Aboleth"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:aboleth/trait/probing-telepathy",
@@ -8330,6 +8531,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.783Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-air-elemental-action-whirlwind",
+          "client": "gm",
+          "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.147Z",
           "core": "0.290.0",
@@ -8363,14 +8572,6 @@
           "items": {
             "official": "e6d3d0570e5db94d0db9eed256359c7754a0b55555855458f47968f281d7da31"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.783Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-air-elemental-action-whirlwind",
-          "client": "gm",
-          "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d"
         }
       },
       "why": "Recharge save for damage, push and Prone limited to Medium or smaller targets in its space; size limit and push not in data.",
@@ -11266,6 +11467,14 @@
           "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-copper-dragon-action-slowing-breath",
+          "client": "gm",
+          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287"
+        },
         "reading": {
           "at": "2026-11-22T08:48:14.070Z",
           "core": "0.290.0",
@@ -11297,14 +11506,6 @@
           "items": {
             "official": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ancient-copper-dragon-action-slowing-breath",
-          "client": "gm",
-          "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287"
         }
       },
       "why": "Data halves speed only; text also bars reactions and limits to one action or bonus action until end of next turn",
@@ -15282,7 +15483,7 @@
       "edition": "2024",
       "owner": "Animal Lord",
       "section": "trait",
-      "identifier": "lordly-presence",
+      "identifier": "xmm-animal-lord-lordly-presence",
       "page": 15,
       "srd": false,
       "text": {
@@ -15361,11 +15562,131 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x001",
+          "at": "2026-11-22T19:47:12.026Z",
+          "core": "0.290.0",
+          "rule": "e582fc8d10084dac0a4dc85a6ec08cf2658aa4269c128584ef798beb62f5277a"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.580Z",
+          "core": "0.290.0",
+          "rule": "e582fc8d10084dac0a4dc85a6ec08cf2658aa4269c128584ef798beb62f5277a",
+          "item": "2c235216f237729aafceb8daa8cb2c7cdfb9c216be11987b2a9f236e90617032",
+          "delta": [
+            "choice",
+            "emanation"
+          ],
+          "same": [],
+          "changes": [
+            "effectEnds"
+          ],
+          "triggers": "none",
+          "original": "lordly-presence",
+          "carried": [
+            "magical"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.580Z",
+          "core": "0.290.0",
+          "rule": "e582fc8d10084dac0a4dc85a6ec08cf2658aa4269c128584ef798beb62f5277a",
+          "emits": "3ff465616a3275b2e193f30f5b384260e403d177bdded429a91e97e34b4396bd",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "2c235216f237729aafceb8daa8cb2c7cdfb9c216be11987b2a9f236e90617032"
+          }
         }
       },
       "why": "Aura on enemies starting their turn nearby with a variant-chosen effect (charm, fear or damage with a save penalty); needs trigger and choice",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmLordlyPresence": "xmm-animal-lord-lordly-presence"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Enemies starting their turn near the lord save; on a failure the lord's variant effect lands until their next turn ends.",
+        "entry": {
+          "emanation": {
+            "on": "turnStart",
+            "affects": "enemy",
+            "activity": "IlmzjggKrDB1c9dr"
+          },
+          "choice": {
+            "effects": "one",
+            "pool": {
+              "IlmzjggKrDB1c9dr": [
+                "1JhQS3UFjWKSZqyP",
+                "BR99gMLiBwIoLHVU",
+                "gZ5h0K8uFTRui7av"
+              ]
+            }
+          },
+          "effectEnds": {
+            "1JhQS3UFjWKSZqyP": "bearerTurnEnd",
+            "BR99gMLiBwIoLHVU": "bearerTurnEnd",
+            "gZ5h0K8uFTRui7av": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "affects": "enemies"
+            }
+          },
+          {
+            "given": {},
+            "expect": {
+              "chooses": "oneEffect"
+            }
+          },
+          {
+            "given": {},
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 1,
+                "type": "psychic"
+              }
+            },
+            "because": "use-time-choice"
+          }
+        ],
+        "origin": "Animal Lord"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:animal-lord/trait/magic-resistance",
@@ -21727,6 +22048,14 @@
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
           "confidence": 0.85
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-banshee-action-horrify",
+          "client": "gm",
+          "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.175Z",
           "core": "0.290.0",
@@ -21758,14 +22087,6 @@
           "items": {
             "official": "65e432e0047388d2e26a926c056bc36cd7b439c37ce1de365f0feab5f3abd4ab"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-banshee-action-horrify",
-          "client": "gm",
-          "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c"
         }
       },
       "why": "Frightened to a turn start plus 24-hour immunity to this banshee; the immunity rider is not in data.",
@@ -23115,6 +23436,14 @@
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
           "confidence": 0.85
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bearded-devil-action-beard",
+          "client": "gm",
+          "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.177Z",
           "core": "0.290.0",
@@ -23146,14 +23475,6 @@
           "items": {
             "official": "7980ebdac1c7339b7ad44e14e53eecea8b792f126f2360895c8638a2704daed1"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bearded-devil-action-beard",
-          "client": "gm",
-          "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c"
         }
       },
       "why": "Poisoned until next turn start plus no healing while it lasts; data has only the bare condition without the rider or duration.",
@@ -23806,7 +24127,7 @@
       "edition": "2024",
       "owner": "Beholder Zombie",
       "section": "action",
-      "identifier": "eye-rays",
+      "identifier": "xmm-beholder-zombie-eye-rays",
       "page": 347,
       "srd": false,
       "text": {
@@ -23859,7 +24180,8 @@
           "differences": [
             "damageTypes",
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -23894,11 +24216,132 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x002",
+          "at": "2026-11-22T19:47:14.086Z",
+          "core": "0.290.0",
+          "rule": "ce9226424264a8a6ef12969fdf5c35f6e0d38a5b7f7ab453f6d9ad4adbc4135f"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.593Z",
+          "core": "0.290.0",
+          "rule": "ce9226424264a8a6ef12969fdf5c35f6e0d38a5b7f7ab453f6d9ad4adbc4135f",
+          "item": "4f721c948749607153d25f35752448b5ae5341bfbac95d3efe2a26079f07c33c",
+          "delta": [
+            "blocksHealing",
+            "effectEnds",
+            "saveDamage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "eye-rays",
+          "carried": [
+            "magical"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.593Z",
+          "core": "0.290.0",
+          "rule": "ce9226424264a8a6ef12969fdf5c35f6e0d38a5b7f7ab453f6d9ad4adbc4135f",
+          "emits": "cff315a250275e27b8e7fd3a50b4967f5dba835b697c2b855f53e01021f0d20e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "4f721c948749607153d25f35752448b5ae5341bfbac95d3efe2a26079f07c33c"
+          }
         }
       },
       "why": "Random ray choice without repeats, repeated paralysis save, object and kill-to-dust riders; data also has the enervation damage type wrong.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "XDw7TpLSibnKMcZI": "xmm-beholder-zombie-eye-rays"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Fear and poison end at the end of the target's next turn; a poisoned target cannot heal; a saved fear ray does no damage.",
+        "entry": {
+          "effectEnds": {
+            "okGmSea9t9idzzrp": "bearerTurnEnd",
+            "XvZO30AwVhzcboC7": "bearerTurnEnd"
+          },
+          "blocksHealing": [
+            "XvZO30AwVhzcboC7"
+          ],
+          "saveDamage": {
+            "aMfevxGsYy5swVDA": "none"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "denies": "healing"
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 1,
+                "type": "necrotic"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 2
+          },
+          {
+            "unexpressed": "out-of-combat",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Beholder Zombie"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:beholder-zombie/action/multiattack",
@@ -26913,7 +27356,7 @@
       "edition": "2024",
       "owner": "Blue Slaad",
       "section": "action",
-      "identifier": "mutating-claw",
+      "identifier": "xmm-blue-slaad-mutating-claw",
       "page": 285,
       "srd": false,
       "text": {
@@ -26958,7 +27401,8 @@
           },
           "differences": [
             "activityTypes"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -26973,10 +27417,112 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x002",
+          "at": "2026-11-22T19:47:14.086Z",
+          "core": "0.290.0",
+          "rule": "9cf31cc177d89ce163531caf4235338a33d59c94890037b16e00fbf5aca07914",
+          "person": true,
+          "because": "onHit"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.599Z",
+          "core": "0.290.0",
+          "rule": "9cf31cc177d89ce163531caf4235338a33d59c94890037b16e00fbf5aca07914",
+          "item": "cc0073ac118315fad93bb29cb25b5d2a55a0dfaf7a887ccb7b3cbfc23fa63749",
+          "delta": [
+            "blocksHealing",
+            "onHit"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "mutating-claw",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.599Z",
+          "core": "0.290.0",
+          "rule": "9cf31cc177d89ce163531caf4235338a33d59c94890037b16e00fbf5aca07914",
+          "emits": "b8697e23704c92b26fffa17235a1477dd43683cd97c0795849a0c218fa977e8d",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "cc0073ac118315fad93bb29cb25b5d2a55a0dfaf7a887ccb7b3cbfc23fa63749"
+          }
         }
       },
       "why": "Curse on a failed save with no healing, repeated max HP loss and transformation, limited to humanoids not already cursed; data is partial.",
-      "state": "triaged"
+      "sources": {
+        "mmMutatingClaw00": "xmm-blue-slaad-mutating-claw"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A hit calls the Constitution save; a cursed target regains no hit points.",
+        "entry": {
+          "onHit": {
+            "save": "zy66rXdo6Mo4E9bO"
+          },
+          "blocksHealing": [
+            "OKOEoW15QRwevNhU"
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "affects": "target"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "denies": "healing"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "max-hp-reduction",
+            "count": 1
+          },
+          {
+            "unexpressed": "form-change",
+            "count": 1
+          },
+          {
+            "unexpressed": "target-state",
+            "count": 1
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Blue Slaad"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:blue-slaad/trait/magic-resistance",
@@ -27395,6 +27941,14 @@
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
           "confidence": 0.85
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bone-devil-action-infernal-sting",
+          "client": "gm",
+          "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.179Z",
           "core": "0.290.0",
@@ -27426,14 +27980,6 @@
           "items": {
             "official": "a8229c266fe5ed511237683c7e9d09b814f3161c6f4fa44cc5da5f8a8cc60d63"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bone-devil-action-infernal-sting",
-          "client": "gm",
-          "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3"
         }
       },
       "why": "Poisoned lasts until the devil's next turn start and blocks healing meanwhile; data has only a plain Poisoned effect, no expiry or heal block.",
@@ -28258,7 +28804,7 @@
       "edition": "2024",
       "owner": "Brazen Gorgon",
       "section": "action",
-      "identifier": "smelting-charge",
+      "identifier": "xmm-brazen-gorgon-smelting-charge",
       "page": 149,
       "srd": false,
       "text": {
@@ -28301,7 +28847,8 @@
           "differences": [
             "activityTypes",
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28338,11 +28885,97 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x002",
+          "at": "2026-11-22T19:47:14.086Z",
+          "core": "0.290.0",
+          "rule": "cfb905b00f0c918ec6037be1eb998dd1f7b6ba50aceb437c7ad78144eb6e2794"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.603Z",
+          "core": "0.290.0",
+          "rule": "cfb905b00f0c918ec6037be1eb998dd1f7b6ba50aceb437c7ad78144eb6e2794",
+          "item": "c7ab2e0b020e2444eddc2a644bf6a72b648283b449ec38f8bfffdaba1f12720e",
+          "delta": [
+            "choice"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "smelting-charge",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.603Z",
+          "core": "0.290.0",
+          "rule": "cfb905b00f0c918ec6037be1eb998dd1f7b6ba50aceb437c7ad78144eb6e2794",
+          "emits": "bf76a8f8e9292edaaaa3a140ac9af34ed631af7849f7e5610ff4fbb853502017",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "c7ab2e0b020e2444eddc2a644bf6a72b648283b449ec38f8bfffdaba1f12720e"
+          }
         }
       },
       "why": "Move-through charge, grapple with escape, prone alternative if already grappling, restrained until grapple ends; conditional rider beyond data.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSmeltingCharge": "xmm-brazen-gorgon-smelting-charge"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Each creature that fails gets either the grapple effect or the prone one, picked by the user.",
+        "entry": {
+          "choice": {
+            "effects": "one",
+            "perTarget": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "chooses": "oneEffectPerTarget"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "move": {
+                "mode": "pull"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 2
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Brazen Gorgon"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:brazen-gorgon/trait/flame-aura",
@@ -28352,7 +28985,7 @@
       "edition": "2024",
       "owner": "Brazen Gorgon",
       "section": "trait",
-      "identifier": "flame-aura",
+      "identifier": "xmm-brazen-gorgon-flame-aura",
       "page": 149,
       "srd": false,
       "text": {
@@ -28389,7 +29022,8 @@
           },
           "differences": [
             "activityTypes"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28404,11 +29038,90 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x002",
+          "at": "2026-11-22T19:47:14.086Z",
+          "core": "0.290.0",
+          "rule": "fc9eda298c17a98d574c555ee908abb80109205bd2af95eb7488c8c65018afaa"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "fc9eda298c17a98d574c555ee908abb80109205bd2af95eb7488c8c65018afaa",
+          "confidence": 0.85
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.604Z",
+          "core": "0.290.0",
+          "rule": "fc9eda298c17a98d574c555ee908abb80109205bd2af95eb7488c8c65018afaa",
+          "item": "e258b5dddcc4fa67cf7425110db13e6b605563e51d151bb936e1365b035741fd",
+          "delta": [],
+          "same": [
+            "emanation"
+          ],
+          "changes": [],
+          "triggers": "none",
+          "original": "flame-aura",
+          "carried": [
+            "emanation"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.604Z",
+          "core": "0.290.0",
+          "rule": "fc9eda298c17a98d574c555ee908abb80109205bd2af95eb7488c8c65018afaa",
+          "emits": "3d08478e4996b709bf916ba94fa9f0d9738b9eea75f164bef127bbe5e62ed3c6",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "e258b5dddcc4fa67cf7425110db13e6b605563e51d151bb936e1365b035741fd"
+          }
         }
       },
       "hint": "core-generic",
       "why": "End-of-turn damage aura around the gorgon; data has a plain damage activity without trigger.",
-      "state": "triaged"
+      "sources": {
+        "mmFlameAura00000": "xmm-brazen-gorgon-flame-aura"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "At the end of the gorgon's turns, each creature next to it takes the aura's fire damage.",
+        "entry": {
+          "emanation": {
+            "on": "ownTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "ownTurnEnd"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Brazen Gorgon"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:brazen-gorgon/trait/illumination",
@@ -32420,6 +33133,14 @@
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
           "confidence": 0.75
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-chain-devil-reaction-unnerving-gaze",
+          "client": "gm",
+          "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.189Z",
           "core": "0.290.0",
@@ -32451,14 +33172,6 @@
           "items": {
             "official": "3428fc9b756aef8eb23544398df49403169dc48188cabacd4dc6dc3e649ac873"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-chain-devil-reaction-unnerving-gaze",
-          "client": "gm",
-          "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628"
         }
       },
       "why": "Reaction triggered by a creature starting its turn nearby, frightened until its turn end, 24 hour immunity; trigger and immunity not in data.",
@@ -33976,6 +34689,14 @@
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
           "confidence": 0.75
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-clay-golem-bonus-hasten",
+          "client": "gm",
+          "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.194Z",
           "core": "0.290.0",
@@ -34007,14 +34728,6 @@
           "items": {
             "official": "b7673def13b3026a6369169687f8b2fe37679a545a63ac0f96c722766c9e86a1"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-clay-golem-bonus-hasten",
-          "client": "gm",
-          "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc"
         }
       },
       "why": "Grants Dash and Disengage; recharge use is in data but no effect for the two actions.",
@@ -35891,6 +36604,14 @@
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-colossus-legendary-stomp",
+          "client": "gm",
+          "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.195Z",
           "core": "0.290.0",
@@ -35922,14 +36643,6 @@
           "items": {
             "official": "c6993ece5b0c1367e128982cb1149ae06dc3958567cc73820ed721a0b8bb1ad1"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-colossus-legendary-stomp",
-          "client": "gm",
-          "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e"
         }
       },
       "hint": "core-generic",
@@ -39018,7 +39731,7 @@
       "edition": "2024",
       "owner": "Death Cultist",
       "section": "action",
-      "identifier": "dread-scythe",
+      "identifier": "xmm-death-cultist-dread-scythe",
       "page": 86,
       "srd": false,
       "text": {
@@ -39053,7 +39766,8 @@
           "effects": [],
           "data": {
             "sha256": "e4d9df67995a6567b2e45e2d509abf75607d4092e70c32c293a33cb9bb01607e"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -39088,11 +39802,89 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x003",
+          "at": "2026-11-22T19:47:15.987Z",
+          "core": "0.290.0",
+          "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.621Z",
+          "core": "0.290.0",
+          "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a",
+          "item": "a370ad912fbaf0effc2136ba7029558760868b5b254fb77d776930f581542bf0",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "dread-scythe",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.621Z",
+          "core": "0.290.0",
+          "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a",
+          "emits": "25064a8ec92d4bf9f3c159cafa8d795f5ceb87837ac2b8715e43a6a3f123a0de",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "a370ad912fbaf0effc2136ba7029558760868b5b254fb77d776930f581542bf0"
+          }
         }
       },
       "why": "Target cannot regain HP until end of its next turn; data effect has no changes to enforce it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmDreadScythe000": "xmm-death-cultist-dread-scythe"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The no-healing effect from a hit lasts through the end of the target's following turn.",
+        "entry": {
+          "effectEnds": {
+            "rWqB3N3piOf9afmQ": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          },
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "denies": "healing"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Death Cultist"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:death-cultist/action/multiattack",
@@ -40664,7 +41456,7 @@
       "edition": "2024",
       "owner": "Death Slaad",
       "section": "action",
-      "identifier": "chaos-blade",
+      "identifier": "xmm-death-slaad-chaos-blade",
       "page": 287,
       "srd": false,
       "text": {
@@ -40724,11 +41516,84 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x003",
+          "at": "2026-11-22T19:47:15.987Z",
+          "core": "0.290.0",
+          "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.623Z",
+          "core": "0.290.0",
+          "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80",
+          "item": "167048b117ceafbb2681dd7f35aeca4a0eeb00e7e1d6311134112a085866b045",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "chaos-blade",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.623Z",
+          "core": "0.290.0",
+          "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80",
+          "emits": "287f96b0e4227dc5bd06496969685f54fcace0805202aa03b479988c443b82f1",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "167048b117ceafbb2681dd7f35aeca4a0eeb00e7e1d6311134112a085866b045"
+          }
         }
       },
       "why": "Random condition from a d4 until next turn; data applies all four effects instead of one rolled.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "yDu5v2Fj4bPhdXgS": "xmm-death-slaad-chaos-blade"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The rolled condition from a hit lasts until the slaad's following turn starts.",
+        "entry": {
+          "effectEnds": {
+            "1vrQDUhLrUP4jRKw": "casterTurnStart",
+            "Nx6syaxPX3i62Lja": "casterTurnStart",
+            "ccUmT0yvSuG8yECl": "casterTurnStart",
+            "Cqw097SSxXrnYYKh": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          },
+          {
+            "given": {},
+            "expect": {
+              "chooses": "effectByRoll"
+            }
+          }
+        ],
+        "origin": "Death Slaad"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:death-slaad/action/multiattack",
@@ -42014,6 +42879,14 @@
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-demilich-legendary-grave-dust-flight",
+          "client": "gm",
+          "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.198Z",
           "core": "0.290.0",
@@ -42045,14 +42918,6 @@
           "items": {
             "official": "d4bed35ba23259fb0b908636d8f33994884c5e96d5c37c4dda2774010ac749f7"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-demilich-legendary-grave-dust-flight",
-          "client": "gm",
-          "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb"
         }
       },
       "hint": "core-generic",
@@ -42944,6 +43809,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-dire-worg-action-dreadful-howl",
+          "client": "gm",
+          "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.200Z",
           "core": "0.290.0",
@@ -42977,14 +43850,6 @@
           "items": {
             "official": "230e43ffcfdcf867ce4c4c18e31a2004b42ffda98a4e44bbb03a1467cad0e801"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-dire-worg-action-dreadful-howl",
-          "client": "gm",
-          "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6"
         }
       },
       "why": "Save only for creatures that are not worgs; half damage and frightened until next turn.",
@@ -44991,6 +45856,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-dracolich-legendary-terrifying-presence",
+          "client": "gm",
+          "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.211Z",
           "core": "0.290.0",
@@ -45024,14 +45897,6 @@
           "items": {
             "official": "40306fb6e167aa57efac9fff53b7e6bd7453476e76666cf4654a6aafac9a9abd"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-dracolich-legendary-terrifying-presence",
-          "client": "gm",
-          "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2"
         }
       },
       "why": "Aura save for damage plus Frightened until end of next turn, and a lockout; data shows no duration or lockout.",
@@ -48480,6 +49345,14 @@
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
           "confidence": 0.85
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-elemental-cataclysm-legendary-rumbling-movement",
+          "client": "gm",
+          "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.217Z",
           "core": "0.290.0",
@@ -48513,14 +49386,6 @@
           "items": {
             "official": "e060d50193eb5d685cc0bc72c9fdad5140fe0a161ecf4f68a92f9feefcfd1d54"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-elemental-cataclysm-legendary-rumbling-movement",
-          "client": "gm",
-          "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c"
         }
       },
       "hint": "core-generic",
@@ -49931,7 +50796,7 @@
       "edition": "2024",
       "owner": "Empyrean",
       "section": "legendary",
-      "identifier": "bolster",
+      "identifier": "xmm-empyrean-bolster",
       "page": 113,
       "srd": false,
       "text": {
@@ -49981,10 +50846,115 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x004",
+          "at": "2026-11-22T19:47:17.827Z",
+          "core": "0.290.0",
+          "rule": "9fdb6eebb0bdedf7bdb39b31ca72d0f5401bdf665d8883703076603e730d5769"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.639Z",
+          "core": "0.290.0",
+          "rule": "9fdb6eebb0bdedf7bdb39b31ca72d0f5401bdf665d8883703076603e730d5769",
+          "item": "6bc024cf7ac110558cdd659dc02ca01c92caff558f5f2acb947c32f90275892a",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "bolster",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.639Z",
+          "core": "0.290.0",
+          "rule": "9fdb6eebb0bdedf7bdb39b31ca72d0f5401bdf665d8883703076603e730d5769",
+          "emits": "1fcb51d6c3899ee1e04d52749a54e1628137cde5be9015fe699c346659e1604a",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "6bc024cf7ac110558cdd659dc02ca01c92caff558f5f2acb947c32f90275892a"
+          }
         }
       },
       "why": "Data lacks the ally advantage on d20 tests until next turn, and the once-per-round limit; temp HP alone is carried.",
-      "state": "triaged"
+      "sources": {
+        "mmBolster0000000": "xmm-empyrean-bolster"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The bolstered marker expires at the end of the empyrean's following turn.",
+        "entry": {
+          "effectEnds": {
+            "Bl4Nwy7U9F8KoUXh": "casterTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "ends": "casterTurnEnd"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {},
+            "expect": {
+              "roll": {
+                "mode": "advantage",
+                "on": "attack",
+                "for": "ally"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "given": {},
+            "expect": {
+              "roll": {
+                "mode": "advantage",
+                "on": "save",
+                "for": "ally"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "given": {},
+            "expect": {
+              "roll": {
+                "mode": "advantage",
+                "on": "check",
+                "for": "ally"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          },
+          {
+            "unexpressed": "use-limit",
+            "count": 1
+          }
+        ],
+        "origin": "Empyrean"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:empyrean/legendary/shockwave-of-glory",
@@ -51206,7 +52176,7 @@
       "edition": "2024",
       "owner": "Ettin",
       "section": "action",
-      "identifier": "morningstar",
+      "identifier": "xmm-ettin-morningstar",
       "page": 116,
       "srd": true,
       "text": {
@@ -51241,7 +52211,8 @@
           "effects": [],
           "data": {
             "sha256": "a9fd5cff1c0d1035ea153b57996f38dea95a3f8a6417800554a1997f0feb8e8f"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -51256,10 +52227,116 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x004",
+          "at": "2026-11-22T19:47:17.827Z",
+          "core": "0.290.0",
+          "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8",
+          "confidence": 0.75,
+          "tolerated": {
+            "baseline": [],
+            "detail": [],
+            "left": [
+              [
+                "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=hit",
+                "expect.roll.for=target;expect.roll.mode=disadvantage;expect.roll.on=attack;given.roll=hit"
+              ]
+            ]
+          }
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.640Z",
+          "core": "0.290.0",
+          "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8",
+          "item": "56111d6d0e0ba8b5e406901c4dc64734b2e8d0d5b59f28c6085420a1df9c7ff1",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "morningstar",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:50:09.205Z",
+          "core": "0.290.0",
+          "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8",
+          "emits": "4ff18ec91c4383c39a2ee846706d3fe577cdde29e5504f97e3a5fc8caf985b97",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "56111d6d0e0ba8b5e406901c4dc64734b2e8d0d5b59f28c6085420a1df9c7ff1"
+          }
         }
       },
       "why": "Disadvantage on the next attack roll until end of next turn is a limited-window rider; data effect has no changes.",
-      "state": "triaged"
+      "sources": {
+        "5LN8JEIko2tgE2WO": "xmm-ettin-morningstar"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The marker placed by a hit expires when the target's following turn ends.",
+        "entry": {
+          "effectEnds": {
+            "1SUTrOeGym7HuWxB": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "ends": "bearerTurnEnd"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {
+              "roll": "hit"
+            },
+            "expect": {
+              "roll": {
+                "mode": "disadvantage",
+                "on": "attack",
+                "for": "target"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "unexpressed": "use-limit",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Ettin"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:ettin/action/multiattack",
@@ -54987,7 +56064,7 @@
       "edition": "2024",
       "owner": "Frost Giant",
       "section": "bonus",
-      "identifier": "war-cry",
+      "identifier": "xmm-frost-giant-war-cry",
       "page": 124,
       "srd": true,
       "text": {
@@ -55024,7 +56101,8 @@
           ],
           "data": {
             "sha256": "0dc9806f042fb3631a83d9e80099c06ec300947a7d91e895e59ab6ff5753626e"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -55039,10 +56117,108 @@
           "confidence": 0.7,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x005",
+          "at": "2026-11-22T19:47:19.727Z",
+          "core": "0.290.0",
+          "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5",
+          "confidence": 0.7,
+          "tolerated": {
+            "baseline": [],
+            "detail": [],
+            "left": [
+              [
+                "expect.roll.for=target;expect.roll.mode=advantage;expect.roll.on=attack",
+                "expect.roll.for=target;expect.roll.mode=advantage;expect.roll.on=attack"
+              ]
+            ]
+          }
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.645Z",
+          "core": "0.290.0",
+          "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5",
+          "item": "29edb427cee5eca43711ac94f912aa0eec985bf9a64a909348ea9ba229e30dd8",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "war-cry",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:50:09.214Z",
+          "core": "0.290.0",
+          "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5",
+          "emits": "c034db3a6c51a68f204437013310d3c268d25ff80b1f143aafc8f9a79fddcdf1",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "29edb427cee5eca43711ac94f912aa0eec985bf9a64a909348ea9ba229e30dd8"
+          }
         }
       },
       "why": "Choice of recipient at use time; temp HP and advantage until a stated turn start; data lacks the target choice and timing.",
-      "state": "triaged"
+      "sources": {
+        "mmWarCry00000000": "xmm-frost-giant-war-cry"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The war cry's effect on its recipient ends when the giant's next turn begins.",
+        "entry": {
+          "effectEnds": {
+            "qNmREVJzIbrjEJyb": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {},
+            "expect": {
+              "roll": {
+                "mode": "advantage",
+                "on": "attack",
+                "for": "target"
+              }
+            },
+            "because": "no-key"
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Frost Giant"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:galeb-duhr/action/animate-boulders",
@@ -55825,6 +57001,14 @@
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ghast-gravecaller-action-claw",
+          "client": "gm",
+          "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.228Z",
           "core": "0.290.0",
@@ -55856,14 +57040,6 @@
           "items": {
             "official": "2a7672e9a760a2a080dd43214f20f318608cda1025a87e2b8890536ee9bbb5d5"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ghast-gravecaller-action-claw",
-          "client": "gm",
-          "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5"
         }
       },
       "why": "Paralysis applies only to non-Undead targets; data lacks that type restriction.",
@@ -56436,7 +57612,7 @@
       "edition": "2024",
       "owner": "Ghast",
       "section": "trait",
-      "identifier": "stench",
+      "identifier": "xmm-ghast-stench",
       "page": 130,
       "srd": true,
       "text": {
@@ -56513,11 +57689,94 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x005",
+          "at": "2026-11-22T19:47:19.727Z",
+          "core": "0.290.0",
+          "rule": "656bf177761e20ca31067e08978cdcd4012551da82acbeaa55d55f0af3ec49c0"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "656bf177761e20ca31067e08978cdcd4012551da82acbeaa55d55f0af3ec49c0",
+          "confidence": 0.8
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.651Z",
+          "core": "0.290.0",
+          "rule": "656bf177761e20ca31067e08978cdcd4012551da82acbeaa55d55f0af3ec49c0",
+          "item": "9dad07639c97590e4f9982fba4f0b83dc3037daf8d962ab7b9554398c563cdec",
+          "delta": [],
+          "same": [
+            "emanation"
+          ],
+          "changes": [],
+          "triggers": "none",
+          "original": "stench",
+          "carried": [
+            "emanation"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.652Z",
+          "core": "0.290.0",
+          "rule": "656bf177761e20ca31067e08978cdcd4012551da82acbeaa55d55f0af3ec49c0",
+          "emits": "bc1b384880c2d190b6dc0256c009ef048b8342f609a48ea6605286021fbe82d3",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "9dad07639c97590e4f9982fba4f0b83dc3037daf8d962ab7b9554398c563cdec"
+          }
         }
       },
       "why": "Aura triggered at start of turn with save, plus 24-hour immunity after the save; needs a rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "5bjPpreGFvealK36": "xmm-ghast-stench"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Each creature that begins its turn next to the ghast rolls the stench save.",
+        "entry": {
+          "emanation": {
+            "on": "turnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "poisoned"
+              }
+            }
+          }
+        ],
+        "origin": "Ghast"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:ghost/action/horrific-visage",
@@ -64640,7 +65899,7 @@
       "edition": "2024",
       "owner": "Gnoll Demoniac",
       "section": "action",
-      "identifier": "hunger-of-yeenoghu",
+      "identifier": "xmm-gnoll-demoniac-hunger-of-yeenoghu",
       "page": 141,
       "srd": false,
       "text": {
@@ -64678,11 +65937,117 @@
           "confidence": 0.9,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x005",
+          "at": "2026-11-22T19:47:19.727Z",
+          "core": "0.290.0",
+          "rule": "06f015a284f48da8f40330c5f6ee303b35088caf980f893575b19ab5f70e72bf",
+          "person": true,
+          "because": "difficultTerrain"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.662Z",
+          "core": "0.290.0",
+          "rule": "06f015a284f48da8f40330c5f6ee303b35088caf980f893575b19ab5f70e72bf",
+          "item": "11795c59f6c9c666b398b83ec78ea1f96db529c881104c430e35c9e76cfad114",
+          "delta": [
+            "difficultTerrain",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "hunger-of-yeenoghu",
+          "carried": [
+            "magical"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.662Z",
+          "core": "0.290.0",
+          "rule": "06f015a284f48da8f40330c5f6ee303b35088caf980f893575b19ab5f70e72bf",
+          "emits": "24529a477bd0207bd7bb4360ff147cefe130dccf405e77da5524a385ab3c47c6",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "11795c59f6c9c666b398b83ec78ea1f96db529c881104c430e35c9e76cfad114"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Persistent area: damage on starting turn or first entry, concentration, difficult terrain, temp HP choice.",
-      "state": "triaged"
+      "sources": {
+        "mmHungerOfYeenog": "xmm-gnoll-demoniac-hunger-of-yeenoghu"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature entering the dark cube or starting its turn there saves again; the cube is difficult terrain.",
+        "entry": {
+          "triggers": [
+            {
+              "on": [
+                "enter",
+                "turnStart"
+              ],
+              "do": [
+                {
+                  "type": "replay"
+                }
+              ]
+            }
+          ],
+          "difficultTerrain": {
+            "cost": 2
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "enter"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 2
+          }
+        ],
+        "origin": "Gnoll Demoniac"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:gnoll-demoniac/action/multiattack",
@@ -65830,7 +67195,7 @@
       "edition": "2024",
       "owner": "Goblin Boss",
       "section": "reaction",
-      "identifier": "redirect-attack",
+      "identifier": "xmm-goblin-boss-redirect-attack",
       "page": 143,
       "srd": true,
       "text": {
@@ -65863,7 +67228,8 @@
           "effects": [],
           "data": {
             "sha256": "2caa5d66d16f8b8816ec9517cf2de4721c9e861c0972379cdef9c82e3486c2b0"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -65893,11 +67259,89 @@
             ],
             "restated": true
           }
+        },
+        "drafted": {
+          "by": "drafter-x005",
+          "at": "2026-11-22T19:47:19.727Z",
+          "core": "0.290.0",
+          "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.664Z",
+          "core": "0.290.0",
+          "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
+          "item": "dd3677a70fe0d5b85279cfa0af50f022ae3e193550af9e03b7155216dc3f3c31",
+          "delta": [
+            "swapPlaces"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "redirect-attack",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.664Z",
+          "core": "0.290.0",
+          "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
+          "emits": "fed9ef8d6e75848d1191073ae7bdd3925dff5367a8d0464e1c999cec9c553c13",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "dd3677a70fe0d5b85279cfa0af50f022ae3e193550af9e03b7155216dc3f3c31"
+          }
         }
       },
       "why": "Reaction to an attack roll: swap places with an ally and redirect the attack; data lacks the trigger and swap.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmRedirectAttack": "xmm-goblin-boss-redirect-attack"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The reaction swaps the goblin with the adjacent ally it picks.",
+        "entry": {
+          "swapPlaces": {
+            "activity": "pIlCmuPw8YUqAISY"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "teleports": "swapsWithTarget"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          },
+          {
+            "unexpressed": "target-size",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Goblin Boss"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:goblin-hexer/action/hex-stick",
@@ -75539,7 +76983,7 @@
       "edition": "2024",
       "owner": "Hydra",
       "section": "trait",
-      "identifier": "reactive-heads",
+      "identifier": "xmm-hydra-reactive-heads",
       "page": 175,
       "srd": true,
       "text": {
@@ -75568,7 +77012,8 @@
           "effects": [],
           "data": {
             "sha256": "e0296704e4058731a8881328288bd27ca91fd4cfe68811e5b8da83601b34ab56"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -75587,11 +77032,91 @@
             "by": "reader-xmm-015",
             "confidence": 0.65
           }
+        },
+        "drafted": {
+          "by": "drafter-x006",
+          "at": "2026-11-22T19:47:21.583Z",
+          "core": "0.290.0",
+          "rule": "308e21e157f312dfabd83d5024dcd7e75da98731df501edb7191fedba3c8ec61"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.680Z",
+          "core": "0.290.0",
+          "rule": "308e21e157f312dfabd83d5024dcd7e75da98731df501edb7191fedba3c8ec61",
+          "item": "7d30b06997f8f5b990620a46a7eeddf1a77ba4adb7526e97c1c609c2e5be999d",
+          "delta": [],
+          "same": [
+            "reactions"
+          ],
+          "changes": [],
+          "triggers": "none",
+          "original": "reactive-heads",
+          "carried": [
+            "reactions"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.680Z",
+          "core": "0.290.0",
+          "rule": "308e21e157f312dfabd83d5024dcd7e75da98731df501edb7191fedba3c8ec61",
+          "emits": "07d11172216ee8cc5d39e44c0908b1563a27f0f8a446351df23298188ad92e42",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7d30b06997f8f5b990620a46a7eeddf1a77ba4adb7526e97c1c609c2e5be999d"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Extra reactions limited to opportunity attacks scaling with heads; no data.",
-      "state": "triaged"
+      "sources": {
+        "mmReactiveHeads0": "xmm-hydra-reactive-heads"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The hydra gets five reactions each round, one for every head it starts with.",
+        "entry": {
+          "reactions": {
+            "perRound": 5
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "reactionsPerRound": 5
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "trigger-filter",
+            "count": 1
+          },
+          {
+            "unexpressed": "ongoing-effect",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Hydra"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:hyena/action/bite",
@@ -80215,6 +81740,14 @@
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kraken-legendary-toxic-ink",
+          "client": "gm",
+          "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.275Z",
           "core": "0.290.0",
@@ -80246,14 +81779,6 @@
           "items": {
             "official": "0e385537001c9edd837443b004764a46a489349eb1d8a1df9cf879c91fe36990"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kraken-legendary-toxic-ink",
-          "client": "gm",
-          "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd"
         }
       },
       "why": "Underwater-only area save, conditions until end of next turn, a free move and a not-again limit; needs riders.",
@@ -81614,6 +83139,14 @@
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-action-sticky-net",
+          "client": "gm",
+          "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.277Z",
           "core": "0.290.0",
@@ -81645,14 +83178,6 @@
           "items": {
             "official": "70ed136753fdee784872fc3e354c2ad5dd3c71e1a47a1ca6cc1e2ef097adc2f1"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kuo-toa-action-sticky-net",
-          "client": "gm",
-          "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7"
         }
       },
       "why": "Save to restrain exists, but the net can be destroyed and freed by a check, which needs a rule beyond the data.",
@@ -82106,6 +83631,14 @@
           "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lacedon-ghoul-action-icy-bite",
+          "client": "gm",
+          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae"
+        },
         "reading": {
           "at": "2026-11-22T08:18:24.450Z",
           "core": "0.290.0",
@@ -82137,14 +83670,6 @@
           "items": {
             "official": "830f7a201f277fe6e3d053d40716324e6e56818f4be7b8fb26171009c611dcb6"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-lacedon-ghoul-action-icy-bite",
-          "client": "gm",
-          "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae"
         }
       },
       "why": "Speed reduction effect exists but it must end at the start of the ghoul next turn; expiry on that event needs a rule.",
@@ -82314,6 +83839,14 @@
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
           "confidence": 0.7
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lacedon-ghoul-bonus-watery-rush",
+          "client": "gm",
+          "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.279Z",
           "core": "0.290.0",
@@ -82347,14 +83880,6 @@
           "items": {
             "official": "d5e259770d542f1849a160739e15078503745287b5df1c94ab4eaaa29625d137"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-lacedon-ghoul-bonus-watery-rush",
-          "client": "gm",
-          "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6"
         }
       },
       "hint": "core-generic",
@@ -83106,6 +84631,14 @@
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
           "confidence": 0.9
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lich-action-paralyzing-touch",
+          "client": "gm",
+          "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.280Z",
           "core": "0.290.0",
@@ -83137,14 +84670,6 @@
           "items": {
             "official": "765bb31da980f5320d8ca6522d70591cbabb59db973493524f8753a36f54b678"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-lich-action-paralyzing-touch",
-          "client": "gm",
-          "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740"
         }
       },
       "why": "Paralysis effect exists but must end at the start of the lich next turn; expiry on that event needs a rule.",
@@ -85899,6 +87424,14 @@
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
           "confidence": 0.8
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-manes-vaporspawn-trait-sickening-vapors",
+          "client": "gm",
+          "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.283Z",
           "core": "0.290.0",
@@ -85932,14 +87465,6 @@
           "items": {
             "official": "f2d80e0d3cdfe0983ead627c9c04d501e662fb13db2619cc84723c32db99bbf7"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-manes-vaporspawn-trait-sickening-vapors",
-          "client": "gm",
-          "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df"
         }
       },
       "hint": "core-generic",
@@ -87184,7 +88709,7 @@
       "edition": "2024",
       "owner": "Marilith",
       "section": "trait",
-      "identifier": "reactive",
+      "identifier": "xmm-marilith-reactive",
       "page": 204,
       "srd": true,
       "text": {
@@ -87213,7 +88738,8 @@
           "effects": [],
           "data": {
             "sha256": "e74057429e7c4729a1e0131bee07b78ae07c76f7aa376e1611d001bb08815265"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -87228,11 +88754,88 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x007",
+          "at": "2026-11-22T19:47:23.332Z",
+          "core": "0.290.0",
+          "rule": "62f856b5a99ff6cf0b735ffada8b193121d09d324902be809c905508d94f8bbc"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "62f856b5a99ff6cf0b735ffada8b193121d09d324902be809c905508d94f8bbc",
+          "confidence": 0.9
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.697Z",
+          "core": "0.290.0",
+          "rule": "62f856b5a99ff6cf0b735ffada8b193121d09d324902be809c905508d94f8bbc",
+          "item": "8e89259ac0a6bb47a618b6c85b1bc0add729f8285fbab80ffa767c8509edafc8",
+          "delta": [],
+          "same": [
+            "reactions"
+          ],
+          "changes": [],
+          "triggers": "none",
+          "original": "reactive",
+          "carried": [
+            "reactions"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.697Z",
+          "core": "0.290.0",
+          "rule": "62f856b5a99ff6cf0b735ffada8b193121d09d324902be809c905508d94f8bbc",
+          "emits": "1f937aad3f0816d628be689bcf45e6af4016e39b5198b1b59a8376d0f5bc91d5",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "8e89259ac0a6bb47a618b6c85b1bc0add729f8285fbab80ffa767c8509edafc8"
+          }
         }
       },
       "hint": "core-generic",
       "why": "Allows a reaction on every turn, not just once per round; data has no way to express it",
-      "state": "triaged"
+      "sources": {
+        "mmReactive000000": "xmm-marilith-reactive"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The marilith may react once on every turn of combat.",
+        "entry": {
+          "reactions": {
+            "perRound": 20
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "reactionsPerRound": 20
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Marilith"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:mastiff/action/bite",
@@ -97824,7 +99427,7 @@
       "edition": "2024",
       "owner": "Performer Legend",
       "section": "action",
-      "identifier": "majestic-song",
+      "identifier": "xmm-performer-legend-majestic-song",
       "page": 237,
       "srd": false,
       "text": {
@@ -97863,7 +99466,8 @@
           ],
           "data": {
             "sha256": "ebf29977c828793a9ce12201962ec1b7e4319178c8f5e9b49136d7fcf039cb94"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -97898,11 +99502,82 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x007",
+          "at": "2026-11-22T19:47:23.332Z",
+          "core": "0.290.0",
+          "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.707Z",
+          "core": "0.290.0",
+          "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f",
+          "item": "060a2060348130ace0c1955ed7111a8308801f585bd6ed97267de6ebe83aa199",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "majestic-song",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.707Z",
+          "core": "0.290.0",
+          "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f",
+          "emits": "d17b3b5c160000792bf0781b78133c1b3aafde7ca6f3b1817fea4fa3c9eb147c",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "060a2060348130ace0c1955ed7111a8308801f585bd6ed97267de6ebe83aa199"
+          }
         }
       },
       "why": "Choice between charmed and frightened at use time, ending at its next turn; data lists both effects without a choice.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmMajesticSong00": "xmm-performer-legend-majestic-song"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The charm or fright from a failed save ends as the performer's next turn closes.",
+        "entry": {
+          "effectEnds": {
+            "B0TLqMl9FuCT8wcy": "casterTurnEnd",
+            "qIE3iM1c88wCWULF": "casterTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "casterTurnEnd"
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Performer Legend"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:performer-legend/action/multiattack",
@@ -99747,7 +101422,7 @@
       "edition": "2024",
       "owner": "Pirate Admiral",
       "section": "reaction",
-      "identifier": "defensive-stance",
+      "identifier": "xmm-pirate-admiral-defensive-stance",
       "page": 242,
       "srd": false,
       "text": {
@@ -99782,7 +101457,8 @@
           "effects": [],
           "data": {
             "sha256": "d2f7a8b2942f971c88b5d42d2dfac912387115e1af929024c602ce62e0bed9c5"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -99817,11 +101493,85 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x007",
+          "at": "2026-11-22T19:47:23.332Z",
+          "core": "0.290.0",
+          "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.709Z",
+          "core": "0.290.0",
+          "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae",
+          "item": "38ac743ec72e2af93a404c644520ec215e729e826721fcf2180df5d569252932",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "defensive-stance",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.710Z",
+          "core": "0.290.0",
+          "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae",
+          "emits": "9f5260e54d81158ccdbf0ff6e8eae020f08c5f842f53fc97a4752a8a35e29972",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "38ac743ec72e2af93a404c644520ec215e729e826721fcf2180df5d569252932"
+          }
         }
       },
       "why": "Reaction when hit by a melee weapon attack, bonus lasts until its next turn start; data has a passive AC effect only.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmDefensiveStanc": "xmm-pirate-admiral-defensive-stance"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The +4 AC from the stance lapses when the pirate's next turn begins.",
+        "entry": {
+          "effectEnds": {
+            "VMUZlPyqf0UEnat3": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "ends": "casterTurnStart"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "trigger-filter",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Pirate Admiral"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:pirate-captain/action/multiattack",
@@ -100683,7 +102433,7 @@
       "edition": "2024",
       "owner": "Pit Fiend",
       "section": "trait",
-      "identifier": "fear-aura",
+      "identifier": "xmm-pit-fiend-fear-aura",
       "page": 243,
       "srd": true,
       "text": {
@@ -100724,7 +102474,8 @@
           },
           "differences": [
             "activityTypes"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -100770,11 +102521,115 @@
               }
             ]
           }
+        },
+        "drafted": {
+          "by": "drafter-x008",
+          "at": "2026-11-22T19:47:25.256Z",
+          "core": "0.290.0",
+          "rule": "84041c8db8fab11f3a009a57a17db386b3eeff9fb82be3f1dfe9971685b57499"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "84041c8db8fab11f3a009a57a17db386b3eeff9fb82be3f1dfe9971685b57499",
+          "confidence": 0.75
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.712Z",
+          "core": "0.290.0",
+          "rule": "84041c8db8fab11f3a009a57a17db386b3eeff9fb82be3f1dfe9971685b57499",
+          "item": "82c25d064de09f9fd27a8400bc35350bf4386be8c0ad2e7fa426b2edee6f09e6",
+          "delta": [],
+          "same": [
+            "emanation"
+          ],
+          "changes": [],
+          "triggers": "none",
+          "original": "fear-aura",
+          "carried": [
+            "emanation"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.712Z",
+          "core": "0.290.0",
+          "rule": "84041c8db8fab11f3a009a57a17db386b3eeff9fb82be3f1dfe9971685b57499",
+          "emits": "23280ee507c84c620979ce34af72cefc1195e224d9947016fd32a42058c7c4ad",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "82c25d064de09f9fd27a8400bc35350bf4386be8c0ad2e7fa426b2edee6f09e6"
+          }
         }
       },
       "why": "Aura on enemies starting turns in range with a 24-hour immunity after a save; needs aura and immunity tracking.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmFearAura000000": "xmm-pit-fiend-fear-aura"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Foes who begin their turn near the fiend make the fear save; only its enemies are affected.",
+        "entry": {
+          "emanation": {
+            "on": "turnStart",
+            "affects": "enemy"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "affects": "enemies"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "frightened"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Pit Fiend"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:pit-fiend/trait/hellfire-spellcasting",
@@ -102355,6 +104210,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-poltergeist-action-telekinetic-thrust",
+          "client": "gm",
+          "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.300Z",
           "core": "0.290.0",
@@ -102389,14 +104252,6 @@
           "items": {
             "official": "24212f888cea83de578f9f7b3f85ab31186a9bdaabb94739c261c01e6fef2ca3"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-poltergeist-action-telekinetic-thrust",
-          "client": "gm",
-          "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7"
         }
       },
       "hint": "core-generic",
@@ -111047,7 +112902,7 @@
       "edition": "2024",
       "owner": "Satyr Revelmaster",
       "section": "action",
-      "identifier": "fey-melody",
+      "identifier": "xmm-satyr-revelmaster-fey-melody",
       "page": 268,
       "srd": false,
       "text": {
@@ -111087,10 +112942,107 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x008",
+          "at": "2026-11-22T19:47:25.256Z",
+          "core": "0.290.0",
+          "rule": "228687047a5a66a155b381b317533a80ca7b8dbf02968bc0bba4341a3065ae2b"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.725Z",
+          "core": "0.290.0",
+          "rule": "228687047a5a66a155b381b317533a80ca7b8dbf02968bc0bba4341a3065ae2b",
+          "item": "f2dd2e86983ec27a6c57e23841b0fe36618ff3b91c936fc86d24a0ce1bb83181",
+          "delta": [
+            "choice"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "fey-melody",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.725Z",
+          "core": "0.290.0",
+          "rule": "228687047a5a66a155b381b317533a80ca7b8dbf02968bc0bba4341a3065ae2b",
+          "emits": "7bfe0f3f414ddcdd5d40f1fd78e6aaa7995d18c2763b198ff7eb640614da0bb7",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "f2dd2e86983ec27a6c57e23841b0fe36618ff3b91c936fc86d24a0ce1bb83181"
+          }
         }
       },
       "why": "Recharge area save with a choice of two songs at use time, ends on damage or on losing line of sight",
-      "state": "triaged"
+      "sources": {
+        "mmFeyMelody00000": "xmm-satyr-revelmaster-fey-melody"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The satyr picks one song effect for the save; the psychic hurt and the early endings are by hand.",
+        "entry": {
+          "choice": {
+            "effects": "one",
+            "pool": {
+              "ovXNUYiRFsNC9lFh": [
+                "iB4yZ6eIrL1vYdig",
+                "zJfivcfZzqZDBPIB"
+              ]
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {},
+            "expect": {
+              "chooses": "oneEffect"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 1,
+                "type": "psychic"
+              }
+            },
+            "because": "use-time-choice"
+          },
+          {
+            "given": {
+              "moment": "isDamaged"
+            },
+            "expect": {
+              "condition": {
+                "ended": "charmed"
+              }
+            },
+            "because": "no-key"
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          }
+        ],
+        "origin": "Satyr Revelmaster"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:satyr-revelmaster/action/multiattack",
@@ -115308,6 +117260,14 @@
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
           "confidence": 0.9
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-smoke-mephit-action-cinder-breath",
+          "client": "gm",
+          "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.323Z",
           "core": "0.290.0",
@@ -115339,14 +117299,6 @@
           "items": {
             "official": "fdc240828265e4588d205b9f850f81ade0d0ddfc691a3bed046934ed5c4d3b20"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-smoke-mephit-action-cinder-breath",
-          "client": "gm",
-          "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496"
         }
       },
       "why": "Recharge save that blinds until the end of the monster's next turn; the specific turn-end duration is not in data.",
@@ -116610,6 +118562,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-spectator-reaction-spell-reflection",
+          "client": "gm",
+          "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.326Z",
           "core": "0.290.0",
@@ -116641,14 +118601,6 @@
           "items": {
             "official": "39a5651ebd1c0eb86c30ac5e5e966c815062ac5bf6caf6917618e81a1f390788"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-spectator-reaction-spell-reflection",
-          "client": "gm",
-          "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6"
         }
       },
       "why": "Reaction after a successful save or a missed spell attack, then a save for damage; data has the damage but no trigger.",
@@ -119525,7 +121477,7 @@
       "edition": "2024",
       "owner": "Sprite",
       "section": "action",
-      "identifier": "heart-sight",
+      "identifier": "xmm-sprite-heart-sight",
       "page": 298,
       "srd": true,
       "text": {
@@ -119558,7 +121510,8 @@
           "effects": [],
           "data": {
             "sha256": "40f8cb202ddb53b94445f392269b21f692ff6ff0f7071dcdfa072d47ec3385bc"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -119573,10 +121526,125 @@
           "confidence": 0.75,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-x009",
+          "at": "2026-11-22T19:47:27.151Z",
+          "core": "0.290.0",
+          "rule": "54b8e3abd450a8b6da8f07543f476f68a5c832c7e2f6f267bc7c01befc55f414"
+        },
+        "reviewed": {
+          "by": "reviewer-x001",
+          "at": "2026-11-22T19:50:01.708Z",
+          "agrees": true,
+          "rule": "54b8e3abd450a8b6da8f07543f476f68a5c832c7e2f6f267bc7c01befc55f414",
+          "confidence": 0.85
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.739Z",
+          "core": "0.290.0",
+          "rule": "54b8e3abd450a8b6da8f07543f476f68a5c832c7e2f6f267bc7c01befc55f414",
+          "item": "8e6aae50383cdcf8514536cca4a55ec24ff2b00e052edb42f41dc33264e79ef8",
+          "delta": [
+            "saveAutoFail"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "heart-sight",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.739Z",
+          "core": "0.290.0",
+          "rule": "54b8e3abd450a8b6da8f07543f476f68a5c832c7e2f6f267bc7c01befc55f414",
+          "emits": "9cccd2d2403d2927e703efeea62c6dc332fc38a0dc2d3afdd4fa977f439ad2e3",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "8e6aae50383cdcf8514536cca4a55ec24ff2b00e052edb42f41dc33264e79ef8"
+          }
         }
       },
       "why": "Save with automatic failure for certain creature types; data lacks the type-based auto-fail",
-      "state": "triaged"
+      "sources": {
+        "mmHeartSight0000": "xmm-sprite-heart-sight"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Celestial, fiend and undead targets fail the save outright.",
+        "entry": {
+          "saveAutoFail": {
+            "types": [
+              "celestial",
+              "fiend",
+              "undead"
+            ]
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "targetType": "celestial"
+            },
+            "expect": {
+              "roll": {
+                "mode": "autoFail",
+                "on": "save",
+                "for": "target"
+              }
+            }
+          },
+          {
+            "given": {
+              "targetType": "fiend"
+            },
+            "expect": {
+              "roll": {
+                "mode": "autoFail",
+                "on": "save",
+                "for": "target"
+              }
+            }
+          },
+          {
+            "given": {
+              "targetType": "undead"
+            },
+            "expect": {
+              "roll": {
+                "mode": "autoFail",
+                "on": "save",
+                "for": "target"
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "out-of-combat",
+            "count": 1
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Sprite"
+      },
+      "state": "reviewed"
     },
     {
       "key": "xmm:monster:sprite/action/needle-sword",
@@ -123454,6 +125522,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-ravens-action-cacophony",
+          "client": "gm",
+          "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.335Z",
           "core": "0.290.0",
@@ -123485,14 +125561,6 @@
           "items": {
             "official": "8a30e9528e428eb8e6b4c3e321f7ff2994ef40c13150e680ad0fd44430378f25"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-ravens-action-cacophony",
-          "client": "gm",
-          "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46"
         }
       },
       "why": "Data lacks Disadvantage on checks and attacks while Deafened; also half-on-save is set though the text has no damage",
@@ -127521,6 +129589,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ultroloth-action-hypnotic-gaze",
+          "client": "gm",
+          "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.344Z",
           "core": "0.290.0",
@@ -127554,14 +129630,6 @@
           "items": {
             "official": "66af846a435c351889e7cc2602925ce298cbc0e1289400c7e741082ddb80d1f4"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ultroloth-action-hypnotic-gaze",
-          "client": "gm",
-          "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0"
         }
       },
       "why": "Cone save with stun until next turn is carried by data, but the 24 hour immunity needs a rule.",
@@ -128448,6 +130516,14 @@
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
           "confidence": 0.85
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-unicorn-legendary-charging-horn",
+          "client": "gm",
+          "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.345Z",
           "core": "0.290.0",
@@ -128479,14 +130555,6 @@
           "items": {
             "official": "1a76e0d4e6f49eb7b839ecf4b344fde631f670cbfcfae0bf9782a13d6964e687"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-unicorn-legendary-charging-horn",
-          "client": "gm",
-          "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d"
         }
       },
       "hint": "core-generic",
@@ -130216,7 +132284,7 @@
       "edition": "2024",
       "owner": "Vampire Umbral Lord",
       "section": "bonus",
-      "identifier": "sanguine-drain",
+      "identifier": "xmm-vampire-umbral-lord-sanguine-drain",
       "page": 318,
       "srd": false,
       "text": {
@@ -130249,7 +132317,8 @@
           "effects": [],
           "data": {
             "sha256": "d2c6df9ef4d82af52bb840bf06a30c3f9dc177e6cac8ad57f156bb87bf66ff14"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -130310,9 +132379,108 @@
               ]
             }
           }
+        },
+        "drafted": {
+          "by": "drafter-x009",
+          "at": "2026-11-22T19:47:27.151Z",
+          "core": "0.290.0",
+          "rule": "d4c203f766c6957d3ae2dee4a809b112414d96e10909985c0ae5075677dd3b88",
+          "person": true,
+          "because": "targets"
+        },
+        "reading": {
+          "at": "2026-11-22T19:47:47.752Z",
+          "core": "0.290.0",
+          "rule": "d4c203f766c6957d3ae2dee4a809b112414d96e10909985c0ae5075677dd3b88",
+          "item": "5cb6710a0dab8c3871108239dfa8d8c27162b07242df98237d4c089a1dfe83e7",
+          "delta": [
+            "targets"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sanguine-drain",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-22T19:47:47.752Z",
+          "core": "0.290.0",
+          "rule": "d4c203f766c6957d3ae2dee4a809b112414d96e10909985c0ae5075677dd3b88",
+          "emits": "4e14eeceb48ed02cc1398c17aad42ed5734230774a5ace349f18224e9baad4e9",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "5cb6710a0dab8c3871108239dfa8d8c27162b07242df98237d4c089a1dfe83e7"
+          }
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmSanguineDrain0": "xmm-vampire-umbral-lord-sanguine-drain"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Only creatures that are neither constructs nor undead can be targeted.",
+        "entry": {
+          "targets": {
+            "types": [
+              "aberration",
+              "beast",
+              "celestial",
+              "dragon",
+              "elemental",
+              "fey",
+              "fiend",
+              "giant",
+              "humanoid",
+              "monstrosity",
+              "ooze",
+              "plant"
+            ]
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave",
+              "targetType": "construct"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave",
+              "targetType": "undead"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0
+              }
+            }
+          }
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "origin": "Vampire Umbral Lord"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:vampire-umbral-lord/legendary/umbral-strike",
@@ -131967,6 +134135,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-violet-fungus-necrohulk-action-spore-bomb",
+          "client": "gm",
+          "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.348Z",
           "core": "0.290.0",
@@ -132000,14 +134176,6 @@
           "items": {
             "official": "10c2b78bfc5dee68165f3a7645da060afa08688b2b521e8ac7c1bc0c05e706b6"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-violet-fungus-necrohulk-action-spore-bomb",
-          "client": "gm",
-          "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836"
         }
       },
       "why": "Recharge area save with half damage, poisoned until next turn and no healing while poisoned; data effect has no changes for the healing block.",
@@ -133354,6 +135522,14 @@
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
           "confidence": 0.85
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-warrior-commander-bonus-tactical-charge",
+          "client": "gm",
+          "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.354Z",
           "core": "0.290.0",
@@ -133387,14 +135563,6 @@
           "items": {
             "official": "f39e3add98de4d8984b479b2ccabd4f9002ab95491b95bde4f7df84b79978de5"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-warrior-commander-bonus-tactical-charge",
-          "client": "gm",
-          "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844"
         }
       },
       "hint": "core-generic",
@@ -135852,6 +138020,14 @@
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
           "confidence": 0.85
         },
+        "played": {
+          "at": "2026-11-22T18:38:37.272Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-weretiger-bonus-prowl-tiger-or-hybrid-form-only",
+          "client": "gm",
+          "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd"
+        },
         "reading": {
           "at": "2026-11-22T06:29:15.356Z",
           "core": "0.290.0",
@@ -135883,14 +138059,6 @@
           "items": {
             "official": "c4fc55b09eeffd34245294f9d3c2c4f3ab98074ba97127bfee27eb23eff26e81"
           }
-        },
-        "played": {
-          "at": "2026-11-22T18:38:37.272Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-weretiger-bonus-prowl-tiger-or-hybrid-form-only",
-          "client": "gm",
-          "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd"
         }
       },
       "hint": "core-generic",

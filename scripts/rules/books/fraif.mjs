@@ -5,6 +5,84 @@ export const BOOK = "FRAIF";
 
 export const RULES = book(BOOK, [
   {
+    "identifier": "calimemnon-crystal",
+    "name": "Calimemnon Crystal",
+    "page": 243,
+    "kind": "item",
+    "status": "validated",
+    "handledIn": "table",
+    "adds": "The cold aura stays around the wearer and hits creatures that come in or finish a turn inside; the damage ray deals radiant.",
+    "entry": {
+      "triggers": [
+        {
+          "on": [
+            "enter",
+            "turnEnd"
+          ],
+          "do": [
+            {
+              "type": "replay",
+              "activity": "aZZx8YQP6EC1klxs"
+            }
+          ]
+        }
+      ],
+      "zoneLasts": {
+        "seconds": 86400
+      },
+      "dataFixes": [
+        {
+          "path": "system.activities.OY9mLl8DZNh6Ij4t.damage.parts",
+          "from": [
+            {
+              "number": 6,
+              "denomination": 6,
+              "types": []
+            }
+          ],
+          "value": [
+            {
+              "number": 6,
+              "denomination": 6,
+              "bonus": 6,
+              "types": [
+                "radiant"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "its aura is a utility activity with a separate damage activity; triggers and fixes bind the official ids only"
+      }
+    ],
+    "partial": {
+      "no-key": 2,
+      "use-time-choice": 1
+    }
+  },
+
+  {
+    "identifier": "deathdance",
+    "name": "Deathdance",
+    "page": 237,
+    "kind": "item",
+    "status": "validated",
+    "handledIn": "table",
+    "adds": "Humanoid targets succeed on the Constitution save automatically.",
+    "entry": {
+      "saveAutoSuccess": {
+        "types": [
+          "humanoid"
+        ]
+      }
+    }
+  },
+
+  {
     "identifier": "orb-of-damara",
     "name": "Orb of Damara",
     "page": 246,

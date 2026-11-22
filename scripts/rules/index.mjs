@@ -40,18 +40,23 @@ export const TABLE = Object.freeze(Object.fromEntries(RULES.filter(rule => rule.
 /** Document id → identifier, for the items of the rules above whose own identifier is not theirs; passed as `sources`. */
 export const SOURCES = Object.freeze({
   "3YYshLRIcL7GvBG2": "xmm-graveyard-revenant-suffocate",
+  "5LN8JEIko2tgE2WO": "xmm-ettin-morningstar",
   "BqtNDu2WFDju2dM6": "xmm-ancient-copper-dragon-slowing-breath",
   "Ml3peAqEgqgm95nj": "xmm-dracolich-terrifying-presence",
   "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
   "mmHasten00000000": "xmm-clay-golem-hasten",
+  "mmHeartSight0000": "xmm-sprite-heart-sight",
+  "mmHungerOfYeenog": "xmm-gnoll-demoniac-hunger-of-yeenoghu",
   "mmHypnoticGaze00": "xmm-ultroloth-hypnotic-gaze",
   "mmIcyBite0000000": "xmm-lacedon-ghoul-icy-bite",
+  "mmMucusCloud0000": "xmm-aboleth-mucus-cloud",
   "mmSacredWeapon00": "xmm-empyrean-sacred-weapon",
   "mmSleepGaze00000": "xmm-jackalwere-sleep-gaze",
   "mmSporeBomb00000": "xmm-violet-fungus-necrohulk-spore-bomb",
   "mmTelekineticThr": "xmm-poltergeist-telekinetic-thrust",
   "mmToxicInk000000": "xmm-kraken-toxic-ink",
   "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze",
+  "mmWarCry00000000": "xmm-frost-giant-war-cry",
   "mmWhirlwind00000": "xmm-air-elemental-whirlwind",
   "yO5Jxg4POQGRLlXI": "xmm-flumph-stench-spray"
 });

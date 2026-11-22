@@ -1,0 +1,57 @@
+{
+  "scenario": "xmm/xmm-monster-ghast-trait-stench",
+  "key": "xmm:monster:ghast/trait/stench",
+  "rule": "656bf177761e20ca31067e08978cdcd4012551da82acbeaa55d55f0af3ec49c0",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "advance",
+    "expect.subjected",
+    "given.moment.turnStart"
+  ],
+  "checks": 1,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmGhast000000000.5bjPpreGFvealK36",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmGhast000000000",
+      "id": "5bjPpreGFvealK36"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "mJbwhj3beOIB3Jgj": null
+    },
+    "area": [
+      "mJbwhj3beOIB3Jgj"
+    ]
+  },
+  "steps": [
+    {
+      "use": "mJbwhj3beOIB3Jgj"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=poisoned;given.roll=failedSave"
+    },
+    {
+      "use": "mJbwhj3beOIB3Jgj"
+    },
+    {
+      "advance": "turnStart"
+    },
+    {
+      "check": "expect.subjected=activity;given.moment=turnStart"
+    }
+  ]
+}

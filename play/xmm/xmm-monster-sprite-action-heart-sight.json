@@ -1,0 +1,54 @@
+{
+  "scenario": "xmm/xmm-monster-sprite-action-heart-sight",
+  "key": "xmm:monster:sprite/action/heart-sight",
+  "rule": "54b8e3abd450a8b6da8f07543f476f68a5c832c7e2f6f267bc7c01befc55f414",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "expect.roll",
+    "given.targetType"
+  ],
+  "checks": 0,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": null,
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "mmSprite00000000.mmHeartSight0000",
+      "uuid": null,
+      "kind": "monster",
+      "actor": "mmSprite00000000",
+      "id": "mmHeartSight0000"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "NqVrZShDV1L3zBA3": 5
+    },
+    "area": []
+  },
+  "steps": [
+    {
+      "use": "NqVrZShDV1L3zBA3"
+    },
+    {
+      "check": "expect.roll.for=target;expect.roll.mode=autoFail;expect.roll.on=save;given.targetType=celestial"
+    },
+    {
+      "use": "NqVrZShDV1L3zBA3"
+    },
+    {
+      "check": "expect.roll.for=target;expect.roll.mode=autoFail;expect.roll.on=save;given.targetType=fiend"
+    },
+    {
+      "use": "NqVrZShDV1L3zBA3"
+    },
+    {
+      "check": "expect.roll.for=target;expect.roll.mode=autoFail;expect.roll.on=save;given.targetType=undead"
+    }
+  ]
+}
