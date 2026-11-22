@@ -300,4 +300,6 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       the dumps): fixed; the two XPHB drafts built on that false gap were stopped by the fixes gate and taken out.
 - [x] Second sample closed: 42 rules ship (one XPHB spell with a zone key). R12 still says no-go for spells and items.
 - [ ] Next keys by what the sampled spells lacked: a change of form, a barrier, effects chosen at casting.
+- [x] Creature-scoped bindings (R35) and a two-batch sample of the 456 unblocked XMM features: 6 rules drafted and gated,
+      all 6 in the review queue; R12 no-go for the other 21 batches.
 
