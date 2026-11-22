@@ -43,7 +43,7 @@ export const RULES = book(BOOK, [
     "name": "Ulcrun",
     "page": 237,
     "kind": "item",
-    "status": "validated",
+    "status": "played",
     "handledIn": "table",
     "adds": "A successful save deals no damage at all.",
     "entry": {

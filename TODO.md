@@ -310,3 +310,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       clone, `--ci` tolerates the binding. Checked locally against a clone of the release, as CI makes it.
 
 - [x] Pre-pass against the engine main after the merges of 2026-11-22: 15 XPHB records are now `core`.
+- [x] Plays recorded on the test world: 29 scenarios held, 29 plays recorded; 28 of the 42 shipped rules are played.
+
