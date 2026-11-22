@@ -56,6 +56,16 @@ function activityOf(id, a, base) {
     const healing = part(a.healing);
     if (Object.keys(healing).length) out.healing = [healing];
   }
+  // dnd5e's own change of form: the preset, what the creature keeps, and whether the new form's hit points come as
+  // temporary ones (`settings.tempFormula`), as words and flags only.
+  if (plain(a?.type) === "transform") {
+    const keeps = plainList(a?.settings?.keep);
+    out.transform = clean({
+      mode: plain(a?.transform?.mode), preset: plain(a?.transform?.preset ?? a?.settings?.preset),
+      keeps: keeps.length ? keeps : undefined,
+      tempHp: typeof a?.settings?.tempFormula === "string" && a.settings.tempFormula.trim() !== ""
+    });
+  }
   const template = pick(a?.target?.template, ["type", "size"]);
   if (template) out.template = template;
   const affects = pick(a?.target?.affects, ["type", "count"]);

@@ -76,6 +76,17 @@ describe("structureOf", () => {
       template: { type: "sphere", size: "20" }, affects: { type: "creature", count: "1" },
       effects: ["effBBBBBBBBBBBBB"], consumes: [{ type: "itemUses", target: "", value: "1" }]
     });
+    // A change of form is dnd5e's own `transform` activity: the summary says what it does (the preset, what the creature
+    // keeps, whether the new form's hit points come as temporary ones), so that it is not read as missing.
+    const shaped = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "transform",
+      transform: { mode: "cr", preset: "polymorph", customize: true },
+      settings: { keep: ["saves", "mental"], tempFormula: "@source.attributes.hp.max", transformTokens: true } } } } });
+    expect(shaped.activities[0].transform).toEqual({ mode: "cr", preset: "polymorph", keeps: ["mental", "saves"], tempHp: true });
+    const bare = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "transform",
+      transform: { mode: "cr" } } } } });
+    expect(bare.activities[0].transform).toEqual({ mode: "cr", tempHp: false });
+    const other = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "save" } } } });
+    expect("transform" in other.activities[0]).toBe(false);
     // dnd5e stores one save ability as a bare string in older data: it reads as that one ability, not as none.
     const one = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "save",
       save: { ability: "wis", dc: { calculation: "spellcasting", formula: "" } } } } } });
