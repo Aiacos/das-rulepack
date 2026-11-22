@@ -55622,11 +55622,34 @@
           "at": "2026-11-21T19:58:36.756Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t001",
+            "at": "2026-11-22T07:08:37.818Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c9428f0bc8c26c8936b4066a86ab081df7ff670e5592a6bc3d4e9d837508c4ef"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "poisoned"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Aura triggered at start of turn with save, plus 24-hour immunity after the save; needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -55919,11 +55942,34 @@
           "at": "2026-11-21T19:58:36.756Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t001",
+            "at": "2026-11-22T07:08:37.818Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c9428f0bc8c26c8936b4066a86ab081df7ff670e5592a6bc3d4e9d837508c4ef"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "poisoned"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Aura triggered at start of turn with save, plus 24-hour immunity after the save; needs a rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -60679,22 +60725,16 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Reaction to taking damage underwater: cube of obscurement and a move; data has a generic effect only.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-22T06:59:01.200Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Reaction to taking damage underwater: cube of obscurement and a move; data has a generic effect only.",
-            "triaged": {
-              "by": "reader-xmm-013",
-              "at": "2026-11-21T19:58:37.068Z",
-              "confidence": 0.75,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-013",
+          "at": "2026-11-21T19:58:37.068Z",
+          "confidence": 0.75,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-r003",
             "at": "2026-11-22T06:59:01.200Z",
@@ -60704,11 +60744,31 @@
               "sha": "36b9e6e931942f4a3a51c7edae5bee38a1ad68f9d2cd64e2f2a6cdaaec895f9b"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.7,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "36b9e6e931942f4a3a51c7edae5bee38a1ad68f9d2cd64e2f2a6cdaaec895f9b"
+              },
+              "covered": false,
+              "beyond": [
+                {
+                  "given": {
+                    "moment": "enter"
+                  },
+                  "expect": {
+                    "condition": {
+                      "applied": "blinded"
+                    }
+                  }
+                }
+              ]
+            }
           }
         }
       },
-      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -72641,11 +72701,34 @@
           "at": "2026-11-21T19:58:37.695Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t001",
+            "at": "2026-11-22T07:08:37.818Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "c9428f0bc8c26c8936b4066a86ab081df7ff670e5592a6bc3d4e9d837508c4ef"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "poisoned"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Start-of-turn save in an emanation applying poison until next turn; data lacks the aura timing.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -88970,7 +89053,16 @@
               "sha": "54792044a662ae166e83739f0757827f197981b94991d2a7d4f7fb776324e85f"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "54792044a662ae166e83739f0757827f197981b94991d2a7d4f7fb776324e85f"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -100205,11 +100297,42 @@
           "at": "2026-11-21T19:58:39.284Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.7,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "2404cb3774ee5307047aa690314883944e5e3fbaf55d5e603767ad0f439662a5"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "turnStart",
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "frightened"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "moment": "turnStart"
+                },
+                "expect": {
+                  "affects": "enemies"
+                }
+              }
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Aura on enemies starting turns in range with a 24-hour immunity after a save; needs aura and immunity tracking.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -108178,17 +108301,36 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-022",
-          "at": "2026-11-21T19:58:39.923Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Reaction triggered by an attack hitting it, then uses another action",
+            "triaged": {
+              "by": "reader-xmm-022",
+              "at": "2026-11-21T19:58:39.923Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.8,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "1e5e812cf7f92b1f60a7e9550a8950326db48dda023a6eacf6e05f979d971999"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "why": "Reaction triggered by an attack hitting it, then uses another action",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -111658,7 +111800,16 @@
               "sha": "e7e68714d677113e05cc15d57a35097ee337dcb7c577e3530f61b33c6c7a2364"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "e7e68714d677113e05cc15d57a35097ee337dcb7c577e3530f61b33c6c7a2364"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -114377,7 +114528,16 @@
               "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.7,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -116689,26 +116849,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "third-t7",
-          "at": "2026-11-21T23:14:43.695Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xmm-023",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+            "triaged": {
+              "by": "third-t7",
+              "at": "2026-11-21T23:14:43.695Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xmm-023",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s43",
+                "confidence": 0.7
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s43",
-            "confidence": 0.7
-          },
-          "via": "third-reading"
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -117457,18 +117636,36 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Three-step roar sequence reset by a long rest, with a repeated paralysis save and a prone rider; needs ordering and repeats.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.7,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "3944ad77ca39b478a36092782f0baaf00c2dc8ff7ad6c3f94925f227bd01656f"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Three-step roar sequence reset by a long rest, with a repeated paralysis save and a prone rider; needs ordering and repeats.",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -117522,26 +117719,45 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "third-t7",
-          "at": "2026-11-21T23:14:43.695Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xmm-023",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-22T07:08:39.182Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+            "triaged": {
+              "by": "third-t7",
+              "at": "2026-11-21T23:14:43.695Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xmm-023",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s43",
+                "confidence": 0.7
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s43",
-            "confidence": 0.7
-          },
-          "via": "third-reading"
+          "reread": {
+            "by": "reread-t002",
+            "at": "2026-11-22T07:08:39.182Z",
+            "confidence": 0.75,
+            "reading": {
+              "core": "0.290.0",
+              "sha": "4e5d60ad2730609a40b4c9021a812987cfd29824adaf3f28766a6c8e74d501a0"
+            },
+            "covered": true,
+            "provisional": true
+          }
         }
       },
-      "why": "Legendary teleport tied to a Claw attack; entry (movement tied to attack).",
+      "why": "DAS · Core reads this feature's text and a reader found nothing beyond it",
       "state": "triaged"
     },
     {
@@ -120974,7 +121190,16 @@
               "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.75,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "ab7dfe17550548f605085a61110561061d0e038f359a245bea72927025e071fe"
+              },
+              "covered": true
+            }
           }
         }
       },
@@ -141396,7 +141621,16 @@
               "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
             },
             "covered": true,
-            "provisional": true
+            "second": {
+              "by": "reread-u008",
+              "at": "2026-11-22T07:08:46.154Z",
+              "confidence": 0.7,
+              "reading": {
+                "core": "0.290.0",
+                "sha": "66dfa52abb69d56705b7573b46f82cf2ced82bb265efb35aa448d4c2a7b4a8a2"
+              },
+              "covered": true
+            }
           }
         }
       },

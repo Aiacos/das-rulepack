@@ -1025,13 +1025,6 @@
     "confidence": 0.85
   },
   {
-    "key": "xmm:monster:rust-monster/reaction/reflexive-antennae",
-    "reason": "person",
-    "by": "drafter-v010",
-    "why": "a reaction that runs another feature of the creature: no drafter key uses another item",
-    "confidence": 0.85
-  },
-  {
     "key": "xmm:monster:sahuagin-baron/reaction/fiendish-blood",
     "reason": "person",
     "by": "drafter-v010",
