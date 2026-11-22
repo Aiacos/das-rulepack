@@ -397,3 +397,11 @@ the other 13 were drafted again, blind, as additions over the reading (`--redraf
 
 The pack ships 39 rules (24 older ones, 15 monster rules); 51 more are held.
 
+# A sample outside the Monster Manual (2026-11-22)
+
+306 entries of the other 2024 books can be cut for drafting (FRAIF 100, EFA 90, XPHB 116). One batch per book was drafted
+as a sample before the rest: 16 entries, 3 drafts, 1 accepted (2 refused for leaving to the table what the rule itself
+states), 13 declined (most: no key says the main effect; 2: code). One in sixteen is far under the 70 % of Ruling R12: the
+other 23 batches were not run. Only the batch with drafts was ingested; the other two samples were not, so their entries stay
+draftable. The accepted rule (a magic item) agreed with a blind review within the tolerances and ships as a partial rule.
+

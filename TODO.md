@@ -264,4 +264,6 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       harpoon pull scenario is now manual (`setup.reach`) instead of stopping on an out-of-range prompt.
 - [x] Redraft (R32) of the 13 rules that changed the engine's reading and were not queued: 1 shipped, 2 to review, 10
       removed and queued for a person. 15 monster rules ship.
+- [x] Sample drafting outside XMM: 1 accepted of 16 (R12 no-go for the other 23 batches). One FRAIF item rule ships, partial.
+- [ ] Spells and items need vocabulary before drafting: the main effect has no key in 7 of 9 sampled spells.
 

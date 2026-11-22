@@ -36,6 +36,14 @@ Published as an official Foundry VTT module (`dnd-players-handbook`).
 | Inspiring Smite (Oath of Glory 3) | Feature | p.114 | The Temporary Hit Points are divided among the chosen creatures as the paladin likes, where the engine splits them evenly. | table | Played |
 | Dreadful Strikes (Fey Wanderer 3) | Feature | p.124 | The extra Psychic die is once per turn for each target, not once per turn for the ranger. | code + table | Played |
 
+### FRAIF · Forgotten Realms: Adventures in Faerûn (2025)
+
+Published as an official Foundry VTT module (`dnd-adventures-faerun`).
+
+| Rule | Kind | Page | What the module adds | Handled in | Status |
+|---|---|---|---|---|---|
+| Ulcrun | Item | p.237 | A successful save deals no damage at all. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
+
 ### XMM · Monster Manual (2025)
 
 Published as an official Foundry VTT module (`dnd-monster-manual`).
@@ -165,7 +173,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-39 rules: 16 played, 23 validated. 6 of them reviewed with Ruling R24 tolerances (not an exact agreement). 12 of them partial (part of the entry left to the table). 51 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 7, reviewer unsure 2).
+40 rules: 16 played, 24 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 13 of them partial (part of the entry left to the table). 51 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 7, reviewer unsure 2).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

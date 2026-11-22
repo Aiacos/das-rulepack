@@ -774,10 +774,93 @@
           "confidence": 0.8,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-s001",
+          "at": "2026-11-22T08:59:10.318Z",
+          "core": "0.290.0",
+          "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0"
+        },
+        "reviewed": {
+          "by": "reviewer-s001",
+          "at": "2026-11-22T09:01:07.947Z",
+          "agrees": true,
+          "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0",
+          "confidence": 0.85,
+          "tolerated": {
+            "baseline": [],
+            "detail": [
+              [
+                "expect.damage.fraction=0;expect.damage.type=poison;given.roll=savedSave",
+                "expect.damage.fraction=0;given.roll=savedSave"
+              ]
+            ]
+          }
+        },
+        "gates": {
+          "at": "2026-11-22T09:01:17.792Z",
+          "core": "0.290.0",
+          "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0",
+          "emits": "5961140aeba9953e30f3c3288a3f2784033e7f98996b18c895ae97626ec48499",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "102c4eaa05dbffb0a38263bcbbab22552cbcca2d5e366f5fb2158de15f848bd3",
+            "ddb-importer": "60d9c037c76fb488ae5350ac28aa8c26d9d8254a5a29945302129e477a5e21f0"
+          }
         }
       },
       "why": "Data lacks the exhaustion level on a failed save; damage and save are present, the exhaustion rider is missing in every origin.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "A successful save deals no damage at all.",
+        "entry": {
+          "saveDamage": {
+            "V2WWlJdFgdzFVzIg": "none",
+            "saveUlcrunIIIIII": "none"
+          }
+        },
+        "origins": [
+          "official",
+          "ddb-importer"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 1,
+                "type": "poison"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "no-key",
+            "count": 1
+          }
+        ]
+      },
+      "state": "reviewed"
     },
     {
       "key": "fraif:item:whaleboat",
