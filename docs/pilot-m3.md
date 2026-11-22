@@ -300,3 +300,21 @@ a successful save 6, an ending 2, a duration 2, an ending of an action 2, and on
 Of the 816 monster features of this book that triage called `entry`, the engine reads something for 287. Triage and the
 three briefs now carry that reading: what remains to judge, write and assert is only what goes beyond it.
 
+# Monster features re-read against the engine's reading (2026-11-22)
+
+A reader blind to earlier verdicts gets the feature's text, the item's structure and what the engine derives from the text,
+and answers "covered" or states what goes beyond, as assertions. A "covered" is confirmed by a second blind reader, since
+it removes work; a result that names as missing something the engine or the item already does is rejected.
+
+| 2024 Monster Manual: the 220 monster features with a reading and no rule | Records |
+|---|---|
+| Covered, confirmed by a second reader: verdict `core` | 75 |
+| Covered, second reader unsure: `core`, still provisional | 21 |
+| Covered at first, the second reader found something: back to `entry` | 2 |
+| Beyond the engine, with what is missing stated as data | 60 |
+| First reader unsure: unchanged | 61 |
+| Result rejected (it named as missing what the item already does) | 1 |
+
+The book's monster `entry` records went from 816 to 720, and the drafts queue from 214 to 184. Drafters now get a monster
+feature only after a reread found it goes beyond the engine, with the missing expectations as a hint.
+

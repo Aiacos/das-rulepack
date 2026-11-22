@@ -222,4 +222,10 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] The 25 rules that change the engine's reading: redraft them as additions (never restating `triggers`), or drop them.
 - [ ] The reading is computed from the engine release the tools point at; record and check the engine version at
       registration (a newer engine may read more, making a shipped delta redundant: redundant is harmless, but say so).
+- [x] XMM monster features re-read against the engine's reading (2026-11-22): 96 became `core` (75 confirmed by a second
+      reader, 21 provisional), 60 are marked as going beyond the engine, 61 unsure and unchanged.
+- [ ] The 21 provisional `core` and the 61 unsure rereads: a third reader, or a person.
+- [ ] Reread the monster features of the other books with official actor dumps (FRAIF 32, EFA 13, XPHB 7 with a reading).
+- [ ] Draft the 60 "beyond the engine" records as additions over the reading (most have a shared embedded id: they wait on
+      upstream for a creature-scoped binding).
 
