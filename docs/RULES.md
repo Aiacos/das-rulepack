@@ -42,7 +42,14 @@ Published as an official Foundry VTT module (`dnd-adventures-faerun`).
 
 | Rule | Kind | Page | What the module adds | Handled in | Status |
 |---|---|---|---|---|---|
+| Orb of Damara | Item | p.246 | Foes beginning their turn near the bearer roll the fear save; frightened lasts until that foe's next turn begins. Not covered on ddb-importer: emanation holds a single activity id; the importer item splits the aura into its own utility and save activities. Partial: 7 expectations left to the table (form-change 1, immunity-after-save 1, no-key 2, out-of-combat 1, table-ruling 1, use-time-choice 1). | table, partial | Validated |
 | Ulcrun | Item | p.237 | A successful save deals no damage at all. Partial: 1 expectation left to the table (no-key 1). | table, partial | Validated |
+
+Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
+
+| Held rule | Kind | Page | Status |
+|---|---|---|---|
+| Prespra | Item | p.237 | Held: review disagrees |
 
 ### XMM · Monster Manual (2025)
 
@@ -173,7 +180,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-40 rules: 16 played, 24 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 13 of them partial (part of the entry left to the table). 51 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 7, reviewer unsure 2).
+41 rules: 16 played, 25 validated. 7 of them reviewed with Ruling R24 tolerances (not an exact agreement). 14 of them partial (part of the entry left to the table). 52 more held for a person, not shipped (changes the engine's reading: a person decides 12, the engine already does it 29, its identifier would drop engine behaviour 1, review disagrees 8, reviewer unsure 2).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

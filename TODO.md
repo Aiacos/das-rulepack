@@ -280,3 +280,6 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 
 - [x] Scenario runner: a magic item is used without consuming it (a consumable spent by the first check was gone for
       the second). Seen live and pinned by a unit test.
+- [x] Zone and aura keys (R33); second sample: FRAIF 2 of 2 drafted (1 shipped after an exact blind review, 1 to the review
+      queue). The item summary shown to drafters read a save ability stored as a bare string as empty (845 activities in
+      the dumps): fixed; the two XPHB drafts built on that false gap were stopped by the fixes gate and taken out.

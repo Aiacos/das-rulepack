@@ -1,0 +1,83 @@
+{
+  "scenario": "fraif/fraif-item-orb-of-damara",
+  "key": "fraif:item:orb-of-damara",
+  "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b",
+  "origin": "official",
+  "client": "gm",
+  "manual": true,
+  "manualBecause": [
+    "advance",
+    "expect.affects",
+    "expect.subjected",
+    "given.moment.turnStart"
+  ],
+  "checks": 4,
+  "setup": {
+    "scene": "Arène des sorts",
+    "caster": "Lanceur",
+    "near": "Cible",
+    "item": {
+      "origin": "official",
+      "docId": "aifOrbOfDamara00",
+      "uuid": "Compendium.dnd-adventures-faerun.items.Item.aifOrbOfDamara00",
+      "kind": "item"
+    },
+    "target": {
+      "actor": "mmBanditCaptain0",
+      "type": "humanoid"
+    },
+    "reach": {
+      "pTSCNVUBXIShRBJN": null
+    },
+    "area": [
+      "pTSCNVUBXIShRBJN"
+    ]
+  },
+  "steps": [
+    {
+      "use": "pTSCNVUBXIShRBJN"
+    },
+    {
+      "advance": "turnStart"
+    },
+    {
+      "check": "expect.affects=enemies;given.moment=turnStart"
+    },
+    {
+      "use": "pTSCNVUBXIShRBJN"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.condition.applied=frightened;given.roll=failedSave"
+    },
+    {
+      "use": "pTSCNVUBXIShRBJN"
+    },
+    {
+      "force": "savedSave"
+    },
+    {
+      "check": "expect.damage.fraction=0.5;given.roll=savedSave"
+    },
+    {
+      "use": "pTSCNVUBXIShRBJN"
+    },
+    {
+      "force": "failedSave"
+    },
+    {
+      "check": "expect.ends=bearerTurnStart;given.roll=failedSave"
+    },
+    {
+      "use": "pTSCNVUBXIShRBJN"
+    },
+    {
+      "advance": "turnStart"
+    },
+    {
+      "check": "expect.subjected=activity;given.moment=turnStart"
+    }
+  ]
+}

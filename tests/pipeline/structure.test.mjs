@@ -76,6 +76,13 @@ describe("structureOf", () => {
       template: { type: "sphere", size: "20" }, affects: { type: "creature", count: "1" },
       effects: ["effBBBBBBBBBBBBB"], consumes: [{ type: "itemUses", target: "", value: "1" }]
     });
+    // dnd5e stores one save ability as a bare string in older data: it reads as that one ability, not as none.
+    const one = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "save",
+      save: { ability: "wis", dc: { calculation: "spellcasting", formula: "" } } } } } });
+    expect(one.activities[0].save.ability).toEqual(["wis"]);
+    const none = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "save",
+      save: { ability: "", dc: { calculation: "spellcasting", formula: "" } } } } } });
+    expect(none.activities[0].save.ability ?? []).toEqual([]);
     expect(heal).toMatchObject({ id: "actCCCCCCCCCCCCC", type: "heal", activation: "bonus", damage: [] });
     expect(heal.healing).toEqual([{ number: 1, denomination: 4, types: ["healing"] }]);
     expect(s.effects).toEqual([{

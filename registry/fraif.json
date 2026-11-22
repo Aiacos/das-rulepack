@@ -555,10 +555,135 @@
           "confidence": 0.85,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-t001",
+          "at": "2026-11-22T09:53:37.956Z",
+          "core": "0.290.0",
+          "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b"
+        },
+        "gates": {
+          "at": "2026-11-22T09:55:50.362Z",
+          "core": "0.290.0",
+          "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b",
+          "emits": "3d189a717e657bf86333ba03f9a44766c27490df3fd3d0eda5189a5dc5dbd067",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "b03343c9c412a1761e4533d2f747eb97b2fde6328822a03189ff3b50ff55bef2"
+          }
+        },
+        "reviewed": {
+          "by": "reviewer-t001",
+          "at": "2026-11-22T09:57:24.752Z",
+          "agrees": true,
+          "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b",
+          "confidence": 0.75
         }
       },
       "why": "Fear aura: enemies save at turn start, then 24h immunity; breath type chosen at use; toggle. Official data has fixed damage types and lacks the immunity.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "Foes beginning their turn near the bearer roll the fear save; frightened lasts until that foe's next turn begins.",
+        "entry": {
+          "emanation": {
+            "on": "turnStart",
+            "affects": "enemy",
+            "activity": "pTSCNVUBXIShRBJN"
+          },
+          "effectEnds": {
+            "PnUtkV81LSyPXFcW": "bearerTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "emanation holds a single activity id; the importer item splits the aura into its own utility and save activities"
+          }
+        ],
+        "assert": [
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "subjected": "activity"
+            }
+          },
+          {
+            "given": {
+              "moment": "turnStart"
+            },
+            "expect": {
+              "affects": "enemies"
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "frightened"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "ends": "bearerTurnStart"
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0.5
+              }
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "immunity-after-save",
+            "count": 1
+          },
+          {
+            "unexpressed": "no-key",
+            "count": 2
+          },
+          {
+            "unexpressed": "use-time-choice",
+            "count": 1
+          },
+          {
+            "unexpressed": "form-change",
+            "count": 1
+          },
+          {
+            "unexpressed": "table-ruling",
+            "count": 1
+          },
+          {
+            "unexpressed": "out-of-combat",
+            "count": 1
+          }
+        ]
+      },
+      "state": "reviewed"
     },
     {
       "key": "fraif:item:prespra",
@@ -623,10 +748,116 @@
           "confidence": 0.9,
           "keys": [],
           "similar": []
+        },
+        "drafted": {
+          "by": "drafter-t001",
+          "at": "2026-11-22T09:53:37.956Z",
+          "core": "0.290.0",
+          "rule": "ff860495a3bbdcc4bb4b4451ce12843b6be4602694c2926dc2f1b589d770c326"
+        },
+        "gates": {
+          "at": "2026-11-22T09:55:50.364Z",
+          "core": "0.290.0",
+          "rule": "ff860495a3bbdcc4bb4b4451ce12843b6be4602694c2926dc2f1b589d770c326",
+          "emits": "a9e1c0916d9d8cb2a5d290348454277adcb30e34ec2acc5a70c52196ad752ebc",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "65a98aff6c45c244bc91de8bf714e86a2c40abec1d8a9df013b0d6d2bb39c94f",
+            "ddb-importer": "a576a4b451fa1a387742f136e94e52daa7e30bfdaad832d1a3cdac66e74fdfe1"
+          }
         }
       },
       "why": "Poison/blinded plus repeated save each turn with damage on failure, ending on success; data has only the first save.",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The victim repeats the save as each of its turns begins, ending the effect on a success; a success never deals damage.",
+        "entry": {
+          "saveDamage": {
+            "8fgDGNvrPCXApcXw": "none",
+            "savePrespraIIIII": "none"
+          },
+          "triggers": [
+            {
+              "on": "startOfTurn",
+              "via": "effect",
+              "do": [
+                {
+                  "type": "resave"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official",
+          "ddb-importer"
+        ],
+        "assert": [
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 1,
+                "type": "poison"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "poisoned"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "failedSave"
+            },
+            "expect": {
+              "condition": {
+                "applied": "blinded"
+              }
+            }
+          },
+          {
+            "given": {
+              "roll": "savedSave"
+            },
+            "expect": {
+              "damage": {
+                "fraction": 0
+              }
+            }
+          },
+          {
+            "given": {
+              "moment": "startOfTurn"
+            },
+            "expect": {
+              "ends": "savedSave"
+            }
+          }
+        ],
+        "leaves": [
+          {
+            "unexpressed": "ongoing-effect",
+            "count": 1
+          }
+        ]
+      },
+      "state": "gated"
     },
     {
       "key": "fraif:item:rusted-hulk",

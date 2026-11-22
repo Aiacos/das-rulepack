@@ -1,5 +1,137 @@
 [
   {
+    "key": "fraif:item:prespra",
+    "reason": "disagreement",
+    "by": "reviewer-t001",
+    "why": "Failing the Con save poisons and blinds with no damage on success; a later successful resave ends it",
+    "confidence": 0.8,
+    "draft": {
+      "by": "drafter-t001",
+      "rule": "ff860495a3bbdcc4bb4b4451ce12843b6be4602694c2926dc2f1b589d770c326",
+      "assert": [
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 1,
+              "type": "poison"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "blinded"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        },
+        {
+          "given": {
+            "moment": "startOfTurn"
+          },
+          "expect": {
+            "ends": "savedSave"
+          }
+        }
+      ],
+      "implied": [
+        "expect.damage.fraction=0;expect.damage.type=poison;given.roll=savedSave",
+        "expect.damage.fraction=0;given.roll=savedSave",
+        "expect.ends=savedSave"
+      ],
+      "leaves": [
+        {
+          "unexpressed": "ongoing-effect",
+          "count": 1
+        }
+      ]
+    },
+    "review": {
+      "rule": "ff860495a3bbdcc4bb4b4451ce12843b6be4602694c2926dc2f1b589d770c326",
+      "assert": [
+        {
+          "given": {
+            "roll": "savedSave"
+          },
+          "expect": {
+            "damage": {
+              "fraction": 0
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "poisoned"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "condition": {
+              "applied": "blinded"
+            }
+          }
+        },
+        {
+          "given": {
+            "roll": "failedSave"
+          },
+          "expect": {
+            "ends": "savedSave"
+          }
+        }
+      ],
+      "agrees": false,
+      "onlyDraft": [
+        "expect.damage.fraction=1;expect.damage.type=poison;given.roll=failedSave",
+        "expect.ends=savedSave",
+        "expect.ends=savedSave;given.moment=startOfTurn"
+      ],
+      "onlyReview": [
+        "expect.ends=savedSave;given.roll=failedSave"
+      ],
+      "baseline": [],
+      "detail": [
+        {
+          "draft": "expect.damage.fraction=0;expect.damage.type=poison;given.roll=savedSave",
+          "review": "expect.damage.fraction=0;given.roll=savedSave"
+        }
+      ]
+    }
+  },
+  {
     "key": "xmm:monster:animal-lord/legendary/feral-strike",
     "reason": "low-confidence",
     "by": "reviewer-q001",
