@@ -360,4 +360,3 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       two direct reproductions show the engine ends all four effects at the turn start; the runner is at fault, cause open.
 - [x] Scenario runner: the intermittent "effect not gone" was Bloodied (a status the system adds at the hit, no origin) taken
       for the use's effect; the runner now also confirms a turn really changed, and names what stayed on a failure.
-- [ ] Item reread: the engine entry passed through the view to the reader has no unit test of its own yet.
