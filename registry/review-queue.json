@@ -406,6 +406,11 @@
         "expect.ends=savedSave;given.roll=failedSave"
       ],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k002",
+      "at": "2026-11-22T22:21:13.211Z",
+      "result": "rejected"
     }
   },
   {
@@ -657,8 +662,8 @@
     "why": "Failed save leaves the target charmed; resave on damage is already read by the engine.",
     "confidence": 0.8,
     "draft": {
-      "by": "drafter-x001",
-      "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052",
+      "by": "drafter-k001",
+      "rule": "07d0ae021deaad2a8222f9962cde847eeafcceeab686f860678c831f61c3ccc1",
       "assert": [
         {
           "given": {
@@ -691,7 +696,7 @@
       ]
     },
     "review": {
-      "rule": "6feecb533bb6bd040dee9c0ad706b6931343f73b7d93e411cd2c508b8deb5052",
+      "rule": "07d0ae021deaad2a8222f9962cde847eeafcceeab686f860678c831f61c3ccc1",
       "assert": [
         {
           "given": {
@@ -735,6 +740,13 @@
       ],
       "onlyReview": [],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "compared",
+      "agreesFirst": false,
+      "agreesSecond": false
     }
   },
   {
@@ -932,8 +944,8 @@
     "why": "failing pushes the victim 30 ft away from the dragon; succeeding halves the cold damage; reuse wait unsayable",
     "confidence": 0.8,
     "draft": {
-      "by": "drafter-w002",
-      "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+      "by": "drafter-k001",
+      "rule": "56a1343d2437229e1d25dc75eeca09428e528afa65e5ceba816ca513ce9597ba",
       "assert": [
         {
           "given": {
@@ -958,7 +970,7 @@
       ]
     },
     "review": {
-      "rule": "4ce5d12dade2181b6dd4cbd36bf25e9b06620b7075b68193a6ec9b628b780c72",
+      "rule": "56a1343d2437229e1d25dc75eeca09428e528afa65e5ceba816ca513ce9597ba",
       "assert": [
         {
           "given": {
@@ -1025,6 +1037,13 @@
         "expect.damage.fraction=0.5;given.roll=savedSave"
       ],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "compared",
+      "agreesFirst": false,
+      "agreesSecond": false
     }
   },
   {
@@ -1202,6 +1221,11 @@
       ],
       "onlyReview": [],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "declined"
     }
   },
   {
@@ -1716,6 +1740,11 @@
         "expect.condition.applied=restrained;given.roll=failedSave"
       ],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "declined"
     }
   },
   {
@@ -2137,152 +2166,6 @@
       ],
       "baseline": [],
       "detail": []
-    }
-  },
-  {
-    "key": "xmm:monster:death-cultist/action/dread-scythe",
-    "reason": "disagreement",
-    "by": "reviewer-x001",
-    "why": "Healing block on hit is engine-read; it lasts until the target's next turn finishes.",
-    "confidence": 0.8,
-    "draft": {
-      "by": "drafter-x003",
-      "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "bearerTurnEnd"
-          }
-        },
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "denies": "healing"
-          }
-        }
-      ],
-      "implied": [
-        "expect.ends=bearerTurnEnd;given.roll=hit"
-      ]
-    },
-    "review": {
-      "rule": "9544416bab80f96861979df0114375b196098e8f61457d8c81cbaf176f9d075a",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "bearerTurnEnd"
-          }
-        }
-      ],
-      "agrees": false,
-      "onlyDraft": [
-        "expect.denies=healing;given.roll=hit"
-      ],
-      "onlyReview": [],
-      "baseline": [],
-      "detail": []
-    },
-    "second": {
-      "by": "reviewer-z001",
-      "at": "2026-11-22T21:52:05.872Z",
-      "agrees": false,
-      "result": "read",
-      "confidence": 0.75,
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "bearerTurnEnd"
-          }
-        }
-      ],
-      "onlyDraft": [
-        "expect.denies=healing;given.roll=hit"
-      ],
-      "onlyReview": [],
-      "withFirst": true
-    }
-  },
-  {
-    "key": "xmm:monster:death-slaad/action/chaos-blade",
-    "reason": "disagreement",
-    "by": "reviewer-x001",
-    "why": "The rolled condition is engine-read; it lasts until the slaad begins its next turn.",
-    "confidence": 0.8,
-    "draft": {
-      "by": "drafter-x003",
-      "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "casterTurnStart"
-          }
-        },
-        {
-          "given": {},
-          "expect": {
-            "chooses": "effectByRoll"
-          }
-        }
-      ],
-      "implied": [
-        "expect.ends=casterTurnStart;given.roll=hit"
-      ]
-    },
-    "review": {
-      "rule": "3f43b3d3084a941292076c56e9a54cd4c18dcdb5d1273474e593f97924c12a80",
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "casterTurnStart"
-          }
-        }
-      ],
-      "agrees": false,
-      "onlyDraft": [
-        "expect.chooses=effectByRoll"
-      ],
-      "onlyReview": [],
-      "baseline": [],
-      "detail": []
-    },
-    "second": {
-      "by": "reviewer-z001",
-      "at": "2026-11-22T21:52:05.872Z",
-      "agrees": false,
-      "result": "read",
-      "confidence": 0.75,
-      "assert": [
-        {
-          "given": {
-            "roll": "hit"
-          },
-          "expect": {
-            "ends": "casterTurnStart"
-          }
-        }
-      ],
-      "onlyDraft": [
-        "expect.chooses=effectByRoll"
-      ],
-      "onlyReview": [],
-      "withFirst": true
     }
   },
   {
@@ -2763,6 +2646,11 @@
         "expect.roll.for=self;expect.roll.mode=advantage;expect.roll.on=save"
       ],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "declined"
     }
   },
   {
@@ -3492,7 +3380,7 @@
     "why": "Goblin swaps places with a small or medium adjacent ally; redirecting the attack has no word.",
     "confidence": 0.6,
     "draft": {
-      "by": "drafter-x005",
+      "by": "drafter-k001",
       "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
       "assert": [
         {
@@ -3561,6 +3449,13 @@
         "expect.teleports=swapsWithTarget;given.targetSizeAtMost=med"
       ],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "compared",
+      "agreesFirst": false,
+      "agreesSecond": false
     }
   },
   {
@@ -4251,8 +4146,8 @@
     "why": "Pick of charm or fear is engine-read; success halves and the condition lasts to the end of the user's next turn.",
     "confidence": 0.75,
     "draft": {
-      "by": "drafter-x007",
-      "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f",
+      "by": "drafter-k001",
+      "rule": "2508f73287ae57585ac25af09d9591f9d3df4d395d5063e079b4300be3cac29c",
       "assert": [
         {
           "given": {
@@ -4268,7 +4163,7 @@
       ]
     },
     "review": {
-      "rule": "ee75a08203ddb592035faabbe5e2fd7a2562d751684605fdd25fdef6b550663f",
+      "rule": "2508f73287ae57585ac25af09d9591f9d3df4d395d5063e079b4300be3cac29c",
       "assert": [
         {
           "given": {
@@ -4328,6 +4223,13 @@
         "expect.damage.fraction=0.5;given.roll=savedSave"
       ],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "compared",
+      "agreesFirst": false,
+      "agreesSecond": false
     }
   },
   {
@@ -4337,11 +4239,14 @@
     "why": "On a melee hit the pirate raises its AC by 4 by reaction, lasting until its next turn starts.",
     "confidence": 0.65,
     "draft": {
-      "by": "drafter-x007",
-      "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae",
+      "by": "drafter-k001",
+      "rule": "2975f7e1b26a68dda2d228eef470a2346acd33e9e03be1887d0351eed20e862d",
       "assert": [
         {
-          "given": {},
+          "given": {
+            "moment": "isHit",
+            "activity": "melee"
+          },
           "expect": {
             "ends": "casterTurnStart"
           }
@@ -4354,11 +4259,15 @@
         {
           "unexpressed": "trigger-filter",
           "count": 1
+        },
+        {
+          "unexpressed": "no-key",
+          "count": 1
         }
       ]
     },
     "review": {
-      "rule": "9027e6b588c51f155bc66ff9c212c6037a4bec412d3451a29345c084b2678bae",
+      "rule": "2975f7e1b26a68dda2d228eef470a2346acd33e9e03be1887d0351eed20e862d",
       "assert": [
         {
           "given": {
@@ -4377,7 +4286,9 @@
         }
       ],
       "agrees": false,
-      "onlyDraft": [],
+      "onlyDraft": [
+        "expect.ends=casterTurnStart;given.activity=melee;given.moment=isHit"
+      ],
       "onlyReview": [
         "expect.acBonus=4;given.activity=melee;given.moment=isHit"
       ],
@@ -4412,6 +4323,13 @@
         "expect.acBonus=4;given.activity=melee;given.moment=isHit"
       ],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "compared",
+      "agreesFirst": false,
+      "agreesSecond": false
     }
   },
   {
@@ -4546,18 +4464,16 @@
   },
   {
     "key": "xmm:monster:roc/bonus/swoop",
-    "reason": "disagreement",
+    "reason": "low-confidence",
     "by": "reviewer-v003",
     "why": "Flight provokes no opportunity attacks and the grappled creature is let go",
     "confidence": 0.75,
     "draft": {
-      "by": "drafter-v010",
-      "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
+      "by": "drafter-k001",
+      "rule": "5457783ffd4f4715f0399862f8ba2838ad99bcea79efa395fd2c192abf382aee",
       "assert": [
         {
-          "given": {
-            "origin": "official"
-          },
+          "given": {},
           "expect": {
             "denies": "opportunityAttacks"
           }
@@ -4579,15 +4495,11 @@
         {
           "unexpressed": "target-state",
           "count": 1
-        },
-        {
-          "unexpressed": "no-key",
-          "count": 1
         }
       ]
     },
     "review": {
-      "rule": "4265e7cfe94565634f54a6dc6cd449ca2915c89312e00c31fb7810f92e1cb103",
+      "rule": "5457783ffd4f4715f0399862f8ba2838ad99bcea79efa395fd2c192abf382aee",
       "assert": [
         {
           "given": {},
@@ -4604,10 +4516,8 @@
           }
         }
       ],
-      "agrees": false,
-      "onlyDraft": [
-        "expect.denies=opportunityAttacks;given.origin=official"
-      ],
+      "agrees": true,
+      "onlyDraft": [],
       "onlyReview": [],
       "baseline": [],
       "detail": [],
@@ -4645,6 +4555,13 @@
       ],
       "onlyReview": [],
       "withFirst": true
+    },
+    "redraftedAgainst": {
+      "by": "drafter-k001",
+      "at": "2026-11-22T22:21:10.880Z",
+      "result": "compared",
+      "agreesFirst": true,
+      "agreesSecond": "unsure"
     }
   },
   {

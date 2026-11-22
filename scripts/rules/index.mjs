@@ -47,6 +47,7 @@ export const SOURCES = Object.freeze({
   "mmAdultCopperDra.mmSlowingBreath0": "xmm-adult-copper-dragon-slowing-breath",
   "mmChaosClaw00000": "xmm-gray-slaad-chaos-claw",
   "mmChaosStaff0000": "xmm-green-slaad-chaos-staff",
+  "mmDreadScythe000": "xmm-death-cultist-dread-scythe",
   "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
   "mmHasten00000000": "xmm-clay-golem-hasten",
   "mmHeartSight0000": "xmm-sprite-heart-sight",
@@ -62,5 +63,6 @@ export const SOURCES = Object.freeze({
   "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze",
   "mmWarCry00000000": "xmm-frost-giant-war-cry",
   "mmWhirlwind00000": "xmm-air-elemental-whirlwind",
+  "yDu5v2Fj4bPhdXgS": "xmm-death-slaad-chaos-blade",
   "yO5Jxg4POQGRLlXI": "xmm-flumph-stench-spray"
 });
