@@ -101,6 +101,8 @@ After the pilot (`docs/pilot-xphb-spells.md`):
 - [ ] Draft the R38 pool: 19 of the 206 drafts-queue entries name a mechanic it makes writable (a reading of the drafters'
       `why`, not a closed field: 12 parries, 1 counterattack, 2 misses, 1 self teleport, 2 reaction counts, 1 light), about
       11 of them whole; 3 parries the engine already reads (the weapon-held limit stays unsayable). Measure Ruling R12.
+- [ ] Reoffer the drafters' declines (Ruling R39, built 2026-11-22: `batch draft <BOOK> --reoffer`, `ingest --draft --reoffer`,
+      once, blind, `reoffered: true` on the entry kept): XMM 192 entries in 10 batches, FRAIF 3 in 1; measure Ruling R12.
 - [ ] Upstream requests (no book named): a step that teleports the TARGET of a hit or a failed save; damage doubled
       against objects and structures; a hit that misses only when the attacker fails a save (as `cancelForSelf`'s
       `ifSourceFails`, at `isHit`); a free counterattack tied to the AC reaction just taken.
