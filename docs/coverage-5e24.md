@@ -19,17 +19,17 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | Joined to an item of the official module | 4,304 |
 | Ambiguous against the official module (wait for `npm run resolve`) | 164 |
 | No item in the official module | 424 |
-| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 788 |
+| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 803 |
 | Verdict `none` (nothing to automate in combat) | 1,333 |
 | Verdict `data` (the item's own data is enough) | 1,276 |
-| Verdict `entry` (a declarative rule is needed and not written yet) | 1,314 |
+| Verdict `entry` (a declarative rule is needed and not written yet) | 1,299 |
 | Verdict `code` (a script is needed) | 0 |
 | Verdict `engine` (needs something the engine lacks) | 0 |
 | Verdict `unverifiable` (no text) | 118 |
 | No verdict, in `registry/queue.json`, waiting for a person | 48 |
 | No verdict, left for reader agents | 15 |
 
-Who set the verdicts: reader agents 3,765, rule 969, SRD reading of November 2026 95. A reader agent's verdict is one reading of
+Who set the verdicts: reader agents 3,750, rule 984, SRD reading of November 2026 95. A reader agent's verdict is one reading of
 the text against the structure of the item's data; it was not checked by a second reader and not played. Verdicts below 0.7
 of confidence, and every `engine` verdict, were not applied: they are in the queue.
 
@@ -48,8 +48,8 @@ the name ("+1", a quantity): 55.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | spell | 391 | 391 / 0 / 0 | 390 / 1 / 0 | 277 | 65 | 38 | 9 | 0 | 0 | 0 | 2 | 0 |
 | feat | 77 | 77 / 0 / 0 | 0 / 2 / 75 | 47 | 17 | 9 | 4 | 0 | 0 | 0 | 0 | 0 |
-| option | 58 | 58 / 0 / 0 | 0 / 0 / 58 | 35 | 3 | 14 | 6 | 0 | 0 | 0 | 0 | 0 |
-| feature | 592 | 409 / 60 / 123 | 0 / 0 / 592 | 157 | 252 | 45 | 134 | 0 | 0 | 0 | 4 | 0 |
+| option | 58 | 58 / 0 / 0 | 0 / 0 / 58 | 38 | 3 | 14 | 3 | 0 | 0 | 0 | 0 | 0 |
+| feature | 592 | 409 / 60 / 123 | 0 / 0 / 592 | 169 | 252 | 45 | 122 | 0 | 0 | 0 | 4 | 0 |
 | species | 48 | 40 / 0 / 8 | 0 / 0 / 48 | 9 | 18 | 7 | 4 | 0 | 0 | 0 | 0 | 10 |
 | background | 16 | 16 / 0 / 0 | 0 / 0 / 16 | 0 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 217 | 159 / 16 / 42 | 188 / 8 / 21 | 19 | 115 | 0 | 4 | 0 | 0 | 79 | 0 | 0 |
