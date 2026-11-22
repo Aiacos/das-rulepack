@@ -8,7 +8,7 @@ import { checkDraftKeys } from "./draft-keys.mjs";
 import {
   RULE_QUOTE_WORDS, checkIds, checkText, engineIdentifiers, gateSchema, gateValidator, quotationCheck, ruleProse
 } from "./gates.mjs";
-import { identifierClashReasons, redraftable } from "./batch.mjs";
+import { identifierClashReasons, redraftable, reofferable } from "./batch.mjs";
 import { ACTOR_ITEM_REFUSED, DDB_MONSTER_UNCOVERED, SHARED_EMBEDDED, aliasFor, monsterIdentifier } from "./identifiers.mjs";
 import { bindSources, canonicalIdentifier, sharedEmbeddedId } from "./settle.mjs";
 import { isPartial } from "./leaves.mjs";
@@ -97,13 +97,18 @@ export function unbackedProblems(rule, structure) {
 }
 
 // Why a result cannot be taken at all (before its rule is looked at), or null. With `redraft` (Ruling R32) the record must
-// be redraftable (batch.mjs) instead of unruled.
-function resultProblem(record, result, { queuedKeys, offered, redraft, reviewQueued, readingOf }) {
+// be redraftable (batch.mjs) instead of unruled. With `reoffer` (Ruling R39) its drafts-queue entry must be reofferable
+// (`reofferKeys`), and only then is a queued record taken.
+function resultProblem(record, result, { queuedKeys, offered, redraft, reviewQueued, readingOf, reoffer, reofferKeys }) {
   const extra = unknownFields(result, DRAFT_RESULT_FIELDS);
   if (extra.length) return `unknown field ${echo(extra[0])}`;
   if (!record) return `unknown key ${echo(result.key)}`;
   if (!offered.has(result.key)) return "not offered by this batch (its key is not an entry of the batch file)";
-  if (queuedKeys.has(result.key)) return "the record waits for a person in drafts-queue.json";
+  if (reoffer && !reofferKeys.has(result.key)) {
+    return "not reofferable (a drafts-queue entry a drafter declined, never an owner's, about an unruled entry record,"
+      + " reoffered once at most)";
+  }
+  if (queuedKeys.has(result.key) && !reoffer) return "the record waits for a person in drafts-queue.json";
   if (record.legacy === true) return "legacy record: it leaves legacy through a person, never through a draft";
   if (redraft && !redraftable(record, { draftsQueued: queuedKeys, reviewQueued, readingOf })) {
     return "not redraftable (a monster rule held because it changes the engine's reading, outside the queues, redrafted"
@@ -235,20 +240,32 @@ function ruleProblems(candidate, { core, textDir }) {
  * only for a record batch.mjs `redraftable` accepts (`reviewQueued`: the keys of review-queue.json; `readingOf`: the reading
  * computed now) instead of an unruled one: an applied rule replaces the old one from `withoutRule(record)` and its
  * `evidence.drafted` carries `redrafted: true`; a queued result also takes the old rule away (`unruled` lists those keys).
+ * With `reoffer` (Ruling R39; `owners`: the handles of docs/owners.json, required) a result is taken only for a record whose
+ * drafts-queue entry (`queue`) batch.mjs `reofferable` accepts: applied as any draft (the caller takes the entry out of the
+ * queue); one that would be queued (a decline, a clash, a low confidence) is listed in `declined` and queues nothing; every
+ * offered reofferable entry not applied (declined, rejected, or with no result in the file) comes back in `marked`, as it
+ * was plus `reoffered: true`, for the caller to write over the old one.
  * Any exception on one result becomes its rejection
  * (`internal: …`), never the file's. A rejection repeats at most 80 characters of any drafter string. Inputs unchanged.
  */
 export function ingestDrafts(records, results, options = {}) {
   const {
     textDir, by, at = new Date().toISOString(), core, queue = [], embedded, offered, structures = new Map(), redraft = false,
-    reviewQueued = new Set(), readingOf
+    reviewQueued = new Set(), readingOf, reoffer = false, owners
   } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core.validateEntry !== "function") throw new TypeError("ingestDrafts needs core (loadCore)");
   if (!(offered instanceof Set)) throw new TypeError("ingestDrafts needs offered (a Set of the batch file's entry keys)");
   if (!(structures instanceof Map)) throw new TypeError("structures must be a Map of record key to the official structure");
+  if (redraft && reoffer) throw new TypeError("ingestDrafts: redraft and reoffer cannot be ingested together");
+  if (reoffer && !Array.isArray(owners)) throw new TypeError("ingestDrafts: a reoffer needs owners (docs/owners.json)");
   const out = structuredClone(records);
+  const original = new Map(out.map((r) => [r.key, r]));
+  // Ruling R39: decided on the records as they are before any result is taken.
+  const reofferEntries = reoffer
+    ? queue.filter((q) => offered.has(q?.key) && reofferable(q, original.get(q.key), { owners })) : [];
   const context = {
+    reoffer, reofferKeys: new Set(reofferEntries.map((q) => q.key)),
     out, byKey: new Map(out.map((r) => [r.key, r])), queuedKeys: new Set(queue.map((q) => q?.key)), offered,
     textOf: cachedText(textDir), textDir, core, embedded, by, at, seen: new Set(), structures, redraft, reviewQueued, readingOf
   };
@@ -257,6 +274,7 @@ export function ingestDrafts(records, results, options = {}) {
   const queued = [];
   const rejected = [];
   const unruled = [];
+  const declined = [];
   for (const result of Array.isArray(results) ? results : []) {
     let outcome;
     // One result never aborts the file: anything unexpected is that result's rejection.
@@ -267,6 +285,7 @@ export function ingestDrafts(records, results, options = {}) {
       rejected.push({ key, reason: clipEchoes(outcome.reject, result) });
       continue;
     }
+    if (outcome.declined) declined.push(outcome.declined);
     if (outcome.queue) queued.push(outcome.queue);
     if (outcome.apply) {
       const { record, next } = outcome.apply;
@@ -280,7 +299,9 @@ export function ingestDrafts(records, results, options = {}) {
       }
     }
   }
-  return { records: out, applied, partial, queued, rejected, unruled };
+  // Ruling R39: every reoffered entry that did not become a rule stays as it was, marked so that it is offered once only.
+  const marked = reofferEntries.filter((q) => !applied.includes(q.key)).map((q) => ({ ...structuredClone(q), reoffered: true }));
+  return { records: out, applied, partial, queued, rejected, unruled, ...(reoffer ? { declined, marked } : {}) };
 }
 
 // Why `origins` is not a non-empty list of distinct known origins, or null (checked before anything that relies on it).
@@ -310,13 +331,15 @@ function takeResult(result, ctx) {
   seen.add(result.key);
   const record = byKey.get(result.key);
   const reason = resultProblem(record, result, { queuedKeys, offered, redraft, reviewQueued: ctx.reviewQueued,
-    readingOf: ctx.readingOf });
+    readingOf: ctx.readingOf, reoffer: ctx.reoffer, reofferKeys: ctx.reofferKeys });
   if (reason) return { reject: reason };
   const text = textOf(record);
   if (text === null) return { reject: "no text in the cache: nothing to check the result against" };
   const quoted = whyQuotes(result.why, text);
   if (quoted) return { reject: quoted };
   const entry = (reasonOf, draft) => {
+    // Ruling R39: a reoffer that goes to a person again queues nothing: the old entry is kept, marked (ingestDrafts).
+    if (ctx.reoffer) return { declined: result.key };
     const split = splitQuotation(result.why, draft, text);
     if (split) return { reject: split };
     const queued = { key: result.key, reason: reasonOf, by, why: result.why, confidence: result.confidence,

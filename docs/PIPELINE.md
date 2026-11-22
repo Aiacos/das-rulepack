@@ -43,9 +43,9 @@ excepted.
 | 2e | Cut reread batches | `npm run batch -- reread <BOOK> --out <dir> --structure <private dir> [--size 30] [--second \| --restate]` (see "Rereading monster features") | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
 | 2f | Reread a batch | (no command: a reread agent reads files, blind to every earlier verdict) | `RULEPACK_TEXT` | the Claude Code session, via reread agents |
 | 2g | Ingest rereads | `npm run ingest -- <results-file> --reread [--second \| --restate] --batch <batch file>` (see "Ingesting rereads") | `RULEPACK_TEXT`, `DAS_CORE`, `RULEPACK_DUMPS` | the Claude Code session |
-| 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>] [--redraft]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
+| 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>] [--redraft \| --reoffer]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
-| 3c | Ingest drafts | `npm run ingest -- <results-file> --draft [--redraft] --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
+| 3c | Ingest drafts | `npm run ingest -- <results-file> --draft [--redraft \| --reoffer] --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 5a | Cut review batches | `npm run batch -- review <BOOK> --out <dir> --structure <private dir> [--size 30] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
 | 5b | Review a batch | (no command: a reviewer agent reads files, blind to the draft) | `RULEPACK_TEXT` | the Claude Code session, via reviewer agents |
@@ -599,7 +599,8 @@ ones.
   or `system.changes`, not both. The quotation check reads every string of the entry too (keys and values, structure-only
   strings and the roots of `@` references left out), with the words split at dots, camelCase and digit boundaries.
 - **Queues** (Ruling R7). `registry/drafts-queue.json` and `registry/review-queue.json` sit beside `queue.json`: arrays of
-  `{ key, reason, by, why, confidence, draft?, review? }`, sorted by key (`registry.mjs` `loadQueue`, `saveQueue`,
+  `{ key, reason, by, why, confidence, draft?, review?, reoffered? }` (`reoffered: true`, Ruling R39, in drafts-queue.json
+  only, `true` when present), sorted by key (`registry.mjs` `loadQueue`, `saveQueue`,
   `validateQueueEntry`). With `legacy.json` they are the files of `NOT_BOOKS` (`registry.mjs`): `generate`, the CLI,
   `books-progress` and every other reader of `registry/*.json` leave them out, and no book code may take their names.
   `loadQueue` refuses a file that does not parse or an entry that is not valid (record key shape, known fields), and
@@ -965,6 +966,18 @@ draft entries (`engineReads` in the structure file, read as for an unruled recor
 blind to the rule they replace: nothing of it is in the batch, and no rule of a record cut is offered as an example. The
 batches keep the `-draft-` numbering, carry `redraft: true`, and the report is `<book>-draft-redraft-report.json`. They are
 ingested with `--draft --redraft` only (see "Ingesting drafts").
+
+`--reoffer` (Ruling R39; never with `--redraft`, a usage error) offers once more to a drafter the entries of
+`drafts-queue.json` that a drafter declined before the vocabulary grew (R30, R33, R34, R37, R38) and before the item summary
+was corrected. Only the records whose entry `batch.mjs` `reofferable` accepts are cut: an entry whose `reason` is one of
+`REOFFER_REASONS` (`person`, `code`, `engine`, `low-confidence`: a clash is a person's), signed by a drafter's handle
+(`drafter…`) that no owner of `docs/owners.json` holds (an entry an owner wrote or signed is a person's), without
+`reoffered: true`, about a record that is still an unruled, non-legacy `entry` record; every other `entry` record is left out
+as `not reofferable`, and a reofferable one still meets every other reason above (`reofferSkipReason`: "engine reads it:
+reread first", a clash, no text...). The entries are ordinary draft entries, blind to the decline: its reason, `why`,
+handle, confidence and kept `draft` are in neither the batch nor the structure file (an entry is what a plain cut gives for
+the record outside the queue). The batches keep the `-draft-` numbering, carry `reoffer: true`, and the report is
+`<book>-draft-reoffer-report.json`. They are ingested with `--draft --reoffer` only.
 
 `draft-vocabulary.json` also holds `draftShapes` (the value shape of every drafter key), `assert.shapes` (the value shape of
 every `given` and `expect` field), `fixes.types` (the type of every data-fix path) and `keyExamples` (the canonical example of
@@ -1554,7 +1567,7 @@ against the official item's structure (below). For each result:
   confidence below 0.7 (`low-confidence`, the rule kept as `draft`). A result is queued only if its `why` and the strings of its
   draft together, in either order, do not quote 8 words of the text (`why` and the rule are each checked alone, the queue entry
   holds both): a hit rejects it. The verdict is not changed. A queued record is not cut by `batch draft` again, and a later
-  result for it is rejected: a person settles it.
+  result for it is rejected: a person settles it (once only, `--reoffer` offers a drafter's decline again: below).
 - **Applied** otherwise: `rule` is written as the drafter wrote it plus what the tools derive: `alsoAs` from `aliasFor`
   (Ruling R2: the identifier of a matched item that differs from the record's), `origin` (Ruling R17: the last part of the
   owner and, for a feature, the level), and for a monster feature its identifier `monsterIdentifier` (`<book>-<creature>-
@@ -1577,6 +1590,18 @@ then takes the new rule as above, with `evidence.drafted.redrafted: true`. It is
 the same way (listed in `unruled`: the queue alone would leave a rule known to change the engine's reading in place). A
 rejected result leaves the record as it was. A redrafted rule that still changes the reading stays held `engine-changes`,
 and the mark keeps the next `--redraft` from cutting it again.
+
+With `--reoffer` (Ruling R39; a batch cut with `batch draft --reoffer`, and only it: a reoffer batch without the flag, or a
+plain one with it, is refused, exit 2; never with `--redraft`) the record's drafts-queue entry must still be `reofferable`
+(otherwise the result is rejected as `not reofferable`), decided on the registry as it is before any result is taken, and
+every other check holds. A result that passes every check becomes the record's rule exactly as in a plain draft ingest, and
+the entry leaves `drafts-queue.json`. For every other entry the batch offered and that is still reofferable — a result that
+goes to a person again (an outcome `person`, `code` or `engine`, a clash, a low confidence: listed in `declined`, nothing of
+it queued), a rejected result, or a key the results file does not answer — the entry stays exactly as it was (its `reason`,
+`by`, `why`, `confidence` and `draft`) plus `reoffered: true`, so the next `--reoffer` does not cut it: the first decline is
+the one a person reads, and a reoffer is one extra chance, not a new reading of the queue. Nothing else of the queue
+changes, and the entry still waits for a person as before (a person settles it as any drafts-queue entry; a later plain
+draft result for it is still refused). It prints `{ applied, declined, marked, rejected }`.
 
 It prints `{ applied, partial, queued, rejected }` (`partial`: the keys applied with `leaves`, Ruling R25, for the owner to
 read; with `--redraft` also `unruled`) and exits with 1 when anything was rejected. The touched books and the queue are

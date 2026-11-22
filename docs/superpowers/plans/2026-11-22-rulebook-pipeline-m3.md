@@ -864,3 +864,27 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   how far: a draft with a wrong `distance` agrees with any review (stamped, a person reads it); (f) a light's `dim` is the
   outer radius as Foundry counts it, a drafter reading "dim light for an additional 10 feet" as `dim: 10` halves it unseen
   by review (stamped, a person reads every light); (g) nothing here is played: every new word is manual.
+- **R39 (2026-11-22). A drafter's decline is offered again, once, blind; the entry stays as it was unless a rule is
+  taken.** The 206 drafts-queue entries were declined before the drafter vocabulary grew five times (R30, R33, R34, R37,
+  R38) and before the item summary a drafter sees was corrected twice, and a queued entry is never cut again. `batch draft
+  --reoffer` cuts the entries `batch.mjs` `reofferable` accepts — a reason of `REOFFER_REASONS` (`person`, `code`, `engine`,
+  `low-confidence`; a clash stays a person's), signed by a `drafter…` handle that `docs/owners.json` does not list, no
+  `reoffered: true`, its record still an unruled, non-legacy `entry` — with every other reason of the plain cut still
+  applied, as ordinary draft entries (nothing of the decline: reason, `why`, handle, confidence, kept draft) in batches
+  marked `reoffer: true`, report `<book>-draft-reoffer-report.json`. `ingest --draft --reoffer` (refused on a batch without
+  the mark, the mark refused without the flag, never with `--redraft`) runs every draft check: an applied rule is written as
+  in a plain draft ingest and the entry leaves the queue; for every other offered entry (a decline again, a clash, a low
+  confidence, a rejection, a key the results file leaves out) the entry is kept as it was plus `reoffered: true` (the queue
+  schema allows the mark in drafts-queue.json only, `true` only). The old `reason`, `by`, `why`, `confidence` and `draft`
+  are kept, not replaced by the reoffer's: the entry is the decision a person settles, and the reoffer is one extra chance,
+  not a new reading of the queue (as R31 replaces a reread only because a restate IS a reading of the same record);
+  replacing them would also turn a decline of the old vocabulary into one of the new without anyone comparing the two.
+  Measured (repository registry unchanged, cut into a scratch folder against the engine's main branch): XMM 192 entries cut
+  in 10 batches (11 left out as "engine reads it: reread first", 533 not reofferable), FRAIF 3 in 1. *Cost if wrong:*
+  (a) the mark is one-shot: a reoffer drafter who declines a text the vocabulary could say leaves it for a person, never
+  reoffered again without a new ruling that clears the marks; (b) the new decline's `why` (written against today's
+  vocabulary, perhaps naming exactly what is still missing) is lost from the registry: only the results file holds it,
+  and a person reads the older, staler reason; (c) a low-confidence entry's kept `draft` is the old one even when the
+  reoffer drafted a better rule below the threshold; (d) owners are told apart by `docs/owners.json` and the handle's
+  `drafter` prefix: an entry hand-written under a drafter-looking handle would be reoffered; (e) the mark does not name the
+  vocabulary it was offered against, so a later growth of the vocabulary needs its own ruling to reoffer again.

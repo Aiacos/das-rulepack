@@ -3,7 +3,7 @@
 import { groupBy, ruleFingerprint, stateOf } from "./registry.mjs";
 import { queueHolds } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
-import { ADDS_MAX, ORIGIN_MAX } from "./schema.mjs";
+import { ADDS_MAX, ORIGIN_MAX, isReaderHandle } from "./schema.mjs";
 import {
   CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, REACTION_DECLARATION, draftKeysFor,
   entryWords, isStructural, reactionProblemsOf, wardProblemsOf, zoneProblemsOf
@@ -204,6 +204,42 @@ export function redraftable(r, { draftsQueued = new Set(), reviewQueued = new Se
   return emissionOf(candidate)?.because === "engine-changes";
 }
 
+/** Why a record is left out of a reoffer cut (Ruling R39): every record whose drafts-queue entry is not reofferable. */
+export const NOT_REOFFERABLE = "not reofferable";
+/** The reasons of a drafts-queue entry a drafter declined (draft.mjs: an outcome, or a rule below the threshold). */
+export const REOFFER_REASONS = Object.freeze(["person", "code", "engine", "low-confidence"]);
+// A drafter's handle (schema.mjs AGENT_HANDLE names the agent stages; an owner's never matches it unless docs/owners.json
+// lists it, which `reofferable` checks apart).
+const DRAFTER_HANDLE = /^drafter([-_.0-9]|$)/i;
+/** The mark a reoffer leaves on a drafts-queue entry it did not take out of the queue (Ruling R39). */
+export const isReoffered = (q) => q?.reoffered === true;
+
+/**
+ * Ruling R39: whether a drafts-queue entry is offered to a drafter again (`batch draft --reoffer`, `ingest --draft
+ * --reoffer`): declined (a reason of REOFFER_REASONS) by a drafter's handle that no owner of docs/owners.json holds (`owners`,
+ * required: an entry an owner wrote or signed is a person's), not marked `reoffered: true` (once only), whose `record` is
+ * still an unruled `entry` record, not legacy.
+ */
+export function reofferable(entry, record, { owners } = {}) {
+  if (!Array.isArray(owners)) throw new TypeError("reofferable needs owners (the handles of docs/owners.json)");
+  if (!isPlainObject(entry) || isReoffered(entry) || !REOFFER_REASONS.includes(entry.reason)) return false;
+  if (!isReaderHandle(entry.by) || !DRAFTER_HANDLE.test(entry.by)) return false;
+  if (owners.some((o) => typeof o === "string" && o.toLowerCase() === entry.by.toLowerCase())) return false;
+  if (!isPlainObject(record) || record.key !== entry.key || record.legacy === true) return false;
+  return record.verdict === "entry" && !record.rule;
+}
+
+/**
+ * Ruling R39: why an `entry` record is left out of a reoffer cut, or null when it is cut: NOT_REOFFERABLE unless its
+ * drafts-queue entry (`drafts`: the entries of drafts-queue.json) is `reofferable`; otherwise every other reason of
+ * draftSkipReason (`queued`: the keys of drafts-queue.json; the record's own entry does not count), the same cut's.
+ */
+export function reofferSkipReason(r, { drafts = [], owners, queued = new Set(), ...skip } = {}) {
+  const entry = drafts.find((q) => q?.key === r?.key);
+  if (!entry || !reofferable(entry, r, { owners })) return NOT_REOFFERABLE;
+  return draftSkipReason(r, { ...skip, queued: new Set([...queued].filter((k) => k !== r.key)) });
+}
+
 // The strings an example may keep: a 16-character id, a word of the engine's vocabularies, a short formula or dice. Anything
 // else (a label, a comment in French, a sentence) is stripped, with the property or list item that held it.
 const ID16 = /^[A-Za-z0-9]{16}$/;
@@ -383,6 +419,8 @@ function whyFor(r, textOf, report) {
  * With `redraft` (Ruling R32), only the records `redraftable` accepts (`queued` and `reviewQueued` the keys of the two queues,
  * `currentReadingOf` the reading computed now), in batches marked `redraft: true` of the same draft series and the same
  * entries; no rule of a record cut is ever offered as an example (the drafter is blind to the rule it replaces).
+ * With `reoffer` (Ruling R39), only the records reofferSkipReason accepts (`drafts`: the drafts-queue entries; `owners`: the
+ * handles of docs/owners.json), in batches marked `reoffer: true`: ordinary entries, nothing of the decline in them.
  * `queued` (keys of drafts-queue.json) are left out; `after` ({ book: highest number }) makes the numbering continue.
  * `embedded` (settle.mjs embeddedIndex of the package's actors) is required when a monster feature is among the records.
  * `textOf(record)` gives the cached text (the `why` of an entry is kept only when it does not quote it; `report.whyWithheld`
@@ -394,11 +432,15 @@ function whyFor(r, textOf, report) {
 export function cutDraftBatches(records, options = {}) {
   const {
     size = DRAFT_BATCH_SIZE, kind, after = {}, queued = new Set(), core, ruled, gated, embedded, textOf, report = {},
-    clashes = new Map(), readingOf, redraft = false, reviewQueued = new Set(), currentReadingOf
+    clashes = new Map(), readingOf, redraft = false, reviewQueued = new Set(), currentReadingOf, reoffer = false, drafts = [],
+    owners
   } = options;
+  if (redraft && reoffer) throw new TypeError("cutDraftBatches: redraft and reoffer cannot be cut together");
+  const skip = { queued, embedded, clashes, readingOf, actorItem: core?.actorItemSources === true };
   const open = records.filter((r) => r.verdict === "entry" && (!kind || r.kind === kind) && (redraft
     ? redraftable(r, { draftsQueued: queued, reviewQueued, readingOf: currentReadingOf })
-    : draftSkipReason(r, { queued, embedded, clashes, readingOf, actorItem: core?.actorItemSources === true }) === null));
+    : reoffer ? reofferSkipReason(r, { ...skip, drafts, owners }) === null
+      : draftSkipReason(r, skip) === null));
   // A redraft is blind: the rules it replaces are no examples.
   const blind = new Set(redraft ? open.map((r) => r.key) : []);
   const unseen = (list) => list.filter((r) => !blind.has(r.key));
@@ -417,7 +459,8 @@ export function cutDraftBatches(records, options = {}) {
         const id = `${book}-draft-${String(n).padStart(3, "0")}`;
         const entries = sorted.slice(i, i + size)
           .map((r) => draftEntryOf(r, examplesFor(r, pool), whyFor(r, textOf, report)));
-        batches.push({ id, stage: "draft", ...(redraft ? { redraft: true } : {}), entries });
+        batches.push({ id, stage: "draft", ...(redraft ? { redraft: true } : {}), ...(reoffer ? { reoffer: true } : {}),
+          entries });
       }
     }
   }

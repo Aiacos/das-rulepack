@@ -253,7 +253,7 @@ export function writeFilesAtomically(files, { write = writeFileSync, rename = re
   });
 }
 
-const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review"];
+const QUEUE_FIELDS = ["key", "reason", "by", "why", "confidence", "draft", "review", "reoffered"];
 // The shape of a record key (keyOf): `<book>:<kind>:<scoped name>`, lower case.
 export const RECORD_KEY = /^[a-z][a-z0-9]{1,9}:[a-z]+:[a-z0-9][a-z0-9/#-]*$/;
 
@@ -313,7 +313,8 @@ function reviewEntryProblems(entry, vocabulary) {
 
 /**
  * The problems of one entry of drafts-queue.json or review-queue.json, or []. With `queue: "review"` the entry's `draft` and
- * `review` are held to their shape too (reviewEntryProblems; `vocabulary`: the engine's enumerations, loadCore).
+ * `review` are held to their shape too (reviewEntryProblems; `vocabulary`: the engine's enumerations, loadCore). With
+ * `queue: "drafts"` an entry may carry `reoffered: true` (Ruling R39).
  */
 export function validateQueueEntry(entry, { queue, vocabulary } = {}) {
   if (entry === null || typeof entry !== "object" || Array.isArray(entry)) return ["entry: must be an object"];
@@ -331,6 +332,11 @@ export function validateQueueEntry(entry, { queue, vocabulary } = {}) {
     }
   }
   for (const f of Object.keys(entry)) if (!QUEUE_FIELDS.includes(f)) errors.push(`${f}: unknown field`);
+  // Ruling R39: the mark of an entry a reoffer offered once and left in drafts-queue.json; true when present, nowhere else.
+  if (Object.hasOwn(entry, "reoffered")) {
+    if (queue !== "drafts") errors.push("reoffered: a mark of drafts-queue.json entries only");
+    else if (entry.reoffered !== true) errors.push("reoffered: must be true when present");
+  }
   if (queue === "review" && !errors.length) errors.push(...reviewEntryProblems(entry, vocabulary));
   return errors;
 }
