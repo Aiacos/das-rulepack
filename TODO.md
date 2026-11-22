@@ -268,4 +268,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [ ] Spells and items need vocabulary before drafting: the main effect has no key in 7 of 9 sampled spells.
 
 - [x] Scenario runner: a magic item is used without consuming it (a consumable spent by the first check was gone for
-      the second). Seen live; no unit test covers the item case yet.
+      the second). Seen live and pinned by a unit test.

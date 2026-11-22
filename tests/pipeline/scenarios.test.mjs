@@ -185,7 +185,7 @@ describe("play/lib/steps.mjs scenario(json): what the engine's runner plays", ()
       cast: async (roles) =>
         Object.fromEntries(Object.keys(roles).map((k) => [k, target ? { id: "TkTarget00000000", name: k } : null])),
       ensureItem: async () => "ItItem0000000000",
-      use: async () => { afterUse = true; return { used, usageMessageId: `Ms${n}` }; },
+      use: async (params) => { calls.push(["use", params]); afterUse = true; return { used, usageMessageId: `Ms${n}` }; },
       settle: async () => {
         const success = saves[Math.min(n, saves.length - 1)];
         n += 1;
@@ -220,6 +220,22 @@ describe("play/lib/steps.mjs scenario(json): what the engine's runner plays", ()
     await played.run(ctx);
     expect(passes(log)).toBe(s.checks);
     expect(log.at(-1)).toEqual(["log", `das-rulepack: ${s.scenario} core=9.9.9 rule=${s.rule} checks=${s.checks}`]);
+  });
+
+  it("an item is used without consuming it (a consumable would be gone for the next check); a spell is not", async () => {
+    const usesOf = async (record) => {
+      const s = scenarioOf(record, { packOf });
+      const f = fakeContext({ saves: [false, false, true] });
+      await scenario(s).run(f.ctx);
+      return { kind: s.setup.item.kind, uses: f.calls.filter(([k]) => k === "use").map(([, params]) => params) };
+    };
+    const item = await usesOf(reviewed({ key: "tst:item:frost-glimmer", kind: "item" }));
+    expect(item.kind).toBe("item");
+    expect(item.uses.length).toBeGreaterThan(1);
+    expect(item.uses.every((u) => u.consume === false)).toBe(true);
+    const spell = await usesOf(reviewed());
+    expect(spell.kind).toBe("spell");
+    expect(spell.uses.some((u) => "consume" in u)).toBe(false);
   });
 
   it("a wrong damage fraction fails its check, and a roll never seen fails too", async () => {
