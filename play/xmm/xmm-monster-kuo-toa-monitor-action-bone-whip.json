@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-kuo-toa-monitor-action-bone-whip",
+  "key": "xmm:monster:kuo-toa-monitor/action/bone-whip",
+  "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "The effect is placed, lasts through the target's turn, and is gone when the creature's turn starts."
+}

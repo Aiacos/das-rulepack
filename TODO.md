@@ -395,3 +395,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Matching: 27 Player's Handbook sub-features settled to the official item that holds them; the 25 hand-written plays repeated on upstream main
 - [x] Engineered rule proven by a recorded play on upstream main: Eldritch Cannon (EFA)
 - [x] Triage: the newly matched Player's Handbook and Dungeon Master's Guide entries read against the engine view
+- [x] Five engineered rules proven by recorded plays on upstream main: effects that last to the end of the target's next turn (XMM)

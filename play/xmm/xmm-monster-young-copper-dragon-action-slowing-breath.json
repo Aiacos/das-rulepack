@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-young-copper-dragon-action-slowing-breath",
+  "key": "xmm:monster:young-copper-dragon/action/slowing-breath",
+  "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "The effect is placed, is still there when the target's turn starts, and is gone after that turn."
+}

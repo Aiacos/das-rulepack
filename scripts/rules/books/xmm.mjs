@@ -80,6 +80,28 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-adult-white-dragon-freezing-burst",
+    "name": "Freezing Burst",
+    "page": 329,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Adult White Dragon",
+    "adds": "A creature that fails stays unable to move through its own following turn, not only up to that turn's start.",
+    "entry": {
+      "effectEnds": {
+        "K6EbT8HrfSUSJW2F": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-air-elemental-whirlwind",
     "name": "Whirlwind",
     "page": 13,
@@ -96,6 +118,28 @@ export const RULES = book(BOOK, [
     "partial": {
       "target-size": 1
     }
+  },
+
+  {
+    "identifier": "xmm-ancient-brass-dragon-scorching-sands",
+    "name": "Scorching Sands",
+    "page": 56,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Ancient Brass Dragon",
+    "adds": "The halved Speed lasts until the end of the target's next turn.",
+    "entry": {
+      "effectEnds": {
+        "n3I76HfSH6eKLALf": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
   },
 
   {
@@ -167,6 +211,28 @@ export const RULES = book(BOOK, [
     "partial": {
       "no-key": 1
     }
+  },
+
+  {
+    "identifier": "xmm-copper-dragon-wyrmling-slowing-breath",
+    "name": "Slowing Breath",
+    "page": 78,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Copper Dragon Wyrmling",
+    "adds": "The breath's effect lasts until the end of the target's next turn.",
+    "entry": {
+      "effectEnds": {
+        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
   },
 
   {
@@ -335,6 +401,22 @@ export const RULES = book(BOOK, [
     "partial": {
       "no-key": 1,
       "use-limit": 1
+    }
+  },
+
+  {
+    "identifier": "xmm-faerie-dragon-youth-euphoria-breath",
+    "name": "Euphoria Breath",
+    "page": 117,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Faerie Dragon Youth",
+    "adds": "The Incapacitated condition lasts until the end of the target's next turn.",
+    "entry": {
+      "effectEnds": {
+        "hv7my3sOURYES70U": "bearerTurnEnd"
+      }
     }
   },
 
@@ -1221,6 +1303,28 @@ export const RULES = book(BOOK, [
         "if": {
           "self.inSunlight": true
         }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-young-copper-dragon-slowing-breath",
+    "name": "Slowing Breath",
+    "page": 78,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Young Copper Dragon",
+    "adds": "The breath's effect lasts until the end of the target's next turn.",
+    "entry": {
+      "effectEnds": {
+        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
       }
     },
     "uncovered": [
