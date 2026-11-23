@@ -147,6 +147,9 @@ const newerKeyProblems = (record, core) => [...capabilityProblems(record.rule?.e
   ...engineeredUnknown(record, core).map((key) => `${key}: ${KEY_UNKNOWN_TO_ENGINE}`)].map((e) => `validator: ${e}`);
 const engineeredUnknown = (record, core) => (isEngineered(record.rule) ? unknownEntryKeys(record.rule.entry, core) : []);
 
+// The engine's own words for a key it does not know, at any depth (`<path>: unknown key`, sometimes with a hint after it).
+export const NESTED_UNKNOWN = /^[\w.-]+: unknown key\b/;
+
 function validatorProblems(record, context) {
   const { core } = context;
   // The rule's assertions, against the engine's enumerations (the schema gate checked their shape without them).
@@ -181,7 +184,12 @@ function validatorProblems(record, context) {
   const newer = new Set([...unknownToEngine(entry, core), ...engineeredUnknown(record, core)]);
   const asked = newer.size ? Object.fromEntries(Object.entries(entry).filter(([k]) => !newer.has(k))) : entry;
   try {
-    return [...core.validateEntry(asked, { facts }).map((e) => `validator: ${e}`), ...asserts];
+    // Ruling R44: an engineered entry may also hold a NESTED key newer than the engine in use (a sub-key of a key that engine
+    // knows, which no list of the engine names). Under `--ci` its "unknown key" is not a failure, as R36: the shipped module
+    // leaves such a rule out on that engine by itself. A full run, on the engine the rule was gated with, still fails it.
+    const nested = context.ci && isEngineered(record.rule);
+    return [...core.validateEntry(asked, { facts }).filter((e) => !(nested && NESTED_UNKNOWN.test(e)))
+      .map((e) => `validator: ${e}`), ...asserts];
   } catch (e) {
     return [`validator: the engine threw on the entry: ${e.message}`, ...asserts];
   }

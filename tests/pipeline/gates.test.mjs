@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { KEY_UNKNOWN_TO_ENGINE } from "../../tools/pipeline/draft-keys.mjs";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -9,6 +9,7 @@ import { cacheText } from "../../tools/pipeline/text.mjs";
 import { itemSummary } from "../../tools/pipeline/dumps.mjs";
 import { loadCore } from "../../tools/pipeline/core.mjs";
 import {
+  NESTED_UNKNOWN,
   idsIn, gateSchema, gateValidator, gateIds, gateFixes, gateText, gateUnique, runGates
 } from "../../tools/pipeline/gates.mjs";
 import { ASSERT, sign } from "./fixtures/assert.mjs";
@@ -492,6 +493,13 @@ describe("runGates", () => {
 const CORE_DIR = process.env.DAS_CORE && existsSync(join(process.env.DAS_CORE, "module/scripts/core/content.mjs"))
   ? process.env.DAS_CORE : null;
 
+// The identifiers (and aliases) of the registry's engineered rules (Ruling R43).
+const REGISTRY_DIR = resolve("registry");
+const recordsOf = (file) => JSON.parse(readFileSync(join(REGISTRY_DIR, file), "utf8")).records;
+const ENGINEERED_IDS = new Set(readdirSync(REGISTRY_DIR).filter((f) => f.endsWith(".json"))
+  .flatMap((f) => { const records = recordsOf(f); return Array.isArray(records) ? records : []; })
+  .filter((r) => r?.rule?.engineered).flatMap((r) => [r.identifier, ...(r.rule.alsoAs ?? [])]));
+
 describe.skipIf(!CORE_DIR && !process.env.CI)("with the real DAS · Core", () => {
   it("loads the validator, 60 facts or more, the version and the shipped identifiers", async () => {
     const core = await loadCore(CORE_DIR);
@@ -520,7 +528,9 @@ describe.skipIf(!CORE_DIR && !process.env.CI)("with the real DAS · Core", () =>
     for (const [id, entry] of Object.entries(TABLE)) {
       // Rulings R36, R37: against an engine older than a key the pack ships (CI's latest release), the only problem allowed
       // is that key being unknown to it; the shipped module leaves such a rule out on that engine by itself.
-      const problems = gateValidator(withEntry(entry), ctx({ core })).filter((x) => !x.includes(KEY_UNKNOWN_TO_ENGINE));
+      // Ruling R44: and, for an engineered rule, a nested key that engine does not know yet (`--ci` lets it pass).
+      const problems = gateValidator(withEntry(entry), ctx({ core })).filter((x) => !x.includes(KEY_UNKNOWN_TO_ENGINE))
+        .filter((x) => !(ENGINEERED_IDS.has(id) && NESTED_UNKNOWN.test(x.replace(/^validator: /, ""))));
       expect(problems, id).toEqual([]);
       for (const found of idsIn(entry, core.vocabulary)) expect(found, id).toMatch(/^[A-Za-z0-9]{16}$/);
     }

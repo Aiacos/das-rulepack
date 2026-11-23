@@ -92,6 +92,30 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "cloak-of-shadows",
+    "name": "Cloak of Shadows",
+    "page": 105,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Shadow 17",
+    "adds": "The shroud can only be raised in Dim Light or Darkness, and it ends when the monk becomes Incapacitated.",
+    "entry": {
+      "usageLimits": {
+        "PCabpSdfoEUocWya": {
+          "light": [
+            "dim",
+            "dark"
+          ]
+        }
+      },
+      "endsWhen": {
+        "incapacitated": "bearer"
+      }
+    }
+  },
+
+  {
     "identifier": "undying-sentinel",
     "name": "Undying Sentinel",
     "page": 116,

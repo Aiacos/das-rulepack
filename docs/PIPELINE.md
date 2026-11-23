@@ -2421,6 +2421,11 @@ queue to wait in) is rejected with its reason, and nothing of it is written. A r
 **leaves it** when its engineered rule is written (`dequeued` in the output, one stderr line per key). It prints `{ applied,
 dequeued, rejected }`, exits 1 when something was rejected, and writes the books and the queue in one step.
 
+**A key newer than the engine's release (Ruling R44).** CI gates the pack against the engine's latest release. An engineered
+entry may hold a *nested* key that release does not know yet (a sub-key of a key it knows); under `gates --ci` the engine's
+`<path>: unknown key` is then not a failure, for an engineered rule only. A full `npm run gates` on the engine the rule was
+gated with still fails it, and on an engine that refuses it the shipped module leaves the rule out by itself (R37).
+
 **Playing it.** A held rule is in no module of the pack, so it cannot run on a test world. `npm run build:rules --
 --play-build <dir>` writes the same generated modules **plus the gated engineered rules that have no play yet** to another
 directory (refused on the pack's own `scripts/rules`, and with `--check`): that directory is copied over a test world's

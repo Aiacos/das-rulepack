@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { existsSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { SPELLS, SENSES, FEATURES, RULES, TABLE } from "../scripts/rules/index.mjs";
@@ -113,7 +113,13 @@ describe.skipIf(!CORE && !process.env.CI)("feature overrides: contract with DAS 
     const { validateEntry } = await import(pathToFileURL(resolve(CORE, "module/scripts/core/content.mjs")).href);
     const { CONTENT } = await import(pathToFileURL(resolve(CORE, "module/scripts/content/index.mjs")).href);
     const facts = new Proxy({}, { has: () => true, get: () => true });
-    const errors = Object.entries(FEATURES).flatMap(([id, entry]) => validateEntry(entry, { facts }).map(e => `${id}: ${e}`));
+    // Ruling R44: against an engine older than a nested key an engineered rule holds (CI's latest release), that key being
+    // unknown to it is the one problem allowed; the shipped module leaves such a rule out on that engine by itself.
+    const records = readdirSync(resolve("registry")).filter(f => f.endsWith(".json"))
+      .flatMap(f => JSON.parse(readFileSync(resolve("registry", f), "utf8")).records ?? []).filter(r => r?.rule?.engineered);
+    const engineered = new Set(records.flatMap(r => [r.identifier, ...(r.rule.alsoAs ?? [])]));
+    const errors = Object.entries(FEATURES).flatMap(([id, entry]) => validateEntry(entry, { facts })
+      .filter(e => !(engineered.has(id) && /^[\w.-]+: unknown key\b/.test(e))).map(e => `${id}: ${e}`));
     expect(errors).toEqual([]);
     // A feature the engine has an entry for is completed key by key: every key the pack writes there must be one the engine
     // ships. A feature the engine has no entry for (a rule the pipeline adds) is the pack's own entry, registered as a spell's.

@@ -1015,3 +1015,14 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   records nothing), not by the helper; (d) the entry word budget of R19 does not apply to an engineered entry (the engine's
   own key names are no drafter words), so paraphrase is bounded by the quotation check and the owner's reading only; (e) a
   forged log is as possible as for R10.
+
+### Ruling R44 — a nested key newer than the engine's release (2026-11-23)
+
+An engineered rule (R43) may hold a sub-key of a key the engine's release knows, added on the engine's main branch after that
+release (first case: `usageLimits.<activity>.light`, Cloak of Shadows). No list of the engine names sub-keys, so R36/R37
+cannot leave it out of what the engine is asked. Decision: under `gates --ci`, for an engineered rule only, the engine's own
+`<path>: unknown key` is not a failure; a full run of the gates, on the engine the rule was gated with, still fails it (a
+typo is caught there, and the evidence gate holds the rule to that run). The shipped module already leaves out, on an engine
+that refuses it, a rule with its aliases and sources (`scripts/known-entries.mjs`, R37). Cost if wrong: on an older engine
+the rule is silently absent (one console warning) until that engine's next release.
+
