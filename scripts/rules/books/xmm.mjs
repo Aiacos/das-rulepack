@@ -963,6 +963,38 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-haunting-revenant-object-slam",
+    "name": "Object Slam",
+    "page": 260,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Haunting Revenant",
+    "adds": "The slam is rolled with Advantage against a target standing inside the revenant's own space.",
+    "entry": {
+      "triggers": [
+        {
+          "on": "preAttackRoll",
+          "if": {
+            "target.sharesSpaceWithSource": true
+          },
+          "do": [
+            {
+              "type": "advantage"
+            }
+          ]
+        }
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-incubus-nightmare",
     "name": "Nightmare",
     "page": 178,

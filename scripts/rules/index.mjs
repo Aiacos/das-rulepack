@@ -73,6 +73,7 @@ export const SOURCES = Object.freeze({
   "mmGiantApe000000.mmLeap0000000000": "xmm-giant-ape-leap",
   "mmGrell000000000.mmAbduct00000000": "xmm-grell-abduct",
   "mmHasten00000000": "xmm-clay-golem-hasten",
+  "mmHauntingRevena.mmObjectSlam0000": "xmm-haunting-revenant-object-slam",
   "mmHeartSight0000": "xmm-sprite-heart-sight",
   "mmHungerOfYeenog": "xmm-gnoll-demoniac-hunger-of-yeenoghu",
   "mmHypnoticGaze00": "xmm-ultroloth-hypnotic-gaze",

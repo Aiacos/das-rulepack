@@ -10127,6 +10127,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T12:14:46.507Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-black-dragon-legendary-cloud-of-insects",
+          "client": "gm",
+          "rule": "7d1cc128e29cf97e82a4ec9005ae39dace85cb9f66d4aaf20208ac93303f2909"
+        },
         "reading": {
           "at": "2026-11-23T12:10:55.886Z",
           "core": "0.291.0",
@@ -10159,14 +10167,6 @@
           "items": {
             "official": "d01ee502075f3b3f08d069fbb0dae03c1943ff70ad338cd2ff7e6f869457c9a1"
           }
-        },
-        "played": {
-          "at": "2026-11-23T12:14:46.507Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ancient-black-dragon-legendary-cloud-of-insects",
-          "client": "gm",
-          "rule": "7d1cc128e29cf97e82a4ec9005ae39dace85cb9f66d4aaf20208ac93303f2909"
         }
       },
       "why": "Disadvantage on concentration saves until end of next turn; the effect carries no change keys, plus the cannot-repeat limit.",
@@ -81763,7 +81763,7 @@
       "edition": "2024",
       "owner": "Haunting Revenant",
       "section": "action",
-      "identifier": "object-slam",
+      "identifier": "xmm-haunting-revenant-object-slam",
       "page": 260,
       "srd": false,
       "text": {
@@ -81783,7 +81783,8 @@
           "effects": [],
           "data": {
             "sha256": "237d9e968cfa9c58b22a164fc8173b374bd6c9969131b9912204c237fe46fe36"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -81796,7 +81797,8 @@
           "effects": [],
           "data": {
             "sha256": "18bcd8bafa4d863d37e930e2e042abb6edf13177506ca534ed47c2d2a56085ed"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -81824,11 +81826,88 @@
               "target-state"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T12:17:48.742Z",
+          "core": "0.291.0",
+          "rule": "9ebcaec30d5aefe9bb348d0342be7fee606f1535c9e95ab835656be3b7ec7a56",
+          "item": "237d9e968cfa9c58b22a164fc8173b374bd6c9969131b9912204c237fe46fe36",
+          "delta": [
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "object-slam",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T12:17:48.742Z",
+          "core": "0.291.0",
+          "rule": "9ebcaec30d5aefe9bb348d0342be7fee606f1535c9e95ab835656be3b7ec7a56",
+          "emits": "f3db430acfd13a3eb33a0246ee03e3b712bb51a55b26b3749d43bb03218d30fd",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "237d9e968cfa9c58b22a164fc8173b374bd6c9969131b9912204c237fe46fe36"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T12:21:50.469Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-haunting-revenant-action-object-slam",
+          "client": "gm",
+          "rule": "9ebcaec30d5aefe9bb348d0342be7fee606f1535c9e95ab835656be3b7ec7a56"
         }
       },
       "why": "Attack gains advantage when the target is in a stated position; data lacks it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmHauntingRevena.mmObjectSlam0000": "xmm-haunting-revenant-object-slam"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The slam is rolled with Advantage against a target standing inside the revenant's own space.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "if": {
+                "target.sharesSpaceWithSource": true
+              },
+              "do": [
+                {
+                  "type": "advantage"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T12:17:42.245Z",
+          "leavesNote": "The item's attack is melee only: its ranged use stays with the GM."
+        },
+        "origin": "Haunting Revenant"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:haunting-revenant/trait/haunted-zone",
