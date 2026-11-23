@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-monk-shadow-6-shadow-step",
+  "key": "xphb:feature:monk/shadow/6/shadow-step",
+  "rule": "67f4a6fd5a2ca202681cd0c5bd0245ce4a1b87195832dfcbb7058ed5267a8418",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Refused in bright light; in darkness accepted to a dark space and refused to a lit one."
+}
