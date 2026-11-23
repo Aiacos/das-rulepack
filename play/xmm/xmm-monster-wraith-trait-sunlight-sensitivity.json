@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-wraith-trait-sunlight-sensitivity",
+  "key": "xmm:monster:wraith/trait/sunlight-sensitivity",
+  "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature's ability check has Disadvantage, another creature's has not; out of it, none."
+}

@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-troglodyte-trait-sunlight-sensitivity",
+  "key": "xmm:monster:troglodyte/trait/sunlight-sensitivity",
+  "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature's ability check has Disadvantage, another creature's has not; out of it, none."
+}

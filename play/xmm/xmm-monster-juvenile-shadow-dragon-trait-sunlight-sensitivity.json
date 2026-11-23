@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-juvenile-shadow-dragon-trait-sunlight-sensitivity",
+  "key": "xmm:monster:juvenile-shadow-dragon/trait/sunlight-sensitivity",
+  "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature's ability check has Disadvantage, another creature's has not; out of it, none."
+}

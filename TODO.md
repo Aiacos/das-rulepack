@@ -390,3 +390,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Triage: Monster Manual features the text layer does not read, read against the engine view (R46): 155 confirmed covered
 - [x] Eleven engineered rules, each proven by a recorded play: the swarms gain no Temporary Hit Points (XMM)
 - [x] Triage: Monster Manual features read again with the engine's size limit in view: 55 more confirmed covered
+- [x] Thirteen engineered rules, each proven by a recorded play on upstream main: Sunlight Sensitivity, the ability checks (XMM)
