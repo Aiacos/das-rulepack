@@ -1,0 +1,43 @@
+// hand-written (Ruling R43)
+import { handWritten } from "../lib/handwritten.mjs";
+
+const json = (await import("./xphb-feature-fighter-eldritch-knight-15-arcane-charge.json", { with: { type: "json" } })).default;
+const ITEM = "Compendium.dnd-players-handbook.classes.Item.phbftrArcaneChar";
+const GEOMETRY = `const s = canvas.scene; const r = s.dimensions.sceneRect;
+  return { grid: s.grid.size, feet: s.grid.distance, rect: { x: r.x, width: r.width },
+    tokens: s.tokens.contents.map((t) => ({ id: t.id, x: t._source.x, y: t._source.y })) };`;
+
+export default handWritten(json, async (h) => {
+  const { ctx } = h;
+  const fighter = await h.caster();
+  const itemId = await h.give(fighter, ITEM);
+  await h.pause(800);
+  const geo = await h.script(GEOMETRY);
+  const p = await ctx.position(fighter);
+  const { grid } = geo;
+  const free = (dx) => {
+    const x = p.x + dx * grid;
+    return x >= geo.rect.x && x + grid <= geo.rect.x + geo.rect.width
+      && !geo.tokens.some((t) => t.id !== fighter.id && Math.abs(t.x - x) < grid && Math.abs(t.y - p.y) < grid);
+  };
+  // 10 feet and 45 feet on a grid of 5-foot squares: inside and outside the feature's 30 feet.
+  const near = [2, -2].find(free);
+  const far = [9, -9].find(free);
+  if (geo.feet !== 5 || near === undefined || far === undefined) {
+    h.expect(false, "no usable squares on the fighter's row");
+    return;
+  }
+  const hop = (dx) => ctx.engine("teleport", { tokenId: fighter.id, itemId, x: p.x + dx * grid, y: p.y });
+  ctx.restore(() => ctx.call("move-token", { tokenId: fighter.id, x: p.x, y: p.y, elevation: 0 }).catch(() => {}));
+
+  const out = await hop(far);
+  h.log(`45 feet: ${JSON.stringify(out).slice(0, 120)}`);
+  h.expect(out.accepted === false, "check 1: a teleport of 45 feet is refused");
+
+  const into = await hop(near);
+  await h.pause(800);
+  const landed = await ctx.position(fighter);
+  h.log(`10 feet: ${JSON.stringify(into).slice(0, 120)} — now at ${landed.x},${landed.y}`);
+  h.expect(into.accepted === true && landed.x === p.x + near * grid,
+    "check 2: a teleport of 10 feet is accepted and the fighter stands there");
+});

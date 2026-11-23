@@ -15394,11 +15394,55 @@
               "table-ruling"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T02:15:27.254Z",
+          "core": "0.290.0",
+          "rule": "e48531eb3dcdb01f975f6a653664be366f3b01c9ab8fc2eb94ed1dcaace44eeb",
+          "emits": "763a5f8b372da7206c30381fc631faace82cb05b8ce8a5eeac29c00ad35d9a1b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "c955234433ac0cfaa7fa2b9015cf1299ee3870ce6fd32ee0c376e132df7b5a00"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T02:19:08.116Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-fighter-eldritch-knight-15-arcane-charge",
+          "client": "gm",
+          "rule": "e48531eb3dcdb01f975f6a653664be366f3b01c9ab8fc2eb94ed1dcaace44eeb"
         }
       },
       "why": "Teleport tied to Action Surge use; data lacks any activity or hook for it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "Using the feature lets the fighter pick a destination at once and teleports them there, up to 30 feet away.",
+        "entry": {
+          "teleport": {
+            "distance": 30,
+            "units": "ft"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T02:15:20.843Z",
+          "leavesNote": "The link with Action Surge is the player's: the feature is used by hand when the surge is."
+        },
+        "origin": "Eldritch Knight 15"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:fighter/eldritch-knight/18/improved-war-magic",
@@ -19204,6 +19248,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T02:05:19.493Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-monk-shadow-6-shadow-step",
+          "client": "gm",
+          "rule": "67f4a6fd5a2ca202681cd0c5bd0245ce4a1b87195832dfcbb7058ed5267a8418"
+        },
         "gates": {
           "at": "2026-11-23T02:01:40.868Z",
           "core": "0.290.0",
@@ -19220,14 +19272,6 @@
           "items": {
             "official": "029697272d9768a9fdc7a67261798aa30285b4aaec6667a32cc6941ee6b9df94"
           }
-        },
-        "played": {
-          "at": "2026-11-23T02:05:19.493Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-monk-shadow-6-shadow-step",
-          "client": "gm",
-          "rule": "67f4a6fd5a2ca202681cd0c5bd0245ce4a1b87195832dfcbb7058ed5267a8418"
         }
       },
       "why": "Teleport needs dim light at both ends and grants advantage on next melee attack; data lacks the advantage.",
