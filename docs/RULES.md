@@ -46,6 +46,7 @@ Published as an official Foundry VTT module (`dnd-players-handbook`).
 | Psychic Veil (Soulknife 13) | Feature | p.135 | A missed attack no longer drops the invisibility; an attack that hits and deals damage still does. | code + table | Played |
 | Inspiring Smite (Oath of Glory 3) | Feature | p.114 | The Temporary Hit Points are divided among the chosen creatures as the paladin likes, where the engine splits them evenly. | table | Played |
 | Dreadful Strikes (Fey Wanderer 3) | Feature | p.124 | The extra Psychic die is once per turn for each target, not once per turn for the ranger. | code + table | Played |
+| Bulwark of Force (Psi Warrior 15) | Feature | p.99 | The cover the feature gives ends at once when the psi warrior who gave it becomes Incapacitated. Engineered (Ruling R43): proven by one recorded play of a hand-written scenario, not reviewed; for the owner's eye. Left to the table: Restoring the use with a Psionic Energy Die is done by hand with the item's second activity. | table | Played |
 | Zone of Truth | Spell | p.343 | The 15-foot sphere is laid, and a creature coming in or beginning its turn there saves again, once per turn. Not covered on ddb-importer: its save is a second, special activity after a utility cast; the replay is bound to one origin. Partial: 1 expectation left to the table (out-of-combat 1). | table, partial | Validated |
 
 Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
@@ -230,7 +231,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-55 rules: 35 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 4 of them settled by a second review (Ruling R40). 2 of them settled by a redraft that agrees with two reviews (Ruling R41). 24 of them partial (part of the entry left to the table). 74 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 3).
+56 rules: 36 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 4 of them settled by a second review (Ruling R40). 2 of them settled by a redraft that agrees with two reviews (Ruling R41). 24 of them partial (part of the entry left to the table). 1 of them engineered (Ruling R43): proven by a recorded play, not by a review. 74 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 3).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell

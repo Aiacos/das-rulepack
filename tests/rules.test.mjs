@@ -109,12 +109,17 @@ describe("feature overrides", () => {
 });
 
 describe.skipIf(!CORE && !process.env.CI)("feature overrides: contract with DAS · Core", () => {
-  it("every entry passes the engine's validator, and overrides an entry the engine ships", async () => {
+  it("every entry passes the engine's validator; one under an identifier the engine ships completes that entry", async () => {
     const { validateEntry } = await import(pathToFileURL(resolve(CORE, "module/scripts/core/content.mjs")).href);
     const { CONTENT } = await import(pathToFileURL(resolve(CORE, "module/scripts/content/index.mjs")).href);
     const facts = new Proxy({}, { has: () => true, get: () => true });
     const errors = Object.entries(FEATURES).flatMap(([id, entry]) => validateEntry(entry, { facts }).map(e => `${id}: ${e}`));
     expect(errors).toEqual([]);
-    for ( const [id, entry] of Object.entries(FEATURES) ) for ( const key of Object.keys(entry) ) expect(CONTENT[id]?.[key], `${id}.${key}`).toBeDefined();
+    // A feature the engine has an entry for is completed key by key: every key the pack writes there must be one the engine
+    // ships. A feature the engine has no entry for (a rule the pipeline adds) is the pack's own entry, registered as a spell's.
+    for ( const [id, entry] of Object.entries(FEATURES) ) {
+      if ( !(id in CONTENT) ) continue;
+      for ( const key of Object.keys(entry) ) expect(CONTENT[id]?.[key], `${id}.${key}`).toBeDefined();
+    }
   });
 });

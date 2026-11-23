@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-fighter-psi-warrior-15-bulwark-of-force",
+  "key": "xphb:feature:fighter/psi-warrior/15/bulwark-of-force",
+  "rule": "808bdbe6bcb3a4a3c821e5a060a7f136c782582cae5e83565cd16776c8a2fedd",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "The cover is on the chosen creature after the use, and gone once its giver is Incapacitated."
+}
