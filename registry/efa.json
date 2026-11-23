@@ -4927,11 +4927,56 @@
               "death-trigger"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T04:02:28.820Z",
+          "core": "0.290.0",
+          "rule": "c5eccf641eabc1a45102cc08396143f5a2625db5c75092ae1baf324bb42ac4aa",
+          "emits": "c2a308e6c3eb3ef7d0cc831fe10822eb932c42e9f89ccae1d43455583fcba266",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "80a950dc583a2453ddf429b79be44f42376bd50927d008f17d5a284fb9b503f3"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:06:04.666Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-battle-smith-3-steel-defender",
+          "client": "gm",
+          "rule": "c5eccf641eabc1a45102cc08396143f5a2625db5c75092ae1baf324bb42ac4aa"
         }
       },
       "why": "Summon activities exist, but acting on your turn with Dodge only unless commanded, vanishing on death and replacing the old one need rules beyond the data.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The defender joins a running combat right after its maker, a new one sends the earlier away, and it goes if the maker dies.",
+        "entry": {
+          "summon": {
+            "initiative": "after",
+            "replaces": true,
+            "vanishesWithCaster": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:02:21.531Z",
+          "leavesNote": "Dodge unless commanded with a Bonus Action, acting freely while the maker is Incapacitated, and the revival timing are manual."
+        },
+        "origin": "Battle Smith 3"
+      },
+      "state": "played"
     },
     {
       "key": "efa:feature:artificer/battle-smith/3/tools-of-the-trade",
@@ -13820,6 +13865,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T03:53:23.894Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-spell-homunculus-servant",
+          "client": "gm",
+          "rule": "7e0849506522adf4c2a9a43195fa41c0b511669d2203f6aeccfad6a14ec113d5"
+        },
         "gates": {
           "at": "2026-11-23T03:46:05.149Z",
           "core": "0.290.0",
@@ -13836,14 +13889,6 @@
           "items": {
             "official": "7f353d7ee6df90b047931846d7d35b3ba28f9b3c4dfe8fa0ff66d16c65f96518"
           }
-        },
-        "played": {
-          "at": "2026-11-23T03:53:23.894Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-spell-homunculus-servant",
-          "client": "gm",
-          "rule": "7e0849506522adf4c2a9a43195fa41c0b511669d2203f6aeccfad6a14ec113d5"
         }
       },
       "why": "Summon activity exists, but the replace-previous-summon rule and the ally acting right after the caster on the caster's initiative count are not in the data; default Dodge when no orders.",

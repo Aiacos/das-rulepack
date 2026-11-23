@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-feature-artificer-battle-smith-3-steel-defender",
+  "key": "efa:feature:artificer/battle-smith/3/steel-defender",
+  "rule": "c5eccf641eabc1a45102cc08396143f5a2625db5c75092ae1baf324bb42ac4aa",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Summoned in a combat, the defender stands right after its maker; a second summoning removes the first."
+}

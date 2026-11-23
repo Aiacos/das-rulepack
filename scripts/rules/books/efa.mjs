@@ -5,6 +5,24 @@ export const BOOK = "EFA";
 
 export const RULES = book(BOOK, [
   {
+    "identifier": "steel-defender",
+    "name": "Steel Defender",
+    "page": 18,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Battle Smith 3",
+    "adds": "The defender joins a running combat right after its maker, a new one sends the earlier away, and it goes if the maker dies.",
+    "entry": {
+      "summon": {
+        "initiative": "after",
+        "replaces": true,
+        "vanishesWithCaster": true
+      }
+    }
+  },
+
+  {
     "identifier": "arcane-jolt",
     "name": "Arcane Jolt",
     "page": 19,
