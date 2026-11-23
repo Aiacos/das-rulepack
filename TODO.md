@@ -407,3 +407,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Triage: first source-aware readings of the entries the third engineering round judged covered (R48); second readings still to come
 - [x] Four engineered rules proven by recorded plays on the released engine: Sun Sickness of the three myconids, Light Sensitivity of the Shadow Demon (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Black Pudding Dissolving Pseudopod, the armor penalty only on a target in armor (XMM)
+- [x] Engineered rule proven by a recorded play on the released engine: Lacedon Ghoul Claw, no paralysis for an Undead or an elf (XMM)

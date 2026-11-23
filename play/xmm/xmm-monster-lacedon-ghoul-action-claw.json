@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-lacedon-ghoul-action-claw",
+  "key": "xmm:monster:lacedon-ghoul/action/claw",
+  "rule": "41e09f13196311ac7031483c94218d3ab1d95f8d1cbebf59a17416ece1a9a187",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "An Undead that fails the claw's save is not Paralyzed; a living creature that fails it is."
+}
