@@ -128433,6 +128433,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T14:06:50.411Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-shadow-dragon-trait-living-shadow",
+          "client": "gm",
+          "rule": "f9ed985dc8852f132dc96deb49b8e0976b3cfc13c3a29a349599ac41f600dc9c"
+        },
         "reading": {
           "at": "2026-11-23T14:01:38.082Z",
           "core": "0.291.0",
@@ -128469,14 +128477,6 @@
           "items": {
             "official": "376aa258a131b89605d33da56225f7228083327e5b325e3259965c3b0ee28eff"
           }
-        },
-        "played": {
-          "at": "2026-11-23T14:06:50.411Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-shadow-dragon-trait-living-shadow",
-          "client": "gm",
-          "rule": "f9ed985dc8852f132dc96deb49b8e0976b3cfc13c3a29a349599ac41f600dc9c"
         }
       },
       "why": "Resistance applies only in dim light or darkness; effect changes resistances unconditionally.",
@@ -142866,7 +142866,7 @@
       "edition": "2024",
       "owner": "Treant",
       "section": "action",
-      "identifier": "animate-trees",
+      "identifier": "xmm-treant-animate-trees",
       "page": 308,
       "srd": true,
       "text": {
@@ -142904,7 +142904,8 @@
           },
           "differences": [
             "activityTypes"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -142942,11 +142943,85 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T14:42:31.423Z",
+          "core": "0.291.0",
+          "rule": "22987ae8fc9fd9c1336e0cde7e8c4dc9efd9068824d514f69796027dbf2b3cc2",
+          "item": "32bfcb3b3e0d3a9646f7156ce1252b79fe2d8507af815e7fb6f8920d6c39b0ed",
+          "delta": [
+            "summon"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "animate-trees",
+          "carried": [
+            "magical"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T14:42:31.423Z",
+          "core": "0.291.0",
+          "rule": "22987ae8fc9fd9c1336e0cde7e8c4dc9efd9068824d514f69796027dbf2b3cc2",
+          "emits": "20ac87ec746d61317b49afd6566fd4832cadb2abfb2eae6b73c593ca54a17483",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "32bfcb3b3e0d3a9646f7156ce1252b79fe2d8507af815e7fb6f8920d6c39b0ed"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T14:46:13.548Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-treant-action-animate-trees",
+          "client": "gm",
+          "rule": "22987ae8fc9fd9c1336e0cde7e8c4dc9efd9068824d514f69796027dbf2b3cc2"
         }
       },
       "why": "Summon with end conditions (distance from treant, death, one day) and turn-order tie; data lacks these (entry: summon end conditions)",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "lqG4KueiyzdOy01v": "xmm-treant-animate-trees"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "An animated tree acts right after the treant in combat, and stops being animate when the treant dies or after a day.",
+        "entry": {
+          "summon": {
+            "initiative": "after",
+            "vanishesWithCaster": true,
+            "lasts": {
+              "value": 1,
+              "units": "day"
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T14:42:25.007Z",
+          "leavesNote": "The 120-foot limit, the tree's lack of this action and its taking root are left to the GM."
+        },
+        "origin": "Treant"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:treant/action/hail-of-bark",
