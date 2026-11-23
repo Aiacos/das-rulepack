@@ -3967,6 +3967,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T10:35:31.653Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xdmg/xdmg-item-book-of-vile-darkness",
+          "client": "gm",
+          "rule": "4171f353f01f254c0a1f3c2025da2f3459fb58ebc2b29e66f28164e09ad9ace6"
+        },
         "gates": {
           "at": "2026-11-23T10:30:15.708Z",
           "core": "0.291.0",
@@ -3983,14 +3991,6 @@
           "items": {
             "official": "154db45ca25317cde0a730f2c0538852fed6dc1c0b54ac2a30a6cd65e46113db"
           }
-        },
-        "played": {
-          "at": "2026-11-23T10:35:31.653Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xdmg/xdmg-item-book-of-vile-darkness",
-          "client": "gm",
-          "rule": "4171f353f01f254c0a1f3c2025da2f3459fb58ebc2b29e66f28164e09ad9ace6"
         }
       },
       "why": "Self and area psychic damage by creature type, advantage on checks and charisma-save transform need rules.",
@@ -32304,11 +32304,75 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T15:41:30.307Z",
+          "core": "0.291.0",
+          "rule": "f973e169d401181d541b8c2aa2aef11346aae20483c1c7acc370c2fb77e56b20",
+          "emits": "4ab5fc3f8db0524812b0cd8cf0d011c6d1acf3e2760b2d70f8c080608be8a8a8",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "c7570ca3283ecff4b7bdf7fda3b30be4176c5458c4315810fae28978cf61869f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T15:57:44.798Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xdmg/xdmg-item-sword-of-answering",
+          "client": "gm",
+          "rule": "f973e169d401181d541b8c2aa2aef11346aae20483c1c7acc370c2fb77e56b20"
         }
       },
       "why": "Reaction melee attack with advantage that ignores immunity and resistance on its damage; plain data cannot express the ignore clause.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "Hurt by an adjacent creature, the wielder is offered the sword's reaction attack on it, rolled with Advantage.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "isDamaged",
+              "if": {
+                "target.within": {
+                  "distance": 5,
+                  "units": "ft"
+                }
+              },
+              "do": [
+                {
+                  "type": "use",
+                  "target": "source",
+                  "activity": "YyLROSyOY5TaohRu",
+                  "advantage": true
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "engineered against the official item only (Ruling R43)"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T15:41:24.076Z",
+          "leavesNote": "Ignoring the target's Immunity or Resistance, and a reach longer than 5 feet, are left to the GM."
+        }
+      },
+      "state": "played"
     },
     {
       "key": "xdmg:item:sword-of-kas",
