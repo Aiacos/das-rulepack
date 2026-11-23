@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-shadow-dragon-trait-living-shadow",
+  "key": "xmm:monster:shadow-dragon/trait/living-shadow",
+  "rule": "f9ed985dc8852f132dc96deb49b8e0976b3cfc13c3a29a349599ac41f600dc9c",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "In the arena's bright light the trait's effect gives no Resistance; with the scene in darkness, once the token has moved, it does. Dim light is not exercised."
+}

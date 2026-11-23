@@ -96053,6 +96053,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T13:58:40.368Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lizardfolk-sovereign-bonus-charge",
+          "client": "gm",
+          "rule": "070c2039f8a73f3b69b785e5c47f86af722485f3822dd044854866ad72dab0cc"
+        },
         "reading": {
           "at": "2026-11-23T13:55:11.462Z",
           "core": "0.291.0",
@@ -96084,14 +96092,6 @@
           "items": {
             "official": "b0612e903ce4edfefcbcff606ed3eeaf4867cec7f4cd1bd816488d6b5df28690"
           }
-        },
-        "played": {
-          "at": "2026-11-23T13:58:40.368Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-lizardfolk-sovereign-bonus-charge",
-          "client": "gm",
-          "rule": "070c2039f8a73f3b69b785e5c47f86af722485f3822dd044854866ad72dab0cc"
         }
       },
       "why": "Bonus movement straight toward a visible enemy; data is only an empty utility.",
@@ -128383,7 +128383,7 @@
       "edition": "2024",
       "owner": "Shadow Dragon",
       "section": "trait",
-      "identifier": "living-shadow",
+      "identifier": "xmm-shadow-dragon-living-shadow",
       "page": 275,
       "srd": false,
       "text": {
@@ -128403,7 +128403,8 @@
           ],
           "data": {
             "sha256": "376aa258a131b89605d33da56225f7228083327e5b325e3259965c3b0ee28eff"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -128431,11 +128432,84 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T14:01:38.082Z",
+          "core": "0.291.0",
+          "rule": "f9ed985dc8852f132dc96deb49b8e0976b3cfc13c3a29a349599ac41f600dc9c",
+          "item": "376aa258a131b89605d33da56225f7228083327e5b325e3259965c3b0ee28eff",
+          "delta": [
+            "effectWhile"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "living-shadow",
+          "carried": [
+            "drawsOnEnd",
+            "effectEnds",
+            "gmAlert",
+            "onNatural1"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T14:01:38.082Z",
+          "core": "0.291.0",
+          "rule": "f9ed985dc8852f132dc96deb49b8e0976b3cfc13c3a29a349599ac41f600dc9c",
+          "emits": "8d1cc54b49ce253ff90dfb9da1707b4ac72c18b39e38eb75b842c2eac8ab9ae2",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "376aa258a131b89605d33da56225f7228083327e5b325e3259965c3b0ee28eff"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T14:06:50.411Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-shadow-dragon-trait-living-shadow",
+          "client": "gm",
+          "rule": "f9ed985dc8852f132dc96deb49b8e0976b3cfc13c3a29a349599ac41f600dc9c"
         }
       },
       "why": "Resistance applies only in dim light or darkness; effect changes resistances unconditionally.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmShadowDragon00.mmLivingShadow00": "xmm-shadow-dragon-living-shadow"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The trait's Resistance is in force only while the creature stands in dim light or darkness.",
+        "entry": {
+          "effectWhile": {
+            "vWSmU9Sd32bvyapm": {
+              "if": {
+                "light": [
+                  "dim",
+                  "dark"
+                ]
+              }
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T14:01:31.568Z",
+          "leavesNote": "A light that changes while the token stands still is seen at the token's next move or update."
+        },
+        "origin": "Shadow Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:shadow-dragon/trait/sunlight-sensitivity",
