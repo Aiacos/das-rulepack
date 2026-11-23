@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-haunting-revenant-action-object-slam",
+  "key": "xmm:monster:haunting-revenant/action/object-slam",
+  "rule": "9ebcaec30d5aefe9bb348d0342be7fee606f1535c9e95ab835656be3b7ec7a56",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "The slam is rolled normally against a target beside the revenant and with Advantage against the same target standing inside its space."
+}
