@@ -393,3 +393,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Thirteen engineered rules, each proven by a recorded play on upstream main: Sunlight Sensitivity, the ability checks (XMM)
 - [x] Matching: the 41 Dungeon Master's Guide rows of item families and renamed items, each settled to its official document
 - [x] Matching: 27 Player's Handbook sub-features settled to the official item that holds them; the 25 hand-written plays repeated on upstream main
+- [x] Engineered rule proven by a recorded play on upstream main: Eldritch Cannon (EFA)
