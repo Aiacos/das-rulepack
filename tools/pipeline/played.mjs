@@ -7,17 +7,20 @@
 // A play is recorded for a scenario only when every block of the log that names it passed with the same number of checks
 // as its stamp (at least one), its stamp is exactly that line (nothing after it), names the scenario of its block, and its
 // rule is both the rule its scenario file was generated for and the record's rule as it is today; and the record is in state
-// reviewed (or played: played again), its scenario not manual. A run that needed a combat (an ending at a turn boundary, a
-// move freed of opportunity attacks) and could not start one fails that check and prints no stamp (play/lib/steps.mjs): its
-// block is refused like any failed or unstamped one.
+// reviewed (or played: played again), its scenario not manual. An engineered rule (Ruling R43) is recorded from its
+// hand-written scenario (`handWritten: true` in its JSON) in state gated or played, and from nothing else. A run that
+// needed a combat (an ending at a turn boundary, a move freed of opportunity attacks) and could not start one fails that
+// check and prints no stamp (play/lib/steps.mjs): its block is refused like any failed or unstamped one.
 //
 // What this does not stop: the log is a local file. A forged log is possible; what stands against it is the honesty of
 // the main session that runs the play and the owner's review of the commit that records it (as for Ruling R20).
 import { ruleFingerprint, stateOf } from "./registry.mjs";
-import { isCoreVersion, isScenarioId } from "./schema.mjs";
+import { isCoreVersion, isEngineered, isScenarioId } from "./schema.mjs";
 import { SCENARIO_STATES } from "./scenarios.mjs";
 import { clip, echo } from "./intake.mjs";
 
+// Ruling R43: the states from which an engineered rule's hand-written scenario is recorded (gated: its first play).
+export const ENGINEERED_PLAY_STATES = Object.freeze(["gated", "played"]);
 export const STAMP = /^das-rulepack: (\S+) core=(\S+) rule=([0-9a-f]{64}) checks=(\d{1,6})$/;
 const MARK = "das-rulepack:";
 const START = /^▶ (.+)$/;
@@ -108,9 +111,26 @@ export function playedFrom(records, logText, { scenarios, world, client = "gm", 
     if (!file) { skip("no record has this scenario (no scenario file play/<book>/<slug>.json)"); continue; }
     const record = byKey.get(file.key);
     if (!record || file.scenario !== id) { skip("no record has this scenario"); continue; }
-    if (file.manual !== false) { skip("a manual scenario: a person records it with npm run played -- --manual"); continue; }
+    // Ruling R43: an engineered rule is played by its hand-written scenario (`handWritten: true`), from gated, and only by
+    // it; every other rule by its generated one, once reviewed.
+    const engineered = isEngineered(record.rule);
+    if (file.handWritten === true && !engineered) {
+      skip("a hand-written scenario for a rule that is not engineered (Ruling R43)");
+      continue;
+    }
+    if (engineered && file.handWritten !== true) {
+      skip("an engineered rule is played by its hand-written scenario only (Ruling R43)");
+      continue;
+    }
+    if (!engineered && file.manual !== false) {
+      skip("a manual scenario: a person records it with npm run played -- --manual");
+      continue;
+    }
     const state = stateOf(record);
-    if (!SCENARIO_STATES.includes(state)) { skip(`the state is ${state}, not reviewed`); continue; }
+    if (!(engineered ? ENGINEERED_PLAY_STATES : SCENARIO_STATES).includes(state)) {
+      skip(`the state is ${state}, not ${engineered ? "gated" : "reviewed"}`);
+      continue;
+    }
     const current = ruleFingerprint(record.rule);
     if (stamp.rule !== current) {
       skip(`the stamp is for rule ${stamp.rule.slice(0, 12)}…, not the record's current rule ${current.slice(0, 12)}…`);

@@ -12,15 +12,15 @@ import { fileURLToPath } from "node:url";
 import {
   canonical, emittedFingerprint, evidenceIsCurrent, gatedItems, hasLegacyStanding, legacyProblem, ruleFingerprint, validateRecord
 } from "./registry.mjs";
-import { GATE_NAMES } from "./schema.mjs";
+import { GATE_NAMES, isEngineered } from "./schema.mjs";
 import { hasText, readText, splitWords } from "./text.mjs";
 import { sourceProblems } from "./settle.mjs";
 import {
   ACTOR_ITEM_REFUSED, boundBySource, identifierProblems, isActorItemKey, reaches, SHARED_EMBEDDED, unaccountedOrigins
 } from "./identifiers.mjs";
 import {
-  capabilityProblems, checkDraftKeys, conditionProblemsOf, isStructural, singleSlotKeys, unknownToEngine, wardProblemsOf,
-  zoneProblemsOf
+  capabilityProblems, checkDraftKeys, conditionProblemsOf, engineeredKeyProblems, isStructural, KEY_UNKNOWN_TO_ENGINE,
+  singleSlotKeys, unknownEntryKeys, unknownToEngine, wardProblemsOf, zoneProblemsOf
 } from "./draft-keys.mjs";
 import { assertProblems } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
@@ -115,10 +115,17 @@ function codeProblems(record, context) {
 }
 
 // The drafter limits of a ruled record's entry, or []: a legacy record with standing predates them, and a person may write
-// any key once they sign `evidence.person` (schema-checked, visible to review).
+// any key once they sign `evidence.person` (schema-checked, visible to review). An engineered rule (Ruling R43) may hold any
+// key of the engine's ENTRY_KEYS (the validator gate asks the engine), its data fixes typed; its engineer is no owner.
 function draftProblems(record, context) {
   const entry = record.rule?.entry;
   if (!isObject(entry) || isLegacy(record, context) || signedByOwner(record, context)) return [];
+  if (isEngineered(record.rule)) {
+    const by = record.rule.engineered.by;
+    const owner = typeof by === "string" && (ownersOf(context) ?? []).some((o) => String(o).toLowerCase() === by.toLowerCase());
+    return [...(owner ? ["rule.engineered.by: an owner's handle: an owner signs evidence.person, never an engineered rule"] : []),
+      ...engineeredKeyProblems(entry, { origins: originsOf(record.rule), kind: record.kind })];
+  }
   return checkDraftKeys(entry, { origins: originsOf(record.rule), kind: record.kind });
 }
 
@@ -131,10 +138,14 @@ const actorItemProblems = (record, core) => (core?.actorItemSources === true ? [
 // gated with; under `--ci` an older engine's refusal is not a failure (the shipped module skips such a rule on that engine by
 // itself). A full run of the gates still fails it. Ruling R37: the same for a drafter key newer than the engine in use
 // (draft-keys.mjs ENGINE_CAPABILITIES, `saveAutoFail`): said once by a full run, and left out of what the engine is asked.
+// Ruling R43: an engineered entry may hold any key of the engine's ENTRY_KEYS; a key the engine in use does not list is said
+// by a full run (as R37) and left out of what the engine is asked, so `--ci` on an older release does not fail it.
 export const gateValidator = (record, context) => (record.rule
   ? [...(context.ci ? [] : [...actorItemProblems(record, context.core), ...newerKeyProblems(record, context.core)]),
     ...validatorProblems(record, context)] : []);
-const newerKeyProblems = (record, core) => capabilityProblems(record.rule?.entry, core).map((e) => `validator: ${e}`);
+const newerKeyProblems = (record, core) => [...capabilityProblems(record.rule?.entry, core),
+  ...engineeredUnknown(record, core).map((key) => `${key}: ${KEY_UNKNOWN_TO_ENGINE}`)].map((e) => `validator: ${e}`);
+const engineeredUnknown = (record, core) => (isEngineered(record.rule) ? unknownEntryKeys(record.rule.entry, core) : []);
 
 function validatorProblems(record, context) {
   const { core } = context;
@@ -154,7 +165,7 @@ function validatorProblems(record, context) {
   if (!entry) return asserts;
   // Ruling R30: the words of a trigger's condition against the engine's lists, for the rules the drafter limits hold
   // (draftProblems): only what the lists add, the shape being the schema gate's (checkDraftKeys).
-  if (!isLegacy(record, context) && !signedByOwner(record, context)) {
+  if (!isLegacy(record, context) && !signedByOwner(record, context) && !isEngineered(record.rule)) {
     const shape = new Set(conditionProblemsOf(entry));
     asserts.push(...conditionProblemsOf(entry, { vocabulary: core }).filter((e) => !shape.has(e)).map((e) => `validator: ${e}`));
     // Ruling R33: the same for the words of a zone or aura key (creature types, sizes).
@@ -167,7 +178,7 @@ function validatorProblems(record, context) {
   // The engine looks a fact up as a key of the object it is given. A key it does not know yet (Ruling R37) is not asked about:
   // gateValidator says it, or `--ci` lets it pass; the rest of the entry is the engine's to judge either way.
   const facts = Object.fromEntries(core.facts.map((name) => [name, true]));
-  const newer = new Set(unknownToEngine(entry, core));
+  const newer = new Set([...unknownToEngine(entry, core), ...engineeredUnknown(record, core)]);
   const asked = newer.size ? Object.fromEntries(Object.entries(entry).filter(([k]) => !newer.has(k))) : entry;
   try {
     return [...core.validateEntry(asked, { facts }).map((e) => `validator: ${e}`), ...asserts];
@@ -196,10 +207,14 @@ export function checkIds(record, context) {
     if (record.rule.handledIn === "code") return { ...out, notes: ["ids: nothing to check (code rule without entry)"] };
     return { ...out, failures: ["ids: a table rule has no entry"] };
   }
-  const ids = idsIn(entry, context?.core?.vocabulary);
+  // Ruling R43: an engineered rule may name ids of OTHER items, each listed in `rule.engineered.otherItems` (closed list).
+  const other = otherItemIds(record);
+  const named = idsIn(entry, context?.core?.vocabulary);
+  const ids = named.filter((id) => !other.has(id));
   const origins = originsOf(record.rule);
   const legacy = isLegacy(record, context);
   if (!origins.length) out.failures.push("ids: rule names no origin");
+  out.failures.push(...otherItemProblems(record, other, named, context));
   const owned = new Set();
   for (const origin of origins) {
     const items = matchedItems(record, origin);
@@ -257,6 +272,22 @@ export function checkIds(record, context) {
   return out;
 }
 export const gateIds = (record, context) => checkIds(record, context).failures;
+
+// The docIds of `rule.engineered.otherItems` of an engineered rule (Ruling R43), else an empty Set.
+const otherItemIds = (record) => new Set(isEngineered(record.rule) && Array.isArray(record.rule.engineered.otherItems)
+  ? record.rule.engineered.otherItems.map((o) => o?.docId).filter((id) => typeof id === "string") : []);
+// Each other item the entry names: named by the entry, not an id of the record's own items, and, when the dumps were read
+// (`context.dumpIds`, a Set of every document id of RULEPACK_DUMPS), a document there.
+function otherItemProblems(record, other, named, context) {
+  const own = new Set((record.items ?? []).flatMap((i) => [i?.docId, ...(i?.activities ?? []), ...(i?.effects ?? [])]));
+  const out = [];
+  for (const id of other) {
+    if (!named.includes(id)) out.push(`ids: otherItems ${id} is not named by the entry`);
+    else if (own.has(id)) out.push(`ids: otherItems ${id} is an id of the record's own item, not another item's`);
+    else if (context?.dumpIds instanceof Set && !context.dumpIds.has(id)) out.push(`ids: other item ${id} is in no dump`);
+  }
+  return out;
+}
 
 const ACTIVITY_FIELD = /^system\.activities\.([A-Za-z0-9]{16})\./;
 
@@ -387,6 +418,12 @@ export function ruleProse(rule) {
   (Array.isArray(rule.uncovered) ? rule.uncovered : []).forEach((u, i) => {
     if (typeof u?.because === "string") out.push([`rule.uncovered[${i}].because`, u.because]);
   });
+  // Ruling R43: an engineered rule's own-words lines.
+  const engineered = isObject(rule.engineered) ? rule.engineered : {};
+  if (typeof engineered.leavesNote === "string") out.push(["rule.engineered.leavesNote", engineered.leavesNote]);
+  (Array.isArray(engineered.otherItems) ? engineered.otherItems : []).forEach((o, i) => {
+    if (typeof o?.why === "string") out.push([`rule.engineered.otherItems[${i}].why`, o.why]);
+  });
   // And every string of the entry, keys and values, in document order (Ruling R19: identifiers are read as words too). A
   // string made only of structure (a key of the pack's vocabulary, an id, an allowed path) is left out, so that it does not
   // cut a quote carried by the strings around it.
@@ -430,7 +467,8 @@ export function identifierTwins(records, { registers = hasRule, pending = new Se
   }
   const rank = (r) => {
     if (!hasRule(r) || pending.has(r.key)) return [2, "", r.key];
-    const at = r.evidence?.drafted?.at;
+    // Ruling R43: an engineered rule is dated by its ingest.
+    const at = r.evidence?.drafted?.at ?? (isEngineered(r.rule) ? r.rule.engineered.at : undefined);
     return typeof at === "string" ? [1, at, r.key] : [0, "", r.key];
   };
   const before = (a, b) => {

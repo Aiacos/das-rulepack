@@ -3,8 +3,8 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  VERDICTS, STATES, ORIGINS, MATCHES, KINDS, SECOND_REVIEW_RESULTS, AGAINST_AGREES, AGAINST_RESULTS, isReaderHandle,
-  validateRecord
+  VERDICTS, STATES, ORIGINS, MATCHES, KINDS, SECOND_REVIEW_RESULTS, AGAINST_AGREES, AGAINST_RESULTS, isEngineered,
+  isReaderHandle, validateRecord
 } from "./schema.mjs";
 import { assertProblems, assertionOfCanonical, isCanonicalAssertion } from "./assert.mjs";
 import { leavesProblems } from "./leaves.mjs";
@@ -137,6 +137,8 @@ export function stateOf(record, { core } = {}) {
   const passed = Array.isArray(gates?.passed) ? gates.passed : [];
   if (!evidenceIsCurrent(record, gates) || !REQUIRED_GATES.every((g) => passed.includes(g))) return "drafted";
   const { reviewed, played } = record.evidence;
+  // Ruling R43: an engineered rule is never reviewed: from gated it goes to played, by a play about the rule as it is.
+  if (isEngineered(record.rule)) return isPlayed(played) && aboutThisRule(record, played) ? "played" : "gated";
   if (reviewed?.agrees !== true || !aboutThisRule(record, reviewed)) return "gated";
   return isPlayed(played) && aboutThisRule(record, played) ? "played" : "reviewed";
 }

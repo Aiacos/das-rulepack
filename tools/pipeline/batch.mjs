@@ -3,7 +3,7 @@
 import { groupBy, ruleFingerprint, stateOf } from "./registry.mjs";
 import { queueHolds, secondReviewSkipReason } from "./review.mjs";
 import { MAX_WHY } from "./intake.mjs";
-import { ADDS_MAX, ORIGIN_MAX, isReaderHandle } from "./schema.mjs";
+import { ADDS_MAX, ORIGIN_MAX, isEngineered, isReaderHandle } from "./schema.mjs";
 import {
   CONDITION_SHAPE, DRAFT_KEYS, DRAFT_SHAPES, ENTRY_WORD_BUDGET, FIX_PATHS, MAX_FIXES, REACTION_DECLARATION, draftKeysFor,
   entryWords, isStructural, reactionProblemsOf, wardProblemsOf, zoneProblemsOf
@@ -195,7 +195,8 @@ const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArr
  * and the dumps (an `evidence.reading`; none, null: not redraftable, fail closed).
  */
 export function redraftable(r, { draftsQueued = new Set(), reviewQueued = new Set(), readingOf } = {}) {
-  if (r?.kind !== "monster" || r.legacy === true || !r.rule || isRedrafted(r)) return false;
+  // Ruling R43: an engineered rule is the engineer's: no drafter redrafts it.
+  if (r?.kind !== "monster" || r.legacy === true || !r.rule || isRedrafted(r) || isEngineered(r.rule)) return false;
   if (draftsQueued.has(r.key) || reviewQueued.has(r.key)) return false;
   let candidate = r;
   if (typeof readingOf === "function") {
@@ -596,6 +597,8 @@ export const REVIEW_BATCH_SIZE = 30;
 export function reviewSkipReason(r, { queue = [] } = {}) {
   if (!r?.rule) return "no rule";
   if (r.legacy === true) return "legacy";
+  // Ruling R43: an engineered rule is proven by a recorded play of its hand-written scenario, never by a review.
+  if (isEngineered(r.rule)) return "engineered: proven by play";
   const state = stateOf(r);
   if (state !== "gated") return `not gated (${state})`;
   if (queue.some((q) => q?.key === r.key && queueHolds(q, r))) return "queued";
