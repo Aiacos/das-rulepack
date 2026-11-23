@@ -89499,6 +89499,14 @@
           "items": {
             "official": "279dd13181d54a7ba2cf992ccac203f927daf79f383814a3fa3f31f7833245f9"
           }
+        },
+        "played": {
+          "at": "2026-11-23T06:13:12.183Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-monitor-action-bone-whip",
+          "client": "gm",
+          "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9"
         }
       },
       "why": "Attack with extra damage, but the opportunity attack denial until its next turn has an empty effect; needs a rule.",
@@ -89524,7 +89532,7 @@
         },
         "origin": "Kuo-toa Monitor"
       },
-      "state": "gated"
+      "state": "played"
     },
     {
       "key": "xmm:monster:kuo-toa-monitor/action/multiattack",

@@ -14,9 +14,26 @@ const ENDS = "casterTurnStart";
 export default handWritten(json, async (h) => {
   const cast = await h.cast({ creature: CREATURE }, { near: "Lanceur", disposition: -1 });
   const creature = cast?.creature;
-  // Beside the creature: its attack reaches 10 feet.
-  const target = creature ? await h.target("mmBanditCaptain0", creature.name) : null;
+  const target = await h.target("mmBanditCaptain0");
   if (!creature || !target) { h.expect(false, "the creature and its target could not be placed"); return; }
+  await h.pause(1000);
+  // The attack reaches 10 feet: the target is moved to a free square beside the creature.
+  const at = await h.ctx.position(creature);
+  // A free square beside the creature with no wall between the two (the arena has walls).
+  const spot = await h.script(`const g = canvas.scene.grid.size; const at = ${JSON.stringify({ x: 0, y: 0 })};
+    at.x = ${Number(at.x)}; at.y = ${Number(at.y)};
+    const others = canvas.scene.tokens.contents.filter((t) => t.id !== ${JSON.stringify(target.id)});
+    const centre = (p) => ({ x: p.x + g / 2, y: p.y + g / 2 });
+    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]]) {
+      const c = { x: at.x + dx * g, y: at.y + dy * g };
+      if (others.some((t) => Math.abs(t._source.x - c.x) < g && Math.abs(t._source.y - c.y) < g)) continue;
+      const blocked = ["move", "sight"].some((type) => CONFIG.Canvas.polygonBackends[type]
+        .testCollision(centre(at), centre(c), { type, mode: "any" }));
+      if (!blocked) return c;
+    }
+    return null;`);
+  if (!spot) { h.expect(false, "no free square beside the creature"); return; }
+  await h.ctx.call("move-token", { tokenId: target.id, x: spot.x, y: spot.y, elevation: at.elevation ?? 0 });
   await h.pause(1000);
   // A combat with the creature first, then its target.
   await h.combat(creature, target);
