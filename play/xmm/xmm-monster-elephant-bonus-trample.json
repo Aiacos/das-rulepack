@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-elephant-bonus-trample",
+  "key": "xmm:monster:elephant/bonus/trample",
+  "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A standing creature is left unaffected; a Prone one that fails the save takes the damage."
+}

@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-couatl-action-constrict",
+  "key": "xmm:monster:couatl/action/constrict",
+  "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A Large creature is left unaffected; a Medium one that fails the save takes the damage."
+}
