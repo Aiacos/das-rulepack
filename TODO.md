@@ -384,3 +384,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Ninth engineered rule, proven by a recorded play: Boots of the Winding Path (EFA)
 - [x] Tenth engineered rule, proven by a recorded play: Construct Resilience (EFA); R45
 - [x] Eleventh engineered rule, proven by a recorded play: Guided Precision (EFA)
+- [x] Twelfth engineered rule, proven by a recorded play: Arcane Jolt (EFA)
