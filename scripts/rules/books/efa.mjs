@@ -20,6 +20,24 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "greater-handling",
+    "name": "Greater Mark of Handling",
+    "page": 43,
+    "kind": "feat",
+    "status": "played",
+    "handledIn": "table",
+    "adds": "The command takes only a Beast or a Monstrosity.",
+    "entry": {
+      "targets": {
+        "types": [
+          "beast",
+          "monstrosity"
+        ]
+      }
+    }
+  },
+
+  {
     "identifier": "eldritch-cannon",
     "name": "Eldritch Cannon",
     "page": 16,
