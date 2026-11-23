@@ -405,3 +405,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Three engineered rules proven by recorded plays on upstream main: Abduct, dragging a grappled creature at no extra cost (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Ettercap Web Strand, who can be taken (XMM)
 - [x] Triage: first source-aware readings of the entries the third engineering round judged covered (R48); second readings still to come
+- [x] Four engineered rules proven by recorded plays on the released engine: Sun Sickness of the three myconids, Light Sensitivity of the Shadow Demon (XMM)

@@ -1067,6 +1067,111 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-myconid-adult-sun-sickness",
+    "name": "Sun Sickness",
+    "page": 223,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Myconid Adult",
+    "adds": "In sunlight the creature has Disadvantage on its attack rolls, ability checks and saving throws.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check",
+          "save"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      },
+      "triggers": [
+        {
+          "on": "preAttackRoll",
+          "if": {
+            "source.inSunlight": true
+          },
+          "do": [
+            {
+              "type": "disadvantage"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
+    "identifier": "xmm-myconid-sovereign-sun-sickness",
+    "name": "Sun Sickness",
+    "page": 223,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Myconid Sovereign",
+    "adds": "In sunlight the creature has Disadvantage on its attack rolls, ability checks and saving throws.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check",
+          "save"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      },
+      "triggers": [
+        {
+          "on": "preAttackRoll",
+          "if": {
+            "source.inSunlight": true
+          },
+          "do": [
+            {
+              "type": "disadvantage"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
+    "identifier": "xmm-myconid-sprout-sun-sickness",
+    "name": "Sun Sickness",
+    "page": 222,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Myconid Sprout",
+    "adds": "In sunlight the creature has Disadvantage on its attack rolls, ability checks and saving throws.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check",
+          "save"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      },
+      "triggers": [
+        {
+          "on": "preAttackRoll",
+          "if": {
+            "source.inSunlight": true
+          },
+          "do": [
+            {
+              "type": "disadvantage"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
     "identifier": "xmm-poltergeist-telekinetic-thrust",
     "name": "Telekinetic Thrust",
     "page": 246,
@@ -1098,6 +1203,33 @@ export const RULES = book(BOOK, [
       "keys": [
         "magical"
       ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-shadow-demon-light-sensitivity",
+    "name": "Light Sensitivity",
+    "page": 273,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Shadow Demon",
+    "adds": "In bright light the creature has Disadvantage on its ability checks.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inBrightLight": true
+        }
+      }
     },
     "uncovered": [
       {
