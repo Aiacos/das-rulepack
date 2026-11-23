@@ -1769,6 +1769,71 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-sphinx-of-secrets-curse-of-the-riddle",
+    "name": "Curse of the Riddle",
+    "page": 292,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Sphinx of Secrets",
+    "adds": "A cursed creature rolls ability checks and attack rolls with Disadvantage, and can spend an action on a check to end the curse.",
+    "entry": {
+      "actionEnds": {
+        "o3kMU2qdbpxqwgk3": {
+          "by": "bearer",
+          "roll": "check"
+        }
+      },
+      "effectChanges": {
+        "o3kMU2qdbpxqwgk3": [
+          {
+            "key": "system.abilities.str.check.roll.mode",
+            "type": "add",
+            "value": "-1"
+          },
+          {
+            "key": "system.abilities.dex.check.roll.mode",
+            "type": "add",
+            "value": "-1"
+          },
+          {
+            "key": "system.abilities.con.check.roll.mode",
+            "type": "add",
+            "value": "-1"
+          },
+          {
+            "key": "system.abilities.int.check.roll.mode",
+            "type": "add",
+            "value": "-1"
+          },
+          {
+            "key": "system.abilities.wis.check.roll.mode",
+            "type": "add",
+            "value": "-1"
+          },
+          {
+            "key": "system.abilities.cha.check.roll.mode",
+            "type": "add",
+            "value": "-1"
+          }
+        ]
+      },
+      "triggers": [
+        {
+          "on": "preAttackRoll",
+          "via": "effect",
+          "fromEffect": "o3kMU2qdbpxqwgk3",
+          "do": [
+            {
+              "type": "disadvantage"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
     "identifier": "xmm-sprite-heart-sight",
     "name": "Heart Sight",
     "page": 298,

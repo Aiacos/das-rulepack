@@ -133147,7 +133147,7 @@
       "edition": "2024",
       "owner": "Sphinx of Secrets",
       "section": "action",
-      "identifier": "curse-of-the-riddle",
+      "identifier": "xmm-sphinx-of-secrets-curse-of-the-riddle",
       "page": 292,
       "srd": false,
       "text": {
@@ -133224,11 +133224,123 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T17:25:29.057Z",
+          "core": "0.291.0",
+          "rule": "ddf4d3f4f4beea32085dcb7133816fa24f8ffbaa88ff7424b850ee5f50787795",
+          "item": "680cdc92138580730d994bd9c01a63b1df70c7d16a6661c38a4c3c393e79990d",
+          "delta": [
+            "actionEnds",
+            "effectChanges",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "curse-of-the-riddle",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T17:25:29.057Z",
+          "core": "0.291.0",
+          "rule": "ddf4d3f4f4beea32085dcb7133816fa24f8ffbaa88ff7424b850ee5f50787795",
+          "emits": "8aecd7b7fb8d1e54cf943027660aaab0fe51021e28b56a00e4bbd63a5162c3e9",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "680cdc92138580730d994bd9c01a63b1df70c7d16a6661c38a4c3c393e79990d"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T17:32:22.900Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-sphinx-of-secrets-action-curse-of-the-riddle",
+          "client": "gm",
+          "rule": "ddf4d3f4f4beea32085dcb7133816fa24f8ffbaa88ff7424b850ee5f50787795"
         }
       },
       "why": "Curse with disadvantage, wasted magic actions unless a save succeeds, and an ending Study check; data has only a curse status.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmCurseOfTheRidd": "xmm-sphinx-of-secrets-curse-of-the-riddle"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A cursed creature rolls ability checks and attack rolls with Disadvantage, and can spend an action on a check to end the curse.",
+        "entry": {
+          "effectChanges": {
+            "o3kMU2qdbpxqwgk3": [
+              {
+                "key": "system.abilities.str.check.roll.mode",
+                "type": "add",
+                "value": "-1"
+              },
+              {
+                "key": "system.abilities.dex.check.roll.mode",
+                "type": "add",
+                "value": "-1"
+              },
+              {
+                "key": "system.abilities.con.check.roll.mode",
+                "type": "add",
+                "value": "-1"
+              },
+              {
+                "key": "system.abilities.int.check.roll.mode",
+                "type": "add",
+                "value": "-1"
+              },
+              {
+                "key": "system.abilities.wis.check.roll.mode",
+                "type": "add",
+                "value": "-1"
+              },
+              {
+                "key": "system.abilities.cha.check.roll.mode",
+                "type": "add",
+                "value": "-1"
+              }
+            ]
+          },
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "via": "effect",
+              "fromEffect": "o3kMU2qdbpxqwgk3",
+              "do": [
+                {
+                  "type": "disadvantage"
+                }
+              ]
+            }
+          ],
+          "actionEnds": {
+            "o3kMU2qdbpxqwgk3": {
+              "by": "bearer",
+              "roll": "check"
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T17:25:22.352Z",
+          "leavesNote": "The save that may waste a Magic action, and the curse ending when another target is cursed, are left to the GM."
+        },
+        "origin": "Sphinx of Secrets"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:sphinx-of-secrets/action/multiattack",
@@ -151950,6 +152062,14 @@
             }
           }
         },
+        "played": {
+          "at": "2026-11-23T17:13:26.628Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-warrior-commander-reaction-counterattack",
+          "client": "gm",
+          "rule": "9fc8416ed073ba5eeec62332861f36b68066c9e86c475c6d68022050850e8710"
+        },
         "reading": {
           "at": "2026-11-23T17:08:31.361Z",
           "core": "0.291.0",
@@ -151981,14 +152101,6 @@
           "items": {
             "official": "637d03702ba4956d227d24fafa36bde7f5f7f6fb75c019d798fa9f72e1b773fa"
           }
-        },
-        "played": {
-          "at": "2026-11-23T17:13:26.628Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-warrior-commander-reaction-counterattack",
-          "client": "gm",
-          "rule": "9fc8416ed073ba5eeec62332861f36b68066c9e86c475c6d68022050850e8710"
         }
       },
       "sources": {

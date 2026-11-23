@@ -1089,14 +1089,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:sphinx-of-secrets/action/curse-of-the-riddle",
-    "reason": "code",
-    "by": "drafter-v011",
-    "why": "the curse's penalties, the save on each magic action and the end on a new curse need state no key holds",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:sphinx-of-wonder/reaction/burst-of-ingenuity",
     "reason": "person",
     "by": "drafter-v011",
