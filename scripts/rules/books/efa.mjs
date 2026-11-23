@@ -5,6 +5,22 @@ export const BOOK = "EFA";
 
 export const RULES = book(BOOK, [
   {
+    "identifier": "guided-precision",
+    "name": "Guided Precision",
+    "page": 21,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Cartographer 5",
+    "adds": "Damage taken asks for no Concentration save while Faerie Fire is the only spell the artificer concentrates on.",
+    "entry": {
+      "keepsConcentration": [
+        "faerie-fire"
+      ]
+    }
+  },
+
+  {
     "identifier": "boots-of-the-winding-path",
     "name": "Boots of the Winding Path",
     "page": 112,
