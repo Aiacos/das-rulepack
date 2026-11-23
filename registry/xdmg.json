@@ -1521,16 +1521,17 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
-            "confidence": 0.7,
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
             "unexpressed": [
-              "no-key"
+              "no-key",
+              "use-time-choice"
             ]
           }
         }
@@ -4855,31 +4856,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-001",
-          "at": "2026-11-21T19:58:25.822Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:26.433Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Force resistance is in data; immunity to damage from one named spell is missing.",
+            "triaged": {
+              "by": "reader-xdmg-001",
+              "at": "2026-11-21T19:58:25.822Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
-            "confidence": 0.85,
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/eligibility.mjs",
+            "second": {
+              "by": "reread-t005",
+              "at": "2026-11-23T06:57:52.157Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/eligibility.mjs"
+            }
           }
         }
       },
-      "why": "Force resistance is in data; immunity to damage from one named spell is missing.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -7930,9 +7949,9 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
-            "confidence": 0.75,
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
@@ -13100,9 +13119,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
-            "confidence": 0.7,
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "12818e4d9be519956bd608c94002b0ee54d2ca6bdf08fb6303d409d1010f48d3"
@@ -13276,8 +13295,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
@@ -13418,8 +13437,8 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
@@ -13427,7 +13446,8 @@
             },
             "covered": false,
             "unexpressed": [
-              "use-time-choice"
+              "use-time-choice",
+              "no-key"
             ]
           }
         }
@@ -14772,8 +14792,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -14842,8 +14862,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -14912,8 +14932,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -14982,8 +15002,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -15053,8 +15073,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -15123,8 +15143,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -15193,8 +15213,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -22365,26 +22385,58 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "third-t2",
-          "at": "2026-11-21T23:14:38.945Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xdmg-003",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-23T06:53:26.433Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Haste for 1 minute without concentration and no lethargy at the end; data only casts the spell or lacks duration/end handling. entry: end of effect missing.",
+            "triaged": {
+              "by": "third-t2",
+              "at": "2026-11-21T23:14:38.945Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xdmg-003",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s40",
+                "confidence": 0.68
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s40",
-            "confidence": 0.68
-          },
-          "via": "third-reading"
+          "reread": {
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/endings.mjs",
+            "second": {
+              "by": "reread-t005",
+              "at": "2026-11-23T06:57:52.157Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/potions.mjs"
+            }
+          }
         }
       },
-      "why": "Haste for 1 minute without concentration and no lethargy at the end; data only casts the spell or lacks duration/end handling. entry: end of effect missing.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -32640,9 +32692,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i006",
-            "at": "2026-11-22T23:41:44.930Z",
-            "confidence": 0.75,
+            "by": "reread-s007",
+            "at": "2026-11-23T06:53:26.433Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
@@ -32650,7 +32702,8 @@
             "covered": false,
             "unexpressed": [
               "no-key",
-              "follow-up-action"
+              "use-time-choice",
+              "trigger-filter"
             ]
           }
         }

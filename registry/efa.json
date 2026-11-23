@@ -1180,9 +1180,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-k004",
-            "at": "2026-11-23T00:24:08.941Z",
-            "confidence": 0.8,
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "251e7e59e2fafeba9354b30f730666f9293f3ee2819468dd7df3eed34b0047da"
@@ -3457,10 +3457,25 @@
             "by": "second-s11",
             "confidence": 0.6
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "Table roll, chosen elixir and effect on drinking are not in data; activities only mark the rest trigger and slot cost, no effects. Data lacks the elixir effects.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4128,35 +4143,53 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s11",
-          "at": "2026-11-21T21:54:32.723Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-efa-003",
-            "confidence": 0.6
+          "by": "rule",
+          "at": "2026-11-23T06:53:27.326Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data has no activity or effect; the extra attack on the Attack action is a combat effect the data lacks.",
+            "triaged": {
+              "by": "second-s11",
+              "at": "2026-11-21T21:54:32.723Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-efa-003",
+                "confidence": 0.6
+              }
+            }
           },
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/turn.mjs",
+            "second": {
+              "by": "reread-t006",
+              "at": "2026-11-23T06:57:52.787Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/turn.mjs"
+            }
           }
         }
       },
-      "why": "Data has no activity or effect; the extra attack on the Attack action is a combat effect the data lacks.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -4203,9 +4236,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.8,
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
@@ -4738,28 +4771,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i008",
-            "at": "2026-11-22T23:41:46.434Z",
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "damage": {
-                    "fraction": 1,
-                    "type": "force"
-                  }
-                }
-              }
-            ],
             "unexpressed": [
-              "no-key",
-              "trigger-filter"
+              "table-ruling"
             ]
           }
         }
@@ -5116,17 +5137,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i008",
-            "at": "2026-11-22T23:41:46.434Z",
-            "confidence": 0.75,
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
             "unexpressed": [
-              "follow-up-action",
-              "use-time-choice"
+              "follow-up-action"
             ]
           }
         }
@@ -6217,15 +6237,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i008",
-            "at": "2026-11-22T23:41:46.434Z",
-            "confidence": 0.7,
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
             "unexpressed": [
+              "no-key",
               "use-time-choice"
             ]
           }
@@ -13503,18 +13524,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i008",
-            "at": "2026-11-22T23:41:46.434Z",
-            "confidence": 0.85,
+            "by": "reread-s008",
+            "at": "2026-11-23T06:53:27.326Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "a0b18350515de52ba7d190b3951bffe9714fc03c82e246bee6d3f6974e540cd5"
             },
             "covered": false,
             "unexpressed": [
               "ongoing-effect",
-              "follow-up-action",
-              "no-key"
+              "form-change"
             ]
           }
         }

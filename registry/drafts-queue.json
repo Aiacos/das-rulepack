@@ -56,13 +56,6 @@
     "confidence": 0.75
   },
   {
-    "key": "xdmg:item:brooch-of-shielding",
-    "reason": "person",
-    "by": "drafter-y001",
-    "why": "force resistance is the item's effect; immunity to one named spell's damage has no key",
-    "confidence": 0.85
-  },
-  {
     "key": "xdmg:item:clockwork-amulet",
     "reason": "person",
     "by": "drafter-y001",
@@ -172,13 +165,6 @@
     "reason": "person",
     "by": "drafter-y002",
     "why": "the save and half damage are the item's data; the three-breath count and hour limit are not visible to fix",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:potion-of-speed",
-    "reason": "person",
-    "by": "drafter-y002",
-    "why": "the haste comes from the cast activity; dropping concentration and the lethargy has no drafter key or fix path",
     "confidence": 0.8
   },
   {
