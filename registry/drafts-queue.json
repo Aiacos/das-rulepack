@@ -203,13 +203,6 @@
     "confidence": 0.8
   },
   {
-    "key": "xdmg:item:sword-of-answering",
-    "reason": "person",
-    "by": "drafter-y002",
-    "why": "a reaction attack when damaged, with advantage and ignoring immunity, has no reaction shape or key",
-    "confidence": 0.8
-  },
-  {
     "key": "xdmg:item:thunderous-greatclub",
     "reason": "person",
     "by": "drafter-y002",

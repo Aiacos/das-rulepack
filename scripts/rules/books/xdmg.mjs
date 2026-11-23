@@ -29,5 +29,42 @@ export const RULES = book(BOOK, [
         "because": "engineered against the official item only (Ruling R43)"
       }
     ]
+  },
+
+  {
+    "identifier": "sword-of-answering",
+    "name": "Sword of Answering",
+    "page": 313,
+    "kind": "item",
+    "status": "played",
+    "handledIn": "table",
+    "adds": "Hurt by an adjacent creature, the wielder is offered the sword's reaction attack on it, rolled with Advantage.",
+    "entry": {
+      "triggers": [
+        {
+          "on": "isDamaged",
+          "if": {
+            "target.within": {
+              "distance": 5,
+              "units": "ft"
+            }
+          },
+          "do": [
+            {
+              "type": "use",
+              "target": "source",
+              "activity": "YyLROSyOY5TaohRu",
+              "advantage": true
+            }
+          ]
+        }
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "engineered against the official item only (Ruling R43)"
+      }
+    ]
   }
 ]);

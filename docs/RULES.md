@@ -33,6 +33,7 @@ Published as an official Foundry VTT module (`dnd-dungeon-masters-guide`).
 | Rule | Kind | Page | What the module adds | Handled in | Status |
 |---|---|---|---|---|---|
 | Book of Vile Darkness | Item | p.238 | A Fiend or an Undead is left unaffected by the book's speech. Not covered on ddb-importer: engineered against the official item only (Ruling R43). Engineered (Ruling R43): proven by one recorded play of a hand-written scenario, not reviewed; for the owner's eye. Left to the table: The damage the speaker takes on each use, who stands within 15 feet, and the book's other properties (attunement save, lore, ability scores) stay with the GM. | table | Played |
+| Sword of Answering | Item | p.313 | Hurt by an adjacent creature, the wielder is offered the sword's reaction attack on it, rolled with Advantage. Not covered on ddb-importer: engineered against the official item only (Ruling R43). Engineered (Ruling R43): proven by one recorded play of a hand-written scenario, not reviewed; for the owner's eye. Left to the table: Ignoring the target's Immunity or Resistance, and a reach longer than 5 feet, are left to the GM. | table | Played |
 
 Held for a person (Ruling R27): gated, not registered with DAS · Core until a person settles them.
 
@@ -326,7 +327,7 @@ Not published on Foundry.
 |---|---|---|---|---|---|
 | Life Sense (Vampiric Mist) | Sense | p.250; MTF p.246 | The location of every creature within 60 ft, Constructs and Undead excepted; walls do not stop it. | table | Played |
 
-141 rules: 121 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 4 of them settled by a second review (Ruling R40). 2 of them settled by a redraft that agrees with two reviews (Ruling R41). 24 of them partial (part of the entry left to the table). 86 of them engineered (Ruling R43): proven by a recorded play, not by a review. 74 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 3).
+142 rules: 122 played, 20 validated. 9 of them reviewed with Ruling R24 tolerances (not an exact agreement). 4 of them settled by a second review (Ruling R40). 2 of them settled by a redraft that agrees with two reviews (Ruling R41). 24 of them partial (part of the entry left to the table). 87 of them engineered (Ruling R43): proven by a recorded play, not by a review. 74 more held for a person, not shipped (changes the engine's reading: a person decides 13, the engine already does it 34, its identifier would drop engine behaviour 2, review disagrees 22, reviewer unsure 3).
 <!-- /auto:rules -->
 
 The spell rules that name an activity or an effect use the ids of the items imported by **DDB Importer**. The same spell
