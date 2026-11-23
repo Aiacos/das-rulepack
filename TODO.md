@@ -411,3 +411,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Phase Spider Bite, the poison only on a target reduced to 0 hit points, which is stable (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Mimic Pseudopod, Disadvantage on the check to escape its grapple (XMM)
 - [x] Two engineered rules proven by recorded plays on the released engine: the gold dragons' Banish takes its target off the battlefield until the dragon's next turn (XMM)
+- [x] Triage: blind second source-aware readings of the third engineering round (R48)

@@ -29510,7 +29510,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.74,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -29593,7 +29604,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -29676,7 +29698,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -29759,7 +29792,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -29842,7 +29886,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -29925,7 +29980,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -30008,7 +30074,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -30091,7 +30168,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -30174,7 +30262,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
@@ -30257,7 +30356,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/gates.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x003",
+              "at": "2026-11-23T09:51:56.895Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/gates.mjs"
+            }
           }
         }
       },
