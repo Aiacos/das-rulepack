@@ -47,12 +47,13 @@ excepted.
 | 3a | Cut draft batches | `npm run batch -- draft <BOOK> --out <dir> --structure <private dir> [--size 20] [--kind <kind>] [--redraft \| --reoffer]` | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` | a person |
 | 3b | Draft a batch | (no command: a drafter agent reads files) | `RULEPACK_TEXT` | the Claude Code session, via drafter agents |
 | 3c | Ingest drafts | `npm run ingest -- <results-file> --draft [--redraft \| --reoffer] --batch <batch file>` (see "Ingesting drafts") | `RULEPACK_TEXT`, `DAS_CORE` (`RULEPACK_DUMPS` for monster features) | the Claude Code session |
+| 3d | Ingest engineered rules | `npm run ingest -- <results-file> --engineered` (see "Engineered rules", Ruling R43) | `DAS_CORE`, `RULEPACK_TEXT` (`RULEPACK_DUMPS`: other items, monster features) | the Claude Code session |
 | 4 | Gates | `npm run gates` (`-- --ci` in CI) | `DAS_CORE`, `RULEPACK_DUMPS`, `RULEPACK_TEXT` (`--ci`: `DAS_CORE`) | person, CI |
 | 5a | Cut review batches | `npm run batch -- review <BOOK> --out <dir> --structure <private dir> [--size 30] [--kind <kind>]` | `DAS_CORE`, `RULEPACK_DUMPS` | a person |
 | 5b | Review a batch | (no command: a reviewer agent reads files, blind to the draft) | `RULEPACK_TEXT` | the Claude Code session, via reviewer agents |
 | 5c | Ingest reviews | `npm run ingest -- <results-file> --review --batch <batch file>` (see "Ingesting reviews") | `RULEPACK_TEXT`, `DAS_CORE` | the Claude Code session |
 | 5d | Accept a queued review | `npm run pipeline -- review-accept <key> --because "<one line>" --by <owner>` | nothing | a person (an owner) |
-| 6a | Scenarios | `npm run scenarios -- <BOOK> [--check \| --plan]` (see "Playing scenarios") | `RULEPACK_DUMPS` | a person |
+| 6a | Scenarios | `npm run scenarios -- <BOOK> [--check \| --plan \| --stamp-handwritten]` (see "Playing scenarios", "Engineered rules") | `RULEPACK_DUMPS` | a person |
 | 6b | Play | `cd "$DAS_CORE" && node tools/scenario.mjs <this repo>/play/<book> 2>&1 \| tee <private log>` | the test server | the main session only |
 | 6c | Record plays | `npm run played -- <runner-log> --world <name> [--client gm\|player]` | nothing | the main session |
 | 6d | Record a play by hand | `npm run played -- --manual <key> --world <name> --because "<one line>" --by <owner>` | `RULEPACK_TEXT` | a person (an owner) |
@@ -320,7 +321,7 @@ The state is derived from the evidence and written by the tools; nobody types it
 | `drafted` | a rule is written, but the gates have not passed on it (or the rule changed since) |
 | `gated` | every required gate passed on the current rule |
 | `reviewed` | an independent reading agrees, about the rule as it is |
-| `played` | a scenario passed in a running world, on the rule as it is |
+| `played` | a scenario passed in a running world, on the rule as it is (an engineered rule: from `gated`, by its hand-written scenario, Ruling R43) |
 
 Evidence about the rule carries its fingerprint (`rule`, `registry.mjs` `ruleFingerprint`): `evidence.drafted: { by, at, core,
 rule, person?, because? }` (`person: true` with `because` from `schema.mjs` `draftedForPersonReasons()`: the name of a key
@@ -342,9 +343,10 @@ ones.
 
 ## 🧾 Rule vocabulary
 
-- **Assertions.** Every rule outside the legacy ones has `rule.assert`, a non-empty array of `{ given, expect }`
-  (`tools/pipeline/assert.mjs`): what the rule says happens, so that a draft and a review can be compared and a scenario can
-  check it. `given: { roll?: hit|miss|crit|failedSave|savedSave, moment?, origin?, targetType?, free?, targetSizeAtMost?,
+- **Assertions.** Every rule outside the legacy ones (and the engineered ones, section "Engineered rules") has
+  `rule.assert`, a non-empty array of `{ given, expect }` (`tools/pipeline/assert.mjs`): what the rule says happens, so
+  that a draft and a review can be compared and a scenario can check it. `given: { roll?: hit|miss|crit|failedSave|savedSave,
+  moment?, origin?, targetType?, free?, targetSizeAtMost?,
   targetStatus?, selfStatus?, targetWithin?, targetHp?: bloodied|wounded, targetHpAtMost?, onOwnTurn?: true, damageType?,
   activity?: attack|melee|weapon|spell, spellLevelAtMost?: 0..9 }` (the fields after `free` say a trigger's condition, Ruling
   R30, below; `moment` is a moment of the engine or, Ruling R33, an aura moment `ownTurnStart|ownTurnEnd`; Ruling R34:
@@ -581,7 +583,8 @@ ones.
   At most 12 fixes per rule, one per (target, path); no `create`; an origin other than official alone and a monster feature
   are refused. Many of the engine's own fixes fall outside these types (null guards, `custom` damage parts, words as change
   values): such fixes are a person's.
-  **It is a gate**: the schema gate (which runs under `--ci`) applies it to every non-legacy rule, unless a person signed
+  **It is a gate**: the schema gate (which runs under `--ci`) applies it to every non-legacy rule but an engineered one
+  (section "Engineered rules", Ruling R43: any key of the engine's ENTRY_KEYS, data fixes still typed), unless a person signed
   the rule: `evidence.person: { by, because, rule }`, `rule` the fingerprint of the rule as signed, `by` an owner listed in
   `docs/owners.json` (never an agent's handle: `reader…`, `drafter…`, `reviewer…`, `second…`, `third…`, anything with
   `agent`). A signature of an earlier rule (the rule was edited since) or by someone not listed does not apply: the drafter
@@ -2168,7 +2171,8 @@ backup.
 
 ### `npm run scenarios -- <BOOK> [--check | --plan]`
 
-For every record of the book in state `reviewed` or `played`, `tools/pipeline/scenarios.mjs` `scenarioOf` writes
+For every record of the book in state `reviewed` or `played` whose rule is not engineered (an engineered rule's scenario is
+hand-written and never generated: section "Engineered rules"), `tools/pipeline/scenarios.mjs` `scenarioOf` writes
 `play/<book>/<slug of the key>.json` and, unless it is manual, `play/<book>/<slug>.mjs`, two lines that hand the JSON to
 `play/lib/steps.mjs` `scenario`. A scenario is `{ scenario, key, rule, origin, client: "gm", manual, manualBecause, checks,
 setup, steps }`:
@@ -2365,6 +2369,126 @@ followed a manual scenario's checklist: `evidence.played` with `manual: true`, `
 as it is and manual; `--because` is one line of at most 120 printable characters that does not quote the entry's text (alone
 or with the rule's prose; without the text in `RULEPACK_TEXT` nothing is written); `--core` defaults to the version of
 `DAS_CORE`. The README shows such a rule as "Played by hand" and counts it apart.
+
+## 🛠️ Engineered rules (Ruling R43)
+
+The drafter vocabulary is a small, closed subset of the engine's entry keys, so that a blind reviewer can check a draft by
+assertions. Most remaining entries need keys outside it. An **engineer** (an agent who reads the engine's source, or the main
+session) can write such an entry, but no assertion can check it: an **engineered rule**'s evidence is a recorded **live play**
+of a scenario written by hand, not a review.
+
+**The rule.** `rule.engineered: { by, at, otherItems?, leavesNote? }` (part of the rule, so of its fingerprint): `by` an
+engineer's handle `engineer-<name>` (`schema.mjs` `ENGINEER_HANDLE`; never an owner of `docs/owners.json`, which the schema
+gate checks; an engineer's handle is an agent's for `evidence.person`, `played --manual` and `review-accept`), `at` the ingest
+date. `evidence.person` is untouched: it stays the owners'. On an engineered rule:
+
+- **lifted**: the drafter limits (any key of the engine's ENTRY_KEYS: `draft-keys.mjs` `engineeredKeyProblems` in place of
+  `checkDraftKeys`; no closed shapes, no word budget) and the assertion requirement (`assert` may be absent; checked when
+  present);
+- **held**: the schema; the engine's own `validateEntry` (`loadCore`), which a key outside the engine's ENTRY_KEYS fails in a
+  full run (`gates --ci` leaves it to the engine in use, as Ruling R37, so an older release does not fail it); the ids gate on
+  the matched official item, an id of ANOTHER item allowed only through the closed list `otherItems: [{ docId, why }]` (1 to
+  12, each named by the entry, none an id of the record's own items, each a document of the dumps when they are read:
+  `ids: other item <id> is in no dump`); typed data fixes (`FIX_PATHS`, `FIX_TYPES`, no `create`, official only, never a
+  monster feature); the 8-word quotation limit on every prose field; unique identifiers; the official origin only (every
+  other matched origin goes in `uncovered`, "engineered against the official item only (Ruling R43)");
+- **prose**: `adds` (as any rule) and what the rule leaves to the table, either `leaves` in its closed shape (Ruling R25) or,
+  since an engineered rule's remainder often has no closed word, `engineered.leavesNote`: one own-words line of printable
+  ASCII of at most 200 characters, read by the quotation check; not both. Each `otherItems[].why` is such a line too.
+- `evidence.drafted` is refused beside it: nothing drafted it, and no review reads it.
+
+**`npm run ingest -- <results-file> --engineered`** (`engineered.mjs` `ingestEngineered`; needs `DAS_CORE`, `RULEPACK_TEXT`;
+with `RULEPACK_DUMPS` the other items are looked up, and a monster feature's actors read, which one needs). The results file
+is private (it is not committed), exactly:
+
+```json
+{ "by": "engineer-<name>",
+  "results": [ { "key": "<record key>", "entry": { ... }, "adds": "<one own-words line>",
+                 "leaves": [ ... ], "leavesNote": "<one own-words line>",
+                 "otherItems": [ { "docId": "<16-character id>", "why": "<one own-words line>" } ],
+                 "why": "<one own-words line>" } ] }
+```
+
+`leaves`, `leavesNote` and `otherItems` are optional (`leaves` or `leavesNote`, not both); `why` is checked like a draft's
+(one line of at most 200 characters, no 8-word quotation) and not stored. The whole file is refused (exit 2) when it has
+another field, `by` is not an engineer's handle or is an owner's (case aside), or it holds a key named `__proto__`,
+`constructor` or `prototype`. A result is written only on a record that is `entry`, has no rule, is not legacy and waits in
+neither `queue.json` nor `review-queue.json`, has its text in the cache and a matched official item; the rule is `{
+handledIn: "table", adds, entry, origins: ["official"], uncovered?, leaves?, engineered }`, completed as a draft is
+(`draft.mjs` `ruledRecord`: aliases, origin label, a monster feature's identifier and source). A result that fails any gate
+(the gates' own functions on the record as it would be written, the `unique` clashes included: an engineered rule has no
+queue to wait in) is rejected with its reason, and nothing of it is written. A record that waited in `drafts-queue.json`
+**leaves it** when its engineered rule is written (`dequeued` in the output, one stderr line per key). It prints `{ applied,
+dequeued, rejected }`, exits 1 when something was rejected, and writes the books and the queue in one step.
+
+**States and emission.** After `npm run gates` the rule is `gated` and **held** (`not-played`: "engineered (Ruling R43): no
+recorded play yet"), never emitted on its gates alone; review batches leave it out ("engineered: proven by play"), a review
+result for it is rejected, a redraft never takes it, and a review about it would change nothing (`stateOf` does not read one).
+It is emitted only once `evidence.played` is about its current fingerprint: state `played`, status "played" in
+`docs/RULES.md`, whose row says "Engineered (Ruling R43): proven by one recorded play of a hand-written scenario, not
+reviewed; for the owner's eye." (and "Left to the table: <leavesNote>"), and whose closing line adds "N of them engineered
+(Ruling R43): proven by a recorded play, not by a review." (nothing when there are none). When the rule changes, the record
+is `drafted` until the gates pass again, then held as `play-stale` ("its play is about an older rule") until it is played again.
+
+**The hand-written scenario** (the contract). For the record of scenario id `<book>/<slug>` (`scenarioIdOf`), two files that
+a person or the main session writes and commits, and that `npm run scenarios` never writes, rewrites or removes:
+
+- `play/<book>/<slug>.mjs`, whose **first line is exactly** `// hand-written (Ruling R43)` (`scenarios.mjs`
+  `HANDWRITTEN_MARK`), exporting by default `handWritten(json, play)` of `play/lib/handwritten.mjs`;
+- `play/<book>/<slug>.json`, **exactly** `{ scenario, key, rule, handWritten: true, checks, covers }`: the scenario id, the
+  record key, the fingerprint of the record's rule as it is, `checks` the number of `expect` one passing run makes (1 to 999),
+  `covers` one own-words line (at most 200 printable characters, no 8-word quotation of the entry's text when
+  `RULEPACK_TEXT` has it) saying which situation the play covers. No other field: no rulebook text, no prose but `covers`.
+
+`npm run scenarios -- <BOOK> --check` verifies each pair (`handWrittenProblems`: the fields, the record engineered, the
+scenario id, the module's mark, the fingerprint) and fails on a stale one; `npm run scenarios -- <BOOK> --stamp-handwritten`
+sets `rule` to the record's current fingerprint and writes nothing else. Run it only after reading the module again against
+the rule as it is: the next play it stamps is a play of that rule. A generated scenario is never made for an engineered rule,
+and a generated file that would land on a hand-written one stops the command.
+
+`play/lib/handwritten.mjs` hands `play(h)` the context helpers the generated scenarios use (exported from
+`play/lib/steps.mjs`, not written twice): `h.caster()`, `h.cast(roles, options)`, `h.target(actor, near?)`, `h.give(caster,
+uuid, { spell })` (the item lent, its uses, slots and concentration put back), `h.use({ caster, itemId, activityId, targets,
+consume, area })` (settled: `{ resolution, of(token), outcome(token) }`; a refused use throws), `h.useUntil(roll, use,
+target)` (the use again, at most 20 times, until the target's outcome is that roll), `h.combat(caster, target)`,
+`h.nextTurn()` (one turn on, seen to change), `h.casterTurn(caster)`, `h.effects(token)` (with their origins),
+`h.effectsFrom(token, itemId)`, `h.hasStatus(token, status)`, `h.hp(token)`, `h.setHp(token, n)`, `h.expect(ok, label)`,
+`h.log(...)`. It prints the stamp line exactly as a generated scenario does (`steps.mjs` `stampLine`) and **withholds** it
+(`stamp withheld: <why>`) when an expectation failed, when another number of checks ran than the JSON declares, when a
+turn change the play asked for never came, or when the JSON is not a hand-written scenario with a fingerprint. It cannot read
+the registry where the runner runs: a stale `rule` is caught by `--check` before the run and by `played` after (a stamp for
+another rule records nothing). `npm run played` records the play like any other (`handWritten: true` on an engineered rule in
+state `gated` or `played`; a hand-written file for a rule that is not engineered, or a generated one for a rule that is,
+records nothing).
+
+An invented example (`tst`, an invented book; the key, ids and words are made up):
+
+```js
+// hand-written (Ruling R43)
+import { handWritten } from "../lib/handwritten.mjs";
+const json = (await import("./tst-spell-frost-glimmer.json", { with: { type: "json" } })).default;
+// covers: one quux is kept out of the ward on a failed save, and the ward ends at the caster's next turn.
+export default handWritten(json, async (h) => {
+  const caster = await h.caster();
+  const target = await h.target("mmBanditCaptain0");
+  if (!target) return;
+  const itemId = await h.give(caster, "Compendium.tst-pkg.spells.Item.Do11Do22Do33Do44", { spell: true });
+  await h.combat(caster, target);
+  const use = { caster, itemId, activityId: "Ea11Eb22Ec33Ed44", targets: [target] };
+  if (!(await h.useUntil("failedSave", use, target))) return;   // fewer checks than declared: the stamp is withheld
+  h.expect((await h.effectsFrom(target, itemId)).length === 1, "the ward's effect is on the target");
+  await h.nextTurn();
+  await h.nextTurn();
+  h.expect((await h.effectsFrom(target, itemId)).length === 0, "the ward ends at the caster's next turn");
+});
+```
+
+with `tst-spell-frost-glimmer.json` `{ "scenario": "tst/tst-spell-frost-glimmer", "key": "tst:spell:frost-glimmer", "rule":
+"<64 hex>", "handWritten": true, "checks": 2, "covers": "one quux kept out on a failed save; the ward ends next turn" }`.
+
+**Cost if wrong** (Ruling R43): the proof is one play of one situation, written by the same engineer who wrote the rule. It
+shows the rule does what the engineer meant, not that the engineer read the book right: nothing independent reads the text
+against the entry. That is why `docs/RULES.md` flags every engineered rule for the owner's eye.
 
 ## 🏛️ Legacy rules
 
