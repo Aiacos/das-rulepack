@@ -188,6 +188,15 @@ describe("states and emission (Ruling R43)", () => {
     expect(stateOf(r)).toBe("gated");
     expect(emissionOf(r)).toEqual({ emitted: false, because: "not-played" });
     expect(HELD_REASONS["not-played"]).toContain("Ruling R43");
+    // A play build (generate --play-build <dir>) holds it too, so that it can run on a test world and be played; the pack's
+    // own build never does, and a rule that is not engineered is not let through by it.
+    expect(emissionOf(r, { unplayed: true })).toEqual({ emitted: true, because: "play-build" });
+    expect(ruleFromRecord(r, { unplayed: true })).not.toBeNull();
+    expect(ruleFromRecord(r)).toBeNull();
+    const cli = spawnSync(process.execPath, ["tools/pipeline/cli.mjs", "generate", "--play-build", "scripts/rules"],
+      { encoding: "utf8" });
+    expect(cli.status).not.toBe(0);
+    expect(cli.stderr).toMatch(/must not be the pack's own scripts\/rules/);
     const reviewed = { ...r, evidence: { ...r.evidence, reviewed: { by: "reviewer-1", at: AT, agrees: true,
       rule: ruleFingerprint(r.rule), confidence: 0.9 } } };
     expect(stateOf(reviewed)).toBe("gated");

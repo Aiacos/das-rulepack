@@ -2421,6 +2421,12 @@ queue to wait in) is rejected with its reason, and nothing of it is written. A r
 **leaves it** when its engineered rule is written (`dequeued` in the output, one stderr line per key). It prints `{ applied,
 dequeued, rejected }`, exits 1 when something was rejected, and writes the books and the queue in one step.
 
+**Playing it.** A held rule is in no module of the pack, so it cannot run on a test world. `npm run build:rules --
+--play-build <dir>` writes the same generated modules **plus the gated engineered rules that have no play yet** to another
+directory (refused on the pack's own `scripts/rules`, and with `--check`): that directory is copied over a test world's
+copy of the pack, the hand-written scenario is played there, and the play is recorded. The pack's own build never holds
+such a rule before its play.
+
 **States and emission.** After `npm run gates` the rule is `gated` and **held** (`not-played`: "engineered (Ruling R43): no
 recorded play yet"), never emitted on its gates alone; review batches leave it out ("engineered: proven by play"), a review
 result for it is rejected, a redraft never takes it, and a review about it would change nothing (`stateOf` does not read one).

@@ -101,7 +101,7 @@ function comparisonHeld(entry) {
  * engine's reading (`evidence.reading`): `engine-text` (none current), `engine-changes`, `engine-already`, `engine-rebinding`.
  * An engineered rule (Ruling R43) is emitted as `played` only, or held as `not-played` / `play-stale`; reviews are not read.
  */
-export function emissionOf(record, { legacy, queue, monsterRules = false } = {}) {
+export function emissionOf(record, { legacy, queue, monsterRules = false, unplayed = false } = {}) {
   if (!isObject(record) || !record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
   if (record.legacy === true) return hasLegacyStanding(record, legacy) ? { emitted: true, because: "legacy" } : null;
   // Rulings R28 and R29: DAS · Core derives entries for monster features from their English text by itself (its "text"
@@ -127,6 +127,9 @@ export function emissionOf(record, { legacy, queue, monsterRules = false } = {})
   if (isEngineered(record.rule)) {
     if (state === "played") return { emitted: true, because: "played" };
     if (state !== "gated") return null;
+    // A play build (`generate --play-build <dir>`, never the pack's own modules) holds the gated engineered rules too: they
+    // must run on a test world to be played at all.
+    if (unplayed === true) return { emitted: true, because: "play-build" };
     return { emitted: false, because: isPlayed(record.evidence?.played) ? "play-stale" : "not-played" };
   }
   if (state === "reviewed" || state === "played") return { emitted: true, because: "reviewed" };
@@ -158,8 +161,8 @@ export function emissionOf(record, { legacy, queue, monsterRules = false } = {})
  * registry.mjs loadLegacy; `queue`: review-queue.json). A legacy record keeps its old status, or "played" once a complete
  * play is recorded.
  */
-export function ruleFromRecord(record, { legacy, queue, monsterRules = false } = {}) {
-  if (emissionOf(record, { legacy, queue, monsterRules })?.emitted !== true) return null;
+export function ruleFromRecord(record, { legacy, queue, monsterRules = false, unplayed = false } = {}) {
+  if (emissionOf(record, { legacy, queue, monsterRules, unplayed })?.emitted !== true) return null;
   const status = record.legacy === true
     ? (isPlayed(record.evidence?.played) ? "played" : record.legacyStatus) : STATUS_OF_STATE[stateOf(record)];
   if (!status) return null;
@@ -202,13 +205,13 @@ const aliasesOf = (record) => (Array.isArray(record.rule?.alsoAs) ? record.rule.
  * The `sources` of the records whose rule is emitted: `{ docId: identifier }`, what the pack registers beside its table so that
  * the engine knows an item by its document id. A record that registers no rule binds nothing.
  */
-export function sourcesOf(records, { legacy, queue } = {}) {
+export function sourcesOf(records, { legacy, queue, unplayed = false } = {}) {
   const out = {};
   const byKey = queueMap(queue);
   for (const record of records) {
     const problems = sourceProblems(record);
     if (problems.length) throw new Error(`${record.key}: ${problems.join("; ")}`);
-    if (!record.sources || !ruleFromRecord(record, { legacy, queue: byKey })) continue;
+    if (!record.sources || !ruleFromRecord(record, { legacy, queue: byKey, unplayed })) continue;
     for (const [docId, identifier] of Object.entries(record.sources)) {
       if (out[docId] !== undefined && out[docId] !== identifier) {
         throw new Error(`${record.key}: the document ${docId} is bound to ${identifier} and to ${out[docId]}`);
@@ -228,11 +231,11 @@ const byOrder = (a, b) => {
 const indent = (text, pad) => text.split("\n").map((l) => pad + l).join("\n");
 
 // The text of scripts/rules/books/<code>.mjs, or null when no record of the book is emitted.
-export function bookModuleSource(code, records, note, { legacy, queue } = {}) {
+export function bookModuleSource(code, records, note, { legacy, queue, unplayed = false } = {}) {
   const blocks = [];
   const byKey = queueMap(queue);
   for (const record of [...records].sort(byOrder)) {
-    const rule = ruleFromRecord(record, { legacy, queue: byKey });
+    const rule = ruleFromRecord(record, { legacy, queue: byKey, unplayed });
     if (!rule) continue;
     const { book, ...rest } = rule;
     const note = record.note ? `${record.note.split("\n").map((l) => `  // ${l}`.trimEnd()).join("\n")}\n` : "";
@@ -314,7 +317,7 @@ export const SOURCES = Object.freeze(${sourcesLiteral(sources)});
  * (Ruling R27); it still owns its identifier for the unique gate and `batch draft` (gates.mjs identifierTwins).
  * @returns {{ written: string[], differing: string[] }}  Paths relative to `out`.
  */
-export function generate({ registry, out, check = false }) {
+export function generate({ registry, out, check = false, unplayed = false }) {
   const files = existsSync(registry)
     ? readdirSync(registry).filter((f) => f.endsWith(".json") && !NOT_BOOKS.includes(f)).sort() : [];
   const legacy = existsSync(registry) ? loadLegacy(registry) : new Map();
@@ -335,11 +338,11 @@ export function generate({ registry, out, check = false }) {
       const problems = r.rule ? identifierProblems(r) : [];
       if (problems.length) refused.push(`${r.key}: ${problems.join("; ")}`);
     }
-    const source = bookModuleSource(book, records, note, { legacy, queue });
+    const source = bookModuleSource(book, records, note, { legacy, queue, unplayed });
     if (source) wanted.set(`books/${code}.mjs`, source);
     if (!refused.length) {
       try {
-        for (const [docId, identifier] of Object.entries(sourcesOf(records, { legacy, queue }))) {
+        for (const [docId, identifier] of Object.entries(sourcesOf(records, { legacy, queue, unplayed }))) {
           if (sources[docId] !== undefined && sources[docId] !== identifier) refused.push(`${docId}: bound to two identifiers`);
           sources[docId] = identifier;
         }
@@ -347,7 +350,7 @@ export function generate({ registry, out, check = false }) {
     }
     // Two emitted rules must never register one identifier, aliases included.
     for (const r of records) {
-      if (!ruleFromRecord(r, { legacy, queue })) continue;
+      if (!ruleFromRecord(r, { legacy, queue, unplayed })) continue;
       for (const id of new Set([r.identifier, ...aliasesOf(r)].map((x) => String(x).trim().toLowerCase()))) {
         if (emitted.has(id)) refused.push(`${r.key}: shares the identifier ${id} with ${emitted.get(id)}`);
         else emitted.set(id, r.key);

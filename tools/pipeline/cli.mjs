@@ -338,11 +338,21 @@ async function heldInModules(records, books) {
 
 function generateCommand(args) {
   const check = args.includes("--check");
-  const unknown = args.filter((a) => a !== "--check");
-  if (unknown.length) throw new UsageError(`Usage: generate [--check] (unexpected: ${unknown.join(" ")})`);
+  // `--play-build <dir>`: the same modules plus the gated engineered rules that have no play yet (Ruling R43), written to
+  // another directory for a test world only. Never the pack's own scripts/rules, never with --check.
+  const at = args.indexOf("--play-build");
+  const playDir = at === -1 ? null : args[at + 1];
+  const unknown = args.filter((a, i) => a !== "--check" && i !== at && (at === -1 || i !== at + 1));
+  if (unknown.length || (at !== -1 && (!playDir || playDir.startsWith("--")))) {
+    throw new UsageError(`Usage: generate [--check] | generate --play-build <dir> (unexpected: ${unknown.join(" ")})`);
+  }
+  if (playDir && check) throw new UsageError("--play-build and --check cannot be used together");
+  if (playDir && resolve(playDir) === resolve(RULES_OUT)) {
+    throw new UsageError("--play-build must not be the pack's own scripts/rules: it would ship rules no play has proven");
+  }
   let result;
   try {
-    result = generate({ registry: REGISTRY, out: RULES_OUT, check });
+    result = generate({ registry: REGISTRY, out: playDir ? resolve(playDir) : RULES_OUT, check, unplayed: !!playDir });
   } catch (e) {
     console.error(e.message);
     process.exitCode = 1;
