@@ -187,6 +187,22 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "relentless-avenger",
+    "name": "Relentless Avenger",
+    "page": 117,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Vengeance 7",
+    "adds": "An Opportunity Attack of the paladin that hits puts the feature's Speed 0 effect on the creature hit.",
+    "entry": {
+      "haltOnReaction": {
+        "effect": "RZNe5HYKKOHYjJ3w"
+      }
+    }
+  },
+
+  {
     "identifier": "zone-of-truth",
     "name": "Zone of Truth",
     "page": 343,

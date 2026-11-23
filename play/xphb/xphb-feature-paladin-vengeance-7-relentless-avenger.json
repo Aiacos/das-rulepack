@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-paladin-vengeance-7-relentless-avenger",
+  "key": "xphb:feature:paladin/vengeance/7/relentless-avenger",
+  "rule": "aaee56738e7a4bdd25193b3aea0360dd787bb35e840153c105c217b56d018eb5",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A creature leaving the paladin's reach is hit by the reaction attack and carries the Speed 0 effect."
+}
