@@ -256,7 +256,8 @@ function gatesCommand(args) {
       return viewFingerprint(view, core, doc ? structureOf(doc) : null);
     } : undefined;
     const { failures, notes, updated } = runGates(records, {
-      core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf, rereadReadingOf, engineViewOf, dumpIds
+      core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf, rereadReadingOf, engineViewOf, dumpIds,
+      engineViewSwept: viewOf?.sweptCore
     });
     // Ruling R27 (--ci): no generated module registers a rule that is held for a person.
     const held = ci ? await heldInModules(records, books) : [];
@@ -1240,7 +1241,7 @@ async function ingestItemRereadCommand(args) {
   const out = ingestItemRereads(all, input.results, {
     textDir, by: input.by, core, offered, current, second, draftsQueue: loadQueue(REGISTRY, "drafts"),
     reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY), unreadMonster,
-    again, mechanismExists: (path) => existsSync(join(coreDir, "module", "scripts", path))
+    again, mechanismExists: (path) => existsSync(join(coreDir, "module", "scripts", path)), swept: viewOf.sweptCore
   });
   const changed = second ? [...out.agreed, ...out.disagreed, ...out.unsureReverted] : [...out.covered, ...out.beyond];
   if (!commitIngest(books, out.records, changed, [], second ? [] : out.dequeued, { queue: "drafts" })) return;

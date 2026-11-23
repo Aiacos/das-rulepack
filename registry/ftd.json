@@ -26455,8 +26455,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-22T06:14:53.113Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.639Z",
+          "core": "0.291.0",
           "rule": "409d59b79eb81d1e404a0329d9b6e4ec3e05c09eab313342ce90a99556b4c60d",
           "emits": "1d186f94d22a3462c9ba4813878ac9346adef005a9215e0c83fc843099670559",
           "passed": [
