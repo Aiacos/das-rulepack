@@ -5100,6 +5100,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T03:43:06.230Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-battle-smith-9-arcane-jolt",
+          "client": "gm",
+          "rule": "df0c3c4ab0eb8d05da81a473e672694e4435f540ee52c0e3733f611ed51d657c"
+        },
         "gates": {
           "at": "2026-11-23T03:34:28.329Z",
           "core": "0.290.0",
@@ -5116,14 +5124,6 @@
           "items": {
             "official": "fbc3a8f56bb06548396c7f04b5c22416cd9ec42d52ef4232335ebfe7c1b36f40"
           }
-        },
-        "played": {
-          "at": "2026-11-23T03:43:06.230Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-feature-artificer-battle-smith-9-arcane-jolt",
-          "client": "gm",
-          "rule": "df0c3c4ab0eb8d05da81a473e672694e4435f540ee52c0e3733f611ed51d657c"
         }
       },
       "why": "On a hit, extra force damage or healing choice at use time, once per turn, limited uses. Data has stubs, no once per turn.",
@@ -13819,11 +13819,60 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T03:46:05.149Z",
+          "core": "0.290.0",
+          "rule": "7e0849506522adf4c2a9a43195fa41c0b511669d2203f6aeccfad6a14ec113d5",
+          "emits": "47a3f6746ace546a982a8781743b602f6354c8bfa96f546573a51979159d0f3b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7f353d7ee6df90b047931846d7d35b3ba28f9b3c4dfe8fa0ff66d16c65f96518"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T03:53:23.894Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-spell-homunculus-servant",
+          "client": "gm",
+          "rule": "7e0849506522adf4c2a9a43195fa41c0b511669d2203f6aeccfad6a14ec113d5"
         }
       },
       "why": "Summon activity exists, but the replace-previous-summon rule and the ally acting right after the caster on the caster's initiative count are not in the data; default Dodge when no orders.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The homunculus joins a running combat right after its caster, and casting again removes the earlier one.",
+        "entry": {
+          "summon": {
+            "initiative": "after",
+            "replaces": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "engineered against the official item only (Ruling R43)"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T03:45:59.187Z",
+          "leavesNote": "Its Dodge and its moving out of danger when given no command are played by hand."
+        }
+      },
+      "state": "played"
     }
   ]
 }

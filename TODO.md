@@ -385,3 +385,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Tenth engineered rule, proven by a recorded play: Construct Resilience (EFA); R45
 - [x] Eleventh engineered rule, proven by a recorded play: Guided Precision (EFA)
 - [x] Twelfth engineered rule, proven by a recorded play: Arcane Jolt (EFA)
+- [x] Thirteenth engineered rule, proven by a recorded play: Homunculus Servant (EFA)
