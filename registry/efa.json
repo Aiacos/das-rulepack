@@ -5099,11 +5099,55 @@
               "use-limit"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T03:34:28.329Z",
+          "core": "0.290.0",
+          "rule": "df0c3c4ab0eb8d05da81a473e672694e4435f540ee52c0e3733f611ed51d657c",
+          "emits": "10e2c4552e490815214f34d98a3cd0ce228faa21da6a8c4f3ef902b1e48e4c18",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "fbc3a8f56bb06548396c7f04b5c22416cd9ec42d52ef4232335ebfe7c1b36f40"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T03:43:06.230Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-battle-smith-9-arcane-jolt",
+          "client": "gm",
+          "rule": "df0c3c4ab0eb8d05da81a473e672694e4435f540ee52c0e3733f611ed51d657c"
         }
       },
       "why": "On a hit, extra force damage or healing choice at use time, once per turn, limited uses. Data has stubs, no once per turn.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "On an attack that hits, the artificer is offered the extra Force damage for one use of the feature, once per turn.",
+        "entry": {
+          "hitRider": {
+            "damage": "0hcKJHtmBWEpsMcJ",
+            "oncePerTurn": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T03:34:22.699Z",
+          "leavesNote": "The magic-weapon requirement, hits by the Steel Defender and the healing option are handled by hand."
+        },
+        "origin": "Battle Smith 9"
+      },
+      "state": "played"
     },
     {
       "key": "efa:feature:artificer/cartographer/15/superior-atlas",
@@ -5502,6 +5546,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T03:30:59.618Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-cartographer-5-guided-precision",
+          "client": "gm",
+          "rule": "03a02b7ddad8b22d7deaedd3d14acfccccf323e0ca5f3b334dc98de37d298af2"
+        },
         "gates": {
           "at": "2026-11-23T03:24:24.800Z",
           "core": "0.290.0",
@@ -5518,14 +5570,6 @@
           "items": {
             "official": "df4be321313802e2bbbf313e2c2cfd01f6197d50c3f6b43b02fa5cab80deccf0"
           }
-        },
-        "played": {
-          "at": "2026-11-23T03:30:59.618Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-feature-artificer-cartographer-5-guided-precision",
-          "client": "gm",
-          "rule": "03a02b7ddad8b22d7deaedd3d14acfccccf323e0ca5f3b334dc98de37d298af2"
         }
       },
       "why": "Once per turn Intelligence damage bonus only for certain spells or attacks against a marked target; concentration protection. Data bonus is unconditional.",

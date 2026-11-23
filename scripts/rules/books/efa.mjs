@@ -5,6 +5,23 @@ export const BOOK = "EFA";
 
 export const RULES = book(BOOK, [
   {
+    "identifier": "arcane-jolt",
+    "name": "Arcane Jolt",
+    "page": 19,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Battle Smith 9",
+    "adds": "On an attack that hits, the artificer is offered the extra Force damage for one use of the feature, once per turn.",
+    "entry": {
+      "hitRider": {
+        "damage": "0hcKJHtmBWEpsMcJ",
+        "oncePerTurn": true
+      }
+    }
+  },
+
+  {
     "identifier": "guided-precision",
     "name": "Guided Precision",
     "page": 21,

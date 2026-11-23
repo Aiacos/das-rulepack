@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-feature-artificer-battle-smith-9-arcane-jolt",
+  "key": "efa:feature:artificer/battle-smith/9/arcane-jolt",
+  "rule": "df0c3c4ab0eb8d05da81a473e672694e4435f540ee52c0e3733f611ed51d657c",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "On a hit the engine offers the feature; taken, one use is spent and its dice are added to the damage."
+}
