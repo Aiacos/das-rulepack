@@ -1,31 +1,10 @@
 [
   {
-    "key": "xdmg:item:1-rod-of-the-pact-keeper",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "official item ambiguous; limiting the spell bonus to warlock spells has no drafter key or fact",
-    "confidence": 0.8
-  },
-  {
     "key": "xdmg:item:1-wand-of-the-war-mage",
     "reason": "person",
     "by": "drafter-y003",
     "why": "the attack bonus is the effect data; disregarding cover on spell attacks has no drafter key",
     "confidence": 0.75
-  },
-  {
-    "key": "xdmg:item:1-wraps-of-unarmed-power",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "a damage type picked at each strike and a bonus on unarmed strikes, which are no item: no drafter key",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:2-rod-of-the-pact-keeper",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "official item ambiguous; limiting the spell bonus to warlock spells has no drafter key or fact",
-    "confidence": 0.8
   },
   {
     "key": "xdmg:item:2-wand-of-the-war-mage",
@@ -35,32 +14,11 @@
     "confidence": 0.75
   },
   {
-    "key": "xdmg:item:2-wraps-of-unarmed-power",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "a damage type picked at each strike and a bonus on unarmed strikes, which are no item: no drafter key",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:3-rod-of-the-pact-keeper",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "official item ambiguous; limiting the spell bonus to warlock spells has no drafter key or fact",
-    "confidence": 0.8
-  },
-  {
     "key": "xdmg:item:3-wand-of-the-war-mage",
     "reason": "person",
     "by": "drafter-y003",
     "why": "the attack bonus is the effect data; disregarding cover on spell attacks has no drafter key",
     "confidence": 0.75
-  },
-  {
-    "key": "xdmg:item:3-wraps-of-unarmed-power",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "a damage type picked at each strike and a bonus on unarmed strikes, which are no item: no drafter key",
-    "confidence": 0.8
   },
   {
     "key": "xdmg:item:apparatus-of-kwalish",
