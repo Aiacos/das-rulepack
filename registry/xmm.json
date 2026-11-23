@@ -57644,6 +57644,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T08:39:03.279Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ettercap-action-web-strand",
+          "client": "gm",
+          "rule": "ffaedea221b8b1cfbebb5f314eb5181f9c6af28a876e73d821f7f67ae1049946"
+        },
         "reading": {
           "at": "2026-11-23T08:34:13.571Z",
           "core": "0.291.0",
@@ -57675,14 +57683,6 @@
           "items": {
             "official": "7c27df8619109277e676f7e69433afa9645eb35bbf8689e5e86745144b864740"
           }
-        },
-        "played": {
-          "at": "2026-11-23T08:39:03.279Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ettercap-action-web-strand",
-          "client": "gm",
-          "rule": "ffaedea221b8b1cfbebb5f314eb5181f9c6af28a876e73d821f7f67ae1049946"
         }
       },
       "why": "Restrained until the web is destroyed is an end-on-event condition; data has the save and condition only.",
@@ -104046,7 +104046,7 @@
       "edition": "2024",
       "owner": "Myconid Adult",
       "section": "trait",
-      "identifier": "sun-sickness",
+      "identifier": "xmm-myconid-adult-sun-sickness",
       "page": 223,
       "srd": false,
       "text": {
@@ -104064,7 +104064,8 @@
           "effects": [],
           "data": {
             "sha256": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -104106,11 +104107,92 @@
               "out-of-combat"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:01:33.603Z",
+          "core": "0.291.0",
+          "rule": "817c88d83c97d32f2e56eef0f7165777a458533c12fac0c2ef86dc7fcb4398a6",
+          "item": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67",
+          "delta": [
+            "rollDisadvantage",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "sun-sickness",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:01:33.603Z",
+          "core": "0.291.0",
+          "rule": "817c88d83c97d32f2e56eef0f7165777a458533c12fac0c2ef86dc7fcb4398a6",
+          "emits": "98b237b07ba471351d7190b6abfcaf47e4ca3b841ec5f7fc876fabfb5ae83b6f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-myconid-adult-trait-sun-sickness",
+          "client": "gm",
+          "rule": "817c88d83c97d32f2e56eef0f7165777a458533c12fac0c2ef86dc7fcb4398a6"
         }
       },
       "why": "Disadvantage on D20 tests while in sunlight and death after an hour; data lacks it",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmMyconidAdult00.mmSunSickness000": "xmm-myconid-adult-sun-sickness"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature has Disadvantage on its attack rolls, ability checks and saving throws.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check",
+              "save"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          },
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "if": {
+                "source.inSunlight": true
+              },
+              "do": [
+                {
+                  "type": "disadvantage"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:01:27.228Z",
+          "leavesNote": "Its death after more than an hour in sunlight stays with the GM."
+        },
+        "origin": "Myconid Adult"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:myconid-sovereign/action/animating-spores",
@@ -104445,7 +104527,7 @@
       "edition": "2024",
       "owner": "Myconid Sovereign",
       "section": "trait",
-      "identifier": "sun-sickness",
+      "identifier": "xmm-myconid-sovereign-sun-sickness",
       "page": 223,
       "srd": false,
       "text": {
@@ -104463,7 +104545,8 @@
           "effects": [],
           "data": {
             "sha256": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -104505,11 +104588,92 @@
               "out-of-combat"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:01:33.605Z",
+          "core": "0.291.0",
+          "rule": "bd0e36a32819398e2d8caeb1ff8bf3c2a7085d4d6d50320a5229c6d2ed756222",
+          "item": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67",
+          "delta": [
+            "rollDisadvantage",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "sun-sickness",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:01:33.605Z",
+          "core": "0.291.0",
+          "rule": "bd0e36a32819398e2d8caeb1ff8bf3c2a7085d4d6d50320a5229c6d2ed756222",
+          "emits": "4a738f33ff20410133ec3f41f0ed2116f8bd2807bca5b75ca9f5f7056c5408f8",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-myconid-sovereign-trait-sun-sickness",
+          "client": "gm",
+          "rule": "bd0e36a32819398e2d8caeb1ff8bf3c2a7085d4d6d50320a5229c6d2ed756222"
         }
       },
       "why": "Disadvantage on D20 tests while in sunlight and death after an hour; data lacks it",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmMyconidSoverei.mmSunSickness000": "xmm-myconid-sovereign-sun-sickness"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature has Disadvantage on its attack rolls, ability checks and saving throws.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check",
+              "save"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          },
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "if": {
+                "source.inSunlight": true
+              },
+              "do": [
+                {
+                  "type": "disadvantage"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:01:27.228Z",
+          "leavesNote": "Its death after more than an hour in sunlight stays with the GM."
+        },
+        "origin": "Myconid Sovereign"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:myconid-spore-servant/action/slam",
@@ -104680,7 +104844,7 @@
       "edition": "2024",
       "owner": "Myconid Sprout",
       "section": "trait",
-      "identifier": "sun-sickness",
+      "identifier": "xmm-myconid-sprout-sun-sickness",
       "page": 222,
       "srd": false,
       "text": {
@@ -104698,7 +104862,8 @@
           "effects": [],
           "data": {
             "sha256": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -104740,11 +104905,92 @@
               "out-of-combat"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:01:33.606Z",
+          "core": "0.291.0",
+          "rule": "a2605376f32bb48f8142a366f8aa87b1aa0bbc769fcba3eb1b652865883c3268",
+          "item": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67",
+          "delta": [
+            "rollDisadvantage",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "sun-sickness",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:01:33.606Z",
+          "core": "0.291.0",
+          "rule": "a2605376f32bb48f8142a366f8aa87b1aa0bbc769fcba3eb1b652865883c3268",
+          "emits": "4d7c9588551b8897f3156be39c4dac10a09e05b63bd8a8d1c22d1f632fe0672c",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-myconid-sprout-trait-sun-sickness",
+          "client": "gm",
+          "rule": "a2605376f32bb48f8142a366f8aa87b1aa0bbc769fcba3eb1b652865883c3268"
         }
       },
       "why": "Disadvantage on D20 tests while in sunlight and death after an hour; data lacks it",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmMyconidSprout0.mmSunSickness000": "xmm-myconid-sprout-sun-sickness"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature has Disadvantage on its attack rolls, ability checks and saving throws.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check",
+              "save"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          },
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "if": {
+                "source.inSunlight": true
+              },
+              "do": [
+                {
+                  "type": "disadvantage"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:01:27.228Z",
+          "leavesNote": "Its death after more than an hour in sunlight stays with the GM."
+        },
+        "origin": "Myconid Sprout"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:nalfeshnee/action/multiattack",
@@ -126342,7 +126588,7 @@
       "edition": "2024",
       "owner": "Shadow Demon",
       "section": "trait",
-      "identifier": "light-sensitivity",
+      "identifier": "xmm-shadow-demon-light-sensitivity",
       "page": 273,
       "srd": false,
       "text": {
@@ -126360,7 +126606,8 @@
           "effects": [],
           "data": {
             "sha256": "3dad8f6b38f789b1afb6a425ad08cd0e2919fa6b2d68489ca466a8ef2efff3bc"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -126373,7 +126620,8 @@
           ],
           "data": {
             "sha256": "3513264e665d91e8b7ff4bb2474c06d68ed3102e0b1b652b7b0f0a07560dd991"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -126410,11 +126658,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:01:33.638Z",
+          "core": "0.291.0",
+          "rule": "827ea7967d99577e8a1cafe95f16c2c51dae4748ed8f67fcc74dda055b81c90a",
+          "item": "3dad8f6b38f789b1afb6a425ad08cd0e2919fa6b2d68489ca466a8ef2efff3bc",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "light-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:01:33.638Z",
+          "core": "0.291.0",
+          "rule": "827ea7967d99577e8a1cafe95f16c2c51dae4748ed8f67fcc74dda055b81c90a",
+          "emits": "47e794d1ccb1a02ce5a53ac6da1b9f9ba355e173b5838b17fe596a9133c4d997",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3dad8f6b38f789b1afb6a425ad08cd0e2919fa6b2d68489ca466a8ef2efff3bc"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-shadow-demon-trait-light-sensitivity",
+          "client": "gm",
+          "rule": "827ea7967d99577e8a1cafe95f16c2c51dae4748ed8f67fcc74dda055b81c90a"
         }
       },
       "why": "Disadvantage on checks and attacks only while in bright light; data lacks a conditional effect.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmShadowDemon000.mmLightSensitivi": "xmm-shadow-demon-light-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In bright light the creature has Disadvantage on its ability checks.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inBrightLight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:01:27.228Z",
+          "leavesNote": "Its attack rolls in bright light are the engine's own reading of the trait."
+        },
+        "origin": "Shadow Demon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:shadow-dragon/action/multiattack",

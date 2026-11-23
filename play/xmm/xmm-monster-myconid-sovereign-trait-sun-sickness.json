@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-myconid-sovereign-trait-sun-sickness",
+  "key": "xmm:monster:myconid-sovereign/trait/sun-sickness",
+  "rule": "bd0e36a32819398e2d8caeb1ff8bf3c2a7085d4d6d50320a5229c6d2ed756222",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature rolls a check and a save with Disadvantage, another creature and the creature in shade roll normally; the attack-roll rule is read on the trait, not rolled."
+}

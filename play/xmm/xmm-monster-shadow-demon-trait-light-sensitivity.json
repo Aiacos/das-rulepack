@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-shadow-demon-trait-light-sensitivity",
+  "key": "xmm:monster:shadow-demon/trait/light-sensitivity",
+  "rule": "827ea7967d99577e8a1cafe95f16c2c51dae4748ed8f67fcc74dda055b81c90a",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In bright light the creature rolls a check with Disadvantage, another creature and the creature without that light roll normally; the engine's attack-roll rule stays on the trait."
+}

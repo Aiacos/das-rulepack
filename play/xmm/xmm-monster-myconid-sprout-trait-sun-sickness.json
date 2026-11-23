@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-myconid-sprout-trait-sun-sickness",
+  "key": "xmm:monster:myconid-sprout/trait/sun-sickness",
+  "rule": "a2605376f32bb48f8142a366f8aa87b1aa0bbc769fcba3eb1b652865883c3268",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature rolls a check and a save with Disadvantage, another creature and the creature in shade roll normally; the attack-roll rule is read on the trait, not rolled."
+}
