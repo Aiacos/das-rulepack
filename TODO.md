@@ -436,3 +436,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Sword of Answering, the reaction attack is offered with Advantage (XDMG)
 - [x] Engineered rule proven by a recorded play on the released engine: Thought Shield, Psychic Resistance and the same damage returned (XPHB)
 - [x] Engineered rule proven by a recorded play on the released engine: Glorious Defense, offered on a hit against the paladin or a nearby ally (XPHB)
+- [x] Engineered rule proven by a recorded play on the released engine: Warrior Commander Greatsword, Sap gives Disadvantage on the target's next attack roll (XMM)

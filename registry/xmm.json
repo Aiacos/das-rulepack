@@ -108755,6 +108755,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T14:57:38.739Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-octopus-reaction-ink-cloud",
+          "client": "gm",
+          "rule": "0a5407718aa7e56550a3088648f1c86808a0bbcec0f7705ce3565d958886165a"
+        },
         "reading": {
           "at": "2026-11-23T14:53:52.329Z",
           "core": "0.291.0",
@@ -108786,14 +108794,6 @@
           "items": {
             "official": "7d676bb0ff4b1887d2084f96c13394dd90a5dc820dd9123ba313c4bca41b6922"
           }
-        },
-        "played": {
-          "at": "2026-11-23T14:57:38.739Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-octopus-reaction-ink-cloud",
-          "client": "gm",
-          "rule": "0a5407718aa7e56550a3088648f1c86808a0bbcec0f7705ce3565d958886165a"
         }
       },
       "why": "Reaction on a trigger creating an obscuring cube and a move, with a duration; data lacks timing",
@@ -151419,7 +151419,7 @@
       "edition": "2024",
       "owner": "Warrior Commander",
       "section": "action",
-      "identifier": "greatsword",
+      "identifier": "xmm-warrior-commander-greatsword",
       "page": 321,
       "srd": false,
       "text": {
@@ -151454,7 +151454,8 @@
           "effects": [],
           "data": {
             "sha256": "419ebc1ca996e7cfcaa271e3b2cf02640f45b55369ce412d589bbfe7eb506341"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -151497,11 +151498,95 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T16:58:14.487Z",
+          "core": "0.291.0",
+          "rule": "189abb6a120d67d4633a186bf5476e6826a299ff29abca671fd464c856d4c1b9",
+          "item": "20df964152c6930765dc89b41b40768bbe9b46ad20843f321dc7e39a34630703",
+          "delta": [
+            "effectEnds",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "greatsword",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T16:58:14.487Z",
+          "core": "0.291.0",
+          "rule": "189abb6a120d67d4633a186bf5476e6826a299ff29abca671fd464c856d4c1b9",
+          "emits": "8e5346b0bc534b5cd1122123548d3730a0fcc6ccdefb71bc06152d5af67e268d",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "20df964152c6930765dc89b41b40768bbe9b46ad20843f321dc7e39a34630703"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T17:02:36.603Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-warrior-commander-action-greatsword",
+          "client": "gm",
+          "rule": "189abb6a120d67d4633a186bf5476e6826a299ff29abca671fd464c856d4c1b9"
         }
       },
       "why": "Choice of Sap or Maneuver rider at use time, with next-attack disadvantage and ally reaction; needs a rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "cWEx0aUNtgAiphWk": "xmm-warrior-commander-greatsword"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature the sword hits rolls its next attack with Disadvantage, once, until the warrior's next turn starts.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "via": "effect",
+              "fromEffect": "DPJJ4qoB0tc83kMg",
+              "do": [
+                {
+                  "type": "disadvantage"
+                },
+                {
+                  "type": "consume",
+                  "side": "source"
+                }
+              ]
+            }
+          ],
+          "effectEnds": {
+            "DPJJ4qoB0tc83kMg": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T16:58:07.247Z",
+          "leavesNote": "The effect lands on every hit: the GM deletes it when the warrior picks Maneuver; the ally's move is played by hand."
+        },
+        "origin": "Warrior Commander"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:warrior-commander/action/longbow",
