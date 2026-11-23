@@ -8556,6 +8556,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-white-dragon-legendary-freezing-burst",
+          "client": "gm",
+          "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a"
+        },
         "reading": {
           "at": "2026-11-23T05:37:19.570Z",
           "core": "0.290.0",
@@ -8587,14 +8595,6 @@
           "items": {
             "official": "2bab9dbe24d6519f474e38971d9551b4c6f4a5a531c098ca970e4adf15ff8864"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:51:55.550Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-adult-white-dragon-legendary-freezing-burst",
-          "client": "gm",
-          "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a"
         }
       },
       "why": "Speed 0 until end of target next turn plus the action cannot repeat before the dragon next turn; needs timing rule.",
@@ -11194,6 +11194,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-brass-dragon-legendary-scorching-sands",
+          "client": "gm",
+          "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f"
+        },
         "reading": {
           "at": "2026-11-23T05:36:47.847Z",
           "core": "0.290.0",
@@ -11225,14 +11233,6 @@
           "items": {
             "official": "5010e0e29fa88c0fdb900265e3686b86d0890ca6b58aad5e2fdb69bcd3404285"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:51:55.550Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ancient-brass-dragon-legendary-scorching-sands",
-          "client": "gm",
-          "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f"
         }
       },
       "why": "Halved Speed until end of target next turn plus the cannot-repeat-until-next-turn limit; needs timing rule.",
@@ -40171,6 +40171,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-copper-dragon-wyrmling-action-slowing-breath",
+          "client": "gm",
+          "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61"
+        },
         "reading": {
           "at": "2026-11-23T05:36:47.897Z",
           "core": "0.290.0",
@@ -40202,14 +40210,6 @@
           "items": {
             "official": "9b1c90f5b4d96877e67d9e52991fdb119ffee7fdd8788b94e4dd7b5325c4a0c8"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:51:55.550Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-copper-dragon-wyrmling-action-slowing-breath",
-          "client": "gm",
-          "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61"
         }
       },
       "why": "Reaction denial, halved speed and action or bonus action limit until end of next turn; data effect has no clear changes.",
@@ -40317,7 +40317,7 @@
       "edition": "2024",
       "owner": "Couatl",
       "section": "action",
-      "identifier": "constrict",
+      "identifier": "xmm-couatl-constrict",
       "page": 82,
       "srd": true,
       "text": {
@@ -40340,7 +40340,8 @@
           ],
           "data": {
             "sha256": "87909a497c4bd48d7a6302bd797d3c7531310d27ac075f04967c4a5bedbb6f8f"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -40356,7 +40357,8 @@
           ],
           "data": {
             "sha256": "ebe3de697403e599d899f328d7a1a54bfa4711941f81a840e00f637183f1971a"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -40393,9 +40395,80 @@
               "outcome": "second-unsure"
             }
           }
+        },
+        "reading": {
+          "at": "2026-11-23T06:45:20.180Z",
+          "core": "0.290.0",
+          "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236",
+          "item": "87909a497c4bd48d7a6302bd797d3c7531310d27ac075f04967c4a5bedbb6f8f",
+          "delta": [
+            "targets"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "constrict",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T06:45:20.180Z",
+          "core": "0.290.0",
+          "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236",
+          "emits": "4a94acf8a0eb06ec971a3e9a0d3222a9d218a5857bfe7e5ff6fe202231ff9c78",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "87909a497c4bd48d7a6302bd797d3c7531310d27ac075f04967c4a5bedbb6f8f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T06:50:29.063Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-couatl-action-constrict",
+          "client": "gm",
+          "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236"
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmCouatl00000000.mmConstrict00000": "xmm-couatl-constrict"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature larger than Medium is left unaffected by the constriction: no save, no damage, no grapple.",
+        "entry": {
+          "targets": {
+            "unaffectedIf": {
+              "not": {
+                "target.sizeAtMost": "med"
+              }
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T06:45:13.116Z",
+          "leavesNote": "Nothing else of the feature is changed: its save, damage and conditions are played from the item's own data."
+        },
+        "origin": "Couatl"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:couatl/trait/divine-aid",
@@ -54236,7 +54309,7 @@
       "edition": "2024",
       "owner": "Elephant",
       "section": "bonus",
-      "identifier": "trample",
+      "identifier": "xmm-elephant-trample",
       "page": 353,
       "srd": true,
       "text": {
@@ -54256,7 +54329,8 @@
           "effects": [],
           "data": {
             "sha256": "6d89dad68ec559c4dfa4f4ba64b531a463b3e5b84e9874769781aeb6aa94678f"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -54310,9 +54384,74 @@
               "outcome": "second-unsure"
             }
           }
+        },
+        "reading": {
+          "at": "2026-11-23T06:45:20.205Z",
+          "core": "0.290.0",
+          "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a",
+          "item": "6d89dad68ec559c4dfa4f4ba64b531a463b3e5b84e9874769781aeb6aa94678f",
+          "delta": [
+            "targets"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "trample",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T06:45:20.205Z",
+          "core": "0.290.0",
+          "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a",
+          "emits": "4cc3fc8a5ea7fa4fbea0246d59b18cb231d2ea6db24122854c96e4511791a673",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "6d89dad68ec559c4dfa4f4ba64b531a463b3e5b84e9874769781aeb6aa94678f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T06:50:29.063Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-elephant-bonus-trample",
+          "client": "gm",
+          "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a"
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmElephant000000.mmTrample0000000": "xmm-elephant-trample"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature that is not Prone is left unaffected by the trample: no save, no damage.",
+        "entry": {
+          "targets": {
+            "unaffectedIf": {
+              "not": {
+                "target.hasStatus": "prone"
+              }
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T06:45:13.116Z",
+          "leavesNote": "Nothing else of the feature is changed: its save, damage and conditions are played from the item's own data."
+        },
+        "origin": "Elephant"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:elk/action/ram",
@@ -57212,6 +57351,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-faerie-dragon-youth-action-euphoria-breath",
+          "client": "gm",
+          "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41"
+        },
         "reading": {
           "at": "2026-11-23T05:36:47.931Z",
           "core": "0.290.0",
@@ -57243,14 +57390,6 @@
           "items": {
             "official": "048c582619099aacc1b62ea8ccb4238ad445230f8a9c7dc19046f7f949a7c84d"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:51:55.550Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-faerie-dragon-youth-action-euphoria-breath",
-          "client": "gm",
-          "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41"
         }
       },
       "why": "Incapacitated until end of next turn with random movement; data has wrong half-damage and no timing.",
@@ -89468,6 +89607,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T06:13:12.183Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-monitor-action-bone-whip",
+          "client": "gm",
+          "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9"
+        },
         "reading": {
           "at": "2026-11-23T05:37:19.786Z",
           "core": "0.290.0",
@@ -89499,14 +89646,6 @@
           "items": {
             "official": "279dd13181d54a7ba2cf992ccac203f927daf79f383814a3fa3f31f7833245f9"
           }
-        },
-        "played": {
-          "at": "2026-11-23T06:13:12.183Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kuo-toa-monitor-action-bone-whip",
-          "client": "gm",
-          "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9"
         }
       },
       "why": "Attack with extra damage, but the opportunity attack denial until its next turn has an empty effect; needs a rule.",
@@ -156130,6 +156269,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-young-copper-dragon-action-slowing-breath",
+          "client": "gm",
+          "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495"
+        },
         "reading": {
           "at": "2026-11-23T05:36:48.173Z",
           "core": "0.290.0",
@@ -156161,14 +156308,6 @@
           "items": {
             "official": "2dd2504d565b160507e44a2f88a072facafc192a92fbddb52d7dde1a473c9472"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:51:55.550Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-young-copper-dragon-action-slowing-breath",
-          "client": "gm",
-          "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495"
         }
       },
       "why": "Half speed, no reactions and action/bonus restriction until end of next turn; data lacks the restrictions.",

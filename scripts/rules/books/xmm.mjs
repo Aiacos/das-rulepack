@@ -236,6 +236,32 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-couatl-constrict",
+    "name": "Constrict",
+    "page": 82,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Couatl",
+    "adds": "A creature larger than Medium is left unaffected by the constriction: no save, no damage, no grapple.",
+    "entry": {
+      "targets": {
+        "unaffectedIf": {
+          "not": {
+            "target.sizeAtMost": "med"
+          }
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-death-cultist-dread-scythe",
     "name": "Dread Scythe",
     "page": 86,
@@ -345,6 +371,26 @@ export const RULES = book(BOOK, [
         "because": "DDB Importer monster features: world ids and generic identifiers"
       }
     ]
+  },
+
+  {
+    "identifier": "xmm-elephant-trample",
+    "name": "Trample",
+    "page": 353,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Elephant",
+    "adds": "A creature that is not Prone is left unaffected by the trample: no save, no damage.",
+    "entry": {
+      "targets": {
+        "unaffectedIf": {
+          "not": {
+            "target.hasStatus": "prone"
+          }
+        }
+      }
+    }
   },
 
   {
