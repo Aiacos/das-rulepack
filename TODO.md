@@ -409,3 +409,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Black Pudding Dissolving Pseudopod, the armor penalty only on a target in armor (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Lacedon Ghoul Claw, no paralysis for an Undead or an elf (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Phase Spider Bite, the poison only on a target reduced to 0 hit points, which is stable (XMM)
+- [x] Engineered rule proven by a recorded play on the released engine: Mimic Pseudopod, Disadvantage on the check to escape its grapple (XMM)

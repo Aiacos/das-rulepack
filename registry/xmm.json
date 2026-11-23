@@ -100050,7 +100050,7 @@
       "edition": "2024",
       "owner": "Mimic",
       "section": "action",
-      "identifier": "pseudopod",
+      "identifier": "xmm-mimic-pseudopod",
       "page": 212,
       "srd": true,
       "text": {
@@ -100073,7 +100073,8 @@
           ],
           "data": {
             "sha256": "3d6ee9bbb2a708632460919db496dbf73f43975fdd9c43290cb1be7e2651d309"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -100089,7 +100090,8 @@
           ],
           "data": {
             "sha256": "19dee590f070957577da6461453d5c69e22e465daeae300f144b1121bfc2a735"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -100132,11 +100134,76 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:34:41.050Z",
+          "core": "0.291.0",
+          "rule": "81fc562bbf96019fb961278c6fa59d3a536ec10d03c3f058fc6577bad82caa44",
+          "item": "3d6ee9bbb2a708632460919db496dbf73f43975fdd9c43290cb1be7e2651d309",
+          "delta": [
+            "inescapable"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "pseudopod",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:34:41.051Z",
+          "core": "0.291.0",
+          "rule": "81fc562bbf96019fb961278c6fa59d3a536ec10d03c3f058fc6577bad82caa44",
+          "emits": "f6fa61132292820f1e30b1ff3352adfdd3c3672952f7dd389d64e09f94bbf75c",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3d6ee9bbb2a708632460919db496dbf73f43975fdd9c43290cb1be7e2651d309"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:39:03.809Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-mimic-action-pseudopod",
+          "client": "gm",
+          "rule": "81fc562bbf96019fb961278c6fa59d3a536ec10d03c3f058fc6577bad82caa44"
         }
       },
       "why": "Grapple limited to Large or smaller, with disadvantage on escape checks",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmMimic000000000.mmPseudopod00000": "xmm-mimic-pseudopod"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Ability checks made to escape the mimic's grapple are rolled with Disadvantage.",
+        "entry": {
+          "inescapable": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:34:34.859Z",
+          "leavesNote": "The acid damage of the item's data is not changed: a damage number goes to a person. The size limit and the escape DC are the engine's."
+        },
+        "origin": "Mimic"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:mimic/bonus/shape-shift",
@@ -111083,6 +111150,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:31:16.139Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-phase-spider-action-bite",
+          "client": "gm",
+          "rule": "34272a38e0d92964ee9f9704fe4f964600cd178c60f63c42e71d65078883d473"
+        },
         "reading": {
           "at": "2026-11-23T09:23:22.556Z",
           "core": "0.291.0",
@@ -111117,14 +111192,6 @@
           "items": {
             "official": "6e86ac9816b03be1a3a1a7f50e4883c1233d1b14773e31bb115ab79bc16bb9c3"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:31:16.139Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-phase-spider-action-bite",
-          "client": "gm",
-          "rule": "34272a38e0d92964ee9f9704fe4f964600cd178c60f63c42e71d65078883d473"
         }
       },
       "why": "Rider only when damage drops the target to 0 HP: stable, poisoned one hour and paralyzed while poisoned; data applies it unconditionally.",
