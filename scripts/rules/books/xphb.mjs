@@ -135,6 +135,25 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "shadow-step",
+    "name": "Shadow Step",
+    "page": 105,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Shadow 6",
+    "adds": "The teleport is only allowed from and to a space in Dim Light or Darkness, up to 60 feet away.",
+    "entry": {
+      "teleport": {
+        "distance": 60,
+        "units": "ft",
+        "activity": "Q1ZC1so4EDE9EyV7",
+        "maxLight": "dim"
+      }
+    }
+  },
+
+  {
     "identifier": "undying-sentinel",
     "name": "Undying Sentinel",
     "page": 116,
