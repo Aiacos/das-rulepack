@@ -5654,6 +5654,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T03:07:48.215Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-item-boots-of-the-winding-path",
+          "client": "gm",
+          "rule": "871a3344954d255d9fdea4bab5fb79aca04e486b33872f21377a4a2105b9ca62"
+        },
         "gates": {
           "at": "2026-11-23T03:03:58.396Z",
           "core": "0.290.0",
@@ -5670,14 +5678,6 @@
           "items": {
             "official": "a0d01f090323931f3880894642a81b0b76411fc6092009519541d7a7c55fd7b0"
           }
-        },
-        "played": {
-          "at": "2026-11-23T03:07:48.215Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-item-boots-of-the-winding-path",
-          "client": "gm",
-          "rule": "871a3344954d255d9fdea4bab5fb79aca04e486b33872f21377a4a2105b9ca62"
         }
       },
       "why": "Bonus action teleport limited to a space occupied earlier this turn; data has only a bare utility activity with no movement or restriction.",
@@ -13427,11 +13427,54 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T03:10:54.204Z",
+          "core": "0.290.0",
+          "rule": "fccc0d5072c9cd422f6ce37bbb5f9052fd28b183e917d3db8d9aca572485afd1",
+          "emits": "6a35965fec65c072b3c045a78e66c18c4dce7e3549a330faf813b6ebf11f598d",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "fcce181f3e3282f990de16da94c4bb9d831d4dd220523aefcf919c7fa89aa815"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T03:21:03.407Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-species-warforged-construct-resilience",
+          "client": "gm",
+          "rule": "fccc0d5072c9cd422f6ce37bbb5f9052fd28b183e917d3db8d9aca572485afd1"
         }
       },
       "why": "Poison resistance and advantage on saves against Poisoned; data lacks any effect for them.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The bearer rolls with Advantage a saving throw against anything that would give the Poisoned condition.",
+        "entry": {
+          "saveAdvantage": [
+            "poisoned"
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T03:10:48.427Z",
+          "leavesNote": "A save made later only to END the Poisoned condition is rolled with Advantage by hand."
+        },
+        "origin": "Warforged"
+      },
+      "state": "played"
     },
     {
       "key": "efa:species:warforged/integrated-protection",

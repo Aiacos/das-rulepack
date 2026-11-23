@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-species-warforged-construct-resilience",
+  "key": "efa:species:warforged/construct-resilience",
+  "rule": "fccc0d5072c9cd422f6ce37bbb5f9052fd28b183e917d3db8d9aca572485afd1",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "Against a save that poisons, the bearer rolls with Advantage and a creature without the trait does not."
+}

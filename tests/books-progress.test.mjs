@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 import { README, RULES_DOC, DOCS_URL, GENERATED, CATALOG, FOUNDRY, bar, differences, figures, foundryPackage, parts, PARTS, renderBooks,
-  renderRules, renderSummary, heldRules, kindLabel }
+  renderRules, renderSummary, heldRules, kindLabel, catalogKind }
   from "../tools/books-progress.mjs";
 import { HELD_REASONS } from "../tools/pipeline/generate.mjs";
 import { RULES } from "../scripts/rules/index.mjs";
@@ -44,6 +44,16 @@ describe("docs/books.json and docs/foundry-modules.json", () => {
     const mapped = FOUNDRY.packages.filter(pkg => pkg.book).map(pkg => pkg.book);
     expect(new Set(mapped).size).toBe(mapped.length);
     for ( const b of CATALOG.books ) expect(b.foundry, b.code).toBe(foundryPackage(b.code));
+  });
+
+  it("a rule on a species trait is uncounted in a catalogue book, a trait in a module measured by itself (Ruling R45)", () => {
+    const withTraits = CATALOG.books.find(b => b.kinds.trait);
+    const without = CATALOG.books.find(b => !b.kinds.trait && !b.kinds.species);
+    expect(withTraits && without).toBeTruthy();
+    expect(catalogKind({ kind: "species", book: without.code })).toBeNull();
+    expect(catalogKind({ kind: "species", book: withTraits.code })).toBe("trait");
+    expect(catalogKind({ kind: "species", book: without.code, catalog: "feat" })).toBe("feat");
+    expect(catalogKind({ kind: "spell", book: without.code })).toBe("spell");
   });
 
   it("know every book the pack has rules for, and the kind each rule is counted under", () => {

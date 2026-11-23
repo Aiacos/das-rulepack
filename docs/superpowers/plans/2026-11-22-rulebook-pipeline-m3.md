@@ -1026,3 +1026,12 @@ typo is caught there, and the evidence gate holds the rule to that run). The shi
 that refuses it, a rule with its aliases and sources (`scripts/known-entries.mjs`, R37). Cost if wrong: on an older engine
 the rule is silently absent (one console warning) until that engine's next release.
 
+### Ruling R45 — a rule on a species trait and the catalogue's counts (2026-11-23)
+
+docs/books.json counts spells, feats, options, items, features and monsters per rulebook; it does not count species traits
+(only the modules measured by themselves do, as `trait`). The first rule on a species trait (Construct Resilience, EFA) made
+the progress check fail ("counts no species in EFA"). Decision: `tools/books-progress.mjs` `catalogKind` leaves such a rule
+uncounted in a catalogue book and counts it as `trait` where the book has that kind; an explicit `rule.catalog` still wins.
+The rule ships and is listed in docs/RULES.md; only the per-book bar does not move for it. Cost if wrong: the README's
+progress understates the pack by the number of species rules, until the coverage reading counts species traits.
+

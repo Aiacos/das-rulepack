@@ -30,8 +30,15 @@ export const DOCS_URL = "https://github.com/Aiacos/das-rulepack/blob/master/docs
 export const CATALOG = read("docs/books.json");
 export const FOUNDRY = read("docs/foundry-modules.json");
 
-/** Kind under which the catalogue counts a rule, or null when it has no such entry. */
-const catalogKind = rule => (rule.catalog === undefined) ? rule.kind : rule.catalog;
+/**
+ * Kind under which the catalogue counts a rule, or null when it has no such entry. Ruling R45: the rulebook catalogue does
+ * not count species traits, so a rule on one is uncounted there; a module measured by itself counts them as `trait`.
+ */
+export function catalogKind(rule) {
+  if ( rule.catalog !== undefined ) return rule.catalog;
+  if ( rule.kind !== "species" ) return rule.kind;
+  return CATALOG.books.find(book => book.code === rule.book)?.kinds?.trait ? "trait" : null;
+}
 
 /** Package id of the official Foundry module of a book, from docs/foundry-modules.json, or null. */
 export function foundryPackage(code) {
