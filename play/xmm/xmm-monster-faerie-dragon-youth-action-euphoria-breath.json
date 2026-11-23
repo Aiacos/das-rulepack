@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-faerie-dragon-youth-action-euphoria-breath",
+  "key": "xmm:monster:faerie-dragon-youth/action/euphoria-breath",
+  "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "The effect is placed, is still there when the target's turn starts, and is gone after that turn."
+}

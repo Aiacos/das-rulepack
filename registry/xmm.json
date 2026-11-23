@@ -8488,7 +8488,7 @@
       "edition": "2024",
       "owner": "Adult White Dragon",
       "section": "legendary",
-      "identifier": "freezing-burst",
+      "identifier": "xmm-adult-white-dragon-freezing-burst",
       "page": 329,
       "srd": true,
       "text": {
@@ -8510,7 +8510,8 @@
           ],
           "data": {
             "sha256": "2bab9dbe24d6519f474e38971d9551b4c6f4a5a531c098ca970e4adf15ff8864"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -8525,7 +8526,8 @@
           ],
           "data": {
             "sha256": "0ca1b18ac499608af7951dd3a81a13b84ed553242d47271ef106abaf9e89aa11"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -8553,11 +8555,78 @@
               "use-limit"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T05:37:19.570Z",
+          "core": "0.290.0",
+          "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a",
+          "item": "2bab9dbe24d6519f474e38971d9551b4c6f4a5a531c098ca970e4adf15ff8864",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "freezing-burst",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T05:37:19.570Z",
+          "core": "0.290.0",
+          "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a",
+          "emits": "ff02f23294b44d197cad3d83372987d4e937b095901df7b90d12f45f5ae72220",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "2bab9dbe24d6519f474e38971d9551b4c6f4a5a531c098ca970e4adf15ff8864"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-white-dragon-legendary-freezing-burst",
+          "client": "gm",
+          "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a"
         }
       },
       "why": "Speed 0 until end of target next turn plus the action cannot repeat before the dragon next turn; needs timing rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAdultWhiteDrag.mmFreezingBurst0": "xmm-adult-white-dragon-freezing-burst"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature that fails stays unable to move through its own following turn, not only up to that turn's start.",
+        "entry": {
+          "effectEnds": {
+            "K6EbT8HrfSUSJW2F": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T05:37:13.295Z",
+          "leavesNote": "Nothing else of the feature is changed: its damage, save and area are played from the item's own data."
+        },
+        "origin": "Adult White Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:adult-white-dragon/legendary/pounce",
@@ -11050,7 +11119,7 @@
       "edition": "2024",
       "owner": "Ancient Brass Dragon",
       "section": "legendary",
-      "identifier": "scorching-sands",
+      "identifier": "xmm-ancient-brass-dragon-scorching-sands",
       "page": 56,
       "srd": true,
       "text": {
@@ -11072,7 +11141,8 @@
           ],
           "data": {
             "sha256": "5010e0e29fa88c0fdb900265e3686b86d0890ca6b58aad5e2fdb69bcd3404285"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -11087,7 +11157,8 @@
           ],
           "data": {
             "sha256": "61b4e23632ccc8b37e0c53c86b4907ea457d497e584ec4d31fc75d5c4382f3c5"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -11122,11 +11193,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T05:36:47.847Z",
+          "core": "0.290.0",
+          "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f",
+          "item": "5010e0e29fa88c0fdb900265e3686b86d0890ca6b58aad5e2fdb69bcd3404285",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "scorching-sands",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T05:36:47.847Z",
+          "core": "0.290.0",
+          "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f",
+          "emits": "b222764b5ed916b4a2058bab5b9cfdb42aaa0058c8a4a99e6bbef287b780f7dc",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "5010e0e29fa88c0fdb900265e3686b86d0890ca6b58aad5e2fdb69bcd3404285"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-brass-dragon-legendary-scorching-sands",
+          "client": "gm",
+          "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f"
         }
       },
       "why": "Halved Speed until end of target next turn plus the cannot-repeat-until-next-turn limit; needs timing rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAncientBrassDr.mmScorchingSands": "xmm-ancient-brass-dragon-scorching-sands"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The halved Speed lasts until the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "n3I76HfSH6eKLALf": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T05:36:41.803Z",
+          "leavesNote": "Nothing else of the feature is changed: its damage, save and area are played from the item's own data."
+        },
+        "origin": "Ancient Brass Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:ancient-brass-dragon/trait/legendary-resistance",
@@ -39958,7 +40096,7 @@
       "edition": "2024",
       "owner": "Copper Dragon Wyrmling",
       "section": "action",
-      "identifier": "slowing-breath",
+      "identifier": "xmm-copper-dragon-wyrmling-slowing-breath",
       "page": 78,
       "srd": true,
       "text": {
@@ -39980,7 +40118,8 @@
           ],
           "data": {
             "sha256": "9b1c90f5b4d96877e67d9e52991fdb119ffee7fdd8788b94e4dd7b5325c4a0c8"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -39995,7 +40134,8 @@
           ],
           "data": {
             "sha256": "8cda35d1004ac35c9ce03fe82d00ec667c05e6ba5c92426839668e055aa6630d"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -40030,11 +40170,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T05:36:47.897Z",
+          "core": "0.290.0",
+          "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61",
+          "item": "9b1c90f5b4d96877e67d9e52991fdb119ffee7fdd8788b94e4dd7b5325c4a0c8",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "slowing-breath",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T05:36:47.897Z",
+          "core": "0.290.0",
+          "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61",
+          "emits": "17a89618f1367be40b985fffb27bbc80e56cd22d42b5ad56dd0416958e6cef2f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "9b1c90f5b4d96877e67d9e52991fdb119ffee7fdd8788b94e4dd7b5325c4a0c8"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-copper-dragon-wyrmling-action-slowing-breath",
+          "client": "gm",
+          "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61"
         }
       },
       "why": "Reaction denial, halved speed and action or bonus action limit until end of next turn; data effect has no clear changes.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmCopperDragonWy.mmSlowingBreath0": "xmm-copper-dragon-wyrmling-slowing-breath"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The breath's effect lasts until the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T05:36:41.803Z",
+          "leavesNote": "Nothing else of the feature is changed: its damage, save and area are played from the item's own data."
+        },
+        "origin": "Copper Dragon Wyrmling"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:couatl/action/bite",
@@ -50606,6 +50813,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-drider-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.759Z",
           "core": "0.290.0",
@@ -50637,14 +50852,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-drider-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; circumstance-limited.",
@@ -56936,7 +57143,7 @@
       "edition": "2024",
       "owner": "Faerie Dragon Youth",
       "section": "action",
-      "identifier": "euphoria-breath",
+      "identifier": "xmm-faerie-dragon-youth-euphoria-breath",
       "page": 117,
       "srd": false,
       "text": {
@@ -56958,7 +57165,8 @@
           ],
           "data": {
             "sha256": "048c582619099aacc1b62ea8ccb4238ad445230f8a9c7dc19046f7f949a7c84d"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -57003,11 +57211,72 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T05:36:47.931Z",
+          "core": "0.290.0",
+          "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41",
+          "item": "048c582619099aacc1b62ea8ccb4238ad445230f8a9c7dc19046f7f949a7c84d",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "euphoria-breath",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T05:36:47.931Z",
+          "core": "0.290.0",
+          "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41",
+          "emits": "093b9af20caf5e0087b33afd411e5cbee8d6eaf6ff13c690771eb7438d9dfeaa",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "048c582619099aacc1b62ea8ccb4238ad445230f8a9c7dc19046f7f949a7c84d"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-faerie-dragon-youth-action-euphoria-breath",
+          "client": "gm",
+          "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41"
         }
       },
       "why": "Incapacitated until end of next turn with random movement; data has wrong half-damage and no timing.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmFaerieDragonYo.mmEuphoriaBreath": "xmm-faerie-dragon-youth-euphoria-breath"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The Incapacitated condition lasts until the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "hv7my3sOURYES70U": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T05:36:41.803Z",
+          "leavesNote": "Nothing else of the feature is changed: its damage, save and area are played from the item's own data."
+        },
+        "origin": "Faerie Dragon Youth"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:faerie-dragon-youth/trait/magic-resistance",
@@ -86862,6 +87131,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-juvenile-shadow-dragon-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.812Z",
           "core": "0.290.0",
@@ -86893,14 +87170,6 @@
           "items": {
             "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-juvenile-shadow-dragon-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b"
         }
       },
       "why": "Disadvantage on checks and attacks while in sunlight; data lacks it.",
@@ -87700,6 +87969,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kobold-warrior-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.813Z",
           "core": "0.290.0",
@@ -87731,14 +88008,6 @@
           "items": {
             "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kobold-warrior-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f"
         }
       },
       "why": "Disadvantage on checks and attacks while in sunlight; data lacks it.",
@@ -89055,6 +89324,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-archpriest-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.815Z",
           "core": "0.290.0",
@@ -89086,14 +89363,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kuo-toa-archpriest-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9"
         }
       },
       "why": "Disadvantage on checks and attacks while in sunlight; data lacks it.",
@@ -89140,7 +89409,7 @@
       "edition": "2024",
       "owner": "Kuo-toa Monitor",
       "section": "action",
-      "identifier": "bone-whip",
+      "identifier": "xmm-kuo-toa-monitor-bone-whip",
       "page": 190,
       "srd": false,
       "text": {
@@ -89162,7 +89431,8 @@
           ],
           "data": {
             "sha256": "279dd13181d54a7ba2cf992ccac203f927daf79f383814a3fa3f31f7833245f9"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -89197,11 +89467,64 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T05:37:19.786Z",
+          "core": "0.290.0",
+          "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9",
+          "item": "279dd13181d54a7ba2cf992ccac203f927daf79f383814a3fa3f31f7833245f9",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "bone-whip",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T05:37:19.786Z",
+          "core": "0.290.0",
+          "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9",
+          "emits": "a71daad1ea9ca8bdd99ba5f0b1c3dfbd07afc5d19b7c88ab05f5271e1843119f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "279dd13181d54a7ba2cf992ccac203f927daf79f383814a3fa3f31f7833245f9"
+          }
         }
       },
       "why": "Attack with extra damage, but the opportunity attack denial until its next turn has an empty effect; needs a rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmKuotoaMonitor0.mmBoneWhip000000": "xmm-kuo-toa-monitor-bone-whip"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The creature hit stays unable to make Opportunity Attacks until the monitor's own turn comes round again.",
+        "entry": {
+          "effectEnds": {
+            "fnxPnbWeOvf9X0QR": "casterTurnStart"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T05:37:13.295Z",
+          "leavesNote": "Nothing else of the feature is changed: its damage, save and area are played from the item's own data."
+        },
+        "origin": "Kuo-toa Monitor"
+      },
+      "state": "gated"
     },
     {
       "key": "xmm:monster:kuo-toa-monitor/action/multiattack",
@@ -89401,6 +89724,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-monitor-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.816Z",
           "core": "0.290.0",
@@ -89432,14 +89763,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kuo-toa-monitor-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data carries nothing, needs a conditional rule.",
@@ -89789,6 +90112,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-whip-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.817Z",
           "core": "0.290.0",
@@ -89820,14 +90151,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kuo-toa-whip-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4"
         }
       },
       "why": "Disadvantage in sunlight only; data carries nothing, needs a conditional rule.",
@@ -90328,6 +90651,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.820Z",
           "core": "0.290.0",
@@ -90359,14 +90690,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-kuo-toa-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649"
         }
       },
       "why": "Disadvantage in sunlight only; data carries nothing, needs a conditional rule.",
@@ -124752,6 +125075,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-shadow-dragon-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.863Z",
           "core": "0.290.0",
@@ -124783,14 +125114,6 @@
           "items": {
             "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-shadow-dragon-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data lacks it.",
@@ -128322,6 +128645,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-specter-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.871Z",
           "core": "0.290.0",
@@ -128353,14 +128684,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-specter-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data lacks it.",
@@ -139869,6 +140192,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-troglodyte-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.894Z",
           "core": "0.290.0",
@@ -139900,14 +140231,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-troglodyte-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data lacks it.",
@@ -151135,6 +151458,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-wight-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.911Z",
           "core": "0.290.0",
@@ -151166,14 +151497,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-wight-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508"
         }
       },
       "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
@@ -151945,6 +152268,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-winged-kobold-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.912Z",
           "core": "0.290.0",
@@ -151976,14 +152307,6 @@
           "items": {
             "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-winged-kobold-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f"
         }
       },
       "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
@@ -152847,6 +153170,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-wraith-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa"
+        },
         "reading": {
           "at": "2026-11-23T04:50:29.913Z",
           "core": "0.290.0",
@@ -152878,14 +153209,6 @@
           "items": {
             "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:00:05.919Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-wraith-trait-sunlight-sensitivity",
-          "client": "gm",
-          "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa"
         }
       },
       "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
@@ -155724,7 +156047,7 @@
       "edition": "2024",
       "owner": "Young Copper Dragon",
       "section": "action",
-      "identifier": "slowing-breath",
+      "identifier": "xmm-young-copper-dragon-slowing-breath",
       "page": 78,
       "srd": true,
       "text": {
@@ -155746,7 +156069,8 @@
           ],
           "data": {
             "sha256": "2dd2504d565b160507e44a2f88a072facafc192a92fbddb52d7dde1a473c9472"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -155761,7 +156085,8 @@
           ],
           "data": {
             "sha256": "eb23be53aae8680d160b6978b6d3d23458ff7f5087b207e03aed8a51e346e2fb"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -155796,11 +156121,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T05:36:48.173Z",
+          "core": "0.290.0",
+          "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495",
+          "item": "2dd2504d565b160507e44a2f88a072facafc192a92fbddb52d7dde1a473c9472",
+          "delta": [
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "slowing-breath",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T05:36:48.173Z",
+          "core": "0.290.0",
+          "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495",
+          "emits": "3ff35231ecec2c686a45549e5b496565175ab5ad41b70e79c6eafac6cedfa81e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "2dd2504d565b160507e44a2f88a072facafc192a92fbddb52d7dde1a473c9472"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:51:55.550Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-young-copper-dragon-action-slowing-breath",
+          "client": "gm",
+          "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495"
         }
       },
       "why": "Half speed, no reactions and action/bonus restriction until end of next turn; data lacks the restrictions.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmYoungCopperDra.mmSlowingBreath0": "xmm-young-copper-dragon-slowing-breath"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The breath's effect lasts until the end of the target's next turn.",
+        "entry": {
+          "effectEnds": {
+            "ztGUDHGfoUxlUY53": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T05:36:41.803Z",
+          "leavesNote": "Nothing else of the feature is changed: its damage, save and area are played from the item's own data."
+        },
+        "origin": "Young Copper Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:young-gold-dragon/action/fire-breath",

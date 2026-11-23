@@ -46,11 +46,15 @@ export const SOURCES = Object.freeze({
   "Ml3peAqEgqgm95nj": "xmm-dracolich-terrifying-presence",
   "mmAdultBrassDrag.mmScorchingSands": "xmm-adult-brass-dragon-scorching-sands",
   "mmAdultCopperDra.mmSlowingBreath0": "xmm-adult-copper-dragon-slowing-breath",
+  "mmAdultWhiteDrag.mmFreezingBurst0": "xmm-adult-white-dragon-freezing-burst",
+  "mmAncientBrassDr.mmScorchingSands": "xmm-ancient-brass-dragon-scorching-sands",
   "mmChaosClaw00000": "xmm-gray-slaad-chaos-claw",
   "mmChaosStaff0000": "xmm-green-slaad-chaos-staff",
+  "mmCopperDragonWy.mmSlowingBreath0": "xmm-copper-dragon-wyrmling-slowing-breath",
   "mmDreadScythe000": "xmm-death-cultist-dread-scythe",
   "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
   "mmDrider00000000.mmSunlightSensit": "xmm-drider-sunlight-sensitivity",
+  "mmFaerieDragonYo.mmEuphoriaBreath": "xmm-faerie-dragon-youth-euphoria-breath",
   "mmHasten00000000": "xmm-clay-golem-hasten",
   "mmHeartSight0000": "xmm-sprite-heart-sight",
   "mmHungerOfYeenog": "xmm-gnoll-demoniac-hunger-of-yeenoghu",
@@ -88,6 +92,7 @@ export const SOURCES = Object.freeze({
   "mmWight000000000.mmSunlightSensit": "xmm-wight-sunlight-sensitivity",
   "mmWingedKobold00.mmSunlightSensit": "xmm-winged-kobold-sunlight-sensitivity",
   "mmWraith00000000.mmSunlightSensit": "xmm-wraith-sunlight-sensitivity",
+  "mmYoungCopperDra.mmSlowingBreath0": "xmm-young-copper-dragon-slowing-breath",
   "yDu5v2Fj4bPhdXgS": "xmm-death-slaad-chaos-blade",
   "yO5Jxg4POQGRLlXI": "xmm-flumph-stench-spray"
 });

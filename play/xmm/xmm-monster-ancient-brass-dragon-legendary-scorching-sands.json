@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-ancient-brass-dragon-legendary-scorching-sands",
+  "key": "xmm:monster:ancient-brass-dragon/legendary/scorching-sands",
+  "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "The effect is placed, is still there when the target's turn starts, and is gone after that turn."
+}

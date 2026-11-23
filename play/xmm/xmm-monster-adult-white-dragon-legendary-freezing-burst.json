@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-adult-white-dragon-legendary-freezing-burst",
+  "key": "xmm:monster:adult-white-dragon/legendary/freezing-burst",
+  "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "The effect is placed, is still there when the target's turn starts, and is gone after that turn."
+}

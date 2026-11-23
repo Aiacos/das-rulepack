@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-copper-dragon-wyrmling-action-slowing-breath",
+  "key": "xmm:monster:copper-dragon-wyrmling/action/slowing-breath",
+  "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "The effect is placed, is still there when the target's turn starts, and is gone after that turn."
+}
