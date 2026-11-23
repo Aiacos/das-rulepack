@@ -18,16 +18,18 @@
 // action only; budget: the turn's movement freed of opportunity attacks), `ctx.engineLog`, `ctx.expect`, `ctx.restore`
 // (everything it changed is put back, even when a check fails) and `ctx.log`. A check never passes on nothing: no
 // resolution, no damage, no new condition, no move, no effect to end, no change of what the engine reports fail it.
+// Its context helpers (lendItem, castTarget, combatReady, advance, casterTurn, outcomeOf, clearNew...) and `stampLine` are
+// exported for the hand-written scenarios of engineered rules (Ruling R43, play/lib/handwritten.mjs): one implementation.
 import { assertionOfCanonical } from "../../tools/pipeline/registry.mjs";
 
-const TRIES = 20;
+export const TRIES = 20;
 const TARGET = "rulepack-target";
 const CASTER = "rulepack-caster";
-const HP = 100;
+export const HP = 100;
 // The connector's tools are asynchronous on the GM's client: pauses let the engine finish (a forced move, a turn's endings).
 // `timing.scale` 0 makes them instant (the pack's tests).
 export const timing = { scale: 1 };
-const pause = (ms) => (timing.scale ? new Promise((r) => setTimeout(r, ms * timing.scale)) : Promise.resolve());
+export const pause = (ms) => (timing.scale ? new Promise((r) => setTimeout(r, ms * timing.scale)) : Promise.resolve());
 
 // How many turn changes pass, after the effect is placed during the caster's turn (the caster acts first, then the target),
 // before the one at which it must end (tools/pipeline/definitions.mjs `ends`; DAS_CORE core/effect-ends.mjs effectEndsNow).
@@ -37,7 +39,7 @@ const TURNS_BEFORE = Object.freeze({ casterTurnStart: 1, casterTurnEnd: 2, beare
 const STAT_OF = Object.freeze({ reactions: "reactionBlocked", actionAndBonus: "actionOrBonus" });
 
 // The outcome of a resolution for the target, in the assertion vocabulary's words (assert.mjs ROLLS), or null.
-function outcomeOf(resolution, target) {
+export function outcomeOf(resolution, target) {
   if (typeof target?.save?.success === "boolean") return target.save.success ? "savedSave" : "failedSave";
   if (typeof target?.hit === "boolean") return resolution?.attack?.roll?.isCritical ? "crit" : target.hit ? "hit" : "miss";
   return null;
@@ -46,7 +48,11 @@ const EXPECTED = { 0: () => 0, 0.5: (t) => Math.floor(t / 2), 1: (t) => t, 2: (t
 const isConcentration = (e) => /concentr/i.test(e?.name ?? "") || (e?.statuses ?? []).includes("concentrating");
 const idOf = (e) => e?._id ?? e?.id;
 // The engine names a resolution's target by its token's uuid (`Scene.<id>.Token.<id>`); its name may be randomised.
-const isTarget = (x, token) => typeof x?.token === "string" && x.token.endsWith(`.Token.${token.id}`);
+export const isTarget = (x, token) => typeof x?.token === "string" && x.token.endsWith(`.Token.${token.id}`);
+
+/** The stamp line of Ruling R10, which `npm run played` reads: the one form every scenario of the pack prints. */
+export const stampLine = (scenario, version, rule, checks) =>
+  `das-rulepack: ${scenario} core=${version} rule=${rule} checks=${checks}`;
 
 /** `{ name, scene, run(ctx) }` for the runner, from a scenario's JSON (tools/pipeline/scenarios.mjs scenarioOf). */
 export function scenario(json) {
@@ -63,7 +69,7 @@ export function scenario(json) {
       if (roles) await play(env, roles);
       const { version } = await ctx.engine("status");
       if (env.withheld) ctx.log(`stamp withheld: ${env.withheld}`);
-      else ctx.log(`das-rulepack: ${json.scenario} core=${version} rule=${json.rule} checks=${ctx.checks}`);
+      else ctx.log(stampLine(json.scenario, version, json.rule, ctx.checks));
     }
   };
 }
@@ -79,15 +85,24 @@ async function castOf(ctx, json) {
       return null;
     }
     const at = await ctx.position(caster);
-    const target = await castTarget(ctx, json, { x: at.x, y: at.y });
+    const target = await castTarget(ctx, json.setup.target.actor, { x: at.x, y: at.y });
     return target ? { caster, target, itemId: item.id, monster: true } : null;
   }
   const caster = await ctx.token(json.setup.caster);
-  const target = await castTarget(ctx, json, json.setup.near);
+  const target = await castTarget(ctx, json.setup.target.actor, json.setup.near);
   if (!target) return null;
-  const spell = item.kind === "spell";
+  const itemId = await lendItem(ctx, caster, item.uuid, { spell: item.kind === "spell" });
+  return { caster, target, itemId, monster: false };
+}
+
+/**
+ * A compendium item (`uuid`) on the arena's caster for the run (`spell`: cast at will), every change put back by the runner's
+ * restore: the caster's spell slots, the concentration effects the run adds, and the spent uses of an item it already held.
+ * Returns the item's id on the caster.
+ */
+export async function lendItem(ctx, caster, uuid, { spell = false } = {}) {
   const { doc, items } = await keepCaster(ctx, caster);
-  const itemId = await ctx.ensureItem(caster, item.uuid, spell ? { system: { method: "atwill" } } : {});
+  const itemId = await ctx.ensureItem(caster, uuid, spell ? { system: { method: "atwill" } } : {});
   const held = items.get(itemId);
   if (held) {
     // The caster already held it: ensureItem lent nothing, so its spent uses are put back as they were.
@@ -97,17 +112,18 @@ async function castOf(ctx, json) {
     }
     ctx.restore(() => ctx.call("upsert-actor-item", { actorId: doc.actorId, itemData, match: { path: "_id", value: itemId } }));
   }
-  return { caster, target, itemId, monster: false };
+  return itemId;
 }
 
-async function castTarget(ctx, json, near) {
-  const target = (await ctx.cast({ [TARGET]: json.setup.target.actor }, { near, disposition: -1 }))?.[TARGET] ?? null;
-  if (!target) ctx.expect(false, `no creature ${json.setup.target.actor} on the server: nothing could be checked`);
+/** A creature (an actor id of the Monster Manual 2025 / SRD 2024) cast hostile near `near` for the run, or null (a check fails). */
+export async function castTarget(ctx, actor, near) {
+  const target = (await ctx.cast({ [TARGET]: actor }, { near, disposition: -1 }))?.[TARGET] ?? null;
+  if (!target) ctx.expect(false, `no creature ${actor} on the server: nothing could be checked`);
   return target;
 }
 
 // A token's document target for the connector's embedded-document calls, as the runner builds it (linked or not).
-async function documentOf(ctx, token) {
+export async function documentOf(ctx, token) {
   const { data } = await ctx.call("get-scene-object", { type: "Token", objectId: token.id });
   const linked = !!data.actorLink;
   const scene = linked ? null : (await ctx.scene()).sceneId;
@@ -118,7 +134,7 @@ async function documentOf(ctx, token) {
 
 // Puts back what the run changed on the arena's caster: the uses of an item it already held, its spell slots, and only the
 // concentration effects the run added.
-async function keepCaster(ctx, caster) {
+export async function keepCaster(ctx, caster) {
   const doc = await documentOf(ctx, caster);
   const actor = await ctx.call("get-actor", { actorId: doc.actorId });
   const items = new Map((actor?.items ?? []).map((i) => [i._id, i]));
@@ -282,18 +298,19 @@ async function moveNote(ctx) {
 // ---------------------------------------------------------------------------------------------------------------------------
 // Combat.
 
-const combatOf = async (ctx) => {
+export const combatOf = async (ctx) => {
   const s = typeof ctx.combat === "function" ? await ctx.combat() : null;
   return s?.combat ?? s?.combats?.[0] ?? s ?? null;
 };
-const currentToken = async (ctx) => {
+export const currentToken = async (ctx) => {
   const c = await combatOf(ctx);
   return (c?.combatants ?? []).find((x) => x.id === c.currentCombatantId)?.tokenId ?? null;
 };
 
 // One combat for the scenario, the caster first (initiative 20), the target second (10); the runner's restore ends it. When
-// it cannot be started, the check fails and the stamp is withheld.
-async function combatReady(env, roles, n) {
+// it cannot be started, the check fails and the stamp is withheld. `env` is `{ ctx, combat, withheld }`, `roles` `{ caster,
+// target }`, `n` the label of the check that needs it.
+export async function combatReady(env, roles, n) {
   const { ctx } = env;
   if (!env.combat) {
     let why = null;
@@ -322,7 +339,7 @@ async function combatReady(env, roles, n) {
 // One turn on, and seen to be: next-turn is asked, then the current combatant is read until it has changed (a creature that
 // cannot act, or a window the engine opens at a turn's end, can delay it); asked once more when it has not. False when the
 // turn still has not changed.
-async function advance(ctx) {
+export async function advance(ctx) {
   const before = await currentToken(ctx);
   for (let attempt = 0; attempt < 2; attempt++) {
     await ctx.nextTurn();
@@ -335,7 +352,7 @@ async function advance(ctx) {
 }
 
 // The start of a new turn of the caster (its budget fresh, a new turn for an effect's placement).
-async function casterTurn(ctx, roles) {
+export async function casterTurn(ctx, roles) {
   for (let i = 0; i < 4; i++) {
     await ctx.nextTurn();
     await pause(1500);
@@ -347,12 +364,12 @@ async function casterTurn(ctx, roles) {
 // ---------------------------------------------------------------------------------------------------------------------------
 // One check.
 
-const hasStatus = (effects, status) => effects.some((e) => (e.statuses ?? []).includes(status) && !e.disabled);
+export const hasStatus = (effects, status) => effects.some((e) => (e.statuses ?? []).includes(status) && !e.disabled);
 const statOf = async (ctx, token, field) => (await ctx.engine("stats", { tokenId: token.id }).catch(() => null))?.[field];
 const disengaged = async (ctx, token) => (await ctx.engine("budget", { tokenId: token.id }).catch(() => null))?.disengaged;
 
 // Removes the effects the use left on the target (ids not in `before`).
-async function clearNew(ctx, target, before) {
+export async function clearNew(ctx, target, before) {
   const added = (await ctx.effects(target)).filter((e) => !before.has(idOf(e)));
   if (!added.length) return;
   const doc = await documentOf(ctx, target);
