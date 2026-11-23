@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-cleric-light-3-radiance-of-the-dawn",
+  "key": "xphb:feature:cleric/light/3/radiance-of-the-dawn",
+  "rule": "4a231dd05661ae91575321de47a8795588d7d2f633db09ab386e0efca8801d79",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "Magical darkness laid beside the cleric is gone once the flash, 30 feet around the cleric, has covered it."
+}

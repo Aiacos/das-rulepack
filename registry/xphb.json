@@ -10373,9 +10373,55 @@
               "outcome": "second-unsure"
             }
           }
+        },
+        "gates": {
+          "at": "2026-11-23T11:35:09.938Z",
+          "core": "0.291.0",
+          "rule": "4a231dd05661ae91575321de47a8795588d7d2f633db09ab386e0efca8801d79",
+          "emits": "4151471b73dbd43b6fa135437f09aca69c04b2a9574c310439ce78ad8947cd6b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "718240de5c8bf05b3ffd10725a005f34a80cac67c34e6bd471a8528b54b82d4c"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T11:39:00.228Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-cleric-light-3-radiance-of-the-dawn",
+          "client": "gm",
+          "rule": "4a231dd05661ae91575321de47a8795588d7d2f633db09ab386e0efca8801d79"
         }
       },
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The flash dispels the magical darkness its area covers.",
+        "entry": {
+          "light": {
+            "on": "area",
+            "dim": 30,
+            "units": "ft",
+            "dispels": 9
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T11:35:03.576Z",
+          "leavesNote": "The flash is written as a dim light on its zone, lasting as long as the zone; whom the cleric chooses stays with the player; save and damage are the item's own."
+        },
+        "origin": "Light 3"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:cleric/light/3/warding-flare",
