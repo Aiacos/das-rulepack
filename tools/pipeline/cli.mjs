@@ -249,7 +249,11 @@ function gatesCommand(args) {
     const viewOf = ci ? undefined : engineViewFromEnv({ required: false });
     const engineViewOf = viewOf ? (record) => {
       const view = viewOf(record.key);
-      return view ? viewFingerprint(view, core) : null;
+      if (!view) return null;
+      // The item's summary as the reader saw it (its advancements count in the fingerprint).
+      const item = (record.items ?? []).find((i) => i?.origin === "official" && i.match === "matched");
+      const doc = item ? documents.official?.[item.docId] : null;
+      return viewFingerprint(view, core, doc ? structureOf(doc) : null);
     } : undefined;
     const { failures, notes, updated } = runGates(records, {
       core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf, rereadReadingOf, engineViewOf, dumpIds

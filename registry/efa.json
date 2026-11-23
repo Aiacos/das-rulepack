@@ -793,12 +793,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "e418ea9b5547e8b5bfffd4b1b0508531a0e0f5a606bf1d82c94bd1dcb376ee0e"
             },
             "covered": false,
             "unexpressed": [
@@ -900,16 +900,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "f768ba3f4c9a1e30cb6e9789591f41856292ce92d10a02377f3bb869b71f5526"
             },
             "covered": false,
             "unexpressed": [
-              "no-key"
+              "no-key",
+              "use-time-choice"
             ]
           }
         }
@@ -964,12 +965,12 @@
             "confidence": 0.6
           },
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "5d04067e99196c91ae884ae1410238ff698741f5e861a4c63f002aa0fd1e417d"
             },
             "covered": false,
             "unexpressed": [
@@ -1024,12 +1025,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.75,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "5d04067e99196c91ae884ae1410238ff698741f5e861a4c63f002aa0fd1e417d"
             },
             "covered": false,
             "unexpressed": [
@@ -1087,23 +1088,43 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "f768ba3f4c9a1e30cb6e9789591f41856292ce92d10a02377f3bb869b71f5526"
             },
             "covered": false,
             "beyond": [
               {
                 "given": {
-                  "roll": "failedSave"
+                  "roll": "failedSave",
+                  "targetType": "beast"
                 },
                 "expect": {
                   "condition": {
                     "applied": "frightened"
                   }
+                }
+              },
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetType": "monstrosity"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "frightened"
+                  }
+                }
+              },
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "ends": "casterTurnStart"
                 }
               }
             ],
@@ -1159,12 +1180,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.75,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "251e7e59e2fafeba9354b30f730666f9293f3ee2819468dd7df3eed34b0047da"
             },
             "covered": false,
             "unexpressed": [
@@ -1223,12 +1244,12 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "130104fe08f44044dbe28fc1efbcf0fbbfbbb24c646fd5d088c862df6a85ea8e"
             },
             "covered": false,
             "unexpressed": [
@@ -1290,12 +1311,12 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.75,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "5d04067e99196c91ae884ae1410238ff698741f5e861a4c63f002aa0fd1e417d"
             },
             "covered": false,
             "unexpressed": [
@@ -1350,12 +1371,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.75,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "5d04067e99196c91ae884ae1410238ff698741f5e861a4c63f002aa0fd1e417d"
             },
             "covered": false,
             "unexpressed": [
@@ -1456,12 +1477,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "5d04067e99196c91ae884ae1410238ff698741f5e861a4c63f002aa0fd1e417d"
             },
             "covered": false,
             "unexpressed": [
@@ -1523,12 +1544,12 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "5d04067e99196c91ae884ae1410238ff698741f5e861a4c63f002aa0fd1e417d"
             },
             "covered": false,
             "unexpressed": [
@@ -1583,12 +1604,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.75,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "130104fe08f44044dbe28fc1efbcf0fbbfbbb24c646fd5d088c862df6a85ea8e"
             },
             "covered": false,
             "unexpressed": [
@@ -1645,31 +1666,18 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.75,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "5d04067e99196c91ae884ae1410238ff698741f5e861a4c63f002aa0fd1e417d"
             },
             "covered": false,
             "beyond": [
               {
                 "given": {
-                  "moment": "isAttacked"
-                },
-                "expect": {
-                  "roll": {
-                    "mode": "disadvantage",
-                    "on": "attack",
-                    "for": "enemy"
-                  }
-                }
-              },
-              {
-                "given": {
-                  "moment": "enemyAttacks",
-                  "targetWithin": 30
+                  "moment": "enemyAttacks"
                 },
                 "expect": {
                   "roll": {
@@ -2098,10 +2106,24 @@
           "at": "2026-11-21T19:58:27.931Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "2d3659f104f4f1c1f067ff1db12913741e77453ad52b02bc20de03297dd50323"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction to swap places and take the hit instead has no effect in data; the check bonus part is carried by effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -2183,31 +2205,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-002",
-          "at": "2026-11-21T19:58:27.931Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T00:24:08.941Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Lightning resistance is not set by any effect in data (data lacks it); check bonus is carried by effect.",
+            "triaged": {
+              "by": "reader-efa-002",
+              "at": "2026-11-21T19:58:27.931Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-i007",
-            "at": "2026-11-22T23:41:45.698Z",
-            "confidence": 0.8,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+              "sha": "05fa51779c759fe1fc68014bf86c30b0c9e9e8c45273c3406e341b35c27d706e"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-m002",
+              "at": "2026-11-23T00:25:52.278Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "05fa51779c759fe1fc68014bf86c30b0c9e9e8c45273c3406e341b35c27d706e"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Lightning resistance is not set by any effect in data (data lacks it); check bonus is carried by effect.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -2301,10 +2339,24 @@
             "by": "second-s10",
             "confidence": 0.65
           },
-          "via": "bulk-unsure"
+          "via": "bulk-unsure",
+          "reread": {
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6bc5b76809972eda42d94f935f84b60aa928026d1bdcdeb96faa7fad27f0b1db"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "data lacks the extra slot: level is half character level capped at 5, short or long rest recovery, usable only for the dragonmark spells; plus always-prepared spells.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -3780,10 +3832,24 @@
             "by": "second-s11",
             "confidence": 0.7
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Enchant effects change only name, description and properties; Intelligence replacing the attack and damage ability is not carried. Entry: missing piece.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4366,10 +4432,25 @@
             "by": "second-s11",
             "confidence": 0.62
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "082934f41e5d6eb09f8bf8c574deda180c6d486b88af53cb4d15d76c5d6df02f"
+            },
+            "covered": false,
+            "unexpressed": [
+              "death-trigger",
+              "no-key"
+            ]
+          }
         }
       },
       "why": "One cannon at a time, vanishes at 0 HP or after an hour, early dismissal; activities carry the attacks but not these limits. Entry: end of effect and one-at-a-time.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -5006,17 +5087,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i008",
-            "at": "2026-11-22T23:41:46.434Z",
-            "confidence": 0.8,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "e418ea9b5547e8b5bfffd4b1b0508531a0e0f5a606bf1d82c94bd1dcb376ee0e"
             },
             "covered": false,
             "unexpressed": [
-              "use-limit",
-              "trigger-filter"
+              "use-limit"
             ]
           }
         }
@@ -12610,31 +12690,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "reader-efa-008",
-          "at": "2026-11-21T19:58:29.735Z",
-          "confidence": 0.82,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T00:24:08.941Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Psychic damage resistance; data lacks any effect for it, so a rule or data fix must grant the resistance.",
+            "triaged": {
+              "by": "reader-efa-008",
+              "at": "2026-11-21T19:58:29.735Z",
+              "confidence": 0.82,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-i008",
-            "at": "2026-11-22T23:41:46.434Z",
-            "confidence": 0.75,
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "48190ec357d6c09659021d52ea46cc231cee03153fa4fa6fa1917b75dd6ed8ad"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-m002",
+              "at": "2026-11-23T00:25:52.278Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "48190ec357d6c09659021d52ea46cc231cee03153fa4fa6fa1917b75dd6ed8ad"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
           }
         }
       },
-      "why": "Psychic damage resistance; data lacks any effect for it, so a rule or data fix must grant the resistance.",
-      "hint": "beyond-engine",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -13270,12 +13366,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i008",
-            "at": "2026-11-22T23:41:46.434Z",
+            "by": "reread-k004",
+            "at": "2026-11-23T00:24:08.941Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "28cea3a7e4b96da7284842ba68567e45e800386ed070ae445ca26cb8ea2e027c"
             },
             "covered": false,
             "unexpressed": [

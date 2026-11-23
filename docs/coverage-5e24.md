@@ -20,16 +20,16 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | Ambiguous against the official module (wait for `npm run resolve`) | 164 |
 | No item in the official module | 424 |
 | Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 821 |
-| Verdict `none` (nothing to automate in combat) | 1,336 |
-| Verdict `data` (the item's own data is enough) | 1,287 |
-| Verdict `entry` (a declarative rule is needed and not written yet) | 1,267 |
+| Verdict `none` (nothing to automate in combat) | 1,343 |
+| Verdict `data` (the item's own data is enough) | 1,290 |
+| Verdict `entry` (a declarative rule is needed and not written yet) | 1,257 |
 | Verdict `code` (a script is needed) | 0 |
 | Verdict `engine` (needs something the engine lacks) | 0 |
 | Verdict `unverifiable` (no text) | 118 |
 | No verdict, in `registry/queue.json`, waiting for a person | 48 |
 | No verdict, left for reader agents | 15 |
 
-Who set the verdicts: reader agents 3,718, rule 1,016, SRD reading of November 2026 95. A reader agent's verdict is one reading of
+Who set the verdicts: reader agents 3,708, rule 1,026, SRD reading of November 2026 95. A reader agent's verdict is one reading of
 the text against the structure of the item's data; it was not checked by a second reader and not played. Verdicts below 0.7
 of confidence, and every `engine` verdict, were not applied: they are in the queue.
 
@@ -47,10 +47,10 @@ the name ("+1", a quantity): 55.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | spell | 391 | 391 / 0 / 0 | 390 / 1 / 0 | 278 | 65 | 38 | 8 | 0 | 0 | 0 | 2 | 0 |
-| feat | 77 | 77 / 0 / 0 | 0 / 2 / 75 | 47 | 18 | 9 | 3 | 0 | 0 | 0 | 0 | 0 |
+| feat | 77 | 77 / 0 / 0 | 0 / 2 / 75 | 47 | 20 | 9 | 1 | 0 | 0 | 0 | 0 | 0 |
 | option | 58 | 58 / 0 / 0 | 0 / 0 / 58 | 39 | 3 | 14 | 2 | 0 | 0 | 0 | 0 | 0 |
-| feature | 592 | 409 / 60 / 123 | 0 / 0 / 592 | 176 | 254 | 47 | 111 | 0 | 0 | 0 | 4 | 0 |
-| species | 48 | 40 / 0 / 8 | 0 / 0 / 48 | 10 | 18 | 8 | 2 | 0 | 0 | 0 | 0 | 10 |
+| feature | 592 | 409 / 60 / 123 | 0 / 0 / 592 | 176 | 257 | 49 | 106 | 0 | 0 | 0 | 4 | 0 |
+| species | 48 | 40 / 0 / 8 | 0 / 0 / 48 | 10 | 19 | 8 | 1 | 0 | 0 | 0 | 0 | 10 |
 | background | 16 | 16 / 0 / 0 | 0 / 0 / 16 | 0 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 217 | 159 / 16 / 42 | 188 / 8 / 21 | 19 | 115 | 0 | 4 | 0 | 0 | 79 | 0 | 0 |
 | monster | 62 | 58 / 0 / 4 | 51 / 0 / 11 | 1 | 4 | 21 | 36 | 0 | 0 | 0 | 0 | 0 |
@@ -80,10 +80,10 @@ Records in `registry/xmm.json`: 2147 inventoried.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | spell | 1 | 1 / 0 / 0 | 1 / 0 / 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-| feat | 28 | 28 / 0 / 0 | 0 / 0 / 28 | 0 | 2 | 10 | 16 | 0 | 0 | 0 | 0 | 0 |
+| feat | 28 | 28 / 0 / 0 | 0 / 0 / 28 | 0 | 2 | 11 | 15 | 0 | 0 | 0 | 0 | 0 |
 | option | 4 | 0 / 0 / 4 | 0 / 0 / 4 | 0 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | feature | 60 | 49 / 0 / 11 | 0 / 0 / 60 | 0 | 27 | 6 | 27 | 0 | 0 | 0 | 0 | 0 |
-| species | 24 | 22 / 0 / 2 | 0 / 0 / 24 | 1 | 10 | 4 | 4 | 0 | 0 | 0 | 0 | 5 |
+| species | 24 | 22 / 0 / 2 | 0 / 0 / 24 | 1 | 11 | 4 | 3 | 0 | 0 | 0 | 0 | 5 |
 | background | 17 | 17 / 0 / 0 | 0 / 0 / 17 | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 6 | 5 / 1 / 0 | 6 / 0 / 0 | 0 | 1 | 1 | 4 | 0 | 0 | 0 | 0 | 0 |
 | monster | 118 | 114 / 4 / 0 | 16 / 0 / 102 | 5 | 4 | 59 | 48 | 0 | 0 | 0 | 2 | 0 |

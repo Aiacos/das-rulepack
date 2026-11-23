@@ -105,7 +105,35 @@ export function structureOf(doc) {
   out.activities = Object.entries(isObject(system.activities) ? system.activities : {})
     .map(([id, a]) => activityOf(id, a, system.damage?.base));
   out.effects = list(doc?.effects).map(effectOf);
+  const advancements = advancementsOf(system.advancement);
+  if (advancements.length) out.advancements = advancements;
   return out;
+}
+
+// What dnd5e grants by itself when the item is on a sheet (its advancements), as closed words: the type; for a Trait the
+// trait keys it grants (`dr:fire`, `ci:charmed`, `saves:wis`…) and how many choices it offers; for an ItemGrant or an
+// ItemChoice how many items, and whether they are handed over as spells. Never a title, a hint or a formula.
+const TRAIT_KEY = /^[a-z]+(:[a-z0-9*-]+)*$/i;
+function advancementsOf(advancement) {
+  const all = Array.isArray(advancement) ? advancement : isObject(advancement) ? Object.values(advancement) : [];
+  const out = [];
+  for (const a of all) {
+    const type = plain(a?.type);
+    if (typeof type !== "string" || !type) continue;
+    const c = isObject(a.configuration) ? a.configuration : {};
+    const one = { type };
+    if (type === "Trait") {
+      const grants = sortedUnique(list(c.grants).filter((g) => typeof g === "string" && TRAIT_KEY.test(g)));
+      if (grants.length) one.grants = grants;
+      if (list(c.choices).length) one.choices = list(c.choices).length;
+    } else if (type === "ItemGrant" || type === "ItemChoice") {
+      const items = list(c.items).length || list(c.pool).length;
+      if (items) one.items = items;
+      if (isObject(c.spell) && Object.keys(c.spell).length) one.spells = true;
+    }
+    out.push(one);
+  }
+  return out.sort((x, y) => (JSON.stringify(x) < JSON.stringify(y) ? -1 : 1));
 }
 
 // A length in feet: a positive number, or a string of digits; anything else (a formula, "self", an empty value) is unknown.

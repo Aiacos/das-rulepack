@@ -2142,40 +2142,56 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "third-t1",
-          "at": "2026-11-21T23:14:37.952Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-002",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-23T00:24:06.508Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
+            "triaged": {
+              "by": "third-t1",
+              "at": "2026-11-21T23:14:37.952Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-002",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s45",
+                "confidence": 0.62
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s45",
-            "confidence": 0.62
-          },
-          "via": "third-reading",
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.7,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "875726ee7970e721f1c164e4e2e86976d0da2d6c9784bdc5d98c683a967a7e29"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "875726ee7970e721f1c164e4e2e86976d0da2d6c9784bdc5d98c683a967a7e29"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
           }
         }
       },
-      "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
-      "hint": "beyond-engine",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -2916,17 +2932,19 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.85,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "0c66ca732e2af03c6b09072184424d01de7c1ffde44510e5500e7c7d5dbdd68e"
             },
             "covered": false,
             "beyond": [
               {
-                "given": {},
+                "given": {
+                  "activity": "attack"
+                },
                 "expect": {
                   "roll": {
                     "mode": "advantage",
@@ -2937,8 +2955,8 @@
               }
             ],
             "unexpressed": [
-              "target-size",
               "target-state",
+              "target-size",
               "no-key"
             ]
           }
@@ -3434,40 +3452,56 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "third-t1",
-          "at": "2026-11-21T23:14:37.952Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-002",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-23T00:24:06.508Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
+            "triaged": {
+              "by": "third-t1",
+              "at": "2026-11-21T23:14:37.952Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-002",
+                "confidence": 0.65
+              },
+              "second": {
+                "by": "second-s45",
+                "confidence": 0.62
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s45",
-            "confidence": 0.62
-          },
-          "via": "third-reading",
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.7,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "4742e656511633c1a1effe9e3aa0c06b6e17262c68783953bdb198a4884f210c"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "4742e656511633c1a1effe9e3aa0c06b6e17262c68783953bdb198a4884f210c"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
           }
         }
       },
-      "why": "Data lacks the free cast of each spell once per long rest (no uses, no cast activity). Entry: restriction/use consumption missing.",
-      "hint": "beyond-engine",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -4724,11 +4758,25 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "d0b5bf68cdf766820bb7ac58ebc033b3f445297881d652230706716fa97c0c94"
+            },
+            "covered": false,
+            "unexpressed": [
+              "use-time-choice",
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Raises Brutal Strike damage and allows two effects per use; data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7012,16 +7060,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.8,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "1bd11312cf0e919dbd52dfb6d886543ef8e4b294d337ed82e2652beb634cd965"
             },
             "covered": false,
             "unexpressed": [
-              "no-key"
+              "use-time-choice"
             ]
           }
         }
@@ -8011,12 +8059,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.8,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "bbb22a6b129ba5dc2afc04469e3202369ff1c7de8cca3c7c206039f42166d678"
             },
             "covered": false,
             "beyond": [
@@ -8034,7 +8082,7 @@
               }
             ],
             "unexpressed": [
-              "target-state"
+              "use-limit"
             ]
           }
         }
@@ -11333,17 +11381,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.75,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "1d75c0fb0a61af8a2d1f856167fc2b1f0b757dca2796feef2dfd3e0184d8dc0f"
             },
             "covered": false,
             "unexpressed": [
-              "form-change",
-              "no-key"
+              "no-key",
+              "table-ruling"
             ]
           }
         }
@@ -12876,31 +12924,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-006",
-          "at": "2026-11-21T19:50:46.258Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T00:24:06.508Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Holding-condition free casts of one spell with uses by ability modifier and Long Rest recovery; data has only a replacement ritual activity.",
+            "triaged": {
+              "by": "reader-xphb-006",
+              "at": "2026-11-21T19:50:46.258Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "366660535d892753ea9729169d0dd3dcc9506d4891cc679b43b8589f7cffb62f"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366660535d892753ea9729169d0dd3dcc9506d4891cc679b43b8589f7cffb62f"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
           }
         }
       },
-      "why": "Holding-condition free casts of one spell with uses by ability modifier and Long Rest recovery; data has only a replacement ritual activity.",
-      "hint": "beyond-engine",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -13595,17 +13659,38 @@
         }
       ],
       "verdict": "entry",
+      "why": "One extra non-Magic action on own turn, with a limit of once per turn even with two uses; data lacks the action restriction.",
+      "hint": "core-generic",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-006",
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6f8226fb450137945aa096ddbdfd6304f4644b00817f9cac4340633f033d0d36"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.6,
+              "view": {
+                "core": "0.290.0",
+                "sha": "6f8226fb450137945aa096ddbdfd6304f4644b00817f9cac4340633f033d0d36"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "One extra non-Magic action on own turn, with a limit of once per turn even with two uses; data lacks the action restriction.",
       "state": "triaged"
     },
     {
@@ -13832,17 +13917,38 @@
         }
       ],
       "verdict": "entry",
+      "why": "One extra non-Magic action on own turn, with a limit of once per turn even with two uses; data lacks the action restriction.",
+      "hint": "core-generic",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-006",
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "6f8226fb450137945aa096ddbdfd6304f4644b00817f9cac4340633f033d0d36"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.6,
+              "view": {
+                "core": "0.290.0",
+                "sha": "6f8226fb450137945aa096ddbdfd6304f4644b00817f9cac4340633f033d0d36"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "One extra non-Magic action on own turn, with a limit of once per turn even with two uses; data lacks the action restriction.",
       "state": "triaged"
     },
     {
@@ -15619,12 +15725,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
-            "confidence": 0.75,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "48190ec357d6c09659021d52ea46cc231cee03153fa4fa6fa1917b75dd6ed8ad"
             },
             "covered": false,
             "beyond": [
@@ -15650,9 +15756,6 @@
                   }
                 }
               }
-            ],
-            "unexpressed": [
-              "no-key"
             ]
           }
         }
@@ -15771,12 +15874,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "bbb22a6b129ba5dc2afc04469e3202369ff1c7de8cca3c7c206039f42166d678"
             },
             "covered": false,
             "unexpressed": [
@@ -19581,31 +19684,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-008",
-          "at": "2026-11-21T19:50:46.864Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T00:24:06.508Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Free once per long rest cast of a spell; data lacks the use limit and slot waiver.",
+            "triaged": {
+              "by": "reader-xphb-008",
+              "at": "2026-11-21T19:50:46.864Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
-            "confidence": 0.7,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "45b9051f6917ec83d7ca2e706b8695be4362d2431a20322504ac7c30b18f9cfd"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "45b9051f6917ec83d7ca2e706b8695be4362d2431a20322504ac7c30b18f9cfd"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
           }
         }
       },
-      "why": "Free once per long rest cast of a spell; data lacks the use limit and slot waiver.",
-      "hint": "beyond-engine",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -19909,40 +20028,56 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "third-t1",
-          "at": "2026-11-21T23:14:37.952Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-009",
-            "confidence": 0.6
+          "by": "rule",
+          "at": "2026-11-23T00:24:06.508Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks the once-per-long-rest free cast of Find Steed (no uses, no cast activity); always-prepared part alone would be none. Entry: restriction missing.",
+            "triaged": {
+              "by": "third-t1",
+              "at": "2026-11-21T23:14:37.952Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-009",
+                "confidence": 0.6
+              },
+              "second": {
+                "by": "second-s46",
+                "confidence": 0.65
+              },
+              "via": "third-reading"
+            }
           },
-          "second": {
-            "by": "second-s46",
-            "confidence": 0.65
-          },
-          "via": "third-reading",
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
-            "confidence": 0.7,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "45b9051f6917ec83d7ca2e706b8695be4362d2431a20322504ac7c30b18f9cfd"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "45b9051f6917ec83d7ca2e706b8695be4362d2431a20322504ac7c30b18f9cfd"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
           }
         }
       },
-      "why": "Data lacks the once-per-long-rest free cast of Find Steed (no uses, no cast activity); always-prepared part alone would be none. Entry: restriction missing.",
-      "hint": "beyond-engine",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
@@ -22827,17 +22962,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T00:24:06.508Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Free cast once per long rest is carried by uses; the option to drop concentration for a 1 minute duration is a choice at cast time that data lacks.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "8f8b232e8a3ce4a4689c498118bd2a6873a9aa50675d674523e66b2b428c1900"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "8f8b232e8a3ce4a4689c498118bd2a6873a9aa50675d674523e66b2b428c1900"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Free cast once per long rest is carried by uses; the option to drop concentration for a 1 minute duration is a choice at cast time that data lacks.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -25622,12 +25787,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "8f8b232e8a3ce4a4689c498118bd2a6873a9aa50675d674523e66b2b428c1900"
             },
             "covered": false,
             "unexpressed": [
@@ -26210,17 +26375,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
-            "confidence": 0.85,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "041d4e678c1018cf03f6a72830c40fa7e886dfed340112b34e19306501196239"
             },
             "covered": false,
             "unexpressed": [
-              "follow-up-action",
-              "no-key"
+              "follow-up-action"
             ]
           }
         }
@@ -28364,17 +28528,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-012",
-          "at": "2026-11-21T19:50:48.071Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T00:24:06.508Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Free once-per-rest cast of a summon spell with optional no-concentration choice at cast time; data only spends a use",
+            "triaged": {
+              "by": "reader-xphb-012",
+              "at": "2026-11-21T19:50:48.071Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Free once-per-rest cast of a summon spell with optional no-concentration choice at cast time; data only spends a use",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -30682,12 +30876,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i004",
-            "at": "2026-11-22T23:41:43.472Z",
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "45b9051f6917ec83d7ca2e706b8695be4362d2431a20322504ac7c30b18f9cfd"
             },
             "covered": false,
             "beyond": [
@@ -30754,12 +30948,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i004",
-            "at": "2026-11-22T23:41:43.472Z",
-            "confidence": 0.85,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "48190ec357d6c09659021d52ea46cc231cee03153fa4fa6fa1917b75dd6ed8ad"
             },
             "covered": false,
             "unexpressed": [
@@ -30819,12 +31013,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i004",
-            "at": "2026-11-22T23:41:43.472Z",
-            "confidence": 0.8,
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "8f8b232e8a3ce4a4689c498118bd2a6873a9aa50675d674523e66b2b428c1900"
             },
             "covered": false,
             "unexpressed": [
@@ -49783,16 +49977,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Free cast must force the maximum temp HP result; data heal activity has no such fixed-roll rule.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-020",
           "at": "2026-11-21T19:50:50.519Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-k001",
+            "at": "2026-11-23T00:24:06.508Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.62,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Free cast must force the maximum temp HP result; data heal activity has no such fixed-roll rule.",
       "state": "triaged"
     },
     {
@@ -51568,31 +51783,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "none",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-021",
-          "at": "2026-11-21T19:50:50.831Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T00:24:07.322Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks the necrotic and radiant damage resistances: no effect on the item.",
+            "triaged": {
+              "by": "reader-xphb-021",
+              "at": "2026-11-21T19:50:50.831Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-i004",
-            "at": "2026-11-22T23:41:43.472Z",
-            "confidence": 0.8,
+            "by": "reread-k002",
+            "at": "2026-11-23T00:24:07.322Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "50f535fafcfd8916751d5267c361d7ab5224134b5ee2476966067521d8fc7e70"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "nothing",
+            "second": {
+              "by": "reread-m001",
+              "at": "2026-11-23T00:25:51.629Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "50f535fafcfd8916751d5267c361d7ab5224134b5ee2476966067521d8fc7e70"
+              },
+              "covered": true,
+              "coveredBy": "nothing"
+            }
           }
         }
       },
-      "why": "Data lacks the necrotic and radiant damage resistances: no effect on the item.",
-      "hint": "beyond-engine",
+      "why": "A reader of DAS · Core's view of this item found its text asks nothing to automate in combat",
       "state": "triaged"
     },
     {
