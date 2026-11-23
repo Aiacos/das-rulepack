@@ -1276,6 +1276,42 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-vampire-spawn-bite",
+    "name": "Bite",
+    "page": 315,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Vampire Spawn",
+    "adds": "A creature that is not Grappled, Incapacitated or Restrained is left unaffected by the bite: no save, no damage, no drain.",
+    "entry": {
+      "targets": {
+        "unaffectedIf": {
+          "not": {
+            "any": [
+              {
+                "target.hasStatus": "grappled"
+              },
+              {
+                "target.hasStatus": "incapacitated"
+              },
+              {
+                "target.hasStatus": "restrained"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-violet-fungus-necrohulk-spore-bomb",
     "name": "Spore Bomb",
     "page": 126,
