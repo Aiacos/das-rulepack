@@ -93,6 +93,25 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "radiance-of-the-dawn",
+    "name": "Radiance of the Dawn",
+    "page": 74,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Light 3",
+    "adds": "The flash dispels the magical darkness its area covers.",
+    "entry": {
+      "light": {
+        "on": "area",
+        "dim": 30,
+        "units": "ft",
+        "dispels": 9
+      }
+    }
+  },
+
+  {
     "identifier": "arcane-charge",
     "name": "Arcane Charge",
     "page": 98,
