@@ -12,8 +12,8 @@ what an entry needs, not that it is done, and only the last column counts rules 
 | Entries | 19,143 |
 | Joined to an item of the official Foundry module | 4,776 |
 | Joined to an item imported by DDB Importer (spells and items only) | 6,507 |
-| Verdict `core` · `none` · `data` | 950 · 2,706 · 2,506 |
-| Verdict `entry` (a rule is needed and not written yet) | 2,965 |
+| Verdict `core` · `none` · `data` | 956 · 2,706 · 2,518 |
+| Verdict `entry` (a rule is needed and not written yet) | 2,947 |
 | Verdict `unverifiable` (no text) | 272 |
 | Waiting for a person in `registry/queue.json` | 119 |
 | No verdict yet | 9,619 |
@@ -37,8 +37,8 @@ for spells and items only. How far one reading can be trusted: `docs/reader-agre
 | Lorwyn: First Light (`LFL`) | 2025 | 58 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 58 | 0 |
 | Netheril's Fall (`NF`) | 2025 | 43 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 43 | 0 |
 | Monster Manual (2025) (`XMM`) | 2025 | 2,147 | 2,114 | 1,626 | 208 | 475 | 912 | 533 | 0 | 19 | 0 | 119 |
-| Dungeon Master's Guide (2024) (`XDMG`) | 2024 | 596 | 393 | 462 | 153 | 208 | 106 | 80 | 36 | 13 | 0 | 2 |
-| Player's Handbook (2024) (`XPHB`) | 2024 | 1,464 | 1,235 | 629 | 570 | 499 | 139 | 159 | 79 | 6 | 10 | 13 |
+| Dungeon Master's Guide (2024) (`XDMG`) | 2024 | 596 | 393 | 462 | 155 | 208 | 116 | 68 | 36 | 13 | 0 | 2 |
+| Player's Handbook (2024) (`XPHB`) | 2024 | 1,464 | 1,235 | 629 | 574 | 499 | 141 | 153 | 79 | 6 | 10 | 13 |
 
 ## Before 2024
 

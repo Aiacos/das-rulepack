@@ -7518,10 +7518,24 @@
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "4998b8719b52595f4a75b34f3139984664c49ca2db4dd29aa1015a016a5cfa81"
+            },
+            "covered": false,
+            "unexpressed": [
+              "follow-up-action"
+            ]
+          }
         }
       },
       "why": "Free Unarmed Strike when a Bardic Inspiration use is spent as part of an action; conditional trigger on a resource spend. No item data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7741,17 +7755,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-004",
-          "at": "2026-11-21T19:50:45.648Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T05:30:04.247Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Alternate AC formula using Dex and Cha; needs a conditional AC calc entry or fix, official match ambiguous and no structure. No item data.",
+            "triaged": {
+              "by": "reader-xphb-004",
+              "at": "2026-11-21T19:50:45.648Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "4998b8719b52595f4a75b34f3139984664c49ca2db4dd29aa1015a016a5cfa81"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "4998b8719b52595f4a75b34f3139984664c49ca2db4dd29aa1015a016a5cfa81"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Alternate AC formula using Dex and Cha; needs a conditional AC calc entry or fix, official match ambiguous and no structure. No item data.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -8615,16 +8659,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Two attacks per Attack action, with a cantrip allowed in place of one attack; data lacks it.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-004",
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "f75c612d512a748632b4ac05f9a95fa743cfbbfcbc9e93fc46b0e16688032afa"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.6,
+              "view": {
+                "core": "0.290.0",
+                "sha": "f75c612d512a748632b4ac05f9a95fa743cfbbfcbc9e93fc46b0e16688032afa"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Two attacks per Attack action, with a cantrip allowed in place of one attack; data lacks it.",
       "state": "triaged"
     },
     {
@@ -9176,16 +9241,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Choice at use time between heal and a Con save for damage; dice scaling by level. No item data.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-004",
           "at": "2026-11-21T19:50:45.648Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "66223ad80b15994254c6ef31264e561d599b29a6645828e9fbc4b61095387569"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "66223ad80b15994254c6ef31264e561d599b29a6645828e9fbc4b61095387569"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Choice at use time between heal and a Con save for damage; dice scaling by level. No item data.",
       "state": "triaged"
     },
     {
@@ -9576,10 +9662,25 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Once-per-turn extra weapon damage with a type choice at hit time; no data to carry it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -11926,10 +12027,25 @@
           "at": "2026-11-21T19:50:45.954Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Once-per-turn extra damage on weapon or beast attacks with a damage type chosen at hit; no data to carry it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13074,10 +13190,24 @@
           "at": "2026-11-21T19:50:46.258Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Extra healing die on a slot-based healing spell, to the caster or a nearby creature; trigger-based rider, no item data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13163,17 +13293,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-006",
-          "at": "2026-11-21T19:50:46.258Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T05:30:04.247Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Treats low d20 rolls as 10 for certain checks and concentration saves, only while in Starry Form; no item data, stated-circumstance rule.",
+            "triaged": {
+              "by": "reader-xphb-006",
+              "at": "2026-11-21T19:50:46.258Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Treats low d20 rolls as 10 for certain checks and concentration saves, only while in Starry Form; no item data, stated-circumstance rule.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -16317,10 +16477,24 @@
           "at": "2026-11-21T19:50:46.560Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "7de784851ceb08fb3a2c7ece503d546436efabed9791c5d158619869f3a89682"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Reaction damage reduction by die plus modifier; no item data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -16741,16 +16915,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Unarmed strike as bonus action; no item data.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-007",
           "at": "2026-11-21T19:50:46.560Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5c75f14b7a8e87f82c231429aaf9db47001c69c57f25c0df15af42cada2752db"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.6,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5c75f14b7a8e87f82c231429aaf9db47001c69c57f25c0df15af42cada2752db"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Unarmed strike as bonus action; no item data.",
       "state": "triaged"
     },
     {
@@ -17474,17 +17669,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-007",
-          "at": "2026-11-21T19:50:46.560Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T05:30:04.247Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Focus cost for two unarmed strikes as bonus action; no item data.",
+            "triaged": {
+              "by": "reader-xphb-007",
+              "at": "2026-11-21T19:50:46.560Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "7233cd193b395b04f6e8221f61846c214df0314458bfaa2a969269d722716514"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "7233cd193b395b04f6e8221f61846c214df0314458bfaa2a969269d722716514"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
-      "why": "Focus cost for two unarmed strikes as bonus action; no item data.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -17586,17 +17811,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-007",
-          "at": "2026-11-21T19:50:46.560Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T05:30:04.247Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Disengage or Disengage plus Dodge as bonus action with focus cost; no item data.",
+            "triaged": {
+              "by": "reader-xphb-007",
+              "at": "2026-11-21T19:50:46.560Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "7233cd193b395b04f6e8221f61846c214df0314458bfaa2a969269d722716514"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "7233cd193b395b04f6e8221f61846c214df0314458bfaa2a969269d722716514"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
-      "why": "Disengage or Disengage plus Dodge as bonus action with focus cost; no item data.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -17646,17 +17901,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-007",
-          "at": "2026-11-21T19:50:46.560Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T05:30:04.247Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Dash or Dash plus Disengage as bonus action with focus cost and jump doubling; no item data.",
+            "triaged": {
+              "by": "reader-xphb-007",
+              "at": "2026-11-21T19:50:46.560Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "7233cd193b395b04f6e8221f61846c214df0314458bfaa2a969269d722716514"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "7233cd193b395b04f6e8221f61846c214df0314458bfaa2a969269d722716514"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
-      "why": "Dash or Dash plus Disengage as bonus action with focus cost and jump doubling; no item data.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -25136,17 +25421,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T05:30:04.247Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Cunning Strike option: failed Constitution save limits the target next turn to move or action; no item data, needs a rule for the choice and rider.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "e4344128a9a2a456bd7e6d311372c1f46990bfd61414a05e887e5dc392e37ea4"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "e4344128a9a2a456bd7e6d311372c1f46990bfd61414a05e887e5dc392e37ea4"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
-      "why": "Cunning Strike option: failed Constitution save limits the target next turn to move or action; no item data, needs a rule for the choice and rider.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -25243,16 +25558,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Cunning Strike option: unconscious on failed save, repeated save each turn and ends on damage; no item data, needs a rule.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-010",
           "at": "2026-11-21T19:50:47.466Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "e4344128a9a2a456bd7e6d311372c1f46990bfd61414a05e887e5dc392e37ea4"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "e4344128a9a2a456bd7e6d311372c1f46990bfd61414a05e887e5dc392e37ea4"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Cunning Strike option: unconscious on failed save, repeated save each turn and ends on damage; no item data, needs a rule.",
       "state": "triaged"
     },
     {
@@ -25881,16 +26217,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Cunning Strike option: Constitution save or poisoned for 1 minute with a repeated save each turn, needs a poisoners kit; no item data.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-010",
           "at": "2026-11-21T19:50:47.466Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v001",
+            "at": "2026-11-23T05:30:04.247Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "b0a1e91f81d85f8827dcc6fb750cb3dbeff1ec5336341fa3fbbe5dfb4f9f5f8b"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "b0a1e91f81d85f8827dcc6fb750cb3dbeff1ec5336341fa3fbbe5dfb4f9f5f8b"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Cunning Strike option: Constitution save or poisoned for 1 minute with a repeated save each turn, needs a poisoners kit; no item data.",
       "state": "triaged"
     },
     {
@@ -25936,16 +26293,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Cunning Strike option: Dexterity save or prone, only against Large or smaller targets; no item data, needs a size-limited rule.",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-010",
           "at": "2026-11-21T19:50:47.466Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v002",
+            "at": "2026-11-23T05:30:05.116Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "b0a1e91f81d85f8827dcc6fb750cb3dbeff1ec5336341fa3fbbe5dfb4f9f5f8b"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-u001",
+              "at": "2026-11-23T05:31:58.872Z",
+              "confidence": 0.68,
+              "view": {
+                "core": "0.290.0",
+                "sha": "b0a1e91f81d85f8827dcc6fb750cb3dbeff1ec5336341fa3fbbe5dfb4f9f5f8b"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Cunning Strike option: Dexterity save or prone, only against Large or smaller targets; no item data, needs a size-limited rule.",
       "state": "triaged"
     },
     {
@@ -26986,12 +27364,12 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
+            "by": "reread-v002",
+            "at": "2026-11-23T05:30:05.116Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              "sha": "8713677867287e94504feca18b407045a88a8d24201e692ff81786b4a8f7df99"
             },
             "covered": false,
             "unexpressed": [
@@ -27411,10 +27789,25 @@
           "at": "2026-11-21T19:50:47.770Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v002",
+            "at": "2026-11-23T05:30:05.116Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Optional die added to a missed attack roll, die spent only if it hits; no item data",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -27465,10 +27858,24 @@
           "at": "2026-11-21T19:50:47.770Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-v002",
+            "at": "2026-11-23T05:30:05.116Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Bonus action: spend die, teleport distance scaled by roll; no item data",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -55187,10 +55594,25 @@
             "by": "second-s50",
             "confidence": 0.6
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-v002",
+            "at": "2026-11-23T05:30:05.116Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "entry: temp HP equal to first form HP, ends early on a bonus action; transform activities carry no effects for these",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -73266,10 +73688,25 @@
             "by": "second-s50",
             "confidence": 0.6
           },
-          "via": "third-reading"
+          "via": "third-reading",
+          "reread": {
+            "by": "reread-v002",
+            "at": "2026-11-23T05:30:05.116Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "form-change",
+              "use-time-choice"
+            ]
+          }
         }
       },
       "why": "entry: temp HP from first form, retained stats and re-shift by action; transform activities carry no effects for these",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
