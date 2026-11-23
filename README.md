@@ -42,7 +42,7 @@ Install and enable DAS · Core (`dnd5e-combat`) first: the pack only adds rules 
 ## ✨ What it covers
 
 <!-- auto:summary -->
-**64 rules** from **10 rulebooks**: 44 played in a running world, 20 validated by the engine's
+**65 rules** from **10 rulebooks**: 45 played in a running world, 20 validated by the engine's
 validator but not played.
 The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md)**.
 <!-- /auto:summary -->
@@ -656,7 +656,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 
 </details>
 
-Counts of 2026-11-19, monsters of 2026-11-20 (docs/books.json); packages read on 2026-11-20 (docs/foundry-modules.json). "(+n)": rules of this pack on an entry already counted under DAS · Core (the pack completes the engine's entry, or serves another identifier of the same name); they are not added to the bar. Not counted, the catalogue having no such entry: Life Sense (MPMM).
+Counts of 2026-11-19, monsters of 2026-11-20 (docs/books.json); packages read on 2026-11-20 (docs/foundry-modules.json). "(+n)": rules of this pack on an entry already counted under DAS · Core (the pack completes the engine's entry, or serves another identifier of the same name); they are not added to the bar. Not counted, the catalogue having no such entry: Construct Resilience (EFA), Life Sense (MPMM).
 <!-- /auto:books -->
 
 ## ⚠️ Known limitations

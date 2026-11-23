@@ -24,5 +24,21 @@ export const RULES = book(BOOK, [
         "because": "engineered against the official item only (Ruling R43)"
       }
     ]
+  },
+
+  {
+    "identifier": "construct-resilience",
+    "name": "Construct Resilience",
+    "page": 38,
+    "kind": "species",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Warforged",
+    "adds": "The bearer rolls with Advantage a saving throw against anything that would give the Poisoned condition.",
+    "entry": {
+      "saveAdvantage": [
+        "poisoned"
+      ]
+    }
   }
 ]);
