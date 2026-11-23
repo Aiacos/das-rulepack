@@ -88,6 +88,7 @@ export const SOURCES = Object.freeze({
   "mmKuotoaMonitor0.mmSunlightSensit": "xmm-kuo-toa-monitor-sunlight-sensitivity",
   "mmKuotoaWhip0000.mmSunlightSensit": "xmm-kuo-toa-whip-sunlight-sensitivity",
   "mmLacedonGhoul00.mmClaw0000000000": "xmm-lacedon-ghoul-claw",
+  "mmLizardfolkSove.mmCharge00000000": "xmm-lizardfolk-sovereign-charge",
   "mmMimic000000000.mmPseudopod00000": "xmm-mimic-pseudopod",
   "mmMucusCloud0000": "xmm-aboleth-mucus-cloud",
   "mmMyconidAdult00.mmSunSickness000": "xmm-myconid-adult-sun-sickness",

@@ -428,3 +428,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Triage: one more reading of the entries left unsure
 - [x] Engineered rule proven by a recorded play on the released engine: Gibbering Mouther Aberrant Ground, its zone is Difficult Terrain (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Swarm of Stirges, the grapple only on a target in the swarm's space (XMM)
+- [x] Engineered rule proven by a recorded play on the released engine: Lizardfolk Sovereign Charge, its Speed again for the turn (XMM)
