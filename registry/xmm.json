@@ -10046,7 +10046,7 @@
       "edition": "2024",
       "owner": "Ancient Black Dragon",
       "section": "legendary",
-      "identifier": "cloud-of-insects",
+      "identifier": "xmm-ancient-black-dragon-cloud-of-insects",
       "page": 40,
       "srd": true,
       "text": {
@@ -10068,7 +10068,8 @@
           ],
           "data": {
             "sha256": "d01ee502075f3b3f08d069fbb0dae03c1943ff70ad338cd2ff7e6f869457c9a1"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -10081,7 +10082,8 @@
           "effects": [],
           "data": {
             "sha256": "b650b1d6c801576fec91539880559266ba37dc3c6255010e7236ced6cc7b7f34"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -10124,11 +10126,88 @@
               "use-limit"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T12:10:55.886Z",
+          "core": "0.291.0",
+          "rule": "7d1cc128e29cf97e82a4ec9005ae39dace85cb9f66d4aaf20208ac93303f2909",
+          "item": "d01ee502075f3b3f08d069fbb0dae03c1943ff70ad338cd2ff7e6f869457c9a1",
+          "delta": [
+            "effectChanges",
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "cloud-of-insects",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T12:10:55.886Z",
+          "core": "0.291.0",
+          "rule": "7d1cc128e29cf97e82a4ec9005ae39dace85cb9f66d4aaf20208ac93303f2909",
+          "emits": "06b00af72f89a4f3ef5e42baca6271f9f8c721d918a47ca41e06db239f43e4dc",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "d01ee502075f3b3f08d069fbb0dae03c1943ff70ad338cd2ff7e6f869457c9a1"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T12:14:46.507Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-black-dragon-legendary-cloud-of-insects",
+          "client": "gm",
+          "rule": "7d1cc128e29cf97e82a4ec9005ae39dace85cb9f66d4aaf20208ac93303f2909"
         }
       },
       "why": "Disadvantage on concentration saves until end of next turn; the effect carries no change keys, plus the cannot-repeat limit.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAncientBlackDr.mmCloudOfInsects": "xmm-ancient-black-dragon-cloud-of-insects"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The effect of the failed save gives its Disadvantage on rolls to keep Concentration, and lasts through the target's next turn.",
+        "entry": {
+          "effectChanges": {
+            "owuEyJBslYKvxqeX": [
+              {
+                "key": "system.attributes.concentration.roll.mode",
+                "type": "add",
+                "value": "-1"
+              }
+            ]
+          },
+          "effectEnds": {
+            "owuEyJBslYKvxqeX": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T12:10:49.790Z",
+          "leavesNote": "Nothing else of the action is changed: its once-a-round limit is the engine's."
+        },
+        "origin": "Ancient Black Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:ancient-black-dragon/legendary/frightful-presence",
@@ -117138,6 +117217,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T12:07:48.335Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-psychic-gray-ooze-action-pseudopod",
+          "client": "gm",
+          "rule": "70243f1a374f7839e1fe30d1245a9c14b358e389aad138aad3992eeae1b18c4c"
+        },
         "reading": {
           "at": "2026-11-23T12:03:45.511Z",
           "core": "0.291.0",
@@ -117170,14 +117257,6 @@
           "items": {
             "official": "74f2221d8a2163ce1ad1e5a6ffe7513753433eee73c960e8fe04a582a6d117fa"
           }
-        },
-        "played": {
-          "at": "2026-11-23T12:07:48.335Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-psychic-gray-ooze-action-pseudopod",
-          "client": "gm",
-          "rule": "70243f1a374f7839e1fe30d1245a9c14b358e389aad138aad3992eeae1b18c4c"
         }
       },
       "why": "Effect exists but changes nothing; data lacks disadvantage on Int saves until end of next turn.",

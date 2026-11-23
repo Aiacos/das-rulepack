@@ -143,6 +143,37 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-ancient-black-dragon-cloud-of-insects",
+    "name": "Cloud of Insects",
+    "page": 40,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Ancient Black Dragon",
+    "adds": "The effect of the failed save gives its Disadvantage on rolls to keep Concentration, and lasts through the target's next turn.",
+    "entry": {
+      "effectChanges": {
+        "owuEyJBslYKvxqeX": [
+          {
+            "key": "system.attributes.concentration.roll.mode",
+            "type": "add",
+            "value": "-1"
+          }
+        ]
+      },
+      "effectEnds": {
+        "owuEyJBslYKvxqeX": "bearerTurnEnd"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-ancient-brass-dragon-scorching-sands",
     "name": "Scorching Sands",
     "page": 56,
