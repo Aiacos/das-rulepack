@@ -108686,7 +108686,7 @@
       "edition": "2024",
       "owner": "Octopus",
       "section": "reaction",
-      "identifier": "ink-cloud",
+      "identifier": "xmm-octopus-ink-cloud",
       "page": 365,
       "srd": true,
       "text": {
@@ -108724,7 +108724,8 @@
           },
           "differences": [
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -108753,11 +108754,92 @@
               "ongoing-effect"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T14:53:52.329Z",
+          "core": "0.291.0",
+          "rule": "0a5407718aa7e56550a3088648f1c86808a0bbcec0f7705ce3565d958886165a",
+          "item": "7d676bb0ff4b1887d2084f96c13394dd90a5dc820dd9123ba313c4bca41b6922",
+          "delta": [
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "ink-cloud",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T14:53:52.329Z",
+          "core": "0.291.0",
+          "rule": "0a5407718aa7e56550a3088648f1c86808a0bbcec0f7705ce3565d958886165a",
+          "emits": "a94f83ec28939a60ee2e2c5944e5946df21dfcddba1479a8b5833d22aa33144b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7d676bb0ff4b1887d2084f96c13394dd90a5dc820dd9123ba313c4bca41b6922"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T14:57:38.739Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-octopus-reaction-ink-cloud",
+          "client": "gm",
+          "rule": "0a5407718aa7e56550a3088648f1c86808a0bbcec0f7705ce3565d958886165a"
         }
       },
       "why": "Reaction on a trigger creating an obscuring cube and a move, with a duration; data lacks timing",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "ga8EjLxOh3HQeKuj": "xmm-octopus-ink-cloud"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The octopus is offered its reaction as soon as an adjacent foe finishes a turn.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "enemyTurnEnd",
+              "if": {
+                "source.nearSelf": {
+                  "distance": 5,
+                  "units": "ft"
+                }
+              },
+              "do": [
+                {
+                  "type": "use",
+                  "activity": "1MiIPcVuCpfgBIkS"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T14:53:45.862Z",
+          "leavesNote": "That it must be underwater, its swim after the cloud and how long the cloud lasts are left to the GM."
+        },
+        "origin": "Octopus"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:octopus/trait/compression",
@@ -142944,6 +143026,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T14:46:13.548Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-treant-action-animate-trees",
+          "client": "gm",
+          "rule": "22987ae8fc9fd9c1336e0cde7e8c4dc9efd9068824d514f69796027dbf2b3cc2"
+        },
         "reading": {
           "at": "2026-11-23T14:42:31.423Z",
           "core": "0.291.0",
@@ -142977,14 +143067,6 @@
           "items": {
             "official": "32bfcb3b3e0d3a9646f7156ce1252b79fe2d8507af815e7fb6f8920d6c39b0ed"
           }
-        },
-        "played": {
-          "at": "2026-11-23T14:46:13.548Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-treant-action-animate-trees",
-          "client": "gm",
-          "rule": "22987ae8fc9fd9c1336e0cde7e8c4dc9efd9068824d514f69796027dbf2b3cc2"
         }
       },
       "why": "Summon with end conditions (distance from treant, death, one day) and turn-order tie; data lacks these (entry: summon end conditions)",
