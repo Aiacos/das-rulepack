@@ -92,6 +92,22 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "undying-sentinel",
+    "name": "Undying Sentinel",
+    "page": 116,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Ancients 15",
+    "adds": "At 0 Hit Points the paladin is asked whether to rise; the feature then spends its use and heals them.",
+    "entry": {
+      "atZero": {
+        "activity": "bRIROEIDYNYI8XFQ"
+      }
+    }
+  },
+
+  {
     "identifier": "zone-of-truth",
     "name": "Zone of Truth",
     "page": 343,

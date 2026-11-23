@@ -15824,6 +15824,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T00:37:54.072Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-fighter-psi-warrior-15-bulwark-of-force",
+          "client": "gm",
+          "rule": "808bdbe6bcb3a4a3c821e5a060a7f136c782582cae5e83565cd16776c8a2fedd"
+        },
         "gates": {
           "at": "2026-11-23T00:30:43.667Z",
           "core": "0.290.0",
@@ -15840,14 +15848,6 @@
           "items": {
             "official": "54352559e0f32d3e4f9f2e5393b51e8cc87e3249082df5023726142c00671cb2"
           }
-        },
-        "played": {
-          "at": "2026-11-23T00:37:54.072Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-fighter-psi-warrior-15-bulwark-of-force",
-          "client": "gm",
-          "rule": "808bdbe6bcb3a4a3c821e5a060a7f136c782582cae5e83565cd16776c8a2fedd"
         }
       },
       "why": "Cover for a minute ending on incapacitation, restorable with a die; effect has no end condition.",
@@ -20354,11 +20354,54 @@
               "death-trigger"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T00:44:51.866Z",
+          "core": "0.290.0",
+          "rule": "298735adb169ebea0359fe7e951ae41491c914fe62a40b4433c7e9a8505b4f48",
+          "emits": "a958dbdcd46eb5ba091a5bc64df340ccfc49229ff7a9ac9f52f137ad7bc69d90",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "da20b645c23a199c061349e1cb70d1ae52b6caaaf6670e23e34f206ad93d14c8"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T00:50:53.751Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-paladin-ancients-15-undying-sentinel",
+          "client": "gm",
+          "rule": "298735adb169ebea0359fe7e951ae41491c914fe62a40b4433c7e9a8505b4f48"
         }
       },
       "why": "Reaction-like drop to 1 HP once per rest plus level-scaled healing; data has uses but empty heal and no trigger on reaching 0 HP.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "At 0 Hit Points the paladin is asked whether to rise; the feature then spends its use and heals them.",
+        "entry": {
+          "atZero": {
+            "activity": "bRIROEIDYNYI8XFQ"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T00:44:45.677Z",
+          "leavesNote": "The item heals from zero, one point short of the book: add 1 Hit Point by hand. Agelessness is narrative."
+        },
+        "origin": "Ancients 15"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:paladin/ancients/20/elder-champion",
