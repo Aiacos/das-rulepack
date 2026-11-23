@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-treant-action-animate-trees",
+  "key": "xmm:monster:treant/action/animate-trees",
+  "rule": "22987ae8fc9fd9c1336e0cde7e8c4dc9efd9068824d514f69796027dbf2b3cc2",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "An animated tree is placed, takes its turn right after the treant, and leaves the scene when the treant dies. The one-day limit is not exercised."
+}

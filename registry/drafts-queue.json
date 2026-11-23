@@ -1159,14 +1159,6 @@
     "confidence": 0.9
   },
   {
-    "key": "xmm:monster:treant/action/animate-trees",
-    "reason": "code",
-    "by": "drafter-v012",
-    "why": "summoned trees with a lifetime tied to distance, death and a day, acting right after the summoner: no drafter key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:troll/trait/loathsome-limbs",
     "reason": "code",
     "by": "drafter-v012",

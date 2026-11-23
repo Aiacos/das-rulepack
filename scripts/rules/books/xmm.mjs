@@ -2047,6 +2047,39 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-treant-animate-trees",
+    "name": "Animate Trees",
+    "page": 308,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Treant",
+    "adds": "An animated tree acts right after the treant in combat, and stops being animate when the treant dies or after a day.",
+    "entry": {
+      "summon": {
+        "initiative": "after",
+        "vanishesWithCaster": true,
+        "lasts": {
+          "value": 1,
+          "units": "day"
+        }
+      }
+    },
+    "carries": {
+      "from": "animate-trees",
+      "keys": [
+        "magical"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-troglodyte-sunlight-sensitivity",
     "name": "Sunlight Sensitivity",
     "page": 309,

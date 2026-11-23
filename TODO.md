@@ -430,3 +430,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Swarm of Stirges, the grapple only on a target in the swarm's space (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Lizardfolk Sovereign Charge, its Speed again for the turn (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Shadow Dragon Living Shadow, its Resistance only in dim light or darkness (XMM)
+- [x] Engineered rule proven by a recorded play on the released engine: Treant Animate Trees, the tree acts after the treant and ends with it (XMM)
