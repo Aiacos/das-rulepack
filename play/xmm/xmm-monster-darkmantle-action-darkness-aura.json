@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-darkmantle-action-darkness-aura",
+  "key": "xmm:monster:darkmantle/action/darkness-aura",
+  "rule": "817bb95bcd490af2de72f4f0d0575c7c14a1248eae7de10ab00481b552a4bcd5",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "Used, the aura lays one source of darkness 15 feet wide on its zone; when the zone is removed the darkness goes too."
+}

@@ -44028,7 +44028,7 @@
       "edition": "2024",
       "owner": "Darkmantle",
       "section": "action",
-      "identifier": "darkness-aura",
+      "identifier": "xmm-darkmantle-darkness-aura",
       "page": 90,
       "srd": true,
       "text": {
@@ -44061,7 +44061,8 @@
           "effects": [],
           "data": {
             "sha256": "9fb9f8c1fc3f34fad1cc2a931f6806356e89720d7b38ade97047639d9da6c939"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -44089,11 +44090,81 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T11:18:47.463Z",
+          "core": "0.291.0",
+          "rule": "817bb95bcd490af2de72f4f0d0575c7c14a1248eae7de10ab00481b552a4bcd5",
+          "item": "bfa794626ba31d709abe6191c6d88700c9c6a6dfd0e01d2327d4d5abb672bfe2",
+          "delta": [
+            "light"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "darkness-aura",
+          "carried": [
+            "magical"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T11:18:47.463Z",
+          "core": "0.291.0",
+          "rule": "817bb95bcd490af2de72f4f0d0575c7c14a1248eae7de10ab00481b552a4bcd5",
+          "emits": "2435a4c8342198a0f0e3757a8a0cfd4e8ddc7c42599f904c1dc76f35b34125ae",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "bfa794626ba31d709abe6191c6d88700c9c6a6dfd0e01d2327d4d5abb672bfe2"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T11:23:54.663Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-darkmantle-action-darkness-aura",
+          "client": "gm",
+          "rule": "817bb95bcd490af2de72f4f0d0575c7c14a1248eae7de10ab00481b552a4bcd5"
         }
       },
       "why": "Concentration darkness emanation blocks darkvision and light; data has only a template, no darkness effect.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "DXSZEBm7EZIT7A9Z": "xmm-darkmantle-darkness-aura"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The aura's zone carries magical darkness of its own radius, which goes when the zone goes.",
+        "entry": {
+          "light": {
+            "on": "area",
+            "darkness": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T11:18:41.150Z",
+          "leavesNote": "When the zone ends (the creature's concentration, ten minutes) follows the item's own duration."
+        },
+        "origin": "Darkmantle"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:death-cultist/action/deathly-ray",
@@ -87003,6 +87074,14 @@
             "restated": true
           }
         },
+        "played": {
+          "at": "2026-11-23T10:05:37.767Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-incubus-bonus-nightmare",
+          "client": "gm",
+          "rule": "8afdad4dbd2cb54022650b629612b66ed2ccc4e6b2ea673cce5a4238e5a50465"
+        },
         "reading": {
           "at": "2026-11-23T10:01:22.399Z",
           "core": "0.291.0",
@@ -87035,14 +87114,6 @@
           "items": {
             "official": "b6f2917eb66f0ea99272a85cd51be20b999dfaf770ee1d1a34dab0e24196424e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T10:05:37.767Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-incubus-bonus-nightmare",
-          "client": "gm",
-          "rule": "8afdad4dbd2cb54022650b629612b66ed2ccc4e6b2ea673cce5a4238e5a50465"
         }
       },
       "why": "Save with a hit point threshold choosing between unconsciousness and damage, with wake conditions; needs a conditional rule.",

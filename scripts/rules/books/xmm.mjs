@@ -472,6 +472,35 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-darkmantle-darkness-aura",
+    "name": "Darkness Aura",
+    "page": 90,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Darkmantle",
+    "adds": "The aura's zone carries magical darkness of its own radius, which goes when the zone goes.",
+    "entry": {
+      "light": {
+        "on": "area",
+        "darkness": true
+      }
+    },
+    "carries": {
+      "from": "darkness-aura",
+      "keys": [
+        "magical"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-death-cultist-dread-scythe",
     "name": "Dread Scythe",
     "page": 86,
