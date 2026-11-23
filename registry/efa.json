@@ -4447,11 +4447,59 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T05:18:47.173Z",
+          "core": "0.290.0",
+          "rule": "d68fc6d42042938344f6beba1ffcb6d909b77ef6e0cdbb7d617c15cbb69ff26a",
+          "emits": "32a450100ad98f1215d5b951d03728dc5bf47c4ed18ac72fc839ae0050338b34",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "d07933f80373304a1559d4ef6d344b8fd2a26f706df7b4d54323a3c24629fa22"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:27:18.646Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-artillerist-3-eldritch-cannon",
+          "client": "gm",
+          "rule": "d68fc6d42042938344f6beba1ffcb6d909b77ef6e0cdbb7d617c15cbb69ff26a"
         }
       },
       "why": "One cannon at a time, vanishes at 0 HP or after an hour, early dismissal; activities carry the attacks but not these limits. Entry: end of effect and one-at-a-time.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The cannon stays out of the turn order, is removed at 0 Hit Points, and goes after one hour.",
+        "entry": {
+          "summon": {
+            "initiative": "none",
+            "vanishesAtZero": true,
+            "lasts": {
+              "value": 1,
+              "units": "hour"
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T05:18:40.637Z",
+          "leavesNote": "One cannon at a time, dismissing it early and aiming its options from the cannon's own space are the table's."
+        },
+        "origin": "Artillerist 3"
+      },
+      "state": "played"
     },
     {
       "key": "efa:feature:artificer/artillerist/3/tools-of-the-trade",
@@ -4928,6 +4976,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T05:11:10.140Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-battle-smith-3-steel-defender",
+          "client": "gm",
+          "rule": "c5eccf641eabc1a45102cc08396143f5a2625db5c75092ae1baf324bb42ac4aa"
+        },
         "gates": {
           "at": "2026-11-23T04:02:28.820Z",
           "core": "0.290.0",
@@ -4944,14 +5000,6 @@
           "items": {
             "official": "80a950dc583a2453ddf429b79be44f42376bd50927d008f17d5a284fb9b503f3"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:11:10.140Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-feature-artificer-battle-smith-3-steel-defender",
-          "client": "gm",
-          "rule": "c5eccf641eabc1a45102cc08396143f5a2625db5c75092ae1baf324bb42ac4aa"
         }
       },
       "why": "Summon activities exist, but acting on your turn with Dodge only unless commanded, vanishing on death and replacing the old one need rules beyond the data.",

@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-feature-artificer-artillerist-3-eldritch-cannon",
+  "key": "efa:feature:artificer/artillerist/3/eldritch-cannon",
+  "rule": "d68fc6d42042938344f6beba1ffcb6d909b77ef6e0cdbb7d617c15cbb69ff26a",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "The cannon is on the scene outside the turn order; at 0 Hit Points it is removed; a new one goes after an hour."
+}

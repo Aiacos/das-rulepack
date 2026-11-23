@@ -5,6 +5,27 @@ export const BOOK = "EFA";
 
 export const RULES = book(BOOK, [
   {
+    "identifier": "eldritch-cannon",
+    "name": "Eldritch Cannon",
+    "page": 16,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Artillerist 3",
+    "adds": "The cannon stays out of the turn order, is removed at 0 Hit Points, and goes after one hour.",
+    "entry": {
+      "summon": {
+        "initiative": "none",
+        "vanishesAtZero": true,
+        "lasts": {
+          "value": 1,
+          "units": "hour"
+        }
+      }
+    }
+  },
+
+  {
     "identifier": "steel-defender",
     "name": "Steel Defender",
     "page": 18,
