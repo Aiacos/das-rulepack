@@ -903,6 +903,40 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-incubus-nightmare",
+    "name": "Nightmare",
+    "page": 178,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Incubus",
+    "adds": "A target at 20 hit points or fewer that fails the save sleeps and takes no damage; above that it takes the damage and does not sleep. Another creature can spend its action to wake the sleeper.",
+    "entry": {
+      "actionEnds": {
+        "Di6rSDXgFkxAGsFE": {
+          "by": "other",
+          "verb": "wake"
+        }
+      },
+      "hpTiers": [
+        {
+          "atMost": 20,
+          "damage": false
+        },
+        {
+          "effects": []
+        }
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-jackalwere-sleep-gaze",
     "name": "Sleep Gaze",
     "page": 182,

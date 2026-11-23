@@ -86911,7 +86911,7 @@
       "edition": "2024",
       "owner": "Incubus",
       "section": "bonus",
-      "identifier": "nightmare",
+      "identifier": "xmm-incubus-nightmare",
       "page": 178,
       "srd": true,
       "text": {
@@ -86951,7 +86951,8 @@
           },
           "differences": [
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -87001,11 +87002,91 @@
             ],
             "restated": true
           }
+        },
+        "reading": {
+          "at": "2026-11-23T10:01:22.399Z",
+          "core": "0.291.0",
+          "rule": "8afdad4dbd2cb54022650b629612b66ed2ccc4e6b2ea673cce5a4238e5a50465",
+          "item": "b6f2917eb66f0ea99272a85cd51be20b999dfaf770ee1d1a34dab0e24196424e",
+          "delta": [
+            "actionEnds",
+            "hpTiers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "nightmare",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T10:01:22.399Z",
+          "core": "0.291.0",
+          "rule": "8afdad4dbd2cb54022650b629612b66ed2ccc4e6b2ea673cce5a4238e5a50465",
+          "emits": "abfec9cea5f4851d0918388d0f89462ee5d9025afa68be6ed62e2940ce214c7f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "b6f2917eb66f0ea99272a85cd51be20b999dfaf770ee1d1a34dab0e24196424e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T10:05:37.767Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-incubus-bonus-nightmare",
+          "client": "gm",
+          "rule": "8afdad4dbd2cb54022650b629612b66ed2ccc4e6b2ea673cce5a4238e5a50465"
         }
       },
       "why": "Save with a hit point threshold choosing between unconsciousness and damage, with wake conditions; needs a conditional rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmNightmare00000": "xmm-incubus-nightmare"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A target at 20 hit points or fewer that fails the save sleeps and takes no damage; above that it takes the damage and does not sleep. Another creature can spend its action to wake the sleeper.",
+        "entry": {
+          "hpTiers": [
+            {
+              "atMost": 20,
+              "damage": false
+            },
+            {
+              "effects": []
+            }
+          ],
+          "actionEnds": {
+            "Di6rSDXgFkxAGsFE": {
+              "by": "other",
+              "verb": "wake"
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T10:01:16.157Z",
+          "leavesNote": "The waking on damage is the engine's own reading; the one-hour duration is the item's."
+        },
+        "origin": "Incubus"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:incubus/trait/spellcasting",
@@ -96510,6 +96591,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:58:20.099Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-magmin-bonus-ignited-illumination",
+          "client": "gm",
+          "rule": "6f23f73d2b95fedd20b40f7445f40a924ef474afed896b207635fee5e8ddeb35"
+        },
         "reading": {
           "at": "2026-11-23T09:54:55.564Z",
           "core": "0.291.0",
@@ -96541,14 +96630,6 @@
           "items": {
             "official": "9ffa8950a734964e2e16678b176eeb0d76074d36c6071c9be704eb7adb09fbc4"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:58:20.099Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-magmin-bonus-ignited-illumination",
-          "client": "gm",
-          "rule": "6f23f73d2b95fedd20b40f7445f40a924ef474afed896b207635fee5e8ddeb35"
         }
       },
       "why": "Toggle of its own light emission; data lacks the light or its on/off state.",
