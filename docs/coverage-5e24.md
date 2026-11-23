@@ -16,9 +16,9 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | | Count |
 |---|---|
 | Entries inventoried (six books) | 4,892 |
-| Joined to an item of the official module | 4,345 |
-| Ambiguous against the official module (wait for `npm run resolve`) | 138 |
-| No item in the official module | 409 |
+| Joined to an item of the official module | 4,372 |
+| Ambiguous against the official module (wait for `npm run resolve`) | 137 |
+| No item in the official module | 383 |
 | Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 948 |
 | Verdict `none` (nothing to automate in combat) | 1,365 |
 | Verdict `data` (the item's own data is enough) | 1,344 |
@@ -49,7 +49,7 @@ the name ("+1", a quantity): 29.
 | spell | 391 | 391 / 0 / 0 | 390 / 1 / 0 | 278 | 65 | 38 | 8 | 0 | 0 | 0 | 2 | 0 |
 | feat | 77 | 77 / 0 / 0 | 0 / 2 / 75 | 47 | 20 | 9 | 1 | 0 | 0 | 0 | 0 | 0 |
 | option | 58 | 58 / 0 / 0 | 0 / 0 / 58 | 39 | 3 | 14 | 2 | 0 | 0 | 0 | 0 | 0 |
-| feature | 592 | 409 / 60 / 123 | 0 / 0 / 592 | 176 | 257 | 49 | 106 | 0 | 0 | 0 | 4 | 0 |
+| feature | 592 | 436 / 59 / 97 | 0 / 0 / 592 | 176 | 257 | 49 | 106 | 0 | 0 | 0 | 4 | 0 |
 | species | 48 | 40 / 0 / 8 | 0 / 0 / 48 | 10 | 19 | 8 | 1 | 0 | 0 | 0 | 0 | 10 |
 | background | 16 | 16 / 0 / 0 | 0 / 0 / 16 | 0 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 217 | 159 / 16 / 42 | 188 / 8 / 21 | 19 | 115 | 0 | 4 | 0 | 0 | 79 | 0 | 0 |
