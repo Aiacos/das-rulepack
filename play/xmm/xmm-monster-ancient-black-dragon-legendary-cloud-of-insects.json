@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-ancient-black-dragon-legendary-cloud-of-insects",
+  "key": "xmm:monster:ancient-black-dragon/legendary/cloud-of-insects",
+  "rule": "7d1cc128e29cf97e82a4ec9005ae39dace85cb9f66d4aaf20208ac93303f2909",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "After the failed save the target rolls to keep Concentration with Disadvantage and other saves normally, through its own next turn; once that turn has ended it rolls normally."
+}

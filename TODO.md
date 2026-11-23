@@ -423,3 +423,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Radiance of the Dawn dispels the magical darkness it covers (XPHB)
 - [x] Engineered rule proven by a recorded play on the released engine: Scout Captain Aim, Advantage on the next attack roll of the turn (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Psychic Gray Ooze Pseudopod, Disadvantage on Intelligence saves through the ooze's next turn (XMM)
+- [x] Engineered rule proven by a recorded play on the released engine: Ancient Black Dragon Cloud of Insects, Disadvantage on rolls to keep Concentration (XMM)
