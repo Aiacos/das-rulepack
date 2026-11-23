@@ -1521,32 +1521,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -2766,32 +2783,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -3106,17 +3140,24 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
-            "unexpressed": [
-              "follow-up-action",
-              "use-limit"
+            "beyond": [
+              {
+                "given": {},
+                "expect": {
+                  "condition": {
+                    "applied": "invisible"
+                  },
+                  "affects": "self"
+                }
+              }
             ]
           }
         }
@@ -3296,32 +3337,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -3813,16 +3871,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.7,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
             "unexpressed": [
-              "follow-up-action"
+              "no-key"
             ]
           }
         }
@@ -4131,32 +4189,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -4800,32 +4875,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -5539,32 +5631,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success, with limited uses; needs a prompt on save failure",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -6243,32 +6352,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -6779,6 +6905,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
       "evidence": {
         "triaged": {
           "by": "second-s42",
@@ -6791,22 +6918,29 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.72,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -6915,32 +7049,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -7314,31 +7465,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Cast action that cannot be repeated until the dragon next turn; usage limit not in data.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/turn.mjs"
+            }
           }
         }
       },
-      "why": "Cast action that cannot be repeated until the dragon next turn; usage limit not in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -7390,6 +7559,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
       "evidence": {
         "triaged": {
           "by": "second-s42",
@@ -7402,22 +7572,29 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.72,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -7469,32 +7646,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -7890,31 +8084,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Cast action that cannot be repeated until the dragon next turn; usage limit not in data.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/turn.mjs"
+            }
           }
         }
       },
-      "why": "Cast action that cannot be repeated until the dragon next turn; usage limit not in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -8119,6 +8331,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
       "evidence": {
         "triaged": {
           "by": "second-s42",
@@ -8131,22 +8344,29 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.72,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8198,32 +8418,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -8677,6 +8914,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
       "evidence": {
         "triaged": {
           "by": "second-s42",
@@ -8689,22 +8927,29 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.72,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8888,32 +9133,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -9847,31 +10109,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Casts Fear via Spellcasting and cannot be repeated until the dragon next turn; usage limit not in data.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/turn.mjs"
+            }
           }
         }
       },
-      "why": "Casts Fear via Spellcasting and cannot be repeated until the dragon next turn; usage limit not in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -9923,6 +10203,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
       "evidence": {
         "triaged": {
           "by": "second-s42",
@@ -9935,22 +10216,29 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.72,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -10059,31 +10347,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -10389,6 +10695,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Self-cast plus half Fly Speed move, with a cannot-repeat-until-next-turn limit; data has only the cast activity.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-003",
@@ -10397,22 +10704,29 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.75,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Self-cast plus half Fly Speed move, with a cannot-repeat-until-next-turn limit; data has only the cast activity.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -10600,31 +10914,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -11081,6 +11413,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
       "evidence": {
         "triaged": {
           "by": "second-s42",
@@ -11093,22 +11426,29 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.72,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -11315,31 +11655,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:21.491Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -11801,6 +12159,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
       "evidence": {
         "triaged": {
           "by": "second-s42",
@@ -11813,22 +12172,29 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.8,
+            "by": "reread-s001",
+            "at": "2026-11-23T06:53:21.491Z",
+            "confidence": 0.72,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Data lacks the move-then-attack chain; only a legendary-use expenditure exists.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -12002,31 +12368,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-003",
-          "at": "2026-11-21T19:58:33.883Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
+            "triaged": {
+              "by": "reader-xmm-003",
+              "at": "2026-11-21T19:58:33.883Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only expends a use, no save prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -12721,31 +13105,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -13449,31 +13851,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -13665,9 +14085,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.7,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
@@ -14061,31 +14481,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -14594,31 +15032,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t001",
+              "at": "2026-11-23T06:57:48.682Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -15244,31 +15700,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -15845,31 +16319,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -16591,31 +17083,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary Resistance: a prompt to turn a failed save into a success, with limited uses; data only has a utility activity",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -19220,31 +19730,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-005",
-          "at": "2026-11-21T19:58:34.523Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose-to-succeed on a failed save needs a prompt at use time; data only spends the resource.",
+            "triaged": {
+              "by": "reader-xmm-005",
+              "at": "2026-11-21T19:58:34.523Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.75,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choose-to-succeed on a failed save needs a prompt at use time; data only spends the resource.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -21229,31 +21757,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-005",
-          "at": "2026-11-21T19:58:34.523Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "End-of-turn emanation damage to creatures of its choice, suppressed when incapacitated; needs a rule.",
+            "triaged": {
+              "by": "reader-xmm-005",
+              "at": "2026-11-21T19:58:34.523Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.7,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "d82418100fae163abe5aeb7019622a40a6a4ab59244fdde64accf12325704f38"
             },
-            "covered": false,
-            "unexpressed": [
-              "trigger-filter"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/emanations.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "d82418100fae163abe5aeb7019622a40a6a4ab59244fdde64accf12325704f38"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "core/emanation.mjs"
+            }
           }
         }
       },
-      "why": "End-of-turn emanation damage to creatures of its choice, suppressed when incapacitated; needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -21559,31 +22105,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-005",
-          "at": "2026-11-21T19:58:34.523Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "End-of-turn emanation damage to creatures of its choice, suppressed when incapacitated; needs a rule.",
+            "triaged": {
+              "by": "reader-xmm-005",
+              "at": "2026-11-21T19:58:34.523Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.7,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "d82418100fae163abe5aeb7019622a40a6a4ab59244fdde64accf12325704f38"
             },
-            "covered": false,
-            "unexpressed": [
-              "trigger-filter"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/emanations.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "d82418100fae163abe5aeb7019622a40a6a4ab59244fdde64accf12325704f38"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "core/emanation.mjs"
+            }
           }
         }
       },
-      "why": "End-of-turn emanation damage to creatures of its choice, suppressed when incapacitated; needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -22437,31 +23001,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-005",
-          "at": "2026-11-21T19:58:34.523Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose-to-succeed on a failed save needs a prompt at use time; data only spends the resource.",
+            "triaged": {
+              "by": "reader-xmm-005",
+              "at": "2026-11-21T19:58:34.523Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.75,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choose-to-succeed on a failed save needs a prompt at use time; data only spends the resource.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -24124,26 +24706,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-z001",
-            "at": "2026-11-23T04:28:08.154Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit"
-                },
-                "expect": {
-                  "damage": {
-                    "fraction": 1,
-                    "type": "piercing"
-                  }
-                }
-              }
+            "unexpressed": [
+              "no-key"
             ]
           }
         }
@@ -25824,9 +26396,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.7,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
@@ -25961,18 +26533,50 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-006",
-          "at": "2026-11-21T19:58:34.837Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Swallow with ongoing damage, one-at-a-time limit, regurgitation on damage threshold and escape on death; far beyond the data.",
+            "triaged": {
+              "by": "reader-xmm-006",
+              "at": "2026-11-21T19:58:34.837Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/swallow.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/swallow.mjs"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Swallow with ongoing damage, one-at-a-time limit, regurgitation on damage threshold and escape on death; far beyond the data.",
       "state": "triaged"
     },
     {
@@ -26923,31 +27527,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-006",
-          "at": "2026-11-21T19:58:34.837Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prompt on a failed save to choose success, spending a limited resource; data has only a consuming utility activity.",
+            "triaged": {
+              "by": "reader-xmm-006",
+              "at": "2026-11-21T19:58:34.837Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
-            "confidence": 0.85,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Prompt on a failed save to choose success, spending a limited resource; data has only a consuming utility activity.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -28929,31 +29551,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-006",
-          "at": "2026-11-21T19:58:34.837Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prompt on a failed save to choose success, spending a limited resource; data has only a consuming utility activity.",
+            "triaged": {
+              "by": "reader-xmm-006",
+              "at": "2026-11-21T19:58:34.837Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
-            "confidence": 0.85,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Prompt on a failed save to choose success, spending a limited resource; data has only a consuming utility activity.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29168,18 +29808,50 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-006",
-          "at": "2026-11-21T19:58:34.837Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Advantage on attacks when an able ally is adjacent to the target; data has no effect.",
+            "triaged": {
+              "by": "reader-xmm-006",
+              "at": "2026-11-21T19:58:34.837Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.9,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/facts.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/facts.mjs"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Advantage on attacks when an able ally is adjacent to the target; data has no effect.",
       "state": "triaged"
     },
     {
@@ -39528,31 +40200,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-008",
-          "at": "2026-11-21T19:58:35.465Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; a prompt at use time, data only spends the resource.",
+            "triaged": {
+              "by": "reader-xmm-008",
+              "at": "2026-11-21T19:58:35.465Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.85,
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; a prompt at use time, data only spends the resource.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -43260,18 +43950,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Poison save repeated every 24 hours with max HP reduction on later failures; data lacks the repeat and reduction.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "hint": "core-generic",
-      "why": "Poison save repeated every 24 hours with max HP reduction on later failures; data lacks the repeat and reduction.",
       "state": "triaged"
     },
     {
@@ -47101,18 +47821,50 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Advantage on attacks when an unincapacitated ally is within 5 feet of the target; data has nothing.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
+            "confidence": 0.9,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/facts.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/facts.mjs"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Advantage on attacks when an unincapacitated ally is within 5 feet of the target; data has nothing.",
       "state": "triaged"
     },
     {
@@ -53643,32 +54395,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-010",
-          "at": "2026-11-21T19:58:36.110Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary resistance: choose to succeed on a failed save; needs a prompt.",
+            "triaged": {
+              "by": "reader-xmm-010",
+              "at": "2026-11-21T19:58:36.110Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key",
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Legendary resistance: choose to succeed on a failed save; needs a prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -55431,32 +56200,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-011",
-          "at": "2026-11-21T19:58:36.428Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:22.409Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Turning a failed save into a success is a choice at use time; data only has a counter.",
+            "triaged": {
+              "by": "reader-xmm-011",
+              "at": "2026-11-21T19:58:36.428Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x007",
-            "at": "2026-11-23T04:08:42.775Z",
+            "by": "reread-s002",
+            "at": "2026-11-23T06:53:22.409Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key",
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Turning a failed save into a success is a choice at use time; data only has a counter.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -64267,8 +65053,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-z002",
-            "at": "2026-11-23T04:28:08.996Z",
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -64276,7 +65062,6 @@
             },
             "covered": false,
             "unexpressed": [
-              "trigger-filter",
               "target-size"
             ]
           }
@@ -64883,8 +65668,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-z002",
-            "at": "2026-11-23T04:28:08.996Z",
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -65300,8 +66085,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-z002",
-            "at": "2026-11-23T04:28:08.996Z",
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -65309,7 +66094,6 @@
             },
             "covered": false,
             "unexpressed": [
-              "trigger-filter",
               "target-size"
             ]
           }
@@ -65607,29 +66391,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.8,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "2fa0cf95885975156a89a8401f80d37611bb72b38977806ba212a701e4766714"
+              "sha": "463f53d86555b7b4a478d2145d23d7a70c1640914c7399208252e914682d6d53"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "condition": {
-                    "ended": "grappled"
-                  }
-                }
-              }
-            ],
             "unexpressed": [
-              "target-state",
-              "target-size",
-              "death-trigger",
-              "ongoing-effect"
+              "target-size"
             ]
           }
         }
@@ -65816,8 +66587,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-z002",
-            "at": "2026-11-23T04:28:08.996Z",
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -65825,7 +66596,6 @@
             },
             "covered": false,
             "unexpressed": [
-              "trigger-filter",
               "target-size"
             ]
           }
@@ -68056,18 +68826,50 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-013",
-          "at": "2026-11-21T19:58:37.068Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Swallow needs grappled target, conditions, cover, end-of-turn damage and one-target limit; data is partial.",
+            "triaged": {
+              "by": "reader-xmm-013",
+              "at": "2026-11-21T19:58:37.068Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "2fa0cf95885975156a89a8401f80d37611bb72b38977806ba212a701e4766714"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/swallow.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.78,
+              "view": {
+                "core": "0.290.0",
+                "sha": "2fa0cf95885975156a89a8401f80d37611bb72b38977806ba212a701e4766714"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/swallow.mjs"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Swallow needs grappled target, conditions, cover, end-of-turn damage and one-target limit; data is partial.",
       "state": "triaged"
     },
     {
@@ -72569,17 +73371,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-014",
-          "at": "2026-11-21T19:58:37.381Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Extra damage only if the goat moved in a straight line first; data has a separate manual activity, no movement condition.",
+            "triaged": {
+              "by": "reader-xmm-014",
+              "at": "2026-11-21T19:58:37.381Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/variants.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/variants.mjs"
+            }
+          }
         }
       },
-      "why": "Extra damage only if the goat moved in a straight line first; data has a separate manual activity, no movement condition.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -81806,31 +82640,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-015",
-          "at": "2026-11-21T19:58:37.695Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Aura giving advantage to allies on attacks and saves unless incapacitated; data has an empty utility.",
+            "triaged": {
+              "by": "reader-xmm-015",
+              "at": "2026-11-21T19:58:37.695Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.75,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "85512b063f5ab8cf7c1e1d798097859a3dac5ef266ff82c881699f827e8b8d13"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/auras.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "85512b063f5ab8cf7c1e1d798097859a3dac5ef266ff82c881699f827e8b8d13"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/auras.mjs"
+            }
           }
         }
       },
-      "why": "Aura giving advantage to allies on attacks and saves unless incapacitated; data has an empty utility.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -82129,31 +82981,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-015",
-          "at": "2026-11-21T19:58:37.695Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Aura giving advantage to allies on attacks and saves unless incapacitated; data has an empty utility.",
+            "triaged": {
+              "by": "reader-xmm-015",
+              "at": "2026-11-21T19:58:37.695Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.75,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "85512b063f5ab8cf7c1e1d798097859a3dac5ef266ff82c881699f827e8b8d13"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/auras.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "85512b063f5ab8cf7c1e1d798097859a3dac5ef266ff82c881699f827e8b8d13"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/auras.mjs"
+            }
           }
         }
       },
-      "why": "Aura giving advantage to allies on attacks and saves unless incapacitated; data has an empty utility.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -85888,23 +86758,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.8,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "8ce8925c6c7d2c16c1f009e4f83277546f97d28096b7054b1fa331c834a4f8f2"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "condition": {
-                    "applied": "invisible"
-                  }
-                }
-              }
+            "unexpressed": [
+              "no-key"
             ]
           }
         }
@@ -88456,48 +89319,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-016",
-          "at": "2026-11-21T19:58:38.017Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Swallowed state with cover, start-of-turn damage, regurgitate save on heavy damage and release on death; needs riders.",
+            "triaged": {
+              "by": "reader-xmm-016",
+              "at": "2026-11-21T19:58:38.017Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-z003",
-            "at": "2026-11-23T04:28:09.909Z",
-            "confidence": 0.7,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "failedSave",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "ended": "grappled"
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "ongoing-effect",
-              "target-state",
-              "use-limit",
-              "no-key",
-              "death-trigger"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/swallow.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/swallow.mjs"
+            }
           }
         }
       },
-      "why": "Swallowed state with cover, start-of-turn damage, regurgitate save on heavy damage and release on death; needs riders.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -88956,31 +89820,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-016",
-          "at": "2026-11-21T19:58:38.017Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose success after a failed save; needs a prompt tied to a failed save and the resource use.",
+            "triaged": {
+              "by": "reader-xmm-016",
+              "at": "2026-11-21T19:58:38.017Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.85,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choose success after a failed save; needs a prompt tied to a failed save and the resource use.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -92435,31 +93317,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-017",
-          "at": "2026-11-21T19:58:38.331Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "On a failed save the monster may choose to succeed; a prompt at the time of the save, not in data.",
+            "triaged": {
+              "by": "reader-xmm-017",
+              "at": "2026-11-21T19:58:38.331Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.85,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "On a failed save the monster may choose to succeed; a prompt at the time of the save, not in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -101638,31 +102538,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-019",
-          "at": "2026-11-21T19:58:38.968Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choice at use time to turn a failed save into a success; data only consumes a resource",
+            "triaged": {
+              "by": "reader-xmm-019",
+              "at": "2026-11-21T19:58:38.968Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choice at use time to turn a failed save into a success; data only consumes a resource",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -111279,31 +112197,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-020",
-          "at": "2026-11-21T19:58:39.284Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to turn a failed save into a success, a prompt at use time; data has an empty activity.",
+            "triaged": {
+              "by": "reader-xmm-020",
+              "at": "2026-11-21T19:58:39.284Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x012",
-            "at": "2026-11-23T04:08:47.295Z",
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choose to turn a failed save into a success, a prompt at use time; data has an empty activity.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -115072,47 +116008,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-021",
-          "at": "2026-11-21T19:58:39.601Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Swallow with start-of-turn damage, cover, regurgitation threshold and death release needs conditional rules beyond the data.",
+            "triaged": {
+              "by": "reader-xmm-021",
+              "at": "2026-11-21T19:58:39.601Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-z003",
-            "at": "2026-11-23T04:28:09.909Z",
-            "confidence": 0.7,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "failedSave"
-                },
-                "expect": {
-                  "condition": {
-                    "ended": "grappled"
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "ongoing-effect",
-              "target-state",
-              "use-limit",
-              "no-key",
-              "death-trigger"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/swallow.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/swallow.mjs"
+            }
           }
         }
       },
-      "why": "Swallow with start-of-turn damage, cover, regurgitation threshold and death release needs conditional rules beyond the data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -118041,47 +118979,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-021",
-          "at": "2026-11-21T19:58:39.601Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Swallow with start-of-turn damage, cover, regurgitation threshold and death release needs conditional rules beyond the data.",
+            "triaged": {
+              "by": "reader-xmm-021",
+              "at": "2026-11-21T19:58:39.601Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-z003",
-            "at": "2026-11-23T04:28:09.909Z",
-            "confidence": 0.7,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "failedSave"
-                },
-                "expect": {
-                  "condition": {
-                    "ended": "grappled"
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "ongoing-effect",
-              "target-state",
-              "use-limit",
-              "no-key",
-              "death-trigger"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/swallow.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/swallow.mjs"
+            }
           }
         }
       },
-      "why": "Swallow with start-of-turn damage, cover, regurgitation threshold and death release needs conditional rules beyond the data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -118620,18 +119560,50 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-022",
-          "at": "2026-11-21T19:58:39.923Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Healing at turn start with a suspension after fire or radiant damage and a death condition; data has only a bare self-heal activity",
+            "triaged": {
+              "by": "reader-xmm-022",
+              "at": "2026-11-21T19:58:39.923Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.290.0",
+              "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "core/regeneration.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "core/regeneration.mjs"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Healing at turn start with a suspension after fire or radiant damage and a death condition; data has only a bare self-heal activity",
       "state": "triaged"
     },
     {
@@ -125067,32 +126039,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x013",
-            "at": "2026-11-23T04:08:48.236Z",
-            "confidence": 0.85,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key",
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/legendary.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -125722,33 +126711,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple with escape DC, start-of-turn damage, movement with the target and one-creature limit; data lacks the recurring parts.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-z004",
-            "at": "2026-11-23T04:28:10.839Z",
-            "confidence": 0.75,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "692b44dad62e6a2654ab4eb3695e42c9d1999e68e71c96ee24b7d9eae332e68c"
             },
-            "covered": false,
-            "unexpressed": [
-              "ongoing-effect",
-              "use-limit",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/swallow.mjs",
+            "second": {
+              "by": "reread-t002",
+              "at": "2026-11-23T06:57:49.640Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "692b44dad62e6a2654ab4eb3695e42c9d1999e68e71c96ee24b7d9eae332e68c"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/swallow.mjs"
+            }
           }
         }
       },
-      "why": "Grapple with escape DC, start-of-turn damage, movement with the target and one-creature limit; data lacks the recurring parts.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -126281,18 +127286,50 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Recovers hit points whenever its turn begins; the heal activity has a zero die and no turn trigger.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "core/regeneration.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/regeneration.mjs"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Recovers hit points whenever its turn begins; the heal activity has a zero die and no turn trigger.",
       "state": "triaged"
     },
     {
@@ -127954,32 +128991,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x014",
-            "at": "2026-11-23T04:08:49.192Z",
-            "confidence": 0.85,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -129464,32 +130518,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x014",
-            "at": "2026-11-23T04:08:49.192Z",
-            "confidence": 0.85,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -130503,32 +131574,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-023",
-          "at": "2026-11-21T19:58:40.242Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
+            "triaged": {
+              "by": "reader-xmm-023",
+              "at": "2026-11-21T19:58:40.242Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x014",
-            "at": "2026-11-23T04:08:49.192Z",
-            "confidence": 0.85,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; data only spends a resource, no prompt on a failed save.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -138035,31 +139123,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-025",
-          "at": "2026-11-21T19:58:40.886Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; data only expends a use, no prompt.",
+            "triaged": {
+              "by": "reader-xmm-025",
+              "at": "2026-11-21T19:58:40.886Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.75,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; data only expends a use, no prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -139063,31 +140169,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-025",
-          "at": "2026-11-21T19:58:40.886Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Conditional advantage when an ally is adjacent and not incapacitated.",
+            "triaged": {
+              "by": "reader-xmm-025",
+              "at": "2026-11-21T19:58:40.886Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.7,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
             },
-            "covered": false,
-            "unexpressed": [
-              "trigger-filter"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/facts.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/facts.mjs"
+            }
           }
         }
       },
-      "why": "Conditional advantage when an ally is adjacent and not incapacitated.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -139258,31 +140382,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-025",
-          "at": "2026-11-21T19:58:40.886Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:23.332Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Conditional advantage when an ally is adjacent and not incapacitated.",
+            "triaged": {
+              "by": "reader-xmm-025",
+              "at": "2026-11-21T19:58:40.886Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.7,
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
             },
-            "covered": false,
-            "unexpressed": [
-              "trigger-filter"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/facts.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/facts.mjs"
+            }
           }
         }
       },
-      "why": "Conditional advantage when an ally is adjacent and not incapacitated.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -140037,26 +141179,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-z004",
-            "at": "2026-11-23T04:28:10.839Z",
+            "by": "reread-s003",
+            "at": "2026-11-23T06:53:23.332Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "huge"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "target-size"
             ]
           }
         }
@@ -140519,32 +141651,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-025",
-          "at": "2026-11-21T19:58:40.886Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:24.231Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Start-of-turn healing blocked after acid or fire damage, death rule; data heals but lacks the block.",
+            "triaged": {
+              "by": "reader-xmm-025",
+              "at": "2026-11-21T19:58:40.886Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.7,
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
             },
-            "covered": false,
-            "unexpressed": [
-              "ongoing-effect",
-              "death-trigger"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/regeneration.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/regeneration.mjs"
+            }
           }
         }
       },
-      "why": "Start-of-turn healing blocked after acid or fire damage, death rule; data heals but lacks the block.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -140930,32 +142079,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-025",
-          "at": "2026-11-21T19:58:40.886Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:24.231Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Start-of-turn healing blocked after acid or fire damage, death rule; data heals but lacks the block.",
+            "triaged": {
+              "by": "reader-xmm-025",
+              "at": "2026-11-21T19:58:40.886Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.7,
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
             },
-            "covered": false,
-            "unexpressed": [
-              "ongoing-effect",
-              "death-trigger"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/regeneration.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/regeneration.mjs"
+            }
           }
         }
       },
-      "why": "Start-of-turn healing blocked after acid or fire damage, death rule; data heals but lacks the block.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -141065,31 +142231,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-025",
-          "at": "2026-11-21T19:58:40.886Z",
-          "confidence": 0.9,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:24.231Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Conditional advantage when an ally is adjacent and not incapacitated.",
+            "triaged": {
+              "by": "reader-xmm-025",
+              "at": "2026-11-21T19:58:40.886Z",
+              "confidence": 0.9,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.7,
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
             },
-            "covered": false,
-            "unexpressed": [
-              "trigger-filter"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/facts.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/facts.mjs"
+            }
           }
         }
       },
-      "why": "Conditional advantage when an ally is adjacent and not incapacitated.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -142562,31 +143746,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-025",
-          "at": "2026-11-21T19:58:40.886Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:24.231Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; data only expends a use, no prompt.",
+            "triaged": {
+              "by": "reader-xmm-025",
+              "at": "2026-11-21T19:58:40.886Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; data only expends a use, no prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -144691,32 +145893,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-026",
-          "at": "2026-11-21T19:58:41.206Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:24.231Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; prompt at save time, data only has a resource consumption.",
+            "triaged": {
+              "by": "reader-xmm-026",
+              "at": "2026-11-21T19:58:41.206Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x016",
-            "at": "2026-11-23T04:08:51.008Z",
-            "confidence": 0.8,
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; prompt at save time, data only has a resource consumption.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -145519,32 +146738,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-026",
-          "at": "2026-11-21T19:58:41.206Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:24.231Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Choose to succeed on a failed save; prompt at save time, data only has a resource consumption.",
+            "triaged": {
+              "by": "reader-xmm-026",
+              "at": "2026-11-21T19:58:41.206Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x016",
-            "at": "2026-11-23T04:08:51.008Z",
-            "confidence": 0.8,
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/engine-messages.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
-      "why": "Choose to succeed on a failed save; prompt at save time, data only has a resource consumption.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -147378,41 +148614,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-026",
-          "at": "2026-11-21T19:58:41.206Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:24.231Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only if target is Large or smaller and the skeleton moved 20 feet straight first; data has a separate attack and status.",
+            "triaged": {
+              "by": "reader-xmm-026",
+              "at": "2026-11-21T19:58:41.206Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x016",
-            "at": "2026-11-23T04:08:51.008Z",
-            "confidence": 0.7,
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/variants.mjs",
+            "second": {
+              "by": "reread-t003",
+              "at": "2026-11-23T06:57:50.589Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/variants.mjs"
+            }
           }
         }
       },
-      "why": "Prone only if target is Large or smaller and the skeleton moved 20 feet straight first; data has a separate attack and status.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -147478,26 +148722,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x016",
-            "at": "2026-11-23T04:08:51.008Z",
-            "confidence": 0.7,
+            "by": "reread-s004",
+            "at": "2026-11-23T06:53:24.231Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "target-size"
             ]
           }
         }

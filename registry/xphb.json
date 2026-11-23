@@ -4583,11 +4583,24 @@
           "at": "2026-11-21T19:50:45.335Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "d0b5bf68cdf766820bb7ac58ebc033b3f445297881d652230706716fa97c0c94"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Adds Brutal Strike options with timed riders (next save disadvantage, no opportunity attacks, one-time +5 to hit); data has empty effects.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -4760,17 +4773,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-k001",
-            "at": "2026-11-23T00:24:06.508Z",
-            "confidence": 0.7,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "d0b5bf68cdf766820bb7ac58ebc033b3f445297881d652230706716fa97c0c94"
             },
             "covered": false,
             "unexpressed": [
-              "use-time-choice",
-              "no-key"
+              "use-time-choice"
             ]
           }
         }
@@ -4912,8 +4924,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -8124,16 +8136,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.7,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
             "covered": false,
             "unexpressed": [
-              "no-key"
+              "follow-up-action"
             ]
           }
         }
@@ -10981,8 +10993,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -10990,8 +11002,7 @@
             },
             "covered": false,
             "unexpressed": [
-              "no-key",
-              "death-trigger"
+              "no-key"
             ]
           }
         }
@@ -11645,32 +11656,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-005",
-          "at": "2026-11-21T19:50:45.954Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Transform with uses is present, but the end on incapacitation or death and form rules need a rule.",
+            "triaged": {
+              "by": "reader-xphb-005",
+              "at": "2026-11-21T19:50:45.954Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-k001",
-            "at": "2026-11-23T00:24:06.508Z",
-            "confidence": 0.7,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "1d75c0fb0a61af8a2d1f856167fc2b1f0b757dca2796feef2dfd3e0184d8dc0f"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key",
-              "table-ruling"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/wildshape.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "1d75c0fb0a61af8a2d1f856167fc2b1f0b757dca2796feef2dfd3e0184d8dc0f"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/wildshape.mjs"
+            }
           }
         }
       },
-      "why": "Transform with uses is present, but the end on incapacitation or death and form rules need a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -12534,32 +12562,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-005",
-          "at": "2026-11-21T19:50:45.954Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Transform activity exists but the CR cap, AC formula and temp HP grant are missing from the data.",
+            "triaged": {
+              "by": "reader-xphb-005",
+              "at": "2026-11-21T19:50:45.954Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-i001",
-            "at": "2026-11-22T23:41:41.043Z",
-            "confidence": 0.75,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
-            "covered": false,
-            "unexpressed": [
-              "form-change",
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/wildshape.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/wildshape.mjs"
+            }
           }
         }
       },
-      "why": "Transform activity exists but the CR cap, AC formula and temp HP grant are missing from the data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -13738,35 +13783,53 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T21:55:02.157Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-006",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Raises attacks per Attack action to three; data has no activity or effect, so the attack count needs a rule.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T21:55:02.157Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-006",
+                "confidence": 0.65
+              }
+            }
           },
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/turn.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/turn.mjs"
+            }
           }
         }
       },
-      "why": "Raises attacks per Attack action to three; data has no activity or effect, so the attack count needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -14476,35 +14539,53 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T21:55:02.157Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-006",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Raises attacks per Attack action to four; data lacks any effect, attack count needs a rule.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T21:55:02.157Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-006",
+                "confidence": 0.65
+              }
+            }
           },
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/turn.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/turn.mjs"
+            }
           }
         }
       },
-      "why": "Raises attacks per Attack action to four; data lacks any effect, attack count needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -14623,35 +14704,53 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T21:55:02.157Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-006",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T21:55:02.157Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-006",
+                "confidence": 0.65
+              }
+            }
           },
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/turn.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/turn.mjs"
+            }
           }
         }
       },
-      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -18294,35 +18393,53 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T21:55:02.157Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-008",
-            "confidence": 0.65
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T21:55:02.157Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-008",
+                "confidence": 0.65
+              }
+            }
           },
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/turn.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/turn.mjs"
+            }
           }
         }
       },
-      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -18680,9 +18797,9 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i002",
-            "at": "2026-11-22T23:41:41.780Z",
-            "confidence": 0.7,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
@@ -20480,17 +20597,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-008",
-          "at": "2026-11-21T19:50:46.864Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Enlarges the protection aura radius; data has no effect and an aura needs a rule.",
+            "triaged": {
+              "by": "reader-xphb-008",
+              "at": "2026-11-21T19:50:46.864Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/auras.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/auras.mjs"
+            }
+          }
         }
       },
-      "why": "Enlarges the protection aura radius; data has no effect and an aura needs a rule.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -20926,35 +21075,53 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T21:55:02.157Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-009",
-            "confidence": 0.6
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T21:55:02.157Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-009",
+                "confidence": 0.6
+              }
+            }
           },
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
-            "confidence": 0.85,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/turn.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/turn.mjs"
+            }
           }
         }
       },
-      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -23466,35 +23633,53 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "second-s46",
-          "at": "2026-11-21T21:55:02.157Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
-          "first": {
-            "by": "reader-xphb-009",
-            "confidence": 0.6
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
+            "triaged": {
+              "by": "second-s46",
+              "at": "2026-11-21T21:55:02.157Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": [],
+              "first": {
+                "by": "reader-xphb-009",
+                "confidence": 0.6
+              }
+            }
           },
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
-            "confidence": 0.85,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "follow-up-action"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/turn.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/turn.mjs"
+            }
           }
         }
       },
-      "why": "Two attacks per Attack action; data lacks any effect, attack count needs a rule.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -23954,8 +24139,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -24146,16 +24331,15 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
-            "confidence": 0.8,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
               "sha": "96afcab24d9fd1e8ee7a8b1e38ed92c339b13786b890a44b8071cc7e8e027b05"
             },
             "covered": false,
             "unexpressed": [
-              "no-key",
               "use-limit"
             ]
           }
@@ -29413,8 +29597,8 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
@@ -30126,16 +30310,16 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
-            "confidence": 0.7,
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
             "unexpressed": [
-              "no-key"
+              "use-time-choice"
             ]
           }
         }
@@ -30190,8 +30374,8 @@
             "confidence": 0.65
           },
           "reread": {
-            "by": "reread-i003",
-            "at": "2026-11-22T23:41:42.670Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
@@ -30199,8 +30383,7 @@
             },
             "covered": false,
             "unexpressed": [
-              "use-time-choice",
-              "no-key"
+              "use-time-choice"
             ]
           }
         }
@@ -32201,43 +32384,49 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-013",
-          "at": "2026-11-21T19:50:48.383Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T06:53:25.048Z",
+          "was": {
+            "verdict": "entry",
+            "why": "data lacks it: extra disadvantage on saves of chosen ability when Hex cast; needs linkage to the Hex spell",
+            "triaged": {
+              "by": "reader-xphb-013",
+              "at": "2026-11-21T19:50:48.383Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-k001",
-            "at": "2026-11-23T00:24:06.508Z",
+            "by": "reread-s005",
+            "at": "2026-11-23T06:53:25.048Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
               "sha": "45b9051f6917ec83d7ca2e706b8695be4362d2431a20322504ac7c30b18f9cfd"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "roll": {
-                    "mode": "disadvantage",
-                    "on": "save",
-                    "for": "target"
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/potions.mjs",
+            "second": {
+              "by": "reread-t004",
+              "at": "2026-11-23T06:57:51.435Z",
+              "confidence": 0.78,
+              "view": {
+                "core": "0.290.0",
+                "sha": "45b9051f6917ec83d7ca2e706b8695be4362d2431a20322504ac7c30b18f9cfd"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "adapter/potions.mjs"
+            }
           }
         }
       },
-      "why": "data lacks it: extra disadvantage on saves of chosen ability when Hex cast; needs linkage to the Hex spell",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -73690,17 +73879,16 @@
           },
           "via": "third-reading",
           "reread": {
-            "by": "reread-v002",
-            "at": "2026-11-23T05:30:05.116Z",
-            "confidence": 0.7,
+            "by": "reread-s006",
+            "at": "2026-11-23T06:53:25.711Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
             "covered": false,
             "unexpressed": [
-              "form-change",
-              "use-time-choice"
+              "form-change"
             ]
           }
         }
@@ -77398,9 +77586,9 @@
           },
           "via": "third-reading",
           "reread": {
-            "by": "reread-i004",
-            "at": "2026-11-22T23:41:43.472Z",
-            "confidence": 0.75,
+            "by": "reread-s006",
+            "at": "2026-11-23T06:53:25.711Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
@@ -77408,8 +77596,7 @@
             "covered": false,
             "unexpressed": [
               "form-change",
-              "use-time-choice",
-              "no-key"
+              "use-time-choice"
             ]
           }
         }
