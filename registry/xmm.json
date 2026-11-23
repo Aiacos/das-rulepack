@@ -29481,16 +29481,17 @@
           },
           "via": "bulk-unsure",
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
-            "confidence": 0.7,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
             "unexpressed": [
-              "death-trigger"
+              "death-trigger",
+              "no-key"
             ]
           }
         }
@@ -44885,31 +44886,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Aura giving chosen undead allies advantage on attacks and saves, off when incapacitated; the data effect has no changes.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.7,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "24f91f22aeae3adffbb2d3ee7b53c4b6325b0170d6c3de657e35e4a4e69bfa1f"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/auras.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Aura giving chosen undead allies advantage on attacks and saves, off when incapacitated; the data effect has no changes.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -45208,31 +45216,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary action that casts a spell, with a cannot-repeat-until-next-turn limit that data cannot express.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
             "confidence": 0.75,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Legendary action that casts a spell, with a cannot-repeat-until-next-turn limit that data cannot express.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -45510,31 +45525,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary resistance: choice at use time to turn a failed save into success; data only expends a use.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.85,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Legendary resistance: choice at use time to turn a failed save into success; data only expends a use.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -45680,31 +45702,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Aura giving chosen undead allies advantage on attacks and saves, off when incapacitated; the data effect has no changes.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.7,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "24f91f22aeae3adffbb2d3ee7b53c4b6325b0170d6c3de657e35e4a4e69bfa1f"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/auras.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Aura giving chosen undead allies advantage on attacks and saves, off when incapacitated; the data effect has no changes.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -46881,31 +46910,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary resistance: choice at use time to turn a failed save into success; data only expends a use.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.85,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Legendary resistance: choice at use time to turn a failed save into success; data only expends a use.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -47618,32 +47654,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary resistance: choice at use time to turn a failed save into success; data only expends a use.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
             "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key",
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Legendary resistance: choice at use time to turn a failed save into success; data only expends a use.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -50566,31 +50608,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-010",
-          "at": "2026-11-21T19:58:36.110Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary spell cast with a lockout until the start of its next turn; data lacks the lockout.",
+            "triaged": {
+              "by": "reader-xmm-010",
+              "at": "2026-11-21T19:58:36.110Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
-            "confidence": 0.75,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/turn.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Legendary spell cast with a lockout until the start of its next turn; data lacks the lockout.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -50833,32 +50882,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-010",
-          "at": "2026-11-21T19:58:36.110Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:39.511Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Legendary resistance: convert a failed save to success on choice; needs a prompt.",
+            "triaged": {
+              "by": "reader-xmm-010",
+              "at": "2026-11-21T19:58:36.110Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
             "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
-            "covered": false,
-            "unexpressed": [
-              "no-key",
-              "use-time-choice"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "adapter/legendary.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "Legendary resistance: convert a failed save to success on choice; needs a prompt.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -59530,11 +59585,11 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x007",
-            "at": "2026-11-23T04:08:42.775Z",
-            "confidence": 0.7,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
             "covered": false,
@@ -115533,16 +115588,15 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-z003",
-            "at": "2026-11-23T04:28:09.909Z",
-            "confidence": 0.75,
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "1f899c451699402d6ea09d4989d8c662b509ff17630866f82b66861c9a27b6b6"
             },
             "covered": false,
             "unexpressed": [
-              "no-key",
               "target-size"
             ]
           }
@@ -128110,11 +128164,11 @@
           },
           "via": "third-reading",
           "reread": {
-            "by": "reread-x014",
-            "at": "2026-11-23T04:08:49.192Z",
+            "by": "reread-w001",
+            "at": "2026-11-23T08:41:39.511Z",
             "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
             },
             "covered": false,
