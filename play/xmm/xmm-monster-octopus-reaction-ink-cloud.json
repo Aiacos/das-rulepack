@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-octopus-reaction-ink-cloud",
+  "key": "xmm:monster:octopus/reaction/ink-cloud",
+  "rule": "0a5407718aa7e56550a3088648f1c86808a0bbcec0f7705ce3565d958886165a",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A foe that ends its turn far from the octopus opens no reaction window; one that ends it beside the octopus opens the octopus's. The window is declined: the cloud itself is not played."
+}

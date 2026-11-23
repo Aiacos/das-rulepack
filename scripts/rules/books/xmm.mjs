@@ -1484,6 +1484,42 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-octopus-ink-cloud",
+    "name": "Ink Cloud",
+    "page": 365,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Octopus",
+    "adds": "The octopus is offered its reaction as soon as an adjacent foe finishes a turn.",
+    "entry": {
+      "triggers": [
+        {
+          "on": "enemyTurnEnd",
+          "if": {
+            "source.nearSelf": {
+              "distance": 5,
+              "units": "ft"
+            }
+          },
+          "do": [
+            {
+              "type": "use",
+              "activity": "1MiIPcVuCpfgBIkS"
+            }
+          ]
+        }
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-phase-spider-bite",
     "name": "Bite",
     "page": 239,

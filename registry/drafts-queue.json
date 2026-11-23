@@ -937,14 +937,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:octopus/reaction/ink-cloud",
-    "reason": "engine",
-    "by": "drafter-v009",
-    "why": "an obscuring cube plus a free swim move as a reaction: no drafter key makes vision zones or self moves",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:performer-legend/reaction/warding-charm",
     "reason": "engine",
     "by": "drafter-v009",
