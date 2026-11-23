@@ -488,14 +488,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:darkmantle/action/darkness-aura",
-    "reason": "person",
-    "by": "drafter-v002",
-    "why": "concentration zone of magical darkness that defeats darkvision and light: no drafter key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:death-knight-aspirant/reaction/parry",
     "reason": "person",
     "by": "drafter-v002",

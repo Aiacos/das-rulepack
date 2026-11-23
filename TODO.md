@@ -419,3 +419,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Mapping Magic, the Portal Jump of 10 feet (EFA)
 - [x] Engineered rule proven by a recorded play on the released engine: Greater Mark of Handling, the command takes a Beast or a Monstrosity only (EFA)
 - [x] Triage: the creature features of the Player's Handbook, the Dungeon Master's Guide and Eberron, swept and read twice against the engine's view
+- [x] Engineered rule proven by a recorded play on the released engine: Darkmantle Darkness Aura, magical darkness on its zone (XMM)
