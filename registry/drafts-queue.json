@@ -49,13 +49,6 @@
     "confidence": 0.75
   },
   {
-    "key": "xdmg:item:book-of-vile-darkness",
-    "reason": "person",
-    "by": "drafter-y001",
-    "why": "vile speech damage is the item's own; its 15 ft area, the fiend and undead exemption and the self damage have no assertable key",
-    "confidence": 0.75
-  },
-  {
     "key": "xdmg:item:clockwork-amulet",
     "reason": "person",
     "by": "drafter-y001",

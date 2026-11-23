@@ -3966,11 +3966,65 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T10:30:15.708Z",
+          "core": "0.291.0",
+          "rule": "4171f353f01f254c0a1f3c2025da2f3459fb58ebc2b29e66f28164e09ad9ace6",
+          "emits": "6baef410f06cc511de80110ac56ca399a2cc7fcdc7ff35961e5918524576124f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "154db45ca25317cde0a730f2c0538852fed6dc1c0b54ac2a30a6cd65e46113db"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T10:35:31.653Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xdmg/xdmg-item-book-of-vile-darkness",
+          "client": "gm",
+          "rule": "4171f353f01f254c0a1f3c2025da2f3459fb58ebc2b29e66f28164e09ad9ace6"
         }
       },
       "why": "Self and area psychic damage by creature type, advantage on checks and charisma-save transform need rules.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "A Fiend or an Undead is left unaffected by the book's speech.",
+        "entry": {
+          "targets": {
+            "unaffectedIf": {
+              "activity.id": "QCNkGQX4lTt0Dfi3",
+              "target.creatureType": [
+                "fiend",
+                "undead"
+              ]
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "engineered against the official item only (Ruling R43)"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T10:30:09.035Z",
+          "leavesNote": "The damage the speaker takes on each use, who stands within 15 feet, and the book's other properties (attunement save, lore, ability scores) stay with the GM."
+        }
+      },
+      "state": "played"
     },
     {
       "key": "xdmg:item:boots-of-elvenkind",
