@@ -76,6 +76,23 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "power-of-the-wilds",
+    "name": "Power of the Wilds",
+    "page": 55,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Wild Heart 14",
+    "adds": "The option taken lasts only while the barbarian rages, and a second option in the same Rage is warned against.",
+    "entry": {
+      "duringRage": {
+        "copiesEnd": true,
+        "oneOption": true
+      }
+    }
+  },
+
+  {
     "identifier": "arcane-charge",
     "name": "Arcane Charge",
     "page": 98,

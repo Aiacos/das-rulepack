@@ -380,3 +380,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Fifth engineered rule proven by a recorded play: Shadow Step (XPHB).
 - [x] Sixth engineered rule proven by a recorded play: Arcane Charge (XPHB).
 - [x] Seventh engineered rule proven by a recorded play: Relentless Avenger (XPHB).
+- [x] Eighth engineered rule proven by a recorded play: Power of the Wilds (XPHB).

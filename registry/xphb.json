@@ -5828,11 +5828,55 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T02:46:39.418Z",
+          "core": "0.290.0",
+          "rule": "8165dd68f16eabb3a34d2fd083650145147bcd01daf9eb91ee354f6a7943224b",
+          "emits": "1b7c94b1dc2727b10f07db48685ea54eef9ecebb715055f3afb05505ca6aa02b",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7c1d9ec8962291eb55f14360bb70fbb9efaaa0920b681c263737e48995b1b70c"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T02:59:45.507Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-barbarian-wild-heart-14-power-of-the-wilds",
+          "client": "gm",
+          "rule": "8165dd68f16eabb3a34d2fd083650145147bcd01daf9eb91ee354f6a7943224b"
         }
       },
       "why": "Choice at rage start; Lion aura imposes disadvantage on enemies, Falcon needs no armor, Ram prone on hit; only Ram partly in data.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The option taken lasts only while the barbarian rages, and a second option in the same Rage is warned against.",
+        "entry": {
+          "duringRage": {
+            "copiesEnd": true,
+            "oneOption": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T02:46:32.462Z",
+          "leavesNote": "The Lion's Disadvantage, the Ram's Prone on a hit and the Falcon's no-armor condition are applied by hand."
+        },
+        "origin": "Wild Heart 14"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:barbarian/wild-heart/3/animal-speaker",
@@ -21765,6 +21809,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T02:42:29.671Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-paladin-vengeance-7-relentless-avenger",
+          "client": "gm",
+          "rule": "aaee56738e7a4bdd25193b3aea0360dd787bb35e840153c105c217b56d018eb5"
+        },
         "gates": {
           "at": "2026-11-23T02:23:28.955Z",
           "core": "0.290.0",
@@ -21781,14 +21833,6 @@
           "items": {
             "official": "2f3e28976aaa803acf664096099e4d350402587f3e029e032e5919dc17e97297"
           }
-        },
-        "played": {
-          "at": "2026-11-23T02:42:29.671Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-paladin-vengeance-7-relentless-avenger",
-          "client": "gm",
-          "rule": "aaee56738e7a4bdd25193b3aea0360dd787bb35e840153c105c217b56d018eb5"
         }
       },
       "why": "Triggers on an opportunity attack hit: speed to 0 until turn end and a half-speed move that does not provoke; data has a generic action with a speed effect.",

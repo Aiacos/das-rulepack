@@ -371,6 +371,25 @@ describe("hand-written scenarios (Ruling R43)", () => {
       expect(calls[1][1].code).toContain('"environment.globalLight.enabled": true, "environment.darknessLevel": 0.25');
     });
 
+    it("the warning's page script matches a line with placeholders by its fixed stretches", async () => {
+      const codes = [];
+      const ctx = {
+        log: () => {}, expect: () => true, checks: 0, engine: async () => ({ version: "9.9.9" }), restore: () => {},
+        effects: async () => [], call: async (tool, args) => { codes.push(args.code); return { result: true }; }
+      };
+      await handWritten(json(gated()), async (h) => { await h.warned("quuxOnce", 1); }).run(ctx);
+      // The script is a function body run on the page: here, on a stand-in for it.
+      const line = "One quux per glimmer: {item} already gives {effect}. Chosen when it starts.";
+      const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+      const onPage = (text) => new AsyncFunction("game", "document", "foundry", codes[0])(
+        { i18n: { localize: (asked) => (asked.endsWith(".Souci.quuxOnce") ? line : asked) } },
+        { querySelectorAll: () => [{ id: "w1", innerText: text }] },
+        { applications: { instances: { get: () => ({ close: async () => {} }) } } });
+      expect(await onPage("Careful\nOne quux per glimmer: Ward already gives Stride. Chosen when it starts.\nGo on")).toBe(true);
+      expect(await onPage("One quux per glimmer: Ward already gives Stride.")).toBe(false);
+      expect(await onPage("Something else entirely")).toBe(false);
+    });
+
     it("withholds it when an expectation failed", async () => {
       const { log } = await play(json(gated()), async (h) => { h.expect(true, "one"); h.expect(false, "two"); });
       expect(log.at(-1)).toMatch(/^stamp withheld: 1 expectation\(s\) failed/);
