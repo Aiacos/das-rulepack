@@ -7895,11 +7895,69 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T15:00:55.715Z",
+          "core": "0.291.0",
+          "rule": "20fc07e345350aa6264c00b7809d612b8a7f16dccb2e2271b03bd69bb50043d8",
+          "emits": "9a42c5a7297a83e4c100f2b85ff906f98e396c90541b6a0776881f36c708b450",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "db162b44ea396498c48a4ec8d2968ebf19e0f96285e783f8561f0a43697ab503"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T15:04:51.899Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-bard-dance-6-inspiring-movement",
+          "client": "gm",
+          "rule": "20fc07e345350aa6264c00b7809d612b8a7f16dccb2e2271b03bd69bb50043d8"
         }
       },
       "why": "Reaction triggered by an enemy ending its turn nearby, spends inspiration, moves self and one ally without opportunity attacks; data has only a generic reaction activity.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The bard is offered this reaction as soon as a visible adjacent foe finishes a turn.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "enemyTurnEnd",
+              "if": {
+                "source.nearSelf": {
+                  "distance": 5,
+                  "units": "ft"
+                },
+                "self.seesSource": true
+              },
+              "do": [
+                {
+                  "type": "use",
+                  "activity": "dnd5eactivity000"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T15:00:49.398Z",
+          "leavesNote": "Both half-Speed moves, the ally's reaction and their freedom from opportunity attacks are left to the players."
+        },
+        "origin": "Dance 6"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:bard/dance/6/tandem-footwork",
@@ -10374,6 +10432,14 @@
             }
           }
         },
+        "played": {
+          "at": "2026-11-23T11:39:00.228Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-cleric-light-3-radiance-of-the-dawn",
+          "client": "gm",
+          "rule": "4a231dd05661ae91575321de47a8795588d7d2f633db09ab386e0efca8801d79"
+        },
         "gates": {
           "at": "2026-11-23T11:35:09.938Z",
           "core": "0.291.0",
@@ -10390,14 +10456,6 @@
           "items": {
             "official": "718240de5c8bf05b3ffd10725a005f34a80cac67c34e6bd471a8528b54b82d4c"
           }
-        },
-        "played": {
-          "at": "2026-11-23T11:39:00.228Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-cleric-light-3-radiance-of-the-dawn",
-          "client": "gm",
-          "rule": "4a231dd05661ae91575321de47a8795588d7d2f633db09ab386e0efca8801d79"
         }
       },
       "rule": {
