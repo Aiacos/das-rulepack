@@ -48,7 +48,16 @@ function jsonProblem(json) {
  * - `combat(caster, target)` a combat with the caster first (initiative 20); `nextTurn()` one turn on, seen to change (false,
  *   and the stamp withheld, when it never does); `casterTurn(caster)` turns on until the caster's comes back;
  * - `effects(token)` the token's effects (each with its `origin`), `effectsFrom(token, itemId)` those whose origin is the
- *   item, `hasStatus(token, status)`; `hp(token)` and `setHp(token, n)` (the first change of a token's hit points is put back).
+ *   item, `hasStatus(token, status)`; `hp(token)` and `setHp(token, n)` (the first change of a token's hit points is put back);
+ * - `script(code)` a function body run on the game master's page, its return value handed back; `actorOf(token)` the page
+ *   expression of a token's actor, for such a script;
+ * - `answer(option = 0)` an open question of the engine answered with that option (true when one was open); `playerUse({
+ *   caster, itemId, activityId })` the activity used as a player would, WITHOUT the confirmation `use` always passes (not
+ *   awaited: the engine may stop it with a window); `warned(issue)` the engine's "use anyway?" window for that issue word
+ *   (`wrongLight`, `needsEffect`...) seen, and closed without going on;
+ * - `fresh(token)` marks the token's effects now and returns a function listing the enabled ones placed since;
+ *   `status(token, id)` a status put on a token for the run; `darkness()` the scene without light for the run (both put back);
+ *   `until(test, tries)` a test asked every half second until it holds.
  */
 export function handWritten(json, play, { scene = ARENA.scene } = {}) {
   return {
@@ -71,8 +80,24 @@ export function handWritten(json, play, { scene = ARENA.scene } = {}) {
   };
 }
 
+// Page scripts (function bodies run on the game master's client by the runner's `run-script`). `option` and `issue` are an
+// integer and an engine word: both are checked before they reach a script.
+const ANSWER = (option) => `const b = document.querySelector('[data-action="pick${Number.parseInt(option, 10) || 0}"]');
+  if (!b) return false; b.click(); return true;`;
+const WARNING = (issue) => {
+  if (!/^[A-Za-z]{1,40}$/.test(String(issue))) throw new Error(`not an engine issue word: ${issue}`);
+  return `const line = game.i18n.localize("DND5ECOMBAT.Souci.${issue}");
+    const el = [...document.querySelectorAll("dialog, .application")].find((e) => e.innerText.includes(line));
+    if (!el) return false;
+    await foundry.applications.instances.get(el.id)?.close();
+    return true;`;
+};
+const LIGHT = (globalLight, darkness) => 'await canvas.scene.update({ "environment.globalLight.enabled": '
+  + `${globalLight === true}, "environment.darknessLevel": ${Number(darkness) || 0} }); return true;`;
+
 function helpers(ctx, env) {
   const kept = new Set();
+  const script = async (code, waitMs = 8000) => (await ctx.call("run-script", { code, waitMs }))?.result;
   const h = {
     ctx,
     expect: (ok, label) => ctx.expect(ok, label),
@@ -123,7 +148,47 @@ function helpers(ctx, env) {
       await ctx.setHp(token, n);
     },
     pause,
-    documentOf: (token) => documentOf(ctx, token)
+    documentOf: (token) => documentOf(ctx, token),
+    script,
+    actorOf: (token) => `canvas.scene.tokens.get(${JSON.stringify(token.id)})?.actor`,
+    async answer(option = 0, tries = 30) {
+      for (let k = 0; k < tries; k++) {
+        await pause(500);
+        if ((await script(ANSWER(option))) === true) return true;
+      }
+      return false;
+    },
+    playerUse: ({ caster, itemId, activityId }) => script(`${h.actorOf(caster)}.items.get(${JSON.stringify(itemId)})`
+      + `.system.activities.get(${JSON.stringify(activityId)}).use({}, { configure: false }); return true;`),
+    async warned(issue, tries = 16) {
+      for (let k = 0; k < tries; k++) {
+        await pause(500);
+        if ((await script(WARNING(issue))) === true) return true;
+      }
+      return false;
+    },
+    async fresh(token) {
+      const idOf = (e) => e?._id ?? e?.id;
+      const before = new Set((await ctx.effects(token)).map(idOf));
+      return async () => (await ctx.effects(token)).filter((e) => !e.disabled && !before.has(idOf(e)));
+    },
+    async status(token, statusId) {
+      await ctx.call("set-status", { tokenId: token.id, statusId, active: true });
+      ctx.restore(() => ctx.call("set-status", { tokenId: token.id, statusId, active: false }).catch(() => {}));
+    },
+    async darkness() {
+      const was = await script("const e = canvas.scene.environment; return { g: e.globalLight.enabled, d: e.darknessLevel };");
+      ctx.restore(() => script(LIGHT(was?.g !== false, Number(was?.d) || 0)));
+      await script(LIGHT(false, 1));
+      await pause(2500);
+    },
+    async until(test, tries = 12) {
+      for (let k = 0; k < tries; k++) {
+        await pause(500);
+        if (await test()) return true;
+      }
+      return false;
+    }
   };
   return h;
 }

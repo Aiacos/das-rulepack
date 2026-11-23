@@ -328,6 +328,49 @@ describe("hand-written scenarios (Ruling R43)", () => {
       expect(STAMP.test(log.at(-1))).toBe(true);
     });
 
+    it("its page helpers call the runner, put back what they change, and refuse a word that is not the engine's", async () => {
+      const calls = [];
+      const restores = [];
+      const effects = [{ _id: "old" }];
+      const ctx = {
+        log: () => {}, expect: () => true, checks: 0, engine: async () => ({ version: "9.9.9" }),
+        restore: (fn) => restores.push(fn),
+        effects: async () => effects,
+        call: async (tool, args) => {
+          calls.push([tool, args]);
+          if (tool !== "run-script") return {};
+          return { result: args.code.includes("return { g:") ? { g: true, d: 0.25 } : args.code.includes("pick1") };
+        }
+      };
+      const token = { id: "Tok1Tok2Tok3Tok4" };
+      let done = false;
+      await handWritten(json(gated()), async (h) => {
+        expect(await h.answer(1, 2)).toBe(true);
+        expect(await h.answer(0, 2)).toBe(false);
+        await expect(h.warned("x y; alert(1)")).rejects.toThrow(/not an engine issue word/);
+        const placed = await h.fresh(token);
+        effects.push({ _id: "new", statuses: ["invisible"] }, { _id: "off", disabled: true });
+        expect((await placed()).map((e) => e._id)).toEqual(["new"]);
+        await h.status(token, "incapacitated");
+        await h.darkness();
+        await h.playerUse({ caster: token, itemId: "It11It22It33It44", activityId: "Ac11Ac22Ac33Ac44" });
+        expect(await h.until(async () => true, 1)).toBe(true);
+        done = true;
+      }).run(ctx);
+      expect(done).toBe(true);
+      expect(calls.find(([tool]) => tool === "set-status")[1])
+        .toEqual({ tokenId: token.id, statusId: "incapacitated", active: true });
+      const dark = calls.filter(([, a]) => a.code?.includes("environment.darknessLevel\": 1")).length;
+      expect(dark).toBe(1);
+      expect(calls.at(-1)[1].code).toContain('.system.activities.get("Ac11Ac22Ac33Ac44").use({}, { configure: false })');
+      // What was changed is put back: the status off, the light as it was read.
+      expect(restores).toHaveLength(2);
+      calls.length = 0;
+      for (const fn of restores) await fn();
+      expect(calls[0][1]).toMatchObject({ statusId: "incapacitated", active: false });
+      expect(calls[1][1].code).toContain('"environment.globalLight.enabled": true, "environment.darknessLevel": 0.25');
+    });
+
     it("withholds it when an expectation failed", async () => {
       const { log } = await play(json(gated()), async (h) => { h.expect(true, "one"); h.expect(false, "two"); });
       expect(log.at(-1)).toMatch(/^stamp withheld: 1 expectation\(s\) failed/);
