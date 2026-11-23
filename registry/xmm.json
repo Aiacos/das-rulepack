@@ -70782,7 +70782,7 @@
       "edition": "2024",
       "owner": "Gibbering Mouther",
       "section": "trait",
-      "identifier": "aberrant-ground",
+      "identifier": "xmm-gibbering-mouther-aberrant-ground",
       "page": 133,
       "srd": true,
       "text": {
@@ -70815,7 +70815,8 @@
           "effects": [],
           "data": {
             "sha256": "01743ed987246754e4777b59f7b86339706e475ad86de990a90bdf823dde761c"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -70843,11 +70844,76 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T13:40:10.865Z",
+          "core": "0.291.0",
+          "rule": "038a09fa8de9edf879f65952bdbd66c5ef92675befc81043f4ca8518c1e123db",
+          "item": "5f467426b518908e2e0265519ccc42b94275db47f6541c9c731f41cd2a172ead",
+          "delta": [
+            "difficultTerrain"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "aberrant-ground",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T13:40:10.865Z",
+          "core": "0.291.0",
+          "rule": "038a09fa8de9edf879f65952bdbd66c5ef92675befc81043f4ca8518c1e123db",
+          "emits": "86178760f09c49596a6cb7a2e3526306e3f542ea53c1c23f6428dd7b321d29fd",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "5f467426b518908e2e0265519ccc42b94275db47f6541c9c731f41cd2a172ead"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T13:43:40.931Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-gibbering-mouther-trait-aberrant-ground",
+          "client": "gm",
+          "rule": "038a09fa8de9edf879f65952bdbd66c5ef92675befc81043f4ca8518c1e123db"
         }
       },
       "why": "Emanation around the creature making terrain difficult is an aura; data only places a template.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAberrantGround": "xmm-gibbering-mouther-aberrant-ground"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The zone the feature lays around the creature is Difficult Terrain.",
+        "entry": {
+          "difficultTerrain": {}
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T13:40:04.387Z",
+          "leavesNote": "The GM lays the zone once with the feature's activity; whether the creature itself is slowed inside it is not checked."
+        },
+        "origin": "Gibbering Mouther"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:gibbering-mouther/trait/gibbering",
@@ -81827,6 +81893,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T12:21:50.469Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-haunting-revenant-action-object-slam",
+          "client": "gm",
+          "rule": "9ebcaec30d5aefe9bb348d0342be7fee606f1535c9e95ab835656be3b7ec7a56"
+        },
         "reading": {
           "at": "2026-11-23T12:17:48.742Z",
           "core": "0.291.0",
@@ -81858,14 +81932,6 @@
           "items": {
             "official": "237d9e968cfa9c58b22a164fc8173b374bd6c9969131b9912204c237fe46fe36"
           }
-        },
-        "played": {
-          "at": "2026-11-23T12:21:50.469Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-haunting-revenant-action-object-slam",
-          "client": "gm",
-          "rule": "9ebcaec30d5aefe9bb348d0342be7fee606f1535c9e95ab835656be3b7ec7a56"
         }
       },
       "why": "Attack gains advantage when the target is in a stated position; data lacks it.",

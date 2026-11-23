@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-gibbering-mouther-trait-aberrant-ground",
+  "key": "xmm:monster:gibbering-mouther/trait/aberrant-ground",
+  "rule": "038a09fa8de9edf879f65952bdbd66c5ef92675befc81043f4ca8518c1e123db",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "Used, the feature lays one zone of 10 feet around the creature that carries the Difficult Terrain behaviour; the zone can be removed. The movement cost inside it is not measured."
+}
