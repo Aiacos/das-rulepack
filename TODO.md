@@ -372,3 +372,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       (`effects` with `origin`, `settle` targets by token uuid), as the checklist of generated scenarios did.
 - [x] The item summary shows advancements (what dnd5e grants by itself); the item reread counts them in its fingerprint,
       so the entries whose item has some are read again.
+- [x] Items with advancements read again: 9 more XPHB and 2 EFA entries confirmed covered by two readers.
