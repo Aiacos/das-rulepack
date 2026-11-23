@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-magmin-bonus-ignited-illumination",
+  "key": "xmm:monster:magmin/bonus/ignited-illumination",
+  "rule": "6f23f73d2b95fedd20b40f7445f40a924ef474afed896b207635fee5e8ddeb35",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Used once, the feature makes the creature's token shed bright light for 10 feet and dim to 20; another creature sheds none; used again, the light is out."
+}

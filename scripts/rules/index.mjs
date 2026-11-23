@@ -73,6 +73,7 @@ export const SOURCES = Object.freeze({
   "mmHungerOfYeenog": "xmm-gnoll-demoniac-hunger-of-yeenoghu",
   "mmHypnoticGaze00": "xmm-ultroloth-hypnotic-gaze",
   "mmIcyBite0000000": "xmm-lacedon-ghoul-icy-bite",
+  "mmIgnitedIllumin": "xmm-magmin-ignited-illumination",
   "mmJuvenileShadow.mmSunlightSensit": "xmm-juvenile-shadow-dragon-sunlight-sensitivity",
   "mmKoboldWarrior0.mmSunlightSensit": "xmm-kobold-warrior-sunlight-sensitivity",
   "mmKuotoa00000000.mmSunlightSensit": "xmm-kuo-toa-sunlight-sensitivity",

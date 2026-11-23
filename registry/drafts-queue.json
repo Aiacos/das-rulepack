@@ -868,14 +868,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:magmin/bonus/ignited-illumination",
-    "reason": "engine",
-    "by": "drafter-v008",
-    "why": "toggles light emission on the user; no key handles light",
-    "confidence": 0.9,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:marid/action/water-jet",
     "reason": "person",
     "by": "drafter-r001",
