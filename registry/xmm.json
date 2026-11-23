@@ -45119,7 +45119,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/auras.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "24f91f22aeae3adffbb2d3ee7b53c4b6325b0170d6c3de657e35e4a4e69bfa1f"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/auras.mjs"
+            }
           }
         }
       },
@@ -45449,7 +45460,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/turn.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.291.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/turn.mjs"
+            }
           }
         }
       },
@@ -45758,7 +45780,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "adapter/legendary.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
@@ -45935,7 +45968,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/auras.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "24f91f22aeae3adffbb2d3ee7b53c4b6325b0170d6c3de657e35e4a4e69bfa1f"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/auras.mjs"
+            }
           }
         }
       },
@@ -47143,7 +47187,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "adapter/legendary.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
@@ -47887,7 +47942,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "adapter/legendary.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
@@ -50814,22 +50880,15 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "core",
+      "verdict": "entry",
+      "why": "Legendary spell cast with a lockout until the start of its next turn; data lacks the lockout.",
       "evidence": {
         "triaged": {
-          "by": "rule",
-          "at": "2026-11-23T08:41:39.511Z",
-          "was": {
-            "verdict": "entry",
-            "why": "Legendary spell cast with a lockout until the start of its next turn; data lacks the lockout.",
-            "triaged": {
-              "by": "reader-xmm-010",
-              "at": "2026-11-21T19:58:36.110Z",
-              "confidence": 0.7,
-              "keys": [],
-              "similar": []
-            }
-          },
+          "by": "reader-xmm-010",
+          "at": "2026-11-21T19:58:36.110Z",
+          "confidence": 0.7,
+          "keys": [],
+          "similar": [],
           "reread": {
             "by": "reread-w001",
             "at": "2026-11-23T08:41:39.511Z",
@@ -50841,11 +50900,19 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "runtime/turn.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.6,
+              "view": {
+                "core": "0.291.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -51115,7 +51182,18 @@
             "covered": true,
             "coveredBy": "engine",
             "mechanism": "adapter/legendary.mjs",
-            "provisional": true
+            "second": {
+              "by": "reread-x001",
+              "at": "2026-11-23T09:51:55.286Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+              },
+              "covered": true,
+              "coveredBy": "engine",
+              "mechanism": "runtime/engine-messages.mjs"
+            }
           }
         }
       },
