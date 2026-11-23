@@ -18853,11 +18853,62 @@
               "ongoing-effect"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T00:54:15.782Z",
+          "core": "0.290.0",
+          "rule": "76bf2144d4df32884055f9224fbe6d7d3b3e3cfa5238cc069290b7a5a2861483",
+          "emits": "484afa680d2e2e6811501899de835d5534fe09b77cb0fa3ba7ad9f0934d9fb9e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "f213be81c14941cb47e78652a92ea884d54f3dce97522ebba1beb2056f75c944"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T01:01:30.214Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-monk-shadow-17-cloak-of-shadows",
+          "client": "gm",
+          "rule": "76bf2144d4df32884055f9224fbe6d7d3b3e3cfa5238cc069290b7a5a2861483"
         }
       },
       "why": "Ends on bright light at end of turn or incapacitation, free Flurry; effect has only a status and no end rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The shroud can only be raised in Dim Light or Darkness, and it ends when the monk becomes Incapacitated.",
+        "entry": {
+          "usageLimits": {
+            "PCabpSdfoEUocWya": {
+              "light": [
+                "dim",
+                "dark"
+              ]
+            }
+          },
+          "endsWhen": {
+            "incapacitated": "bearer"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T00:54:09.406Z",
+          "leavesNote": "Ending a turn in Bright Light, moving through occupied spaces and the free Flurry of Blows stay with the table."
+        },
+        "origin": "Shadow 17"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:monk/shadow/3/darkness",
@@ -20355,6 +20406,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T00:50:53.751Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-paladin-ancients-15-undying-sentinel",
+          "client": "gm",
+          "rule": "298735adb169ebea0359fe7e951ae41491c914fe62a40b4433c7e9a8505b4f48"
+        },
         "gates": {
           "at": "2026-11-23T00:44:51.866Z",
           "core": "0.290.0",
@@ -20371,14 +20430,6 @@
           "items": {
             "official": "da20b645c23a199c061349e1cb70d1ae52b6caaaf6670e23e34f206ad93d14c8"
           }
-        },
-        "played": {
-          "at": "2026-11-23T00:50:53.751Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-paladin-ancients-15-undying-sentinel",
-          "client": "gm",
-          "rule": "298735adb169ebea0359fe7e951ae41491c914fe62a40b4433c7e9a8505b4f48"
         }
       },
       "why": "Reaction-like drop to 1 HP once per rest plus level-scaled healing; data has uses but empty heal and no trigger on reaching 0 HP.",

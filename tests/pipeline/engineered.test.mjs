@@ -9,7 +9,7 @@ import { cacheText } from "../../tools/pipeline/text.mjs";
 import {
   ruleFingerprint, saveBook, saveQueue, loadQueue, loadBook, stateOf, validateRecord
 } from "../../tools/pipeline/registry.mjs";
-import { gateSchema, runGates } from "../../tools/pipeline/gates.mjs";
+import { gateSchema, gateValidator, runGates } from "../../tools/pipeline/gates.mjs";
 import { emissionOf, HELD_REASONS, ruleFromRecord } from "../../tools/pipeline/generate.mjs";
 import { redraftable, reviewSkipReason } from "../../tools/pipeline/batch.mjs";
 import { ingestReviews } from "../../tools/pipeline/review.mjs";
@@ -179,6 +179,26 @@ describe("ingest --engineered: rejected, nothing half-written", () => {
     const asOwner = { ...next, rule: { ...next.rule, engineered: { by: "engineer-owner", at: AT } } };
     expect(gateSchema(asOwner, { core, textDir, legacy: new Map(), owners: ["engineer-owner"] }).join(" "))
       .toContain("rule.engineered.by");
+  });
+});
+
+describe("a nested key newer than the engine in use (Ruling R44)", () => {
+  // An engine that knows the entry's keys but refuses one of their sub-keys, in the engine's own words.
+  const older = { ...core, validateEntry: () => ["usageLimits.abcdefghijklmnop.light: unknown key"] };
+  const context = (ci) => ({ core: older, textDir, legacy: new Map(), owners: ["owner"], ci });
+
+  it("--ci lets it pass on an engineered rule only; a full run fails it", () => {
+    const r = gated();
+    expect(gateValidator(r, context(true))).toEqual([]);
+    expect(gateValidator(r, context(false)).join("\n")).toMatch(/light: unknown key/);
+    const { engineered, ...plain } = r.rule;
+    expect(engineered).toBeDefined();
+    expect(gateValidator({ ...r, rule: plain }, context(true)).join("\n")).toMatch(/light: unknown key/);
+  });
+
+  it("another refusal of the engine is never let through", () => {
+    const wrong = { ...older, validateEntry: () => ["usageLimits.abcdefghijklmnop.light: a list of dark, dim, bright"] };
+    expect(gateValidator(gated(), { ...context(true), core: wrong }).join("\n")).toMatch(/a list of dark/);
   });
 });
 

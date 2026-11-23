@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-monk-shadow-17-cloak-of-shadows",
+  "key": "xphb:feature:monk/shadow/17/cloak-of-shadows",
+  "rule": "76bf2144d4df32884055f9224fbe6d7d3b3e3cfa5238cc069290b7a5a2861483",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Stopped by the light warning in bright light, raised in darkness, and ended once its bearer is Incapacitated."
+}
