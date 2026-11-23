@@ -70845,6 +70845,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T13:43:40.931Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-gibbering-mouther-trait-aberrant-ground",
+          "client": "gm",
+          "rule": "038a09fa8de9edf879f65952bdbd66c5ef92675befc81043f4ca8518c1e123db"
+        },
         "reading": {
           "at": "2026-11-23T13:40:10.865Z",
           "core": "0.291.0",
@@ -70876,14 +70884,6 @@
           "items": {
             "official": "5f467426b518908e2e0265519ccc42b94275db47f6541c9c731f41cd2a172ead"
           }
-        },
-        "played": {
-          "at": "2026-11-23T13:43:40.931Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-gibbering-mouther-trait-aberrant-ground",
-          "client": "gm",
-          "rule": "038a09fa8de9edf879f65952bdbd66c5ef92675befc81043f4ca8518c1e123db"
         }
       },
       "why": "Emanation around the creature making terrain difficult is an aura; data only places a template.",
@@ -140228,7 +140228,7 @@
       "edition": "2024",
       "owner": "Swarm of Stirges",
       "section": "action",
-      "identifier": "swarm-of-proboscises",
+      "identifier": "xmm-swarm-of-stirges-swarm-of-proboscises",
       "page": 299,
       "srd": false,
       "text": {
@@ -140271,7 +140271,8 @@
           ],
           "data": {
             "sha256": "977900169f33b50e5091a912d5901771729606b34445da235c5d618ba13d6d78"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -140310,11 +140311,79 @@
             ],
             "restated": true
           }
+        },
+        "reading": {
+          "at": "2026-11-23T13:47:04.128Z",
+          "core": "0.291.0",
+          "rule": "d3381461e036558a8052dd53d004795ff77776f7d290977491eaae7db88a994c",
+          "item": "1071a0a316c090e75bf932d34f0afe7865e7b1b99ef3fab80dcb103cfe0901ae",
+          "delta": [
+            "effectsIf"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm-of-proboscises",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T13:47:04.128Z",
+          "core": "0.291.0",
+          "rule": "d3381461e036558a8052dd53d004795ff77776f7d290977491eaae7db88a994c",
+          "emits": "0798b13810ebe442e09e39e9ca86dcbab63d82099ce43a235ae29d9c9d0da24a",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "1071a0a316c090e75bf932d34f0afe7865e7b1b99ef3fab80dcb103cfe0901ae"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T13:51:18.171Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-stirges-action-swarm-of-proboscises",
+          "client": "gm",
+          "rule": "d3381461e036558a8052dd53d004795ff77776f7d290977491eaae7db88a994c"
         }
       },
       "why": "Grapple rider and end-of-turn necrotic damage while held: data has the activities but timed trigger and size limit need a rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfProbosc": "xmm-swarm-of-stirges-swarm-of-proboscises"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The hit grapples only a Medium or smaller target that stands in the swarm's own space.",
+        "entry": {
+          "effectsIf": {
+            "target.sizeAtMost": "med",
+            "target.sharesSpaceWithSource": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T13:46:57.437Z",
+          "leavesNote": "The damage while grappled and the escape are the engine's and the item's."
+        },
+        "origin": "Swarm of Stirges"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-stirges/trait/swarm",

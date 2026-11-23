@@ -109,6 +109,7 @@ export const SOURCES = Object.freeze({
   "mmSwarmOfLarvae0.mmSwarm000000000": "xmm-swarm-of-larvae-swarm",
   "mmSwarmOfLemures.mmSwarm000000000": "xmm-swarm-of-lemures-swarm",
   "mmSwarmOfPiranha.mmSwarm000000000": "xmm-swarm-of-piranhas-swarm",
+  "mmSwarmOfProbosc": "xmm-swarm-of-stirges-swarm-of-proboscises",
   "mmSwarmOfRats000.mmSwarm000000000": "xmm-swarm-of-rats-swarm",
   "mmSwarmOfRavens0.mmSwarm000000000": "xmm-swarm-of-ravens-swarm",
   "mmSwarmOfStirges.mmSwarm000000000": "xmm-swarm-of-stirges-swarm",

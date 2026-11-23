@@ -1128,14 +1128,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:swarm-of-stirges/action/swarm-of-proboscises",
-    "reason": "person",
-    "by": "drafter-v011",
-    "why": "damage and grapple are in the data; the size and space limit and the tick while held have no drafter key",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:tarrasque/legendary/onslaught",
     "reason": "person",
     "by": "drafter-v011",
