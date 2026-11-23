@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-psychic-gray-ooze-action-pseudopod",
+  "key": "xmm:monster:psychic-gray-ooze/action/pseudopod",
+  "rule": "70243f1a374f7839e1fe30d1245a9c14b358e389aad138aad3992eeae1b18c4c",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "After the hit the target rolls Intelligence saves with Disadvantage and other saves normally, through the ooze's next turn; once that turn has ended it rolls normally."
+}

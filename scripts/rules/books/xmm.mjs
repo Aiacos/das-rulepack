@@ -1449,6 +1449,31 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-psychic-gray-ooze-pseudopod",
+    "name": "Pseudopod",
+    "page": 151,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Psychic Gray Ooze",
+    "adds": "The effect of the hit gives its Disadvantage on Intelligence saves, and lasts through the ooze's next turn.",
+    "entry": {
+      "effectChanges": {
+        "uAcaFivCVfeE0M25": [
+          {
+            "key": "system.abilities.int.save.roll.mode",
+            "type": "add",
+            "value": "-1"
+          }
+        ]
+      },
+      "effectEnds": {
+        "uAcaFivCVfeE0M25": "casterTurnEnd"
+      }
+    }
+  },
+
+  {
     "identifier": "xmm-scout-captain-aim",
     "name": "Aim",
     "page": 270,
