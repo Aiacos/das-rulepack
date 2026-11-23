@@ -17,7 +17,7 @@ what an entry needs, not that it is done, and only the last column counts rules 
 | Verdict `unverifiable` (no text) | 272 |
 | Waiting for a person in `registry/queue.json` | 119 |
 | No verdict yet | 9,619 |
-| Rules the module registers | 141 |
+| Rules the module registers | 142 |
 
 Books published in or after 2024, and Tasha's and Xanathar's, were read entry by entry by reader agents
 (`docs/coverage-5e24.md` has the detail of the 2024-era ones). For the other older books only the entries that have an item
@@ -31,7 +31,7 @@ for spells and items only. How far one reading can be trusted: `docs/reader-agre
 | Book | Year | Entries | Official item | DDB item | `core` | `none` | `data` | `entry` | no text | Queued | No verdict | Rules shipped |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Astarion's Book of Hungers (`ABH`) | 2025 | 60 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 58 | 0 |
-| Eberron: Forge of the Artificer (`EFA`) | 2025 | 258 | 236 | 23 | 6 | 66 | 81 | 98 | 0 | 2 | 5 | 4 |
+| Eberron: Forge of the Artificer (`EFA`) | 2025 | 258 | 236 | 23 | 6 | 66 | 81 | 98 | 0 | 2 | 5 | 5 |
 | Forgotten Realms: Adventures in Faerûn (`FRAIF`) | 2025 | 277 | 262 | 84 | 11 | 62 | 94 | 105 | 0 | 5 | 0 | 6 |
 | Forgotten Realms: Heroes of Faerûn (`FRHOF`) | 2025 | 153 | 132 | 36 | 0 | 55 | 12 | 80 | 3 | 3 | 0 | 0 |
 | Lorwyn: First Light (`LFL`) | 2025 | 58 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 58 | 0 |

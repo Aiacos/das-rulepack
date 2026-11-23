@@ -73,5 +73,27 @@ export const RULES = book(BOOK, [
         "poisoned"
       ]
     }
+  },
+
+  {
+    "identifier": "homunculus-servant",
+    "name": "Homunculus Servant",
+    "page": 21,
+    "kind": "spell",
+    "status": "played",
+    "handledIn": "table",
+    "adds": "The homunculus joins a running combat right after its caster, and casting again removes the earlier one.",
+    "entry": {
+      "summon": {
+        "initiative": "after",
+        "replaces": true
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "engineered against the official item only (Ruling R43)"
+      }
+    ]
   }
 ]);

@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-spell-homunculus-servant",
+  "key": "efa:spell:homunculus-servant",
+  "rule": "7e0849506522adf4c2a9a43195fa41c0b511669d2203f6aeccfad6a14ec113d5",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Summoned in a combat, the homunculus stands right after its caster; a second casting removes the first."
+}
