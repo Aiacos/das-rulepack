@@ -121,10 +121,14 @@ export function parseEngineView(value) {
  * rules (what a reader judged). A later sweep that classifies the item otherwise gives another `sha`; a newer engine makes
  * the reading stale too (the view is a sweep's, not recomputed from the engine: itemRereadStaleNote).
  */
-export const viewFingerprint = (view, core) => ({
+export const viewFingerprint = (view, core, structure = null) => ({
   core: core?.version,
+  // The item's advancements (what dnd5e grants by itself) are part of what the reader judged, once the summary shows them:
+  // a record whose item has some is read again; one whose item has none keeps the fingerprint it had.
   sha: createHash("sha256").update(canonical({ level: view?.level ?? null, rules: [...(view?.rules ?? [])].sort(),
-    ...(isObject(view?.entry) ? { entry: view.entry } : {}) })).digest("hex")
+    ...(isObject(view?.entry) ? { entry: view.entry } : {}),
+    ...(Array.isArray(structure?.advancements) && structure.advancements.length
+      ? { advancements: structure.advancements } : {}) })).digest("hex")
 });
 
 const versionParts = (v) => String(v ?? "").split("-")[0].split(".").map((n) => Number(n));
@@ -204,7 +208,7 @@ export function itemRereadSkipReason(r, options) {
   if (view === null) return "missing from the engine view";
   const structure = documentOf(r);
   if (structure === null || structure === undefined) return "official item not in the dumps";
-  const fp = viewFingerprint(view, core);
+  const fp = viewFingerprint(view, core, structure);
   if (second) return stands(rereadOf(r).view, fp) ? null : "view changed since the first reread";
   return isItemReread(r) && stands(rereadOf(r).view, fp) ? "reread for the current view" : null;
 }
@@ -238,7 +242,8 @@ export function cutItemRereadBatches(records, options) {
       const n = (counts.get(book) ?? 0) + 1;
       counts.set(book, n);
       const id = `${book}-${series}-${String(n).padStart(3, "0")}`;
-      const entries = ofBook.slice(i, i + size).map((r) => entryOf(r, viewOf(r.key), viewFingerprint(viewOf(r.key), core)));
+      const entries = ofBook.slice(i, i + size).map((r) => entryOf(r, viewOf(r.key),
+        viewFingerprint(viewOf(r.key), core, documentOf(r))));
       batches.push({ id, stage: "reread", items: true, ...(second ? { second: true } : {}), core: core?.version, entries });
     }
   }
@@ -282,7 +287,7 @@ function takeResult(result, ctx) {
   }
   const now = current.get(result.key);
   if (!now || !isObject(now.view)) return { reject: "stale: the engine view has no level for the item now (read again)" };
-  const fp = viewFingerprint(now.view, core);
+  const fp = viewFingerprint(now.view, core, now.structure ?? null);
   const cut = offered.get(result.key);
   if (!(isObject(cut) && cut.sha === fp.sha && cut.core === fp.core)) {
     return { reject: "stale: the engine view or the engine differs from the one the batch was cut against (cut again)" };

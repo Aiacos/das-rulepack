@@ -370,3 +370,5 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       vocabulary), their hand-written scenarios, and play them on the test server; then read each flagged row of RULES.md.
 - [ ] The first live run of a hand-written scenario: check that `ctx` hands the helper what play/lib/handwritten.mjs says
       (`effects` with `origin`, `settle` targets by token uuid), as the checklist of generated scenarios did.
+- [x] The item summary shows advancements (what dnd5e grants by itself); the item reread counts them in its fingerprint,
+      so the entries whose item has some are read again.

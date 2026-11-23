@@ -87,6 +87,21 @@ describe("structureOf", () => {
     expect(bare.activities[0].transform).toEqual({ mode: "cr", tempHp: false });
     const other = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "save" } } } });
     expect("transform" in other.activities[0]).toBe(false);
+    // What the system grants by itself when the feature is on the sheet: its advancements, as closed words (the type, the
+    // trait keys a Trait grants or offers, how many items an ItemGrant hands over, whether they are spells).
+    const granted = structureOf({ type: "feat", system: { activities: {}, advancement: [
+      { type: "Trait", configuration: { mode: "default", grants: ["dr:necrotic", "dr:radiant"], choices: [] } },
+      { type: "ItemGrant", configuration: { items: [{ uuid: "Compendium.x.Item.aaaaaaaaaaaaaaaa" }, { uuid: "y" }],
+        spell: { method: "spell" } } },
+      { type: "ScaleValue", configuration: { identifier: "dice" } }] } });
+    expect(granted.advancements).toEqual([
+      { type: "ItemGrant", items: 2, spells: true },
+      { type: "ScaleValue" },
+      { type: "Trait", grants: ["dr:necrotic", "dr:radiant"] }]);
+    const keyed = structureOf({ type: "feat", system: { activities: {}, advancement: { a1: { type: "Trait",
+      configuration: { grants: [], choices: [{ count: 1, pool: ["skills:*"] }] } } } } });
+    expect(keyed.advancements).toEqual([{ type: "Trait", choices: 1 }]);
+    expect("advancements" in structureOf({ type: "feat", system: { activities: {} } })).toBe(false);
     // dnd5e stores one save ability as a bare string in older data: it reads as that one ability, not as none.
     const one = structureOf({ type: "spell", system: { activities: { a: { _id: "actAAAAAAAAAAAAA", type: "save",
       save: { ability: "wis", dc: { calculation: "spellcasting", formula: "" } } } } } });
