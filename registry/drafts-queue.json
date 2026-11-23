@@ -1041,14 +1041,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:scout-captain/bonus/aim",
-    "reason": "person",
-    "by": "drafter-v010",
-    "why": "advantage on the user's next attack this turn: no drafter key grants it, and the effect has no change",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:shadow-dragon/legendary/veil-of-shadow",
     "reason": "person",
     "by": "drafter-v010",

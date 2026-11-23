@@ -50,6 +50,7 @@ export const SOURCES = Object.freeze({
   "mmAdultCopperDra.mmSlowingBreath0": "xmm-adult-copper-dragon-slowing-breath",
   "mmAdultGoldDrago.mmBanish00000000": "xmm-adult-gold-dragon-banish",
   "mmAdultWhiteDrag.mmFreezingBurst0": "xmm-adult-white-dragon-freezing-burst",
+  "mmAim00000000000": "xmm-scout-captain-aim",
   "mmAncientBrassDr.mmScorchingSands": "xmm-ancient-brass-dragon-scorching-sands",
   "mmAncientGoldDra.mmBanish00000000": "xmm-ancient-gold-dragon-banish",
   "mmBugbearStalker.mmAbduct00000000": "xmm-bugbear-stalker-abduct",

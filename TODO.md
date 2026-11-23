@@ -421,3 +421,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Triage: the creature features of the Player's Handbook, the Dungeon Master's Guide and Eberron, swept and read twice against the engine's view
 - [x] Engineered rule proven by a recorded play on the released engine: Darkmantle Darkness Aura, magical darkness on its zone (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Radiance of the Dawn dispels the magical darkness it covers (XPHB)
+- [x] Engineered rule proven by a recorded play on the released engine: Scout Captain Aim, Advantage on the next attack roll of the turn (XMM)

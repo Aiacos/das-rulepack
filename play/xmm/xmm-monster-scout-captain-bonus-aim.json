@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-scout-captain-bonus-aim",
+  "key": "xmm:monster:scout-captain/bonus/aim",
+  "rule": "8fcae67fe2cfeea5e728e2c3c29e2d754008188ddf1c8b50e4f971c8f6e2d801",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "A blow without aiming is rolled normally, the first blow after aiming with Advantage, the next one normally again. The loss of the aim at the end of the turn is not checked."
+}

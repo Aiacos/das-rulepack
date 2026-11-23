@@ -44091,6 +44091,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T11:23:54.663Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-darkmantle-action-darkness-aura",
+          "client": "gm",
+          "rule": "817bb95bcd490af2de72f4f0d0575c7c14a1248eae7de10ab00481b552a4bcd5"
+        },
         "reading": {
           "at": "2026-11-23T11:18:47.463Z",
           "core": "0.291.0",
@@ -44124,14 +44132,6 @@
           "items": {
             "official": "bfa794626ba31d709abe6191c6d88700c9c6a6dfd0e01d2327d4d5abb672bfe2"
           }
-        },
-        "played": {
-          "at": "2026-11-23T11:23:54.663Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-darkmantle-action-darkness-aura",
-          "client": "gm",
-          "rule": "817bb95bcd490af2de72f4f0d0575c7c14a1248eae7de10ab00481b552a4bcd5"
         }
       },
       "why": "Concentration darkness emanation blocks darkvision and light; data has only a template, no darkness effect.",
@@ -125994,7 +125994,7 @@
       "edition": "2024",
       "owner": "Scout Captain",
       "section": "bonus",
-      "identifier": "aim",
+      "identifier": "xmm-scout-captain-aim",
       "page": 270,
       "srd": false,
       "text": {
@@ -126029,7 +126029,8 @@
           "effects": [],
           "data": {
             "sha256": "d33c7f9bd106848a8cd596023ec22593582061408fbf7f862118dad27b824366"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -126069,11 +126070,104 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T11:55:25.170Z",
+          "core": "0.291.0",
+          "rule": "8fcae67fe2cfeea5e728e2c3c29e2d754008188ddf1c8b50e4f971c8f6e2d801",
+          "item": "2c9600f973704b56e159962fc31da8811b937fd9ab16713d57f081201edfa6c9",
+          "delta": [
+            "trace",
+            "triggers"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "superset",
+          "original": "aim",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T11:55:25.170Z",
+          "core": "0.291.0",
+          "rule": "8fcae67fe2cfeea5e728e2c3c29e2d754008188ddf1c8b50e4f971c8f6e2d801",
+          "emits": "d4647848496211e11a441700ab0e705c6be02fba294385dc4f05b590b450b5c5",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "2c9600f973704b56e159962fc31da8811b937fd9ab16713d57f081201edfa6c9"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T11:59:29.645Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-scout-captain-bonus-aim",
+          "client": "gm",
+          "rule": "8fcae67fe2cfeea5e728e2c3c29e2d754008188ddf1c8b50e4f971c8f6e2d801"
         }
       },
       "why": "Grants advantage on the next attack this turn; data effect has no change and no end rule",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAim00000000000": "xmm-scout-captain-aim"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "After aiming, the creature's next attack roll of the turn is rolled with Advantage, once; the aim is lost when its turn ends.",
+        "entry": {
+          "trace": {
+            "activity": "MzsKDH0S7g3jTm6M",
+            "show": true
+          },
+          "triggers": [
+            {
+              "on": "preAttackRoll",
+              "via": "effect",
+              "do": [
+                {
+                  "type": "advantage"
+                },
+                {
+                  "type": "consume",
+                  "side": "source"
+                }
+              ]
+            },
+            {
+              "on": "endOfTurn",
+              "via": "effect",
+              "do": [
+                {
+                  "type": "remove"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T11:55:18.682Z",
+          "leavesNote": "Nothing else of the feature is changed."
+        },
+        "origin": "Scout Captain"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:scout-captain/reaction/uncanny-dodge",
