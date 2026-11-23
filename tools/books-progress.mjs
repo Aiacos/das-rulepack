@@ -293,6 +293,31 @@ export function againstReviews(dir = resolve(ROOT, "registry")) {
 }
 
 /**
+ * Ruling R43: the engineered rules that stand played (proven by one recorded play of a hand-written scenario, never reviewed),
+ * as a Map of "<book>|<identifier>" to `{ leavesNote? }`, read from registry/: each is flagged in docs/RULES.md for the owner's
+ * eye and counted apart.
+ */
+export function engineeredRules(dir = resolve(ROOT, "registry")) {
+  const out = new Map();
+  for ( const f of readdirSync(dir).filter(f => f.endsWith(".json") && !NOT_BOOKS.includes(f)) ) {
+    for ( const r of JSON.parse(readFileSync(resolve(dir, f), "utf8")).records ?? [] ) {
+      const engineered = r.rule?.engineered;
+      if ( (r.state !== "played") || !engineered || (typeof engineered !== "object") ) continue;
+      out.set(`${r.book}|${r.identifier}`, typeof engineered.leavesNote === "string" ? { leavesNote: engineered.leavesNote } : {});
+    }
+  }
+  return out;
+}
+
+/** Ruling R43: what docs/RULES.md says beside an engineered rule (`info`: its engineeredRules entry), or "". */
+export function engineeredNote(info) {
+  if ( !info ) return "";
+  const left = info.leavesNote ? ` Left to the table: ${info.leavesNote.replace(/\.?$/, ".")}` : "";
+  return " Engineered (Ruling R43): proven by one recorded play of a hand-written scenario, not reviewed; for the owner's eye."
+    + left;
+}
+
+/**
  * Ruling R27: the rules registry/ holds for a person (drafted and gated, not registered with DAS · Core: generate.mjs
  * emissionOf), in registry order, as `{ book, name, kind, page, because }` (`because` a key of HELD_REASONS; `origin` when the
  * rule has one). The pack's modules do not carry them, so they are read here, with legacy.json and review-queue.json.
@@ -354,10 +379,10 @@ export function partialNote(rule) {
 
 /**
  * The closing line of the rules block: the counts by status, plays by hand, reviews with R24 tolerances, rules settled by a
- * second review (Ruling R40) and partial rules (Ruling R25) apart.
+ * second review (Ruling R40), partial rules (Ruling R25) and engineered rules (Ruling R43, only when there are any) apart.
  */
 export function countsLine(rules, { handPlayed = () => false, tolerated = new Set(), second = new Set(), against = new Set(),
-  held = [] } = {}) {
+  held = [], engineered = new Set() } = {}) {
   const count = status => rules.filter(rule => rule.status === status).length;
   const waiting = count("pending") ? `, ${count("pending")} pending` : "";
   const hand = rules.filter(handPlayed).length;
@@ -371,8 +396,10 @@ export function countsLine(rules, { handPlayed = () => false, tolerated = new Se
     ? ` ${redrafted} of them settled by a redraft that agrees with two reviews (Ruling R41).` : "";
   const partial = rules.filter(rule => partialNote(rule)).length;
   const partly = partial ? ` ${partial} of them partial (part of the entry left to the table).` : "";
+  const built = rules.filter(rule => engineered.has(`${rule.book}|${rule.identifier}`)).length;
+  const byPlay = built ? ` ${built} of them engineered (Ruling R43): proven by a recorded play, not by a review.` : "";
   return `${rules.length} rules: ${played}, ${count("validated")} validated${waiting}.${tolerance}${tieBreak}${twoReviews}`
-    + partly
+    + partly + byPlay
     + heldLine(held);
 }
 
@@ -394,6 +421,7 @@ export function renderRules() {
   const out = [];
   const unaccounted = unaccountedByRule();
   const byHand = playedByHand();
+  const engineered = engineeredRules();
   const handPlayed = rule => (rule.status === "played") && byHand.has(`${rule.book}|${rule.identifier}`);
   const statusOf = rule => (handPlayed(rule) ? "Played by hand" : STATUS[rule.status]);
   for ( const book of books ) {
@@ -413,14 +441,15 @@ export function renderRules() {
       const gaps = [...(rule.uncovered ?? []).map(u => ` Not covered on ${u.origin}: ${u.because}.`),
         ...(unaccounted.get(`${rule.book}|${rule.identifier}`) ?? []).map(o => ` Not checked on ${o} (the rule predates it).`)]
         .join("");
-      const adds = `${rule.adds}${gaps}${partial}${carriesNote(rule)}`;
+      const adds = `${rule.adds}${gaps}${partial}${carriesNote(rule)}`
+        + engineeredNote(engineered.get(`${rule.book}|${rule.identifier}`));
       out.push(`| ${name} | ${kindLabel(rule.kind)} | ${pages} | ${adds} | ${where} | ${statusOf(rule)} |`);
     }
     if ( shipped.length ) out.push("");
     out.push(...heldTable(held.filter(row => row.book === book.code)));
   }
   out.push(countsLine(RULES, { handPlayed, tolerated: toleratedReviews(), second: secondReviews(), against: againstReviews(),
-    held }));
+    held, engineered: new Set(engineered.keys()) }));
   return out.join("\n");
 }
 

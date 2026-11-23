@@ -550,6 +550,31 @@ export function checkDraftKeys(entry, { origins, kind, core } = {}) {
   return problems;
 }
 
+/**
+ * Ruling R43: what an ENGINEERED rule's entry may not hold, or []. The drafter vocabulary does not apply (any key of the
+ * engine's ENTRY_KEYS: the validator gate asks the engine about each, and about the keys it does not know), but the limits of
+ * `dataFixes` do (no `create`, a path of FIX_PATHS, `value` and `from` of the leaf's type, at most MAX_FIXES, official origin
+ * only, never a monster feature), and no key names an object's prototype machinery. `origins` and `kind` are required.
+ */
+export function engineeredKeyProblems(entry, { origins, kind } = {}) {
+  if (!Array.isArray(origins) || typeof kind !== "string" || !kind) {
+    throw new TypeError("engineeredKeyProblems: origins and kind are required");
+  }
+  if (!isObject(entry)) return ["entry: must be an object"];
+  const problems = [];
+  if (has(entry, "dataFixes")) {
+    problems.push(...fixProblems(entry.dataFixes));
+    if (!(origins.length === 1 && origins[0] === "official")) problems.push("dataFixes: official origin only");
+    if (kind === "monster") problems.push("dataFixes: never on a monster feature");
+  }
+  problems.push(...forbiddenKeys(entry));
+  return problems;
+}
+
+/** Ruling R43: the top-level keys of an entry that are not among the engine's ENTRY_KEYS (`core.entryKeys`, a Set). */
+export const unknownEntryKeys = (entry, core) => (isObject(entry) && core?.entryKeys instanceof Set
+  ? Object.keys(entry).filter((key) => !core.entryKeys.has(key)) : []);
+
 // Keys that name an object's prototype machinery: never a key of an entry, at any depth.
 const FORBIDDEN_KEYS = new Set(["__proto__", "constructor", "prototype"]);
 function forbiddenKeys(node, at = "entry", out = []) {

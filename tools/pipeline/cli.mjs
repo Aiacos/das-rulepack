@@ -38,10 +38,14 @@ import {
   ITEM_REREAD_BATCH_SIZE, cutItemRereadBatches, ingestItemRereads, itemRereadReport, parseEngineView, viewFingerprint
 } from "./reread-items.mjs";
 import { isPlainLine } from "./assert.mjs";
-import { AGENT_HANDLE } from "./schema.mjs";
+import { AGENT_HANDLE, isEngineered } from "./schema.mjs";
 import { cachedText, forbiddenKeyIn } from "./intake.mjs";
 import { reachesOf, structureOf } from "./structure.mjs";
-import { packIndex, planOf, scenarioFiles, scenarioIdOf, scenarioOf, SCENARIO_STATES } from "./scenarios.mjs";
+import {
+  generatesScenario, handWrittenProblems, isHandWrittenModule, packIndex, planOf, scenarioFiles, scenarioIdOf, scenarioOf,
+  SCENARIO_STATES, stampedHandWritten
+} from "./scenarios.mjs";
+import { engineeredFileProblem, ingestEngineered } from "./engineered.mjs";
 import { parseRunnerLog, playedFrom } from "./played.mjs";
 import { isCoreVersion, isScenarioId, isWorld, PLAY_CLIENTS } from "./schema.mjs";
 import { hasText, readText } from "./text.mjs";
@@ -234,6 +238,8 @@ function gatesCommand(args) {
       process.exit(2);
     }
     const documents = ci ? {} : loadDocuments(dumpsDir, records);
+    // Ruling R43: the other items an engineered rule names must be documents of the dumps (read only when one names any).
+    const dumpIds = ci || !records.some(namesOtherItems) ? undefined : documentIdsOf(dumpsDir);
     // Ruling R29: each monster rule compared with the engine's own reading of its official item (stored as evidence.reading).
     const readingOf = ci ? undefined : (record) => readingOfRecord(record, documents, core);
     // A reread (reread.mjs) judged against the engine's reading of an unruled monster feature: noted when it reads otherwise.
@@ -246,7 +252,7 @@ function gatesCommand(args) {
       return view ? viewFingerprint(view, core) : null;
     } : undefined;
     const { failures, notes, updated } = runGates(records, {
-      core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf, rereadReadingOf, engineViewOf
+      core, documents, textDir, ci, legacy: legacyOf(REGISTRY), readingOf, rereadReadingOf, engineViewOf, dumpIds
     });
     // Ruling R27 (--ci): no generated module registers a rule that is held for a person.
     const held = ci ? await heldInModules(records, books) : [];
@@ -270,6 +276,23 @@ function gatesCommand(args) {
       + `${held.length ? `, ${held.length} held rule(s) in the generated modules` : ""}.`);
     if (failed || held.length) process.exitCode = 1;
   });
+}
+
+// Ruling R43: whether a record's engineered rule names other items, and every document id of the dumps (a document's `_id`,
+// and `<actor id>.<item id>` for an item embedded in an actor).
+const namesOtherItems = (r) => isEngineered(r?.rule) && Array.isArray(r.rule.engineered.otherItems);
+function documentIdsOf(dumpsDir) {
+  const ids = new Set();
+  for (const file of readdirSync(dumpsDir).filter((f) => f.endsWith(".json"))) {
+    for (const doc of readDump(join(dumpsDir, file))) {
+      if (typeof doc?._id !== "string") continue;
+      ids.add(doc._id);
+      for (const item of Array.isArray(doc.items) ? doc.items : []) {
+        if (typeof item?._id === "string") { ids.add(item._id); ids.add(`${doc._id}.${item._id}`); }
+      }
+    }
+  }
+  return ids;
 }
 
 // Ruling R29: the evidence.reading of a ruled monster record, or null when its official item is not in the dumps (the document
@@ -1249,12 +1272,13 @@ async function ingestRereadCommand(args) {
 
 // `--overwrite` is the person's decision, given on the command line: a results file cannot carry it.
 async function ingestCommand(args) {
+  if (args.includes("--engineered")) return ingestEngineeredCommand(args);
   if (args.includes("--reread")) return ingestRereadCommand(args);
   if (args.includes("--items")) throw new UsageError("--items goes with --reread only (ingest <results> --reread --items ...)");
   const usage = "Usage: ingest <results-file> [--overwrite | --second | --third"
     + " | --draft [--redraft [--against-reviews] | --reoffer] --batch <batch file>"
     + " | --review [--second] --batch <batch file> | --reread [--second | --restate] --batch <batch file>"
-    + " | --reread --items [--second] --batch <batch file>]"
+    + " | --reread --items [--second] --batch <batch file> | --engineered]"
     + " | ingest --settle-unsure [--min <n>]"
     + " (--draft and --review need RULEPACK_DUMPS: the official item's structure backs a condition and gives the item's"
     + " own damage, Ruling R24)";
@@ -1335,6 +1359,57 @@ async function ingestCommand(args) {
   // Ruling R25: the partial rules applied (with `leaves`) are listed so that the owner can read them.
   console.log(JSON.stringify({ applied: out.applied.length, partial: out.partial, queued: out.queued.length,
     rejected: out.rejected }, null, 2));
+  if (out.rejected.length) process.exitCode = 1;
+}
+
+// `ingest <results-file> --engineered` (Ruling R43, engineered.mjs ingestEngineered): engineered rules from a private results
+// file `{ by: "engineer-<name>", results: [{ key, entry, adds, leaves?, leavesNote?, otherItems?, why }] }`. A rule is written
+// only on an unruled, non-legacy `entry` record that waits in neither queue.json nor review-queue.json; one that waited in
+// drafts-queue.json leaves it (said on stderr). RULEPACK_DUMPS, when set, checks the other items and gives a monster
+// feature's actors (needed for one).
+async function ingestEngineeredCommand(args) {
+  const usage = "Usage: ingest <results-file> --engineered (needs DAS_CORE and RULEPACK_TEXT; RULEPACK_DUMPS checks the other"
+    + " items an entry names, and is needed for a monster feature)";
+  const rest = args.filter((a) => a !== "--engineered");
+  const flags = rest.filter((a) => a.startsWith("--"));
+  if (flags.length) throw new UsageError(`--engineered and ${flags.join(" and ")} cannot be used together\n${usage}`);
+  if (rest.length !== 1) throw new UsageError(usage);
+  const textDir = need("RULEPACK_TEXT");
+  const coreDir = need("DAS_CORE");
+  const dumpsDir = process.env.RULEPACK_DUMPS || null;
+  if (dumpsDir && !existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
+  const [file] = rest;
+  const input = readJson(file, "results file");
+  const problem = engineeredFileProblem(input, { owners: ownerHandles() });
+  if (problem) throw new UsageError(`${file}: ${problem}`);
+  checkQueues(REGISTRY);
+  const core = await loadCore(coreDir);
+  const books = loadRegistry(REGISTRY);
+  const all = books.flatMap((b) => b.records);
+  const keys = new Set(input.results.map((r) => r?.key).filter((k) => typeof k === "string"));
+  const embedded = new Map();
+  const monsterBooks = [...new Set(all.filter((r) => r.kind === "monster" && keys.has(r.key)).map((r) => r.book))];
+  if (dumpsDir && monsterBooks.length) {
+    const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
+    for (const book of monsterBooks) {
+      const actors = officialFilesFor(dumpsDir, packages, book).filter(isActorFile)
+        .flatMap((f) => actorSummaries(readDump(join(dumpsDir, f)), "official"));
+      if (actors.length) embedded.set(book, embeddedIndex(actors));
+    }
+  }
+  const others = input.results.some((r) => r !== null && typeof r === "object" && Object.hasOwn(r, "otherItems"));
+  const out = ingestEngineered(all, input.results, {
+    textDir, by: input.by, core, queue: loadQueue(REGISTRY, "drafts"), embedded, owners: ownerHandles(),
+    dumpIds: dumpsDir && others ? documentIdsOf(dumpsDir) : undefined, triageQueued: queuedKeys(REGISTRY),
+    reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key))
+  });
+  if (!commitIngest(books, out.records, out.applied, [], out.dequeued, { queue: "drafts" })) return;
+  console.log(JSON.stringify({ applied: out.applied.length, dequeued: out.dequeued, rejected: out.rejected }, null, 2));
+  for (const key of out.dequeued) console.error(`${key}: left drafts-queue.json (an engineered rule was written for it)`);
+  if (out.applied.length) {
+    console.error(`${out.applied.length} engineered rule(s) written: run npm run gates; each is held until a play of its`
+      + " hand-written scenario is recorded (Ruling R43)");
+  }
   if (out.rejected.length) process.exitCode = 1;
 }
 
@@ -1653,12 +1728,15 @@ async function resolveCommand(args) {
   console.log(JSON.stringify({ key, origin, resolved: what }));
 }
 
-// `scenarios <BOOK> [--check | --plan]`: the play data of every record of the book in state reviewed or played
-// (scenarios.mjs), written to play/<book>/; `--check` compares only (exit 1 on a difference), `--plan` prints the run order
-// by family (Ruling R11). Files of play/<book>/ that no such record makes any more are removed (listed by --check).
+// `scenarios <BOOK> [--check | --plan | --stamp-handwritten]`: the play data of every record of the book in state reviewed or
+// played whose rule is not engineered (scenarios.mjs), written to play/<book>/; `--check` compares only (exit 1 on a
+// difference), `--plan` prints the run order by family (Ruling R11). Files of play/<book>/ that no such record makes any more
+// are removed (listed by --check), but never a hand-written scenario (Ruling R43: a `.mjs` whose first line is
+// HANDWRITTEN_MARK, a `.json` with `handWritten: true`): `--check` verifies those (handWrittenProblems), and
+// `--stamp-handwritten` refreshes their `rule` from the registry (nothing else is written then).
 function scenariosCommand(args) {
-  const usage = "Usage: scenarios <BOOK> [--check | --plan]";
-  const modes = ["--check", "--plan"].filter((m) => args.includes(m));
+  const usage = "Usage: scenarios <BOOK> [--check | --plan | --stamp-handwritten]";
+  const modes = ["--check", "--plan", "--stamp-handwritten"].filter((m) => args.includes(m));
   if (modes.length > 1) throw new UsageError(`${modes.join(" and ")} cannot be used together`);
   const positional = args.filter((a) => !modes.includes(a));
   if (positional.length !== 1 || positional[0].startsWith("--")) throw new UsageError(usage);
@@ -1666,6 +1744,10 @@ function scenariosCommand(args) {
   const dumpsDir = need("RULEPACK_DUMPS");
   if (!existsSync(dumpsDir)) throw new UsageError(`RULEPACK_DUMPS points at a folder that does not exist: ${dumpsDir}`);
   const records = loadRegistry(REGISTRY).flatMap((b) => b.records).filter((r) => r.book === book);
+  const dir = join(PLAY, book.toLowerCase());
+  const present = existsSync(dir) ? readdirSync(dir).filter((f) => /\.(json|mjs)$/.test(f)) : [];
+  const hand = handWrittenFiles(dir, present, records);
+  if (modes[0] === "--stamp-handwritten") return stampHandWritten(book, dir, hand);
   // The compendium of an official item: the pack (a dump file of items, not actors) that holds its docId.
   const { packages } = JSON.parse(readFileSync(join(ROOT, "docs", "foundry-modules.json"), "utf8"));
   const own = packages.filter((p) => p.book && p.book.toUpperCase() === book).map((p) => p.id);
@@ -1673,7 +1755,7 @@ function scenariosCommand(args) {
   const packOf = packIndex(itemFiles.map((f) => [f, readDump(join(dumpsDir, f))]), own);
   // The official item's structure, with each activity's reach: the rolls its effects are applied on, its damage types, its
   // activity kinds and templates, how far a pull may start (scenarios.mjs scenarioOf).
-  const scenarioRecords = records.filter((r) => SCENARIO_STATES.includes(stateOf(r)));
+  const scenarioRecords = records.filter(generatesScenario);
   const structures = officialStructures(scenarioRecords, scenarioRecords.map((r) => r.key), dumpsDir, { reach: true });
   const scenarioFor = (r) => scenarioOf(r, { packOf, structure: structures.get(r.key) ?? null });
   if (modes[0] === "--plan") {
@@ -1683,29 +1765,87 @@ function scenariosCommand(args) {
     return console.log(JSON.stringify({ scenarios: order.length, manual, manualShare, order }, null, 2));
   }
 
-  const playable = records.filter((r) => SCENARIO_STATES.includes(stateOf(r)));
+  const playable = scenarioRecords;
   const ids = groupBy(playable, scenarioIdOf);
   const clash = [...ids].find(([, list]) => list.length > 1);
   if (clash) throw new UsageError(`${clash[1].map((r) => r.key).join(" and ")} make one scenario id ${clash[0]}`);
   const expected = new Map(playable.flatMap((r) => scenarioFiles(scenarioFor(r))));
-  const dir = join(PLAY, book.toLowerCase());
-  const present = existsSync(dir) ? readdirSync(dir).filter((f) => /\.(json|mjs)$/.test(f)) : [];
-  const orphan = present.map((f) => `${book.toLowerCase()}/${f}`).filter((p) => !expected.has(p));
+  const handPaths = new Set(hand.flatMap((h) => h.files.map((f) => `${book.toLowerCase()}/${f}`)));
+  const taken = [...expected.keys()].filter((p) => handPaths.has(p));
+  if (taken.length) throw new UsageError(`${taken.join(", ")}: a generated scenario would overwrite a hand-written one`);
+  const orphan = present.map((f) => `${book.toLowerCase()}/${f}`).filter((p) => !expected.has(p) && !handPaths.has(p));
   const changed = [...expected].filter(([p, text]) => {
     const file = join(PLAY, p);
     return !existsSync(file) || readFileSync(file, "utf8") !== text;
   }).map(([p]) => p);
   const manual = playable.filter((r) => scenarioFor(r).manual).map((r) => r.key);
+  const handProblems = hand.flatMap((h) => h.problems.map((problem) => ({ file: `${book.toLowerCase()}/${h.slug}`, problem })));
   if (modes[0] === "--check") {
-    const ok = !changed.length && !orphan.length;
-    console.log(JSON.stringify({ scenarios: playable.length, manual: manual.length, stale: changed, orphan }, null, 2));
+    const ok = !changed.length && !orphan.length && !handProblems.length;
+    console.log(JSON.stringify({ scenarios: playable.length, manual: manual.length, stale: changed, orphan,
+      handWritten: hand.length, handWrittenProblems: handProblems }, null, 2));
     if (!ok) process.exitCode = 1;
     return;
   }
   mkdirSync(dir, { recursive: true });
   writeFilesAtomically(changed.map((p) => [join(PLAY, p), expected.get(p)]));
   for (const p of orphan) rmSync(join(PLAY, p), { force: true });
-  console.log(JSON.stringify({ scenarios: playable.length, manual, written: changed, removed: orphan }, null, 2));
+  console.log(JSON.stringify({ scenarios: playable.length, manual, written: changed, removed: orphan, handWritten: hand.length,
+    handWrittenProblems: handProblems }, null, 2));
+}
+
+// Ruling R43: the hand-written scenarios of a play folder: each slug whose `.mjs` starts with HANDWRITTEN_MARK or whose
+// `.json` says `handWritten: true`, as `{ slug, files, json, record, problems }` (handWrittenProblems, with the entry's text
+// when RULEPACK_TEXT has it, for `covers`).
+function handWrittenFiles(dir, present, records) {
+  const read = (f) => (present.includes(f) ? readFileSync(join(dir, f), "utf8") : null);
+  const parse = (text) => { try { return JSON.parse(text); } catch { return undefined; } };
+  const slugs = [...new Set(present.map((f) => f.replace(/\.(json|mjs)$/, "")))].sort();
+  const byKey = new Map(records.map((r) => [r.key, r]));
+  const textOf = process.env.RULEPACK_TEXT ? cachedText(process.env.RULEPACK_TEXT) : () => null;
+  const out = [];
+  for (const slug of slugs) {
+    const module = read(`${slug}.mjs`);
+    const raw = read(`${slug}.json`);
+    const json = raw === null ? undefined : parse(raw);
+    if (!isHandWrittenModule(module) && json?.handWritten !== true) continue;
+    const files = [`${slug}.json`, `${slug}.mjs`].filter((f) => present.includes(f));
+    if (raw === null || json === undefined) {
+      out.push({ slug, files, json: null, record: null, problems: [`${slug}.json: missing or not JSON`] });
+      continue;
+    }
+    const record = byKey.get(json?.key) ?? null;
+    const problems = handWrittenProblems(json, { record, module, text: record ? textOf(record) ?? undefined : undefined });
+    if (record && json.scenario === scenarioIdOf(record) && `${slug}` !== scenarioIdOf(record).split("/")[1]) {
+      problems.push(`the files must be named ${scenarioIdOf(record).split("/")[1]}.json and .mjs`);
+    }
+    out.push({ slug, files, json, record, problems });
+  }
+  return out;
+}
+
+// `scenarios <BOOK> --stamp-handwritten`: the `rule` of each hand-written JSON set to the fingerprint of its engineered
+// record's rule as it is (scenarios.mjs stampedHandWritten). Run it after checking the module against the rule: the play
+// it then stamps is the play of that rule. Exit 1 when a hand-written scenario still has a problem.
+function stampHandWritten(book, dir, hand) {
+  const stamped = [];
+  const problems = [];
+  const files = [];
+  for (const h of hand) {
+    if (h.json && h.record && isEngineered(h.record.rule)) {
+      const text = stampedHandWritten(h.json, h.record);
+      if (readFileSync(join(dir, `${h.slug}.json`), "utf8") !== text) {
+        files.push([join(dir, `${h.slug}.json`), text]);
+        stamped.push(`${book.toLowerCase()}/${h.slug}.json`);
+      }
+      const after = handWrittenProblems(JSON.parse(text), { record: h.record, module: h.files.includes(`${h.slug}.mjs`)
+        ? readFileSync(join(dir, `${h.slug}.mjs`), "utf8") : null });
+      problems.push(...after.map((problem) => ({ file: `${book.toLowerCase()}/${h.slug}`, problem })));
+    } else problems.push(...h.problems.map((problem) => ({ file: `${book.toLowerCase()}/${h.slug}`, problem })));
+  }
+  if (files.length) writeFilesAtomically(files);
+  console.log(JSON.stringify({ handWritten: hand.length, stamped, problems }, null, 2));
+  if (problems.length) process.exitCode = 1;
 }
 
 // The generated scenario file of a scenario id (play/<book>/<slug>.json), or null when there is none or it is not an object.

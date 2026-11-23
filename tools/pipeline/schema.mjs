@@ -5,6 +5,19 @@ import { LEAVE_REASONS, leavesConflicts, leavesProblems } from "./leaves.mjs";
 
 export const ADDS_MAX = 200;
 
+// Ruling R43: an ENGINEERED rule, written by an engineer (an agent who reads the engine's source, or the main session) with
+// any key of the engine's ENTRY_KEYS, proven by a recorded live play of a hand-written scenario instead of a review.
+// `rule.engineered: { by, at, otherItems?, leavesNote? }`: `by` an engineer's handle (`engineer-<name>`, never an owner's:
+// gates.mjs checks docs/owners.json), `at` the ingest date, `otherItems` the closed list of the ids of OTHER items the entry
+// names (each with one own-words line), `leavesNote` one own-words line of what the rule leaves to the table.
+export const ENGINEER_HANDLE = /^engineer-[a-z0-9][a-z0-9._-]{0,54}$/i;
+export const isEngineerHandle = (by) => typeof by === "string" && ENGINEER_HANDLE.test(by);
+export const ENGINEERED_FIELDS = Object.freeze(["by", "at", "otherItems", "leavesNote"]);
+export const OTHER_ITEMS_MAX = 12;
+/** True when the rule says it is engineered (Ruling R43): its shape is the schema's, its keys the gates'. */
+export const isEngineered = (rule) => rule !== null && typeof rule === "object" && !Array.isArray(rule)
+  && rule.engineered !== null && typeof rule.engineered === "object" && !Array.isArray(rule.engineered);
+
 export const VERDICTS = Object.freeze(["core", "data", "none", "entry", "code", "engine", "unverifiable"]);
 export const STATES = Object.freeze(["inventoried", "triaged", "drafted", "gated", "reviewed", "played"]);
 export const ORIGINS = Object.freeze(["official", "ddb-importer", "plutonium"]);
@@ -182,7 +195,8 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
     const origins = Array.isArray(rule.origins) ? { origins: rule.origins } : {};
     errors.push(...assertProblems(rule.assert, { agent: !legacy, ...origins }));
   }
-  if (!legacy && !(Array.isArray(rule.assert) && rule.assert.length)) {
+  // Ruling R43: an engineered rule is proven by a play, not by assertions: `assert` may be absent (checked when present).
+  if (!legacy && !isEngineered(rule) && !(Array.isArray(rule.assert) && rule.assert.length)) {
     errors.push("rule.assert: required, at least one { given, expect } (a legacy rule may have none)");
   }
   // Ruling R25: what the rule leaves to the table, as data (leaves.mjs): the same checks as `assert`, no free text, at most
@@ -196,6 +210,46 @@ function checkRule(rule, verdict, errors, identifier, legacy) {
   if (verdict === "entry" && !isObject(rule.entry)) errors.push("rule.entry: required when the verdict is entry");
   if (has(rule, "alsoAs")) checkAlsoAs(rule.alsoAs, identifier, errors);
   if (has(rule, "uncovered")) checkUncovered(rule.uncovered, rule.origins, errors);
+  if (has(rule, "engineered")) checkEngineered(rule, errors);
+}
+
+const ISO = /^\d{4}-\d{2}-\d{2}T/;
+// Ruling R43: `rule.engineered`, a closed shape; an engineered rule is a table rule with an entry, and says what it leaves to
+// the table either as `leaves` (the closed shape of Ruling R25) or as `engineered.leavesNote` (one own-words line), not both.
+function checkEngineered(rule, errors) {
+  const e = rule.engineered;
+  const shape = `{ ${ENGINEERED_FIELDS.map((f, i) => (i < 2 ? f : `${f}?`)).join(", ")} }`;
+  if (!isEngineered(rule)) return errors.push(`rule.engineered: must be ${shape}`);
+  for (const f of Object.keys(e)) if (!ENGINEERED_FIELDS.includes(f)) errors.push(`rule.engineered.${f}: unknown field (${shape})`);
+  if (!isEngineerHandle(e.by)) {
+    errors.push("rule.engineered.by: must be an engineer's handle (engineer-<name>), never an owner's or another agent's");
+  }
+  if (typeof e.at !== "string" || !ISO.test(e.at)) errors.push("rule.engineered.at: must be an ISO date string");
+  if (rule.handledIn !== "table" || !isObject(rule.entry)) errors.push("rule.engineered: a table rule with an entry");
+  if (has(e, "leavesNote")) {
+    if (!isPlainLine(e.leavesNote, ADDS_MAX)) {
+      errors.push(`rule.engineered.leavesNote: one printable line of at most ${ADDS_MAX} characters`);
+    }
+    if (has(rule, "leaves")) errors.push("rule.engineered.leavesNote: leaves or leavesNote, not both");
+  }
+  if (has(e, "otherItems")) {
+    const list = e.otherItems;
+    if (!Array.isArray(list) || !list.length || list.length > OTHER_ITEMS_MAX) {
+      errors.push(`rule.engineered.otherItems: 1 to ${OTHER_ITEMS_MAX} { docId, why }`);
+    } else {
+      const seen = new Set();
+      list.forEach((o, i) => {
+        const at = `rule.engineered.otherItems[${i}]`;
+        if (!isObject(o) || Object.keys(o).some((k) => k !== "docId" && k !== "why")) {
+          return errors.push(`${at}: must be { docId, why }`);
+        }
+        if (typeof o.docId !== "string" || !DOC_ID.test(o.docId)) errors.push(`${at}.docId: a 16-character document id`);
+        else if (seen.has(o.docId)) errors.push(`${at}.docId: ${o.docId} is listed twice`);
+        seen.add(o.docId);
+        if (!isLine(o.why)) errors.push(`${at}.why: one line of printable ASCII, at most 200 characters`);
+      });
+    }
+  }
 }
 
 // The gates the evidence may name (gates.mjs GATES).
@@ -465,7 +519,8 @@ function checkEvidence(evidence, errors, legacy, verdict, why) {
       errors.push("evidence.person: must be { by, because, rule }");
     } else {
       if (!isReaderHandle(p.by) || AGENT_HANDLE.test(p.by)) {
-        errors.push("evidence.person.by: must be an owner's handle, not an agent's (reader, drafter, reviewer, second, third)");
+        errors.push("evidence.person.by: must be an owner's handle, not an agent's (reader, drafter, reviewer, second, third,"
+          + " engineer)");
       }
       if (!isPlainLine(p.because, 120)) errors.push("evidence.person.because: one line of printable ASCII, at most 120 characters");
       if (!isHex64(p.rule)) errors.push("evidence.person.rule: must be 64 hex characters (the fingerprint of the rule signed)");
@@ -570,7 +625,8 @@ const isAgainstSecond = (v) => isObject(v) && Object.keys(v).every((k) => [...AG
   && v.assert.length > 0 && (!Object.hasOwn(v, "tolerated") || isTolerated(v.tolerated));
 const onlyPersonKeys = (p) => Object.keys(p).every((k) => ["by", "because", "rule"].includes(k));
 // The handles agents sign with (triage readers, second and third readers, drafters, reviewers): never a person's signature.
-export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third)([-_.0-9]|$)|agent/i;
+// Ruling R43: an engineer's handle too.
+export const AGENT_HANDLE = /^(reader|drafter|reviewer|second|third|engineer)([-_.0-9]|$)|agent/i;
 const isHex64 = (v) => typeof v === "string" && HEX64.test(v);
 const WHAT = { by: "a reader handle", agrees: "a boolean", rule: "64 hex characters (the rule fingerprint)",
   confidence: "a number from 0 to 1", person: "true", because:
@@ -656,6 +712,8 @@ export function validateRecord(record) {
     if (!RULE_VERDICTS.includes(record.verdict)) {
       errors.push(`verdict: a record with a rule can only have the verdict entry or code, not ${JSON.stringify(record.verdict)}`);
     }
+    // Ruling R43: an engineered rule is not a draft: no drafter signed it, no review reads it.
+    if (isEngineered(record.rule) && isObject(drafted)) errors.push("evidence.drafted: an engineered rule is not drafted (R43)");
   }
   if (has(record, "legacy") && typeof record.legacy !== "boolean") errors.push("legacy: must be a boolean");
   if (has(record, "srd") && typeof record.srd !== "boolean") errors.push("srd: must be a boolean");

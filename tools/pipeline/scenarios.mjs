@@ -21,6 +21,9 @@ import { leavesAssertions, TURN_ENDS } from "./leaves.mjs";
 import { SIZES } from "./conditions.mjs";
 import { AURA_MOMENTS, ZONE_MOMENTS } from "./zones.mjs";
 import { REACTION_MOMENTS } from "./reactions.mjs";
+import { isEngineered, isScenarioId } from "./schema.mjs";
+import { isPlainLine } from "./assert.mjs";
+import { quotationCheck, RULE_QUOTE_WORDS } from "./gates.mjs";
 
 // The denials play/lib/steps.mjs observes (an engine stat, or the caster's freed turn). Ruling R34: `healing` and `tempHp`
 // have no interpreter (the runner deals no damage and heals nobody after the use): `expect.denies.<word>`, manual.
@@ -306,6 +309,72 @@ export function scenarioFiles(s) {
 }
 
 /**
+ * Ruling R43: the records whose scenario is generated: reviewed or played, and not engineered (an engineered rule's scenario
+ * is written by hand, never generated).
+ */
+export const generatesScenario = (record) => SCENARIO_STATES.includes(stateOf(record)) && !isEngineered(record.rule);
+
+// ---------------------------------------------------------------------------------------------------------------------------
+// Ruling R43: hand-written scenarios. An engineered rule is played by a module a person or the main session writes,
+// play/<book>/<slug>.mjs, whose first line is HANDWRITTEN_MARK, beside play/<book>/<slug>.json, exactly `{ scenario, key, rule,
+// handWritten: true, checks, covers }`. `npm run scenarios` never writes nor removes either; `--check` verifies them
+// (handWrittenProblems) and `--stamp-handwritten` refreshes `rule` from the registry (stampedHandWritten).
+
+export const HANDWRITTEN_MARK = "// hand-written (Ruling R43)";
+export const HANDWRITTEN_FIELDS = Object.freeze(["scenario", "key", "rule", "handWritten", "checks", "covers"]);
+export const COVERS_MAX = 200;
+export const HANDWRITTEN_CHECKS_MAX = 999;
+const HEX64 = /^[0-9a-f]{64}$/;
+/** True when a module's first line is HANDWRITTEN_MARK. */
+export const isHandWrittenModule = (text) => typeof text === "string" && text.split(/\r?\n/, 1)[0] === HANDWRITTEN_MARK;
+
+/**
+ * What is wrong with a hand-written scenario's JSON, as messages ([] when sound): its exact fields; `handWritten: true`; a
+ * scenario id; `checks` an integer from 1 to HANDWRITTEN_CHECKS_MAX; `covers` one own-words line of at most COVERS_MAX
+ * characters that does not quote the entry's `text` (when given); its `record` (the registry's record of `key`) engineered,
+ * its scenario id the record's, `rule` the fingerprint of the record's rule as it is; its `module` (the text of the sibling
+ * .mjs, when looked for: undefined skips it, null is a missing file) marked with HANDWRITTEN_MARK.
+ */
+export function handWrittenProblems(json, { record, module, text } = {}) {
+  if (!isObject(json)) return ["the JSON must be an object"];
+  const out = [];
+  const extra = Object.keys(json).filter((k) => !HANDWRITTEN_FIELDS.includes(k));
+  const missing = HANDWRITTEN_FIELDS.filter((k) => !Object.hasOwn(json, k));
+  if (extra.length || missing.length) {
+    out.push(`fields: exactly ${HANDWRITTEN_FIELDS.join(", ")}${extra.length ? ` (not ${extra.join(", ")})` : ""}`
+      + `${missing.length ? ` (missing ${missing.join(", ")})` : ""}`);
+  }
+  if (json.handWritten !== true) out.push("handWritten: must be true");
+  if (!isScenarioId(json.scenario)) out.push("scenario: a scenario id <book>/<slug>");
+  if (!Number.isInteger(json.checks) || json.checks < 1 || json.checks > HANDWRITTEN_CHECKS_MAX) {
+    out.push(`checks: an integer from 1 to ${HANDWRITTEN_CHECKS_MAX}, the checks one passing run makes`);
+  }
+  if (!isPlainLine(json.covers, COVERS_MAX)) out.push(`covers: one printable line of at most ${COVERS_MAX} characters`);
+  else if (typeof text === "string" && quotationCheck(text)(json.covers)) {
+    out.push(`covers quotes ${RULE_QUOTE_WORDS} or more consecutive words of the entry's text`);
+  }
+  if (!isObject(record) || record.key !== json.key) out.push("key: no record of the registry has it");
+  else {
+    if (!isEngineered(record.rule)) out.push("the record's rule is not engineered: its scenario is generated (Ruling R43)");
+    if (json.scenario !== scenarioIdOf(record)) out.push(`scenario: the record's scenario id is ${scenarioIdOf(record)}`);
+    if (!HEX64.test(String(json.rule))) out.push("rule: the 64-hex fingerprint of the record's rule");
+    else if (record.rule && json.rule !== ruleFingerprint(record.rule)) {
+      out.push(`rule: stale (the record's rule changed): check the module against the rule as it is, then run npm run`
+        + ` scenarios -- ${String(record.book).toUpperCase()} --stamp-handwritten`);
+    }
+  }
+  if (module === null) out.push(`no hand-written module beside the JSON (its first line ${HANDWRITTEN_MARK})`);
+  else if (module !== undefined && !isHandWrittenModule(module)) out.push(`module: its first line must be ${HANDWRITTEN_MARK}`);
+  return out;
+}
+
+/** The text of a hand-written scenario's JSON with `rule` set to the fingerprint of the record's rule as it is. */
+export function stampedHandWritten(json, record) {
+  const next = Object.fromEntries(HANDWRITTEN_FIELDS.map((f) => [f, f === "rule" ? ruleFingerprint(record.rule) : json?.[f]]));
+  return `${JSON.stringify(next, null, 2)}\n`;
+}
+
+/**
  * A rule's family (Ruling R11): its sorted top-level entry keys, `triggers` with its declarations' `on > step types`
  * (`saveDamage+triggers(failedSave>status)`); a rule with no entry is `code`.
  */
@@ -330,7 +399,7 @@ export function familyOf(record) {
  * (record key → the official item's structure, as scenarioOf takes it) decides `manual` as `npm run scenarios` writes it.
  */
 export function planOf(records, { packOf, structures } = {}) {
-  const playable = records.filter((r) => SCENARIO_STATES.includes(stateOf(r)))
+  const playable = records.filter((r) => SCENARIO_STATES.includes(stateOf(r)) && !isEngineered(r.rule))
     .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
   const seen = new Set();
   const first = [];

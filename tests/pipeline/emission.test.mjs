@@ -64,7 +64,7 @@ describe("emissionOf (Ruling R27): one function decides what is registered with 
   it("closes the reasons a rule is held, each with its label", () => {
     expect(Object.keys(HELD_REASONS).sort()).toEqual(
       ["disagreement", "engine-already", "engine-changes", "engine-rebinding", "engine-text", "free-text", "low-confidence",
-        "not-reviewed", "queued", "review-stale", "unexpressed"]);
+        "not-played", "not-reviewed", "play-stale", "queued", "review-stale", "unexpressed"]);
     expect(HELD_REASONS["engine-rebinding"]).toBe("its identifier would drop engine behaviour");
     expect(HELD_REASONS["engine-changes"]).toBe("changes the engine's reading: a person decides");
     expect(HELD_REASONS["engine-already"]).toBe("the engine already does it");

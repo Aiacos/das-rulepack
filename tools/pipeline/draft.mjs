@@ -156,8 +156,29 @@ export function withoutRule(record) {
 }
 
 // The rule as it is written to the record: the drafter's fields, the aliases aliasFor gives (Ruling R2), the display label
-// (R17). With the identifier and sources a monster feature gets (R3). Or `{ problem }`.
+// (R17), and the draft's stamp. Or `{ problem }`.
 function draftedRecord(record, draft, { core, embedded, by, at }) {
+  const ruled = ruledRecord(record, draft, { core, embedded });
+  if (ruled.problem) return ruled;
+  const next = ruled.record;
+  // Rulings R15, R21: a rule the assertion vocabulary cannot fully say (noReactions), or one that leaves the official item
+  // uncovered, goes to a person at review: stamped here.
+  const forPerson = draftedForPerson(next.rule);
+  next.evidence = {
+    ...next.evidence,
+    drafted: { by, at, core: core.version, rule: ruleFingerprint(next.rule),
+      ...(forPerson ? { person: true, because: forPerson } : {}) }
+  };
+  return { record: next };
+}
+
+/**
+ * A copy of `record` with `rule` written as the tools complete it: the aliases aliasFor gives (Ruling R2), a monster
+ * feature's DDB Importer origin uncovered (R3), the display label (R17); for a monster feature, its creature-scoped
+ * identifier and the source binding its embedded item (R3, R35; `embedded`: a Map of book code to settle.mjs embeddedIndex).
+ * No evidence is written. `{ record }`, or `{ problem }`. The draft ingest and the engineered ingest (Ruling R43) share it.
+ */
+export function ruledRecord(record, draft, { core, embedded }) {
   const next = structuredClone(record);
   if (record.kind === "monster") {
     const index = embedded?.get(record.book);
@@ -202,13 +223,6 @@ function draftedRecord(record, draft, { core, embedded, by, at }) {
   const label = ruleOriginLabel(record);
   if (label !== undefined) rule.origin = label;
   next.rule = rule;
-  // Rulings R15, R21: a rule the assertion vocabulary cannot fully say (noReactions), or one that leaves the official item
-  // uncovered, goes to a person at review: stamped here.
-  const forPerson = draftedForPerson(rule);
-  next.evidence = {
-    ...next.evidence,
-    drafted: { by, at, core: core.version, rule: ruleFingerprint(rule), ...(forPerson ? { person: true, because: forPerson } : {}) }
-  };
   return { record: next };
 }
 

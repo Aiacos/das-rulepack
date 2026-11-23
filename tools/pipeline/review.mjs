@@ -5,7 +5,7 @@
 // never changes the rule, and nothing here writes `evidence` other than `reviewed` (never `evidence.person`).
 import { ruleFingerprint, stateOf } from "./registry.mjs";
 import { BY, REVIEW_TOLERANCES, SECOND_REVIEWED_REASONS, SECOND_REVIEW_RESULTS, SECOND_REVIEW_VIA,
-  isReaderHandle } from "./schema.mjs";
+  isEngineered, isReaderHandle } from "./schema.mjs";
 import {
   OPTIONAL_DETAIL, assertProblems, atomise, givenOf, impliedAsserts, isFreeCanonical as isFree, normaliseAssert, pairsOf,
   sameUpToDetail
@@ -252,6 +252,7 @@ function resultProblem(record, result, { offered, queued, by, second, owners }) 
   if (!offered.has(result.key)) return "not offered by this batch (its key is not an entry of the batch file)";
   if (record.legacy === true) return "legacy record: it leaves legacy through a person, never through a review";
   if (!isObject(record.rule)) return "the record has no rule: nothing to review";
+  if (isEngineered(record.rule)) return "engineered: proven by play (Ruling R43), never reviewed";
   if (typeof result.rule !== "string" || !HEX64.test(result.rule)) {
     return "rule must be the fingerprint the batch entry gave (64 hex characters)";
   }

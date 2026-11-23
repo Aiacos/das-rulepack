@@ -362,3 +362,11 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       for the use's effect; the runner now also confirms a turn really changed, and names what stayed on a failure.
 - [x] Item reread (R42) over 204 open entries of XPHB, XDMG, EFA: 23 confirmed covered by two readers; the rest need a rule.
 
+- [x] Engineered rules (Ruling R43, 2026-11-23): `ingest <file> --engineered` writes a rule with any key of the engine's
+      ENTRY_KEYS (`rule.engineered`, an `engineer-…` handle), every other gate held; such a rule is never reviewed and ships
+      only once a play of its hand-written scenario (`play/<book>/<slug>.mjs` + `.json`, `play/lib/handwritten.mjs`) is
+      recorded for the rule as it is; `docs/RULES.md` flags each for the owner (`docs/PIPELINE.md`, "Engineered rules").
+- [ ] Write the first engineered rules (drafts-queue `person` entries whose text needs a key outside the drafter
+      vocabulary), their hand-written scenarios, and play them on the test server; then read each flagged row of RULES.md.
+- [ ] The first live run of a hand-written scenario: check that `ctx` hands the helper what play/lib/handwritten.mjs says
+      (`effects` with `origin`, `settle` targets by token uuid), as the checklist of generated scenarios did.

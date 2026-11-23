@@ -985,3 +985,33 @@ engine's runner), generated `play/<book>/<slug>.json` and `play/<book>/<slug>.mj
   who share a misreading confirm it, as in R40 and R41; (e) a change of engine version makes every item reread stale and
   cut again (reader time), since the view cannot be recomputed offline; (f) a revert does not restore the drafts-queue
   entry (as for monster rereads).
+- **R43 (2026-11-23). An engineered rule is proven by one recorded live play, not by a review.** The drafter vocabulary
+  (R6) is a closed subset of the engine's entry keys so that a blind reviewer can check a draft by assertions; most entries
+  left need keys outside it, which an engineer (an agent who reads the engine's source, or the main session) can write but
+  no assertion can check, and until now only an owner's signature (`evidence.person`, never an agent's) let such a rule
+  through. A rule may now carry `engineered: { by: "engineer-<name>", at, otherItems?, leavesNote? }` (part of the rule and
+  of its fingerprint; `by` never an owner of `docs/owners.json`; an engineer's handle is an agent's for every other
+  signature). On such a rule the drafter limits and the assertion requirement are lifted (any key of the engine's
+  ENTRY_KEYS; `assert` optional), and every other gate holds: the schema, the engine's own `validateEntry`, the ids of the
+  matched official item (another item's ids only through the closed list `otherItems: [{ docId, why }]`, each looked up in
+  the dumps when they are read), typed data fixes, the 8-word quotation limit on every prose field (`adds`, `leavesNote`,
+  each `otherItems[].why`, the entry's strings), unique identifiers, the official origin only (every other matched origin
+  uncovered). `npm run ingest -- <file> --engineered` writes it from a private results file on an unruled, non-legacy
+  `entry` record outside queue.json and review-queue.json (one in drafts-queue.json leaves it); a result that fails a gate
+  is rejected whole. The rule is `gated`, held ("not-played"), skipped by every review path ("engineered: proven by play")
+  and by a redraft, until `npm run played` records a play of its HAND-WRITTEN scenario about the rule as it is (`played`,
+  status "played"); a changed rule holds it again ("play-stale"). The scenario is a module a person or the main session
+  writes (`play/<book>/<slug>.mjs`, first line `// hand-written (Ruling R43)`, with the helpers of `play/lib/handwritten.mjs`)
+  beside `<slug>.json` `{ scenario, key, rule, handWritten: true, checks, covers }`; the generator never writes nor removes
+  them, `--check` verifies them, `--stamp-handwritten` refreshes `rule`; the helper withholds the stamp when an expectation
+  failed or another number of checks ran than declared. `docs/RULES.md` flags every such rule for the owner and counts them
+  apart. *Cost if wrong:* the proof is one play of one situation, written by the same engineer who wrote the rule: it shows
+  the rule does what the engineer meant, not that the engineer read the book right, and nothing independent reads the text
+  against the entry (no reviewer, no assertion) — a misreading ships with a green play. Hence the flag in RULES.md: the
+  owner's reading of each flagged row is the only independent check. Further: (a) the scenario checks what its author chose
+  to check (`checks` is declared by the same hand), so a rule can be played on its easy case only; (b) `--stamp-handwritten`
+  refreshes the fingerprint without proving the module was read again against the new rule; (c) the helper cannot read the
+  registry where the runner runs: a stale JSON is caught by `scenarios --check` before the run and by `played` after (it
+  records nothing), not by the helper; (d) the entry word budget of R19 does not apply to an engineered entry (the engine's
+  own key names are no drafter words), so paraphrase is bounded by the quotation check and the owner's reading only; (e) a
+  forged log is as possible as for R10.

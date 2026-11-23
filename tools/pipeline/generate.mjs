@@ -5,7 +5,7 @@ import {
   NOT_BOOKS, hasLegacyStanding, isPlayed, keyOf, legacyProblem, loadBook, loadLegacy, loadQueue, ruleFingerprint, stateOf
 } from "./registry.mjs";
 import { editionOf } from "./edition.mjs";
-import { RULE_VERDICTS, draftedForPersonReasons } from "./schema.mjs";
+import { RULE_VERDICTS, draftedForPersonReasons, isEngineered } from "./schema.mjs";
 import { REVIEW_REASONS, queueHolds } from "./review.mjs";
 import { QUEUE_THRESHOLD } from "./intake.mjs";
 import { sourceProblems } from "./settle.mjs";
@@ -61,7 +61,9 @@ export const HELD_REASONS = Object.freeze({
   "low-confidence": "reviewer unsure",
   "free-text": "review holds free text",
   unexpressed: "reviewer could not express it",
-  queued: "waits for a person"
+  queued: "waits for a person",
+  "not-played": "engineered (Ruling R43): no recorded play yet",
+  "play-stale": "engineered (Ruling R43): its play is about an older rule"
 });
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
@@ -97,6 +99,7 @@ function comparisonHeld(entry) {
  * entry is about an older rule. `queue`: review-queue.json (a list or a Map by key); left out, nothing can be confirmed
  * from it and a stamped rule is held. A monster rule (Rulings R28, R29) is first held by its stored comparison with the
  * engine's reading (`evidence.reading`): `engine-text` (none current), `engine-changes`, `engine-already`, `engine-rebinding`.
+ * An engineered rule (Ruling R43) is emitted as `played` only, or held as `not-played` / `play-stale`; reviews are not read.
  */
 export function emissionOf(record, { legacy, queue, monsterRules = false } = {}) {
   if (!isObject(record) || !record.rule || !RULE_VERDICTS.includes(record.verdict)) return null;
@@ -119,6 +122,13 @@ export function emissionOf(record, { legacy, queue, monsterRules = false } = {})
     }
   }
   const state = stateOf(record);
+  // Ruling R43: an engineered rule is emitted only through a recorded play about the rule as it is, never on its gates alone
+  // nor by any review: `played`, or held as `not-played` (no play) or `play-stale` (a play about an older rule).
+  if (isEngineered(record.rule)) {
+    if (state === "played") return { emitted: true, because: "played" };
+    if (state !== "gated") return null;
+    return { emitted: false, because: isPlayed(record.evidence?.played) ? "play-stale" : "not-played" };
+  }
   if (state === "reviewed" || state === "played") return { emitted: true, because: "reviewed" };
   if (state !== "gated") return null;
   const held = (because) => ({ emitted: false, because });
