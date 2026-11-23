@@ -1449,6 +1449,53 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-scout-captain-aim",
+    "name": "Aim",
+    "page": 270,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Scout Captain",
+    "adds": "After aiming, the creature's next attack roll of the turn is rolled with Advantage, once; the aim is lost when its turn ends.",
+    "entry": {
+      "trace": {
+        "activity": "MzsKDH0S7g3jTm6M",
+        "show": true
+      },
+      "triggers": [
+        {
+          "on": "preAttackRoll",
+          "via": "effect",
+          "do": [
+            {
+              "type": "advantage"
+            },
+            {
+              "type": "consume",
+              "side": "source"
+            }
+          ]
+        },
+        {
+          "on": "endOfTurn",
+          "via": "effect",
+          "do": [
+            {
+              "type": "remove"
+            }
+          ]
+        }
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-shadow-demon-light-sensitivity",
     "name": "Light Sensitivity",
     "page": 273,
