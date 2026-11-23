@@ -2426,6 +2426,11 @@ entry may hold a *nested* key that release does not know yet (a sub-key of a key
 `<path>: unknown key` is then not a failure, for an engineered rule only. A full `npm run gates` on the engine the rule was
 gated with still fails it, and on an engine that refuses it the shipped module leaves the rule out by itself (R37).
 
+**Monster features the text layer does not read (Ruling R46).** `batch reread <BOOK> --items` also cuts a monster
+feature whose text the engine's text layer reads nothing of (the monster reread has no reading to show for it): the reader
+sees the engine's classification of the item from the private engine view, exactly as for an item. Its ingest is the item
+reread's (`ingest --reread --items [--second]`).
+
 **Playing it.** A held rule is in no module of the pack, so it cannot run on a test world. `npm run build:rules --
 --play-build <dir>` writes the same generated modules **plus the gated engineered rules that have no play yet** to another
 directory (refused on the pack's own `scripts/rules`, and with `--check`): that directory is copied over a test world's
