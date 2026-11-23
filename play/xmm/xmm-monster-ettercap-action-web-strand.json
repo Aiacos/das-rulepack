@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-ettercap-action-web-strand",
+  "key": "xmm:monster:ettercap/action/web-strand",
+  "rule": "ffaedea221b8b1cfbebb5f314eb5181f9c6af28a876e73d821f7f67ae1049946",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A Huge creature is left unaffected; a Medium one that fails the save is Restrained."
+}

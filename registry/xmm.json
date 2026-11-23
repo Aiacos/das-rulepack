@@ -33010,6 +33010,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T08:08:17.218Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bugbear-stalker-trait-abduct",
+          "client": "gm",
+          "rule": "fe22478c3236ff7410ac3175834ff8ed89c0106d5588cb3fa258f5dcdae089fe"
+        },
         "reading": {
           "at": "2026-11-23T07:54:54.563Z",
           "core": "0.291.0",
@@ -33041,14 +33049,6 @@
           "items": {
             "official": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T08:08:17.218Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bugbear-stalker-trait-abduct",
-          "client": "gm",
-          "rule": "fe22478c3236ff7410ac3175834ff8ed89c0106d5588cb3fa258f5dcdae089fe"
         }
       },
       "why": "Grapple movement exception; data has no activity or effect to express it.",
@@ -33343,6 +33343,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T08:08:17.218Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bugbear-warrior-trait-abduct",
+          "client": "gm",
+          "rule": "8fd4a8b14b2e3fd4e574ee862ae4ef0d570da43c6f4893c08440c257763bb854"
+        },
         "reading": {
           "at": "2026-11-23T07:54:54.563Z",
           "core": "0.291.0",
@@ -33374,14 +33382,6 @@
           "items": {
             "official": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T08:08:17.218Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bugbear-warrior-trait-abduct",
-          "client": "gm",
-          "rule": "8fd4a8b14b2e3fd4e574ee862ae4ef0d570da43c6f4893c08440c257763bb854"
         }
       },
       "why": "Grapple movement exception; data has no activity or effect to express it.",
@@ -57509,7 +57509,7 @@
       "edition": "2024",
       "owner": "Ettercap",
       "section": "action",
-      "identifier": "web-strand",
+      "identifier": "xmm-ettercap-web-strand",
       "page": 115,
       "srd": true,
       "text": {
@@ -57546,7 +57546,8 @@
           ],
           "data": {
             "sha256": "ac31f41718a4bea291f26f740477393e86a7d0787750c9074544306f7a3fb2a0"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -57587,11 +57588,82 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T08:34:13.571Z",
+          "core": "0.291.0",
+          "rule": "ffaedea221b8b1cfbebb5f314eb5181f9c6af28a876e73d821f7f67ae1049946",
+          "item": "7c27df8619109277e676f7e69433afa9645eb35bbf8689e5e86745144b864740",
+          "delta": [
+            "targets"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "web-strand",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T08:34:13.571Z",
+          "core": "0.291.0",
+          "rule": "ffaedea221b8b1cfbebb5f314eb5181f9c6af28a876e73d821f7f67ae1049946",
+          "emits": "b0d4f748ce266d38673314f762ab64cbd6826bc58920d0614871c097fcb540b3",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7c27df8619109277e676f7e69433afa9645eb35bbf8689e5e86745144b864740"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T08:39:03.279Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ettercap-action-web-strand",
+          "client": "gm",
+          "rule": "ffaedea221b8b1cfbebb5f314eb5181f9c6af28a876e73d821f7f67ae1049946"
         }
       },
       "why": "Restrained until the web is destroyed is an end-on-event condition; data has the save and condition only.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmWebStrand00000": "xmm-ettercap-web-strand"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature larger than Large is left unaffected by the web strand: no save, no restraint.",
+        "entry": {
+          "targets": {
+            "unaffectedIf": {
+              "not": {
+                "target.sizeAtMost": "lg"
+              }
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T08:33:55.786Z",
+          "leavesNote": "The web itself (its Armor Class, hit points and what destroys it) stays with the GM: the restraint is ended by hand."
+        },
+        "origin": "Ettercap"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:ettercap/bonus/reel",
@@ -78679,6 +78751,14 @@
             }
           }
         },
+        "played": {
+          "at": "2026-11-23T08:08:17.218Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-grell-trait-abduct",
+          "client": "gm",
+          "rule": "81eb5af9b7529fcff062b8454760f14a303d8c7d3801d7086c4bb908d44ce342"
+        },
         "reading": {
           "at": "2026-11-23T07:54:54.650Z",
           "core": "0.291.0",
@@ -78710,14 +78790,6 @@
           "items": {
             "official": "a571df4f412c59669992907a45352cb7e386b912bd3420043034ef27e90ab75e"
           }
-        },
-        "played": {
-          "at": "2026-11-23T08:08:17.218Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-grell-trait-abduct",
-          "client": "gm",
-          "rule": "81eb5af9b7529fcff062b8454760f14a303d8c7d3801d7086c4bb908d44ce342"
         }
       },
       "sources": {

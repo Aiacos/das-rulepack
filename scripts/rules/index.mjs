@@ -100,6 +100,7 @@ export const SOURCES = Object.freeze({
   "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze",
   "mmVampireSpawn00.mmBite0000000000": "xmm-vampire-spawn-bite",
   "mmWarCry00000000": "xmm-frost-giant-war-cry",
+  "mmWebStrand00000": "xmm-ettercap-web-strand",
   "mmWhirlwind00000": "xmm-air-elemental-whirlwind",
   "mmWight000000000.mmSunlightSensit": "xmm-wight-sunlight-sensitivity",
   "mmWingedKobold00.mmSunlightSensit": "xmm-winged-kobold-sunlight-sensitivity",
