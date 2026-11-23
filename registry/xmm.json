@@ -28512,6 +28512,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:13:39.369Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-black-pudding-action-dissolving-pseudopod",
+          "client": "gm",
+          "rule": "f91a4893be1cd0c4fc3e38f0dfce511640d3e6630ba37c9bab733b8a861e6d12"
+        },
         "reading": {
           "at": "2026-11-23T09:09:17.326Z",
           "core": "0.291.0",
@@ -28543,14 +28551,6 @@
           "items": {
             "official": "92ea4e63cba244ffb6cf209e3717e4536c4eec3127dbe7d590e54f84197768f6"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:13:39.369Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-black-pudding-action-dissolving-pseudopod",
-          "client": "gm",
-          "rule": "f91a4893be1cd0c4fc3e38f0dfce511640d3e6630ba37c9bab733b8a861e6d12"
         }
       },
       "why": "Cumulative armor penalty with destruction threshold and Mending removal; data has one effect only on armor class.",
@@ -92604,7 +92604,7 @@
       "edition": "2024",
       "owner": "Lacedon Ghoul",
       "section": "action",
-      "identifier": "claw",
+      "identifier": "xmm-lacedon-ghoul-claw",
       "page": 132,
       "srd": false,
       "text": {
@@ -92627,7 +92627,8 @@
           ],
           "data": {
             "sha256": "6dc44468daf09c9c5950aee19bb31bcda04c78b8bbefaa56edbb6383afa0fbcd"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -92646,7 +92647,8 @@
           },
           "differences": [
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -92674,11 +92676,90 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:16:21.760Z",
+          "core": "0.291.0",
+          "rule": "41e09f13196311ac7031483c94218d3ab1d95f8d1cbebf59a17416ece1a9a187",
+          "item": "6dc44468daf09c9c5950aee19bb31bcda04c78b8bbefaa56edbb6383afa0fbcd",
+          "delta": [
+            "effectsIf"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "claw",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:16:21.760Z",
+          "core": "0.291.0",
+          "rule": "41e09f13196311ac7031483c94218d3ab1d95f8d1cbebf59a17416ece1a9a187",
+          "emits": "9d9e8fc0ed4dececd5ccd0fdc368b919d32a821c5c295004c62a579ed9b873d4",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "6dc44468daf09c9c5950aee19bb31bcda04c78b8bbefaa56edbb6383afa0fbcd"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:20:28.724Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lacedon-ghoul-action-claw",
+          "client": "gm",
+          "rule": "41e09f13196311ac7031483c94218d3ab1d95f8d1cbebf59a17416ece1a9a187"
         }
       },
       "why": "Paralysis on failed save only for targets that are not Undead or elf, ending at a stated turn point; needs a rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmLacedonGhoul00.mmClaw0000000000": "xmm-lacedon-ghoul-claw"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The paralysis is placed only on a target that is neither an Undead nor an elf.",
+        "entry": {
+          "effectsIf": {
+            "not": {
+              "any": [
+                {
+                  "target.creatureType": "undead"
+                },
+                {
+                  "target.creatureSubtype": "elf"
+                },
+                {
+                  "target.hasFeature": "elf"
+                }
+              ]
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:16:15.647Z",
+          "leavesNote": "The save is still asked of an Undead or an elf, with no consequence; an elf known by its name alone is not recognised."
+        },
+        "origin": "Lacedon Ghoul"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:lacedon-ghoul/action/icy-bite",

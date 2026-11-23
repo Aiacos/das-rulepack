@@ -1067,6 +1067,40 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-lacedon-ghoul-claw",
+    "name": "Claw",
+    "page": 132,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Lacedon Ghoul",
+    "adds": "The paralysis is placed only on a target that is neither an Undead nor an elf.",
+    "entry": {
+      "effectsIf": {
+        "not": {
+          "any": [
+            {
+              "target.creatureType": "undead"
+            },
+            {
+              "target.creatureSubtype": "elf"
+            },
+            {
+              "target.hasFeature": "elf"
+            }
+          ]
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-lacedon-ghoul-icy-bite",
     "name": "Icy Bite",
     "page": 132,
