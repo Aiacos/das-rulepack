@@ -5847,7 +5847,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T02:59:45.507Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-barbarian-wild-heart-14-power-of-the-wilds",
@@ -7477,7 +7477,7 @@
       "edition": "2024",
       "owner": "Bard/Dance",
       "level": 3,
-      "identifier": "agile-strikes",
+      "identifier": "dazzling-footwork",
       "page": 64,
       "srd": false,
       "text": {
@@ -7486,6 +7486,26 @@
         "chars": 184
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dazzling-footwork",
+          "docId": "phbbrdDazzlingFo",
+          "activities": [
+            "F12CeGiphifD6RVP"
+          ],
+          "effects": [
+            "TaR2ISfZGNwo74Mi"
+          ],
+          "data": {
+            "sha256": "cdc2ae6d81e306070e6371a1babe5fec50556a845e8c133e6979b3e74eb5203d"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:10.986Z",
+            "because": "the module holds this option inside Dazzling Footwork, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -7512,7 +7532,7 @@
       "edition": "2024",
       "owner": "Bard/Dance",
       "level": 3,
-      "identifier": "bardic-damage",
+      "identifier": "dazzling-footwork",
       "page": 64,
       "srd": false,
       "text": {
@@ -7521,6 +7541,26 @@
         "chars": 314
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "dazzling-footwork",
+          "docId": "phbbrdDazzlingFo",
+          "activities": [
+            "F12CeGiphifD6RVP"
+          ],
+          "effects": [
+            "TaR2ISfZGNwo74Mi"
+          ],
+          "data": {
+            "sha256": "cdc2ae6d81e306070e6371a1babe5fec50556a845e8c133e6979b3e74eb5203d"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:14.617Z",
+            "because": "the module holds this option inside Dazzling Footwork, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -7667,7 +7707,7 @@
       "edition": "2024",
       "owner": "Bard/Dance",
       "level": 3,
-      "identifier": "unarmored-defense",
+      "identifier": "dazzling-footwork",
       "page": 64,
       "srd": false,
       "text": {
@@ -7678,20 +7718,23 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "unarmored-defense",
-              "docId": "phbbrbUnarmoredD"
-            },
-            {
-              "identifier": "unarmored-defense",
-              "docId": "phbmnkUnarmoredD"
-            }
+          "match": "matched",
+          "identifier": "dazzling-footwork",
+          "docId": "phbbrdDazzlingFo",
+          "activities": [
+            "F12CeGiphifD6RVP"
           ],
-          "differences": [
-            "owner"
-          ]
+          "effects": [
+            "TaR2ISfZGNwo74Mi"
+          ],
+          "data": {
+            "sha256": "cdc2ae6d81e306070e6371a1babe5fec50556a845e8c133e6979b3e74eb5203d"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:18.199Z",
+            "because": "the module holds this option inside Dazzling Footwork, as one of its activities or effects"
+          }
         },
         {
           "origin": "plutonium",
@@ -9095,7 +9138,7 @@
       "edition": "2024",
       "owner": "Cleric",
       "level": 2,
-      "identifier": "divine-spark",
+      "identifier": "channel-divinity-cleric",
       "page": 70,
       "srd": true,
       "text": {
@@ -9104,6 +9147,29 @@
         "chars": 561
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "channel-divinity-cleric",
+          "docId": "phbclcChannelDiv",
+          "activities": [
+            "UdbUwbvrWwgDuNy9",
+            "OY9UrTXvlRL0JUoI",
+            "aOptL5pMaj3WtR8S",
+            "rprxorXdFoHbRERZ"
+          ],
+          "effects": [
+            "iUeSbfduM7K8XrCF"
+          ],
+          "data": {
+            "sha256": "75252a1671b6c0c0a7281bbb201b72f5980980a9904edc59c76cd3e49b7d0093"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:21.915Z",
+            "because": "the module holds this option inside Channel Divinity, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -9130,7 +9196,7 @@
       "edition": "2024",
       "owner": "Cleric",
       "level": 2,
-      "identifier": "turn-undead",
+      "identifier": "channel-divinity-cleric",
       "page": 70,
       "srd": true,
       "text": {
@@ -9139,6 +9205,29 @@
         "chars": 451
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "channel-divinity-cleric",
+          "docId": "phbclcChannelDiv",
+          "activities": [
+            "UdbUwbvrWwgDuNy9",
+            "OY9UrTXvlRL0JUoI",
+            "aOptL5pMaj3WtR8S",
+            "rprxorXdFoHbRERZ"
+          ],
+          "effects": [
+            "iUeSbfduM7K8XrCF"
+          ],
+          "data": {
+            "sha256": "75252a1671b6c0c0a7281bbb201b72f5980980a9904edc59c76cd3e49b7d0093"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:25.497Z",
+            "because": "the module holds this option inside Channel Divinity, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -9457,6 +9546,25 @@
       },
       "items": [
         {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "divine-strike",
+          "docId": "phbDivineStrike0",
+          "activities": [
+            "uYVz8MBW0EZ2X0zD",
+            "eeU1tB2ZL9CSISgz"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "21ed4a5dd028f9159807fe9c7c033e869f2526af5a477adba1d0984df5d2a2c8"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:29.094Z",
+            "because": "the module names this feature Blessed Strikes: Divine Strike"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -9491,6 +9599,26 @@
         "chars": 72
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "potent-spellcasting",
+          "docId": "phbClcPotentSpel",
+          "activities": [
+            "J6MZEMU8tysM4Ada"
+          ],
+          "effects": [
+            "OIqHubfrJ2gjeNYg"
+          ],
+          "data": {
+            "sha256": "2ea23b2ee15d15857cc03b1bd8d6f028e39e841c6e8b448a0209521be9047d65"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:32.901Z",
+            "because": "the module names this feature Blessed Strikes: Potent Spellcasting"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -11715,6 +11843,24 @@
       },
       "items": [
         {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "potent-spellcasting",
+          "docId": "phbFuryPotentSpe",
+          "activities": [],
+          "effects": [
+            "AgV4xnwxfNOfXOr3"
+          ],
+          "data": {
+            "sha256": "eca14b453e0c2cdfa38188ab3b23d43484f2778a47370258600287eadd02fd96"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:36.518Z",
+            "because": "the module names this feature Elemental Fury: Potent Spellcasting"
+          }
+        },
+        {
           "origin": "plutonium",
           "match": "unchecked"
         }
@@ -11749,6 +11895,25 @@
         "chars": 235
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "primal-strike",
+          "docId": "phbFuryPrimalStr",
+          "activities": [
+            "lHdiTksQmeJBFrf7",
+            "M1utqL6xPlIX9JX3"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "99104787317d7930e75fc4f05b341727ba5bb9262588b07e3f5510058d8c2d02"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:40.156Z",
+            "because": "the module names this feature Elemental Fury: Primal Strike"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -12801,7 +12966,7 @@
       "edition": "2024",
       "owner": "Druid/Stars",
       "level": 3,
-      "identifier": "archer",
+      "identifier": "starry-form",
       "page": 88,
       "srd": false,
       "text": {
@@ -12810,6 +12975,32 @@
         "chars": 332
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "starry-form",
+          "docId": "phbdrdStarryForm",
+          "activities": [
+            "p7kyVDBkGfvzMhBe",
+            "MB5jAofmEgGSPiEb",
+            "IBXZCGkNiFbRLt1Q"
+          ],
+          "effects": [
+            "5Xl5GyUyWOuyUPzw",
+            "OFAdMAi85GloRFNM",
+            "TuJeLqJVlzBNRop6",
+            "orMzu14BYojAQkUm",
+            "vA6ynzYALbrZqf0Z"
+          ],
+          "data": {
+            "sha256": "c87798396fa586e05f289c46e248551fc9b6b07e32503f0044daf4fb4a944c68"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:43.793Z",
+            "because": "the module holds this option inside Starry Form, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -12836,7 +13027,7 @@
       "edition": "2024",
       "owner": "Druid/Stars",
       "level": 3,
-      "identifier": "chalice",
+      "identifier": "starry-form",
       "page": 88,
       "srd": false,
       "text": {
@@ -12845,6 +13036,32 @@
         "chars": 248
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "starry-form",
+          "docId": "phbdrdStarryForm",
+          "activities": [
+            "p7kyVDBkGfvzMhBe",
+            "MB5jAofmEgGSPiEb",
+            "IBXZCGkNiFbRLt1Q"
+          ],
+          "effects": [
+            "5Xl5GyUyWOuyUPzw",
+            "OFAdMAi85GloRFNM",
+            "TuJeLqJVlzBNRop6",
+            "orMzu14BYojAQkUm",
+            "vA6ynzYALbrZqf0Z"
+          ],
+          "data": {
+            "sha256": "c87798396fa586e05f289c46e248551fc9b6b07e32503f0044daf4fb4a944c68"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:47.502Z",
+            "because": "the module holds this option inside Starry Form, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -12906,7 +13123,7 @@
       "edition": "2024",
       "owner": "Druid/Stars",
       "level": 3,
-      "identifier": "dragon",
+      "identifier": "starry-form",
       "page": 88,
       "srd": false,
       "text": {
@@ -12915,6 +13132,32 @@
         "chars": 209
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "starry-form",
+          "docId": "phbdrdStarryForm",
+          "activities": [
+            "p7kyVDBkGfvzMhBe",
+            "MB5jAofmEgGSPiEb",
+            "IBXZCGkNiFbRLt1Q"
+          ],
+          "effects": [
+            "5Xl5GyUyWOuyUPzw",
+            "OFAdMAi85GloRFNM",
+            "TuJeLqJVlzBNRop6",
+            "orMzu14BYojAQkUm",
+            "vA6ynzYALbrZqf0Z"
+          ],
+          "data": {
+            "sha256": "c87798396fa586e05f289c46e248551fc9b6b07e32503f0044daf4fb4a944c68"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:51.158Z",
+            "because": "the module holds this option inside Starry Form, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -15440,7 +15683,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T02:19:08.116Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-fighter-eldritch-knight-15-arcane-charge",
@@ -15913,7 +16156,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T00:37:54.072Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-fighter-psi-warrior-15-bulwark-of-force",
@@ -16032,7 +16275,7 @@
       "edition": "2024",
       "owner": "Fighter/Psi Warrior",
       "level": 3,
-      "identifier": "protective-field",
+      "identifier": "psionic-power",
       "page": 98,
       "srd": false,
       "text": {
@@ -16041,6 +16284,27 @@
         "chars": 310
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "psionic-power",
+          "docId": "phbftrPsionicPow",
+          "activities": [
+            "IasIclPwvvEjwvzf",
+            "FxJXB4BPlBnJLF7q",
+            "wtoSMmqcLzWP3SoX",
+            "MO63DA2IWN8qt52H"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "afdac107f63c78ecd56e71e8ebf898a9c7a063c7bab1a7e9e7f285c4c46128ff"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:54.639Z",
+            "because": "the module holds this option inside Psionic Power, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -16165,7 +16429,7 @@
       "edition": "2024",
       "owner": "Fighter/Psi Warrior",
       "level": 3,
-      "identifier": "psionic-strike",
+      "identifier": "psionic-power",
       "page": 98,
       "srd": false,
       "text": {
@@ -16174,6 +16438,27 @@
         "chars": 338
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "psionic-power",
+          "docId": "phbftrPsionicPow",
+          "activities": [
+            "IasIclPwvvEjwvzf",
+            "FxJXB4BPlBnJLF7q",
+            "wtoSMmqcLzWP3SoX",
+            "MO63DA2IWN8qt52H"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "afdac107f63c78ecd56e71e8ebf898a9c7a063c7bab1a7e9e7f285c4c46128ff"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:09:58.333Z",
+            "because": "the module holds this option inside Psionic Power, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -16226,7 +16511,7 @@
       "edition": "2024",
       "owner": "Fighter/Psi Warrior",
       "level": 7,
-      "identifier": "psi-powered-leap",
+      "identifier": "telekinetic-adept",
       "page": 99,
       "srd": false,
       "text": {
@@ -16235,6 +16520,28 @@
         "chars": 285
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "telekinetic-adept",
+          "docId": "phbftrTelekineti",
+          "activities": [
+            "BfEk3vjEy9KLbH0o",
+            "huc5SywaDq7bpKXL",
+            "5S0GadOxzVQWgum1"
+          ],
+          "effects": [
+            "t9khE9NCLLNkSjsn"
+          ],
+          "data": {
+            "sha256": "f521e894581f7d1ed6084eb7b235b2ab1267ca378f7a9b200ed5aca85c9ee9cf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:02.149Z",
+            "because": "the module holds this option inside Telekinetic Adept, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -16398,7 +16705,7 @@
       "edition": "2024",
       "owner": "Monk",
       "level": 1,
-      "identifier": "bonus-unarmed-strike",
+      "identifier": "martial-arts",
       "page": 101,
       "srd": true,
       "text": {
@@ -16407,6 +16714,27 @@
         "chars": 49
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "martial-arts",
+          "docId": "phbmnkMartialArt",
+          "activities": [
+            "x7fKZy0kgRTMACTa",
+            "uCIVkZurvxHYJ0h0"
+          ],
+          "effects": [
+            "VnV6opO1b3apq6wt"
+          ],
+          "data": {
+            "sha256": "fb15de4d59b2da5b1f3a3090c9d6e5c6e11bf73eec1cef6f76ba5d635ed5245b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:05.651Z",
+            "because": "the module holds this option inside Martial Arts, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -17107,7 +17435,7 @@
       "edition": "2024",
       "owner": "Monk",
       "level": 2,
-      "identifier": "flurry-of-blows",
+      "identifier": "monks-focus",
       "page": 101,
       "srd": true,
       "text": {
@@ -17116,6 +17444,31 @@
         "chars": 75
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "monks-focus",
+          "docId": "phbmnkMonksFocus",
+          "activities": [
+            "2ghJTBhilLrFn9xT",
+            "7xj7b6e8tDznDSrE",
+            "EFzidO6yAapw8d60",
+            "0MuRZ0Ur95xQTKFq",
+            "Iv2YrISquTZWEjjN",
+            "r0ou3Al6Dn3tgUC6",
+            "KpoKztsxm5yuJWk6",
+            "R3sqnBDwAjve0FvW"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "cc65562650eec06dd4ee115dc70ef8d195fee0cebe32074a88a07ce1d5272c9d"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:09.430Z",
+            "because": "the module holds this option inside Monk's Focus, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -17194,7 +17547,7 @@
       "edition": "2024",
       "owner": "Monk",
       "level": 2,
-      "identifier": "patient-defense",
+      "identifier": "monks-focus",
       "page": 101,
       "srd": true,
       "text": {
@@ -17203,6 +17556,31 @@
         "chars": 164
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "monks-focus",
+          "docId": "phbmnkMonksFocus",
+          "activities": [
+            "2ghJTBhilLrFn9xT",
+            "7xj7b6e8tDznDSrE",
+            "EFzidO6yAapw8d60",
+            "0MuRZ0Ur95xQTKFq",
+            "Iv2YrISquTZWEjjN",
+            "r0ou3Al6Dn3tgUC6",
+            "KpoKztsxm5yuJWk6",
+            "R3sqnBDwAjve0FvW"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "cc65562650eec06dd4ee115dc70ef8d195fee0cebe32074a88a07ce1d5272c9d"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:13.043Z",
+            "because": "the module holds this option inside Monk's Focus, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -17229,7 +17607,7 @@
       "edition": "2024",
       "owner": "Monk",
       "level": 2,
-      "identifier": "step-of-the-wind",
+      "identifier": "monks-focus",
       "page": 101,
       "srd": true,
       "text": {
@@ -17238,6 +17616,31 @@
         "chars": 202
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "monks-focus",
+          "docId": "phbmnkMonksFocus",
+          "activities": [
+            "2ghJTBhilLrFn9xT",
+            "7xj7b6e8tDznDSrE",
+            "EFzidO6yAapw8d60",
+            "0MuRZ0Ur95xQTKFq",
+            "Iv2YrISquTZWEjjN",
+            "r0ou3Al6Dn3tgUC6",
+            "KpoKztsxm5yuJWk6",
+            "R3sqnBDwAjve0FvW"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "cc65562650eec06dd4ee115dc70ef8d195fee0cebe32074a88a07ce1d5272c9d"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:16.638Z",
+            "because": "the module holds this option inside Monk's Focus, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -18413,7 +18816,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T01:58:15.545Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-monk-mercy-3-hand-of-harm",
@@ -18989,7 +19392,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T01:01:30.214Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-monk-shadow-17-cloak-of-shadows",
@@ -19293,7 +19696,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T02:05:19.493Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-monk-shadow-6-shadow-step",
@@ -20587,7 +20990,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T00:50:53.751Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-paladin-ancients-15-undying-sentinel",
@@ -21810,7 +22213,7 @@
           }
         },
         "played": {
-          "at": "2026-11-23T02:42:29.671Z",
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
           "world": "das-test",
           "scenario": "xphb/xphb-feature-paladin-vengeance-7-relentless-avenger",
@@ -24697,7 +25100,7 @@
       "edition": "2024",
       "owner": "Rogue",
       "level": 14,
-      "identifier": "daze-cost-2d6",
+      "identifier": "devious-strikes",
       "page": 131,
       "srd": true,
       "text": {
@@ -24706,6 +25109,28 @@
         "chars": 155
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "devious-strikes",
+          "docId": "phbrgeDeviousStr",
+          "activities": [
+            "4TnBjQTJzt9UjUos",
+            "3eq7lcmpkJJBU2KO",
+            "ki4lIPVGNA0HjEzH"
+          ],
+          "effects": [
+            "wWFV1p8u9C1TUPg5"
+          ],
+          "data": {
+            "sha256": "2f0922f8d97a0ceb8655f6f6cb09fadc8289e24e3d807903970fc44497f2d372"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:20.205Z",
+            "because": "the module holds this option inside Devious Strikes, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -24781,7 +25206,7 @@
       "edition": "2024",
       "owner": "Rogue",
       "level": 14,
-      "identifier": "knock-out-cost-6d6",
+      "identifier": "devious-strikes",
       "page": 131,
       "srd": true,
       "text": {
@@ -24790,6 +25215,28 @@
         "chars": 249
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "devious-strikes",
+          "docId": "phbrgeDeviousStr",
+          "activities": [
+            "4TnBjQTJzt9UjUos",
+            "3eq7lcmpkJJBU2KO",
+            "ki4lIPVGNA0HjEzH"
+          ],
+          "effects": [
+            "wWFV1p8u9C1TUPg5"
+          ],
+          "data": {
+            "sha256": "2f0922f8d97a0ceb8655f6f6cb09fadc8289e24e3d807903970fc44497f2d372"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:24.074Z",
+            "because": "the module holds this option inside Devious Strikes, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -24816,7 +25263,7 @@
       "edition": "2024",
       "owner": "Rogue",
       "level": 14,
-      "identifier": "obscure-cost-3d6",
+      "identifier": "devious-strikes",
       "page": 131,
       "srd": true,
       "text": {
@@ -24825,6 +25272,28 @@
         "chars": 116
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "devious-strikes",
+          "docId": "phbrgeDeviousStr",
+          "activities": [
+            "4TnBjQTJzt9UjUos",
+            "3eq7lcmpkJJBU2KO",
+            "ki4lIPVGNA0HjEzH"
+          ],
+          "effects": [
+            "wWFV1p8u9C1TUPg5"
+          ],
+          "data": {
+            "sha256": "2f0922f8d97a0ceb8655f6f6cb09fadc8289e24e3d807903970fc44497f2d372"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:27.706Z",
+            "because": "the module holds this option inside Devious Strikes, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -25377,7 +25846,7 @@
       "edition": "2024",
       "owner": "Rogue",
       "level": 5,
-      "identifier": "poison-cost-1d6",
+      "identifier": "cunning-strike",
       "page": 129,
       "srd": true,
       "text": {
@@ -25386,6 +25855,26 @@
         "chars": 337
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "cunning-strike",
+          "docId": "phbrgeCunningStr",
+          "activities": [
+            "n64fvJMT9fPUy7DH",
+            "dWcCw1vTWRMx4YzD",
+            "m2bRZ1YeD3yf9nV7"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "7f715c2e7a86c433aea9aa7c17b840aabaccb20abf427572bbc0437f6d98c5b0"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:31.159Z",
+            "because": "the module holds this option inside Cunning Strike, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -25412,7 +25901,7 @@
       "edition": "2024",
       "owner": "Rogue",
       "level": 5,
-      "identifier": "trip-cost-1d6",
+      "identifier": "cunning-strike",
       "page": 129,
       "srd": true,
       "text": {
@@ -25421,6 +25910,26 @@
         "chars": 107
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "cunning-strike",
+          "docId": "phbrgeCunningStr",
+          "activities": [
+            "n64fvJMT9fPUy7DH",
+            "dWcCw1vTWRMx4YzD",
+            "m2bRZ1YeD3yf9nV7"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "7f715c2e7a86c433aea9aa7c17b840aabaccb20abf427572bbc0437f6d98c5b0"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:34.779Z",
+            "because": "the module holds this option inside Cunning Strike, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -25492,7 +26001,7 @@
       "edition": "2024",
       "owner": "Rogue",
       "level": 5,
-      "identifier": "withdraw-cost-1d6",
+      "identifier": "cunning-strike",
       "page": 129,
       "srd": true,
       "text": {
@@ -25501,6 +26010,26 @@
         "chars": 98
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "cunning-strike",
+          "docId": "phbrgeCunningStr",
+          "activities": [
+            "n64fvJMT9fPUy7DH",
+            "dWcCw1vTWRMx4YzD",
+            "m2bRZ1YeD3yf9nV7"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "7f715c2e7a86c433aea9aa7c17b840aabaccb20abf427572bbc0437f6d98c5b0"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:38.691Z",
+            "because": "the module holds this option inside Cunning Strike, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -26842,7 +27371,7 @@
       "edition": "2024",
       "owner": "Rogue/Soulknife",
       "level": 9,
-      "identifier": "homing-strikes",
+      "identifier": "soul-blades",
       "page": 136,
       "srd": false,
       "text": {
@@ -26851,6 +27380,25 @@
         "chars": 208
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "soul-blades",
+          "docId": "phbrgeSoulBlades",
+          "activities": [
+            "V4igVC3iuQ9uHASF",
+            "KyFxvisMIoL1OXRa"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ca4419911e91f4b24c93cf4686dcc9ef57640aca1f6842b66cc0b19a0ed814e7"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:42.264Z",
+            "because": "the module holds this option inside Soul Blades, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -26877,7 +27425,7 @@
       "edition": "2024",
       "owner": "Rogue/Soulknife",
       "level": 9,
-      "identifier": "psychic-teleportation",
+      "identifier": "soul-blades",
       "page": 136,
       "srd": false,
       "text": {
@@ -26886,6 +27434,25 @@
         "chars": 268
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "soul-blades",
+          "docId": "phbrgeSoulBlades",
+          "activities": [
+            "V4igVC3iuQ9uHASF",
+            "KyFxvisMIoL1OXRa"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "ca4419911e91f4b24c93cf4686dcc9ef57640aca1f6842b66cc0b19a0ed814e7"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:10:45.958Z",
+            "because": "the module holds this option inside Soul Blades, as one of its activities or effects"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
