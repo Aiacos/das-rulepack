@@ -426,3 +426,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Ancient Black Dragon Cloud of Insects, Disadvantage on rolls to keep Concentration (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Haunting Revenant Object Slam, Advantage against a target inside its space (XMM)
 - [x] Triage: one more reading of the entries left unsure
+- [x] Engineered rule proven by a recorded play on the released engine: Gibbering Mouther Aberrant Ground, its zone is Difficult Terrain (XMM)

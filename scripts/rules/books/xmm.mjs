@@ -842,6 +842,26 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-gibbering-mouther-aberrant-ground",
+    "name": "Aberrant Ground",
+    "page": 133,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Gibbering Mouther",
+    "adds": "The zone the feature lays around the creature is Difficult Terrain.",
+    "entry": {
+      "difficultTerrain": {}
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-gnoll-demoniac-hunger-of-yeenoghu",
     "name": "Hunger of Yeenoghu",
     "page": 141,

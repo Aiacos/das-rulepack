@@ -662,14 +662,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:gibbering-mouther/trait/aberrant-ground",
-    "reason": "person",
-    "by": "drafter-v005",
-    "why": "difficult ground in an aura that moves with the creature: no drafter key is known to follow the creature",
-    "confidence": 0.7,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:gibbering-mouther/trait/gibbering",
     "reason": "code",
     "by": "drafter-v005",

@@ -46,6 +46,7 @@ export const SOURCES = Object.freeze({
   "BqtNDu2WFDju2dM6": "xmm-ancient-copper-dragon-slowing-breath",
   "DXSZEBm7EZIT7A9Z": "xmm-darkmantle-darkness-aura",
   "Ml3peAqEgqgm95nj": "xmm-dracolich-terrifying-presence",
+  "mmAberrantGround": "xmm-gibbering-mouther-aberrant-ground",
   "mmAdultBrassDrag.mmScorchingSands": "xmm-adult-brass-dragon-scorching-sands",
   "mmAdultCopperDra.mmSlowingBreath0": "xmm-adult-copper-dragon-slowing-breath",
   "mmAdultGoldDrago.mmBanish00000000": "xmm-adult-gold-dragon-banish",
