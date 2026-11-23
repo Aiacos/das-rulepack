@@ -18323,11 +18323,57 @@
               "trigger-filter"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T01:34:52.228Z",
+          "core": "0.290.0",
+          "rule": "be9c89a08969acd5e8ff11200374cc24c562f357111983caee38988385d9fb36",
+          "emits": "b142912e07a249ebaa93542dfb4aa4f712cb75bcecd92fab1511d23c91d4315d",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "fbf32722cba706ade90875255e42de920dcd68249b0521a80f94ad061e1d6944"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T01:58:15.545Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-monk-mercy-3-hand-of-harm",
+          "client": "gm",
+          "rule": "be9c89a08969acd5e8ff11200374cc24c562f357111983caee38988385d9fb36"
         }
       },
       "why": "Once per turn rider with focus cost; data has a damage activity but no once-per-turn limit.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "On an Unarmed Strike that hits, the monk is offered the extra Necrotic damage for 1 Focus Point, once per turn.",
+        "entry": {
+          "hitRider": {
+            "pays": "monks-focus",
+            "damage": "3LBCmLni9BQUpgcv",
+            "unarmed": true,
+            "oncePerTurn": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T01:34:46.418Z",
+          "leavesNote": "The Poisoned rider a later Mercy feature adds to this strike is applied by hand."
+        },
+        "origin": "Mercy 3"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:monk/mercy/3/hand-of-healing",
@@ -18854,6 +18900,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T01:01:30.214Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-monk-shadow-17-cloak-of-shadows",
+          "client": "gm",
+          "rule": "76bf2144d4df32884055f9224fbe6d7d3b3e3cfa5238cc069290b7a5a2861483"
+        },
         "gates": {
           "at": "2026-11-23T00:54:15.782Z",
           "core": "0.290.0",
@@ -18870,14 +18924,6 @@
           "items": {
             "official": "f213be81c14941cb47e78652a92ea884d54f3dce97522ebba1beb2056f75c944"
           }
-        },
-        "played": {
-          "at": "2026-11-23T01:01:30.214Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-monk-shadow-17-cloak-of-shadows",
-          "client": "gm",
-          "rule": "76bf2144d4df32884055f9224fbe6d7d3b3e3cfa5238cc069290b7a5a2861483"
         }
       },
       "why": "Ends on bright light at end of turn or incapacitation, free Flurry; effect has only a status and no end rule.",
