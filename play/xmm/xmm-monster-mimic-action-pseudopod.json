@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-mimic-action-pseudopod",
+  "key": "xmm:monster:mimic/action/pseudopod",
+  "rule": "81fc562bbf96019fb961278c6fa59d3a536ec10d03c3f058fc6577bad82caa44",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A creature grappled by the mimic rolls its escape check with Disadvantage; one grappled by another creature rolls it normally."
+}

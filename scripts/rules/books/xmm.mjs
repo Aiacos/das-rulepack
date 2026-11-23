@@ -1123,6 +1123,26 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-mimic-pseudopod",
+    "name": "Pseudopod",
+    "page": 212,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Mimic",
+    "adds": "Ability checks made to escape the mimic's grapple are rolled with Disadvantage.",
+    "entry": {
+      "inescapable": true
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-myconid-adult-sun-sickness",
     "name": "Sun Sickness",
     "page": 223,
