@@ -86,8 +86,11 @@ const ANSWER = (option) => `const b = document.querySelector('[data-action="pick
   if (!b) return false; b.click(); return true;`;
 const WARNING = (issue) => {
   if (!/^[A-Za-z]{1,40}$/.test(String(issue))) throw new Error(`not an engine issue word: ${issue}`);
+  // The engine's line may hold placeholders ({item}, {effect}): a window shows it when it shows each of its fixed stretches.
   return `const line = game.i18n.localize("DND5ECOMBAT.Souci.${issue}");
-    const el = [...document.querySelectorAll("dialog, .application")].find((e) => e.innerText.includes(line));
+    const parts = line.split(/\\{[^}]+\\}/).map((x) => x.trim()).filter((x) => x.length > 3);
+    if (!parts.length) return false;
+    const el = [...document.querySelectorAll("dialog, .application")].find((e) => parts.every((x) => e.innerText.includes(x)));
     if (!el) return false;
     await foundry.applications.instances.get(el.id)?.close();
     return true;`;

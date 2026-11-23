@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-barbarian-wild-heart-14-power-of-the-wilds",
+  "key": "xphb:feature:barbarian/wild-heart/14/power-of-the-wilds",
+  "rule": "8165dd68f16eabb3a34d2fd083650145147bcd01daf9eb91ee354f6a7943224b",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "An option taken in Rage is on the barbarian, a second one is listed as an issue, and the first ends with the Rage."
+}
