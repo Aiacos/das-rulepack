@@ -64,6 +64,7 @@ export const SOURCES = Object.freeze({
   "mmKoboldWarrior0.mmSunlightSensit": "xmm-kobold-warrior-sunlight-sensitivity",
   "mmKuotoa00000000.mmSunlightSensit": "xmm-kuo-toa-sunlight-sensitivity",
   "mmKuotoaArchprie.mmSunlightSensit": "xmm-kuo-toa-archpriest-sunlight-sensitivity",
+  "mmKuotoaMonitor0.mmBoneWhip000000": "xmm-kuo-toa-monitor-bone-whip",
   "mmKuotoaMonitor0.mmSunlightSensit": "xmm-kuo-toa-monitor-sunlight-sensitivity",
   "mmKuotoaWhip0000.mmSunlightSensit": "xmm-kuo-toa-whip-sunlight-sensitivity",
   "mmMucusCloud0000": "xmm-aboleth-mucus-cloud",

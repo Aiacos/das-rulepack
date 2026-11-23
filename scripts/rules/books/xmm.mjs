@@ -703,6 +703,22 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-kuo-toa-monitor-bone-whip",
+    "name": "Bone Whip",
+    "page": 190,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Kuo-toa Monitor",
+    "adds": "The creature hit stays unable to make Opportunity Attacks until the monitor's own turn comes round again.",
+    "entry": {
+      "effectEnds": {
+        "fnxPnbWeOvf9X0QR": "casterTurnStart"
+      }
+    }
+  },
+
+  {
     "identifier": "xmm-kuo-toa-monitor-sunlight-sensitivity",
     "name": "Sunlight Sensitivity",
     "page": 190,
