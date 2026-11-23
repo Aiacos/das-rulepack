@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-fighter-eldritch-knight-15-arcane-charge",
+  "key": "xphb:feature:fighter/eldritch-knight/15/arcane-charge",
+  "rule": "e48531eb3dcdb01f975f6a653664be366f3b01c9ab8fc2eb94ed1dcaace44eeb",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A teleport of 10 feet is accepted and the fighter stands there; one of 45 feet is refused."
+}

@@ -76,6 +76,23 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "arcane-charge",
+    "name": "Arcane Charge",
+    "page": 98,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Eldritch Knight 15",
+    "adds": "Using the feature lets the fighter pick a destination at once and teleports them there, up to 30 feet away.",
+    "entry": {
+      "teleport": {
+        "distance": 30,
+        "units": "ft"
+      }
+    }
+  },
+
+  {
     "identifier": "bulwark-of-force",
     "name": "Bulwark of Force",
     "page": 99,
