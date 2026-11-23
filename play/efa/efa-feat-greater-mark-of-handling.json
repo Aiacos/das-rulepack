@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-feat-greater-mark-of-handling",
+  "key": "efa:feat:greater-mark-of-handling",
+  "rule": "613faa45a2c408f77c620273c27f4f87712d07307237358d6e27984fa4091dae",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A Humanoid is left unaffected by the command; a Beast that fails the save is Frightened. When the fright ends is not checked."
+}
