@@ -569,6 +569,32 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-ettercap-web-strand",
+    "name": "Web Strand",
+    "page": 115,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Ettercap",
+    "adds": "A creature larger than Large is left unaffected by the web strand: no save, no restraint.",
+    "entry": {
+      "targets": {
+        "unaffectedIf": {
+          "not": {
+            "target.sizeAtMost": "lg"
+          }
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-ettin-morningstar",
     "name": "Morningstar",
     "page": 116,

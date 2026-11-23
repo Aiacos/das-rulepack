@@ -740,14 +740,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:ettercap/action/web-strand",
-    "reason": "person",
-    "by": "drafter-v004",
-    "why": "the item already restrains on a failed save; ending it when the web object is destroyed has no key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:fire-elemental/trait/fire-form",
     "reason": "person",
     "by": "drafter-v004",
