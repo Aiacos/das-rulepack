@@ -8,7 +8,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "rod-of-the-pact-keeper-1",
+      "identifier": "rod-of-the-pact-keeper",
       "page": 301,
       "srd": false,
       "text": {
@@ -19,16 +19,29 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "rod-of-the-pact-keeper",
-              "docId": "dmgRodOfThePactK"
-            }
+          "match": "matched",
+          "identifier": "rod-of-the-pact-keeper",
+          "docId": "dmgRodOfThePactK",
+          "activities": [
+            "N1y2Qf88a6qDUira",
+            "CwVlVKZm013riC0J"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "EDVvzAXTg5KvBNhX",
+            "LstxDwu09uZfMb98",
+            "eadyt4UsssplABCC",
+            "mqZE0GgXcaLzc2wN",
+            "u6gAwA3fSFj4f7m5",
+            "zXwhRhWfzoNjOqCg"
+          ],
+          "data": {
+            "sha256": "eff8f7cd3a5bc52c202ad81c5cfee50aa2c12c21745c9b358ed5d287a3715712"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:30.240Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -52,7 +65,8 @@
           ],
           "data": {
             "sha256": "f7ba03e259a61732fa227a3dfa3d898f4d56ebf3014f28e2325593ed0ae7d908"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -88,7 +102,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "wand-of-the-war-mage-1",
+      "identifier": "1-wand-of-the-war-mage",
       "page": 322,
       "srd": true,
       "text": {
@@ -97,6 +111,31 @@
         "chars": 130
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "1-wand-of-the-war-mage",
+          "docId": "dmg1WandOfTheWar",
+          "activities": [
+            "1Wc0Vp0btiIzWz9s"
+          ],
+          "effects": [
+            "5Z35lVoEDct7Ivx2",
+            "7Pcy0FgaAr30JUBV",
+            "MFwYWOar805EHkdX",
+            "UaQkN55ZMKSt9LGT",
+            "jqNFw2MJ4B1HG257",
+            "kejXxpJFzlSWcpm1"
+          ],
+          "data": {
+            "sha256": "8313373564240d9ed39308d225d3b0707c2dc0dbb550a3777b7865f4e79f3787"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:34.061Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
+        },
         {
           "origin": "ddb-importer",
           "match": "matched",
@@ -108,7 +147,8 @@
           ],
           "data": {
             "sha256": "3cbc934dc0edcaf732ee9d65acfa7dfc11d8a12eee49da9d93a900e89b727f45"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -135,7 +175,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "wraps-of-unarmed-power-1",
+      "identifier": "wraps-of-unarmed-power",
       "page": 325,
       "srd": false,
       "text": {
@@ -146,16 +186,25 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "wraps-of-unarmed-power",
-              "docId": "dmgWrapsOfUnarme"
-            }
+          "match": "matched",
+          "identifier": "wraps-of-unarmed-power",
+          "docId": "dmgWrapsOfUnarme",
+          "activities": [
+            "dJmCXWBvjhMzLIS9"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "eXTWapSylPchUnRJ",
+            "h2jS8tsRCNdmApp6",
+            "uto5nEO3BVmaBnpf"
+          ],
+          "data": {
+            "sha256": "c83935b993ada517017d7d4fa478d77cefe6fd742d0e75b1614c4f509bceb86f"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:37.698Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -170,7 +219,8 @@
           ],
           "data": {
             "sha256": "76e806f68cd00b5115310c7f1dfa1e768f4c0f1adc4e4761c380908875e68424"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -204,7 +254,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "rod-of-the-pact-keeper-2",
+      "identifier": "rod-of-the-pact-keeper",
       "page": 301,
       "srd": false,
       "text": {
@@ -215,16 +265,29 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "rod-of-the-pact-keeper",
-              "docId": "dmgRodOfThePactK"
-            }
+          "match": "matched",
+          "identifier": "rod-of-the-pact-keeper",
+          "docId": "dmgRodOfThePactK",
+          "activities": [
+            "N1y2Qf88a6qDUira",
+            "CwVlVKZm013riC0J"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "EDVvzAXTg5KvBNhX",
+            "LstxDwu09uZfMb98",
+            "eadyt4UsssplABCC",
+            "mqZE0GgXcaLzc2wN",
+            "u6gAwA3fSFj4f7m5",
+            "zXwhRhWfzoNjOqCg"
+          ],
+          "data": {
+            "sha256": "eff8f7cd3a5bc52c202ad81c5cfee50aa2c12c21745c9b358ed5d287a3715712"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:41.389Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -248,7 +311,8 @@
           ],
           "data": {
             "sha256": "f08dd0090d8ee2e87ab6f93d67f01d9ca15d842dfc96e66b0cabafb7bc3a6b3b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -284,7 +348,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "wand-of-the-war-mage-2",
+      "identifier": "1-wand-of-the-war-mage",
       "page": 322,
       "srd": true,
       "text": {
@@ -293,6 +357,31 @@
         "chars": 130
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "1-wand-of-the-war-mage",
+          "docId": "dmg1WandOfTheWar",
+          "activities": [
+            "1Wc0Vp0btiIzWz9s"
+          ],
+          "effects": [
+            "5Z35lVoEDct7Ivx2",
+            "7Pcy0FgaAr30JUBV",
+            "MFwYWOar805EHkdX",
+            "UaQkN55ZMKSt9LGT",
+            "jqNFw2MJ4B1HG257",
+            "kejXxpJFzlSWcpm1"
+          ],
+          "data": {
+            "sha256": "8313373564240d9ed39308d225d3b0707c2dc0dbb550a3777b7865f4e79f3787"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:45.095Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
+        },
         {
           "origin": "ddb-importer",
           "match": "matched",
@@ -304,7 +393,8 @@
           ],
           "data": {
             "sha256": "ffe8d9046f52b8909a26cdf4fd8a7b442f68b0c7e372041a1213debf22329773"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -331,7 +421,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "wraps-of-unarmed-power-2",
+      "identifier": "wraps-of-unarmed-power",
       "page": 325,
       "srd": false,
       "text": {
@@ -342,16 +432,25 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "wraps-of-unarmed-power",
-              "docId": "dmgWrapsOfUnarme"
-            }
+          "match": "matched",
+          "identifier": "wraps-of-unarmed-power",
+          "docId": "dmgWrapsOfUnarme",
+          "activities": [
+            "dJmCXWBvjhMzLIS9"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "eXTWapSylPchUnRJ",
+            "h2jS8tsRCNdmApp6",
+            "uto5nEO3BVmaBnpf"
+          ],
+          "data": {
+            "sha256": "c83935b993ada517017d7d4fa478d77cefe6fd742d0e75b1614c4f509bceb86f"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:48.461Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -366,7 +465,8 @@
           ],
           "data": {
             "sha256": "c97a795a0239370b854f40a818587bbed4e9208693d81ecb48f6d37854f85c36"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -400,7 +500,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "rod-of-the-pact-keeper-3",
+      "identifier": "rod-of-the-pact-keeper",
       "page": 301,
       "srd": false,
       "text": {
@@ -411,16 +511,29 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "rod-of-the-pact-keeper",
-              "docId": "dmgRodOfThePactK"
-            }
+          "match": "matched",
+          "identifier": "rod-of-the-pact-keeper",
+          "docId": "dmgRodOfThePactK",
+          "activities": [
+            "N1y2Qf88a6qDUira",
+            "CwVlVKZm013riC0J"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "EDVvzAXTg5KvBNhX",
+            "LstxDwu09uZfMb98",
+            "eadyt4UsssplABCC",
+            "mqZE0GgXcaLzc2wN",
+            "u6gAwA3fSFj4f7m5",
+            "zXwhRhWfzoNjOqCg"
+          ],
+          "data": {
+            "sha256": "eff8f7cd3a5bc52c202ad81c5cfee50aa2c12c21745c9b358ed5d287a3715712"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:51.803Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -444,7 +557,8 @@
           ],
           "data": {
             "sha256": "1980c068b3f13efb8729126fb1137b857481491d2a87a9e8696bbf73267e5131"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -480,7 +594,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "wand-of-the-war-mage-3",
+      "identifier": "1-wand-of-the-war-mage",
       "page": 322,
       "srd": true,
       "text": {
@@ -489,6 +603,31 @@
         "chars": 130
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "1-wand-of-the-war-mage",
+          "docId": "dmg1WandOfTheWar",
+          "activities": [
+            "1Wc0Vp0btiIzWz9s"
+          ],
+          "effects": [
+            "5Z35lVoEDct7Ivx2",
+            "7Pcy0FgaAr30JUBV",
+            "MFwYWOar805EHkdX",
+            "UaQkN55ZMKSt9LGT",
+            "jqNFw2MJ4B1HG257",
+            "kejXxpJFzlSWcpm1"
+          ],
+          "data": {
+            "sha256": "8313373564240d9ed39308d225d3b0707c2dc0dbb550a3777b7865f4e79f3787"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:55.206Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
+        },
         {
           "origin": "ddb-importer",
           "match": "matched",
@@ -500,7 +639,8 @@
           ],
           "data": {
             "sha256": "db557e6e6e2b622ad159521a5b6fa24421659293172e20d97af393355ca62af8"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -527,7 +667,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "wraps-of-unarmed-power-3",
+      "identifier": "wraps-of-unarmed-power",
       "page": 325,
       "srd": false,
       "text": {
@@ -538,16 +678,25 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "wraps-of-unarmed-power",
-              "docId": "dmgWrapsOfUnarme"
-            }
+          "match": "matched",
+          "identifier": "wraps-of-unarmed-power",
+          "docId": "dmgWrapsOfUnarme",
+          "activities": [
+            "dJmCXWBvjhMzLIS9"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "eXTWapSylPchUnRJ",
+            "h2jS8tsRCNdmApp6",
+            "uto5nEO3BVmaBnpf"
+          ],
+          "data": {
+            "sha256": "c83935b993ada517017d7d4fa478d77cefe6fd742d0e75b1614c4f509bceb86f"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:03:58.666Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -562,7 +711,8 @@
           ],
           "data": {
             "sha256": "2d142b5ec82debc323e9269b8201a3462da81716c7db0b701908b8ee2adb3cb6"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -9137,7 +9287,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "enspelled-staff-cantrip",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9148,16 +9298,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:02.296Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9197,7 +9371,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "enspelled-staff-level-1",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9208,16 +9382,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:05.726Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9257,7 +9455,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "enspelled-staff-level-2",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9268,16 +9466,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:09.322Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9317,7 +9539,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "enspelled-staff-level-3",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9328,16 +9550,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:12.985Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9377,7 +9623,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "enspelled-staff-level-4",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9388,16 +9634,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:16.733Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9437,7 +9707,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "enspelled-staff-level-5",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9448,16 +9718,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:20.166Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9497,7 +9791,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "legendary",
-      "identifier": "enspelled-staff-level-6",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9508,16 +9802,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:23.792Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9557,7 +9875,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "legendary",
-      "identifier": "enspelled-staff-level-7",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9568,16 +9886,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:26.958Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -9617,7 +9959,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "legendary",
-      "identifier": "enspelled-staff-level-8",
+      "identifier": "enspelled-staff",
       "page": 258,
       "srd": false,
       "text": {
@@ -9628,16 +9970,40 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "enspelled-staff",
-              "docId": "dmgEnspelledStaf"
-            }
+          "match": "matched",
+          "identifier": "enspelled-staff",
+          "docId": "dmgEnspelledStaf",
+          "activities": [
+            "pMhjRG3IufYVFNAz",
+            "8c3xvYdZJO3rHC45",
+            "YrZqPZj4QuKEhycT",
+            "7trhDxAAI7D3MGf5",
+            "eFZVVEl8bjQdU8ip",
+            "c9wxLOG8pe1KZPtJ",
+            "eBL8LVWHzKrD6Akr",
+            "XQcxrqa83k11tycD",
+            "TVB46dAUr3wJPYGy",
+            "vzEAFr6ch8zvSrGj"
           ],
-          "differences": [
-            "variant"
-          ]
+          "effects": [
+            "8Y9q83fCBhqjadRA",
+            "BqJrbzg5uQtROOlP",
+            "DWrQ6rScpzl5FkqY",
+            "ORt3NtEuIzfAkXVS",
+            "UxoiwERG1utIrVD5",
+            "VciOoFMPNryMTen3",
+            "geXjHKAjo2Sz9UXJ",
+            "qRUKGNlIiQRdsuov",
+            "rkyWAG07le568We5"
+          ],
+          "data": {
+            "sha256": "00f62fbdaa3e4ad52a7c2d372a7981d22059ff55e93825f536e9730557bbdf3b"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:30.104Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -10374,7 +10740,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "figurine-of-wondrous-power-ivory-goats",
+      "identifier": "figurine-of-wondrous-power",
       "page": 261,
       "srd": true,
       "text": {
@@ -10383,6 +10749,22 @@
         "chars": 2837
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "figurine-of-wondrous-power",
+          "docId": "dmgFigurineOfWon",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "6a8766eb68ba6ef355c25534960c28c4d3428ae632caa3973057e8bb6ec7a3cc"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:33.693Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
+        },
         {
           "origin": "ddb-importer",
           "match": "matched",
@@ -10398,7 +10780,8 @@
           ],
           "data": {
             "sha256": "21aeae112cf350328eefd7d764bcfba99f5fee9bd26403813137727de930fc5b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -10479,7 +10862,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "figurine-of-wondrous-power-obsidian-steed",
+      "identifier": "figurine-of-wondrous-power",
       "page": 261,
       "srd": true,
       "text": {
@@ -10488,6 +10871,22 @@
         "chars": 1678
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "figurine-of-wondrous-power",
+          "docId": "dmgFigurineOfWon",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "6a8766eb68ba6ef355c25534960c28c4d3428ae632caa3973057e8bb6ec7a3cc"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:37.274Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
+        },
         {
           "origin": "ddb-importer",
           "match": "matched",
@@ -10499,7 +10898,8 @@
           "effects": [],
           "data": {
             "sha256": "feec830a48445ac39601122d124bc3db5f3efb2022e0b31032eeb48aeb92d0bd"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -14422,7 +14822,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "ioun-stone-absorption",
+      "identifier": "absorption-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14431,6 +14831,24 @@
         "chars": 354
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "absorption-ioun-stone",
+          "docId": "dmgAbsorptionIou",
+          "activities": [
+            "VHm5fPkFAnT7Vb01"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "247878eef1ccff17d7fe8bc25f4d7a975ae5e8207c7bc1554cb06cb106f3005e"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:40.959Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14456,7 +14874,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "ioun-stone-agility",
+      "identifier": "agility-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14465,6 +14883,24 @@
         "chars": 124
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "agility-ioun-stone",
+          "docId": "dmgAgilityIounSt",
+          "activities": [],
+          "effects": [
+            "89e4TT2q0PLRozOi"
+          ],
+          "data": {
+            "sha256": "052148daf00852a6a872e0d7c6e06f0ae8e408468d31e218f31ee1a18a9efb35"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:44.196Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14490,7 +14926,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "ioun-stone-awareness",
+      "identifier": "awareness-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14499,6 +14935,24 @@
         "chars": 147
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "awareness-ioun-stone",
+          "docId": "dmgAwarenessIoun",
+          "activities": [],
+          "effects": [
+            "P2rx8Fq56YpwQfSm"
+          ],
+          "data": {
+            "sha256": "1febee4f6c7f1f93549a8446fdd4eaf8d57fe6776d0765163e6e84c2bcf5c501"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:47.608Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14524,7 +14978,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "ioun-stone-fortitude",
+      "identifier": "fortitude-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14533,6 +14987,24 @@
         "chars": 125
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "fortitude-ioun-stone",
+          "docId": "dmgFortitudeIoun",
+          "activities": [],
+          "effects": [
+            "hOigjfupZtZR2cy9"
+          ],
+          "data": {
+            "sha256": "52b48e3bf5e1d9619da9b766d3953b1e0a18e8b59316c3ed4e6d9d20a33f39f2"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:51.441Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14558,7 +15030,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "legendary",
-      "identifier": "ioun-stone-greater-absorption",
+      "identifier": "greater-absorption-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14567,6 +15039,24 @@
         "chars": 367
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "greater-absorption-ioun-stone",
+          "docId": "dmgGreaterAbsorp",
+          "activities": [
+            "1yWFZf1MJMoNof7b"
+          ],
+          "effects": [],
+          "data": {
+            "sha256": "11de235e8c36d1693dedb32f3300d1afd1dd0ba7a079703ebb86e91e9b1672ce"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:55.070Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14592,7 +15082,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "ioun-stone-insight",
+      "identifier": "insight-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14601,6 +15091,24 @@
         "chars": 130
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "insight-ioun-stone",
+          "docId": "dmgInsightIounSt",
+          "activities": [],
+          "effects": [
+            "47SuTikkluIDzGhZ"
+          ],
+          "data": {
+            "sha256": "bdb2c84e4039d96adb2bb368cc083daadf31721dedab24a085133da6d0253a86"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:04:58.688Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14626,7 +15134,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "ioun-stone-intellect",
+      "identifier": "intellect-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14635,6 +15143,24 @@
         "chars": 143
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "intellect-ioun-stone",
+          "docId": "dmgIntellectIoun",
+          "activities": [],
+          "effects": [
+            "wPZxFH2R0HxRees5"
+          ],
+          "data": {
+            "sha256": "f6786605a223eef009271ceed308e2ae9840bebd0d63509db95395f7c0c105eb"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:02.434Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14660,7 +15186,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "ioun-stone-leadership",
+      "identifier": "leadership-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14669,6 +15195,24 @@
         "chars": 137
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "leadership-ioun-stone",
+          "docId": "dmgLeadershipIou",
+          "activities": [],
+          "effects": [
+            "DoQVfD1Ef0o1U8SP"
+          ],
+          "data": {
+            "sha256": "8805e3aaddf4e0742b6d6a75773d6ec40d7cc18a00c2ff923dafe14daf581853"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:06.175Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14719,7 +15263,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "ioun-stone-protection",
+      "identifier": "protection-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14728,6 +15272,24 @@
         "chars": 109
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "protection-ioun-stone",
+          "docId": "dmgProtectionIou",
+          "activities": [],
+          "effects": [
+            "DjgONYhHwEnVKjfF"
+          ],
+          "data": {
+            "sha256": "00d076d037c289757b023b3880525e482769cae05b1c9bce74fbbfdd1301a425"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:09.958Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -14812,7 +15374,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "ioun-stone-strength",
+      "identifier": "strength-ioun-stone",
       "page": 273,
       "srd": true,
       "text": {
@@ -14821,6 +15383,24 @@
         "chars": 126
       },
       "items": [
+        {
+          "origin": "official",
+          "match": "matched",
+          "identifier": "strength-ioun-stone",
+          "docId": "dmgStrengthIounS",
+          "activities": [],
+          "effects": [
+            "AvjFlc6qmwT82JXZ"
+          ],
+          "data": {
+            "sha256": "02719d3b0f0def3052fe5f1bef979c63b3b2a6d9cb4ef4e03055837f96bea401"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:13.625Z",
+            "because": "the same item under the module's own name (Ioun Stone of ...); the rarity agrees"
+          }
+        },
         {
           "origin": "plutonium",
           "match": "unchecked"
@@ -28160,7 +28740,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "common",
-      "identifier": "spell-scroll-cantrip",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28171,16 +28751,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:17.088Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28191,7 +28774,8 @@
           "effects": [],
           "data": {
             "sha256": "bbfb39f4a85eae5679cdb323b9ab05d512ff43df7b7963df0760a923f5da8324"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28218,7 +28802,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "common",
-      "identifier": "spell-scroll-level-1",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28229,16 +28813,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:20.959Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28249,7 +28836,8 @@
           "effects": [],
           "data": {
             "sha256": "7df6f85171ab976b85ffa004a0ac2cc7457686e23790c2c376bd14de43705fd7"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28276,7 +28864,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "spell-scroll-level-2",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28287,16 +28875,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:24.515Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28307,7 +28898,8 @@
           "effects": [],
           "data": {
             "sha256": "7e10678c1d95a8854f7e32741c213dd73ed9f42ad2b69b7ba20dc9b4cdff3804"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28334,7 +28926,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "spell-scroll-level-3",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28345,16 +28937,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:28.613Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28365,7 +28960,8 @@
           "effects": [],
           "data": {
             "sha256": "f6f65df846d98f0ed819b3f03560d044bb0381e29af9901e55413c887c75b345"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28392,7 +28988,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "spell-scroll-level-4",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28403,16 +28999,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:32.409Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28423,7 +29022,8 @@
           "effects": [],
           "data": {
             "sha256": "5396b18c3fdffb0e36bb2b1cb2a18f5f662a5637862dc943203f61e8f133f64a"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28450,7 +29050,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "rare",
-      "identifier": "spell-scroll-level-5",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28461,16 +29061,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:36.077Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28481,7 +29084,8 @@
           "effects": [],
           "data": {
             "sha256": "90bbe7181465e21cfb0760828744837a552fe8435eafba78c6172ae185ed3dd8"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28508,7 +29112,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "spell-scroll-level-6",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28519,16 +29123,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:40.093Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28539,7 +29146,8 @@
           "effects": [],
           "data": {
             "sha256": "76619938a2e4fb13b00f663aa1822d3c8655e00ef3e6a443bc6e511673da4282"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28566,7 +29174,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "spell-scroll-level-7",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28577,16 +29185,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:43.857Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28597,7 +29208,8 @@
           "effects": [],
           "data": {
             "sha256": "3648868efb4bca3d92d1e5dedbbfc541a768a5cce070edaba33889ff2c5f0fef"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28624,7 +29236,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "very rare",
-      "identifier": "spell-scroll-level-8",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28635,16 +29247,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:47.723Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28655,7 +29270,8 @@
           "effects": [],
           "data": {
             "sha256": "5d6c3d39ab20226fc3c86c30418558577f40470c6d312368684653c4d03b65c0"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28682,7 +29298,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "legendary",
-      "identifier": "spell-scroll-level-9",
+      "identifier": "spell-scroll",
       "page": 305,
       "srd": true,
       "text": {
@@ -28693,16 +29309,19 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "spell-scroll",
-              "docId": "dmgSpellScroll00"
-            }
-          ],
-          "differences": [
-            "variant"
-          ]
+          "match": "matched",
+          "identifier": "spell-scroll",
+          "docId": "dmgSpellScroll00",
+          "activities": [],
+          "effects": [],
+          "data": {
+            "sha256": "b1efbe2c1b833147234741432e724c34b63e03b6b38f74094398e09c46b5efcf"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:51.609Z",
+            "because": "the module keeps one document for the whole family; this row is one of its variants"
+          }
         },
         {
           "origin": "ddb-importer",
@@ -28713,7 +29332,8 @@
           "effects": [],
           "data": {
             "sha256": "504d26699f6dacb57a1182b9f85424ebd94b1f974d133a322268015e602ec618"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -30375,7 +30995,7 @@
       "book": "XDMG",
       "edition": "2024",
       "rarity": "uncommon",
-      "identifier": "stone-of-good-luck",
+      "identifier": "stone-of-good-luck-luckstone",
       "page": 312,
       "srd": true,
       "text": {
@@ -30386,16 +31006,21 @@
       "items": [
         {
           "origin": "official",
-          "match": "ambiguous",
-          "candidates": [
-            {
-              "identifier": "stone-of-good-luck-luckstone",
-              "docId": "dmgStoneOfGoodLu"
-            }
+          "match": "matched",
+          "identifier": "stone-of-good-luck-luckstone",
+          "docId": "dmgStoneOfGoodLu",
+          "activities": [],
+          "effects": [
+            "FqUhrsOwuBjoJjwK"
           ],
-          "differences": [
-            "variant"
-          ]
+          "data": {
+            "sha256": "798124c46b2887888a6f07f4a9e63c2132e2d38b0f527d4cd8e2d677ef3d51a7"
+          },
+          "resolved": {
+            "by": "matcher-main",
+            "at": "2026-11-23T05:05:55.499Z",
+            "because": "the same item; the module adds its other name in brackets"
+          }
         },
         {
           "origin": "ddb-importer",

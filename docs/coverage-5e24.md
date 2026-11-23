@@ -16,9 +16,9 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | | Count |
 |---|---|
 | Entries inventoried (six books) | 4,892 |
-| Joined to an item of the official module | 4,304 |
-| Ambiguous against the official module (wait for `npm run resolve`) | 164 |
-| No item in the official module | 424 |
+| Joined to an item of the official module | 4,345 |
+| Ambiguous against the official module (wait for `npm run resolve`) | 138 |
+| No item in the official module | 409 |
 | Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 948 |
 | Verdict `none` (nothing to automate in combat) | 1,365 |
 | Verdict `data` (the item's own data is enough) | 1,344 |
@@ -38,7 +38,7 @@ identifier, but the identifier is a generic name shared by several entries, so t
 
 Joined with a recorded difference against the official item: 38 by word order of the name,
 26 monster features whose section differs from the item's activation. Ambiguous for a variant of
-the name ("+1", a quantity): 55.
+the name ("+1", a quantity): 29.
 
 ## By rulebook
 
@@ -61,7 +61,7 @@ Records in `registry/xphb.json`: 1461 inventoried.
 
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| item | 593 | 349 / 51 / 193 | 462 / 30 / 101 | 153 | 208 | 105 | 78 | 0 | 0 | 36 | 13 | 0 |
+| item | 593 | 390 / 25 / 178 | 462 / 30 / 101 | 153 | 208 | 105 | 78 | 0 | 0 | 36 | 13 | 0 |
 | monster | 3 | 3 / 0 / 0 | 0 / 2 / 1 | 0 | 0 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
 
 Records in `registry/xdmg.json`: 596 inventoried.
