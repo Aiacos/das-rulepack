@@ -32943,7 +32943,7 @@
       "edition": "2024",
       "owner": "Bugbear Stalker",
       "section": "trait",
-      "identifier": "abduct",
+      "identifier": "xmm-bugbear-stalker-abduct",
       "page": 62,
       "srd": true,
       "text": {
@@ -32961,7 +32961,8 @@
           "effects": [],
           "data": {
             "sha256": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -32972,7 +32973,8 @@
           "effects": [],
           "data": {
             "sha256": "198a4ea514456b379cc5da1fae1fed9b4ec2c870ad374c86b4d929fed38c5ea7"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -33007,11 +33009,78 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:54:54.563Z",
+          "core": "0.291.0",
+          "rule": "fe22478c3236ff7410ac3175834ff8ed89c0106d5588cb3fa258f5dcdae089fe",
+          "item": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e",
+          "delta": [
+            "grappleSize"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "abduct",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:54:54.563Z",
+          "core": "0.291.0",
+          "rule": "fe22478c3236ff7410ac3175834ff8ed89c0106d5588cb3fa258f5dcdae089fe",
+          "emits": "951fe067db661418dbbf30c58e3c01c1e335843eb17103fb481b5280e44b801e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T08:08:17.218Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bugbear-stalker-trait-abduct",
+          "client": "gm",
+          "rule": "fe22478c3236ff7410ac3175834ff8ed89c0106d5588cb3fa258f5dcdae089fe"
         }
       },
       "why": "Grapple movement exception; data has no activity or effect to express it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmBugbearStalker.mmAbduct00000000": "xmm-bugbear-stalker-abduct"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The creature moves a creature it is grappling, whatever its size, at no extra cost of movement.",
+        "entry": {
+          "grappleSize": {
+            "dragFree": 5
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:54:48.466Z",
+          "leavesNote": "Nothing else of the grapple is changed: the grab, the escape and the sizes it may take are the engine's."
+        },
+        "origin": "Bugbear Stalker"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:bugbear-warrior/action/grab",
@@ -33207,7 +33276,7 @@
       "edition": "2024",
       "owner": "Bugbear Warrior",
       "section": "trait",
-      "identifier": "abduct",
+      "identifier": "xmm-bugbear-warrior-abduct",
       "page": 62,
       "srd": true,
       "text": {
@@ -33225,7 +33294,8 @@
           "effects": [],
           "data": {
             "sha256": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -33236,7 +33306,8 @@
           "effects": [],
           "data": {
             "sha256": "198a4ea514456b379cc5da1fae1fed9b4ec2c870ad374c86b4d929fed38c5ea7"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -33271,11 +33342,78 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:54:54.563Z",
+          "core": "0.291.0",
+          "rule": "8fd4a8b14b2e3fd4e574ee862ae4ef0d570da43c6f4893c08440c257763bb854",
+          "item": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e",
+          "delta": [
+            "grappleSize"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "abduct",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:54:54.564Z",
+          "core": "0.291.0",
+          "rule": "8fd4a8b14b2e3fd4e574ee862ae4ef0d570da43c6f4893c08440c257763bb854",
+          "emits": "5deef622b103df512fe8407f43692f0a91af867753be3fd4f492d66b994cf985",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "dbad02e3e06a00104a410e362677dee98bd7f14ba62ee0e9ee3f7ec69db6642e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T08:08:17.218Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bugbear-warrior-trait-abduct",
+          "client": "gm",
+          "rule": "8fd4a8b14b2e3fd4e574ee862ae4ef0d570da43c6f4893c08440c257763bb854"
         }
       },
       "why": "Grapple movement exception; data has no activity or effect to express it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmBugbearWarrior.mmAbduct00000000": "xmm-bugbear-warrior-abduct"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The creature moves a creature it is grappling, whatever its size, at no extra cost of movement.",
+        "entry": {
+          "grappleSize": {
+            "dragFree": 5
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:54:48.466Z",
+          "leavesNote": "Nothing else of the grapple is changed: the grab, the escape and the sizes it may take are the engine's."
+        },
+        "origin": "Bugbear Warrior"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:bulette-pup/action/bite",
@@ -33418,6 +33556,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bulette-pup-bonus-leap",
+          "client": "gm",
+          "rule": "5be75e4222f8b19c1794cd7f936d8a75ae75fc10d1d290e4776fbf2465bb8101"
+        },
         "reading": {
           "at": "2026-11-23T07:39:12.670Z",
           "core": "0.291.0",
@@ -33449,14 +33595,6 @@
           "items": {
             "official": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92"
           }
-        },
-        "played": {
-          "at": "2026-11-23T07:51:20.232Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bulette-pup-bonus-leap",
-          "client": "gm",
-          "rule": "5be75e4222f8b19c1794cd7f936d8a75ae75fc10d1d290e4776fbf2465bb8101"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
@@ -33864,6 +34002,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bulette-bonus-leap",
+          "client": "gm",
+          "rule": "caca3d28ba7a631bce141ee8c7f10166a4865da7e77aca3b3ed6058f4bee6d70"
+        },
         "reading": {
           "at": "2026-11-23T07:39:12.673Z",
           "core": "0.291.0",
@@ -33895,14 +34041,6 @@
           "items": {
             "official": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92"
           }
-        },
-        "played": {
-          "at": "2026-11-23T07:51:20.232Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bulette-bonus-leap",
-          "client": "gm",
-          "rule": "caca3d28ba7a631bce141ee8c7f10166a4865da7e77aca3b3ed6058f4bee6d70"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
@@ -34140,6 +34278,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bullywug-bog-sage-bonus-leap",
+          "client": "gm",
+          "rule": "bc802dc2b69051e45dc11bfdc760364509172aeac38770f47fa1c530fdc23f2e"
+        },
         "reading": {
           "at": "2026-11-23T07:39:12.673Z",
           "core": "0.291.0",
@@ -34171,14 +34317,6 @@
           "items": {
             "official": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
           }
-        },
-        "played": {
-          "at": "2026-11-23T07:51:20.232Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bullywug-bog-sage-bonus-leap",
-          "client": "gm",
-          "rule": "bc802dc2b69051e45dc11bfdc760364509172aeac38770f47fa1c530fdc23f2e"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
@@ -34538,6 +34676,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bullywug-warrior-bonus-leap",
+          "client": "gm",
+          "rule": "d236e6530dd4a7d4bee43ace6533c4eb36781ab5e9c7920c3e3cdefac33b0051"
+        },
         "reading": {
           "at": "2026-11-23T07:39:12.674Z",
           "core": "0.291.0",
@@ -34569,14 +34715,6 @@
           "items": {
             "official": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
           }
-        },
-        "played": {
-          "at": "2026-11-23T07:51:20.232Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-bullywug-warrior-bonus-leap",
-          "client": "gm",
-          "rule": "d236e6530dd4a7d4bee43ace6533c4eb36781ab5e9c7920c3e3cdefac33b0051"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
@@ -64920,6 +65058,14 @@
             }
           }
         },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-giant-ape-bonus-leap",
+          "client": "gm",
+          "rule": "6f07d235b717896e443b37d71831e90996d282c8adb87cb1b7384721e191e317"
+        },
         "reading": {
           "at": "2026-11-23T07:39:12.730Z",
           "core": "0.291.0",
@@ -64951,14 +65097,6 @@
           "items": {
             "official": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
           }
-        },
-        "played": {
-          "at": "2026-11-23T07:51:20.232Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-giant-ape-bonus-leap",
-          "client": "gm",
-          "rule": "6f07d235b717896e443b37d71831e90996d282c8adb87cb1b7384721e191e317"
         }
       },
       "sources": {
@@ -78473,7 +78611,7 @@
       "edition": "2024",
       "owner": "Grell",
       "section": "trait",
-      "identifier": "abduct",
+      "identifier": "xmm-grell-abduct",
       "page": 157,
       "srd": false,
       "text": {
@@ -78491,7 +78629,8 @@
           "effects": [],
           "data": {
             "sha256": "a571df4f412c59669992907a45352cb7e386b912bd3420043034ef27e90ab75e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -78539,9 +78678,70 @@
               ]
             }
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:54:54.650Z",
+          "core": "0.291.0",
+          "rule": "81eb5af9b7529fcff062b8454760f14a303d8c7d3801d7086c4bb908d44ce342",
+          "item": "a571df4f412c59669992907a45352cb7e386b912bd3420043034ef27e90ab75e",
+          "delta": [
+            "grappleSize"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "abduct",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:54:54.650Z",
+          "core": "0.291.0",
+          "rule": "81eb5af9b7529fcff062b8454760f14a303d8c7d3801d7086c4bb908d44ce342",
+          "emits": "f9d97b53aa61ff1f501e87a04c77614901767cab9e1401ca84a591c6358f723a",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "a571df4f412c59669992907a45352cb7e386b912bd3420043034ef27e90ab75e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T08:08:17.218Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-grell-trait-abduct",
+          "client": "gm",
+          "rule": "81eb5af9b7529fcff062b8454760f14a303d8c7d3801d7086c4bb908d44ce342"
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmGrell000000000.mmAbduct00000000": "xmm-grell-abduct"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The creature moves a creature it is grappling, whatever its size, at no extra cost of movement.",
+        "entry": {
+          "grappleSize": {
+            "dragFree": 5
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:54:48.466Z",
+          "leavesNote": "Nothing else of the grapple is changed: the grab, the escape and the sizes it may take are the engine's."
+        },
+        "origin": "Grell"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:grick-ancient/action/beak",

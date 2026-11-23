@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-grell-trait-abduct",
+  "key": "xmm:monster:grell/trait/abduct",
+  "rule": "81eb5af9b7529fcff062b8454760f14a303d8c7d3801d7086c4bb908d44ce342",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "In combat the creature grapples a Medium creature with its own attack: the movement the engine leaves it this turn stays what it was, where the engine would charge the drag double."
+}

@@ -402,3 +402,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on upstream main: Vampire Spawn Bite, who can be bitten (XMM)
 - [x] Triage: the rereads made stale by the engine-alone view read again (R49)
 - [x] Five engineered rules proven by recorded plays on upstream main: the 30-foot Leap for 10 feet of movement (XMM); blade cantrips no longer read Foundry's deprecated teleport option
+- [x] Three engineered rules proven by recorded plays on upstream main: Abduct, dragging a grappled creature at no extra cost (XMM)

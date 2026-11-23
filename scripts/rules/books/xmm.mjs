@@ -165,6 +165,50 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-bugbear-stalker-abduct",
+    "name": "Abduct",
+    "page": 62,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Bugbear Stalker",
+    "adds": "The creature moves a creature it is grappling, whatever its size, at no extra cost of movement.",
+    "entry": {
+      "grappleSize": {
+        "dragFree": 5
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-bugbear-warrior-abduct",
+    "name": "Abduct",
+    "page": 62,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Bugbear Warrior",
+    "adds": "The creature moves a creature it is grappling, whatever its size, at no extra cost of movement.",
+    "entry": {
+      "grappleSize": {
+        "dragFree": 5
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-bulette-pup-leap",
     "name": "Leap",
     "page": 63,
@@ -747,6 +791,22 @@ export const RULES = book(BOOK, [
     },
     "partial": {
       "no-key": 1
+    }
+  },
+
+  {
+    "identifier": "xmm-grell-abduct",
+    "name": "Abduct",
+    "page": 157,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Grell",
+    "adds": "The creature moves a creature it is grappling, whatever its size, at no extra cost of movement.",
+    "entry": {
+      "grappleSize": {
+        "dragFree": 5
+      }
     }
   },
 

@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-bugbear-warrior-trait-abduct",
+  "key": "xmm:monster:bugbear-warrior/trait/abduct",
+  "rule": "8fd4a8b14b2e3fd4e574ee862ae4ef0d570da43c6f4893c08440c257763bb854",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "In combat the creature grapples a Medium creature with its own attack: the movement the engine leaves it this turn stays what it was, where the engine would charge the drag double."
+}
