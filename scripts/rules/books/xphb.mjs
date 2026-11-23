@@ -92,6 +92,25 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "hand-of-harm",
+    "name": "Hand of Harm",
+    "page": 104,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Mercy 3",
+    "adds": "On an Unarmed Strike that hits, the monk is offered the extra Necrotic damage for 1 Focus Point, once per turn.",
+    "entry": {
+      "hitRider": {
+        "pays": "monks-focus",
+        "damage": "3LBCmLni9BQUpgcv",
+        "unarmed": true,
+        "oncePerTurn": true
+      }
+    }
+  },
+
+  {
     "identifier": "cloak-of-shadows",
     "name": "Cloak of Shadows",
     "page": 105,

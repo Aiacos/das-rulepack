@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-monk-mercy-3-hand-of-harm",
+  "key": "xphb:feature:monk/mercy/3/hand-of-harm",
+  "rule": "be9c89a08969acd5e8ff11200374cc24c562f357111983caee38988385d9fb36",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "On an unarmed hit the engine offers the feature; taken, a Focus Point is spent and Necrotic damage is added."
+}
