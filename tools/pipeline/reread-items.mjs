@@ -69,6 +69,9 @@ const NOT_ITEM_ENTRY = "not an item entry";
 const NOT_ITEM_CORE = "not an item reread core";
 const RULE_KEY = /^[a-z][A-Za-z0-9]{0,63}$/;
 const VIEW_FIELDS = ["level", "rules", "layers", "identifier", "pack", "entry"];
+// Ruling R49: the one key of the view file that is not a record's: the engine the sweep ran on.
+const SWEEP_KEY = "$sweep";
+const VERSION = /^\d+(?:\.\d+){1,3}(?:-[0-9A-Za-z.]+)?$/;
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
 // Ruling R46: a monster feature whose text the engine's text layer reads nothing of (`unreadMonster(record)` true) is read
@@ -93,8 +96,17 @@ export function ruleKeyMeaning(key) {
 export function parseEngineView(value) {
   if (!isObject(value)) throw new Error("engine view: must be an object of record key to { level, rules } or { missing: true }");
   const out = new Map();
+  // Ruling R49: the sweep may say which engine it ran on (`"$sweep": { "core": "<version>" }`); kept on the lookup.
+  let sweptCore;
   for (const [key, e] of Object.entries(value)) {
     const at = `engine view ${JSON.stringify(clip(key))}`;
+    if (key === SWEEP_KEY) {
+      if (!isObject(e) || Object.keys(e).length !== 1 || typeof e.core !== "string" || !VERSION.test(e.core)) {
+        throw new Error(`${at}: { core: "<engine version>" } and nothing else`);
+      }
+      sweptCore = e.core;
+      continue;
+    }
     if (!isObject(e)) throw new Error(`${at}: must be an object`);
     if (Object.hasOwn(e, "missing")) {
       if (e.missing !== true || Object.keys(e).length !== 1) throw new Error(`${at}: { missing: true } and nothing else`);
@@ -122,7 +134,7 @@ export function parseEngineView(value) {
     out.set(key, { level: e.level, rules: [...new Set(rules)].sort(),
       ...(isObject(e.entry) ? { entry: JSON.parse(JSON.stringify(e.entry)) } : {}) });
   }
-  return (key) => (out.has(key) ? out.get(key) : undefined);
+  return Object.assign((key) => (out.has(key) ? out.get(key) : undefined), { sweptCore });
 }
 
 /**
@@ -150,9 +162,15 @@ export function isOlderVersion(a, b) {
   }
   return String(a).includes("-") && !String(b).includes("-");
 }
-/** Whether a stored view fingerprint still stands for `now` (the same sha, judged by an engine no older than today's). */
-const stands = (fp, now) => isObject(fp) && isObject(now) && typeof fp.sha === "string" && fp.sha === now.sha
-  && !isOlderVersion(fp.core, now.core);
+/**
+ * Whether a stored view fingerprint still stands for `now`: the same sha, judged by an engine no older than today's — or
+ * (Ruling R49) by an older one, when the view of today comes from a sweep run on today's engine (`swept`): that sweep
+ * classifies the item as it was judged.
+ */
+const stands = (fp, now, swept) => isObject(fp) && isObject(now) && typeof fp.sha === "string" && fp.sha === now.sha
+  && (!isOlderVersion(fp.core, now.core) || sweptOn(swept, now.core));
+/** Whether a sweep that says it ran on engine `swept` ran on `core` or a newer one. */
+export const sweptOn = (swept, core) => typeof swept === "string" && typeof core === "string" && !isOlderVersion(swept, core);
 
 /** Whether a record's reread is an item reread (Ruling R42: it holds `view`, not `reading`). */
 export const isItemReread = (r) => Object.hasOwn(rereadOf(r) ?? {}, "view");
@@ -220,10 +238,11 @@ export function itemRereadSkipReason(r, options) {
   const structure = documentOf(r);
   if (structure === null || structure === undefined) return "official item not in the dumps";
   const fp = viewFingerprint(view, core, structure);
-  if (second) return stands(rereadOf(r).view, fp) ? null : "view changed since the first reread";
+  const swept = viewOf.sweptCore;
+  if (second) return stands(rereadOf(r).view, fp, swept) ? null : "view changed since the first reread";
   // Ruling R48 (`again`): a standing reread that found something missing is offered once more, to a reader who reads the
   // engine's source; a covered one never is (its second reader settles it).
-  const standing = isItemReread(r) && stands(rereadOf(r).view, fp);
+  const standing = isItemReread(r) && stands(rereadOf(r).view, fp, swept);
   return standing && !(again && rereadOf(r).covered === false) ? "reread for the current view" : null;
 }
 
@@ -309,10 +328,10 @@ function takeResult(result, ctx) {
   if (!(isObject(cut) && cut.sha === fp.sha && cut.core === fp.core)) {
     return { reject: "stale: the engine view or the engine differs from the one the batch was cut against (cut again)" };
   }
-  if (second && !stands(rereadOf(record).view, fp)) {
+  if (second && !stands(rereadOf(record).view, fp, ctx.swept)) {
     return { reject: "stale: the first reread judged another engine view (cut a new reread batch)" };
   }
-  if (!second && isItemReread(record) && stands(rereadOf(record).view, fp)
+  if (!second && isItemReread(record) && stands(rereadOf(record).view, fp, ctx.swept)
     && !(ctx.again === true && rereadOf(record).covered === false)) {
     return { reject: "already reread for this engine view: only an unsure or stale reread is read again" };
   }
@@ -408,7 +427,7 @@ function takeResult(result, ctx) {
  */
 export function ingestItemRereads(records, results, options = {}) {
   const { textDir, by, at = new Date().toISOString(), core, offered, current, draftsQueue = [], second = false,
-    reviewQueued = new Set(), triageQueued = new Set(), unreadMonster, again = false, mechanismExists } = options;
+    reviewQueued = new Set(), triageQueued = new Set(), unreadMonster, again = false, mechanismExists, swept } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core !== "object") throw new TypeError("ingestItemRereads needs core (loadCore: version and words)");
   if (!(offered instanceof Map)) throw new TypeError("ingestItemRereads needs offered (a Map of the batch's keys to views)");
@@ -416,7 +435,7 @@ export function ingestItemRereads(records, results, options = {}) {
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
   const ctx = { byKey, offered, current, textOf: cachedText(textDir), core, by, at, seen: new Set(), second, reviewQueued,
-    triageQueued, unreadMonster, again, mechanismExists };
+    triageQueued, unreadMonster, again, mechanismExists, swept };
   const done = { covered: [], beyond: [], agreed: [], disagreed: [], unsureReverted: [] };
   const already = { confirmed: [], reverted: [] };
   const unsure = [];
@@ -456,12 +475,12 @@ export function ingestItemRereads(records, results, options = {}) {
  * the item, undefined when no view file is given) with an engine no older than DAS_CORE's (`core`); otherwise one line,
  * "stale: read again". Without a view file only the engine version can be checked.
  */
-export function itemRereadStaleNote(record, now, { core } = {}) {
+export function itemRereadStaleNote(record, now, { core, swept } = {}) {
   if (!isItemReread(record)) return null;
   const reread = rereadOf(record);
   const judged = [reread.view, ...(isObject(reread.second) ? [reread.second.view] : [])];
   const judgedCore = reread.view?.core;
-  if (judged.some((fp) => isOlderVersion(fp?.core, core?.version))) {
+  if (judged.some((fp) => isOlderVersion(fp?.core, core?.version)) && !sweptOn(swept, core?.version)) {
     return `reread: stale: judged against the engine view under DAS · Core ${judgedCore}, older than ${core?.version}:`
       + " read again";
   }
@@ -469,7 +488,7 @@ export function itemRereadStaleNote(record, now, { core } = {}) {
     return "reread: the engine view is not given (RULEPACK_ENGINE_VIEW): the view judged cannot be checked";
   }
   if (now === null) return "reread: stale: the engine view has no level for the item now: read again";
-  if (judged.every((fp) => stands(fp, now))) return null;
+  if (judged.every((fp) => stands(fp, now, swept))) return null;
   return `reread: stale: the engine view classifies the item otherwise than when judged (DAS · Core ${judgedCore}):`
     + " read again";
 }

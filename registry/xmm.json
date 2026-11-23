@@ -947,8 +947,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.203Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.739Z",
+          "core": "0.291.0",
           "rule": "07d0ae021deaad2a8222f9962cde847eeafcceeab686f860678c831f61c3ccc1",
           "item": "130f98a4adc959db1b714b3af0df861f42511104896d78b1c7107e2b93887a75",
           "delta": [
@@ -966,8 +966,8 @@
           ]
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.203Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.739Z",
+          "core": "0.291.0",
           "rule": "07d0ae021deaad2a8222f9962cde847eeafcceeab686f860678c831f61c3ccc1",
           "emits": "91692169b991b74e815d378cf50512037dd31bc3cbdc155bbf0e58ef7b0af369",
           "passed": [
@@ -1646,8 +1646,8 @@
           "confidence": 0.7
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.555Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.741Z",
+          "core": "0.291.0",
           "rule": "f4bab65212fe6b4463c876643c198dbc60f30a655a4cae3cc67ed08e4ee3f7e9",
           "item": "8ef4d208c7285b686ba0ceea7fff6a08b7e1852aab13e5d3272c234b00864386",
           "delta": [
@@ -1661,8 +1661,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.555Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.741Z",
+          "core": "0.291.0",
           "rule": "f4bab65212fe6b4463c876643c198dbc60f30a655a4cae3cc67ed08e4ee3f7e9",
           "emits": "e2a9fd52d2c77da614fdcff45dd0b0f13ea48671ab9e8a9d5aadadd9b24ce32b",
           "passed": [
@@ -2478,8 +2478,8 @@
           "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1"
         },
         "reading": {
-          "at": "2026-11-22T11:21:21.506Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.743Z",
+          "core": "0.291.0",
           "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1",
           "item": "ef47a0e2c27af3cfb3b6ef0a53b99257f8127683f4a1f42f8966e99ada5538de",
           "delta": [
@@ -2493,8 +2493,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T11:21:21.506Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.743Z",
+          "core": "0.291.0",
           "rule": "b02ec9de654cd35ffe82ca0b3523de55d02ceba430687928182e978ed3cf3ee1",
           "emits": "b56fda4c03329f3ffa8ce4565f57973864bae9bf0df75a0e3b8728dc2c79623f",
           "passed": [
@@ -3734,8 +3734,8 @@
           "because": "actionEnds"
         },
         "reading": {
-          "at": "2026-11-22T11:21:21.512Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.746Z",
+          "core": "0.291.0",
           "rule": "040ccff3c9b618ee832818b7fd5052f124218b87d085a693ec0843d33a8269b3",
           "item": "068df80092e522f7eb3a0858130a0831444e81e503c394d0309473988fe615c6",
           "delta": [
@@ -3749,8 +3749,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T11:21:21.512Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.746Z",
+          "core": "0.291.0",
           "rule": "040ccff3c9b618ee832818b7fd5052f124218b87d085a693ec0843d33a8269b3",
           "emits": "d8e5b952cacb037bfe4b79df4b96b7f3d411e2f4079f5ca50aa6464edfa4711d",
           "passed": [
@@ -4066,8 +4066,8 @@
           "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89"
         },
         "reading": {
-          "at": "2026-11-22T11:21:21.514Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.748Z",
+          "core": "0.291.0",
           "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
           "item": "36ddf8804decd6ee43442be9e8eea48f6608b08e4ca982d1870af1e4517eb701",
           "delta": [
@@ -4081,8 +4081,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T11:21:21.514Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.748Z",
+          "core": "0.291.0",
           "rule": "a411ae30ab56a09fbed294bbeec91df2bd829068ca990c2d1898ed0d38f78f89",
           "emits": "e41e31fdbde65df0ee42027ed3bfd13961b63d9b6ee2d01fdc6742dd0971139e",
           "passed": [
@@ -5306,8 +5306,8 @@
           "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537"
         },
         "reading": {
-          "at": "2026-11-22T11:21:21.518Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.750Z",
+          "core": "0.291.0",
           "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
           "item": "40d479eb5a876e31c85abf8875e30dd96aab3a1d0355e0a6720755c8bc72e71d",
           "delta": [
@@ -5321,8 +5321,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T11:21:21.518Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.750Z",
+          "core": "0.291.0",
           "rule": "41d8827b350f540baf6a45dbde00c18ee5a47a37cd4941b3d798ec25ddbf1537",
           "emits": "3ed288473e5a96b3448e7b7b0bd8a56bcae5c0ddd62c3585a62bd4f2164c3f9f",
           "passed": [
@@ -6780,8 +6780,8 @@
           "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626"
         },
         "reading": {
-          "at": "2026-11-22T11:21:21.524Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.753Z",
+          "core": "0.291.0",
           "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626",
           "item": "8bb2dd184613e666a6e732963e803c35f47f4b8cf28d0969d2d9c56afa72bc0e",
           "delta": [
@@ -6797,8 +6797,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T11:21:21.524Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.753Z",
+          "core": "0.291.0",
           "rule": "e6b177d45c5f2a9bd780e8ad35025b20ae6ce2d5ef5262ac9205083488bad626",
           "emits": "0631b6d9f82ecff3d20cb7a9a0f21b5a9c912e62db32fe152449ca523421e03d",
           "passed": [
@@ -8196,8 +8196,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.219Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.755Z",
+          "core": "0.291.0",
           "rule": "56a1343d2437229e1d25dc75eeca09428e528afa65e5ceba816ca513ce9597ba",
           "item": "3b9bc71d00148010e998400234a1287b1308962c523b0ad84cf563c3475b028a",
           "delta": [
@@ -8211,8 +8211,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.220Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.755Z",
+          "core": "0.291.0",
           "rule": "56a1343d2437229e1d25dc75eeca09428e528afa65e5ceba816ca513ce9597ba",
           "emits": "82e5627901a2cfd63e05630d6b8b4a52326b9a27fa693bab8af6a269ffce8708",
           "passed": [
@@ -8802,8 +8802,8 @@
           "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a"
         },
         "reading": {
-          "at": "2026-11-23T05:37:19.570Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.757Z",
+          "core": "0.291.0",
           "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a",
           "item": "2bab9dbe24d6519f474e38971d9551b4c6f4a5a531c098ca970e4adf15ff8864",
           "delta": [
@@ -8817,8 +8817,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T05:37:19.570Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.757Z",
+          "core": "0.291.0",
           "rule": "f61c778bb7c2b217776c99225009997c3a93ab96b1c63e399079b5d46306771a",
           "emits": "ff02f23294b44d197cad3d83372987d4e937b095901df7b90d12f45f5ae72220",
           "passed": [
@@ -9432,8 +9432,8 @@
           "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.147Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.758Z",
+          "core": "0.291.0",
           "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
           "item": "e6d3d0570e5db94d0db9eed256359c7754a0b55555855458f47968f281d7da31",
           "delta": [
@@ -9449,8 +9449,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.287Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.758Z",
+          "core": "0.291.0",
           "rule": "54b43d37f13951829a571f79ef4ec774325ed7018da4f607243eb08ee579498d",
           "emits": "0b881334ac379758228c26648043ba92ee9b9aeb51743310c33612caf49f732f",
           "passed": [
@@ -11543,8 +11543,8 @@
           "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f"
         },
         "reading": {
-          "at": "2026-11-23T05:36:47.847Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.761Z",
+          "core": "0.291.0",
           "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f",
           "item": "5010e0e29fa88c0fdb900265e3686b86d0890ca6b58aad5e2fdb69bcd3404285",
           "delta": [
@@ -11558,8 +11558,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T05:36:47.847Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.761Z",
+          "core": "0.291.0",
           "rule": "17d60e3945f117535ee19ec6c8237cc9e685bcf96e4cc3463b940c837a756b8f",
           "emits": "b222764b5ed916b4a2058bab5b9cfdb42aaa0058c8a4a99e6bbef287b780f7dc",
           "passed": [
@@ -12758,8 +12758,8 @@
           "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287"
         },
         "reading": {
-          "at": "2026-11-22T08:48:14.070Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.763Z",
+          "core": "0.291.0",
           "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
           "item": "caefc8c6650d4ffb2ebbcf8578d56d6721fdc0114531fac976196bf9a4dd0b6a",
           "delta": [
@@ -12773,8 +12773,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T08:48:14.071Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.763Z",
+          "core": "0.291.0",
           "rule": "a1c29f8262fa1611d9b882bb1584e0195e11b11b514534ef3a42ed571b275287",
           "emits": "0bdca73972d5d791ec5d3e61d82b1d34877e9df19038231b8a423c14a7e29b81",
           "passed": [
@@ -16826,8 +16826,8 @@
           "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.163Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.767Z",
+          "core": "0.291.0",
           "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
           "item": "70c42e73b4637906ea0604e237cdfc230d1122ac0f1ce0fb5f75ceea7a61c192",
           "delta": [],
@@ -16841,8 +16841,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.300Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.767Z",
+          "core": "0.291.0",
           "rule": "acc02c68c0681cdce44ce35162f945ca868cd7ad24a75e8d9068f9f017cd61ff",
           "emits": "888d72fbe0f76f4130b7bfc930db8a323cbf727c52f45bb7677c2484daab1c64",
           "passed": [
@@ -17223,8 +17223,8 @@
           "rule": "e582fc8d10084dac0a4dc85a6ec08cf2658aa4269c128584ef798beb62f5277a"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.580Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.770Z",
+          "core": "0.291.0",
           "rule": "e582fc8d10084dac0a4dc85a6ec08cf2658aa4269c128584ef798beb62f5277a",
           "item": "2c235216f237729aafceb8daa8cb2c7cdfb9c216be11987b2a9f236e90617032",
           "delta": [
@@ -17243,8 +17243,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.580Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.770Z",
+          "core": "0.291.0",
           "rule": "e582fc8d10084dac0a4dc85a6ec08cf2658aa4269c128584ef798beb62f5277a",
           "emits": "3ff465616a3275b2e193f30f5b384260e403d177bdded429a91e97e34b4396bd",
           "passed": [
@@ -22792,8 +22792,8 @@
           "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.173Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.774Z",
+          "core": "0.291.0",
           "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
           "item": "04c5fa09b957db3e3972c708fe05e0efe1fe38ab44b38922f25f944c2dca5461",
           "delta": [
@@ -22809,8 +22809,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.307Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.774Z",
+          "core": "0.291.0",
           "rule": "3a6c147b142db0b5b979361d62df47ac67b5f2024b427c8a8555fe1b90b3923b",
           "emits": "91b11abf82e4a7a8c1515de6f879af0be9cd6545a1abc98a0efb23b5b3195401",
           "passed": [
@@ -24361,8 +24361,8 @@
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.175Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.777Z",
+          "core": "0.291.0",
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
           "item": "65e432e0047388d2e26a926c056bc36cd7b439c37ce1de365f0feab5f3abd4ab",
           "delta": [],
@@ -24376,8 +24376,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.310Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.777Z",
+          "core": "0.291.0",
           "rule": "7b1864d13818e1045e96c9de3bfdd0ac7a34b7d3b15c46ff7956fc5532edea3c",
           "emits": "2ddf1b46cd761cc9bb4bc03aa5c762894f72c45cb09afbd59b4b2c5264df22be",
           "passed": [
@@ -25861,8 +25861,8 @@
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.177Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.779Z",
+          "core": "0.291.0",
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
           "item": "7980ebdac1c7339b7ad44e14e53eecea8b792f126f2360895c8638a2704daed1",
           "delta": [],
@@ -25876,8 +25876,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.312Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.779Z",
+          "core": "0.291.0",
           "rule": "bc4df0b18dafce57ba192661537c90e7d05280ced9fc7db42a227cf42f40589c",
           "emits": "48ae8e154febb5053c5a1b2eb90b7c1d31aaab20d16bf17e967ee3912e85bca3",
           "passed": [
@@ -26746,8 +26746,8 @@
           "rule": "ce9226424264a8a6ef12969fdf5c35f6e0d38a5b7f7ab453f6d9ad4adbc4135f"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.593Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.784Z",
+          "core": "0.291.0",
           "rule": "ce9226424264a8a6ef12969fdf5c35f6e0d38a5b7f7ab453f6d9ad4adbc4135f",
           "item": "4f721c948749607153d25f35752448b5ae5341bfbac95d3efe2a26079f07c33c",
           "delta": [
@@ -26765,8 +26765,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.593Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.784Z",
+          "core": "0.291.0",
           "rule": "ce9226424264a8a6ef12969fdf5c35f6e0d38a5b7f7ab453f6d9ad4adbc4135f",
           "emits": "cff315a250275e27b8e7fd3a50b4967f5dba835b697c2b855f53e01021f0d20e",
           "passed": [
@@ -30177,8 +30177,8 @@
           "because": "onHit"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.599Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.791Z",
+          "core": "0.291.0",
           "rule": "9cf31cc177d89ce163531caf4235338a33d59c94890037b16e00fbf5aca07914",
           "item": "cc0073ac118315fad93bb29cb25b5d2a55a0dfaf7a887ccb7b3cbfc23fa63749",
           "delta": [
@@ -30193,8 +30193,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.599Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.791Z",
+          "core": "0.291.0",
           "rule": "9cf31cc177d89ce163531caf4235338a33d59c94890037b16e00fbf5aca07914",
           "emits": "b8697e23704c92b26fffa17235a1477dd43683cd97c0795849a0c218fa977e8d",
           "passed": [
@@ -30774,8 +30774,8 @@
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.179Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.792Z",
+          "core": "0.291.0",
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
           "item": "a8229c266fe5ed511237683c7e9d09b814f3161c6f4fa44cc5da5f8a8cc60d63",
           "delta": [],
@@ -30789,8 +30789,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.316Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.793Z",
+          "core": "0.291.0",
           "rule": "af6c76058591bb93dd2f70660a10e12b21d4bf78940858dca0d00dfef06474e3",
           "emits": "baaf5438a7f842638b8cb365b83b32e8bb32fc380a0caf5aff0936492128e13b",
           "passed": [
@@ -31777,8 +31777,8 @@
           "rule": "cfb905b00f0c918ec6037be1eb998dd1f7b6ba50aceb437c7ad78144eb6e2794"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.603Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.795Z",
+          "core": "0.291.0",
           "rule": "cfb905b00f0c918ec6037be1eb998dd1f7b6ba50aceb437c7ad78144eb6e2794",
           "item": "c7ab2e0b020e2444eddc2a644bf6a72b648283b449ec38f8bfffdaba1f12720e",
           "delta": [
@@ -31792,8 +31792,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.603Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.795Z",
+          "core": "0.291.0",
           "rule": "cfb905b00f0c918ec6037be1eb998dd1f7b6ba50aceb437c7ad78144eb6e2794",
           "emits": "bf76a8f8e9292edaaaa3a140ac9af34ed631af7849f7e5610ff4fbb853502017",
           "passed": [
@@ -31937,8 +31937,8 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.604Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.796Z",
+          "core": "0.291.0",
           "rule": "fc9eda298c17a98d574c555ee908abb80109205bd2af95eb7488c8c65018afaa",
           "item": "e258b5dddcc4fa67cf7425110db13e6b605563e51d151bb936e1365b035741fd",
           "delta": [],
@@ -31954,8 +31954,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.604Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.796Z",
+          "core": "0.291.0",
           "rule": "fc9eda298c17a98d574c555ee908abb80109205bd2af95eb7488c8c65018afaa",
           "emits": "3d08478e4996b709bf916ba94fa9f0d9738b9eea75f164bef127bbe5e62ed3c6",
           "passed": [
@@ -33552,8 +33552,8 @@
           "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.182Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.799Z",
+          "core": "0.291.0",
           "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f",
           "item": "4251045e121dd32ec962a53057556e2672ac18016b80316aed958cc15351d2ca",
           "delta": [],
@@ -33567,8 +33567,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.320Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.799Z",
+          "core": "0.291.0",
           "rule": "a1ee668a9e1f3c623fcb90a1f2f1a82f8e74293330b10f40bbc191e91cec8a6f",
           "emits": "d5c23aed305e0eb76381fb9ace44144c95ae7779002d0579e33a87f378f98791",
           "passed": [
@@ -35400,8 +35400,8 @@
           "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.184Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.801Z",
+          "core": "0.291.0",
           "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c",
           "item": "8034b529a3b4ac72e33357cdcd67268d416555371b31a187dc98d1a587956d53",
           "delta": [],
@@ -35415,8 +35415,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.321Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.801Z",
+          "core": "0.291.0",
           "rule": "12145fc6828062be47e860555bf04c47eb0b01d01f134f54faf25c7f2b63df0c",
           "emits": "4a8f3c79e1a60c5516f5f934c9b2db1378064d9f9bd457c489c28a94c3faf40c",
           "passed": [
@@ -35740,8 +35740,8 @@
           "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.186Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.802Z",
+          "core": "0.291.0",
           "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634",
           "item": "fa51c7733e53f2303ad0c6b9cc497a10cc0ac949be0168ac3d6cef0c0b6a9f07",
           "delta": [],
@@ -35756,8 +35756,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.322Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.802Z",
+          "core": "0.291.0",
           "rule": "4c9101f4946ab92defa34065bdd444af4843ea02546498470576bf0baf623634",
           "emits": "ce9743accb8fad921d548f432ad43ac6ec7a8fe07a83dd4c81724fc322d5450a",
           "passed": [
@@ -36222,8 +36222,8 @@
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.189Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.804Z",
+          "core": "0.291.0",
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
           "item": "3428fc9b756aef8eb23544398df49403169dc48188cabacd4dc6dc3e649ac873",
           "delta": [
@@ -36237,8 +36237,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.325Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.804Z",
+          "core": "0.291.0",
           "rule": "226666c7d39a07a40c33f4d139b3c211dd62987bda9236ab6345e096e4382628",
           "emits": "34d114a9e1025b95454a9dd1063113545861c9093392c78e7d44fcae83fc0dc0",
           "passed": [
@@ -36649,8 +36649,8 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.192Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.807Z",
+          "core": "0.291.0",
           "rule": "aa73674451f070fba2b951a1ad5090c2d347b0e0c3ffde41e3ef253204512bef",
           "item": "ef4e3b7de1ce73ac21af8305642a413b6d48485e7ad697ce76e5e2a35768b119",
           "delta": [
@@ -36666,8 +36666,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.327Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.807Z",
+          "core": "0.291.0",
           "rule": "aa73674451f070fba2b951a1ad5090c2d347b0e0c3ffde41e3ef253204512bef",
           "emits": "293671177568ff2b189a11e3c6c58f10014a40619f8d59d20f4a29c4550a8d8a",
           "passed": [
@@ -37972,8 +37972,8 @@
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.194Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.809Z",
+          "core": "0.291.0",
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
           "item": "b7673def13b3026a6369169687f8b2fe37679a545a63ac0f96c722766c9e86a1",
           "delta": [
@@ -37987,8 +37987,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.328Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.809Z",
+          "core": "0.291.0",
           "rule": "9d69a36d11faade8d637c6df1e944fc80558eec8a7188fa1f7e62671c736b3dc",
           "emits": "ad83220e13a6900c7fd15d34abd266933dfaa396339ca1e81ad1150901f6c238",
           "passed": [
@@ -40021,8 +40021,8 @@
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.195Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.812Z",
+          "core": "0.291.0",
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
           "item": "c6993ece5b0c1367e128982cb1149ae06dc3958567cc73820ed721a0b8bb1ad1",
           "delta": [],
@@ -40036,8 +40036,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.329Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.812Z",
+          "core": "0.291.0",
           "rule": "bfc223e1b5f649f61db8cd73b7ff1e5e5479a61c9286d5c771edcb098597296e",
           "emits": "1478d4a51b04bda4b990a7eefafb74774b104b41f4f3755d3a792a1cd0f04be5",
           "passed": [
@@ -40870,8 +40870,8 @@
           "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61"
         },
         "reading": {
-          "at": "2026-11-23T05:36:47.897Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.814Z",
+          "core": "0.291.0",
           "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61",
           "item": "9b1c90f5b4d96877e67d9e52991fdb119ffee7fdd8788b94e4dd7b5325c4a0c8",
           "delta": [
@@ -40885,8 +40885,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T05:36:47.897Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.814Z",
+          "core": "0.291.0",
           "rule": "309d984e492acb916693137aeb65dec82594eabca5e9af3b4ace73f94c8a6b61",
           "emits": "17a89618f1367be40b985fffb27bbc80e56cd22d42b5ad56dd0416958e6cef2f",
           "passed": [
@@ -41086,9 +41086,17 @@
             }
           }
         },
-        "reading": {
-          "at": "2026-11-23T06:45:20.180Z",
+        "played": {
+          "at": "2026-11-23T06:50:29.063Z",
           "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-couatl-action-constrict",
+          "client": "gm",
+          "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236"
+        },
+        "reading": {
+          "at": "2026-11-23T07:14:04.815Z",
+          "core": "0.291.0",
           "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236",
           "item": "87909a497c4bd48d7a6302bd797d3c7531310d27ac075f04967c4a5bedbb6f8f",
           "delta": [
@@ -41102,8 +41110,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T06:45:20.180Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.815Z",
+          "core": "0.291.0",
           "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236",
           "emits": "4a94acf8a0eb06ec971a3e9a0d3222a9d218a5857bfe7e5ff6fe202231ff9c78",
           "passed": [
@@ -41117,14 +41125,6 @@
           "items": {
             "official": "87909a497c4bd48d7a6302bd797d3c7531310d27ac075f04967c4a5bedbb6f8f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T06:50:29.063Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-couatl-action-constrict",
-          "client": "gm",
-          "rule": "0efa13aaa36e73c0bd71fe70436e1f87c1fe2c448955f1840add15b42c3cb236"
         }
       },
       "sources": {
@@ -43635,8 +43635,8 @@
           "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f"
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.284Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.817Z",
+          "core": "0.291.0",
           "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f",
           "item": "a370ad912fbaf0effc2136ba7029558760868b5b254fb77d776930f581542bf0",
           "delta": [
@@ -43650,8 +43650,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.284Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.817Z",
+          "core": "0.291.0",
           "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f",
           "emits": "25064a8ec92d4bf9f3c159cafa8d795f5ceb87837ac2b8715e43a6a3f123a0de",
           "passed": [
@@ -45510,8 +45510,8 @@
           "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa"
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.288Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.820Z",
+          "core": "0.291.0",
           "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa",
           "item": "167048b117ceafbb2681dd7f35aeca4a0eeb00e7e1d6311134112a085866b045",
           "delta": [
@@ -45525,8 +45525,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.288Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.820Z",
+          "core": "0.291.0",
           "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa",
           "emits": "287f96b0e4227dc5bd06496969685f54fcace0805202aa03b479988c443b82f1",
           "passed": [
@@ -46994,8 +46994,8 @@
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.198Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.824Z",
+          "core": "0.291.0",
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
           "item": "d4bed35ba23259fb0b908636d8f33994884c5e96d5c37c4dda2774010ac749f7",
           "delta": [],
@@ -47009,8 +47009,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.331Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.824Z",
+          "core": "0.291.0",
           "rule": "9b6cdf37826ec2c01a01b944d2875adb94f4218b8b619fdd8707e2e60be672bb",
           "emits": "ce5c0390b3560b4ff23d2eef57459e173cee23469df09dc5c9347cca4da60902",
           "passed": [
@@ -48022,8 +48022,8 @@
           "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.200Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.826Z",
+          "core": "0.291.0",
           "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
           "item": "230e43ffcfdcf867ce4c4c18e31a2004b42ffda98a4e44bbb03a1467cad0e801",
           "delta": [
@@ -48039,8 +48039,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.333Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.826Z",
+          "core": "0.291.0",
           "rule": "8b36153aba605f69757bd080e9f76015f615572787bffa2ea9ccc62849e991e6",
           "emits": "cb5d7c967be2ff633ba3d89d6ba5b73b5eb9b2b67dbc27daef7023d27db77b09",
           "passed": [
@@ -48784,8 +48784,8 @@
           "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.206Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.829Z",
+          "core": "0.291.0",
           "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6",
           "item": "17b03925ed2afbc0d39e5e95df8dc9fb3dc10dcce2a74321ac4cf04c2e8571f6",
           "delta": [],
@@ -48799,8 +48799,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.335Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.829Z",
+          "core": "0.291.0",
           "rule": "3386c24f63493df991a9c4ce75a04b74f67fcd86422c37ea3064aaa97fed23a6",
           "emits": "7d7c18adf01d4ea57f270437f116508b6b6c34c668579dd28f75c4458f2685cb",
           "passed": [
@@ -49611,8 +49611,8 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.209Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.831Z",
+          "core": "0.291.0",
           "rule": "646210646e2f691ef83983d3ed13bbcd082d0f38c590c8e5a1d6aafa4d347c70",
           "item": "d110e6fcd3a1f7f05ca5127c3ac8a90ec3941bf0e1154c2b4048f2f1a0d7c1bc",
           "delta": [
@@ -49628,8 +49628,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.336Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.831Z",
+          "core": "0.291.0",
           "rule": "646210646e2f691ef83983d3ed13bbcd082d0f38c590c8e5a1d6aafa4d347c70",
           "emits": "a27accdbbf15b05a9e137e70721573f4625f3b6babf13a381752301b72c7ebb9",
           "passed": [
@@ -50260,8 +50260,8 @@
           "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.211Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.832Z",
+          "core": "0.291.0",
           "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
           "item": "40306fb6e167aa57efac9fff53b7e6bd7453476e76666cf4654a6aafac9a9abd",
           "delta": [
@@ -50277,8 +50277,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.337Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.833Z",
+          "core": "0.291.0",
           "rule": "cc6eab284a6d8b4b40171a3e5c3439d23100f12f1263f93906e0718d6c3b7ae2",
           "emits": "58ab13921040d117e87d9fb1c25be5aefaf8745dab22a57eb8c0b4448895d45b",
           "passed": [
@@ -51647,8 +51647,8 @@
           "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.759Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.834Z",
+          "core": "0.291.0",
           "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -51662,8 +51662,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.760Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.834Z",
+          "core": "0.291.0",
           "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16",
           "emits": "3a09ed0051fecf3b826131662d78eb8b7f5f89a72e0337359d3f915269bcd4d3",
           "passed": [
@@ -54139,8 +54139,8 @@
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.217Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.836Z",
+          "core": "0.291.0",
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
           "item": "e060d50193eb5d685cc0bc72c9fdad5140fe0a161ecf4f68a92f9feefcfd1d54",
           "delta": [],
@@ -54156,8 +54156,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.340Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.836Z",
+          "core": "0.291.0",
           "rule": "5b1f7a5b79472248fb95850bf22b42ccbb0dfe2fdf998c28b95c088cff99302c",
           "emits": "ddb9bdff82c74b53de5716816582b53589cb9594abde65f3c5cd565b98e434e9",
           "passed": [
@@ -55154,9 +55154,17 @@
             }
           }
         },
-        "reading": {
-          "at": "2026-11-23T06:45:20.205Z",
+        "played": {
+          "at": "2026-11-23T06:50:29.063Z",
           "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-elephant-bonus-trample",
+          "client": "gm",
+          "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a"
+        },
+        "reading": {
+          "at": "2026-11-23T07:14:04.838Z",
+          "core": "0.291.0",
           "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a",
           "item": "6d89dad68ec559c4dfa4f4ba64b531a463b3e5b84e9874769781aeb6aa94678f",
           "delta": [
@@ -55170,8 +55178,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T06:45:20.205Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.838Z",
+          "core": "0.291.0",
           "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a",
           "emits": "4cc3fc8a5ea7fa4fbea0246d59b18cb231d2ea6db24122854c96e4511791a673",
           "passed": [
@@ -55185,14 +55193,6 @@
           "items": {
             "official": "6d89dad68ec559c4dfa4f4ba64b531a463b3e5b84e9874769781aeb6aa94678f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T06:50:29.063Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-elephant-bonus-trample",
-          "client": "gm",
-          "rule": "82dbd4e282eb89581ec8671d611260d682b26a8a37e3b4475cf4d8ce474a158a"
         }
       },
       "sources": {
@@ -55792,8 +55792,8 @@
           "because": "ignoresResistance"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.220Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.839Z",
+          "core": "0.291.0",
           "rule": "289674df4b31bf8dcca46fcedbd9e3657bf728b1edd62013076fb6f3ea4ba6a3",
           "item": "826e9a044d57ee1e594b879c6d1a0a85d57d94fd19d7a22c51b2a111492c88ec",
           "delta": [
@@ -55811,8 +55811,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.342Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.840Z",
+          "core": "0.291.0",
           "rule": "289674df4b31bf8dcca46fcedbd9e3657bf728b1edd62013076fb6f3ea4ba6a3",
           "emits": "d921f052c47d89c0fe6c6de2b2050399279f4333160e73532f7edfc839733918",
           "passed": [
@@ -55952,8 +55952,8 @@
           "rule": "9fdb6eebb0bdedf7bdb39b31ca72d0f5401bdf665d8883703076603e730d5769"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.639Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.841Z",
+          "core": "0.291.0",
           "rule": "9fdb6eebb0bdedf7bdb39b31ca72d0f5401bdf665d8883703076603e730d5769",
           "item": "6bc024cf7ac110558cdd659dc02ca01c92caff558f5f2acb947c32f90275892a",
           "delta": [
@@ -55967,8 +55967,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.639Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.841Z",
+          "core": "0.291.0",
           "rule": "9fdb6eebb0bdedf7bdb39b31ca72d0f5401bdf665d8883703076603e730d5769",
           "emits": "1fcb51d6c3899ee1e04d52749a54e1628137cde5be9015fe699c346659e1604a",
           "passed": [
@@ -57565,8 +57565,8 @@
           "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.640Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.843Z",
+          "core": "0.291.0",
           "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8",
           "item": "56111d6d0e0ba8b5e406901c4dc64734b2e8d0d5b59f28c6085420a1df9c7ff1",
           "delta": [
@@ -57580,8 +57580,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:50:09.205Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.843Z",
+          "core": "0.291.0",
           "rule": "8d093f89b2a86599b7e1e8d3f83d8c4e5f4f75c7012a967201a2731752b8a5e8",
           "emits": "4ff18ec91c4383c39a2ee846706d3fe577cdde29e5504f97e3a5fc8caf985b97",
           "passed": [
@@ -58146,8 +58146,8 @@
           "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41"
         },
         "reading": {
-          "at": "2026-11-23T05:36:47.931Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.845Z",
+          "core": "0.291.0",
           "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41",
           "item": "048c582619099aacc1b62ea8ccb4238ad445230f8a9c7dc19046f7f949a7c84d",
           "delta": [
@@ -58161,8 +58161,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T05:36:47.931Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.845Z",
+          "core": "0.291.0",
           "rule": "58233aafd63723ab1755c48545a90fff96531e3fd9bc26a4a76b49e9e5338a41",
           "emits": "093b9af20caf5e0087b33afd411e5cbee8d6eaf6ff13c690771eb7438d9dfeaa",
           "passed": [
@@ -59178,8 +59178,8 @@
           "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.223Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.846Z",
+          "core": "0.291.0",
           "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f",
           "item": "a71f373bb7fcb499137c581fc6acecc293c89c711985a550e8729ff4f572b3d3",
           "delta": [],
@@ -59193,8 +59193,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.344Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.846Z",
+          "core": "0.291.0",
           "rule": "86de80edcaa50bccbab877c205f6c5898765a00369c92e3be0e67eb481302c5f",
           "emits": "1b37cd564f0fa2d8b2beeb9293fca0766c72e23e4a94a43401717dfbff229369",
           "passed": [
@@ -60638,8 +60638,8 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.226Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.848Z",
+          "core": "0.291.0",
           "rule": "bc1aaf3646f10ec1a9a2db77fb7031301643ae87678dca1d37d962676cccb22d",
           "item": "b7424869015d026d2b5e02ec7cb6e9d316e322345e7bd17981046e1d08bdb576",
           "delta": [
@@ -60653,8 +60653,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.345Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.848Z",
+          "core": "0.291.0",
           "rule": "bc1aaf3646f10ec1a9a2db77fb7031301643ae87678dca1d37d962676cccb22d",
           "emits": "14f0fd7d9c1c00eed4b929eb2a6ac7c081408a740dccc35d33ef803ada6b0f63",
           "passed": [
@@ -61754,8 +61754,8 @@
           }
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.645Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.850Z",
+          "core": "0.291.0",
           "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5",
           "item": "29edb427cee5eca43711ac94f912aa0eec985bf9a64a909348ea9ba229e30dd8",
           "delta": [
@@ -61769,8 +61769,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:50:09.214Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.850Z",
+          "core": "0.291.0",
           "rule": "cd15dcae4d8e48ca03c5265deb26ffff061e3098cb7f5ec6ace8d6ee5c93c0b5",
           "emits": "c034db3a6c51a68f204437013310d3c268d25ff80b1f143aafc8f9a79fddcdf1",
           "passed": [
@@ -62724,8 +62724,8 @@
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.228Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.851Z",
+          "core": "0.291.0",
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
           "item": "2a7672e9a760a2a080dd43214f20f318608cda1025a87e2b8890536ee9bbb5d5",
           "delta": [],
@@ -62739,8 +62739,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.347Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.851Z",
+          "core": "0.291.0",
           "rule": "06b2b5e4b8240809a331559b843ea2e6d379cbf34b761dc23aeac7275c690bc5",
           "emits": "bb1c126f6bb5e8661bcbac1b5bdd9a2ad3ec3a66c35eab84f3fc2eb235eb45ac",
           "passed": [
@@ -63228,8 +63228,8 @@
           "because": "onHit"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.231Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.853Z",
+          "core": "0.291.0",
           "rule": "a6651715bcb7a0b4507f53a9671f066e0e6bc940af94babb2758058f45e47532",
           "item": "dd7549190039031d64f42b829e30b319dbee6077fd1dc63d91482554413fefba",
           "delta": [
@@ -63245,8 +63245,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.348Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.853Z",
+          "core": "0.291.0",
           "rule": "a6651715bcb7a0b4507f53a9671f066e0e6bc940af94babb2758058f45e47532",
           "emits": "b5959d7702e8b1f6fd4b1b62bc73b4f6d29f17616644d50640cfa953d92b682b",
           "passed": [
@@ -63418,8 +63418,8 @@
           "confidence": 0.8
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.651Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.855Z",
+          "core": "0.291.0",
           "rule": "656bf177761e20ca31067e08978cdcd4012551da82acbeaa55d55f0af3ec49c0",
           "item": "9dad07639c97590e4f9982fba4f0b83dc3037daf8d962ab7b9554398c563cdec",
           "delta": [],
@@ -63435,8 +63435,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.652Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.855Z",
+          "core": "0.291.0",
           "rule": "656bf177761e20ca31067e08978cdcd4012551da82acbeaa55d55f0af3ec49c0",
           "emits": "bc1b384880c2d190b6dc0256c009ef048b8342f609a48ea6605286021fbe82d3",
           "passed": [
@@ -63561,8 +63561,8 @@
           "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.234Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.856Z",
+          "core": "0.291.0",
           "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64",
           "item": "3440d808bcf057ac1e5363b37d182984bd89233da085ebbcca7f1abb8e9cf149",
           "delta": [],
@@ -63576,8 +63576,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.349Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.856Z",
+          "core": "0.291.0",
           "rule": "588c99c31d9aab75fb53126e3c342823b6ac00cc49d127194f09435bc9c2ff64",
           "emits": "00bebd057449396ebfb8b14b1f4e09a25d072d5fbfd644a35eef556f6e3f06d4",
           "passed": [
@@ -64197,8 +64197,8 @@
           "because": "onHit"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.236Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.858Z",
+          "core": "0.291.0",
           "rule": "b072b27e5dc8dbc1bbcf868bda895ad0ae4a7592374b40f0346a1736997b2840",
           "item": "a31c1433e441c1e974e31a3ddb488211efe9cdbca95f1dd003dd13b367ae9194",
           "delta": [
@@ -64214,8 +64214,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.350Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.858Z",
+          "core": "0.291.0",
           "rule": "b072b27e5dc8dbc1bbcf868bda895ad0ae4a7592374b40f0346a1736997b2840",
           "emits": "06469e3ccd9ddf3c6eb651123cae5f8a263769274165bdf1e75ce6660dacd6f3",
           "passed": [
@@ -69977,8 +69977,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T08:48:14.212Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.864Z",
+          "core": "0.291.0",
           "rule": "7a60aadf29baa35933881e87384daac2157cc8ec131c24a54bd2502b5606c7aa",
           "item": "eda43c12d0da79d2083b0e264d8182362423209f4ac33a280ba0d70c7785b450",
           "delta": [
@@ -69994,8 +69994,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T08:48:14.212Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.864Z",
+          "core": "0.291.0",
           "rule": "7a60aadf29baa35933881e87384daac2157cc8ec131c24a54bd2502b5606c7aa",
           "emits": "4c66a0bbeac820a554fa39f3d85194d1505748ae61ff9a936ecaebd898b810a8",
           "passed": [
@@ -71041,8 +71041,8 @@
           "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.246Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.865Z",
+          "core": "0.291.0",
           "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875",
           "item": "9a5df39d1830e007e7662f33b31266a6f11ebbc283e1bf448d9b77a411d4924e",
           "delta": [
@@ -71056,8 +71056,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.357Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.865Z",
+          "core": "0.291.0",
           "rule": "df7bd6cc07de907dd462f100acc05c788709a8f2213fce2ce498db33f5780875",
           "emits": "770cb30c1848dc81b6e6b66728bb9909683b8be059e1e84ba993363d56ee8c81",
           "passed": [
@@ -72353,8 +72353,8 @@
           "because": "difficultTerrain"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.662Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.867Z",
+          "core": "0.291.0",
           "rule": "06f015a284f48da8f40330c5f6ee303b35088caf980f893575b19ab5f70e72bf",
           "item": "11795c59f6c9c666b398b83ec78ea1f96db529c881104c430e35c9e76cfad114",
           "delta": [
@@ -72371,8 +72371,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.662Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.868Z",
+          "core": "0.291.0",
           "rule": "06f015a284f48da8f40330c5f6ee303b35088caf980f893575b19ab5f70e72bf",
           "emits": "24529a477bd0207bd7bb4360ff147cefe130dccf405e77da5524a385ab3c47c6",
           "passed": [
@@ -73777,8 +73777,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.349Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.870Z",
+          "core": "0.291.0",
           "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
           "item": "dd3677a70fe0d5b85279cfa0af50f022ae3e193550af9e03b7155216dc3f3c31",
           "delta": [
@@ -73792,8 +73792,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.350Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.870Z",
+          "core": "0.291.0",
           "rule": "c29cf8fa28d623015659ee1233a31fd250489af56939997c5ae2bf3cdee79baf",
           "emits": "fed9ef8d6e75848d1191073ae7bdd3925dff5367a8d0464e1c999cec9c553c13",
           "passed": [
@@ -75550,8 +75550,8 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.251Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.875Z",
+          "core": "0.291.0",
           "rule": "b2d23d966d7408b0e07247bb5215f71b0e9fa1ae64038dc2567b43b8f05ded27",
           "item": "4ad1813785034993a025476f3696e9069178fba30bf483ecf83408b35b6df47f",
           "delta": [
@@ -75567,8 +75567,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.360Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.875Z",
+          "core": "0.291.0",
           "rule": "b2d23d966d7408b0e07247bb5215f71b0e9fa1ae64038dc2567b43b8f05ded27",
           "emits": "a3bebba059d84d60e8f4c6d11f39d0bbe2c1539b22d4e097be6db9075b9a57fb",
           "passed": [
@@ -75733,8 +75733,8 @@
           "because": "actionEnds"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.253Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.876Z",
+          "core": "0.291.0",
           "rule": "4469b99a209164a66139284a634dc515826b33bb594de35ee4836de91d6e7109",
           "item": "28263736d66e75e307017a4490e99c7649945e62a47cbe3fecd26fcc4ac33086",
           "delta": [
@@ -75748,8 +75748,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.361Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.876Z",
+          "core": "0.291.0",
           "rule": "4469b99a209164a66139284a634dc515826b33bb594de35ee4836de91d6e7109",
           "emits": "e0f8b435bad2210c563d8474e0eaca995c4da73bd54369a777ab83e4bdb486a3",
           "passed": [
@@ -76146,8 +76146,8 @@
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.255Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.877Z",
+          "core": "0.291.0",
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
           "item": "28d1efe644909060354a6118990481b5978264166c0caa87708808c45a08f581",
           "delta": [
@@ -76161,8 +76161,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.363Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.877Z",
+          "core": "0.291.0",
           "rule": "0347fa4dfbac5109385c9f633653689f5b004f434a8fb1e78a668660dc967e09",
           "emits": "679219a94dd9ce6d3e86e7c9c43010110500b71e19abc4a9b6fb653795b03db4",
           "passed": [
@@ -77303,8 +77303,8 @@
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.257Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.878Z",
+          "core": "0.291.0",
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
           "item": "0d5ebbe7c4c04d1f29ba206770b4aa72ab7f7b185dac827d3d788170fc21b295",
           "delta": [
@@ -77318,8 +77318,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.364Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.879Z",
+          "core": "0.291.0",
           "rule": "bcfa3393ab675f1d8678a67459a982bf8d3e7828f9978c2a2d7cbd1651e510f4",
           "emits": "c2c63eb74e8507fe5dcc6ef9571d7f9cab9ef0434f181a9013706d361d9e78fd",
           "passed": [
@@ -77897,8 +77897,8 @@
           "because": "actionEnds"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.261Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.881Z",
+          "core": "0.291.0",
           "rule": "1079969876bf38f33b81d2db5de3fbae2691c805ee67f4562b569dd1cd7e7cac",
           "item": "83696e62b652f4e72811bee60c7afbac3fc9a5f5c173f7b72d0ff7a0526bec10",
           "delta": [
@@ -77916,8 +77916,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.366Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.881Z",
+          "core": "0.291.0",
           "rule": "1079969876bf38f33b81d2db5de3fbae2691c805ee67f4562b569dd1cd7e7cac",
           "emits": "92dc48ec78b6c24da8aae3ef54fb1aab5bea3b6ffcbe8e6540f210a88fd5aa07",
           "passed": [
@@ -80296,8 +80296,8 @@
           "because": "targets"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.266Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.884Z",
+          "core": "0.291.0",
           "rule": "8dbd41b1762199a12c9bc09875daf6cfc409be0f193bb660d60b55cba95fc5aa",
           "item": "517159710324e7b8031a04596ca506b093db7224e9af2b76e272664ddbd136f7",
           "delta": [],
@@ -80314,8 +80314,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.369Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.884Z",
+          "core": "0.291.0",
           "rule": "8dbd41b1762199a12c9bc09875daf6cfc409be0f193bb660d60b55cba95fc5aa",
           "emits": "9fa9e46ed7c5407054a251dbd77a929c40a949feb85eba48c0b2d04403312528",
           "passed": [
@@ -84454,8 +84454,8 @@
           "rule": "308e21e157f312dfabd83d5024dcd7e75da98731df501edb7191fedba3c8ec61"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.680Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.888Z",
+          "core": "0.291.0",
           "rule": "308e21e157f312dfabd83d5024dcd7e75da98731df501edb7191fedba3c8ec61",
           "item": "7d30b06997f8f5b990620a46a7eeddf1a77ba4adb7526e97c1c609c2e5be999d",
           "delta": [],
@@ -84471,8 +84471,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.680Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.888Z",
+          "core": "0.291.0",
           "rule": "308e21e157f312dfabd83d5024dcd7e75da98731df501edb7191fedba3c8ec61",
           "emits": "07d11172216ee8cc5d39e44c0908b1563a27f0f8a446351df23298188ad92e42",
           "passed": [
@@ -84750,8 +84750,8 @@
           "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.269Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.889Z",
+          "core": "0.291.0",
           "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147",
           "item": "c427894fde6fe9466070583026319dc8729baf1bd12b666c5f03a5fdf4225bc7",
           "delta": [],
@@ -84770,8 +84770,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.371Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.889Z",
+          "core": "0.291.0",
           "rule": "977ac9e63531c8d2d5ca9671ebeff721c58b6615de14b9239199b9f2d8325147",
           "emits": "912591e7b446250a9f7735faa963ea10919883f9d9d4d5c7534367ee3cfef494",
           "passed": [
@@ -87531,8 +87531,8 @@
           "because": "actionEnds"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.273Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.892Z",
+          "core": "0.291.0",
           "rule": "a98b8f8ac03d7264f7b5427cbe29cf452697cb83192c006b168ac94b86743b3f",
           "item": "dd475da7652f2b9b88c52fa48cddc27643da928ec54ea45a349fe979c143278f",
           "delta": [
@@ -87547,8 +87547,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.374Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.892Z",
+          "core": "0.291.0",
           "rule": "a98b8f8ac03d7264f7b5427cbe29cf452697cb83192c006b168ac94b86743b3f",
           "emits": "80aebb272f585443b881e5932362b718b1cd9d9748a0b9ebc8ea70c4a332194e",
           "passed": [
@@ -88142,8 +88142,8 @@
           "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.812Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.894Z",
+          "core": "0.291.0",
           "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b",
           "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
           "delta": [
@@ -88157,8 +88157,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.812Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.894Z",
+          "core": "0.291.0",
           "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b",
           "emits": "01c8865157644d9692981ba03f358c9851d9d7d1e12da903d42f05d5653de922",
           "passed": [
@@ -88980,8 +88980,8 @@
           "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.813Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.895Z",
+          "core": "0.291.0",
           "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f",
           "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
           "delta": [
@@ -88995,8 +88995,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.813Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.895Z",
+          "core": "0.291.0",
           "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f",
           "emits": "9aa467e6aa02ee4fa1478c4bad42f34425ed2d5d98a3c48bb5e21651ef76dd93",
           "passed": [
@@ -89614,8 +89614,8 @@
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.275Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.897Z",
+          "core": "0.291.0",
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
           "item": "0e385537001c9edd837443b004764a46a489349eb1d8a1df9cf879c91fe36990",
           "delta": [
@@ -89629,8 +89629,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.376Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.897Z",
+          "core": "0.291.0",
           "rule": "40d8bd0685efd453db15eab11d68f5d4bb1c93f8bb3fd427f9f92fb40178aacd",
           "emits": "98daa0234007c179f5675ca5e49da3ed3c316dcfee3e22aa6bf44ac6a6b8e478",
           "passed": [
@@ -90354,8 +90354,8 @@
           "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.815Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.898Z",
+          "core": "0.291.0",
           "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -90369,8 +90369,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.815Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.898Z",
+          "core": "0.291.0",
           "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9",
           "emits": "084f4c14185716a6c9e5fda836f5086577476f3d4995e745cadedfea5c6ac7c6",
           "passed": [
@@ -90498,8 +90498,8 @@
           "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9"
         },
         "reading": {
-          "at": "2026-11-23T05:37:19.786Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.899Z",
+          "core": "0.291.0",
           "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9",
           "item": "279dd13181d54a7ba2cf992ccac203f927daf79f383814a3fa3f31f7833245f9",
           "delta": [
@@ -90513,8 +90513,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T05:37:19.786Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.899Z",
+          "core": "0.291.0",
           "rule": "22f91dc349f830b168bbb809e811c5cc72e627a8dddc75af883f883728caccf9",
           "emits": "a71daad1ea9ca8bdd99ba5f0b1c3dfbd07afc5d19b7c88ab05f5271e1843119f",
           "passed": [
@@ -90762,8 +90762,8 @@
           "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.816Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.900Z",
+          "core": "0.291.0",
           "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -90777,8 +90777,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.816Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.900Z",
+          "core": "0.291.0",
           "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29",
           "emits": "f0cc58477c102dcd881a713412fc038074123f73d193eae698be10331685c930",
           "passed": [
@@ -91150,8 +91150,8 @@
           "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.817Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.900Z",
+          "core": "0.291.0",
           "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -91165,8 +91165,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.817Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.900Z",
+          "core": "0.291.0",
           "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4",
           "emits": "9af247ff18c17a866121a2271b0e93562a39c04252f1036e4fad19751151827d",
           "passed": [
@@ -91359,8 +91359,8 @@
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.277Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.902Z",
+          "core": "0.291.0",
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
           "item": "70ed136753fdee784872fc3e354c2ad5dd3c71e1a47a1ca6cc1e2ef097adc2f1",
           "delta": [],
@@ -91374,8 +91374,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.377Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.902Z",
+          "core": "0.291.0",
           "rule": "20e516e4737a7b8b50b7794eb513ad5596ebfdc2653d39bec7930378a15268b7",
           "emits": "b2ba583b7dfd0fcf39b59ceaf868e4b8b137ee84b6644533a93faf9ac92cec64",
           "passed": [
@@ -91689,8 +91689,8 @@
           "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.820Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.903Z",
+          "core": "0.291.0",
           "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -91704,8 +91704,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.820Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.903Z",
+          "core": "0.291.0",
           "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649",
           "emits": "a4293848d7be2edd5943d0eea19df54e347676fa3e0af63985d96144c6578ebf",
           "passed": [
@@ -91925,8 +91925,8 @@
           "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae"
         },
         "reading": {
-          "at": "2026-11-22T08:18:24.450Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.904Z",
+          "core": "0.291.0",
           "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
           "item": "830f7a201f277fe6e3d053d40716324e6e56818f4be7b8fb26171009c611dcb6",
           "delta": [
@@ -91940,8 +91940,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T08:18:24.450Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.904Z",
+          "core": "0.291.0",
           "rule": "6a834ea14c4030571c7da77fb19cc79820cb97a5b5b4a774d6b1d18f00b405ae",
           "emits": "60e1e266d21394d4a5b73c1d8b3115c7aeefebde772a6d2f8830bb97db349cb5",
           "passed": [
@@ -92133,8 +92133,8 @@
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.279Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.905Z",
+          "core": "0.291.0",
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
           "item": "d5e259770d542f1849a160739e15078503745287b5df1c94ab4eaaa29625d137",
           "delta": [],
@@ -92150,8 +92150,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.378Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.905Z",
+          "core": "0.291.0",
           "rule": "98c292e4954dc9f1ad853b31b973e6177f6509afbf0df8b639f151206e381cd6",
           "emits": "225b96ebbe1e6392af03cd8a3d82c9fcc0d15fbeb741e6581db789bfcec61e19",
           "passed": [
@@ -92955,8 +92955,8 @@
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.280Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.906Z",
+          "core": "0.291.0",
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
           "item": "765bb31da980f5320d8ca6522d70591cbabb59db973493524f8753a36f54b678",
           "delta": [],
@@ -92970,8 +92970,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.379Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.906Z",
+          "core": "0.291.0",
           "rule": "ba611a7caf0cea5cea46bb7ed87714221e6869ab6d4246636a2b7f4beb5a2740",
           "emits": "01566f44304e903c54ace20843d750ffacde3782e252f7d09b19246d153e99cb",
           "passed": [
@@ -95957,8 +95957,8 @@
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.283Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.909Z",
+          "core": "0.291.0",
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
           "item": "f2d80e0d3cdfe0983ead627c9c04d501e662fb13db2619cc84723c32db99bbf7",
           "delta": [],
@@ -95974,8 +95974,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.381Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.909Z",
+          "core": "0.291.0",
           "rule": "07fd27cc7625767f4d69f78fba9954c06a69cc89193a11ef5ba9772fcd1ed5df",
           "emits": "8649ab20e211dae8d6691d8b375de8c1c4091c098e926ccb136ea1788dc2ad88",
           "passed": [
@@ -97383,8 +97383,8 @@
           "confidence": 0.9
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.697Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.910Z",
+          "core": "0.291.0",
           "rule": "62f856b5a99ff6cf0b735ffada8b193121d09d324902be809c905508d94f8bbc",
           "item": "8e89259ac0a6bb47a618b6c85b1bc0add729f8285fbab80ffa767c8509edafc8",
           "delta": [],
@@ -97400,8 +97400,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.697Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.910Z",
+          "core": "0.291.0",
           "rule": "62f856b5a99ff6cf0b735ffada8b193121d09d324902be809c905508d94f8bbc",
           "emits": "1f937aad3f0816d628be689bcf45e6af4016e39b5198b1b59a8376d0f5bc91d5",
           "passed": [
@@ -100937,8 +100937,8 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.293Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.914Z",
+          "core": "0.291.0",
           "rule": "792c6686cbe13c60e0255b10479db355c3ba36046647f77c3cf23e85fe79ae2b",
           "item": "8fd883af6dd4999092467e4713da90eade3aaad62518f4a4d0a937dc30b87bbb",
           "delta": [
@@ -100954,8 +100954,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.390Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.914Z",
+          "core": "0.291.0",
           "rule": "792c6686cbe13c60e0255b10479db355c3ba36046647f77c3cf23e85fe79ae2b",
           "emits": "cd8a9e4edfdef85254bf88ff023f6872f47831a3646b19f5caa6a34c8d40dbf1",
           "passed": [
@@ -108071,8 +108071,8 @@
           "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.297Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.920Z",
+          "core": "0.291.0",
           "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377",
           "item": "85d1d6f07b708fb11b2c800052abbbb5c60c58e23bcbb04f1e280ab0ee7bb660",
           "delta": [
@@ -108088,8 +108088,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.393Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.920Z",
+          "core": "0.291.0",
           "rule": "418a9edbee6c2453a1706aa9d82bb1b8aed7a7d2cdc8674e2d7c75bb795e3377",
           "emits": "fe67374ae3143dd492a548c964c62f9d0b32a85ac51da9a28eb2da11caed3013",
           "passed": [
@@ -108824,8 +108824,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.414Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.922Z",
+          "core": "0.291.0",
           "rule": "2508f73287ae57585ac25af09d9591f9d3df4d395d5063e079b4300be3cac29c",
           "item": "060a2060348130ace0c1955ed7111a8308801f585bd6ed97267de6ebe83aa199",
           "delta": [
@@ -108839,8 +108839,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.414Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.922Z",
+          "core": "0.291.0",
           "rule": "2508f73287ae57585ac25af09d9591f9d3df4d395d5063e079b4300be3cac29c",
           "emits": "d17b3b5c160000792bf0781b78133c1b3aafde7ca6f3b1817fea4fa3c9eb147c",
           "passed": [
@@ -110933,8 +110933,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.419Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.926Z",
+          "core": "0.291.0",
           "rule": "2975f7e1b26a68dda2d228eef470a2346acd33e9e03be1887d0351eed20e862d",
           "item": "38ac743ec72e2af93a404c644520ec215e729e826721fcf2180df5d569252932",
           "delta": [
@@ -110948,8 +110948,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.420Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.926Z",
+          "core": "0.291.0",
           "rule": "2975f7e1b26a68dda2d228eef470a2346acd33e9e03be1887d0351eed20e862d",
           "emits": "9f5260e54d81158ccdbf0ff6e8eae020f08c5f842f53fc97a4752a8a35e29972",
           "passed": [
@@ -111989,8 +111989,8 @@
           "confidence": 0.75
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.712Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.928Z",
+          "core": "0.291.0",
           "rule": "84041c8db8fab11f3a009a57a17db386b3eeff9fb82be3f1dfe9971685b57499",
           "item": "82c25d064de09f9fd27a8400bc35350bf4386be8c0ad2e7fa426b2edee6f09e6",
           "delta": [],
@@ -112006,8 +112006,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.712Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.928Z",
+          "core": "0.291.0",
           "rule": "84041c8db8fab11f3a009a57a17db386b3eeff9fb82be3f1dfe9971685b57499",
           "emits": "23280ee507c84c620979ce34af72cefc1195e224d9947016fd32a42058c7c4ad",
           "passed": [
@@ -113824,8 +113824,8 @@
           "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.300Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.931Z",
+          "core": "0.291.0",
           "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
           "item": "24212f888cea83de578f9f7b3f85ab31186a9bdaabb94739c261c01e6fef2ca3",
           "delta": [
@@ -113842,8 +113842,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.396Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.931Z",
+          "core": "0.291.0",
           "rule": "3a3d83a888a3a6127979ba57ca32a3dfe7ffc12fb24c13167562ff5944740ba7",
           "emits": "fbde54887d46d65ebbca4f16aecc03b7d3226ec75857cc18685d5da9620100f0",
           "passed": [
@@ -116780,8 +116780,8 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.303Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.934Z",
+          "core": "0.291.0",
           "rule": "a4185148eec22b7efc4a82955adf6d5c4b14a982b4fd4089cfff8529bd90d342",
           "item": "49a6c220f308435f3522155555a11be5a611efeab4b52bc3003000fb5c6c111d",
           "delta": [
@@ -116797,8 +116797,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.398Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.934Z",
+          "core": "0.291.0",
           "rule": "a4185148eec22b7efc4a82955adf6d5c4b14a982b4fd4089cfff8529bd90d342",
           "emits": "97f9a0871677a17262c6dd22ae87df6f621952f7bff2e942ecd2d52be21df5c9",
           "passed": [
@@ -119321,8 +119321,8 @@
           "because": "effectDurations"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.306Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.936Z",
+          "core": "0.291.0",
           "rule": "01533f83cbb655a96bea53d554e9c79d6ab4d55c7cac788fe37c0b67bb606f7d",
           "item": "81134f270c57102f53441193a27f682fc86efc5430a15e07247276169e0a9fa2",
           "delta": [
@@ -119338,8 +119338,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.400Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.936Z",
+          "core": "0.291.0",
           "rule": "01533f83cbb655a96bea53d554e9c79d6ab4d55c7cac788fe37c0b67bb606f7d",
           "emits": "2d7c7f436008f51b9a172a430d6971e2b5b8fed877f22d927d4417afa6a49e9b",
           "passed": [
@@ -120097,8 +120097,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T22:21:35.440Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.937Z",
+          "core": "0.291.0",
           "rule": "5457783ffd4f4715f0399862f8ba2838ad99bcea79efa395fd2c192abf382aee",
           "item": "7f7a4797b5d697a1ee70068b22a210b79830c0670bada3f1c145b36b466f71ec",
           "delta": [],
@@ -120114,8 +120114,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T22:21:35.440Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.937Z",
+          "core": "0.291.0",
           "rule": "5457783ffd4f4715f0399862f8ba2838ad99bcea79efa395fd2c192abf382aee",
           "emits": "7b9964af66fc67942935c349adeb3bf6cbb9ff9f98b2350218232129997f9bbe",
           "passed": [
@@ -122734,8 +122734,8 @@
           "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.311Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.941Z",
+          "core": "0.291.0",
           "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b",
           "item": "de4ffe61c93fd68c8e004b106acac02e6c450966b75e2306169190764caa313d",
           "delta": [],
@@ -122749,8 +122749,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.403Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.941Z",
+          "core": "0.291.0",
           "rule": "61400c378c26ae73f680d025d8ed885889ba96a138b495969ead2fca25bb9a4b",
           "emits": "0321dcbdc4a174d514a9e37dac5e1290357a5ddb9105aeb177043387da4b2a44",
           "passed": [
@@ -123350,8 +123350,8 @@
           "rule": "228687047a5a66a155b381b317533a80ca7b8dbf02968bc0bba4341a3065ae2b"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.725Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.943Z",
+          "core": "0.291.0",
           "rule": "228687047a5a66a155b381b317533a80ca7b8dbf02968bc0bba4341a3065ae2b",
           "item": "f2dd2e86983ec27a6c57e23841b0fe36618ff3b91c936fc86d24a0ce1bb83181",
           "delta": [
@@ -123365,8 +123365,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.725Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.943Z",
+          "core": "0.291.0",
           "rule": "228687047a5a66a155b381b317533a80ca7b8dbf02968bc0bba4341a3065ae2b",
           "emits": "7bfe0f3f414ddcdd5d40f1fd78e6aaa7995d18c2763b198ff7eb640614da0bb7",
           "passed": [
@@ -125047,8 +125047,8 @@
           "because": "targets"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.314Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.946Z",
+          "core": "0.291.0",
           "rule": "38ab072a86e2d5b92ce054ac2538e26012e7c33fa8b6a84cca6b1b738d4134f9",
           "item": "431970b816ca39f488cf1b6f26056a473891e0845571df2162381fdae160ad8f",
           "delta": [],
@@ -125066,8 +125066,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.405Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.946Z",
+          "core": "0.291.0",
           "rule": "38ab072a86e2d5b92ce054ac2538e26012e7c33fa8b6a84cca6b1b738d4134f9",
           "emits": "ef0bc7f23130eb4c169ff84da08d3c7fe618566bc27cd3dc41a207cab0df6188",
           "passed": [
@@ -126220,8 +126220,8 @@
           "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.863Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.948Z",
+          "core": "0.291.0",
           "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846",
           "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
           "delta": [
@@ -126235,8 +126235,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.863Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.948Z",
+          "core": "0.291.0",
           "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846",
           "emits": "71df1afa98cb2ceb6b83bcd0f0f1cadc6d05fd7f67fc494fc7cf0f9160266174",
           "passed": [
@@ -127093,8 +127093,8 @@
           "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.318Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.950Z",
+          "core": "0.291.0",
           "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30",
           "item": "68cc859c9ed4d1fd29188ccf600b3cb7ac8b54553f103b3400f4fb1adcbc497f",
           "delta": [
@@ -127108,8 +127108,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.408Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.950Z",
+          "core": "0.291.0",
           "rule": "20af4478797f19a2cedd1008b87596ec9c78da16989127589ede2ff4139b2a30",
           "emits": "3abdb44586528e04fe591ec69f2a7c8a0a7a0f5c74c178a9b25ed24a9e0db608",
           "passed": [
@@ -128151,8 +128151,8 @@
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.323Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.952Z",
+          "core": "0.291.0",
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
           "item": "fdc240828265e4588d205b9f850f81ade0d0ddfc691a3bed046934ed5c4d3b20",
           "delta": [],
@@ -128166,8 +128166,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.409Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.952Z",
+          "core": "0.291.0",
           "rule": "6a36bf831f9263093e1bd188ed21510b824b19663b70faaa6d74664e73ea1496",
           "emits": "9ac5e9a4da4ba6e2ab432464adc8456f118a29d914198b56d04717416020482c",
           "passed": [
@@ -129515,8 +129515,8 @@
           "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.326Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.955Z",
+          "core": "0.291.0",
           "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
           "item": "39a5651ebd1c0eb86c30ac5e5e966c815062ac5bf6caf6917618e81a1f390788",
           "delta": [],
@@ -129530,8 +129530,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.411Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.955Z",
+          "core": "0.291.0",
           "rule": "4d34db9a46bc98a179a79f20e216e927bce9802a94fc883a7c4ae3fdb3e224e6",
           "emits": "be37a10c6259776347357ef7c0176b654852141ebd880947c43c9bd5b053f648",
           "passed": [
@@ -129855,8 +129855,8 @@
           "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.871Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.956Z",
+          "core": "0.291.0",
           "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -129870,8 +129870,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.871Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.956Z",
+          "core": "0.291.0",
           "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38",
           "emits": "89cde418e662ebff2922da41ac7b649c113d6268055dd7fae9c29c961b48fe17",
           "passed": [
@@ -130053,8 +130053,8 @@
           "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.328Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.958Z",
+          "core": "0.291.0",
           "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf",
           "item": "ed4b9fe678d46651cbdab4d67f31c05bbb54ab8f302387c4dc89b5f3c8623850",
           "delta": [],
@@ -130068,8 +130068,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.412Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.958Z",
+          "core": "0.291.0",
           "rule": "787b415f60b5ff4f2fee6d8dc00d89fff78ec5a9995d61976d80f740f31c9bdf",
           "emits": "b9adb7bbd85bb78878498d9d282d247bb15f632c33ce1419d5734766951ce6db",
           "passed": [
@@ -132901,8 +132901,8 @@
           "confidence": 0.85
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.739Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.961Z",
+          "core": "0.291.0",
           "rule": "54b8e3abd450a8b6da8f07543f476f68a5c832c7e2f6f267bc7c01befc55f414",
           "item": "8e6aae50383cdcf8514536cca4a55ec24ff2b00e052edb42f41dc33264e79ef8",
           "delta": [
@@ -132916,8 +132916,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.739Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.961Z",
+          "core": "0.291.0",
           "rule": "54b8e3abd450a8b6da8f07543f476f68a5c832c7e2f6f267bc7c01befc55f414",
           "emits": "9cccd2d2403d2927e703efeea62c6dc332fc38a0dc2d3afdd4fa977f439ad2e3",
           "passed": [
@@ -135617,8 +135617,8 @@
           "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.491Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.963Z",
+          "core": "0.291.0",
           "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa",
           "item": "c77229609ac5e265ed855312e9cd0417a8bcd57ff93ad8c054f5af11f2edb7f2",
           "delta": [
@@ -135634,8 +135634,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.491Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.963Z",
+          "core": "0.291.0",
           "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa",
           "emits": "da2c29b40ceee16e7856988b723c451e98256b0ff3f889e901a4441c0cf9f2af",
           "passed": [
@@ -135859,8 +135859,8 @@
           "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.491Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.964Z",
+          "core": "0.291.0",
           "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d",
           "item": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca",
           "delta": [
@@ -135876,8 +135876,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.491Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.964Z",
+          "core": "0.291.0",
           "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d",
           "emits": "9f67ba3f7f6c9390d7e9463a8772c0663534c2626bf9a7f06efe21a974f50b28",
           "passed": [
@@ -136072,8 +136072,8 @@
           "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.332Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.966Z",
+          "core": "0.291.0",
           "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29",
           "item": "c0283cdba0512b5e36991fab2fc4324be8600f55727d854387c272e4dc24ce65",
           "delta": [],
@@ -136092,8 +136092,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.414Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.966Z",
+          "core": "0.291.0",
           "rule": "55c0c92fe2381a043383ada4df576ee94b8c89e602b976680b7d04f6e1f91b29",
           "emits": "f3e57e34d7b16cad2000690cce51eafd6cc3c9e05f7ff464427472c8ac6f96d5",
           "passed": [
@@ -136253,8 +136253,8 @@
           "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.493Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.966Z",
+          "core": "0.291.0",
           "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154",
           "item": "4c1cbcb0a13bea31c248608958344dd854fee530df93b314e2ee3fece3cbb3ea",
           "delta": [
@@ -136270,8 +136270,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.494Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.966Z",
+          "core": "0.291.0",
           "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154",
           "emits": "2b00309a22d4eb1ea76668a28eb770be08dbffb89133f9f3ae678929a131d610",
           "passed": [
@@ -136546,8 +136546,8 @@
           "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.494Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.967Z",
+          "core": "0.291.0",
           "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2",
           "item": "e872c7a4e35e8809a3801f0f738c8eb3adbfeb24839c943bb38439b86532bd6f",
           "delta": [
@@ -136563,8 +136563,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.494Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.967Z",
+          "core": "0.291.0",
           "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2",
           "emits": "8cb8f4e02ef40c6d8c1b894d85a05652051a3a092fd4d701f91d6c25e2547ba6",
           "passed": [
@@ -136734,8 +136734,8 @@
           "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.495Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.968Z",
+          "core": "0.291.0",
           "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464",
           "item": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605",
           "delta": [
@@ -136751,8 +136751,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.495Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.968Z",
+          "core": "0.291.0",
           "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464",
           "emits": "f5454b4ff502e227dacb1b112d6b564f82a1ed5be5846d4ad2a9d52c7e3587d9",
           "passed": [
@@ -137012,8 +137012,8 @@
           "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.496Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.968Z",
+          "core": "0.291.0",
           "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848",
           "item": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605",
           "delta": [
@@ -137029,8 +137029,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.496Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.968Z",
+          "core": "0.291.0",
           "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848",
           "emits": "7a0357f561833528b78f49cfd085f39e480ee6944f970e38ad3d36caa46edea6",
           "passed": [
@@ -137248,8 +137248,8 @@
           "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.496Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.969Z",
+          "core": "0.291.0",
           "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf",
           "item": "556660f978e4f9209b9eccc7cf223eeb66a2adcfa15d3ab5075f4bf879c3b7ff",
           "delta": [
@@ -137265,8 +137265,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.496Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.969Z",
+          "core": "0.291.0",
           "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf",
           "emits": "48330547db76af4e14c334d737a4cb60a96b21081a36c8891d4da4b3ec3ad48c",
           "passed": [
@@ -137527,8 +137527,8 @@
           "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.497Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.970Z",
+          "core": "0.291.0",
           "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f",
           "item": "7c9e705904201650615b602361cb691465072cf6024167927bf51cacadd09d49",
           "delta": [
@@ -137544,8 +137544,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.497Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.970Z",
+          "core": "0.291.0",
           "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f",
           "emits": "f1e9273bd2bc0c7651030fe859f989f2483c6e4da6cf38d52ca737b37238866f",
           "passed": [
@@ -137745,8 +137745,8 @@
           "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.335Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.971Z",
+          "core": "0.291.0",
           "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
           "item": "8a30e9528e428eb8e6b4c3e321f7ff2994ef40c13150e680ad0fd44430378f25",
           "delta": [],
@@ -137760,8 +137760,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.416Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.972Z",
+          "core": "0.291.0",
           "rule": "6edb3486eeb5c1d08dec07d8efdfaa7981e2576fbe29c5add203e2d025be7b46",
           "emits": "39c82d3f5d08f0202055ff33e3e1c3b5ba89ec451c3aef97f113c7aabe22d5fd",
           "passed": [
@@ -137938,8 +137938,8 @@
           "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.499Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.972Z",
+          "core": "0.291.0",
           "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b",
           "item": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca",
           "delta": [
@@ -137955,8 +137955,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.499Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.972Z",
+          "core": "0.291.0",
           "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b",
           "emits": "1dea45f37148b35de283e19c21e00faa3f24b2f66298e4d98c76444078e2e5b8",
           "passed": [
@@ -138185,8 +138185,8 @@
           "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.500Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.973Z",
+          "core": "0.291.0",
           "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218",
           "item": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca",
           "delta": [
@@ -138202,8 +138202,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.500Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.973Z",
+          "core": "0.291.0",
           "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218",
           "emits": "6059c0c27f89fd97506bdc67e4eb03c8f8618d7461fef812a44ea8dbf62c5ea5",
           "passed": [
@@ -138399,8 +138399,8 @@
           "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04"
         },
         "reading": {
-          "at": "2026-11-23T04:17:06.501Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.974Z",
+          "core": "0.291.0",
           "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04",
           "item": "d0c00817a38b1af30dfeeb518460ac0c25c4ac8f69c97902c40220697bf2addb",
           "delta": [
@@ -138416,8 +138416,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:17:06.501Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.974Z",
+          "core": "0.291.0",
           "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04",
           "emits": "94864efd9da5467a91104a088781dda3f56d7f3802adbe928210bf59f1c42424",
           "passed": [
@@ -140920,8 +140920,8 @@
           "redrafted": true
         },
         "reading": {
-          "at": "2026-11-22T08:48:14.352Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.977Z",
+          "core": "0.291.0",
           "rule": "e9315bb58511848cbda5f2a47e645a8565309d17fc163e940c8a65caee2b71f4",
           "item": "268b521fc5a619d98d6585359cf9df05c04a1f63e9852c69396da987232c0978",
           "delta": [
@@ -140937,8 +140937,8 @@
           ]
         },
         "gates": {
-          "at": "2026-11-22T08:48:14.352Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.977Z",
+          "core": "0.291.0",
           "rule": "e9315bb58511848cbda5f2a47e645a8565309d17fc163e940c8a65caee2b71f4",
           "emits": "4cc2ddf95559a5834a02c43fd08f52287e47debb335fb5da5a1cf186f247d76e",
           "passed": [
@@ -141480,8 +141480,8 @@
           "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.894Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.978Z",
+          "core": "0.291.0",
           "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -141495,8 +141495,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.894Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.978Z",
+          "core": "0.291.0",
           "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92",
           "emits": "34c47eb8f02acc860038cd4e633981427c2ba03398550e39389c41f881230461",
           "passed": [
@@ -142562,8 +142562,8 @@
           "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.344Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.980Z",
+          "core": "0.291.0",
           "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
           "item": "66af846a435c351889e7cc2602925ce298cbc0e1289400c7e741082ddb80d1f4",
           "delta": [
@@ -142579,8 +142579,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.421Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.980Z",
+          "core": "0.291.0",
           "rule": "7200dec8c5948b59d3f3c591cf309e6cb8b45b4c625d5208fae1273ab0d67ab0",
           "emits": "a3c54bc1997d75a99323754ac571d3c6dae8504bddedefcbbe97b54433cc2843",
           "passed": [
@@ -143563,8 +143563,8 @@
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.345Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.981Z",
+          "core": "0.291.0",
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
           "item": "1a76e0d4e6f49eb7b839ecf4b344fde631f670cbfcfae0bf9782a13d6964e687",
           "delta": [],
@@ -143578,8 +143578,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.422Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.981Z",
+          "core": "0.291.0",
           "rule": "3c7c5404be23091a17991bfc6d78a10aa98687fdeaeaabaa77b0498ca4e1979d",
           "emits": "18c27986c1fad4dca79d553210bdbd197c93f4431b1e9802dc3830f4f68a3558",
           "passed": [
@@ -145549,8 +145549,8 @@
           "because": "targets"
         },
         "reading": {
-          "at": "2026-11-22T19:47:47.752Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.985Z",
+          "core": "0.291.0",
           "rule": "d4c203f766c6957d3ae2dee4a809b112414d96e10909985c0ae5075677dd3b88",
           "item": "5cb6710a0dab8c3871108239dfa8d8c27162b07242df98237d4c089a1dfe83e7",
           "delta": [
@@ -145564,8 +145564,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T19:47:47.752Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.985Z",
+          "core": "0.291.0",
           "rule": "d4c203f766c6957d3ae2dee4a809b112414d96e10909985c0ae5075677dd3b88",
           "emits": "4e14eeceb48ed02cc1398c17aad42ed5734230774a5ace349f18224e9baad4e9",
           "passed": [
@@ -147481,8 +147481,8 @@
           "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.348Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.988Z",
+          "core": "0.291.0",
           "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
           "item": "10c2b78bfc5dee68165f3a7645da060afa08688b2b521e8ac7c1bc0c05e706b6",
           "delta": [
@@ -147498,8 +147498,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.424Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.989Z",
+          "core": "0.291.0",
           "rule": "ec1703560c582a4984a2f7a34a50c359a953c335a0e1a028135ce94ac196c836",
           "emits": "3e79e725d2cc1e9800e7ef65c5f45c1a45e6e4faaa51667f790f6e4d4401851f",
           "passed": [
@@ -148009,8 +148009,8 @@
           "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.351Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.990Z",
+          "core": "0.291.0",
           "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f",
           "item": "2d1ade2680ae5ad4a492492a629388a84dbcec91d0ee1b40559f457a5440fedc",
           "delta": [],
@@ -148024,8 +148024,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.425Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.990Z",
+          "core": "0.291.0",
           "rule": "c0a9c2ebcff77627588650cd9af8051a045369b44288d5a2ef30af9a6fcefc3f",
           "emits": "16bcd10193b6994994564393e0778f5811e49447d3c1799979196f8bf153808a",
           "passed": [
@@ -148185,8 +148185,8 @@
           "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.353Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.991Z",
+          "core": "0.291.0",
           "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f",
           "item": "5e0a9f8a8bf509577e5be2072e68de84ac02cff4ceb2eed02f22dabd6d5d7089",
           "delta": [],
@@ -148200,8 +148200,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.426Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.991Z",
+          "core": "0.291.0",
           "rule": "058739d8464620adcac80471033f89aaaf8b513de5cc24172acd826d5328f75f",
           "emits": "b577e4d9fd9cb75f34f2c6460113b0a7ea4e8fd9c3861c9d4d5cf12dfd353632",
           "passed": [
@@ -149038,8 +149038,8 @@
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.354Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.992Z",
+          "core": "0.291.0",
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
           "item": "f39e3add98de4d8984b479b2ccabd4f9002ab95491b95bde4f7df84b79978de5",
           "delta": [],
@@ -149055,8 +149055,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.427Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.992Z",
+          "core": "0.291.0",
           "rule": "a040c6a9ba01b48678bdcb1f5032652416695b7880eae2f42081c885ccc31844",
           "emits": "346771c4d7fcf93436230335f400d3c7b91a0bc3240b5b5a42a4475da7afa3b4",
           "passed": [
@@ -151703,8 +151703,8 @@
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.356Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.995Z",
+          "core": "0.291.0",
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
           "item": "c4fc55b09eeffd34245294f9d3c2c4f3ab98074ba97127bfee27eb23eff26e81",
           "delta": [],
@@ -151718,8 +151718,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.428Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.995Z",
+          "core": "0.291.0",
           "rule": "9504bc3bbf191806871d0f73e714a673f791b395291a44f13f6b9a1d15a087bd",
           "emits": "c59d820fb4927ba4ecf85abd2912ba053d9ae6e2f98fab1d1706b51844ec5f80",
           "passed": [
@@ -152848,8 +152848,8 @@
           "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.911Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.996Z",
+          "core": "0.291.0",
           "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -152863,8 +152863,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.911Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.996Z",
+          "core": "0.291.0",
           "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508",
           "emits": "ee844299fd50326e70fff46b4b113d312297e0b97035f453f13d7985f6ef2447",
           "passed": [
@@ -153658,8 +153658,8 @@
           "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.912Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.998Z",
+          "core": "0.291.0",
           "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f",
           "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
           "delta": [
@@ -153673,8 +153673,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.912Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.998Z",
+          "core": "0.291.0",
           "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f",
           "emits": "3fa5788319b2f350c96315190f72fff9ad321e37ec13c5918989db82f5469787",
           "passed": [
@@ -154560,8 +154560,8 @@
           "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa"
         },
         "reading": {
-          "at": "2026-11-23T04:50:29.913Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.999Z",
+          "core": "0.291.0",
           "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa",
           "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
           "delta": [
@@ -154575,8 +154575,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T04:50:29.913Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:04.999Z",
+          "core": "0.291.0",
           "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa",
           "emits": "4db5ec2058bd4cc3970e721daa5c4d57fe143668f9386bf049352ced7269aa48",
           "passed": [
@@ -155806,8 +155806,8 @@
           "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26"
         },
         "reading": {
-          "at": "2026-11-22T06:29:15.360Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.001Z",
+          "core": "0.291.0",
           "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26",
           "item": "b97f74a0e8ad6bc12b1795e96b98731bee49e26d624fbc76294d556bf38124b6",
           "delta": [],
@@ -155824,8 +155824,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-22T06:14:53.430Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.002Z",
+          "core": "0.291.0",
           "rule": "81573aee1d7c4029f0af32b1593153c856a797a7f645d19fd69c8b814e3d7f26",
           "emits": "3f00c0962a039395467a6c8c838ed2e48b569fe1816069640aa77eaf35133f98",
           "passed": [
@@ -157512,8 +157512,8 @@
           "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495"
         },
         "reading": {
-          "at": "2026-11-23T05:36:48.173Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.004Z",
+          "core": "0.291.0",
           "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495",
           "item": "2dd2504d565b160507e44a2f88a072facafc192a92fbddb52d7dde1a473c9472",
           "delta": [
@@ -157527,8 +157527,8 @@
           "dropped": []
         },
         "gates": {
-          "at": "2026-11-23T05:36:48.173Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.004Z",
+          "core": "0.291.0",
           "rule": "60306633d4669332adb4bdabf757a68e82ffc8ea38356005d66ee85132e77495",
           "emits": "3ff35231ecec2c686a45549e5b496565175ab5ad41b70e79c6eafac6cedfa81e",
           "passed": [

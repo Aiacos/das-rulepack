@@ -5841,9 +5841,17 @@
             ]
           }
         },
-        "gates": {
-          "at": "2026-11-23T02:46:39.418Z",
+        "played": {
+          "at": "2026-11-23T05:11:10.140Z",
           "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-barbarian-wild-heart-14-power-of-the-wilds",
+          "client": "gm",
+          "rule": "8165dd68f16eabb3a34d2fd083650145147bcd01daf9eb91ee354f6a7943224b"
+        },
+        "gates": {
+          "at": "2026-11-23T07:14:05.007Z",
+          "core": "0.291.0",
           "rule": "8165dd68f16eabb3a34d2fd083650145147bcd01daf9eb91ee354f6a7943224b",
           "emits": "1b7c94b1dc2727b10f07db48685ea54eef9ecebb715055f3afb05505ca6aa02b",
           "passed": [
@@ -5857,14 +5865,6 @@
           "items": {
             "official": "7c1d9ec8962291eb55f14360bb70fbb9efaaa0920b681c263737e48995b1b70c"
           }
-        },
-        "played": {
-          "at": "2026-11-23T05:11:10.140Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-barbarian-wild-heart-14-power-of-the-wilds",
-          "client": "gm",
-          "rule": "8165dd68f16eabb3a34d2fd083650145147bcd01daf9eb91ee354f6a7943224b"
         }
       },
       "why": "Choice at rage start; Lion aura imposes disadvantage on enemies, Falcon needs no armor, Ram prone on hit; only Ram partly in data.",
@@ -11039,8 +11039,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-22T06:14:53.433Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.009Z",
+          "core": "0.291.0",
           "rule": "4142f17a5c95e1c97eec0e02d16abf2fe837200d629f0f4aec723189f8ab7d0a",
           "emits": "c1e21fd47e8ca2fa0ca36341c731e35196f9ddeab5865ec071d4fcb28687342f",
           "passed": [
@@ -15950,8 +15950,8 @@
           "rule": "e48531eb3dcdb01f975f6a653664be366f3b01c9ab8fc2eb94ed1dcaace44eeb"
         },
         "gates": {
-          "at": "2026-11-23T02:15:27.254Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.011Z",
+          "core": "0.291.0",
           "rule": "e48531eb3dcdb01f975f6a653664be366f3b01c9ab8fc2eb94ed1dcaace44eeb",
           "emits": "763a5f8b372da7206c30381fc631faace82cb05b8ce8a5eeac29c00ad35d9a1b",
           "passed": [
@@ -16423,8 +16423,8 @@
           "rule": "808bdbe6bcb3a4a3c821e5a060a7f136c782582cae5e83565cd16776c8a2fedd"
         },
         "gates": {
-          "at": "2026-11-23T00:30:43.667Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.012Z",
+          "core": "0.291.0",
           "rule": "808bdbe6bcb3a4a3c821e5a060a7f136c782582cae5e83565cd16776c8a2fedd",
           "emits": "92c7a9bdd5f255daa23a938b302af5a01674aad8ebac8140bc91842814d17fe7",
           "passed": [
@@ -16950,8 +16950,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-22T06:14:53.434Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.012Z",
+          "core": "0.291.0",
           "rule": "8a3bf78339be8932ba81e056ccce8f14095d90317234350227fa1e3347ea4d6e",
           "emits": "4fca2c63206941c3d3e00b360634605f9e2e9a83c6ef7f787366045ff2a6ee19",
           "passed": [
@@ -19226,8 +19226,8 @@
           "rule": "be9c89a08969acd5e8ff11200374cc24c562f357111983caee38988385d9fb36"
         },
         "gates": {
-          "at": "2026-11-23T01:34:52.228Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.013Z",
+          "core": "0.291.0",
           "rule": "be9c89a08969acd5e8ff11200374cc24c562f357111983caee38988385d9fb36",
           "emits": "b142912e07a249ebaa93542dfb4aa4f712cb75bcecd92fab1511d23c91d4315d",
           "passed": [
@@ -19802,8 +19802,8 @@
           "rule": "76bf2144d4df32884055f9224fbe6d7d3b3e3cfa5238cc069290b7a5a2861483"
         },
         "gates": {
-          "at": "2026-11-23T00:54:15.782Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.014Z",
+          "core": "0.291.0",
           "rule": "76bf2144d4df32884055f9224fbe6d7d3b3e3cfa5238cc069290b7a5a2861483",
           "emits": "484afa680d2e2e6811501899de835d5534fe09b77cb0fa3ba7ad9f0934d9fb9e",
           "passed": [
@@ -20106,8 +20106,8 @@
           "rule": "67f4a6fd5a2ca202681cd0c5bd0245ce4a1b87195832dfcbb7058ed5267a8418"
         },
         "gates": {
-          "at": "2026-11-23T02:01:40.868Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.014Z",
+          "core": "0.291.0",
           "rule": "67f4a6fd5a2ca202681cd0c5bd0245ce4a1b87195832dfcbb7058ed5267a8418",
           "emits": "170eeede6027335abd874ceee1366047104d40531596dbc92c079d4dc9a0deff",
           "passed": [
@@ -21450,8 +21450,8 @@
           "rule": "298735adb169ebea0359fe7e951ae41491c914fe62a40b4433c7e9a8505b4f48"
         },
         "gates": {
-          "at": "2026-11-23T00:44:51.866Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.015Z",
+          "core": "0.291.0",
           "rule": "298735adb169ebea0359fe7e951ae41491c914fe62a40b4433c7e9a8505b4f48",
           "emits": "a958dbdcd46eb5ba091a5bc64df340ccfc49229ff7a9ac9f52f137ad7bc69d90",
           "passed": [
@@ -22673,8 +22673,8 @@
           "rule": "aaee56738e7a4bdd25193b3aea0360dd787bb35e840153c105c217b56d018eb5"
         },
         "gates": {
-          "at": "2026-11-23T02:23:28.955Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.016Z",
+          "core": "0.291.0",
           "rule": "aaee56738e7a4bdd25193b3aea0360dd787bb35e840153c105c217b56d018eb5",
           "emits": "56640782fc1d136d99a42a6b72b406cf831f5cb5f4f699346efd5cc5adc72be2",
           "passed": [
@@ -22743,8 +22743,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-22T06:14:53.436Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.016Z",
+          "core": "0.291.0",
           "rule": "5caf36635b62a991a132ff667e1f356d2de837e26b6f198a518cef34d009d1a0",
           "emits": "8cc0755986d4053d6c802aec7e070e307a7d1b3caac3c00b61df3ee3465794bc",
           "passed": [
@@ -60007,8 +60007,8 @@
           "rule": "260e8df44fad6916b2f72d016f63d2d606b30b3dfc057041ff59ef282d101e35"
         },
         "gates": {
-          "at": "2026-11-22T10:03:32.060Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.026Z",
+          "core": "0.291.0",
           "rule": "260e8df44fad6916b2f72d016f63d2d606b30b3dfc057041ff59ef282d101e35",
           "emits": "e6e5b2a613df01347cd138afe9a971df1dc87364f90e35f8249be6e22643136a",
           "passed": [
@@ -79242,8 +79242,8 @@
           "because": "selfZone"
         },
         "gates": {
-          "at": "2026-11-22T10:03:32.067Z",
-          "core": "0.290.0",
+          "at": "2026-11-23T07:14:05.030Z",
+          "core": "0.291.0",
           "rule": "d1f84830fcef4e54bb4c8baa1bb8a081e9bc6c027c808c73053791c9cfbd424c",
           "emits": "61482495f87bcedf40ba727f1e077ae65a65d20de6ed3b939f5cc30330a15003",
           "passed": [

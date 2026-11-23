@@ -679,7 +679,7 @@ export function runGates(records, context) {
     const reread = record.evidence?.triaged?.reread;
     if (!context.ci && isObject(reread) && isItemReread(record)) {
       const now = typeof context.engineViewOf === "function" ? context.engineViewOf(record) : undefined;
-      const note = itemRereadStaleNote(record, now, { core: context.core });
+      const note = itemRereadStaleNote(record, now, { core: context.core, swept: context.engineViewSwept });
       if (note) run("reread", { failures: [], notes: [note] });
     } else if (!context.ci && typeof context.rereadReadingOf === "function" && isObject(reread)) {
       const note = rereadStaleNote(record, context.rereadReadingOf(record));

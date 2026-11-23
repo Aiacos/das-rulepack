@@ -1067,3 +1067,21 @@ Cost if wrong: two source-reading agents agree on a mechanism that does not do w
 `entry` verdict uncovered. The named file is recorded, so a person can check the claim; a change of the engine or of the
 item makes the reread stale as before.
 
+### Ruling R49 — a reread stands across an engine release when a new sweep classifies the item alike (2026-11-23)
+
+An item reread (R42) records the engine version it was judged under, and any newer engine made it stale, because the engine
+view is a sweep's file and an old file says nothing of a new engine. With DAS · Core 0.291.0 (a release that changes notes and
+translations only) that rule would have asked for 745 rereads again. Decision:
+
+- The view file may say which engine its sweep ran on, in one key that is no record's: `"$sweep": { "core": "<version>" }`.
+- A reread judged under an older engine stands when today's view comes from a sweep run on today's engine (or a newer one) and
+  classifies the item as it was judged (same level, rules, entry, advancements). Without `$sweep`, or with a sweep older than
+  the engine, R42 holds as before.
+- The sweep reads the engine alone: the tables other modules register (this pack's among them) are taken out of the page's
+  memory for the sweep, and no build holding our own open branches is used.
+
+Cost if wrong: a release changes how a rule behaves without changing the class of the item; the reread then stands on a
+behaviour that moved. The entry is part of the fingerprint, so a changed entry is seen; a change in the code behind a key
+(or behind a file named under R48) is not. The first sweep made this way found 6 rereads judged against a view that was not
+the engine's alone (3 held a branch of ours, 3 a rule of this pack): they are stale and read again.
+

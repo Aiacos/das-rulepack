@@ -10,7 +10,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   COVERED_BY_LEVELS, ENGINE_LEVELS, LEVEL_MEANINGS, NO_DEFINITION, cutItemRereadBatches, ingestItemRereads,
-  isOlderVersion, itemRereadReport, itemRereadSkipReason, itemRereadStaleNote, parseEngineView,
+  isOlderVersion, itemRereadReport, itemRereadSkipReason, itemRereadStaleNote, parseEngineView, sweptOn,
   ruleKeyMeaning, viewFingerprint
 } from "../../tools/pipeline/reread-items.mjs";
 import { COVERED_BY, COVERED_VERDICT, ITEM_REREAD_WHY } from "../../tools/pipeline/schema.mjs";
@@ -357,8 +357,9 @@ describe("ingest --reread --items", () => {
       reread: missing } } });
     const offer13 = new Map([[keyOf(13), FP]]);
     const cur13 = new Map([[keyOf(13), { view: RULE_VIEW, structure: null }]]);
-    expect(run([standing], [covered(13, "engine")], { offered: offer13, current: cur13 }).rejected[0].reason).toMatch(/already reread/);
-    expect(run([standing], [covered(13, "engine")], { offered: offer13, current: cur13, again: true }).covered).toEqual([keyOf(13)]);
+    const once = { offered: offer13, current: cur13 };
+    expect(run([standing], [covered(13, "engine")], once).rejected[0].reason).toMatch(/already reread/);
+    expect(run([standing], [covered(13, "engine")], { ...once, again: true }).covered).toEqual([keyOf(13)]);
     const gone = run([feature(1)], [covered(1, "engine")], { current: new Map([[keyOf(1), { view: null,
       structure: STRUCTURE }]]) });
     expect(gone.rejected[0].reason).toMatch(/stale/);
@@ -497,6 +498,23 @@ describe("gates: an item reread judged against another view, an older engine or 
     expect(itemRereadStaleNote(record, undefined, { core: newer })).toMatch(/stale.*read again/);
     expect(itemRereadStaleNote(record, undefined, { core })).toMatch(/RULEPACK_ENGINE_VIEW/);
     expect(itemRereadStaleNote(feature(2), FP, { core })).toBeNull();
+    // Ruling R49: a sweep run on the newer engine that classifies the item as judged keeps the reread; one that classifies
+    // it otherwise, or a sweep older than the engine, does not.
+    const newFp = viewFingerprint(RULE_VIEW, newer);
+    expect(itemRereadStaleNote(record, newFp, { core: newer, swept: newer.version })).toBeNull();
+    expect(itemRereadStaleNote(record, viewFingerprint(AUTO_VIEW, newer), { core: newer, swept: newer.version }))
+      .toMatch(/classifies the item otherwise/);
+    expect(itemRereadStaleNote(record, newFp, { core: newer, swept: core.version })).toMatch(/stale.*older than/);
+    expect(sweptOn(newer.version, newer.version)).toBe(true);
+    expect(sweptOn(undefined, newer.version)).toBe(false);
+    // The view file says which engine its sweep ran on, in one key that is no record's.
+    const swept = parseEngineView({ "$sweep": { core: "9.9.9" }, [keyOf(1)]: { level: "rule", rules: ["drain"] } });
+    expect(swept.sweptCore).toBe("9.9.9");
+    expect(swept("$sweep")).toBeUndefined();
+    expect(swept(keyOf(1))).toEqual({ level: "rule", rules: ["drain"] });
+    expect(parseEngineView({ [keyOf(1)]: { level: "rule", rules: ["drain"] } }).sweptCore).toBeUndefined();
+    expect(() => parseEngineView({ "$sweep": { core: "latest" } })).toThrow(/engine version/);
+    expect(() => parseEngineView({ "$sweep": { core: "9.9.9", by: "x" } })).toThrow(/nothing else/);
     const dir = mkdtempSync(join(tmpdir(), "reread-items-gates-"));
     try {
       writeFileSync(join(dir, `${SHA}.txt`), TEXT);

@@ -2437,6 +2437,11 @@ the item. Such a reader may answer `covered: true, coveredBy: "engine"` on an it
 when the result names `mechanism`: the file under the engine's `module/scripts` that does what the text asks (it must exist
 in the engine in use; it is stored with the reread). The blind second reader (`--second`) must name one too.
 
+**Across an engine release (Ruling R49).** The engine view file may say which engine its sweep ran on
+(`"$sweep": { "core": "<version>" }`, a key that is no record's). A reread judged under an older engine stands when the view
+comes from a sweep run on the engine in use and classifies the item as it was judged; otherwise it is stale and read again.
+The sweep reads the engine alone: without the tables other modules register, this pack's included.
+
 **Playing it.** A held rule is in no module of the pack, so it cannot run on a test world. `npm run build:rules --
 --play-build <dir>` writes the same generated modules **plus the gated engineered rules that have no play yet** to another
 directory (refused on the pack's own `scripts/rules`, and with `--check`): that directory is copied over a test world's
