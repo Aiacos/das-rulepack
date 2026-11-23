@@ -99,6 +99,7 @@ export const SOURCES = Object.freeze({
   "mmPsychicGrayOoz.mmPseudopod00000": "xmm-psychic-gray-ooze-pseudopod",
   "mmSacredWeapon00": "xmm-empyrean-sacred-weapon",
   "mmShadowDemon000.mmLightSensitivi": "xmm-shadow-demon-light-sensitivity",
+  "mmShadowDragon00.mmLivingShadow00": "xmm-shadow-dragon-living-shadow",
   "mmShadowDragon00.mmSunlightSensit": "xmm-shadow-dragon-sunlight-sensitivity",
   "mmSleepGaze00000": "xmm-jackalwere-sleep-gaze",
   "mmSpecter0000000.mmSunlightSensit": "xmm-specter-sunlight-sensitivity",

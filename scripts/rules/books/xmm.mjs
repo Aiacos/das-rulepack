@@ -1653,6 +1653,38 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-shadow-dragon-living-shadow",
+    "name": "Living Shadow",
+    "page": 275,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Shadow Dragon",
+    "adds": "The trait's Resistance is in force only while the creature stands in dim light or darkness.",
+    "entry": {
+      "effectWhile": {
+        "vWSmU9Sd32bvyapm": {
+          "if": {
+            "light": [
+              "dim",
+              "dark"
+            ]
+          }
+        }
+      }
+    },
+    "carries": {
+      "from": "living-shadow",
+      "keys": [
+        "drawsOnEnd",
+        "effectEnds",
+        "gmAlert",
+        "onNatural1"
+      ]
+    }
+  },
+
+  {
     "identifier": "xmm-shadow-dragon-sunlight-sensitivity",
     "name": "Sunlight Sensitivity",
     "page": 275,
