@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-swarm-of-piranhas-trait-swarm",
+  "key": "xmm:monster:swarm-of-piranhas/trait/swarm",
+  "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Given Temporary Hit Points the swarm gains none, another creature does; the shared-space rule stays."
+}

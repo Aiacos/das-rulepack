@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-swarm-of-stirges-trait-swarm",
+  "key": "xmm:monster:swarm-of-stirges/trait/swarm",
+  "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Given Temporary Hit Points the swarm gains none, another creature does; the shared-space rule stays."
+}

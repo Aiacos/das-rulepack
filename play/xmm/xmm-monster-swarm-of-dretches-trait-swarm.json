@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-swarm-of-dretches-trait-swarm",
+  "key": "xmm:monster:swarm-of-dretches/trait/swarm",
+  "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Given Temporary Hit Points the swarm gains none, another creature does; the shared-space rule stays."
+}
