@@ -24606,31 +24606,37 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T12:51:37.684Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Extra psychic damage on weapon hit limited to once per turn, scaling at level 11; data has an activity but no limit.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-s005",
-            "at": "2026-11-23T06:53:25.048Z",
-            "confidence": 0.7,
+            "by": "reread-q001",
+            "at": "2026-11-23T12:51:37.684Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
-              "sha": "96afcab24d9fd1e8ee7a8b1e38ed92c339b13786b890a44b8071cc7e8e027b05"
+              "core": "0.291.0",
+              "sha": "034f6acab027f706a17094e4ecc7d6b1157d686ee93483938a82f0b38891c964"
             },
-            "covered": false,
-            "unexpressed": [
-              "use-limit"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "provisional": true
           }
         }
       },
-      "why": "Extra psychic damage on weapon hit limited to once per turn, scaling at level 11; data has an activity but no limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -48166,11 +48172,24 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-q001",
+            "at": "2026-11-23T12:51:37.684Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; conditional advantage, data lacks any effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {

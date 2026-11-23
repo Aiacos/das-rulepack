@@ -7729,11 +7729,24 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-q003",
+            "at": "2026-11-23T12:51:39.197Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Advantage when an able ally is within 5 ft of the target: situational advantage; data lacks it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -8452,10 +8465,24 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-q003",
+            "at": "2026-11-23T12:51:39.197Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "85512b063f5ab8cf7c1e1d798097859a3dac5ef266ff82c881699f827e8b8d13"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Aura giving allies advantage on attacks and saves unless the bearer is Incapacitated; data has only a utility template.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -10377,10 +10404,34 @@
           "at": "2026-11-21T19:58:28.835Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-q003",
+            "at": "2026-11-23T12:51:39.197Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.291.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isHit"
+                },
+                "expect": {
+                  "acBonus": 2
+                }
+              }
+            ],
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction adding 2 AC to self or ally against a triggering hit; data lacks the AC bonus effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -11693,10 +11744,24 @@
           "at": "2026-11-21T19:58:29.145Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-q003",
+            "at": "2026-11-23T12:51:39.197Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
       "why": "Extra force damage only when the attack had advantage; data splits it into a separate damage activity with no condition.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -13028,11 +13093,24 @@
           "at": "2026-11-21T19:58:29.145Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-q003",
+            "at": "2026-11-23T12:51:39.197Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data empty. Generic Core entry applies.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {

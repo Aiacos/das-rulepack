@@ -120348,10 +120348,25 @@
           "at": "2026-11-21T19:58:39.601Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-q004",
+            "at": "2026-11-23T12:51:40.013Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key",
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Conditional on target type and not already cursed; delayed long-term curse with tadpole; data gives only a save and generic effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
