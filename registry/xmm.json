@@ -144734,7 +144734,7 @@
       "edition": "2024",
       "owner": "Vampire Spawn",
       "section": "action",
-      "identifier": "bite",
+      "identifier": "xmm-vampire-spawn-bite",
       "page": 315,
       "srd": true,
       "text": {
@@ -144754,7 +144754,8 @@
           "effects": [],
           "data": {
             "sha256": "e9ce3e1da4e875afb63c5b85a3ebec0fcd1ce79f465ed80c2e226b2480572ba5"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -144772,7 +144773,8 @@
           },
           "differences": [
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -144809,9 +144811,90 @@
               "outcome": "second-unsure"
             }
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:23:35.274Z",
+          "core": "0.291.0",
+          "rule": "76ffaaa423092d3b5c46460f1975018fd5bc4c25e973876f3a716d52f984a1f3",
+          "item": "e9ce3e1da4e875afb63c5b85a3ebec0fcd1ce79f465ed80c2e226b2480572ba5",
+          "delta": [
+            "targets"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "bite",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:23:35.274Z",
+          "core": "0.291.0",
+          "rule": "76ffaaa423092d3b5c46460f1975018fd5bc4c25e973876f3a716d52f984a1f3",
+          "emits": "ac7dae962bd6dab4c96a3218316e8b94ef9165075144f64eae0b3ae1be0e9113",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "e9ce3e1da4e875afb63c5b85a3ebec0fcd1ce79f465ed80c2e226b2480572ba5"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T07:27:22.331Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-vampire-spawn-action-bite",
+          "client": "gm",
+          "rule": "76ffaaa423092d3b5c46460f1975018fd5bc4c25e973876f3a716d52f984a1f3"
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmVampireSpawn00.mmBite0000000000": "xmm-vampire-spawn-bite"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature that is not Grappled, Incapacitated or Restrained is left unaffected by the bite: no save, no damage, no drain.",
+        "entry": {
+          "targets": {
+            "unaffectedIf": {
+              "not": {
+                "any": [
+                  {
+                    "target.hasStatus": "grappled"
+                  },
+                  {
+                    "target.hasStatus": "incapacitated"
+                  },
+                  {
+                    "target.hasStatus": "restrained"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:23:29.113Z",
+          "leavesNote": "A willing creature with none of those conditions is left unaffected too: the GM applies the bite by hand in that case. The drain itself is the engine's."
+        },
+        "origin": "Vampire Spawn"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:vampire-spawn/action/claw",

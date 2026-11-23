@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-vampire-spawn-action-bite",
+  "key": "xmm:monster:vampire-spawn/action/bite",
+  "rule": "76ffaaa423092d3b5c46460f1975018fd5bc4c25e973876f3a716d52f984a1f3",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A creature with none of the three conditions is left unaffected; a Restrained one that fails the save takes the damage."
+}
