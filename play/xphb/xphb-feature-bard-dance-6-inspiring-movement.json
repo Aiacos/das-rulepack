@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-bard-dance-6-inspiring-movement",
+  "key": "xphb:feature:bard/dance/6/inspiring-movement",
+  "rule": "20fc07e345350aa6264c00b7809d612b8a7f16dccb2e2271b03bd69bb50043d8",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A foe that ends its turn far from the bearer opens no reaction window; one that ends it beside the bearer opens the bearer's. The window is declined: the moves are not played."
+}

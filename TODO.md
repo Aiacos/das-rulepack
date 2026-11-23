@@ -432,3 +432,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Shadow Dragon Living Shadow, its Resistance only in dim light or darkness (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Treant Animate Trees, the tree acts after the treant and ends with it (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Octopus Ink Cloud, the reaction is offered when an adjacent foe ends its turn (XMM)
+- [x] Engineered rule proven by a recorded play on the released engine: Inspiring Movement, the reaction is offered when an adjacent foe ends its turn (XPHB)

@@ -93,6 +93,37 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "inspiring-movement",
+    "name": "Inspiring Movement",
+    "page": 64,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Dance 6",
+    "adds": "The bard is offered this reaction as soon as a visible adjacent foe finishes a turn.",
+    "entry": {
+      "triggers": [
+        {
+          "on": "enemyTurnEnd",
+          "if": {
+            "source.nearSelf": {
+              "distance": 5,
+              "units": "ft"
+            },
+            "self.seesSource": true
+          },
+          "do": [
+            {
+              "type": "use",
+              "activity": "dnd5eactivity000"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
     "identifier": "radiance-of-the-dawn",
     "name": "Radiance of the Dawn",
     "page": 74,
