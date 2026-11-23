@@ -76,6 +76,23 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "mapping-magic",
+    "name": "Mapping Magic",
+    "page": 21,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Cartographer 3",
+    "adds": "The jump takes its bearer to a free space up to 10 feet away, and no farther.",
+    "entry": {
+      "teleport": {
+        "distance": 10,
+        "units": "ft"
+      }
+    }
+  },
+
+  {
     "identifier": "guided-precision",
     "name": "Guided Precision",
     "page": 21,

@@ -914,6 +914,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T10:42:52.996Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feat-greater-aberrant-mark",
+          "client": "gm",
+          "rule": "57cb72a79ec3f92a8b2ca860ef871e87f3c7c53b79de622cb4f8577601b75417"
+        },
         "gates": {
           "at": "2026-11-23T10:39:10.979Z",
           "core": "0.291.0",
@@ -930,14 +938,6 @@
           "items": {
             "official": "0e9740c2503b4967faa2bcd6b90ef5076c815958017c0f7df551d947a92f414f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T10:42:52.996Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-feat-greater-aberrant-mark",
-          "client": "gm",
-          "rule": "57cb72a79ec3f92a8b2ca860ef871e87f3c7c53b79de622cb4f8577601b75417"
         }
       },
       "why": "Triggers on cantrip cast, rolls hit dice for temp HP plus force damage to a chosen creature; data only has damage shells and a die scale.",
@@ -5601,11 +5601,55 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T10:46:01.591Z",
+          "core": "0.291.0",
+          "rule": "08ef24971768c3108cd9a21407b1cbcb2689f3226586e7e24e9b4c1ea6722357",
+          "emits": "b8954feb4ddcc0f144789b441f587f87c324063d7eb35e49fd9273343820ceb5",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "5a786ca5e064a1a65127ec4138ab5174f41151fba008e9c7a7e714ce7261b2a6"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T10:49:23.632Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-cartographer-3-mapping-magic",
+          "client": "gm",
+          "rule": "08ef24971768c3108cd9a21407b1cbcb2689f3226586e7e24e9b4c1ea6722357"
         }
       },
       "why": "Free spell casts with uses, and movement-cost teleport with conditions on destination. Data has a single special stub.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The jump takes its bearer to a free space up to 10 feet away, and no farther.",
+        "entry": {
+          "teleport": {
+            "distance": 10,
+            "units": "ft"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T10:45:55.768Z",
+          "leavesNote": "The movement the jump costs, the arrival beside a map holder, the ban at Speed 0 and the free castings of the feature stay with the player and the GM."
+        },
+        "origin": "Cartographer 3"
+      },
+      "state": "played"
     },
     {
       "key": "efa:feature:artificer/cartographer/3/tools-of-the-trade",
