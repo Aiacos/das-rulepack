@@ -254,6 +254,56 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "glorious-defense",
+    "name": "Glorious Defense",
+    "page": 115,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Glory 15",
+    "adds": "The paladin is offered this reaction on a hit against itself or a seen creature within 10 feet; the attack loses its Charisma modifier.",
+    "entry": {
+      "triggers": [
+        {
+          "on": "isHit",
+          "do": [
+            {
+              "type": "use",
+              "activity": "PN4GTZbhMC6Qn20K"
+            },
+            {
+              "type": "penalty",
+              "formula": "max(1, @abilities.cha.mod)"
+            }
+          ]
+        },
+        {
+          "on": "allyIsHit",
+          "if": {
+            "target.nearSelf": {
+              "distance": 10,
+              "units": "ft"
+            },
+            "target.isSelf": false,
+            "self.seesTarget": true
+          },
+          "do": [
+            {
+              "type": "use",
+              "activity": "PN4GTZbhMC6Qn20K",
+              "target": "target"
+            },
+            {
+              "type": "penalty",
+              "formula": "max(1, @abilities.cha.mod)"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
     "identifier": "relentless-avenger",
     "name": "Relentless Avenger",
     "page": 117,

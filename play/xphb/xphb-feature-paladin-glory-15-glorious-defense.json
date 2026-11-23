@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-paladin-glory-15-glorious-defense",
+  "key": "xphb:feature:paladin/glory/15/glorious-defense",
+  "rule": "cee8d5cadf2e8701bd6014a4b730d5c50ab43adcef3e0f38dc7ce9225eb7f1ba",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "A temporary bearer is offered the feature when it or an ally within 10 feet is hit; taken, it lowers the attack roll (the engine's own line) and spends a use. The attack after a miss is not played."
+}

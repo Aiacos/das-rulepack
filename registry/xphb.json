@@ -22388,11 +22388,88 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T16:27:03.463Z",
+          "core": "0.291.0",
+          "rule": "cee8d5cadf2e8701bd6014a4b730d5c50ab43adcef3e0f38dc7ce9225eb7f1ba",
+          "emits": "11d3809fa902c7aaf72099f42ef09f0661e95b09e31c786e1bd4263c95bd7b34",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "51ee1d1f7c70dbaab5ea80d88bbdc8f605ae9295d953cd270c2d180b54bd32cb"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T16:54:27.908Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-paladin-glory-15-glorious-defense",
+          "client": "gm",
+          "rule": "cee8d5cadf2e8701bd6014a4b730d5c50ab43adcef3e0f38dc7ce9225eb7f1ba"
         }
       },
       "why": "Reaction to an incoming hit adding an AC bonus that can turn it into a miss, then a conditional counterattack; data only has a bare reaction utility.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The paladin is offered this reaction on a hit against itself or a seen creature within 10 feet; the attack loses its Charisma modifier.",
+        "entry": {
+          "triggers": [
+            {
+              "on": "isHit",
+              "do": [
+                {
+                  "type": "use",
+                  "activity": "PN4GTZbhMC6Qn20K"
+                },
+                {
+                  "type": "penalty",
+                  "formula": "max(1, @abilities.cha.mod)"
+                }
+              ]
+            },
+            {
+              "on": "allyIsHit",
+              "if": {
+                "target.nearSelf": {
+                  "distance": 10,
+                  "units": "ft"
+                },
+                "target.isSelf": false,
+                "self.seesTarget": true
+              },
+              "do": [
+                {
+                  "type": "use",
+                  "activity": "PN4GTZbhMC6Qn20K",
+                  "target": "target"
+                },
+                {
+                  "type": "penalty",
+                  "formula": "max(1, @abilities.cha.mod)"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T16:26:56.835Z",
+          "leavesNote": "The weapon attack on the attacker after a resulting miss is left to the player."
+        },
+        "origin": "Glory 15"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:paladin/glory/20/living-legend",
@@ -32875,6 +32952,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T16:23:49.810Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-warlock-great-old-one-10-thought-shield",
+          "client": "gm",
+          "rule": "6627a0e6ff52436f83d62d8b48e5d30d362bb258dbca1dc52867b27bd35318da"
+        },
         "gates": {
           "at": "2026-11-23T16:16:38.812Z",
           "core": "0.291.0",
@@ -32891,14 +32976,6 @@
           "items": {
             "official": "33db3c08dc66efcdb62df642bc4412afc8a3252c72835dc7b01872394cc4556c"
           }
-        },
-        "played": {
-          "at": "2026-11-23T16:23:49.810Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-warlock-great-old-one-10-thought-shield",
-          "client": "gm",
-          "rule": "6627a0e6ff52436f83d62d8b48e5d30d362bb258dbca1dc52867b27bd35318da"
         }
       },
       "why": "resistance is in data, but reflecting equal psychic damage back onto the attacker is a reaction to a trigger",
