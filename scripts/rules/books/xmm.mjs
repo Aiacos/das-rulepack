@@ -1167,6 +1167,30 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-magmin-ignited-illumination",
+    "name": "Ignited Illumination",
+    "page": 200,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Magmin",
+    "adds": "Used, the feature sets the creature ablaze: bright light for 10 feet and dim light for 10 more; used again, it puts the light out.",
+    "entry": {
+      "carriedLight": {
+        "bright": 10,
+        "dim": 20,
+        "units": "ft"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-mimic-pseudopod",
     "name": "Pseudopod",
     "page": 212,

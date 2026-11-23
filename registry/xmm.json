@@ -6121,6 +6121,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:49:18.839Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-gold-dragon-legendary-banish",
+          "client": "gm",
+          "rule": "1a49ce762aef0e72cbb9a04542e43ce9cf3617b0c7771f378aa4e914a84d5f18"
+        },
         "reading": {
           "at": "2026-11-23T09:42:49.046Z",
           "core": "0.291.0",
@@ -6152,14 +6160,6 @@
           "items": {
             "official": "22dce41d643be5aac401ccfc6391e66f72b32e248e6dec3746229dd3cf2cd666"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:49:18.839Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-adult-gold-dragon-legendary-banish",
-          "client": "gm",
-          "rule": "1a49ce762aef0e72cbb9a04542e43ce9cf3617b0c7771f378aa4e914a84d5f18"
         }
       },
       "why": "Incapacitated and removed from play until the dragon next turn, then placed in a chosen space; needs an end event and relocation",
@@ -13666,6 +13666,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:49:18.839Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-gold-dragon-legendary-banish",
+          "client": "gm",
+          "rule": "181ae2104a28fe60ed7346d3cfee475db6f113cefc4ab573412794c9d81a49d2"
+        },
         "reading": {
           "at": "2026-11-23T09:42:49.059Z",
           "core": "0.291.0",
@@ -13697,14 +13705,6 @@
           "items": {
             "official": "762ed588ed44c9a0c1f570965ed29be4c24de327e6950960cd0d6791f0e823d5"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:49:18.839Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-ancient-gold-dragon-legendary-banish",
-          "client": "gm",
-          "rule": "181ae2104a28fe60ed7346d3cfee475db6f113cefc4ab573412794c9d81a49d2"
         }
       },
       "why": "Banish: incapacitated and removal to a demiplane until the next turn start, return by DM choice; data has only the condition",
@@ -96442,7 +96442,7 @@
       "edition": "2024",
       "owner": "Magmin",
       "section": "bonus",
-      "identifier": "ignited-illumination",
+      "identifier": "xmm-magmin-ignited-illumination",
       "page": 200,
       "srd": true,
       "text": {
@@ -96475,7 +96475,8 @@
           "effects": [],
           "data": {
             "sha256": "03a158e7b1080ce1059325ebc58d6a5bbcd885fa9db0b741822ee4d907400091"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -96508,11 +96509,80 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:54:55.564Z",
+          "core": "0.291.0",
+          "rule": "6f23f73d2b95fedd20b40f7445f40a924ef474afed896b207635fee5e8ddeb35",
+          "item": "9ffa8950a734964e2e16678b176eeb0d76074d36c6071c9be704eb7adb09fbc4",
+          "delta": [
+            "carriedLight"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "ignited-illumination",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:54:55.564Z",
+          "core": "0.291.0",
+          "rule": "6f23f73d2b95fedd20b40f7445f40a924ef474afed896b207635fee5e8ddeb35",
+          "emits": "aa53db159dd468a7709df596ef51d68c0a825057f0c936e8f3a3e6c5f9da3212",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "9ffa8950a734964e2e16678b176eeb0d76074d36c6071c9be704eb7adb09fbc4"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:58:20.099Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-magmin-bonus-ignited-illumination",
+          "client": "gm",
+          "rule": "6f23f73d2b95fedd20b40f7445f40a924ef474afed896b207635fee5e8ddeb35"
         }
       },
       "why": "Toggle of its own light emission; data lacks the light or its on/off state.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmIgnitedIllumin": "xmm-magmin-ignited-illumination"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Used, the feature sets the creature ablaze: bright light for 10 feet and dim light for 10 more; used again, it puts the light out.",
+        "entry": {
+          "carriedLight": {
+            "bright": 10,
+            "dim": 20,
+            "units": "ft"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:54:49.405Z",
+          "leavesNote": "The engine treats the light as a carried one: nothing else of the creature is changed."
+        },
+        "origin": "Magmin"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:magmin/trait/death-burst",
