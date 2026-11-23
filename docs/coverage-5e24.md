@@ -19,17 +19,17 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | Joined to an item of the official module | 4,372 |
 | Ambiguous against the official module (wait for `npm run resolve`) | 137 |
 | No item in the official module | 383 |
-| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 1,032 |
+| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 1,051 |
 | Verdict `none` (nothing to automate in combat) | 1,367 |
-| Verdict `data` (the item's own data is enough) | 1,357 |
-| Verdict `entry` (a declarative rule is needed and not written yet) | 955 |
+| Verdict `data` (the item's own data is enough) | 1,359 |
+| Verdict `entry` (a declarative rule is needed and not written yet) | 934 |
 | Verdict `code` (a script is needed) | 0 |
 | Verdict `engine` (needs something the engine lacks) | 0 |
 | Verdict `unverifiable` (no text) | 118 |
 | No verdict, in `registry/queue.json`, waiting for a person | 48 |
 | No verdict, left for reader agents | 15 |
 
-Who set the verdicts: reader agents 3,406, rule 1,328, SRD reading of November 2026 95. A reader agent's verdict is one reading of
+Who set the verdicts: reader agents 3,385, rule 1,349, SRD reading of November 2026 95. A reader agent's verdict is one reading of
 the text against the structure of the item's data; it was not checked by a second reader and not played. Verdicts below 0.7
 of confidence, and every `engine` verdict, were not applied: they are in the queue.
 
@@ -49,7 +49,7 @@ the name ("+1", a quantity): 29.
 | spell | 391 | 391 / 0 / 0 | 390 / 1 / 0 | 278 | 65 | 38 | 8 | 0 | 0 | 0 | 2 | 0 |
 | feat | 77 | 77 / 0 / 0 | 0 / 2 / 75 | 47 | 20 | 9 | 1 | 0 | 0 | 0 | 0 | 0 |
 | option | 58 | 58 / 0 / 0 | 0 / 0 / 58 | 39 | 3 | 14 | 2 | 0 | 0 | 0 | 0 | 0 |
-| feature | 592 | 436 / 59 / 97 | 0 / 0 / 592 | 190 | 259 | 51 | 88 | 0 | 0 | 0 | 4 | 0 |
+| feature | 592 | 436 / 59 / 97 | 0 / 0 / 592 | 191 | 259 | 53 | 85 | 0 | 0 | 0 | 4 | 0 |
 | species | 48 | 40 / 0 / 8 | 0 / 0 / 48 | 10 | 19 | 8 | 1 | 0 | 0 | 0 | 0 | 10 |
 | background | 16 | 16 / 0 / 0 | 0 / 0 / 16 | 0 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 217 | 159 / 16 / 42 | 188 / 8 / 21 | 19 | 115 | 0 | 4 | 0 | 0 | 79 | 0 | 0 |
@@ -61,7 +61,7 @@ Records in `registry/xphb.json`: 1461 inventoried.
 
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| item | 593 | 390 / 25 / 178 | 462 / 30 / 101 | 157 | 208 | 115 | 64 | 0 | 0 | 36 | 13 | 0 |
+| item | 593 | 390 / 25 / 178 | 462 / 30 / 101 | 167 | 208 | 115 | 54 | 0 | 0 | 36 | 13 | 0 |
 | monster | 3 | 3 / 0 / 0 | 0 / 2 / 1 | 0 | 0 | 1 | 2 | 0 | 0 | 0 | 0 | 0 |
 
 Records in `registry/xdmg.json`: 596 inventoried.
@@ -71,7 +71,7 @@ Records in `registry/xdmg.json`: 596 inventoried.
 | Kind | Entries | Official: matched / ambiguous / absent | DDB: matched / ambiguous / absent | `core` | `none` | `data` | `entry` | `code` | `engine` | no text | Queued | Left |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | item | 1 | 0 / 0 / 1 | 0 / 0 / 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
-| monster | 2146 | 2114 / 28 / 4 | 1626 / 288 / 232 | 273 | 475 | 913 | 466 | 0 | 0 | 0 | 19 | 0 |
+| monster | 2146 | 2114 / 28 / 4 | 1626 / 288 / 232 | 281 | 475 | 913 | 458 | 0 | 0 | 0 | 19 | 0 |
 
 Records in `registry/xmm.json`: 2147 inventoried.
 

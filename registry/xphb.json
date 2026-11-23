@@ -9718,17 +9718,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-v001",
-            "at": "2026-11-23T05:30:04.247Z",
+            "by": "reread-w003",
+            "at": "2026-11-23T08:41:41.178Z",
             "confidence": 0.75,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
             "covered": false,
             "unexpressed": [
-              "no-key",
-              "use-limit"
+              "use-time-choice"
             ]
           }
         }
@@ -9779,17 +9778,37 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-005",
-          "at": "2026-11-21T19:50:45.954Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T08:41:41.178Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Wisdom modifier added to damage of cantrips only; a conditional damage bonus the data lacks.",
+            "triaged": {
+              "by": "reader-xphb-005",
+              "at": "2026-11-21T19:50:45.954Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-w003",
+            "at": "2026-11-23T08:41:41.178Z",
+            "confidence": 0.72,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "provisional": true
+          }
         }
       },
-      "why": "Wisdom modifier added to damage of cantrips only; a conditional damage bonus the data lacks.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -12057,17 +12076,37 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-005",
-          "at": "2026-11-21T19:50:45.954Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T08:41:41.178Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Wisdom modifier added to damage of cantrips only; a conditional damage bonus the data lacks.",
+            "triaged": {
+              "by": "reader-xphb-005",
+              "at": "2026-11-21T19:50:45.954Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-w003",
+            "at": "2026-11-23T08:41:41.178Z",
+            "confidence": 0.72,
+            "view": {
+              "core": "0.291.0",
+              "sha": "6114552cdae051b9914fd62d9f39cd267f0a3b2f60bf6352e1950597b9ed6d05"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "provisional": true
+          }
         }
       },
-      "why": "Wisdom modifier added to damage of cantrips only; a conditional damage bonus the data lacks.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -12120,17 +12159,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-v001",
-            "at": "2026-11-23T05:30:04.247Z",
-            "confidence": 0.75,
+            "by": "reread-w003",
+            "at": "2026-11-23T08:41:41.178Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
             "covered": false,
             "unexpressed": [
-              "no-key",
-              "use-limit"
+              "use-time-choice"
             ]
           }
         }
@@ -16722,16 +16760,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-v001",
-            "at": "2026-11-23T05:30:04.247Z",
-            "confidence": 0.7,
+            "by": "reread-w003",
+            "at": "2026-11-23T08:41:41.178Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "7de784851ceb08fb3a2c7ece503d546436efabed9791c5d158619869f3a89682"
             },
             "covered": false,
             "unexpressed": [
-              "trigger-filter"
+              "no-key"
             ]
           }
         }
@@ -16888,10 +16926,25 @@
           "at": "2026-11-21T19:50:46.560Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-w003",
+            "at": "2026-11-23T08:41:41.178Z",
+            "confidence": 0.72,
+            "view": {
+              "core": "0.291.0",
+              "sha": "7de784851ceb08fb3a2c7ece503d546436efabed9791c5d158619869f3a89682"
+            },
+            "covered": false,
+            "unexpressed": [
+              "trigger-filter",
+              "use-limit"
+            ]
+          }
         }
       },
       "why": "Once per turn rider after a weapon hit spending a die for force damage; no item data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -25984,17 +26037,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-010",
-          "at": "2026-11-21T19:50:47.466Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T08:41:41.178Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Cunning Strike option: Dexterity save or blinded until end of its next turn; no item data, needs a rule for the choice and duration.",
+            "triaged": {
+              "by": "reader-xphb-010",
+              "at": "2026-11-21T19:50:47.466Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-w003",
+            "at": "2026-11-23T08:41:41.178Z",
+            "confidence": 0.72,
+            "view": {
+              "core": "0.291.0",
+              "sha": "e4344128a9a2a456bd7e6d311372c1f46990bfd61414a05e887e5dc392e37ea4"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/sneak.mjs",
+            "provisional": true
+          }
         }
       },
-      "why": "Cunning Strike option: Dexterity save or blinded until end of its next turn; no item data, needs a rule for the choice and duration.",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {

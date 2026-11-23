@@ -11316,15 +11316,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-v003",
-            "at": "2026-11-23T05:30:05.918Z",
-            "confidence": 0.75,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
             "covered": false,
             "unexpressed": [
+              "death-trigger",
               "no-key"
             ]
           }
@@ -29482,41 +29483,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29568,41 +29566,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29654,41 +29649,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29740,41 +29732,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29826,41 +29815,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29912,41 +29898,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29998,41 +29981,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -30084,41 +30064,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -30170,41 +30147,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -30256,41 +30230,38 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xdmg-004",
-          "at": "2026-11-21T19:58:26.749Z",
-          "confidence": 0.72,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T08:41:42.619Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
+            "triaged": {
+              "by": "reader-xdmg-004",
+              "at": "2026-11-21T19:58:26.749Z",
+              "confidence": 0.72,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-v004",
-            "at": "2026-11-23T05:30:06.732Z",
-            "confidence": 0.8,
+            "by": "reread-w005",
+            "at": "2026-11-23T08:41:42.619Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
+              "core": "0.291.0",
               "sha": "4bfdb123dfb439cccd0eb9837aba9f205719034d6287f2248741f5501c5fdce4"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {},
-                "expect": {
-                  "uses": {
-                    "spent": 1
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "no-key"
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "mechanism": "runtime/gates.mjs",
+            "provisional": true
           }
         }
       },
-      "why": "No item activity; data lacks casting the scroll spell with a fixed DC and attack bonus and the check for high-level spells.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {

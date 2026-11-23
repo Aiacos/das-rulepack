@@ -196,76 +196,6 @@
     "confidence": 0.8
   },
   {
-    "key": "xdmg:item:spell-scroll-cantrip",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-1",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-2",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-3",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-4",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-5",
-    "reason": "person",
-    "by": "drafter-y003",
-    "why": "generic scroll with no activity to bind; the spell it holds, its fixed save DC and attack bonus and the level check need a person",
-    "confidence": 0.8
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-6",
-    "reason": "person",
-    "by": "drafter-y004",
-    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
-    "confidence": 0.85
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-7",
-    "reason": "person",
-    "by": "drafter-y004",
-    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
-    "confidence": 0.85
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-8",
-    "reason": "person",
-    "by": "drafter-y004",
-    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
-    "confidence": 0.85
-  },
-  {
-    "key": "xdmg:item:spell-scroll-level-9",
-    "reason": "person",
-    "by": "drafter-y004",
-    "why": "casting the scroll's spell needs a cast activity the items lack; no drafter key or allowed fix adds one, and the official match is ambiguous",
-    "confidence": 0.85
-  },
-  {
     "key": "xdmg:item:sphere-of-annihilation",
     "reason": "person",
     "by": "drafter-y002",
@@ -589,22 +519,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:death-knight-aspirant/trait/marshal-undead",
-    "reason": "person",
-    "by": "drafter-v002",
-    "why": "aura giving chosen undead allies advantage on attacks and saves, off while incapacitated: no drafter key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:death-knight/legendary/dread-authority",
-    "reason": "person",
-    "by": "drafter-v002",
-    "why": "data already casts the spell; the lockout until the user's next turn starts has no usage-limit word",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:death-knight/legendary/fell-word",
     "reason": "person",
     "by": "drafter-q001",
@@ -621,35 +535,11 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:death-knight/trait/legendary-resistance",
-    "reason": "code",
-    "by": "drafter-v002",
-    "why": "a chosen switch of a failed save to a success, spending a resource: needs a prompt at save time",
-    "confidence": 0.75,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:death-knight/trait/marshal-undead",
-    "reason": "person",
-    "by": "drafter-v002",
-    "why": "aura giving chosen undead allies advantage on attacks and saves, off while incapacitated: no drafter key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:death-tyrant/bonus/negative-energy-cone",
     "reason": "person",
     "by": "drafter-v002",
     "why": "cone that blocks healing and raises corpses as zombies: no drafter key for either",
     "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:death-tyrant/trait/legendary-resistance",
-    "reason": "code",
-    "by": "drafter-v002",
-    "why": "a chosen switch of a failed save to a success, spending a resource: needs a prompt at save time",
-    "confidence": 0.75,
     "reoffered": true
   },
   {
@@ -661,34 +551,10 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:demilich/trait/legendary-resistance",
-    "reason": "code",
-    "by": "drafter-v003",
-    "why": "turning a failed save into a success is a choice made when the save fails: a prompt",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:dracolich/legendary/pounce",
     "reason": "person",
     "by": "drafter-v003",
     "why": "a half-speed move then another attack of the creature: no key chains them",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:dracolich/legendary/sickening-ray",
-    "reason": "person",
-    "by": "drafter-v003",
-    "why": "the only addition is a lockout until the next turn starts, which no key says; the cast is data",
-    "confidence": 0.75,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:dracolich/trait/legendary-resistance",
-    "reason": "code",
-    "by": "drafter-v003",
-    "why": "turning a failed save into a success is a choice made when the save fails: a prompt",
     "confidence": 0.8,
     "reoffered": true
   },
