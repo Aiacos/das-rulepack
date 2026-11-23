@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-warlock-great-old-one-10-thought-shield",
+  "key": "xphb:feature:warlock/great-old-one/10/thought-shield",
+  "rule": "6627a0e6ff52436f83d62d8b48e5d30d362bb258dbca1dc52867b27bd35318da",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "A temporary bearer has Resistance to Psychic damage; a cantrip's Psychic damage is halved on it and the creature that cast it takes the same amount. Damage of mixed types is not exercised."
+}

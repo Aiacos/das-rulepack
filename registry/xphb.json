@@ -7896,6 +7896,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T15:04:51.899Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-bard-dance-6-inspiring-movement",
+          "client": "gm",
+          "rule": "20fc07e345350aa6264c00b7809d612b8a7f16dccb2e2271b03bd69bb50043d8"
+        },
         "gates": {
           "at": "2026-11-23T15:00:55.715Z",
           "core": "0.291.0",
@@ -7912,14 +7920,6 @@
           "items": {
             "official": "db162b44ea396498c48a4ec8d2968ebf19e0f96285e783f8561f0a43697ab503"
           }
-        },
-        "played": {
-          "at": "2026-11-23T15:04:51.899Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xphb/xphb-feature-bard-dance-6-inspiring-movement",
-          "client": "gm",
-          "rule": "20fc07e345350aa6264c00b7809d612b8a7f16dccb2e2271b03bd69bb50043d8"
         }
       },
       "why": "Reaction triggered by an enemy ending its turn nearby, spends inspiration, moves self and one ally without opportunity attacks; data has only a generic reaction activity.",
@@ -32874,11 +32874,70 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T16:16:38.812Z",
+          "core": "0.291.0",
+          "rule": "6627a0e6ff52436f83d62d8b48e5d30d362bb258dbca1dc52867b27bd35318da",
+          "emits": "68d71feaa21119dc3a18c8f89e0461e6044c00a8612e482cad8e7ef1a1ff16b6",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "33db3c08dc66efcdb62df642bc4412afc8a3252c72835dc7b01872394cc4556c"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T16:23:49.810Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-warlock-great-old-one-10-thought-shield",
+          "client": "gm",
+          "rule": "6627a0e6ff52436f83d62d8b48e5d30d362bb258dbca1dc52867b27bd35318da"
         }
       },
       "why": "resistance is in data, but reflecting equal psychic damage back onto the attacker is a reaction to a trigger",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The bearer resists Psychic damage, and whoever deals it some takes as much as the bearer took.",
+        "entry": {
+          "grantsResistances": [
+            "psychic"
+          ],
+          "triggers": [
+            {
+              "on": "isDamaged",
+              "via": "effect",
+              "if": {
+                "damage.hasType": "psychic"
+              },
+              "do": [
+                {
+                  "type": "damage",
+                  "to": "source",
+                  "same": "resisted"
+                }
+              ]
+            }
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T16:16:15.499Z",
+          "leavesNote": "Shielding thoughts from telepathy is left to the GM."
+        },
+        "origin": "Great Old One 10"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:warlock/great-old-one/14/create-thrall",

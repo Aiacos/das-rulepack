@@ -17,7 +17,7 @@ what an entry needs, not that it is done, and only the last column counts rules 
 | Verdict `unverifiable` (no text) | 272 |
 | Waiting for a person in `registry/queue.json` | 119 |
 | No verdict yet | 9,619 |
-| Rules the module registers | 216 |
+| Rules the module registers | 217 |
 
 Books published in or after 2024, and Tasha's and Xanathar's, were read entry by entry by reader agents
 (`docs/coverage-5e24.md` has the detail of the 2024-era ones). For the other older books only the entries that have an item
@@ -38,7 +38,7 @@ for spells and items only. How far one reading can be trusted: `docs/reader-agre
 | Netheril's Fall (`NF`) | 2025 | 43 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 43 | 0 |
 | Monster Manual (2025) (`XMM`) | 2025 | 2,147 | 2,114 | 1,626 | 280 | 475 | 913 | 460 | 0 | 19 | 0 | 160 |
 | Dungeon Master's Guide (2024) (`XDMG`) | 2024 | 596 | 393 | 462 | 167 | 208 | 116 | 56 | 36 | 13 | 0 | 4 |
-| Player's Handbook (2024) (`XPHB`) | 2024 | 1,464 | 1,235 | 629 | 588 | 501 | 145 | 133 | 79 | 6 | 10 | 15 |
+| Player's Handbook (2024) (`XPHB`) | 2024 | 1,464 | 1,235 | 629 | 588 | 501 | 145 | 133 | 79 | 6 | 10 | 16 |
 
 ## Before 2024
 

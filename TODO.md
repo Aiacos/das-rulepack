@@ -434,3 +434,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Octopus Ink Cloud, the reaction is offered when an adjacent foe ends its turn (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Inspiring Movement, the reaction is offered when an adjacent foe ends its turn (XPHB)
 - [x] Engineered rule proven by a recorded play on the released engine: Sword of Answering, the reaction attack is offered with Advantage (XDMG)
+- [x] Engineered rule proven by a recorded play on the released engine: Thought Shield, Psychic Resistance and the same damage returned (XPHB)

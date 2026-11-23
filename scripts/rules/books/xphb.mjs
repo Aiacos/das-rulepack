@@ -270,6 +270,38 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "thought-shield",
+    "name": "Thought Shield",
+    "page": 163,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Great Old One 10",
+    "adds": "The bearer resists Psychic damage, and whoever deals it some takes as much as the bearer took.",
+    "entry": {
+      "grantsResistances": [
+        "psychic"
+      ],
+      "triggers": [
+        {
+          "on": "isDamaged",
+          "via": "effect",
+          "if": {
+            "damage.hasType": "psychic"
+          },
+          "do": [
+            {
+              "type": "damage",
+              "to": "source",
+              "same": "resisted"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
     "identifier": "zone-of-truth",
     "name": "Zone of Truth",
     "page": 343,
