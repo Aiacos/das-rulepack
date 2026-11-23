@@ -343,16 +343,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Bonus damage only when the creature moved straight at the target first; a conditional rider the second activity cannot trigger on its own",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-002",
           "at": "2026-11-21T19:58:33.563Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Bonus damage only when the creature moved straight at the target first; a conditional rider the second activity cannot trigger on its own",
       "state": "triaged"
     },
     {
@@ -596,52 +617,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple with escape DC, size limit and one of two tentacles, plus restrained until grapple ends; needs a rule tying restrained to the grapple",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
               },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
-                  }
-                }
-              }
-            ]
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple with escape DC, size limit and one of two tentacles, plus restrained until grapple ends; needs a rule tying restrained to the grapple",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -1151,41 +1167,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-002",
-          "at": "2026-11-21T19:58:33.563Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple on hit limited to Large or smaller with escape DC and a limited number of tentacles",
+            "triaged": {
+              "by": "reader-xmm-002",
+              "at": "2026-11-21T19:58:33.563Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x001",
-            "at": "2026-11-23T04:08:37.393Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple on hit limited to Large or smaller with escape DC and a limited number of tentacles",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -17599,41 +17621,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-004",
-          "at": "2026-11-21T19:58:34.201Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only against targets of a size limit; data applies the prone effect without the size condition",
+            "triaged": {
+              "by": "reader-xmm-004",
+              "at": "2026-11-21T19:58:34.201Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x002",
-            "at": "2026-11-23T04:08:38.262Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "huge"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only against targets of a size limit; data applies the prone effect without the size condition",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -18644,41 +18672,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-005",
-          "at": "2026-11-21T19:58:34.523Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone applies only to Large or smaller targets; a size limit the data cannot express.",
+            "triaged": {
+              "by": "reader-xmm-005",
+              "at": "2026-11-21T19:58:34.523Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone applies only to Large or smaller targets; a size limit the data cannot express.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -23952,26 +23986,15 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
             "covered": false,
             "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              },
               {
                 "given": {
                   "roll": "hit"
@@ -24519,41 +24542,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-006",
-          "at": "2026-11-21T19:58:34.837Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone rider only against Large or smaller targets; data has the Prone effect but no size limit.",
+            "triaged": {
+              "by": "reader-xmm-006",
+              "at": "2026-11-21T19:58:34.837Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone rider only against Large or smaller targets; data has the Prone effect but no size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -25557,52 +25586,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-006",
-          "at": "2026-11-21T19:58:34.837Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Save-based grapple and restrain tied to the grapple ending, size limit and escape DC; data lacks the linkage.",
+            "triaged": {
+              "by": "reader-xmm-006",
+              "at": "2026-11-21T19:58:34.837Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x003",
-            "at": "2026-11-23T04:08:39.156Z",
-            "confidence": 0.7,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "failedSave",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
               },
-              {
-                "given": {
-                  "roll": "failedSave",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
-                  }
-                }
-              }
-            ]
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Save-based grapple and restrain tied to the grapple ending, size limit and escape DC; data lacks the linkage.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -29686,29 +29710,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ],
             "unexpressed": [
-              "trigger-filter"
+              "no-key"
             ]
           }
         }
@@ -31698,41 +31709,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-007",
-          "at": "2026-11-21T19:58:35.155Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only when the target is Large or smaller; size limit not expressed in data.",
+            "triaged": {
+              "by": "reader-xmm-007",
+              "at": "2026-11-21T19:58:35.155Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only when the target is Large or smaller; size limit not expressed in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -32065,41 +32082,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-007",
-          "at": "2026-11-21T19:58:35.155Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple limited to Medium or smaller and a seen target within range; escape DC fixed; size restriction not in data.",
+            "triaged": {
+              "by": "reader-xmm-007",
+              "at": "2026-11-21T19:58:35.155Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
-            "confidence": 0.7,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "failedSave",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple limited to Medium or smaller and a seen target within range; escape DC fixed; size restriction not in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -32234,41 +32257,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-007",
-          "at": "2026-11-21T19:58:35.155Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple only on Medium or smaller targets with escape DC; size limit not in data.",
+            "triaged": {
+              "by": "reader-xmm-007",
+              "at": "2026-11-21T19:58:35.155Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple only on Medium or smaller targets with escape DC; size limit not in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -35111,6 +35140,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Grapple only on Large or smaller with escape DC, restrained until grapple ends; conditional rider tied to grapple.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-007",
@@ -35119,46 +35149,29 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "d1439ecc21749396c555ce79d02303d2106e54073be3693ac2d85dc2e533971e"
+              "sha": "fbf914dceae4fbe51ce78f0b86ba432b55d23fcaf242e79270ce9feb4d49009d"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "fbf914dceae4fbe51ce78f0b86ba432b55d23fcaf242e79270ce9feb4d49009d"
               },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
-                  }
-                }
-              }
-            ],
-            "unexpressed": [
-              "use-limit"
-            ]
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Grapple only on Large or smaller with escape DC, restrained until grapple ends; conditional rider tied to grapple.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -36479,41 +36492,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-008",
-          "at": "2026-11-21T19:58:35.465Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
+            "triaged": {
+              "by": "reader-xmm-008",
+              "at": "2026-11-21T19:58:35.465Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x004",
-            "at": "2026-11-23T04:08:40.085Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -36727,41 +36746,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-008",
-          "at": "2026-11-21T19:58:35.465Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple rider needs size limit, escape DC and a limit on grappled creatures; data has only a plain effect.",
+            "triaged": {
+              "by": "reader-xmm-008",
+              "at": "2026-11-21T19:58:35.465Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple rider needs size limit, escape DC and a limit on grappled creatures; data has only a plain effect.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -37579,30 +37604,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.85,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "blinded"
-                  }
-                }
-              }
-            ],
             "unexpressed": [
-              "target-state",
-              "no-key"
+              "no-key",
+              "use-limit"
             ]
           }
         }
@@ -38926,41 +38938,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-008",
-          "at": "2026-11-21T19:58:35.465Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
+            "triaged": {
+              "by": "reader-xmm-008",
+              "at": "2026-11-21T19:58:35.465Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -40139,6 +40157,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Grapple plus restrained only until grapple ends, size limit and escape DC; linked-effect ending missing.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-008",
@@ -40147,32 +40166,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "failedSave",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.6,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Grapple plus restrained only until grapple ends, size limit and escape DC; linked-effect ending missing.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -40590,6 +40605,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Grapple with size limit and restrained while grappled, escape DC; riders beyond a plain effect.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-008",
@@ -40598,32 +40614,29 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Grapple with size limit and restrained while grappled, escape DC; riders beyond a plain effect.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -41612,41 +41625,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-008",
-          "at": "2026-11-21T19:58:35.465Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
+            "triaged": {
+              "by": "reader-xmm-008",
+              "at": "2026-11-21T19:58:35.465Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "huge"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -41862,41 +41881,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-008",
-          "at": "2026-11-21T19:58:35.465Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
+            "triaged": {
+              "by": "reader-xmm-008",
+              "at": "2026-11-21T19:58:35.465Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.75,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone rider limited to targets of a size category; data applies the status without the size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -42373,17 +42398,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x005",
-            "at": "2026-11-23T04:08:40.967Z",
-            "confidence": 0.85,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
             "covered": false,
             "unexpressed": [
               "trigger-filter",
-              "target-state",
               "no-key"
             ]
           }
@@ -46713,6 +46737,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Prone only if target is Large or smaller; data applies prone with no size limit.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-009",
@@ -46721,32 +46746,29 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Prone only if target is Large or smaller; data applies prone with no size limit.",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -47382,41 +47404,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only if target is Large or smaller; data applies prone with no size limit.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only if target is Large or smaller; data applies prone with no size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -48002,41 +48030,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-009",
-          "at": "2026-11-21T19:58:35.775Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.154Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only if target is Large or smaller; data applies prone with no size limit.",
+            "triaged": {
+              "by": "reader-xmm-009",
+              "at": "2026-11-21T19:58:35.775Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
-            "confidence": 0.8,
+            "by": "reread-z001",
+            "at": "2026-11-23T04:28:08.154Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only if target is Large or smaller; data applies prone with no size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -49960,41 +49994,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-010",
-          "at": "2026-11-21T19:58:36.110Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone applies only to targets of limited size; data effect has no size condition.",
+            "triaged": {
+              "by": "reader-xmm-010",
+              "at": "2026-11-21T19:58:36.110Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "huge"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone applies only to targets of limited size; data effect has no size condition.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -51806,41 +51846,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-010",
-          "at": "2026-11-21T19:58:36.110Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only for targets up to a size limit; data effect has no size limit.",
+            "triaged": {
+              "by": "reader-xmm-010",
+              "at": "2026-11-21T19:58:36.110Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only for targets up to a size limit; data effect has no size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -54050,26 +54096,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x006",
-            "at": "2026-11-23T04:08:41.867Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "trigger-filter",
+              "target-size"
             ]
           }
         }
@@ -56187,41 +56224,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-011",
-          "at": "2026-11-21T19:58:36.428Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone rider limited to Large or smaller targets; a creature-size condition on the hit.",
+            "triaged": {
+              "by": "reader-xmm-011",
+              "at": "2026-11-21T19:58:36.428Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x007",
-            "at": "2026-11-23T04:08:42.775Z",
-            "confidence": 0.75,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone rider limited to Large or smaller targets; a creature-size condition on the hit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -63522,23 +63565,23 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.8,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
             "covered": false,
             "beyond": [
               {
                 "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
+                  "roll": "hit"
                 },
                 "expect": {
-                  "condition": {
-                    "applied": "prone"
+                  "damage": {
+                    "fraction": 1,
+                    "type": "piercing"
                   }
                 }
               }
@@ -63742,26 +63785,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.75,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "trigger-filter",
+              "target-size"
             ]
           }
         }
@@ -64219,23 +64253,23 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.8,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
             "covered": false,
             "beyond": [
               {
                 "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
+                  "roll": "hit"
                 },
                 "expect": {
-                  "condition": {
-                    "applied": "grappled"
+                  "damage": {
+                    "fraction": 1,
+                    "type": "bludgeoning"
                   }
                 }
               }
@@ -64367,38 +64401,14 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.8,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
-                  }
-                }
-              }
-            ],
             "unexpressed": [
               "target-state"
             ]
@@ -64522,41 +64532,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-012",
-          "at": "2026-11-21T19:58:36.756Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only for Large or smaller targets; data lacks the size limit.",
+            "triaged": {
+              "by": "reader-xmm-012",
+              "at": "2026-11-21T19:58:36.756Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.85,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only for Large or smaller targets; data lacks the size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -64802,26 +64818,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.75,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "1f899c451699402d6ea09d4989d8c662b509ff17630866f82b66861c9a27b6b6"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "huge"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "trigger-filter",
+              "target-size"
             ]
           }
         }
@@ -65008,41 +65015,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-012",
-          "at": "2026-11-21T19:58:36.756Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple on a hit with escape DC and size limit, possibly restraint; data lacks the riders.",
+            "triaged": {
+              "by": "reader-xmm-012",
+              "at": "2026-11-21T19:58:36.756Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Grapple on a hit with escape DC and size limit, possibly restraint; data lacks the riders.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -65321,26 +65334,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.75,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "trigger-filter",
+              "target-size"
             ]
           }
         }
@@ -65677,34 +65681,23 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
-            "confidence": 0.8,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
             "covered": false,
             "beyond": [
               {
                 "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
+                  "roll": "hit"
                 },
                 "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
+                  "damage": {
+                    "fraction": 1,
+                    "type": "bludgeoning"
                   }
                 }
               }
@@ -66193,17 +66186,38 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; stated circumstance.",
+      "hint": "core-generic",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-012",
           "at": "2026-11-21T19:58:36.756Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; stated circumstance.",
       "state": "triaged"
     },
     {
@@ -66260,41 +66274,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-013",
-          "at": "2026-11-21T19:58:37.068Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple limited by target size, escape DC and one of two claws; data only has a plain grappled effect.",
+            "triaged": {
+              "by": "reader-xmm-013",
+              "at": "2026-11-21T19:58:37.068Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple limited by target size, escape DC and one of two claws; data only has a plain grappled effect.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -67452,41 +67472,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-013",
-          "at": "2026-11-21T19:58:37.068Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple limited by target size with escape DC; data has only a plain grappled effect.",
+            "triaged": {
+              "by": "reader-xmm-013",
+              "at": "2026-11-21T19:58:37.068Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Grapple limited by target size with escape DC; data has only a plain grappled effect.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -67850,17 +67876,38 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks depending on an ally within 5 feet who is not incapacitated.",
+      "hint": "core-generic",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-013",
           "at": "2026-11-21T19:58:37.068Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w001",
+              "at": "2026-11-23T04:32:06.207Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks depending on an ally within 5 feet who is not incapacitated.",
       "state": "triaged"
     },
     {
@@ -70301,41 +70348,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-013",
-          "at": "2026-11-21T19:58:37.068Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple limited by target size with escape DC, one of two pincers; data has plain grappled effect.",
+            "triaged": {
+              "by": "reader-xmm-013",
+              "at": "2026-11-21T19:58:37.068Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple limited by target size with escape DC, one of two pincers; data has plain grappled effect.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -70730,41 +70783,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-013",
-          "at": "2026-11-21T19:58:37.068Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only if the target is Medium or smaller; data has plain prone effect on the save.",
+            "triaged": {
+              "by": "reader-xmm-013",
+              "at": "2026-11-21T19:58:37.068Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x008",
-            "at": "2026-11-23T04:08:43.720Z",
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "failedSave",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only if the target is Medium or smaller; data has plain prone effect on the save.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -76898,41 +76957,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-014",
-          "at": "2026-11-21T19:58:37.381Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only for a Large or smaller target; data applies prone without a size limit.",
+            "triaged": {
+              "by": "reader-xmm-014",
+              "at": "2026-11-21T19:58:37.381Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x009",
-            "at": "2026-11-23T04:08:44.664Z",
-            "confidence": 0.75,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Prone only for a Large or smaller target; data applies prone without a size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -76989,41 +77054,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-014",
-          "at": "2026-11-21T19:58:37.381Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:08.996Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple limited by size with a set escape DC; data lacks the size limit and DC.",
+            "triaged": {
+              "by": "reader-xmm-014",
+              "at": "2026-11-21T19:58:37.381Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x009",
-            "at": "2026-11-23T04:08:44.664Z",
-            "confidence": 0.75,
+            "by": "reread-z002",
+            "at": "2026-11-23T04:28:08.996Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple limited by size with a set escape DC; data lacks the size limit and DC.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -77202,41 +77273,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-014",
-          "at": "2026-11-21T19:58:37.381Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple limited by size with a set escape DC; data lacks the size limit and DC.",
+            "triaged": {
+              "by": "reader-xmm-014",
+              "at": "2026-11-21T19:58:37.381Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x009",
-            "at": "2026-11-23T04:08:44.664Z",
-            "confidence": 0.75,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple limited by size with a set escape DC; data lacks the size limit and DC.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -77359,41 +77436,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-014",
-          "at": "2026-11-21T19:58:37.381Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple limited by size with a set escape DC; data lacks the size limit and DC.",
+            "triaged": {
+              "by": "reader-xmm-014",
+              "at": "2026-11-21T19:58:37.381Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x009",
-            "at": "2026-11-23T04:08:44.664Z",
-            "confidence": 0.75,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple limited by size with a set escape DC; data lacks the size limit and DC.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -80577,41 +80660,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-015",
-          "at": "2026-11-21T19:58:37.695Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone applies only to Large or smaller targets; data lacks the size limit.",
+            "triaged": {
+              "by": "reader-xmm-015",
+              "at": "2026-11-21T19:58:37.695Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.8,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone applies only to Large or smaller targets; data lacks the size limit.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -81754,17 +81843,41 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage when an ally is adjacent to the target and not incapacitated.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-015",
           "at": "2026-11-21T19:58:37.695Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": false,
+              "unexpressed": [
+                "trigger-filter"
+              ]
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage when an ally is adjacent to the target and not incapacitated.",
       "state": "triaged"
     },
     {
@@ -83179,17 +83292,41 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data carries nothing, needs a conditional rule.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-016",
           "at": "2026-11-21T19:58:38.017Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": false,
+              "unexpressed": [
+                "trigger-filter"
+              ]
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data carries nothing, needs a conditional rule.",
       "state": "triaged"
     },
     {
@@ -86236,17 +86373,41 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data carries nothing.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-016",
           "at": "2026-11-21T19:58:38.017Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": false,
+              "unexpressed": [
+                "trigger-filter"
+              ]
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data carries nothing.",
       "state": "triaged"
     },
     {
@@ -87282,17 +87443,41 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data carries nothing.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-016",
           "at": "2026-11-21T19:58:38.017Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": false,
+              "unexpressed": [
+                "trigger-filter"
+              ]
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks when an unincapacitated ally is adjacent to the target; data carries nothing.",
       "state": "triaged"
     },
     {
@@ -87440,12 +87625,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.85,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
             "covered": false,
             "unexpressed": [
@@ -87655,11 +87840,41 @@
           "at": "2026-11-21T19:58:38.017Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "ended": "grappled"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "ongoing-effect",
+              "target-state",
+              "use-limit",
+              "no-key",
+              "death-trigger"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Swallowed state with cover, start-of-turn damage, regurgitate save on heavy damage and release on death; needs riders.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -89009,27 +89224,14 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x010",
-            "at": "2026-11-23T04:08:45.593Z",
-            "confidence": 0.85,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ],
             "unexpressed": [
               "use-limit"
             ]
@@ -91755,17 +91957,41 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks only when an ally is adjacent to the target and not incapacitated; conditional rule needed.",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-017",
           "at": "2026-11-21T19:58:38.331Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": false,
+              "unexpressed": [
+                "trigger-filter"
+              ]
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks only when an ally is adjacent to the target and not incapacitated; conditional rule needed.",
       "state": "triaged"
     },
     {
@@ -92265,41 +92491,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-017",
-          "at": "2026-11-21T19:58:38.331Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone applies on hit only to Medium or smaller targets; size condition not in data.",
+            "triaged": {
+              "by": "reader-xmm-017",
+              "at": "2026-11-21T19:58:38.331Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
-            "confidence": 0.8,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone applies on hit only to Medium or smaller targets; size condition not in data.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -93575,17 +93807,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-017",
-          "at": "2026-11-21T19:58:38.331Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Bonus save damage only against a prone creature within reach; target condition filter needed.",
+            "triaged": {
+              "by": "reader-xmm-017",
+              "at": "2026-11-21T19:58:38.331Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.72,
+              "view": {
+                "core": "0.290.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Bonus save damage only against a prone creature within reach; target condition filter needed.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -95376,41 +95638,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-018",
-          "at": "2026-11-21T19:58:38.644Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only against Medium or smaller targets; data applies prone with no size condition",
+            "triaged": {
+              "by": "reader-xmm-018",
+              "at": "2026-11-21T19:58:38.644Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
-            "confidence": 0.8,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Prone only against Medium or smaller targets; data applies prone with no size condition",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -96466,52 +96734,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-018",
-          "at": "2026-11-21T19:58:38.644Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple with escape DC, restrained until grapple ends and size limit exceed the plain status data",
+            "triaged": {
+              "by": "reader-xmm-018",
+              "at": "2026-11-21T19:58:38.644Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
-            "confidence": 0.8,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
               },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
-                  }
-                }
-              }
-            ]
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple with escape DC, restrained until grapple ends and size limit exceed the plain status data",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -97055,12 +97318,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
-            "confidence": 0.75,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
             "covered": false,
             "beyond": [
@@ -97068,16 +97331,6 @@
                 "given": {
                   "roll": "hit",
                   "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              },
-              {
-                "given": {
-                  "roll": "hit"
                 },
                 "expect": {
                   "roll": {
@@ -97861,52 +98114,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-018",
-          "at": "2026-11-21T19:58:38.644Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple from all tentacles with escape DC and stun that lasts while grappled; size limit",
+            "triaged": {
+              "by": "reader-xmm-018",
+              "at": "2026-11-21T19:58:38.644Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
             "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
               },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "stunned"
-                  }
-                }
-              }
-            ]
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple from all tentacles with escape DC and stun that lasts while grappled; size limit",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -98188,26 +98436,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "target-size"
             ]
           }
         }
@@ -98279,26 +98517,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x011",
-            "at": "2026-11-23T04:08:46.415Z",
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "998c1f1226fb364b6ce79a47bde49c8261c8abcc963585d19f871d17ffbdaa43"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "target-size"
             ]
           }
         }
@@ -105842,41 +106070,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-020",
-          "at": "2026-11-21T19:58:39.284Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple only on Medium or smaller, escape DC and tentacle limit are not expressed; data has only a plain grappled effect.",
+            "triaged": {
+              "by": "reader-xmm-020",
+              "at": "2026-11-21T19:58:39.284Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x012",
-            "at": "2026-11-23T04:08:47.295Z",
-            "confidence": 0.75,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple only on Medium or smaller, escape DC and tentacle limit are not expressed; data has only a plain grappled effect.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -112680,26 +112914,17 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x012",
-            "at": "2026-11-23T04:08:47.295Z",
-            "confidence": 0.7,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "1f899c451699402d6ea09d4989d8c662b509ff17630866f82b66861c9a27b6b6"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "huge"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "no-key",
+              "target-size"
             ]
           }
         }
@@ -113657,52 +113882,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-021",
-          "at": "2026-11-21T19:58:39.601Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple and Restrained only vs size-limited target, with escape DC and tied to grapple ending; data has a generic status effect only.",
+            "triaged": {
+              "by": "reader-xmm-021",
+              "at": "2026-11-21T19:58:39.601Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x012",
-            "at": "2026-11-23T04:08:47.295Z",
-            "confidence": 0.75,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
               },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
-                  }
-                }
-              }
-            ]
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Grapple and Restrained only vs size-limited target, with escape DC and tied to grapple ending; data has a generic status effect only.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -113892,11 +114112,40 @@
           "at": "2026-11-21T19:58:39.601Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "ended": "grappled"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "ongoing-effect",
+              "target-state",
+              "use-limit",
+              "no-key",
+              "death-trigger"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Swallow with start-of-turn damage, cover, regurgitation threshold and death release needs conditional rules beyond the data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -116724,41 +116973,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-021",
-          "at": "2026-11-21T19:58:39.601Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple and Restrained only vs size-limited target, with escape DC and tied to grapple ending; data has a generic status effect only.",
+            "triaged": {
+              "by": "reader-xmm-021",
+              "at": "2026-11-21T19:58:39.601Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x013",
-            "at": "2026-11-23T04:08:48.236Z",
-            "confidence": 0.75,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Grapple and Restrained only vs size-limited target, with escape DC and tied to grapple ending; data has a generic status effect only.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -116826,11 +117081,40 @@
           "at": "2026-11-21T19:58:39.601Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "condition": {
+                    "ended": "grappled"
+                  }
+                }
+              }
+            ],
+            "unexpressed": [
+              "ongoing-effect",
+              "target-state",
+              "use-limit",
+              "no-key",
+              "death-trigger"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Swallow with start-of-turn damage, cover, regurgitation threshold and death release needs conditional rules beyond the data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -117762,41 +118046,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-022",
-          "at": "2026-11-21T19:58:39.923Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple with escape DC, size limit and restrained until grapple ends; data has status only, no end-on-release link",
+            "triaged": {
+              "by": "reader-xmm-022",
+              "at": "2026-11-21T19:58:39.923Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x013",
-            "at": "2026-11-23T04:08:48.236Z",
-            "confidence": 0.75,
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "huge"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "ef7c08e9909b32083271b107ad4487f9f0165c194ddff887ac557ec164a377b9"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple with escape DC, size limit and restrained until grapple ends; data has status only, no end-on-release link",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -120800,48 +121090,43 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
-      "why": "Save-based damage with grapple and restrained until release, size limit and escape DC; data lacks the link to the grapple end",
-      "hint": "beyond-engine",
+      "verdict": "data",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-022",
-          "at": "2026-11-21T19:58:39.923Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:09.909Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Save-based damage with grapple and restrained until release, size limit and escape DC; data lacks the link to the grapple end",
+            "triaged": {
+              "by": "reader-xmm-022",
+              "at": "2026-11-21T19:58:39.923Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x013",
-            "at": "2026-11-23T04:08:48.236Z",
+            "by": "reread-z003",
+            "at": "2026-11-23T04:28:09.909Z",
             "confidence": 0.75,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
             "covered": true,
             "coveredBy": "data",
             "second": {
-              "by": "reread-y005",
-              "at": "2026-11-23T04:12:42.738Z",
-              "confidence": 0.7,
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.75,
               "view": {
                 "core": "0.290.0",
-                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
               },
-              "covered": false,
-              "beyond": [
-                {
-                  "given": {
-                    "roll": "failedSave",
-                    "targetSizeAtMost": "lg"
-                  },
-                  "expect": {
-                    "condition": {
-                      "applied": "grappled"
-                    }
-                  }
-                }
-              ]
+              "covered": true,
+              "coveredBy": "data"
             }
           }
         }
@@ -124410,11 +124695,26 @@
           "at": "2026-11-21T19:58:40.242Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.290.0",
+              "sha": "692b44dad62e6a2654ab4eb3695e42c9d1999e68e71c96ee24b7d9eae332e68c"
+            },
+            "covered": false,
+            "unexpressed": [
+              "ongoing-effect",
+              "use-limit",
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Grapple with escape DC, start-of-turn damage, movement with the target and one-creature limit; data lacks the recurring parts.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -131566,41 +131866,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-024",
-          "at": "2026-11-21T19:58:40.561Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone only if target is Large or smaller; size limit not expressed by the data",
+            "triaged": {
+              "by": "reader-xmm-024",
+              "at": "2026-11-21T19:58:40.561Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x014",
-            "at": "2026-11-23T04:08:49.192Z",
-            "confidence": 0.8,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.85,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Prone only if target is Large or smaller; size limit not expressed by the data",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -136359,20 +136665,18 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.75,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "2fa0cf95885975156a89a8401f80d37611bb72b38977806ba212a701e4766714"
+              "sha": "66eb5b43e9d98d9b044c7f7d8a288025b35d27f469b804927b76c1714a62857b"
             },
             "covered": false,
             "beyond": [
               {
                 "given": {
-                  "roll": "failedSave",
-                  "targetStatus": "grappled",
-                  "targetSizeAtMost": "lg"
+                  "roll": "failedSave"
                 },
                 "expect": {
                   "condition": {
@@ -136382,10 +136686,10 @@
               }
             ],
             "unexpressed": [
-              "ongoing-effect",
               "target-state",
-              "table-ruling",
-              "death-trigger"
+              "ongoing-effect",
+              "death-trigger",
+              "no-key"
             ]
           }
         }
@@ -138625,12 +138929,12 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
             "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
             },
             "covered": false,
             "beyond": [
@@ -142186,41 +142490,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-026",
-          "at": "2026-11-21T19:58:41.206Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple only on Medium or smaller target with escape DC; one of two claws limit; data has only a plain status.",
+            "triaged": {
+              "by": "reader-xmm-026",
+              "at": "2026-11-21T19:58:41.206Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x015",
-            "at": "2026-11-23T04:08:50.101Z",
-            "confidence": 0.75,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple only on Medium or smaller target with escape DC; one of two claws limit; data has only a plain status.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -143579,41 +143889,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-026",
-          "at": "2026-11-21T19:58:41.206Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple only on Large or smaller target with escape DC; one of two hands limit; data has only a plain status.",
+            "triaged": {
+              "by": "reader-xmm-026",
+              "at": "2026-11-21T19:58:41.206Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x016",
-            "at": "2026-11-23T04:08:51.008Z",
-            "confidence": 0.7,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple only on Large or smaller target with escape DC; one of two hands limit; data has only a plain status.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -143959,10 +144275,24 @@
           "at": "2026-11-21T19:58:41.206Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Cast of charm with forced 24 hour duration and willing-bite rider that does not end the spell; data has a plain cast.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -147298,52 +147628,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-026",
-          "at": "2026-11-21T19:58:41.206Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple on Medium or smaller target with escape DC and restrained until grapple ends; data lacks the limits.",
+            "triaged": {
+              "by": "reader-xmm-026",
+              "at": "2026-11-21T19:58:41.206Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x016",
-            "at": "2026-11-23T04:08:51.008Z",
-            "confidence": 0.7,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.8,
             "view": {
               "core": "0.290.0",
-              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "grappled"
-                  }
-                }
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.82,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
               },
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "restrained"
-                  }
-                }
-              }
-            ]
+              "covered": true,
+              "coveredBy": "data"
+            }
           }
         }
       },
-      "why": "Grapple on Medium or smaller target with escape DC and restrained until grapple ends; data lacks the limits.",
-      "hint": "beyond-engine",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -148187,26 +148512,16 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x016",
-            "at": "2026-11-23T04:08:51.008Z",
-            "confidence": 0.75,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
             },
             "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
+            "unexpressed": [
+              "trigger-filter"
             ]
           }
         }
@@ -150742,17 +151057,41 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-027",
           "at": "2026-11-21T20:09:30.714Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": false,
+              "unexpressed": [
+                "trigger-filter"
+              ]
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
       "state": "triaged"
     },
     {
@@ -150889,41 +151228,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-027",
-          "at": "2026-11-21T20:09:30.714Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone applied only to Large or smaller targets; data applies prone without a size check",
+            "triaged": {
+              "by": "reader-xmm-027",
+              "at": "2026-11-21T20:09:30.714Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x017",
-            "at": "2026-11-23T04:08:51.923Z",
-            "confidence": 0.8,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "lg"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "1dbc5ce57a69d150634ba9f0494eed82a0bfc1723eaafdf07f74474c044db1c2"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Prone applied only to Large or smaller targets; data applies prone without a size check",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -151034,17 +151379,41 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
+      "hint": "beyond-engine",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-027",
           "at": "2026-11-21T20:09:30.714Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "covered": false,
+              "unexpressed": [
+                "trigger-filter"
+              ]
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
       "state": "triaged"
     },
     {
@@ -151099,41 +151468,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-027",
-          "at": "2026-11-21T20:09:30.714Z",
-          "confidence": 0.8,
-          "keys": [],
-          "similar": [],
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Prone applied only to Medium or smaller targets; data applies prone without a size check",
+            "triaged": {
+              "by": "reader-xmm-027",
+              "at": "2026-11-21T20:09:30.714Z",
+              "confidence": 0.8,
+              "keys": [],
+              "similar": []
+            }
+          },
           "reread": {
-            "by": "reread-x017",
-            "at": "2026-11-23T04:08:51.923Z",
-            "confidence": 0.8,
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.7,
             "view": {
               "core": "0.290.0",
-              "sha": "c83f8b9554ef853e28f6c0b6e987423a9355f2d42cf2691a916de5f2db8e5e18"
+              "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w002",
+              "at": "2026-11-23T04:32:07.091Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "310e68a99518127b79a25c970bcf04edf62e7cce255ffb5c80cd83ba50731b54"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
           }
         }
       },
-      "why": "Prone applied only to Medium or smaller targets; data applies prone without a size check",
-      "hint": "beyond-engine",
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -151183,17 +151558,38 @@
         }
       ],
       "verdict": "entry",
+      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
+      "hint": "core-generic",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-027",
           "at": "2026-11-21T20:09:30.714Z",
           "confidence": 0.9,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-w003",
+              "at": "2026-11-23T04:32:07.968Z",
+              "confidence": 0.62,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5126ca842e013f08d0651dc204f46bc82fd39dbfca3608f64255939efdbd8434"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Advantage on attacks when an ally is adjacent to the target and not incapacitated; data carries no such rule",
       "state": "triaged"
     },
     {
@@ -156055,17 +156451,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-028",
-          "at": "2026-11-21T19:58:41.528Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple plus restrained until grapple ends with escape DC; data lacks the link and size limit.",
+            "triaged": {
+              "by": "reader-xmm-028",
+              "at": "2026-11-21T19:58:41.528Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w003",
+              "at": "2026-11-23T04:32:07.968Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5b70a40c126d5f520fe2b5a12406ba399c0f3ecebf593468cccc9b954f14bc59"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Grapple plus restrained until grapple ends with escape DC; data lacks the link and size limit.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -157409,17 +157835,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xmm-028",
-          "at": "2026-11-21T19:58:41.528Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T04:28:10.839Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Grapple plus restrained until grapple ends with escape DC; data lacks the link and size limit.",
+            "triaged": {
+              "by": "reader-xmm-028",
+              "at": "2026-11-21T19:58:41.528Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-z004",
+            "at": "2026-11-23T04:28:10.839Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.290.0",
+              "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-w003",
+              "at": "2026-11-23T04:32:07.968Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.290.0",
+                "sha": "5057f121b71d9a6b15e9005d79d2ef907655e131e40ebb2d190632a755c56c37"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Grapple plus restrained until grapple ends with escape DC; data lacks the link and size limit.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {

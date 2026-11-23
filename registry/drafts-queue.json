@@ -392,14 +392,6 @@
     "confidence": 0.85
   },
   {
-    "key": "xmm:monster:aberrant-cultist/action/tentacle-lash",
-    "reason": "person",
-    "by": "drafter-q001",
-    "why": "item effect already grapples and restrains on hit; size gate and restraint tied to the grapple have no key",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:aboleth/legendary/psychic-drain",
     "reason": "person",
     "by": "drafter-q001",
@@ -421,14 +413,6 @@
     "by": "drafter-q001",
     "why": "grapple instead of damage by choice, size gate, per-turn damage while grappled and damage sharing: needs code",
     "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:arch-hag/action/spectral-claw",
-    "reason": "person",
-    "by": "drafter-q001",
-    "why": "the item effect already knocks prone on hit; only the size gate remains and no key expresses it",
-    "confidence": 0.8,
     "reoffered": true
   },
   {
@@ -550,14 +534,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:barlgura/action/thrash",
-    "reason": "person",
-    "by": "drafter-q002",
-    "why": "the item already knocks prone on a hit; only the size cap is missing and no key limits by size",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:bearded-devil/action/infernal-glaive",
     "reason": "person",
     "by": "drafter-q002",
@@ -613,30 +589,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:bugbear-stalker/bonus/quick-grapple",
-    "reason": "person",
-    "by": "drafter-v001",
-    "why": "the save already applies the grapple; only the size limit is missing and no key tests size",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:bugbear-warrior/action/grab",
-    "reason": "person",
-    "by": "drafter-v001",
-    "why": "the hit already applies the grapple; only the size limit is missing and no key tests size",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:chain-devil/action/chain",
-    "reason": "person",
-    "by": "drafter-v001",
-    "why": "the hit already applies grapple and restraint; only the size limit is missing and no key tests size",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:cloaker/action/attach",
     "reason": "person",
     "by": "drafter-v001",
@@ -658,14 +610,6 @@
     "by": "drafter-v002",
     "why": "replaces a d20 test of self or a seen ally with a fresh roll at the user's choice: needs a prompt and a roll swap",
     "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:cyclops-sentry/action/stone-club",
-    "reason": "person",
-    "by": "drafter-v002",
-    "why": "item data already knocks the target prone; only the size cap is missing and no drafter key limits a status by size",
-    "confidence": 0.8,
     "reoffered": true
   },
   {
@@ -820,14 +764,6 @@
     "confidence": 0.85
   },
   {
-    "key": "xmm:monster:earth-elemental/action/rock-launch",
-    "reason": "person",
-    "by": "drafter-v003",
-    "why": "the only gap is a size limit on the prone, which no key can set; the rest is data",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:elemental-cataclysm/action/cataclysmic-event",
     "reason": "person",
     "by": "drafter-v003",
@@ -864,14 +800,6 @@
     "reason": "person",
     "by": "drafter-v004",
     "why": "the item already restrains on a failed save; ending it when the web object is destroyed has no key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:ettin/action/battleaxe",
-    "reason": "person",
-    "by": "drafter-v004",
-    "why": "the item already knocks prone on a hit; the size limit has no drafter key, so a rule would add nothing",
     "confidence": 0.85,
     "reoffered": true
   },
@@ -968,14 +896,6 @@
     "by": "drafter-v005",
     "why": "an aura with a start-of-turn save and a random behaviour table for the turn: needs a script",
     "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:gladiator/action/shield-bash",
-    "reason": "person",
-    "by": "drafter-v005",
-    "why": "the item already knocks prone on a failed save; only the size limit remains, which no key tests",
-    "confidence": 0.8,
     "reoffered": true
   },
   {
@@ -1086,14 +1006,6 @@
     "reason": "person",
     "by": "drafter-v006",
     "why": "immunity to spells the creator picks: no key and nothing in the data",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:hill-giant/action/tree-club",
-    "reason": "person",
-    "by": "drafter-v007",
-    "why": "the attack already applies prone; only a size limit remains, which no drafter key gates",
     "confidence": 0.85,
     "reoffered": true
   },
@@ -1493,14 +1405,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:stone-giant/action/boulder",
-    "reason": "person",
-    "by": "drafter-v011",
-    "why": "damage and prone are in the data; only the size limit remains, which no key expresses",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:stone-giant/reaction/deflect-missile",
     "reason": "person",
     "by": "drafter-v011",
@@ -1680,14 +1584,6 @@
     "reason": "person",
     "by": "drafter-v013",
     "why": "a slow placed when cold damage is taken, with a duration: no drafter key applies an effect on that moment",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:water-weird/action/surge",
-    "reason": "person",
-    "by": "drafter-v013",
-    "why": "data already applies both conditions on a hit; the size limit and the tie to the grapple have no drafter key",
     "confidence": 0.85,
     "reoffered": true
   },
