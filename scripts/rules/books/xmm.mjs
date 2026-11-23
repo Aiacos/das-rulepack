@@ -240,6 +240,32 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-arch-hag-tongue-twister",
+    "name": "Tongue Twister",
+    "page": 21,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Arch-hag",
+    "adds": "A creature under this curse fails every spell that needs a Verbal component; the curse lasts through its next turn.",
+    "entry": {
+      "effectEnds": {
+        "OkNZyIHwZr7dfnSZ": "bearerTurnEnd"
+      },
+      "spellFailure": {
+        "chance": 100,
+        "component": "vocal"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-black-pudding-dissolving-pseudopod",
     "name": "Dissolving Pseudopod",
     "page": 42,

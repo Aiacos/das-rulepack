@@ -122,6 +122,7 @@ export const SOURCES = Object.freeze({
   "mmSwarmOfStirges.mmSwarm000000000": "xmm-swarm-of-stirges-swarm",
   "mmSwarmOfVenomou.mmSwarm000000000": "xmm-swarm-of-venomous-snakes-swarm",
   "mmTelekineticThr": "xmm-poltergeist-telekinetic-thrust",
+  "mmTongueTwister0": "xmm-arch-hag-tongue-twister",
   "mmToxicInk000000": "xmm-kraken-toxic-ink",
   "mmTroglodyte0000.mmSunlightSensit": "xmm-troglodyte-sunlight-sensitivity",
   "mmUnnervingGaze0": "xmm-chain-devil-unnerving-gaze",

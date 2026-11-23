@@ -20265,7 +20265,7 @@
       "edition": "2024",
       "owner": "Arch-hag",
       "section": "trait",
-      "identifier": "tongue-twister",
+      "identifier": "xmm-arch-hag-tongue-twister",
       "page": 21,
       "srd": false,
       "text": {
@@ -20306,7 +20306,8 @@
           },
           "differences": [
             "activityTypes"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -20334,11 +20335,83 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T17:35:22.965Z",
+          "core": "0.291.0",
+          "rule": "5bf77deb9e4b30ec085e7869aa6944dbc31fab503bfabb719dbd9f0b6eeae241",
+          "item": "92e6ff1b502578ff27237a54a7b36aa023ad3f02fb8d56e02c9eb067a48be869",
+          "delta": [
+            "effectEnds",
+            "spellFailure"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "tongue-twister",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T17:35:22.965Z",
+          "core": "0.291.0",
+          "rule": "5bf77deb9e4b30ec085e7869aa6944dbc31fab503bfabb719dbd9f0b6eeae241",
+          "emits": "0164a04fa1808611ab39f954fa5025d002e2c2cbf651537218b824d37c2a7050",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "92e6ff1b502578ff27237a54a7b36aa023ad3f02fb8d56e02c9eb067a48be869"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T17:41:42.664Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-arch-hag-trait-tongue-twister",
+          "client": "gm",
+          "rule": "5bf77deb9e4b30ec085e7869aa6944dbc31fab503bfabb719dbd9f0b6eeae241"
         }
       },
       "why": "Reaction counter plus a curse with spell restrictions lasting to a later turn end; data lacks the restrictions.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmTongueTwister0": "xmm-arch-hag-tongue-twister"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature under this curse fails every spell that needs a Verbal component; the curse lasts through its next turn.",
+        "entry": {
+          "spellFailure": {
+            "chance": 100,
+            "component": "vocal"
+          },
+          "effectEnds": {
+            "OkNZyIHwZr7dfnSZ": "bearerTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T17:35:16.757Z",
+          "leavesNote": "Placing the curse after the countered caster fails its save is a manual use of the item; the reversed speech is roleplay."
+        },
+        "origin": "Arch-hag"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:archelon/action/bite",
@@ -133225,6 +133298,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T17:32:22.900Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-sphinx-of-secrets-action-curse-of-the-riddle",
+          "client": "gm",
+          "rule": "ddf4d3f4f4beea32085dcb7133816fa24f8ffbaa88ff7424b850ee5f50787795"
+        },
         "reading": {
           "at": "2026-11-23T17:25:29.057Z",
           "core": "0.291.0",
@@ -133258,14 +133339,6 @@
           "items": {
             "official": "680cdc92138580730d994bd9c01a63b1df70c7d16a6661c38a4c3c393e79990d"
           }
-        },
-        "played": {
-          "at": "2026-11-23T17:32:22.900Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-sphinx-of-secrets-action-curse-of-the-riddle",
-          "client": "gm",
-          "rule": "ddf4d3f4f4beea32085dcb7133816fa24f8ffbaa88ff7424b850ee5f50787795"
         }
       },
       "why": "Curse with disadvantage, wasted magic actions unless a save succeeds, and an ending Study check; data has only a curse status.",
