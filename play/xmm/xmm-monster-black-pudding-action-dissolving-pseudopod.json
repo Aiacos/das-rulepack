@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-black-pudding-action-dissolving-pseudopod",
+  "key": "xmm:monster:black-pudding/action/dissolving-pseudopod",
+  "rule": "f91a4893be1cd0c4fc3e38f0dfce511640d3e6630ba37c9bab733b8a861e6d12",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A hit on a creature without armor hurts it and places no penalty; a hit on a creature in plate armor places the penalty."
+}

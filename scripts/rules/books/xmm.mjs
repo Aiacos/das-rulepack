@@ -165,6 +165,28 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-black-pudding-dissolving-pseudopod",
+    "name": "Dissolving Pseudopod",
+    "page": 42,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Black Pudding",
+    "adds": "The armor penalty is placed only on a target that wears armor.",
+    "entry": {
+      "effectsIf": {
+        "target.wearsArmor": true
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-bugbear-stalker-abduct",
     "name": "Abduct",
     "page": 62,

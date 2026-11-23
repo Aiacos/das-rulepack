@@ -28446,7 +28446,7 @@
       "edition": "2024",
       "owner": "Black Pudding",
       "section": "action",
-      "identifier": "dissolving-pseudopod",
+      "identifier": "xmm-black-pudding-dissolving-pseudopod",
       "page": 42,
       "srd": true,
       "text": {
@@ -28481,7 +28481,8 @@
           "effects": [],
           "data": {
             "sha256": "4ff9b238a75bb0e4cd6c5e2c135997c7b3fa8bfff6b88ea545ae73787dbffc3b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -28510,11 +28511,78 @@
               "target-state"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:09:17.326Z",
+          "core": "0.291.0",
+          "rule": "f91a4893be1cd0c4fc3e38f0dfce511640d3e6630ba37c9bab733b8a861e6d12",
+          "item": "92ea4e63cba244ffb6cf209e3717e4536c4eec3127dbe7d590e54f84197768f6",
+          "delta": [
+            "effectsIf"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "dissolving-pseudopod",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:09:17.326Z",
+          "core": "0.291.0",
+          "rule": "f91a4893be1cd0c4fc3e38f0dfce511640d3e6630ba37c9bab733b8a861e6d12",
+          "emits": "5aaff1ccb72c04ac175fffbfd4146b24f57e0af799a956940af9665d8d85d442",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "92ea4e63cba244ffb6cf209e3717e4536c4eec3127dbe7d590e54f84197768f6"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:13:39.369Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-black-pudding-action-dissolving-pseudopod",
+          "client": "gm",
+          "rule": "f91a4893be1cd0c4fc3e38f0dfce511640d3e6630ba37c9bab733b8a861e6d12"
         }
       },
       "why": "Cumulative armor penalty with destruction threshold and Mending removal; data has one effect only on armor class.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmDissolvingPseu": "xmm-black-pudding-dissolving-pseudopod"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The armor penalty is placed only on a target that wears armor.",
+        "entry": {
+          "effectsIf": {
+            "target.wearsArmor": true
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:09:11.308Z",
+          "leavesNote": "Magical armor is not told apart, and the armor's destruction and its repair stay with the GM; the penalty sits on the creature, not on the armor."
+        },
+        "origin": "Black Pudding"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:black-pudding/reaction/split",
@@ -104108,6 +104176,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-myconid-adult-trait-sun-sickness",
+          "client": "gm",
+          "rule": "817c88d83c97d32f2e56eef0f7165777a458533c12fac0c2ef86dc7fcb4398a6"
+        },
         "reading": {
           "at": "2026-11-23T09:01:33.603Z",
           "core": "0.291.0",
@@ -104140,14 +104216,6 @@
           "items": {
             "official": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:05:49.494Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-myconid-adult-trait-sun-sickness",
-          "client": "gm",
-          "rule": "817c88d83c97d32f2e56eef0f7165777a458533c12fac0c2ef86dc7fcb4398a6"
         }
       },
       "why": "Disadvantage on D20 tests while in sunlight and death after an hour; data lacks it",
@@ -104589,6 +104657,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-myconid-sovereign-trait-sun-sickness",
+          "client": "gm",
+          "rule": "bd0e36a32819398e2d8caeb1ff8bf3c2a7085d4d6d50320a5229c6d2ed756222"
+        },
         "reading": {
           "at": "2026-11-23T09:01:33.605Z",
           "core": "0.291.0",
@@ -104621,14 +104697,6 @@
           "items": {
             "official": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:05:49.494Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-myconid-sovereign-trait-sun-sickness",
-          "client": "gm",
-          "rule": "bd0e36a32819398e2d8caeb1ff8bf3c2a7085d4d6d50320a5229c6d2ed756222"
         }
       },
       "why": "Disadvantage on D20 tests while in sunlight and death after an hour; data lacks it",
@@ -104906,6 +104974,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-myconid-sprout-trait-sun-sickness",
+          "client": "gm",
+          "rule": "a2605376f32bb48f8142a366f8aa87b1aa0bbc769fcba3eb1b652865883c3268"
+        },
         "reading": {
           "at": "2026-11-23T09:01:33.606Z",
           "core": "0.291.0",
@@ -104938,14 +105014,6 @@
           "items": {
             "official": "c4cbb739656db989804c3e0d04ae453a93720411c376dc0f7a8049ade0ef8b67"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:05:49.494Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-myconid-sprout-trait-sun-sickness",
-          "client": "gm",
-          "rule": "a2605376f32bb48f8142a366f8aa87b1aa0bbc769fcba3eb1b652865883c3268"
         }
       },
       "why": "Disadvantage on D20 tests while in sunlight and death after an hour; data lacks it",
@@ -126659,6 +126727,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:05:49.494Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-shadow-demon-trait-light-sensitivity",
+          "client": "gm",
+          "rule": "827ea7967d99577e8a1cafe95f16c2c51dae4748ed8f67fcc74dda055b81c90a"
+        },
         "reading": {
           "at": "2026-11-23T09:01:33.638Z",
           "core": "0.291.0",
@@ -126690,14 +126766,6 @@
           "items": {
             "official": "3dad8f6b38f789b1afb6a425ad08cd0e2919fa6b2d68489ca466a8ef2efff3bc"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:05:49.494Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-shadow-demon-trait-light-sensitivity",
-          "client": "gm",
-          "rule": "827ea7967d99577e8a1cafe95f16c2c51dae4748ed8f67fcc74dda055b81c90a"
         }
       },
       "why": "Disadvantage on checks and attacks only while in bright light; data lacks a conditional effect.",
