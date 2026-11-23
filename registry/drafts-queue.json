@@ -1224,14 +1224,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:warrior-commander/reaction/counterattack",
-    "reason": "person",
-    "by": "drafter-q001",
-    "why": "engine reads the reaction; only the follow-up attack on a miss is beyond, and no key says it",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:warrior-veteran/reaction/parry",
     "reason": "person",
     "by": "drafter-v013",

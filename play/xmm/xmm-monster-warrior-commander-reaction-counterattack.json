@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-warrior-commander-reaction-counterattack",
+  "key": "xmm:monster:warrior-commander/reaction/counterattack",
+  "rule": "9fc8416ed073ba5eeec62332861f36b68066c9e86c475c6d68022050850e8710",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "Hit, the creature takes its reaction and its AC rises for that attack (the engine's own line); once the attack is resolved the raised AC is gone. The follow-up attack is not played."
+}

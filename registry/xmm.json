@@ -151499,6 +151499,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T17:02:36.603Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-warrior-commander-action-greatsword",
+          "client": "gm",
+          "rule": "189abb6a120d67d4633a186bf5476e6826a299ff29abca671fd464c856d4c1b9"
+        },
         "reading": {
           "at": "2026-11-23T16:58:14.487Z",
           "core": "0.291.0",
@@ -151531,14 +151539,6 @@
           "items": {
             "official": "20df964152c6930765dc89b41b40768bbe9b46ad20843f321dc7e39a34630703"
           }
-        },
-        "played": {
-          "at": "2026-11-23T17:02:36.603Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-warrior-commander-action-greatsword",
-          "client": "gm",
-          "rule": "189abb6a120d67d4633a186bf5476e6826a299ff29abca671fd464c856d4c1b9"
         }
       },
       "why": "Choice of Sap or Maneuver rider at use time, with next-attack disadvantage and ally reaction; needs a rule.",
@@ -151874,7 +151874,7 @@
       "edition": "2024",
       "owner": "Warrior Commander",
       "section": "reaction",
-      "identifier": "counterattack",
+      "identifier": "xmm-warrior-commander-counterattack",
       "page": 321,
       "srd": false,
       "text": {
@@ -151911,7 +151911,8 @@
           ],
           "data": {
             "sha256": "b37ba1087d564a3082773fdf22f366dd514aed279a1fa1d47069b966ba5c833e"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -151948,9 +151949,74 @@
               "outcome": "second-unsure"
             }
           }
+        },
+        "reading": {
+          "at": "2026-11-23T17:08:31.361Z",
+          "core": "0.291.0",
+          "rule": "9fc8416ed073ba5eeec62332861f36b68066c9e86c475c6d68022050850e8710",
+          "item": "637d03702ba4956d227d24fafa36bde7f5f7f6fb75c019d798fa9f72e1b773fa",
+          "delta": [
+            "forOneAttack"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "counterattack",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T17:08:31.361Z",
+          "core": "0.291.0",
+          "rule": "9fc8416ed073ba5eeec62332861f36b68066c9e86c475c6d68022050850e8710",
+          "emits": "8553eef49129d72d315fac83f0a9609a995fc879a507b80a007bf8e6ae6f6021",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "637d03702ba4956d227d24fafa36bde7f5f7f6fb75c019d798fa9f72e1b773fa"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T17:13:26.628Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-warrior-commander-reaction-counterattack",
+          "client": "gm",
+          "rule": "9fc8416ed073ba5eeec62332861f36b68066c9e86c475c6d68022050850e8710"
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmCounterattack0": "xmm-warrior-commander-counterattack"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The +4 to AC of this reaction holds for the triggering attack only, not for the rest of the round.",
+        "entry": {
+          "forOneAttack": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T17:08:24.588Z",
+          "leavesNote": "The Greatsword or Longbow attack on the attacker after a resulting miss is left to the GM."
+        },
+        "origin": "Warrior Commander"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:warrior-infantry/action/spear",

@@ -2255,6 +2255,26 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-warrior-commander-counterattack",
+    "name": "Counterattack",
+    "page": 321,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Warrior Commander",
+    "adds": "The +4 to AC of this reaction holds for the triggering attack only, not for the rest of the round.",
+    "entry": {
+      "forOneAttack": true
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-wight-sunlight-sensitivity",
     "name": "Sunlight Sensitivity",
     "page": 332,
