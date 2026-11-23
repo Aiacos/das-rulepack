@@ -80,6 +80,28 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-adult-gold-dragon-banish",
+    "name": "Banish",
+    "page": 145,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Adult Gold Dragon",
+    "adds": "A creature that fails the save is taken off the battlefield until the dragon's next turn starts, then comes back.",
+    "entry": {
+      "banishes": [
+        "u5H85me3idut0t3u"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-adult-white-dragon-freezing-burst",
     "name": "Freezing Burst",
     "page": 329,
@@ -155,6 +177,28 @@ export const RULES = book(BOOK, [
       "effectEnds": {
         "ztGUDHGfoUxlUY53": "bearerTurnEnd"
       }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-ancient-gold-dragon-banish",
+    "name": "Banish",
+    "page": 146,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Ancient Gold Dragon",
+    "adds": "A creature that fails the save is taken off the battlefield until the dragon's next turn starts, then comes back.",
+    "entry": {
+      "banishes": [
+        "u5H85me3idut0t3u"
+      ]
     },
     "uncovered": [
       {
