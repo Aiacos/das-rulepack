@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-feature-artificer-cartographer-3-mapping-magic",
+  "key": "efa:feature:artificer/cartographer/3/mapping-magic",
+  "rule": "08ef24971768c3108cd9a21407b1cbcb2689f3226586e7e24e9b4c1ea6722357",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A jump farther than 10 feet is refused; a jump of 10 feet is accepted and the bearer stands on the square aimed at."
+}
