@@ -1313,6 +1313,28 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-lizardfolk-sovereign-charge",
+    "name": "Charge",
+    "page": 197,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Lizardfolk Sovereign",
+    "adds": "Used, the feature gives the creature its Speed again for the turn, as a Dash does.",
+    "entry": {
+      "basicActions": {
+        "Y2IncZu5BjB42z7l": "dash"
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-magmin-ignited-illumination",
     "name": "Ignited Illumination",
     "page": 200,

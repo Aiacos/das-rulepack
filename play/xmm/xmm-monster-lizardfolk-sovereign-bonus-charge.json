@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-lizardfolk-sovereign-bonus-charge",
+  "key": "xmm:monster:lizardfolk-sovereign/bonus/charge",
+  "rule": "070c2039f8a73f3b69b785e5c47f86af722485f3822dd044854866ad72dab0cc",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "In combat the creature may move its Speed; once the feature is used, the engine lets it move twice that this turn. The direction of the move is not checked."
+}
