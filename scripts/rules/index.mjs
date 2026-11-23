@@ -11,12 +11,13 @@ import * as ftd from "./books/ftd.mjs";
 import * as mpmm from "./books/mpmm.mjs";
 import * as phb from "./books/phb.mjs";
 import * as tce from "./books/tce.mjs";
+import * as xdmg from "./books/xdmg.mjs";
 import * as xge from "./books/xge.mjs";
 import * as xmm from "./books/xmm.mjs";
 import * as xphb from "./books/xphb.mjs";
 
 /** The book modules, each `{ BOOK, RULES }`. */
-export const BOOKS = Object.freeze([ai, efa, fraif, ftd, mpmm, phb, tce, xge, xmm, xphb]);
+export const BOOKS = Object.freeze([ai, efa, fraif, ftd, mpmm, phb, tce, xdmg, xge, xmm, xphb]);
 
 /** Every rule of the pack, with its book, page, kind and status. @type {readonly import("./book.mjs").Rule[]} */
 export const RULES = Object.freeze(BOOKS.flatMap(module => module.RULES));
