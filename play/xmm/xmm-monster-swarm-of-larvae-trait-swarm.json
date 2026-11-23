@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-swarm-of-larvae-trait-swarm",
+  "key": "xmm:monster:swarm-of-larvae/trait/swarm",
+  "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Given Temporary Hit Points the swarm gains none, another creature does; the shared-space rule stays."
+}

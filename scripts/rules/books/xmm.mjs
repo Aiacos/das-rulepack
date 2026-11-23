@@ -611,6 +611,268 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-swarm-of-bats-swarm",
+    "name": "Swarm",
+    "page": 370,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Bats",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-swarm-of-crawling-claws-swarm",
+    "name": "Swarm",
+    "page": 83,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Crawling Claws",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-swarm-of-dretches-swarm",
+    "name": "Swarm",
+    "page": 104,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Dretches",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    }
+  },
+
+  {
+    "identifier": "xmm-swarm-of-insects-swarm",
+    "name": "Swarm",
+    "page": 370,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Insects",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-swarm-of-larvae-swarm",
+    "name": "Swarm",
+    "page": 193,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Larvae",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    }
+  },
+
+  {
+    "identifier": "xmm-swarm-of-lemures-swarm",
+    "name": "Swarm",
+    "page": 194,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Lemures",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    }
+  },
+
+  {
+    "identifier": "xmm-swarm-of-piranhas-swarm",
+    "name": "Swarm",
+    "page": 370,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Piranhas",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-swarm-of-rats-swarm",
+    "name": "Swarm",
+    "page": 370,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Rats",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    }
+  },
+
+  {
+    "identifier": "xmm-swarm-of-ravens-swarm",
+    "name": "Swarm",
+    "page": 371,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Ravens",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-swarm-of-stirges-swarm",
+    "name": "Swarm",
+    "page": 299,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Stirges",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-swarm-of-venomous-snakes-swarm",
+    "name": "Swarm",
+    "page": 371,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Venomous Snakes",
+    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+    "entry": {
+      "blocksTempHp": true
+    },
+    "carries": {
+      "from": "swarm",
+      "keys": [
+        "sharesSpace"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-ultroloth-hypnotic-gaze",
     "name": "Hypnotic Gaze",
     "page": 311,

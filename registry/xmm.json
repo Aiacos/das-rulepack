@@ -42632,6 +42632,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T22:38:11.904Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-death-cultist-action-dread-scythe",
+          "client": "gm",
+          "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f"
+        },
         "reading": {
           "at": "2026-11-22T22:21:35.284Z",
           "core": "0.290.0",
@@ -42663,14 +42671,6 @@
           "items": {
             "official": "a370ad912fbaf0effc2136ba7029558760868b5b254fb77d776930f581542bf0"
           }
-        },
-        "played": {
-          "at": "2026-11-22T22:38:11.904Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-death-cultist-action-dread-scythe",
-          "client": "gm",
-          "rule": "a46e6bf21796190e5a6adf9296b774e74b0786361abd6be82379c4548cafe09f"
         }
       },
       "why": "Target cannot regain HP until end of its next turn; data effect has no changes to enforce it.",
@@ -44477,6 +44477,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-22T22:38:12.268Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-death-slaad-action-chaos-blade",
+          "client": "gm",
+          "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa"
+        },
         "reading": {
           "at": "2026-11-22T22:21:35.288Z",
           "core": "0.290.0",
@@ -44508,14 +44516,6 @@
           "items": {
             "official": "167048b117ceafbb2681dd7f35aeca4a0eeb00e7e1d6311134112a085866b045"
           }
-        },
-        "played": {
-          "at": "2026-11-22T22:38:12.268Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-death-slaad-action-chaos-blade",
-          "client": "gm",
-          "rule": "b03f14b7c0f1e69c6f56cbafa944a156241eef298536db38b7dcc7d4dbcf9cfa"
         }
       },
       "why": "Random condition from a d4 until next turn; data applies all four effects instead of one rolled.",
@@ -133035,7 +133035,7 @@
       "edition": "2024",
       "owner": "Swarm of Bats",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-bats-swarm",
       "page": 370,
       "srd": true,
       "text": {
@@ -133053,7 +133053,8 @@
           "effects": [],
           "data": {
             "sha256": "c77229609ac5e265ed855312e9cd0417a8bcd57ff93ad8c054f5af11f2edb7f2"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -133064,7 +133065,8 @@
           "effects": [],
           "data": {
             "sha256": "d571a22d45cdb2965f01dbd50b136726c6722c705b54ac62f12a8f7736ad71b2"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -133103,11 +133105,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.491Z",
+          "core": "0.290.0",
+          "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa",
+          "item": "c77229609ac5e265ed855312e9cd0417a8bcd57ff93ad8c054f5af11f2edb7f2",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.491Z",
+          "core": "0.290.0",
+          "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa",
+          "emits": "da2c29b40ceee16e7856988b723c451e98256b0ff3f889e901a4441c0cf9f2af",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "c77229609ac5e265ed855312e9cd0417a8bcd57ff93ad8c054f5af11f2edb7f2"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-bats-trait-swarm",
+          "client": "gm",
+          "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfBats000.mmSwarm000000000": "xmm-swarm-of-bats-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Bats"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-crawling-claws/action/swarm-of-grasping-hands",
@@ -133208,7 +133277,7 @@
       "edition": "2024",
       "owner": "Swarm of Crawling Claws",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-crawling-claws-swarm",
       "page": 83,
       "srd": true,
       "text": {
@@ -133226,7 +133295,8 @@
           "effects": [],
           "data": {
             "sha256": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -133237,7 +133307,8 @@
           "effects": [],
           "data": {
             "sha256": "5381e92317f665ee87a13346e78a4f17000ddd287f0d71880aa7d0199f39a9d0"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -133276,11 +133347,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.491Z",
+          "core": "0.290.0",
+          "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d",
+          "item": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.491Z",
+          "core": "0.290.0",
+          "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d",
+          "emits": "9f67ba3f7f6c9390d7e9463a8772c0663534c2626bf9a7f06efe21a974f50b28",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-crawling-claws-trait-swarm",
+          "client": "gm",
+          "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfCrawlin.mmSwarm000000000": "xmm-swarm-of-crawling-claws-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Crawling Claws"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-dretches/action/multiattack",
@@ -133545,7 +133683,7 @@
       "edition": "2024",
       "owner": "Swarm of Dretches",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-dretches-swarm",
       "page": 104,
       "srd": false,
       "text": {
@@ -133563,7 +133701,8 @@
           "effects": [],
           "data": {
             "sha256": "4c1cbcb0a13bea31c248608958344dd854fee530df93b314e2ee3fece3cbb3ea"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -133602,11 +133741,72 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.493Z",
+          "core": "0.290.0",
+          "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154",
+          "item": "4c1cbcb0a13bea31c248608958344dd854fee530df93b314e2ee3fece3cbb3ea",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.494Z",
+          "core": "0.290.0",
+          "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154",
+          "emits": "2b00309a22d4eb1ea76668a28eb770be08dbffb89133f9f3ae678929a131d610",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "4c1cbcb0a13bea31c248608958344dd854fee530df93b314e2ee3fece3cbb3ea"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-dretches-trait-swarm",
+          "client": "gm",
+          "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfDretche.mmSwarm000000000": "xmm-swarm-of-dretches-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Dretches"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-insects/action/bites",
@@ -133764,7 +133964,7 @@
       "edition": "2024",
       "owner": "Swarm of Insects",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-insects-swarm",
       "page": 370,
       "srd": true,
       "text": {
@@ -133782,7 +133982,8 @@
           "effects": [],
           "data": {
             "sha256": "e872c7a4e35e8809a3801f0f738c8eb3adbfeb24839c943bb38439b86532bd6f"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -133793,7 +133994,8 @@
           "effects": [],
           "data": {
             "sha256": "51ec8580b939854a7f7176e2201629e5572f079b0db343e7b901e5ea47179174"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -133832,11 +134034,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.494Z",
+          "core": "0.290.0",
+          "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2",
+          "item": "e872c7a4e35e8809a3801f0f738c8eb3adbfeb24839c943bb38439b86532bd6f",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.494Z",
+          "core": "0.290.0",
+          "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2",
+          "emits": "8cb8f4e02ef40c6d8c1b894d85a05652051a3a092fd4d701f91d6c25e2547ba6",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "e872c7a4e35e8809a3801f0f738c8eb3adbfeb24839c943bb38439b86532bd6f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-insects-trait-swarm",
+          "client": "gm",
+          "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfInsects.mmSwarm000000000": "xmm-swarm-of-insects-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Insects"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-larvae/action/bites",
@@ -133895,7 +134164,7 @@
       "edition": "2024",
       "owner": "Swarm of Larvae",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-larvae-swarm",
       "page": 193,
       "srd": false,
       "text": {
@@ -133913,7 +134182,8 @@
           "effects": [],
           "data": {
             "sha256": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -133952,11 +134222,72 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.495Z",
+          "core": "0.290.0",
+          "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464",
+          "item": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.495Z",
+          "core": "0.290.0",
+          "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464",
+          "emits": "f5454b4ff502e227dacb1b112d6b564f82a1ed5be5846d4ad2a9d52c7e3587d9",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-larvae-trait-swarm",
+          "client": "gm",
+          "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfLarvae0.mmSwarm000000000": "xmm-swarm-of-larvae-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Larvae"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-lemures/action/multiattack",
@@ -134111,7 +134442,7 @@
       "edition": "2024",
       "owner": "Swarm of Lemures",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-lemures-swarm",
       "page": 194,
       "srd": false,
       "text": {
@@ -134129,7 +134460,8 @@
           "effects": [],
           "data": {
             "sha256": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -134168,11 +134500,72 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.496Z",
+          "core": "0.290.0",
+          "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848",
+          "item": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.496Z",
+          "core": "0.290.0",
+          "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848",
+          "emits": "7a0357f561833528b78f49cfd085f39e480ee6944f970e38ad3d36caa46edea6",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-lemures-trait-swarm",
+          "client": "gm",
+          "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfLemures.mmSwarm000000000": "xmm-swarm-of-lemures-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Lemures"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-piranhas/action/bites",
@@ -134273,7 +134666,7 @@
       "edition": "2024",
       "owner": "Swarm of Piranhas",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-piranhas-swarm",
       "page": 370,
       "srd": true,
       "text": {
@@ -134291,7 +134684,8 @@
           "effects": [],
           "data": {
             "sha256": "556660f978e4f9209b9eccc7cf223eeb66a2adcfa15d3ab5075f4bf879c3b7ff"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -134302,7 +134696,8 @@
           "effects": [],
           "data": {
             "sha256": "9923bcea07a3198b21992fd04e96903b247d086c9b28ec14a9fa8466c056fd93"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -134341,11 +134736,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.496Z",
+          "core": "0.290.0",
+          "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf",
+          "item": "556660f978e4f9209b9eccc7cf223eeb66a2adcfa15d3ab5075f4bf879c3b7ff",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.496Z",
+          "core": "0.290.0",
+          "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf",
+          "emits": "48330547db76af4e14c334d737a4cb60a96b21081a36c8891d4da4b3ec3ad48c",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "556660f978e4f9209b9eccc7cf223eeb66a2adcfa15d3ab5075f4bf879c3b7ff"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-piranhas-trait-swarm",
+          "client": "gm",
+          "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfPiranha.mmSwarm000000000": "xmm-swarm-of-piranhas-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Piranhas"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-piranhas/trait/water-breathing",
@@ -134478,7 +134940,7 @@
       "edition": "2024",
       "owner": "Swarm of Rats",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-rats-swarm",
       "page": 370,
       "srd": true,
       "text": {
@@ -134496,7 +134958,8 @@
           "effects": [],
           "data": {
             "sha256": "7c9e705904201650615b602361cb691465072cf6024167927bf51cacadd09d49"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -134552,11 +135015,72 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.497Z",
+          "core": "0.290.0",
+          "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f",
+          "item": "7c9e705904201650615b602361cb691465072cf6024167927bf51cacadd09d49",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.497Z",
+          "core": "0.290.0",
+          "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f",
+          "emits": "f1e9273bd2bc0c7651030fe859f989f2483c6e4da6cf38d52ca737b37238866f",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "7c9e705904201650615b602361cb691465072cf6024167927bf51cacadd09d49"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-rats-trait-swarm",
+          "client": "gm",
+          "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfRats000.mmSwarm000000000": "xmm-swarm-of-rats-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Rats"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-ravens/action/beaks",
@@ -134832,7 +135356,7 @@
       "edition": "2024",
       "owner": "Swarm of Ravens",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-ravens-swarm",
       "page": 371,
       "srd": true,
       "text": {
@@ -134850,7 +135374,8 @@
           "effects": [],
           "data": {
             "sha256": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -134861,7 +135386,8 @@
           "effects": [],
           "data": {
             "sha256": "0b3e53462b7a2e72d35eb4e257f54644af2b3e5af87dc47c5933327a763322b4"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -134900,11 +135426,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.499Z",
+          "core": "0.290.0",
+          "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b",
+          "item": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.499Z",
+          "core": "0.290.0",
+          "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b",
+          "emits": "1dea45f37148b35de283e19c21e00faa3f24b2f66298e4d98c76444078e2e5b8",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-ravens-trait-swarm",
+          "client": "gm",
+          "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfRavens0.mmSwarm000000000": "xmm-swarm-of-ravens-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Ravens"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-stirges/action/swarm-of-proboscises",
@@ -135010,7 +135603,7 @@
       "edition": "2024",
       "owner": "Swarm of Stirges",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-stirges-swarm",
       "page": 299,
       "srd": false,
       "text": {
@@ -135028,7 +135621,8 @@
           "effects": [],
           "data": {
             "sha256": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -135039,7 +135633,8 @@
           "effects": [],
           "data": {
             "sha256": "5381e92317f665ee87a13346e78a4f17000ddd287f0d71880aa7d0199f39a9d0"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -135078,11 +135673,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.500Z",
+          "core": "0.290.0",
+          "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218",
+          "item": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.500Z",
+          "core": "0.290.0",
+          "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218",
+          "emits": "6059c0c27f89fd97506bdc67e4eb03c8f8618d7461fef812a44ea8dbf62c5ea5",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-stirges-trait-swarm",
+          "client": "gm",
+          "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218"
         }
       },
       "why": "Passive restriction on regaining HP and gaining temp HP, plus space sharing; data carries nothing.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfStirges.mmSwarm000000000": "xmm-swarm-of-stirges-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Stirges"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:swarm-of-venomous-snakes/action/bites",
@@ -135155,7 +135817,7 @@
       "edition": "2024",
       "owner": "Swarm of Venomous Snakes",
       "section": "trait",
-      "identifier": "swarm",
+      "identifier": "xmm-swarm-of-venomous-snakes-swarm",
       "page": 371,
       "srd": true,
       "text": {
@@ -135173,7 +135835,8 @@
           "effects": [],
           "data": {
             "sha256": "d0c00817a38b1af30dfeeb518460ac0c25c4ac8f69c97902c40220697bf2addb"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -135184,7 +135847,8 @@
           "effects": [],
           "data": {
             "sha256": "d90069d840601beb4d9a00066ec0de76475614e93893798983e6a73ef57b17c5"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -135223,11 +135887,78 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:17:06.501Z",
+          "core": "0.290.0",
+          "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04",
+          "item": "d0c00817a38b1af30dfeeb518460ac0c25c4ac8f69c97902c40220697bf2addb",
+          "delta": [
+            "blocksTempHp"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "swarm",
+          "carried": [
+            "sharesSpace"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:17:06.501Z",
+          "core": "0.290.0",
+          "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04",
+          "emits": "94864efd9da5467a91104a088781dda3f56d7f3802adbe928210bf59f1c42424",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "d0c00817a38b1af30dfeeb518460ac0c25c4ac8f69c97902c40220697bf2addb"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-venomous-snakes-trait-swarm",
+          "client": "gm",
+          "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04"
         }
       },
       "why": "Passive restriction on regaining HP and gaining temp HP, plus space sharing; data carries nothing.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSwarmOfVenomou.mmSwarm000000000": "xmm-swarm-of-venomous-snakes-swarm"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
+        "entry": {
+          "blocksTempHp": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:17:00.110Z",
+          "leavesNote": "That the swarm cannot regain Hit Points is not enforced: healing applied to it is undone by hand."
+        },
+        "origin": "Swarm of Venomous Snakes"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:tarrasque/action/bite",

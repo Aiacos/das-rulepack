@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-swarm-of-venomous-snakes-trait-swarm",
+  "key": "xmm:monster:swarm-of-venomous-snakes/trait/swarm",
+  "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Given Temporary Hit Points the swarm gains none, another creature does; the shared-space rule stays."
+}
