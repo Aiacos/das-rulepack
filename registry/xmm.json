@@ -117054,7 +117054,7 @@
       "edition": "2024",
       "owner": "Psychic Gray Ooze",
       "section": "action",
-      "identifier": "pseudopod",
+      "identifier": "xmm-psychic-gray-ooze-pseudopod",
       "page": 151,
       "srd": true,
       "text": {
@@ -117076,7 +117076,8 @@
           ],
           "data": {
             "sha256": "74f2221d8a2163ce1ad1e5a6ffe7513753433eee73c960e8fe04a582a6d117fa"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -117136,11 +117137,82 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T12:03:45.511Z",
+          "core": "0.291.0",
+          "rule": "70243f1a374f7839e1fe30d1245a9c14b358e389aad138aad3992eeae1b18c4c",
+          "item": "74f2221d8a2163ce1ad1e5a6ffe7513753433eee73c960e8fe04a582a6d117fa",
+          "delta": [
+            "effectChanges",
+            "effectEnds"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "pseudopod",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T12:03:45.511Z",
+          "core": "0.291.0",
+          "rule": "70243f1a374f7839e1fe30d1245a9c14b358e389aad138aad3992eeae1b18c4c",
+          "emits": "ebc537956fa3a45376f81fe1a95b0500d8db771010c997a28b492fd00d01849e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "74f2221d8a2163ce1ad1e5a6ffe7513753433eee73c960e8fe04a582a6d117fa"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T12:07:48.335Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-psychic-gray-ooze-action-pseudopod",
+          "client": "gm",
+          "rule": "70243f1a374f7839e1fe30d1245a9c14b358e389aad138aad3992eeae1b18c4c"
         }
       },
       "why": "Effect exists but changes nothing; data lacks disadvantage on Int saves until end of next turn.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmPsychicGrayOoz.mmPseudopod00000": "xmm-psychic-gray-ooze-pseudopod"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The effect of the hit gives its Disadvantage on Intelligence saves, and lasts through the ooze's next turn.",
+        "entry": {
+          "effectChanges": {
+            "uAcaFivCVfeE0M25": [
+              {
+                "key": "system.abilities.int.save.roll.mode",
+                "type": "add",
+                "value": "-1"
+              }
+            ]
+          },
+          "effectEnds": {
+            "uAcaFivCVfeE0M25": "casterTurnEnd"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T12:03:38.948Z",
+          "leavesNote": "Nothing else of the attack is changed."
+        },
+        "origin": "Psychic Gray Ooze"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:psychic-gray-ooze/action/psychic-crush",
@@ -126071,6 +126143,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T11:59:29.645Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-scout-captain-bonus-aim",
+          "client": "gm",
+          "rule": "8fcae67fe2cfeea5e728e2c3c29e2d754008188ddf1c8b50e4f971c8f6e2d801"
+        },
         "reading": {
           "at": "2026-11-23T11:55:25.170Z",
           "core": "0.291.0",
@@ -126103,14 +126183,6 @@
           "items": {
             "official": "2c9600f973704b56e159962fc31da8811b937fd9ab16713d57f081201edfa6c9"
           }
-        },
-        "played": {
-          "at": "2026-11-23T11:59:29.645Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-scout-captain-bonus-aim",
-          "client": "gm",
-          "rule": "8fcae67fe2cfeea5e728e2c3c29e2d754008188ddf1c8b50e4f971c8f6e2d801"
         }
       },
       "why": "Grants advantage on the next attack this turn; data effect has no change and no end rule",
