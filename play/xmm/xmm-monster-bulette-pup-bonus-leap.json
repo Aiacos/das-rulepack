@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-bulette-pup-bonus-leap",
+  "key": "xmm:monster:bulette-pup/bonus/leap",
+  "rule": "5be75e4222f8b19c1794cd7f936d8a75ae75fc10d1d290e4776fbf2465bb8101",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "In combat the creature jumps 30 feet in a straight line for 10 feet of movement: it lands there, and the turn's budget gives 20 feet back."
+}

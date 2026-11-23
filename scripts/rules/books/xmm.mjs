@@ -165,6 +165,106 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-bulette-pup-leap",
+    "name": "Leap",
+    "page": 63,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Bulette Pup",
+    "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+    "entry": {
+      "jump": {
+        "fixed": {
+          "distance": 30,
+          "cost": 10
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-bulette-leap",
+    "name": "Leap",
+    "page": 63,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Bulette",
+    "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+    "entry": {
+      "jump": {
+        "fixed": {
+          "distance": 30,
+          "cost": 10
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-bullywug-bog-sage-leap",
+    "name": "Leap",
+    "page": 64,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Bullywug Bog Sage",
+    "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+    "entry": {
+      "jump": {
+        "fixed": {
+          "distance": 30,
+          "cost": 10
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-bullywug-warrior-leap",
+    "name": "Leap",
+    "page": 64,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Bullywug Warrior",
+    "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+    "entry": {
+      "jump": {
+        "fixed": {
+          "distance": 30,
+          "cost": 10
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-chain-devil-unnerving-gaze",
     "name": "Unnerving Gaze",
     "page": 68,
@@ -518,6 +618,31 @@ export const RULES = book(BOOK, [
     "partial": {
       "no-key": 1
     }
+  },
+
+  {
+    "identifier": "xmm-giant-ape-leap",
+    "name": "Leap",
+    "page": 354,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Giant Ape",
+    "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+    "entry": {
+      "jump": {
+        "fixed": {
+          "distance": 30,
+          "cost": 10
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
   },
 
   {
