@@ -42,7 +42,7 @@ Install and enable DAS · Core (`dnd5e-combat`) first: the pack only adds rules 
 ## ✨ What it covers
 
 <!-- auto:summary -->
-**125 rules** from **11 rulebooks**: 105 played in a running world, 20 validated by the engine's
+**126 rules** from **11 rulebooks**: 106 played in a running world, 20 validated by the engine's
 validator but not played.
 The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md)**.
 <!-- /auto:summary -->
@@ -70,8 +70,8 @@ The counts and their methods are in `docs/books.json`; the "This pack" column is
 
 | | Books | Entries | DAS · Core | This pack | Core + pack | Monsters resolved |
 |---|---:|---:|---:|---:|---|---:|
-| **All rulebooks** | **43** | **8022** | **2465** | **119 (+4)** | `██████░░░░░░░░░░░░░░` 32% | **1232 / 2620** |
-| A. Official Foundry module | 10 | 3754 | 1266 | 105 (+3) | `███████░░░░░░░░░░░░░` 37% | 546 / 841 |
+| **All rulebooks** | **43** | **8022** | **2465** | **120 (+4)** | `██████░░░░░░░░░░░░░░` 32% | **1232 / 2620** |
+| A. Official Foundry module | 10 | 3754 | 1266 | 106 (+3) | `███████░░░░░░░░░░░░░` 37% | 546 / 841 |
 | B. Not on Foundry | 33 | 4268 | 1199 | 14 (+1) | `██████░░░░░░░░░░░░░░` 28% | 686 / 1779 |
 
 Entries are spells, class and subclass features, feats, species traits, options, items and monsters. A monster is one entry, counted under DAS · Core when it is fully resolved (no feature of its stat block left open); the last column repeats that share, which is already in the totals and the bars.
@@ -85,14 +85,14 @@ DAS · Core itself automates the official modules it was written against (see th
 | TCE | Tasha's Cauldron of Everything | 2020 | supplement | `dnd-tashas-cauldron` | 463 | 59 | 5 | `█░░░░░░░░░` 14% | 5 / 20 |
 | XDMG | Dungeon Master's Guide (2024) | 2024 | core | `dnd-dungeon-masters-guide` | 586 | 117 | 1 | `██░░░░░░░░` 20% | 1 / 2 |
 | XPHB | Player's Handbook (2024) | 2024 | core | `dnd-players-handbook` | 1119 | 519 | 9 (+3) | `█████░░░░░` 47% | 7 / 15 |
-| EFA | Eberron: Forge of the Artificer | 2025 | setting | `dnd-forge-artificer` | 114 | 15 | 6 | `██░░░░░░░░` 18% | 15 / 27 |
+| EFA | Eberron: Forge of the Artificer | 2025 | setting | `dnd-forge-artificer` | 114 | 15 | 7 | `██░░░░░░░░` 19% | 15 / 27 |
 | FRAIF | Forgotten Realms: Adventures in Faerûn | 2025 | setting | `dnd-adventures-faerun` | 60 | 23 | 4 | `█████░░░░░` 45% | 23 / 42 |
 | FRHOF | Forgotten Realms: Heroes of Faerûn | 2025 | setting | `dnd-heroes-faerun` | 133 | 0 | 0 | `░░░░░░░░░░` 0% | — |
 | XMM | Monster Manual (2025) | 2025 | core | `dnd-monster-manual` | 504 | 369 | 80 | `█████████░` 89% | 369 / 503 |
 | AU | Arcana Unleashed | 2026 | — | `dnd-arcana-unleashed` | 238 | 20 | 0 | `█░░░░░░░░░` 8% | 20 / 38 |
 | RHW | Ravenloft: The Horrors Within | 2026 | — | `dnd-ravenloft-horrors-within` | 132 | 71 | 0 | `█████░░░░░` 54% | 37 / 69 |
 | WOW | Dungeons & Dragons: World of Warcraft | 2026 | — | `dnd-world-warcraft` | 405 | 73 | 0 | `██░░░░░░░░` 18% | 69 / 125 |
-| **Total** | 10 books |  |  |  | **3754** | **1266** | **105 (+3)** | `████░░░░░░` 37% | **546 / 841** |
+| **Total** | 10 books |  |  |  | **3754** | **1266** | **106 (+3)** | `████░░░░░░` 37% | **546 / 841** |
 
 Not in the rulebook catalogue, measured from the module itself and counted like any other book: Ravenloft: The Horrors Within (RHW; version 2.0.0, the module's own compendia, read from the test world, 2026-11-20); Arcana Unleashed (AU; version 1.0.2, the module's own compendia, read from the files of the installed package, 2026-11-20); Dungeons & Dragons: World of Warcraft (WOW; version 1.1.0, the module's own compendia, read from the files of the installed package, 2026-11-20).
 
@@ -187,13 +187,13 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 </details>
 
 <details>
-<summary><b>EFA</b> · Eberron: Forge of the Artificer — <code>██░░░░░░░░</code> 18%</summary>
+<summary><b>EFA</b> · Eberron: Forge of the Artificer — <code>██░░░░░░░░</code> 19%</summary>
 
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Spells | 1 | 0 | 1 | `██████████` 100% |
 | Class and subclass features | 48 | 0 | 4 | `█░░░░░░░░░` 8% |
-| Feats | 28 | 0 | 0 | `░░░░░░░░░░` 0% |
+| Feats | 28 | 0 | 1 | `░░░░░░░░░░` 4% |
 | Options (invocations, metamagic, manoeuvres…) | 4 | 0 | 0 | `░░░░░░░░░░` 0% |
 | Items | 6 | 0 | 1 | `██░░░░░░░░` 17% |
 | Monsters (fully resolved) | 27 | 15 | 0 | `██████░░░░` 56% |
