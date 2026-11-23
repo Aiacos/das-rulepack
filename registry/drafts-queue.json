@@ -300,14 +300,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:arch-hag/trait/tongue-twister",
-    "reason": "person",
-    "by": "drafter-q001",
-    "why": "curse follows the counterspell's failed save and bars verbal spells: no drafter key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:balor/action/flame-whip",
     "reason": "person",
     "by": "drafter-r001",

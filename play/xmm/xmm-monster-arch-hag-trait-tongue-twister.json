@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-arch-hag-trait-tongue-twister",
+  "key": "xmm:monster:arch-hag/trait/tongue-twister",
+  "rule": "5bf77deb9e4b30ec085e7869aa6944dbc31fab503bfabb719dbd9f0b6eeae241",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Before the curse a victim's Verbal cantrip goes through; cursed, it fails; the curse is still there during the victim's next turn and gone once that turn ends."
+}
