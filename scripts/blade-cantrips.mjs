@@ -14,7 +14,8 @@
  */
 
 import { MODULE_ID, DAS_ID } from "./constants.mjs";
-import { BLADE_CANTRIPS, hitFormula, leapFormula, moveDice, hitTargets, withinLeap, movedEnough } from "./core/blade-cantrips.mjs";
+import { BLADE_CANTRIPS, hitFormula, leapFormula, moveDice, hitTargets, withinLeap, movedEnough, carriedMove }
+  from "./core/blade-cantrips.mjs";
 
 const LEAP_QUERY = `${MODULE_ID}.greenFlameLeap`;
 const loc = (key, data) => data ? game.i18n.format(`DASRULEPACK.${key}`, data) : game.i18n.localize(`DASRULEPACK.${key}`);
@@ -229,7 +230,9 @@ const boomingOf = actor => actor?.effects.find(e => e.flags?.[MODULE_ID]?.boomin
 /** updateToken, active GM: a sheathed creature moves of its own will. */
 function onUpdateToken(token, changes, options) {
   if ( !isActiveGM() || !(("x" in changes) || ("y" in changes)) ) return;
-  if ( options?.[DAS_ID]?.forced || options?.[DAS_ID]?.forcedMove || options?.teleport ) return;   // pushed, pulled, carried
+  // Pushed, pulled, carried or teleported: the engine's own marks, then the waypoints of the movement Foundry records.
+  if ( options?.[DAS_ID]?.forced || options?.[DAS_ID]?.forcedMove ) return;
+  if ( carriedMove((options?._movement?.[token.id] ?? token.movement)?.passed?.waypoints) ) return;
   const effect = boomingOf(token.actor);
   const state = effect?.flags?.[MODULE_ID]?.booming;
   if ( !state || (state.token !== token.uuid) || state.spent ) return;

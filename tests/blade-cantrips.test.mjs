@@ -2,7 +2,8 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { BLADE_CANTRIPS, hitDice, moveDice, hitFormula, leapFormula, feetBetween, gapFeet, withinLeap, movedEnough, hitTargets }
+import { BLADE_CANTRIPS, hitDice, moveDice, hitFormula, leapFormula, feetBetween, gapFeet, withinLeap, movedEnough, hitTargets,
+  carriedMove }
   from "../scripts/core/blade-cantrips.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -73,6 +74,15 @@ describe("translations", () => {
       const holes = text => (text.match(/\{[a-z]+\}/g) ?? []).sort();
       expect(holes(it_[key]), key).toEqual(holes(en[key]));
     }
+  });
+  it("a displacement or a teleport is not the creature's own walk; the deprecated teleport option is not read", () => {
+    expect(carriedMove([{ action: "walk" }, { action: "jump" }])).toBe(false);
+    expect(carriedMove([{ action: "walk" }, { action: "displace" }])).toBe(true);
+    expect(carriedMove([{ action: "blink" }])).toBe(true);
+    expect(carriedMove(null)).toBe(false);
+    expect(carriedMove([{}])).toBe(false);
+    const source = readFileSync(resolve(HERE, "../scripts/blade-cantrips.mjs"), "utf8");
+    expect(source).not.toMatch(/options\?*\.teleport/);
   });
   it("every key used in the scripts exists", () => {
     const en = read("en");

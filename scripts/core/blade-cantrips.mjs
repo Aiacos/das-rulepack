@@ -89,6 +89,17 @@ export function movedEnough(from, to, grid) {
 }
 
 /**
+ * Whether a movement was not the creature's own walk: one of its waypoints is a displacement (pushed, pulled, carried) or a
+ * teleport. Read from the movement Foundry records with the token update (`TokenDocument#movement`, its passed waypoints);
+ * the `teleport` option of the update is deprecated since Foundry 13 and is not read.
+ * @param {Array<{action?: string}>|null|undefined} waypoints
+ * @returns {boolean}
+ */
+export function carriedMove(waypoints) {
+  return (waypoints ?? []).some(w => ["displace", "blink"].includes(w?.action));
+}
+
+/**
  * The hit targets of a finished attack, from the engine's resolution (`flags["dnd5e-combat"].resolution` of the usage message).
  * @returns {string[]|null}  Token uuids; null while the attack is not settled.
  */

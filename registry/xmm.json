@@ -33347,7 +33347,7 @@
       "edition": "2024",
       "owner": "Bulette Pup",
       "section": "bonus",
-      "identifier": "leap",
+      "identifier": "xmm-bulette-pup-leap",
       "page": 63,
       "srd": false,
       "text": {
@@ -33367,7 +33367,8 @@
           "effects": [],
           "data": {
             "sha256": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -33380,7 +33381,8 @@
           "effects": [],
           "data": {
             "sha256": "294343ca739d4d0eab44152b53ecb4c15645045ebcafe593d507242aa7f8b86e"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -33415,11 +33417,81 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:39:12.670Z",
+          "core": "0.291.0",
+          "rule": "5be75e4222f8b19c1794cd7f936d8a75ae75fc10d1d290e4776fbf2465bb8101",
+          "item": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92",
+          "delta": [
+            "jump"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "leap",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:39:12.670Z",
+          "core": "0.291.0",
+          "rule": "5be75e4222f8b19c1794cd7f936d8a75ae75fc10d1d290e4776fbf2465bb8101",
+          "emits": "67683530892d539e4b25fa8a5755b385be3c0c0e5466844c34da8defd1e8a67c",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bulette-pup-bonus-leap",
+          "client": "gm",
+          "rule": "5be75e4222f8b19c1794cd7f936d8a75ae75fc10d1d290e4776fbf2465bb8101"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmBulettePup0000.mmLeap0000000000": "xmm-bulette-pup-leap"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+        "entry": {
+          "jump": {
+            "fixed": {
+              "distance": 30,
+              "cost": 10
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:39:06.612Z",
+          "leavesNote": "The Bonus Action is not spent by the jump itself: the GM uses the feature's activity to spend it."
+        },
+        "origin": "Bulette Pup"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:bulette/action/bite",
@@ -33721,7 +33793,7 @@
       "edition": "2024",
       "owner": "Bulette",
       "section": "bonus",
-      "identifier": "leap",
+      "identifier": "xmm-bulette-leap",
       "page": 63,
       "srd": true,
       "text": {
@@ -33741,7 +33813,8 @@
           "effects": [],
           "data": {
             "sha256": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -33754,7 +33827,8 @@
           "effects": [],
           "data": {
             "sha256": "294343ca739d4d0eab44152b53ecb4c15645045ebcafe593d507242aa7f8b86e"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -33789,11 +33863,81 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:39:12.673Z",
+          "core": "0.291.0",
+          "rule": "caca3d28ba7a631bce141ee8c7f10166a4865da7e77aca3b3ed6058f4bee6d70",
+          "item": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92",
+          "delta": [
+            "jump"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "leap",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:39:12.673Z",
+          "core": "0.291.0",
+          "rule": "caca3d28ba7a631bce141ee8c7f10166a4865da7e77aca3b3ed6058f4bee6d70",
+          "emits": "a0cc9f5743ff7f8e7ebff375e8f2f3ed4b0e87a19cb2d9d5bfe6d2f6200bd3ea",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "fd87364f2f2f62a275f2e157630ec500d1c8b26ff9837e552dbaa9bb01110f92"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bulette-bonus-leap",
+          "client": "gm",
+          "rule": "caca3d28ba7a631bce141ee8c7f10166a4865da7e77aca3b3ed6058f4bee6d70"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmBulette0000000.mmLeap0000000000": "xmm-bulette-leap"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+        "entry": {
+          "jump": {
+            "fixed": {
+              "distance": 30,
+              "cost": 10
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:39:06.612Z",
+          "leavesNote": "The Bonus Action is not spent by the jump itself: the GM uses the feature's activity to spend it."
+        },
+        "origin": "Bulette"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:bullywug-bog-sage/action/bog-staff",
@@ -33925,7 +34069,7 @@
       "edition": "2024",
       "owner": "Bullywug Bog Sage",
       "section": "bonus",
-      "identifier": "leap",
+      "identifier": "xmm-bullywug-bog-sage-leap",
       "page": 64,
       "srd": false,
       "text": {
@@ -33945,7 +34089,8 @@
           "effects": [],
           "data": {
             "sha256": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -33958,7 +34103,8 @@
           "effects": [],
           "data": {
             "sha256": "cfcabbf20d951613b6cb8867b7e19bc7c2c71144ab9b0f6e223286186e54f42b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -33993,11 +34139,81 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:39:12.673Z",
+          "core": "0.291.0",
+          "rule": "bc802dc2b69051e45dc11bfdc760364509172aeac38770f47fa1c530fdc23f2e",
+          "item": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9",
+          "delta": [
+            "jump"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "leap",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:39:12.673Z",
+          "core": "0.291.0",
+          "rule": "bc802dc2b69051e45dc11bfdc760364509172aeac38770f47fa1c530fdc23f2e",
+          "emits": "ee64345ff8c66a5b1e14004161a7f565847675224d1e27ffcd132c798a94be8e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bullywug-bog-sage-bonus-leap",
+          "client": "gm",
+          "rule": "bc802dc2b69051e45dc11bfdc760364509172aeac38770f47fa1c530fdc23f2e"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmBullywugBogSag.mmLeap0000000000": "xmm-bullywug-bog-sage-leap"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+        "entry": {
+          "jump": {
+            "fixed": {
+              "distance": 30,
+              "cost": 10
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:39:06.612Z",
+          "leavesNote": "The Bonus Action is not spent by the jump itself: the GM uses the feature's activity to spend it."
+        },
+        "origin": "Bullywug Bog Sage"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:bullywug-bog-sage/trait/amphibious",
@@ -34251,7 +34467,7 @@
       "edition": "2024",
       "owner": "Bullywug Warrior",
       "section": "bonus",
-      "identifier": "leap",
+      "identifier": "xmm-bullywug-warrior-leap",
       "page": 64,
       "srd": false,
       "text": {
@@ -34271,7 +34487,8 @@
           "effects": [],
           "data": {
             "sha256": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -34284,7 +34501,8 @@
           "effects": [],
           "data": {
             "sha256": "cfcabbf20d951613b6cb8867b7e19bc7c2c71144ab9b0f6e223286186e54f42b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -34319,11 +34537,81 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:39:12.674Z",
+          "core": "0.291.0",
+          "rule": "d236e6530dd4a7d4bee43ace6533c4eb36781ab5e9c7920c3e3cdefac33b0051",
+          "item": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9",
+          "delta": [
+            "jump"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "leap",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:39:12.674Z",
+          "core": "0.291.0",
+          "rule": "d236e6530dd4a7d4bee43ace6533c4eb36781ab5e9c7920c3e3cdefac33b0051",
+          "emits": "be8564df31e54f064525dbb62de1398e2906df96d485220f85284cd703ef9a79",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-bullywug-warrior-bonus-leap",
+          "client": "gm",
+          "rule": "d236e6530dd4a7d4bee43ace6533c4eb36781ab5e9c7920c3e3cdefac33b0051"
         }
       },
       "why": "Jump by spending movement; data has only a bare utility activity with no movement handling.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmBullywugWarrio.mmLeap0000000000": "xmm-bullywug-warrior-leap"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+        "entry": {
+          "jump": {
+            "fixed": {
+              "distance": 30,
+              "cost": 10
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:39:06.612Z",
+          "leavesNote": "The Bonus Action is not spent by the jump itself: the GM uses the feature's activity to spend it."
+        },
+        "origin": "Bullywug Warrior"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:bullywug-warrior/trait/amphibious",
@@ -64548,7 +64836,7 @@
       "edition": "2024",
       "owner": "Giant Ape",
       "section": "bonus",
-      "identifier": "leap",
+      "identifier": "xmm-giant-ape-leap",
       "page": 354,
       "srd": true,
       "text": {
@@ -64568,7 +64856,8 @@
           "effects": [],
           "data": {
             "sha256": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -64581,7 +64870,8 @@
           "effects": [],
           "data": {
             "sha256": "0f36445b861f48a9244f96e9629b91fc7f2d0f878b8dc194b8f57d3b422ccb13"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -64629,9 +64919,79 @@
               ]
             }
           }
+        },
+        "reading": {
+          "at": "2026-11-23T07:39:12.730Z",
+          "core": "0.291.0",
+          "rule": "6f07d235b717896e443b37d71831e90996d282c8adb87cb1b7384721e191e317",
+          "item": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9",
+          "delta": [
+            "jump"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "leap",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T07:39:12.730Z",
+          "core": "0.291.0",
+          "rule": "6f07d235b717896e443b37d71831e90996d282c8adb87cb1b7384721e191e317",
+          "emits": "ffe72ea24467ee60ad2f43f2cf5ef87739ced38037b6708f5191f387aec58bc2",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "be3e11237562cd3fc09f6cba958132fb1fcd2e3574a4ee801ec8d43f6fad8df9"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T07:51:20.232Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-giant-ape-bonus-leap",
+          "client": "gm",
+          "rule": "6f07d235b717896e443b37d71831e90996d282c8adb87cb1b7384721e191e317"
         }
       },
-      "state": "triaged"
+      "sources": {
+        "mmGiantApe000000.mmLeap0000000000": "xmm-giant-ape-leap"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "Once on each of its turns the creature may jump up to 30 feet for 10 feet of movement, whatever its Strength.",
+        "entry": {
+          "jump": {
+            "fixed": {
+              "distance": 30,
+              "cost": 10
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T07:39:06.612Z",
+          "leavesNote": "The Bonus Action is not spent by the jump itself: the GM uses the feature's activity to spend it."
+        },
+        "origin": "Giant Ape"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:giant-axe-beak/action/multiattack",
@@ -144893,6 +145253,14 @@
             }
           }
         },
+        "played": {
+          "at": "2026-11-23T07:27:22.331Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-vampire-spawn-action-bite",
+          "client": "gm",
+          "rule": "76ffaaa423092d3b5c46460f1975018fd5bc4c25e973876f3a716d52f984a1f3"
+        },
         "reading": {
           "at": "2026-11-23T07:23:35.274Z",
           "core": "0.291.0",
@@ -144924,14 +145292,6 @@
           "items": {
             "official": "e9ce3e1da4e875afb63c5b85a3ebec0fcd1ce79f465ed80c2e226b2480572ba5"
           }
-        },
-        "played": {
-          "at": "2026-11-23T07:27:22.331Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-vampire-spawn-action-bite",
-          "client": "gm",
-          "rule": "76ffaaa423092d3b5c46460f1975018fd5bc4c25e973876f3a716d52f984a1f3"
         }
       },
       "sources": {

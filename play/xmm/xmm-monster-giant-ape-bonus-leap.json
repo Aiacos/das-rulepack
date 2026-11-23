@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-giant-ape-bonus-leap",
+  "key": "xmm:monster:giant-ape/bonus/leap",
+  "rule": "6f07d235b717896e443b37d71831e90996d282c8adb87cb1b7384721e191e317",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "In combat the creature jumps 30 feet in a straight line for 10 feet of movement: it lands there, and the turn's budget gives 20 feet back."
+}

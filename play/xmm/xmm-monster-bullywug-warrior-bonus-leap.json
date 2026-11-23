@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-bullywug-warrior-bonus-leap",
+  "key": "xmm:monster:bullywug-warrior/bonus/leap",
+  "rule": "d236e6530dd4a7d4bee43ace6533c4eb36781ab5e9c7920c3e3cdefac33b0051",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "In combat the creature jumps 30 feet in a straight line for 10 feet of movement: it lands there, and the turn's budget gives 20 feet back."
+}
