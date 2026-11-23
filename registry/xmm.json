@@ -6052,7 +6052,7 @@
       "edition": "2024",
       "owner": "Adult Gold Dragon",
       "section": "legendary",
-      "identifier": "banish",
+      "identifier": "xmm-adult-gold-dragon-banish",
       "page": 145,
       "srd": true,
       "text": {
@@ -6074,7 +6074,8 @@
           ],
           "data": {
             "sha256": "22dce41d643be5aac401ccfc6391e66f72b32e248e6dec3746229dd3cf2cd666"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -6089,7 +6090,8 @@
           ],
           "data": {
             "sha256": "bd2899ab6d98a61e288e6fee732a03315683193927798e8b79382bfd6f620810"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -6118,11 +6120,78 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:42:49.046Z",
+          "core": "0.291.0",
+          "rule": "1a49ce762aef0e72cbb9a04542e43ce9cf3617b0c7771f378aa4e914a84d5f18",
+          "item": "22dce41d643be5aac401ccfc6391e66f72b32e248e6dec3746229dd3cf2cd666",
+          "delta": [
+            "banishes"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "banish",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:42:49.046Z",
+          "core": "0.291.0",
+          "rule": "1a49ce762aef0e72cbb9a04542e43ce9cf3617b0c7771f378aa4e914a84d5f18",
+          "emits": "b80a7df9edc55f36250ce4c57a46b809d84d82bfa2bb8a78e0262de5963c4639",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "22dce41d643be5aac401ccfc6391e66f72b32e248e6dec3746229dd3cf2cd666"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:49:18.839Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-adult-gold-dragon-legendary-banish",
+          "client": "gm",
+          "rule": "1a49ce762aef0e72cbb9a04542e43ce9cf3617b0c7771f378aa4e914a84d5f18"
         }
       },
       "why": "Incapacitated and removed from play until the dragon next turn, then placed in a chosen space; needs an end event and relocation",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAdultGoldDrago.mmBanish00000000": "xmm-adult-gold-dragon-banish"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature that fails the save is taken off the battlefield until the dragon's next turn starts, then comes back.",
+        "entry": {
+          "banishes": [
+            "u5H85me3idut0t3u"
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:42:42.646Z",
+          "leavesNote": "It comes back to the space it left, or the nearest free one: the GM moves it if the dragon picks another space. The once-a-round limit of the action stays with the GM."
+        },
+        "origin": "Adult Gold Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:adult-gold-dragon/legendary/guiding-light",
@@ -13528,7 +13597,7 @@
       "edition": "2024",
       "owner": "Ancient Gold Dragon",
       "section": "legendary",
-      "identifier": "banish",
+      "identifier": "xmm-ancient-gold-dragon-banish",
       "page": 146,
       "srd": true,
       "text": {
@@ -13550,7 +13619,8 @@
           ],
           "data": {
             "sha256": "762ed588ed44c9a0c1f570965ed29be4c24de327e6950960cd0d6791f0e823d5"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -13565,7 +13635,8 @@
           ],
           "data": {
             "sha256": "1e75405f013b050e5f6ed13d90466de5e981e475b2510b61c016a229d7ac0d5c"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -13594,11 +13665,78 @@
               "no-key"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:42:49.059Z",
+          "core": "0.291.0",
+          "rule": "181ae2104a28fe60ed7346d3cfee475db6f113cefc4ab573412794c9d81a49d2",
+          "item": "762ed588ed44c9a0c1f570965ed29be4c24de327e6950960cd0d6791f0e823d5",
+          "delta": [
+            "banishes"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "banish",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:42:49.059Z",
+          "core": "0.291.0",
+          "rule": "181ae2104a28fe60ed7346d3cfee475db6f113cefc4ab573412794c9d81a49d2",
+          "emits": "3ba61bd0bf240b0470e41bd65ded1d4c9a27ad586a24aa203f7abe3ab97dd0da",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "762ed588ed44c9a0c1f570965ed29be4c24de327e6950960cd0d6791f0e823d5"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:49:18.839Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-ancient-gold-dragon-legendary-banish",
+          "client": "gm",
+          "rule": "181ae2104a28fe60ed7346d3cfee475db6f113cefc4ab573412794c9d81a49d2"
         }
       },
       "why": "Banish: incapacitated and removal to a demiplane until the next turn start, return by DM choice; data has only the condition",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmAncientGoldDra.mmBanish00000000": "xmm-ancient-gold-dragon-banish"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "A creature that fails the save is taken off the battlefield until the dragon's next turn starts, then comes back.",
+        "entry": {
+          "banishes": [
+            "u5H85me3idut0t3u"
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:42:42.646Z",
+          "leavesNote": "It comes back to the space it left, or the nearest free one: the GM moves it if the dragon picks another space. The once-a-round limit of the action stays with the GM."
+        },
+        "origin": "Ancient Gold Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:ancient-gold-dragon/legendary/guiding-light",
@@ -100135,6 +100273,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:39:03.809Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-mimic-action-pseudopod",
+          "client": "gm",
+          "rule": "81fc562bbf96019fb961278c6fa59d3a536ec10d03c3f058fc6577bad82caa44"
+        },
         "reading": {
           "at": "2026-11-23T09:34:41.050Z",
           "core": "0.291.0",
@@ -100166,14 +100312,6 @@
           "items": {
             "official": "3d6ee9bbb2a708632460919db496dbf73f43975fdd9c43290cb1be7e2651d309"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:39:03.809Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-mimic-action-pseudopod",
-          "client": "gm",
-          "rule": "81fc562bbf96019fb961278c6fa59d3a536ec10d03c3f058fc6577bad82caa44"
         }
       },
       "why": "Grapple limited to Large or smaller, with disadvantage on escape checks",

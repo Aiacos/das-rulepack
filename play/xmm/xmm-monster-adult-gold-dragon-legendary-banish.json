@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-adult-gold-dragon-legendary-banish",
+  "key": "xmm:monster:adult-gold-dragon/legendary/banish",
+  "rule": "1a49ce762aef0e72cbb9a04542e43ce9cf3617b0c7771f378aa4e914a84d5f18",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A creature that fails the save has its token and combatant hidden, stays away on its own turn, and is back on its square when the dragon's next turn starts."
+}
