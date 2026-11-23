@@ -19,17 +19,17 @@ How each number was obtained: for each book, `npm run inventory -- <BOOK> all`, 
 | Joined to an item of the official module | 4,372 |
 | Ambiguous against the official module (wait for `npm run resolve`) | 137 |
 | No item in the official module | 383 |
-| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 1,049 |
+| Verdict `core` (DAS · Core has an entry under an identifier no other entry of that kind uses) | 1,056 |
 | Verdict `none` (nothing to automate in combat) | 1,367 |
-| Verdict `data` (the item's own data is enough) | 1,359 |
-| Verdict `entry` (a declarative rule is needed and not written yet) | 936 |
+| Verdict `data` (the item's own data is enough) | 1,363 |
+| Verdict `entry` (a declarative rule is needed and not written yet) | 925 |
 | Verdict `code` (a script is needed) | 0 |
 | Verdict `engine` (needs something the engine lacks) | 0 |
 | Verdict `unverifiable` (no text) | 118 |
 | No verdict, in `registry/queue.json`, waiting for a person | 48 |
 | No verdict, left for reader agents | 15 |
 
-Who set the verdicts: reader agents 3,387, rule 1,347, SRD reading of November 2026 95. A reader agent's verdict is one reading of
+Who set the verdicts: reader agents 3,376, rule 1,358, SRD reading of November 2026 95. A reader agent's verdict is one reading of
 the text against the structure of the item's data; it was not checked by a second reader and not played. Verdicts below 0.7
 of confidence, and every `engine` verdict, were not applied: they are in the queue.
 
@@ -53,7 +53,7 @@ the name ("+1", a quantity): 29.
 | species | 48 | 40 / 0 / 8 | 0 / 0 / 48 | 10 | 19 | 8 | 1 | 0 | 0 | 0 | 0 | 10 |
 | background | 16 | 16 / 0 / 0 | 0 / 0 / 16 | 0 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 217 | 159 / 16 / 42 | 188 / 8 / 21 | 19 | 115 | 0 | 4 | 0 | 0 | 79 | 0 | 0 |
-| monster | 62 | 58 / 0 / 4 | 51 / 0 / 11 | 1 | 4 | 21 | 36 | 0 | 0 | 0 | 0 | 0 |
+| monster | 62 | 58 / 0 / 4 | 51 / 0 / 11 | 4 | 4 | 23 | 31 | 0 | 0 | 0 | 0 | 0 |
 
 Records in `registry/xphb.json`: 1461 inventoried.
 
@@ -86,7 +86,7 @@ Records in `registry/xmm.json`: 2147 inventoried.
 | species | 24 | 22 / 0 / 2 | 0 / 0 / 24 | 1 | 11 | 4 | 3 | 0 | 0 | 0 | 0 | 5 |
 | background | 17 | 17 / 0 / 0 | 0 / 0 / 17 | 0 | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | item | 6 | 5 / 1 / 0 | 6 / 0 / 0 | 0 | 1 | 1 | 4 | 0 | 0 | 0 | 0 | 0 |
-| monster | 118 | 114 / 4 / 0 | 16 / 0 / 102 | 5 | 4 | 59 | 48 | 0 | 0 | 0 | 2 | 0 |
+| monster | 118 | 114 / 4 / 0 | 16 / 0 / 102 | 9 | 4 | 61 | 42 | 0 | 0 | 0 | 2 | 0 |
 
 Records in `registry/efa.json`: 258 inventoried.
 

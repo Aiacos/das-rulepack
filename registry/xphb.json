@@ -47194,17 +47194,38 @@
         }
       ],
       "verdict": "entry",
+      "why": "Heals 5 HP at turn start while above 0 HP; data has a heal activity but nothing triggers it each turn.",
+      "hint": "core-generic",
       "evidence": {
         "triaged": {
           "by": "reader-xphb-018",
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-z001",
+              "at": "2026-11-23T11:16:17.585Z",
+              "confidence": 0.6,
+              "view": {
+                "core": "0.291.0",
+                "sha": "789e64fa53e1387cef6801f35543afa679aca5069096fb636eb1798cc7a5ba28"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "hint": "core-generic",
-      "why": "Heals 5 HP at turn start while above 0 HP; data has a heal activity but nothing triggers it each turn.",
       "state": "triaged"
     },
     {
@@ -47266,10 +47287,31 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "ownTurnStart"
+                },
+                "expect": {
+                  "subjected": "activity"
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Aura damage at the start of each turn within 5 feet, not when incapacitated, excluding the caster; the save activity cannot express timing or area.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -47369,10 +47411,34 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "roll": "hit",
+                  "targetSizeAtMost": "lg"
+                },
+                "expect": {
+                  "condition": {
+                    "applied": "prone"
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "why": "Extra damage and prone only after a straight 20 ft move, size-limited; data carries the rider as unconditional effect.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -47415,10 +47481,24 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Adds proficiency bonus to all ability checks and saves; data lacks any effect for it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -47558,10 +47638,24 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Adds proficiency bonus to all ability checks and saves; data lacks any effect for it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -47645,18 +47739,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-018",
-          "at": "2026-11-21T19:50:49.918Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T11:14:25.344Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No opportunity attack provoked when flying out of reach; a movement rider data cannot express.",
+            "triaged": {
+              "by": "reader-xphb-018",
+              "at": "2026-11-21T19:50:49.918Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "1b00d73201b1a4fb1e3e4bdfdd55fef3a9a969338cacf87ca74e5ea725217a29"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-z001",
+              "at": "2026-11-23T11:16:17.585Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "1b00d73201b1a4fb1e3e4bdfdd55fef3a9a969338cacf87ca74e5ea725217a29"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "No opportunity attack provoked when flying out of reach; a movement rider data cannot express.",
       "state": "triaged"
     },
     {
@@ -47699,10 +47823,24 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Adds proficiency bonus to all ability checks and saves; data lacks any effect for it.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -47881,18 +48019,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-018",
-          "at": "2026-11-21T19:50:49.918Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T11:14:25.344Z",
+          "was": {
+            "verdict": "entry",
+            "why": "No opportunity attack provoked when flying out of reach; a movement rider data cannot express.",
+            "triaged": {
+              "by": "reader-xphb-018",
+              "at": "2026-11-21T19:50:49.918Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "1b00d73201b1a4fb1e3e4bdfdd55fef3a9a969338cacf87ca74e5ea725217a29"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-z001",
+              "at": "2026-11-23T11:16:17.585Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.291.0",
+                "sha": "1b00d73201b1a4fb1e3e4bdfdd55fef3a9a969338cacf87ca74e5ea725217a29"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "No opportunity attack provoked when flying out of reach; a movement rider data cannot express.",
       "state": "triaged"
     },
     {
@@ -48557,10 +48725,35 @@
           "at": "2026-11-21T19:50:49.918Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "beyond": [
+              {
+                "given": {
+                  "moment": "isHit",
+                  "activity": "melee"
+                },
+                "expect": {
+                  "attackerTakes": "activity"
+                }
+              }
+            ],
+            "unexpressed": [
+              "target-state"
+            ]
+          }
         }
       },
       "why": "Fire damage to creatures hitting it in melee or starting a turn grappling it; trigger-based, data has a bare damage activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -49391,17 +49584,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-018",
-          "at": "2026-11-21T19:50:49.918Z",
-          "confidence": 0.75,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T11:14:25.344Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Data lacks the damage; the attack activity has no damage entries, so data lacks the necrotic damage.",
+            "triaged": {
+              "by": "reader-xphb-018",
+              "at": "2026-11-21T19:50:49.918Z",
+              "confidence": 0.75,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-z001",
+              "at": "2026-11-23T11:16:17.585Z",
+              "confidence": 0.75,
+              "view": {
+                "core": "0.291.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Data lacks the damage; the attack activity has no damage entries, so data lacks the necrotic damage.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -49687,11 +49910,24 @@
           "at": "2026-11-21T19:50:50.217Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "1efd219d23076a46768f91a278621a0cf98677eaeb89cb77ae83f213029c454e"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
-      "hint": "core-generic",
       "why": "Explosion save activity exists, but trigger on death or spell end is not expressed by data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -49749,10 +49985,24 @@
           "at": "2026-11-21T19:50:50.217Z",
           "confidence": 0.7,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.75,
+            "view": {
+              "core": "0.291.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Darkvision ignoring magical darkness is a vision rule; no effect in data.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -49804,18 +50054,48 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "core",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-019",
-          "at": "2026-11-21T19:50:50.217Z",
-          "confidence": 0.85,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T11:14:25.344Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Advantage on saves against spells/magical effects is conditional; data has no effect.",
+            "triaged": {
+              "by": "reader-xphb-019",
+              "at": "2026-11-21T19:50:50.217Z",
+              "confidence": 0.85,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.291.0",
+              "sha": "03233cef8353de9649871bb4555a4841e310c72d49eec9234e243d1da23da838"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-z001",
+              "at": "2026-11-23T11:16:17.585Z",
+              "confidence": 0.8,
+              "view": {
+                "core": "0.291.0",
+                "sha": "03233cef8353de9649871bb4555a4841e310c72d49eec9234e243d1da23da838"
+              },
+              "covered": true,
+              "coveredBy": "engine"
+            }
+          }
         }
       },
+      "why": "DAS · Core has its own rule for this item and a reader found it does all the text asks in combat",
       "hint": "core-generic",
-      "why": "Advantage on saves against spells/magical effects is conditional; data has no effect.",
       "state": "triaged"
     },
     {
@@ -50200,17 +50480,47 @@
           "match": "unchecked"
         }
       ],
-      "verdict": "entry",
+      "verdict": "data",
       "evidence": {
         "triaged": {
-          "by": "reader-xphb-019",
-          "at": "2026-11-21T19:50:50.217Z",
-          "confidence": 0.7,
-          "keys": [],
-          "similar": []
+          "by": "rule",
+          "at": "2026-11-23T11:14:25.344Z",
+          "was": {
+            "verdict": "entry",
+            "why": "Damage type depends on the steed type chosen; data has one damage part, a choice is needed.",
+            "triaged": {
+              "by": "reader-xphb-019",
+              "at": "2026-11-21T19:50:50.217Z",
+              "confidence": 0.7,
+              "keys": [],
+              "similar": []
+            }
+          },
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": true,
+            "coveredBy": "data",
+            "second": {
+              "by": "reread-z001",
+              "at": "2026-11-23T11:16:17.585Z",
+              "confidence": 0.7,
+              "view": {
+                "core": "0.291.0",
+                "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+              },
+              "covered": true,
+              "coveredBy": "data"
+            }
+          }
         }
       },
-      "why": "Damage type depends on the steed type chosen; data has one damage part, a choice is needed.",
+      "why": "DAS · Core plays this item's own activities and effects and a reader found they do all the text asks in combat",
       "state": "triaged"
     },
     {
@@ -50372,10 +50682,24 @@
           "at": "2026-11-21T19:50:50.217Z",
           "confidence": 0.85,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "366b31eff3f0b02d74c69aa5722d9b383d8faa53188970fb4cdfbe6152c41b54"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Reaction to the summoner regaining HP within 5 feet; data has nothing for the trigger.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -50822,10 +51146,24 @@
           "at": "2026-11-21T19:50:50.217Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y001",
+            "at": "2026-11-23T11:14:25.344Z",
+            "confidence": 0.8,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Movement through creatures and force damage when ending inside an object; data has a bare damage activity.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {

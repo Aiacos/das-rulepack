@@ -35413,10 +35413,24 @@
           "at": "2026-11-21T19:58:27.361Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y004",
+            "at": "2026-11-23T11:14:30.902Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "de80b86026df48b668f4149c65bbd7358b0d86246f0e585d3568025a8e2e74b0"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Number of attacks scales with the summoner's proficiency bonus; the data only has a self-targeted utility activity with no count.",
+      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
@@ -35535,10 +35549,24 @@
           "at": "2026-11-21T19:58:27.361Z",
           "confidence": 0.8,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-y004",
+            "at": "2026-11-23T11:14:30.902Z",
+            "confidence": 0.85,
+            "view": {
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
+            },
+            "covered": false,
+            "unexpressed": [
+              "no-key"
+            ]
+          }
         }
       },
       "why": "Force damage to itself only when its turn finishes within a solid object; the data has an unconditioned self-damage activity. Passing through creatures is a terrain rule.",
+      "hint": "beyond-engine",
       "state": "triaged"
     }
   ]
