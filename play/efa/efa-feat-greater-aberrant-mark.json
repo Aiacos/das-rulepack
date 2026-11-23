@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-feat-greater-aberrant-mark",
+  "key": "efa:feat:greater-aberrant-mark",
+  "rule": "57cb72a79ec3f92a8b2ca860ef871e87f3c7c53b79de622cb4f8577601b75417",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "With the mark alone a Short Rest leaves its use spent; with the greater feat the same rest gives it back."
+}

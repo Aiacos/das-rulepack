@@ -5,6 +5,21 @@ export const BOOK = "EFA";
 
 export const RULES = book(BOOK, [
   {
+    "identifier": "greater-aberrant-mark",
+    "name": "Greater Aberrant Mark",
+    "page": 43,
+    "kind": "feat",
+    "status": "played",
+    "handledIn": "table",
+    "adds": "The use of the Aberrant Dragonmark feat comes back on a Short Rest too.",
+    "entry": {
+      "regainOnShortRest": [
+        "aberrant-dragonmark"
+      ]
+    }
+  },
+
+  {
     "identifier": "eldritch-cannon",
     "name": "Eldritch Cannon",
     "page": 16,

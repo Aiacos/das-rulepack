@@ -415,3 +415,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Engineered rule proven by a recorded play on the released engine: Magmin Ignited Illumination, the light it sheds while ablaze (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Incubus Nightmare, sleep at 20 hit points or fewer, damage above (XMM)
 - [x] Engineered rule proven by a recorded play on the released engine: Book of Vile Darkness, its speech spares Fiends and Undead (XDMG)
+- [x] Engineered rule proven by a recorded play on the released engine: Greater Aberrant Mark, the mark's use back on a Short Rest (EFA)
