@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-feature-artificer-cartographer-5-guided-precision",
+  "key": "efa:feature:artificer/cartographer/5/guided-precision",
+  "rule": "03a02b7ddad8b22d7deaedd3d14acfccccf323e0ca5f3b334dc98de37d298af2",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "Concentrating on Faerie Fire, damage asks for no save with the feature, and for one without it."
+}

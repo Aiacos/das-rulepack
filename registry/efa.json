@@ -5501,11 +5501,54 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T03:24:24.800Z",
+          "core": "0.290.0",
+          "rule": "03a02b7ddad8b22d7deaedd3d14acfccccf323e0ca5f3b334dc98de37d298af2",
+          "emits": "fe5aada22d0966cc5969e6fe5c1c754bfdf5e622711d341ddf29e50572767f45",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "df4be321313802e2bbbf313e2c2cfd01f6197d50c3f6b43b02fa5cab80deccf0"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T03:30:59.618Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feature-artificer-cartographer-5-guided-precision",
+          "client": "gm",
+          "rule": "03a02b7ddad8b22d7deaedd3d14acfccccf323e0ca5f3b334dc98de37d298af2"
         }
       },
       "why": "Once per turn Intelligence damage bonus only for certain spells or attacks against a marked target; concentration protection. Data bonus is unconditional.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "Damage taken asks for no Concentration save while Faerie Fire is the only spell the artificer concentrates on.",
+        "entry": {
+          "keepsConcentration": [
+            "faerie-fire"
+          ]
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T03:24:19.038Z",
+          "leavesNote": "The Intelligence bonus to one damage roll each turn is added by hand with the item's activity."
+        },
+        "origin": "Cartographer 5"
+      },
+      "state": "played"
     },
     {
       "key": "efa:feature:artificer/cartographer/9/ingenious-movement",
@@ -13428,6 +13471,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T03:21:03.407Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-species-warforged-construct-resilience",
+          "client": "gm",
+          "rule": "fccc0d5072c9cd422f6ce37bbb5f9052fd28b183e917d3db8d9aca572485afd1"
+        },
         "gates": {
           "at": "2026-11-23T03:10:54.204Z",
           "core": "0.290.0",
@@ -13444,14 +13495,6 @@
           "items": {
             "official": "fcce181f3e3282f990de16da94c4bb9d831d4dd220523aefcf919c7fa89aa815"
           }
-        },
-        "played": {
-          "at": "2026-11-23T03:21:03.407Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-species-warforged-construct-resilience",
-          "client": "gm",
-          "rule": "fccc0d5072c9cd422f6ce37bbb5f9052fd28b183e917d3db8d9aca572485afd1"
         }
       },
       "why": "Poison resistance and advantage on saves against Poisoned; data lacks any effect for them.",
