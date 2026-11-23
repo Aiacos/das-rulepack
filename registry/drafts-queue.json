@@ -1224,14 +1224,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:warrior-commander/action/greatsword",
-    "reason": "code",
-    "by": "drafter-v013",
-    "why": "the user picks one of two riders on each hit, one being an ally's reactive move: needs a prompt",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:warrior-commander/reaction/counterattack",
     "reason": "person",
     "by": "drafter-q001",

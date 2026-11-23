@@ -2217,6 +2217,44 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-warrior-commander-greatsword",
+    "name": "Greatsword",
+    "page": 321,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Warrior Commander",
+    "adds": "A creature the sword hits rolls its next attack with Disadvantage, once, until the warrior's next turn starts.",
+    "entry": {
+      "effectEnds": {
+        "DPJJ4qoB0tc83kMg": "casterTurnStart"
+      },
+      "triggers": [
+        {
+          "on": "preAttackRoll",
+          "via": "effect",
+          "fromEffect": "DPJJ4qoB0tc83kMg",
+          "do": [
+            {
+              "type": "disadvantage"
+            },
+            {
+              "type": "consume",
+              "side": "source"
+            }
+          ]
+        }
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-wight-sunlight-sensitivity",
     "name": "Sunlight Sensitivity",
     "page": 332,

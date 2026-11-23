@@ -42,7 +42,7 @@ Install and enable DAS · Core (`dnd5e-combat`) first: the pack only adds rules 
 ## ✨ What it covers
 
 <!-- auto:summary -->
-**144 rules** from **11 rulebooks**: 124 played in a running world, 20 validated by the engine's
+**145 rules** from **11 rulebooks**: 125 played in a running world, 20 validated by the engine's
 validator but not played.
 The full list, book by book — what each rule adds, where it is handled, how far it was checked: **[docs/RULES.md](https://github.com/Aiacos/das-rulepack/blob/master/docs/RULES.md)**.
 <!-- /auto:summary -->
@@ -70,8 +70,8 @@ The counts and their methods are in `docs/books.json`; the "This pack" column is
 
 | | Books | Entries | DAS · Core | This pack | Core + pack | Monsters resolved |
 |---|---:|---:|---:|---:|---|---:|
-| **All rulebooks** | **43** | **8022** | **2465** | **138 (+4)** | `██████░░░░░░░░░░░░░░` 32% | **1232 / 2620** |
-| A. Official Foundry module | 10 | 3754 | 1266 | 124 (+3) | `███████░░░░░░░░░░░░░` 37% | 546 / 841 |
+| **All rulebooks** | **43** | **8022** | **2465** | **139 (+4)** | `██████░░░░░░░░░░░░░░` 32% | **1232 / 2620** |
+| A. Official Foundry module | 10 | 3754 | 1266 | 125 (+3) | `███████░░░░░░░░░░░░░` 37% | 546 / 841 |
 | B. Not on Foundry | 33 | 4268 | 1199 | 14 (+1) | `██████░░░░░░░░░░░░░░` 28% | 686 / 1779 |
 
 Entries are spells, class and subclass features, feats, species traits, options, items and monsters. A monster is one entry, counted under DAS · Core when it is fully resolved (no feature of its stat block left open); the last column repeats that share, which is already in the totals and the bars.
@@ -88,11 +88,11 @@ DAS · Core itself automates the official modules it was written against (see th
 | EFA | Eberron: Forge of the Artificer | 2025 | setting | `dnd-forge-artificer` | 114 | 15 | 9 | `██░░░░░░░░` 21% | 15 / 27 |
 | FRAIF | Forgotten Realms: Adventures in Faerûn | 2025 | setting | `dnd-adventures-faerun` | 60 | 23 | 4 | `█████░░░░░` 45% | 23 / 42 |
 | FRHOF | Forgotten Realms: Heroes of Faerûn | 2025 | setting | `dnd-heroes-faerun` | 133 | 0 | 0 | `░░░░░░░░░░` 0% | — |
-| XMM | Monster Manual (2025) | 2025 | core | `dnd-monster-manual` | 504 | 369 | 91 | `█████████░` 91% | 369 / 503 |
+| XMM | Monster Manual (2025) | 2025 | core | `dnd-monster-manual` | 504 | 369 | 92 | `█████████░` 91% | 369 / 503 |
 | AU | Arcana Unleashed | 2026 | — | `dnd-arcana-unleashed` | 238 | 20 | 0 | `█░░░░░░░░░` 8% | 20 / 38 |
 | RHW | Ravenloft: The Horrors Within | 2026 | — | `dnd-ravenloft-horrors-within` | 132 | 71 | 0 | `█████░░░░░` 54% | 37 / 69 |
 | WOW | Dungeons & Dragons: World of Warcraft | 2026 | — | `dnd-world-warcraft` | 405 | 73 | 0 | `██░░░░░░░░` 18% | 69 / 125 |
-| **Total** | 10 books |  |  |  | **3754** | **1266** | **124 (+3)** | `████░░░░░░` 37% | **546 / 841** |
+| **Total** | 10 books |  |  |  | **3754** | **1266** | **125 (+3)** | `████░░░░░░` 37% | **546 / 841** |
 
 Not in the rulebook catalogue, measured from the module itself and counted like any other book: Ravenloft: The Horrors Within (RHW; version 2.0.0, the module's own compendia, read from the test world, 2026-11-20); Arcana Unleashed (AU; version 1.0.2, the module's own compendia, read from the files of the installed package, 2026-11-20); Dungeons & Dragons: World of Warcraft (WOW; version 1.1.0, the module's own compendia, read from the files of the installed package, 2026-11-20).
 
@@ -230,7 +230,7 @@ One block per rulebook, to open: its spells, class and subclass features, feats,
 | Part | Entries | DAS · Core | This pack | Core + pack |
 |---|---:|---:|---:|---|
 | Items | 1 | 0 | 0 | `░░░░░░░░░░` 0% |
-| Monsters (fully resolved) | 503 | 369 | 91 | `█████████░` 91% |
+| Monsters (fully resolved) | 503 | 369 | 92 | `█████████░` 92% |
 | ↳ their features | 2146 | 1923 | — | `█████████░` 90% |
 
 </details>

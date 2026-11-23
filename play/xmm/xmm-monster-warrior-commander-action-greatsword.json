@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-warrior-commander-action-greatsword",
+  "key": "xmm:monster:warrior-commander/action/greatsword",
+  "rule": "189abb6a120d67d4633a186bf5476e6826a299ff29abca671fd464c856d4c1b9",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "A hit leaves the effect; the target's next attack roll has Disadvantage and spends it, the following one is normal; unspent, it ends when the warrior's next turn starts."
+}
