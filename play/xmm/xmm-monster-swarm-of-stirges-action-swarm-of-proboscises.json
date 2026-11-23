@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-swarm-of-stirges-action-swarm-of-proboscises",
+  "key": "xmm:monster:swarm-of-stirges/action/swarm-of-proboscises",
+  "rule": "d3381461e036558a8052dd53d004795ff77776f7d290977491eaae7db88a994c",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A hit from the square beside a Medium target does not grapple it; a hit on the same target standing in the swarm's space does. The size limit is not exercised."
+}

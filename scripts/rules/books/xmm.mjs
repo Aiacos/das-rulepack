@@ -1918,6 +1918,29 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-swarm-of-stirges-swarm-of-proboscises",
+    "name": "Swarm of Proboscises",
+    "page": 299,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Swarm of Stirges",
+    "adds": "The hit grapples only a Medium or smaller target that stands in the swarm's own space.",
+    "entry": {
+      "effectsIf": {
+        "target.sizeAtMost": "med",
+        "target.sharesSpaceWithSource": true
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-swarm-of-stirges-swarm",
     "name": "Swarm",
     "page": 299,
