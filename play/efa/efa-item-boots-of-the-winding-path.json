@@ -1,0 +1,8 @@
+{
+  "scenario": "efa/efa-item-boots-of-the-winding-path",
+  "key": "efa:item:boots-of-the-winding-path",
+  "rule": "871a3344954d255d9fdea4bab5fb79aca04e486b33872f21377a4a2105b9ca62",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A teleport of 30 feet is refused; one of 15 feet is accepted and the wearer stands there."
+}
