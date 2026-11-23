@@ -1047,3 +1047,23 @@ feature the text layer does read stays with the monster reread. Cost if wrong: a
 against the engine's view leaves the `entry` verdict while a part of its text is not played; the view's fingerprint makes
 the reread stale, and offered again, when the engine or the item changes.
 
+### Ruling R48 — a second look by readers who read the engine's source (2026-11-23)
+
+The item reread (R42, R46) shows a reader the engine's own class of the item. That class says whether the engine has a rule
+of its own for the item, not what the engine does for every creature feature at the moment of use (the turn economy of
+legendary actions, a swallow read from the text, a size limit, a charge variant, an emanation). Engineers who read the
+source said "the engine already does it" for 133 of 255 Monster Manual features two readers had judged not covered, and
+the reread refuses `coveredBy: "engine"` on an item the engine has no rule of its own for. Decision:
+
+- `batch reread <BOOK> --items --again [--keys <file>]` offers once more the standing rereads that found something missing
+  (never a covered one), optionally only the keys of a JSON list; the batch is marked `again`.
+- A result may name `mechanism`, a file under the engine's `module/scripts` (checked to exist in the engine in use). With it,
+  `covered: true, coveredBy: "engine"` stands at any engine level; without it the level rule of R42 holds as before. It is
+  stored with the reread.
+- Everything else of R42 holds: a first reader, then a blind second reader who must reach the same `coveredBy` — and, on
+  such an item, name a mechanism too. A reader below the confidence line changes nothing.
+
+Cost if wrong: two source-reading agents agree on a mechanism that does not do what the text asks, and the entry leaves the
+`entry` verdict uncovered. The named file is recorded, so a person can check the claim; a change of the engine or of the
+item makes the reread stale as before.
+

@@ -342,10 +342,12 @@ export function readingProblems(reading) {
 // `restated: true`: the first reread a restate wrote (reread.mjs, Ruling R31), never cut again by a restate.
 // An item reread (Ruling R42) holds `view` (the fingerprint of the engine view judged) in place of `reading`, and with
 // `covered: true` its `coveredBy` (COVERED_BY); its second likewise.
+// Ruling R48: `mechanism`, the engine file a source-aware reader named for `coveredBy: "engine"` (an item reread's only).
 const REREAD_FIELDS = ["by", "at", "confidence", "reading", "view", "covered", "coveredBy", "beyond", "unexpressed",
-  "provisional", "second", "restated"];
+  "provisional", "second", "restated", "mechanism"];
 const REREAD_SECOND_FIELDS = ["by", "at", "confidence", "reading", "view", "covered", "coveredBy", "beyond", "unexpressed",
-  "outcome"];
+  "outcome", "mechanism"];
+const REREAD_MECHANISM = /^[a-z][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*\.mjs$/;
 export const REREAD_BEYOND_MAX = 6;
 /** The closed outcomes of a second reread that carry no answer (reread.mjs): an unsure second reader. */
 export const REREAD_OUTCOMES = Object.freeze(["second-unsure"]);
@@ -387,6 +389,10 @@ function rereadReadingProblems(r, at, fields) {
     errors.push(`${at}.coveredBy: covered: true must say what covers it, one of ${COVERED_BY.join(", ")}`);
   }
   if (r.covered !== true && has(r, "coveredBy")) errors.push(`${at}.coveredBy: only with covered: true`);
+  if (has(r, "mechanism") && !(r.covered === true && r.coveredBy === "engine" && typeof r.mechanism === "string"
+    && REREAD_MECHANISM.test(r.mechanism))) {
+    errors.push(`${at}.mechanism: an engine file (….mjs), with covered: true and coveredBy engine only`);
+  }
   if (typeof r.covered !== "boolean") errors.push(`${at}.covered: must be true or false`);
   if (r.covered === true && has(r, "beyond")) errors.push(`${at}.beyond: covered: true carries none`);
   if (r.covered === true && has(r, "unexpressed")) errors.push(`${at}.unexpressed: covered: true carries none`);

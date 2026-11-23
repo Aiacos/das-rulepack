@@ -193,6 +193,17 @@ describe("batch reread --items: what is cut", () => {
     expect(cut(() => false)).toContain(keyOf(1));
   });
 
+  it("--again offers once more a standing reread that found something missing, never a covered one (Ruling R48)", () => {
+    const keysOf = (over) => cutItemRereadBatches(records(), options(over)).batches.flatMap((b) => b.entries).map((e) => e.key);
+    // feature(13) carries a standing reread for the current view that found something missing.
+    expect(keysOf({})).not.toContain(keyOf(13));
+    expect(keysOf({ again: true })).toContain(keyOf(13));
+    expect(cutItemRereadBatches(records(), options({ again: true })).batches.every((b) => b.again === true)).toBe(true);
+    expect(cutItemRereadBatches(records(), options()).batches.some((b) => b.again === true)).toBe(false);
+    // --keys keeps the batch to the keys named.
+    expect(keysOf({ again: true, keys: new Set([keyOf(13)]) })).toEqual([keyOf(13)]);
+  });
+
   const coveredRecord = (n, by, reread) => feature(n, { verdict: COVERED_VERDICT[by], why: ITEM_REREAD_WHY[by],
     evidence: { triaged: { by: "rule", at: AT, was: { verdict: "entry", why: "x", triaged: feature(1).evidence.triaged },
       reread } } });
@@ -324,6 +335,30 @@ describe("ingest --reread --items", () => {
     expect(unread.rejected).toEqual([]);
     expect(unread.covered).toEqual([keyOf(9)]);
     expect(unread.records[0].verdict).toBe(COVERED_VERDICT.engine);
+    // Ruling R48: a reader of the engine's source names the engine file; the engine may then cover an item it has no rule
+    // of its own for. The file must exist, and the field goes with coveredBy engine only.
+    const manualView = new Map([[keyOf(15), { view: MANUAL_VIEW, structure: STRUCTURE }]]);
+    const offer15 = new Map([[keyOf(15), viewFingerprint(MANUAL_VIEW, core, STRUCTURE)]]);
+    const named = (extra, exists = () => true) => run([feature(15)], [covered(15, "engine", extra)],
+      { current: manualView, offered: offer15, mechanismExists: exists });
+    expect(named({}).rejected[0].reason).toMatch(/needs the engine view's level.*Ruling R48/);
+    const ok = named({ mechanism: "adapter/usage.mjs" });
+    expect(ok.rejected).toEqual([]);
+    expect(ok.records[0].evidence.triaged.reread).toMatchObject({ coveredBy: "engine", mechanism: "adapter/usage.mjs" });
+    expect(validateRecord(ok.records[0])).toEqual([]);
+    expect(named({ mechanism: "adapter/usage.mjs" }, () => false).rejected[0].reason).toMatch(/not a file of the engine/);
+    expect(named({ mechanism: "../secrets.mjs" }).rejected[0].reason).toMatch(/must be a path under the engine/);
+    const withData = run([feature(1)], [covered(1, "data", { mechanism: "adapter/usage.mjs" })], { mechanismExists: () => true });
+    expect(withData.rejected[0].reason).toMatch(/coveredBy engine only/);
+    // An "again" batch lifts the "already reread" guard for a reread that found something missing, and only then.
+    const missing = { by: "rereader-1", at: AT, confidence: 0.8, view: FP, covered: false,
+    beyond: [shove] };
+    const standing = feature(13, { hint: "beyond-engine", evidence: { triaged: { ...feature(1).evidence.triaged,
+      reread: missing } } });
+    const offer13 = new Map([[keyOf(13), FP]]);
+    const cur13 = new Map([[keyOf(13), { view: RULE_VIEW, structure: null }]]);
+    expect(run([standing], [covered(13, "engine")], { offered: offer13, current: cur13 }).rejected[0].reason).toMatch(/already reread/);
+    expect(run([standing], [covered(13, "engine")], { offered: offer13, current: cur13, again: true }).covered).toEqual([keyOf(13)]);
     const gone = run([feature(1)], [covered(1, "engine")], { current: new Map([[keyOf(1), { view: null,
       structure: STRUCTURE }]]) });
     expect(gone.rejected[0].reason).toMatch(/stale/);

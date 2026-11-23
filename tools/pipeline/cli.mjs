@@ -882,7 +882,8 @@ function currentReadingFor(records, dumpsDir, core) {
 
 const REREAD_USAGE = "batch reread <BOOK> --out <dir> --structure <private dir> [--size <n>] [--second | --restate]"
   + " (needs DAS_CORE and RULEPACK_DUMPS: the engine's reading of each monster feature is computed at cut time)"
-  + "\n       batch reread <BOOK> --items --out <dir> --structure <private dir> [--size <n>] [--second]"
+  + "\n       batch reread <BOOK> --items --out <dir> --structure <private dir> [--size <n>] [--second | --again]"
+  + " [--keys <file>]"
   + " (needs DAS_CORE, RULEPACK_DUMPS and RULEPACK_ENGINE_VIEW: the engine's own class of each item, Ruling R42)";
 
 // Ruling R42: the private engine view of RULEPACK_ENGINE_VIEW (reread-items.mjs parseEngineView), checked whole: a lookup by
@@ -923,13 +924,25 @@ async function itemRereadBatchCommand(book, rest) {
     throw new UsageError("--items and --restate cannot be used together: a restate reads monster rereads (Ruling R31)");
   }
   const second = rest.includes("--second");
-  const args = rest.filter((a) => a !== "--second");
+  const again = rest.includes("--again");
+  const args = rest.filter((a) => a !== "--second" && a !== "--again");
   const opts = {};
   for (let i = 0; i < args.length; i += 2) {
-    if (!["--out", "--size", "--structure"].includes(args[i]) || args[i + 1] === undefined) throw new UsageError(usage);
+    if (!["--out", "--size", "--structure", "--keys"].includes(args[i]) || args[i + 1] === undefined) throw new UsageError(usage);
     opts[args[i].slice(2)] = args[i + 1];
   }
   if (!opts.out || !opts.structure) throw new UsageError(usage);
+  // Ruling R48: `--again` offers once more the rereads that found something missing; `--keys <file>` (a JSON list of record
+  // keys) keeps the batch to those.
+  if (again && second) throw new UsageError("--again and --second cannot be used together");
+  let keys = null;
+  if (opts.keys !== undefined) {
+    const list = readJson(opts.keys, "--keys file");
+    if (!Array.isArray(list) || !list.every((k) => typeof k === "string")) {
+      throw new UsageError("--keys: a JSON list of record keys");
+    }
+    keys = new Set(list);
+  }
   const size = opts.size === undefined ? ITEM_REREAD_BATCH_SIZE : Number(opts.size);
   if (!Number.isInteger(size) || size < 1) throw new UsageError("--size must be a positive integer");
   const missing = ["DAS_CORE", "RULEPACK_DUMPS", "RULEPACK_ENGINE_VIEW"].filter((v) => !process.env[v]);
@@ -959,7 +972,7 @@ async function itemRereadBatchCommand(book, rest) {
   const series = second ? "reread-items-second" : "reread-items";
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
   const { batches, leftOut, byLevel } = cutItemRereadBatches(found.records, {
-    size, after, viewOf, documentOf, core, second, reviewQueued, triageQueued, unreadMonster
+    size, after, viewOf, documentOf, core, second, reviewQueued, triageQueued, unreadMonster, again, keys
   });
   // Every structure is computed before anything is written.
   const structures = batches.map((b) => structuresOf(b, found.records, dumpsDir, { engine: core }));
@@ -1182,7 +1195,7 @@ function offeredItemRereads(id, file, second) {
   if (!batch.entries.every(ok)) {
     throw new UsageError(`${file}: every entry of ${id} must be a key of book ${m[1].toUpperCase()} with its view`);
   }
-  return { book: m[1].toUpperCase(), offered: new Map(batch.entries.map((e) => [e.key, e.view])) };
+  return { book: m[1].toUpperCase(), offered: new Map(batch.entries.map((e) => [e.key, e.view])), again: batch.again === true };
 }
 
 // `ingest <results-file> --reread --items [--second] --batch <batch file>` (Ruling R42, reread-items.mjs ingestItemRereads):
@@ -1210,7 +1223,7 @@ async function ingestItemRereadCommand(args) {
   const dumpsDir = need("RULEPACK_DUMPS");
   const viewOf = engineViewFromEnv({ required: true });
   const input = readResultsFile(file, "--reread");
-  const { book, offered } = offeredItemRereads(input.batch, batchFile, second);
+  const { book, offered, again } = offeredItemRereads(input.batch, batchFile, second);
   checkQueues(REGISTRY);
   const core = await loadCore(coreDir);
   const books = loadRegistry(REGISTRY);
@@ -1226,7 +1239,8 @@ async function ingestItemRereadCommand(args) {
   }
   const out = ingestItemRereads(all, input.results, {
     textDir, by: input.by, core, offered, current, second, draftsQueue: loadQueue(REGISTRY, "drafts"),
-    reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY), unreadMonster
+    reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY), unreadMonster,
+    again, mechanismExists: (path) => existsSync(join(coreDir, "module", "scripts", path))
   });
   const changed = second ? [...out.agreed, ...out.disagreed, ...out.unsureReverted] : [...out.covered, ...out.beyond];
   if (!commitIngest(books, out.records, changed, [], second ? [] : out.dequeued, { queue: "drafts" })) return;
