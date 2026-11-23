@@ -58,6 +58,7 @@ export const SOURCES = Object.freeze({
   "mmChaosStaff0000": "xmm-green-slaad-chaos-staff",
   "mmCopperDragonWy.mmSlowingBreath0": "xmm-copper-dragon-wyrmling-slowing-breath",
   "mmCouatl00000000.mmConstrict00000": "xmm-couatl-constrict",
+  "mmDissolvingPseu": "xmm-black-pudding-dissolving-pseudopod",
   "mmDreadScythe000": "xmm-death-cultist-dread-scythe",
   "mmDreadfulHowl00": "xmm-dire-worg-dreadful-howl",
   "mmDrider00000000.mmSunlightSensit": "xmm-drider-sunlight-sensitivity",

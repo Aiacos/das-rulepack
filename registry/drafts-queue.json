@@ -439,14 +439,6 @@
     "confidence": 0.75
   },
   {
-    "key": "xmm:monster:black-pudding/action/dissolving-pseudopod",
-    "reason": "person",
-    "by": "drafter-q002",
-    "why": "the item already applies the armor penalty; stacking, nonmagical armor, destruction and repair have no key",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:blob-of-annihilation/legendary/decay",
     "reason": "person",
     "by": "drafter-q002",
