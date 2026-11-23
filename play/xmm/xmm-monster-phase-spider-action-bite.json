@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-phase-spider-action-bite",
+  "key": "xmm:monster:phase-spider/action/bite",
+  "rule": "34272a38e0d92964ee9f9704fe4f964600cd178c60f63c42e71d65078883d473",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "A creature the bite leaves standing carries no poison; one it reduces to 0 hit points is not dead and carries it."
+}

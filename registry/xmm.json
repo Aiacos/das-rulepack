@@ -92677,6 +92677,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T09:20:28.724Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-lacedon-ghoul-action-claw",
+          "client": "gm",
+          "rule": "41e09f13196311ac7031483c94218d3ab1d95f8d1cbebf59a17416ece1a9a187"
+        },
         "reading": {
           "at": "2026-11-23T09:16:21.760Z",
           "core": "0.291.0",
@@ -92708,14 +92716,6 @@
           "items": {
             "official": "6dc44468daf09c9c5950aee19bb31bcda04c78b8bbefaa56edbb6383afa0fbcd"
           }
-        },
-        "played": {
-          "at": "2026-11-23T09:20:28.724Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-lacedon-ghoul-action-claw",
-          "client": "gm",
-          "rule": "41e09f13196311ac7031483c94218d3ab1d95f8d1cbebf59a17416ece1a9a187"
         }
       },
       "why": "Paralysis on failed save only for targets that are not Undead or elf, ending at a stated turn point; needs a rule.",
@@ -111012,7 +111012,7 @@
       "edition": "2024",
       "owner": "Phase Spider",
       "section": "action",
-      "identifier": "bite",
+      "identifier": "xmm-phase-spider-bite",
       "page": 239,
       "srd": true,
       "text": {
@@ -111034,7 +111034,8 @@
           ],
           "data": {
             "sha256": "6e86ac9816b03be1a3a1a7f50e4883c1233d1b14773e31bb115ab79bc16bb9c3"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -111052,7 +111053,8 @@
           },
           "differences": [
             "statuses"
-          ]
+          ],
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -111080,11 +111082,82 @@
               "death-trigger"
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T09:23:22.556Z",
+          "core": "0.291.0",
+          "rule": "34272a38e0d92964ee9f9704fe4f964600cd178c60f63c42e71d65078883d473",
+          "item": "6e86ac9816b03be1a3a1a7f50e4883c1233d1b14773e31bb115ab79bc16bb9c3",
+          "delta": [
+            "effectsIf",
+            "stableAtZero"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "bite",
+          "carried": [
+            "drain"
+          ],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T09:23:22.556Z",
+          "core": "0.291.0",
+          "rule": "34272a38e0d92964ee9f9704fe4f964600cd178c60f63c42e71d65078883d473",
+          "emits": "6ec2e0e05d17791bbe8cef4b3010dee5aae07447a8287e7e1c4e91c050a12d5e",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "6e86ac9816b03be1a3a1a7f50e4883c1233d1b14773e31bb115ab79bc16bb9c3"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T09:31:16.139Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-phase-spider-action-bite",
+          "client": "gm",
+          "rule": "34272a38e0d92964ee9f9704fe4f964600cd178c60f63c42e71d65078883d473"
         }
       },
       "why": "Rider only when damage drops the target to 0 HP: stable, poisoned one hour and paralyzed while poisoned; data applies it unconditionally.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmPhaseSpider000.mmBite0000000000": "xmm-phase-spider-bite"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "The poison is placed only on a target the bite reduces to 0 hit points, and that target is stable.",
+        "entry": {
+          "effectsIf": {
+            "target.atZero": true
+          },
+          "stableAtZero": true
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T09:23:16.156Z",
+          "leavesNote": "Nothing else of the bite is changed: its attack and its damage are played from the item's own data."
+        },
+        "origin": "Phase Spider"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:phase-spider/action/multiattack",
