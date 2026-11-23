@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-drider-trait-sunlight-sensitivity",
+  "key": "xmm:monster:drider/trait/sunlight-sensitivity",
+  "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature's ability check has Disadvantage, another creature's has not; out of it, none."
+}

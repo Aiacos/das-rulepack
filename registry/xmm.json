@@ -50535,7 +50535,7 @@
       "edition": "2024",
       "owner": "Drider",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-drider-sunlight-sensitivity",
       "page": 105,
       "srd": true,
       "text": {
@@ -50553,7 +50553,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -50566,7 +50567,8 @@
           ],
           "data": {
             "sha256": "aba5399769adb95c7e517fa3d52b46c5d35f92980fd5fac237b81571fe69add3"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -50603,11 +50605,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.759Z",
+          "core": "0.290.0",
+          "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.760Z",
+          "core": "0.290.0",
+          "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16",
+          "emits": "3a09ed0051fecf3b826131662d78eb8b7f5f89a72e0337359d3f915269bcd4d3",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-drider-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "8ef9d9d197ad3efaed2f3a1cd3c2a2e4ba28df8e483016a0ceed5f90327f9d16"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; circumstance-limited.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmDrider00000000.mmSunlightSensit": "xmm-drider-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Drider"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:drider/trait/web-walker",
@@ -86731,7 +86805,7 @@
       "edition": "2024",
       "owner": "Juvenile Shadow Dragon",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-juvenile-shadow-dragon-sunlight-sensitivity",
       "page": 275,
       "srd": false,
       "text": {
@@ -86749,7 +86823,8 @@
           "effects": [],
           "data": {
             "sha256": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -86786,11 +86861,77 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.812Z",
+          "core": "0.290.0",
+          "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b",
+          "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.812Z",
+          "core": "0.290.0",
+          "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b",
+          "emits": "01c8865157644d9692981ba03f358c9851d9d7d1e12da903d42f05d5653de922",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-juvenile-shadow-dragon-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "e320b34a89cf2a89a2d2a5c2d9a9927f52a92f217056cc955cd42e43c3c2e33b"
         }
       },
       "why": "Disadvantage on checks and attacks while in sunlight; data lacks it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmJuvenileShadow.mmSunlightSensit": "xmm-juvenile-shadow-dragon-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Juvenile Shadow Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:kenku/action/shadow-blade",
@@ -87488,7 +87629,7 @@
       "edition": "2024",
       "owner": "Kobold Warrior",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-kobold-warrior-sunlight-sensitivity",
       "page": 185,
       "srd": true,
       "text": {
@@ -87506,7 +87647,8 @@
           "effects": [],
           "data": {
             "sha256": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -87519,7 +87661,8 @@
           ],
           "data": {
             "sha256": "eb73b673b34ca7b42df5b41a47e29f085db46457f071c9c9ec030a12b0268f3e"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -87556,11 +87699,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.813Z",
+          "core": "0.290.0",
+          "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f",
+          "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.813Z",
+          "core": "0.290.0",
+          "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f",
+          "emits": "9aa467e6aa02ee4fa1478c4bad42f34425ed2d5d98a3c48bb5e21651ef76dd93",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kobold-warrior-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "b88d6bff169440a9e1d433d51f5d627e55791a69265feb63473a866125f9244f"
         }
       },
       "why": "Disadvantage on checks and attacks while in sunlight; data lacks it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmKoboldWarrior0.mmSunlightSensit": "xmm-kobold-warrior-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Kobold Warrior"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:kraken/action/fling",
@@ -88769,7 +88984,7 @@
       "edition": "2024",
       "owner": "Kuo-toa Archpriest",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-kuo-toa-archpriest-sunlight-sensitivity",
       "page": 191,
       "srd": false,
       "text": {
@@ -88787,7 +89002,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -88800,7 +89016,8 @@
           ],
           "data": {
             "sha256": "58a04c0fec020a178df131e4a80a5b70ea09c70ac5a5cbdf62be4cdedd8e6029"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -88837,11 +89054,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.815Z",
+          "core": "0.290.0",
+          "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.815Z",
+          "core": "0.290.0",
+          "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9",
+          "emits": "084f4c14185716a6c9e5fda836f5086577476f3d4995e745cadedfea5c6ac7c6",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-archpriest-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "8e899c4f55d8135c4875c2cba2300d51cad77dfcb6858b3af6944d0ebf9636c9"
         }
       },
       "why": "Disadvantage on checks and attacks while in sunlight; data lacks it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmKuotoaArchprie.mmSunlightSensit": "xmm-kuo-toa-archpriest-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Kuo-toa Archpriest"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:kuo-toa-monitor/action/bone-whip",
@@ -89042,7 +89331,7 @@
       "edition": "2024",
       "owner": "Kuo-toa Monitor",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-kuo-toa-monitor-sunlight-sensitivity",
       "page": 190,
       "srd": false,
       "text": {
@@ -89060,7 +89349,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -89110,11 +89400,77 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.816Z",
+          "core": "0.290.0",
+          "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.816Z",
+          "core": "0.290.0",
+          "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29",
+          "emits": "f0cc58477c102dcd881a713412fc038074123f73d193eae698be10331685c930",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-monitor-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "7732a6307e7fc5d64ac3a8c82812e3f756f3147e696da4740823c3e0d74bad29"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data carries nothing, needs a conditional rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmKuotoaMonitor0.mmSunlightSensit": "xmm-kuo-toa-monitor-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Kuo-toa Monitor"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:kuo-toa-whip/action/conjure-slimy-glob",
@@ -89363,7 +89719,7 @@
       "edition": "2024",
       "owner": "Kuo-toa Whip",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-kuo-toa-whip-sunlight-sensitivity",
       "page": 190,
       "srd": false,
       "text": {
@@ -89381,7 +89737,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -89431,11 +89788,77 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.817Z",
+          "core": "0.290.0",
+          "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.817Z",
+          "core": "0.290.0",
+          "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4",
+          "emits": "9af247ff18c17a866121a2271b0e93562a39c04252f1036e4fad19751151827d",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-whip-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "e8894568b19adef398d4b2168517559856e094debf5bab387740aab61db477e4"
         }
       },
       "why": "Disadvantage in sunlight only; data carries nothing, needs a conditional rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmKuotoaWhip0000.mmSunlightSensit": "xmm-kuo-toa-whip-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Kuo-toa Whip"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:kuo-toa/action/spear",
@@ -89834,7 +90257,7 @@
       "edition": "2024",
       "owner": "Kuo-toa",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-kuo-toa-sunlight-sensitivity",
       "page": 189,
       "srd": false,
       "text": {
@@ -89852,7 +90275,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -89865,7 +90289,8 @@
           ],
           "data": {
             "sha256": "f1401a0d76ad29d25e73b8c331c9d5baa7db453d7c464bfd426e085cb594a2a7"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -89902,11 +90327,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.820Z",
+          "core": "0.290.0",
+          "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.820Z",
+          "core": "0.290.0",
+          "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649",
+          "emits": "a4293848d7be2edd5943d0eea19df54e347676fa3e0af63985d96144c6578ebf",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-kuo-toa-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649"
         }
       },
       "why": "Disadvantage in sunlight only; data carries nothing, needs a conditional rule.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmKuotoa00000000.mmSunlightSensit": "xmm-kuo-toa-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Kuo-toa"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:lacedon-ghoul/action/claw",
@@ -124198,7 +124695,7 @@
       "edition": "2024",
       "owner": "Shadow Dragon",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-shadow-dragon-sunlight-sensitivity",
       "page": 275,
       "srd": false,
       "text": {
@@ -124216,7 +124713,8 @@
           "effects": [],
           "data": {
             "sha256": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "plutonium",
@@ -124253,11 +124751,77 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.863Z",
+          "core": "0.290.0",
+          "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846",
+          "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.863Z",
+          "core": "0.290.0",
+          "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846",
+          "emits": "71df1afa98cb2ceb6b83bcd0f0f1cadc6d05fd7f67fc494fc7cf0f9160266174",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-shadow-dragon-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "7f166d466ed233510511a8c3e9369f21e049188649bf24deebd0eca6b35b7846"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data lacks it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmShadowDragon00.mmSunlightSensit": "xmm-shadow-dragon-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Shadow Dragon"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:shadow/action/draining-swipe",
@@ -127687,7 +128251,7 @@
       "edition": "2024",
       "owner": "Specter",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-specter-sunlight-sensitivity",
       "page": 290,
       "srd": true,
       "text": {
@@ -127705,7 +128269,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -127718,7 +128283,8 @@
           ],
           "data": {
             "sha256": "8e43a4e858f21b7431b805ec5212deaa2c0c52271304bc6bb6496c21e730f1fb"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -127755,11 +128321,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.871Z",
+          "core": "0.290.0",
+          "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.871Z",
+          "core": "0.290.0",
+          "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38",
+          "emits": "89cde418e662ebff2922da41ac7b649c113d6268055dd7fae9c29c961b48fe17",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-specter-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data lacks it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmSpecter0000000.mmSunlightSensit": "xmm-specter-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Specter"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:sphinx-of-lore/action/claw",
@@ -133412,6 +134050,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-bats-trait-swarm",
+          "client": "gm",
+          "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.491Z",
           "core": "0.290.0",
@@ -133445,14 +134091,6 @@
           "items": {
             "official": "c77229609ac5e265ed855312e9cd0417a8bcd57ff93ad8c054f5af11f2edb7f2"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-bats-trait-swarm",
-          "client": "gm",
-          "rule": "d96e05037f3bf25049fcdb812787bfdf4c6b2167b426644203426e426ea74efa"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -133654,6 +134292,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-crawling-claws-trait-swarm",
+          "client": "gm",
+          "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.491Z",
           "core": "0.290.0",
@@ -133687,14 +134333,6 @@
           "items": {
             "official": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-crawling-claws-trait-swarm",
-          "client": "gm",
-          "rule": "55713fd440df9d1bc330ce655df318e545917eb7c2c6b2c52de10043c5d6254d"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -134048,6 +134686,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-dretches-trait-swarm",
+          "client": "gm",
+          "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.493Z",
           "core": "0.290.0",
@@ -134081,14 +134727,6 @@
           "items": {
             "official": "4c1cbcb0a13bea31c248608958344dd854fee530df93b314e2ee3fece3cbb3ea"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-dretches-trait-swarm",
-          "client": "gm",
-          "rule": "b9a33cad545902cb20dc9244e544c1546ca4fd1447eae7805a3b4f6fe896a154"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -134341,6 +134979,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-insects-trait-swarm",
+          "client": "gm",
+          "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.494Z",
           "core": "0.290.0",
@@ -134374,14 +135020,6 @@
           "items": {
             "official": "e872c7a4e35e8809a3801f0f738c8eb3adbfeb24839c943bb38439b86532bd6f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-insects-trait-swarm",
-          "client": "gm",
-          "rule": "b6cde3d0873ef3f2ca75b27d11bea57966bf6335583cb0d88b9dae1e9d240cd2"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -134529,6 +135167,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-larvae-trait-swarm",
+          "client": "gm",
+          "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.495Z",
           "core": "0.290.0",
@@ -134562,14 +135208,6 @@
           "items": {
             "official": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-larvae-trait-swarm",
-          "client": "gm",
-          "rule": "dcc55b066a04c3ac3490d3fcffcda9269ee016ec8989cc425632292844ddd464"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -134807,6 +135445,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-lemures-trait-swarm",
+          "client": "gm",
+          "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.496Z",
           "core": "0.290.0",
@@ -134840,14 +135486,6 @@
           "items": {
             "official": "40fe46e7baecad9934e9d9a3f108c1c0fa24c71055fa3f1e74f0d657ea427605"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-lemures-trait-swarm",
-          "client": "gm",
-          "rule": "cd7d8539b8ba1dc34cb8220824cb1c6ff78cb93897e84c074119609290ca9848"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -135043,6 +135681,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-piranhas-trait-swarm",
+          "client": "gm",
+          "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.496Z",
           "core": "0.290.0",
@@ -135076,14 +135722,6 @@
           "items": {
             "official": "556660f978e4f9209b9eccc7cf223eeb66a2adcfa15d3ab5075f4bf879c3b7ff"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-piranhas-trait-swarm",
-          "client": "gm",
-          "rule": "e83e5810fc4279ebb92af61bce0ad34dd2b73d7165b4b6951f11cc99d96887bf"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -135322,6 +135960,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-rats-trait-swarm",
+          "client": "gm",
+          "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.497Z",
           "core": "0.290.0",
@@ -135355,14 +136001,6 @@
           "items": {
             "official": "7c9e705904201650615b602361cb691465072cf6024167927bf51cacadd09d49"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-rats-trait-swarm",
-          "client": "gm",
-          "rule": "0d30b69b8107d83af0eb31cc7a6bb3661fc342aa84d05077645b23de5732f35f"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -135733,6 +136371,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-ravens-trait-swarm",
+          "client": "gm",
+          "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.499Z",
           "core": "0.290.0",
@@ -135766,14 +136412,6 @@
           "items": {
             "official": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-ravens-trait-swarm",
-          "client": "gm",
-          "rule": "2a4ef9b9b94fcae302004baae7ea8c5c8219832aee2a71507a14ff8042f3f82b"
         }
       },
       "why": "Swarm movement and cannot regain HP or gain temporary HP; data lacks the healing restriction",
@@ -135980,6 +136618,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-stirges-trait-swarm",
+          "client": "gm",
+          "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.500Z",
           "core": "0.290.0",
@@ -136013,14 +136659,6 @@
           "items": {
             "official": "6c0a439c515d647de09800bf981284d504a537aa740a07d8324cba548008b6ca"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-stirges-trait-swarm",
-          "client": "gm",
-          "rule": "38040d5a20cb8ac9f209a1585017d43ac1d1966a3ceede505bc70db1bc4f0218"
         }
       },
       "why": "Passive restriction on regaining HP and gaining temp HP, plus space sharing; data carries nothing.",
@@ -136194,6 +136832,14 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T04:25:34.292Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-swarm-of-venomous-snakes-trait-swarm",
+          "client": "gm",
+          "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04"
+        },
         "reading": {
           "at": "2026-11-23T04:17:06.501Z",
           "core": "0.290.0",
@@ -136227,14 +136873,6 @@
           "items": {
             "official": "d0c00817a38b1af30dfeeb518460ac0c25c4ac8f69c97902c40220697bf2addb"
           }
-        },
-        "played": {
-          "at": "2026-11-23T04:25:34.292Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xmm/xmm-monster-swarm-of-venomous-snakes-trait-swarm",
-          "client": "gm",
-          "rule": "c434fdd8c1950e616dc7b0530f9a2706157781fa67d68521306e2bacdf098f04"
         }
       },
       "why": "Passive restriction on regaining HP and gaining temp HP, plus space sharing; data carries nothing.",
@@ -139161,7 +139799,7 @@
       "edition": "2024",
       "owner": "Troglodyte",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-troglodyte-sunlight-sensitivity",
       "page": 309,
       "srd": false,
       "text": {
@@ -139179,7 +139817,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -139229,11 +139868,77 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.894Z",
+          "core": "0.290.0",
+          "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.894Z",
+          "core": "0.290.0",
+          "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92",
+          "emits": "34c47eb8f02acc860038cd4e633981427c2ba03398550e39389c41f881230461",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-troglodyte-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "8610ea233dfdb3332d00ba2301244e95d3fbcc8ea41151704418dcbe983bec92"
         }
       },
       "why": "Disadvantage on checks and attacks only while in sunlight; data lacks it.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmTroglodyte0000.mmSunlightSensit": "xmm-troglodyte-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Troglodyte"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:troll-limb/action/rend",
@@ -150356,7 +151061,7 @@
       "edition": "2024",
       "owner": "Wight",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-wight-sunlight-sensitivity",
       "page": 332,
       "srd": true,
       "text": {
@@ -150374,7 +151079,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -150428,11 +151134,77 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.911Z",
+          "core": "0.290.0",
+          "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.911Z",
+          "core": "0.290.0",
+          "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508",
+          "emits": "ee844299fd50326e70fff46b4b113d312297e0b97035f453f13d7985f6ef2447",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-wight-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "404c60524621ec89f2e851aab311ec66b6c366ddc0bb061cd9633e210ddf9508"
         }
       },
       "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmWight000000000.mmSunlightSensit": "xmm-wight-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Wight"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:will-o-wisp/action/shock",
@@ -151102,7 +151874,7 @@
       "edition": "2024",
       "owner": "Winged Kobold",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-winged-kobold-sunlight-sensitivity",
       "page": 185,
       "srd": false,
       "text": {
@@ -151120,7 +151892,8 @@
           "effects": [],
           "data": {
             "sha256": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -151133,7 +151906,8 @@
           ],
           "data": {
             "sha256": "ba2b90166ac941e6098e1f2e2c611316ba76fe5e8ef9517df54dd33b6c7c2f6b"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -151170,11 +151944,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.912Z",
+          "core": "0.290.0",
+          "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f",
+          "item": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.912Z",
+          "core": "0.290.0",
+          "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f",
+          "emits": "3fa5788319b2f350c96315190f72fff9ad321e37ec13c5918989db82f5469787",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "b25182c101ba92f88094ebe477f7609b0e1f2ac808c7911b3d54234bf0950b2f"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-winged-kobold-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f"
         }
       },
       "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmWingedKobold00.mmSunlightSensit": "xmm-winged-kobold-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Winged Kobold"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:winter-wolf/action/bite",
@@ -151930,7 +152776,7 @@
       "edition": "2024",
       "owner": "Wraith",
       "section": "trait",
-      "identifier": "sunlight-sensitivity",
+      "identifier": "xmm-wraith-sunlight-sensitivity",
       "page": 336,
       "srd": true,
       "text": {
@@ -151948,7 +152794,8 @@
           "effects": [],
           "data": {
             "sha256": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
-          }
+          },
+          "embeddedShared": true
         },
         {
           "origin": "ddb-importer",
@@ -151961,7 +152808,8 @@
           ],
           "data": {
             "sha256": "2c105e5414c07b2559602bae028269d1f51fbcce0d777bfab030163766f95830"
-          }
+          },
+          "identifierDiffers": true
         },
         {
           "origin": "plutonium",
@@ -151998,11 +152846,83 @@
               }
             ]
           }
+        },
+        "reading": {
+          "at": "2026-11-23T04:50:29.913Z",
+          "core": "0.290.0",
+          "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa",
+          "item": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e",
+          "delta": [
+            "rollDisadvantage"
+          ],
+          "same": [],
+          "changes": [],
+          "triggers": "none",
+          "original": "sunlight-sensitivity",
+          "carried": [],
+          "dropped": []
+        },
+        "gates": {
+          "at": "2026-11-23T04:50:29.913Z",
+          "core": "0.290.0",
+          "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa",
+          "emits": "4db5ec2058bd4cc3970e721daa5c4d57fe143668f9386bf049352ced7269aa48",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "3a3404344eef8acffc1d8b901cd6054366d8cffadff72210fb37ddf962ecd58e"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T05:00:05.919Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xmm/xmm-monster-wraith-trait-sunlight-sensitivity",
+          "client": "gm",
+          "rule": "96f02e02a62a4204e90b91f1de0aa0cefb5ec85906b2ce52bb3d38387c7922aa"
         }
       },
       "why": "Disadvantage on attacks and checks while in sunlight; data has no activity or effect for it",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "sources": {
+        "mmWraith00000000.mmSunlightSensit": "xmm-wraith-sunlight-sensitivity"
+      },
+      "rule": {
+        "handledIn": "table",
+        "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+        "entry": {
+          "rollDisadvantage": {
+            "on": [
+              "check"
+            ],
+            "if": {
+              "self.inSunlight": true
+            }
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "uncovered": [
+          {
+            "origin": "ddb-importer",
+            "because": "DDB Importer monster features: world ids and generic identifiers"
+          }
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T04:50:23.981Z",
+          "leavesNote": "Whether a place counts as sunlight is the scene's: only a bright global light does."
+        },
+        "origin": "Wraith"
+      },
+      "state": "played"
     },
     {
       "key": "xmm:monster:wyvern/action/bite",

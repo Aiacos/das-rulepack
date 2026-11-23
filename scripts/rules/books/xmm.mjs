@@ -255,6 +255,33 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-drider-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 105,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Drider",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-empyrean-sacred-weapon",
     "name": "Sacred Weapon",
     "page": 113,
@@ -499,6 +526,54 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-juvenile-shadow-dragon-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 275,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Juvenile Shadow Dragon",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    }
+  },
+
+  {
+    "identifier": "xmm-kobold-warrior-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 185,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Kobold Warrior",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-kraken-toxic-ink",
     "name": "Toxic Ink",
     "page": 187,
@@ -516,6 +591,102 @@ export const RULES = book(BOOK, [
       "no-key": 2,
       "table-ruling": 1
     }
+  },
+
+  {
+    "identifier": "xmm-kuo-toa-archpriest-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 191,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Kuo-toa Archpriest",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-kuo-toa-monitor-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 190,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Kuo-toa Monitor",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    }
+  },
+
+  {
+    "identifier": "xmm-kuo-toa-whip-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 190,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Kuo-toa Whip",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    }
+  },
+
+  {
+    "identifier": "xmm-kuo-toa-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 189,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Kuo-toa",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
   },
 
   {
@@ -572,6 +743,54 @@ export const RULES = book(BOOK, [
       "keys": [
         "magical"
       ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-shadow-dragon-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 275,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Shadow Dragon",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    }
+  },
+
+  {
+    "identifier": "xmm-specter-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 290,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Specter",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
     },
     "uncovered": [
       {
@@ -873,6 +1092,27 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-troglodyte-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 309,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Troglodyte",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    }
+  },
+
+  {
     "identifier": "xmm-ultroloth-hypnotic-gaze",
     "name": "Hypnotic Gaze",
     "page": 311,
@@ -914,5 +1154,80 @@ export const RULES = book(BOOK, [
     "partial": {
       "healing-block": 1
     }
+  },
+
+  {
+    "identifier": "xmm-wight-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 332,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Wight",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    }
+  },
+
+  {
+    "identifier": "xmm-winged-kobold-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 185,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Winged Kobold",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
+    "identifier": "xmm-wraith-sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "page": 336,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Wraith",
+    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
+    "entry": {
+      "rollDisadvantage": {
+        "on": [
+          "check"
+        ],
+        "if": {
+          "self.inSunlight": true
+        }
+      }
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
   }
 ]);

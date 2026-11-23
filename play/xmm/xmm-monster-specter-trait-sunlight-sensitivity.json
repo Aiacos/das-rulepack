@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-specter-trait-sunlight-sensitivity",
+  "key": "xmm:monster:specter/trait/sunlight-sensitivity",
+  "rule": "068eb42ee3d1d6304fc3cff2f31ea6a37f3d820ff1593a43ff1c384a6598cc38",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature's ability check has Disadvantage, another creature's has not; out of it, none."
+}

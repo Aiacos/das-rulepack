@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-kuo-toa-trait-sunlight-sensitivity",
+  "key": "xmm:monster:kuo-toa/trait/sunlight-sensitivity",
+  "rule": "41a28e175905648540ff0e5cd063f4a83bdcaed6ae7f91d09d431f29027b9649",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature's ability check has Disadvantage, another creature's has not; out of it, none."
+}

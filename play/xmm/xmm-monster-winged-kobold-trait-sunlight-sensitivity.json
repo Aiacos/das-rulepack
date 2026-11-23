@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-winged-kobold-trait-sunlight-sensitivity",
+  "key": "xmm:monster:winged-kobold/trait/sunlight-sensitivity",
+  "rule": "af09e8eac93799503ea362850c38c658d76b1704cfe0f2500aaff9b916ec038f",
+  "handWritten": true,
+  "checks": 4,
+  "covers": "In sunlight the creature's ability check has Disadvantage, another creature's has not; out of it, none."
+}
