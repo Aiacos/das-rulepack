@@ -867,43 +867,11 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:goblin-boss/action/scimitar",
-    "reason": "person",
-    "by": "drafter-v006",
-    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:goblin-boss/action/shortbow",
-    "reason": "person",
-    "by": "drafter-v006",
-    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:goblin-hexer/reaction/jinx",
     "reason": "person",
     "by": "drafter-v006",
     "why": "turning the hit into a miss on a failed save: no drafter step",
     "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:goblin-warrior/action/scimitar",
-    "reason": "person",
-    "by": "drafter-v006",
-    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:goblin-warrior/action/shortbow",
-    "reason": "person",
-    "by": "drafter-v006",
-    "why": "the data's alternate activity covers the advantage case; no key ties extra damage to advantage",
-    "confidence": 0.8,
     "reoffered": true
   },
   {
@@ -1354,14 +1322,6 @@
     "by": "drafter-v011",
     "why": "a damage-reducing reaction with a follow-up save when reduced to zero: no drafter key",
     "confidence": 0.8,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:swarm-of-crawling-claws/action/swarm-of-grasping-hands",
-    "reason": "person",
-    "by": "drafter-v011",
-    "why": "damage and prone are in the data; only the size limit remains, which no key expresses",
-    "confidence": 0.85,
     "reoffered": true
   },
   {

@@ -25097,15 +25097,26 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-i005",
-            "at": "2026-11-22T23:41:44.295Z",
-            "confidence": 0.7,
+            "by": "reread-u002",
+            "at": "2026-11-23T07:29:52.973Z",
+            "confidence": 0.8,
             "view": {
-              "core": "0.290.0",
-              "sha": "a3d7bd5c281ccc03162b8a4e10ae347217f031d290bc308c86544bb3030d56f7"
+              "core": "0.291.0",
+              "sha": "41f77e1db06065ff6d991967b30ce2e83337d1d040bf6d543939eaaa91e472cf"
             },
             "covered": false,
             "beyond": [
+              {
+                "given": {
+                  "roll": "failedSave"
+                },
+                "expect": {
+                  "damage": {
+                    "fraction": 1,
+                    "type": "lightning"
+                  }
+                }
+              },
               {
                 "given": {
                   "moment": "enter"
@@ -25116,7 +25127,8 @@
               }
             ],
             "unexpressed": [
-              "no-key"
+              "ongoing-effect",
+              "use-time-choice"
             ]
           }
         }

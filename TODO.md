@@ -400,3 +400,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Two engineered rules proven by recorded plays on upstream main: Elephant Trample and Couatl Constrict, who can be taken (XMM)
 - [x] Triage: entries read again by two readers of the engine's source (R48): 78 confirmed covered, each with the engine file named
 - [x] Engineered rule proven by a recorded play on upstream main: Vampire Spawn Bite, who can be bitten (XMM)
+- [x] Triage: the rereads made stale by the engine-alone view read again (R49)

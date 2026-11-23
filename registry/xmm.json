@@ -73528,16 +73528,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-014",
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-u004",
+            "at": "2026-11-23T07:29:54.324Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-v002",
+              "at": "2026-11-23T07:32:47.034Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.291.0",
+                "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "state": "triaged"
     },
     {
@@ -73591,16 +73612,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-014",
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-u004",
+            "at": "2026-11-23T07:29:54.324Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-v002",
+              "at": "2026-11-23T07:32:47.034Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.291.0",
+                "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "state": "triaged"
     },
     {
@@ -74267,16 +74309,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-014",
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-u004",
+            "at": "2026-11-23T07:29:54.324Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-v002",
+              "at": "2026-11-23T07:32:47.034Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.291.0",
+                "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "state": "triaged"
     },
     {
@@ -74330,16 +74393,37 @@
         }
       ],
       "verdict": "entry",
+      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-014",
           "at": "2026-11-21T19:58:37.381Z",
           "confidence": 0.75,
           "keys": [],
-          "similar": []
+          "similar": [],
+          "reread": {
+            "by": "reread-u004",
+            "at": "2026-11-23T07:29:54.324Z",
+            "confidence": 0.7,
+            "view": {
+              "core": "0.291.0",
+              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+            },
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-v002",
+              "at": "2026-11-23T07:32:47.034Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.291.0",
+                "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              },
+              "outcome": "second-unsure"
+            }
+          }
         }
       },
-      "why": "Bonus damage only when the attack roll had advantage; data splits it into a manual alternate activity, no roll condition.",
       "state": "triaged"
     },
     {
@@ -135735,6 +135819,7 @@
         }
       ],
       "verdict": "entry",
+      "why": "Prone applies only to Medium or smaller targets; size limit not expressed in data",
       "evidence": {
         "triaged": {
           "by": "reader-xmm-024",
@@ -135743,32 +135828,28 @@
           "keys": [],
           "similar": [],
           "reread": {
-            "by": "reread-x014",
-            "at": "2026-11-23T04:08:49.192Z",
-            "confidence": 0.75,
+            "by": "reread-u004",
+            "at": "2026-11-23T07:29:54.324Z",
+            "confidence": 0.7,
             "view": {
-              "core": "0.290.0",
-              "sha": "1b8b94b81afde0882cadb464af0c7c8c2c2b05be8c9e87aa67969992f560fda3"
+              "core": "0.291.0",
+              "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
             },
-            "covered": false,
-            "beyond": [
-              {
-                "given": {
-                  "roll": "hit",
-                  "targetSizeAtMost": "med"
-                },
-                "expect": {
-                  "condition": {
-                    "applied": "prone"
-                  }
-                }
-              }
-            ]
+            "covered": true,
+            "coveredBy": "engine",
+            "second": {
+              "by": "reread-v002",
+              "at": "2026-11-23T07:32:47.034Z",
+              "confidence": 0.65,
+              "view": {
+                "core": "0.291.0",
+                "sha": "794c076e196a361d2c0b43359dd7fea3b5256553a10257d3c76253df7bc0ac38"
+              },
+              "outcome": "second-unsure"
+            }
           }
         }
       },
-      "why": "Prone applies only to Medium or smaller targets; size limit not expressed in data",
-      "hint": "beyond-engine",
       "state": "triaged"
     },
     {
