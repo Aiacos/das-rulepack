@@ -1,0 +1,8 @@
+{
+  "scenario": "xmm/xmm-monster-incubus-bonus-nightmare",
+  "key": "xmm:monster:incubus/bonus/nightmare",
+  "rule": "8afdad4dbd2cb54022650b629612b66ed2ccc4e6b2ea673cce5a4238e5a50465",
+  "handWritten": true,
+  "checks": 2,
+  "covers": "Above 20 hit points a failed save hurts and leaves the target awake; at 15 hit points it leaves it Unconscious and unhurt. The waking action is not exercised."
+}

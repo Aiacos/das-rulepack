@@ -413,3 +413,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Two engineered rules proven by recorded plays on the released engine: the gold dragons' Banish takes its target off the battlefield until the dragon's next turn (XMM)
 - [x] Triage: blind second source-aware readings of the third engineering round (R48)
 - [x] Engineered rule proven by a recorded play on the released engine: Magmin Ignited Illumination, the light it sheds while ablaze (XMM)
+- [x] Engineered rule proven by a recorded play on the released engine: Incubus Nightmare, sleep at 20 hit points or fewer, damage above (XMM)

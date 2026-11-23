@@ -804,14 +804,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:incubus/bonus/nightmare",
-    "reason": "person",
-    "by": "drafter-v007",
-    "why": "the outcome of a failed save depends on the target's hit points; no key branches on that",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:intellect-devourer/action/steal-body",
     "reason": "person",
     "by": "drafter-v007",
