@@ -32,7 +32,12 @@ export { COVERED_BY, COVERED_VERDICT, ITEM_REREAD_WHY };
 export const ITEM_REREAD_BATCH_SIZE = 30;
 /** The fields of one item reread result (docs/PIPELINE.md, "Brief for an item reread agent"): nothing else is taken. */
 export const ITEM_REREAD_RESULT_FIELDS = Object.freeze(["key", "covered", "coveredBy", "beyond", "unexpressed", "why",
-  "confidence"]);
+  "confidence", "mechanism"]);
+/**
+ * Ruling R48: the engine file a source-aware reader names for `coveredBy: "engine"` on an item the engine has no rule of
+ * its own for (a path under the engine's module/scripts, e.g. `adapter/usage.mjs`).
+ */
+export const MECHANISM = /^[a-z][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*\.mjs$/;
 /** The engine's automation levels, in its own order (the badge of a sheet). */
 export const ENGINE_LEVELS = Object.freeze(["rule", "auto", "passive", "manual", "none"]);
 /** What each level says the engine does with the item, in our words: the vocabulary a reader is given. */
@@ -192,7 +197,9 @@ const entryWith = (r, view, fp) => ({
  * second reader settled it ("second reread done") or the view is no longer the one the first judged.
  */
 export function itemRereadSkipReason(r, options) {
-  const { viewOf, documentOf, reviewQueued = new Set(), triageQueued = new Set(), second = false, core, unreadMonster } = options;
+  const { viewOf, documentOf, reviewQueued = new Set(), triageQueued = new Set(), second = false, core, unreadMonster,
+    again = false, keys = null } = options;
+  if (keys instanceof Set && !keys.has(r?.key)) return NOT_ITEM_ENTRY;
   if (second) {
     const reread = rereadOf(r);
     if (!isItemKind(r, unreadMonster) || !isItemReread(r) || reread.covered !== true) return NOT_ITEM_CORE;
@@ -214,7 +221,10 @@ export function itemRereadSkipReason(r, options) {
   if (structure === null || structure === undefined) return "official item not in the dumps";
   const fp = viewFingerprint(view, core, structure);
   if (second) return stands(rereadOf(r).view, fp) ? null : "view changed since the first reread";
-  return isItemReread(r) && stands(rereadOf(r).view, fp) ? "reread for the current view" : null;
+  // Ruling R48 (`again`): a standing reread that found something missing is offered once more, to a reader who reads the
+  // engine's source; a covered one never is (its second reader settles it).
+  const standing = isItemReread(r) && stands(rereadOf(r).view, fp);
+  return standing && !(again && rereadOf(r).covered === false) ? "reread for the current view" : null;
 }
 
 /**
@@ -248,7 +258,8 @@ export function cutItemRereadBatches(records, options) {
       const id = `${book}-${series}-${String(n).padStart(3, "0")}`;
       const entries = ofBook.slice(i, i + size).map((r) => entryOf(r, viewOf(r.key),
         viewFingerprint(viewOf(r.key), core, documentOf(r))));
-      batches.push({ id, stage: "reread", items: true, ...(second ? { second: true } : {}), core: core?.version, entries });
+      batches.push({ id, stage: "reread", items: true, ...(second ? { second: true } : {}),
+        ...(options.again === true && !second ? { again: true } : {}), core: core?.version, entries });
     }
   }
   const sorted = (o) => Object.fromEntries(Object.entries(o).sort());
@@ -301,8 +312,21 @@ function takeResult(result, ctx) {
   if (second && !stands(rereadOf(record).view, fp)) {
     return { reject: "stale: the first reread judged another engine view (cut a new reread batch)" };
   }
-  if (!second && isItemReread(record) && stands(rereadOf(record).view, fp)) {
+  if (!second && isItemReread(record) && stands(rereadOf(record).view, fp)
+    && !(ctx.again === true && rereadOf(record).covered === false)) {
     return { reject: "already reread for this engine view: only an unsure or stale reread is read again" };
+  }
+  // Ruling R48: a named engine file, for `coveredBy: "engine"` only, and one that exists in the engine in use.
+  if (Object.hasOwn(result, "mechanism")) {
+    if (!(result.covered === true && result.coveredBy === "engine")) {
+      return { reject: "mechanism goes with covered: true and coveredBy engine only" };
+    }
+    if (typeof result.mechanism !== "string" || !MECHANISM.test(result.mechanism)) {
+      return { reject: "mechanism must be a path under the engine's module/scripts ending in .mjs" };
+    }
+    if (typeof ctx.mechanismExists !== "function" || ctx.mechanismExists(result.mechanism) !== true) {
+      return { reject: `mechanism ${echo(result.mechanism)} is not a file of the engine in use` };
+    }
   }
   if (typeof result.covered !== "boolean") return { reject: "covered must be true or false" };
   if (result.covered) {
@@ -312,9 +336,11 @@ function takeResult(result, ctx) {
       return { reject: `covered: true needs coveredBy, one of ${COVERED_BY.join(", ")}` };
     }
     const levels = COVERED_BY_LEVELS[result.coveredBy];
-    if (!levels.includes(now.view.level)) {
+    // Ruling R48: with a named mechanism the engine may cover an item it has no rule of its own for.
+    if (!levels.includes(now.view.level) && !Object.hasOwn(result, "mechanism")) {
       return { reject: `coveredBy ${result.coveredBy} needs the engine view's level to be ${levels.join(" or ")}, it is`
-        + ` ${now.view.level}${now.view.level === "manual" ? " (manual: the engine does nothing with it)" : ""}` };
+        + ` ${now.view.level}${now.view.level === "manual" ? " (manual: the engine does nothing with it)" : ""}`
+        + (result.coveredBy === "engine" ? "; a reader of the engine's source names the file in mechanism (Ruling R48)" : "") };
     }
   } else if (Object.hasOwn(result, "coveredBy")) return { reject: "coveredBy goes with covered: true only" };
   const unfit = confidenceProblem(result.confidence) ?? whyProblem(result.why);
@@ -335,7 +361,8 @@ function takeResult(result, ctx) {
   // A second reader below the threshold: what it said is not taken, only that it was unsure (fail closed, below).
   const reading = unsure ? { by, at, confidence: result.confidence, view, outcome: SECOND_UNSURE }
     : { by, at, confidence: result.confidence, view, covered: result.covered,
-      ...(result.covered ? { coveredBy: result.coveredBy } : { ...found("beyond"), ...found("unexpressed") }) };
+      ...(result.covered ? { coveredBy: result.coveredBy, ...found("mechanism") }
+        : { ...found("beyond"), ...found("unexpressed") }) };
   const { textChangedAt, ...rest } = record;
   if (second) {
     const { provisional, ...first } = rereadOf(record);
@@ -381,7 +408,7 @@ function takeResult(result, ctx) {
  */
 export function ingestItemRereads(records, results, options = {}) {
   const { textDir, by, at = new Date().toISOString(), core, offered, current, draftsQueue = [], second = false,
-    reviewQueued = new Set(), triageQueued = new Set(), unreadMonster } = options;
+    reviewQueued = new Set(), triageQueued = new Set(), unreadMonster, again = false, mechanismExists } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core !== "object") throw new TypeError("ingestItemRereads needs core (loadCore: version and words)");
   if (!(offered instanceof Map)) throw new TypeError("ingestItemRereads needs offered (a Map of the batch's keys to views)");
@@ -389,7 +416,7 @@ export function ingestItemRereads(records, results, options = {}) {
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
   const ctx = { byKey, offered, current, textOf: cachedText(textDir), core, by, at, seen: new Set(), second, reviewQueued,
-    triageQueued, unreadMonster };
+    triageQueued, unreadMonster, again, mechanismExists };
   const done = { covered: [], beyond: [], agreed: [], disagreed: [], unsureReverted: [] };
   const already = { confirmed: [], reverted: [] };
   const unsure = [];

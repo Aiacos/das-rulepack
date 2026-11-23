@@ -678,5 +678,8 @@ export function rereadVocabulary(core) {
 export function itemRereadVocabulary(core) {
   return { ...rereadVocabulary(core), engineLevels: { ...LEVEL_MEANINGS }, coveredBy: { ...COVERED_BY_MEANINGS },
     coveredByLevels: Object.fromEntries(Object.entries(COVERED_BY_LEVELS).map(([k, v]) => [k, [...v]])),
-    noDefinition: NO_DEFINITION };
+    noDefinition: NO_DEFINITION,
+    mechanism: "Ruling R48, for a reader who reads the engine's source: with covered true and coveredBy engine on an item"
+      + " the engine has no rule of its own for, the file under the engine's module/scripts that does what the text asks"
+      + " (e.g. adapter/usage.mjs). It must exist; without it such an answer is refused." };
 }

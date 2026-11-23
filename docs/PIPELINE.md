@@ -2431,6 +2431,12 @@ feature whose text the engine's text layer reads nothing of (the monster reread 
 sees the engine's classification of the item from the private engine view, exactly as for an item. Its ingest is the item
 reread's (`ingest --reread --items [--second]`).
 
+**A second look by readers of the engine's source (Ruling R48).** `batch reread <BOOK> --items --again [--keys <file>]`
+offers once more the rereads that found something missing, to readers who read the engine's source and not only its class of
+the item. Such a reader may answer `covered: true, coveredBy: "engine"` on an item the engine has no rule of its own for,
+when the result names `mechanism`: the file under the engine's `module/scripts` that does what the text asks (it must exist
+in the engine in use; it is stored with the reread). The blind second reader (`--second`) must name one too.
+
 **Playing it.** A held rule is in no module of the pack, so it cannot run on a test world. `npm run build:rules --
 --play-build <dir>` writes the same generated modules **plus the gated engineered rules that have no play yet** to another
 directory (refused on the pack's own `scripts/rules`, and with `--check`): that directory is copied over a test world's
