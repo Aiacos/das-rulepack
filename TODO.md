@@ -387,3 +387,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
 - [x] Twelfth engineered rule, proven by a recorded play: Arcane Jolt (EFA)
 - [x] Thirteenth engineered rule, proven by a recorded play: Homunculus Servant (EFA)
 - [x] Fourteenth engineered rule, proven by a recorded play: Steel Defender (EFA)
+- [x] Triage: Monster Manual features the text layer does not read, read against the engine view (R46): 155 confirmed covered

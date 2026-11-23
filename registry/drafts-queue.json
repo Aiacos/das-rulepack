@@ -408,14 +408,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:air-elemental/action/thunderous-slam",
-    "reason": "person",
-    "by": "drafter-q001",
-    "why": "the attack activity already carries the thunder damage; nothing left for a rule",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:animal-lord/action/animal-spirit",
     "reason": "person",
     "by": "drafter-q001",
@@ -574,14 +566,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:beholder-zombie/trait/undead-fortitude",
-    "reason": "person",
-    "by": "drafter-q002",
-    "why": "a save against dropping to zero with exceptions: no activity and no drafter key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:beholder/bonus/antimagic-cone",
     "reason": "person",
     "by": "drafter-q002",
@@ -717,14 +701,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:death-knight-aspirant/trait/magic-resistance",
-    "reason": "person",
-    "by": "drafter-v002",
-    "why": "advantage on saves versus spells and magic: saveAdvantage only lists conditions; likely a generic Core trait",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:death-knight-aspirant/trait/marshal-undead",
     "reason": "person",
     "by": "drafter-v002",
@@ -762,14 +738,6 @@
     "by": "drafter-v002",
     "why": "a chosen switch of a failed save to a success, spending a resource: needs a prompt at save time",
     "confidence": 0.75,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:death-knight/trait/magic-resistance",
-    "reason": "person",
-    "by": "drafter-v002",
-    "why": "advantage on saves versus spells and magic: saveAdvantage only lists conditions; likely a generic Core trait",
-    "confidence": 0.8,
     "reoffered": true
   },
   {
@@ -813,14 +781,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:displacer-beast/trait/avoidance",
-    "reason": "person",
-    "by": "drafter-v003",
-    "why": "changes how incoming half-damage saves resolve for the bearer, off while incapacitated: no drafter key",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:dracolich/legendary/pounce",
     "reason": "person",
     "by": "drafter-v003",
@@ -853,14 +813,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:dracolich/trait/magic-resistance",
-    "reason": "person",
-    "by": "drafter-v003",
-    "why": "advantage on saves against magic in general: a generic trait no drafter key states",
-    "confidence": 0.75,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:dretch/action/fetid-cloud",
     "reason": "person",
     "by": "drafter-r001",
@@ -884,14 +836,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:elemental-cataclysm/action/elemental-burst",
-    "reason": "person",
-    "by": "drafter-v003",
-    "why": "the data already lists the damage types to pick from; nothing remains for a rule",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:elemental-cultist/action/elemental-claw",
     "reason": "person",
     "by": "drafter-v003",
@@ -900,34 +844,10 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:elemental-cultist/action/elemental-flail",
-    "reason": "person",
-    "by": "drafter-v004",
-    "why": "the item's attack already offers all five damage types to pick from; nothing to add",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:elemental-cultist/reaction/elemental-absorption",
     "reason": "person",
     "by": "drafter-v004",
     "why": "resistance to a single damage instance on a damage reaction: no drafter key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:empyrean-iota/action/otherworldly-strike",
-    "reason": "person",
-    "by": "drafter-v004",
-    "why": "the item's attack already offers both damage types to pick from; nothing to add",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:empyrean/action/divine-ray",
-    "reason": "person",
-    "by": "drafter-v004",
-    "why": "the item's attack already offers both damage types to pick from; nothing to add",
     "confidence": 0.85,
     "reoffered": true
   },
@@ -969,22 +889,6 @@
     "by": "drafter-v004",
     "why": "damage from moving through or being doused with water: no moment or key for it",
     "confidence": 0.9,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:flameskull/trait/magic-resistance",
-    "reason": "person",
-    "by": "drafter-v004",
-    "why": "advantage on saves against magic is a generic trait Core handles; no drafter key for it",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:flaming-skeleton/trait/death-burst",
-    "reason": "person",
-    "by": "drafter-v004",
-    "why": "the save fires when the creature dies: no death moment among the drafter keys",
-    "confidence": 0.85,
     "reoffered": true
   },
   {
@@ -1159,22 +1063,6 @@
     "by": "drafter-q001",
     "why": "engine reads turn damage and drain; escape DC, size limit and blight healing have no assertable key",
     "confidence": 0.75,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:half-dragon/action/dragons-breath",
-    "reason": "person",
-    "by": "drafter-v006",
-    "why": "data already rolls the save at half; the damage type is a per-creature choice",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:half-dragon/trait/draconic-origin",
-    "reason": "person",
-    "by": "drafter-v006",
-    "why": "one resistance chosen per creature while data grants all five; no data fix on monster features",
-    "confidence": 0.85,
     "reoffered": true
   },
   {
@@ -1470,22 +1358,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:questing-knight/trait/aura-of-bravery",
-    "reason": "engine",
-    "by": "drafter-v009",
-    "why": "condition immunity for chosen creatures while inside a moving emanation: no drafter key makes an aura",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:rakshasa/trait/greater-magic-resistance",
-    "reason": "person",
-    "by": "drafter-v009",
-    "why": "the item has no activity or effect to bind; auto success against magic is a Core-generic matter",
-    "confidence": 0.75,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:red-slaad/action/injecting-claw",
     "reason": "person",
     "by": "drafter-v010",
@@ -1542,14 +1414,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:shadow/trait/sunlight-weakness",
-    "reason": "person",
-    "by": "drafter-v010",
-    "why": "the penalty holds only in sunlight; drafter shapes carry no condition, and the item has no activity nor effect",
-    "confidence": 0.8,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:shambling-mound/action/charged-tendril",
     "reason": "person",
     "by": "drafter-r001",
@@ -1570,14 +1434,6 @@
     "by": "drafter-v010",
     "why": "storing and later casting a spell has no drafter key; no activity nor effect",
     "confidence": 0.9,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:shrieker-fungus/reaction/shriek",
-    "reason": "person",
-    "by": "drafter-v011",
-    "why": "an alarm noise with no combat effect; the utility activity is all there is to it",
-    "confidence": 0.85,
     "reoffered": true
   },
   {
@@ -1693,14 +1549,6 @@
     "reoffered": true
   },
   {
-    "key": "xmm:monster:tarrasque/trait/siege-monster",
-    "reason": "engine",
-    "by": "drafter-v012",
-    "why": "doubled damage against objects and structures: no key multiplies damage by target kind",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
     "key": "xmm:monster:tough-boss/action/warhammer",
     "reason": "person",
     "by": "drafter-r001",
@@ -1736,14 +1584,6 @@
     "reason": "person",
     "by": "drafter-q001",
     "why": "engine reads the lost reactions and their end; the random d8 behaviour has no key",
-    "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:vampire-familiar/action/umbral-dagger",
-    "reason": "code",
-    "by": "drafter-v012",
-    "why": "the poison and paralysis hold only when the hit drops the target to 0, paralysis lasting while poisoned: no drafter key tests it",
     "confidence": 0.85,
     "reoffered": true
   },
@@ -1873,14 +1713,6 @@
     "by": "drafter-v013",
     "why": "the zero hit point target limit and the healing on a kill have no drafter key; data already applies the death",
     "confidence": 0.85,
-    "reoffered": true
-  },
-  {
-    "key": "xmm:monster:winged-kobold/action/chromatic-spittle",
-    "reason": "person",
-    "by": "drafter-v013",
-    "why": "data already lists the five damage types, so the user picks one when rolling",
-    "confidence": 0.8,
     "reoffered": true
   }
 ]
