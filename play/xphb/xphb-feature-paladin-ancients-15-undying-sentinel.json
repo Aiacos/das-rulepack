@@ -1,0 +1,8 @@
+{
+  "scenario": "xphb/xphb-feature-paladin-ancients-15-undying-sentinel",
+  "key": "xphb:feature:paladin/ancients/15/undying-sentinel",
+  "rule": "298735adb169ebea0359fe7e951ae41491c914fe62a40b4433c7e9a8505b4f48",
+  "handWritten": true,
+  "checks": 3,
+  "covers": "At 0 Hit Points the engine asks, the use is spent and the bearer stands again; a second fall asks nothing."
+}

@@ -374,3 +374,4 @@ successful save; Mental Prison: the 10d10 rolled with the 5d10).
       so the entries whose item has some are read again.
 - [x] Items with advancements read again: 9 more XPHB and 2 EFA entries confirmed covered by two readers.
 - [x] First engineered rule (R43), written by hand and proven by a recorded play: Bulwark of Force (XPHB).
+- [x] Second engineered rule proven by a recorded play: Undying Sentinel (XPHB).
