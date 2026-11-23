@@ -1228,6 +1228,35 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "xmm-phase-spider-bite",
+    "name": "Bite",
+    "page": 239,
+    "kind": "monster",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Phase Spider",
+    "adds": "The poison is placed only on a target the bite reduces to 0 hit points, and that target is stable.",
+    "entry": {
+      "effectsIf": {
+        "target.atZero": true
+      },
+      "stableAtZero": true
+    },
+    "carries": {
+      "from": "bite",
+      "keys": [
+        "drain"
+      ]
+    },
+    "uncovered": [
+      {
+        "origin": "ddb-importer",
+        "because": "DDB Importer monster features: world ids and generic identifiers"
+      }
+    ]
+  },
+
+  {
     "identifier": "xmm-poltergeist-telekinetic-thrust",
     "name": "Telekinetic Thrust",
     "page": 246,
