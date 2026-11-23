@@ -181,6 +181,18 @@ describe("batch reread --items: what is cut", () => {
     expect(batches.flatMap((b) => b.entries).some((e) => e.key.startsWith("tst:monster:"))).toBe(false);
   });
 
+  it("a monster feature the text layer reads nothing of is cut here; one it reads is not (Ruling R46)", () => {
+    const monsterKey = "tst:monster:ash-imp/action/cinder-step-12";
+    views.set(monsterKey, RULE_VIEW);
+    const cut = (unreadMonster) => cutItemRereadBatches(records(), options({ unreadMonster })).batches
+      .flatMap((b) => b.entries).map((e) => e.key);
+    expect(cut((r) => r.key === monsterKey)).toContain(monsterKey);
+    expect(cut(() => false)).not.toContain(monsterKey);
+    expect(cut(undefined)).not.toContain(monsterKey);
+    // An item record is cut either way: the option only speaks of monster features.
+    expect(cut(() => false)).toContain(keyOf(1));
+  });
+
   const coveredRecord = (n, by, reread) => feature(n, { verdict: COVERED_VERDICT[by], why: ITEM_REREAD_WHY[by],
     evidence: { triaged: { by: "rule", at: AT, was: { verdict: "entry", why: "x", triaged: feature(1).evidence.triaged },
       reread } } });
@@ -307,6 +319,11 @@ describe("ingest --reread --items", () => {
     expect(out.rejected[0].reason).toMatch(/stale/);
     expect(out.rejected[1].reason).toMatch(/monster/);
     expect(out.rejected[2].reason).toMatch(/entry/);
+    // Ruling R46: the same monster feature is accepted when the engine's text layer reads nothing of it.
+    const unread = run([monster], [covered(9, "engine")], { unreadMonster: (r) => r.key === keyOf(9) });
+    expect(unread.rejected).toEqual([]);
+    expect(unread.covered).toEqual([keyOf(9)]);
+    expect(unread.records[0].verdict).toBe(COVERED_VERDICT.engine);
     const gone = run([feature(1)], [covered(1, "engine")], { current: new Map([[keyOf(1), { view: null,
       structure: STRUCTURE }]]) });
     expect(gone.rejected[0].reason).toMatch(/stale/);

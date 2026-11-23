@@ -1035,3 +1035,15 @@ uncounted in a catalogue book and counts it as `trait` where the book has that k
 The rule ships and is listed in docs/RULES.md; only the per-book bar does not move for it. Cost if wrong: the README's
 progress understates the pack by the number of species rules, until the coverage reading counts species traits.
 
+### Ruling R46 — monster features the engine's text layer does not read (2026-11-23)
+
+The monster reread (R29) shows a reader the engine's reading of the feature's text; 498 of the Monster Manual's 736 `entry`
+features have none ("engine reads nothing") and no stage read them again. A live sweep of the engine's own classification
+of those items (private, like the items' view) says the engine has a rule of its own for 240 of them (by the feature's
+identifier: a resistance to magic, a drain, a swallow), plays 131 by the item's data and leaves 127 to the table. Decision:
+the item reread (R42, `batch reread <BOOK> --items`) also takes a monster feature in the dumps whose text the text layer
+reads nothing of; everything else of R42 holds (the private engine view, two blind readers, the fingerprints). A monster
+feature the text layer does read stays with the monster reread. Cost if wrong: a feature confirmed "covered" by two readers
+against the engine's view leaves the `entry` verdict while a part of its text is not played; the view's fingerprint makes
+the reread stale, and offered again, when the engine or the item changes.
+

@@ -511,6 +511,24 @@ function officialMonsterDocuments(dumpsDir, book) {
   };
 }
 
+// Ruling R46: what the item reread (R42) looks a record up in. An item's official document comes from the item dumps, a
+// monster feature's from the actor dumps; `unreadMonster(record)` is true for a monster feature in the dumps whose text the
+// engine's text layer reads nothing of (the monster reread has nothing to show for it).
+function itemRereadSources(dumpsDir, book, core) {
+  const ofItem = officialItemDocuments(dumpsDir, book);
+  let ofMonster = null;
+  const monsterDoc = (record) => (ofMonster ??= officialMonsterDocuments(dumpsDir, book))(record);
+  const readingOf = memoByKey(readingFor(monsterDoc, core));
+  return {
+    documentOf: (record) => (record?.kind === "monster" ? monsterDoc(record) : ofItem(record)),
+    unreadMonster: (record) => {
+      if (record?.kind !== "monster" || !officialItemOf(record)) return false;
+      const reading = readingOf(record);
+      return reading !== undefined && !(reading !== null && typeof reading === "object" && Object.keys(reading).length > 0);
+    }
+  };
+}
+
 // The engine's own reading of a record's official monster item (Ruling R29), under the identifier the engine would see
 // today (the record has no rule: nothing of the pack names it); undefined when the item is not in the dumps.
 const readingFor = (documentOf, core) => (record) => {
@@ -925,8 +943,8 @@ async function itemRereadBatchCommand(book, rest) {
   checkStructureDir(opts.structure, opts.out);
   const viewOf = engineViewFromEnv({ required: true });
   const dumpsDir = process.env.RULEPACK_DUMPS;
-  const documentOfRecord = officialItemDocuments(dumpsDir, found.book);
   const core = await loadCore(process.env.DAS_CORE);
+  const { documentOf: documentOfRecord, unreadMonster } = itemRereadSources(dumpsDir, found.book, core);
   const undefinedOnes = undefinedWords(core);
   if (undefinedOnes.length) {
     throw new UsageError(`words without a definition (tools/pipeline/definitions.mjs): ${undefinedOnes.slice(0, 8).join(", ")}`);
@@ -941,7 +959,7 @@ async function itemRereadBatchCommand(book, rest) {
   const series = second ? "reread-items-second" : "reread-items";
   const after = existsSync(opts.out) ? highestBatches(readdirSync(opts.out), series) : {};
   const { batches, leftOut, byLevel } = cutItemRereadBatches(found.records, {
-    size, after, viewOf, documentOf, core, second, reviewQueued, triageQueued
+    size, after, viewOf, documentOf, core, second, reviewQueued, triageQueued, unreadMonster
   });
   // Every structure is computed before anything is written.
   const structures = batches.map((b) => structuresOf(b, found.records, dumpsDir, { engine: core }));
@@ -1198,7 +1216,7 @@ async function ingestItemRereadCommand(args) {
   const books = loadRegistry(REGISTRY);
   const all = books.flatMap((b) => b.records);
   const byKey = new Map(all.map((r) => [r.key, r]));
-  const documentOf = officialItemDocuments(dumpsDir, book);
+  const { documentOf, unreadMonster } = itemRereadSources(dumpsDir, book, core);
   const current = new Map();
   for (const key of new Set(input.results.map((r) => r?.key).filter((k) => typeof k === "string" && offered.has(k)))) {
     const record = byKey.get(key);
@@ -1208,7 +1226,7 @@ async function ingestItemRereadCommand(args) {
   }
   const out = ingestItemRereads(all, input.results, {
     textDir, by: input.by, core, offered, current, second, draftsQueue: loadQueue(REGISTRY, "drafts"),
-    reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY)
+    reviewQueued: new Set(loadQueue(REGISTRY, "review").map((q) => q.key)), triageQueued: queuedKeys(REGISTRY), unreadMonster
   });
   const changed = second ? [...out.agreed, ...out.disagreed, ...out.unsureReverted] : [...out.covered, ...out.beyond];
   if (!commitIngest(books, out.records, changed, [], second ? [] : out.dequeued, { queue: "drafts" })) return;

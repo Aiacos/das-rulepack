@@ -66,7 +66,11 @@ const RULE_KEY = /^[a-z][A-Za-z0-9]{0,63}$/;
 const VIEW_FIELDS = ["level", "rules", "layers", "identifier", "pack", "entry"];
 
 const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
-const isItemKind = (r) => typeof r?.kind === "string" && r.kind !== "monster" && r.kind !== "sense";
+// Ruling R46: a monster feature whose text the engine's text layer reads nothing of (`unreadMonster(record)` true) is read
+// here too: the monster reread (reread.mjs) has no reading to show for it, and the engine may still play it by a rule of its
+// own under the feature's identifier, or by the item's data.
+const isItemKind = (r, unreadMonster) => typeof r?.kind === "string" && r.kind !== "sense"
+  && (r.kind !== "monster" || (typeof unreadMonster === "function" && unreadMonster(r) === true));
 
 /** The short definition of a rule key (the drafter keys' of zones.mjs, wards.mjs, reactions.mjs), or NO_DEFINITION. */
 export function ruleKeyMeaning(key) {
@@ -188,14 +192,14 @@ const entryWith = (r, view, fp) => ({
  * second reader settled it ("second reread done") or the view is no longer the one the first judged.
  */
 export function itemRereadSkipReason(r, options) {
-  const { viewOf, documentOf, reviewQueued = new Set(), triageQueued = new Set(), second = false, core } = options;
+  const { viewOf, documentOf, reviewQueued = new Set(), triageQueued = new Set(), second = false, core, unreadMonster } = options;
   if (second) {
     const reread = rereadOf(r);
-    if (!isItemKind(r) || !isItemReread(r) || reread.covered !== true) return NOT_ITEM_CORE;
+    if (!isItemKind(r, unreadMonster) || !isItemReread(r) || reread.covered !== true) return NOT_ITEM_CORE;
     if (Object.hasOwn(reread, "second")) return "second reread done";
     if (r.verdict !== COVERED_VERDICT[reread.coveredBy]) return NOT_ITEM_CORE;
   } else {
-    if (!isItemKind(r) || r.verdict !== "entry") return NOT_ITEM_ENTRY;
+    if (!isItemKind(r, unreadMonster) || r.verdict !== "entry") return NOT_ITEM_ENTRY;
     if (r.rule) return "already ruled";
     if (r.legacy === true) return "legacy";
     if (reviewQueued.has(r.key)) return "in review-queue.json";
@@ -271,7 +275,9 @@ function takeResult(result, ctx) {
   const record = byKey.get(result.key);
   if (!record) return { reject: `unknown key ${echo(result.key)}` };
   if (!offered.has(result.key)) return { reject: "not offered by this batch (its key is not an entry of the batch file)" };
-  if (!isItemKind(record)) return { reject: "a monster feature: its reread is against the engine's reading (without --items)" };
+  if (!isItemKind(record, ctx.unreadMonster)) {
+    return { reject: "a monster feature the engine reads: its reread is against the engine's reading (without --items)" };
+  }
   if (second && settledBySecond(record)) return { already: settledBySecond(record) };
   if (second) {
     if (!isProvisional(record)) return { reject: "not a provisional covered item reread: a second reread reads only those" };
@@ -375,7 +381,7 @@ function takeResult(result, ctx) {
  */
 export function ingestItemRereads(records, results, options = {}) {
   const { textDir, by, at = new Date().toISOString(), core, offered, current, draftsQueue = [], second = false,
-    reviewQueued = new Set(), triageQueued = new Set() } = options;
+    reviewQueued = new Set(), triageQueued = new Set(), unreadMonster } = options;
   if (!isReaderHandle(by)) throw new Error(`by must match ${BY} and not be "rule"`);
   if (!core || typeof core !== "object") throw new TypeError("ingestItemRereads needs core (loadCore: version and words)");
   if (!(offered instanceof Map)) throw new TypeError("ingestItemRereads needs offered (a Map of the batch's keys to views)");
@@ -383,7 +389,7 @@ export function ingestItemRereads(records, results, options = {}) {
   const out = structuredClone(records);
   const byKey = new Map(out.map((r) => [r.key, r]));
   const ctx = { byKey, offered, current, textOf: cachedText(textDir), core, by, at, seen: new Set(), second, reviewQueued,
-    triageQueued };
+    triageQueued, unreadMonster };
   const done = { covered: [], beyond: [], agreed: [], disagreed: [], unsureReverted: [] };
   const already = { confirmed: [], reverted: [] };
   const unsure = [];
