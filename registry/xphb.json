@@ -15823,11 +15823,54 @@
               "no-key"
             ]
           }
+        },
+        "gates": {
+          "at": "2026-11-23T00:30:43.667Z",
+          "core": "0.290.0",
+          "rule": "808bdbe6bcb3a4a3c821e5a060a7f136c782582cae5e83565cd16776c8a2fedd",
+          "emits": "92c7a9bdd5f255daa23a938b302af5a01674aad8ebac8140bc91842814d17fe7",
+          "passed": [
+            "schema",
+            "validator",
+            "ids",
+            "fixes",
+            "text",
+            "unique"
+          ],
+          "items": {
+            "official": "54352559e0f32d3e4f9f2e5393b51e8cc87e3249082df5023726142c00671cb2"
+          }
+        },
+        "played": {
+          "at": "2026-11-23T00:37:54.072Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xphb/xphb-feature-fighter-psi-warrior-15-bulwark-of-force",
+          "client": "gm",
+          "rule": "808bdbe6bcb3a4a3c821e5a060a7f136c782582cae5e83565cd16776c8a2fedd"
         }
       },
       "why": "Cover for a minute ending on incapacitation, restorable with a die; effect has no end condition.",
       "hint": "beyond-engine",
-      "state": "triaged"
+      "rule": {
+        "handledIn": "table",
+        "adds": "The cover the feature gives ends at once when the psi warrior who gave it becomes Incapacitated.",
+        "entry": {
+          "endsWhen": {
+            "incapacitated": "caster"
+          }
+        },
+        "origins": [
+          "official"
+        ],
+        "engineered": {
+          "by": "engineer-main",
+          "at": "2026-11-23T00:30:36.717Z",
+          "leavesNote": "Restoring the use with a Psionic Energy Die is done by hand with the item's second activity."
+        },
+        "origin": "Psi Warrior 15"
+      },
+      "state": "played"
     },
     {
       "key": "xphb:feature:fighter/psi-warrior/18/telekinetic-master",

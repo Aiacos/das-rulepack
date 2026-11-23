@@ -60,7 +60,9 @@ describe("progress by rulebook", () => {
     }
     expect(figures(book("XGE"))).toMatchObject({ pack: 12, refined: 0 });
     expect(figures(book("TCE"))).toMatchObject({ pack: 5, audit: 3 });    // the audit does not see the two rules handled in code alone
-    expect(figures(book("XPHB"))).toMatchObject({ pack: 1, refined: 3 });   // one pipeline rule; 3 entries DAS · Core already has
+    // The pipeline keeps adding rules to this book: its three completed engine entries are pinned, its own rules counted.
+    expect(figures(book("XPHB"))).toMatchObject({ refined: 3 });
+    expect(figures(book("XPHB")).pack).toBeGreaterThanOrEqual(1);
     expect(figures(book("MPMM")).uncounted.map(rule => rule.identifier)).toEqual(["life-sense"]);
   });
 

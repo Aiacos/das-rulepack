@@ -76,6 +76,22 @@ export const RULES = book(BOOK, [
   },
 
   {
+    "identifier": "bulwark-of-force",
+    "name": "Bulwark of Force",
+    "page": 99,
+    "kind": "feature",
+    "status": "played",
+    "handledIn": "table",
+    "origin": "Psi Warrior 15",
+    "adds": "The cover the feature gives ends at once when the psi warrior who gave it becomes Incapacitated.",
+    "entry": {
+      "endsWhen": {
+        "incapacitated": "caster"
+      }
+    }
+  },
+
+  {
     "identifier": "zone-of-truth",
     "name": "Zone of Truth",
     "page": 343,
