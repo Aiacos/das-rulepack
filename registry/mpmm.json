@@ -48477,8 +48477,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-23T07:14:04.678Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.750Z",
+          "core": "0.292.0",
           "rule": "ec6f383f80cf9fa4b6e19a1cb8f75b2fb0dd7c19ab3b963076e71c95247b060c",
           "emits": "f77d84feec7c35f6c70d240156f991a73d3ec65fe0ae301f472129cd80b91f4e",
           "passed": [

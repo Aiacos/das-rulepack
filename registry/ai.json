@@ -5281,8 +5281,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-23T07:14:04.536Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.502Z",
+          "core": "0.292.0",
           "rule": "3ab9a63fb57af2329d35d36333482b51dad700e5dacb083fe25d3d24b094869a",
           "emits": "762ef4d3278c9b3f7ad65561a13327114ad1680a651240b03fee8b42b0873373",
           "passed": [

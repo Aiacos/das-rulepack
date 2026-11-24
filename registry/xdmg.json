@@ -3976,8 +3976,8 @@
           "rule": "4171f353f01f254c0a1f3c2025da2f3459fb58ebc2b29e66f28164e09ad9ace6"
         },
         "gates": {
-          "at": "2026-11-23T10:30:15.708Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.801Z",
+          "core": "0.292.0",
           "rule": "4171f353f01f254c0a1f3c2025da2f3459fb58ebc2b29e66f28164e09ad9ace6",
           "emits": "6baef410f06cc511de80110ac56ca399a2cc7fcdc7ff35961e5918524576124f",
           "passed": [
@@ -6605,8 +6605,8 @@
           "because": "dataFixes"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.719Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.802Z",
+          "core": "0.292.0",
           "rule": "6945e2af40dca8023fb061be0a520dbeb906126f0f49bbde4b0e65447d17bf3a",
           "emits": "1c2df9af1d541e910bc1093482fcbff85c12461ffae0ad499e76cca30cc4c1a0",
           "passed": [
@@ -25891,8 +25891,8 @@
           "rule": "eb40fd1103fe463c31496e500ea2ebf4f8b70c83d4f173d118bb89b7ebd0fce4"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.726Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.809Z",
+          "core": "0.292.0",
           "rule": "eb40fd1103fe463c31496e500ea2ebf4f8b70c83d4f173d118bb89b7ebd0fce4",
           "emits": "17889f56cbf6ed23568ff1be580b0bbca30cdb54fa6704240617f4fb1e7fcaec",
           "passed": [
@@ -32305,9 +32305,17 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T15:57:44.798Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "xdmg/xdmg-item-sword-of-answering",
+          "client": "gm",
+          "rule": "f973e169d401181d541b8c2aa2aef11346aae20483c1c7acc370c2fb77e56b20"
+        },
         "gates": {
-          "at": "2026-11-23T15:41:30.307Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.811Z",
+          "core": "0.292.0",
           "rule": "f973e169d401181d541b8c2aa2aef11346aae20483c1c7acc370c2fb77e56b20",
           "emits": "4ab5fc3f8db0524812b0cd8cf0d011c6d1acf3e2760b2d70f8c080608be8a8a8",
           "passed": [
@@ -32321,14 +32329,6 @@
           "items": {
             "official": "c7570ca3283ecff4b7bdf7fda3b30be4176c5458c4315810fae28978cf61869f"
           }
-        },
-        "played": {
-          "at": "2026-11-23T15:57:44.798Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "xdmg/xdmg-item-sword-of-answering",
-          "client": "gm",
-          "rule": "f973e169d401181d541b8c2aa2aef11346aae20483c1c7acc370c2fb77e56b20"
         }
       },
       "why": "Reaction melee attack with advantage that ignores immunity and resistance on its damage; plain data cannot express the ignore clause.",
