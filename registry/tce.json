@@ -28034,8 +28034,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-23T07:14:04.707Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.788Z",
+          "core": "0.292.0",
           "rule": "dd1a11a9a05e32b8c0bbe3b9264d37f1c4a13d003a9236e2fd26d3d7c47e5e63",
           "emits": "bfd518fc2d8fdb25789bf4a3d8161ad04d26e227f2a29f4eddf8db3ee9b5aee3",
           "passed": [
@@ -28181,8 +28181,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-23T07:14:04.707Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.789Z",
+          "core": "0.292.0",
           "rule": "b6e9ed2bea1e7992666ec2c1cebacfcb82197871b8acc536ddaf3f7c5202fb39",
           "emits": "667333e9131f7a99129a67a653ee7b4efa3d8b7bc44da7fc0106fcd87a7061f8",
           "passed": [
@@ -28352,8 +28352,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-23T07:14:04.707Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.789Z",
+          "core": "0.292.0",
           "rule": "25cff01c130de2042b1f55b1129f475edb91ce620f38e5b985f82d7f3cf7917b",
           "emits": "6564a1bcd302c4514e9a80057ac2bf271829341b5ba616c021b2424c1b74e449",
           "passed": [
@@ -29178,8 +29178,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-23T07:14:04.708Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.790Z",
+          "core": "0.292.0",
           "rule": "358d2b2719e4f4831e5ab55946d83aa3ccc8128d8b58fe3db1ed6d74f8769286",
           "emits": "bb0000326ce08d089184bee6e6011dc1a0f4539f4ab45b2078113c1666902738",
           "passed": [
@@ -29268,8 +29268,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-23T07:14:04.708Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.790Z",
+          "core": "0.292.0",
           "rule": "1db194ff78879592403980f28fcb9268bc06f1fcd893360aaa6fef8d513aaf48",
           "emits": "9599096c8b8f2e65f0c00c13b2e28220c9e180313a434877f8d2ceb01b05c9f6",
           "passed": [

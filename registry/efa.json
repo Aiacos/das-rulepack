@@ -923,8 +923,8 @@
           "rule": "57cb72a79ec3f92a8b2ca860ef871e87f3c7c53b79de622cb4f8577601b75417"
         },
         "gates": {
-          "at": "2026-11-23T10:39:10.979Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.542Z",
+          "core": "0.292.0",
           "rule": "57cb72a79ec3f92a8b2ca860ef871e87f3c7c53b79de622cb4f8577601b75417",
           "emits": "9ff5036c0105cf49979c1da4ee3b76ca881fd55ab6f97336629768750389b1eb",
           "passed": [
@@ -1175,9 +1175,17 @@
             ]
           }
         },
+        "played": {
+          "at": "2026-11-23T11:04:39.898Z",
+          "core": "0.290.0",
+          "world": "das-test",
+          "scenario": "efa/efa-feat-greater-mark-of-handling",
+          "client": "gm",
+          "rule": "613faa45a2c408f77c620273c27f4f87712d07307237358d6e27984fa4091dae"
+        },
         "gates": {
-          "at": "2026-11-23T11:00:50.681Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.544Z",
+          "core": "0.292.0",
           "rule": "613faa45a2c408f77c620273c27f4f87712d07307237358d6e27984fa4091dae",
           "emits": "d4eeb69fcc3a0deacce753e96b2df9da5686372a343dcec1c4a9f1c28e6b1f20",
           "passed": [
@@ -1191,14 +1199,6 @@
           "items": {
             "official": "2429f65b1164dc6a8196131550fc6e78d7df8a156b7f2e4c0803433ac338de99"
           }
-        },
-        "played": {
-          "at": "2026-11-23T11:04:39.898Z",
-          "core": "0.290.0",
-          "world": "das-test",
-          "scenario": "efa/efa-feat-greater-mark-of-handling",
-          "client": "gm",
-          "rule": "613faa45a2c408f77c620273c27f4f87712d07307237358d6e27984fa4091dae"
         }
       },
       "why": "Subdue Animal save/Frightened is in data; mount reaction after a melee hit while mounted is a trigger the data lacks.",
@@ -4590,8 +4590,8 @@
           "rule": "d68fc6d42042938344f6beba1ffcb6d909b77ef6e0cdbb7d617c15cbb69ff26a"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.565Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.549Z",
+          "core": "0.292.0",
           "rule": "d68fc6d42042938344f6beba1ffcb6d909b77ef6e0cdbb7d617c15cbb69ff26a",
           "emits": "32a450100ad98f1215d5b951d03728dc5bf47c4ed18ac72fc839ae0050338b34",
           "passed": [
@@ -5106,8 +5106,8 @@
           "rule": "c5eccf641eabc1a45102cc08396143f5a2625db5c75092ae1baf324bb42ac4aa"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.566Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.551Z",
+          "core": "0.292.0",
           "rule": "c5eccf641eabc1a45102cc08396143f5a2625db5c75092ae1baf324bb42ac4aa",
           "emits": "c2a308e6c3eb3ef7d0cc831fe10822eb932c42e9f89ccae1d43455583fcba266",
           "passed": [
@@ -5322,8 +5322,8 @@
           "rule": "df0c3c4ab0eb8d05da81a473e672694e4435f540ee52c0e3733f611ed51d657c"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.566Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.552Z",
+          "core": "0.292.0",
           "rule": "df0c3c4ab0eb8d05da81a473e672694e4435f540ee52c0e3733f611ed51d657c",
           "emits": "10e2c4552e490815214f34d98a3cd0ce228faa21da6a8c4f3ef902b1e48e4c18",
           "passed": [
@@ -5656,8 +5656,8 @@
           "rule": "08ef24971768c3108cd9a21407b1cbcb2689f3226586e7e24e9b4c1ea6722357"
         },
         "gates": {
-          "at": "2026-11-23T10:46:01.591Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.553Z",
+          "core": "0.292.0",
           "rule": "08ef24971768c3108cd9a21407b1cbcb2689f3226586e7e24e9b4c1ea6722357",
           "emits": "b8954feb4ddcc0f144789b441f587f87c324063d7eb35e49fd9273343820ceb5",
           "passed": [
@@ -5812,8 +5812,8 @@
           "rule": "03a02b7ddad8b22d7deaedd3d14acfccccf323e0ca5f3b334dc98de37d298af2"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.567Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.554Z",
+          "core": "0.292.0",
           "rule": "03a02b7ddad8b22d7deaedd3d14acfccccf323e0ca5f3b334dc98de37d298af2",
           "emits": "fe5aada22d0966cc5969e6fe5c1c754bfdf5e622711d341ddf29e50572767f45",
           "passed": [
@@ -6007,8 +6007,8 @@
           "rule": "871a3344954d255d9fdea4bab5fb79aca04e486b33872f21377a4a2105b9ca62"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.568Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.555Z",
+          "core": "0.292.0",
           "rule": "871a3344954d255d9fdea4bab5fb79aca04e486b33872f21377a4a2105b9ca62",
           "emits": "3088f619200f6fa1df77f5b5804cba830bfea1db16a9438a13f8ac3162af3399",
           "passed": [
@@ -14621,8 +14621,8 @@
           "rule": "fccc0d5072c9cd422f6ce37bbb5f9052fd28b183e917d3db8d9aca572485afd1"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.597Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.597Z",
+          "core": "0.292.0",
           "rule": "fccc0d5072c9cd422f6ce37bbb5f9052fd28b183e917d3db8d9aca572485afd1",
           "emits": "6a35965fec65c072b3c045a78e66c18c4dce7e3549a330faf813b6ebf11f598d",
           "passed": [
@@ -14926,8 +14926,8 @@
           "rule": "7e0849506522adf4c2a9a43195fa41c0b511669d2203f6aeccfad6a14ec113d5"
         },
         "gates": {
-          "at": "2026-11-23T07:14:04.598Z",
-          "core": "0.291.0",
+          "at": "2026-11-24T10:43:35.598Z",
+          "core": "0.292.0",
           "rule": "7e0849506522adf4c2a9a43195fa41c0b511669d2203f6aeccfad6a14ec113d5",
           "emits": "47a3f6746ace546a982a8781743b602f6354c8bfa96f546573a51979159d0f3b",
           "passed": [

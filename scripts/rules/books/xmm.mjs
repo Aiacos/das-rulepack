@@ -33,53 +33,6 @@ export const RULES = book(BOOK, [
   },
 
   {
-    "identifier": "xmm-adult-brass-dragon-scorching-sands",
-    "name": "Scorching Sands",
-    "page": 55,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Adult Brass Dragon",
-    "adds": "The halved speed on a failed save ends at the end of the target's next turn.",
-    "entry": {
-      "effectEnds": {
-        "n3I76HfSH6eKLALf": "bearerTurnEnd"
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ],
-    "partial": {
-      "use-limit": 1
-    }
-  },
-
-  {
-    "identifier": "xmm-adult-copper-dragon-slowing-breath",
-    "name": "Slowing Breath",
-    "page": 79,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Adult Copper Dragon",
-    "adds": "The slowing effect on a failed save ends at the end of the target's next turn.",
-    "entry": {
-      "effectEnds": {
-        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
     "identifier": "xmm-adult-gold-dragon-banish",
     "name": "Banish",
     "page": 145,
@@ -92,28 +45,6 @@ export const RULES = book(BOOK, [
       "banishes": [
         "u5H85me3idut0t3u"
       ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-adult-white-dragon-freezing-burst",
-    "name": "Freezing Burst",
-    "page": 329,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Adult White Dragon",
-    "adds": "A creature that fails stays unable to move through its own following turn, not only up to that turn's start.",
-    "entry": {
-      "effectEnds": {
-        "K6EbT8HrfSUSJW2F": "bearerTurnEnd"
-      }
     },
     "uncovered": [
       {
@@ -160,53 +91,6 @@ export const RULES = book(BOOK, [
             "value": "-1"
           }
         ]
-      },
-      "effectEnds": {
-        "owuEyJBslYKvxqeX": "bearerTurnEnd"
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-ancient-brass-dragon-scorching-sands",
-    "name": "Scorching Sands",
-    "page": 56,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Ancient Brass Dragon",
-    "adds": "The halved Speed lasts until the end of the target's next turn.",
-    "entry": {
-      "effectEnds": {
-        "n3I76HfSH6eKLALf": "bearerTurnEnd"
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-ancient-copper-dragon-slowing-breath",
-    "name": "Slowing Breath",
-    "page": 80,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Ancient Copper Dragon",
-    "adds": "The slowing effect from the breath lasts until the affected creature finishes its next turn.",
-    "entry": {
-      "effectEnds": {
-        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
       }
     },
     "uncovered": [
@@ -481,28 +365,6 @@ export const RULES = book(BOOK, [
   },
 
   {
-    "identifier": "xmm-copper-dragon-wyrmling-slowing-breath",
-    "name": "Slowing Breath",
-    "page": 78,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Copper Dragon Wyrmling",
-    "adds": "The breath's effect lasts until the end of the target's next turn.",
-    "entry": {
-      "effectEnds": {
-        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
     "identifier": "xmm-couatl-constrict",
     "name": "Constrict",
     "page": 82,
@@ -548,28 +410,6 @@ export const RULES = book(BOOK, [
       "keys": [
         "magical"
       ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-death-cultist-dread-scythe",
-    "name": "Dread Scythe",
-    "page": 86,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Death Cultist",
-    "adds": "The healing block on the struck creature lapses when its next turn ends.",
-    "entry": {
-      "effectEnds": {
-        "rWqB3N3piOf9afmQ": "bearerTurnEnd"
-      }
     },
     "uncovered": [
       {
@@ -640,33 +480,6 @@ export const RULES = book(BOOK, [
     "partial": {
       "no-key": 1
     }
-  },
-
-  {
-    "identifier": "xmm-drider-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 105,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Drider",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
   },
 
   {
@@ -1103,54 +916,6 @@ export const RULES = book(BOOK, [
   },
 
   {
-    "identifier": "xmm-juvenile-shadow-dragon-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 275,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Juvenile Shadow Dragon",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    }
-  },
-
-  {
-    "identifier": "xmm-kobold-warrior-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 185,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Kobold Warrior",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
     "identifier": "xmm-kraken-toxic-ink",
     "name": "Toxic Ink",
     "page": 187,
@@ -1168,118 +933,6 @@ export const RULES = book(BOOK, [
       "no-key": 2,
       "table-ruling": 1
     }
-  },
-
-  {
-    "identifier": "xmm-kuo-toa-archpriest-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 191,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Kuo-toa Archpriest",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-kuo-toa-monitor-bone-whip",
-    "name": "Bone Whip",
-    "page": 190,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Kuo-toa Monitor",
-    "adds": "The creature hit stays unable to make Opportunity Attacks until the monitor's own turn comes round again.",
-    "entry": {
-      "effectEnds": {
-        "fnxPnbWeOvf9X0QR": "casterTurnStart"
-      }
-    }
-  },
-
-  {
-    "identifier": "xmm-kuo-toa-monitor-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 190,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Kuo-toa Monitor",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    }
-  },
-
-  {
-    "identifier": "xmm-kuo-toa-whip-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 190,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Kuo-toa Whip",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    }
-  },
-
-  {
-    "identifier": "xmm-kuo-toa-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 189,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Kuo-toa",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
   },
 
   {
@@ -1306,28 +959,6 @@ export const RULES = book(BOOK, [
             }
           ]
         }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-lacedon-ghoul-icy-bite",
-    "name": "Icy Bite",
-    "page": 132,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Lacedon Ghoul",
-    "adds": "The slowing effect ends when the user's next turn begins.",
-    "entry": {
-      "effectEnds": {
-        "kCxRhmskJImIaVxj": "casterTurnStart"
       }
     },
     "uncovered": [
@@ -1633,9 +1264,6 @@ export const RULES = book(BOOK, [
             "value": "-1"
           }
         ]
-      },
-      "effectEnds": {
-        "uAcaFivCVfeE0M25": "casterTurnEnd"
       }
     }
   },
@@ -1747,54 +1375,6 @@ export const RULES = book(BOOK, [
   },
 
   {
-    "identifier": "xmm-shadow-dragon-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 275,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Shadow Dragon",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    }
-  },
-
-  {
-    "identifier": "xmm-specter-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 290,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Specter",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
     "identifier": "xmm-sphinx-of-secrets-curse-of-the-riddle",
     "name": "Curse of the Riddle",
     "page": 292,
@@ -1889,216 +1469,6 @@ export const RULES = book(BOOK, [
   },
 
   {
-    "identifier": "xmm-swarm-of-bats-swarm",
-    "name": "Swarm",
-    "page": 370,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Bats",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-swarm-of-crawling-claws-swarm",
-    "name": "Swarm",
-    "page": 83,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Crawling Claws",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-swarm-of-dretches-swarm",
-    "name": "Swarm",
-    "page": 104,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Dretches",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    }
-  },
-
-  {
-    "identifier": "xmm-swarm-of-insects-swarm",
-    "name": "Swarm",
-    "page": 370,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Insects",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-swarm-of-larvae-swarm",
-    "name": "Swarm",
-    "page": 193,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Larvae",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    }
-  },
-
-  {
-    "identifier": "xmm-swarm-of-lemures-swarm",
-    "name": "Swarm",
-    "page": 194,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Lemures",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    }
-  },
-
-  {
-    "identifier": "xmm-swarm-of-piranhas-swarm",
-    "name": "Swarm",
-    "page": 370,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Piranhas",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-swarm-of-rats-swarm",
-    "name": "Swarm",
-    "page": 370,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Rats",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    }
-  },
-
-  {
-    "identifier": "xmm-swarm-of-ravens-swarm",
-    "name": "Swarm",
-    "page": 371,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Ravens",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
     "identifier": "xmm-swarm-of-stirges-swarm-of-proboscises",
     "name": "Swarm of Proboscises",
     "page": 299,
@@ -2112,58 +1482,6 @@ export const RULES = book(BOOK, [
         "target.sizeAtMost": "med",
         "target.sharesSpaceWithSource": true
       }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-swarm-of-stirges-swarm",
-    "name": "Swarm",
-    "page": 299,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Stirges",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-swarm-of-venomous-snakes-swarm",
-    "name": "Swarm",
-    "page": 371,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Swarm of Venomous Snakes",
-    "adds": "The swarm gains no Temporary Hit Points, whatever would give them.",
-    "entry": {
-      "blocksTempHp": true
-    },
-    "carries": {
-      "from": "swarm",
-      "keys": [
-        "sharesSpace"
-      ]
     },
     "uncovered": [
       {
@@ -2204,27 +1522,6 @@ export const RULES = book(BOOK, [
         "because": "DDB Importer monster features: world ids and generic identifiers"
       }
     ]
-  },
-
-  {
-    "identifier": "xmm-troglodyte-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 309,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Troglodyte",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    }
   },
 
   {
@@ -2356,103 +1653,6 @@ export const RULES = book(BOOK, [
     "adds": "The +4 to AC of this reaction holds for the triggering attack only, not for the rest of the round.",
     "entry": {
       "forOneAttack": true
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-wight-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 332,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Wight",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    }
-  },
-
-  {
-    "identifier": "xmm-winged-kobold-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 185,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Winged Kobold",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-wraith-sunlight-sensitivity",
-    "name": "Sunlight Sensitivity",
-    "page": 336,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Wraith",
-    "adds": "In sunlight the creature rolls its ability checks with Disadvantage.",
-    "entry": {
-      "rollDisadvantage": {
-        "on": [
-          "check"
-        ],
-        "if": {
-          "self.inSunlight": true
-        }
-      }
-    },
-    "uncovered": [
-      {
-        "origin": "ddb-importer",
-        "because": "DDB Importer monster features: world ids and generic identifiers"
-      }
-    ]
-  },
-
-  {
-    "identifier": "xmm-young-copper-dragon-slowing-breath",
-    "name": "Slowing Breath",
-    "page": 78,
-    "kind": "monster",
-    "status": "played",
-    "handledIn": "table",
-    "origin": "Young Copper Dragon",
-    "adds": "The breath's effect lasts until the end of the target's next turn.",
-    "entry": {
-      "effectEnds": {
-        "ztGUDHGfoUxlUY53": "bearerTurnEnd"
-      }
     },
     "uncovered": [
       {
