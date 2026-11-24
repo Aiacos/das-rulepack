@@ -1,0 +1,15 @@
+{
+  "DASRULEPACK.ShadowBlade.Name": "Lâmina de Sombras",
+  "DASRULEPACK.ShadowBlade.Advantage": "Lâmina de Sombras: Vantagem, pois o alvo está em penumbra ou escuridão.",
+  "DASRULEPACK.ShadowBlade.Dissipated": "A Lâmina de Sombras de {name} se dissipa. Uma Ação Bônus (conjurar a magia novamente) faz com que ela reapareça.",
+  "DASRULEPACK.Blade.WhichWeapon": "Com qual arma você fará o ataque?",
+  "DASRULEPACK.Blade.NoWeapon": "{spell}: você precisa estar empunhando uma arma corpo a corpo (equipada) para conjurar a magia.",
+  "DASRULEPACK.Blade.Sheathed": "Lâmina Estrondosa: envolto em energia estrondosa",
+  "DASRULEPACK.Blade.SheathedHint": "Lâmina Estrondosa afeta esta criatura. Se ela se mover voluntariamente 1,5 m ou mais, sofre {dice}d8 de dano trovejante, e o efeito termina. Caso contrário, o efeito termina sem causar dano no início do próximo turno do conjurador.",
+  "DASRULEPACK.Blade.LeapTo": "O ataque acertou {target}. Para qual criatura a até 1,5 m do alvo as chamas verdes saltam?",
+  "DASRULEPACK.Blade.NoLeap": "Nenhuma criatura",
+  "DASRULEPACK.Blade.LeapFlavor": "{spell}: chamas verdes saltam para {target}",
+  "DASRULEPACK.Blade.BoomFlavor": "Lâmina Estrondosa: {target} se moveu",
+  "DASRULEPACK.Importer.Plutonium.Name": "Itens importados pelo Plutonium",
+  "DASRULEPACK.Importer.Plutonium.Hint": "Esses itens possuem atividades e efeitos com IDs diferentes dos itens oficiais; por isso, a automação do DAS pode não funcionar ou funcionar apenas parcialmente. A correção substitui cada um pelo item oficial (mantendo o ID, os usos gastos, a preparação, o estado de equipamento, a quantidade e as flags do Plutonium). Classes, subclasses, origens e itens com progressões são apenas listados: suas escolhas não podem ser transferidas, portanto substitua esses documentos manualmente."
+}
