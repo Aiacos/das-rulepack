@@ -11049,8 +11049,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.816Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.169Z",
+          "core": "0.294.0",
           "rule": "dcb602b6c5d5cc06798f27c3034a610d81ccd82642b919590db3deb9232f629b",
           "emits": "25207754b74c8ec65298c8d9aca4f141dbe5992edcc7c7eebd4e04cce255ad11",
           "passed": [
@@ -12114,8 +12114,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.816Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.170Z",
+          "core": "0.294.0",
           "rule": "6f010d2dd8a3ade3cff5d0d6a9fea9cf7834c6f088330031331148ea2d7340d3",
           "emits": "c7bfa2b5070d709b8050a4c1ef18f96d47bfe9d5ec5e6a0e5663ba0ff29fe445",
           "passed": [
@@ -12583,8 +12583,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.817Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.171Z",
+          "core": "0.294.0",
           "rule": "648a45168447c6b601760e1ade75720622671b5774849415dc8f4fb7020aa73a",
           "emits": "749f8f0bb07c4e5375c74636729c12be8cdd8db962159c086a3a2937cdd86c45",
           "passed": [
@@ -12808,8 +12808,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.817Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.171Z",
+          "core": "0.294.0",
           "rule": "8bac579daa9c890b2f5cc0ab16a5c5b14ff81b44cb0ba00bed99bb76392beafd",
           "emits": "b662fc980f4682f44db057ac6191356fcf71e87f3ea47706d92652cbc1f57ba9",
           "passed": [
@@ -13939,8 +13939,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.817Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.172Z",
+          "core": "0.294.0",
           "rule": "bfa70561fd744148810c76ff6a735be7834fab82da167a2b3dffb5e87da1b41b",
           "emits": "a6defceb1c242b6c213dea3e00dfff2be3a883b9b037bbfb9c8d94cb9bd7eadb",
           "passed": [
@@ -14113,8 +14113,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.818Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.172Z",
+          "core": "0.294.0",
           "rule": "9ff3bc960885ea4f2d3f962b0ec3b2c67176113adbc176b104def1856509c8da",
           "emits": "419a67fc753a8bd4ae08f237c3cf310fb6d9be3ce49769ac32b889ccff31770f",
           "passed": [
@@ -14188,8 +14188,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.818Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.172Z",
+          "core": "0.294.0",
           "rule": "306cae2393898fbf6dca425a6f1a30096e81db15af1d23d8dae9cdcc8973be51",
           "emits": "b9c507bf15df5d823b7a9d58495a0a75272387ba02eba5f98f1907b438e240a2",
           "passed": [
@@ -14311,8 +14311,8 @@
       "legacyStatus": "played",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.818Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.172Z",
+          "core": "0.294.0",
           "rule": "aee3b506e3ad2f8c23590f2504f56d516e6ccfe20cdda2fd43440af07c03a779",
           "emits": "48b422c8378219d306027c8563cbb4660bda8cc526422942e5d68313b8deb25b",
           "passed": [
@@ -14626,8 +14626,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.818Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.173Z",
+          "core": "0.294.0",
           "rule": "97855304dc59c0f886c5c6129f73993cb24510e386bffb9b2fefc319e09ad950",
           "emits": "6863abb3df312431fba74bc74f75e349a9354c0cd5c3f48601db913a16963d75",
           "passed": [
@@ -15479,8 +15479,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.819Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.173Z",
+          "core": "0.294.0",
           "rule": "9b1beb0793384f0fd17c26e0c0ddde4ad0301db7304b0f3f7769b78d62173caf",
           "emits": "f4b41a2e39378c47b85f072b7dd6259b444e695e646e8a9d1b5d707145efb9c3",
           "passed": [
@@ -15703,8 +15703,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.819Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.174Z",
+          "core": "0.294.0",
           "rule": "0c2f15ebc9c4313e5ed8dc3d3acf1a24a3d460f742ab5ffef60ac0aa3424c133",
           "emits": "9d41b6185e86d49085496d3c4ea7d1a4bdeb32c598e105656a90dd6af967e3ed",
           "passed": [
@@ -15918,8 +15918,8 @@
       "legacyStatus": "validated",
       "evidence": {
         "gates": {
-          "at": "2026-11-24T10:43:35.819Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:06.174Z",
+          "core": "0.294.0",
           "rule": "41877d1701f1a87603406a1a753af2205b267fd4ec3cbf0b4fefb63187fffe0d",
           "emits": "c0da36974bb187c5469014a17256a5c97647e3c3dc0f7bb4eaebb031b1091a2e",
           "passed": [

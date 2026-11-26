@@ -85,8 +85,8 @@
           "because": "dataFixes"
         },
         "gates": {
-          "at": "2026-11-24T10:43:35.615Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:05.913Z",
+          "core": "0.294.0",
           "rule": "669ba941e24bf17208b70319b57be2d0f90eb9fd787d0743829e12e110a9e1e4",
           "emits": "b25d463c0b22ba5a6ab7944371151fdc5c3700f55e726a256a0261cdbb61beeb",
           "passed": [
@@ -280,8 +280,8 @@
           "because": "emanation"
         },
         "gates": {
-          "at": "2026-11-24T10:43:35.618Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:05.915Z",
+          "core": "0.294.0",
           "rule": "ea4675228a53c3e54102950f25aca57954cf129b0c5a6fd3b0395935071d2d10",
           "emits": "ad3ac5d2ce87d554a6139d02f321315616603d303ef30a7d6e19d0e5d08ca935",
           "passed": [
@@ -446,8 +446,8 @@
           "confidence": 0.85
         },
         "gates": {
-          "at": "2026-11-24T10:43:35.619Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:05.916Z",
+          "core": "0.294.0",
           "rule": "735b0ac4311e11e0065123d16a60c438c3020100013906de3d415a9f8698c089",
           "emits": "09abae08bfa0b8c8ba625fb771013540cd6d983c69d557c98b3522cf03635a7e",
           "passed": [
@@ -865,8 +865,8 @@
           "confidence": 0.75
         },
         "gates": {
-          "at": "2026-11-24T10:43:35.621Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:05.917Z",
+          "core": "0.294.0",
           "rule": "fd9babc6cddf76b9165b4bf19212288b02cbd05dc7a3902d44e792d3d56a7b0b",
           "emits": "3d189a717e657bf86333ba03f9a44766c27490df3fd3d0eda5189a5dc5dbd067",
           "passed": [
@@ -1051,8 +1051,8 @@
           "rule": "ff860495a3bbdcc4bb4b4451ce12843b6be4602694c2926dc2f1b589d770c326"
         },
         "gates": {
-          "at": "2026-11-24T10:43:35.622Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:05.918Z",
+          "core": "0.294.0",
           "rule": "ff860495a3bbdcc4bb4b4451ce12843b6be4602694c2926dc2f1b589d770c326",
           "emits": "a9e1c0916d9d8cb2a5d290348454277adcb30e34ec2acc5a70c52196ad752ebc",
           "passed": [
@@ -1332,8 +1332,8 @@
           "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0"
         },
         "gates": {
-          "at": "2026-11-24T10:43:35.623Z",
-          "core": "0.292.0",
+          "at": "2026-11-26T20:41:05.919Z",
+          "core": "0.294.0",
           "rule": "07283661ca4c9a436de672772f43fcca90e3ec9cbe7cca68542d4a4fffc272c0",
           "emits": "5961140aeba9953e30f3c3288a3f2784033e7f98996b18c895ae97626ec48499",
           "passed": [
